@@ -1,0 +1,8 @@
+.classpath
+.project
+.settings
+bin
+gen
+*.bak
+*.swp
+eclipse-bin
