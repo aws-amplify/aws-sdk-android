@@ -29,8 +29,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.android.mobileanalytics.internal.core.AnalyticsContext;
 import com.amazonaws.android.mobileanalytics.internal.core.log.Logger;
@@ -252,7 +250,7 @@ public class DefaultDeliveryClient implements DeliveryClient {
             logger.devi(String.format("Successful submission of %d events", eventArray.length()));
             return true;
         } catch (AmazonServiceException e) {
-            Log.e("DefaultDeliveryClient","AmazonServiceException occured during send of put event ",e);
+            logger.deve("AmazonServiceException occured during send of put event ",e);
             String errorCode = e.getErrorCode();
             if(errorCode.equalsIgnoreCase("ValidationException") || errorCode.equalsIgnoreCase("SerializationException") || errorCode.equalsIgnoreCase("BadRequestException")){
                 logger.e(String.format("Failed to submit events to EventService: statusCode: "+e.getStatusCode()+" errorCode: ", errorCode));
@@ -263,6 +261,9 @@ public class DefaultDeliveryClient implements DeliveryClient {
                         + e.getMessage());
                 logger.w("Recieved an error response: " + e.getMessage());
             }
+        } catch (Exception e2){
+            logger.devw("Unable to successfully deliver events to server. Events will be saved, error likely recoverable."
+                    + e2.getMessage());
         }
         
         // inform the policies that we've attempted a submission
