@@ -19,13 +19,13 @@ import com.amazonaws.ClientConfiguration;
 /**
  * The AnalyticsOptions class allows developers to configure out Amazon Mobile Analytics behaves.
  * It includes enabling/disabling the sending of events, so developers can easily develop applications that allow end-users to opt-in/opt-out of analytics collections.
- * It also allows events to only be sent over WIFI.  Finally developers can set any networking behavior that a low-level AWS client can change through a ClientConfiguration object.
+ * By default it allows events to only be sent over WIFI, but can be set to allow events to be sent over the mobile network.  Finally developers can set any networking behavior that a low-level AWS client can change through a ClientConfiguration object.
  */
 public class AnalyticsOptions{
 	
     
     private boolean allowEventCollection = true;
-    private boolean allowWANDelivery = true;
+    private boolean allowWANDelivery = false;
     private ClientConfiguration clientConfiguration;
     
     /**

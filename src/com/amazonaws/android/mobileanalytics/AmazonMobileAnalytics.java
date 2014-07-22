@@ -48,9 +48,8 @@ import com.amazonaws.services.eventrecorder.AWSEventRecorderServiceClient;
  * 
  */
 public class AmazonMobileAnalytics {
-    private static final String SDK_VERSION = "2.0";
+    private static final String SDK_VERSION = "2.0.5";
     private static final String SDK_NAME = "AmazonMobileAnalyticsSDK";
-    private static final String USER_AGENT = "MobileAnalytics";
     private static final SDKInfo sdkInfo = new SDKInfo(SDK_NAME, SDK_VERSION);
     private static final Logger logger = Logger.getLogger(AmazonMobileAnalytics.class);
 
@@ -187,7 +186,7 @@ public class AmazonMobileAnalytics {
             Preconditions.checkNotNull(appNameSpace, "The namespace specified must not be null");
 
             AWSEventRecorderServiceClient ersClient = new AWSEventRecorderServiceClient(credentialsProvider,
-                    options.getClientConfiguration().withUserAgent(USER_AGENT));
+                    options.getClientConfiguration());
 
             Logger.tryInitialize();
             internetPermissionValidator.validate(appContext);

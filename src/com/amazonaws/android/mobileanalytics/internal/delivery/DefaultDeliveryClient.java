@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.android.mobileanalytics.AmazonMobileAnalytics;
 import com.amazonaws.android.mobileanalytics.internal.core.AnalyticsContext;
 import com.amazonaws.android.mobileanalytics.internal.core.log.Logger;
 import com.amazonaws.android.mobileanalytics.internal.core.util.StringUtil;
@@ -41,10 +42,12 @@ import com.amazonaws.android.mobileanalytics.internal.event.InternalEvent;
 import com.amazonaws.android.mobileanalytics.internal.event.adapter.EventAdapter;
 import com.amazonaws.android.mobileanalytics.internal.event.adapter.JSONEventAdapter;
 import com.amazonaws.services.eventrecorder.model.PutEventsRequest;
+import com.amazonaws.util.VersionInfoUtils;
 
 public class DefaultDeliveryClient implements DeliveryClient {
 
     public static final String EVENTS_DIRECTORY = "events";
+    private static final String USER_AGENT = AmazonMobileAnalytics.class.getName()+"/"+VersionInfoUtils.getVersion();
 
     private static final Logger logger = Logger.getLogger(DefaultDeliveryClient.class);
     private final static int MAX_EVENT_OPERATIONS = 1000;
@@ -55,7 +58,7 @@ public class DefaultDeliveryClient implements DeliveryClient {
     static final String KEY_MAX_SUBMISSIONS_ALLOWED = "maxSubmissionAllowed";
     static final int DEFAULT_MAX_SUBMISSIONS_ALLOWED = 3;
     static final Set<Integer> RETRY_REQUEST_CODES;
-
+    
     private final DeliveryPolicyFactory policyFactory;
     private final ExecutorService eventsRunnableQueue;
     private final ExecutorService submissionRunnableQueue;
@@ -240,10 +243,12 @@ public class DefaultDeliveryClient implements DeliveryClient {
         boolean submitted = false;
         // package them into an ers request
         PutEventsRequest request = requestBuilder.createRecordEventsRequest(eventArray,context.getNetworkType());
+        
         if (request == null) {
             logger.e("There was an error when building the http request");
             return submitted;
         }
+        request.getRequestClientOptions().appendUserAgent(USER_AGENT);
 
         try {
             context.getERSClient().putEvents(request);

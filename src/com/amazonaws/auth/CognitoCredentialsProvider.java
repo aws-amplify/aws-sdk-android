@@ -15,6 +15,7 @@
 
 package com.amazonaws.auth;
 
+import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityService;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityServiceClient;
@@ -308,10 +309,11 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
 
     public String getIdentityId() {
         if (identityId == null) {
-            GetIdResult getIdResult = cib
-                    .getId(new GetIdRequest().withAccountId(accountId)
+            GetIdRequest getIdRequest = new GetIdRequest().withAccountId(accountId)
                             .withIdentityPoolId(identityPoolId)
-                            .withLogins(logins));
+                            .withLogins(logins);
+            appendUserAgent(getIdRequest, getUserAgent());
+            GetIdResult getIdResult = cib.getId(getIdRequest);
 
             if (getIdResult.getIdentityId() != null) {
                 identityChanged(getIdResult.getIdentityId());
@@ -331,10 +333,11 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
         // make sure we have an identityId
         getIdentityId();
 
-        GetOpenIdTokenResult getTokenResult = cib
-                .getOpenIdToken(new GetOpenIdTokenRequest()
+        GetOpenIdTokenRequest getTokenRequest = new GetOpenIdTokenRequest()
                         .withIdentityId(identityId)
-                        .withLogins(logins));
+                        .withLogins(logins);
+        appendUserAgent(getTokenRequest, getUserAgent());
+        GetOpenIdTokenResult getTokenResult = cib.getOpenIdToken(getTokenRequest);
 
         openIdConnectToken = getTokenResult.getToken();
 
@@ -347,12 +350,14 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
             roleArn = authRoleArn;
         }
 
-        AssumeRoleWithWebIdentityResult sessionTokenResult = securityTokenService
-                .assumeRoleWithWebIdentity(new AssumeRoleWithWebIdentityRequest()
+        AssumeRoleWithWebIdentityRequest sessionTokenRequest = new AssumeRoleWithWebIdentityRequest()
                         .withWebIdentityToken(openIdConnectToken)
                         .withRoleArn(roleArn)
                         .withRoleSessionName("ProviderSession")
-                        .withDurationSeconds(sessionDuration));
+                        .withDurationSeconds(sessionDuration);
+        appendUserAgent(sessionTokenRequest, getUserAgent());
+        AssumeRoleWithWebIdentityResult sessionTokenResult = securityTokenService
+                .assumeRoleWithWebIdentity(sessionTokenRequest);
         Credentials stsCredentials = sessionTokenResult.getCredentials();
 
         sessionCredentials = new BasicSessionCredentials(
@@ -409,6 +414,25 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
             listener.identityChanged(oldIdentityId, identityId);
         }
 
+    }
+
+    /**
+     * Append user agent string to the request. The final string is what is set
+     * in the ClientCofniguration concatenated with the given userAgent string.
+     * 
+     * @param request the request object to be appended
+     * @param userAgent additional user agent string to append
+     */
+    private void appendUserAgent(AmazonWebServiceRequest request, String userAgent) {
+        request.getRequestClientOptions().appendUserAgent(userAgent);
+    }
+
+    /**
+     * Gets the user agent string to append to all requests made by this
+     * provider. Default is an empty string.
+     */
+    protected String getUserAgent() {
+        return "";
     }
 }
 

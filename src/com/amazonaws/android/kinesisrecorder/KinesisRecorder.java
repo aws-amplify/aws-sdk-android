@@ -35,6 +35,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.retry.PredefinedRetryPolicies;
 import com.amazonaws.services.kinesis.AmazonKinesisClient;
 import com.amazonaws.services.kinesis.model.PutRecordRequest;
+import com.amazonaws.util.VersionInfoUtils;
 
 /**
  * The KinesisRecorder is a high level client meant for storing
@@ -91,7 +92,7 @@ public class KinesisRecorder {
     /** The directory that all requests are being saved to **/
     private File directory;
 
-    private static final String USER_AGENT = "KinesisRecorder";
+    private static final String USER_AGENT = KinesisRecorder.class.getName()+"/"+VersionInfoUtils.getVersion();
 
     /**
      * Constructs a new Kinesis Recorder specifying a directory that Kinesis
@@ -151,7 +152,7 @@ public class KinesisRecorder {
         this.directory = directory;
         this.recordStore = new FileRecordStore(directory, this.config);
         this.adapter = new JSONRecordAdapter();
-        this.client = new AmazonKinesisClient(credentialsProvider, this.config.getClientConfiguration().withUserAgent(USER_AGENT));
+        this.client = new AmazonKinesisClient(credentialsProvider, this.config.getClientConfiguration());
         client.setRegion(Region.getRegion(region));
 
     }
@@ -200,6 +201,7 @@ public class KinesisRecorder {
             try {
                 JSONObject representation = new JSONObject(iterator.next());
                 currentRequest = adapter.translateToRecord(representation);
+                currentRequest.getRequestClientOptions().appendUserAgent(USER_AGENT);
                 client.putRecord(currentRequest);
             } catch (JSONException e) {
                 log.error("Record in record store was improperly formatted JSON, record will be dropped", e);
