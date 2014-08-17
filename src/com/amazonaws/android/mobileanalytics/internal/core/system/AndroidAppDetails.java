@@ -24,6 +24,7 @@ import com.amazonaws.android.mobileanalytics.internal.core.log.Logger;
 
 public class AndroidAppDetails implements AppDetails {
 	private static Logger logger = Logger.getLogger(AndroidAppDetails.class);
+	private static String AppTitleOverride;
 	private Context applicationContext;
 	
 	private String appTitle;
@@ -49,6 +50,16 @@ public class AndroidAppDetails implements AppDetails {
 			versionCode = "Unknown";
 			versionName = "Unknown";
 		}
+		
+		if(null != AppTitleOverride)
+		{
+			appTitle = AppTitleOverride;
+		}
+	}
+	
+	public static void SetAppTitleOverride(String appTitle)
+	{
+		AppTitleOverride = appTitle;
 	}
 	
 	public AndroidAppDetails(String packageName, String versionCode, String versionName, String appTitle){
