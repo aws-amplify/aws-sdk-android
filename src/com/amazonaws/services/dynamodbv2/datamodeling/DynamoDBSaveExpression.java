@@ -25,6 +25,7 @@ import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
  * Enables adding options to a save operation.
  * For example, you may want to save only if an attribute has a particular value.
  * @see DynamoDBMapper#save(Object, DynamoDBSaveExpression)
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class DynamoDBSaveExpression {
 

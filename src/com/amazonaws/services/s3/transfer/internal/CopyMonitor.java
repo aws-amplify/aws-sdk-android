@@ -42,6 +42,7 @@ import com.amazonaws.services.s3.transfer.model.CopyResult;
  * itself to be run in the future. When waiting on the result
  * of this class via a Future object, clients must call
  * {@link CopyMonitor#isDone()} and {@link CopyMonitor#getFuture()}
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
 

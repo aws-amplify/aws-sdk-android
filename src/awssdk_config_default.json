@@ -95,12 +95,12 @@
       "serviceName" : "sts"
     }
   }, {
-    "key" : "AmazonCognitoIdentityServiceClient",
+    "key" : "AmazonCognitoIdentityClient",
     "config" : {
       "serviceName" : "cognito-identity"
     }
   }, {
-    "key" : "AmazonCognitoSyncServiceClient",
+    "key" : "AmazonCognitoSyncClient",
     "config" : {
       "serviceName" : "cognito-sync"
     }

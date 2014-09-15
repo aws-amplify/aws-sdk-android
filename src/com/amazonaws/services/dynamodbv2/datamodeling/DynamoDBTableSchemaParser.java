@@ -39,6 +39,7 @@ import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
 /**
  * A class responsible for parsing the primary key and index schema of a table
  * POJO.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class DynamoDBTableSchemaParser {
 

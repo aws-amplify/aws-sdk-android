@@ -25,6 +25,7 @@ import java.util.Set;
  * @param <K> the type of the map's keys
  * @param <V> the type of the map's values
  * @param <T> the type of the extra secret sauce
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 final class MapAnd<K, V, T> implements Map<K, V> {
 

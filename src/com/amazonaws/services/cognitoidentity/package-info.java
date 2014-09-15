@@ -1,6 +1,6 @@
 
 /**
- * Synchronous and asynchronous client classes for accessing AmazonCognitoIdentityService.
+ * Synchronous and asynchronous client classes for accessing AmazonCognitoIdentity.
  *
  * 
  */

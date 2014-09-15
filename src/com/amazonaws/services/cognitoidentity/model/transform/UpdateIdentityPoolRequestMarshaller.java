@@ -44,7 +44,7 @@ public class UpdateIdentityPoolRequestMarshaller implements Marshaller<Request<U
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<UpdateIdentityPoolRequest> request = new DefaultRequest<UpdateIdentityPoolRequest>(updateIdentityPoolRequest, "AmazonCognitoIdentityService");
+        Request<UpdateIdentityPoolRequest> request = new DefaultRequest<UpdateIdentityPoolRequest>(updateIdentityPoolRequest, "AmazonCognitoIdentity");
         String target = "AWSCognitoIdentityService.UpdateIdentityPool";
         request.addHeader("X-Amz-Target", target);
 

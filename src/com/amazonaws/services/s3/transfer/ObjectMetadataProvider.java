@@ -21,6 +21,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
  * This is the callback interface which is used by TransferManager.uploadDirectory and
  * TransferManager.uploadFileList. The callback is invoked for each file that is uploaded by
  * <code>TransferManager</code> and given an opportunity to specify the metadata for each file.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public interface ObjectMetadataProvider {
 	

@@ -44,7 +44,7 @@ public class GetIdRequestMarshaller implements Marshaller<Request<GetIdRequest>,
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<GetIdRequest> request = new DefaultRequest<GetIdRequest>(getIdRequest, "AmazonCognitoIdentityService");
+        Request<GetIdRequest> request = new DefaultRequest<GetIdRequest>(getIdRequest, "AmazonCognitoIdentity");
         String target = "AWSCognitoIdentityService.GetId";
         request.addHeader("X-Amz-Target", target);
 

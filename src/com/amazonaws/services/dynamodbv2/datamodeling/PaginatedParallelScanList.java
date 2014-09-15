@@ -36,6 +36,7 @@ import com.amazonaws.services.dynamodbv2.model.ScanResult;
  * @param <T>
  *            The type of objects held in this list.
  * @see PaginatedList
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class PaginatedParallelScanList<T> extends PaginatedList<T> {
 

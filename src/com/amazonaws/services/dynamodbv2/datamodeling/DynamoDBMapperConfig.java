@@ -34,6 +34,7 @@ import com.amazonaws.metrics.RequestMetricCollector;
  * // Delete the object even if the version field is out of date
  * mapper.delete(obj, new DynamoDBMapperConfig(SaveBehavior.CLOBBER));
  * </pre>
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class DynamoDBMapperConfig {
 

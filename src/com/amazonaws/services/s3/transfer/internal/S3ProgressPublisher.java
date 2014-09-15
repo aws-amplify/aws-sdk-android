@@ -22,6 +22,7 @@ import com.amazonaws.services.s3.transfer.PersistableTransfer;
 
 /**
  * Used to publish transfer events.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class S3ProgressPublisher extends
         ProgressListenerCallbackExecutor {

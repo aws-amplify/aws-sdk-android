@@ -29,6 +29,7 @@ import com.amazonaws.services.s3.transfer.TransferManagerConfiguration;
 
 /**
  * Internal utilities for multipart uploads with TransferManager.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class TransferManagerUtils {
 

@@ -50,6 +50,7 @@ import com.amazonaws.util.DateUtils;
 
 /**
  * Reflection assistant for {@link DynamoDBMapper}
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class DynamoDBReflector {
 

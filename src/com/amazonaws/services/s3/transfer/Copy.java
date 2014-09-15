@@ -26,6 +26,7 @@ import com.amazonaws.services.s3.transfer.model.CopyResult;
  *
  * @see TransferManager#copy(String, String, String, String)
  * @see TransferManager#copy(com.amazonaws.services.s3.model.CopyObjectRequest)
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public interface Copy extends Transfer {
 

@@ -44,7 +44,7 @@ public class DescribeIdentityPoolRequestMarshaller implements Marshaller<Request
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<DescribeIdentityPoolRequest> request = new DefaultRequest<DescribeIdentityPoolRequest>(describeIdentityPoolRequest, "AmazonCognitoIdentityService");
+        Request<DescribeIdentityPoolRequest> request = new DefaultRequest<DescribeIdentityPoolRequest>(describeIdentityPoolRequest, "AmazonCognitoIdentity");
         String target = "AWSCognitoIdentityService.DescribeIdentityPool";
         request.addHeader("X-Amz-Target", target);
 

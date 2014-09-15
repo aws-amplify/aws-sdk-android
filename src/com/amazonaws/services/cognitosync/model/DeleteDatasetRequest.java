@@ -19,10 +19,10 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSyncService#deleteDataset(DeleteDatasetRequest) DeleteDataset operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSync#deleteDataset(DeleteDatasetRequest) DeleteDataset operation}.
  * 
  *
- * @see com.amazonaws.services.cognitosync.AmazonCognitoSyncService#deleteDataset(DeleteDatasetRequest)
+ * @see com.amazonaws.services.cognitosync.AmazonCognitoSync#deleteDataset(DeleteDatasetRequest)
  */
 public class DeleteDatasetRequest extends AmazonWebServiceRequest implements Serializable {
 

@@ -44,7 +44,7 @@ public class GetOpenIdTokenRequestMarshaller implements Marshaller<Request<GetOp
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<GetOpenIdTokenRequest> request = new DefaultRequest<GetOpenIdTokenRequest>(getOpenIdTokenRequest, "AmazonCognitoIdentityService");
+        Request<GetOpenIdTokenRequest> request = new DefaultRequest<GetOpenIdTokenRequest>(getOpenIdTokenRequest, "AmazonCognitoIdentity");
         String target = "AWSCognitoIdentityService.GetOpenIdToken";
         request.addHeader("X-Amz-Target", target);
 

@@ -19,6 +19,7 @@ import com.amazonaws.services.s3.transfer.PersistableTransfer;
 
 /**
  * S3 specific listener interface for transfer progress events.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public interface S3ProgressListener extends ProgressListener {
     /**

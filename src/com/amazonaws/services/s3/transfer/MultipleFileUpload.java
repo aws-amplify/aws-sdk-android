@@ -19,6 +19,7 @@ import java.util.Collection;
 
 /**
  * Multiple file download of an entire virtual directory.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public interface  MultipleFileUpload extends Transfer {
 

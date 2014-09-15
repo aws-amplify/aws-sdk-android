@@ -49,6 +49,7 @@ import com.amazonaws.services.s3.transfer.model.UploadResult;
  * the future and returns null. When waiting on the result of this class via a
  * Future object, clients must call {@link UploadMonitor#isDone()} and
  * {@link UploadMonitor#getFuture()}
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class UploadMonitor implements Callable<UploadResult>, TransferMonitor {
 

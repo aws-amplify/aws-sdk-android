@@ -1,6 +1,6 @@
 
 /**
- * Classes modeling the various types represented by AmazonCognitoIdentityService.
+ * Classes modeling the various types represented by AmazonCognitoIdentity.
  */
  package com.amazonaws.services.cognitoidentity.model;
         

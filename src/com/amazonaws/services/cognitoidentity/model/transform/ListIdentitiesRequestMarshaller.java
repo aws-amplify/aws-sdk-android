@@ -44,7 +44,7 @@ public class ListIdentitiesRequestMarshaller implements Marshaller<Request<ListI
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<ListIdentitiesRequest> request = new DefaultRequest<ListIdentitiesRequest>(listIdentitiesRequest, "AmazonCognitoIdentityService");
+        Request<ListIdentitiesRequest> request = new DefaultRequest<ListIdentitiesRequest>(listIdentitiesRequest, "AmazonCognitoIdentity");
         String target = "AWSCognitoIdentityService.ListIdentities";
         request.addHeader("X-Amz-Target", target);
 

@@ -29,6 +29,7 @@ import com.amazonaws.services.dynamodbv2.model.ConditionalOperator;
  * information on the available comparison types).
  * 
  * @see DynamoDBMapper#scan(Class, DynamoDBScanExpression)
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class DynamoDBScanExpression {
 

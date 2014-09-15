@@ -17,7 +17,7 @@ package com.amazonaws.services.cognitoidentity.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * AmazonCognitoIdentityService exception
+ * AmazonCognitoIdentity exception
  */        
 public class ResourceNotFoundException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -14,10 +14,15 @@
  */
 package com.amazonaws.services.s3.transfer;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Describes the progress of a transfer.
  */
-public abstract class TransferProgress {
+public final class TransferProgress {
+    
+    private static final Log log = LogFactory.getLog(TransferProgress.class); 
     protected volatile long bytesTransferred = 0;
     protected volatile long totalBytesToTransfer = -1;
 
@@ -67,6 +72,26 @@ public abstract class TransferProgress {
     public synchronized double getPercentTransferred() {
         if (getBytesTransferred() < 0) return 0;
 
-        return ((double)getBytesTransferred() / (double)getTotalBytesToTransfer()) * (double)100;
+        return totalBytesToTransfer < 0
+                ? -1.0 
+                : ((double)bytesTransferred / (double)totalBytesToTransfer) * (double)100;
+    }
+    
+    public synchronized void updateProgress(long bytes) {
+        this.bytesTransferred += bytes;
+        if (totalBytesToTransfer > -1
+        &&  this.bytesTransferred > this.totalBytesToTransfer) {
+            this.bytesTransferred = this.totalBytesToTransfer;
+            if (log.isDebugEnabled()) {
+                log.debug("Number of bytes transfered is more than the actual total bytes to transfer. Total number of bytes to Transfer : "
+                        + totalBytesToTransfer
+                        + ". Bytes Transferred : "
+                        + (bytesTransferred + bytes));
+            }
+        }
+    }
+
+    public void setTotalBytesToTransfer(long totalBytesToTransfer) {
+        this.totalBytesToTransfer = totalBytesToTransfer;
     }
 }

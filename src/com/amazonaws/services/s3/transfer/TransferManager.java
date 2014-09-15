@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -43,7 +44,6 @@ import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListener;
-import com.amazonaws.event.ProgressListenerCallbackExecutor;
 import com.amazonaws.event.ProgressListenerChain;
 import com.amazonaws.event.ProgressListenerChain.ProgressEventFilter;
 import com.amazonaws.services.s3.AmazonS3;
@@ -71,11 +71,9 @@ import com.amazonaws.services.s3.transfer.internal.CopyMonitor;
 import com.amazonaws.services.s3.transfer.internal.DownloadImpl;
 import com.amazonaws.services.s3.transfer.internal.DownloadMonitor;
 import com.amazonaws.services.s3.transfer.internal.MultipleFileDownloadImpl;
-import com.amazonaws.services.s3.transfer.internal.MultipleFileTransfer;
 import com.amazonaws.services.s3.transfer.internal.MultipleFileTransferMonitor;
 import com.amazonaws.services.s3.transfer.internal.MultipleFileUploadImpl;
 import com.amazonaws.services.s3.transfer.internal.TransferManagerUtils;
-import com.amazonaws.services.s3.transfer.internal.TransferProgressImpl;
 import com.amazonaws.services.s3.transfer.internal.S3ProgressListener;
 import com.amazonaws.services.s3.transfer.internal.S3ProgressListenerChain;
 import com.amazonaws.services.s3.transfer.internal.TransferProgressUpdatingListener;
@@ -114,13 +112,13 @@ import com.amazonaws.util.VersionInfoUtils;
  *
  * // You can poll your transfer's status to check its progress
  * if (myUpload.isDone() == false) {
- * 	System.out.println("Transfer: " + myUpload.getDescription());
- * 	System.out.println("  - State: " + myUpload.getState());
- * 	System.out.println("  - Progress: "
- * 			+ myUpload.getProgress().getBytesTransferred());
+ *  System.out.println(&quot;Transfer: &quot; + myUpload.getDescription());
+ *  System.out.println(&quot;  - State: &quot; + myUpload.getState());
+ *  System.out.println(&quot;  - Progress: &quot;
+ *          + myUpload.getProgress().getBytesTransferred());
  * }
  *
- * // Transfers also allow you to set a <code>ProgressListener</code> to receive
+ * // Transfers also allow you to set a &lt;code&gt;ProgressListener&lt;/code&gt; to receive
  * // asynchronous notifications about your transfer's progress.
  * myUpload.addProgressListener(myProgressListener);
  *
@@ -133,22 +131,27 @@ import com.amazonaws.util.VersionInfoUtils;
  * tx.shutdownNow();
  * </pre>
  * <p>
- * Note: Transfers are stored in memory. If the JVM is restarted, previous
- * transfers are no longer accessible. If needed, clean up any multipart uploads
- * that are incomplete.
+ * Transfers can be paused and resumed at a later time. It can also survive JVM
+ * crash, provided the information that is required to resume the transfer is
+ * given as input to the resume operation. For more information on pause and resume,
+ * @see Upload#pause()
+ * @see Download#pause()
+ * @see TransferManager#resumeUpload(PersistableUpload)
+ * @see TransferManager#resumeDownload(PersistableDownload)
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class TransferManager {
 
     /** The low level client we use to make the actual calls to Amazon S3. */
-    private AmazonS3 s3;
+    private final AmazonS3 s3;
 
     /** Configuration for how TransferManager processes requests. */
     private TransferManagerConfiguration configuration;
     /** The thread pool in which transfers are uploaded or downloaded. */
-    private ExecutorService threadPool;
+    private final ExecutorService threadPool;
 
     /** Thread used for periodicially checking transfers and updating thier state. */
-    private ScheduledExecutorService timedThreadPool = new ScheduledThreadPoolExecutor(1, daemonThreadFactory);
+    private final ScheduledExecutorService timedThreadPool = new ScheduledThreadPoolExecutor(1, daemonThreadFactory);
 
     private static final Log log = LogFactory.getLog(TransferManager.class);
 
@@ -490,7 +493,7 @@ public class TransferManager {
             final PersistableUpload persistableUpload) throws AmazonServiceException,
             AmazonClientException {
 
-        appendUserAgent(putObjectRequest, USER_AGENT);
+        appendSingleObjectUserAgent(putObjectRequest);
 
         String multipartUploadId = persistableUpload != null ? persistableUpload
                 .getMultipartUploadId() : null;
@@ -518,7 +521,7 @@ public class TransferManager {
 
         String description = "Uploading to " + putObjectRequest.getBucketName()
                 + "/" + putObjectRequest.getKey();
-        TransferProgressImpl transferProgress = new TransferProgressImpl();
+        TransferProgress transferProgress = new TransferProgress();
         transferProgress.setTotalBytesToTransfer(TransferManagerUtils
                 .getContentLength(putObjectRequest));
 
@@ -532,7 +535,7 @@ public class TransferManager {
                 listenerChain, stateListener);
 
         UploadCallable uploadCallable = new UploadCallable(this, threadPool,
-                upload, putObjectRequest, listenerChain, multipartUploadId);
+                upload, putObjectRequest, listenerChain, multipartUploadId, transferProgress);
         UploadMonitor watcher = new UploadMonitor(this, upload, threadPool,
                 uploadCallable, putObjectRequest, listenerChain);
         watcher.setTimedThreadPool(timedThreadPool);
@@ -643,11 +646,12 @@ public class TransferManager {
             final S3ProgressListener s3progressListener,
             final boolean resumeExistingDownload) {
 
-        appendUserAgent(getObjectRequest, USER_AGENT);
+        appendSingleObjectUserAgent(getObjectRequest);
 
         String description = "Downloading from " + getObjectRequest.getBucketName() + "/" + getObjectRequest.getKey();
 
-        TransferProgressImpl transferProgress = new TransferProgressImpl();
+        TransferProgress transferProgress = new TransferProgress();
+     // S3 progress listener to capture the persistable transfer when available 
         S3ProgressListenerChain listenerChain = new S3ProgressListenerChain(
                 new TransferProgressUpdatingListener(transferProgress),   // The listener for updating transfer progress
                 getObjectRequest.getGeneralProgressListener(), 
@@ -656,7 +660,7 @@ public class TransferManager {
         // The listener chain used by the low-level GetObject request.
         // This listener chain ignores any COMPLETE event, so that we could
         // delay firing the signal until the high-level download fully finishes.
-        ProgressListenerChain listenerChainForGetObjectRequest = new ProgressListenerChain(
+        ProgressListenerChain listeners = new ProgressListenerChain(
                 new ProgressEventFilter() {
                     @Override
                     public ProgressEvent filter(ProgressEvent progressEvent) {
@@ -669,58 +673,65 @@ public class TransferManager {
                     }
                 },
                 listenerChain);
-        getObjectRequest.setGeneralProgressListener(listenerChainForGetObjectRequest);
-
+        getObjectRequest.setGeneralProgressListener(listeners);
         GetObjectMetadataRequest getObjectMetadataRequest = new GetObjectMetadataRequest(getObjectRequest.getBucketName(), getObjectRequest.getKey());
+        
         if (getObjectRequest.getSSECustomerKey() != null) {
             getObjectMetadataRequest.setSSECustomerKey(getObjectRequest.getSSECustomerKey());
         }
         final ObjectMetadata objectMetadata = s3.getObjectMetadata(getObjectMetadataRequest);
 
-        final StartDownloadLock startDownloadLock = new StartDownloadLock();
         // We still pass the unfiltered listener chain into DownloadImpl
         final DownloadImpl download = new DownloadImpl(description,
                 transferProgress, listenerChain, null, stateListener,
                 getObjectRequest, file);
-        long contentLength = objectMetadata.getContentLength();
 
         long startingByte = 0;
-        long lastByte = contentLength;
+        long lastByte = objectMetadata.getContentLength();
 
         if (getObjectRequest.getRange() != null
                 && getObjectRequest.getRange().length == 2) {
             startingByte = getObjectRequest.getRange()[0];
             lastByte = getObjectRequest.getRange()[1];
         }
+        
+        long totalBytesToDownload = lastByte - startingByte; 
+        transferProgress.setTotalBytesToTransfer(totalBytesToDownload);
+        
         if (resumeExistingDownload) {
             if (file.exists()) {
                 long numberOfBytesRead = file.length();
                 startingByte = startingByte + numberOfBytesRead;
                 getObjectRequest.setRange(startingByte, lastByte);
+                transferProgress.updateProgress(Math.min(numberOfBytesRead,
+                        totalBytesToDownload));
+                totalBytesToDownload = lastByte - startingByte; 
             }
         }
-        contentLength = lastByte - startingByte;
 
-        if (contentLength < 0) {
+        if (totalBytesToDownload < 0) {
             throw new IllegalArgumentException(
                     "Unable to determine the range for download operation.");
         }
 
-        transferProgress.setTotalBytesToTransfer(contentLength);
+        final CountDownLatch latch = new CountDownLatch(1);
+        Future<?> future = submitDownloadTask(getObjectRequest, file,
+                resumeExistingDownload, latch, download);
+        download.setMonitor(new DownloadMonitor(download, future));
+        latch.countDown();
+        return download;
+    }
 
+    private Future<?> submitDownloadTask(
+            final GetObjectRequest getObjectRequest, final File file,
+            final boolean resumeExistingDownload,
+            final CountDownLatch latch,
+            final DownloadImpl download) {
         Future<?> future = threadPool.submit(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
                 try {
-                    synchronized (startDownloadLock) {
-                        if ( !startDownloadLock.downloadReady ) {
-                                try {
-                                    startDownloadLock.wait();
-                                    } catch ( InterruptedException e ) {
-                                 throw new AmazonClientException("Couldn't wait for setting future into the monitor");
-                             }
-                         }
-                     }
+                    latch.await();
                     download.setState(TransferState.InProgress);
                     S3Object s3Object = ServiceUtils.retryableDownloadS3ObjectToFile(file, new ServiceUtils.RetryableS3DownloadTask() {
 
@@ -752,21 +763,19 @@ public class TransferManager {
 
                     download.setState(TransferState.Completed);
                     return true;
-                } catch (Exception e) {
+                } catch (Throwable t) {
                     // Downloads aren't allowed to move from canceled to failed
                     if (download.getState() != TransferState.Canceled) {
                         download.setState(TransferState.Failed);
                     }
-                    throw e;
+                    if (t instanceof Exception) 
+                        throw (Exception) t;
+                    else
+                        throw (Error) t;
                 }
             }
         });
-        download.setMonitor(new DownloadMonitor(download, future));
-        synchronized (startDownloadLock) {
-            startDownloadLock.downloadReady = true;
-            startDownloadLock.notify();
-        }
-        return download;
+        return future;
     }
 
     /**
@@ -828,28 +837,28 @@ public class TransferManager {
         } while ( !commonPrefixes.isEmpty() );
 
         /* This is the hook for adding additional progress listeners */
-        ProgressListenerChain additionalProgressListenerChain = new ProgressListenerChain();
+        ProgressListenerChain additionalListeners = new ProgressListenerChain();
 
-        TransferProgressImpl transferProgress = new TransferProgressImpl();
+        TransferProgress transferProgress = new TransferProgress();
         transferProgress.setTotalBytesToTransfer(totalSize);
         /*
          * Bind additional progress listeners to this
          * MultipleFileTransferProgressUpdatingListener to receive
          * ByteTransferred events from each single-file download implementation.
          */
-        ProgressListener multipleFileTransferProgressListener = new MultipleFileTransferProgressUpdatingListener(
-                transferProgress, additionalProgressListenerChain);
+        ProgressListener listener = new MultipleFileTransferProgressUpdatingListener(
+                transferProgress, additionalListeners);
 
         List<DownloadImpl> downloads = new ArrayList<DownloadImpl>();
 
         String description = "Downloading from " + bucketName + "/" + keyPrefix;
         final MultipleFileDownloadImpl multipleFileDownload = new MultipleFileDownloadImpl(description, transferProgress,
-                additionalProgressListenerChain, keyPrefix, bucketName, downloads);
+                additionalListeners, keyPrefix, bucketName, downloads);
         multipleFileDownload.setMonitor(new MultipleFileTransferMonitor(multipleFileDownload, downloads));
 
-        final AllDownloadsQueuedLock allTransfersQueuedLock = new AllDownloadsQueuedLock();
-        MultipleFileTransferStateChangeListener multipleFileTransferStateChangeListener = new MultipleFileTransferStateChangeListener(
-                allTransfersQueuedLock, multipleFileDownload);
+        final CountDownLatch latch = new CountDownLatch(1); 
+        MultipleFileTransferStateChangeListener transferListener = new MultipleFileTransferStateChangeListener(
+                latch, multipleFileDownload);
 
         for ( S3ObjectSummary summary : objectSummaries ) {
             // TODO: non-standard delimiters
@@ -865,10 +874,10 @@ public class TransferManager {
             downloads.add((DownloadImpl) doDownload(
                             new GetObjectRequest(summary.getBucketName(),
                                     summary.getKey())
-                                    .withGeneralProgressListener(
-                                            multipleFileTransferProgressListener),
+                            .withGeneralProgressListener( 
+                                    listener), 
                             f,
-                            multipleFileTransferStateChangeListener, null, false));
+                            transferListener, null, false)); 
         }
 
         if ( downloads.isEmpty() ) {
@@ -878,91 +887,9 @@ public class TransferManager {
 
         // Notify all state changes waiting for the downloads to all be queued
         // to wake up and continue.
-        synchronized (allTransfersQueuedLock) {
-            allTransfersQueuedLock.allQueued = true;
-            allTransfersQueuedLock.notifyAll();
-        }
+        latch.countDown();
 
         return multipleFileDownload;
-    }
-
-    private static final class AllDownloadsQueuedLock {
-        private volatile boolean allQueued = false;
-    }
-
-    private  static final class StartDownloadLock {
-        private volatile boolean downloadReady = false;
-    }
-
-    private static final class MultipleFileTransferStateChangeListener implements TransferStateChangeListener {
-
-        private final AllDownloadsQueuedLock allTransfersQueuedLock;
-        private final MultipleFileTransfer<?> multipleFileTransfer;
-
-        public MultipleFileTransferStateChangeListener(AllDownloadsQueuedLock allTransfersQueuedLock,
-                MultipleFileTransfer<?> multipleFileTransfer) {
-            this.allTransfersQueuedLock = allTransfersQueuedLock;
-            this.multipleFileTransfer = multipleFileTransfer;
-        }
-
-        @Override
-        public void transferStateChanged(Transfer upload, TransferState state) {
-
-            // There's a race here: we can't start monitoring the state of
-            // individual transfers until we have added all the transfers to the
-            // list, or we may incorrectly report completion.
-            synchronized (allTransfersQueuedLock) {
-                if ( !allTransfersQueuedLock.allQueued ) {
-                    try {
-                        allTransfersQueuedLock.wait();
-                    } catch ( InterruptedException e ) {
-                        throw new AmazonClientException("Couldn't wait for all downloads to be queued");
-                    }
-                }
-            }
-
-            synchronized (multipleFileTransfer) {
-                if ( multipleFileTransfer.getState() == state || multipleFileTransfer.isDone() )
-                    return;
-
-                /*
-                 * If we're not already in a terminal state, allow a transition
-                 * to a non-waiting state. Mark completed if this download is
-                 * completed and the monitor says all of the rest are as well.
-                 */
-                if ( state == TransferState.InProgress ) {
-                    multipleFileTransfer.setState(state);
-                } else if ( multipleFileTransfer.getMonitor().isDone() ) {
-                    multipleFileTransfer.collateFinalState();
-                } else {
-                    multipleFileTransfer.setState(TransferState.InProgress);
-                }
-            }
-        }
-    };
-
-    /**
-     * TransferProgressUpdatingListener for multiple-file transfer. In addition
-     * to updating the TransferProgress, it also sends out ByteTrasnferred
-     * events to a ProgressListenerChain.
-     */
-    private static final class MultipleFileTransferProgressUpdatingListener extends TransferProgressUpdatingListener {
-
-        private final ProgressListenerCallbackExecutor progressListenerCallbackExecutor;
-
-        public MultipleFileTransferProgressUpdatingListener(TransferProgressImpl transferProgress, ProgressListenerChain progressListenerChain) {
-            super(transferProgress);
-            this.progressListenerCallbackExecutor = ProgressListenerCallbackExecutor.wrapListener(progressListenerChain);
-        }
-
-        @Override
-        public void progressChanged(ProgressEvent progressEvent) {
-            super.progressChanged(progressEvent);
-
-            /* Only propagate the BytesTransferred to progress listener chain */
-            progressListenerCallbackExecutor.progressChanged(new ProgressEvent(
-                    progressEvent.getBytesTransferred()));
-        }
     }
 
     /**
@@ -1087,76 +1014,72 @@ public class TransferManager {
         }
 
         /* This is the hook for adding additional progress listeners */
-        ProgressListenerChain additionalProgressListenerChain = new ProgressListenerChain();
+        ProgressListenerChain additionalListeners = new ProgressListenerChain();
 
-        TransferProgressImpl transferProgress = new TransferProgressImpl();
+        TransferProgress progress = new TransferProgress();
         /*
          * Bind additional progress listeners to this
          * MultipleFileTransferProgressUpdatingListener to receive
          * ByteTransferred events from each single-file upload implementation.
          */
-        ProgressListener multipleFileTransferProgressListener = new MultipleFileTransferProgressUpdatingListener(
-                transferProgress, additionalProgressListenerChain);
+        ProgressListener listener = new MultipleFileTransferProgressUpdatingListener(
+                progress, additionalListeners);
 
         List<UploadImpl> uploads = new LinkedList<UploadImpl>();
-        MultipleFileUploadImpl multipleFileUpload = new MultipleFileUploadImpl("Uploading etc", transferProgress, additionalProgressListenerChain, virtualDirectoryKeyPrefix, bucketName, uploads);
+        MultipleFileUploadImpl multipleFileUpload = new MultipleFileUploadImpl("Uploading etc", progress, additionalListeners, virtualDirectoryKeyPrefix, bucketName, uploads);
         multipleFileUpload.setMonitor(new MultipleFileTransferMonitor(multipleFileUpload, uploads));
 
-        final AllDownloadsQueuedLock allTransfersQueuedLock = new AllDownloadsQueuedLock();
-        MultipleFileTransferStateChangeListener multipleFileTransferStateChangeListener = new MultipleFileTransferStateChangeListener(
-                allTransfersQueuedLock, multipleFileUpload);
+        final CountDownLatch latch = new CountDownLatch(1);
+        MultipleFileTransferStateChangeListener transferListener = new MultipleFileTransferStateChangeListener(latch, multipleFileUpload); 
 
         if ( files == null || files.isEmpty()) {
             multipleFileUpload.setState(TransferState.Completed);
-        }
+        } else {
 
-        /*
-         * If the absolute path for the common/base directory does NOT end in a
-         * separator (which is the case for anything but root directories), then
-         * we know there's still a separator between the base directory and the
-         * rest of the file's path, so we increment the starting position by one.
-         */
-        int startingPosition = directory.getAbsolutePath().length();
-        if (!(directory.getAbsolutePath().endsWith(File.separator))) startingPosition++;
+            /*
+             * If the absolute path for the common/base directory does NOT end in a
+             * separator (which is the case for anything but root directories), then
+             * we know there's still a separator between the base directory and the
+             * rest of the file's path, so we increment the starting position by one.
+             */
+            int startingPosition = directory.getAbsolutePath().length();
+            if (!(directory.getAbsolutePath().endsWith(File.separator))) startingPosition++;
 
-        long totalSize = 0;
-        for (File f : files) {
-            //Check, if file, since only files can be uploaded.
-            if (f.isFile()) {
-                totalSize += f.length();
+            long totalSize = 0;
+            for (File f : files) {
+                //Check, if file, since only files can be uploaded.
+                if (f.isFile()) {
+                    totalSize += f.length();
 
-                String key = f.getAbsolutePath().substring(startingPosition).replaceAll("\\\\", "/");
+                    String key = f.getAbsolutePath().substring(startingPosition).replaceAll("\\\\", "/");
 
-                ObjectMetadata metadata=new ObjectMetadata();
+                    ObjectMetadata metadata = new ObjectMetadata();
 
-                // Invoke the callback if it's present.
-                // The callback allows the user to customize the metadata for each file being uploaded.
-                if (metadataProvider != null) {
-                    metadataProvider.provideObjectMetadata(f, metadata);
+                    // Invoke the callback if it's present.
+                    // The callback allows the user to customize the metadata for each file being uploaded.
+                    if (metadataProvider != null) {
+                        metadataProvider.provideObjectMetadata(f, metadata);
+                    }
+
+                    // All the single-file uploads share the same
+                    // MultipleFileTransferProgressUpdatingListener and
+                    // MultipleFileTransferStateChangeListener
+                    uploads.add((UploadImpl) doUpload(
+                            new PutObjectRequest(bucketName,
+                                    virtualDirectoryKeyPrefix + key, f)
+                                    .withMetadata(metadata)
+                                    .withGeneralProgressListener(
+                                            listener),
+                            transferListener, null, null));
                 }
-
-                // All the single-file uploads share the same
-                // MultipleFileTransferProgressUpdatingListener and
-                // MultipleFileTransferStateChangeListener
-                uploads.add((UploadImpl) doUpload(
-                        new PutObjectRequest(bucketName,
-                                virtualDirectoryKeyPrefix + key, f)
-                                .withMetadata(metadata)
-                                .withGeneralProgressListener(
-                                        multipleFileTransferProgressListener),
-                        multipleFileTransferStateChangeListener, null, null));
             }
+            progress.setTotalBytesToTransfer(totalSize);
         }
-
-        transferProgress.setTotalBytesToTransfer(totalSize);
 
         // Notify all state changes waiting for the uploads to all be queued
         // to wake up and continue
-        synchronized (allTransfersQueuedLock) {
-            allTransfersQueuedLock.allQueued = true;
-            allTransfersQueuedLock.notifyAll();
-        }
-
+        latch.countDown(); 
+        
         return multipleFileUpload;
     }
 
@@ -1198,20 +1121,20 @@ public class TransferManager {
      */
     public void abortMultipartUploads(String bucketName, Date date)
             throws AmazonServiceException, AmazonClientException {
-        MultipartUploadListing uploadListing = s3.listMultipartUploads(appendUserAgent(
-                new ListMultipartUploadsRequest(bucketName), USER_AGENT));
+        MultipartUploadListing uploadListing = s3.listMultipartUploads(appendSingleObjectUserAgent(
+                new ListMultipartUploadsRequest(bucketName)));
         do {
             for (MultipartUpload upload : uploadListing.getMultipartUploads()) {
                 if (upload.getInitiated().compareTo(date) < 0) {
-                    s3.abortMultipartUpload(appendUserAgent(new AbortMultipartUploadRequest(
-                            bucketName, upload.getKey(), upload.getUploadId()), USER_AGENT));
+                    s3.abortMultipartUpload(appendSingleObjectUserAgent(new AbortMultipartUploadRequest(
+                            bucketName, upload.getKey(), upload.getUploadId())));
                 }
             }
 
             ListMultipartUploadsRequest request = new ListMultipartUploadsRequest(bucketName)
                 .withUploadIdMarker(uploadListing.getNextUploadIdMarker())
                 .withKeyMarker(uploadListing.getNextKeyMarker());
-            uploadListing = s3.listMultipartUploads(appendUserAgent(request, USER_AGENT));
+            uploadListing = s3.listMultipartUploads(appendSingleObjectUserAgent(request));
         } while (uploadListing.isTruncated());
     }
 
@@ -1220,7 +1143,9 @@ public class TransferManager {
      * transfers will not be allowed to finish. It also by default shuts down
      * the underlying Amazon S3 client.
      *
-     * @see shutdownNow(boolean)
+     * WARNING: Do not call on the main thread!
+     *
+     * @see #shutdownNow(boolean)
      */
     public void shutdownNow() {
         shutdownNow(true);
@@ -1241,6 +1166,8 @@ public class TransferManager {
      * upload may not always be automatically cleaned up, but callers can use
      * {@link #abortMultipartUploads(String, Date)} to clean up any upload
      * parts.
+     * 
+     * WARNING: Do not call on the main thread!
      *
      * @param shutDownS3Client
      *            Whether to shut down the underlying Amazon S3 client.
@@ -1255,13 +1182,29 @@ public class TransferManager {
             }
         }
     }
+    
+    /**
+     * Shutdown without interrupting the threads involved, so that, for example,
+     * any upload in progress can complete without throwing
+     * {@link AbortedException}.
+     */
+    private void shutdown() {
+        threadPool.shutdown();
+        timedThreadPool.shutdown();
+    }
 
-    public <X extends AmazonWebServiceRequest> X appendUserAgent(X request, String userAgent) {
-        request.getRequestClientOptions().appendUserAgent(userAgent);
+    public static <X extends AmazonWebServiceRequest> X appendSingleObjectUserAgent(X request) {
+        request.getRequestClientOptions().appendUserAgent(USER_AGENT);
         return request;
     }
 
+    public static <X extends AmazonWebServiceRequest> X appendMultipartUserAgent(X request) {
+        request.getRequestClientOptions().appendUserAgent(USER_AGENT_MULTIPART);
+        return request;
+    }
     private static final String USER_AGENT = TransferManager.class.getName() + "/" + VersionInfoUtils.getVersion();
+    private static final String USER_AGENT_MULTIPART = TransferManager.class.getName() + "_multipart/" + VersionInfoUtils.getVersion();
+
 
     private static final String DEFAULT_DELIMITER = "/";
 
@@ -1404,7 +1347,7 @@ public class TransferManager {
             final TransferStateChangeListener stateChangeListener)
             throws AmazonServiceException, AmazonClientException {
 
-        appendUserAgent(copyObjectRequest, USER_AGENT);
+        appendSingleObjectUserAgent(copyObjectRequest);
 
         assertParameterNotNull(copyObjectRequest.getSourceBucketName(),
                 "The source bucket name must be specified when a copy request is initiated.");
@@ -1431,7 +1374,7 @@ public class TransferManager {
 
         ObjectMetadata metadata = s3.getObjectMetadata(getObjectMetadataRequest);
 
-        TransferProgressImpl transferProgress = new TransferProgressImpl();
+        TransferProgress transferProgress = new TransferProgress();
         transferProgress.setTotalBytesToTransfer(metadata.getContentLength());
 
         ProgressListenerChain listenerChain = new ProgressListenerChain(
@@ -1535,6 +1478,6 @@ public class TransferManager {
      */
     @Override
     protected void finalize() throws Throwable {
-        shutdownNow(false);
+        shutdown();
     }
 }

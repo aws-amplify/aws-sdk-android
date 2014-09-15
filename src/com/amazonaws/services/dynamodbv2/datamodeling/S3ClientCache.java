@@ -30,6 +30,7 @@ import com.amazonaws.services.s3.transfer.TransferManager;
  * clients organized by region, and if provided {@link AWSCredentials} will
  * create clients on the fly. Otherwise it just return clients given to it with
  * {@link #useClient(AmazonS3Client)}.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class S3ClientCache {
     private final ConcurrentMap<Region, AmazonS3Client> clientsByRegion = new ConcurrentHashMap<Region, AmazonS3Client>();

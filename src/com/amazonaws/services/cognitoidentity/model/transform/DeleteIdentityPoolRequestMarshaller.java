@@ -44,7 +44,7 @@ public class DeleteIdentityPoolRequestMarshaller implements Marshaller<Request<D
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<DeleteIdentityPoolRequest> request = new DefaultRequest<DeleteIdentityPoolRequest>(deleteIdentityPoolRequest, "AmazonCognitoIdentityService");
+        Request<DeleteIdentityPoolRequest> request = new DefaultRequest<DeleteIdentityPoolRequest>(deleteIdentityPoolRequest, "AmazonCognitoIdentity");
         String target = "AWSCognitoIdentityService.DeleteIdentityPool";
         request.addHeader("X-Amz-Target", target);
 

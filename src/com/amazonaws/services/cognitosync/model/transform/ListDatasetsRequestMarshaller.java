@@ -44,7 +44,7 @@ public class ListDatasetsRequestMarshaller implements Marshaller<Request<ListDat
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<ListDatasetsRequest> request = new DefaultRequest<ListDatasetsRequest>(listDatasetsRequest, "AmazonCognitoSyncService");
+        Request<ListDatasetsRequest> request = new DefaultRequest<ListDatasetsRequest>(listDatasetsRequest, "AmazonCognitoSync");
         String target = "AWSCognitoSyncService.ListDatasets";
         request.addHeader("X-Amz-Target", target);
 

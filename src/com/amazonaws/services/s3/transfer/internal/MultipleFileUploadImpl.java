@@ -28,6 +28,7 @@ import com.amazonaws.services.s3.transfer.Upload;
 
 /**
  * Multiple file upload when uploading an entire directory.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class MultipleFileUploadImpl extends MultipleFileTransfer<Upload> implements MultipleFileUpload {
 

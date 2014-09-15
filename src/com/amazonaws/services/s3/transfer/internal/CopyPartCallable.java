@@ -24,6 +24,7 @@ import com.amazonaws.services.s3.model.PartETag;
  * An implementation of the Callable interface responsible for carrying out the
  * Copy part requests.
  *
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class CopyPartCallable implements Callable<PartETag> {
 

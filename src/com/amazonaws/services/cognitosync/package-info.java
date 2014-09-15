@@ -1,6 +1,6 @@
 
 /**
- * Synchronous and asynchronous client classes for accessing AmazonCognitoSyncService.
+ * Synchronous and asynchronous client classes for accessing AmazonCognitoSync.
  *
  * 
  */

@@ -29,6 +29,7 @@ import com.amazonaws.services.s3.model.UploadPartRequest;
  * it, instead of immediately creating thousands of UploadPartRequest objects
  * for each large upload, when we won't need most of those request objects for a
  * while.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class UploadPartRequestFactory {
     private final String bucketName;

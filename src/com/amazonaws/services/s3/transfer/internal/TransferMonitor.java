@@ -19,6 +19,7 @@ import java.util.concurrent.Future;
 
 /**
  * Monitors long-running transfers.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public interface TransferMonitor {
 

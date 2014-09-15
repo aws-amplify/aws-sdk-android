@@ -19,10 +19,10 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSyncService#describeIdentityUsage(DescribeIdentityUsageRequest) DescribeIdentityUsage operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSync#describeIdentityUsage(DescribeIdentityUsageRequest) DescribeIdentityUsage operation}.
  * 
  *
- * @see com.amazonaws.services.cognitosync.AmazonCognitoSyncService#describeIdentityUsage(DescribeIdentityUsageRequest)
+ * @see com.amazonaws.services.cognitosync.AmazonCognitoSync#describeIdentityUsage(DescribeIdentityUsageRequest)
  */
 public class DescribeIdentityUsageRequest extends AmazonWebServiceRequest implements Serializable {
 

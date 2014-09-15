@@ -19,10 +19,10 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityService#getOpenIdToken(GetOpenIdTokenRequest) GetOpenIdToken operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getOpenIdToken(GetOpenIdTokenRequest) GetOpenIdToken operation}.
  * 
  *
- * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityService#getOpenIdToken(GetOpenIdTokenRequest)
+ * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getOpenIdToken(GetOpenIdTokenRequest)
  */
 public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Serializable {
 

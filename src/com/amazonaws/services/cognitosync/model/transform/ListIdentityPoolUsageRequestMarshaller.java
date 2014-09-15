@@ -44,7 +44,7 @@ public class ListIdentityPoolUsageRequestMarshaller implements Marshaller<Reques
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<ListIdentityPoolUsageRequest> request = new DefaultRequest<ListIdentityPoolUsageRequest>(listIdentityPoolUsageRequest, "AmazonCognitoSyncService");
+        Request<ListIdentityPoolUsageRequest> request = new DefaultRequest<ListIdentityPoolUsageRequest>(listIdentityPoolUsageRequest, "AmazonCognitoSync");
         String target = "AWSCognitoSyncService.ListIdentityPoolUsage";
         request.addHeader("X-Amz-Target", target);
 

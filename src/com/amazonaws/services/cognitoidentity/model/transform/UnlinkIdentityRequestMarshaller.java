@@ -44,7 +44,7 @@ public class UnlinkIdentityRequestMarshaller implements Marshaller<Request<Unlin
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<UnlinkIdentityRequest> request = new DefaultRequest<UnlinkIdentityRequest>(unlinkIdentityRequest, "AmazonCognitoIdentityService");
+        Request<UnlinkIdentityRequest> request = new DefaultRequest<UnlinkIdentityRequest>(unlinkIdentityRequest, "AmazonCognitoIdentity");
         String target = "AWSCognitoIdentityService.UnlinkIdentity";
         request.addHeader("X-Amz-Target", target);
 

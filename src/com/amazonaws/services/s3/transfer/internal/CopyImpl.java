@@ -26,6 +26,7 @@ import com.amazonaws.services.s3.transfer.model.CopyResult;
 /**
  * An implementation of the Copy Interface that helps in retrieving the result
  * of the copy operation.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class CopyImpl extends AbstractTransfer implements Copy {
 

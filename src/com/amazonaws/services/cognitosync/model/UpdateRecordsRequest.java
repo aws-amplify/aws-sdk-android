@@ -19,10 +19,10 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSyncService#updateRecords(UpdateRecordsRequest) UpdateRecords operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSync#updateRecords(UpdateRecordsRequest) UpdateRecords operation}.
  * 
  *
- * @see com.amazonaws.services.cognitosync.AmazonCognitoSyncService#updateRecords(UpdateRecordsRequest)
+ * @see com.amazonaws.services.cognitosync.AmazonCognitoSync#updateRecords(UpdateRecordsRequest)
  */
 public class UpdateRecordsRequest extends AmazonWebServiceRequest implements Serializable {
 

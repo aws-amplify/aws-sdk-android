@@ -19,10 +19,10 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityService#unlinkIdentity(UnlinkIdentityRequest) UnlinkIdentity operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#unlinkIdentity(UnlinkIdentityRequest) UnlinkIdentity operation}.
  * 
  *
- * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityService#unlinkIdentity(UnlinkIdentityRequest)
+ * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#unlinkIdentity(UnlinkIdentityRequest)
  */
 public class UnlinkIdentityRequest extends AmazonWebServiceRequest implements Serializable {
 

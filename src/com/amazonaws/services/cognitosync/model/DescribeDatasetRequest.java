@@ -19,10 +19,10 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSyncService#describeDataset(DescribeDatasetRequest) DescribeDataset operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSync#describeDataset(DescribeDatasetRequest) DescribeDataset operation}.
  * 
  *
- * @see com.amazonaws.services.cognitosync.AmazonCognitoSyncService#describeDataset(DescribeDatasetRequest)
+ * @see com.amazonaws.services.cognitosync.AmazonCognitoSync#describeDataset(DescribeDatasetRequest)
  */
 public class DescribeDatasetRequest extends AmazonWebServiceRequest implements Serializable {
 

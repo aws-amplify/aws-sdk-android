@@ -19,6 +19,7 @@ import com.amazonaws.services.s3.transfer.PersistableTransfer;
 
 /**
  * S3 specific progress listener chain.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class S3ProgressListenerChain extends
         com.amazonaws.event.ProgressListenerChain implements

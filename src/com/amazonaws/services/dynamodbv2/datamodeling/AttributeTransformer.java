@@ -27,6 +27,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
  * This interface contains both a {@code transform} method and a corresponding
  * {@code untransform} method. These methods SHOULD be inverses, such that
  * untransform(transform(value)) == value.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public interface AttributeTransformer {
     /**

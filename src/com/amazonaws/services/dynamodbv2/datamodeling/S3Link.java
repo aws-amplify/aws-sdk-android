@@ -98,6 +98,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *     }
  * }
  * </pre>
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class S3Link {
     private final S3ClientCache s3cc;

@@ -19,10 +19,10 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSyncService#listRecords(ListRecordsRequest) ListRecords operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitosync.AmazonCognitoSync#listRecords(ListRecordsRequest) ListRecords operation}.
  * 
  *
- * @see com.amazonaws.services.cognitosync.AmazonCognitoSyncService#listRecords(ListRecordsRequest)
+ * @see com.amazonaws.services.cognitosync.AmazonCognitoSync#listRecords(ListRecordsRequest)
  */
 public class ListRecordsRequest extends AmazonWebServiceRequest implements Serializable {
 

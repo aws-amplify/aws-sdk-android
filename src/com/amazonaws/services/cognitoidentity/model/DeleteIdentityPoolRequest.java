@@ -19,10 +19,10 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityService#deleteIdentityPool(DeleteIdentityPoolRequest) DeleteIdentityPool operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#deleteIdentityPool(DeleteIdentityPoolRequest) DeleteIdentityPool operation}.
  * 
  *
- * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityService#deleteIdentityPool(DeleteIdentityPoolRequest)
+ * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#deleteIdentityPool(DeleteIdentityPoolRequest)
  */
 public class DeleteIdentityPoolRequest extends AmazonWebServiceRequest implements Serializable {
 

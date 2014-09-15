@@ -44,7 +44,7 @@ public class ListRecordsRequestMarshaller implements Marshaller<Request<ListReco
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<ListRecordsRequest> request = new DefaultRequest<ListRecordsRequest>(listRecordsRequest, "AmazonCognitoSyncService");
+        Request<ListRecordsRequest> request = new DefaultRequest<ListRecordsRequest>(listRecordsRequest, "AmazonCognitoSync");
         String target = "AWSCognitoSyncService.ListRecords";
         request.addHeader("X-Amz-Target", target);
 

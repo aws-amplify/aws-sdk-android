@@ -19,6 +19,7 @@ import com.amazonaws.services.s3.transfer.Transfer.TransferState;
 
 /**
  * Listener for transfer state changes.  Not intended to be consumed externally.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public interface TransferStateChangeListener {
     public void transferStateChanged(Transfer transfer, TransferState state);

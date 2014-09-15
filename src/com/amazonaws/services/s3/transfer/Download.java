@@ -27,6 +27,7 @@ import com.amazonaws.services.s3.transfer.exception.PauseException;
  * </p>
  *
  * @see TransferManager#download(com.amazonaws.services.s3.model.GetObjectRequest);
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public interface Download extends Transfer {
 

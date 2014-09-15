@@ -23,6 +23,7 @@ import com.amazonaws.services.s3.transfer.TransferManager;
  * 
  * @see TransferManager#upload(String, String, java.io.File)
  * @see TransferManager#upload(com.amazonaws.services.s3.model.PutObjectRequest)
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class UploadResult {
     

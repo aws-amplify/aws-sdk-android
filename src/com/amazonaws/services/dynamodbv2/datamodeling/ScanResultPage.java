@@ -21,6 +21,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
  * Container for a page of scan results.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class ScanResultPage<T> {
 

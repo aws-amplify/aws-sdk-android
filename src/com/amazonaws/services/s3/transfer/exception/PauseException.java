@@ -19,6 +19,7 @@ import com.amazonaws.services.s3.transfer.PauseStatus;
 
 /**
  * Failed to complete a pause operation.
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class PauseException extends AmazonClientException {
 

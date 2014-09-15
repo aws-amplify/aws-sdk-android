@@ -19,10 +19,10 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityService#listIdentityPools(ListIdentityPoolsRequest) ListIdentityPools operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#listIdentityPools(ListIdentityPoolsRequest) ListIdentityPools operation}.
  * 
  *
- * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityService#listIdentityPools(ListIdentityPoolsRequest)
+ * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#listIdentityPools(ListIdentityPoolsRequest)
  */
 public class ListIdentityPoolsRequest extends AmazonWebServiceRequest implements Serializable {
 

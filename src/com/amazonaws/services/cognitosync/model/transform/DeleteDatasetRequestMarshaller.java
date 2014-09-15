@@ -44,7 +44,7 @@ public class DeleteDatasetRequestMarshaller implements Marshaller<Request<Delete
         throw new AmazonClientException("Invalid argument passed to marshall(...)");
     }
 
-        Request<DeleteDatasetRequest> request = new DefaultRequest<DeleteDatasetRequest>(deleteDatasetRequest, "AmazonCognitoSyncService");
+        Request<DeleteDatasetRequest> request = new DefaultRequest<DeleteDatasetRequest>(deleteDatasetRequest, "AmazonCognitoSync");
         String target = "AWSCognitoSyncService.DeleteDataset";
         request.addHeader("X-Amz-Target", target);
 

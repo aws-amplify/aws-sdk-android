@@ -65,6 +65,7 @@ import com.amazonaws.util.DateUtils;
  * transferred as one chunk from the source bucket to the destination bucket.
  * </p>
  *
+  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class CopyCallable implements Callable<CopyResult> {
 
