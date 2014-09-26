@@ -16,19 +16,14 @@ package com.amazonaws.services.cognitoidentity.model;
 
 import java.io.Serializable;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getOpenIdToken(GetOpenIdTokenRequest) GetOpenIdToken operation}.
- * 
- *
- * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getOpenIdToken(GetOpenIdTokenRequest)
+ * Get Open Id Token For Developer Identity Result
  */
-public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Serializable {
+public class GetOpenIdTokenForDeveloperIdentityResult implements Serializable {
 
     private String identityId;
 
-    private java.util.Map<String,String> logins;
+    private String token;
 
     /**
      * Returns the value of the IdentityId property for this object.
@@ -70,90 +65,44 @@ public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Se
      * @return A reference to this updated object so that method calls can be chained
      *         together.
      */
-    public GetOpenIdTokenRequest withIdentityId(String identityId) {
+    public GetOpenIdTokenForDeveloperIdentityResult withIdentityId(String identityId) {
         this.identityId = identityId;
         return this;
     }
 
     /**
-     * Returns the value of the Logins property for this object.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * Returns the value of the Token property for this object.
      *
-     * @return The value of the Logins property for this object.
+     * @return The value of the Token property for this object.
      */
-    public java.util.Map<String,String> getLogins() {
-        
-        if (logins == null) {
-            logins = new java.util.HashMap<String,String>();
-        }
-        return logins;
+    public String getToken() {
+        return token;
     }
     
     /**
-     * Sets the value of the Logins property for this object.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * Sets the value of the Token property for this object.
      *
-     * @param logins The new value for the Logins property for this object.
+     * @param token The new value for the Token property for this object.
      */
-    public void setLogins(java.util.Map<String,String> logins) {
-        this.logins = logins;
+    public void setToken(String token) {
+        this.token = token;
     }
     
     /**
-     * Sets the value of the Logins property for this object.
+     * Sets the value of the Token property for this object.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
      *
-     * @param logins The new value for the Logins property for this object.
+     * @param token The new value for the Token property for this object.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
      */
-    public GetOpenIdTokenRequest withLogins(java.util.Map<String,String> logins) {
-        setLogins(logins);
+    public GetOpenIdTokenForDeveloperIdentityResult withToken(String token) {
+        this.token = token;
         return this;
     }
 
-    /**
-     * Sets the value of the Logins property for this object.
-     * <p>
-     * The method adds a new key-value pair into Logins parameter, and
-     * returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
-     *
-     * @param key The key of the entry to be added into Logins.
-     * @param value The corresponding value of the entry to be added into Logins.
-     */
-    public GetOpenIdTokenRequest addLoginsEntry(String key, String value) {
-        if (null == this.logins) {
-            this.logins = new java.util.HashMap<String,String>();
-        }
-        if (this.logins.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
-        this.logins.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into Logins.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     */
-    public GetOpenIdTokenRequest clearLoginsEntries() {
-        this.logins = null;
-        return this;
-    }
-    
     /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
@@ -167,7 +116,7 @@ public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Se
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getIdentityId() != null) sb.append("IdentityId: " + getIdentityId() + ",");
-        if (getLogins() != null) sb.append("Logins: " + getLogins() );
+        if (getToken() != null) sb.append("Token: " + getToken() );
         sb.append("}");
         return sb.toString();
     }
@@ -178,7 +127,7 @@ public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Se
         int hashCode = 1;
         
         hashCode = prime * hashCode + ((getIdentityId() == null) ? 0 : getIdentityId().hashCode()); 
-        hashCode = prime * hashCode + ((getLogins() == null) ? 0 : getLogins().hashCode()); 
+        hashCode = prime * hashCode + ((getToken() == null) ? 0 : getToken().hashCode()); 
         return hashCode;
     }
     
@@ -187,13 +136,13 @@ public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Se
         if (this == obj) return true;
         if (obj == null) return false;
 
-        if (obj instanceof GetOpenIdTokenRequest == false) return false;
-        GetOpenIdTokenRequest other = (GetOpenIdTokenRequest)obj;
+        if (obj instanceof GetOpenIdTokenForDeveloperIdentityResult == false) return false;
+        GetOpenIdTokenForDeveloperIdentityResult other = (GetOpenIdTokenForDeveloperIdentityResult)obj;
         
         if (other.getIdentityId() == null ^ this.getIdentityId() == null) return false;
         if (other.getIdentityId() != null && other.getIdentityId().equals(this.getIdentityId()) == false) return false; 
-        if (other.getLogins() == null ^ this.getLogins() == null) return false;
-        if (other.getLogins() != null && other.getLogins().equals(this.getLogins()) == false) return false; 
+        if (other.getToken() == null ^ this.getToken() == null) return false;
+        if (other.getToken() != null && other.getToken().equals(this.getToken()) == false) return false; 
         return true;
     }
     

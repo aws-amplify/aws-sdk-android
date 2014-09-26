@@ -30,8 +30,9 @@ public class AndroidAppDetails implements AppDetails {
 	private String packageName;
 	private String versionCode;
 	private String versionName;
+        private String appId;
 	
-	public AndroidAppDetails(Context context) {
+	public AndroidAppDetails(Context context, String appId) {
 		this.applicationContext = context.getApplicationContext();
 		try {
 		    PackageManager packageManager = this.applicationContext.getPackageManager();
@@ -42,6 +43,7 @@ public class AndroidAppDetails implements AppDetails {
 			packageName = packageInfo.packageName;
 			versionCode = String.valueOf(packageInfo.versionCode);
 			versionName = packageInfo.versionName;
+                        this.appId = appId;
 		} catch (NameNotFoundException e) {
 			logger.w("Unable to get details for package " + this.applicationContext.getPackageName());
 			appTitle = "Unknown";
@@ -51,13 +53,14 @@ public class AndroidAppDetails implements AppDetails {
 		}
 	}
 	
-	public AndroidAppDetails(String packageName, String versionCode, String versionName, String appTitle){
+	public AndroidAppDetails(String packageName, String versionCode, String versionName, String appTitle, String appId){
 	    this.packageName = packageName;
 	    this.versionCode = versionCode;
 	    this.versionName = versionName;
 	    this.appTitle = appTitle;
+            this.appId = appId;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -87,5 +90,8 @@ public class AndroidAppDetails implements AppDetails {
         return appTitle;
     }
 
-
+    @Override
+    public String getAppId() {
+        return appId;
+    }
 }

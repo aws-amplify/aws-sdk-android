@@ -19,18 +19,65 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#unlinkIdentity(UnlinkIdentityRequest) UnlinkIdentity operation}.
+ * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getOpenIdTokenForDeveloperIdentity(GetOpenIdTokenForDeveloperIdentityRequest) GetOpenIdTokenForDeveloperIdentity operation}.
  * 
  *
- * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#unlinkIdentity(UnlinkIdentityRequest)
+ * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getOpenIdTokenForDeveloperIdentity(GetOpenIdTokenForDeveloperIdentityRequest)
  */
-public class UnlinkIdentityRequest extends AmazonWebServiceRequest implements Serializable {
+public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceRequest implements Serializable {
+
+    private String identityPoolId;
 
     private String identityId;
 
     private java.util.Map<String,String> logins;
 
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> loginsToRemove;
+    private Long tokenDuration;
+
+    /**
+     * Returns the value of the IdentityPoolId property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 50<br/>
+     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     *
+     * @return The value of the IdentityPoolId property for this object.
+     */
+    public String getIdentityPoolId() {
+        return identityPoolId;
+    }
+    
+    /**
+     * Sets the value of the IdentityPoolId property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 50<br/>
+     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     *
+     * @param identityPoolId The new value for the IdentityPoolId property for this object.
+     */
+    public void setIdentityPoolId(String identityPoolId) {
+        this.identityPoolId = identityPoolId;
+    }
+    
+    /**
+     * Sets the value of the IdentityPoolId property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 50<br/>
+     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     *
+     * @param identityPoolId The new value for the IdentityPoolId property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public GetOpenIdTokenForDeveloperIdentityRequest withIdentityPoolId(String identityPoolId) {
+        this.identityPoolId = identityPoolId;
+        return this;
+    }
 
     /**
      * Returns the value of the IdentityId property for this object.
@@ -72,7 +119,7 @@ public class UnlinkIdentityRequest extends AmazonWebServiceRequest implements Se
      * @return A reference to this updated object so that method calls can be chained
      *         together.
      */
-    public UnlinkIdentityRequest withIdentityId(String identityId) {
+    public GetOpenIdTokenForDeveloperIdentityRequest withIdentityId(String identityId) {
         this.identityId = identityId;
         return this;
     }
@@ -118,7 +165,7 @@ public class UnlinkIdentityRequest extends AmazonWebServiceRequest implements Se
      * @return A reference to this updated object so that method calls can be chained
      *         together.
      */
-    public UnlinkIdentityRequest withLogins(java.util.Map<String,String> logins) {
+    public GetOpenIdTokenForDeveloperIdentityRequest withLogins(java.util.Map<String,String> logins) {
         setLogins(logins);
         return this;
     }
@@ -136,7 +183,7 @@ public class UnlinkIdentityRequest extends AmazonWebServiceRequest implements Se
      * @param key The key of the entry to be added into Logins.
      * @param value The corresponding value of the entry to be added into Logins.
      */
-    public UnlinkIdentityRequest addLoginsEntry(String key, String value) {
+    public GetOpenIdTokenForDeveloperIdentityRequest addLoginsEntry(String key, String value) {
         if (null == this.logins) {
             this.logins = new java.util.HashMap<String,String>();
         }
@@ -151,76 +198,50 @@ public class UnlinkIdentityRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      */
-    public UnlinkIdentityRequest clearLoginsEntries() {
+    public GetOpenIdTokenForDeveloperIdentityRequest clearLoginsEntries() {
         this.logins = null;
         return this;
     }
     
     /**
-     * Returns the value of the LoginsToRemove property for this object.
+     * Returns the value of the TokenDuration property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 86400<br/>
      *
-     * @return The value of the LoginsToRemove property for this object.
+     * @return The value of the TokenDuration property for this object.
      */
-    public java.util.List<String> getLoginsToRemove() {
-        if (loginsToRemove == null) {
-              loginsToRemove = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              loginsToRemove.setAutoConstruct(true);
-        }
-        return loginsToRemove;
+    public Long getTokenDuration() {
+        return tokenDuration;
     }
     
     /**
-     * Sets the value of the LoginsToRemove property for this object.
+     * Sets the value of the TokenDuration property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 86400<br/>
      *
-     * @param loginsToRemove The new value for the LoginsToRemove property for this object.
+     * @param tokenDuration The new value for the TokenDuration property for this object.
      */
-    public void setLoginsToRemove(java.util.Collection<String> loginsToRemove) {
-        if (loginsToRemove == null) {
-            this.loginsToRemove = null;
-            return;
-        }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> loginsToRemoveCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(loginsToRemove.size());
-        loginsToRemoveCopy.addAll(loginsToRemove);
-        this.loginsToRemove = loginsToRemoveCopy;
+    public void setTokenDuration(Long tokenDuration) {
+        this.tokenDuration = tokenDuration;
     }
     
     /**
-     * Sets the value of the LoginsToRemove property for this object.
+     * Sets the value of the TokenDuration property for this object.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 86400<br/>
      *
-     * @param loginsToRemove The new value for the LoginsToRemove property for this object.
+     * @param tokenDuration The new value for the TokenDuration property for this object.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
      */
-    public UnlinkIdentityRequest withLoginsToRemove(String... loginsToRemove) {
-        if (getLoginsToRemove() == null) setLoginsToRemove(new java.util.ArrayList<String>(loginsToRemove.length));
-        for (String value : loginsToRemove) {
-            getLoginsToRemove().add(value);
-        }
-        return this;
-    }
-    
-    /**
-     * Sets the value of the LoginsToRemove property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param loginsToRemove The new value for the LoginsToRemove property for this object.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public UnlinkIdentityRequest withLoginsToRemove(java.util.Collection<String> loginsToRemove) {
-        if (loginsToRemove == null) {
-            this.loginsToRemove = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> loginsToRemoveCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(loginsToRemove.size());
-            loginsToRemoveCopy.addAll(loginsToRemove);
-            this.loginsToRemove = loginsToRemoveCopy;
-        }
-
+    public GetOpenIdTokenForDeveloperIdentityRequest withTokenDuration(Long tokenDuration) {
+        this.tokenDuration = tokenDuration;
         return this;
     }
 
@@ -236,9 +257,10 @@ public class UnlinkIdentityRequest extends AmazonWebServiceRequest implements Se
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getIdentityPoolId() != null) sb.append("IdentityPoolId: " + getIdentityPoolId() + ",");
         if (getIdentityId() != null) sb.append("IdentityId: " + getIdentityId() + ",");
         if (getLogins() != null) sb.append("Logins: " + getLogins() + ",");
-        if (getLoginsToRemove() != null) sb.append("LoginsToRemove: " + getLoginsToRemove() );
+        if (getTokenDuration() != null) sb.append("TokenDuration: " + getTokenDuration() );
         sb.append("}");
         return sb.toString();
     }
@@ -248,9 +270,10 @@ public class UnlinkIdentityRequest extends AmazonWebServiceRequest implements Se
         final int prime = 31;
         int hashCode = 1;
         
+        hashCode = prime * hashCode + ((getIdentityPoolId() == null) ? 0 : getIdentityPoolId().hashCode()); 
         hashCode = prime * hashCode + ((getIdentityId() == null) ? 0 : getIdentityId().hashCode()); 
         hashCode = prime * hashCode + ((getLogins() == null) ? 0 : getLogins().hashCode()); 
-        hashCode = prime * hashCode + ((getLoginsToRemove() == null) ? 0 : getLoginsToRemove().hashCode()); 
+        hashCode = prime * hashCode + ((getTokenDuration() == null) ? 0 : getTokenDuration().hashCode()); 
         return hashCode;
     }
     
@@ -259,15 +282,17 @@ public class UnlinkIdentityRequest extends AmazonWebServiceRequest implements Se
         if (this == obj) return true;
         if (obj == null) return false;
 
-        if (obj instanceof UnlinkIdentityRequest == false) return false;
-        UnlinkIdentityRequest other = (UnlinkIdentityRequest)obj;
+        if (obj instanceof GetOpenIdTokenForDeveloperIdentityRequest == false) return false;
+        GetOpenIdTokenForDeveloperIdentityRequest other = (GetOpenIdTokenForDeveloperIdentityRequest)obj;
         
+        if (other.getIdentityPoolId() == null ^ this.getIdentityPoolId() == null) return false;
+        if (other.getIdentityPoolId() != null && other.getIdentityPoolId().equals(this.getIdentityPoolId()) == false) return false; 
         if (other.getIdentityId() == null ^ this.getIdentityId() == null) return false;
         if (other.getIdentityId() != null && other.getIdentityId().equals(this.getIdentityId()) == false) return false; 
         if (other.getLogins() == null ^ this.getLogins() == null) return false;
         if (other.getLogins() != null && other.getLogins().equals(this.getLogins()) == false) return false; 
-        if (other.getLoginsToRemove() == null ^ this.getLoginsToRemove() == null) return false;
-        if (other.getLoginsToRemove() != null && other.getLoginsToRemove().equals(this.getLoginsToRemove()) == false) return false; 
+        if (other.getTokenDuration() == null ^ this.getTokenDuration() == null) return false;
+        if (other.getTokenDuration() != null && other.getTokenDuration().equals(this.getTokenDuration()) == false) return false; 
         return true;
     }
     

@@ -126,7 +126,7 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * Returns the value of the Logins property for this object.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 3<br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @return The value of the Logins property for this object.
      */
@@ -142,7 +142,7 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * Sets the value of the Logins property for this object.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 3<br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @param logins The new value for the Logins property for this object.
      */
@@ -156,7 +156,7 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 3<br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @param logins The new value for the Logins property for this object.
      *
@@ -176,7 +176,7 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 3<br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @param key The key of the entry to be added into Logins.
      * @param value The corresponding value of the entry to be added into Logins.

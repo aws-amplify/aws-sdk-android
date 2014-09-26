@@ -19,4 +19,5 @@ public interface AppDetails {
 	public String packageName();
 	public String versionName();
 	public String versionCode();
+        public String getAppId();
 }

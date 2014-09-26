@@ -29,6 +29,7 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.DeviceDetails;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.JSONBuilder;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.SDKInfo;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.ClientContext;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.DefaultEvent;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.InternalEvent;
 
@@ -66,7 +67,7 @@ public class JSONEventAdapter implements EventAdapter<JSONObject> {
         Map<String,Double> metrics = new HashMap<String,Double>();
         
 
-        AppDetails appDetails = new AndroidAppDetails(source.optString("app_package_name"),source.optString("app_version_code"),source.optString("app_version_name"),source.optString("app_title"));
+        AppDetails appDetails = new AndroidAppDetails(source.optString("app_package_name"),source.optString("app_version_code"),source.optString("app_version_name"),source.optString("app_title"), source.optString(ClientContext.APP_ID_KEY));
         SDKInfo sdkInfo = new SDKInfo(source.optString("sdk_version"),source.optString("sdk_name"));
         DeviceDetails deviceDetails = new AndroidDeviceDetails(source.optString("carrier"));
         String eventType = source.getString("event_type");

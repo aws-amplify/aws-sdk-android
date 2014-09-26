@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2011-2014 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,15 +17,11 @@ package com.amazonaws.auth;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ClientConfiguration;
+import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
-import com.amazonaws.services.cognitoidentity.model.GetIdRequest;
-import com.amazonaws.services.cognitoidentity.model.GetIdResult;
-import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenRequest;
-import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenResult;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClient;
 import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest;
@@ -33,16 +29,18 @@ import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityResul
 import com.amazonaws.services.securitytoken.model.Credentials;
 
 import java.util.Date;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * AWSCredentialsProvider implementation that uses the Amazon Cognito Identity
- * Service and AWS Security Token Service to create temporary, short-lived
- * sessions to use for authentication.
+ * service and AWS Security Token Service to create temporary, short-lived
+ * sessions to use for authentication
  */
 public class CognitoCredentialsProvider implements AWSCredentialsProvider {
+
+    /** Handle the identity-specific interactions */
+    private final AWSCognitoIdentityProvider identityProvider;
 
     /** Default duration for started sessions */
     public static final int DEFAULT_DURATION_SECONDS = 3600;
@@ -50,34 +48,24 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     /** Default threshold for refreshing session credentials */
     public static final int DEFAULT_THRESHOLD_SECONDS = 500;
 
-    /** The client for communitation with Cognito */
-    protected final AmazonCognitoIdentity cib;
-
-    /** The client for starting STS sessions */
-    protected final AWSSecurityTokenService securityTokenService;
-
     /** The current session credentials */
     protected AWSSessionCredentials sessionCredentials;
 
     /** The expiration time for the current session credentials */
     protected Date sessionCredentialsExpiration;
 
-    /** The current OpenId Connect Token */
-    protected String openIdConnectToken;
+    /** The current Token */
+    protected String token;
 
-    /** The identity ID returned from Cognito */
-    protected String identityId;
+    /** The client for starting STS sessions */
+    protected AWSSecurityTokenService securityTokenService;
 
-    /** A set of listeners can be registered */
-    protected Set<IdentityChangedListener> listeners;
-
-    protected final String accountId;
-    protected final String identityPoolId;
-    protected final String unauthRoleArn;
-    protected final String authRoleArn;
-    protected Map<String, String> logins;
     protected int sessionDuration;
     protected int refreshThreshold;
+    protected String unauthRoleArn;
+    protected String authRoleArn;
+    
+
 
     /**
      * Constructs a new {@link CognitoCredentialsProvider}, which will use the
@@ -122,20 +110,16 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      */
     public CognitoCredentialsProvider(String accountId, String identityPoolId,
             String unauthRoleArn, String authRoleArn, Regions region, ClientConfiguration clientConfiguration) {
-
-        this.cib = new AmazonCognitoIdentityClient(new AnonymousAWSCredentials(),
-                        clientConfiguration);
+        AmazonCognitoIdentity cib = new AmazonCognitoIdentityClient(
+                new AnonymousAWSCredentials(), clientConfiguration);
         cib.setRegion(Region.getRegion(region));
-         //TODO: set STS if applicable
-        this.securityTokenService = new AWSSecurityTokenServiceClient(new AnonymousAWSCredentials(),
-                        clientConfiguration);
-        this.accountId = accountId;
-        this.identityPoolId = identityPoolId;
+        this.identityProvider = new AWSBasicCognitoIdentityProvider(accountId, identityPoolId, cib);
         this.unauthRoleArn = unauthRoleArn;
         this.authRoleArn = authRoleArn;
+        this.securityTokenService = new AWSSecurityTokenServiceClient(
+                new AnonymousAWSCredentials(), clientConfiguration);
         this.sessionDuration = DEFAULT_DURATION_SECONDS;
         this.refreshThreshold = DEFAULT_THRESHOLD_SECONDS;
-        this.listeners = new HashSet<IdentityChangedListener>();
     }
 
     /**
@@ -156,30 +140,88 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * @param stsClient Preconfigured STS client to make requests with
      */
     public CognitoCredentialsProvider(String accountId, String identityPoolId,
-            String unauthRoleArn, String authRoleArn, AmazonCognitoIdentity cibClient,
-            AWSSecurityTokenService stsClient) {
-        this.cib = cibClient;
-        this.securityTokenService = stsClient;
-        this.accountId = accountId;
-        this.identityPoolId = identityPoolId;
-        this.unauthRoleArn = unauthRoleArn;
-        this.authRoleArn = authRoleArn;
-        this.sessionDuration = DEFAULT_DURATION_SECONDS;
-        this.refreshThreshold = DEFAULT_THRESHOLD_SECONDS;
-        this.listeners = new HashSet<IdentityChangedListener>();
+            String unauthRoleArn, String authRoleArn, AmazonCognitoIdentityClient cib,
+            AWSSecurityTokenService sts) {
+        this(new AWSBasicCognitoIdentityProvider(accountId, identityPoolId, cib),
+                unauthRoleArn, authRoleArn, sts);
     }
 
+    /**
+     * Constructs a new CognitoCredentialsProvider, which will set up a link to
+     * the provider passed in, using that to get short-lived credentials from
+     * STS, which can be retrieved from {@link #getCredentials()}
+     * 
+     * @param provider a reference to the provider in question, including what's
+     *            needed to interact with it to later connect with STS
+     * @param unauthArn the unauthArn, for use with the STS call
+     * @param authArn the authArn, for use with the STS call
+     * @param stsClient the sts endpoint to get session credentials from
+     */
+    public CognitoCredentialsProvider(AWSCognitoIdentityProvider provider, String unauthArn,
+            String authArn, AWSSecurityTokenService stsClient) {
+        identityProvider = provider;
+        unauthRoleArn = unauthArn;
+        authRoleArn = authArn;
+        securityTokenService = stsClient;
+        sessionDuration = DEFAULT_DURATION_SECONDS;
+        refreshThreshold = DEFAULT_THRESHOLD_SECONDS;
+
+    }
+
+    /**
+     * Constructs a new CognitoCredentialsProvider, which will set up a link to
+     * the provider passed in, using that to get short-lived credentials from
+     * STS, which can be retrieved from {@link #getCredentials()}
+     * 
+     * @param provider a reference to the provider in question, including what's
+     *            needed to interact with it to later connect with STS
+     * @param unauthArn the unauthArn, for use with the STS call
+     * @param authArn the authArn, for use with the STS call
+     */
+    public CognitoCredentialsProvider(AWSCognitoIdentityProvider provider, String unauthArn,
+            String authArn) {
+        identityProvider = provider;
+        unauthRoleArn = unauthArn;
+        authRoleArn = authArn;
+        securityTokenService = new AWSSecurityTokenServiceClient(
+                new AnonymousAWSCredentials(),
+                new ClientConfiguration());
+        sessionDuration = DEFAULT_DURATION_SECONDS;
+        refreshThreshold = DEFAULT_THRESHOLD_SECONDS;
+    }
+
+
+    public String getIdentityId() {
+        return identityProvider.getIdentityId();
+    }
+
+    public String getToken() {
+        return identityProvider.getToken();
+    }
+
+    public AWSIdentityProvider getIdentityProvider() {
+        return identityProvider;
+    }
+
+    public void setSessionCredentialsExpiration(Date expiration) {
+        sessionCredentialsExpiration = expiration;
+    }
+
+    public Date getSessionCredentitalsExpiration() {
+        return sessionCredentialsExpiration;
+    }
+
+    /**
+     * If the current session has expired/credentials are invalid, a new session
+     * is started, establishing the credentials. In either case, those
+     * credentials are returned
+     */
     @Override
     public AWSSessionCredentials getCredentials() {
-        if (needsNewSession())
+        if (needsNewSession()) {
             startSession();
-
+        }
         return sessionCredentials;
-    }
-
-    @Override
-    public void refresh() {
-        startSession();
     }
 
     /**
@@ -264,27 +306,28 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
         return this.refreshThreshold;
     }
 
+    protected void setIdentityId(String identityId){
+        identityProvider.identityChanged(identityId);
+    }
+
     /**
-     * Set the logins map used to authenticated with Amazon Cognito.
-     * 
-     * Note: You should manually call refresh on on the credentials provider
-     * after adding logins to the provider as your Identity Id may have changed.
+     * Set the logins map used to authenticated with Amazon Cognito. Note: You
+     * should manually call refresh on on the credentials provider after adding
+     * logins to the provider as your Identity Id may have changed.
      * 
      * @param logins The new logins map (providerName, providerToken) to use to
      *            communicate with Amazon Cognito
      */
     public void setLogins(Map<String, String> logins) {
-        this.logins = logins;
-        // invalidate credentials to force a refresh
+        identityProvider.setLogins(logins);
         this.sessionCredentials = null;
     }
 
     /**
      * Set the logins map used to authenticated with Amazon Cognito. Returns a
-     * reference to the object so methods can be chained.
-     * 
-     * Note: You should manually call refresh on on the credentials provider
-     * after adding logins to the provider as your Identity Id may have changed.
+     * reference to the object so methods can be chained. Note: You should
+     * manually call refresh on on the credentials provider after adding logins
+     * to the provider as your Identity Id may have changed.
      * 
      * @see com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest
      * @param logins The new logins map (providerName, providerToken) to use to
@@ -292,7 +335,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CognitoCredentialsProvider withLogins(Map<String, String> logins) {
+    public AWSCredentialsProvider withLogins(Map<String, String> logins) {
         this.setLogins(logins);
         return this;
     }
@@ -304,36 +347,25 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      *         communicate with Amazon Cognito
      */
     public Map<String, String> getLogins() {
-        return this.logins;
+        return identityProvider.getLogins();
+    }
+
+    @Override
+    public void refresh() {
+        startSession();
     }
 
     /**
-     * Clear all in-memory and saved state for the credentials provider.
-     * 
-     * Will destroy any saved Amazon Cognito Identity Id and associated 
-     * AWS credentials.
-     * 
+     * Clear all in-memory and saved state for the credentials provider. Will
+     * destroy any saved Amazon Cognito Identity Id and associated AWS
+     * credentials.
      */
     public void clear() {
-        identityId = null;
         sessionCredentials = null;
         sessionCredentialsExpiration = null;
-    }
-
-    public String getIdentityId() {
-        if (identityId == null) {
-            GetIdRequest getIdRequest = new GetIdRequest().withAccountId(accountId)
-                            .withIdentityPoolId(identityPoolId)
-                            .withLogins(logins);
-            appendUserAgent(getIdRequest, getUserAgent());
-            GetIdResult getIdResult = cib.getId(getIdRequest);
-
-            if (getIdResult.getIdentityId() != null) {
-                identityChanged(getIdResult.getIdentityId());
-            }
-        }
-
-        return identityId;
+        identityProvider.clearListeners();
+        setIdentityId(null);
+        identityProvider.setLogins(new HashMap<String, String>());
     }
 
     /**
@@ -342,36 +374,24 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * vends the short lived session credentials sent back from STS.
      */
     protected void startSession() {
-
         // make sure we have an identityId
-        getIdentityId();
-
-        GetOpenIdTokenRequest getTokenRequest = new GetOpenIdTokenRequest()
-                        .withIdentityId(identityId)
-                        .withLogins(logins);
-        appendUserAgent(getTokenRequest, getUserAgent());
-        GetOpenIdTokenResult getTokenResult = cib.getOpenIdToken(getTokenRequest);
-
-        openIdConnectToken = getTokenResult.getToken();
-
-        if (!getTokenResult.getIdentityId().equals(identityId)) {
-            identityChanged(getTokenResult.getIdentityId());
-        }
+        token = identityProvider.refresh();
 
         String roleArn = unauthRoleArn;
+        Map<String, String> logins = identityProvider.getLogins();
         if ((logins != null) && (logins.size() > 0)) {
             roleArn = authRoleArn;
         }
-
         AssumeRoleWithWebIdentityRequest sessionTokenRequest = new AssumeRoleWithWebIdentityRequest()
-                        .withWebIdentityToken(openIdConnectToken)
-                        .withRoleArn(roleArn)
-                        .withRoleSessionName("ProviderSession")
-                        .withDurationSeconds(sessionDuration);
+                .withWebIdentityToken(token)
+                .withRoleArn(roleArn)
+                .withRoleSessionName("ProviderSession")
+                .withDurationSeconds(sessionDuration);
         appendUserAgent(sessionTokenRequest, getUserAgent());
         AssumeRoleWithWebIdentityResult sessionTokenResult = securityTokenService
                 .assumeRoleWithWebIdentity(sessionTokenRequest);
         Credentials stsCredentials = sessionTokenResult.getCredentials();
+
 
         sessionCredentials = new BasicSessionCredentials(
                 stsCredentials.getAccessKeyId(),
@@ -388,47 +408,13 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * @return True if a new STS session needs to be started.
      */
     protected boolean needsNewSession() {
-        if (sessionCredentials == null)
+        if (sessionCredentials == null) {
             return true;
-
+        }
         long currentTime = System.currentTimeMillis()
                 - SDKGlobalConfiguration.getGlobalTimeOffset() * 1000;
         long timeRemaining = sessionCredentialsExpiration.getTime() - currentTime;
         return timeRemaining < (refreshThreshold * 1000);
-    }
-
-    /**
-     * Registers a new listener that will be informed when the identityId for
-     * this provider changes.
-     * 
-     * @param listener The listener to register for notifications.
-     */
-    public void registerIdentityChangedListener(IdentityChangedListener listener) {
-        listeners.add(listener);
-    }
-
-    /**
-     * Unregisters a listener from being informed when the identityId for this
-     * provider changes.
-     * 
-     * @param listener The listener to unregister for notifications.
-     */
-    public void unregisterIdentityChangedListener(IdentityChangedListener listener) {
-        listeners.remove(listener);
-    }
-
-    /**
-     * Helper to call all registered listeners
-     * 
-     * @param newIdentityId The new identity id
-     */
-    private void identityChanged(String newIdentityId) {
-        String oldIdentityId = identityId;
-        identityId = newIdentityId;
-        for (IdentityChangedListener listener : listeners) {
-            listener.identityChanged(oldIdentityId, identityId);
-        }
-
     }
 
     /**
@@ -449,5 +435,14 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     protected String getUserAgent() {
         return "";
     }
-}
 
+    public void registerIdentityChangedListener(IdentityChangedListener listener) {
+        identityProvider.registerIdentityChangedListener(listener);
+    }
+
+    public void unregisterIdentityChangedListener(
+            IdentityChangedListener listener) {
+        identityProvider.unregisterIdentityChangedListener(listener);
+    }
+
+}

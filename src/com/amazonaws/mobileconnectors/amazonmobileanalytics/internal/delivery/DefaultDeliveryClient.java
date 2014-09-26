@@ -243,6 +243,7 @@ public class DefaultDeliveryClient implements DeliveryClient {
         boolean submitted = false;
         // package them into an ers request
         PutEventsRequest request = requestBuilder.createRecordEventsRequest(eventArray,context.getNetworkType());
+        request.withClientContextEncoding("base64");
         
         if (request == null) {
             logger.e("There was an error when building the http request");

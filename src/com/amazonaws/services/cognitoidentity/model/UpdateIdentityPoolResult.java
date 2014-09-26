@@ -29,6 +29,8 @@ public class UpdateIdentityPoolResult implements Serializable {
 
     private java.util.Map<String,String> supportedLoginProviders;
 
+    private String developerProviderName;
+
     /**
      * Returns the value of the IdentityPoolId property for this object.
      * <p>
@@ -174,7 +176,7 @@ public class UpdateIdentityPoolResult implements Serializable {
      * object.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 3<br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @return The value of the SupportedLoginProviders property for this object.
      */
@@ -191,7 +193,7 @@ public class UpdateIdentityPoolResult implements Serializable {
      * object.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 3<br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @param supportedLoginProviders The new value for the SupportedLoginProviders property for this
      *         object.
@@ -207,7 +209,7 @@ public class UpdateIdentityPoolResult implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 3<br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @param supportedLoginProviders The new value for the SupportedLoginProviders property for this
      *         object.
@@ -229,7 +231,7 @@ public class UpdateIdentityPoolResult implements Serializable {
      * can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 3<br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @param key The key of the entry to be added into SupportedLoginProviders.
      * @param value The corresponding value of the entry to be added into SupportedLoginProviders.
@@ -255,6 +257,52 @@ public class UpdateIdentityPoolResult implements Serializable {
     }
     
     /**
+     * Returns the value of the DeveloperProviderName property for this
+     * object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[\w._-]+<br/>
+     *
+     * @return The value of the DeveloperProviderName property for this object.
+     */
+    public String getDeveloperProviderName() {
+        return developerProviderName;
+    }
+    
+    /**
+     * Sets the value of the DeveloperProviderName property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[\w._-]+<br/>
+     *
+     * @param developerProviderName The new value for the DeveloperProviderName property for this object.
+     */
+    public void setDeveloperProviderName(String developerProviderName) {
+        this.developerProviderName = developerProviderName;
+    }
+    
+    /**
+     * Sets the value of the DeveloperProviderName property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[\w._-]+<br/>
+     *
+     * @param developerProviderName The new value for the DeveloperProviderName property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public UpdateIdentityPoolResult withDeveloperProviderName(String developerProviderName) {
+        this.developerProviderName = developerProviderName;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -269,7 +317,8 @@ public class UpdateIdentityPoolResult implements Serializable {
         if (getIdentityPoolId() != null) sb.append("IdentityPoolId: " + getIdentityPoolId() + ",");
         if (getIdentityPoolName() != null) sb.append("IdentityPoolName: " + getIdentityPoolName() + ",");
         if (isAllowUnauthenticatedIdentities() != null) sb.append("AllowUnauthenticatedIdentities: " + isAllowUnauthenticatedIdentities() + ",");
-        if (getSupportedLoginProviders() != null) sb.append("SupportedLoginProviders: " + getSupportedLoginProviders() );
+        if (getSupportedLoginProviders() != null) sb.append("SupportedLoginProviders: " + getSupportedLoginProviders() + ",");
+        if (getDeveloperProviderName() != null) sb.append("DeveloperProviderName: " + getDeveloperProviderName() );
         sb.append("}");
         return sb.toString();
     }
@@ -283,6 +332,7 @@ public class UpdateIdentityPoolResult implements Serializable {
         hashCode = prime * hashCode + ((getIdentityPoolName() == null) ? 0 : getIdentityPoolName().hashCode()); 
         hashCode = prime * hashCode + ((isAllowUnauthenticatedIdentities() == null) ? 0 : isAllowUnauthenticatedIdentities().hashCode()); 
         hashCode = prime * hashCode + ((getSupportedLoginProviders() == null) ? 0 : getSupportedLoginProviders().hashCode()); 
+        hashCode = prime * hashCode + ((getDeveloperProviderName() == null) ? 0 : getDeveloperProviderName().hashCode()); 
         return hashCode;
     }
     
@@ -302,6 +352,8 @@ public class UpdateIdentityPoolResult implements Serializable {
         if (other.isAllowUnauthenticatedIdentities() != null && other.isAllowUnauthenticatedIdentities().equals(this.isAllowUnauthenticatedIdentities()) == false) return false; 
         if (other.getSupportedLoginProviders() == null ^ this.getSupportedLoginProviders() == null) return false;
         if (other.getSupportedLoginProviders() != null && other.getSupportedLoginProviders().equals(this.getSupportedLoginProviders()) == false) return false; 
+        if (other.getDeveloperProviderName() == null ^ this.getDeveloperProviderName() == null) return false;
+        if (other.getDeveloperProviderName() != null && other.getDeveloperProviderName().equals(this.getDeveloperProviderName()) == false) return false; 
         return true;
     }
     

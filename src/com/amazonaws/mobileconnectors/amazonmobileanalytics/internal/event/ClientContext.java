@@ -46,6 +46,12 @@ public class ClientContext {
     private Map<String, String> custom = new HashMap<String, String>();
     private static final String CUSTOM_OBJECT_KEY = "custom";
 
+    //services
+    private String appId = "";
+    public static final String APP_ID_KEY = "app_id";
+    private static final String SERVICES_OBJECT_KEY = "services";
+    private static final String MOBILE_ANALYTICS_KEY = "mobile_analytics";
+
     private ClientContext() {
 
     }
@@ -68,15 +74,26 @@ public class ClientContext {
         envMap.put("carrier", carrier);
         envMap.put("networkType", networkType);
 
+        //services section
+        Map<String, JSONObject> servicesMap =
+            new HashMap<String, JSONObject >();
+        Map<String, String> analyticsServiceMap = new HashMap<String, String>();
+        analyticsServiceMap.put(APP_ID_KEY, appId);
+
+        JSONObject mobileAnalytics = new JSONObject(analyticsServiceMap);
+        servicesMap.put(MOBILE_ANALYTICS_KEY, mobileAnalytics);
+
         JSONObject clientObj = new JSONObject(clientMap);
         JSONObject envObj = new JSONObject(envMap);
         JSONObject customObj = new JSONObject(custom);
+        JSONObject servicesObj = new JSONObject(servicesMap);
 
         JSONObject clientContextJSON = new JSONObject();
         try{
-        clientContextJSON.put(CLIENT_OBJECT_KEY, clientObj);
-        clientContextJSON.put(ENVIRONMENT_OBJECT_KEY, envObj);
-        clientContextJSON.put(CUSTOM_OBJECT_KEY, customObj);
+            clientContextJSON.put(CLIENT_OBJECT_KEY, clientObj);
+            clientContextJSON.put(ENVIRONMENT_OBJECT_KEY, envObj);
+            clientContextJSON.put(CUSTOM_OBJECT_KEY, customObj);
+            clientContextJSON.put(SERVICES_OBJECT_KEY, servicesObj);
         }
         catch(JSONException e){
             logger.e("Error creating clientContextJSON", e);
@@ -190,6 +207,10 @@ public class ClientContext {
         this.custom = custom;
     }
 
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
     public static class ClientContextBuilder {
 
         // Application
@@ -208,6 +229,9 @@ public class ClientContext {
         private String networkType = "";
         private String carrier = "";
         private Map<String, String> custom = new HashMap<String, String>();
+
+        //services
+        private String appId = "";
 
         public ClientContextBuilder() {
 
@@ -228,6 +252,7 @@ public class ClientContext {
             result.setNetworkType(networkType);
             result.setCarrier(carrier);
             result.setCustom(custom);
+            result.setAppId(appId);
             return result;
         }
         
@@ -288,6 +313,11 @@ public class ClientContext {
 
         public ClientContextBuilder withLocale(String locale) {
             this.locale = Preconditions.checkNotNull(locale);
+            return this;
+        }
+
+        public ClientContextBuilder withAppId(String appId) {
+            this.appId = appId;
             return this;
         }
 

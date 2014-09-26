@@ -43,19 +43,18 @@ public class DefaultAnalyticsContext implements AnalyticsContext {
 	private final AmazonMobileAnalyticsClient ersClient;
 	private final Context context;
 
-	public static AnalyticsContext newInstance(final AmazonMobileAnalyticsClient ersClient, final Context context, final String uniqueTag, final Regions region, final SDKInfo sdkInfo, boolean allowWanDelivery) {
-		return new DefaultAnalyticsContext(ersClient, context, region, uniqueTag, sdkInfo, allowWanDelivery);
+	public static AnalyticsContext newInstance(final AmazonMobileAnalyticsClient ersClient, final Context context, final String appId, final Regions region, final SDKInfo sdkInfo, boolean allowWanDelivery) {
+		return new DefaultAnalyticsContext(ersClient, context, region, appId, sdkInfo, allowWanDelivery);
 	}
 
-	private DefaultAnalyticsContext(final AmazonMobileAnalyticsClient ersClient, final Context context, final Regions region, final String uniqueTag, final SDKInfo sdkInfo, boolean allowWanDelivery) {
+	private DefaultAnalyticsContext(final AmazonMobileAnalyticsClient ersClient, final Context context, final Regions region, final String appId, final SDKInfo sdkInfo, boolean allowWanDelivery) {
 		this.sdkInfo = sdkInfo;
 		
-        this.system = new AndroidSystem(context,uniqueTag);
+        this.system = new AndroidSystem(context,appId);
         
         this.uniqueIdService = SharedPrefsUniqueIdService.newInstance();
         this.uniqueId = uniqueIdService.getUniqueId(this);
 
-        //ersClient.setEndpoint("https://mobileanalytics.us-east-1.amazonaws.com");
         ersClient.setServiceNameIntern("mobileanalytics");
         ersClient.setRegion(Region.getRegion(region));
 		this.ersClient = ersClient;

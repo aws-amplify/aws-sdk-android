@@ -52,6 +52,9 @@ public class PutEventsRequestMarshaller implements Marshaller<Request<PutEventsR
         if (putEventsRequest.getClientContext() != null)
           request.addHeader("x-amz-Client-Context", StringUtils.fromString(putEventsRequest.getClientContext()));
         
+        if (putEventsRequest.getClientContextEncoding() != null)
+          request.addHeader("x-amz-Client-Context-Encoding", StringUtils.fromString(putEventsRequest.getClientContextEncoding()));
+        
         String uriResourcePath = "/2014-06-05/events"; 
 
         uriResourcePath = uriResourcePath.replaceAll("//", "/");

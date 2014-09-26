@@ -32,6 +32,8 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
 
     private String clientContext;
 
+    private String clientContextEncoding;
+
     /**
      * Returns the value of the Events property for this object.
      *
@@ -134,6 +136,40 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * Returns the value of the ClientContextEncoding property for this
+     * object.
+     *
+     * @return The value of the ClientContextEncoding property for this object.
+     */
+    public String getClientContextEncoding() {
+        return clientContextEncoding;
+    }
+    
+    /**
+     * Sets the value of the ClientContextEncoding property for this object.
+     *
+     * @param clientContextEncoding The new value for the ClientContextEncoding property for this object.
+     */
+    public void setClientContextEncoding(String clientContextEncoding) {
+        this.clientContextEncoding = clientContextEncoding;
+    }
+    
+    /**
+     * Sets the value of the ClientContextEncoding property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param clientContextEncoding The new value for the ClientContextEncoding property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public PutEventsRequest withClientContextEncoding(String clientContextEncoding) {
+        this.clientContextEncoding = clientContextEncoding;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -146,7 +182,8 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getEvents() != null) sb.append("Events: " + getEvents() + ",");
-        if (getClientContext() != null) sb.append("ClientContext: " + getClientContext() );
+        if (getClientContext() != null) sb.append("ClientContext: " + getClientContext() + ",");
+        if (getClientContextEncoding() != null) sb.append("ClientContextEncoding: " + getClientContextEncoding() );
         sb.append("}");
         return sb.toString();
     }
@@ -158,6 +195,7 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
         
         hashCode = prime * hashCode + ((getEvents() == null) ? 0 : getEvents().hashCode()); 
         hashCode = prime * hashCode + ((getClientContext() == null) ? 0 : getClientContext().hashCode()); 
+        hashCode = prime * hashCode + ((getClientContextEncoding() == null) ? 0 : getClientContextEncoding().hashCode()); 
         return hashCode;
     }
     
@@ -173,6 +211,8 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getEvents() != null && other.getEvents().equals(this.getEvents()) == false) return false; 
         if (other.getClientContext() == null ^ this.getClientContext() == null) return false;
         if (other.getClientContext() != null && other.getClientContext().equals(this.getClientContext()) == false) return false; 
+        if (other.getClientContextEncoding() == null ^ this.getClientContextEncoding() == null) return false;
+        if (other.getClientContextEncoding() != null && other.getClientContextEncoding().equals(this.getClientContextEncoding()) == false) return false; 
         return true;
     }
     

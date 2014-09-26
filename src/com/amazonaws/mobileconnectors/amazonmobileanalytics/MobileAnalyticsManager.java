@@ -77,7 +77,7 @@ public class MobileAnalyticsManager {
      *            The credentials provider MobileAnalyticsManager should use when making
      *            requests to AWS
      * @param appId
-     *            A unique string (preferably a UUID), which will be used as a
+     *            The AppId from the Amazon Mobile Analytics console, which will be used as a
      *            key for a SharedPreferences object MobileAnalyticsManager has
      *            exclusive access to, and as a directory name that
      *            MobileAnalyticsManager can use to store events you record.
@@ -201,11 +201,11 @@ public class MobileAnalyticsManager {
      * Returns the MobileAnalyticsManager instance associated with the appId,
      * creating a new one if necessary
      *
-     * @param context
+     * @param context The application context
      * @param credentialsProvider
      *      Credentials provider that we will be using when making API calls
      * @param appId
-     *      app ID to associate the MobileAnalyticsManager instance to
+     *      appId taken from the Amazon Mobile Analytics console
      * @param region
      *      The region for MobileAnalyticsManager
      * @param options

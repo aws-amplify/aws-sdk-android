@@ -83,36 +83,10 @@ public interface AmazonCognitoIdentity {
     
     /**
      *
-     * @param listIdentityPoolsRequest Container for the necessary parameters
-     *           to execute the ListIdentityPools service method on
+     * @param unlinkDeveloperIdentityRequest Container for the necessary
+     *           parameters to execute the UnlinkDeveloperIdentity service method on
      *           AmazonCognitoIdentity.
      * 
-     * @return The response from the ListIdentityPools service method, as
-     *         returned by AmazonCognitoIdentity.
-     * 
-     * @throws InternalErrorException
-     * @throws NotAuthorizedException
-     * @throws InvalidParameterException
-     * @throws TooManyRequestsException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentity indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListIdentityPoolsResult listIdentityPools(ListIdentityPoolsRequest listIdentityPoolsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     *
-     * @param getOpenIdTokenRequest Container for the necessary parameters to
-     *           execute the GetOpenIdToken service method on AmazonCognitoIdentity.
-     * 
-     * @return The response from the GetOpenIdToken service method, as
-     *         returned by AmazonCognitoIdentity.
      * 
      * @throws ResourceConflictException
      * @throws InternalErrorException
@@ -129,31 +103,7 @@ public interface AmazonCognitoIdentity {
      *             If an error response is returned by AmazonCognitoIdentity indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public GetOpenIdTokenResult getOpenIdToken(GetOpenIdTokenRequest getOpenIdTokenRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     *
-     * @param unlinkIdentityRequest Container for the necessary parameters to
-     *           execute the UnlinkIdentity service method on AmazonCognitoIdentity.
-     * 
-     * 
-     * @throws ResourceConflictException
-     * @throws InternalErrorException
-     * @throws NotAuthorizedException
-     * @throws InvalidParameterException
-     * @throws TooManyRequestsException
-     * @throws ResourceNotFoundException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentity indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void unlinkIdentity(UnlinkIdentityRequest unlinkIdentityRequest) 
+    public void unlinkDeveloperIdentity(UnlinkDeveloperIdentityRequest unlinkDeveloperIdentityRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -235,6 +185,162 @@ public interface AmazonCognitoIdentity {
 
     /**
      *
+     * @param updateIdentityPoolRequest Container for the necessary
+     *           parameters to execute the UpdateIdentityPool service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the UpdateIdentityPool service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws ResourceConflictException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public UpdateIdentityPoolResult updateIdentityPool(UpdateIdentityPoolRequest updateIdentityPoolRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param listIdentityPoolsRequest Container for the necessary parameters
+     *           to execute the ListIdentityPools service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the ListIdentityPools service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListIdentityPoolsResult listIdentityPools(ListIdentityPoolsRequest listIdentityPoolsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param mergeDeveloperIdentitiesRequest Container for the necessary
+     *           parameters to execute the MergeDeveloperIdentities service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the MergeDeveloperIdentities service method,
+     *         as returned by AmazonCognitoIdentity.
+     * 
+     * @throws ResourceConflictException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public MergeDeveloperIdentitiesResult mergeDeveloperIdentities(MergeDeveloperIdentitiesRequest mergeDeveloperIdentitiesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param getOpenIdTokenRequest Container for the necessary parameters to
+     *           execute the GetOpenIdToken service method on AmazonCognitoIdentity.
+     * 
+     * @return The response from the GetOpenIdToken service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws ResourceConflictException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetOpenIdTokenResult getOpenIdToken(GetOpenIdTokenRequest getOpenIdTokenRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param lookupDeveloperIdentityRequest Container for the necessary
+     *           parameters to execute the LookupDeveloperIdentity service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the LookupDeveloperIdentity service method,
+     *         as returned by AmazonCognitoIdentity.
+     * 
+     * @throws ResourceConflictException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public LookupDeveloperIdentityResult lookupDeveloperIdentity(LookupDeveloperIdentityRequest lookupDeveloperIdentityRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param unlinkIdentityRequest Container for the necessary parameters to
+     *           execute the UnlinkIdentity service method on AmazonCognitoIdentity.
+     * 
+     * 
+     * @throws ResourceConflictException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void unlinkIdentity(UnlinkIdentityRequest unlinkIdentityRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
      * @param listIdentitiesRequest Container for the necessary parameters to
      *           execute the ListIdentities service method on AmazonCognitoIdentity.
      * 
@@ -260,18 +366,19 @@ public interface AmazonCognitoIdentity {
 
     /**
      *
-     * @param updateIdentityPoolRequest Container for the necessary
-     *           parameters to execute the UpdateIdentityPool service method on
-     *           AmazonCognitoIdentity.
+     * @param getOpenIdTokenForDeveloperIdentityRequest Container for the
+     *           necessary parameters to execute the GetOpenIdTokenForDeveloperIdentity
+     *           service method on AmazonCognitoIdentity.
      * 
-     * @return The response from the UpdateIdentityPool service method, as
-     *         returned by AmazonCognitoIdentity.
+     * @return The response from the GetOpenIdTokenForDeveloperIdentity
+     *         service method, as returned by AmazonCognitoIdentity.
      * 
      * @throws ResourceConflictException
      * @throws InternalErrorException
      * @throws NotAuthorizedException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws DeveloperUserAlreadyRegisteredException
      * @throws ResourceNotFoundException
      *
      * @throws AmazonClientException
@@ -282,7 +389,7 @@ public interface AmazonCognitoIdentity {
      *             If an error response is returned by AmazonCognitoIdentity indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public UpdateIdentityPoolResult updateIdentityPool(UpdateIdentityPoolRequest updateIdentityPoolRequest) 
+    public GetOpenIdTokenForDeveloperIdentityResult getOpenIdTokenForDeveloperIdentity(GetOpenIdTokenForDeveloperIdentityRequest getOpenIdTokenForDeveloperIdentityRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**

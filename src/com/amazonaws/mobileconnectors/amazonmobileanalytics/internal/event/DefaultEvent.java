@@ -270,6 +270,7 @@ public final class DefaultEvent implements InternalEvent {
         builder.withAttribute("app_version_code", this.appDetails.versionCode());
         builder.withAttribute("app_package_name", this.appDetails.packageName());
         builder.withAttribute("app_title", this.appDetails.getAppTitle());
+        builder.withAttribute(ClientContext.APP_ID_KEY, this.appDetails.getAppId());
 
         JSONObject attributesJson = new JSONObject();
         for (Entry<String, String> entry : getAllAttributes().entrySet()) {
@@ -308,7 +309,8 @@ public final class DefaultEvent implements InternalEvent {
                 .withAppVersionName(appDetails.versionName()).withLocale(deviceDetails.locale().toString())
                 .withMake(deviceDetails.manufacturer()).withModel(deviceDetails.model())
                 .withPlatformVersion(deviceDetails.platformVersion()).withUniqueId(uniqueId.getValue())
-                .withAppTitle(appDetails.getAppTitle()).withNetworkType(networkType).withCarrier(deviceDetails.carrier());
+                .withAppTitle(appDetails.getAppTitle()).withNetworkType(networkType).withCarrier(deviceDetails.carrier())
+                .withAppId(appDetails.getAppId());
         return builder.build();
     }
 

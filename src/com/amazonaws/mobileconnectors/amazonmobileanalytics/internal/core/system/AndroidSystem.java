@@ -24,14 +24,14 @@ public class AndroidSystem implements System {
 	private final AppDetails appDetails;
 	private final DeviceDetails deviceDetails;
 	
-	//UUID to identify a unique shared preferences and directory the library can use, will be concatenated with the uniqueTag to ensure no collision
+	//UUID to identify a unique shared preferences and directory the library can use, will be concatenated with the appId to ensure no collision
 	private final static String PREFERENCES_AND_FILE_MANAGER_SUFFIX = "515d6767-01b7-49e5-8273-c8d11b0f331d";
 	
-	public AndroidSystem(final Context context,final String uniqueTag) {
-		preferences = new AndroidPreferences(context, uniqueTag+PREFERENCES_AND_FILE_MANAGER_SUFFIX); 
-		fileManager = new DefaultFileManager(context.getDir(uniqueTag+PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE));
+	public AndroidSystem(final Context context,final String appId) {
+		preferences = new AndroidPreferences(context, appId+PREFERENCES_AND_FILE_MANAGER_SUFFIX);
+		fileManager = new DefaultFileManager(context.getDir(appId+PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE));
 		connectivity = new AndroidConnectivity(context);
-		appDetails = new AndroidAppDetails(context);
+		appDetails = new AndroidAppDetails(context, appId);
 		deviceDetails = new AndroidDeviceDetails(getCarrier(context));
 	}
 	
