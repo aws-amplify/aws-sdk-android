@@ -7,6 +7,10 @@ documentation here: [aws.amazon.com/documentation/sdkforandroid](http://aws.amaz
 
 For best practices for using the AWS SDK for Android, please consider following our [AWS Mobile Developer Blog](http://mobile.awsblog.com/)
 
+## Version 2 of the AWS Mobile SDK now Generally Available
+
+Version 2 of the AWS Mobile SDK for Android has reached General Availability (GA) and is no longer in Developer Preview.  Version 1 is deprecated as of September 29, 2014 and will continue to be available until December 31, 2014 in our [aws-sdk-android-v1](https://github.com/aws/aws-sdk-android-v1) repository. If you are building new apps, we recommend you use Version 2.
+
 ## Version 2 highlights
 
 * **Amazon Cognito** – is a simple user identity and synchronization service that helps you securely manage and synchronize app data for your users across their mobile devices. With Amazon Cognito, you can save any kind of data, such as app preferences or game state, in the AWS Cloud without writing any backend code or managing any infrastructure.
