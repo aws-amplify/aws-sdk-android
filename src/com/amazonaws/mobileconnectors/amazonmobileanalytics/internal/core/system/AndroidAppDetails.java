@@ -31,6 +31,7 @@ public class AndroidAppDetails implements AppDetails {
 	private String versionCode;
 	private String versionName;
         private String appId;
+    private static String APPTITLE_OVERRIDE = null;
 	
 	public AndroidAppDetails(Context context, String appId) {
 		this.applicationContext = context.getApplicationContext();
@@ -51,6 +52,15 @@ public class AndroidAppDetails implements AppDetails {
 			versionCode = "Unknown";
 			versionName = "Unknown";
 		}
+		
+		if(null != APPTITLE_OVERRIDE)
+		{
+			appTitle = APPTITLE_OVERRIDE;
+		}
+	}
+	
+	public static void SetAppTitleOverride(String appTitleOverride) {
+		APPTITLE_OVERRIDE = appTitleOverride;
 	}
 	
 	public AndroidAppDetails(String packageName, String versionCode, String versionName, String appTitle, String appId){
