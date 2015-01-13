@@ -18,6 +18,67 @@ Version 2 of the AWS Mobile SDK for Android has reached General Availability (GA
 * **Amazon Kinesis Recorder** – enables you to reliably record data to an Amazon Kinesis data stream from your mobile app. Kinesis Recorder batches requests to handle intermittent network connection and enable you to record events even when the device is offline.
 * **Amazon S3 Transfer Manager** - We have added the ability to pause and resume downloads/uploads to make transferring files to S3 faster and easier.
 
+## Building the SDK
+
+You can build from source via Maven. Building the SDK requires the Java 7 SDK. Note that if you build from source you will only have one jar. You will have to configure which of the services you want to include in that jar via the proguard.cfg file. The process is explained below.
+
+#### Specifying packages
+In the proguard.cfg, you should see 
+
+        #autoscaling
+        !com.amazonaws.services.autoscaling.**,
+        #cloudwatch
+        !com.amazonaws.services.cloudwatch.**,
+        #ddb mapper
+        !com.amazonaws.services.dynamodbv2.datamodeling.**,
+        !com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.**,
+        #ddb
+        !com.amazonaws.services.dynamodbv2.**,
+        #ec2
+        !com.amazonaws.services.ec2.**,
+        #elb
+        !com.amazonaws.services.elasticloadbalancing.**,
+        #kinesis
+        !com.amazonaws.services.kinesis.**,
+        !com.amazonaws.mobileconnectors.kinesis.**,
+        #analytics
+        !com.amazonaws.services.mobileanalytics.**,
+        !com.amazonaws.mobileconnectors.amazonmobileanalytics.**,
+        #s3
+        !com.amazonaws.services.s3.**,
+        !com.amazonaws.mobileconnectors.s3.**,
+        #sdb
+        !com.amazonaws.services.simpledb.**,
+        #ses
+        !com.amazonaws.services.simpleemail,
+        #sns
+        !com.amazonaws.services.sns.**,
+        #sqs
+        !com.amazonaws.services.sqs.**,
+
+As you can see, these lines tell ProGuard it is allowed to remove the code associated with the services. So, if you want to use any of these services, you just need to comment out (or remove) the lines associated with that service.
+
+For example, if you want to use s3, you would change the section from above to
+
+        #s3
+        #!com.amazonaws.services.s3.**,
+        #!com.amazonaws.mobileconnectors.s3.**,
+
+Note that if you want to use ddb mapper you will need to also include ddb. Also, if you want to use Cognito Sync you will have to include it separately since it is not part of this repo (due to licensing).
+
+#### Compiling
+
+After specifying the packages you want to use, you can just run
+
+    mvn package
+
+from the project directory and you will get the resulting jar in the target folder.
+
+#### Issues with JAVA_HOME on Mac
+
+If you are using a Mac you may run into issues when trying to compile because certain Java installations do not set your JAVA_HOME environment variable, which is referenced in pom.xml. To fix this, you can run the command,
+
+    export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
 ## To learn more about Android Development
 
