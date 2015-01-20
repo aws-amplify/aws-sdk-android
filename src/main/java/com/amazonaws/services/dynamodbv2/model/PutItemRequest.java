@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -283,6 +283,12 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * <b>Allowed Values: </b>AND, OR
      */
     private String conditionalOperator;
+
+    private String conditionExpression;
+
+    private java.util.Map<String,String> expressionAttributeNames;
+
+    private java.util.Map<String,AttributeValue> expressionAttributeValues;
 
     /**
      * Default constructor for a new PutItemRequest object.  Callers should use the
@@ -2152,6 +2158,179 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
+     * Returns the value of the ConditionExpression property for this object.
+     *
+     * @return The value of the ConditionExpression property for this object.
+     */
+    public String getConditionExpression() {
+        return conditionExpression;
+    }
+    
+    /**
+     * Sets the value of the ConditionExpression property for this object.
+     *
+     * @param conditionExpression The new value for the ConditionExpression property for this object.
+     */
+    public void setConditionExpression(String conditionExpression) {
+        this.conditionExpression = conditionExpression;
+    }
+    
+    /**
+     * Sets the value of the ConditionExpression property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param conditionExpression The new value for the ConditionExpression property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public PutItemRequest withConditionExpression(String conditionExpression) {
+        this.conditionExpression = conditionExpression;
+        return this;
+    }
+
+    /**
+     * Returns the value of the ExpressionAttributeNames property for this
+     * object.
+     *
+     * @return The value of the ExpressionAttributeNames property for this object.
+     */
+    public java.util.Map<String,String> getExpressionAttributeNames() {
+        
+        return expressionAttributeNames;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     *
+     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
+     *         object.
+     */
+    public void setExpressionAttributeNames(java.util.Map<String,String> expressionAttributeNames) {
+        this.expressionAttributeNames = expressionAttributeNames;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
+     *         object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public PutItemRequest withExpressionAttributeNames(java.util.Map<String,String> expressionAttributeNames) {
+        setExpressionAttributeNames(expressionAttributeNames);
+        return this;
+    }
+
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     * <p>
+     * The method adds a new key-value pair into ExpressionAttributeNames
+     * parameter, and returns a reference to this object so that method calls
+     * can be chained together.
+     *
+     * @param key The key of the entry to be added into ExpressionAttributeNames.
+     * @param value The corresponding value of the entry to be added into ExpressionAttributeNames.
+     */
+    public PutItemRequest addExpressionAttributeNamesEntry(String key, String value) {
+        if (null == this.expressionAttributeNames) {
+            this.expressionAttributeNames = new java.util.HashMap<String,String>();
+        }
+        if (this.expressionAttributeNames.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+        this.expressionAttributeNames.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeNames.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     */
+    public PutItemRequest clearExpressionAttributeNamesEntries() {
+        this.expressionAttributeNames = null;
+        return this;
+    }
+    
+    /**
+     * Returns the value of the ExpressionAttributeValues property for this
+     * object.
+     *
+     * @return The value of the ExpressionAttributeValues property for this object.
+     */
+    public java.util.Map<String,AttributeValue> getExpressionAttributeValues() {
+        
+        return expressionAttributeValues;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeValues property for this
+     * object.
+     *
+     * @param expressionAttributeValues The new value for the ExpressionAttributeValues property for this
+     *         object.
+     */
+    public void setExpressionAttributeValues(java.util.Map<String,AttributeValue> expressionAttributeValues) {
+        this.expressionAttributeValues = expressionAttributeValues;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeValues property for this
+     * object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param expressionAttributeValues The new value for the ExpressionAttributeValues property for this
+     *         object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public PutItemRequest withExpressionAttributeValues(java.util.Map<String,AttributeValue> expressionAttributeValues) {
+        setExpressionAttributeValues(expressionAttributeValues);
+        return this;
+    }
+
+    /**
+     * Sets the value of the ExpressionAttributeValues property for this
+     * object.
+     * <p>
+     * The method adds a new key-value pair into ExpressionAttributeValues
+     * parameter, and returns a reference to this object so that method calls
+     * can be chained together.
+     *
+     * @param key The key of the entry to be added into ExpressionAttributeValues.
+     * @param value The corresponding value of the entry to be added into ExpressionAttributeValues.
+     */
+    public PutItemRequest addExpressionAttributeValuesEntry(String key, AttributeValue value) {
+        if (null == this.expressionAttributeValues) {
+            this.expressionAttributeValues = new java.util.HashMap<String,AttributeValue>();
+        }
+        if (this.expressionAttributeValues.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+        this.expressionAttributeValues.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeValues.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     */
+    public PutItemRequest clearExpressionAttributeValuesEntries() {
+        this.expressionAttributeValues = null;
+        return this;
+    }
+    
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2169,7 +2348,10 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
         if (getReturnValues() != null) sb.append("ReturnValues: " + getReturnValues() + ",");
         if (getReturnConsumedCapacity() != null) sb.append("ReturnConsumedCapacity: " + getReturnConsumedCapacity() + ",");
         if (getReturnItemCollectionMetrics() != null) sb.append("ReturnItemCollectionMetrics: " + getReturnItemCollectionMetrics() + ",");
-        if (getConditionalOperator() != null) sb.append("ConditionalOperator: " + getConditionalOperator() );
+        if (getConditionalOperator() != null) sb.append("ConditionalOperator: " + getConditionalOperator() + ",");
+        if (getConditionExpression() != null) sb.append("ConditionExpression: " + getConditionExpression() + ",");
+        if (getExpressionAttributeNames() != null) sb.append("ExpressionAttributeNames: " + getExpressionAttributeNames() + ",");
+        if (getExpressionAttributeValues() != null) sb.append("ExpressionAttributeValues: " + getExpressionAttributeValues() );
         sb.append("}");
         return sb.toString();
     }
@@ -2186,6 +2368,9 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
         hashCode = prime * hashCode + ((getReturnConsumedCapacity() == null) ? 0 : getReturnConsumedCapacity().hashCode()); 
         hashCode = prime * hashCode + ((getReturnItemCollectionMetrics() == null) ? 0 : getReturnItemCollectionMetrics().hashCode()); 
         hashCode = prime * hashCode + ((getConditionalOperator() == null) ? 0 : getConditionalOperator().hashCode()); 
+        hashCode = prime * hashCode + ((getConditionExpression() == null) ? 0 : getConditionExpression().hashCode()); 
+        hashCode = prime * hashCode + ((getExpressionAttributeNames() == null) ? 0 : getExpressionAttributeNames().hashCode()); 
+        hashCode = prime * hashCode + ((getExpressionAttributeValues() == null) ? 0 : getExpressionAttributeValues().hashCode()); 
         return hashCode;
     }
     
@@ -2211,6 +2396,12 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
         if (other.getReturnItemCollectionMetrics() != null && other.getReturnItemCollectionMetrics().equals(this.getReturnItemCollectionMetrics()) == false) return false; 
         if (other.getConditionalOperator() == null ^ this.getConditionalOperator() == null) return false;
         if (other.getConditionalOperator() != null && other.getConditionalOperator().equals(this.getConditionalOperator()) == false) return false; 
+        if (other.getConditionExpression() == null ^ this.getConditionExpression() == null) return false;
+        if (other.getConditionExpression() != null && other.getConditionExpression().equals(this.getConditionExpression()) == false) return false; 
+        if (other.getExpressionAttributeNames() == null ^ this.getExpressionAttributeNames() == null) return false;
+        if (other.getExpressionAttributeNames() != null && other.getExpressionAttributeNames().equals(this.getExpressionAttributeNames()) == false) return false; 
+        if (other.getExpressionAttributeValues() == null ^ this.getExpressionAttributeValues() == null) return false;
+        if (other.getExpressionAttributeValues() != null && other.getExpressionAttributeValues().equals(this.getExpressionAttributeValues()) == false) return false; 
         return true;
     }
     

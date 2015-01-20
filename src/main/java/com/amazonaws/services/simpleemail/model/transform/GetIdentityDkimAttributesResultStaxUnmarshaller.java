@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package com.amazonaws.services.simpleemail.model.transform;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.xml.stream.events.XMLEvent;
+import org.xmlpull.v1.XmlPullParser;
 
 import com.amazonaws.services.simpleemail.model.*;
 import com.amazonaws.transform.Unmarshaller;
@@ -40,10 +40,10 @@ public class GetIdentityDkimAttributesResultStaxUnmarshaller implements Unmarsha
                 = new MapEntry<String, IdentityDkimAttributes>();
 
             while (true) {
-                XMLEvent xmlEvent = context.nextEvent();
-                if (xmlEvent.isEndDocument()) return entry;
+                int xmlEvent = context.nextEvent();
+                if (xmlEvent == XmlPullParser.END_DOCUMENT) return entry;
 
-                if (xmlEvent.isAttribute() || xmlEvent.isStartElement()) {
+                if (xmlEvent == XmlPullParser.START_TAG) {
                     if (context.testExpression("key", targetDepth)) {
                         entry.setKey(StringStaxUnmarshaller.getInstance().unmarshall(context));
                         continue;
@@ -52,7 +52,7 @@ public class GetIdentityDkimAttributesResultStaxUnmarshaller implements Unmarsha
                         entry.setValue(IdentityDkimAttributesStaxUnmarshaller.getInstance().unmarshall(context));
                         continue;
                     }
-                } else if (xmlEvent.isEndElement()) {
+                } else if (xmlEvent == XmlPullParser.END_TAG) {
                     if (context.getCurrentDepth() < originalDepth) return entry;
                 }
             }
@@ -74,16 +74,16 @@ public class GetIdentityDkimAttributesResultStaxUnmarshaller implements Unmarsha
         if (context.isStartOfDocument()) targetDepth += 2;
 
         while (true) {
-            XMLEvent xmlEvent = context.nextEvent();
-            if (xmlEvent.isEndDocument()) return getIdentityDkimAttributesResult;
+            int xmlEvent = context.nextEvent();
+            if (xmlEvent == XmlPullParser.END_DOCUMENT) return getIdentityDkimAttributesResult;
 
-            if (xmlEvent.isAttribute() || xmlEvent.isStartElement()) {
+            if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("DkimAttributes/entry", targetDepth)) {
                     Entry<String, IdentityDkimAttributes> entry = DkimAttributesMapEntryUnmarshaller.getInstance().unmarshall(context);
                     getIdentityDkimAttributesResult.getDkimAttributes().put(entry.getKey(), entry.getValue());
                     continue;
                 }
-            } else if (xmlEvent.isEndElement()) {
+            } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return getIdentityDkimAttributesResult;
                 }

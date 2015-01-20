@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2014 Amazon Technologies, Inc.
+ * Copyright 2012-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,9 @@ import java.util.concurrent.TimeoutException;
 
 import com.amazonaws.services.s3.transfer.Transfer;
 
+/*
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
+ */
 public class MultipleFileTransferMonitor implements TransferMonitor {
 
     private final Collection<? extends AbstractTransfer> subTransfers;

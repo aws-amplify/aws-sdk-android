@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
  * Unmarshaller interface to make it possible to cache the expensive
  * type-determination behavior necessary when turning a service result back
  * into an object.
-  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public interface ArgumentUnmarshaller {
 

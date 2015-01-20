@@ -6,8 +6,8 @@
     <artifactId>aws-android-sdk</artifactId>
     <packaging>jar</packaging>
     <name>AWS SDK for Android</name>
-    <version>2.1.7</version>
-    <description>The Amazon Web Services SDK for Android provides Android APIs for building software on AWS’ cost-effective, scalable, and reliable infrastructure products. The AWS SDK for Android allows developers to code against APIs for all of Amazon's infrastructure web services (Amazon S3, Amazon EC2, Amazon SQS, Auto Scaling, etc).</description>
+    <version>2.1.8</version>
+    <description>The Amazon Web Services SDK for Android provides Android APIs for building software on AWS??? cost-effective, scalable, and reliable infrastructure products. The AWS SDK for Android allows developers to code against APIs for all of Amazon's infrastructure web services (Amazon S3, Amazon EC2, Amazon SQS, Auto Scaling, etc).</description>
     <url>http://aws.amazon.com/sdkforandroid</url>
 
     <properties>
@@ -78,26 +78,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
             <version>2.3.3</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml</groupId>
-            <artifactId>jaxp-api</artifactId>
-            <version>1.4.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.stream</groupId>
-            <artifactId>sjsxp</artifactId>
-            <version>1.0.2</version>
         </dependency>
     </dependencies>
 
@@ -148,9 +132,6 @@
                                 <include>com.fasterxml.jackson.core:jackson-core</include>
                                 <include>com.fasterxml.jackson.core:jackson-annotations</include>
                                 <include>com.fasterxml.jackson.core:jackson-databind</include>
-                                <include>joda-time:joda-time</include>
-                                <include>javax.xml:jaxp-api</include>
-                                <include>com.sun.xml.stream:sjsxp</include>
                             </includes>
                             <rules>
                                 <zap>
@@ -165,31 +146,9 @@
                                 <zap>
                                     <pattern> org.apache.commons.logging.impl.Log4JLogger</pattern>
                                 </zap>
-                                <zap>
-                                    <pattern>org.xml.sax.**</pattern>
-                                </zap>
-                                <zap>
-                                    <pattern>org.w3c.dom.**</pattern>
-                                </zap>
-                                <zap>
-                                    <pattern>javax.xml.parsers.**</pattern>
-                                </zap>
-                                <zap>
-                                    <pattern>javax.xml.validation.**</pattern>
-                                </zap>
-                                <zap>
-                                    <pattern>javax.xml.datatype.**</pattern>
-                                </zap>
-                                <zap>
-                                    <pattern>javax.xml.xpath.**</pattern>
-                                </zap>
                                 <rule>
                                     <pattern>org.apache.http.**</pattern>
                                     <result>com.amazonaws.org.apache.http.@1</result>
-                                </rule>
-                                <rule>
-                                    <pattern>org.joda.**</pattern>
-                                    <result>com.amazonaws.org.joda.@1</result>
                                 </rule>
                                 <rule>
                                     <pattern>org.apache.commons.**</pattern>
@@ -202,34 +161,6 @@
                                     <result>
                                         com.amazonaws.com.fasterxml.@1
                                     </result>
-                                </rule>
-                                <rule>
-                                    <pattern>javax.xml.namespace.**</pattern>
-                                    <result>com.amazonaws.javax.xml.namespace.@1</result>
-                                </rule>
-                                <rule>
-                                    <pattern>javax.xml.stream.**</pattern>
-                                    <result>com.amazonaws.javax.xml.stream.@1</result>
-                                </rule>
-                                <rule>
-                                    <pattern>javax.xml.XMLConstants</pattern>
-                                    <result>com.amazonaws.javax.xml.XMLConstants</result>
-                                </rule>
-                                <rule>
-                                    <pattern>javax.xml.transform.**</pattern>
-                                    <result>com.amazonaws.javax.xml.transform.@1</result>
-                                </rule>
-                                <rule>
-                                    <pattern>com.sun.xml.internal.stream.XMLInputFactoryImpl</pattern>
-                                    <result>com.amazonaws.javax.xml.stream.ZephyrParserFactory</result>
-                                </rule>
-                                <rule>
-                                    <pattern>com.sun.xml.stream.**</pattern>
-                                    <result>com.amazonaws.javax.xml.stream.@1</result>
-                                </rule>
-                                <rule>
-                                    <pattern>com.sun.xml.stream.events.**</pattern>
-                                    <result>com.amazonaws.javax.xml.stream.@1</result>
                                 </rule>
                             </rules>
                         </configuration>
@@ -267,5 +198,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

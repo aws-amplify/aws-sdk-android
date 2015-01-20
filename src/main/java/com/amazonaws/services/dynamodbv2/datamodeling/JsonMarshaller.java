@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.MappingJsonFactory;
  * Simple JSON marshaller that uses Jackson mapper. It has all the limitations
  * of that library, the documentation of which is available here:
  * http://docs.codehaus.org/display/JACKSON/Home
-  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class JsonMarshaller<T extends Object> implements DynamoDBMarshaller<T> {
 

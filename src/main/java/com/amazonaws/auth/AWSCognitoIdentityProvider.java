@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
 
 package com.amazonaws.auth;
 
+
+import com.amazonaws.regions.Regions;
 
 import java.util.Map;
 
@@ -54,6 +56,13 @@ public interface AWSCognitoIdentityProvider extends AWSIdentityProvider {
      * @return the logins map
      */
     public Map<String, String> getLogins();
+
+    /**
+     * Checks if the current identityId belongs to an authenticated user
+     *
+     * @return true if the identity is authenticated
+     */
+    public boolean isAuthenticated();
 
     /**
      * Handles the new version of an identity changed listener to be handled by

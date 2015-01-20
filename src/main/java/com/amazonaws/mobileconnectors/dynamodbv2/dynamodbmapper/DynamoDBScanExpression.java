@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,13 +21,14 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.amazonaws.services.dynamodbv2.model.ConditionalOperator;
+import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 
 /**
  * Options for filtering results from a scan operation. For example, callers can
  * specify filter conditions so that only objects whose attributes match
  * different conditions are returned (see {@link ComparisonOperator} for more
  * information on the available comparison types).
- * 
+ *
  * @see DynamoDBMapper#scan(Class, DynamoDBScanExpression)
  */
 public class DynamoDBScanExpression {
@@ -41,13 +42,13 @@ public class DynamoDBScanExpression {
     /** The limit of items to scan during this scan. */
     private Integer limit;
 
-    /** 
+    /**
      * The total number of segments into which the scan will be divided.
      * Only required for parallel scan operation.
      */
     private Integer totalSegments;
 
-    /** 
+    /**
      * The ID (zero-based) of the segment to be scanned.
      * Only required for parallel scan operation.
      */
@@ -59,8 +60,49 @@ public class DynamoDBScanExpression {
     private String conditionalOperator;
 
     /**
+     * Evaluates the scan results and returns only the desired values. <p>The
+     * condition you specify is applied to the items scanned; any items that
+     * do not match the expression are not returned.
+     */
+    private String filterExpression;
+
+    /**
+     * One or more substitution variables for simplifying complex
+     * expressions. The following are some use cases for an
+     * ExpressionAttributeName: <ul> <li> <p>Shorten an attribute name that
+     * is very long or unwieldy in an expression. </li> <li> <p>Create a
+     * placeholder for repeating occurrences of an attribute name in an
+     * expression. </li> <li> <p>Prevent special characters in an attribute
+     * name from being misinterpreted in an expression. </li> </ul> <p>Use
+     * the <b>#</b> character in an expression to dereference an attribute
+     * name. For example, consider the following expression:
+     * <ul><li><p><code>order.customerInfo.LastName = "Smith" OR
+     * order.customerInfo.LastName = "Jones"</code></li></ul> <p>Now suppose
+     * that you specified the following for <i>ExpressionAttributeNames</i>:
+     * <ul><li><p><code>{"n":"order.customerInfo.LastName"}</code></li></ul>
+     * <p>The expression can now be simplified as follows:
+     * <ul><li><p><code>#n = "Smith" OR #n = "Jones"</code></li></ul>
+     */
+    private java.util.Map<String,String> expressionAttributeNames;
+
+    /**
+     * One or more values that can be substituted in an expression. <p>Use
+     * the <b>:</b> character in an expression to dereference an attribute
+     * value. For example, consider the following expression:
+     * <ul><li><p><code>ProductStatus IN
+     * ("Available","Backordered","Discontinued")</code></li></ul> <p>Now
+     * suppose that you specified the following for
+     * <i>ExpressionAttributeValues</i>: <ul><li><p><code>{
+     * "a":{"S":"Available"}, "b":{"S":"Backordered"},
+     * "d":{"S":"Discontinued"} }</code></li></ul> <p>The expression can now
+     * be simplified as follows: <ul><li> <p><code>ProductStatus IN
+     * (:a,:b,:c)</code></li></ul>
+     */
+    private java.util.Map<String,AttributeValue> expressionAttributeValues;
+
+    /**
      * Returns the scan filter as a map of attribute names to conditions.
-     * 
+     *
      * @return The scan filter as a map of attribute names to conditions.
      */
     public Map<String, Condition> getScanFilter() {
@@ -69,7 +111,7 @@ public class DynamoDBScanExpression {
 
     /**
      * Sets the scan filter to the map of attribute names to conditions given.
-     * 
+     *
      * @param scanFilter
      *            The map of attribute names to conditions to use when filtering
      *            scan results.
@@ -81,7 +123,7 @@ public class DynamoDBScanExpression {
     /**
      * Sets the scan filter to the map of attribute names to conditions given
      * and returns a pointer to this object for method-chaining.
-     * 
+     *
      * @param scanFilter
      *            The map of attribute names to conditions to use when filtering
      *            scan results.
@@ -93,7 +135,7 @@ public class DynamoDBScanExpression {
 
     /**
      * Adds a new filter condition to the current scan filter.
-     * 
+     *
      * @param attributeName
      *            The name of the attribute on which the specified condition
      *            operates.
@@ -112,7 +154,7 @@ public class DynamoDBScanExpression {
     /**
      * Adds a new filter condition to the current scan filter and returns a
      * pointer to this object for method-chaining.
-     * 
+     *
      * @param attributeName
      *            The name of the attribute on which the specified condition
      *            operates.
@@ -129,7 +171,7 @@ public class DynamoDBScanExpression {
         return this;
     }
 
-    
+
     /**
      * Returns the exclusive start key for this scan.
      */
@@ -177,7 +219,7 @@ public class DynamoDBScanExpression {
      * is <b>not</b> the same as the number of items to return from the scan
      * operation -- the operation will cease and return as soon as this many
      * items are scanned, even if no matching results are found.
-     * 
+     *
      * @see DynamoDBScanExpression#getLimit()
      */
     public void setLimit(Integer limit) {
@@ -190,7 +232,7 @@ public class DynamoDBScanExpression {
      * number of items to return from the scan operation -- the operation will
      * cease and return as soon as this many items are scanned, even if no
      * matching results are found.
-     * 
+     *
      * @see DynamoDBScanExpression#getLimit()
      */
     public DynamoDBScanExpression withLimit(Integer limit) {
@@ -280,5 +322,224 @@ public class DynamoDBScanExpression {
      */
     public DynamoDBScanExpression withConditionalOperator(ConditionalOperator conditionalOperator) {
         return withConditionalOperator(conditionalOperator.toString());
+    }
+
+    /**
+     * Evaluates the query results and returns only the desired values.
+     * <p>
+     * The condition you specify is applied to the items queried; any items that
+     * do not match the expression are not returned.
+     *
+     * @return Evaluates the query results and returns only the desired values.
+     *         <p>
+     *         The condition you specify is applied to the items queried; any
+     *         items that do not match the expression are not returned.
+     * @see ScanRequest#getFilterExpression()
+     */
+    public String getFilterExpression() {
+        return filterExpression;
+    }
+
+    /**
+     * Evaluates the query results and returns only the desired values.
+     * <p>
+     * The condition you specify is applied to the items queried; any items that
+     * do not match the expression are not returned.
+     *
+     * @param filterExpression
+     *            Evaluates the query results and returns only the desired
+     *            values.
+     *            <p>
+     *            The condition you specify is applied to the items queried; any
+     *            items that do not match the expression are not returned.
+     * @see ScanRequest#setFilterExpression(String)
+     */
+    public void setFilterExpression(String filterExpression) {
+        this.filterExpression = filterExpression;
+    }
+
+    /**
+     * Evaluates the query results and returns only the desired values.
+     * <p>
+     * The condition you specify is applied to the items queried; any items that
+     * do not match the expression are not returned.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterExpression
+     *            Evaluates the query results and returns only the desired
+     *            values.
+     *            <p>
+     *            The condition you specify is applied to the items queried; any
+     *            items that do not match the expression are not returned.
+     *
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ScanRequest#withFilterExpression(String)
+     */
+    public DynamoDBScanExpression withFilterExpression(String filterExpression) {
+        this.filterExpression = filterExpression;
+        return this;
+    }
+
+    /**
+     * One or more substitution variables for simplifying complex expressions.
+     *
+     * @return One or more substitution variables for simplifying complex
+     *         expressions.
+     * @see scanRequest#getExpressionAttributeNames()
+     */
+    public java.util.Map<String, String> getExpressionAttributeNames() {
+
+        return expressionAttributeNames;
+    }
+
+    /**
+     * One or more substitution variables for simplifying complex expressions.
+     *
+     * @param expressionAttributeNames
+     *            One or more substitution variables for simplifying complex
+     *            expressions.
+     * @see ScanRequest#setExpressionAttributeNames(Map)
+     */
+    public void setExpressionAttributeNames(
+            java.util.Map<String, String> expressionAttributeNames) {
+        this.expressionAttributeNames = expressionAttributeNames;
+    }
+
+    /**
+     * One or more substitution variables for simplifying complex expressions.
+     *
+     * @param expressionAttributeNames
+     *            One or more substitution variables for simplifying complex
+     *            expressions.
+     *
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ScanRequest#withExpressionAttributeNames(Map)
+     */
+    public DynamoDBScanExpression withExpressionAttributeNames(
+            java.util.Map<String, String> expressionAttributeNames) {
+        setExpressionAttributeNames(expressionAttributeNames);
+        return this;
+    }
+
+    /**
+     * One or more substitution variables for simplifying complex expressions.
+     * The method adds a new key-value pair into ExpressionAttributeNames
+     * parameter, and returns a reference to this object so that method calls
+     * can be chained together.
+     *
+     * @param key
+     *            The key of the entry to be added into
+     *            ExpressionAttributeNames.
+     * @param value
+     *            The corresponding value of the entry to be added into
+     *            ExpressionAttributeNames.
+     *
+     * @see ScanRequest#addExpressionAttributeNamesEntry(String, String)
+     */
+    public DynamoDBScanExpression addExpressionAttributeNamesEntry(String key,
+            String value) {
+        if (null == this.expressionAttributeNames) {
+            this.expressionAttributeNames = new java.util.HashMap<String, String>();
+        }
+        if (this.expressionAttributeNames.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys ("
+                    + key.toString() + ") are provided.");
+        this.expressionAttributeNames.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeNames.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public DynamoDBScanExpression clearExpressionAttributeNamesEntries() {
+        this.expressionAttributeNames = null;
+        return this;
+    }
+
+    /**
+     * One or more values that can be substituted in an expression.
+     *
+     * @return One or more values that can be substituted in an expression.
+     *
+     * @see ScanRequest#getExpressionAttributeValues()
+     */
+    public java.util.Map<String, AttributeValue> getExpressionAttributeValues() {
+
+        return expressionAttributeValues;
+    }
+
+    /**
+     * One or more values that can be substituted in an expression.
+     *
+     * @param expressionAttributeValues
+     *            One or more values that can be substituted in an expression.
+     *
+     * @see ScanRequest#setExpressionAttributeValues(Map)
+     */
+    public void setExpressionAttributeValues(
+            java.util.Map<String, AttributeValue> expressionAttributeValues) {
+        this.expressionAttributeValues = expressionAttributeValues;
+    }
+
+    /**
+     * One or more values that can be substituted in an expression.
+     *
+     * @param expressionAttributeValues
+     *            One or more values that can be substituted in an expression.
+     *
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ScanRequest#withExpressionAttributeValues(Map)
+     */
+    public DynamoDBScanExpression withExpressionAttributeValues(
+            java.util.Map<String, AttributeValue> expressionAttributeValues) {
+        setExpressionAttributeValues(expressionAttributeValues);
+        return this;
+    }
+
+    /**
+     * One or more values that can be substituted in an expression. The method
+     * adds a new key-value pair into ExpressionAttributeValues parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key
+     *            The key of the entry to be added into
+     *            ExpressionAttributeValues.
+     * @param value
+     *            The corresponding value of the entry to be added into
+     *            ExpressionAttributeValues.
+     *
+     * @see ScanRequest#addExpressionAttributeValuesEntry(String,
+     *      AttributeValue)
+     */
+    public DynamoDBScanExpression addExpressionAttributeValuesEntry(String key,
+            AttributeValue value) {
+        if (null == this.expressionAttributeValues) {
+            this.expressionAttributeValues = new java.util.HashMap<String, AttributeValue>();
+        }
+        if (this.expressionAttributeValues.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys ("
+                    + key.toString() + ") are provided.");
+        this.expressionAttributeValues.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeValues.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public DynamoDBScanExpression clearExpressionAttributeValuesEntries() {
+        this.expressionAttributeValues = null;
+        return this;
     }
 }

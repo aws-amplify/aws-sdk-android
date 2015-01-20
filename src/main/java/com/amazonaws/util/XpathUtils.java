@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.nio.ByteBuffer;
-import java.text.ParseException;
 import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -33,11 +32,9 @@ import javax.xml.xpath.XPathFactory;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.amazonaws.AmazonClientException;
@@ -48,14 +45,11 @@ import com.amazonaws.AmazonClientException;
  */
 public class XpathUtils {
 
-    /** Shared DateUtils object for parsing and formatting dates */
-    private static DateUtils dateUtils = new DateUtils();
-
     /** Shared logger */
     private static Log log = LogFactory.getLog(XpathUtils.class);
 
     private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
+ 
 
     public static Document documentFrom(InputStream is)
             throws SAXException, IOException, ParserConfigurationException {
@@ -243,7 +237,7 @@ public class XpathUtils {
         String dateString = evaluateAsString(expression, node);
         if (isEmptyString(dateString)) return null;
 
-        return dateUtils.parseIso8601Date(dateString);
+        return DateUtils.parseISO8601Date(dateString);
     }
 
     /**
@@ -320,26 +314,31 @@ public class XpathUtils {
     private static String evaluateAsString(String expression, Node node) throws XPathExpressionException {
         if (isEmpty(node)) return null;
 
-		String s = evaluateXPath( node, expression );
-		if ( s == null ) {
-			return null;
-		}
-		else {
-	        return s.trim();
-		}
+        if (!expression.equals(".")) {
+            /*
+             * If the expression being evaluated doesn't select a node, we want
+             * to return null to distinguish between cases where a node isn't
+             * present (which should be represented as null) and when a node is
+             * present, but empty (which should be represented as the empty
+             * string).
+             *
+             * We skip this test if the expression is "." since we've already
+             * checked that the node exists.
+             */
+            if (asNode(expression, node) == null) return null;
+        }
+
+        String s = xpath().evaluate(expression, node);
+
+        return s.trim();
     }
 
     public static Node asNode(String nodeName, Node node)
             throws XPathExpressionException {
         if (node == null) return null;
-        return findXPathNode(node, nodeName);
+        return (Node) xpath().evaluate(nodeName, node, XPathConstants.NODE);
     }
-
-    public static NodeList asNodeList(String nodeName, Node node)
-            throws XPathExpressionException {
-        if (node == null) return null;
-        return findXPathNodeList(node, nodeName);
-    }
+   
 
     /**
      * Returns true if the specified string is null or empty.
@@ -354,112 +353,13 @@ public class XpathUtils {
 
         return false;
     }
-	
-	private static String evaluateXPath( Node node, String xPath ) {
-		int currentSearchIndex = 0;
-		while ( currentSearchIndex < xPath.length() ) {
-		
-			int endingIndex = xPath.indexOf( "/", currentSearchIndex );
-			
-			String noderNameFromXPath = null;
-			if ( endingIndex == -1 ) {
-				noderNameFromXPath = xPath.substring( currentSearchIndex );
-			}
-			else {
-				noderNameFromXPath = xPath.substring( currentSearchIndex, endingIndex );
-			}
-			
-			node = findChildNodeWithName( node, noderNameFromXPath );
-			
-			if ( endingIndex == -1 ) {
-				break;
-			}
-			
-			currentSearchIndex = endingIndex + 1;
-		}
-		
-		if ( node != null && node.getFirstChild() != null ) {
-			return node.getFirstChild().getNodeValue();
-		}
-		else if ( node != null ) {
-			return node.getNodeValue();
-		}
-		else {
-			return null;
-		}		
-	}
-	
-	private static Node findXPathNode( Node node, String xPath ) {
-		int currentSearchIndex = 0;
-		while ( currentSearchIndex < xPath.length() ) {
-		
-			int endingIndex = xPath.indexOf( "/", currentSearchIndex );
-			
-			String noderNameFromXPath = null;
-			if ( endingIndex == -1 ) {
-				noderNameFromXPath = xPath.substring( currentSearchIndex );
-			}
-			else {
-				noderNameFromXPath = xPath.substring( currentSearchIndex, endingIndex );
-			}
-			
-			node = findChildNodeWithName( node, noderNameFromXPath );
-			
-			if ( endingIndex == -1 ) {
-				break;
-			}
-			
-			currentSearchIndex = endingIndex + 1;
-		}
-		
-		return node;
-	}
-	
-	private static NodeList findXPathNodeList( Node node, String xPath ) {
-		int currentSearchIndex = 0;
-		while ( currentSearchIndex < xPath.length() ) {
-		
-			int endingIndex = xPath.indexOf( "/", currentSearchIndex );
-			
-			String noderNameFromXPath = null;
-			if ( endingIndex == -1 ) {
-				noderNameFromXPath = xPath.substring( currentSearchIndex );
-			}
-			else {
-				noderNameFromXPath = xPath.substring( currentSearchIndex, endingIndex );
-			}
-			
-			node = findChildNodeWithName( node, noderNameFromXPath );
-			
-			if ( endingIndex == -1 ) {
-				break;
-			}
-			
-			currentSearchIndex = endingIndex + 1;
-		}
-		
-		return node.getChildNodes();
-	}
-
-	private static Node findChildNodeWithName( Node node, String childName ) {
-		if ( node == null ) {
-			return null;
-		}
-		else {
-			if ( node.getNodeName().equals( childName ) ) {
-				return node;
-			}
-			else {		
-				NodeList nodeList = node.getChildNodes();
-				for ( int i = 0; i < nodeList.getLength(); i++ ) {
-					if ( nodeList.item( i ).getNodeName().equals( childName ) ) {
-						return nodeList.item( i );
-					}
-				}
-				
-				return null;
-			}
-		}		
-	}
+    
+    /**
+     * Returns a new instance of XPath, which is not thread safe and not
+     * reentrant.
+     */
+    public static XPath xpath() {
+        return XPathFactory.newInstance().newXPath();
+    }
 
 }

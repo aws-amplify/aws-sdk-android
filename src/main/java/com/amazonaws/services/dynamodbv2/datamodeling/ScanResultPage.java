@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2014 Amazon Technologies, Inc.
+ * Copyright 2013-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
  * Container for a page of scan results.
-  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class ScanResultPage<T> {
 

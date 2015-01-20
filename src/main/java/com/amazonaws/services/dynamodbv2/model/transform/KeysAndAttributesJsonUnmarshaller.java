@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,6 +56,14 @@ public class KeysAndAttributesJsonUnmarshaller implements Unmarshaller<KeysAndAt
                 if (context.testExpression("ConsistentRead", targetDepth)) {
                     context.nextToken();
                     keysAndAttributes.setConsistentRead(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                }
+                if (context.testExpression("ProjectionExpression", targetDepth)) {
+                    context.nextToken();
+                    keysAndAttributes.setProjectionExpression(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                }
+                if (context.testExpression("ExpressionAttributeNames", targetDepth)) {
+                    context.nextToken();
+                    keysAndAttributes.setExpressionAttributeNames(new MapUnmarshaller<String,String>(StringJsonUnmarshaller.getInstance(), StringJsonUnmarshaller.getInstance()).unmarshall(context));
                 }
             } else if (token == END_ARRAY || token == END_OBJECT) {
                 if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {

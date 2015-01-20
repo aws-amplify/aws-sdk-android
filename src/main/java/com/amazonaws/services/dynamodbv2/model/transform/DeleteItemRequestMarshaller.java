@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,59 +67,7 @@ public class DeleteItemRequestMarshaller implements Marshaller<Request<DeleteIte
                     if (keyListValue.getValue() != null) {
                         jsonWriter.key(keyListValue.getKey());
 
-                        jsonWriter.object();
-                        if (keyListValue.getValue().getS() != null) {
-                            jsonWriter.key("S").value(keyListValue.getValue().getS());
-                        }
-                        if (keyListValue.getValue().getN() != null) {
-                            jsonWriter.key("N").value(keyListValue.getValue().getN());
-                        }
-                        if (keyListValue.getValue().getB() != null) {
-                            jsonWriter.key("B").value(keyListValue.getValue().getB());
-                        }
-
-                        com.amazonaws.internal.ListWithAutoConstructFlag<String> sSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(keyListValue.getValue().getSS());
-                        if (sSList != null && !(sSList.isAutoConstruct() && sSList.isEmpty())) {
-
-                            jsonWriter.key("SS");
-                            jsonWriter.array();
-
-                            for (String sSListValue : sSList) {
-                                if (sSListValue != null) {
-                                    jsonWriter.value(sSListValue);
-                                }
-                            }
-                            jsonWriter.endArray();
-                        }
-
-                        com.amazonaws.internal.ListWithAutoConstructFlag<String> nSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(keyListValue.getValue().getNS());
-                        if (nSList != null && !(nSList.isAutoConstruct() && nSList.isEmpty())) {
-
-                            jsonWriter.key("NS");
-                            jsonWriter.array();
-
-                            for (String nSListValue : nSList) {
-                                if (nSListValue != null) {
-                                    jsonWriter.value(nSListValue);
-                                }
-                            }
-                            jsonWriter.endArray();
-                        }
-
-                        com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer> bSList = (com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer>)(keyListValue.getValue().getBS());
-                        if (bSList != null && !(bSList.isAutoConstruct() && bSList.isEmpty())) {
-
-                            jsonWriter.key("BS");
-                            jsonWriter.array();
-
-                            for (java.nio.ByteBuffer bSListValue : bSList) {
-                                if (bSListValue != null) {
-                                    jsonWriter.value(bSListValue);
-                                }
-                            }
-                            jsonWriter.endArray();
-                        }
-                        jsonWriter.endObject();
+                        AttributeValueJsonMarshaller.getInstance().marshall(keyListValue.getValue(), jsonWriter);
                     }
                 }
                 jsonWriter.endObject();
@@ -136,60 +84,7 @@ public class DeleteItemRequestMarshaller implements Marshaller<Request<DeleteIte
                         if (value != null) {
 
                             jsonWriter.key("Value");
-                            jsonWriter.object();
-
-                            if (value.getS() != null) {
-                                jsonWriter.key("S").value(value.getS());
-                            }
-                            if (value.getN() != null) {
-                                jsonWriter.key("N").value(value.getN());
-                            }
-                            if (value.getB() != null) {
-                                jsonWriter.key("B").value(value.getB());
-                            }
-
-                            com.amazonaws.internal.ListWithAutoConstructFlag<String> sSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(value.getSS());
-                            if (sSList != null && !(sSList.isAutoConstruct() && sSList.isEmpty())) {
-
-                                jsonWriter.key("SS");
-                                jsonWriter.array();
-
-                                for (String sSListValue : sSList) {
-                                    if (sSListValue != null) {
-                                        jsonWriter.value(sSListValue);
-                                    }
-                                }
-                                jsonWriter.endArray();
-                            }
-
-                            com.amazonaws.internal.ListWithAutoConstructFlag<String> nSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(value.getNS());
-                            if (nSList != null && !(nSList.isAutoConstruct() && nSList.isEmpty())) {
-
-                                jsonWriter.key("NS");
-                                jsonWriter.array();
-
-                                for (String nSListValue : nSList) {
-                                    if (nSListValue != null) {
-                                        jsonWriter.value(nSListValue);
-                                    }
-                                }
-                                jsonWriter.endArray();
-                            }
-
-                            com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer> bSList = (com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer>)(value.getBS());
-                            if (bSList != null && !(bSList.isAutoConstruct() && bSList.isEmpty())) {
-
-                                jsonWriter.key("BS");
-                                jsonWriter.array();
-
-                                for (java.nio.ByteBuffer bSListValue : bSList) {
-                                    if (bSListValue != null) {
-                                        jsonWriter.value(bSListValue);
-                                    }
-                                }
-                                jsonWriter.endArray();
-                            }
-                            jsonWriter.endObject();
+                            AttributeValueJsonMarshaller.getInstance().marshall(value, jsonWriter);
                         }
                         if (expectedListValue.getValue().isExists() != null) {
                             jsonWriter.key("Exists").value(expectedListValue.getValue().isExists());
@@ -206,59 +101,7 @@ public class DeleteItemRequestMarshaller implements Marshaller<Request<DeleteIte
 
                             for (AttributeValue attributeValueListListValue : attributeValueListList) {
                                 if (attributeValueListListValue != null) {
-                                    jsonWriter.object();
-                                    if (attributeValueListListValue.getS() != null) {
-                                        jsonWriter.key("S").value(attributeValueListListValue.getS());
-                                    }
-                                    if (attributeValueListListValue.getN() != null) {
-                                        jsonWriter.key("N").value(attributeValueListListValue.getN());
-                                    }
-                                    if (attributeValueListListValue.getB() != null) {
-                                        jsonWriter.key("B").value(attributeValueListListValue.getB());
-                                    }
-
-                                    com.amazonaws.internal.ListWithAutoConstructFlag<String> sSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(attributeValueListListValue.getSS());
-                                    if (sSList != null && !(sSList.isAutoConstruct() && sSList.isEmpty())) {
-
-                                        jsonWriter.key("SS");
-                                        jsonWriter.array();
-
-                                        for (String sSListValue : sSList) {
-                                            if (sSListValue != null) {
-                                                jsonWriter.value(sSListValue);
-                                            }
-                                        }
-                                        jsonWriter.endArray();
-                                    }
-
-                                    com.amazonaws.internal.ListWithAutoConstructFlag<String> nSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(attributeValueListListValue.getNS());
-                                    if (nSList != null && !(nSList.isAutoConstruct() && nSList.isEmpty())) {
-
-                                        jsonWriter.key("NS");
-                                        jsonWriter.array();
-
-                                        for (String nSListValue : nSList) {
-                                            if (nSListValue != null) {
-                                                jsonWriter.value(nSListValue);
-                                            }
-                                        }
-                                        jsonWriter.endArray();
-                                    }
-
-                                    com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer> bSList = (com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer>)(attributeValueListListValue.getBS());
-                                    if (bSList != null && !(bSList.isAutoConstruct() && bSList.isEmpty())) {
-
-                                        jsonWriter.key("BS");
-                                        jsonWriter.array();
-
-                                        for (java.nio.ByteBuffer bSListValue : bSList) {
-                                            if (bSListValue != null) {
-                                                jsonWriter.value(bSListValue);
-                                            }
-                                        }
-                                        jsonWriter.endArray();
-                                    }
-                                    jsonWriter.endObject();
+                                    AttributeValueJsonMarshaller.getInstance().marshall(attributeValueListListValue, jsonWriter);
                                 }
                             }
                             jsonWriter.endArray();
@@ -279,6 +122,33 @@ public class DeleteItemRequestMarshaller implements Marshaller<Request<DeleteIte
             }
             if (deleteItemRequest.getReturnItemCollectionMetrics() != null) {
                 jsonWriter.key("ReturnItemCollectionMetrics").value(deleteItemRequest.getReturnItemCollectionMetrics());
+            }
+            if (deleteItemRequest.getConditionExpression() != null) {
+                jsonWriter.key("ConditionExpression").value(deleteItemRequest.getConditionExpression());
+            }
+            if (deleteItemRequest.getExpressionAttributeNames() != null) {
+                jsonWriter.key("ExpressionAttributeNames");
+                jsonWriter.object();
+                for (Map.Entry<String, String> expressionAttributeNamesListValue : deleteItemRequest.getExpressionAttributeNames().entrySet()) {
+                    if (expressionAttributeNamesListValue.getValue() != null) {
+                        jsonWriter.key(expressionAttributeNamesListValue.getKey());
+
+                        jsonWriter.value(expressionAttributeNamesListValue.getValue());
+                    }
+                }
+                jsonWriter.endObject();
+            }
+            if (deleteItemRequest.getExpressionAttributeValues() != null) {
+                jsonWriter.key("ExpressionAttributeValues");
+                jsonWriter.object();
+                for (Map.Entry<String, AttributeValue> expressionAttributeValuesListValue : deleteItemRequest.getExpressionAttributeValues().entrySet()) {
+                    if (expressionAttributeValuesListValue.getValue() != null) {
+                        jsonWriter.key(expressionAttributeValuesListValue.getKey());
+
+                        AttributeValueJsonMarshaller.getInstance().marshall(expressionAttributeValuesListValue.getValue(), jsonWriter);
+                    }
+                }
+                jsonWriter.endObject();
             }
 
           jsonWriter.endObject();

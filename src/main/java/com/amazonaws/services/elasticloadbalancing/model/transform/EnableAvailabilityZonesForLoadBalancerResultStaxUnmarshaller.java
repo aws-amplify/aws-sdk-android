@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package com.amazonaws.services.elasticloadbalancing.model.transform;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.xml.stream.events.XMLEvent;
+import org.xmlpull.v1.XmlPullParser;
 
 import com.amazonaws.services.elasticloadbalancing.model.*;
 import com.amazonaws.transform.Unmarshaller;
@@ -39,15 +39,15 @@ public class EnableAvailabilityZonesForLoadBalancerResultStaxUnmarshaller implem
         if (context.isStartOfDocument()) targetDepth += 2;
 
         while (true) {
-            XMLEvent xmlEvent = context.nextEvent();
-            if (xmlEvent.isEndDocument()) return enableAvailabilityZonesForLoadBalancerResult;
+            int xmlEvent = context.nextEvent();
+            if (xmlEvent == XmlPullParser.END_DOCUMENT) return enableAvailabilityZonesForLoadBalancerResult;
 
-            if (xmlEvent.isAttribute() || xmlEvent.isStartElement()) {
+            if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("AvailabilityZones/member", targetDepth)) {
                     enableAvailabilityZonesForLoadBalancerResult.getAvailabilityZones().add(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
-            } else if (xmlEvent.isEndElement()) {
+            } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return enableAvailabilityZonesForLoadBalancerResult;
                 }

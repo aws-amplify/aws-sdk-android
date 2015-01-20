@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,6 +53,14 @@ public class AttributeValue implements Serializable {
      * A Binary set data type
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer> bS;
+
+    private java.util.Map<String,AttributeValue> m;
+
+    private com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue> l;
+
+    private Boolean nULL;
+
+    private Boolean bOOL;
 
     /**
      * Default constructor for a new AttributeValue object.  Callers should use the
@@ -374,6 +382,217 @@ public class AttributeValue implements Serializable {
     }
 
     /**
+     * Returns the value of the M property for this object.
+     *
+     * @return The value of the M property for this object.
+     */
+    public java.util.Map<String,AttributeValue> getM() {
+        
+        return m;
+    }
+    
+    /**
+     * Sets the value of the M property for this object.
+     *
+     * @param m The new value for the M property for this object.
+     */
+    public void setM(java.util.Map<String,AttributeValue> m) {
+        this.m = m;
+    }
+    
+    /**
+     * Sets the value of the M property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param m The new value for the M property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public AttributeValue withM(java.util.Map<String,AttributeValue> m) {
+        setM(m);
+        return this;
+    }
+
+    /**
+     * Sets the value of the M property for this object.
+     * <p>
+     * The method adds a new key-value pair into M parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into M.
+     * @param value The corresponding value of the entry to be added into M.
+     */
+    public AttributeValue addMEntry(String key, AttributeValue value) {
+        if (null == this.m) {
+            this.m = new java.util.HashMap<String,AttributeValue>();
+        }
+        if (this.m.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+        this.m.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into M.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     */
+    public AttributeValue clearMEntries() {
+        this.m = null;
+        return this;
+    }
+    
+    /**
+     * Returns the value of the L property for this object.
+     *
+     * @return The value of the L property for this object.
+     */
+    public java.util.List<AttributeValue> getL() {
+        return l;
+    }
+    
+    /**
+     * Sets the value of the L property for this object.
+     *
+     * @param l The new value for the L property for this object.
+     */
+    public void setL(java.util.Collection<AttributeValue> l) {
+        if (l == null) {
+            this.l = null;
+            return;
+        }
+        com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue> lCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue>(l.size());
+        lCopy.addAll(l);
+        this.l = lCopy;
+    }
+    
+    /**
+     * Sets the value of the L property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param l The new value for the L property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public AttributeValue withL(AttributeValue... l) {
+        if (getL() == null) setL(new java.util.ArrayList<AttributeValue>(l.length));
+        for (AttributeValue value : l) {
+            getL().add(value);
+        }
+        return this;
+    }
+    
+    /**
+     * Sets the value of the L property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param l The new value for the L property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public AttributeValue withL(java.util.Collection<AttributeValue> l) {
+        if (l == null) {
+            this.l = null;
+        } else {
+            com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue> lCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue>(l.size());
+            lCopy.addAll(l);
+            this.l = lCopy;
+        }
+
+        return this;
+    }
+
+    /**
+     * Returns the value of the NULL property for this object.
+     *
+     * @return The value of the NULL property for this object.
+     */
+    public Boolean isNULL() {
+        return nULL;
+    }
+    
+    /**
+     * Sets the value of the NULL property for this object.
+     *
+     * @param nULL The new value for the NULL property for this object.
+     */
+    public void setNULL(Boolean nULL) {
+        this.nULL = nULL;
+    }
+    
+    /**
+     * Sets the value of the NULL property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param nULL The new value for the NULL property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public AttributeValue withNULL(Boolean nULL) {
+        this.nULL = nULL;
+        return this;
+    }
+
+    /**
+     * Returns the value of the NULL property for this object.
+     *
+     * @return The value of the NULL property for this object.
+     */
+    public Boolean getNULL() {
+        return nULL;
+    }
+
+    /**
+     * Returns the value of the BOOL property for this object.
+     *
+     * @return The value of the BOOL property for this object.
+     */
+    public Boolean isBOOL() {
+        return bOOL;
+    }
+    
+    /**
+     * Sets the value of the BOOL property for this object.
+     *
+     * @param bOOL The new value for the BOOL property for this object.
+     */
+    public void setBOOL(Boolean bOOL) {
+        this.bOOL = bOOL;
+    }
+    
+    /**
+     * Sets the value of the BOOL property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param bOOL The new value for the BOOL property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public AttributeValue withBOOL(Boolean bOOL) {
+        this.bOOL = bOOL;
+        return this;
+    }
+
+    /**
+     * Returns the value of the BOOL property for this object.
+     *
+     * @return The value of the BOOL property for this object.
+     */
+    public Boolean getBOOL() {
+        return bOOL;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -390,7 +609,11 @@ public class AttributeValue implements Serializable {
         if (getB() != null) sb.append("B: " + getB() + ",");
         if (getSS() != null) sb.append("SS: " + getSS() + ",");
         if (getNS() != null) sb.append("NS: " + getNS() + ",");
-        if (getBS() != null) sb.append("BS: " + getBS() );
+        if (getBS() != null) sb.append("BS: " + getBS() + ",");
+        if (getM() != null) sb.append("M: " + getM() + ",");
+        if (getL() != null) sb.append("L: " + getL() + ",");
+        if (isNULL() != null) sb.append("NULL: " + isNULL() + ",");
+        if (isBOOL() != null) sb.append("BOOL: " + isBOOL() );
         sb.append("}");
         return sb.toString();
     }
@@ -406,6 +629,10 @@ public class AttributeValue implements Serializable {
         hashCode = prime * hashCode + ((getSS() == null) ? 0 : getSS().hashCode()); 
         hashCode = prime * hashCode + ((getNS() == null) ? 0 : getNS().hashCode()); 
         hashCode = prime * hashCode + ((getBS() == null) ? 0 : getBS().hashCode()); 
+        hashCode = prime * hashCode + ((getM() == null) ? 0 : getM().hashCode()); 
+        hashCode = prime * hashCode + ((getL() == null) ? 0 : getL().hashCode()); 
+        hashCode = prime * hashCode + ((isNULL() == null) ? 0 : isNULL().hashCode()); 
+        hashCode = prime * hashCode + ((isBOOL() == null) ? 0 : isBOOL().hashCode()); 
         return hashCode;
     }
     
@@ -429,6 +656,14 @@ public class AttributeValue implements Serializable {
         if (other.getNS() != null && other.getNS().equals(this.getNS()) == false) return false; 
         if (other.getBS() == null ^ this.getBS() == null) return false;
         if (other.getBS() != null && other.getBS().equals(this.getBS()) == false) return false; 
+        if (other.getM() == null ^ this.getM() == null) return false;
+        if (other.getM() != null && other.getM().equals(this.getM()) == false) return false; 
+        if (other.getL() == null ^ this.getL() == null) return false;
+        if (other.getL() != null && other.getL().equals(this.getL()) == false) return false; 
+        if (other.isNULL() == null ^ this.isNULL() == null) return false;
+        if (other.isNULL() != null && other.isNULL().equals(this.isNULL()) == false) return false; 
+        if (other.isBOOL() == null ^ this.isBOOL() == null) return false;
+        if (other.isBOOL() != null && other.isBOOL().equals(this.isBOOL()) == false) return false; 
         return true;
     }
     

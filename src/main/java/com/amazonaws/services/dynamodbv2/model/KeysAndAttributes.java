@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,6 +50,10 @@ public class KeysAndAttributes implements Serializable {
      * consistent read is used.
      */
     private Boolean consistentRead;
+
+    private String projectionExpression;
+
+    private java.util.Map<String,String> expressionAttributeNames;
 
     /**
      * The primary key attribute values that define the items and the
@@ -294,6 +298,110 @@ public class KeysAndAttributes implements Serializable {
     }
 
     /**
+     * Returns the value of the ProjectionExpression property for this
+     * object.
+     *
+     * @return The value of the ProjectionExpression property for this object.
+     */
+    public String getProjectionExpression() {
+        return projectionExpression;
+    }
+    
+    /**
+     * Sets the value of the ProjectionExpression property for this object.
+     *
+     * @param projectionExpression The new value for the ProjectionExpression property for this object.
+     */
+    public void setProjectionExpression(String projectionExpression) {
+        this.projectionExpression = projectionExpression;
+    }
+    
+    /**
+     * Sets the value of the ProjectionExpression property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param projectionExpression The new value for the ProjectionExpression property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public KeysAndAttributes withProjectionExpression(String projectionExpression) {
+        this.projectionExpression = projectionExpression;
+        return this;
+    }
+
+    /**
+     * Returns the value of the ExpressionAttributeNames property for this
+     * object.
+     *
+     * @return The value of the ExpressionAttributeNames property for this object.
+     */
+    public java.util.Map<String,String> getExpressionAttributeNames() {
+        
+        return expressionAttributeNames;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     *
+     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
+     *         object.
+     */
+    public void setExpressionAttributeNames(java.util.Map<String,String> expressionAttributeNames) {
+        this.expressionAttributeNames = expressionAttributeNames;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
+     *         object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public KeysAndAttributes withExpressionAttributeNames(java.util.Map<String,String> expressionAttributeNames) {
+        setExpressionAttributeNames(expressionAttributeNames);
+        return this;
+    }
+
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     * <p>
+     * The method adds a new key-value pair into ExpressionAttributeNames
+     * parameter, and returns a reference to this object so that method calls
+     * can be chained together.
+     *
+     * @param key The key of the entry to be added into ExpressionAttributeNames.
+     * @param value The corresponding value of the entry to be added into ExpressionAttributeNames.
+     */
+    public KeysAndAttributes addExpressionAttributeNamesEntry(String key, String value) {
+        if (null == this.expressionAttributeNames) {
+            this.expressionAttributeNames = new java.util.HashMap<String,String>();
+        }
+        if (this.expressionAttributeNames.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+        this.expressionAttributeNames.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeNames.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     */
+    public KeysAndAttributes clearExpressionAttributeNamesEntries() {
+        this.expressionAttributeNames = null;
+        return this;
+    }
+    
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -307,7 +415,9 @@ public class KeysAndAttributes implements Serializable {
         sb.append("{");
         if (getKeys() != null) sb.append("Keys: " + getKeys() + ",");
         if (getAttributesToGet() != null) sb.append("AttributesToGet: " + getAttributesToGet() + ",");
-        if (isConsistentRead() != null) sb.append("ConsistentRead: " + isConsistentRead() );
+        if (isConsistentRead() != null) sb.append("ConsistentRead: " + isConsistentRead() + ",");
+        if (getProjectionExpression() != null) sb.append("ProjectionExpression: " + getProjectionExpression() + ",");
+        if (getExpressionAttributeNames() != null) sb.append("ExpressionAttributeNames: " + getExpressionAttributeNames() );
         sb.append("}");
         return sb.toString();
     }
@@ -320,6 +430,8 @@ public class KeysAndAttributes implements Serializable {
         hashCode = prime * hashCode + ((getKeys() == null) ? 0 : getKeys().hashCode()); 
         hashCode = prime * hashCode + ((getAttributesToGet() == null) ? 0 : getAttributesToGet().hashCode()); 
         hashCode = prime * hashCode + ((isConsistentRead() == null) ? 0 : isConsistentRead().hashCode()); 
+        hashCode = prime * hashCode + ((getProjectionExpression() == null) ? 0 : getProjectionExpression().hashCode()); 
+        hashCode = prime * hashCode + ((getExpressionAttributeNames() == null) ? 0 : getExpressionAttributeNames().hashCode()); 
         return hashCode;
     }
     
@@ -337,6 +449,10 @@ public class KeysAndAttributes implements Serializable {
         if (other.getAttributesToGet() != null && other.getAttributesToGet().equals(this.getAttributesToGet()) == false) return false; 
         if (other.isConsistentRead() == null ^ this.isConsistentRead() == null) return false;
         if (other.isConsistentRead() != null && other.isConsistentRead().equals(this.isConsistentRead()) == false) return false; 
+        if (other.getProjectionExpression() == null ^ this.getProjectionExpression() == null) return false;
+        if (other.getProjectionExpression() != null && other.getProjectionExpression().equals(this.getProjectionExpression()) == false) return false; 
+        if (other.getExpressionAttributeNames() == null ^ this.getExpressionAttributeNames() == null) return false;
+        if (other.getExpressionAttributeNames() != null && other.getExpressionAttributeNames().equals(this.getExpressionAttributeNames()) == false) return false; 
         return true;
     }
     

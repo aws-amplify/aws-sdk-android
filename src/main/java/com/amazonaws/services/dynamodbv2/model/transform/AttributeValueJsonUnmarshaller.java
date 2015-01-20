@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -68,6 +68,22 @@ public class AttributeValueJsonUnmarshaller implements Unmarshaller<AttributeVal
                 if (context.testExpression("BS", targetDepth)) {
                     context.nextToken();
                     attributeValue.setBS(new ListUnmarshaller<java.nio.ByteBuffer>(ByteBufferJsonUnmarshaller.getInstance()).unmarshall(context));
+                }
+                if (context.testExpression("M", targetDepth)) {
+                    context.nextToken();
+                    attributeValue.setM(new MapUnmarshaller<String,AttributeValue>(StringJsonUnmarshaller.getInstance(), AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                }
+                if (context.testExpression("L", targetDepth)) {
+                    context.nextToken();
+                    attributeValue.setL(new ListUnmarshaller<AttributeValue>(AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                }
+                if (context.testExpression("NULL", targetDepth)) {
+                    context.nextToken();
+                    attributeValue.setNULL(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                }
+                if (context.testExpression("BOOL", targetDepth)) {
+                    context.nextToken();
+                    attributeValue.setBOOL(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
                 }
             } else if (token == END_ARRAY || token == END_OBJECT) {
                 if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {

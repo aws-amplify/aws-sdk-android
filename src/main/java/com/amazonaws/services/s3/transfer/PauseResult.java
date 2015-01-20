@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package com.amazonaws.services.s3.transfer;
  *
  * @param <T> information that can be used to resume the paused operation;
  * can be null if the pause failed.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public final class PauseResult<T> {
     private final PauseStatus pauseStatus;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -83,6 +83,10 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      */
     private String returnConsumedCapacity;
+
+    private String projectionExpression;
+
+    private java.util.Map<String,String> expressionAttributeNames;
 
     /**
      * Default constructor for a new GetItemRequest object.  Callers should use the
@@ -574,6 +578,110 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
+     * Returns the value of the ProjectionExpression property for this
+     * object.
+     *
+     * @return The value of the ProjectionExpression property for this object.
+     */
+    public String getProjectionExpression() {
+        return projectionExpression;
+    }
+    
+    /**
+     * Sets the value of the ProjectionExpression property for this object.
+     *
+     * @param projectionExpression The new value for the ProjectionExpression property for this object.
+     */
+    public void setProjectionExpression(String projectionExpression) {
+        this.projectionExpression = projectionExpression;
+    }
+    
+    /**
+     * Sets the value of the ProjectionExpression property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param projectionExpression The new value for the ProjectionExpression property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public GetItemRequest withProjectionExpression(String projectionExpression) {
+        this.projectionExpression = projectionExpression;
+        return this;
+    }
+
+    /**
+     * Returns the value of the ExpressionAttributeNames property for this
+     * object.
+     *
+     * @return The value of the ExpressionAttributeNames property for this object.
+     */
+    public java.util.Map<String,String> getExpressionAttributeNames() {
+        
+        return expressionAttributeNames;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     *
+     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
+     *         object.
+     */
+    public void setExpressionAttributeNames(java.util.Map<String,String> expressionAttributeNames) {
+        this.expressionAttributeNames = expressionAttributeNames;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
+     *         object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public GetItemRequest withExpressionAttributeNames(java.util.Map<String,String> expressionAttributeNames) {
+        setExpressionAttributeNames(expressionAttributeNames);
+        return this;
+    }
+
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     * <p>
+     * The method adds a new key-value pair into ExpressionAttributeNames
+     * parameter, and returns a reference to this object so that method calls
+     * can be chained together.
+     *
+     * @param key The key of the entry to be added into ExpressionAttributeNames.
+     * @param value The corresponding value of the entry to be added into ExpressionAttributeNames.
+     */
+    public GetItemRequest addExpressionAttributeNamesEntry(String key, String value) {
+        if (null == this.expressionAttributeNames) {
+            this.expressionAttributeNames = new java.util.HashMap<String,String>();
+        }
+        if (this.expressionAttributeNames.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+        this.expressionAttributeNames.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeNames.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     */
+    public GetItemRequest clearExpressionAttributeNamesEntries() {
+        this.expressionAttributeNames = null;
+        return this;
+    }
+    
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -589,7 +697,9 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
         if (getKey() != null) sb.append("Key: " + getKey() + ",");
         if (getAttributesToGet() != null) sb.append("AttributesToGet: " + getAttributesToGet() + ",");
         if (isConsistentRead() != null) sb.append("ConsistentRead: " + isConsistentRead() + ",");
-        if (getReturnConsumedCapacity() != null) sb.append("ReturnConsumedCapacity: " + getReturnConsumedCapacity() );
+        if (getReturnConsumedCapacity() != null) sb.append("ReturnConsumedCapacity: " + getReturnConsumedCapacity() + ",");
+        if (getProjectionExpression() != null) sb.append("ProjectionExpression: " + getProjectionExpression() + ",");
+        if (getExpressionAttributeNames() != null) sb.append("ExpressionAttributeNames: " + getExpressionAttributeNames() );
         sb.append("}");
         return sb.toString();
     }
@@ -604,6 +714,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
         hashCode = prime * hashCode + ((getAttributesToGet() == null) ? 0 : getAttributesToGet().hashCode()); 
         hashCode = prime * hashCode + ((isConsistentRead() == null) ? 0 : isConsistentRead().hashCode()); 
         hashCode = prime * hashCode + ((getReturnConsumedCapacity() == null) ? 0 : getReturnConsumedCapacity().hashCode()); 
+        hashCode = prime * hashCode + ((getProjectionExpression() == null) ? 0 : getProjectionExpression().hashCode()); 
+        hashCode = prime * hashCode + ((getExpressionAttributeNames() == null) ? 0 : getExpressionAttributeNames().hashCode()); 
         return hashCode;
     }
     
@@ -625,6 +737,10 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
         if (other.isConsistentRead() != null && other.isConsistentRead().equals(this.isConsistentRead()) == false) return false; 
         if (other.getReturnConsumedCapacity() == null ^ this.getReturnConsumedCapacity() == null) return false;
         if (other.getReturnConsumedCapacity() != null && other.getReturnConsumedCapacity().equals(this.getReturnConsumedCapacity()) == false) return false; 
+        if (other.getProjectionExpression() == null ^ this.getProjectionExpression() == null) return false;
+        if (other.getProjectionExpression() != null && other.getProjectionExpression().equals(this.getProjectionExpression()) == false) return false; 
+        if (other.getExpressionAttributeNames() == null ^ this.getExpressionAttributeNames() == null) return false;
+        if (other.getExpressionAttributeNames() != null && other.getExpressionAttributeNames().equals(this.getExpressionAttributeNames()) == false) return false; 
         return true;
     }
     

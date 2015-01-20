@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Abstract base class for the information of a pausible upload or download; such
  * information can be used to resume the upload or download later on, and can be
  * serialized/deserialized for persistence purposes.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public abstract class PersistableTransfer {
 

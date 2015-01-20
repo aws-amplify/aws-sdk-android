@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import com.amazonaws.metrics.RequestMetricCollector;
  * // Delete the object even if the version field is out of date
  * mapper.delete(obj, new DynamoDBMapperConfig(SaveBehavior.CLOBBER));
  * </pre>
-  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class DynamoDBMapperConfig {
 

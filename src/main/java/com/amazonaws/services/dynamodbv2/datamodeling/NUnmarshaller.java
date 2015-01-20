@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,9 @@ import java.lang.reflect.Method;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
+/*
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
+ */
 abstract class NUnmarshaller implements ArgumentUnmarshaller {
 
     @Override

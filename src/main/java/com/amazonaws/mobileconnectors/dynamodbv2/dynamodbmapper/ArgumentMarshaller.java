@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,19 +17,23 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
- * Interface to make it possible to cache the expensive type determination behavior.
+ * Interface to make it possible to cache the expensive type determination
+ * behavior.
  */
-interface ArgumentMarshaller {
-    
+public interface ArgumentMarshaller {
+
     /**
      * Marshalls the object given into an AttributeValue.
      */
-    public AttributeValue marshall(Object obj);
-    
-    static interface StringAttributeMarshaller extends ArgumentMarshaller {}
-    static interface NumberAttributeMarshaller extends ArgumentMarshaller {}
-    static interface BinaryAttributeMarshaller extends ArgumentMarshaller {}
-    static interface StringSetAttributeMarshaller extends ArgumentMarshaller {}
-    static interface NumberSetAttributeMarshaller extends ArgumentMarshaller {}
-    static interface BinarySetAttributeMarshaller extends ArgumentMarshaller {}
+    AttributeValue marshall(Object obj);
+
+    interface BooleanAttributeMarshaller extends ArgumentMarshaller {}
+    interface StringAttributeMarshaller extends ArgumentMarshaller {}
+    interface NumberAttributeMarshaller extends ArgumentMarshaller {}
+    interface BinaryAttributeMarshaller extends ArgumentMarshaller {}
+    interface StringSetAttributeMarshaller extends ArgumentMarshaller {}
+    interface NumberSetAttributeMarshaller extends ArgumentMarshaller {}
+    interface BinarySetAttributeMarshaller extends ArgumentMarshaller {}
+    interface ListAttributeMarshaller extends ArgumentMarshaller {}
+    interface MapAttributeMarshaller extends ArgumentMarshaller {}
 }

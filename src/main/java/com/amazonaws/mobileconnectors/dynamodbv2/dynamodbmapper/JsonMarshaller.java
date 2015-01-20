@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,9 @@
  */
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
-import java.io.StringReader;
-import java.io.StringWriter;
-
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.MappingJsonFactory;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 /**
  * Simple JSON marshaller that uses Jackson mapper. It has all the limitations
@@ -29,28 +25,28 @@ import com.fasterxml.jackson.databind.MappingJsonFactory;
  */
 public class JsonMarshaller<T extends Object> implements DynamoDBMarshaller<T> {
 
+    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectWriter writer = mapper.writer();
+
     @Override
     public String marshall(T obj) {
+
         try {
-            JsonFactory jsonFactory = new MappingJsonFactory();
-            StringWriter output = new StringWriter();
-            JsonGenerator jsonGenerator = jsonFactory.createJsonGenerator(output);
-            jsonGenerator.writeObject(obj);
-            return output.toString();
-        } catch ( Exception e ) {
-            throw new RuntimeException(e);
+            return writer.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(
+                    "Unable to marshall the instance of " + obj.getClass()
+                            + "into a string", e);
         }
     }
 
     @Override
-    public T unmarshall(Class<T> clazz, String obj) {
+    public T unmarshall(Class<T> clazz, String json) {
         try {
-            JsonFactory jsonFactory = new MappingJsonFactory();
-            JsonParser jsonParser = jsonFactory.createJsonParser(new StringReader(obj));
-            return jsonParser.readValueAs(clazz);
-        } catch ( Exception e ) {
-            throw new RuntimeException(e);
+            return mapper.readValue(json, clazz);
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to unmarshall the string " + json
+                    + "into " + clazz, e);
         }
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package com.amazonaws.services.cloudwatch.model.transform;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.xml.stream.events.XMLEvent;
+import org.xmlpull.v1.XmlPullParser;
 
 import com.amazonaws.services.cloudwatch.model.*;
 import com.amazonaws.transform.Unmarshaller;
@@ -39,10 +39,10 @@ public class DatapointStaxUnmarshaller implements Unmarshaller<Datapoint, StaxUn
         if (context.isStartOfDocument()) targetDepth += 2;
 
         while (true) {
-            XMLEvent xmlEvent = context.nextEvent();
-            if (xmlEvent.isEndDocument()) return datapoint;
+            int xmlEvent = context.nextEvent();
+            if (xmlEvent == XmlPullParser.END_DOCUMENT) return datapoint;
 
-            if (xmlEvent.isAttribute() || xmlEvent.isStartElement()) {
+            if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Timestamp", targetDepth)) {
                     datapoint.setTimestamp(DateStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
@@ -71,7 +71,7 @@ public class DatapointStaxUnmarshaller implements Unmarshaller<Datapoint, StaxUn
                     datapoint.setUnit(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
-            } else if (xmlEvent.isEndElement()) {
+            } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return datapoint;
                 }

@@ -53,7 +53,6 @@ public class ERSRequestBuilder {
         PutEventsRequest putRequest = new PutEventsRequest();
         List<Event> eventList = new ArrayList<Event>();
         JSONEventAdapter eventAdapter = new JSONEventAdapter();
-        DateUtils dateUtils = new DateUtils();
 
         ClientContext clientContext = null;
         for (int i = 0; i < events.length(); i++) {
@@ -70,9 +69,9 @@ public class ERSRequestBuilder {
             Event event = new Event();
             Session session = new Session();
             session.withId(internalEvent.getSessionId());
-            session.withStartTimestamp(dateUtils.formatIso8601Date(new Date(internalEvent.getSessionStart())));
+            session.withStartTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getSessionStart())));
             if (internalEvent.getSessionStop() != null && internalEvent.getSessionStop() != 0L) {
-                session.withStopTimestamp(dateUtils.formatIso8601Date(new Date(internalEvent.getSessionStop())));
+                session.withStopTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getSessionStop())));
             }
             if (internalEvent.getSessionDuration() != null && internalEvent.getSessionDuration() != 0L) {
                 session.withDuration(internalEvent.getSessionDuration());
@@ -80,7 +79,7 @@ public class ERSRequestBuilder {
 
             event.withAttributes(internalEvent.getAllAttributes()).withMetrics(internalEvent.getAllMetrics())
                     .withEventType(internalEvent.getEventType())
-                    .withTimestamp(dateUtils.formatIso8601Date(new Date(internalEvent.getEventTimestamp())))
+                    .withTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getEventTimestamp())))
                     .withSession(session);
 
             eventList.add(event);

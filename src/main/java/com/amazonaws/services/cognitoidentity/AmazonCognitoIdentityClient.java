@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -205,6 +205,7 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
         jsonErrorUnmarshallers.add(new InternalErrorExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceConflictExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidIdentityPoolConfigurationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new NotAuthorizedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
@@ -454,17 +455,20 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
 
     /**
      *
-     * @param listIdentityPoolsRequest Container for the necessary parameters
-     *           to execute the ListIdentityPools service method on
+     * @param getCredentialsForIdentityRequest Container for the necessary
+     *           parameters to execute the GetCredentialsForIdentity service method on
      *           AmazonCognitoIdentity.
      * 
-     * @return The response from the ListIdentityPools service method, as
-     *         returned by AmazonCognitoIdentity.
+     * @return The response from the GetCredentialsForIdentity service
+     *         method, as returned by AmazonCognitoIdentity.
      * 
+     * @throws ResourceConflictException
      * @throws InternalErrorException
+     * @throws InvalidIdentityPoolConfigurationException
      * @throws NotAuthorizedException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -474,23 +478,23 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
      *             If an error response is returned by AmazonCognitoIdentity indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ListIdentityPoolsResult listIdentityPools(ListIdentityPoolsRequest listIdentityPoolsRequest) {
-        ExecutionContext executionContext = createExecutionContext(listIdentityPoolsRequest);
+    public GetCredentialsForIdentityResult getCredentialsForIdentity(GetCredentialsForIdentityRequest getCredentialsForIdentityRequest) {
+        ExecutionContext executionContext = createExecutionContext(getCredentialsForIdentityRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<ListIdentityPoolsRequest> request = null;
-        Response<ListIdentityPoolsResult> response = null;
+        Request<GetCredentialsForIdentityRequest> request = null;
+        Response<GetCredentialsForIdentityResult> response = null;
         try {
             awsRequestMetrics.startEvent(Field.RequestMarshallTime);
             try {
-                request = new ListIdentityPoolsRequestMarshaller().marshall(listIdentityPoolsRequest);
+                request = new GetCredentialsForIdentityRequestMarshaller().marshall(getCredentialsForIdentityRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            Unmarshaller<ListIdentityPoolsResult, JsonUnmarshallerContext> unmarshaller = new ListIdentityPoolsResultJsonUnmarshaller();
-            JsonResponseHandler<ListIdentityPoolsResult> responseHandler = new JsonResponseHandler<ListIdentityPoolsResult>(unmarshaller);
+            Unmarshaller<GetCredentialsForIdentityResult, JsonUnmarshallerContext> unmarshaller = new GetCredentialsForIdentityResultJsonUnmarshaller();
+            JsonResponseHandler<GetCredentialsForIdentityResult> responseHandler = new JsonResponseHandler<GetCredentialsForIdentityResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             
@@ -552,6 +556,54 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
 
     /**
      *
+     * @param listIdentityPoolsRequest Container for the necessary parameters
+     *           to execute the ListIdentityPools service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the ListIdentityPools service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListIdentityPoolsResult listIdentityPools(ListIdentityPoolsRequest listIdentityPoolsRequest) {
+        ExecutionContext executionContext = createExecutionContext(listIdentityPoolsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListIdentityPoolsRequest> request = null;
+        Response<ListIdentityPoolsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListIdentityPoolsRequestMarshaller().marshall(listIdentityPoolsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListIdentityPoolsResult, JsonUnmarshallerContext> unmarshaller = new ListIdentityPoolsResultJsonUnmarshaller();
+            JsonResponseHandler<ListIdentityPoolsResult> responseHandler = new JsonResponseHandler<ListIdentityPoolsResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     *
      * @param getOpenIdTokenRequest Container for the necessary parameters to
      *           execute the GetOpenIdToken service method on AmazonCognitoIdentity.
      * 
@@ -590,6 +642,55 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
             }
             Unmarshaller<GetOpenIdTokenResult, JsonUnmarshallerContext> unmarshaller = new GetOpenIdTokenResultJsonUnmarshaller();
             JsonResponseHandler<GetOpenIdTokenResult> responseHandler = new JsonResponseHandler<GetOpenIdTokenResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     *
+     * @param describeIdentityRequest Container for the necessary parameters
+     *           to execute the DescribeIdentity service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the DescribeIdentity service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeIdentityResult describeIdentity(DescribeIdentityRequest describeIdentityRequest) {
+        ExecutionContext executionContext = createExecutionContext(describeIdentityRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeIdentityRequest> request = null;
+        Response<DescribeIdentityResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeIdentityRequestMarshaller().marshall(describeIdentityRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeIdentityResult, JsonUnmarshallerContext> unmarshaller = new DescribeIdentityResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeIdentityResult> responseHandler = new JsonResponseHandler<DescribeIdentityResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             
@@ -649,6 +750,44 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
         }
     }
 
+    /**
+     *
+     * @param setIdentityPoolRolesRequest Container for the necessary
+     *           parameters to execute the SetIdentityPoolRoles service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * 
+     * @throws ResourceConflictException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void setIdentityPoolRoles(SetIdentityPoolRolesRequest setIdentityPoolRolesRequest) {
+        ExecutionContext executionContext = createExecutionContext(setIdentityPoolRolesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<SetIdentityPoolRolesRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new SetIdentityPoolRolesRequestMarshaller().marshall(setIdentityPoolRolesRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
     /**
      *
      * @param unlinkIdentityRequest Container for the necessary parameters to
@@ -725,6 +864,56 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
             }
             Unmarshaller<ListIdentitiesResult, JsonUnmarshallerContext> unmarshaller = new ListIdentitiesResultJsonUnmarshaller();
             JsonResponseHandler<ListIdentitiesResult> responseHandler = new JsonResponseHandler<ListIdentitiesResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     *
+     * @param getIdentityPoolRolesRequest Container for the necessary
+     *           parameters to execute the GetIdentityPoolRoles service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the GetIdentityPoolRoles service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws ResourceConflictException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetIdentityPoolRolesResult getIdentityPoolRoles(GetIdentityPoolRolesRequest getIdentityPoolRolesRequest) {
+        ExecutionContext executionContext = createExecutionContext(getIdentityPoolRolesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetIdentityPoolRolesRequest> request = null;
+        Response<GetIdentityPoolRolesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetIdentityPoolRolesRequestMarshaller().marshall(getIdentityPoolRolesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetIdentityPoolRolesResult, JsonUnmarshallerContext> unmarshaller = new GetIdentityPoolRolesResultJsonUnmarshaller();
+            JsonResponseHandler<GetIdentityPoolRolesResult> responseHandler = new JsonResponseHandler<GetIdentityPoolRolesResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             

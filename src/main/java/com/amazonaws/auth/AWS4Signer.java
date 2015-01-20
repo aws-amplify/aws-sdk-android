@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,10 +27,9 @@ import org.apache.commons.logging.LogFactory;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import com.amazonaws.util.AwsHostNameUtils;
 import com.amazonaws.util.BinaryUtils;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.HttpUtils;
 
 /**
@@ -41,10 +40,8 @@ public class AWS4Signer extends AbstractAWSSigner
 
     protected static final String ALGORITHM = "AWS4-HMAC-SHA256";
     protected static final String TERMINATOR = "aws4_request";
-    private static final DateTimeFormatter dateFormatter = DateTimeFormat
-            .forPattern("yyyyMMdd").withZoneUTC();
-    private static final DateTimeFormatter timeFormatter = DateTimeFormat
-            .forPattern("yyyyMMdd'T'HHmmss'Z'").withZoneUTC();
+    private static final String DATE_PATTERN = "yyyyMMdd";
+    private static final String TIME_PATTERN = "yyyyMMdd'T'HHmmss'Z'";
 
     /** Seconds in a week, which is the max expiration time Sig-v4 accepts */
     private final static long MAX_EXPIRATION_TIME_IN_SECONDS = 60 * 60 * 24 * 7;
@@ -295,11 +292,11 @@ public class AWS4Signer extends AbstractAWSSigner
     }
 
     protected final String getTimeStamp(long dateMilli) {
-        return timeFormatter.print(dateMilli);
+        return DateUtils.format(TIME_PATTERN, new Date(dateMilli));
     }
 
     protected final String getDateStamp(long dateMilli) {
-        return dateFormatter.print(dateMilli);
+        return DateUtils.format(DATE_PATTERN, new Date(dateMilli));
     }
 
     protected final long getDateFromRequest(Request<?> request) {

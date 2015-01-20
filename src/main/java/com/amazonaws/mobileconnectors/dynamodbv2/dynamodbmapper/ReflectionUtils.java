@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,10 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * Utilities for reflecting field or method annotations in a DynamoDB table
@@ -24,10 +27,31 @@ import java.lang.reflect.Method;
  */
 class ReflectionUtils {
 
+    static Object safeInvoke(
+            Method method,
+            Object object,
+            Object... arguments) {
+
+        try {
+
+            return method.invoke(object, arguments);
+
+        } catch (IllegalAccessException e) {
+            throw new DynamoDBMappingException(
+                    "Couldn't invoke " + method, e);
+        } catch (IllegalArgumentException e) {
+            throw new DynamoDBMappingException(
+                    "Couldn't invoke " + method, e);
+        } catch (InvocationTargetException e) {
+            throw new DynamoDBMappingException(
+                    "Couldn't invoke " + method, e);
+        }
+    }
+
     /**
      * Returns the field name that corresponds to the given getter method,
      * according to the Java naming convention.
-     * 
+     *
      * @param getter
      *            The getter method.
      * @param forceCamelCase
@@ -61,7 +85,7 @@ class ReflectionUtils {
     /**
      * Returns the Field object for the specified field name declared in the
      * specified class. Returns null if no such field can be found.
-     * 
+     *
      * @param clazz
      *            The declaring class where the field will be reflected. This
      *            method will NOT attempt to reflect its superclass if such
@@ -111,5 +135,23 @@ class ReflectionUtils {
     static <T extends Annotation> boolean getterOrFieldHasAnnotation(
             Method getter, Class<T> annotationClass) {
         return getAnnotationFromGetterOrField(getter, annotationClass) != null;
+    }
+
+    /**
+     * Resolve the raw class for the given type.
+     */
+    static Class<?> resolveClass(Type type) {
+        Type localType = type;
+
+        if (localType instanceof ParameterizedType) {
+            localType = ((ParameterizedType) type).getRawType();
+        }
+
+        if (!(localType instanceof Class)) {
+            throw new DynamoDBMappingException("Cannot resolve class for type "
+                    + type);
+        }
+
+        return (Class<?>) localType;
     }
 }

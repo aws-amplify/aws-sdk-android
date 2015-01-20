@@ -29,6 +29,7 @@ import android.util.Log;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.mobileconnectors.cognito.exceptions.DataConflictException;
 import com.amazonaws.mobileconnectors.cognito.exceptions.DataStorageException;
+import com.amazonaws.mobileconnectors.cognito.exceptions.DatasetNotFoundException;
 import com.amazonaws.mobileconnectors.cognito.exceptions.NetworkException;
 import com.amazonaws.mobileconnectors.cognito.internal.storage.CognitoSyncStorage;
 import com.amazonaws.mobileconnectors.cognito.internal.storage.LocalStorage;
@@ -139,11 +140,14 @@ class DefaultDataset implements Dataset {
                 boolean result = false;
                 try {
                     List<String> mergedDatasets = getLocalMergedDatasets();
+                    boolean doSync = true;
                     if (!mergedDatasets.isEmpty()) {
                         Log.i(TAG, "detected merge datasets " + datasetName);
-                        callback.onDatasetsMerged(DefaultDataset.this, mergedDatasets);
+                        doSync = callback.onDatasetsMerged(DefaultDataset.this, mergedDatasets);
                     }
-                    result = synchronizeInternal(callback, MAX_RETRY);
+                    if(doSync){
+                        result = synchronizeInternal(callback, MAX_RETRY);
+                    }
                 } catch (Exception e) {
                     callback.onFailure(new DataStorageException("Unknown exception", e));
                 }
@@ -175,7 +179,11 @@ class DefaultDataset implements Dataset {
         // if dataset is deleted locally, push it to remote
         if (lastSyncCount == -1) {
             try {
-                remote.deleteDataset(datasetName);
+                try {
+                    remote.deleteDataset(datasetName);
+                } catch(DatasetNotFoundException e) {
+                    //This exception will fire if this was a local-only dataset, but it should be ignored
+                }
                 local.purgeDataset(getIdentityId(), datasetName);
                 callback.onSuccess(DefaultDataset.this, Collections.<Record> emptyList());
                 return true;

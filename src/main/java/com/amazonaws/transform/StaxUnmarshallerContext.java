@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -14,18 +14,16 @@
  */
 package com.amazonaws.transform;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
-
-import javax.xml.stream.XMLEventReader;
-import javax.xml.stream.XMLStreamConstants;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.Attribute;
-import javax.xml.stream.events.XMLEvent;
 
 /**
  * Contains the unmarshalling state for the parsing of an XML response. The
@@ -37,40 +35,40 @@ import javax.xml.stream.events.XMLEvent;
  */
 public class StaxUnmarshallerContext {
 
-    private XMLEvent currentEvent;
-    private final XMLEventReader eventReader;
+    private int currentEventType;
+    private final XmlPullParser xpp;
 
-    public final Stack<String> stack = new Stack<String>();
+    public final Deque<String> stack = new LinkedList<String>();
     private String stackString = "";
 
     private Map<String, String> metadata = new HashMap<String, String>();
     private List<MetadataExpression> metadataExpressions = new ArrayList<MetadataExpression>();
 
-    private Iterator<?> attributeIterator;
     private final Map<String, String> headers;
 
     /**
-     * Constructs a new unmarshaller context using the specified source of XML events.
+     * Constructs a new unmarshaller context using the specified source of XML
+     * events.
      *
-     * @param eventReader
+     * @param xpp
      *            The source of XML events for this unmarshalling context.
      */
-    public StaxUnmarshallerContext(XMLEventReader eventReader) {
-        this(eventReader, null);
+    public StaxUnmarshallerContext(XmlPullParser xpp) {
+        this(xpp, null);
     }
 
     /**
      * Constructs a new unmarshaller context using the specified source of XML
      * events, and a set of response headers.
      *
-     * @param eventReader
+     * @param xpp
      *            The source of XML events for this unmarshalling context.
      * @param headers
      *            The set of response headers associated with this unmarshaller
      *            context.
      */
-    public StaxUnmarshallerContext(XMLEventReader eventReader, Map<String, String> headers) {
-        this.eventReader = eventReader;
+    public StaxUnmarshallerContext(XmlPullParser xpp, Map<String, String> headers) {
+        this.xpp = xpp;
         this.headers = headers;
     }
 
@@ -94,26 +92,21 @@ public class StaxUnmarshallerContext {
      * Returns the text contents of the current element being parsed.
      *
      * @return The text contents of the current element being parsed.
-     * @throws XMLStreamException
+     * @throws IOException
+     * @throws XmlPullParserException
      */
-    public String readText() throws XMLStreamException {
-        if (currentEvent.isAttribute()) {
-            Attribute attribute = (Attribute)currentEvent;
-            return attribute.getValue();
+    public String readText() throws XmlPullParserException, IOException {
+        String s = xpp.nextText();
+        // Warning: Prior to API level 14, the pull parser returned by
+        // android.util.Xml did not always advance to the END_TAG event when
+        // this method was called. Work around by using manually advancing after
+        // calls to nextText():
+        if (xpp.getEventType() != XmlPullParser.END_TAG) {
+            xpp.next();
         }
-
-        StringBuilder sb = new StringBuilder();
-        while (true) {
-            XMLEvent event = eventReader.peek();
-            if (event.getEventType() == XMLStreamConstants.CHARACTERS) {
-                eventReader.nextEvent();
-                sb.append(event.asCharacters().getData());
-            } else if (event.getEventType() == XMLStreamConstants.END_ELEMENT) {
-                return sb.toString();
-            } else {
-                throw new RuntimeException("Encountered unexpected event: " + event.toString());
-            }
-        }
+        currentEventType = xpp.getEventType();
+        updateContext();
+        return s;
     }
 
     /**
@@ -137,8 +130,7 @@ public class StaxUnmarshallerContext {
      *         otherwise false.
      */
     public boolean testExpression(String expression) {
-        if (expression.equals(".")) return true;
-        return stackString.endsWith(expression);
+        return testExpression(expression, getCurrentDepth());
     }
 
     /**
@@ -167,7 +159,7 @@ public class StaxUnmarshallerContext {
         }
 
 
-        return (startingStackDepth == getCurrentDepth()
+        return (getCurrentDepth() == startingStackDepth
                 && stackString.endsWith("/" + expression));
     }
 
@@ -179,42 +171,40 @@ public class StaxUnmarshallerContext {
      *         source document (i.e. no data has been parsed from the document
      *         yet).
      */
-    public boolean isStartOfDocument() throws XMLStreamException {
-        return eventReader.peek().isStartDocument();
+    public boolean isStartOfDocument() {
+        return currentEventType == XmlPullParser.START_DOCUMENT;
     }
 
     /**
-     * Returns the next XML event for the document being parsed.
+     * Returns the next XML event for the document being parsed. It's one of
+     * XmlPullParser.START_DOCUMENT,XmlPullParser.END_DOCUMENT,
+     * XmlPullParser.START_TAG, XmlPullParser.END_TAG.
      *
      * @return The next XML event for the document being parsed.
-     *
-     * @throws XMLStreamException
+     * @throws IOException
+     * @throws XmlPullParserException
      */
-    public XMLEvent nextEvent() throws XMLStreamException {
-        if (attributeIterator != null && attributeIterator.hasNext()) {
-            currentEvent = (XMLEvent)attributeIterator.next();
-        } else {
-            currentEvent = eventReader.nextEvent();
+    public int nextEvent() throws XmlPullParserException, IOException {
+        currentEventType = xpp.next();
+        // skip text node
+        if (currentEventType == XmlPullParser.TEXT) {
+            currentEventType = xpp.next();
         }
 
-        if (currentEvent.isStartElement()) {
-            attributeIterator = currentEvent.asStartElement().getAttributes();
-        }
+        updateContext();
 
-        updateContext(currentEvent);
-
-        if (eventReader.hasNext()) {
-            XMLEvent nextEvent = eventReader.peek();
-            if (nextEvent != null && nextEvent.isCharacters()) {
-                for (MetadataExpression metadataExpression : metadataExpressions) {
-                    if (testExpression(metadataExpression.expression, metadataExpression.targetDepth)) {
-                        metadata.put(metadataExpression.key, nextEvent.asCharacters().getData());
-                    }
+        // look for meta data
+        if (currentEventType == XmlPullParser.START_TAG) {
+            for (MetadataExpression metadataExpression : metadataExpressions) {
+                if (testExpression(metadataExpression.expression,
+                        metadataExpression.targetDepth)) {
+                    metadata.put(metadataExpression.key, readText());
+                    break;
                 }
             }
         }
 
-        return currentEvent;
+        return currentEventType;
     }
 
     /**
@@ -267,26 +257,13 @@ public class StaxUnmarshallerContext {
         }
     }
 
-    private void updateContext(XMLEvent event) {
-        if (event == null) return;
-
-        if (event.isEndElement()) {
+    private void updateContext() {
+        if (currentEventType == XmlPullParser.START_TAG) {
+            stackString += "/" + xpp.getName();
+            stack.push(stackString);
+        } else if (currentEventType == XmlPullParser.END_TAG) {
             stack.pop();
-            stackString = "";
-            for (String s : stack) {
-                stackString += "/" + s;
-            }
-        } else if (event.isStartElement()) {
-            stack.push(event.asStartElement().getName().getLocalPart());
-            stackString += "/" + event.asStartElement().getName().getLocalPart();
-        } else if (event.isAttribute()) {
-            Attribute attribute = (Attribute)event;
-            stackString = "";
-            for (String s : stack) {
-                stackString += "/" + s;
-            }
-            stackString += "/@" + attribute.getName().getLocalPart();
+            stackString = stack.isEmpty() ? "" : stack.peek();
         }
     }
-
 }

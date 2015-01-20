@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package com.amazonaws.services.securitytoken.model.transform;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.xml.stream.events.XMLEvent;
+import org.xmlpull.v1.XmlPullParser;
 
 import com.amazonaws.services.securitytoken.model.*;
 import com.amazonaws.transform.Unmarshaller;
@@ -39,10 +39,10 @@ public class GetFederationTokenResultStaxUnmarshaller implements Unmarshaller<Ge
         if (context.isStartOfDocument()) targetDepth += 2;
 
         while (true) {
-            XMLEvent xmlEvent = context.nextEvent();
-            if (xmlEvent.isEndDocument()) return getFederationTokenResult;
+            int xmlEvent = context.nextEvent();
+            if (xmlEvent == XmlPullParser.END_DOCUMENT) return getFederationTokenResult;
 
-            if (xmlEvent.isAttribute() || xmlEvent.isStartElement()) {
+            if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Credentials", targetDepth)) {
                     getFederationTokenResult.setCredentials(CredentialsStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
@@ -55,7 +55,7 @@ public class GetFederationTokenResultStaxUnmarshaller implements Unmarshaller<Ge
                     getFederationTokenResult.setPackedPolicySize(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
-            } else if (xmlEvent.isEndElement()) {
+            } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return getFederationTokenResult;
                 }

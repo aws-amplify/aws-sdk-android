@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -79,59 +79,7 @@ public class BatchGetItemRequestMarshaller implements Marshaller<Request<BatchGe
                                             if (memberListValue.getValue() != null) {
                                                 jsonWriter.key(memberListValue.getKey());
 
-                                                jsonWriter.object();
-                                                if (memberListValue.getValue().getS() != null) {
-                                                    jsonWriter.key("S").value(memberListValue.getValue().getS());
-                                                }
-                                                if (memberListValue.getValue().getN() != null) {
-                                                    jsonWriter.key("N").value(memberListValue.getValue().getN());
-                                                }
-                                                if (memberListValue.getValue().getB() != null) {
-                                                    jsonWriter.key("B").value(memberListValue.getValue().getB());
-                                                }
-
-                                                com.amazonaws.internal.ListWithAutoConstructFlag<String> sSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(memberListValue.getValue().getSS());
-                                                if (sSList != null && !(sSList.isAutoConstruct() && sSList.isEmpty())) {
-
-                                                    jsonWriter.key("SS");
-                                                    jsonWriter.array();
-
-                                                    for (String sSListValue : sSList) {
-                                                        if (sSListValue != null) {
-                                                            jsonWriter.value(sSListValue);
-                                                        }
-                                                    }
-                                                    jsonWriter.endArray();
-                                                }
-
-                                                com.amazonaws.internal.ListWithAutoConstructFlag<String> nSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(memberListValue.getValue().getNS());
-                                                if (nSList != null && !(nSList.isAutoConstruct() && nSList.isEmpty())) {
-
-                                                    jsonWriter.key("NS");
-                                                    jsonWriter.array();
-
-                                                    for (String nSListValue : nSList) {
-                                                        if (nSListValue != null) {
-                                                            jsonWriter.value(nSListValue);
-                                                        }
-                                                    }
-                                                    jsonWriter.endArray();
-                                                }
-
-                                                com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer> bSList = (com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer>)(memberListValue.getValue().getBS());
-                                                if (bSList != null && !(bSList.isAutoConstruct() && bSList.isEmpty())) {
-
-                                                    jsonWriter.key("BS");
-                                                    jsonWriter.array();
-
-                                                    for (java.nio.ByteBuffer bSListValue : bSList) {
-                                                        if (bSListValue != null) {
-                                                            jsonWriter.value(bSListValue);
-                                                        }
-                                                    }
-                                                    jsonWriter.endArray();
-                                                }
-                                                jsonWriter.endObject();
+                                                AttributeValueJsonMarshaller.getInstance().marshall(memberListValue.getValue(), jsonWriter);
                                             }
                                         }
                                         jsonWriter.endObject();
@@ -155,6 +103,21 @@ public class BatchGetItemRequestMarshaller implements Marshaller<Request<BatchGe
                         }
                         if (requestItemsListValue.getValue().isConsistentRead() != null) {
                             jsonWriter.key("ConsistentRead").value(requestItemsListValue.getValue().isConsistentRead());
+                        }
+                        if (requestItemsListValue.getValue().getProjectionExpression() != null) {
+                            jsonWriter.key("ProjectionExpression").value(requestItemsListValue.getValue().getProjectionExpression());
+                        }
+                        if (requestItemsListValue.getValue().getExpressionAttributeNames() != null) {
+                            jsonWriter.key("ExpressionAttributeNames");
+                            jsonWriter.object();
+                            for (Map.Entry<String, String> expressionAttributeNamesListValue : requestItemsListValue.getValue().getExpressionAttributeNames().entrySet()) {
+                                if (expressionAttributeNamesListValue.getValue() != null) {
+                                    jsonWriter.key(expressionAttributeNamesListValue.getKey());
+
+                                    jsonWriter.value(expressionAttributeNamesListValue.getValue());
+                                }
+                            }
+                            jsonWriter.endObject();
                         }
                         jsonWriter.endObject();
                     }

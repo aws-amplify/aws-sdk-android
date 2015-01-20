@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -345,6 +345,14 @@ public class QueryRequest extends AmazonWebServiceRequest implements Serializabl
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      */
     private String returnConsumedCapacity;
+
+    private String projectionExpression;
+
+    private String filterExpression;
+
+    private java.util.Map<String,String> expressionAttributeNames;
+
+    private java.util.Map<String,AttributeValue> expressionAttributeValues;
 
     /**
      * Default constructor for a new QueryRequest object.  Callers should use the
@@ -2751,6 +2759,213 @@ public class QueryRequest extends AmazonWebServiceRequest implements Serializabl
     }
 
     /**
+     * Returns the value of the ProjectionExpression property for this
+     * object.
+     *
+     * @return The value of the ProjectionExpression property for this object.
+     */
+    public String getProjectionExpression() {
+        return projectionExpression;
+    }
+    
+    /**
+     * Sets the value of the ProjectionExpression property for this object.
+     *
+     * @param projectionExpression The new value for the ProjectionExpression property for this object.
+     */
+    public void setProjectionExpression(String projectionExpression) {
+        this.projectionExpression = projectionExpression;
+    }
+    
+    /**
+     * Sets the value of the ProjectionExpression property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param projectionExpression The new value for the ProjectionExpression property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public QueryRequest withProjectionExpression(String projectionExpression) {
+        this.projectionExpression = projectionExpression;
+        return this;
+    }
+
+    /**
+     * Returns the value of the FilterExpression property for this object.
+     *
+     * @return The value of the FilterExpression property for this object.
+     */
+    public String getFilterExpression() {
+        return filterExpression;
+    }
+    
+    /**
+     * Sets the value of the FilterExpression property for this object.
+     *
+     * @param filterExpression The new value for the FilterExpression property for this object.
+     */
+    public void setFilterExpression(String filterExpression) {
+        this.filterExpression = filterExpression;
+    }
+    
+    /**
+     * Sets the value of the FilterExpression property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param filterExpression The new value for the FilterExpression property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public QueryRequest withFilterExpression(String filterExpression) {
+        this.filterExpression = filterExpression;
+        return this;
+    }
+
+    /**
+     * Returns the value of the ExpressionAttributeNames property for this
+     * object.
+     *
+     * @return The value of the ExpressionAttributeNames property for this object.
+     */
+    public java.util.Map<String,String> getExpressionAttributeNames() {
+        
+        return expressionAttributeNames;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     *
+     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
+     *         object.
+     */
+    public void setExpressionAttributeNames(java.util.Map<String,String> expressionAttributeNames) {
+        this.expressionAttributeNames = expressionAttributeNames;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
+     *         object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public QueryRequest withExpressionAttributeNames(java.util.Map<String,String> expressionAttributeNames) {
+        setExpressionAttributeNames(expressionAttributeNames);
+        return this;
+    }
+
+    /**
+     * Sets the value of the ExpressionAttributeNames property for this
+     * object.
+     * <p>
+     * The method adds a new key-value pair into ExpressionAttributeNames
+     * parameter, and returns a reference to this object so that method calls
+     * can be chained together.
+     *
+     * @param key The key of the entry to be added into ExpressionAttributeNames.
+     * @param value The corresponding value of the entry to be added into ExpressionAttributeNames.
+     */
+    public QueryRequest addExpressionAttributeNamesEntry(String key, String value) {
+        if (null == this.expressionAttributeNames) {
+            this.expressionAttributeNames = new java.util.HashMap<String,String>();
+        }
+        if (this.expressionAttributeNames.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+        this.expressionAttributeNames.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeNames.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     */
+    public QueryRequest clearExpressionAttributeNamesEntries() {
+        this.expressionAttributeNames = null;
+        return this;
+    }
+    
+    /**
+     * Returns the value of the ExpressionAttributeValues property for this
+     * object.
+     *
+     * @return The value of the ExpressionAttributeValues property for this object.
+     */
+    public java.util.Map<String,AttributeValue> getExpressionAttributeValues() {
+        
+        return expressionAttributeValues;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeValues property for this
+     * object.
+     *
+     * @param expressionAttributeValues The new value for the ExpressionAttributeValues property for this
+     *         object.
+     */
+    public void setExpressionAttributeValues(java.util.Map<String,AttributeValue> expressionAttributeValues) {
+        this.expressionAttributeValues = expressionAttributeValues;
+    }
+    
+    /**
+     * Sets the value of the ExpressionAttributeValues property for this
+     * object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param expressionAttributeValues The new value for the ExpressionAttributeValues property for this
+     *         object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public QueryRequest withExpressionAttributeValues(java.util.Map<String,AttributeValue> expressionAttributeValues) {
+        setExpressionAttributeValues(expressionAttributeValues);
+        return this;
+    }
+
+    /**
+     * Sets the value of the ExpressionAttributeValues property for this
+     * object.
+     * <p>
+     * The method adds a new key-value pair into ExpressionAttributeValues
+     * parameter, and returns a reference to this object so that method calls
+     * can be chained together.
+     *
+     * @param key The key of the entry to be added into ExpressionAttributeValues.
+     * @param value The corresponding value of the entry to be added into ExpressionAttributeValues.
+     */
+    public QueryRequest addExpressionAttributeValuesEntry(String key, AttributeValue value) {
+        if (null == this.expressionAttributeValues) {
+            this.expressionAttributeValues = new java.util.HashMap<String,AttributeValue>();
+        }
+        if (this.expressionAttributeValues.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+        this.expressionAttributeValues.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeValues.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     */
+    public QueryRequest clearExpressionAttributeValuesEntries() {
+        this.expressionAttributeValues = null;
+        return this;
+    }
+    
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2773,7 +2988,11 @@ public class QueryRequest extends AmazonWebServiceRequest implements Serializabl
         if (getConditionalOperator() != null) sb.append("ConditionalOperator: " + getConditionalOperator() + ",");
         if (isScanIndexForward() != null) sb.append("ScanIndexForward: " + isScanIndexForward() + ",");
         if (getExclusiveStartKey() != null) sb.append("ExclusiveStartKey: " + getExclusiveStartKey() + ",");
-        if (getReturnConsumedCapacity() != null) sb.append("ReturnConsumedCapacity: " + getReturnConsumedCapacity() );
+        if (getReturnConsumedCapacity() != null) sb.append("ReturnConsumedCapacity: " + getReturnConsumedCapacity() + ",");
+        if (getProjectionExpression() != null) sb.append("ProjectionExpression: " + getProjectionExpression() + ",");
+        if (getFilterExpression() != null) sb.append("FilterExpression: " + getFilterExpression() + ",");
+        if (getExpressionAttributeNames() != null) sb.append("ExpressionAttributeNames: " + getExpressionAttributeNames() + ",");
+        if (getExpressionAttributeValues() != null) sb.append("ExpressionAttributeValues: " + getExpressionAttributeValues() );
         sb.append("}");
         return sb.toString();
     }
@@ -2795,6 +3014,10 @@ public class QueryRequest extends AmazonWebServiceRequest implements Serializabl
         hashCode = prime * hashCode + ((isScanIndexForward() == null) ? 0 : isScanIndexForward().hashCode()); 
         hashCode = prime * hashCode + ((getExclusiveStartKey() == null) ? 0 : getExclusiveStartKey().hashCode()); 
         hashCode = prime * hashCode + ((getReturnConsumedCapacity() == null) ? 0 : getReturnConsumedCapacity().hashCode()); 
+        hashCode = prime * hashCode + ((getProjectionExpression() == null) ? 0 : getProjectionExpression().hashCode()); 
+        hashCode = prime * hashCode + ((getFilterExpression() == null) ? 0 : getFilterExpression().hashCode()); 
+        hashCode = prime * hashCode + ((getExpressionAttributeNames() == null) ? 0 : getExpressionAttributeNames().hashCode()); 
+        hashCode = prime * hashCode + ((getExpressionAttributeValues() == null) ? 0 : getExpressionAttributeValues().hashCode()); 
         return hashCode;
     }
     
@@ -2830,6 +3053,14 @@ public class QueryRequest extends AmazonWebServiceRequest implements Serializabl
         if (other.getExclusiveStartKey() != null && other.getExclusiveStartKey().equals(this.getExclusiveStartKey()) == false) return false; 
         if (other.getReturnConsumedCapacity() == null ^ this.getReturnConsumedCapacity() == null) return false;
         if (other.getReturnConsumedCapacity() != null && other.getReturnConsumedCapacity().equals(this.getReturnConsumedCapacity()) == false) return false; 
+        if (other.getProjectionExpression() == null ^ this.getProjectionExpression() == null) return false;
+        if (other.getProjectionExpression() != null && other.getProjectionExpression().equals(this.getProjectionExpression()) == false) return false; 
+        if (other.getFilterExpression() == null ^ this.getFilterExpression() == null) return false;
+        if (other.getFilterExpression() != null && other.getFilterExpression().equals(this.getFilterExpression()) == false) return false; 
+        if (other.getExpressionAttributeNames() == null ^ this.getExpressionAttributeNames() == null) return false;
+        if (other.getExpressionAttributeNames() != null && other.getExpressionAttributeNames().equals(this.getExpressionAttributeNames()) == false) return false; 
+        if (other.getExpressionAttributeValues() == null ^ this.getExpressionAttributeValues() == null) return false;
+        if (other.getExpressionAttributeValues() != null && other.getExpressionAttributeValues().equals(this.getExpressionAttributeValues()) == false) return false; 
         return true;
     }
     

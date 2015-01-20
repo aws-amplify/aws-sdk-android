@@ -2,10 +2,9 @@
 
 The [AWS SDK for Android](http://aws.amazon.com/sdkforandroid) provides a library, code samples, and documentation for developers to build connected mobile applications using AWS.
 
-For more information about using the SDK, please reference the online
-documentation here: [aws.amazon.com/documentation/sdkforandroid](http://aws.amazon.com/documentation/sdkforandroid/)
+To learn more about using the SDK, see the  [documentation](http://aws.amazon.com/documentation/sdkforandroid/). 
 
-For best practices for using the AWS SDK for Android, please consider following our [AWS Mobile Developer Blog](http://mobile.awsblog.com/)
+For updates and guidance on using the AWS SDK for Android, please consider following our [AWS Mobile Developer Blog](http://mobile.awsblog.com/).
 
 ## Version 2 of the AWS Mobile SDK now Generally Available
 
@@ -20,7 +19,7 @@ Version 2 of the AWS Mobile SDK for Android has reached General Availability (GA
 
 ## Building the SDK
 
-You can build from source via Maven. Building the SDK requires the Java 7 SDK. Note that if you build from source you will only have one jar. You will have to configure which of the services you want to include in that jar via the proguard.cfg file. The process is explained below.
+You can build from source via Maven. Building the SDK requires the Java 7 SDK. Note that if you build from source you will only have one JAR. You will have to configure which of the services you want to include in that JAR via the proguard.cfg file. The process is explained below.
 
 #### Specifying packages
 In the proguard.cfg, you should see 
@@ -56,15 +55,15 @@ In the proguard.cfg, you should see
         #sqs
         !com.amazonaws.services.sqs.**,
 
-As you can see, these lines tell ProGuard it is allowed to remove the code associated with the services. So, if you want to use any of these services, you just need to comment out (or remove) the lines associated with that service.
+These lines tell ProGuard that it is allowed to remove the code associated with the services. So, if you want to use any of these services, you just need to comment out (or remove) the lines associated with that service.
 
-For example, if you want to use s3, you would change the section from above to
+For example, if you want to use S3, you would change the section above to
 
         #s3
         #!com.amazonaws.services.s3.**,
         #!com.amazonaws.mobileconnectors.s3.**,
 
-Note that if you want to use ddb mapper you will need to also include ddb. Also, if you want to use Cognito Sync you will have to include it separately since it is not part of this repo (due to licensing).
+Note that if you want to use the DynamoDB Object Mapper (dynamodbmapper) you will need to also include ddb. Also, if you want to use Cognito Sync, you will have to include it separately since it is not part of this repo.
 
 #### Compiling
 
@@ -72,11 +71,11 @@ After specifying the packages you want to use, you can just run
 
     mvn package
 
-from the project directory and you will get the resulting jar in the target folder.
+from the project directory and you will get the resulting JAR in the target folder.
 
 #### Issues with JAVA_HOME on Mac
 
-If you are using a Mac you may run into issues when trying to compile because certain Java installations do not set your JAVA_HOME environment variable, which is referenced in pom.xml. To fix this, you can run the command,
+If you are using a Mac, you may run into issues when trying to compile because certain Java installations do not set your JAVA_HOME environment variable, which is referenced in pom.xml. To fix this, you can run the command,
 
     export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 

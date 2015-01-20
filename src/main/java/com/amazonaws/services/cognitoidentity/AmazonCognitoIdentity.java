@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -212,17 +212,20 @@ public interface AmazonCognitoIdentity {
 
     /**
      *
-     * @param listIdentityPoolsRequest Container for the necessary parameters
-     *           to execute the ListIdentityPools service method on
+     * @param getCredentialsForIdentityRequest Container for the necessary
+     *           parameters to execute the GetCredentialsForIdentity service method on
      *           AmazonCognitoIdentity.
      * 
-     * @return The response from the ListIdentityPools service method, as
-     *         returned by AmazonCognitoIdentity.
+     * @return The response from the GetCredentialsForIdentity service
+     *         method, as returned by AmazonCognitoIdentity.
      * 
+     * @throws ResourceConflictException
      * @throws InternalErrorException
+     * @throws InvalidIdentityPoolConfigurationException
      * @throws NotAuthorizedException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -232,7 +235,7 @@ public interface AmazonCognitoIdentity {
      *             If an error response is returned by AmazonCognitoIdentity indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ListIdentityPoolsResult listIdentityPools(ListIdentityPoolsRequest listIdentityPoolsRequest) 
+    public GetCredentialsForIdentityResult getCredentialsForIdentity(GetCredentialsForIdentityRequest getCredentialsForIdentityRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -264,6 +267,31 @@ public interface AmazonCognitoIdentity {
 
     /**
      *
+     * @param listIdentityPoolsRequest Container for the necessary parameters
+     *           to execute the ListIdentityPools service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the ListIdentityPools service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListIdentityPoolsResult listIdentityPools(ListIdentityPoolsRequest listIdentityPoolsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
      * @param getOpenIdTokenRequest Container for the necessary parameters to
      *           execute the GetOpenIdToken service method on AmazonCognitoIdentity.
      * 
@@ -286,6 +314,32 @@ public interface AmazonCognitoIdentity {
      *             either a problem with the data in the request, or a server side issue.
      */
     public GetOpenIdTokenResult getOpenIdToken(GetOpenIdTokenRequest getOpenIdTokenRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param describeIdentityRequest Container for the necessary parameters
+     *           to execute the DescribeIdentity service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the DescribeIdentity service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeIdentityResult describeIdentity(DescribeIdentityRequest describeIdentityRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -313,6 +367,31 @@ public interface AmazonCognitoIdentity {
      *             either a problem with the data in the request, or a server side issue.
      */
     public LookupDeveloperIdentityResult lookupDeveloperIdentity(LookupDeveloperIdentityRequest lookupDeveloperIdentityRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param setIdentityPoolRolesRequest Container for the necessary
+     *           parameters to execute the SetIdentityPoolRoles service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * 
+     * @throws ResourceConflictException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void setIdentityPoolRoles(SetIdentityPoolRolesRequest setIdentityPoolRolesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -362,6 +441,33 @@ public interface AmazonCognitoIdentity {
      *             either a problem with the data in the request, or a server side issue.
      */
     public ListIdentitiesResult listIdentities(ListIdentitiesRequest listIdentitiesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param getIdentityPoolRolesRequest Container for the necessary
+     *           parameters to execute the GetIdentityPoolRoles service method on
+     *           AmazonCognitoIdentity.
+     * 
+     * @return The response from the GetIdentityPoolRoles service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws ResourceConflictException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetIdentityPoolRolesResult getIdentityPoolRoles(GetIdentityPoolRolesRequest getIdentityPoolRolesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**

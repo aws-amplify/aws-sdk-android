@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -81,59 +81,7 @@ public class BatchWriteItemRequestMarshaller implements Marshaller<Request<Batch
                                             if (itemListValue.getValue() != null) {
                                                 jsonWriter.key(itemListValue.getKey());
 
-                                                jsonWriter.object();
-                                                if (itemListValue.getValue().getS() != null) {
-                                                    jsonWriter.key("S").value(itemListValue.getValue().getS());
-                                                }
-                                                if (itemListValue.getValue().getN() != null) {
-                                                    jsonWriter.key("N").value(itemListValue.getValue().getN());
-                                                }
-                                                if (itemListValue.getValue().getB() != null) {
-                                                    jsonWriter.key("B").value(itemListValue.getValue().getB());
-                                                }
-
-                                                com.amazonaws.internal.ListWithAutoConstructFlag<String> sSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(itemListValue.getValue().getSS());
-                                                if (sSList != null && !(sSList.isAutoConstruct() && sSList.isEmpty())) {
-
-                                                    jsonWriter.key("SS");
-                                                    jsonWriter.array();
-
-                                                    for (String sSListValue : sSList) {
-                                                        if (sSListValue != null) {
-                                                            jsonWriter.value(sSListValue);
-                                                        }
-                                                    }
-                                                    jsonWriter.endArray();
-                                                }
-
-                                                com.amazonaws.internal.ListWithAutoConstructFlag<String> nSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(itemListValue.getValue().getNS());
-                                                if (nSList != null && !(nSList.isAutoConstruct() && nSList.isEmpty())) {
-
-                                                    jsonWriter.key("NS");
-                                                    jsonWriter.array();
-
-                                                    for (String nSListValue : nSList) {
-                                                        if (nSListValue != null) {
-                                                            jsonWriter.value(nSListValue);
-                                                        }
-                                                    }
-                                                    jsonWriter.endArray();
-                                                }
-
-                                                com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer> bSList = (com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer>)(itemListValue.getValue().getBS());
-                                                if (bSList != null && !(bSList.isAutoConstruct() && bSList.isEmpty())) {
-
-                                                    jsonWriter.key("BS");
-                                                    jsonWriter.array();
-
-                                                    for (java.nio.ByteBuffer bSListValue : bSList) {
-                                                        if (bSListValue != null) {
-                                                            jsonWriter.value(bSListValue);
-                                                        }
-                                                    }
-                                                    jsonWriter.endArray();
-                                                }
-                                                jsonWriter.endObject();
+                                                AttributeValueJsonMarshaller.getInstance().marshall(itemListValue.getValue(), jsonWriter);
                                             }
                                         }
                                         jsonWriter.endObject();
@@ -153,59 +101,7 @@ public class BatchWriteItemRequestMarshaller implements Marshaller<Request<Batch
                                             if (keyListValue.getValue() != null) {
                                                 jsonWriter.key(keyListValue.getKey());
 
-                                                jsonWriter.object();
-                                                if (keyListValue.getValue().getS() != null) {
-                                                    jsonWriter.key("S").value(keyListValue.getValue().getS());
-                                                }
-                                                if (keyListValue.getValue().getN() != null) {
-                                                    jsonWriter.key("N").value(keyListValue.getValue().getN());
-                                                }
-                                                if (keyListValue.getValue().getB() != null) {
-                                                    jsonWriter.key("B").value(keyListValue.getValue().getB());
-                                                }
-
-                                                com.amazonaws.internal.ListWithAutoConstructFlag<String> sSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(keyListValue.getValue().getSS());
-                                                if (sSList != null && !(sSList.isAutoConstruct() && sSList.isEmpty())) {
-
-                                                    jsonWriter.key("SS");
-                                                    jsonWriter.array();
-
-                                                    for (String sSListValue : sSList) {
-                                                        if (sSListValue != null) {
-                                                            jsonWriter.value(sSListValue);
-                                                        }
-                                                    }
-                                                    jsonWriter.endArray();
-                                                }
-
-                                                com.amazonaws.internal.ListWithAutoConstructFlag<String> nSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(keyListValue.getValue().getNS());
-                                                if (nSList != null && !(nSList.isAutoConstruct() && nSList.isEmpty())) {
-
-                                                    jsonWriter.key("NS");
-                                                    jsonWriter.array();
-
-                                                    for (String nSListValue : nSList) {
-                                                        if (nSListValue != null) {
-                                                            jsonWriter.value(nSListValue);
-                                                        }
-                                                    }
-                                                    jsonWriter.endArray();
-                                                }
-
-                                                com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer> bSList = (com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer>)(keyListValue.getValue().getBS());
-                                                if (bSList != null && !(bSList.isAutoConstruct() && bSList.isEmpty())) {
-
-                                                    jsonWriter.key("BS");
-                                                    jsonWriter.array();
-
-                                                    for (java.nio.ByteBuffer bSListValue : bSList) {
-                                                        if (bSListValue != null) {
-                                                            jsonWriter.value(bSListValue);
-                                                        }
-                                                    }
-                                                    jsonWriter.endArray();
-                                                }
-                                                jsonWriter.endObject();
+                                                AttributeValueJsonMarshaller.getInstance().marshall(keyListValue.getValue(), jsonWriter);
                                             }
                                         }
                                         jsonWriter.endObject();

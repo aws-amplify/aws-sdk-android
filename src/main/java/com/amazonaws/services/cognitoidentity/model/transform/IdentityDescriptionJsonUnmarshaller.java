@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -52,6 +52,14 @@ public class IdentityDescriptionJsonUnmarshaller implements Unmarshaller<Identit
                 if (context.testExpression("Logins", targetDepth)) {
                     context.nextToken();
                     identityDescription.setLogins(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                }
+                if (context.testExpression("CreationDate", targetDepth)) {
+                    context.nextToken();
+                    identityDescription.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
+                }
+                if (context.testExpression("LastModifiedDate", targetDepth)) {
+                    context.nextToken();
+                    identityDescription.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
                 }
             } else if (token == END_ARRAY || token == END_OBJECT) {
                 if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {

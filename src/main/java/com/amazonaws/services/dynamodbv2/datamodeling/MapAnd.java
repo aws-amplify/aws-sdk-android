@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2014 Amazon Technologies, Inc.
+ * Copyright 2013-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.util.Set;
  * @param <K> the type of the map's keys
  * @param <V> the type of the map's values
  * @param <T> the type of the extra secret sauce
-  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 final class MapAnd<K, V, T> implements Map<K, V> {
 

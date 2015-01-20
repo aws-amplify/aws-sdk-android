@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.amazonaws.services.s3.transfer;
 /**
  * The status of a pause operation initiated on a {@link Upload}/
  * {@link Download}.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public enum PauseStatus {
 

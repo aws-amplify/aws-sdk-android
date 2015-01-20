@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import com.amazonaws.services.dynamodbv2.model.ConditionalOperator;
 
 /**
  * A query expression
-  * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public class DynamoDBQueryExpression <T> {
 

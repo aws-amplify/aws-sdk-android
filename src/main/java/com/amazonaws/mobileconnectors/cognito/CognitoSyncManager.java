@@ -179,7 +179,7 @@ public class CognitoSyncManager {
     /**
      * Wipes all user data cached locally, including identity id, session
      * credentials, dataset metadata, and all records. Any data that hasn't been
-     * synced will be lost. This method is usually used when customer logs out.
+     * synced will be lost. This method should be called after logging out a customer.
      */
     public void wipeData() {
         provider.clear();

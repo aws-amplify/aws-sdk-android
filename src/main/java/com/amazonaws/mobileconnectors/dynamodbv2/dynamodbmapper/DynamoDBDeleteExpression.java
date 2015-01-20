@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,9 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ConditionalOperator;
+import com.amazonaws.services.dynamodbv2.model.DeleteItemRequest;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 
 /**
@@ -27,7 +29,7 @@ import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
  * @see DynamoDBMapper#delete(Object, DynamoDBDeleteExpression)
  */
 public class DynamoDBDeleteExpression {
-    
+
     /** Optional expected attributes */
     private Map<String, ExpectedAttributeValue> expectedAttributes;
 
@@ -35,8 +37,25 @@ public class DynamoDBDeleteExpression {
     private String conditionalOperator;
 
     /**
+     * A condition that must be satisfied in order for a conditional
+     * DeleteItem to succeed.
+     */
+    private String conditionExpression;
+
+    /**
+     * One or more substitution variables for simplifying complex
+     * expressions.
+     */
+    private java.util.Map<String,String> expressionAttributeNames;
+
+    /**
+     * One or more values that can be substituted in an expression.
+     */
+    private java.util.Map<String,AttributeValue> expressionAttributeValues;
+
+    /**
      * Gets the map of attribute names to expected attribute values to check on delete.
-     * 
+     *
      * @return The map of attribute names to expected attribute value conditions to check on delete
      */
     public Map<String, ExpectedAttributeValue> getExpected() {
@@ -45,7 +64,7 @@ public class DynamoDBDeleteExpression {
 
     /**
      * Sets the expected condition to the map of attribute names to expected attribute values given.
-     * 
+     *
      * @param expectedAttributes
      *            The map of attribute names to expected attribute value conditions to check on delete
      */
@@ -57,7 +76,7 @@ public class DynamoDBDeleteExpression {
      * Sets the expected condition to the map of attribute names to expected
      * attribute values given and returns a pointer to this object for
      * method-chaining.
-     * 
+     *
      * @param expectedAttributes
      *            The map of attribute names to expected attribute value
      *            conditions to check on delete
@@ -70,7 +89,7 @@ public class DynamoDBDeleteExpression {
     /**
      * Adds one entry to the expected conditions and returns a pointer to this
      * object for method-chaining.
-     * 
+     *
      * @param attributeName
      *            The name of the attribute.
      * @param expected
@@ -125,5 +144,198 @@ public class DynamoDBDeleteExpression {
      */
     public DynamoDBDeleteExpression withConditionalOperator(ConditionalOperator conditionalOperator) {
         return withConditionalOperator(conditionalOperator.toString());
+    }
+
+    /**
+     * A condition that must be satisfied in order for a conditional DeleteItem
+     * to succeed.
+     *
+     * @see DeleteItemRequest#getConditionExpression()
+     */
+    public String getConditionExpression() {
+        return conditionExpression;
+    }
+
+    /**
+     * A condition that must be satisfied in order for a conditional DeleteItem
+     * to succeed.
+     *
+     * @see DeleteItemRequest#setConditionExpression()
+     */
+    public void setConditionExpression(String conditionExpression) {
+        this.conditionExpression = conditionExpression;
+    }
+
+    /**
+     * A condition that must be satisfied in order for a conditional DeleteItem
+     * to succeed.
+     *
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     *
+     * @see DeleteItemRequest#withConditionExpression(String)
+     */
+    public DynamoDBDeleteExpression withConditionExpression(
+            String conditionExpression) {
+        this.conditionExpression = conditionExpression;
+        return this;
+    }
+
+    /**
+     * One or more substitution variables for simplifying complex expressions.
+     *
+     * @return One or more substitution variables for simplifying complex
+     *         expressions.
+     * @see DeleteItemRequest#getExpressionAttributeNames()
+     */
+    public java.util.Map<String, String> getExpressionAttributeNames() {
+
+        return expressionAttributeNames;
+    }
+
+    /**
+     * One or more substitution variables for simplifying complex expressions.
+     *
+     * @param expressionAttributeNames
+     *            One or more substitution variables for simplifying complex
+     *            expressions.
+     * @see DeleteItemRequest#setExpressionAttributeNames(Map)
+     */
+    public void setExpressionAttributeNames(
+            java.util.Map<String, String> expressionAttributeNames) {
+        this.expressionAttributeNames = expressionAttributeNames;
+    }
+
+    /**
+     * One or more substitution variables for simplifying complex expressions.
+     *
+     * @param expressionAttributeNames
+     *            One or more substitution variables for simplifying complex
+     *            expressions.
+     *
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DeleteItemRequest#withExpressionAttributeNames(Map)
+     */
+    public DynamoDBDeleteExpression withExpressionAttributeNames(
+            java.util.Map<String, String> expressionAttributeNames) {
+        setExpressionAttributeNames(expressionAttributeNames);
+        return this;
+    }
+
+    /**
+     * One or more substitution variables for simplifying complex expressions.
+     * The method adds a new key-value pair into ExpressionAttributeNames
+     * parameter, and returns a reference to this object so that method calls
+     * can be chained together.
+     *
+     * @param key
+     *            The key of the entry to be added into
+     *            ExpressionAttributeNames.
+     * @param value
+     *            The corresponding value of the entry to be added into
+     *            ExpressionAttributeNames.
+     *
+     * @see DeleteItemRequest#addExpressionAttributeNamesEntry(String, String)
+     */
+    public DynamoDBDeleteExpression addExpressionAttributeNamesEntry(
+            String key, String value) {
+        if (null == this.expressionAttributeNames) {
+            this.expressionAttributeNames = new java.util.HashMap<String, String>();
+        }
+        if (this.expressionAttributeNames.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys ("
+                    + key.toString() + ") are provided.");
+        this.expressionAttributeNames.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeNames.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public DynamoDBDeleteExpression clearExpressionAttributeNamesEntries() {
+        this.expressionAttributeNames = null;
+        return this;
+    }
+
+    /**
+     * One or more values that can be substituted in an expression.
+     *
+     * @return One or more values that can be substituted in an expression.
+     * @see DeleteItemRequest#getExpressionAttributeValues()
+     */
+    public java.util.Map<String, AttributeValue> getExpressionAttributeValues() {
+        return expressionAttributeValues;
+    }
+
+    /**
+     * One or more values that can be substituted in an expression.
+     *
+     * @param expressionAttributeValues
+     *            One or more values that can be substituted in an expression.
+     *
+     * @see DeleteItemRequest#setExpressionAttributeValues(Map)
+     */
+    public void setExpressionAttributeValues(
+            java.util.Map<String, AttributeValue> expressionAttributeValues) {
+        this.expressionAttributeValues = expressionAttributeValues;
+    }
+
+    /**
+     * One or more values that can be substituted in an expression.
+     *
+     * @param expressionAttributeValues
+     *            One or more values that can be substituted in an expression.
+     *
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DeleteItemRequest#withExpressionAttributeValues(Map)
+     */
+    public DynamoDBDeleteExpression withExpressionAttributeValues(
+            java.util.Map<String, AttributeValue> expressionAttributeValues) {
+        setExpressionAttributeValues(expressionAttributeValues);
+        return this;
+    }
+
+    /**
+     * One or more values that can be substituted in an expression. The method
+     * adds a new key-value pair into ExpressionAttributeValues parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key
+     *            The key of the entry to be added into
+     *            ExpressionAttributeValues.
+     * @param value
+     *            The corresponding value of the entry to be added into
+     *            ExpressionAttributeValues.
+     *
+     * @see DeleteItemRequest#addExpressionAttributeValuesEntry(String,
+     *      AttributeValue)
+     */
+    public DynamoDBDeleteExpression addExpressionAttributeValuesEntry(
+            String key, AttributeValue value) {
+        if (null == this.expressionAttributeValues) {
+            this.expressionAttributeValues = new java.util.HashMap<String, AttributeValue>();
+        }
+        if (this.expressionAttributeValues.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys ("
+                    + key.toString() + ") are provided.");
+        this.expressionAttributeValues.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ExpressionAttributeValues.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public DynamoDBDeleteExpression clearExpressionAttributeValuesEntries() {
+        this.expressionAttributeValues = null;
+        return this;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 Amazon Technologies, Inc.
+ * Copyright 2011-2015 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.BinaryAttributeMarshaller;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.NumberAttributeMarshaller;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.StringAttributeMarshaller;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperFieldModel.DynamoDBAttributeType;
 import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.GlobalSecondaryIndex;
@@ -34,15 +32,15 @@ import com.amazonaws.services.dynamodbv2.model.KeyType;
 import com.amazonaws.services.dynamodbv2.model.LocalSecondaryIndex;
 import com.amazonaws.services.dynamodbv2.model.Projection;
 import com.amazonaws.services.dynamodbv2.model.ProjectionType;
-import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
 
 /**
  * A class responsible for parsing the primary key and index schema of a table
  * POJO.
  */
-public class DynamoDBTableSchemaParser {
+class DynamoDBTableSchemaParser {
 
-    private final Map<Class<?>, TableIndexesInfo> tableIndexesInfoCache = new HashMap<Class<?>, TableIndexesInfo>();
+    private final Map<Class<?>, TableIndexesInfo> tableIndexesInfoCache =
+            new HashMap<Class<?>, TableIndexesInfo>();
 
     /**
      * Parse the given POJO class and return the CreateTableRequest for the
@@ -50,7 +48,7 @@ public class DynamoDBTableSchemaParser {
      * include the required ProvisionedThroughput parameters for the primary
      * table and the GSIs, and that all secondary indexes are initialized with
      * the default projection type - KEY_ONLY.
-     * 
+     *
      * @param clazz
      *            The POJO class.
      * @param config
@@ -60,21 +58,24 @@ public class DynamoDBTableSchemaParser {
      *            The DynamoDBReflector that provides all the relevant getters
      *            of the POJO.
      */
-    CreateTableRequest parseTablePojoToCreateTableRequest(final Class<?> clazz,
-                                                          final DynamoDBMapperConfig config,
-                                                          final DynamoDBReflector reflector) {
+    CreateTableRequest parseTablePojoToCreateTableRequest(
+            Class<?> clazz,
+            DynamoDBMapperConfig config,
+            DynamoDBReflector reflector,
+            ItemConverter converter) {
+
         CreateTableRequest createTableRequest = new CreateTableRequest();
-        createTableRequest.setTableName(DynamoDBMapper.getTableName(clazz, config, reflector));
+        createTableRequest.setTableName(DynamoDBMapper.internalGetTableName(clazz, null, config));
 
         // Primary keys
         Method pHashKeyGetter = reflector.getPrimaryHashKeyGetter(clazz);
-        AttributeDefinition pHashAttrDefinition = getKeyAttributeDefinition(pHashKeyGetter, reflector);
+        AttributeDefinition pHashAttrDefinition = getKeyAttributeDefinition(pHashKeyGetter, converter);
         createTableRequest.withKeySchema(new KeySchemaElement(pHashAttrDefinition.getAttributeName(), KeyType.HASH));
         // Primary range
         Method pRangeKeyGetter = reflector.getPrimaryRangeKeyGetter(clazz);
         AttributeDefinition pRangeAttrDefinition = null;
         if (pRangeKeyGetter != null) {
-            pRangeAttrDefinition = getKeyAttributeDefinition(pRangeKeyGetter, reflector);
+            pRangeAttrDefinition = getKeyAttributeDefinition(pRangeKeyGetter, converter);
             createTableRequest.withKeySchema(new KeySchemaElement(pRangeAttrDefinition.getAttributeName(), KeyType.RANGE));
         }
 
@@ -96,7 +97,7 @@ public class DynamoDBTableSchemaParser {
             putAfterCheckConflict(attrDefinitions, pRangeAttrDefinition);
         }
         for (Method indexKeyGetter : indexesInfo.getIndexKeyGetters()) {
-            AttributeDefinition indexKeyAttrDefinition = getKeyAttributeDefinition(indexKeyGetter, reflector);
+            AttributeDefinition indexKeyAttrDefinition = getKeyAttributeDefinition(indexKeyGetter, converter);
             putAfterCheckConflict(attrDefinitions, indexKeyAttrDefinition);
         }
         createTableRequest.setAttributeDefinitions(attrDefinitions.values());
@@ -131,11 +132,11 @@ public class DynamoDBTableSchemaParser {
 
                         if ( singleGsiName && multipleGsiNames) {
                             throw new DynamoDBMappingException(
-                                    "@DynamoDBIndexHashKey annotation on getter " + getter + 
+                                    "@DynamoDBIndexHashKey annotation on getter " + getter +
                                     " contains both globalSecondaryIndexName and globalSecondaryIndexNames.");
                         } else if ( (!singleGsiName) && (!multipleGsiNames) ) {
                             throw new DynamoDBMappingException(
-                                    "@DynamoDBIndexHashKey annotation on getter " + getter + 
+                                    "@DynamoDBIndexHashKey annotation on getter " + getter +
                                     " doesn't contain any index name.");
                         }
 
@@ -168,17 +169,17 @@ public class DynamoDBTableSchemaParser {
 
                         if ( singleGsiName && multipleGsiNames ) {
                             throw new DynamoDBMappingException(
-                                    "@DynamoDBIndexRangeKey annotation on getter " + getter + 
+                                    "@DynamoDBIndexRangeKey annotation on getter " + getter +
                                     " contains both globalSecondaryIndexName and globalSecondaryIndexNames.");
                         }
                         if ( singleLsiName && multipleLsiNames ) {
                             throw new DynamoDBMappingException(
-                                    "@DynamoDBIndexRangeKey annotation on getter " + getter + 
+                                    "@DynamoDBIndexRangeKey annotation on getter " + getter +
                                     " contains both localSecondaryIndexName and localSecondaryIndexNames.");
                         }
                         if ( (!singleGsiName) && (!multipleGsiNames) && (!singleLsiName) && (!multipleLsiNames) ) {
                             throw new DynamoDBMappingException(
-                                    "@DynamoDBIndexRangeKey annotation on getter " + getter + 
+                                    "@DynamoDBIndexRangeKey annotation on getter " + getter +
                                     " doesn't contain any index name.");
                         }
 
@@ -205,19 +206,24 @@ public class DynamoDBTableSchemaParser {
         } // end of synchronized block
     }
 
-    private static AttributeDefinition getKeyAttributeDefinition(Method keyGetter, final DynamoDBReflector reflector) {
-        String keyAttrName = reflector.getAttributeName(keyGetter);
-        ArgumentMarshaller marshaller = reflector.getArgumentMarshaller(keyGetter);
+    private static AttributeDefinition getKeyAttributeDefinition(
+            Method keyGetter,
+            ItemConverter converter) {
 
-        if (marshaller instanceof StringAttributeMarshaller) {
-            return new AttributeDefinition(keyAttrName, ScalarAttributeType.S);
-        } else if (marshaller instanceof NumberAttributeMarshaller) {
-            return new AttributeDefinition(keyAttrName, ScalarAttributeType.N);
-        } else if (marshaller instanceof BinaryAttributeMarshaller) {
-            return new AttributeDefinition(keyAttrName, ScalarAttributeType.B);
+        DynamoDBMapperFieldModel fieldModel = converter.getFieldModel(keyGetter);
+
+        String keyAttrName = fieldModel.getDynamoDBAttributeName();
+        DynamoDBAttributeType keyType = fieldModel.getDynamoDBAttributeType();
+
+        if (keyType == DynamoDBAttributeType.S ||
+            keyType == DynamoDBAttributeType.N ||
+            keyType == DynamoDBAttributeType.B) {
+            return new AttributeDefinition(keyAttrName, keyType.toString());
         }
 
-        throw new DynamoDBMappingException("The key attribute must be in a scalar type (String, Number or Binary).");
+        throw new DynamoDBMappingException(
+                "The key attribute must be in a scalar type "
+                + "(String, Number or Binary).");
     }
 
     private static void putAfterCheckConflict(Map<String, AttributeDefinition> map,
@@ -240,11 +246,11 @@ public class DynamoDBTableSchemaParser {
     static class TableIndexesInfo {
 
         /** Used for mapping an index key name to all the applicable indexes. */
-        private final Map<String, Set<String>> lsiRangeKeyNameToIndexNames = 
+        private final Map<String, Set<String>> lsiRangeKeyNameToIndexNames =
                 new HashMap<String, Set<String>>();
-        private final Map<String, Set<String>> gsiHashKeyNameToIndexNames = 
+        private final Map<String, Set<String>> gsiHashKeyNameToIndexNames =
                 new HashMap<String, Set<String>>();
-        private final Map<String, Set<String>> gsiRangeKeyNameToIndexNames = 
+        private final Map<String, Set<String>> gsiRangeKeyNameToIndexNames =
                 new HashMap<String, Set<String>>();
 
         /** Note that the KeySchema in each LocalSecondaryIndex does not include the hash key. */
@@ -327,13 +333,13 @@ public class DynamoDBTableSchemaParser {
 
                     if (KeyType.HASH.toString().equals(existingKeyType)) {
                         if (gsiHashKeyName != null && !gsiHashKeyName.equals(existingKeyName)) {
-                            throw new DynamoDBMappingException("Multiple hash keys [" + existingKeyName + ", " + gsiHashKeyName + 
+                            throw new DynamoDBMappingException("Multiple hash keys [" + existingKeyName + ", " + gsiHashKeyName +
                                     "] are found for the GSI [" + gsiName + "]. " +
                                     "Each index allows at most one range key attribute.");
                         }
                     } else if (KeyType.RANGE.toString().equals(existingKeyType)) {
                         if (gsiRangeKeyName != null && !gsiRangeKeyName.equals(existingKeyName)) {
-                            throw new DynamoDBMappingException("Multiple range keys [" + existingKeyName + ", " + gsiRangeKeyName + 
+                            throw new DynamoDBMappingException("Multiple range keys [" + existingKeyName + ", " + gsiRangeKeyName +
                                     "] are found for the GSI [" + gsiName + "]. " +
                                     "Each index allows at most one range key attribute.");
                         }
@@ -378,7 +384,7 @@ public class DynamoDBTableSchemaParser {
 
             if (lsiNameToLsiDefinition.containsKey(lsiName)) {
                 LocalSecondaryIndex existingLsi = lsiNameToLsiDefinition.get(lsiName);
-                if ( !lsiName.equals(existingLsi.getIndexName()) 
+                if ( !lsiName.equals(existingLsi.getIndexName())
                         || existingLsi.getKeySchema() == null
                         || existingLsi.getKeySchema().size() != 2  // the hash key element should be already added
                         || !KeyType.RANGE.toString().equals(existingLsi.getKeySchema().get(1).getKeyType()) ) {
@@ -388,7 +394,7 @@ public class DynamoDBTableSchemaParser {
 
                 String existingLsiRangeKeyName = existingLsi.getKeySchema().get(1).getAttributeName();
                 if ( !existingLsiRangeKeyName.equals(lsiRangeKeyName) ) {
-                    throw new DynamoDBMappingException("Multiple range keys [" + existingLsiRangeKeyName + ", " + lsiRangeKeyName + 
+                    throw new DynamoDBMappingException("Multiple range keys [" + existingLsiRangeKeyName + ", " + lsiRangeKeyName +
                             "] are found for the LSI [" + lsiName + "]. " +
                             "Each index allows at most one range key attribute.");
                 }

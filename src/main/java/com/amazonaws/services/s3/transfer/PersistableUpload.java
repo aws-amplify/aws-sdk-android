@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * An opaque token that holds some private state and can be used to resume a
  * paused download operation.
+ * @deprecated These classes have been deprecated, please use the classes in the com.amazonaws.mobileconnectors namespace.
  */
 public final class PersistableUpload extends PersistableTransfer {
     static final String TYPE = "upload";
