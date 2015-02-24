@@ -26,16 +26,14 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.policy.Action;
 import com.amazonaws.auth.policy.Condition;
 import com.amazonaws.auth.policy.Policy;
 import com.amazonaws.auth.policy.Principal;
 import com.amazonaws.auth.policy.Resource;
 import com.amazonaws.auth.policy.Statement;
-import com.amazonaws.util.json.Jackson;
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonGenerator;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Serializes an AWS policy object to a JSON string, suitable for sending to an
@@ -44,10 +42,10 @@ import com.fasterxml.jackson.core.JsonGenerator;
 public class JsonPolicyWriter {
 
     /** The JSON Generator to generator a JSON string.*/
-    private JsonGenerator generator = null;
+    private AwsJsonWriter jsonWriter = null;
 
     /** The output writer to which the JSON String is written.*/
-    private Writer writer;
+    private final Writer writer;
 
     /** Logger used to log exceptions that occurs while writing the Json policy.*/
     private static final Log log = LogFactory.getLog("com.amazonaws.auth.policy");
@@ -57,13 +55,7 @@ public class JsonPolicyWriter {
      */
     public JsonPolicyWriter() {
         writer = new StringWriter();
-        try {
-            generator = Jackson.jsonGeneratorOf(writer);
-        } catch (IOException ioe) {
-            throw new AmazonClientException(
-                    "Unable to instantiate JsonGenerator.", ioe);
-        }
-
+        jsonWriter = JsonUtils.getJsonWriter(writer);
     }
 
     /**
@@ -102,9 +94,8 @@ public class JsonPolicyWriter {
      *            the policy to be converted.
      * @return a JSON String of the specified policy object.
      */
-    private String jsonStringOf(Policy policy) throws JsonGenerationException,
-            IOException {
-        generator.writeStartObject();
+    private String jsonStringOf(Policy policy) throws IOException {
+        jsonWriter.beginObject();
 
         writeJsonKeyValue(JsonDocumentFields.VERSION, policy.getVersion());
 
@@ -114,7 +105,7 @@ public class JsonPolicyWriter {
         writeJsonArrayStart(JsonDocumentFields.STATEMENT);
 
         for (Statement statement : policy.getStatements()) {
-            generator.writeStartObject();
+            jsonWriter.beginObject();
 
             if (isNotNull(statement.getId())) {
                 writeJsonKeyValue(JsonDocumentFields.STATEMENT_ID, statement.getId());
@@ -138,14 +129,14 @@ public class JsonPolicyWriter {
             if (isNotNull(conditions) && !conditions.isEmpty())
                 writeConditions(conditions);
 
-            generator.writeEndObject();
+            jsonWriter.endObject();
         }
 
         writeJsonArrayEnd();
 
-        generator.writeEndObject();
+        jsonWriter.endObject();
 
-        generator.flush();
+        jsonWriter.flush();
 
         return writer.toString();
 
@@ -157,8 +148,7 @@ public class JsonPolicyWriter {
      * @param conditions
      *            the conditions to be written.
      */
-    private void writeConditions(List<Condition> conditions)
-            throws JsonGenerationException, IOException {
+    private void writeConditions(List<Condition> conditions) throws IOException {
         Map<String, ConditionsByKey> conditionsByType = groupConditionsByTypeAndKey(conditions);
 
         writeJsonObjectStart(JsonDocumentFields.CONDITION);
@@ -184,7 +174,7 @@ public class JsonPolicyWriter {
      *            the list of resources to be written.
      */
     private void writeResources(List<Resource> resources)
-            throws JsonGenerationException, IOException {
+            throws IOException {
 
         List<String> resourceStrings = new ArrayList<String>();
 
@@ -201,7 +191,7 @@ public class JsonPolicyWriter {
      *            the list of the actions to be written.
      */
     private void writeActions(List<Action> actions)
-            throws JsonGenerationException, IOException {
+            throws IOException {
         List<String> actionStrings = new ArrayList<String>();
 
         for (Action action : actions) {
@@ -217,7 +207,7 @@ public class JsonPolicyWriter {
      *            the list of principals to be written.
      */
     private void writePrincipals(List<Principal> principals)
-            throws JsonGenerationException, IOException {
+            throws IOException {
         if (principals.size() == 1 && principals.get(0).equals(Principal.All)) {
             writeJsonKeyValue(JsonDocumentFields.PRINCIPAL, Principal.All.getId());
         } else {
@@ -343,10 +333,10 @@ public class JsonPolicyWriter {
      *            values of the JSON array.
      */
     private void writeJsonArray(String arrayName, List<String> values)
-            throws JsonGenerationException, IOException {
+            throws IOException {
         writeJsonArrayStart(arrayName);
         for (String value : values)
-            generator.writeString(value);
+            jsonWriter.value(value);
         writeJsonArrayEnd();
     }
 
@@ -358,15 +348,16 @@ public class JsonPolicyWriter {
      *            name of the JSON Object.
      */
     private void writeJsonObjectStart(String fieldName)
-            throws JsonGenerationException, IOException {
-        generator.writeObjectFieldStart(fieldName);
+            throws IOException {
+        jsonWriter.name(fieldName);
+        jsonWriter.beginObject();
     }
 
     /**
      * Writes the End of Object String to the JSONGenerator.
      */
-    private void writeJsonObjectEnd() throws JsonGenerationException, IOException {
-        generator.writeEndObject();
+    private void writeJsonObjectEnd() throws IOException {
+        jsonWriter.endObject();
     }
 
     /**
@@ -377,15 +368,16 @@ public class JsonPolicyWriter {
      *            name of the JSON array
      */
     private void writeJsonArrayStart(String fieldName)
-            throws JsonGenerationException, IOException {
-        generator.writeArrayFieldStart(fieldName);
+            throws IOException {
+        jsonWriter.name(fieldName);
+        jsonWriter.beginArray();
     }
 
     /**
      * Writes the End of Array String to the JSONGenerator.
      */
-    private void writeJsonArrayEnd() throws JsonGenerationException, IOException {
-        generator.writeEndArray();
+    private void writeJsonArrayEnd() throws IOException {
+        jsonWriter.endArray();
     }
 
     /**
@@ -397,8 +389,9 @@ public class JsonPolicyWriter {
      *            value for the field
      */
     private void writeJsonKeyValue(String fieldName, String value)
-            throws JsonGenerationException, IOException {
-        generator.writeStringField(fieldName, value);
+            throws IOException {
+        jsonWriter.name(fieldName);
+        jsonWriter.value(value);
     }
 
     /**

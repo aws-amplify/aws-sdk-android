@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.cognitosync.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Dataset JSON Unmarshaller
@@ -33,54 +31,38 @@ public class DatasetJsonUnmarshaller implements Unmarshaller<Dataset, JsonUnmars
     public Dataset unmarshall(JsonUnmarshallerContext context) throws Exception {
         Dataset dataset = new Dataset();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("IdentityId", targetDepth)) {
-                    context.nextToken();
-                    dataset.setIdentityId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("DatasetName", targetDepth)) {
-                    context.nextToken();
-                    dataset.setDatasetName(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("CreationDate", targetDepth)) {
-                    context.nextToken();
-                    dataset.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("LastModifiedDate", targetDepth)) {
-                    context.nextToken();
-                    dataset.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("LastModifiedBy", targetDepth)) {
-                    context.nextToken();
-                    dataset.setLastModifiedBy(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("DataStorage", targetDepth)) {
-                    context.nextToken();
-                    dataset.setDataStorage(LongJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("NumRecords", targetDepth)) {
-                    context.nextToken();
-                    dataset.setNumRecords(LongJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("IdentityId")) {
+                dataset.setIdentityId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("DatasetName")) {
+                dataset.setDatasetName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("CreationDate")) {
+                dataset.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LastModifiedDate")) {
+                dataset.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LastModifiedBy")) {
+                dataset.setLastModifiedBy(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("DataStorage")) {
+                dataset.setDataStorage(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("NumRecords")) {
+                dataset.setNumRecords(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return dataset;
     }

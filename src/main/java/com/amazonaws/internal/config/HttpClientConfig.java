@@ -14,12 +14,9 @@
  */
 package com.amazonaws.internal.config;
 
-import org.apache.http.annotation.Immutable;
-
 /**
  * AWS HttpClient configuration.
  */
-@Immutable
 public class HttpClientConfig {
     // This class is not strictly necessary for the existing use cases,
     // but allows future expansion of additional configurations to be made

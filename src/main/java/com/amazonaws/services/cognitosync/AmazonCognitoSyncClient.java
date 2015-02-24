@@ -287,6 +287,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the DescribeIdentityUsage service method, as
      *         returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws NotAuthorizedException
@@ -335,6 +336,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the SetIdentityPoolConfiguration service
      *         method, as returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws NotAuthorizedException
@@ -383,6 +385,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the GetIdentityPoolConfiguration service
      *         method, as returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws NotAuthorizedException
@@ -431,6 +434,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the UnsubscribeFromDataset service method,
      *         as returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidConfigurationException
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
@@ -480,6 +484,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the SubscribeToDataset service method, as
      *         returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidConfigurationException
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
@@ -529,6 +534,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the DescribeIdentityPoolUsage service
      *         method, as returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws NotAuthorizedException
@@ -576,6 +582,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the ListDatasets service method, as returned
      *         by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidParameterException
      * @throws NotAuthorizedException
      * @throws InternalErrorException
@@ -623,6 +630,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the ListIdentityPoolUsage service method, as
      *         returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidParameterException
      * @throws NotAuthorizedException
      * @throws InternalErrorException
@@ -716,6 +724,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the DescribeDataset service method, as
      *         returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws NotAuthorizedException
@@ -763,6 +772,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the DeleteDataset service method, as
      *         returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws NotAuthorizedException
@@ -810,6 +820,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return The response from the RegisterDevice service method, as
      *         returned by AmazonCognitoSync.
      * 
+     * @throws TooManyRequestsException
      * @throws InvalidConfigurationException
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException

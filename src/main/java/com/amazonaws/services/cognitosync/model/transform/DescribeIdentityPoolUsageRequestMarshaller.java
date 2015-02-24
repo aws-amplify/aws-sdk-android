@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Describe Identity Pool Usage Request Marshaller

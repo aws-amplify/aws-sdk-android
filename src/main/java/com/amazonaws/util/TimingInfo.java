@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.http.annotation.NotThreadSafe;
-
 /**
  * Used both as a base class and a minimal support of timing info.
  * <p>
@@ -33,7 +31,6 @@ import org.apache.http.annotation.NotThreadSafe;
  * request metric collection is not required during a particular service
  * request/response cycle.
  */
-@NotThreadSafe
 public class TimingInfo {
     static final int UNKNOWN = -1;
     /**

@@ -17,15 +17,12 @@ package com.amazonaws;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.http.annotation.NotThreadSafe;
-
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.metrics.RequestMetricCollector;
 
 /**
  * Base class for all user facing web service requests.
  */
-@NotThreadSafe
 public abstract class AmazonWebServiceRequest {
 
     /**

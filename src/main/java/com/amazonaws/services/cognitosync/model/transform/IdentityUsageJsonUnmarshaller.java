@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.cognitosync.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Identity Usage JSON Unmarshaller
@@ -33,46 +31,32 @@ public class IdentityUsageJsonUnmarshaller implements Unmarshaller<IdentityUsage
     public IdentityUsage unmarshall(JsonUnmarshallerContext context) throws Exception {
         IdentityUsage identityUsage = new IdentityUsage();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("IdentityId", targetDepth)) {
-                    context.nextToken();
-                    identityUsage.setIdentityId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("IdentityPoolId", targetDepth)) {
-                    context.nextToken();
-                    identityUsage.setIdentityPoolId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("LastModifiedDate", targetDepth)) {
-                    context.nextToken();
-                    identityUsage.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("DatasetCount", targetDepth)) {
-                    context.nextToken();
-                    identityUsage.setDatasetCount(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("DataStorage", targetDepth)) {
-                    context.nextToken();
-                    identityUsage.setDataStorage(LongJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("IdentityId")) {
+                identityUsage.setIdentityId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("IdentityPoolId")) {
+                identityUsage.setIdentityPoolId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LastModifiedDate")) {
+                identityUsage.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("DatasetCount")) {
+                identityUsage.setDatasetCount(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("DataStorage")) {
+                identityUsage.setDataStorage(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return identityUsage;
     }

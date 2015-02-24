@@ -23,7 +23,6 @@ import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.http.annotation.NotThreadSafe;
 
 import com.amazonaws.metrics.AwsSdkMetrics;
 import com.amazonaws.metrics.MetricType;
@@ -38,7 +37,6 @@ import com.amazonaws.metrics.RequestMetricCollector;
  * metric collection is required during a particular service request/response
  * cycle.
  */
-@NotThreadSafe
 public class AWSRequestMetricsFullSupport extends AWSRequestMetrics {
     /* Stores some key value pairs. */
     private final Map<String, List<Object>> properties = new HashMap<String, List<Object>>();

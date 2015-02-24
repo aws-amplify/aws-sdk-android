@@ -14,7 +14,11 @@
  */
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
+
+import java.io.IOException;
+import java.io.StringWriter;
 
 /**
  * An opaque token that holds some private state and can be used to resume a
@@ -23,44 +27,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public final class PersistableUpload extends PersistableTransfer {
     static final String TYPE = "upload";
 
-    @JsonProperty
     private final String pauseType = TYPE;
 
     /** The bucket name in Amazon S3 from where the object has to be uploaded. */
-    @JsonProperty
     private final String bucketName;
 
     /** The name of the object in Amazon S3. */
-    @JsonProperty
     private final String key;
 
     /** The file to upload. */
-    @JsonProperty
     private final String file;
 
     /** The multi-part upload id associated with this upload. */
-    @JsonProperty
     private final String multipartUploadId;
 
     /** The part size to be used for the multi-part upload. */
-    @JsonProperty
     private final long partSize;
 
     /** The upper threshold of the file to use multi part upload. */
-    @JsonProperty
     private final long mutlipartUploadThreshold;
 
+    @Deprecated
     public PersistableUpload() {
         this(null, null, null, null, -1, -1);
     }
 
     public PersistableUpload(
-            @JsonProperty(value = "bucketName") String bucketName,
-            @JsonProperty(value = "key") String key,
-            @JsonProperty(value = "file") String file,
-            @JsonProperty(value = "multipartUploadId") String multipartUploadId,
-            @JsonProperty(value = "partSize") long partSize,
-            @JsonProperty(value = "mutlipartUploadThreshold") long mutlipartUploadThreshold) {
+            String bucketName,
+            String key,
+            String file,
+            String multipartUploadId,
+            long partSize,
+            long mutlipartUploadThreshold) {
         this.bucketName = bucketName;
         this.key = key;
         this.file = file;
@@ -115,5 +113,25 @@ public final class PersistableUpload extends PersistableTransfer {
 
     String getPauseType() {
         return pauseType;
+    }
+
+    @Override
+    public String serialize() {
+        StringWriter out = new StringWriter();
+        AwsJsonWriter writer = JsonUtils.getJsonWriter(out);
+        try {
+            writer.beginObject()
+                    .name("pauseType").value(TYPE)
+                    .name("bucketName").value(bucketName)
+                    .name("key").value(key)
+                    .name("file").value(file)
+                    .name("multipartUploadId").value(multipartUploadId)
+                    .name("partSize").value(partSize)
+                    .name("mutlipartUploadThreshold").value(mutlipartUploadThreshold)
+                    .endObject().close();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+        return out.toString();
     }
 }

@@ -15,7 +15,11 @@
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
+
+import java.io.IOException;
+import java.io.StringWriter;
 
 /**
  * An opaque token that holds some private state and can be used to resume a
@@ -25,56 +29,49 @@ public final class PersistableDownload extends PersistableTransfer {
 
     static final String TYPE = "download";
 
-    @JsonProperty
     private final String pauseType = TYPE;
 
     /** The bucket name in Amazon S3 from where the object has to be downloaded. */
-    @JsonProperty
     private final String bucketName;
 
     /** The name of the object in Amazon S3 that has to be downloaded. */
-    @JsonProperty
     private final String key;
 
     /** The version id of the object in Amazon S3 to download. */
-    @JsonProperty
     private final String versionId;
 
     /** Optional member indicating the byte range of data to retrieve */
-    @JsonProperty
     private final long[] range;
 
     /**
      * Optional field that overrides headers on the response.
      */
-    @JsonProperty
     private final ResponseHeaderOverrides responseHeaders;
 
     /**
      * If enabled, the requester is charged for downloading the data from
      * Requester Pays Buckets.
      */
-    @JsonProperty
     private final boolean isRequesterPays;
 
     /**
      * File where the downloaded data is written.
      */
-    @JsonProperty
     private final String file;
 
+    @Deprecated
     public PersistableDownload() {
         this(null, null, null, null, null, false, null);
     }
 
     public PersistableDownload(
-            @JsonProperty(value = "bucketName") String bucketName,
-            @JsonProperty(value = "key") String key,
-            @JsonProperty(value = "versionId") String versionId,
-            @JsonProperty(value = "range") long[] range,
-            @JsonProperty(value = "responseHeaders") ResponseHeaderOverrides responseHeaders,
-            @JsonProperty(value = "isRequesterPays") boolean isRequesterPays,
-            @JsonProperty(value = "file") String file) {
+            String bucketName,
+            String key,
+            String versionId,
+            long[] range,
+            ResponseHeaderOverrides responseHeaders,
+            boolean isRequesterPays,
+            String file) {
         this.bucketName = bucketName;
         this.key = key;
         this.versionId = versionId;
@@ -136,5 +133,41 @@ public final class PersistableDownload extends PersistableTransfer {
 
     String getPauseType() {
         return pauseType;
+    }
+
+    @Override
+    public String serialize() {
+        StringWriter out = new StringWriter();
+        AwsJsonWriter writer = JsonUtils.getJsonWriter(out);
+        try {
+            writer.beginObject()
+                    .name("pauseType").value(TYPE)
+                    .name("bucketName").value(bucketName)
+                    .name("key").value(key)
+                    .name("file").value(file)
+                    .name("versionId").value(versionId)
+                    .name("isRequesterPays").value(isRequesterPays);
+            if (range != null) {
+                writer.name("range").beginArray();
+                for (long r : range) {
+                    writer.value(r);
+                }
+                writer.endArray();
+            }
+            if (responseHeaders != null) {
+                writer.name("responseHeaders").beginObject()
+                        .name("contentType").value(responseHeaders.getContentType())
+                        .name("contentLanguage").value(responseHeaders.getContentLanguage())
+                        .name("expires").value(responseHeaders.getExpires())
+                        .name("cacheControl").value(responseHeaders.getCacheControl())
+                        .name("contentDisposition").value(responseHeaders.getContentDisposition())
+                        .name("contentEncoding").value(responseHeaders.getContentEncoding())
+                .endObject();
+            }
+            writer.endObject().close();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+        return out.toString();
     }
 }

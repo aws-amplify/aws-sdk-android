@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Update Item Request Marshaller
@@ -52,20 +53,20 @@ public class UpdateItemRequestMarshaller implements Marshaller<Request<UpdateIte
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (updateItemRequest.getTableName() != null) {
-                jsonWriter.key("TableName").value(updateItemRequest.getTableName());
+                jsonWriter.name("TableName").value(updateItemRequest.getTableName());
             }
             if (updateItemRequest.getKey() != null) {
-                jsonWriter.key("Key");
-                jsonWriter.object();
+                jsonWriter.name("Key");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, AttributeValue> keyListValue : updateItemRequest.getKey().entrySet()) {
                     if (keyListValue.getValue() != null) {
-                        jsonWriter.key(keyListValue.getKey());
+                        jsonWriter.name(keyListValue.getKey());
 
                         AttributeValueJsonMarshaller.getInstance().marshall(keyListValue.getValue(), jsonWriter);
                     }
@@ -73,21 +74,21 @@ public class UpdateItemRequestMarshaller implements Marshaller<Request<UpdateIte
                 jsonWriter.endObject();
             }
             if (updateItemRequest.getAttributeUpdates() != null) {
-                jsonWriter.key("AttributeUpdates");
-                jsonWriter.object();
+                jsonWriter.name("AttributeUpdates");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, AttributeValueUpdate> attributeUpdatesListValue : updateItemRequest.getAttributeUpdates().entrySet()) {
                     if (attributeUpdatesListValue.getValue() != null) {
-                        jsonWriter.key(attributeUpdatesListValue.getKey());
+                        jsonWriter.name(attributeUpdatesListValue.getKey());
 
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         AttributeValue value = attributeUpdatesListValue.getValue().getValue();
                         if (value != null) {
 
-                            jsonWriter.key("Value");
+                            jsonWriter.name("Value");
                             AttributeValueJsonMarshaller.getInstance().marshall(value, jsonWriter);
                         }
                         if (attributeUpdatesListValue.getValue().getAction() != null) {
-                            jsonWriter.key("Action").value(attributeUpdatesListValue.getValue().getAction());
+                            jsonWriter.name("Action").value(attributeUpdatesListValue.getValue().getAction());
                         }
                         jsonWriter.endObject();
                     }
@@ -95,31 +96,31 @@ public class UpdateItemRequestMarshaller implements Marshaller<Request<UpdateIte
                 jsonWriter.endObject();
             }
             if (updateItemRequest.getExpected() != null) {
-                jsonWriter.key("Expected");
-                jsonWriter.object();
+                jsonWriter.name("Expected");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, ExpectedAttributeValue> expectedListValue : updateItemRequest.getExpected().entrySet()) {
                     if (expectedListValue.getValue() != null) {
-                        jsonWriter.key(expectedListValue.getKey());
+                        jsonWriter.name(expectedListValue.getKey());
 
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         AttributeValue value = expectedListValue.getValue().getValue();
                         if (value != null) {
 
-                            jsonWriter.key("Value");
+                            jsonWriter.name("Value");
                             AttributeValueJsonMarshaller.getInstance().marshall(value, jsonWriter);
                         }
                         if (expectedListValue.getValue().isExists() != null) {
-                            jsonWriter.key("Exists").value(expectedListValue.getValue().isExists());
+                            jsonWriter.name("Exists").value(expectedListValue.getValue().isExists());
                         }
                         if (expectedListValue.getValue().getComparisonOperator() != null) {
-                            jsonWriter.key("ComparisonOperator").value(expectedListValue.getValue().getComparisonOperator());
+                            jsonWriter.name("ComparisonOperator").value(expectedListValue.getValue().getComparisonOperator());
                         }
 
                         com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue> attributeValueListList = (com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue>)(expectedListValue.getValue().getAttributeValueList());
                         if (attributeValueListList != null && !(attributeValueListList.isAutoConstruct() && attributeValueListList.isEmpty())) {
 
-                            jsonWriter.key("AttributeValueList");
-                            jsonWriter.array();
+                            jsonWriter.name("AttributeValueList");
+                            jsonWriter.beginArray();
 
                             for (AttributeValue attributeValueListListValue : attributeValueListList) {
                                 if (attributeValueListListValue != null) {
@@ -134,29 +135,29 @@ public class UpdateItemRequestMarshaller implements Marshaller<Request<UpdateIte
                 jsonWriter.endObject();
             }
             if (updateItemRequest.getConditionalOperator() != null) {
-                jsonWriter.key("ConditionalOperator").value(updateItemRequest.getConditionalOperator());
+                jsonWriter.name("ConditionalOperator").value(updateItemRequest.getConditionalOperator());
             }
             if (updateItemRequest.getReturnValues() != null) {
-                jsonWriter.key("ReturnValues").value(updateItemRequest.getReturnValues());
+                jsonWriter.name("ReturnValues").value(updateItemRequest.getReturnValues());
             }
             if (updateItemRequest.getReturnConsumedCapacity() != null) {
-                jsonWriter.key("ReturnConsumedCapacity").value(updateItemRequest.getReturnConsumedCapacity());
+                jsonWriter.name("ReturnConsumedCapacity").value(updateItemRequest.getReturnConsumedCapacity());
             }
             if (updateItemRequest.getReturnItemCollectionMetrics() != null) {
-                jsonWriter.key("ReturnItemCollectionMetrics").value(updateItemRequest.getReturnItemCollectionMetrics());
+                jsonWriter.name("ReturnItemCollectionMetrics").value(updateItemRequest.getReturnItemCollectionMetrics());
             }
             if (updateItemRequest.getUpdateExpression() != null) {
-                jsonWriter.key("UpdateExpression").value(updateItemRequest.getUpdateExpression());
+                jsonWriter.name("UpdateExpression").value(updateItemRequest.getUpdateExpression());
             }
             if (updateItemRequest.getConditionExpression() != null) {
-                jsonWriter.key("ConditionExpression").value(updateItemRequest.getConditionExpression());
+                jsonWriter.name("ConditionExpression").value(updateItemRequest.getConditionExpression());
             }
             if (updateItemRequest.getExpressionAttributeNames() != null) {
-                jsonWriter.key("ExpressionAttributeNames");
-                jsonWriter.object();
+                jsonWriter.name("ExpressionAttributeNames");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, String> expressionAttributeNamesListValue : updateItemRequest.getExpressionAttributeNames().entrySet()) {
                     if (expressionAttributeNamesListValue.getValue() != null) {
-                        jsonWriter.key(expressionAttributeNamesListValue.getKey());
+                        jsonWriter.name(expressionAttributeNamesListValue.getKey());
 
                         jsonWriter.value(expressionAttributeNamesListValue.getValue());
                     }
@@ -164,11 +165,11 @@ public class UpdateItemRequestMarshaller implements Marshaller<Request<UpdateIte
                 jsonWriter.endObject();
             }
             if (updateItemRequest.getExpressionAttributeValues() != null) {
-                jsonWriter.key("ExpressionAttributeValues");
-                jsonWriter.object();
+                jsonWriter.name("ExpressionAttributeValues");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, AttributeValue> expressionAttributeValuesListValue : updateItemRequest.getExpressionAttributeValues().entrySet()) {
                     if (expressionAttributeValuesListValue.getValue() != null) {
-                        jsonWriter.key(expressionAttributeValuesListValue.getKey());
+                        jsonWriter.name(expressionAttributeValuesListValue.getKey());
 
                         AttributeValueJsonMarshaller.getInstance().marshall(expressionAttributeValuesListValue.getValue(), jsonWriter);
                     }
@@ -176,15 +177,16 @@ public class UpdateItemRequestMarshaller implements Marshaller<Request<UpdateIte
                 jsonWriter.endObject();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
-import org.apache.http.annotation.NotThreadSafe;
 
 /**
  * In contrast to {@link TimingInfo}, which is intended to be a minimal support
@@ -31,7 +30,6 @@ import org.apache.http.annotation.NotThreadSafe;
  * request metric collection is required during a particular service
  * request/response cycle.
  */
-@NotThreadSafe
 class TimingInfoFullSupport extends TimingInfo {
     private final Map<String, List<TimingInfo>> subMeasurementsByName = new HashMap<String, List<TimingInfo>>();
     private final Map<String, Number> countersByName = new HashMap<String, Number>();

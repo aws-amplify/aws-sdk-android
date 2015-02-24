@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Put Events Request Marshaller
@@ -74,55 +75,55 @@ public class PutEventsRequestMarshaller implements Marshaller<Request<PutEventsR
         request.setResourcePath(uriResourcePath);
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
+            jsonWriter.beginObject();
 
             com.amazonaws.internal.ListWithAutoConstructFlag<Event> eventsList = (com.amazonaws.internal.ListWithAutoConstructFlag<Event>)(putEventsRequest.getEvents());
             if (eventsList != null && !(eventsList.isAutoConstruct() && eventsList.isEmpty())) {
 
-                jsonWriter.key("events");
-                jsonWriter.array();
+                jsonWriter.name("events");
+                jsonWriter.beginArray();
 
                 for (Event eventsListValue : eventsList) {
                     if (eventsListValue != null) {
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         if (eventsListValue.getEventType() != null) {
-                            jsonWriter.key("eventType").value(eventsListValue.getEventType());
+                            jsonWriter.name("eventType").value(eventsListValue.getEventType());
                         }
                         if (eventsListValue.getTimestamp() != null) {
-                            jsonWriter.key("timestamp").value(eventsListValue.getTimestamp());
+                            jsonWriter.name("timestamp").value(eventsListValue.getTimestamp());
                         }
                         Session session = eventsListValue.getSession();
                         if (session != null) {
 
-                            jsonWriter.key("session");
-                            jsonWriter.object();
+                            jsonWriter.name("session");
+                            jsonWriter.beginObject();
 
                             if (session.getId() != null) {
-                                jsonWriter.key("id").value(session.getId());
+                                jsonWriter.name("id").value(session.getId());
                             }
                             if (session.getDuration() != null) {
-                                jsonWriter.key("duration").value(session.getDuration());
+                                jsonWriter.name("duration").value(session.getDuration());
                             }
                             if (session.getStartTimestamp() != null) {
-                                jsonWriter.key("startTimestamp").value(session.getStartTimestamp());
+                                jsonWriter.name("startTimestamp").value(session.getStartTimestamp());
                             }
                             if (session.getStopTimestamp() != null) {
-                                jsonWriter.key("stopTimestamp").value(session.getStopTimestamp());
+                                jsonWriter.name("stopTimestamp").value(session.getStopTimestamp());
                             }
                             jsonWriter.endObject();
                         }
                         if (eventsListValue.getVersion() != null) {
-                            jsonWriter.key("version").value(eventsListValue.getVersion());
+                            jsonWriter.name("version").value(eventsListValue.getVersion());
                         }
                         if (eventsListValue.getAttributes() != null) {
-                            jsonWriter.key("attributes");
-                            jsonWriter.object();
+                            jsonWriter.name("attributes");
+                            jsonWriter.beginObject();
                             for (Map.Entry<String, String> attributesListValue : eventsListValue.getAttributes().entrySet()) {
                                 if (attributesListValue.getValue() != null) {
-                                    jsonWriter.key(attributesListValue.getKey());
+                                    jsonWriter.name(attributesListValue.getKey());
 
                                     jsonWriter.value(attributesListValue.getValue());
                                 }
@@ -130,11 +131,11 @@ public class PutEventsRequestMarshaller implements Marshaller<Request<PutEventsR
                             jsonWriter.endObject();
                         }
                         if (eventsListValue.getMetrics() != null) {
-                            jsonWriter.key("metrics");
-                            jsonWriter.object();
+                            jsonWriter.name("metrics");
+                            jsonWriter.beginObject();
                             for (Map.Entry<String, Double> metricsListValue : eventsListValue.getMetrics().entrySet()) {
                                 if (metricsListValue.getValue() != null) {
-                                    jsonWriter.key(metricsListValue.getKey());
+                                    jsonWriter.name(metricsListValue.getKey());
 
                                     jsonWriter.value(metricsListValue.getValue());
                                 }
@@ -147,15 +148,16 @@ public class PutEventsRequestMarshaller implements Marshaller<Request<PutEventsR
                 jsonWriter.endArray();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

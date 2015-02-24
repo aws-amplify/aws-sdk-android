@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Get Shard Iterator Request Marshaller
@@ -52,33 +53,34 @@ public class GetShardIteratorRequestMarshaller implements Marshaller<Request<Get
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (getShardIteratorRequest.getStreamName() != null) {
-                jsonWriter.key("StreamName").value(getShardIteratorRequest.getStreamName());
+                jsonWriter.name("StreamName").value(getShardIteratorRequest.getStreamName());
             }
             if (getShardIteratorRequest.getShardId() != null) {
-                jsonWriter.key("ShardId").value(getShardIteratorRequest.getShardId());
+                jsonWriter.name("ShardId").value(getShardIteratorRequest.getShardId());
             }
             if (getShardIteratorRequest.getShardIteratorType() != null) {
-                jsonWriter.key("ShardIteratorType").value(getShardIteratorRequest.getShardIteratorType());
+                jsonWriter.name("ShardIteratorType").value(getShardIteratorRequest.getShardIteratorType());
             }
             if (getShardIteratorRequest.getStartingSequenceNumber() != null) {
-                jsonWriter.key("StartingSequenceNumber").value(getShardIteratorRequest.getStartingSequenceNumber());
+                jsonWriter.name("StartingSequenceNumber").value(getShardIteratorRequest.getStartingSequenceNumber());
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.1");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

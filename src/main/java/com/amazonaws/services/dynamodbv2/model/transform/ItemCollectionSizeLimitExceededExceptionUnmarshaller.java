@@ -15,8 +15,8 @@
 package com.amazonaws.services.dynamodbv2.model.transform;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JSONObject;
 
 import com.amazonaws.services.dynamodbv2.model.ItemCollectionSizeLimitExceededException;
 
@@ -27,19 +27,13 @@ public class ItemCollectionSizeLimitExceededExceptionUnmarshaller extends JsonEr
     }
 
     @Override
-    public boolean match(String errorTypeFromHeader, JSONObject json) throws Exception {
-        if (errorTypeFromHeader == null) {
-            // Parse error type from the JSON content if it's not available in the response headers
-            String errorCodeFromContent = parseErrorCode(json);
-            return (errorCodeFromContent != null && errorCodeFromContent.equals("ItemCollectionSizeLimitExceededException"));
-        } else {
-            return errorTypeFromHeader.equals("ItemCollectionSizeLimitExceededException");
-        }
+    public boolean match(JsonErrorResponse error) throws Exception {
+        return error.getErrorCode().equals("ItemCollectionSizeLimitExceededException");
     }
 
     @Override
-    public AmazonServiceException unmarshall(JSONObject json) throws Exception {
-        ItemCollectionSizeLimitExceededException e = (ItemCollectionSizeLimitExceededException)super.unmarshall(json);
+    public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+        ItemCollectionSizeLimitExceededException e = (ItemCollectionSizeLimitExceededException)super.unmarshall(error);
         e.setErrorCode("ItemCollectionSizeLimitExceededException");
 
         return e;

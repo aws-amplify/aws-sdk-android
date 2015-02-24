@@ -15,8 +15,8 @@
 package com.amazonaws.services.dynamodbv2.model.transform;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JSONObject;
 
 import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException;
 
@@ -27,19 +27,13 @@ public class ConditionalCheckFailedExceptionUnmarshaller extends JsonErrorUnmars
     }
 
     @Override
-    public boolean match(String errorTypeFromHeader, JSONObject json) throws Exception {
-        if (errorTypeFromHeader == null) {
-            // Parse error type from the JSON content if it's not available in the response headers
-            String errorCodeFromContent = parseErrorCode(json);
-            return (errorCodeFromContent != null && errorCodeFromContent.equals("ConditionalCheckFailedException"));
-        } else {
-            return errorTypeFromHeader.equals("ConditionalCheckFailedException");
-        }
+    public boolean match(JsonErrorResponse error) throws Exception {
+        return error.getErrorCode().equals("ConditionalCheckFailedException");
     }
 
     @Override
-    public AmazonServiceException unmarshall(JSONObject json) throws Exception {
-        ConditionalCheckFailedException e = (ConditionalCheckFailedException)super.unmarshall(json);
+    public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+        ConditionalCheckFailedException e = (ConditionalCheckFailedException)super.unmarshall(error);
         e.setErrorCode("ConditionalCheckFailedException");
 
         return e;

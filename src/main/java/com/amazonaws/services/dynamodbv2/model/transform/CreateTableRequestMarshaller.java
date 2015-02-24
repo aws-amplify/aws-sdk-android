@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Create Table Request Marshaller
@@ -52,25 +53,25 @@ public class CreateTableRequestMarshaller implements Marshaller<Request<CreateTa
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
+            jsonWriter.beginObject();
 
             com.amazonaws.internal.ListWithAutoConstructFlag<AttributeDefinition> attributeDefinitionsList = (com.amazonaws.internal.ListWithAutoConstructFlag<AttributeDefinition>)(createTableRequest.getAttributeDefinitions());
             if (attributeDefinitionsList != null && !(attributeDefinitionsList.isAutoConstruct() && attributeDefinitionsList.isEmpty())) {
 
-                jsonWriter.key("AttributeDefinitions");
-                jsonWriter.array();
+                jsonWriter.name("AttributeDefinitions");
+                jsonWriter.beginArray();
 
                 for (AttributeDefinition attributeDefinitionsListValue : attributeDefinitionsList) {
                     if (attributeDefinitionsListValue != null) {
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         if (attributeDefinitionsListValue.getAttributeName() != null) {
-                            jsonWriter.key("AttributeName").value(attributeDefinitionsListValue.getAttributeName());
+                            jsonWriter.name("AttributeName").value(attributeDefinitionsListValue.getAttributeName());
                         }
                         if (attributeDefinitionsListValue.getAttributeType() != null) {
-                            jsonWriter.key("AttributeType").value(attributeDefinitionsListValue.getAttributeType());
+                            jsonWriter.name("AttributeType").value(attributeDefinitionsListValue.getAttributeType());
                         }
                         jsonWriter.endObject();
                     }
@@ -78,23 +79,23 @@ public class CreateTableRequestMarshaller implements Marshaller<Request<CreateTa
                 jsonWriter.endArray();
             }
             if (createTableRequest.getTableName() != null) {
-                jsonWriter.key("TableName").value(createTableRequest.getTableName());
+                jsonWriter.name("TableName").value(createTableRequest.getTableName());
             }
 
             com.amazonaws.internal.ListWithAutoConstructFlag<KeySchemaElement> keySchemaList = (com.amazonaws.internal.ListWithAutoConstructFlag<KeySchemaElement>)(createTableRequest.getKeySchema());
             if (keySchemaList != null && !(keySchemaList.isAutoConstruct() && keySchemaList.isEmpty())) {
 
-                jsonWriter.key("KeySchema");
-                jsonWriter.array();
+                jsonWriter.name("KeySchema");
+                jsonWriter.beginArray();
 
                 for (KeySchemaElement keySchemaListValue : keySchemaList) {
                     if (keySchemaListValue != null) {
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         if (keySchemaListValue.getAttributeName() != null) {
-                            jsonWriter.key("AttributeName").value(keySchemaListValue.getAttributeName());
+                            jsonWriter.name("AttributeName").value(keySchemaListValue.getAttributeName());
                         }
                         if (keySchemaListValue.getKeyType() != null) {
-                            jsonWriter.key("KeyType").value(keySchemaListValue.getKeyType());
+                            jsonWriter.name("KeyType").value(keySchemaListValue.getKeyType());
                         }
                         jsonWriter.endObject();
                     }
@@ -105,30 +106,30 @@ public class CreateTableRequestMarshaller implements Marshaller<Request<CreateTa
             com.amazonaws.internal.ListWithAutoConstructFlag<LocalSecondaryIndex> localSecondaryIndexesList = (com.amazonaws.internal.ListWithAutoConstructFlag<LocalSecondaryIndex>)(createTableRequest.getLocalSecondaryIndexes());
             if (localSecondaryIndexesList != null && !(localSecondaryIndexesList.isAutoConstruct() && localSecondaryIndexesList.isEmpty())) {
 
-                jsonWriter.key("LocalSecondaryIndexes");
-                jsonWriter.array();
+                jsonWriter.name("LocalSecondaryIndexes");
+                jsonWriter.beginArray();
 
                 for (LocalSecondaryIndex localSecondaryIndexesListValue : localSecondaryIndexesList) {
                     if (localSecondaryIndexesListValue != null) {
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         if (localSecondaryIndexesListValue.getIndexName() != null) {
-                            jsonWriter.key("IndexName").value(localSecondaryIndexesListValue.getIndexName());
+                            jsonWriter.name("IndexName").value(localSecondaryIndexesListValue.getIndexName());
                         }
 
                         com.amazonaws.internal.ListWithAutoConstructFlag<KeySchemaElement> keySchema2List = (com.amazonaws.internal.ListWithAutoConstructFlag<KeySchemaElement>)(localSecondaryIndexesListValue.getKeySchema());
                         if (keySchema2List != null && !(keySchema2List.isAutoConstruct() && keySchema2List.isEmpty())) {
 
-                            jsonWriter.key("KeySchema");
-                            jsonWriter.array();
+                            jsonWriter.name("KeySchema");
+                            jsonWriter.beginArray();
 
                             for (KeySchemaElement keySchema2ListValue : keySchema2List) {
                                 if (keySchema2ListValue != null) {
-                                    jsonWriter.object();
+                                    jsonWriter.beginObject();
                                     if (keySchema2ListValue.getAttributeName() != null) {
-                                        jsonWriter.key("AttributeName").value(keySchema2ListValue.getAttributeName());
+                                        jsonWriter.name("AttributeName").value(keySchema2ListValue.getAttributeName());
                                     }
                                     if (keySchema2ListValue.getKeyType() != null) {
-                                        jsonWriter.key("KeyType").value(keySchema2ListValue.getKeyType());
+                                        jsonWriter.name("KeyType").value(keySchema2ListValue.getKeyType());
                                     }
                                     jsonWriter.endObject();
                                 }
@@ -138,18 +139,18 @@ public class CreateTableRequestMarshaller implements Marshaller<Request<CreateTa
                         Projection projection = localSecondaryIndexesListValue.getProjection();
                         if (projection != null) {
 
-                            jsonWriter.key("Projection");
-                            jsonWriter.object();
+                            jsonWriter.name("Projection");
+                            jsonWriter.beginObject();
 
                             if (projection.getProjectionType() != null) {
-                                jsonWriter.key("ProjectionType").value(projection.getProjectionType());
+                                jsonWriter.name("ProjectionType").value(projection.getProjectionType());
                             }
 
                             com.amazonaws.internal.ListWithAutoConstructFlag<String> nonKeyAttributesList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(projection.getNonKeyAttributes());
                             if (nonKeyAttributesList != null && !(nonKeyAttributesList.isAutoConstruct() && nonKeyAttributesList.isEmpty())) {
 
-                                jsonWriter.key("NonKeyAttributes");
-                                jsonWriter.array();
+                                jsonWriter.name("NonKeyAttributes");
+                                jsonWriter.beginArray();
 
                                 for (String nonKeyAttributesListValue : nonKeyAttributesList) {
                                     if (nonKeyAttributesListValue != null) {
@@ -169,30 +170,30 @@ public class CreateTableRequestMarshaller implements Marshaller<Request<CreateTa
             com.amazonaws.internal.ListWithAutoConstructFlag<GlobalSecondaryIndex> globalSecondaryIndexesList = (com.amazonaws.internal.ListWithAutoConstructFlag<GlobalSecondaryIndex>)(createTableRequest.getGlobalSecondaryIndexes());
             if (globalSecondaryIndexesList != null && !(globalSecondaryIndexesList.isAutoConstruct() && globalSecondaryIndexesList.isEmpty())) {
 
-                jsonWriter.key("GlobalSecondaryIndexes");
-                jsonWriter.array();
+                jsonWriter.name("GlobalSecondaryIndexes");
+                jsonWriter.beginArray();
 
                 for (GlobalSecondaryIndex globalSecondaryIndexesListValue : globalSecondaryIndexesList) {
                     if (globalSecondaryIndexesListValue != null) {
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         if (globalSecondaryIndexesListValue.getIndexName() != null) {
-                            jsonWriter.key("IndexName").value(globalSecondaryIndexesListValue.getIndexName());
+                            jsonWriter.name("IndexName").value(globalSecondaryIndexesListValue.getIndexName());
                         }
 
                         com.amazonaws.internal.ListWithAutoConstructFlag<KeySchemaElement> keySchema2List = (com.amazonaws.internal.ListWithAutoConstructFlag<KeySchemaElement>)(globalSecondaryIndexesListValue.getKeySchema());
                         if (keySchema2List != null && !(keySchema2List.isAutoConstruct() && keySchema2List.isEmpty())) {
 
-                            jsonWriter.key("KeySchema");
-                            jsonWriter.array();
+                            jsonWriter.name("KeySchema");
+                            jsonWriter.beginArray();
 
                             for (KeySchemaElement keySchema2ListValue : keySchema2List) {
                                 if (keySchema2ListValue != null) {
-                                    jsonWriter.object();
+                                    jsonWriter.beginObject();
                                     if (keySchema2ListValue.getAttributeName() != null) {
-                                        jsonWriter.key("AttributeName").value(keySchema2ListValue.getAttributeName());
+                                        jsonWriter.name("AttributeName").value(keySchema2ListValue.getAttributeName());
                                     }
                                     if (keySchema2ListValue.getKeyType() != null) {
-                                        jsonWriter.key("KeyType").value(keySchema2ListValue.getKeyType());
+                                        jsonWriter.name("KeyType").value(keySchema2ListValue.getKeyType());
                                     }
                                     jsonWriter.endObject();
                                 }
@@ -202,18 +203,18 @@ public class CreateTableRequestMarshaller implements Marshaller<Request<CreateTa
                         Projection projection = globalSecondaryIndexesListValue.getProjection();
                         if (projection != null) {
 
-                            jsonWriter.key("Projection");
-                            jsonWriter.object();
+                            jsonWriter.name("Projection");
+                            jsonWriter.beginObject();
 
                             if (projection.getProjectionType() != null) {
-                                jsonWriter.key("ProjectionType").value(projection.getProjectionType());
+                                jsonWriter.name("ProjectionType").value(projection.getProjectionType());
                             }
 
                             com.amazonaws.internal.ListWithAutoConstructFlag<String> nonKeyAttributesList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(projection.getNonKeyAttributes());
                             if (nonKeyAttributesList != null && !(nonKeyAttributesList.isAutoConstruct() && nonKeyAttributesList.isEmpty())) {
 
-                                jsonWriter.key("NonKeyAttributes");
-                                jsonWriter.array();
+                                jsonWriter.name("NonKeyAttributes");
+                                jsonWriter.beginArray();
 
                                 for (String nonKeyAttributesListValue : nonKeyAttributesList) {
                                     if (nonKeyAttributesListValue != null) {
@@ -227,14 +228,14 @@ public class CreateTableRequestMarshaller implements Marshaller<Request<CreateTa
                         ProvisionedThroughput provisionedThroughput = globalSecondaryIndexesListValue.getProvisionedThroughput();
                         if (provisionedThroughput != null) {
 
-                            jsonWriter.key("ProvisionedThroughput");
-                            jsonWriter.object();
+                            jsonWriter.name("ProvisionedThroughput");
+                            jsonWriter.beginObject();
 
                             if (provisionedThroughput.getReadCapacityUnits() != null) {
-                                jsonWriter.key("ReadCapacityUnits").value(provisionedThroughput.getReadCapacityUnits());
+                                jsonWriter.name("ReadCapacityUnits").value(provisionedThroughput.getReadCapacityUnits());
                             }
                             if (provisionedThroughput.getWriteCapacityUnits() != null) {
-                                jsonWriter.key("WriteCapacityUnits").value(provisionedThroughput.getWriteCapacityUnits());
+                                jsonWriter.name("WriteCapacityUnits").value(provisionedThroughput.getWriteCapacityUnits());
                             }
                             jsonWriter.endObject();
                         }
@@ -246,27 +247,28 @@ public class CreateTableRequestMarshaller implements Marshaller<Request<CreateTa
             ProvisionedThroughput provisionedThroughput = createTableRequest.getProvisionedThroughput();
             if (provisionedThroughput != null) {
 
-                jsonWriter.key("ProvisionedThroughput");
-                jsonWriter.object();
+                jsonWriter.name("ProvisionedThroughput");
+                jsonWriter.beginObject();
 
                 if (provisionedThroughput.getReadCapacityUnits() != null) {
-                    jsonWriter.key("ReadCapacityUnits").value(provisionedThroughput.getReadCapacityUnits());
+                    jsonWriter.name("ReadCapacityUnits").value(provisionedThroughput.getReadCapacityUnits());
                 }
                 if (provisionedThroughput.getWriteCapacityUnits() != null) {
-                    jsonWriter.key("WriteCapacityUnits").value(provisionedThroughput.getWriteCapacityUnits());
+                    jsonWriter.name("WriteCapacityUnits").value(provisionedThroughput.getWriteCapacityUnits());
                 }
                 jsonWriter.endObject();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

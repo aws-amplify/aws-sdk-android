@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Update Identity Pool Request Marshaller
@@ -52,26 +53,26 @@ public class UpdateIdentityPoolRequestMarshaller implements Marshaller<Request<U
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (updateIdentityPoolRequest.getIdentityPoolId() != null) {
-                jsonWriter.key("IdentityPoolId").value(updateIdentityPoolRequest.getIdentityPoolId());
+                jsonWriter.name("IdentityPoolId").value(updateIdentityPoolRequest.getIdentityPoolId());
             }
             if (updateIdentityPoolRequest.getIdentityPoolName() != null) {
-                jsonWriter.key("IdentityPoolName").value(updateIdentityPoolRequest.getIdentityPoolName());
+                jsonWriter.name("IdentityPoolName").value(updateIdentityPoolRequest.getIdentityPoolName());
             }
             if (updateIdentityPoolRequest.isAllowUnauthenticatedIdentities() != null) {
-                jsonWriter.key("AllowUnauthenticatedIdentities").value(updateIdentityPoolRequest.isAllowUnauthenticatedIdentities());
+                jsonWriter.name("AllowUnauthenticatedIdentities").value(updateIdentityPoolRequest.isAllowUnauthenticatedIdentities());
             }
             if (updateIdentityPoolRequest.getSupportedLoginProviders() != null) {
-                jsonWriter.key("SupportedLoginProviders");
-                jsonWriter.object();
+                jsonWriter.name("SupportedLoginProviders");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, String> supportedLoginProvidersListValue : updateIdentityPoolRequest.getSupportedLoginProviders().entrySet()) {
                     if (supportedLoginProvidersListValue.getValue() != null) {
-                        jsonWriter.key(supportedLoginProvidersListValue.getKey());
+                        jsonWriter.name(supportedLoginProvidersListValue.getKey());
 
                         jsonWriter.value(supportedLoginProvidersListValue.getValue());
                     }
@@ -79,14 +80,14 @@ public class UpdateIdentityPoolRequestMarshaller implements Marshaller<Request<U
                 jsonWriter.endObject();
             }
             if (updateIdentityPoolRequest.getDeveloperProviderName() != null) {
-                jsonWriter.key("DeveloperProviderName").value(updateIdentityPoolRequest.getDeveloperProviderName());
+                jsonWriter.name("DeveloperProviderName").value(updateIdentityPoolRequest.getDeveloperProviderName());
             }
 
             com.amazonaws.internal.ListWithAutoConstructFlag<String> openIdConnectProviderARNsList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(updateIdentityPoolRequest.getOpenIdConnectProviderARNs());
             if (openIdConnectProviderARNsList != null && !(openIdConnectProviderARNsList.isAutoConstruct() && openIdConnectProviderARNsList.isEmpty())) {
 
-                jsonWriter.key("OpenIdConnectProviderARNs");
-                jsonWriter.array();
+                jsonWriter.name("OpenIdConnectProviderARNs");
+                jsonWriter.beginArray();
 
                 for (String openIdConnectProviderARNsListValue : openIdConnectProviderARNsList) {
                     if (openIdConnectProviderARNsListValue != null) {
@@ -96,15 +97,16 @@ public class UpdateIdentityPoolRequestMarshaller implements Marshaller<Request<U
                 jsonWriter.endArray();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

@@ -15,8 +15,8 @@
 package com.amazonaws.services.kinesis.model.transform;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JSONObject;
 
 import com.amazonaws.services.kinesis.model.InvalidArgumentException;
 
@@ -27,19 +27,13 @@ public class InvalidArgumentExceptionUnmarshaller extends JsonErrorUnmarshaller 
     }
 
     @Override
-    public boolean match(String errorTypeFromHeader, JSONObject json) throws Exception {
-        if (errorTypeFromHeader == null) {
-            // Parse error type from the JSON content if it's not available in the response headers
-            String errorCodeFromContent = parseErrorCode(json);
-            return (errorCodeFromContent != null && errorCodeFromContent.equals("InvalidArgumentException"));
-        } else {
-            return errorTypeFromHeader.equals("InvalidArgumentException");
-        }
+    public boolean match(JsonErrorResponse error) throws Exception {
+        return error.getErrorCode().equals("InvalidArgumentException");
     }
 
     @Override
-    public AmazonServiceException unmarshall(JSONObject json) throws Exception {
-        InvalidArgumentException e = (InvalidArgumentException)super.unmarshall(json);
+    public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+        InvalidArgumentException e = (InvalidArgumentException)super.unmarshall(error);
         e.setErrorCode("InvalidArgumentException");
 
         return e;

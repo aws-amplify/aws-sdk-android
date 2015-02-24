@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Batch Write Item Request Marshaller
@@ -52,34 +53,34 @@ public class BatchWriteItemRequestMarshaller implements Marshaller<Request<Batch
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (batchWriteItemRequest.getRequestItems() != null) {
-                jsonWriter.key("RequestItems");
-                jsonWriter.object();
+                jsonWriter.name("RequestItems");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, java.util.List<WriteRequest>> requestItemsListValue : batchWriteItemRequest.getRequestItems().entrySet()) {
                     if (requestItemsListValue.getValue() != null) {
-                        jsonWriter.key(requestItemsListValue.getKey());
+                        jsonWriter.name(requestItemsListValue.getKey());
 
-                        jsonWriter.array();
+                        jsonWriter.beginArray();
                         for (WriteRequest valueListValue : requestItemsListValue.getValue()) {
                             if (valueListValue != null) {
-                                jsonWriter.object();
+                                jsonWriter.beginObject();
                                 PutRequest putRequest = valueListValue.getPutRequest();
                                 if (putRequest != null) {
 
-                                    jsonWriter.key("PutRequest");
-                                    jsonWriter.object();
+                                    jsonWriter.name("PutRequest");
+                                    jsonWriter.beginObject();
 
                                     if (putRequest.getItem() != null) {
-                                        jsonWriter.key("Item");
-                                        jsonWriter.object();
+                                        jsonWriter.name("Item");
+                                        jsonWriter.beginObject();
                                         for (Map.Entry<String, AttributeValue> itemListValue : putRequest.getItem().entrySet()) {
                                             if (itemListValue.getValue() != null) {
-                                                jsonWriter.key(itemListValue.getKey());
+                                                jsonWriter.name(itemListValue.getKey());
 
                                                 AttributeValueJsonMarshaller.getInstance().marshall(itemListValue.getValue(), jsonWriter);
                                             }
@@ -91,15 +92,15 @@ public class BatchWriteItemRequestMarshaller implements Marshaller<Request<Batch
                                 DeleteRequest deleteRequest = valueListValue.getDeleteRequest();
                                 if (deleteRequest != null) {
 
-                                    jsonWriter.key("DeleteRequest");
-                                    jsonWriter.object();
+                                    jsonWriter.name("DeleteRequest");
+                                    jsonWriter.beginObject();
 
                                     if (deleteRequest.getKey() != null) {
-                                        jsonWriter.key("Key");
-                                        jsonWriter.object();
+                                        jsonWriter.name("Key");
+                                        jsonWriter.beginObject();
                                         for (Map.Entry<String, AttributeValue> keyListValue : deleteRequest.getKey().entrySet()) {
                                             if (keyListValue.getValue() != null) {
-                                                jsonWriter.key(keyListValue.getKey());
+                                                jsonWriter.name(keyListValue.getKey());
 
                                                 AttributeValueJsonMarshaller.getInstance().marshall(keyListValue.getValue(), jsonWriter);
                                             }
@@ -117,21 +118,22 @@ public class BatchWriteItemRequestMarshaller implements Marshaller<Request<Batch
                 jsonWriter.endObject();
             }
             if (batchWriteItemRequest.getReturnConsumedCapacity() != null) {
-                jsonWriter.key("ReturnConsumedCapacity").value(batchWriteItemRequest.getReturnConsumedCapacity());
+                jsonWriter.name("ReturnConsumedCapacity").value(batchWriteItemRequest.getReturnConsumedCapacity());
             }
             if (batchWriteItemRequest.getReturnItemCollectionMetrics() != null) {
-                jsonWriter.key("ReturnItemCollectionMetrics").value(batchWriteItemRequest.getReturnItemCollectionMetrics());
+                jsonWriter.name("ReturnItemCollectionMetrics").value(batchWriteItemRequest.getReturnItemCollectionMetrics());
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

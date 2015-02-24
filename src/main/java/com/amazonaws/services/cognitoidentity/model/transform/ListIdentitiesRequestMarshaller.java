@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * List Identities Request Marshaller
@@ -52,30 +53,31 @@ public class ListIdentitiesRequestMarshaller implements Marshaller<Request<ListI
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (listIdentitiesRequest.getIdentityPoolId() != null) {
-                jsonWriter.key("IdentityPoolId").value(listIdentitiesRequest.getIdentityPoolId());
+                jsonWriter.name("IdentityPoolId").value(listIdentitiesRequest.getIdentityPoolId());
             }
             if (listIdentitiesRequest.getMaxResults() != null) {
-                jsonWriter.key("MaxResults").value(listIdentitiesRequest.getMaxResults());
+                jsonWriter.name("MaxResults").value(listIdentitiesRequest.getMaxResults());
             }
             if (listIdentitiesRequest.getNextToken() != null) {
-                jsonWriter.key("NextToken").value(listIdentitiesRequest.getNextToken());
+                jsonWriter.name("NextToken").value(listIdentitiesRequest.getNextToken());
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

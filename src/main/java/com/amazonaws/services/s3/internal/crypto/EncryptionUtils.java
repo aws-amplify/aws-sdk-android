@@ -26,7 +26,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
 import java.security.SecureRandom;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.crypto.Cipher;
@@ -55,8 +54,7 @@ import com.amazonaws.services.s3.model.StaticEncryptionMaterialsProvider;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.LengthCheckInputStream;
-import com.amazonaws.util.json.JSONException;
-import com.amazonaws.util.json.JSONObject;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * The EncryptionUtils class encrypts and decrypts data stored in S3.  It can be used to prepare
@@ -191,43 +189,39 @@ public class EncryptionUtils {
      *      A non-null instruction object containing encryption information
      */
     public static EncryptionInstruction buildInstructionFromInstructionFile(S3Object instructionFile, EncryptionMaterialsProvider materialsProvider, Provider cryptoProvider) {
-        JSONObject instructionJSON = parseJSONInstruction(instructionFile);
-        try {
-            // Get fields from instruction object
-            String encryptedSymmetricKeyB64 = instructionJSON.getString(Headers.CRYPTO_KEY);
-            String ivB64 = instructionJSON.getString(Headers.CRYPTO_IV);
-            String materialsDescriptionString = instructionJSON.tryGetString(Headers.MATERIALS_DESCRIPTION);
-            Map<String, String> materialsDescription = convertJSONToMap(materialsDescriptionString);
+        Map<String, String> instructionJSON = parseJSONInstruction(instructionFile);
+        // Get fields from instruction object
+        String encryptedSymmetricKeyB64 = instructionJSON.get(Headers.CRYPTO_KEY);
+        String ivB64 = instructionJSON.get(Headers.CRYPTO_IV);
+        String materialsDescriptionString = instructionJSON.get(Headers.MATERIALS_DESCRIPTION);
+        Map<String, String> materialsDescription = convertJSONToMap(materialsDescriptionString);
 
-            // Decode from Base 64 to standard binary bytes
-            byte[] encryptedSymmetricKey = Base64.decode(encryptedSymmetricKeyB64);
-            byte[] iv = Base64.decode(ivB64);
+        // Decode from Base 64 to standard binary bytes
+        byte[] encryptedSymmetricKey = Base64.decode(encryptedSymmetricKeyB64);
+        byte[] iv = Base64.decode(ivB64);
 
-            if (encryptedSymmetricKey == null || iv == null) {
-                // If necessary encryption info was not found in the instruction file, throw an exception.
-                throw new AmazonClientException(
-                        String.format("Necessary encryption info not found in the instruction file '%s' in bucket '%s'",
-                                      instructionFile.getKey(), instructionFile.getBucketName()));
-            }
-
-            EncryptionMaterials materials = retrieveOriginalMaterials(materialsDescription, materialsProvider);
-            // If we're unable to retrieve the original encryption materials, we can't decrypt the object, so
-            // throw an exception.
-            if (materials == null) {
-                throw new AmazonClientException(
-                        String.format("Unable to retrieve the encryption materials that originally " +
-                                "encrypted object corresponding to instruction file '%s' in bucket '%s'.",
-                                instructionFile.getKey(), instructionFile.getBucketName()));
-            }
-
-            // Decrypt the symmetric key and create the symmetric cipher
-            SecretKey symmetricKey = getDecryptedSymmetricKey(encryptedSymmetricKey, materials, cryptoProvider);
-            CipherFactory cipherFactory = new CipherFactory(symmetricKey, Cipher.DECRYPT_MODE, iv, cryptoProvider);
-
-            return new EncryptionInstruction(materialsDescription, encryptedSymmetricKey, symmetricKey, cipherFactory);
-        } catch (JSONException e) {
-            throw new AmazonClientException("Unable to parse retrieved instruction file : " + e.getMessage());
+        if (encryptedSymmetricKey == null || iv == null) {
+            // If necessary encryption info was not found in the instruction file, throw an exception.
+            throw new AmazonClientException(
+                    String.format("Necessary encryption info not found in the instruction file '%s' in bucket '%s'",
+                                  instructionFile.getKey(), instructionFile.getBucketName()));
         }
+
+        EncryptionMaterials materials = retrieveOriginalMaterials(materialsDescription, materialsProvider);
+        // If we're unable to retrieve the original encryption materials, we can't decrypt the object, so
+        // throw an exception.
+        if (materials == null) {
+            throw new AmazonClientException(
+                    String.format("Unable to retrieve the encryption materials that originally " +
+                            "encrypted object corresponding to instruction file '%s' in bucket '%s'.",
+                            instructionFile.getKey(), instructionFile.getBucketName()));
+        }
+
+        // Decrypt the symmetric key and create the symmetric cipher
+        SecretKey symmetricKey = getDecryptedSymmetricKey(encryptedSymmetricKey, materials, cryptoProvider);
+        CipherFactory cipherFactory = new CipherFactory(symmetricKey, Cipher.DECRYPT_MODE, iv, cryptoProvider);
+
+        return new EncryptionInstruction(materialsDescription, encryptedSymmetricKey, symmetricKey, cipherFactory);
     }
 
     /**
@@ -324,10 +318,10 @@ public class EncryptionUtils {
         if (metadata.getContentMD5() != null) {
             metadata.addUserMetadata(Headers.UNENCRYPTED_CONTENT_MD5, metadata.getContentMD5());
         }
-        
+
         // Removes the original content MD5 if present from the meta data.
         metadata.setContentMD5(null);
-        
+
         // Record the original, unencrypted content-length so it can be accessed later
         final long plaintextLength = getUnencryptedContentLength(request, metadata);
         if (plaintextLength >= 0) {
@@ -381,8 +375,8 @@ public class EncryptionUtils {
      *      A put request to store the specified instruction object in S3.
      */
     public static PutObjectRequest createInstructionPutRequest(PutObjectRequest request, EncryptionInstruction instruction) {
-        JSONObject instructionJSON = convertInstructionToJSONObject(instruction);
-        byte[] instructionBytes = instructionJSON.toString().getBytes();
+        Map<String, String> instructionJSON = convertInstructionToJSONObject(instruction);
+        byte[] instructionBytes = JsonUtils.mapToString(instructionJSON).getBytes();
         InputStream instructionInputStream = new ByteArrayInputStream(instructionBytes);
 
         ObjectMetadata metadata = request.getMetadata();
@@ -402,8 +396,8 @@ public class EncryptionUtils {
     }
 
     public static PutObjectRequest createInstructionPutRequest(String bucketName, String key, EncryptionInstruction instruction) {
-        JSONObject instructionJSON = convertInstructionToJSONObject(instruction);
-        byte[] instructionBytes = instructionJSON.toString().getBytes();
+        Map<String, String> instructionJSON = convertInstructionToJSONObject(instruction);
+        byte[] instructionBytes = JsonUtils.mapToString(instructionJSON).getBytes();
         InputStream instructionInputStream = new ByteArrayInputStream(instructionBytes);
 
         ObjectMetadata metadata = new ObjectMetadata();
@@ -710,22 +704,16 @@ public class EncryptionUtils {
     /**
      * Converts the JSON encoded materials description to a Map<String, String>
      */
-    @SuppressWarnings("unchecked") // Suppresses Iterator<String> type warning
     private static Map<String, String> convertJSONToMap(String descriptionJSONString) {
         if (descriptionJSONString == null) {
             return null;
         }
         try {
-            JSONObject descriptionJSON = new JSONObject(descriptionJSONString);
-            Iterator<String> keysIterator = descriptionJSON.keys();
-            Map<String, String> materialsDescription = new HashMap<String, String>();
-            while(keysIterator.hasNext()) {
-                String key = keysIterator.next();
-                materialsDescription.put(key, descriptionJSON.getString(key));
-            }
-            return materialsDescription;
-        } catch (JSONException e) {
-            throw new AmazonClientException("Unable to parse encryption materials description from metadata :" + e.getMessage());
+            return JsonUtils.jsonToMap(descriptionJSONString);
+        } catch (AmazonClientException ace) {
+            throw new AmazonClientException(
+                    "Unable to parse encryption materials description from metadata :"
+                            + ace.getMessage());
         }
     }
 
@@ -766,8 +754,8 @@ public class EncryptionUtils {
                 Base64.encodeAsString(symmetricCipher.getIV()));
 
         // Put the materials description into the object metadata as JSON
-        JSONObject descriptionJSON = new JSONObject(materialsDescription);
-        metadata.addUserMetadata(Headers.MATERIALS_DESCRIPTION, descriptionJSON.toString());
+        String description = JsonUtils.mapToString(materialsDescription);
+        metadata.addUserMetadata(Headers.MATERIALS_DESCRIPTION, description);
     }
 
     public static ObjectMetadata updateMetadataWithEncryptionInfo(InitiateMultipartUploadRequest request, byte[] keyBytesToStoreInMetadata, Cipher symmetricCipher, Map<String, String> materialsDescription) {
@@ -849,28 +837,25 @@ public class EncryptionUtils {
     /**
      * Returns a JSONObject representation of the instruction object.
      */
-    private static JSONObject convertInstructionToJSONObject(EncryptionInstruction instruction) {
-        JSONObject instructionJSON = new JSONObject();
-        try {
-            JSONObject materialsDescriptionJSON = new JSONObject(
-                    instruction.getMaterialsDescription());
-            instructionJSON.put(Headers.MATERIALS_DESCRIPTION,
-                    materialsDescriptionJSON.toString());
-            instructionJSON.put(Headers.CRYPTO_KEY, 
+    private static Map<String, String> convertInstructionToJSONObject(
+            EncryptionInstruction instruction) {
+        Map<String, String> instructionJSON = new HashMap<String, String>();
+        String materialsDescription = JsonUtils.mapToString(instruction.getMaterialsDescription());
+        instructionJSON.put(Headers.MATERIALS_DESCRIPTION, materialsDescription);
+        instructionJSON.put(Headers.CRYPTO_KEY,
                 Base64.encodeAsString(instruction.getEncryptedSymmetricKey()));
-            byte[] iv = instruction.getSymmetricCipher().getIV();
-            instructionJSON.put(Headers.CRYPTO_IV, Base64.encodeAsString(iv));
-        } catch (JSONException e) {} // Keys are never null, so JSONException will never be thrown.
+        byte[] iv = instruction.getSymmetricCipher().getIV();
+        instructionJSON.put(Headers.CRYPTO_IV, Base64.encodeAsString(iv));
         return instructionJSON;
     }
 
     /**
      * Parses instruction data retrieved from S3 and returns a JSONObject representing the instruction
      */
-    private static JSONObject parseJSONInstruction(S3Object instructionObject) {
+    private static Map<String, String> parseJSONInstruction(S3Object instructionObject) {
         try {
             String instructionString = convertStreamToString(instructionObject.getObjectContent());
-            return new JSONObject(instructionString);
+            return JsonUtils.jsonToMap(instructionString);
         } catch (Exception e) {
             throw new AmazonClientException("Error parsing JSON instruction file: " + e.getMessage());
         }

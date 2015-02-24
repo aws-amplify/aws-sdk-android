@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.kinesis.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Put Records Result Entry JSON Unmarshaller
@@ -33,42 +31,29 @@ public class PutRecordsResultEntryJsonUnmarshaller implements Unmarshaller<PutRe
     public PutRecordsResultEntry unmarshall(JsonUnmarshallerContext context) throws Exception {
         PutRecordsResultEntry putRecordsResultEntry = new PutRecordsResultEntry();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("SequenceNumber", targetDepth)) {
-                    context.nextToken();
-                    putRecordsResultEntry.setSequenceNumber(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("ShardId", targetDepth)) {
-                    context.nextToken();
-                    putRecordsResultEntry.setShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("ErrorCode", targetDepth)) {
-                    context.nextToken();
-                    putRecordsResultEntry.setErrorCode(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("ErrorMessage", targetDepth)) {
-                    context.nextToken();
-                    putRecordsResultEntry.setErrorMessage(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("SequenceNumber")) {
+                putRecordsResultEntry.setSequenceNumber(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("ShardId")) {
+                putRecordsResultEntry.setShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("ErrorCode")) {
+                putRecordsResultEntry.setErrorCode(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("ErrorMessage")) {
+                putRecordsResultEntry.setErrorMessage(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return putRecordsResultEntry;
     }

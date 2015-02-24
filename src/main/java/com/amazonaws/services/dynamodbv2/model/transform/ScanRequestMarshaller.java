@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Scan Request Marshaller
@@ -52,20 +53,20 @@ public class ScanRequestMarshaller implements Marshaller<Request<ScanRequest>, S
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (scanRequest.getTableName() != null) {
-                jsonWriter.key("TableName").value(scanRequest.getTableName());
+                jsonWriter.name("TableName").value(scanRequest.getTableName());
             }
 
             com.amazonaws.internal.ListWithAutoConstructFlag<String> attributesToGetList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(scanRequest.getAttributesToGet());
             if (attributesToGetList != null && !(attributesToGetList.isAutoConstruct() && attributesToGetList.isEmpty())) {
 
-                jsonWriter.key("AttributesToGet");
-                jsonWriter.array();
+                jsonWriter.name("AttributesToGet");
+                jsonWriter.beginArray();
 
                 for (String attributesToGetListValue : attributesToGetList) {
                     if (attributesToGetListValue != null) {
@@ -75,25 +76,25 @@ public class ScanRequestMarshaller implements Marshaller<Request<ScanRequest>, S
                 jsonWriter.endArray();
             }
             if (scanRequest.getLimit() != null) {
-                jsonWriter.key("Limit").value(scanRequest.getLimit());
+                jsonWriter.name("Limit").value(scanRequest.getLimit());
             }
             if (scanRequest.getSelect() != null) {
-                jsonWriter.key("Select").value(scanRequest.getSelect());
+                jsonWriter.name("Select").value(scanRequest.getSelect());
             }
             if (scanRequest.getScanFilter() != null) {
-                jsonWriter.key("ScanFilter");
-                jsonWriter.object();
+                jsonWriter.name("ScanFilter");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, Condition> scanFilterListValue : scanRequest.getScanFilter().entrySet()) {
                     if (scanFilterListValue.getValue() != null) {
-                        jsonWriter.key(scanFilterListValue.getKey());
+                        jsonWriter.name(scanFilterListValue.getKey());
 
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
 
                         com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue> attributeValueListList = (com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue>)(scanFilterListValue.getValue().getAttributeValueList());
                         if (attributeValueListList != null && !(attributeValueListList.isAutoConstruct() && attributeValueListList.isEmpty())) {
 
-                            jsonWriter.key("AttributeValueList");
-                            jsonWriter.array();
+                            jsonWriter.name("AttributeValueList");
+                            jsonWriter.beginArray();
 
                             for (AttributeValue attributeValueListListValue : attributeValueListList) {
                                 if (attributeValueListListValue != null) {
@@ -103,7 +104,7 @@ public class ScanRequestMarshaller implements Marshaller<Request<ScanRequest>, S
                             jsonWriter.endArray();
                         }
                         if (scanFilterListValue.getValue().getComparisonOperator() != null) {
-                            jsonWriter.key("ComparisonOperator").value(scanFilterListValue.getValue().getComparisonOperator());
+                            jsonWriter.name("ComparisonOperator").value(scanFilterListValue.getValue().getComparisonOperator());
                         }
                         jsonWriter.endObject();
                     }
@@ -111,14 +112,14 @@ public class ScanRequestMarshaller implements Marshaller<Request<ScanRequest>, S
                 jsonWriter.endObject();
             }
             if (scanRequest.getConditionalOperator() != null) {
-                jsonWriter.key("ConditionalOperator").value(scanRequest.getConditionalOperator());
+                jsonWriter.name("ConditionalOperator").value(scanRequest.getConditionalOperator());
             }
             if (scanRequest.getExclusiveStartKey() != null) {
-                jsonWriter.key("ExclusiveStartKey");
-                jsonWriter.object();
+                jsonWriter.name("ExclusiveStartKey");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, AttributeValue> exclusiveStartKeyListValue : scanRequest.getExclusiveStartKey().entrySet()) {
                     if (exclusiveStartKeyListValue.getValue() != null) {
-                        jsonWriter.key(exclusiveStartKeyListValue.getKey());
+                        jsonWriter.name(exclusiveStartKeyListValue.getKey());
 
                         AttributeValueJsonMarshaller.getInstance().marshall(exclusiveStartKeyListValue.getValue(), jsonWriter);
                     }
@@ -126,26 +127,26 @@ public class ScanRequestMarshaller implements Marshaller<Request<ScanRequest>, S
                 jsonWriter.endObject();
             }
             if (scanRequest.getReturnConsumedCapacity() != null) {
-                jsonWriter.key("ReturnConsumedCapacity").value(scanRequest.getReturnConsumedCapacity());
+                jsonWriter.name("ReturnConsumedCapacity").value(scanRequest.getReturnConsumedCapacity());
             }
             if (scanRequest.getTotalSegments() != null) {
-                jsonWriter.key("TotalSegments").value(scanRequest.getTotalSegments());
+                jsonWriter.name("TotalSegments").value(scanRequest.getTotalSegments());
             }
             if (scanRequest.getSegment() != null) {
-                jsonWriter.key("Segment").value(scanRequest.getSegment());
+                jsonWriter.name("Segment").value(scanRequest.getSegment());
             }
             if (scanRequest.getProjectionExpression() != null) {
-                jsonWriter.key("ProjectionExpression").value(scanRequest.getProjectionExpression());
+                jsonWriter.name("ProjectionExpression").value(scanRequest.getProjectionExpression());
             }
             if (scanRequest.getFilterExpression() != null) {
-                jsonWriter.key("FilterExpression").value(scanRequest.getFilterExpression());
+                jsonWriter.name("FilterExpression").value(scanRequest.getFilterExpression());
             }
             if (scanRequest.getExpressionAttributeNames() != null) {
-                jsonWriter.key("ExpressionAttributeNames");
-                jsonWriter.object();
+                jsonWriter.name("ExpressionAttributeNames");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, String> expressionAttributeNamesListValue : scanRequest.getExpressionAttributeNames().entrySet()) {
                     if (expressionAttributeNamesListValue.getValue() != null) {
-                        jsonWriter.key(expressionAttributeNamesListValue.getKey());
+                        jsonWriter.name(expressionAttributeNamesListValue.getKey());
 
                         jsonWriter.value(expressionAttributeNamesListValue.getValue());
                     }
@@ -153,11 +154,11 @@ public class ScanRequestMarshaller implements Marshaller<Request<ScanRequest>, S
                 jsonWriter.endObject();
             }
             if (scanRequest.getExpressionAttributeValues() != null) {
-                jsonWriter.key("ExpressionAttributeValues");
-                jsonWriter.object();
+                jsonWriter.name("ExpressionAttributeValues");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, AttributeValue> expressionAttributeValuesListValue : scanRequest.getExpressionAttributeValues().entrySet()) {
                     if (expressionAttributeValuesListValue.getValue() != null) {
-                        jsonWriter.key(expressionAttributeValuesListValue.getKey());
+                        jsonWriter.name(expressionAttributeValuesListValue.getKey());
 
                         AttributeValueJsonMarshaller.getInstance().marshall(expressionAttributeValuesListValue.getValue(), jsonWriter);
                     }
@@ -165,15 +166,16 @@ public class ScanRequestMarshaller implements Marshaller<Request<ScanRequest>, S
                 jsonWriter.endObject();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

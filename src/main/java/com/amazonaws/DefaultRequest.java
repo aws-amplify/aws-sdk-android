@@ -20,8 +20,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.http.annotation.NotThreadSafe;
-
 import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.util.AWSRequestMetrics;
 
@@ -31,7 +29,6 @@ import com.amazonaws.util.AWSRequestMetrics;
  * This class is only intended for internal use inside the AWS client libraries.
  * Callers shouldn't ever interact directly with objects of this class.
  */
-@NotThreadSafe
 public class DefaultRequest<T> implements Request<T> {
 
     /** The resource path being requested */

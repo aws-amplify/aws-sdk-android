@@ -15,16 +15,17 @@
 package com.amazonaws.http;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonServiceException.ErrorType;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JSONObject;
+import com.amazonaws.util.json.JsonUtils;
 
 public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServiceException> {
 
@@ -38,26 +39,22 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
      * The list of error response unmarshallers to try to apply to error
      * responses.
      */
-    private List<? extends JsonErrorUnmarshaller> unmarshallerList;
+    private final List<? extends JsonErrorUnmarshaller> unmarshallerList;
 
     public JsonErrorResponseHandler(List<? extends JsonErrorUnmarshaller> exceptionUnmarshallers) {
         this.unmarshallerList = exceptionUnmarshallers;
     }
 
+    @Override
     public AmazonServiceException handle(HttpResponse response) throws Exception {
-        String streamContents = readStreamContents(response.getContent());
-        JSONObject jsonErrorMessage;
+        JsonErrorResponse error;
         try {
-            String s = streamContents;
-            if (s.length() == 0 || s.trim().length() == 0) s = "{}";
-            jsonErrorMessage = new JSONObject(s);
-        } catch (Exception e) {
-            throw new AmazonClientException("Unable to parse error response: '" + streamContents + "'", e);
+            error = JsonErrorResponse.fromResponse(response);
+        } catch (IOException e) {
+            throw new AmazonClientException("Unable to parse error response", e);
         }
 
-        String errorTypeFromHeader = parseErrorTypeFromHeader(response);
-
-        AmazonServiceException ase = runErrorUnmarshallers(response, jsonErrorMessage, errorTypeFromHeader);
+        AmazonServiceException ase = runErrorUnmarshallers(error);
         if (ase == null) return null;
 
         ase.setServiceName(response.getRequest().getServiceName());
@@ -67,10 +64,7 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
         } else {
             ase.setErrorType(ErrorType.Service);
         }
-        // if error code isn't in the body, then it's in the header
-        if (ase.getErrorCode() == null && errorTypeFromHeader != null) {
-            ase.setErrorCode(errorTypeFromHeader);
-        }
+        ase.setErrorCode(error.getErrorCode());
 
         for (Entry<String, String> headerEntry : response.getHeaders().entrySet()) {
             if (headerEntry.getKey().equalsIgnoreCase("X-Amzn-RequestId")) {
@@ -81,7 +75,7 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
         return ase;
     }
 
-    private AmazonServiceException runErrorUnmarshallers(HttpResponse errorResponse, JSONObject json, String errorTypeFromHeader) throws Exception {
+    private AmazonServiceException runErrorUnmarshallers(JsonErrorResponse error) throws Exception {
         /*
          * We need to select which exception unmarshaller is the correct one to
          * use from all the possible exceptions this operation can throw.
@@ -90,49 +84,119 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
          * content.
          */
         for (JsonErrorUnmarshaller unmarshaller : unmarshallerList) {
-            if (unmarshaller.match(errorTypeFromHeader, json)) {
-                AmazonServiceException ase = unmarshaller.unmarshall(json);
-                ase.setStatusCode(errorResponse.getStatusCode());
-                return ase;
+            if (unmarshaller.match(error)) {
+                return unmarshaller.unmarshall(error);
             }
         }
 
         return null;
     }
 
+    @Override
     public boolean needsConnectionLeftOpen() {
         return false;
     }
 
-    private String readStreamContents(final InputStream stream) {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-            StringBuilder sb = new StringBuilder();
-            while (true) {
-                String line = reader.readLine();
-                if (line == null) break;
-                sb.append(line);
-            }
-
-            return sb.toString();
-        } catch (Exception e) {
-            try {stream.close();} catch (Exception ex) {}
-            throw new AmazonClientException("Unable to read error response: " + e.getMessage(), e);
-        }
-    }
-
     /**
-     * Attempt to parse the error type from the response headers.
-     * Returns null if such information is not available in the header.
+     * A class that represents the error object returned from Json service.
      */
-    private String parseErrorTypeFromHeader(HttpResponse response) {
-        String headerValue = response.getHeaders().get(X_AMZN_ERROR_TYPE);
-        if (headerValue != null) {
-            int separator = headerValue.indexOf(':');
-            if (separator != -1) {
-                headerValue  = headerValue.substring(0, separator);
-            }
+    public static class JsonErrorResponse {
+
+        private final int statusCode;
+        private final String message;
+        private final String errorCode;
+        private final Map<String, String> map;
+
+        private JsonErrorResponse(int statusCode, String errorCode, Map<String, String> map) {
+            this.statusCode = statusCode;
+            this.errorCode = errorCode;
+            this.map = map;
+            this.message = get("message");
         }
-        return headerValue;
+
+        /**
+         * Gets the status code of the response header
+         *
+         * @return status code
+         */
+        public int getStatusCode() {
+            return statusCode;
+        }
+
+        /**
+         * Gets the error code
+         *
+         * @return error code
+         */
+        public String getErrorCode() {
+            return errorCode;
+        }
+
+        /**
+         * Gets the error message
+         *
+         * @return error message
+         */
+        public String getMessage() {
+            return message;
+        }
+
+        /**
+         * Gets value from the error body map.
+         *
+         * @param key key of map
+         * @return null if key is null; "" if not exists
+         */
+        public String get(String key) {
+            if (key == null || key.length() == 0) {
+                return null;
+            }
+
+            String firstLetterUppercaseKey;
+            String firstLetterLowercaseKey;
+
+            firstLetterLowercaseKey = key.substring(0, 1).toLowerCase()
+                    + key.substring(1);
+
+            firstLetterUppercaseKey = key.substring(0, 1).toUpperCase()
+                    + key.substring(1);
+
+            String value = "";
+            if (map.containsKey(firstLetterUppercaseKey)) {
+                value = map.get(firstLetterUppercaseKey);
+            } else if (map.containsKey(firstLetterLowercaseKey)) {
+                value = map.get(firstLetterLowercaseKey);
+            }
+
+            return value;
+        }
+
+        public static JsonErrorResponse fromResponse(HttpResponse response) throws IOException {
+            int statusCode = response.getStatusCode();
+
+            // parse error body
+            Map<String, String> map = JsonUtils.jsonToMap(new BufferedReader(new InputStreamReader(
+                    response.getContent())));
+
+            /*
+             * Services using AWS JSON 1.1 protocol with HTTP binding send the
+             * error type information in the response headers, instead of the
+             * content.
+             */
+            String errorCode = response.getHeaders().get(X_AMZN_ERROR_TYPE);
+            if (errorCode != null) {
+                int separator = errorCode.indexOf(':');
+                if (separator != -1) {
+                    errorCode = errorCode.substring(0, separator);
+                }
+            } else if (map.containsKey("__type")) {
+                // check body otherwise
+                String type = map.get("__type");
+                int separator = type.lastIndexOf("#");
+                errorCode = type.substring(separator + 1);
+            }
+
+            return new JsonErrorResponse(statusCode, errorCode, map);
+        }
     }
 }

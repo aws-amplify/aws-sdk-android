@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.dynamodbv2.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Create Table Result JSON Unmarshaller
@@ -33,30 +31,20 @@ public class CreateTableResultJsonUnmarshaller implements Unmarshaller<CreateTab
     public CreateTableResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         CreateTableResult createTableResult = new CreateTableResult();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("TableDescription", targetDepth)) {
-                    context.nextToken();
-                    createTableResult.setTableDescription(TableDescriptionJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("TableDescription")) {
+                createTableResult.setTableDescription(TableDescriptionJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return createTableResult;
     }

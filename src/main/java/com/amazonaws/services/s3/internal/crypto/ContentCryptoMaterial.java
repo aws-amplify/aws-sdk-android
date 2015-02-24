@@ -35,7 +35,7 @@ import com.amazonaws.services.s3.model.EncryptionMaterialsAccessor;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.util.Base64;
-import com.amazonaws.util.json.Jackson;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Cryptographic material used for client-side content encrypt/decryption in S3.
@@ -45,7 +45,7 @@ import com.amazonaws.util.json.Jackson;
  */
 final class ContentCryptoMaterial {
     // null if cek is not secured via key wrapping
-    private final String keyWrappingAlgorithm; 
+    private final String keyWrappingAlgorithm;
     private final CipherLite cipherLite;
 
     private final Map<String, String> kekMaterialsDescription;
@@ -127,9 +127,9 @@ final class ContentCryptoMaterial {
         String keyWrapAlgo = getKeyWrappingAlgorithm();
         if (keyWrapAlgo != null)
             map.put(Headers.CRYPTO_KEYWRAP_ALGORITHM, keyWrapAlgo);
-        return Jackson.toJsonString(map);
+        return JsonUtils.mapToString(map);
     }
-    
+
     /**
      * Returns the key-encrypting-key material description as a non-null json
      * string;
@@ -138,22 +138,21 @@ final class ContentCryptoMaterial {
         Map<String,String> kekMaterialDesc = getKEKMaterialsDescription();
         if (kekMaterialDesc == null)
             kekMaterialDesc = Collections.emptyMap();
-        return Jackson.toJsonString(kekMaterialDesc);
+        return JsonUtils.mapToString(kekMaterialDesc);
     }
 
     /**
      * Returns the corresponding kek material description from the given json;
      * or null if the input is null.
      */
-    @SuppressWarnings("unchecked")
     private static Map<String, String> matdescFromJson(String json) {
-        Map<String,String> map = Jackson.fromJsonString(json, Map.class);
+        Map<String, String> map = JsonUtils.jsonToMap(json);
         return map == null ? null : Collections.unmodifiableMap(map);
     }
 
     /**
      * Returns the content encrypting key unwrapped or decrypted.
-     * 
+     *
      * @param cekSecured
      *            the content encrypting key in wrapped or encrypted form; must
      *            not be null
@@ -397,7 +396,7 @@ final class ContentCryptoMaterial {
     /**
      * Returns an array of bytes representing the encrypted envelope symmetric
      * key.
-     * 
+     *
      * @return an array of bytes representing the encrypted envelope symmetric
      *         key.
      */

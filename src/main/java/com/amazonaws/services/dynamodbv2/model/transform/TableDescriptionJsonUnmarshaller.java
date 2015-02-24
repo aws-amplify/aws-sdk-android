@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.dynamodbv2.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Table Description JSON Unmarshaller
@@ -33,66 +31,47 @@ public class TableDescriptionJsonUnmarshaller implements Unmarshaller<TableDescr
     public TableDescription unmarshall(JsonUnmarshallerContext context) throws Exception {
         TableDescription tableDescription = new TableDescription();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("AttributeDefinitions", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setAttributeDefinitions(new ListUnmarshaller<AttributeDefinition>(AttributeDefinitionJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("TableName", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setTableName(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("KeySchema", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setKeySchema(new ListUnmarshaller<KeySchemaElement>(KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("TableStatus", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setTableStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("CreationDateTime", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setCreationDateTime(DateJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("ProvisionedThroughput", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setProvisionedThroughput(ProvisionedThroughputDescriptionJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("TableSizeBytes", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setTableSizeBytes(LongJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("ItemCount", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setItemCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("LocalSecondaryIndexes", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setLocalSecondaryIndexes(new ListUnmarshaller<LocalSecondaryIndexDescription>(LocalSecondaryIndexDescriptionJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("GlobalSecondaryIndexes", targetDepth)) {
-                    context.nextToken();
-                    tableDescription.setGlobalSecondaryIndexes(new ListUnmarshaller<GlobalSecondaryIndexDescription>(GlobalSecondaryIndexDescriptionJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("AttributeDefinitions")) {
+                tableDescription.setAttributeDefinitions(new ListUnmarshaller<AttributeDefinition>(AttributeDefinitionJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("TableName")) {
+                tableDescription.setTableName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("KeySchema")) {
+                tableDescription.setKeySchema(new ListUnmarshaller<KeySchemaElement>(KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("TableStatus")) {
+                tableDescription.setTableStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("CreationDateTime")) {
+                tableDescription.setCreationDateTime(DateJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("ProvisionedThroughput")) {
+                tableDescription.setProvisionedThroughput(ProvisionedThroughputDescriptionJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("TableSizeBytes")) {
+                tableDescription.setTableSizeBytes(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("ItemCount")) {
+                tableDescription.setItemCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LocalSecondaryIndexes")) {
+                tableDescription.setLocalSecondaryIndexes(new ListUnmarshaller<LocalSecondaryIndexDescription>(LocalSecondaryIndexDescriptionJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("GlobalSecondaryIndexes")) {
+                tableDescription.setGlobalSecondaryIndexes(new ListUnmarshaller<GlobalSecondaryIndexDescription>(GlobalSecondaryIndexDescriptionJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return tableDescription;
     }

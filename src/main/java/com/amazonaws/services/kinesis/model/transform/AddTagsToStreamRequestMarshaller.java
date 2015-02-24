@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Add Tags To Stream Request Marshaller
@@ -52,20 +53,20 @@ public class AddTagsToStreamRequestMarshaller implements Marshaller<Request<AddT
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (addTagsToStreamRequest.getStreamName() != null) {
-                jsonWriter.key("StreamName").value(addTagsToStreamRequest.getStreamName());
+                jsonWriter.name("StreamName").value(addTagsToStreamRequest.getStreamName());
             }
             if (addTagsToStreamRequest.getTags() != null) {
-                jsonWriter.key("Tags");
-                jsonWriter.object();
+                jsonWriter.name("Tags");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, String> tagsListValue : addTagsToStreamRequest.getTags().entrySet()) {
                     if (tagsListValue.getValue() != null) {
-                        jsonWriter.key(tagsListValue.getKey());
+                        jsonWriter.name(tagsListValue.getKey());
 
                         jsonWriter.value(tagsListValue.getValue());
                     }
@@ -73,15 +74,16 @@ public class AddTagsToStreamRequestMarshaller implements Marshaller<Request<AddT
                 jsonWriter.endObject();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.1");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

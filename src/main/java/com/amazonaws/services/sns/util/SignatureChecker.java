@@ -15,6 +15,7 @@
 package com.amazonaws.services.sns.util;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
@@ -26,10 +27,8 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import com.amazonaws.util.Base64;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonToken;
+import com.amazonaws.util.json.AwsJsonReader;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Utility for validating signatures on a Simple Notification Service JSON message.
@@ -155,36 +154,32 @@ public class SignatureChecker {
 
     private Map<String, String> parseJSON(String jsonmessage){
         Map<String, String> parsed = new HashMap<String, String>();
-        JsonFactory jf = new JsonFactory();
+        AwsJsonReader reader = JsonUtils.getJsonReader(new StringReader(jsonmessage));
         try {
-            JsonParser parser = jf.createJsonParser(jsonmessage);
-            parser.nextToken(); //shift past the START_OBJECT that begins the JSON
-            while (parser.nextToken() != JsonToken.END_OBJECT) {
-                String fieldname = parser.getCurrentName();
-                parser.nextToken(); // move to value, or START_OBJECT/START_ARRAY
+            reader.beginObject();
+            while (reader.hasNext()) {
+                String name = reader.nextName();
                 String value;
-                if (parser.getCurrentToken() == JsonToken.START_ARRAY)
-                {
+                if (reader.isContainer()) {
+                    reader.beginArray();
                     value = "";
                     boolean first = true;
-                    while (parser.nextToken() != JsonToken.END_ARRAY)
-                    {
+                    while (reader.hasNext()) {
                         if (!first) value += ",";
                         first = false;
-                        value += parser.getText();
+                        value += reader.nextString();
                     }
+                    reader.endArray();
+                } else {
+                    value = reader.nextString();
                 }
-                else
-                {
-                    value = parser.getText();
-                }
-                parsed.put(fieldname, value);
+                parsed.put(name, value);
             }
-        } catch (JsonParseException e) {
+            reader.endObject();
+            reader.close();
+        } catch (IOException e) {
             // JSON could not be parsed
             e.printStackTrace();
-        } catch (IOException e) {
-            // Rare exception
         }
         return parsed;
     }

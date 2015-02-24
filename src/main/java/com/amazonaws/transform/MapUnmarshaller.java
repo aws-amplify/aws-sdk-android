@@ -14,47 +14,39 @@
  */
 package com.amazonaws.transform;
 
-import static com.fasterxml.jackson.core.JsonToken.END_ARRAY;
-import static com.fasterxml.jackson.core.JsonToken.END_OBJECT;
-import static com.fasterxml.jackson.core.JsonToken.FIELD_NAME;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.core.JsonToken;
+import com.amazonaws.util.json.AwsJsonReader;
+import com.amazonaws.util.json.AwsJsonToken;
 
+public class MapUnmarshaller<V> implements Unmarshaller<Map<String, V>, JsonUnmarshallerContext> {
 
-public class MapUnmarshaller<K, V> implements Unmarshaller<Map<K, V>, JsonUnmarshallerContext> {
-
-    private final Unmarshaller<K, JsonUnmarshallerContext> keyUnmarshaller;
     private final Unmarshaller<V, JsonUnmarshallerContext> valueUnmarshaller;
 
-    public MapUnmarshaller(Unmarshaller<K, JsonUnmarshallerContext> keyUnmarshaller, Unmarshaller<V, JsonUnmarshallerContext> valueUnmarshaller) {
-        this.keyUnmarshaller = keyUnmarshaller;
+    public MapUnmarshaller(Unmarshaller<V, JsonUnmarshallerContext> valueUnmarshaller) {
         this.valueUnmarshaller = valueUnmarshaller;
     }
 
-    public Map<K, V> unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Map<K, V> map = new HashMap<K, V>();
-        int originalDepth = context.getCurrentDepth();
-
-        if (context.currentToken == JsonToken.VALUE_NULL) {
+    @Override
+    public Map<String, V> unmarshall(JsonUnmarshallerContext context) throws Exception {
+        AwsJsonReader reader = context.getReader();
+        if (reader.peek() == AwsJsonToken.VALUE_NULL) {
+            reader.skipValue();
             return null;
         }
-        
-        while (true) {
-            JsonToken token = context.nextToken();
-            if (token == null) return map;
 
-            if (token == FIELD_NAME) {
-                K k = keyUnmarshaller.unmarshall(context);
-                token = context.nextToken();
-                V v = valueUnmarshaller.unmarshall(context);
-                map.put(k, v);
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getCurrentDepth() <= originalDepth) return map;
-            }
+        Map<String, V> map = new HashMap<String, V>();
+
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String key = reader.nextName();
+            V v = valueUnmarshaller.unmarshall(context);
+            map.put(key, v);
         }
+        reader.endObject();
+
+        return map;
     }
 
 }

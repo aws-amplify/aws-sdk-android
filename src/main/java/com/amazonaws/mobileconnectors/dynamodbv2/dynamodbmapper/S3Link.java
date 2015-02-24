@@ -18,6 +18,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.net.URL;
 
 import com.amazonaws.AmazonClientException;
@@ -34,9 +36,8 @@ import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
-import com.amazonaws.util.json.Jackson;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.amazonaws.util.json.AwsJsonReader;
+import com.amazonaws.util.json.JsonUtils;
 
 
 /**
@@ -123,10 +124,20 @@ public class S3Link {
         }
     }
 
+    /**
+     * Gets the key under which the object to be downloaded is stored.
+     *
+     * @return The key under which the object to be downloaded is stored.
+     */
     public String getKey() {
         return id.getKey();
     }
 
+    /**
+     * Gets the name of the bucket containing the object to be downloaded.
+     *
+     * @return The name of the bucket containing the object to be downloaded.
+     */
     public String getBucketName() {
         return id.getBucket();
     }
@@ -141,15 +152,22 @@ public class S3Link {
      * @return The string representation of the link to the S3 resource.
      */
     public String toJson() {
-        return id.toJson();
+        try {
+            return id.toJson();
+        } catch (IOException e) {
+            throw new AmazonClientException("Unable to serialize to Json.", e);
+        }
     }
 
     /**
      * Deserializes from a JSON string.
      */
     public static S3Link fromJson(S3ClientCache s3cc, String json) {
-        ID id = Jackson.fromJsonString(json, ID.class);
-        return new S3Link(s3cc, id);
+        try {
+            return new S3Link(s3cc, ID.fromJson(json));
+        } catch (IOException e) {
+            throw new AmazonClientException("Unable to parse Json string.", e);
+        }
     }
 
     public AmazonS3Client getAmazonS3Client() {
@@ -375,83 +393,27 @@ public class S3Link {
      *  @see Region#US_Standard
      */
     static class ID {
-        @JsonProperty("s3")
-        private S3 s3;
-
-        ID() {} // used by Jackson to unmarshall
-        ID(String bucketName, String key) {
-            this.s3 = new S3(bucketName, key);
-        }
-        ID(Region region, String bucketName, String key) {
-            this.s3 = new S3(region, bucketName, key);
-        }
-        ID(S3 s3) {
-            this.s3 = s3;
-        }
-        @JsonProperty("s3")
-        public S3 getS3() {
-            return s3;
-        }
-        @JsonIgnore
-        public String getRegionId() {
-            return s3.getRegionId();
-        }
-        @JsonIgnore
-        public String getBucket() {
-            return s3.getBucket();
-        }
-        @JsonIgnore
-        public String getKey() {
-            return s3.getKey();
-        }
-        String toJson() {
-            return Jackson.toJsonString(this);
-        }
-    }
-
-    /**
-     * Internal class for JSON serialization purposes.
-     * <p>
-     * @see ID
-     */
-    private static class S3 {
-
         /**
          * The name of the S3 bucket containing the object to retrieve.
          */
-        @JsonProperty("bucket")
-        private String bucket;
+        private final String bucket;
 
         /**
          * The key under which the desired S3 object is stored.
          */
-        @JsonProperty("key")
-        private String key;
+        private final String key;
 
         /**
          * The region id of {@link Region} where the S3 object is stored.
          */
-        @JsonProperty("region")
         private String regionId;
 
-        @SuppressWarnings("unused")
-        S3() {}  // used by Jackson to unmarshall
-
-        /**
-         * Constructs a new {@link S3} with all the required parameters.
-         *
-         * @param bucket
-         *            The name of the bucket containing the desired object.
-         * @param key
-         *            The key in the specified bucket under which the object is
-         *            stored.
-         */
-        S3(String bucket, String key) {
+        ID(String bucket, String key) {
             this(null, bucket, key);
         }
 
         /**
-         * Constructs a new {@link S3} with all the required parameters.
+         * Constructs a new {@link ID} with all the required parameters.
          *
          * @param bucket
          *            The name of the bucket containing the desired object.
@@ -459,7 +421,7 @@ public class S3Link {
          *            The key in the specified bucket under which the object is
          *            stored.
          */
-        S3(Region region, String bucket, String key) {
+        ID(Region region, String bucket, String key) {
             if ( region == null ) {
                 if ( BucketNameUtils.isDNSBucketName(bucket) ) {
                     this.regionId = Region.US_Standard.getFirstRegionId();
@@ -473,29 +435,70 @@ public class S3Link {
             this.key = key;
         }
 
+        public String getRegionId() {
+            return regionId;
+        }
+
         /**
          * Gets the name of the bucket containing the object to be downloaded.
          *
          * @return The name of the bucket containing the object to be downloaded.
          */
-        @JsonProperty("bucket")
         public String getBucket() {
             return bucket;
         }
-
         /**
          * Gets the key under which the object to be downloaded is stored.
          *
          * @return The key under which the object to be downloaded is stored.
          */
-        @JsonProperty("key")
         public String getKey() {
             return key;
         }
 
-        @JsonProperty("region")
-        public String getRegionId() {
-            return regionId;
+        String toJson() throws IOException {
+            StringWriter out = new StringWriter();
+            JsonUtils.getJsonWriter(out)
+                    .beginObject()
+                    .name("s3")
+                    .beginObject()
+                    .name("bucket").value(bucket)
+                    .name("key").value(key)
+                    .name("region").value(regionId)
+                    .endObject()
+                    .endObject()
+                    .close();
+            return out.toString();
+        }
+
+        static ID fromJson(String json) throws IOException {
+            String bucket = null;
+            String key = null;
+            String regionId = null;
+
+            AwsJsonReader reader = JsonUtils.getJsonReader(new StringReader(json));
+            reader.beginObject();
+            reader.nextName(); // get to "s3"
+            reader.beginObject();
+            while (reader.hasNext()) {
+                String name = reader.nextName();
+                if (name.equals("bucket")) {
+                    bucket = reader.nextString();
+                } else if (name.equals("key")) {
+                    key = reader.nextString();
+                } else if (name.equals("region")) {
+                    regionId = reader.nextString();
+                } else {
+                    // skip unknown value
+                    reader.skipValue();
+                }
+            }
+            reader.endObject();
+            reader.endObject();
+
+            Region region = regionId == null ? null : Region.fromValue(regionId);
+            return new ID(region, bucket, key);
         }
     }
+
 }

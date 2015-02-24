@@ -15,8 +15,8 @@
 package com.amazonaws.services.cognitoidentity.model.transform;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JSONObject;
 
 import com.amazonaws.services.cognitoidentity.model.InvalidIdentityPoolConfigurationException;
 
@@ -27,19 +27,13 @@ public class InvalidIdentityPoolConfigurationExceptionUnmarshaller extends JsonE
     }
 
     @Override
-    public boolean match(String errorTypeFromHeader, JSONObject json) throws Exception {
-        if (errorTypeFromHeader == null) {
-            // Parse error type from the JSON content if it's not available in the response headers
-            String errorCodeFromContent = parseErrorCode(json);
-            return (errorCodeFromContent != null && errorCodeFromContent.equals("InvalidIdentityPoolConfigurationException"));
-        } else {
-            return errorTypeFromHeader.equals("InvalidIdentityPoolConfigurationException");
-        }
+    public boolean match(JsonErrorResponse error) throws Exception {
+        return error.getErrorCode().equals("InvalidIdentityPoolConfigurationException");
     }
 
     @Override
-    public AmazonServiceException unmarshall(JSONObject json) throws Exception {
-        InvalidIdentityPoolConfigurationException e = (InvalidIdentityPoolConfigurationException)super.unmarshall(json);
+    public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+        InvalidIdentityPoolConfigurationException e = (InvalidIdentityPoolConfigurationException)super.unmarshall(error);
         e.setErrorCode("InvalidIdentityPoolConfigurationException");
 
         return e;

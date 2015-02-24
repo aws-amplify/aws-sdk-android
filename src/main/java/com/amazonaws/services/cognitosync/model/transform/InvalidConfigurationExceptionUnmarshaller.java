@@ -15,8 +15,8 @@
 package com.amazonaws.services.cognitosync.model.transform;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JSONObject;
 
 import com.amazonaws.services.cognitosync.model.InvalidConfigurationException;
 
@@ -27,19 +27,13 @@ public class InvalidConfigurationExceptionUnmarshaller extends JsonErrorUnmarsha
     }
 
     @Override
-    public boolean match(String errorTypeFromHeader, JSONObject json) throws Exception {
-        if (errorTypeFromHeader == null) {
-            // Parse error type from the JSON content if it's not available in the response headers
-            String errorCodeFromContent = parseErrorCode(json);
-            return (errorCodeFromContent != null && errorCodeFromContent.equals("InvalidConfigurationException"));
-        } else {
-            return errorTypeFromHeader.equals("InvalidConfigurationException");
-        }
+    public boolean match(JsonErrorResponse error) throws Exception {
+        return error.getErrorCode().equals("InvalidConfigurationException");
     }
 
     @Override
-    public AmazonServiceException unmarshall(JSONObject json) throws Exception {
-        InvalidConfigurationException e = (InvalidConfigurationException)super.unmarshall(json);
+    public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+        InvalidConfigurationException e = (InvalidConfigurationException)super.unmarshall(error);
         e.setErrorCode("InvalidConfigurationException");
 
         return e;

@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Get Id Request Marshaller
@@ -52,23 +53,23 @@ public class GetIdRequestMarshaller implements Marshaller<Request<GetIdRequest>,
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (getIdRequest.getAccountId() != null) {
-                jsonWriter.key("AccountId").value(getIdRequest.getAccountId());
+                jsonWriter.name("AccountId").value(getIdRequest.getAccountId());
             }
             if (getIdRequest.getIdentityPoolId() != null) {
-                jsonWriter.key("IdentityPoolId").value(getIdRequest.getIdentityPoolId());
+                jsonWriter.name("IdentityPoolId").value(getIdRequest.getIdentityPoolId());
             }
             if (getIdRequest.getLogins() != null) {
-                jsonWriter.key("Logins");
-                jsonWriter.object();
+                jsonWriter.name("Logins");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, String> loginsListValue : getIdRequest.getLogins().entrySet()) {
                     if (loginsListValue.getValue() != null) {
-                        jsonWriter.key(loginsListValue.getKey());
+                        jsonWriter.name(loginsListValue.getKey());
 
                         jsonWriter.value(loginsListValue.getValue());
                     }
@@ -76,15 +77,16 @@ public class GetIdRequestMarshaller implements Marshaller<Request<GetIdRequest>,
                 jsonWriter.endObject();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

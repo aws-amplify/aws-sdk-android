@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.cognitosync.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * List Records Result JSON Unmarshaller
@@ -33,62 +31,44 @@ public class ListRecordsResultJsonUnmarshaller implements Unmarshaller<ListRecor
     public ListRecordsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         ListRecordsResult listRecordsResult = new ListRecordsResult();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("Records", targetDepth)) {
-                    context.nextToken();
-                    listRecordsResult.setRecords(new ListUnmarshaller<Record>(RecordJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("NextToken", targetDepth)) {
-                    context.nextToken();
-                    listRecordsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("Count", targetDepth)) {
-                    context.nextToken();
-                    listRecordsResult.setCount(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("DatasetSyncCount", targetDepth)) {
-                    context.nextToken();
-                    listRecordsResult.setDatasetSyncCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("LastModifiedBy", targetDepth)) {
-                    context.nextToken();
-                    listRecordsResult.setLastModifiedBy(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("MergedDatasetNames", targetDepth)) {
-                    context.nextToken();
-                    listRecordsResult.setMergedDatasetNames(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("DatasetExists", targetDepth)) {
-                    context.nextToken();
-                    listRecordsResult.setDatasetExists(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("DatasetDeletedAfterRequestedSyncCount", targetDepth)) {
-                    context.nextToken();
-                    listRecordsResult.setDatasetDeletedAfterRequestedSyncCount(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("SyncSessionToken", targetDepth)) {
-                    context.nextToken();
-                    listRecordsResult.setSyncSessionToken(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("Records")) {
+                listRecordsResult.setRecords(new ListUnmarshaller<Record>(RecordJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("NextToken")) {
+                listRecordsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("Count")) {
+                listRecordsResult.setCount(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("DatasetSyncCount")) {
+                listRecordsResult.setDatasetSyncCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LastModifiedBy")) {
+                listRecordsResult.setLastModifiedBy(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("MergedDatasetNames")) {
+                listRecordsResult.setMergedDatasetNames(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("DatasetExists")) {
+                listRecordsResult.setDatasetExists(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("DatasetDeletedAfterRequestedSyncCount")) {
+                listRecordsResult.setDatasetDeletedAfterRequestedSyncCount(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("SyncSessionToken")) {
+                listRecordsResult.setSyncSessionToken(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return listRecordsResult;
     }

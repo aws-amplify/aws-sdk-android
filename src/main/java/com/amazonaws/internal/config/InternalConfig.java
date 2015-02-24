@@ -18,26 +18,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.http.annotation.Immutable;
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.util.ClassLoaderHelper;
-import com.amazonaws.util.json.Jackson;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 
 /**
  * Internal configuration for the AWS Java SDK.
  */
-@Immutable
 public class InternalConfig {
     private static final Log log = LogFactory.getLog(InternalConfig.class);
-    static final String DEFAULT_CONFIG_RESOURCE = "awssdk_config_default.json";
-    static final String CONFIG_OVERRIDE_RESOURCE = "awssdk_config_override.json";
     private static final String SERVICE_REGION_DELIMITOR = "/";
 
     private final SignerConfig defaultSignerConfig;
@@ -46,87 +40,19 @@ public class InternalConfig {
     private final Map<String, SignerConfig> serviceSigners;
     private final Map<String, HttpClientConfig> httpClients;
 
-    /**
-     * @param defaults default configuration
-     * @param override override configuration 
-     */
-    InternalConfig(InternalConfigJsonHelper defaults, InternalConfigJsonHelper override) {
-        SignerConfigJsonHelper scb = defaults.getDefaultSigner();
-        this.defaultSignerConfig = scb == null ? null : scb.build();
-        regionSigners = mergeSignerMap(defaults.getRegionSigners(),
-            override.getRegionSigners(), "region");
-        serviceSigners = mergeSignerMap(defaults.getServiceSigners(),
-            override.getServiceSigners(), "service");
-        serviceRegionSigners = mergeSignerMap(defaults.getServiceRegionSigners(),
-            override.getServiceRegionSigners(), 
-            "service" + SERVICE_REGION_DELIMITOR + "region");
-        httpClients = merge(defaults.getHttpClients(), override.getHttpClients());
-    }
+    InternalConfig() {
+        defaultSignerConfig = getDefaultSigner();
+        regionSigners = getDefaultRegionSigners();
+        regionSigners.putAll(getOverrideRegionSigners());
 
-    /**
-     * Returns an immutable map by merging the override signer configuration
-     * into the default signer configuration for the given theme.
-     * 
-     * @param defaults
-     *            default signer configuration
-     * @param override
-     *            signer configurations overrides
-     * @param theme
-     *            used for message logging. eg region, service, region+service
-     */
-    private Map<String, SignerConfig> mergeSignerMap(JsonIndex<SignerConfigJsonHelper, SignerConfig>[] defaults,
-            JsonIndex<SignerConfigJsonHelper, SignerConfig>[] overrides, String theme) {
-        Map<String, SignerConfig> map = buildSignerMap(defaults, theme);
-        Map<String, SignerConfig> mapOverride = buildSignerMap(overrides, theme);
-        map.putAll(mapOverride);
-        return Collections.unmodifiableMap(map);
-    }
+        serviceSigners = getDefaultServiceSigners();
+        serviceSigners.putAll(getOverrideServiceSigners());
 
-    private <C extends Builder<T>, T> Map<String, T> merge(JsonIndex<C, T>[] defaults,
-            JsonIndex<C, T>[] overrides) {
-        Map<String, T> map = buildMap(defaults);
-        Map<String, T> mapOverride = buildMap(overrides);
-        map.putAll(mapOverride);
-        return Collections.unmodifiableMap(map);
-    }
+        serviceRegionSigners = getDefaultServiceRegionSigners();
+        serviceRegionSigners.putAll(getOverrideServiceRegionSigners());
 
-    private <C extends Builder<T>, T> Map<String, T> buildMap(JsonIndex<C, T>[] signerIndexes) {
-        Map<String, T> map = new HashMap<String, T>();
-        if (signerIndexes != null) {
-            for (JsonIndex<C, T> index: signerIndexes) {
-                String region = index.getKey();
-                T prev = map.put(region, index.newReadOnlyConfig());
-                if (prev != null) {
-                    log.warn("Duplicate definition of signer for "
-                            + index.getKey());
-                }
-            }
-        }
-        return map;
-    }
-
-    /**
-     * Builds and returns a signer configuration map.
-     * 
-     * @param signerIndexes
-     *            signer configuration entries loaded from JSON
-     * @param theme
-     *            used for message logging. eg region, service, region+service
-     */
-    private Map<String, SignerConfig> buildSignerMap(
-            JsonIndex<SignerConfigJsonHelper, SignerConfig>[] signerIndexes, String theme) {
-        Map<String, SignerConfig> map = new HashMap<String, SignerConfig>();
-        if (signerIndexes != null) {
-            for (JsonIndex<SignerConfigJsonHelper, SignerConfig> index: signerIndexes) {
-                String region = index.getKey();
-                SignerConfig prev = map.put(region, index.newReadOnlyConfig());
-                if (prev != null) {
-                    log.warn("Duplicate definition of signer for " + theme + " "
-                            + index.getKey());
-                }
-            }
-        }
-        return map;
+        httpClients = getDefaultHttpClients();
+        httpClients.putAll(getOverrideHttpClients());
     }
 
     /**
@@ -175,43 +101,76 @@ public class InternalConfig {
         return signerConfig == null ? defaultSignerConfig : signerConfig;
     }
 
-    static InternalConfigJsonHelper loadfrom(URL url)
-            throws JsonParseException, JsonMappingException, IOException {
-        if (url == null)
-            throw new IllegalArgumentException();
-        InternalConfigJsonHelper target = Jackson.getObjectMapper().readValue(
-                url, InternalConfigJsonHelper.class);
-        return target;
+    private static Map<String, HttpClientConfig> getDefaultHttpClients() {
+        //map from service client name to sigv4 service name
+        Map<String, HttpClientConfig> ret = new HashMap<String, HttpClientConfig>();
+        ret.put("AmazonSimpleWorkflowClient", new HttpClientConfig("swf"));
+        ret.put("AmazonCloudWatchClient", new HttpClientConfig("monitoring"));
+        ret.put("DataPipelineClient", new HttpClientConfig("datapipeline"));
+        ret.put("AmazonIdentityManagementClient", new HttpClientConfig("iam"));
+        ret.put("AmazonSimpleDBClient", new HttpClientConfig("sdb"));
+        ret.put("AmazonSimpleEmailServiceClient", new HttpClientConfig("email"));
+        ret.put("AWSSecurityTokenServiceClient", new HttpClientConfig("sts"));
+        ret.put("AmazonCognitoIdentityClient", new HttpClientConfig("cognito-identity"));
+        ret.put("AmazonCognitoSyncClient", new HttpClientConfig("cognito-sync"));
+        return ret;
     }
 
-    /**
-     * Loads and returns the AWS Java SDK internal configuration from the
-     * classpath.
-     */
-    static InternalConfig load() throws JsonParseException,
-        JsonMappingException, IOException {
-        URL url = ClassLoaderHelper.getResource("/" + DEFAULT_CONFIG_RESOURCE,
-                InternalConfig.class);
-        if (url == null) { // Try without a leading "/"
-            url = ClassLoaderHelper.getResource(DEFAULT_CONFIG_RESOURCE,
-                    InternalConfig.class);
-        }
-        InternalConfigJsonHelper config = loadfrom(url);
-        InternalConfigJsonHelper configOverride;
-        URL overrideUrl = ClassLoaderHelper.getResource(
-                "/" + CONFIG_OVERRIDE_RESOURCE, InternalConfig.class);
-        if (overrideUrl == null) { // Try without a leading "/"
-            overrideUrl = ClassLoaderHelper.getResource(
-                    CONFIG_OVERRIDE_RESOURCE, InternalConfig.class);
-        }
-        if (overrideUrl == null) {
-            log.debug("Configuration override " + CONFIG_OVERRIDE_RESOURCE
-                    + " not found.");
-            configOverride = new InternalConfigJsonHelper();
-        } else {
-            configOverride = loadfrom(overrideUrl);
-        }
-        return new InternalConfig(config, configOverride);
+    private static Map<String, SignerConfig> getDefaultRegionSigners() {
+        //map from region name to signer type
+        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+        ret.put("eu-central-1", new SignerConfig("AWS4SignerType"));
+        ret.put("cn-north-1", new SignerConfig("AWS4SignerType"));
+        return ret;
+    }
+
+    private static Map<String, SignerConfig> getDefaultServiceRegionSigners() {
+        //map from "<service>/<region>" to signer type
+        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+        ret.put("s3/eu-central-1", new SignerConfig("AWSS3V4SignerType"));
+        ret.put("s3/cn-north-1", new SignerConfig("AWSS3V4SignerType"));
+        return ret;
+    }
+
+    private static Map<String, SignerConfig> getDefaultServiceSigners() {
+        //map from abbreviated service name to signer type
+        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+        ret.put("ec2", new SignerConfig("QueryStringSignerType"));
+        ret.put("email", new SignerConfig("AWS3SignerType"));
+        ret.put("importexport", new SignerConfig("QueryStringSignerType"));
+        ret.put("route53", new SignerConfig("AWS3SignerType"));
+        ret.put("s3", new SignerConfig("S3SignerType"));
+        ret.put("sdb", new SignerConfig("QueryStringSignerType"));
+        ret.put("cloudsearchdomain", new SignerConfig("NoOpSignerType"));
+        return ret;
+    }
+
+    private static SignerConfig getDefaultSigner() {
+        return new SignerConfig("AWS4SignerType");
+    }
+
+    private static Map<String, HttpClientConfig> getOverrideHttpClients() {
+        //map from service client name to sigv4 service name
+        Map<String, HttpClientConfig> ret = new HashMap<String, HttpClientConfig>();
+        return ret;
+    }
+
+    private static Map<String, SignerConfig> getOverrideRegionSigners() {
+        //map from region name to signer type
+        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+        return ret;
+    }
+
+    private static Map<String, SignerConfig> getOverrideServiceRegionSigners() {
+        //map from "<service>/<region>" to signer type
+        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+        return ret;
+    }
+
+    private static Map<String, SignerConfig> getOverrideServiceSigners() {
+        //map from abbreviated service name to signer type
+        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+        return ret;
     }
     
     // For debugging purposes
@@ -229,7 +188,7 @@ public class InternalConfig {
         static {
             InternalConfig config = null;
             try {
-                config = InternalConfig.load();
+                config = new InternalConfig();
             } catch(RuntimeException ex) {
                 throw ex;
             } catch(Exception ex) {

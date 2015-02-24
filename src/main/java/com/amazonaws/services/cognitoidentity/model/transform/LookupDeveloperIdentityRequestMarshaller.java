@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Lookup Developer Identity Request Marshaller
@@ -52,36 +53,37 @@ public class LookupDeveloperIdentityRequestMarshaller implements Marshaller<Requ
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (lookupDeveloperIdentityRequest.getIdentityPoolId() != null) {
-                jsonWriter.key("IdentityPoolId").value(lookupDeveloperIdentityRequest.getIdentityPoolId());
+                jsonWriter.name("IdentityPoolId").value(lookupDeveloperIdentityRequest.getIdentityPoolId());
             }
             if (lookupDeveloperIdentityRequest.getIdentityId() != null) {
-                jsonWriter.key("IdentityId").value(lookupDeveloperIdentityRequest.getIdentityId());
+                jsonWriter.name("IdentityId").value(lookupDeveloperIdentityRequest.getIdentityId());
             }
             if (lookupDeveloperIdentityRequest.getDeveloperUserIdentifier() != null) {
-                jsonWriter.key("DeveloperUserIdentifier").value(lookupDeveloperIdentityRequest.getDeveloperUserIdentifier());
+                jsonWriter.name("DeveloperUserIdentifier").value(lookupDeveloperIdentityRequest.getDeveloperUserIdentifier());
             }
             if (lookupDeveloperIdentityRequest.getMaxResults() != null) {
-                jsonWriter.key("MaxResults").value(lookupDeveloperIdentityRequest.getMaxResults());
+                jsonWriter.name("MaxResults").value(lookupDeveloperIdentityRequest.getMaxResults());
             }
             if (lookupDeveloperIdentityRequest.getNextToken() != null) {
-                jsonWriter.key("NextToken").value(lookupDeveloperIdentityRequest.getNextToken());
+                jsonWriter.name("NextToken").value(lookupDeveloperIdentityRequest.getNextToken());
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

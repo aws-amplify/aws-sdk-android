@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Delete Item Request Marshaller
@@ -52,20 +53,20 @@ public class DeleteItemRequestMarshaller implements Marshaller<Request<DeleteIte
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (deleteItemRequest.getTableName() != null) {
-                jsonWriter.key("TableName").value(deleteItemRequest.getTableName());
+                jsonWriter.name("TableName").value(deleteItemRequest.getTableName());
             }
             if (deleteItemRequest.getKey() != null) {
-                jsonWriter.key("Key");
-                jsonWriter.object();
+                jsonWriter.name("Key");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, AttributeValue> keyListValue : deleteItemRequest.getKey().entrySet()) {
                     if (keyListValue.getValue() != null) {
-                        jsonWriter.key(keyListValue.getKey());
+                        jsonWriter.name(keyListValue.getKey());
 
                         AttributeValueJsonMarshaller.getInstance().marshall(keyListValue.getValue(), jsonWriter);
                     }
@@ -73,31 +74,31 @@ public class DeleteItemRequestMarshaller implements Marshaller<Request<DeleteIte
                 jsonWriter.endObject();
             }
             if (deleteItemRequest.getExpected() != null) {
-                jsonWriter.key("Expected");
-                jsonWriter.object();
+                jsonWriter.name("Expected");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, ExpectedAttributeValue> expectedListValue : deleteItemRequest.getExpected().entrySet()) {
                     if (expectedListValue.getValue() != null) {
-                        jsonWriter.key(expectedListValue.getKey());
+                        jsonWriter.name(expectedListValue.getKey());
 
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         AttributeValue value = expectedListValue.getValue().getValue();
                         if (value != null) {
 
-                            jsonWriter.key("Value");
+                            jsonWriter.name("Value");
                             AttributeValueJsonMarshaller.getInstance().marshall(value, jsonWriter);
                         }
                         if (expectedListValue.getValue().isExists() != null) {
-                            jsonWriter.key("Exists").value(expectedListValue.getValue().isExists());
+                            jsonWriter.name("Exists").value(expectedListValue.getValue().isExists());
                         }
                         if (expectedListValue.getValue().getComparisonOperator() != null) {
-                            jsonWriter.key("ComparisonOperator").value(expectedListValue.getValue().getComparisonOperator());
+                            jsonWriter.name("ComparisonOperator").value(expectedListValue.getValue().getComparisonOperator());
                         }
 
                         com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue> attributeValueListList = (com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue>)(expectedListValue.getValue().getAttributeValueList());
                         if (attributeValueListList != null && !(attributeValueListList.isAutoConstruct() && attributeValueListList.isEmpty())) {
 
-                            jsonWriter.key("AttributeValueList");
-                            jsonWriter.array();
+                            jsonWriter.name("AttributeValueList");
+                            jsonWriter.beginArray();
 
                             for (AttributeValue attributeValueListListValue : attributeValueListList) {
                                 if (attributeValueListListValue != null) {
@@ -112,26 +113,26 @@ public class DeleteItemRequestMarshaller implements Marshaller<Request<DeleteIte
                 jsonWriter.endObject();
             }
             if (deleteItemRequest.getConditionalOperator() != null) {
-                jsonWriter.key("ConditionalOperator").value(deleteItemRequest.getConditionalOperator());
+                jsonWriter.name("ConditionalOperator").value(deleteItemRequest.getConditionalOperator());
             }
             if (deleteItemRequest.getReturnValues() != null) {
-                jsonWriter.key("ReturnValues").value(deleteItemRequest.getReturnValues());
+                jsonWriter.name("ReturnValues").value(deleteItemRequest.getReturnValues());
             }
             if (deleteItemRequest.getReturnConsumedCapacity() != null) {
-                jsonWriter.key("ReturnConsumedCapacity").value(deleteItemRequest.getReturnConsumedCapacity());
+                jsonWriter.name("ReturnConsumedCapacity").value(deleteItemRequest.getReturnConsumedCapacity());
             }
             if (deleteItemRequest.getReturnItemCollectionMetrics() != null) {
-                jsonWriter.key("ReturnItemCollectionMetrics").value(deleteItemRequest.getReturnItemCollectionMetrics());
+                jsonWriter.name("ReturnItemCollectionMetrics").value(deleteItemRequest.getReturnItemCollectionMetrics());
             }
             if (deleteItemRequest.getConditionExpression() != null) {
-                jsonWriter.key("ConditionExpression").value(deleteItemRequest.getConditionExpression());
+                jsonWriter.name("ConditionExpression").value(deleteItemRequest.getConditionExpression());
             }
             if (deleteItemRequest.getExpressionAttributeNames() != null) {
-                jsonWriter.key("ExpressionAttributeNames");
-                jsonWriter.object();
+                jsonWriter.name("ExpressionAttributeNames");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, String> expressionAttributeNamesListValue : deleteItemRequest.getExpressionAttributeNames().entrySet()) {
                     if (expressionAttributeNamesListValue.getValue() != null) {
-                        jsonWriter.key(expressionAttributeNamesListValue.getKey());
+                        jsonWriter.name(expressionAttributeNamesListValue.getKey());
 
                         jsonWriter.value(expressionAttributeNamesListValue.getValue());
                     }
@@ -139,11 +140,11 @@ public class DeleteItemRequestMarshaller implements Marshaller<Request<DeleteIte
                 jsonWriter.endObject();
             }
             if (deleteItemRequest.getExpressionAttributeValues() != null) {
-                jsonWriter.key("ExpressionAttributeValues");
-                jsonWriter.object();
+                jsonWriter.name("ExpressionAttributeValues");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, AttributeValue> expressionAttributeValuesListValue : deleteItemRequest.getExpressionAttributeValues().entrySet()) {
                     if (expressionAttributeValuesListValue.getValue() != null) {
-                        jsonWriter.key(expressionAttributeValuesListValue.getKey());
+                        jsonWriter.name(expressionAttributeValuesListValue.getKey());
 
                         AttributeValueJsonMarshaller.getInstance().marshall(expressionAttributeValuesListValue.getValue(), jsonWriter);
                     }
@@ -151,15 +152,16 @@ public class DeleteItemRequestMarshaller implements Marshaller<Request<DeleteIte
                 jsonWriter.endObject();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

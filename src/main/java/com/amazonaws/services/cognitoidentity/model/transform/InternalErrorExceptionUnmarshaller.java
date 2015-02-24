@@ -15,8 +15,8 @@
 package com.amazonaws.services.cognitoidentity.model.transform;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JSONObject;
 
 import com.amazonaws.services.cognitoidentity.model.InternalErrorException;
 
@@ -27,19 +27,13 @@ public class InternalErrorExceptionUnmarshaller extends JsonErrorUnmarshaller {
     }
 
     @Override
-    public boolean match(String errorTypeFromHeader, JSONObject json) throws Exception {
-        if (errorTypeFromHeader == null) {
-            // Parse error type from the JSON content if it's not available in the response headers
-            String errorCodeFromContent = parseErrorCode(json);
-            return (errorCodeFromContent != null && errorCodeFromContent.equals("InternalErrorException"));
-        } else {
-            return errorTypeFromHeader.equals("InternalErrorException");
-        }
+    public boolean match(JsonErrorResponse error) throws Exception {
+        return error.getErrorCode().equals("InternalErrorException");
     }
 
     @Override
-    public AmazonServiceException unmarshall(JSONObject json) throws Exception {
-        InternalErrorException e = (InternalErrorException)super.unmarshall(json);
+    public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+        InternalErrorException e = (InternalErrorException)super.unmarshall(error);
         e.setErrorCode("InternalErrorException");
 
         return e;

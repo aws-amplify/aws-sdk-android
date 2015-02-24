@@ -14,12 +14,9 @@
  */
 package com.amazonaws.util;
 
-import org.apache.http.annotation.ThreadSafe;
-
 /**
  * A {@link TimingInfo} that is unmodifiable.
  */
-@ThreadSafe
 final class TimingInfoUnmodifiable extends TimingInfo {
     /**
      * @see TimingInfo#unmodifiableTimingInfo(long, Long)

@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.cognitoidentity.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Create Identity Pool Result JSON Unmarshaller
@@ -33,50 +31,35 @@ public class CreateIdentityPoolResultJsonUnmarshaller implements Unmarshaller<Cr
     public CreateIdentityPoolResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         CreateIdentityPoolResult createIdentityPoolResult = new CreateIdentityPoolResult();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("IdentityPoolId", targetDepth)) {
-                    context.nextToken();
-                    createIdentityPoolResult.setIdentityPoolId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("IdentityPoolName", targetDepth)) {
-                    context.nextToken();
-                    createIdentityPoolResult.setIdentityPoolName(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("AllowUnauthenticatedIdentities", targetDepth)) {
-                    context.nextToken();
-                    createIdentityPoolResult.setAllowUnauthenticatedIdentities(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("SupportedLoginProviders", targetDepth)) {
-                    context.nextToken();
-                    createIdentityPoolResult.setSupportedLoginProviders(new MapUnmarshaller<String,String>(StringJsonUnmarshaller.getInstance(), StringJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("DeveloperProviderName", targetDepth)) {
-                    context.nextToken();
-                    createIdentityPoolResult.setDeveloperProviderName(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("OpenIdConnectProviderARNs", targetDepth)) {
-                    context.nextToken();
-                    createIdentityPoolResult.setOpenIdConnectProviderARNs(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("IdentityPoolId")) {
+                createIdentityPoolResult.setIdentityPoolId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("IdentityPoolName")) {
+                createIdentityPoolResult.setIdentityPoolName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("AllowUnauthenticatedIdentities")) {
+                createIdentityPoolResult.setAllowUnauthenticatedIdentities(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("SupportedLoginProviders")) {
+                createIdentityPoolResult.setSupportedLoginProviders(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("DeveloperProviderName")) {
+                createIdentityPoolResult.setDeveloperProviderName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("OpenIdConnectProviderARNs")) {
+                createIdentityPoolResult.setOpenIdConnectProviderARNs(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return createIdentityPoolResult;
     }

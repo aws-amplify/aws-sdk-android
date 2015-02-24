@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.dynamodbv2.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Batch Write Item Result JSON Unmarshaller
@@ -33,38 +31,26 @@ public class BatchWriteItemResultJsonUnmarshaller implements Unmarshaller<BatchW
     public BatchWriteItemResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         BatchWriteItemResult batchWriteItemResult = new BatchWriteItemResult();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("UnprocessedItems", targetDepth)) {
-                    context.nextToken();
-                    batchWriteItemResult.setUnprocessedItems(new MapUnmarshaller<String,java.util.List<WriteRequest>>(StringJsonUnmarshaller.getInstance(), new ListUnmarshaller<WriteRequest>(WriteRequestJsonUnmarshaller.getInstance())).unmarshall(context));
-                }
-                if (context.testExpression("ItemCollectionMetrics", targetDepth)) {
-                    context.nextToken();
-                    batchWriteItemResult.setItemCollectionMetrics(new MapUnmarshaller<String,java.util.List<ItemCollectionMetrics>>(StringJsonUnmarshaller.getInstance(), new ListUnmarshaller<ItemCollectionMetrics>(ItemCollectionMetricsJsonUnmarshaller.getInstance())).unmarshall(context));
-                }
-                if (context.testExpression("ConsumedCapacity", targetDepth)) {
-                    context.nextToken();
-                    batchWriteItemResult.setConsumedCapacity(new ListUnmarshaller<ConsumedCapacity>(ConsumedCapacityJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("UnprocessedItems")) {
+                batchWriteItemResult.setUnprocessedItems(new MapUnmarshaller<java.util.List<WriteRequest>>(new ListUnmarshaller<WriteRequest>(WriteRequestJsonUnmarshaller.getInstance())).unmarshall(context));
+            } else 
+            if (name.equals("ItemCollectionMetrics")) {
+                batchWriteItemResult.setItemCollectionMetrics(new MapUnmarshaller<java.util.List<ItemCollectionMetrics>>(new ListUnmarshaller<ItemCollectionMetrics>(ItemCollectionMetricsJsonUnmarshaller.getInstance())).unmarshall(context));
+            } else 
+            if (name.equals("ConsumedCapacity")) {
+                batchWriteItemResult.setConsumedCapacity(new ListUnmarshaller<ConsumedCapacity>(ConsumedCapacityJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return batchWriteItemResult;
     }

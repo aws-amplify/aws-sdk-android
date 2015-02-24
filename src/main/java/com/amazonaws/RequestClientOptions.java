@@ -17,12 +17,9 @@ package com.amazonaws;
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.apache.http.annotation.NotThreadSafe;
-
 /**
  * Client markers for individual {@link AmazonWebServiceRequest}s.
  */
-@NotThreadSafe
 public final class RequestClientOptions {
     public static enum Marker {
         /** 

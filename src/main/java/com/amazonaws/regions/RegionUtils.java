@@ -21,6 +21,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -173,10 +175,36 @@ public class RegionUtils {
      */
     private static void initSDKRegions() {
         if ( log.isDebugEnabled() ) {
-            log.debug("Initializing the regions from the region file bundled with the SDK...");
+            log.debug("Initializing the regions with default regions");
         }
-        InputStream inputStream = RegionUtils.class.getResourceAsStream(FALLBACK);
-        initRegions(inputStream);
+        try {
+            Class cls = RegionUtils.class.getClassLoader()
+                    .loadClass("com.amazonaws.regions.RegionDefaults");
+            Method getRegions = cls.getMethod("getRegions");
+            regions = (List<Region>)getRegions.invoke(null);
+        } catch(ClassNotFoundException e) {
+            if(log.isDebugEnabled()) {
+                log.debug("Could not find the RegionDefaults class!");
+            }
+        } catch(NoSuchMethodException e) {
+            if(log.isDebugEnabled()) {
+                log.debug("Could not find the RegionDefaults.getRegions!");
+            }
+            //this should never happen, so don't fail silently
+            throw new RuntimeException("nosuchmethod");
+        } catch(IllegalAccessException e) {
+            if(log.isDebugEnabled()) {
+                log.debug("IllegalAccessException in initSDKRegions");
+            }
+            //this should never happen, so don't fail silently
+            throw new RuntimeException("illegal access");
+        } catch(InvocationTargetException e) {
+            if(log.isDebugEnabled()) {
+                log.debug("InvocationTargetException in initSDKRegions");
+            }
+            //this should never happen, so don't fail silently
+            throw new RuntimeException("invocation target");
+        }
     }
 
     /**

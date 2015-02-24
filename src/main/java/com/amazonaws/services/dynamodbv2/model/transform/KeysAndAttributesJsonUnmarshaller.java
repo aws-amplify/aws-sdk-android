@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.dynamodbv2.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Keys And Attributes JSON Unmarshaller
@@ -33,46 +31,32 @@ public class KeysAndAttributesJsonUnmarshaller implements Unmarshaller<KeysAndAt
     public KeysAndAttributes unmarshall(JsonUnmarshallerContext context) throws Exception {
         KeysAndAttributes keysAndAttributes = new KeysAndAttributes();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("Keys", targetDepth)) {
-                    context.nextToken();
-                    keysAndAttributes.setKeys(new ListUnmarshaller<java.util.Map<String,AttributeValue>>(new MapUnmarshaller<String,AttributeValue>(StringJsonUnmarshaller.getInstance(), AttributeValueJsonUnmarshaller.getInstance())).unmarshall(context));
-                }
-                if (context.testExpression("AttributesToGet", targetDepth)) {
-                    context.nextToken();
-                    keysAndAttributes.setAttributesToGet(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("ConsistentRead", targetDepth)) {
-                    context.nextToken();
-                    keysAndAttributes.setConsistentRead(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("ProjectionExpression", targetDepth)) {
-                    context.nextToken();
-                    keysAndAttributes.setProjectionExpression(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("ExpressionAttributeNames", targetDepth)) {
-                    context.nextToken();
-                    keysAndAttributes.setExpressionAttributeNames(new MapUnmarshaller<String,String>(StringJsonUnmarshaller.getInstance(), StringJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("Keys")) {
+                keysAndAttributes.setKeys(new ListUnmarshaller<java.util.Map<String,AttributeValue>>(new MapUnmarshaller<AttributeValue>(AttributeValueJsonUnmarshaller.getInstance())).unmarshall(context));
+            } else 
+            if (name.equals("AttributesToGet")) {
+                keysAndAttributes.setAttributesToGet(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("ConsistentRead")) {
+                keysAndAttributes.setConsistentRead(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("ProjectionExpression")) {
+                keysAndAttributes.setProjectionExpression(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("ExpressionAttributeNames")) {
+                keysAndAttributes.setExpressionAttributeNames(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return keysAndAttributes;
     }

@@ -16,13 +16,12 @@ package com.amazonaws.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.util.json.JSONException;
-import com.amazonaws.util.json.JSONObject;
+import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 
 /**
  * Unmarshaller for JSON error responses from AWS services.
  */
-public class JsonErrorUnmarshaller extends AbstractErrorUnmarshaller<JSONObject> {
+public class JsonErrorUnmarshaller extends AbstractErrorUnmarshaller<JsonErrorResponse> {
 
     public JsonErrorUnmarshaller() {}
 
@@ -35,9 +34,10 @@ public class JsonErrorUnmarshaller extends AbstractErrorUnmarshaller<JSONObject>
      * whether it represents the given error type, and unmarshall(JSONObject)
      * should never return null.
      */
-    public AmazonServiceException unmarshall(JSONObject json) throws Exception {
-        String message = parseMessage(json);
-        String errorCode = parseErrorCode(json);
+    @Override
+    public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+        String message = error.getMessage();
+        String errorCode = error.getErrorCode();
 
         if ((null == message || message.isEmpty()) && (null == errorCode || errorCode.isEmpty())) {
             /**
@@ -51,59 +51,17 @@ public class JsonErrorUnmarshaller extends AbstractErrorUnmarshaller<JSONObject>
         }
     }
 
-    public String parseMessage(JSONObject json) throws Exception {
-        return parseMember("message", json);
-    }
-
-    public String parseMember(String key, JSONObject json) throws JSONException {
-        if (key == null || key.length() == 0) {
-            return null;
-        }
-
-        String firstLetterUppercaseKey;
-        String firstLetterLowercaseKey;
-
-        firstLetterLowercaseKey = key.substring(0, 1).toLowerCase()
-                + key.substring(1);
-
-        firstLetterUppercaseKey = key.substring(0, 1).toUpperCase()
-                + key.substring(1);
-
-         String value = "";
-         if (json.has(firstLetterUppercaseKey)) {
-             value = json.getString(firstLetterUppercaseKey);
-         } else if (json.has(firstLetterLowercaseKey)) {
-             value = json.getString(firstLetterLowercaseKey);
-         }
-
-         return value;
-    }
-
-    public String parseErrorCode(JSONObject json) throws Exception {
-        if (json.has("__type")) {
-            String type = json.getString("__type");
-            int separator = type.lastIndexOf("#");
-            return type.substring(separator + 1);
-        }
-
-        return null;
-    }
-
     /**
      * Any subclass that is specific to a error type should only return true
      * when the response matches, either by matching the error type parsed from
      * header or from the JSON content.
-     * 
-     * @param errorTypeFromHeader
-     *            The error type parsed from the response headers, or null if
-     *            such information is not available in the headers.
-     * 
-     * @param json
+     *
+     * @param error
      *            The JSON content of the response. Subclass should check for
      *            the error type information from this JSONObject if
      *            errorTypeFromHeader is null.
      */
-    public boolean match(String errorTypeFromHeader, JSONObject json) throws Exception {
+    public boolean match(JsonErrorResponse error) throws Exception {
         return true;
     }
 }

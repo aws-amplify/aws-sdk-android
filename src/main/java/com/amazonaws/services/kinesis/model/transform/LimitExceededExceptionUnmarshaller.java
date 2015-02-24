@@ -15,8 +15,8 @@
 package com.amazonaws.services.kinesis.model.transform;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JSONObject;
 
 import com.amazonaws.services.kinesis.model.LimitExceededException;
 
@@ -27,19 +27,13 @@ public class LimitExceededExceptionUnmarshaller extends JsonErrorUnmarshaller {
     }
 
     @Override
-    public boolean match(String errorTypeFromHeader, JSONObject json) throws Exception {
-        if (errorTypeFromHeader == null) {
-            // Parse error type from the JSON content if it's not available in the response headers
-            String errorCodeFromContent = parseErrorCode(json);
-            return (errorCodeFromContent != null && errorCodeFromContent.equals("LimitExceededException"));
-        } else {
-            return errorTypeFromHeader.equals("LimitExceededException");
-        }
+    public boolean match(JsonErrorResponse error) throws Exception {
+        return error.getErrorCode().equals("LimitExceededException");
     }
 
     @Override
-    public AmazonServiceException unmarshall(JSONObject json) throws Exception {
-        LimitExceededException e = (LimitExceededException)super.unmarshall(json);
+    public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+        LimitExceededException e = (LimitExceededException)super.unmarshall(error);
         e.setErrorCode("LimitExceededException");
 
         return e;

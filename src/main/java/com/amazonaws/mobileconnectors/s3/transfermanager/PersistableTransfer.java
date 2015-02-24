@@ -16,15 +16,16 @@ package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 import static com.amazonaws.util.StringUtils.UTF8;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 
-import com.amazonaws.util.json.Jackson;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
+import com.amazonaws.util.json.AwsJsonReader;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Abstract base class for the information of a pausible upload or download; such
@@ -33,14 +34,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public abstract class PersistableTransfer {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
-
     /**
      * Returns the serialized representation of the paused transfer state.
      */
-    public final String serialize() {
-        return Jackson.toJsonString(this);
-    }
+    public abstract String serialize();
 
     /**
      * Writes the serialized representation of the paused transfer state to the
@@ -48,7 +45,7 @@ public abstract class PersistableTransfer {
      * close the <code>OutputStream</code>.
      */
     public final void serialize(OutputStream out) throws IOException {
-        out.write(Jackson.toJsonString(this).getBytes(UTF8));
+        out.write(serialize().getBytes(UTF8));
         out.flush();
     }
 
@@ -61,34 +58,98 @@ public abstract class PersistableTransfer {
      *             if the paused transfer type extracted from the serialized
      *             representation is not supported.
      */
+    @SuppressWarnings("unchecked")
     public static <T extends PersistableTransfer> T deserializeFrom(InputStream in) {
-        String type;
-        JsonNode tree;
+        String type = null;
+        String bucketName = null;
+        String key = null;
+        String file = null;
+
+        String multipartUploadId = null;
+        long partSize = -1;
+        long mutlipartUploadThreshold = -1;
+
+        String versionId = null;
+        long[] range = new long[] {
+                -1, -1
+        };
+        ResponseHeaderOverrides responseHeaders = null;
+        boolean isRequesterPays = false;
+
+        AwsJsonReader reader = JsonUtils
+                .getJsonReader(new BufferedReader(new InputStreamReader(in)));
         try {
-            tree = MAPPER.readTree(in);
-            JsonNode pauseType = tree.get("pauseType");
-            if (pauseType == null)
-                throw new IllegalArgumentException(
-                        "Unrecognized serialized state");
-            type = pauseType.asText();
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e);
+
+            reader.beginObject();
+            while (reader.hasNext()) {
+                String name = reader.nextName();
+                if (name.equals("pauseType")) {
+                    type = reader.nextString();
+                } else if (name.equals("bucketName")) {
+                    bucketName = reader.nextString();
+                } else if (name.equals("key")) {
+                    key = reader.nextString();
+                } else if (name.equals("file")) {
+                    file = reader.nextString();
+                }
+                // upload properties
+                else if (name.equals("multipartUploadId")) {
+                    multipartUploadId = reader.nextString();
+                } else if (name.equals("partSize")) {
+                    partSize = Long.parseLong(reader.nextString());
+                } else if (name.equals("mutlipartUploadThreshold")) {
+                    mutlipartUploadThreshold = Long.parseLong(reader.nextString());
+                }
+                // download properties
+                else if (name.equals("versionId")) {
+                    versionId = reader.nextString();
+                } else if (name.equals("range")) {
+                    reader.beginArray();
+                    range[0] = Long.parseLong(reader.nextString());
+                    range[1] = Long.parseLong(reader.nextString());
+                    reader.endArray();
+                } else if (name.equals("responseHeaders")) {
+                    responseHeaders = new ResponseHeaderOverrides();
+                    reader.beginObject();
+                    while (reader.hasNext()) {
+                        String n = reader.nextName();
+                        if (n.equals("contentType")) {
+                            responseHeaders.setContentType(reader.nextString());
+                        } else if (n.equals("contentLanguage")) {
+                            responseHeaders.setContentLanguage(reader.nextString());
+                        } else if (n.equals("expires")) {
+                            responseHeaders.setExpires(reader.nextString());
+                        } else if (n.equals("cacheControl")) {
+                            responseHeaders.setCacheControl(reader.nextString());
+                        } else if (n.equals("contentDisposition")) {
+                            responseHeaders.setContentDisposition(reader.nextString());
+                        } else if (n.equals("contentEncoding")) {
+                            responseHeaders.setContentEncoding(reader.nextString());
+                        } else {
+                            reader.skipValue();
+                        }
+                    }
+                    reader.endObject();
+                } else if (name.equals("isRequesterPays")) {
+                    isRequesterPays = Boolean.parseBoolean(reader.nextString());
+                } else {
+                    reader.skipValue();
+                }
+            }
+            reader.endObject();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
         }
-        Class<?> clazz;
+
         if (PersistableDownload.TYPE.equals(type)) {
-            clazz = PersistableDownload.class;
+            return (T) new PersistableDownload(bucketName, key, versionId, range, responseHeaders,
+                    isRequesterPays, file);
         } else if (PersistableUpload.TYPE.equals(type)) {
-            clazz = PersistableUpload.class;
+            return (T) new PersistableUpload(bucketName, key, file, multipartUploadId, partSize,
+                    mutlipartUploadThreshold);
         } else {
             throw new UnsupportedOperationException(
                     "Unsupported paused transfer type: " + type);
-        }
-        try {
-            @SuppressWarnings("unchecked")
-            T t = (T) MAPPER.treeToValue(tree, clazz);
-            return t;
-        } catch (JsonProcessingException e) {
-            throw new IllegalStateException(e);
         }
     }
 

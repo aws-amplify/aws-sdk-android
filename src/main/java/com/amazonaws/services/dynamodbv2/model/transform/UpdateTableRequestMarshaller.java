@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Update Table Request Marshaller
@@ -52,25 +53,25 @@ public class UpdateTableRequestMarshaller implements Marshaller<Request<UpdateTa
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (updateTableRequest.getTableName() != null) {
-                jsonWriter.key("TableName").value(updateTableRequest.getTableName());
+                jsonWriter.name("TableName").value(updateTableRequest.getTableName());
             }
             ProvisionedThroughput provisionedThroughput = updateTableRequest.getProvisionedThroughput();
             if (provisionedThroughput != null) {
 
-                jsonWriter.key("ProvisionedThroughput");
-                jsonWriter.object();
+                jsonWriter.name("ProvisionedThroughput");
+                jsonWriter.beginObject();
 
                 if (provisionedThroughput.getReadCapacityUnits() != null) {
-                    jsonWriter.key("ReadCapacityUnits").value(provisionedThroughput.getReadCapacityUnits());
+                    jsonWriter.name("ReadCapacityUnits").value(provisionedThroughput.getReadCapacityUnits());
                 }
                 if (provisionedThroughput.getWriteCapacityUnits() != null) {
-                    jsonWriter.key("WriteCapacityUnits").value(provisionedThroughput.getWriteCapacityUnits());
+                    jsonWriter.name("WriteCapacityUnits").value(provisionedThroughput.getWriteCapacityUnits());
                 }
                 jsonWriter.endObject();
             }
@@ -78,32 +79,32 @@ public class UpdateTableRequestMarshaller implements Marshaller<Request<UpdateTa
             com.amazonaws.internal.ListWithAutoConstructFlag<GlobalSecondaryIndexUpdate> globalSecondaryIndexUpdatesList = (com.amazonaws.internal.ListWithAutoConstructFlag<GlobalSecondaryIndexUpdate>)(updateTableRequest.getGlobalSecondaryIndexUpdates());
             if (globalSecondaryIndexUpdatesList != null && !(globalSecondaryIndexUpdatesList.isAutoConstruct() && globalSecondaryIndexUpdatesList.isEmpty())) {
 
-                jsonWriter.key("GlobalSecondaryIndexUpdates");
-                jsonWriter.array();
+                jsonWriter.name("GlobalSecondaryIndexUpdates");
+                jsonWriter.beginArray();
 
                 for (GlobalSecondaryIndexUpdate globalSecondaryIndexUpdatesListValue : globalSecondaryIndexUpdatesList) {
                     if (globalSecondaryIndexUpdatesListValue != null) {
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         UpdateGlobalSecondaryIndexAction update = globalSecondaryIndexUpdatesListValue.getUpdate();
                         if (update != null) {
 
-                            jsonWriter.key("Update");
-                            jsonWriter.object();
+                            jsonWriter.name("Update");
+                            jsonWriter.beginObject();
 
                             if (update.getIndexName() != null) {
-                                jsonWriter.key("IndexName").value(update.getIndexName());
+                                jsonWriter.name("IndexName").value(update.getIndexName());
                             }
                             ProvisionedThroughput provisionedThroughput2 = update.getProvisionedThroughput();
                             if (provisionedThroughput2 != null) {
 
-                                jsonWriter.key("ProvisionedThroughput");
-                                jsonWriter.object();
+                                jsonWriter.name("ProvisionedThroughput");
+                                jsonWriter.beginObject();
 
                                 if (provisionedThroughput2.getReadCapacityUnits() != null) {
-                                    jsonWriter.key("ReadCapacityUnits").value(provisionedThroughput2.getReadCapacityUnits());
+                                    jsonWriter.name("ReadCapacityUnits").value(provisionedThroughput2.getReadCapacityUnits());
                                 }
                                 if (provisionedThroughput2.getWriteCapacityUnits() != null) {
-                                    jsonWriter.key("WriteCapacityUnits").value(provisionedThroughput2.getWriteCapacityUnits());
+                                    jsonWriter.name("WriteCapacityUnits").value(provisionedThroughput2.getWriteCapacityUnits());
                                 }
                                 jsonWriter.endObject();
                             }
@@ -115,15 +116,16 @@ public class UpdateTableRequestMarshaller implements Marshaller<Request<UpdateTa
                 jsonWriter.endArray();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

@@ -15,8 +15,8 @@
 package com.amazonaws.services.dynamodbv2.model.transform;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JSONObject;
 
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughputExceededException;
 
@@ -27,19 +27,13 @@ public class ProvisionedThroughputExceededExceptionUnmarshaller extends JsonErro
     }
 
     @Override
-    public boolean match(String errorTypeFromHeader, JSONObject json) throws Exception {
-        if (errorTypeFromHeader == null) {
-            // Parse error type from the JSON content if it's not available in the response headers
-            String errorCodeFromContent = parseErrorCode(json);
-            return (errorCodeFromContent != null && errorCodeFromContent.equals("ProvisionedThroughputExceededException"));
-        } else {
-            return errorTypeFromHeader.equals("ProvisionedThroughputExceededException");
-        }
+    public boolean match(JsonErrorResponse error) throws Exception {
+        return error.getErrorCode().equals("ProvisionedThroughputExceededException");
     }
 
     @Override
-    public AmazonServiceException unmarshall(JSONObject json) throws Exception {
-        ProvisionedThroughputExceededException e = (ProvisionedThroughputExceededException)super.unmarshall(json);
+    public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+        ProvisionedThroughputExceededException e = (ProvisionedThroughputExceededException)super.unmarshall(error);
         e.setErrorCode("ProvisionedThroughputExceededException");
 
         return e;

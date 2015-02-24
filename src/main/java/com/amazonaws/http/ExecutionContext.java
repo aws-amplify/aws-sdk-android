@@ -17,8 +17,6 @@ package com.amazonaws.http;
 import java.net.URI;
 import java.util.List;
 
-import org.apache.http.annotation.NotThreadSafe;
-
 import com.amazonaws.AmazonWebServiceClient;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.Signer;
@@ -26,7 +24,6 @@ import com.amazonaws.handlers.RequestHandler2;
 import com.amazonaws.util.AWSRequestMetrics;
 import com.amazonaws.util.AWSRequestMetricsFullSupport;
 
-@NotThreadSafe
 public class ExecutionContext {
     private final AWSRequestMetrics awsRequestMetrics;
     private final List<RequestHandler2> requestHandler2s;

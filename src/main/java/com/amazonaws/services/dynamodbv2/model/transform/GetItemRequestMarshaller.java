@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Get Item Request Marshaller
@@ -52,20 +53,20 @@ public class GetItemRequestMarshaller implements Marshaller<Request<GetItemReque
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (getItemRequest.getTableName() != null) {
-                jsonWriter.key("TableName").value(getItemRequest.getTableName());
+                jsonWriter.name("TableName").value(getItemRequest.getTableName());
             }
             if (getItemRequest.getKey() != null) {
-                jsonWriter.key("Key");
-                jsonWriter.object();
+                jsonWriter.name("Key");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, AttributeValue> keyListValue : getItemRequest.getKey().entrySet()) {
                     if (keyListValue.getValue() != null) {
-                        jsonWriter.key(keyListValue.getKey());
+                        jsonWriter.name(keyListValue.getKey());
 
                         AttributeValueJsonMarshaller.getInstance().marshall(keyListValue.getValue(), jsonWriter);
                     }
@@ -76,8 +77,8 @@ public class GetItemRequestMarshaller implements Marshaller<Request<GetItemReque
             com.amazonaws.internal.ListWithAutoConstructFlag<String> attributesToGetList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(getItemRequest.getAttributesToGet());
             if (attributesToGetList != null && !(attributesToGetList.isAutoConstruct() && attributesToGetList.isEmpty())) {
 
-                jsonWriter.key("AttributesToGet");
-                jsonWriter.array();
+                jsonWriter.name("AttributesToGet");
+                jsonWriter.beginArray();
 
                 for (String attributesToGetListValue : attributesToGetList) {
                     if (attributesToGetListValue != null) {
@@ -87,20 +88,20 @@ public class GetItemRequestMarshaller implements Marshaller<Request<GetItemReque
                 jsonWriter.endArray();
             }
             if (getItemRequest.isConsistentRead() != null) {
-                jsonWriter.key("ConsistentRead").value(getItemRequest.isConsistentRead());
+                jsonWriter.name("ConsistentRead").value(getItemRequest.isConsistentRead());
             }
             if (getItemRequest.getReturnConsumedCapacity() != null) {
-                jsonWriter.key("ReturnConsumedCapacity").value(getItemRequest.getReturnConsumedCapacity());
+                jsonWriter.name("ReturnConsumedCapacity").value(getItemRequest.getReturnConsumedCapacity());
             }
             if (getItemRequest.getProjectionExpression() != null) {
-                jsonWriter.key("ProjectionExpression").value(getItemRequest.getProjectionExpression());
+                jsonWriter.name("ProjectionExpression").value(getItemRequest.getProjectionExpression());
             }
             if (getItemRequest.getExpressionAttributeNames() != null) {
-                jsonWriter.key("ExpressionAttributeNames");
-                jsonWriter.object();
+                jsonWriter.name("ExpressionAttributeNames");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, String> expressionAttributeNamesListValue : getItemRequest.getExpressionAttributeNames().entrySet()) {
                     if (expressionAttributeNamesListValue.getValue() != null) {
-                        jsonWriter.key(expressionAttributeNamesListValue.getKey());
+                        jsonWriter.name(expressionAttributeNamesListValue.getKey());
 
                         jsonWriter.value(expressionAttributeNamesListValue.getValue());
                     }
@@ -108,15 +109,16 @@ public class GetItemRequestMarshaller implements Marshaller<Request<GetItemReque
                 jsonWriter.endObject();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

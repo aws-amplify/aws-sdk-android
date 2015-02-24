@@ -19,21 +19,16 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.http.annotation.ThreadSafe;
 
 /**
  * Utility class for accessing AWS SDK versioning information.
  */
-@ThreadSafe
 public class VersionInfoUtils {
-    /** The AWS SDK version info file with SDK versioning info */
-    static final String VERSION_INFO_FILE = "/com/amazonaws/sdk/versionInfo.properties";
-    
     /** SDK version info */
-    private static volatile String version;
+    private static volatile String version = "2.1.9";
 
     /** SDK platform info */
-    private static volatile String platform;
+    private static volatile String platform = "android";
 
     /** User Agent info */
     private static volatile String userAgent;
@@ -52,12 +47,6 @@ public class VersionInfoUtils {
      *         not available.
      */
     public static String getVersion() {
-        if (version == null) {
-            synchronized(VersionInfoUtils.class) {
-                if (version == null)
-                    initializeVersion();
-            }
-        }
         return version;
     }
 
@@ -72,12 +61,6 @@ public class VersionInfoUtils {
      *         not available.
      */
     public static String getPlatform() {
-        if (platform == null) {
-            synchronized(VersionInfoUtils.class) {
-                if (platform == null)
-                    initializeVersion();
-            }
-        }
         return platform;
     }
 
@@ -96,33 +79,6 @@ public class VersionInfoUtils {
         return userAgent;
     }
 
-   /**
-     * Loads the versionInfo.properties file from the AWS Java SDK and
-     * stores the information so that the file doesn't have to be read the
-     * next time the data is needed.
-     */
-    private static void initializeVersion() {
-        InputStream inputStream = ClassLoaderHelper.getResourceAsStream(
-                VERSION_INFO_FILE, true, VersionInfoUtils.class);
-        Properties versionInfoProperties = new Properties();
-        try {
-            if (inputStream == null)
-                throw new Exception(VERSION_INFO_FILE + " not found on classpath");
-            
-            versionInfoProperties.load(inputStream);
-            version = versionInfoProperties.getProperty("version");
-            platform = versionInfoProperties.getProperty("platform");
-        } catch (Exception e) {
-            log.info("Unable to load version information for the running SDK: " + e.getMessage());
-            version = "unknown-version";
-            platform = "java";
-        } finally {
-            try {
-                inputStream.close();
-            } catch (Exception e) {}
-        }
-    }
-			
     /**
      * Loads the versionInfo.properties file from the AWS Java SDK and
      * stores the information so that the file doesn't have to be read the

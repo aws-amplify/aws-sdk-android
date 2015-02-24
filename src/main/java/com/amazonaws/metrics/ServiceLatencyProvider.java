@@ -15,14 +15,12 @@
 package com.amazonaws.metrics;
 
 import org.apache.commons.logging.LogFactory;
-import org.apache.http.annotation.NotThreadSafe;
 
 import com.amazonaws.util.TimingInfo;
 
 /**
  * Latency metric information provider.
  */
-@NotThreadSafe
 public class ServiceLatencyProvider {
     private final long startNano = System.nanoTime();
     private long endNano = startNano;

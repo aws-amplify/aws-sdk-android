@@ -29,7 +29,7 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
  * Attribute Value Marshaller
@@ -39,29 +39,29 @@ public class AttributeValueJsonMarshaller {
     /**
      * Marshall the given parameter object, and output to a JSONWriter
      */
-    public void marshall(AttributeValue attributeValue, JSONWriter jsonWriter) {
+    public void marshall(AttributeValue attributeValue, AwsJsonWriter jsonWriter) {
         if (attributeValue == null) {
             throw new AmazonClientException("Invalid argument passed to marshall(...)");
         }
 
         try {
-            jsonWriter.object();
+            jsonWriter.beginObject();
 
             if (attributeValue.getS() != null) {
-                jsonWriter.key("S").value(attributeValue.getS());
+                jsonWriter.name("S").value(attributeValue.getS());
             }
             if (attributeValue.getN() != null) {
-                jsonWriter.key("N").value(attributeValue.getN());
+                jsonWriter.name("N").value(attributeValue.getN());
             }
             if (attributeValue.getB() != null) {
-                jsonWriter.key("B").value(attributeValue.getB());
+                jsonWriter.name("B").value(attributeValue.getB());
             }
 
             com.amazonaws.internal.ListWithAutoConstructFlag<String> sSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(attributeValue.getSS());
             if (sSList != null && !(sSList.isAutoConstruct() && sSList.isEmpty())) {
 
-                jsonWriter.key("SS");
-                jsonWriter.array();
+                jsonWriter.name("SS");
+                jsonWriter.beginArray();
 
                 for (String sSListValue : sSList) {
                     if (sSListValue != null) {
@@ -74,8 +74,8 @@ public class AttributeValueJsonMarshaller {
             com.amazonaws.internal.ListWithAutoConstructFlag<String> nSList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(attributeValue.getNS());
             if (nSList != null && !(nSList.isAutoConstruct() && nSList.isEmpty())) {
 
-                jsonWriter.key("NS");
-                jsonWriter.array();
+                jsonWriter.name("NS");
+                jsonWriter.beginArray();
 
                 for (String nSListValue : nSList) {
                     if (nSListValue != null) {
@@ -88,8 +88,8 @@ public class AttributeValueJsonMarshaller {
             com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer> bSList = (com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer>)(attributeValue.getBS());
             if (bSList != null && !(bSList.isAutoConstruct() && bSList.isEmpty())) {
 
-                jsonWriter.key("BS");
-                jsonWriter.array();
+                jsonWriter.name("BS");
+                jsonWriter.beginArray();
 
                 for (java.nio.ByteBuffer bSListValue : bSList) {
                     if (bSListValue != null) {
@@ -99,11 +99,11 @@ public class AttributeValueJsonMarshaller {
                 jsonWriter.endArray();
             }
             if (attributeValue.getM() != null) {
-                jsonWriter.key("M");
-                jsonWriter.object();
+                jsonWriter.name("M");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, AttributeValue> mListValue : attributeValue.getM().entrySet()) {
                     if (mListValue.getValue() != null) {
-                        jsonWriter.key(mListValue.getKey());
+                        jsonWriter.name(mListValue.getKey());
 
                         AttributeValueJsonMarshaller.getInstance().marshall(mListValue.getValue(), jsonWriter);
                     }
@@ -114,8 +114,8 @@ public class AttributeValueJsonMarshaller {
             com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue> lList = (com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue>)(attributeValue.getL());
             if (lList != null && !(lList.isAutoConstruct() && lList.isEmpty())) {
 
-                jsonWriter.key("L");
-                jsonWriter.array();
+                jsonWriter.name("L");
+                jsonWriter.beginArray();
 
                 for (AttributeValue lListValue : lList) {
                     if (lListValue != null) {
@@ -125,10 +125,10 @@ public class AttributeValueJsonMarshaller {
                 jsonWriter.endArray();
             }
             if (attributeValue.isNULL() != null) {
-                jsonWriter.key("NULL").value(attributeValue.isNULL());
+                jsonWriter.name("NULL").value(attributeValue.isNULL());
             }
             if (attributeValue.isBOOL() != null) {
-                jsonWriter.key("BOOL").value(attributeValue.isBOOL());
+                jsonWriter.name("BOOL").value(attributeValue.isBOOL());
             }
 
             jsonWriter.endObject();

@@ -36,7 +36,6 @@ import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpStatus;
-import org.apache.http.annotation.ThreadSafe;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -77,7 +76,6 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.ResponseMetadataCache;
 import com.amazonaws.util.TimingInfo;
 
-@ThreadSafe
 public class AmazonHttpClient {
 
     private static final String HEADER_USER_AGENT = "User-Agent";

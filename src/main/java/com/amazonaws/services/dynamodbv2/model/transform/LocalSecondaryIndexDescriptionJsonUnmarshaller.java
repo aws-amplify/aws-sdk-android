@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.dynamodbv2.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Local Secondary Index Description JSON Unmarshaller
@@ -33,46 +31,32 @@ public class LocalSecondaryIndexDescriptionJsonUnmarshaller implements Unmarshal
     public LocalSecondaryIndexDescription unmarshall(JsonUnmarshallerContext context) throws Exception {
         LocalSecondaryIndexDescription localSecondaryIndexDescription = new LocalSecondaryIndexDescription();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("IndexName", targetDepth)) {
-                    context.nextToken();
-                    localSecondaryIndexDescription.setIndexName(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("KeySchema", targetDepth)) {
-                    context.nextToken();
-                    localSecondaryIndexDescription.setKeySchema(new ListUnmarshaller<KeySchemaElement>(KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("Projection", targetDepth)) {
-                    context.nextToken();
-                    localSecondaryIndexDescription.setProjection(ProjectionJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("IndexSizeBytes", targetDepth)) {
-                    context.nextToken();
-                    localSecondaryIndexDescription.setIndexSizeBytes(LongJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("ItemCount", targetDepth)) {
-                    context.nextToken();
-                    localSecondaryIndexDescription.setItemCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("IndexName")) {
+                localSecondaryIndexDescription.setIndexName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("KeySchema")) {
+                localSecondaryIndexDescription.setKeySchema(new ListUnmarshaller<KeySchemaElement>(KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("Projection")) {
+                localSecondaryIndexDescription.setProjection(ProjectionJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("IndexSizeBytes")) {
+                localSecondaryIndexDescription.setIndexSizeBytes(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("ItemCount")) {
+                localSecondaryIndexDescription.setItemCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return localSecondaryIndexDescription;
     }

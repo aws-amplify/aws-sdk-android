@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Batch Get Item Request Marshaller
@@ -52,32 +53,32 @@ public class BatchGetItemRequestMarshaller implements Marshaller<Request<BatchGe
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (batchGetItemRequest.getRequestItems() != null) {
-                jsonWriter.key("RequestItems");
-                jsonWriter.object();
+                jsonWriter.name("RequestItems");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, KeysAndAttributes> requestItemsListValue : batchGetItemRequest.getRequestItems().entrySet()) {
                     if (requestItemsListValue.getValue() != null) {
-                        jsonWriter.key(requestItemsListValue.getKey());
+                        jsonWriter.name(requestItemsListValue.getKey());
 
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
 
                         com.amazonaws.internal.ListWithAutoConstructFlag<java.util.Map<String,AttributeValue>> keysList = (com.amazonaws.internal.ListWithAutoConstructFlag<java.util.Map<String,AttributeValue>>)(requestItemsListValue.getValue().getKeys());
                         if (keysList != null && !(keysList.isAutoConstruct() && keysList.isEmpty())) {
 
-                            jsonWriter.key("Keys");
-                            jsonWriter.array();
+                            jsonWriter.name("Keys");
+                            jsonWriter.beginArray();
 
                             for (java.util.Map<String,AttributeValue> keysListValue : keysList) {
                                 if (keysListValue != null) {
-                                        jsonWriter.object();
+                                        jsonWriter.beginObject();
                                         for (Map.Entry<String, AttributeValue> memberListValue : keysListValue.entrySet()) {
                                             if (memberListValue.getValue() != null) {
-                                                jsonWriter.key(memberListValue.getKey());
+                                                jsonWriter.name(memberListValue.getKey());
 
                                                 AttributeValueJsonMarshaller.getInstance().marshall(memberListValue.getValue(), jsonWriter);
                                             }
@@ -91,8 +92,8 @@ public class BatchGetItemRequestMarshaller implements Marshaller<Request<BatchGe
                         com.amazonaws.internal.ListWithAutoConstructFlag<String> attributesToGetList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(requestItemsListValue.getValue().getAttributesToGet());
                         if (attributesToGetList != null && !(attributesToGetList.isAutoConstruct() && attributesToGetList.isEmpty())) {
 
-                            jsonWriter.key("AttributesToGet");
-                            jsonWriter.array();
+                            jsonWriter.name("AttributesToGet");
+                            jsonWriter.beginArray();
 
                             for (String attributesToGetListValue : attributesToGetList) {
                                 if (attributesToGetListValue != null) {
@@ -102,17 +103,17 @@ public class BatchGetItemRequestMarshaller implements Marshaller<Request<BatchGe
                             jsonWriter.endArray();
                         }
                         if (requestItemsListValue.getValue().isConsistentRead() != null) {
-                            jsonWriter.key("ConsistentRead").value(requestItemsListValue.getValue().isConsistentRead());
+                            jsonWriter.name("ConsistentRead").value(requestItemsListValue.getValue().isConsistentRead());
                         }
                         if (requestItemsListValue.getValue().getProjectionExpression() != null) {
-                            jsonWriter.key("ProjectionExpression").value(requestItemsListValue.getValue().getProjectionExpression());
+                            jsonWriter.name("ProjectionExpression").value(requestItemsListValue.getValue().getProjectionExpression());
                         }
                         if (requestItemsListValue.getValue().getExpressionAttributeNames() != null) {
-                            jsonWriter.key("ExpressionAttributeNames");
-                            jsonWriter.object();
+                            jsonWriter.name("ExpressionAttributeNames");
+                            jsonWriter.beginObject();
                             for (Map.Entry<String, String> expressionAttributeNamesListValue : requestItemsListValue.getValue().getExpressionAttributeNames().entrySet()) {
                                 if (expressionAttributeNamesListValue.getValue() != null) {
-                                    jsonWriter.key(expressionAttributeNamesListValue.getKey());
+                                    jsonWriter.name(expressionAttributeNamesListValue.getKey());
 
                                     jsonWriter.value(expressionAttributeNamesListValue.getValue());
                                 }
@@ -125,18 +126,19 @@ public class BatchGetItemRequestMarshaller implements Marshaller<Request<BatchGe
                 jsonWriter.endObject();
             }
             if (batchGetItemRequest.getReturnConsumedCapacity() != null) {
-                jsonWriter.key("ReturnConsumedCapacity").value(batchGetItemRequest.getReturnConsumedCapacity());
+                jsonWriter.name("ReturnConsumedCapacity").value(batchGetItemRequest.getReturnConsumedCapacity());
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

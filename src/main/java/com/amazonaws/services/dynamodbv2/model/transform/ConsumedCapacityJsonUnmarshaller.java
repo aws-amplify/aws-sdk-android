@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.dynamodbv2.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Consumed Capacity JSON Unmarshaller
@@ -33,46 +31,32 @@ public class ConsumedCapacityJsonUnmarshaller implements Unmarshaller<ConsumedCa
     public ConsumedCapacity unmarshall(JsonUnmarshallerContext context) throws Exception {
         ConsumedCapacity consumedCapacity = new ConsumedCapacity();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("TableName", targetDepth)) {
-                    context.nextToken();
-                    consumedCapacity.setTableName(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("CapacityUnits", targetDepth)) {
-                    context.nextToken();
-                    consumedCapacity.setCapacityUnits(DoubleJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("Table", targetDepth)) {
-                    context.nextToken();
-                    consumedCapacity.setTable(CapacityJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("LocalSecondaryIndexes", targetDepth)) {
-                    context.nextToken();
-                    consumedCapacity.setLocalSecondaryIndexes(new MapUnmarshaller<String,Capacity>(StringJsonUnmarshaller.getInstance(), CapacityJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("GlobalSecondaryIndexes", targetDepth)) {
-                    context.nextToken();
-                    consumedCapacity.setGlobalSecondaryIndexes(new MapUnmarshaller<String,Capacity>(StringJsonUnmarshaller.getInstance(), CapacityJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("TableName")) {
+                consumedCapacity.setTableName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("CapacityUnits")) {
+                consumedCapacity.setCapacityUnits(DoubleJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("Table")) {
+                consumedCapacity.setTable(CapacityJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LocalSecondaryIndexes")) {
+                consumedCapacity.setLocalSecondaryIndexes(new MapUnmarshaller<Capacity>(CapacityJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("GlobalSecondaryIndexes")) {
+                consumedCapacity.setGlobalSecondaryIndexes(new MapUnmarshaller<Capacity>(CapacityJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return consumedCapacity;
     }

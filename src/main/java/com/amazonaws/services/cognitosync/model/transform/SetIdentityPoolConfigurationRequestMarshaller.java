@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Set Identity Pool Configuration Request Marshaller
@@ -69,22 +70,22 @@ public class SetIdentityPoolConfigurationRequestMarshaller implements Marshaller
         request.setResourcePath(uriResourcePath);
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             PushSync pushSync = setIdentityPoolConfigurationRequest.getPushSync();
             if (pushSync != null) {
 
-                jsonWriter.key("PushSync");
-                jsonWriter.object();
+                jsonWriter.name("PushSync");
+                jsonWriter.beginObject();
 
                 com.amazonaws.internal.ListWithAutoConstructFlag<String> applicationArnsList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(pushSync.getApplicationArns());
                 if (applicationArnsList != null && !(applicationArnsList.isAutoConstruct() && applicationArnsList.isEmpty())) {
 
-                    jsonWriter.key("ApplicationArns");
-                    jsonWriter.array();
+                    jsonWriter.name("ApplicationArns");
+                    jsonWriter.beginArray();
 
                     for (String applicationArnsListValue : applicationArnsList) {
                         if (applicationArnsListValue != null) {
@@ -94,20 +95,21 @@ public class SetIdentityPoolConfigurationRequestMarshaller implements Marshaller
                     jsonWriter.endArray();
                 }
                 if (pushSync.getRoleArn() != null) {
-                    jsonWriter.key("RoleArn").value(pushSync.getRoleArn());
+                    jsonWriter.name("RoleArn").value(pushSync.getRoleArn());
                 }
                 jsonWriter.endObject();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

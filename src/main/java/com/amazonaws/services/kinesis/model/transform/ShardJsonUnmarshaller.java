@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.kinesis.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Shard JSON Unmarshaller
@@ -33,46 +31,32 @@ public class ShardJsonUnmarshaller implements Unmarshaller<Shard, JsonUnmarshall
     public Shard unmarshall(JsonUnmarshallerContext context) throws Exception {
         Shard shard = new Shard();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("ShardId", targetDepth)) {
-                    context.nextToken();
-                    shard.setShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("ParentShardId", targetDepth)) {
-                    context.nextToken();
-                    shard.setParentShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("AdjacentParentShardId", targetDepth)) {
-                    context.nextToken();
-                    shard.setAdjacentParentShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("HashKeyRange", targetDepth)) {
-                    context.nextToken();
-                    shard.setHashKeyRange(HashKeyRangeJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("SequenceNumberRange", targetDepth)) {
-                    context.nextToken();
-                    shard.setSequenceNumberRange(SequenceNumberRangeJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("ShardId")) {
+                shard.setShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("ParentShardId")) {
+                shard.setParentShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("AdjacentParentShardId")) {
+                shard.setAdjacentParentShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("HashKeyRange")) {
+                shard.setHashKeyRange(HashKeyRangeJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("SequenceNumberRange")) {
+                shard.setSequenceNumberRange(SequenceNumberRangeJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return shard;
     }

@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.cognitosync.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Record JSON Unmarshaller
@@ -33,50 +31,35 @@ public class RecordJsonUnmarshaller implements Unmarshaller<Record, JsonUnmarsha
     public Record unmarshall(JsonUnmarshallerContext context) throws Exception {
         Record record = new Record();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("Key", targetDepth)) {
-                    context.nextToken();
-                    record.setKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("Value", targetDepth)) {
-                    context.nextToken();
-                    record.setValue(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("SyncCount", targetDepth)) {
-                    context.nextToken();
-                    record.setSyncCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("LastModifiedDate", targetDepth)) {
-                    context.nextToken();
-                    record.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("LastModifiedBy", targetDepth)) {
-                    context.nextToken();
-                    record.setLastModifiedBy(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-                if (context.testExpression("DeviceLastModifiedDate", targetDepth)) {
-                    context.nextToken();
-                    record.setDeviceLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("Key")) {
+                record.setKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("Value")) {
+                record.setValue(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("SyncCount")) {
+                record.setSyncCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LastModifiedDate")) {
+                record.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LastModifiedBy")) {
+                record.setLastModifiedBy(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("DeviceLastModifiedDate")) {
+                record.setDeviceLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return record;
     }

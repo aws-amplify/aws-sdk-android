@@ -14,36 +14,26 @@
  */
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.gson.Gson;
 
 /**
- * Simple JSON marshaller that uses Jackson mapper. It has all the limitations
+ * Simple JSON marshaller that uses Gson mapper. It has all the limitations
  * of that library, the documentation of which is available here:
  * http://docs.codehaus.org/display/JACKSON/Home
  */
 public class JsonMarshaller<T extends Object> implements DynamoDBMarshaller<T> {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
-    private static final ObjectWriter writer = mapper.writer();
+    private static Gson gson = new Gson();
 
     @Override
     public String marshall(T obj) {
-
-        try {
-            return writer.writeValueAsString(obj);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(
-                    "Unable to marshall the instance of " + obj.getClass()
-                            + "into a string", e);
-        }
+        return gson.toJson(obj);
     }
 
     @Override
     public T unmarshall(Class<T> clazz, String json) {
         try {
-            return mapper.readValue(json, clazz);
+            return gson.fromJson(json, clazz);
         } catch (Exception e) {
             throw new RuntimeException("Unable to unmarshall the string " + json
                     + "into " + clazz, e);

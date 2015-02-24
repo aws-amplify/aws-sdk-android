@@ -53,7 +53,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
-import com.amazonaws.util.json.Jackson;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Authenticated encryption (AE) cryptographic module for the S3 encryption client.
@@ -71,7 +71,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
             ClientConfiguration clientConfig,
             CryptoConfiguration cryptoConfig) {
         super(s3, credentialsProvider, encryptionMaterialsProvider,
-                clientConfig, cryptoConfig, 
+                clientConfig, cryptoConfig,
                 new S3CryptoScheme(ContentCryptoScheme.AES_GCM));
     }
 
@@ -207,14 +207,12 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
             long[] cryptoRange, S3ObjectWrapper retrieved,
             S3ObjectWrapper instructionFile) {
         String json = instructionFile.toJsonString();
-        @SuppressWarnings("unchecked")
-        Map<String, String> instruction = Collections.unmodifiableMap(
-                Jackson.fromJsonString(json, Map.class));
+        Map<String, String> instruction = JsonUtils.jsonToMap(json);
         ContentCryptoMaterial cekMaterial =
                 ContentCryptoMaterial.fromInstructionFile(
                     instruction,
                     kekMaterialsProvider,
-                    cryptoConfig.getCryptoProvider(), 
+                    cryptoConfig.getCryptoProvider(),
                     cryptoRange   // range is sometimes necessary to compute the adjusted IV
             );
         securityCheck(cekMaterial, retrieved);
@@ -297,7 +295,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
             throw new AmazonClientException("Error adjusting output to desired byte range: " + e.getMessage());
         }
     }
-    
+
     @Override
     public ObjectMetadata getObjectSecurely(GetObjectRequest getObjectRequest, File destinationFile)
             throws AmazonClientException, AmazonServiceException {
@@ -386,7 +384,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * <p>
      * <b>NOTE:</b> Because the encryption process requires context from
      * previous blocks, parts uploaded with the AmazonS3EncryptionClient (as
@@ -448,7 +446,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
                 is = new InputSubstream(
                     new RepeatableFileInputStream(
                         req.getFile()),
-                        req.getFileOffset(), 
+                        req.getFileOffset(),
                         req.getPartSize(),
                         req.isLastPart());
             }

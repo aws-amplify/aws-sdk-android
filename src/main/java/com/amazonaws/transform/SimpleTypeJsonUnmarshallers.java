@@ -29,8 +29,9 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for String values.
      */
     public static class StringJsonUnmarshaller implements Unmarshaller<String, JsonUnmarshallerContext> {
+        @Override
         public String unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            return unmarshallerContext.readText();
+            return unmarshallerContext.getReader().nextString();
         }
 
         private static StringJsonUnmarshaller instance;
@@ -44,8 +45,9 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for Double values.
      */
     public static class DoubleJsonUnmarshaller implements Unmarshaller<Double, JsonUnmarshallerContext> {
+        @Override
         public Double unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String doubleString = unmarshallerContext.readText();
+            String doubleString = unmarshallerContext.getReader().nextString();
             return (doubleString == null) ? null : Double.parseDouble(doubleString);
         }
 
@@ -60,8 +62,9 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for Integer values.
      */
     public static class IntegerJsonUnmarshaller implements Unmarshaller<Integer, JsonUnmarshallerContext> {
+        @Override
         public Integer unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String intString = unmarshallerContext.readText();
+            String intString = unmarshallerContext.getReader().nextString();
             return (intString == null) ? null : Integer.parseInt(intString);
         }
 
@@ -73,8 +76,9 @@ public class SimpleTypeJsonUnmarshallers {
     }
 
     public static class BigIntegerJsonUnmarshaller implements Unmarshaller<BigInteger, JsonUnmarshallerContext> {
+        @Override
         public BigInteger unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String intString = unmarshallerContext.readText();
+            String intString = unmarshallerContext.getReader().nextString();
             return (intString == null) ? null : new BigInteger(intString);
         }
 
@@ -86,8 +90,9 @@ public class SimpleTypeJsonUnmarshallers {
     }
 
     public static class BigDecimalJsonUnmarshaller implements Unmarshaller<BigDecimal, JsonUnmarshallerContext> {
+        @Override
         public BigDecimal unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String s = unmarshallerContext.readText();
+            String s = unmarshallerContext.getReader().nextString();
             return (s == null) ? null : new BigDecimal(s);
         }
 
@@ -102,8 +107,9 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for Boolean values.
      */
     public static class BooleanJsonUnmarshaller implements Unmarshaller<Boolean, JsonUnmarshallerContext> {
+        @Override
         public Boolean unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String booleanString = unmarshallerContext.readText();
+            String booleanString = unmarshallerContext.getReader().nextString();
             return (booleanString == null) ? null : Boolean.parseBoolean(booleanString);
         }
 
@@ -118,8 +124,9 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for Float values.
      */
     public static class FloatJsonUnmarshaller implements Unmarshaller<Float, JsonUnmarshallerContext> {
+        @Override
         public Float unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String floatString = unmarshallerContext.readText();
+            String floatString = unmarshallerContext.getReader().nextString();
             return (floatString == null) ? null : Float.valueOf(floatString);
         }
 
@@ -134,8 +141,9 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for Long values.
      */
     public static class LongJsonUnmarshaller implements Unmarshaller<Long, JsonUnmarshallerContext> {
+        @Override
         public Long unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String longString = unmarshallerContext.readText();
+            String longString = unmarshallerContext.getReader().nextString();
             return (longString == null) ? null : Long.parseLong(longString);
         }
 
@@ -150,8 +158,9 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for Byte values.
      */
     public static class ByteJsonUnmarshaller implements Unmarshaller<Byte, JsonUnmarshallerContext> {
+        @Override
         public Byte unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String byteString = unmarshallerContext.readText();
+            String byteString = unmarshallerContext.getReader().nextString();
             return (byteString == null) ? null : Byte.valueOf(byteString);
         }
 
@@ -166,8 +175,9 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for Date values - JSON dates come in as epoch seconds.
      */
     public static class DateJsonUnmarshaller implements Unmarshaller<Date, JsonUnmarshallerContext> {
+        @Override
         public Date unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String dateString = unmarshallerContext.readText();
+            String dateString = unmarshallerContext.getReader().nextString();
             if (dateString == null) return null;
 
             try {
@@ -190,8 +200,9 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for ByteBuffer values.
      */
     public static class ByteBufferJsonUnmarshaller implements Unmarshaller<ByteBuffer, JsonUnmarshallerContext> {
+        @Override
         public ByteBuffer unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
-            String base64EncodedString = unmarshallerContext.readText();
+            String base64EncodedString = unmarshallerContext.getReader().nextString();
             byte[] decodedBytes = Base64.decode(base64EncodedString);
             return ByteBuffer.wrap(decodedBytes);
 

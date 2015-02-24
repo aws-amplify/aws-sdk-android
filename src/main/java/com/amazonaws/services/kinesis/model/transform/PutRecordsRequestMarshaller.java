@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Put Records Request Marshaller
@@ -52,28 +53,28 @@ public class PutRecordsRequestMarshaller implements Marshaller<Request<PutRecord
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
+            jsonWriter.beginObject();
 
             com.amazonaws.internal.ListWithAutoConstructFlag<PutRecordsRequestEntry> recordsList = (com.amazonaws.internal.ListWithAutoConstructFlag<PutRecordsRequestEntry>)(putRecordsRequest.getRecords());
             if (recordsList != null && !(recordsList.isAutoConstruct() && recordsList.isEmpty())) {
 
-                jsonWriter.key("Records");
-                jsonWriter.array();
+                jsonWriter.name("Records");
+                jsonWriter.beginArray();
 
                 for (PutRecordsRequestEntry recordsListValue : recordsList) {
                     if (recordsListValue != null) {
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         if (recordsListValue.getData() != null) {
-                            jsonWriter.key("Data").value(recordsListValue.getData());
+                            jsonWriter.name("Data").value(recordsListValue.getData());
                         }
                         if (recordsListValue.getExplicitHashKey() != null) {
-                            jsonWriter.key("ExplicitHashKey").value(recordsListValue.getExplicitHashKey());
+                            jsonWriter.name("ExplicitHashKey").value(recordsListValue.getExplicitHashKey());
                         }
                         if (recordsListValue.getPartitionKey() != null) {
-                            jsonWriter.key("PartitionKey").value(recordsListValue.getPartitionKey());
+                            jsonWriter.name("PartitionKey").value(recordsListValue.getPartitionKey());
                         }
                         jsonWriter.endObject();
                     }
@@ -81,18 +82,19 @@ public class PutRecordsRequestMarshaller implements Marshaller<Request<PutRecord
                 jsonWriter.endArray();
             }
             if (putRecordsRequest.getStreamName() != null) {
-                jsonWriter.key("StreamName").value(putRecordsRequest.getStreamName());
+                jsonWriter.name("StreamName").value(putRecordsRequest.getStreamName());
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.1");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

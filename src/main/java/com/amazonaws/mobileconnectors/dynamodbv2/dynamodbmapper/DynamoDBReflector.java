@@ -24,8 +24,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 
-import org.apache.http.annotation.GuardedBy;
-
 /**
  * Reflection assistant for {@link DynamoDBMapper}
  */
@@ -45,7 +43,6 @@ class DynamoDBReflector {
      */
     private final Map<Method, Method> setterCache = new HashMap<Method, Method>();
 
-    @GuardedBy("readWriteLockAttrName")
     private final Map<Method, String> attributeNameCache = new HashMap<Method, String>();
 
     private final Map<Method, Boolean> versionAttributeGetterCache = new HashMap<Method, Boolean>();

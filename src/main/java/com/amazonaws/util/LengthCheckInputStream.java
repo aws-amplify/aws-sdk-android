@@ -17,8 +17,6 @@ package com.amazonaws.util;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.http.annotation.NotThreadSafe;
-
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.internal.SdkFilterInputStream;
 
@@ -26,7 +24,6 @@ import com.amazonaws.internal.SdkFilterInputStream;
  * Used to perform length check to ensure the number of bytes read from the
  * underlying input stream is the same as the expected total.
  */
-@NotThreadSafe
 public class LengthCheckInputStream extends SdkFilterInputStream {
     public static final boolean INCLUDE_SKIPPED_BYTES = true;
     public static final boolean EXCLUDE_SKIPPED_BYTES = false;

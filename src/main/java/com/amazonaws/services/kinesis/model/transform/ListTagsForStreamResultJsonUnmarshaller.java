@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.kinesis.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * List Tags For Stream Result JSON Unmarshaller
@@ -33,34 +31,23 @@ public class ListTagsForStreamResultJsonUnmarshaller implements Unmarshaller<Lis
     public ListTagsForStreamResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         ListTagsForStreamResult listTagsForStreamResult = new ListTagsForStreamResult();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("Tags", targetDepth)) {
-                    context.nextToken();
-                    listTagsForStreamResult.setTags(new ListUnmarshaller<Tag>(TagJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("HasMoreTags", targetDepth)) {
-                    context.nextToken();
-                    listTagsForStreamResult.setHasMoreTags(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("Tags")) {
+                listTagsForStreamResult.setTags(new ListUnmarshaller<Tag>(TagJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("HasMoreTags")) {
+                listTagsForStreamResult.setHasMoreTags(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return listTagsForStreamResult;
     }

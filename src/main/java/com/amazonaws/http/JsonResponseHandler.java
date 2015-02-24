@@ -15,12 +15,12 @@
 package com.amazonaws.http;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
 
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.ResponseMetadata;
@@ -29,6 +29,8 @@ import com.amazonaws.transform.JsonUnmarshallerContext;
 import com.amazonaws.transform.Unmarshaller;
 import com.amazonaws.transform.VoidJsonUnmarshaller;
 import com.amazonaws.util.CRC32ChecksumCalculatingInputStream;
+import com.amazonaws.util.json.AwsJsonReader;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Default implementation of HttpResponseHandler that handles a successful
@@ -45,8 +47,6 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
 
     /** Shared logger for profiling information */
     private static final Log log = LogFactory.getLog("com.amazonaws.request");
-
-    private static JsonFactory jsonFactory = new JsonFactory();
 
     public boolean needsConnectionLeftOpen = false;
 
@@ -79,27 +79,29 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
     /**
      * @see com.amazonaws.http.HttpResponseHandler#handle(com.amazonaws.http.HttpResponse)
      */
+    @Override
     public AmazonWebServiceResponse<T> handle(HttpResponse response) throws Exception {
         log.trace("Parsing service response JSON");
 
         String CRC32Checksum = response.getHeaders().get("x-amz-crc32");
         CRC32ChecksumCalculatingInputStream crc32ChecksumInputStream = null;
 
-        JsonParser jsonParser = null;
+        AwsJsonReader jsonReader = null;
 
         if (!needsConnectionLeftOpen) {
             if (CRC32Checksum != null) {
                 crc32ChecksumInputStream = new CRC32ChecksumCalculatingInputStream(response.getContent());
-                jsonParser = jsonFactory.createParser(crc32ChecksumInputStream);
+                jsonReader = JsonUtils
+                        .getJsonReader(new InputStreamReader(crc32ChecksumInputStream));
             } else {
-                jsonParser = jsonFactory.createParser(response.getContent());
+                jsonReader = JsonUtils.getJsonReader(new InputStreamReader(response.getContent()));
             }
         }
 
         try {
             AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();
-            JsonUnmarshallerContext unmarshallerContext = new JsonUnmarshallerContext(jsonParser, response);
-            registerAdditionalMetadataExpressions(unmarshallerContext);
+            JsonUnmarshallerContext unmarshallerContext = new JsonUnmarshallerContext(jsonReader,
+                    response);
 
             T result = responseUnmarshaller.unmarshall(unmarshallerContext);
 
@@ -113,7 +115,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
 
             awsResponse.setResult(result);
 
-            Map<String, String> metadata = unmarshallerContext.getMetadata();
+            Map<String, String> metadata = new HashMap<String, String>();
             metadata.put(ResponseMetadata.AWS_REQUEST_ID, response.getHeaders().get("x-amzn-RequestId"));
             awsResponse.setResponseMetadata(new ResponseMetadata(metadata));
 
@@ -122,7 +124,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
         } finally {
             if (!needsConnectionLeftOpen) {
                 try {
-                    jsonParser.close();
+                    jsonReader.close();
                 } catch (IOException e) {
                     log.warn("Error closing json parser", e);
                 }
@@ -138,6 +140,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
      *            The unmarshaller context used to process a service's response
      *            data.
      */
+    @Deprecated
     protected void registerAdditionalMetadataExpressions(JsonUnmarshallerContext unmarshallerContext) {}
 
     /**
@@ -147,6 +150,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
      *
      * @see com.amazonaws.http.HttpResponseHandler#needsConnectionLeftOpen()
      */
+    @Override
     public boolean needsConnectionLeftOpen() {
         return needsConnectionLeftOpen;
     }

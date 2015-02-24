@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Update Records Request Marshaller
@@ -74,38 +75,38 @@ public class UpdateRecordsRequestMarshaller implements Marshaller<Request<Update
         request.setResourcePath(uriResourcePath);
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (updateRecordsRequest.getDeviceId() != null) {
-                jsonWriter.key("DeviceId").value(updateRecordsRequest.getDeviceId());
+                jsonWriter.name("DeviceId").value(updateRecordsRequest.getDeviceId());
             }
 
             com.amazonaws.internal.ListWithAutoConstructFlag<RecordPatch> recordPatchesList = (com.amazonaws.internal.ListWithAutoConstructFlag<RecordPatch>)(updateRecordsRequest.getRecordPatches());
             if (recordPatchesList != null && !(recordPatchesList.isAutoConstruct() && recordPatchesList.isEmpty())) {
 
-                jsonWriter.key("RecordPatches");
-                jsonWriter.array();
+                jsonWriter.name("RecordPatches");
+                jsonWriter.beginArray();
 
                 for (RecordPatch recordPatchesListValue : recordPatchesList) {
                     if (recordPatchesListValue != null) {
-                        jsonWriter.object();
+                        jsonWriter.beginObject();
                         if (recordPatchesListValue.getOp() != null) {
-                            jsonWriter.key("Op").value(recordPatchesListValue.getOp());
+                            jsonWriter.name("Op").value(recordPatchesListValue.getOp());
                         }
                         if (recordPatchesListValue.getKey() != null) {
-                            jsonWriter.key("Key").value(recordPatchesListValue.getKey());
+                            jsonWriter.name("Key").value(recordPatchesListValue.getKey());
                         }
                         if (recordPatchesListValue.getValue() != null) {
-                            jsonWriter.key("Value").value(recordPatchesListValue.getValue());
+                            jsonWriter.name("Value").value(recordPatchesListValue.getValue());
                         }
                         if (recordPatchesListValue.getSyncCount() != null) {
-                            jsonWriter.key("SyncCount").value(recordPatchesListValue.getSyncCount());
+                            jsonWriter.name("SyncCount").value(recordPatchesListValue.getSyncCount());
                         }
                         if (recordPatchesListValue.getDeviceLastModifiedDate() != null) {
-                            jsonWriter.key("DeviceLastModifiedDate").value(recordPatchesListValue.getDeviceLastModifiedDate());
+                            jsonWriter.name("DeviceLastModifiedDate").value(recordPatchesListValue.getDeviceLastModifiedDate());
                         }
                         jsonWriter.endObject();
                     }
@@ -113,18 +114,19 @@ public class UpdateRecordsRequestMarshaller implements Marshaller<Request<Update
                 jsonWriter.endArray();
             }
             if (updateRecordsRequest.getSyncSessionToken() != null) {
-                jsonWriter.key("SyncSessionToken").value(updateRecordsRequest.getSyncSessionToken());
+                jsonWriter.name("SyncSessionToken").value(updateRecordsRequest.getSyncSessionToken());
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

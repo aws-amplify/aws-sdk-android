@@ -32,7 +32,8 @@ import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Set Identity Pool Roles Request Marshaller
@@ -52,20 +53,20 @@ public class SetIdentityPoolRolesRequestMarshaller implements Marshaller<Request
         request.setResourcePath("");
         
         try {
-          StringWriter stringWriter = new StringWriter();
-          JSONWriter jsonWriter = new JSONWriter(stringWriter);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
-          jsonWriter.object();
-          
+            jsonWriter.beginObject();
+            
             if (setIdentityPoolRolesRequest.getIdentityPoolId() != null) {
-                jsonWriter.key("IdentityPoolId").value(setIdentityPoolRolesRequest.getIdentityPoolId());
+                jsonWriter.name("IdentityPoolId").value(setIdentityPoolRolesRequest.getIdentityPoolId());
             }
             if (setIdentityPoolRolesRequest.getRoles() != null) {
-                jsonWriter.key("Roles");
-                jsonWriter.object();
+                jsonWriter.name("Roles");
+                jsonWriter.beginObject();
                 for (Map.Entry<String, String> rolesListValue : setIdentityPoolRolesRequest.getRoles().entrySet()) {
                     if (rolesListValue.getValue() != null) {
-                        jsonWriter.key(rolesListValue.getKey());
+                        jsonWriter.name(rolesListValue.getKey());
 
                         jsonWriter.value(rolesListValue.getValue());
                     }
@@ -73,15 +74,16 @@ public class SetIdentityPoolRolesRequestMarshaller implements Marshaller<Request
                 jsonWriter.endObject();
             }
 
-          jsonWriter.endObject();
+            jsonWriter.endObject();
 
-          String snippet = stringWriter.toString();
-          byte[] content = snippet.getBytes(UTF8);
-          request.setContent(new StringInputStream(snippet));
-          request.addHeader("Content-Length", Integer.toString(content.length));
-          request.addHeader("Content-Type", "application/x-amz-json-1.0");
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         } catch(Throwable t) {
-          throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
+            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

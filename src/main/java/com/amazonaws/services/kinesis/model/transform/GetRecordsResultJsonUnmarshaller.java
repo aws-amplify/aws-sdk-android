@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import com.amazonaws.services.kinesis.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
-
-import com.fasterxml.jackson.core.JsonToken;
-import static com.fasterxml.jackson.core.JsonToken.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * Get Records Result JSON Unmarshaller
@@ -33,34 +31,23 @@ public class GetRecordsResultJsonUnmarshaller implements Unmarshaller<GetRecords
     public GetRecordsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetRecordsResult getRecordsResult = new GetRecordsResult();
 
-        int originalDepth = context.getCurrentDepth();
-        String currentParentElement = context.getCurrentParentElement();
-        int targetDepth = originalDepth + 1;
-
-        JsonToken token = context.currentToken;
-        if (token == null) token = context.nextToken();
-        if (token == VALUE_NULL) return null;
-
-        while (true) {
-            if (token == null) break;
-
-            if (token == FIELD_NAME || token == START_OBJECT) {
-                if (context.testExpression("Records", targetDepth)) {
-                    context.nextToken();
-                    getRecordsResult.setRecords(new ListUnmarshaller<Record>(RecordJsonUnmarshaller.getInstance()).unmarshall(context));
-                }
-                if (context.testExpression("NextShardIterator", targetDepth)) {
-                    context.nextToken();
-                    getRecordsResult.setNextShardIterator(StringJsonUnmarshaller.getInstance().unmarshall(context));
-                }
-            } else if (token == END_ARRAY || token == END_OBJECT) {
-                if (context.getLastParsedParentElement() == null || context.getLastParsedParentElement().equals(currentParentElement)) {
-                    if (context.getCurrentDepth() <= originalDepth) break;
-                }
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            if (name.equals("Records")) {
+                getRecordsResult.setRecords(new ListUnmarshaller<Record>(RecordJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("NextShardIterator")) {
+                getRecordsResult.setNextShardIterator(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            {
+                reader.skipValue();
             }
-
-            token = context.nextToken();
+            
         }
+        reader.endObject();
         
         return getRecordsResult;
     }

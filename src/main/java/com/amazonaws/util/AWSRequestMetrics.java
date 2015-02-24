@@ -18,8 +18,6 @@ package com.amazonaws.util;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.http.annotation.NotThreadSafe;
-
 import com.amazonaws.metrics.MetricType;
 import com.amazonaws.metrics.RequestMetricType;
 
@@ -38,7 +36,6 @@ import com.amazonaws.metrics.RequestMetricType;
  * when request metric collection is not required during a particular service
  * request/response cycle.
  */
-@NotThreadSafe
 public class AWSRequestMetrics {
     /**
      * Predefined AWS SDK metric types general across all AWS clients. Client

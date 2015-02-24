@@ -14,12 +14,9 @@
  */
 package com.amazonaws.internal.config;
 
-import org.apache.http.annotation.Immutable;
-
 /**
  * Signer configuration.
  */
-@Immutable
 public class SignerConfig {
 
     private final String signerType;

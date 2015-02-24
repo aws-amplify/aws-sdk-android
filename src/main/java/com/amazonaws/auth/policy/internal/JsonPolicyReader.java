@@ -14,24 +14,22 @@
  */
 package com.amazonaws.auth.policy.internal;
 
-import java.util.Iterator;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.policy.Action;
 import com.amazonaws.auth.policy.Condition;
 import com.amazonaws.auth.policy.Policy;
 import com.amazonaws.auth.policy.Principal;
-import com.amazonaws.auth.policy.Principal.Services;
 import com.amazonaws.auth.policy.Principal.WebIdentityProviders;
 import com.amazonaws.auth.policy.Resource;
 import com.amazonaws.auth.policy.Statement;
 import com.amazonaws.auth.policy.Statement.Effect;
-import com.amazonaws.util.json.Jackson;
-import com.fasterxml.jackson.databind.JsonNode;
+import com.amazonaws.util.json.AwsJsonReader;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Generate an AWS policy object by parsing the given JSON string.
@@ -43,6 +41,9 @@ public class JsonPolicyReader {
     private static final String PRINCIPAL_SCHEMA_SERVICE = "Service";
 
     private static final String PRINICIPAL_SCHEMA_FEDERATED = "Federated";
+
+    private AwsJsonReader reader;
+
     /**
      * Converts the specified JSON string to an AWS policy object.
      *
@@ -66,31 +67,37 @@ public class JsonPolicyReader {
             throw new IllegalArgumentException("JSON string cannot be null");
         }
 
-        JsonNode policyNode;
-        JsonNode idNode;
-        JsonNode statementNodes;
+        reader = JsonUtils.getJsonReader(new StringReader(jsonString));
         Policy policy = new Policy();
         List<Statement> statements = new LinkedList<Statement>();
 
         try {
-            policyNode = Jackson.jsonNodeOf(jsonString);
-
-            idNode = policyNode.get(JsonDocumentFields.POLICY_ID);
-            if (isNotNull(idNode)) {
-                policy.setId(idNode.asText());
-            }
-
-            statementNodes = policyNode.get(JsonDocumentFields.STATEMENT);
-            if (isNotNull(statementNodes)) {
-                for (JsonNode node : statementNodes) {
-                    statements.add(statementOf(node));
+            reader.beginObject();
+            while (reader.hasNext()) {
+                String name = reader.nextName();
+                if (JsonDocumentFields.POLICY_ID.equals(name)) {
+                    policy.setId(reader.nextString());
+                } else if (JsonDocumentFields.STATEMENT.equals(name)) {
+                    reader.beginArray();
+                    while (reader.hasNext()) {
+                        statements.add(statementOf(reader));
+                    }
+                    reader.endArray();
+                } else {
+                    reader.skipValue();
                 }
             }
+            reader.endObject();
 
         } catch (Exception e) {
             String message = "Unable to generate policy object fron JSON string "
                     + e.getMessage();
             throw new IllegalArgumentException(message, e);
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+            }
         }
         policy.setStatements(statements);
         return policy;
@@ -110,40 +117,36 @@ public class JsonPolicyReader {
      * <p>
      * conditions are the optional constraints that specify when to allow or deny access for the principal to access your resource. Many expressive conditions are available, some specific to each service. For example, you can use date conditions to allow access to your resources only after or before a specific time.
      *
-     * @param jStatement
-     *            JsonNode representing the statement.
+     * @param jStatement JsonNode representing the statement.
      * @return a reference to the statement instance created.
+     * @throws IOException
      */
-    private Statement statementOf(JsonNode jStatement) {
+    private Statement statementOf(AwsJsonReader reader) throws IOException {
 
-        JsonNode effect = jStatement.get(JsonDocumentFields.STATEMENT_EFFECT);
-        if (!isNotNull(effect))
-            return null;
+        Statement statement = new Statement(null);
 
-        Statement statement = new Statement(Effect.valueOf(effect.asText()));
-
-        JsonNode id = jStatement.get(JsonDocumentFields.STATEMENT_ID);
-        if (isNotNull(id)) {
-            statement.setId(id.asText());
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (JsonDocumentFields.STATEMENT_EFFECT.equals(name)) {
+                statement.setEffect(Effect.valueOf(reader.nextString()));
+            } else if (JsonDocumentFields.STATEMENT_ID.equals(name)) {
+                statement.setId(reader.nextString());
+            } else if (JsonDocumentFields.ACTION.equals(name)) {
+                statement.setActions(actionsOf(reader));
+            } else if (JsonDocumentFields.RESOURCE.equals(name)) {
+                statement.setResources(resourcesOf(reader));
+            } else if (JsonDocumentFields.PRINCIPAL.equals(name)) {
+                statement.setPrincipals(principalOf(reader));
+            } else if (JsonDocumentFields.CONDITION.equals(name)) {
+                statement.setConditions(conditionsOf(reader));
+            } else {
+                reader.skipValue();
+            }
         }
+        reader.endObject();
 
-        JsonNode actionNodes = jStatement.get(JsonDocumentFields.ACTION);
-        if (isNotNull(actionNodes))
-            statement.setActions(actionsOf(actionNodes));
-
-        JsonNode resourceNodes = jStatement.get(JsonDocumentFields.RESOURCE);
-        if (isNotNull(resourceNodes))
-            statement.setResources(resourcesOf(resourceNodes));
-
-        JsonNode conditionNodes = jStatement.get(JsonDocumentFields.CONDITION);
-        if (isNotNull(conditionNodes))
-            statement.setConditions(conditionsOf(conditionNodes));
-
-        JsonNode principalNodes = jStatement.get(JsonDocumentFields.PRINCIPAL);
-        if (isNotNull(principalNodes))
-            statement.setPrincipals(principalOf(principalNodes));
-
-        return statement;
+        return statement.getEffect() == null ? null : statement;
     }
 
     /**
@@ -152,17 +155,21 @@ public class JsonPolicyReader {
      * @param actionNodes
      *            the action Json node to be parsed.
      * @return the list of actions.
+     * @throws IOException
      */
-    private List<Action> actionsOf(JsonNode actionNodes) {
+    private List<Action> actionsOf(AwsJsonReader reader) throws IOException {
         List<Action> actions = new LinkedList<Action>();
 
-        if (actionNodes.isArray()) {
-            for (JsonNode action : actionNodes) {
-                actions.add(new NamedAction(action.asText()));
+        if (reader.isContainer()) {
+            reader.beginArray();
+            while (reader.hasNext()) {
+                actions.add(new NamedAction(reader.nextString()));
             }
+            reader.endArray();
         } else {
-            actions.add(new NamedAction(actionNodes.asText()));
+            actions.add(new NamedAction(reader.nextString()));
         }
+
         return actions;
     }
 
@@ -173,15 +180,17 @@ public class JsonPolicyReader {
      *            the resource Json node to be parsed.
      * @return the list of resources.
      */
-    private List<Resource> resourcesOf(JsonNode resourceNodes) {
+    private List<Resource> resourcesOf(AwsJsonReader reader) throws IOException {
         List<Resource> resources = new LinkedList<Resource>();
 
-        if (resourceNodes.isArray()) {
-            for (JsonNode resource : resourceNodes) {
-                resources.add(new Resource(resource.asText()));
+        if (reader.isContainer()) {
+            reader.beginArray();
+            while (reader.hasNext()) {
+                resources.add(new Resource(reader.nextString()));
             }
+            reader.endArray();
         } else {
-            resources.add(new Resource(resourceNodes.asText()));
+            resources.add(new Resource(reader.nextString()));
         }
 
         return resources;
@@ -193,33 +202,33 @@ public class JsonPolicyReader {
      * @param principalNodes
      *            the principal Json to be parsed
      * @return a list of principals
+     * @throws IOException
      */
-    private List<Principal> principalOf(JsonNode principalNodes) {
+    private List<Principal> principalOf(AwsJsonReader reader) throws IOException {
         List<Principal> principals = new LinkedList<Principal>();
 
-        if (principalNodes.asText().equals("*")) {
-            principals.add(Principal.All);
-            return principals;
-        }
-
-        Iterator<Map.Entry<String, JsonNode>> mapOfPrincipals = principalNodes
-                .fields();
-        String schema;
-        JsonNode principalNode;
-        Entry<String, JsonNode> principal;
-        Iterator<JsonNode> elements;
-        while (mapOfPrincipals.hasNext()) {
-            principal = mapOfPrincipals.next();
-            schema = principal.getKey();
-            principalNode = principal.getValue();
-
-            if (principalNode.isArray()) {
-                elements = principalNode.elements();
-                while (elements.hasNext()) {
-                    principals.add(createPrincipal(schema, elements.next()));
+        if (reader.isContainer()) {
+            reader.beginObject();
+            String schema;
+            while (reader.hasNext()) {
+                schema = reader.nextName();
+                if (reader.isContainer()) {
+                    reader.beginArray();
+                    while (reader.hasNext()) {
+                        principals.add(createPrincipal(schema, reader.nextString()));
+                    }
+                    reader.endArray();
+                } else {
+                    principals.add(createPrincipal(schema, reader.nextString()));
                 }
+            }
+            reader.endObject();
+        } else {
+            String s = reader.nextString();
+            if ("*".equals(s)) {
+                principals.add(Principal.All);
             } else {
-                principals.add(createPrincipal(schema, principalNode));
+                throw new IllegalArgumentException("Invalid principals: " + s);
             }
         }
 
@@ -236,17 +245,17 @@ public class JsonPolicyReader {
      *            request.
      * @return a principal instance.
      */
-    private Principal createPrincipal(String schema, JsonNode principalNode) {
+    private Principal createPrincipal(String schema, String principal) {
         if (schema.equalsIgnoreCase(PRINCIPAL_SCHEMA_USER)) {
-            return new Principal(principalNode.asText());
+            return new Principal(principal);
         } else if (schema.equalsIgnoreCase(PRINCIPAL_SCHEMA_SERVICE)) {
-            return new Principal(schema,principalNode.asText());
+            return new Principal(schema, principal);
         } else if (schema.equalsIgnoreCase(PRINICIPAL_SCHEMA_FEDERATED)) {
-            if (WebIdentityProviders.fromString(principalNode.asText()) != null) {
+            if (WebIdentityProviders.fromString(principal) != null) {
                 return new Principal(
-                        WebIdentityProviders.fromString(principalNode.asText()));
+                        WebIdentityProviders.fromString(principal));
             } else {
-                return new Principal(PRINICIPAL_SCHEMA_FEDERATED, principalNode.asText());
+                return new Principal(PRINICIPAL_SCHEMA_FEDERATED, principal);
             }
         }
         throw new AmazonClientException("Schema " + schema + " is not a valid value for the principal.");
@@ -255,22 +264,19 @@ public class JsonPolicyReader {
     /**
      * Generates a list of condition from the Json node.
      *
-     * @param conditionNodes
-     *            the condition Json node to be parsed.
+     * @param conditionNodes the condition Json node to be parsed.
      * @return the list of conditions.
+     * @throws IOException
      */
-    private List<Condition> conditionsOf(JsonNode conditionNodes) {
+    private List<Condition> conditionsOf(AwsJsonReader reader) throws IOException {
 
         List<Condition> conditionList = new LinkedList<Condition>();
-        Iterator<Map.Entry<String, JsonNode>> mapOfConditions = conditionNodes
-                .fields();
 
-        Entry<String, JsonNode> condition;
-        while (mapOfConditions.hasNext()) {
-            condition = mapOfConditions.next();
-            convertConditionRecord(conditionList, condition.getKey(),
-                    condition.getValue());
+        reader.beginObject();
+        while (reader.hasNext()) {
+            convertConditionRecord(conditionList, reader.nextName(), reader);
         }
+        reader.endObject();
 
         return conditionList;
     }
@@ -285,33 +291,28 @@ public class JsonPolicyReader {
      *            the condition type for the condition being created.
      * @param conditionNode
      *            each condition node to be parsed.
+     * @throws IOException
      */
     private void convertConditionRecord(List<Condition> conditions,
-            String conditionType, JsonNode conditionNode) {
+            String conditionType, AwsJsonReader reader) throws IOException {
 
-        Iterator<Map.Entry<String, JsonNode>> mapOfFields = conditionNode
-                .fields();
-        List<String> values;
-        Entry<String, JsonNode> field;
-        JsonNode fieldValue;
-        Iterator<JsonNode> elements;
-
-        while (mapOfFields.hasNext()) {
-            values = new LinkedList<String>();
-            field = mapOfFields.next();
-            fieldValue = field.getValue();
-
-            if (fieldValue.isArray()) {
-                elements = fieldValue.elements();
-                while (elements.hasNext()) {
-                    values.add(elements.next().asText());
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            List<String> values = new LinkedList<String>();
+            if (reader.isContainer()) {
+                reader.beginArray();
+                while (reader.hasNext()) {
+                    values.add(reader.nextString());
                 }
+                reader.endArray();
             } else {
-                values.add(fieldValue.asText());
+                values.add(reader.nextString());
             }
-            conditions.add(new Condition().withType(conditionType)
-                    .withConditionKey(field.getKey()).withValues(values));
+            conditions.add(new Condition().withType(conditionType).withConditionKey(name)
+                    .withValues(values));
         }
+        reader.endObject();
     }
 
     /**
@@ -319,27 +320,17 @@ public class JsonPolicyReader {
      */
     private static class NamedAction implements Action {
 
-        private String actionName;
+        private final String actionName;
 
         public NamedAction(String actionName) {
             this.actionName = actionName;
         }
 
+        @Override
         public String getActionName() {
             return actionName;
         }
 
-    }
-
-    /**
-     * Checks if the given object is not null.
-     *
-     * @param object
-     *            the object compared to null.
-     * @return true if the object is not null else false
-     */
-    private boolean isNotNull(Object object) {
-        return null != object;
     }
 
 }
