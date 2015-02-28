@@ -45,7 +45,7 @@ public final class Region {
     Region(final String name, final String domain) {
         this.name = name;
 
-        if (domain == null) {
+        if (domain == null || domain.isEmpty()) {
             this.domain = DEFAULT_DOMAIN;
         } else {
             this.domain = domain;

@@ -25,7 +25,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class VersionInfoUtils {
     /** SDK version info */
-    private static volatile String version = "2.1.9";
+    private static volatile String version = "2.1.10";
 
     /** SDK platform info */
     private static volatile String platform = "android";
