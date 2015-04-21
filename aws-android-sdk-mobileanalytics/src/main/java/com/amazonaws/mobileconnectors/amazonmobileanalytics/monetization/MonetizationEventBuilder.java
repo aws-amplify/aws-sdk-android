@@ -73,7 +73,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Builds a monetization event.
-     * 
+     *
      * @return A monetization event that can be recorded. If the builder is in
      *         an invalid state, this method returns null.
      */
@@ -108,7 +108,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Determines if all builder methods on this builder have been called
-     * 
+     *
      * @return true if this builder can create a Monetization event, false
      *         otherwise
      */
@@ -116,7 +116,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Creates a MonetizationEventBuilder with the specified EventClient
-     * 
+     *
      * @param eventClient The EventClient to use when building events
      */
     protected MonetizationEventBuilder(EventClient eventClient) {
@@ -125,7 +125,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Accessor for the product identifier
-     * 
+     *
      * @return The product identifier that will be used to build the
      *         monetization event
      */
@@ -135,7 +135,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Sets the product id to use when building the monetization event
-     * 
+     *
      * @param productId The product id of the item being purchased
      */
     protected void setProductId(String productId) {
@@ -144,7 +144,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Accessor for the quantity
-     * 
+     *
      * @return The quantity that will be used to build the monetization event
      */
     protected Double getQuantity() {
@@ -153,7 +153,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Sets the quantity that will be used to build the monetization event
-     * 
+     *
      * @param quantity The quantity of items purchased
      */
     protected void setQuantity(Double quantity) {
@@ -162,7 +162,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Accessor for the item price
-     * 
+     *
      * @return The numerical item price that will be used to build the
      *         monetization event
      */
@@ -172,7 +172,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Sets the numerical item price to use when building the monetization event
-     * 
+     *
      * @param itemPrice the price of the item being purchased
      */
     protected void setItemPrice(Double itemPrice) {
@@ -181,7 +181,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Accessor for the formatted item price
-     * 
+     *
      * @return The formatted item price that will be used to build the
      *         monetization event. Price should be formatted for the locale and
      *         currency representing the transaction.
@@ -193,7 +193,7 @@ public abstract class MonetizationEventBuilder {
     /**
      * Sets the formatted item price (in its local currency) to use when
      * building the monetization event
-     * 
+     *
      * @param formattedItemPrice the formatted item price in its local currency
      */
     protected void setFormattedItemPrice(String formattedItemPrice) {
@@ -202,7 +202,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Accessor for the currency
-     * 
+     *
      * @return The currency that will be used to build the monetization event
      */
     protected String getCurrency() {
@@ -211,7 +211,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Sets the item price currency to use when building the monetization event
-     * 
+     *
      * @param currency the ISO currency code or virtual curreny name of the item
      *            price
      */
@@ -221,7 +221,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Accessor for the store
-     * 
+     *
      * @return The store that will be used to build the monetization event
      */
     protected String getStore() {
@@ -233,7 +233,7 @@ public abstract class MonetizationEventBuilder {
      * "Google Play" for purchases originating from Google Play, "Amazon" for
      * purchases originating from Amazon, or "Virtual" if the purchase was
      * performed in your in-game store.
-     * 
+     *
      * @param store The store of the purchase
      */
     protected void setStore(String store) {
@@ -242,7 +242,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Accessor for the transaction identifier
-     * 
+     *
      * @return The transaction identifier that will be used to build the
      *         monetization event
      */
@@ -252,7 +252,7 @@ public abstract class MonetizationEventBuilder {
 
     /**
      * Sets the transaction id to use when building the monetization event
-     * 
+     *
      * @param transactionId the transaction id of the purchase
      */
     protected void setTransactionId(String transactionId) {

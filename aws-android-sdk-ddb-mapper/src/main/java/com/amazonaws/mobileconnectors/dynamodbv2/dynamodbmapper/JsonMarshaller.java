@@ -12,13 +12,14 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import com.google.gson.Gson;
 
 /**
- * Simple JSON marshaller that uses Gson mapper. It has all the limitations
- * of that library, the documentation of which is available here:
+ * Simple JSON marshaller that uses Gson mapper. It has all the limitations of
+ * that library, the documentation of which is available here:
  * http://docs.codehaus.org/display/JACKSON/Home
  */
 public class JsonMarshaller<T extends Object> implements DynamoDBMarshaller<T> {

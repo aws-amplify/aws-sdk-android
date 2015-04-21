@@ -12,13 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
 
 import java.util.Map;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-
 
 /**
  * Contains information used to encrypt and decrypt objects in S3.
@@ -33,47 +33,53 @@ public class EncryptionInstruction {
     /**
      * Construct a new EncryptionInstruction object with the provided fields.
      *
-     * @param materialsDescription
-     *      The description of the encryption materials that were used to encrypt the envelope symmetric key.
-     * @param encryptedSymmetricKey
-     *      A byte[] array representing an encrypted envelope symmetric key.
-     * @param symmetricKey
-     *      The symmetric key used to create the cipher that will encrypt the object data.
-     * @param symmetricCipher
-     *      The symmetric cipher that will encrypt the object data.
+     * @param materialsDescription The description of the encryption materials
+     *            that were used to encrypt the envelope symmetric key.
+     * @param encryptedSymmetricKey A byte[] array representing an encrypted
+     *            envelope symmetric key.
+     * @param symmetricKey The symmetric key used to create the cipher that will
+     *            encrypt the object data.
+     * @param symmetricCipher The symmetric cipher that will encrypt the object
+     *            data.
      */
-    public EncryptionInstruction(Map<String, String> materialsDescription, byte[] encryptedSymmetricKey, SecretKey symmetricKey, Cipher symmetricCipher) {
+    public EncryptionInstruction(Map<String, String> materialsDescription,
+            byte[] encryptedSymmetricKey, SecretKey symmetricKey, Cipher symmetricCipher) {
         this.materialsDescription = materialsDescription;
         this.encryptedSymmetricKey = encryptedSymmetricKey;
         this.symmetricCipher = symmetricCipher;
         this.symmetricCipherFactory = null;
     }
 
-    public EncryptionInstruction(Map<String, String> materialsDescription, byte[] encryptedSymmetricKey, SecretKey symmetricKey, CipherFactory symmetricCipherFactory) {
+    public EncryptionInstruction(Map<String, String> materialsDescription,
+            byte[] encryptedSymmetricKey, SecretKey symmetricKey,
+            CipherFactory symmetricCipherFactory) {
         this.materialsDescription = materialsDescription;
         this.encryptedSymmetricKey = encryptedSymmetricKey;
         this.symmetricCipherFactory = symmetricCipherFactory;
         this.symmetricCipher = symmetricCipherFactory.createCipher();
     }
 
-
     public CipherFactory getCipherFactory() {
         return symmetricCipherFactory;
     }
 
     /**
-     * Returns the description of the encryption materials that were used to encrypt the envelope symmetric key.
+     * Returns the description of the encryption materials that were used to
+     * encrypt the envelope symmetric key.
      *
-     * @return the description of the encryption materials that were used to encrypt the envelope symmetric key.
+     * @return the description of the encryption materials that were used to
+     *         encrypt the envelope symmetric key.
      */
     public Map<String, String> getMaterialsDescription() {
         return this.materialsDescription;
     }
 
     /**
-     * Returns an array of bytes representing the encrypted envelope symmetric key.
+     * Returns an array of bytes representing the encrypted envelope symmetric
+     * key.
      *
-     * @return an array of bytes representing the encrypted envelope symmetric key.
+     * @return an array of bytes representing the encrypted envelope symmetric
+     *         key.
      */
     public byte[] getEncryptedSymmetricKey() {
         return this.encryptedSymmetricKey;

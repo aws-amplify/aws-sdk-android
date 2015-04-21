@@ -12,13 +12,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.internal;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 
 /**
- * Simple implementation of AWSCredentialsProvider that just wraps static AWSCredentials.
+ * Simple implementation of AWSCredentialsProvider that just wraps static
+ * AWSCredentials.
  */
 public class StaticCredentialsProvider implements AWSCredentialsProvider {
 
@@ -28,10 +30,13 @@ public class StaticCredentialsProvider implements AWSCredentialsProvider {
         this.credentials = credentials;
     }
 
+    @Override
     public AWSCredentials getCredentials() {
         return credentials;
     }
 
-    public void refresh() {}
+    @Override
+    public void refresh() {
+    }
 
 }

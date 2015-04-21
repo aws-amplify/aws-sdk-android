@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 /**
@@ -19,10 +20,10 @@ package com.amazonaws.auth;
  */
 public interface RegionAwareSigner extends Signer {
     /**
-     * Configure this signer with the name of the region it will be used
-     * to sign requests for.
+     * Configure this signer with the name of the region it will be used to sign
+     * requests for.
      *
-     * @param value   The name of the region.
+     * @param value The name of the region.
      */
     void setRegionName(String value);
 }

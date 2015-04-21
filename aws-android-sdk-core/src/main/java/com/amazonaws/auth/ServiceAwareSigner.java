@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 /**
@@ -19,10 +20,10 @@ package com.amazonaws.auth;
  */
 public interface ServiceAwareSigner extends Signer {
     /**
-     * Configure this signer with the name of the service it will be used
-     * to sign requests for.
+     * Configure this signer with the name of the service it will be used to
+     * sign requests for.
      *
-     * @param value   The name of the service.
+     * @param value The name of the service.
      */
     void setServiceName(String value);
 }

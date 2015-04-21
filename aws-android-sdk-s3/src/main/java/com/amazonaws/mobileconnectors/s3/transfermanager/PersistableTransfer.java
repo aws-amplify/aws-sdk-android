@@ -12,9 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 import static com.amazonaws.util.StringUtils.UTF8;
+
+import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
+import com.amazonaws.util.json.AwsJsonReader;
+import com.amazonaws.util.json.JsonUtils;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -23,14 +28,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
-import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
-import com.amazonaws.util.json.AwsJsonReader;
-import com.amazonaws.util.json.JsonUtils;
-
 /**
- * Abstract base class for the information of a pausible upload or download; such
- * information can be used to resume the upload or download later on, and can be
- * serialized/deserialized for persistence purposes.
+ * Abstract base class for the information of a pausible upload or download;
+ * such information can be used to resume the upload or download later on, and
+ * can be serialized/deserialized for persistence purposes.
  */
 public abstract class PersistableTransfer {
 
@@ -54,9 +55,9 @@ public abstract class PersistableTransfer {
      * representation. Caller of this method should explicitly close the
      * <code>InputStream</code>.
      *
-     * @throws UnsupportedOperationException
-     *             if the paused transfer type extracted from the serialized
-     *             representation is not supported.
+     * @throws UnsupportedOperationException if the paused transfer type
+     *             extracted from the serialized representation is not
+     *             supported.
      */
     @SuppressWarnings("unchecked")
     public static <T extends PersistableTransfer> T deserializeFrom(InputStream in) {
@@ -157,9 +158,9 @@ public abstract class PersistableTransfer {
      * Returns the deserialized transfer state of the given serialized
      * representation.
      *
-     * @throws UnsupportedOperationException
-     *             if the paused transfer type extracted from the serialized
-     *             representation is not supported.
+     * @throws UnsupportedOperationException if the paused transfer type
+     *             extracted from the serialized representation is not
+     *             supported.
      */
     public static <T extends PersistableTransfer> T deserializeFrom(
             String serialized) {
@@ -167,10 +168,14 @@ public abstract class PersistableTransfer {
             return null;
         ByteArrayInputStream byteStream = new ByteArrayInputStream(
                 serialized.getBytes(UTF8));
-        try{
+        try {
             return deserializeFrom(byteStream);
-        }finally{
-            try { byteStream.close(); } catch(IOException ioe) { } ;
+        } finally {
+            try {
+                byteStream.close();
+            } catch (IOException ioe) {
+            }
+            ;
         }
     }
 }

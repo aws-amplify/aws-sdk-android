@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.conditions;
 
 import com.amazonaws.auth.policy.Condition;
@@ -86,7 +87,8 @@ public class S3ConditionFactory {
      */
     public static final String VERSION_ID_CONDITION_KEY = "s3:VersionId";
 
-    private S3ConditionFactory() {}
+    private S3ConditionFactory() {
+    }
 
     /**
      * Constructs a new access policy condition that compares an Amazon S3
@@ -95,9 +97,7 @@ public class S3ConditionFactory {
      * You can use this condition to ensure that any objects uploaded to an
      * Amazon S3 bucket have a specific canned ACL set.
      *
-     * @param cannedAcl
-     *            The Amazon S3 canned ACL to compare against.
-     *
+     * @param cannedAcl The Amazon S3 canned ACL to compare against.
      * @return A new access control policy condition that compares the Amazon S3
      *         canned ACL specified in incoming requests against the value
      *         specified.

@@ -12,11 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.metrics;
 
 /**
- * A service provider interface that can be used to implement an AWS SDK
- * general purpose metric collector.
+ * A service provider interface that can be used to implement an AWS SDK general
+ * purpose metric collector.
  */
 public abstract class ServiceMetricCollector {
     public static interface Factory {
@@ -26,21 +27,35 @@ public abstract class ServiceMetricCollector {
          */
         public ServiceMetricCollector getServiceMetricCollector();
     }
+
     /**
-     * Collects metrics on the number of bytes written or read and the respective
-     * duration.
+     * Collects metrics on the number of bytes written or read and the
+     * respective duration.
      */
     public abstract void collectByteThroughput(ByteThroughputProvider provider);
+
     /**
      * Collects metrics for non-request specific latencies.
      */
     public abstract void collectLatency(ServiceLatencyProvider provider);
 
-    public boolean isEnabled() { return true; }
+    public boolean isEnabled() {
+        return true;
+    }
+
     /** A convenient instance of a no-op service metric collector. */
     public static final ServiceMetricCollector NONE = new ServiceMetricCollector() {
-        @Override public void collectByteThroughput(ByteThroughputProvider provider) {}
-        @Override public void collectLatency(ServiceLatencyProvider provider) {}
-        @Override public boolean isEnabled() { return false; }
+        @Override
+        public void collectByteThroughput(ByteThroughputProvider provider) {
+        }
+
+        @Override
+        public void collectLatency(ServiceLatencyProvider provider) {
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return false;
+        }
     };
 }

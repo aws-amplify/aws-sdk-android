@@ -12,7 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.AmazonServiceException.ErrorType;
+import com.amazonaws.transform.JsonErrorUnmarshaller;
+import com.amazonaws.util.json.JsonUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,12 +27,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.AmazonServiceException.ErrorType;
-import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.util.json.JsonUtils;
 
 public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServiceException> {
 
@@ -55,7 +56,8 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
         }
 
         AmazonServiceException ase = runErrorUnmarshallers(error);
-        if (ase == null) return null;
+        if (ase == null)
+            return null;
 
         ase.setStatusCode(response.getStatusCode());
         if (response.getStatusCode() < 500) {

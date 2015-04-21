@@ -12,12 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model.transform;
 
-import java.util.LinkedList;
+package com.amazonaws.services.s3.model.transform;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.LinkedList;
 
 /**
  * Package private abstract base for all handlers here; adds tracking of the

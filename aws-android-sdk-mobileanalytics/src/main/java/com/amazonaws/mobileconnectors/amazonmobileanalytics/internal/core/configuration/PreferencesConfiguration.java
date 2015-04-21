@@ -15,20 +15,20 @@
 
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.configuration;
 
-import static com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.Preconditions.*;
+import static com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.Preconditions.checkNotNull;
 
 import android.util.Log;
+
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.AnalyticsContext;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.Preferences;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.AnalyticsContext;
-import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.Preferences;
 
 public class PreferencesConfiguration implements Configuration {
 
@@ -205,7 +205,7 @@ public class PreferencesConfiguration implements Configuration {
 
     /**
      * Update the property map with the JSON key value pairs
-     * 
+     *
      * @param configJson The Json to add to the map. If null, the internal map
      *            is empty
      */

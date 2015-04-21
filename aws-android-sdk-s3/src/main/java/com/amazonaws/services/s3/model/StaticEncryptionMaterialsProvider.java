@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.util.Map;
@@ -21,39 +22,44 @@ import java.util.Map;
  * EncryptionMaterials.
  */
 public class StaticEncryptionMaterialsProvider implements EncryptionMaterialsProvider {
-    
+
     private final EncryptionMaterials materials;
 
     public StaticEncryptionMaterialsProvider(EncryptionMaterials materials) {
         this.materials = materials;
     }
 
+    @Override
     public EncryptionMaterials getEncryptionMaterials() {
         return materials;
     }
 
-    public void refresh() {}
+    @Override
+    public void refresh() {
+    }
 
+    @Override
     public EncryptionMaterials getEncryptionMaterials(
             final Map<String, String> materialDescIn) {
-        final Map<String,String> materialDesc =
-            materials.getMaterialsDescription();
-        if (materialDescIn != null 
-        &&  materialDescIn.equals(materialDesc)) {
-            return materials;   // matching description
+        final Map<String, String> materialDesc =
+                materials.getMaterialsDescription();
+        if (materialDescIn != null
+                && materialDescIn.equals(materialDesc)) {
+            return materials; // matching description
         }
         EncryptionMaterialsAccessor accessor = materials.getAccessor();
         if (accessor != null) {
             EncryptionMaterials accessorMaterials =
-                accessor.getEncryptionMaterials(materialDescIn);
+                    accessor.getEncryptionMaterials(materialDescIn);
             if (accessorMaterials != null)
-                return accessorMaterials;   // accessor decided materials
+                return accessorMaterials; // accessor decided materials
         }
         // The condition that there are
         // 1) no input materials description (typically from S3); and
-        // 2) no materials description for the current client-side materials; and
+        // 2) no materials description for the current client-side materials;
+        // and
         // 3) the client's material accessor has no corresponding materials
-        //    for null or empty materials description;
+        // for null or empty materials description;
         // implies that the only sensible materials is
         // the current client-side materials (which has no description).
         boolean noMaterialDescIn = materialDescIn == null || materialDescIn.size() == 0;

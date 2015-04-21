@@ -12,13 +12,14 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
+
+import com.amazonaws.services.s3.model.DeleteObjectsResult.DeletedObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import com.amazonaws.services.s3.model.DeleteObjectsResult.DeletedObject;
 
 /**
  * Exception for partial or total failure of the multi-object delete API,
@@ -32,12 +33,13 @@ public class MultiObjectDeleteException extends AmazonS3Exception {
     private final List<DeleteError> errors = new ArrayList<DeleteError>();
     private final List<DeletedObject> deletedObjects = new ArrayList<DeleteObjectsResult.DeletedObject>();
 
-    public MultiObjectDeleteException(Collection<DeleteError> errors, Collection<DeletedObject> deletedObjects) {
+    public MultiObjectDeleteException(Collection<DeleteError> errors,
+            Collection<DeletedObject> deletedObjects) {
         super("One or more objects could not be deleted");
         this.deletedObjects.addAll(deletedObjects);
         this.errors.addAll(errors);
     }
-    
+
     /**
      * Returns the list of successfully deleted objects from this request. If
      * {@link DeleteObjectsRequest#getQuiet()} is true, only error responses
@@ -53,7 +55,7 @@ public class MultiObjectDeleteException extends AmazonS3Exception {
     public List<DeleteError> getErrors() {
         return errors;
     }
-    
+
     /**
      * An error that occurred when deleting an object.
      */
@@ -103,7 +105,7 @@ public class MultiObjectDeleteException extends AmazonS3Exception {
         public String getMessage() {
             return message;
         }
-        
+
         public void setMessage(String message) {
             this.message = message;
         }

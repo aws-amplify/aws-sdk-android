@@ -12,15 +12,16 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.AmazonS3;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -28,9 +29,8 @@ import com.amazonaws.services.s3.AmazonS3;
  * </p>
  * <p>
  * Pre-signed URLs allow clients to form a URL for an Amazon S3 resource and
- * sign it with the current AWS security credentials.
- * A pre-signed URL may be passed around for other users to access
- * the resource without providing them
+ * sign it with the current AWS security credentials. A pre-signed URL may be
+ * passed around for other users to access the resource without providing them
  * access to an account's AWS security credentials.
  * </p>
  *
@@ -38,7 +38,10 @@ import com.amazonaws.services.s3.AmazonS3;
  */
 public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
 
-    /** The HTTP method (GET, PUT, DELETE, HEAD) to be used in this request and when the pre-signed URL is used */
+    /**
+     * The HTTP method (GET, PUT, DELETE, HEAD) to be used in this request and
+     * when the pre-signed URL is used
+     */
     private HttpMethod method;
 
     /** The name of the bucket involved in this request */
@@ -47,10 +50,16 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
     /** The key of the object involved in this request */
     private String key;
 
-    /** The optional Content-Type header that will be sent when the presigned URL is accessed */
+    /**
+     * The optional Content-Type header that will be sent when the presigned URL
+     * is accessed
+     */
     private String contentType;
 
-    /** The optional Content-MD5 header that will be sent when the presigned URL is accessed */
+    /**
+     * The optional Content-MD5 header that will be sent when the presigned URL
+     * is accessed
+     */
     private String contentMd5;
 
     /**
@@ -79,17 +88,14 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      */
     private SSECustomerKey sseCustomerKey;
 
-
     /**
      * Creates a new request for generating a pre-signed URL that can be used as
      * part of an HTTP GET request to access the Amazon S3 object stored under
      * the specified key in the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket containing the desired Amazon S3
+     * @param bucketName The name of the bucket containing the desired Amazon S3
      *            object.
-     * @param key
-     *            The key under which the desired Amazon S3 object is stored.
+     * @param key The key under which the desired Amazon S3 object is stored.
      */
     public GeneratePresignedUrlRequest(String bucketName, String key) {
         this(bucketName, key, HttpMethod.GET);
@@ -106,12 +112,10 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * URL.
      * </p>
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket involved in the operation.
-     * @param key
-     *            The key of the Amazon S3 object involved in the operation.
-     * @param method
-     *            The HTTP method (GET, PUT, DELETE, HEAD) to be used in the
+     * @param bucketName The name of the Amazon S3 bucket involved in the
+     *            operation.
+     * @param key The key of the Amazon S3 object involved in the operation.
+     * @param method The HTTP method (GET, PUT, DELETE, HEAD) to be used in the
      *            request when the pre-signed URL is used.
      */
     public GeneratePresignedUrlRequest(String bucketName, String key, HttpMethod method) {
@@ -137,8 +141,7 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * The same HTTP method <b>must</b> be used in the request when the
      * pre-signed URL is used.
      *
-     * @param method
-     *            The HTTP method (GET, PUT, DELETE, HEAD) to be used in this
+     * @param method The HTTP method (GET, PUT, DELETE, HEAD) to be used in this
      *            request.
      */
     public void setMethod(HttpMethod method) {
@@ -153,12 +156,10 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * The same HTTP method <b>must</b> be used in the request when the
      * pre-signed URL is used.
      *
-     * @param method
-     *            The HTTP method (GET, PUT, DELETE, HEAD) to be used in this
+     * @param method The HTTP method (GET, PUT, DELETE, HEAD) to be used in this
      *            request.
-     *
-     * @return The updated request object, so that additional method calls can
-     *         be chained together.
+     * @return The updated request object, so that additional method calls can be
+     *         chained together.
      */
     public GeneratePresignedUrlRequest withMethod(HttpMethod method) {
         setMethod(method);
@@ -177,8 +178,7 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
     /**
      * Sets the name of the bucket involved in this request.
      *
-     * @param bucketName
-     *            the name of the bucket involved in this request.
+     * @param bucketName the name of the bucket involved in this request.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -188,11 +188,9 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * Sets the name of the bucket involved in this request, and returns this
      * request object to enable additional method calls to be chained together.
      *
-     * @param bucketName
-     *            the name of the bucket involved in this request.
-     *
-     * @return The updated request object, so that additional method calls can
-     *         be chained together.
+     * @param bucketName the name of the bucket involved in this request.
+     * @return The updated request object, so that additional method calls can be
+     *         chained together.
      */
     public GeneratePresignedUrlRequest withBucketName(String bucketName) {
         setBucketName(bucketName);
@@ -211,8 +209,7 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
     /**
      * Sets the key of the object involved in this request.
      *
-     * @param key
-     *            the key of the object involved in this request.
+     * @param key the key of the object involved in this request.
      */
     public void setKey(String key) {
         this.key = key;
@@ -222,11 +219,9 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * Sets the key of the object involved in this request, and returns this
      * request object to enable additional method calls to be chained together.
      *
-     * @param key
-     *            the key of the object involved in this request.
-     *
-     * @return The updated request object, so that additional method calls can
-     *         be chained together.
+     * @param key the key of the object involved in this request.
+     * @return The updated request object, so that additional method calls can be
+     *         chained together.
      */
     public GeneratePresignedUrlRequest withKey(String key) {
         setKey(key);
@@ -250,9 +245,8 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * longer be accepted by Amazon S3. If not specified, a default value will
      * be supplied.
      *
-     * @param expiration
-     *            The expiration date at which point the new pre-signed URL will
-     *            no longer be accepted by Amazon S3.
+     * @param expiration The expiration date at which point the new pre-signed
+     *            URL will no longer be accepted by Amazon S3.
      */
     public void setExpiration(Date expiration) {
         this.expiration = expiration;
@@ -265,12 +259,10 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * <p>
      * If not specified, a default value will be supplied.
      *
-     * @param expiration
-     *            The expiration date at which point the new pre-signed URL will
-     *            no longer be accepted by Amazon S3.
-     *
-     * @return The updated request object, so that additional method calls can
-     *         be chained together.
+     * @param expiration The expiration date at which point the new pre-signed
+     *            URL will no longer be accepted by Amazon S3.
+     * @return The updated request object, so that additional method calls can be
+     *         chained together.
      */
     public GeneratePresignedUrlRequest withExpiration(Date expiration) {
         setExpiration(expiration);
@@ -283,11 +275,9 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * pre-signed URLs, such as accessing Amazon S3's torrent resource for an
      * object, or for specifying a version ID when accessing an object.
      *
-     * @param key
-     *            The name of the request parameter, as it appears in the URL's
+     * @param key The name of the request parameter, as it appears in the URL's
      *            query string (e.g. versionId).
-     * @param value
-     *            The (optional) value of the request parameter being added.
+     * @param value The (optional) value of the request parameter being added.
      */
     public void addRequestParameter(String key, String value) {
         requestParameters.put(key, value);
@@ -316,8 +306,8 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
     /**
      * Sets the headers to be overridden in the service response.
      *
-     * @param responseHeaders
-     *            The headers to be overridden in the service response.
+     * @param responseHeaders The headers to be overridden in the service
+     *            response.
      */
     public void setResponseHeaders(ResponseHeaderOverrides responseHeaders) {
         this.responseHeaders = responseHeaders;
@@ -327,10 +317,8 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * Sets the headers to be overridden in the service response and returns
      * this object, for method chaining.
      *
-     * @param responseHeaders
-     *            The headers to be overridden in the service response.
-     *
-     *
+     * @param responseHeaders The headers to be overridden in the service
+     *            response.
      * @return This {@link GeneratePresignedUrlRequest} for method chaining.
      */
     public GeneratePresignedUrlRequest withResponseHeaders(ResponseHeaderOverrides responseHeaders) {
@@ -339,8 +327,8 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the expected content-type of the request. The content-type is included in
-     * the signature.
+     * Gets the expected content-type of the request. The content-type is
+     * included in the signature.
      *
      * @return The expected content-type
      */
@@ -349,23 +337,20 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the expected content-type of the request. The content-type is included in
-     * the signature.
-     * @param contentType
-     *            The expected content-type
+     * Sets the expected content-type of the request. The content-type is
+     * included in the signature.
+     *
+     * @param contentType The expected content-type
      */
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
 
     /**
-     * Sets the expected content-type of the request and returns
-     * this object, for method chaining.
+     * Sets the expected content-type of the request and returns this object,
+     * for method chaining.
      *
-     * @param contentType
-     *            The expected content-type
-     *
-     *
+     * @param contentType The expected content-type
      * @return This {@link GeneratePresignedUrlRequest} for method chaining.
      */
     public GeneratePresignedUrlRequest withContentType(String contentType) {
@@ -388,9 +373,8 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * Sets the expected content-md5 header of the request. This header value
      * will be included when calculating the signature, and future requests must
      * include the same content-md5 header value to access the presigned URL.
-
-     * @param contentMd5
-     *            The expected content-md5 header value.
+     *
+     * @param contentMd5 The expected content-md5 header value.
      */
     public void setContentMd5(String contentMd5) {
         this.contentMd5 = contentMd5;
@@ -400,9 +384,7 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * Sets the expected content-md5 header of the request and returns this
      * object, for method chaining.
      *
-     * @param contentMd5
-     *            The expected content-md5 header value.
-     *
+     * @param contentMd5 The expected content-md5 header value.
      * @return This {@link GeneratePresignedUrlRequest} for method chaining.
      */
     public GeneratePresignedUrlRequest withContentMd5(String contentMd5) {
@@ -425,8 +407,7 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * Sets the customer-provided server-side encryption key to use as part of
      * the generated pre-signed URL.
      *
-     * @param sseKey
-     *            The customer-provided server-side encryption key to use as
+     * @param sseKey The customer-provided server-side encryption key to use as
      *            part of the generated pre-signed URL.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
@@ -438,12 +419,10 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest {
      * the generated pre-signed URL, and returns the updated request object so
      * that additional method calls can be chained together.
      *
-     * @param sseKey
-     *            The customer-provided server-side encryption key to use as
+     * @param sseKey The customer-provided server-side encryption key to use as
      *            part of the generated pre-signed URL.
-     *
-     * @return This updated request object so that additional method calls can
-     *         be chained together.
+     * @return This updated request object so that additional method calls can be
+     *         chained together.
      */
     public GeneratePresignedUrlRequest withSSECustomerKey(SSECustomerKey sseKey) {
         setSSECustomerKey(sseKey);

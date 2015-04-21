@@ -17,14 +17,6 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.delivery;
 
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.ClientContext;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.InternalEvent;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.adapter.JSONEventAdapter;
@@ -33,6 +25,14 @@ import com.amazonaws.services.mobileanalytics.model.PutEventsRequest;
 import com.amazonaws.services.mobileanalytics.model.Session;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.DateUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class ERSRequestBuilder {
 

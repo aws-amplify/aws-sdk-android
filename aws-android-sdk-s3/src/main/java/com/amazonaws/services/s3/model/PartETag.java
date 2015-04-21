@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 /**
@@ -27,20 +28,16 @@ public class PartETag {
     /** The entity tag generated from the content of the associated part. */
     private String eTag;
 
-
     /**
      * Constructs an instance of PartETag and sets the part number and ETag.
      *
-     * @param partNumber
-     *            The part number.
-     * @param eTag
-     *            the associated ETag for the part number.
+     * @param partNumber The part number.
+     * @param eTag the associated ETag for the part number.
      */
     public PartETag(int partNumber, String eTag) {
         this.partNumber = partNumber;
         this.eTag = eTag;
     }
-    
 
     /**
      * Returns the part number of the associated part.
@@ -54,8 +51,7 @@ public class PartETag {
     /**
      * Sets the part number of the associated part.
      *
-     * @param partNumber
-     *            the part number of the associated part.
+     * @param partNumber the part number of the associated part.
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
@@ -65,9 +61,7 @@ public class PartETag {
      * Sets the part number of the associated part, and returns this updated
      * PartETag object so that additional method calls can be chained together.
      *
-     * @param partNumber
-     *            the part number of the associated part.
-     *
+     * @param partNumber the part number of the associated part.
      * @return This updated PartETag object.
      */
     public PartETag withPartNumber(int partNumber) {
@@ -87,8 +81,7 @@ public class PartETag {
     /**
      * Sets the entity tag generated from the content of the associated part.
      *
-     * @param eTag
-     *            the entity tag generated from the content of the associated
+     * @param eTag the entity tag generated from the content of the associated
      *            part.
      */
     public void setETag(String eTag) {
@@ -100,10 +93,8 @@ public class PartETag {
      * and returns this updated PartETag object so that additional method calls
      * can be chained together.
      *
-     * @param eTag
-     *            the entity tag generated from the content of the associated
+     * @param eTag the entity tag generated from the content of the associated
      *            part.
-     *
      * @return This updated PartETag object.
      */
     public PartETag withETag(String eTag) {

@@ -17,15 +17,6 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event;
 
 import android.util.Log;
 
-import java.util.Collections;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.AnalyticsContext;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.idresolver.Id;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.AppDetails;
@@ -33,6 +24,15 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.JSONBuilder;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.SDKInfo;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.ClientContext.ClientContextBuilder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Collections;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class DefaultEvent implements InternalEvent {
 
@@ -56,9 +56,9 @@ public final class DefaultEvent implements InternalEvent {
             long timestamp, InternalEvent copyEvent) {
         return new DefaultEvent(copyEvent.getEventType(), copyEvent.getAllAttributes(),
                 copyEvent.getAllMetrics(),
-                context.getSDKInfo(), sessionId, ((InternalEvent) copyEvent).getSessionStart(),
-                ((InternalEvent) copyEvent).getSessionStop(),
-                ((InternalEvent) copyEvent).getSessionDuration(), timestamp, context.getUniqueId(),
+                context.getSDKInfo(), sessionId, copyEvent.getSessionStart(),
+                copyEvent.getSessionStop(),
+                copyEvent.getSessionDuration(), timestamp, context.getUniqueId(),
                 context.getSystem()
                         .getAppDetails(), context.getSystem().getDeviceDetails());
     }

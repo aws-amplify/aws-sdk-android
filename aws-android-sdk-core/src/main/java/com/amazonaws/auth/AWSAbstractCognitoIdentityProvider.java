@@ -12,14 +12,9 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.auth;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.regions.Region;
@@ -31,16 +26,21 @@ import com.amazonaws.services.cognitoidentity.model.GetIdResult;
 import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenRequest;
 import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenResult;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * This class utilizes Cognito as a means to get an identity and dispense an
  * identityId and token. It also handles the refreshing of the token and
- * identityId. 
+ * identityId.
  */
 public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoIdentityProvider {
 
     /** The client for communication with Cognito */
     protected final AmazonCognitoIdentity cib;
-    
+
     /**
      * The data structures that won't vary between cognito and developer
      * providers
@@ -54,16 +54,17 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     protected Map<String, String> loginsMap;
 
     /**
-     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the baseline
-     * for both Cognito and developer trusted identity providers. Custom providers 
-     * should not extend this class, but should extend 
+     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the
+     * baseline for both Cognito and developer trusted identity providers.
+     * Custom providers should not extend this class, but should extend
      * AWSAbstractCognitoDeveloperIdentityProvider
-     * 
+     *
      * @param accountId the accountId of the developer
      * @param identityPoolId the identityPoolId to be used
      * @param cibClient the cib client which will communicate with cognito
      */
-    public AWSAbstractCognitoIdentityProvider(String accountId, String identityPoolId, AmazonCognitoIdentity cibClient) {
+    public AWSAbstractCognitoIdentityProvider(String accountId, String identityPoolId,
+            AmazonCognitoIdentity cibClient) {
         this.accountId = accountId;
         this.identityPoolId = identityPoolId;
         this.loginsMap = new HashMap<String, String>();
@@ -72,49 +73,54 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     }
 
     /**
-     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the baseline
-     * for both Cognito and developer trusted identity providers. Custom providers 
-     * should not extend this class, but should extend 
+     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the
+     * baseline for both Cognito and developer trusted identity providers.
+     * Custom providers should not extend this class, but should extend
      * AWSAbstractCognitoDeveloperIdentityProvider
-     * 
-     * @deprecated please use AWSAbstractCognitoIdentityProvider(String accountId, String 
-     * identityPoolId, ClientConfiguration clientConfiguration, Regions region) instead.
+     *
+     * @deprecated please use AWSAbstractCognitoIdentityProvider(String
+     *             accountId, String identityPoolId, ClientConfiguration
+     *             clientConfiguration, Regions region) instead.
      * @param accountId the accountId of the developer
      * @param identityPoolId the identityPoolId to be used
-     * @param clientConfiguration the client configuration to be used by the client
+     * @param clientConfiguration the client configuration to be used by the
+     *            client
      */
     @Deprecated
-    public AWSAbstractCognitoIdentityProvider(String accountId, String identityPoolId, ClientConfiguration clientConfiguration) {
+    public AWSAbstractCognitoIdentityProvider(String accountId, String identityPoolId,
+            ClientConfiguration clientConfiguration) {
         this(accountId, identityPoolId, new AmazonCognitoIdentityClient
                 (new AnonymousAWSCredentials(), clientConfiguration));
     }
-    
+
     /**
-     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the baseline
-     * for both Cognito and developer trusted identity providers. Custom providers 
-     * should not extend this class, but should extend 
+     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the
+     * baseline for both Cognito and developer trusted identity providers.
+     * Custom providers should not extend this class, but should extend
      * AWSAbstractCognitoDeveloperIdentityProvider
-     * 
+     *
      * @param accountId the accountId of the developer
      * @param identityPoolId the identityPoolId to be used
-     * @param clientConfiguration the client configuration to be used by the client
+     * @param clientConfiguration the client configuration to be used by the
+     *            client
      * @param region the region cognito will use
      */
-    public AWSAbstractCognitoIdentityProvider(String accountId, String identityPoolId, ClientConfiguration clientConfiguration, 
+    public AWSAbstractCognitoIdentityProvider(String accountId, String identityPoolId,
+            ClientConfiguration clientConfiguration,
             Regions region) {
         this(accountId, identityPoolId, new AmazonCognitoIdentityClient
                 (new AnonymousAWSCredentials(), clientConfiguration));
         this.cib.setRegion(Region.getRegion(region));
     }
-    
+
     /**
-     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the baseline
-     * for both Cognito and developer trusted identity providers. Custom providers 
-     * should not extend this class, but should extend 
+     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the
+     * baseline for both Cognito and developer trusted identity providers.
+     * Custom providers should not extend this class, but should extend
      * AWSAbstractCognitoDeveloperIdentityProvider
-     * 
-     * @deprecated please use AWSAbstractCognitoIdentityProvider(String accountId, String 
-     * identityPoolId, Regions region) instead.
+     *
+     * @deprecated please use AWSAbstractCognitoIdentityProvider(String
+     *             accountId, String identityPoolId, Regions region) instead.
      * @param accountId the accountId of the developer
      * @param identityPoolId the identityPoolId to be used
      */
@@ -122,18 +128,18 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     public AWSAbstractCognitoIdentityProvider(String accountId, String identityPoolId) {
         this(accountId, identityPoolId, new ClientConfiguration());
     }
-    
+
     /**
-     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the baseline
-     * for both Cognito and developer trusted identity providers. Custom providers 
-     * should not extend this class, but should extend 
+     * Sets up an AWSAbstractCognitoIdentityProvider, which will serve as the
+     * baseline for both Cognito and developer trusted identity providers.
+     * Custom providers should not extend this class, but should extend
      * AWSAbstractCognitoDeveloperIdentityProvider
-     * 
+     *
      * @param accountId the accountId of the developer
      * @param identityPoolId the identityPoolId to be used
      * @param region the region cib will use
      */
-    public AWSAbstractCognitoIdentityProvider(String accountId, String identityPoolId, 
+    public AWSAbstractCognitoIdentityProvider(String accountId, String identityPoolId,
             Regions region) {
         this(accountId, identityPoolId, new ClientConfiguration(), region);
     }
@@ -141,11 +147,11 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     /**
      * Gets a string with the name of the provider being used. For example,
      * Cognito would return "Cognito";
-     * 
+     *
      * @return the name of the provider in a string
      */
     public abstract String getProviderName();
-    
+
     /**
      * Gets a reference to the identityId of the user (sending a new request if
      * it isn't yet set), using the dev accountId, identityPoolId, and the
@@ -239,7 +245,7 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     /**
      * Updates the listeners and establishes the new identityId as the stored
      * identityId
-     * 
+     *
      * @param newIdentityId the identityId to be saved
      */
     @Override
@@ -257,7 +263,7 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     /**
      * Append user agent string to the request. The final string is what is set
      * in the ClientCofniguration concatenated with the given userAgent string.
-     * 
+     *
      * @param request the request object to be appended
      * @param userAgent additional user agent string to append
      */
@@ -281,10 +287,10 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     /**
      * To be used to update the identityId and token after a call to refresh
      * from an identityProvider. Note, this is the only call that is needed
-     * after the refresh call terminates, and it is explicitly necessary. Do 
-     * not call setIdentity and/or setToken in addition to this, or it could cause 
+     * after the refresh call terminates, and it is explicitly necessary. Do not
+     * call setIdentity and/or setToken in addition to this, or it could cause
      * unexpected behavior.
-     * 
+     *
      * @param identityId the new identityId to be used for the user
      * @param token the new token to be used with STS
      */
@@ -296,10 +302,9 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
             this.token = token;
         }
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
      * @see com.amazonaws.auth.AWSIdentityProvider#refresh()
      */
     @Override

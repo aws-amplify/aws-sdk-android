@@ -12,7 +12,11 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.Request;
 
 import java.net.URI;
 import java.text.SimpleDateFormat;
@@ -21,9 +25,6 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TimeZone;
 import java.util.TreeMap;
-
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.Request;
 
 /**
  * Signer implementation responsible for signing an AWS query string request
@@ -36,35 +37,28 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
     /**
      * This signer will add "Signature" parameter to the request. Default
      * signature version is "2" and default signing algorithm is "HmacSHA256".
-     *
      * AWSAccessKeyId SignatureVersion SignatureMethod Timestamp Signature
      *
-     * @param request
-     *            request to be signed.
-     * @param credentials
-     *            The credentials used to use to sign the request.
+     * @param request request to be signed.
+     * @param credentials The credentials used to use to sign the request.
      */
+    @Override
     public void sign(Request<?> request, AWSCredentials credentials) throws AmazonClientException {
         sign(request, SignatureVersion.V2, SigningAlgorithm.HmacSHA256, credentials);
     }
 
     /**
      * This signer will add following authentication parameters to the request:
-     *
      * AWSAccessKeyId SignatureVersion SignatureMethod Timestamp Signature
      *
-     * @param request
-     *            request to be signed.
-     *
-     * @param version
-     *            signature version. "2" is recommended.
-     *
-     * @param algorithm
-     *            signature algorithm. "HmacSHA256" is recommended.
+     * @param request request to be signed.
+     * @param version signature version. "2" is recommended.
+     * @param algorithm signature algorithm. "HmacSHA256" is recommended.
      */
-    public void sign(Request<?> request, SignatureVersion version, SigningAlgorithm algorithm, AWSCredentials credentials) throws AmazonClientException {
+    public void sign(Request<?> request, SignatureVersion version, SigningAlgorithm algorithm,
+            AWSCredentials credentials) throws AmazonClientException {
         // annonymous credentials, don't sign
-        if ( credentials instanceof AnonymousAWSCredentials ) {
+        if (credentials instanceof AnonymousAWSCredentials) {
             return;
         }
 
@@ -75,36 +69,35 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
         int timeOffset = getTimeOffset(request);
         request.addParameter("Timestamp", getFormattedTimestamp(timeOffset));
 
-        if ( sanitizedCredentials instanceof AWSSessionCredentials ) {
+        if (sanitizedCredentials instanceof AWSSessionCredentials) {
             addSessionCredentials(request, (AWSSessionCredentials) sanitizedCredentials);
         }
 
         String stringToSign = null;
-        if ( version.equals( SignatureVersion.V1 ) ) {
+        if (version.equals(SignatureVersion.V1)) {
             stringToSign = calculateStringToSignV1(request.getParameters());
-        } else if ( version.equals( SignatureVersion.V2 ) ) {
+        } else if (version.equals(SignatureVersion.V2)) {
             request.addParameter("SignatureMethod", algorithm.toString());
             stringToSign = calculateStringToSignV2(request);
         } else {
             throw new AmazonClientException("Invalid Signature Version specified");
         }
 
-        String signatureValue = signAndBase64Encode(stringToSign, sanitizedCredentials.getAWSSecretKey(), algorithm);
+        String signatureValue = signAndBase64Encode(stringToSign,
+                sanitizedCredentials.getAWSSecretKey(), algorithm);
         request.addParameter("Signature", signatureValue);
     }
 
     /**
      * Calculates string to sign for signature version 1.
      *
-     * @param parameters
-     *            request parameters
-     *
+     * @param parameters request parameters
      * @return String to sign
      */
     private String calculateStringToSignV1(Map<String, String> parameters) {
         StringBuilder data = new StringBuilder();
         SortedMap<String, String> sorted =
-            new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
+                new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
         sorted.putAll(parameters);
 
         for (Map.Entry<String, String> entry : sorted.entrySet()) {
@@ -118,13 +111,9 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
     /**
      * Calculate string to sign for signature version 2.
      *
-     * @param request
-     *            The request being signed.
-     *
+     * @param request The request being signed.
      * @return String to sign
-     *
-     * @throws AmazonClientException
-     *             If the string to sign cannot be calculated.
+     * @throws AmazonClientException If the string to sign cannot be calculated.
      */
     private String calculateStringToSignV2(Request<?> request) throws AmazonClientException {
         URI endpoint = request.getEndpoint();
@@ -147,8 +136,8 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
 
         if (request.getResourcePath() != null) {
             if (resourcePath.length() > 0 &&
-                !resourcePath.endsWith("/") &&
-                !request.getResourcePath().startsWith("/")) {
+                    !resourcePath.endsWith("/") &&
+                    !request.getResourcePath().startsWith("/")) {
                 resourcePath += "/";
             }
 

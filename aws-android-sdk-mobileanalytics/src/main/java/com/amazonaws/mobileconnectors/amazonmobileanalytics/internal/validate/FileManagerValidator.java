@@ -15,11 +15,11 @@
 
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.validate;
 
-import java.io.File;
-import java.io.IOException;
-
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.AnalyticsContext;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.FileManager;
+
+import java.io.File;
+import java.io.IOException;
 
 public class FileManagerValidator {
 

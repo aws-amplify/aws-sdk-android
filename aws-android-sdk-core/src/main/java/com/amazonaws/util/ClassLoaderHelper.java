@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.util;
 
 import java.io.IOException;
@@ -23,16 +24,14 @@ public enum ClassLoaderHelper {
     /**
      * Retrieves the resource via the context class loader of the current
      * thread, and if not found, via the class loaders of the optionally
-     * specified classes in the order of their specification, and if not
-     * found, from the class loader of {@link ClassLoaderHelper} as the last
-     * resort.
-     * 
-     * @param resource
-     *            resource to be loaded
+     * specified classes in the order of their specification, and if not found,
+     * from the class loader of {@link ClassLoaderHelper} as the last resort.
+     *
+     * @param resource resource to be loaded
      * @param classes class loader providers
      * @return the resource loaded as an URL or null if not found.
      */
-    public static URL getResource(String resource, Class<?> ... classes) {
+    public static URL getResource(String resource, Class<?>... classes) {
         return getResource(resource, false, classes);
     }
 
@@ -47,15 +46,12 @@ public enum ClassLoaderHelper {
      * specified classes in the order of their specification, and if not found,
      * via the context class loader of the current thread, and if not found,
      * from the class loader of {@link ClassLoaderHelper} as the last resort.
-     * 
-     * @param resource
-     *            resource to be loaded
-     * @param classesFirst
-     *            true if the class loaders of the optionally specified classes
-     *            take precedence over the context class loader of the current
-     *            thread; false if the opposite is true.
-     * @param classes
-     *            class loader providers
+     *
+     * @param resource resource to be loaded
+     * @param classesFirst true if the class loaders of the optionally specified
+     *            classes take precedence over the context class loader of the
+     *            current thread; false if the opposite is true.
+     * @param classes class loader providers
      * @return the resource loaded as an URL or null if not found.
      */
     public static URL getResource(String resource, boolean classesFirst,
@@ -77,7 +73,7 @@ public enum ClassLoaderHelper {
 
     private static URL getResourceViaClasses(String resource, Class<?>[] classes) {
         if (classes != null) {
-            for (Class<?> c: classes) {
+            for (Class<?> c : classes) {
                 URL url = c.getResource(resource);
                 if (url != null)
                     return url;
@@ -93,7 +89,7 @@ public enum ClassLoaderHelper {
 
     private static Class<?> loadClassViaClasses(String fqcn, Class<?>[] classes) {
         if (classes != null) {
-            for (Class<?> c: classes) {
+            for (Class<?> c : classes) {
                 ClassLoader loader = c.getClassLoader();
                 if (loader != null) {
                     try {
@@ -121,15 +117,11 @@ public enum ClassLoaderHelper {
      * their specification, and if not found, via the context class loader of
      * the current thread, and if not found, from the caller class loader as the
      * last resort.
-     * 
-     * @param fqcn
-     *            fully qualified class name of the target class to be loaded
-     * @param classes
-     *            class loader providers
+     *
+     * @param fqcn fully qualified class name of the target class to be loaded
+     * @param classes class loader providers
      * @return the class loaded; never null
-     * 
-     * @throws ClassNotFoundException
-     *             if failed to load the class
+     * @throws ClassNotFoundException if failed to load the class
      */
     public static Class<?> loadClass(String fqcn, Class<?>... classes)
             throws ClassNotFoundException {
@@ -137,27 +129,22 @@ public enum ClassLoaderHelper {
     }
 
     /**
-     * If classesFirst is false, loads the class via the context class
-     * loader of the current thread, and if not found, via the class loaders of
-     * the optionally specified classes in the order of their specification, and
-     * if not found, from the caller class loader as the
-     * last resort.
+     * If classesFirst is false, loads the class via the context class loader of
+     * the current thread, and if not found, via the class loaders of the
+     * optionally specified classes in the order of their specification, and if
+     * not found, from the caller class loader as the last resort.
      * <p>
-     * If classesFirst is true, loads the class via the optionally
-     * specified classes in the order of their specification, and if not found,
-     * via the context class loader of the current thread, and if not found,
-     * from the caller class loader as the last resort.
-     * 
-     * @param fqcn
-     *            fully qualified class name of the target class to be loaded
-     * @param classesFirst
-     *            true if the class loaders of the optionally specified classes
-     *            take precedence over the context class loader of the current
-     *            thread; false if the opposite is true.
-     * @param classes
-     *            class loader providers
+     * If classesFirst is true, loads the class via the optionally specified
+     * classes in the order of their specification, and if not found, via the
+     * context class loader of the current thread, and if not found, from the
+     * caller class loader as the last resort.
+     *
+     * @param fqcn fully qualified class name of the target class to be loaded
+     * @param classesFirst true if the class loaders of the optionally specified
+     *            classes take precedence over the context class loader of the
+     *            current thread; false if the opposite is true.
+     * @param classes class loader providers
      * @return the class loaded; never null
-     * 
      * @throws ClassNotFoundException if failed to load the class
      */
     public static Class<?> loadClass(String fqcn, boolean classesFirst,
@@ -178,16 +165,14 @@ public enum ClassLoaderHelper {
     }
 
     /**
-     * Retrieves the resource as an input stream via
-     * the context class loader of the current thread, and if not found, via the
-     * class loaders of the optionally specified classes in the order of their
-     * specification, and if not found, from the class loader of
-     * {@link ClassLoaderHelper} as the last resort.
-     * 
-     * @param resource
-     *            resource to be loaded
-     * @param classes
-     *            class loader providers
+     * Retrieves the resource as an input stream via the context class loader of
+     * the current thread, and if not found, via the class loaders of the
+     * optionally specified classes in the order of their specification, and if
+     * not found, from the class loader of {@link ClassLoaderHelper} as the last
+     * resort.
+     *
+     * @param resource resource to be loaded
+     * @param classes class loader providers
      * @return the resource loaded as an input stream or null if not found.
      */
     public static InputStream getResourceAsStream(String resource,
@@ -207,15 +192,12 @@ public enum ClassLoaderHelper {
      * if not found, via the context class loader of the current thread, and if
      * not found, from the class loader of {@link ClassLoaderHelper} as the last
      * resort.
-     * 
-     * @param resource
-     *            resource to be loaded
-     * @param classesFirst
-     *            true if the class loaders of the optionally specified classes
-     *            take precedence over the context class loader of the current
-     *            thread; false if the opposite is true.
-     * @param classes
-     *            class loader providers
+     *
+     * @param resource resource to be loaded
+     * @param classesFirst true if the class loaders of the optionally specified
+     *            classes take precedence over the context class loader of the
+     *            current thread; false if the opposite is true.
+     * @param classes class loader providers
      * @return the resource loaded as an input stream or null if not found.
      */
     public static InputStream getResourceAsStream(String resource,

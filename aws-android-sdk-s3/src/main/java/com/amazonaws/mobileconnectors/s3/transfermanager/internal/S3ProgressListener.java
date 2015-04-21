@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.event.ProgressListener;
@@ -24,12 +25,11 @@ public interface S3ProgressListener extends ProgressListener {
     /**
      * Called when the information to resume an upload/download operation is
      * available, The execution of the callback of this listener is managed by
-     * {@link S3ProgressPublisher} class, which maintains a
-     * single thread to sequentially execute all callbacks.
+     * {@link S3ProgressPublisher} class, which maintains a single thread to
+     * sequentially execute all callbacks.
      *
-     * @param persistableTransfer
-     *            A non null opaque token used to resume an upload or download.
-     *
+     * @param persistableTransfer A non null opaque token used to resume an
+     *            upload or download.
      * @see S3ProgressPublisher
      */
     public void onPersistableTransfer(final PersistableTransfer persistableTransfer);

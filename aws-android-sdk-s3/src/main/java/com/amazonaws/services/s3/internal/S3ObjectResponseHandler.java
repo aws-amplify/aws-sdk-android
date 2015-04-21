@@ -12,8 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.internal;
 
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.http.HttpResponse;
@@ -21,7 +21,6 @@ import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
-import com.amazonaws.util.BinaryUtils;
 
 /**
  * S3 HTTP response handler that knows how to pull S3 object content and
@@ -32,11 +31,11 @@ public class S3ObjectResponseHandler extends AbstractS3ResponseHandler<S3Object>
     /**
      * @see com.amazonaws.http.HttpResponseHandler#handle(com.amazonaws.http.HttpResponse)
      */
+    @Override
     public AmazonWebServiceResponse<S3Object> handle(HttpResponse response) throws Exception {
         /*
          * TODO: It'd be nice to set the bucket name and key here, but the
-         *       information isn't easy to pull out of the response/request
-         *       currently.
+         * information isn't easy to pull out of the response/request currently.
          */
         S3Object object = new S3Object();
         AmazonWebServiceResponse<S3Object> awsResponse = parseResponseMetadata(response);
@@ -51,10 +50,10 @@ public class S3ObjectResponseHandler extends AbstractS3ResponseHandler<S3Object>
         ObjectMetadata metadata = object.getObjectMetadata();
         populateObjectMetadata(response, metadata);
 
-		object.setObjectContent(new S3ObjectInputStream(response.getContent()));
+        object.setObjectContent(new S3ObjectInputStream(response.getContent()));
 
-		awsResponse.setResult(object);
-		return awsResponse;
+        awsResponse.setResult(object);
+        return awsResponse;
     }
 
     /**

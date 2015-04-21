@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3;
 
 /**
@@ -63,7 +64,10 @@ public interface Headers {
     /** S3 response header for a request's extended debugging ID */
     public static final String EXTENDED_REQUEST_ID = "x-amz-id-2";
 
-    /** S3 request header indicating how to handle metadata when copying an object */
+    /**
+     * S3 request header indicating how to handle metadata when copying an
+     * object
+     */
     public static final String METADATA_DIRECTIVE = "x-amz-metadata-directive";
 
     /** DevPay token header */
@@ -75,22 +79,34 @@ public interface Headers {
     /** Header for optional server-side encryption algorithm */
     public static final String SERVER_SIDE_ENCRYPTION = "x-amz-server-side-encryption";
 
-    /** Header for the encryption algorithm used when encrypting the object with customer-provided keys */
+    /**
+     * Header for the encryption algorithm used when encrypting the object with
+     * customer-provided keys
+     */
     public static final String SERVER_SIDE_ENCRYPTION_CUSTOMER_ALGORITHM = "x-amz-server-side-encryption-customer-algorithm";
 
     /** Header for the customer-provided key for server-side encryption */
     public static final String SERVER_SIDE_ENCRYPTION_CUSTOMER_KEY = "x-amz-server-side-encryption-customer-key";
 
-    /** Header for the MD5 digest of the customer-provided key for server-side encryption */
+    /**
+     * Header for the MD5 digest of the customer-provided key for server-side
+     * encryption
+     */
     public static final String SERVER_SIDE_ENCRYPTION_CUSTOMER_KEY_MD5 = "x-amz-server-side-encryption-customer-key-MD5";
 
-    /** Header for the encryption algorithm used when encrypting the object with customer-provided keys */
+    /**
+     * Header for the encryption algorithm used when encrypting the object with
+     * customer-provided keys
+     */
     public static final String COPY_SOURCE_SERVER_SIDE_ENCRYPTION_CUSTOMER_ALGORITHM = "x-amz-copy-source-server-side-encryption-customer-algorithm";
 
     /** Header for the customer-provided key for server-side encryption */
     public static final String COPY_SOURCE_SERVER_SIDE_ENCRYPTION_CUSTOMER_KEY = "x-amz-copy-source-server-side-encryption-customer-key";
 
-    /** Header for the MD5 digest of the customer-provided key for server-side encryption */
+    /**
+     * Header for the MD5 digest of the customer-provided key for server-side
+     * encryption
+     */
     public static final String COPY_SOURCE_SERVER_SIDE_ENCRYPTION_CUSTOMER_KEY_MD5 = "x-amz-copy-source-server-side-encryption-customer-key-MD5";
 
     /** Header for optional object expiration */
@@ -114,7 +130,7 @@ public interface Headers {
     /** Range header for the get object request */
     public static final String RANGE = "Range";
 
-    /**Range header for the copy part request */
+    /** Range header for the copy part request */
     public static final String COPY_PART_RANGE = "x-amz-copy-source-range";
 
     /** Modified since constraint header for the get object request */
@@ -130,8 +146,8 @@ public interface Headers {
     public static final String GET_OBJECT_IF_NONE_MATCH = "If-None-Match";
 
     /**
-     * Encrypted symmetric key header that is used in the Encryption Only (EO) envelope
-     * encryption mechanism.
+     * Encrypted symmetric key header that is used in the Encryption Only (EO)
+     * envelope encryption mechanism.
      */
     public static final String CRYPTO_KEY = "x-amz-key";
 
@@ -144,19 +160,27 @@ public interface Headers {
      */
     public static final String CRYPTO_KEY_V2 = "x-amz-key-v2";
 
-    /** Initialization vector (IV) header that is used in the symmetric and envelope encryption mechanisms */
+    /**
+     * Initialization vector (IV) header that is used in the symmetric and
+     * envelope encryption mechanisms
+     */
     public static final String CRYPTO_IV = "x-amz-iv";
 
     /** JSON-encoded description of encryption materials used during encryption */
     public static final String MATERIALS_DESCRIPTION = "x-amz-matdesc";
 
-    /** Instruction file header to be placed in the metadata of instruction files */
+    /**
+     * Instruction file header to be placed in the metadata of instruction files
+     */
     public static final String CRYPTO_INSTRUCTION_FILE = "x-amz-crypto-instr-file";
 
     /** Header for the original, unencrypted size of an encrypted object */
     public static final String UNENCRYPTED_CONTENT_LENGTH = "x-amz-unencrypted-content-length";
 
-    /** Header for the optional original unencrypted Content MD5 of an encrypted object */
+    /**
+     * Header for the optional original unencrypted Content MD5 of an encrypted
+     * object
+     */
     public static final String UNENCRYPTED_CONTENT_MD5 = "x-amz-unencrypted-content-md5";
 
     /** Header for optional redirect location of an object */
@@ -166,7 +190,8 @@ public interface Headers {
     public static String RESTORE = "x-amz-restore";
 
     /**
-     * Key wrapping algorithm such as "AESWrap" and "RSA/ECB/OAEPWithSHA-256AndMGF1Padding".
+     * Key wrapping algorithm such as "AESWrap" and
+     * "RSA/ECB/OAEPWithSHA-256AndMGF1Padding".
      */
     public static final String CRYPTO_KEYWRAP_ALGORITHM = "x-amz-wrap-alg";
     /**

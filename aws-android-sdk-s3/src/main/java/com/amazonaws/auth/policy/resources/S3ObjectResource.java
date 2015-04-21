@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.resources;
 
 import com.amazonaws.auth.policy.Resource;
@@ -25,13 +26,15 @@ import com.amazonaws.auth.policy.actions.S3Actions;
  * For example, an object resource created for bucket 'mybucket' and key pattern
  * 'foo*' will match any object stored in 'mybucket' with a key that starts with
  * 'foo':
+ *
  * <pre class="brush: java">
- *    new S3ObjectResource("mybucket", "foo*");
+ * new S3ObjectResource(&quot;mybucket&quot;, &quot;foo*&quot;);
  * </pre>
  * <p>
  * To match all objects in a bucket:
+ *
  * <pre class="brush: java">
- *    new S3ObjectResource("mybucket", "*");
+ * new S3ObjectResource(&quot;mybucket&quot;, &quot;*&quot;);
  * </pre>
  * <p>
  * Amazon S3 object resources can be used in the following operations:
@@ -56,12 +59,10 @@ public class S3ObjectResource extends Resource {
      * and key pattern 'foo*' will match any object stored in 'mybucket' with a
      * key that starts with 'foo'.
      *
-     * @param bucketName
-     *            The name of the bucket containing the object or objects
+     * @param bucketName The name of the bucket containing the object or objects
      *            represented by this resource.
-     * @param keyPattern
-     *            The key or key pattern, which can optionally contain the '*'
-     *            wildcard to include multiple objects in the resource.
+     * @param keyPattern The key or key pattern, which can optionally contain
+     *            the '*' wildcard to include multiple objects in the resource.
      */
     public S3ObjectResource(String bucketName, String keyPattern) {
         super("arn:aws:s3:::" + bucketName + "/" + keyPattern);

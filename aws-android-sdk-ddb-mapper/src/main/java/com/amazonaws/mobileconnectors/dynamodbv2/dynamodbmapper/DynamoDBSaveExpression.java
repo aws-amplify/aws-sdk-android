@@ -15,15 +15,16 @@
 
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.amazonaws.services.dynamodbv2.model.ConditionalOperator;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Enables adding options to a save operation.
- * For example, you may want to save only if an attribute has a particular value.
+ * Enables adding options to a save operation. For example, you may want to save
+ * only if an attribute has a particular value.
+ *
  * @see DynamoDBMapper#save(Object, DynamoDBSaveExpression)
  */
 public class DynamoDBSaveExpression {
@@ -38,19 +39,22 @@ public class DynamoDBSaveExpression {
     private String conditionalOperator;
 
     /**
-     * Gets the map of attribute names to expected attribute values to check on save.
-     * 
-     * @return The map of attribute names to expected attribute value conditions to check on save
+     * Gets the map of attribute names to expected attribute values to check on
+     * save.
+     *
+     * @return The map of attribute names to expected attribute value conditions
+     *         to check on save
      */
     public Map<String, ExpectedAttributeValue> getExpected() {
         return expectedAttributes;
     }
 
     /**
-     * Sets the expected condition to the map of attribute names to expected attribute values given.
-     * 
-     * @param expectedAttributes
-     *            The map of attribute names to expected attribute value conditions to check on save
+     * Sets the expected condition to the map of attribute names to expected
+     * attribute values given.
+     *
+     * @param expectedAttributes The map of attribute names to expected
+     *            attribute value conditions to check on save
      */
     public void setExpected(Map<String, ExpectedAttributeValue> expectedAttributes) {
         this.expectedAttributes = expectedAttributes;
@@ -60,12 +64,12 @@ public class DynamoDBSaveExpression {
      * Sets the expected condition to the map of attribute names to expected
      * attribute values given and returns a pointer to this object for
      * method-chaining.
-     * 
-     * @param expectedAttributes
-     *            The map of attribute names to expected attribute value
-     *            conditions to check on save
+     *
+     * @param expectedAttributes The map of attribute names to expected
+     *            attribute value conditions to check on save
      */
-    public DynamoDBSaveExpression withExpected(Map<String, ExpectedAttributeValue> expectedAttributes) {
+    public DynamoDBSaveExpression withExpected(
+            Map<String, ExpectedAttributeValue> expectedAttributes) {
         setExpected(expectedAttributes);
         return this;
     }
@@ -73,23 +77,22 @@ public class DynamoDBSaveExpression {
     /**
      * Adds one entry to the expected conditions and returns a pointer to this
      * object for method-chaining.
-     * 
-     * @param attributeName
-     *            The name of the attribute.
-     * @param expected
-     *            The expected attribute value.
+     *
+     * @param attributeName The name of the attribute.
+     * @param expected The expected attribute value.
      */
-    public DynamoDBSaveExpression withExpectedEntry(String attributeName, ExpectedAttributeValue expected) {
+    public DynamoDBSaveExpression withExpectedEntry(String attributeName,
+            ExpectedAttributeValue expected) {
         if (expectedAttributes == null) {
-            expectedAttributes = new HashMap<String,ExpectedAttributeValue>();
+            expectedAttributes = new HashMap<String, ExpectedAttributeValue>();
         }
         expectedAttributes.put(attributeName, expected);
         return this;
     }
 
     /**
-     * Returns the logical operator on the expected value conditions of this save
-     * operation.
+     * Returns the logical operator on the expected value conditions of this
+     * save operation.
      */
     public String getConditionalOperator() {
         return conditionalOperator;
@@ -111,10 +114,10 @@ public class DynamoDBSaveExpression {
         setConditionalOperator(conditionalOperator);
         return this;
     }
-    
+
     /**
      * Sets the logical operator on the expected value conditions of this save
-     * operation. 
+     * operation.
      */
     public void setConditionalOperator(ConditionalOperator conditionalOperator) {
         setConditionalOperator(conditionalOperator.toString());

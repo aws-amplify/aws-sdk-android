@@ -17,6 +17,13 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.http;
 
 import android.util.Log;
 
+import com.amazonaws.handlers.RequestHandler2;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.AnalyticsEvent;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.Connectivity;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.DateUtil;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.StringUtil;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.InternalEventClient;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -24,13 +31,6 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Map;
-
-import com.amazonaws.handlers.RequestHandler2;
-import com.amazonaws.mobileconnectors.amazonmobileanalytics.AnalyticsEvent;
-import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.Connectivity;
-import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.DateUtil;
-import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.StringUtil;
-import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.InternalEventClient;
 
 public class RequestTimingHandler extends RequestHandler2 {
     private static final String TAG = "RequestTimingHandler";

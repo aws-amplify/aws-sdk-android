@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.marshallers;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.StringAttributeMarshaller;
@@ -19,9 +20,9 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.S3Link;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
- * A marshaller that marshals {@code S3Link} objects to DynamoDB Strings,
- * using a JSON encoding. For example: {"s3":{"region":"us-west-2",
- *  "bucket":"my-bucket-name", "key": "foo/bar/baz.txt"}}.
+ * A marshaller that marshals {@code S3Link} objects to DynamoDB Strings, using
+ * a JSON encoding. For example: {"s3":{"region":"us-west-2",
+ * "bucket":"my-bucket-name", "key": "foo/bar/baz.txt"}}.
  */
 public class S3LinkToStringMarshaller implements StringAttributeMarshaller {
 
@@ -39,7 +40,7 @@ public class S3LinkToStringMarshaller implements StringAttributeMarshaller {
     public AttributeValue marshall(Object obj) {
         S3Link s3link = (S3Link) obj;
 
-        if ( s3link.getBucketName() == null || s3link.getKey() == null ) {
+        if (s3link.getBucketName() == null || s3link.getKey() == null) {
             // insufficient S3 resource specification
             return null;
         }

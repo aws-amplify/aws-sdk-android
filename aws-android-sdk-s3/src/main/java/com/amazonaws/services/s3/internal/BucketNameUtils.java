@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
 
 /**
@@ -28,16 +29,14 @@ public enum BucketNameUtils {
      * (i.e. DNS addressable in virtual host style). Throws an
      * IllegalArgumentException if the bucket name is not valid.
      * <p>
-     * S3 bucket naming guidelines are specified in <a href="http://docs.amazonwebservices.com/AmazonS3/latest/dev/index.html?BucketRestrictions.html"
+     * S3 bucket naming guidelines are specified in <a href=
+     * "http://docs.amazonwebservices.com/AmazonS3/latest/dev/index.html?BucketRestrictions.html"
      * > http://docs.amazonwebservices.com/AmazonS3/latest/dev/index.html?
      * BucketRestrictions.html</a>
      *
-     * @param bucketName
-     *            The bucket name to validate.
-     *
-     * @throws IllegalArgumentException
-     *             If the specified bucket name doesn't follow Amazon S3's
-     *             guidelines.
+     * @param bucketName The bucket name to validate.
+     * @throws IllegalArgumentException If the specified bucket name doesn't
+     *             follow Amazon S3's guidelines.
      */
     public static void validateBucketName(final String bucketName) {
         isValidV2BucketName(bucketName, true);
@@ -48,9 +47,7 @@ public enum BucketNameUtils {
      * virtual host style, addressing. Otherwise, returns false indicating that
      * the bucket must be addressed using V1, path style, addressing.
      *
-     * @param bucketName
-     *            The name of the bucket to check.
-     *
+     * @param bucketName The name of the bucket to check.
      * @return True if the specified bucket name can be addressed in V2, virtual
      *         host style, addressing otherwise false if V1, path style,
      *         addressing is required.
@@ -60,35 +57,35 @@ public enum BucketNameUtils {
     }
 
     /**
-     * Convience method that allows the DNS rules to be altered for different SDKs.
+     * Convience method that allows the DNS rules to be altered for different
+     * SDKs.
      */
     public static boolean isDNSBucketName(String bucketName) {
-        return isValidV2BucketName( bucketName );
+        return isValidV2BucketName(bucketName);
     }
 
     /**
      * Validate whether the given input is a valid bucket name. If throwOnError
-     * is true, throw an IllegalArgumentException if validation fails. If
-     * false, simply return 'false'.
+     * is true, throw an IllegalArgumentException if validation fails. If false,
+     * simply return 'false'.
      *
      * @param bucketName the name of the bucket
      * @param throwOnError true to throw exceptions on failure
      * @return true if the name is valid, false if not
      */
     private static boolean isValidV2BucketName(final String bucketName,
-                                        final boolean throwOnError) {
+            final boolean throwOnError) {
 
         if (bucketName == null) {
             return exception(throwOnError, "Bucket name cannot be null");
         }
 
         if (bucketName.length() < MIN_BUCKET_NAME_LENGTH ||
-            bucketName.length() > MAX_BUCKET_NAME_LENGTH) {
+                bucketName.length() > MAX_BUCKET_NAME_LENGTH) {
 
             return exception(
-                throwOnError,
-                "Bucket name should be between 3 and 63 characters long"
-            );
+                    throwOnError,
+                    "Bucket name should be between 3 and 63 characters long");
         }
 
         char previous = '\0';
@@ -98,46 +95,40 @@ public enum BucketNameUtils {
 
             if (next >= 'A' && next <= 'Z') {
                 return exception(
-                    throwOnError,
-                    "Bucket name should not contain uppercase characters"
-                );
+                        throwOnError,
+                        "Bucket name should not contain uppercase characters");
             }
 
             if (next == ' ' || next == '\t' || next == '\r' || next == '\n') {
                 return exception(
-                    throwOnError,
-                    "Bucket name should not contain white space"
-                );
+                        throwOnError,
+                        "Bucket name should not contain white space");
             }
 
             if (next == '.') {
                 if (previous == '.') {
                     return exception(
-                        throwOnError,
-                        "Bucket name should not contain two adjacent periods"
-                    );
+                            throwOnError,
+                            "Bucket name should not contain two adjacent periods");
                 }
                 if (previous == '-') {
                     return exception(
-                        throwOnError,
-                        "Bucket name should not contain dashes next to periods"
-                    );
+                            throwOnError,
+                            "Bucket name should not contain dashes next to periods");
                 }
             } else if (next == '-') {
                 if (previous == '.') {
                     return exception(
-                        throwOnError,
-                        "Bucket name should not contain dashes next to periods"
-                    );
+                            throwOnError,
+                            "Bucket name should not contain dashes next to periods");
                 }
             } else if ((next < '0')
-                       || (next > '9' && next < 'a')
-                       || (next > 'z')) {
+                    || (next > '9' && next < 'a')
+                    || (next > 'z')) {
 
                 return exception(
-                     throwOnError,
-                    "Bucket name should not contain '" + next + "'"
-                );
+                        throwOnError,
+                        "Bucket name should not contain '" + next + "'");
             }
 
             previous = next;
@@ -145,9 +136,8 @@ public enum BucketNameUtils {
 
         if (previous == '.' || previous == '-') {
             return exception(
-                throwOnError,
-                "Bucket name should not end with '-' or '.'"
-            );
+                    throwOnError,
+                    "Bucket name should not end with '-' or '.'");
         }
 
         return true;

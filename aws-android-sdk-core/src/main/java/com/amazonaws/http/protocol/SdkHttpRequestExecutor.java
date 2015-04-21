@@ -12,9 +12,11 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http.protocol;
 
-import java.io.IOException;
+import com.amazonaws.util.AWSRequestMetrics;
+import com.amazonaws.util.AWSRequestMetrics.Field;
 
 import org.apache.http.HttpClientConnection;
 import org.apache.http.HttpException;
@@ -23,12 +25,11 @@ import org.apache.http.HttpResponse;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.HttpRequestExecutor;
 
-import com.amazonaws.util.AWSRequestMetrics;
-import com.amazonaws.util.AWSRequestMetrics.Field;
+import java.io.IOException;
 
 /**
- * Used to capture the http send-request and receive-response latency metrics
- * of the http client library, with no retries involved.
+ * Used to capture the http send-request and receive-response latency metrics of
+ * the http client library, with no retries involved.
  */
 public class SdkHttpRequestExecutor extends HttpRequestExecutor {
     @Override
@@ -36,7 +37,7 @@ public class SdkHttpRequestExecutor extends HttpRequestExecutor {
             final HttpRequest request,
             final HttpClientConnection conn,
             final HttpContext context)
-                throws IOException, HttpException {
+            throws IOException, HttpException {
         AWSRequestMetrics awsRequestMetrics = (AWSRequestMetrics) context
                 .getAttribute(AWSRequestMetrics.class.getSimpleName());
         if (awsRequestMetrics == null) {
@@ -52,10 +53,10 @@ public class SdkHttpRequestExecutor extends HttpRequestExecutor {
 
     @Override
     protected HttpResponse doReceiveResponse(
-            final HttpRequest          request,
+            final HttpRequest request,
             final HttpClientConnection conn,
-            final HttpContext          context)
-                throws HttpException, IOException {
+            final HttpContext context)
+            throws HttpException, IOException {
         AWSRequestMetrics awsRequestMetrics = (AWSRequestMetrics) context
                 .getAttribute(AWSRequestMetrics.class.getSimpleName());
         if (awsRequestMetrics == null) {

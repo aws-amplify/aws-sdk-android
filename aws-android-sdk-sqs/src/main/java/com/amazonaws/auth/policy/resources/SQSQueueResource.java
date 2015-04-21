@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.resources;
 
 import com.amazonaws.auth.policy.Resource;
@@ -32,10 +33,8 @@ public class SQSQueueResource extends Resource {
      * policy statement using this resource will allow or deny actions on the
      * specified queue.
      *
-     * @param accountId
-     *            The AWS account ID of the queue owner.
-     * @param queueName
-     *            The name of the Amazon SQS queue.
+     * @param accountId The AWS account ID of the queue owner.
+     * @param queueName The name of the Amazon SQS queue.
      */
     public SQSQueueResource(String accountId, String queueName) {
         super("/" + formatAccountId(accountId) + "/" + queueName);

@@ -12,12 +12,13 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.services.s3.internal;
 
-import java.util.Date;
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.BucketLifecycleConfiguration.Rule;
+
+import java.util.Date;
 
 /**
  * Interface for service responses that receive the x-amz-expiration header.
@@ -35,8 +36,7 @@ public interface ObjectExpirationResult {
     /**
      * Sets the expiration date of the object.
      *
-     * @param expiration
-     *            The date the object will expire.
+     * @param expiration The date the object will expire.
      */
     public void setExpirationTime(Date expiration);
 
@@ -52,8 +52,7 @@ public interface ObjectExpirationResult {
      * Sets the bucket lifecycle configuration rule ID for the expiration of
      * this object.
      *
-     * @param ruleId
-     *            The rule ID of this object's expiration configuration
+     * @param ruleId The rule ID of this object's expiration configuration
      */
     public void setExpirationTimeRuleId(String ruleId);
 

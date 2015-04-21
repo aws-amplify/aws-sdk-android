@@ -12,19 +12,19 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides options for deleting a specified bucket. Amazon S3 buckets can only be deleted
- * when empty.
+ * Provides options for deleting a specified bucket. Amazon S3 buckets can only
+ * be deleted when empty.
  * </p>
  * <p>
- * Note: When attempting to delete a bucket that does not exist, 
- * Amazon S3 returns
- * a success message, not an error message.
+ * Note: When attempting to delete a bucket that does not exist, Amazon S3
+ * returns a success message, not an error message.
  * </p>
  */
 public class DeleteBucketRequest extends AmazonWebServiceRequest {
@@ -35,24 +35,20 @@ public class DeleteBucketRequest extends AmazonWebServiceRequest {
     private String bucketName;
 
     /**
-     * Constructs a new {@link DeleteBucketRequest}, 
-     * ready to be executed to delete the
-     * specified bucket.
-     * 
-     * @param bucketName
-     *            The name of the Amazon S3 bucket to delete.
+     * Constructs a new {@link DeleteBucketRequest}, ready to be executed to
+     * delete the specified bucket.
+     *
+     * @param bucketName The name of the Amazon S3 bucket to delete.
      */
     public DeleteBucketRequest(String bucketName) {
         setBucketName(bucketName);
     }
-    
+
     /**
      * Sets the name of the Amazon S3 bucket to delete.
-     * 
-     * @param bucketName 
-     *            The name of the Amazon S3 bucket to delete.
-     *            
-     * @see DeleteBucketRequest#getBucketName()          
+     *
+     * @param bucketName The name of the Amazon S3 bucket to delete.
+     * @see DeleteBucketRequest#getBucketName()
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -60,12 +56,11 @@ public class DeleteBucketRequest extends AmazonWebServiceRequest {
 
     /**
      * Gets the name of the Amazon S3 bucket to delete.
-     * 
+     *
      * @return The name of the Amazon S3 bucket to delete.
-     * 
      * @see DeleteBucketRequest#setBucketName(String)
      */
     public String getBucketName() {
         return bucketName;
-    }    
+    }
 }

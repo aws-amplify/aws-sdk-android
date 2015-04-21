@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3;
 
 import java.net.URI;
@@ -24,7 +25,7 @@ import java.util.regex.Pattern;
 public class AmazonS3URI {
 
     private static final Pattern ENDPOINT_PATTERN =
-        Pattern.compile("^(.+\\.)?s3[.-]([a-z0-9-]+)\\.");
+            Pattern.compile("^(.+\\.)?s3[.-]([a-z0-9-]+)\\.");
 
     private final URI uri;
 
@@ -57,14 +58,14 @@ public class AmazonS3URI {
         String host = uri.getHost();
         if (host == null) {
             throw new IllegalArgumentException("Invalid S3 URI: no hostname: "
-                                               + uri);
+                    + uri);
         }
 
         Matcher matcher = ENDPOINT_PATTERN.matcher(host);
         if (!matcher.find()) {
             throw new IllegalArgumentException(
-                "Invalid S3 URI: hostname does not appear to be a valid S3 "
-                + "endpoint: " + uri);
+                    "Invalid S3 URI: hostname does not appear to be a valid S3 "
+                            + "endpoint: " + uri);
         }
 
         String prefix = matcher.group(1);
@@ -171,8 +172,8 @@ public class AmazonS3URI {
     }
 
     /**
-     * Percent-decodes the given string, with a fast path for strings that
-     * are not percent-encoded.
+     * Percent-decodes the given string, with a fast path for strings that are
+     * not percent-encoded.
      *
      * @param str the string to decode
      * @return the decoded string
@@ -225,12 +226,12 @@ public class AmazonS3URI {
      * @param index the index of the '%' character in the string
      */
     private static void appendDecoded(final StringBuilder builder,
-                                      final String str,
-                                      final int index) {
+            final String str,
+            final int index) {
 
         if (index > str.length() - 3) {
             throw new IllegalStateException("Invalid percent-encoded string:"
-                                            + "\"" + str + "\".");
+                    + "\"" + str + "\".");
         }
 
         char first = str.charAt(index + 1);
@@ -249,8 +250,8 @@ public class AmazonS3URI {
     private static int fromHex(final char c) {
         if (c < '0') {
             throw new IllegalStateException(
-                "Invalid percent-encoded string: bad character '" + c + "' in "
-                + "escape sequence.");
+                    "Invalid percent-encoded string: bad character '" + c + "' in "
+                            + "escape sequence.");
         }
         if (c <= '9') {
             return (c - '0');
@@ -258,8 +259,8 @@ public class AmazonS3URI {
 
         if (c < 'A') {
             throw new IllegalStateException(
-                "Invalid percent-encoded string: bad character '" + c + "' in "
-                + "escape sequence.");
+                    "Invalid percent-encoded string: bad character '" + c + "' in "
+                            + "escape sequence.");
         }
         if (c <= 'F') {
             return (c - 'A') + 10;
@@ -267,15 +268,15 @@ public class AmazonS3URI {
 
         if (c < 'a') {
             throw new IllegalStateException(
-                "Invalid percent-encoded string: bad character '" + c + "' in "
-                + "escape sequence.");
+                    "Invalid percent-encoded string: bad character '" + c + "' in "
+                            + "escape sequence.");
         }
         if (c <= 'f') {
             return (c - 'a') + 10;
         }
 
         throw new IllegalStateException(
-            "Invalid percent-encoded string: bad character '" + c + "' in "
-            + "escape sequence.");
+                "Invalid percent-encoded string: bad character '" + c + "' in "
+                        + "escape sequence.");
     }
 }

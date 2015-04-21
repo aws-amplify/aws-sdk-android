@@ -21,19 +21,19 @@ import java.util.NoSuchElementException;
 /**
  * Simple static methods to be called at the start of your own methods to verify
  * correct arguments and state. This allows constructs such as
- * 
+ *
  * <pre>
  * if (count &lt;= 0) {
  *     throw new IllegalArgumentException(&quot;must be positive: &quot; + count);
  * }
  * </pre>
- * 
+ *
  * to be replaced with the more compact
- * 
+ *
  * <pre>
  * checkArgument(count &gt; 0, &quot;must be positive: %s&quot;, count);
  * </pre>
- * 
+ *
  * Note that the sense of the expression is inverted; with {@code Preconditions}
  * you declare what you expect to be <i>true</i>, just as you do with an <a
  * href="http://java.sun.com/j2se/1.5.0/docs/guide/language/assert.html">
@@ -55,7 +55,7 @@ import java.util.NoSuchElementException;
  * See the Guava User Guide on <a href=
  * "http://code.google.com/p/guava-libraries/wiki/PreconditionsExplained"> using
  * {@code Preconditions}</a>.
- * 
+ *
  * @author Kevin Bourrillion
  * @since 2.0 (imported from Google Collections Library)
  */
@@ -66,7 +66,7 @@ public final class Preconditions {
     /**
      * Ensures the truth of an expression involving one or more parameters to
      * the calling method.
-     * 
+     *
      * @param expression a boolean expression
      * @throws IllegalArgumentException if {@code expression} is false
      */
@@ -79,7 +79,7 @@ public final class Preconditions {
     /**
      * Ensures the truth of an expression involving one or more parameters to
      * the calling method.
-     * 
+     *
      * @param expression a boolean expression
      * @param errorMessage the exception message to use if the check fails; will
      *            be converted to a string using {@link String#valueOf(Object)}
@@ -96,7 +96,7 @@ public final class Preconditions {
     /**
      * Ensures the truth of an expression involving one or more parameters to
      * the calling method.
-     * 
+     *
      * @param expression a boolean expression
      * @param errorMessageTemplate a template for the exception message should
      *            the check fail. The message is formed by replacing each
@@ -127,7 +127,7 @@ public final class Preconditions {
     /**
      * Ensures the truth of an expression involving the state of the calling
      * instance, but not involving any parameters to the calling method.
-     * 
+     *
      * @param expression a boolean expression
      * @throws IllegalStateException if {@code expression} is false
      */
@@ -140,7 +140,7 @@ public final class Preconditions {
     /**
      * Ensures the truth of an expression involving the state of the calling
      * instance, but not involving any parameters to the calling method.
-     * 
+     *
      * @param expression a boolean expression
      * @param errorMessage the exception message to use if the check fails; will
      *            be converted to a string using {@link String#valueOf(Object)}
@@ -157,7 +157,7 @@ public final class Preconditions {
     /**
      * Ensures the truth of an expression involving the state of the calling
      * instance, but not involving any parameters to the calling method.
-     * 
+     *
      * @param expression a boolean expression
      * @param errorMessageTemplate a template for the exception message should
      *            the check fail. The message is formed by replacing each
@@ -188,7 +188,7 @@ public final class Preconditions {
     /**
      * Ensures that an object reference passed as a parameter to the calling
      * method is not null.
-     * 
+     *
      * @param reference an object reference
      * @return the non-null reference that was validated
      * @throws NullPointerException if {@code reference} is null
@@ -203,7 +203,7 @@ public final class Preconditions {
     /**
      * Ensures that an object reference passed as a parameter to the calling
      * method is not null.
-     * 
+     *
      * @param reference an object reference
      * @param errorMessage the exception message to use if the check fails; will
      *            be converted to a string using {@link String#valueOf(Object)}
@@ -221,7 +221,7 @@ public final class Preconditions {
     /**
      * Ensures that an object reference passed as a parameter to the calling
      * method is not null.
-     * 
+     *
      * @param reference an object reference
      * @param errorMessageTemplate a template for the exception message should
      *            the check fail. The message is formed by replacing each
@@ -272,7 +272,7 @@ public final class Preconditions {
      * Ensures that {@code index} specifies a valid <i>element</i> in an array,
      * list or string of size {@code size}. An element index may range from
      * zero, inclusive, to {@code size}, exclusive.
-     * 
+     *
      * @param index a user-supplied index identifying an element of an array,
      *            list or string
      * @param size the size of that array, list or string
@@ -289,7 +289,7 @@ public final class Preconditions {
      * Ensures that {@code index} specifies a valid <i>element</i> in an array,
      * list or string of size {@code size}. An element index may range from
      * zero, inclusive, to {@code size}, exclusive.
-     * 
+     *
      * @param index a user-supplied index identifying an element of an array,
      *            list or string
      * @param size the size of that array, list or string
@@ -326,7 +326,7 @@ public final class Preconditions {
      * Ensures that {@code index} specifies a valid <i>position</i> in an array,
      * list or string of size {@code size}. A position index may range from zero
      * to {@code size}, inclusive.
-     * 
+     *
      * @param index a user-supplied index identifying a position in an array,
      *            list or string
      * @param size the size of that array, list or string
@@ -343,7 +343,7 @@ public final class Preconditions {
      * Ensures that {@code index} specifies a valid <i>position</i> in an array,
      * list or string of size {@code size}. A position index may range from zero
      * to {@code size}, inclusive.
-     * 
+     *
      * @param index a user-supplied index identifying a position in an array,
      *            list or string
      * @param size the size of that array, list or string
@@ -381,7 +381,7 @@ public final class Preconditions {
      * <i>positions</i> in an array, list or string of size {@code size}, and
      * are in order. A position index may range from zero to {@code size},
      * inclusive.
-     * 
+     *
      * @param start a user-supplied index identifying a starting position in an
      *            array, list or string
      * @param end a user-supplied index identifying a ending position in an
@@ -418,7 +418,7 @@ public final class Preconditions {
      * are matched by position - the first {@code %s} gets {@code args[0]}, etc.
      * If there are more arguments than placeholders, the unmatched arguments
      * will be appended to the end of the formatted message in square braces.
-     * 
+     *
      * @param template a non-null string containing 0 or more {@code %s}
      *            placeholders.
      * @param args the arguments to be substituted into the message template.

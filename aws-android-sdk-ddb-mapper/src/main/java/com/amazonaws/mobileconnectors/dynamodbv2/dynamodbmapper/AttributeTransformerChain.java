@@ -12,15 +12,16 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
+
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
  * A virtual {@code AttributeTransformer} that transforms and untransforms
@@ -45,9 +46,9 @@ public class AttributeTransformerChain implements AttributeTransformer {
     }
 
     /**
-     * Creates a new transformer chain from the given list of transformers.
-     * When transforming attributes, these transformers are invoked from first
-     * to last; when untransforming they are invoked in the opposite order.
+     * Creates a new transformer chain from the given list of transformers. When
+     * transforming attributes, these transformers are invoked from first to
+     * last; when untransforming they are invoked in the opposite order.
      *
      * @param transformers the chain of transformers.
      */
@@ -55,7 +56,7 @@ public class AttributeTransformerChain implements AttributeTransformer {
             final List<AttributeTransformer> transformers) {
 
         this.transformers = Collections.unmodifiableList(
-            new ArrayList<AttributeTransformer>(transformers));
+                new ArrayList<AttributeTransformer>(transformers));
     }
 
     /**

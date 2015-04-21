@@ -12,7 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.sns.util;
+
+import com.amazonaws.util.Base64;
+import com.amazonaws.util.json.AwsJsonReader;
+import com.amazonaws.util.json.JsonUtils;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -26,12 +31,9 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import com.amazonaws.util.Base64;
-import com.amazonaws.util.json.AwsJsonReader;
-import com.amazonaws.util.json.JsonUtils;
-
 /**
- * Utility for validating signatures on a Simple Notification Service JSON message.
+ * Utility for validating signatures on a Simple Notification Service JSON
+ * message.
  */
 public class SignatureChecker {
 
@@ -57,13 +59,10 @@ public class SignatureChecker {
      * Amazon-specific dependencies, just plain Java crypto and Jackson for
      * parsing
      *
-     * @param message
-     *            A JSON-encoded Simple Notification Service message. Note: the
-     *            JSON may be only one level deep.
-     * @param publicKey
-     *            The Simple Notification Service public key, exactly as you'd
-     *            see it when retrieved from the cert.
-     *
+     * @param message A JSON-encoded Simple Notification Service message. Note:
+     *            the JSON may be only one level deep.
+     * @param publicKey The Simple Notification Service public key, exactly as
+     *            you'd see it when retrieved from the cert.
      * @return True if the message was correctly validated, otherwise false.
      */
     public boolean verifyMessageSignature(String message, PublicKey publicKey) {
@@ -78,12 +77,9 @@ public class SignatureChecker {
      * Validates the signature on a Simple Notification Service message. No
      * Amazon-specific dependencies, just plain Java crypto
      *
-     * @param parsedMessage
-     *            A map of Simple Notification Service message.
-     * @param publicKey
-     *            The Simple Notification Service public key, exactly as you'd
-     *            see it when retrieved from the cert.
-     *
+     * @param parsedMessage A map of Simple Notification Service message.
+     * @param publicKey The Simple Notification Service public key, exactly as
+     *            you'd see it when retrieved from the cert.
      * @return True if the message was correctly validated, otherwise false.
      */
     public boolean verifySignature(Map<String, String> parsedMessage, PublicKey publicKey) {
@@ -99,7 +95,10 @@ public class SignatureChecker {
             } else if (type.equals(SUBSCRIBE_TYPE)) {
                 signed = stringToSign(subscribeMessageValues(parsedMessage));
             } else if (type.equals(UNSUBSCRIBE_TYPE)) {
-                signed = stringToSign(subscribeMessageValues(parsedMessage)); // no difference, for now
+                signed = stringToSign(subscribeMessageValues(parsedMessage)); // no
+                                                                              // difference,
+                                                                              // for
+                                                                              // now
             } else {
                 throw new RuntimeException("Cannot process message of type " + type);
             }
@@ -111,23 +110,22 @@ public class SignatureChecker {
     /**
      * Does the actual Java cryptographic verification of the signature. This
      * method does no handling of the many rare exceptions it is required to
-     * catch.
+     * catch. This can also be used to verify the signature from the
+     * x-amz-sns-signature http header
      *
-     * This can also be used to verify the signature from the x-amz-sns-signature http header
-     *
-     * @param message
-     *            Exact string that was signed.  In the case of the x-amz-sns-signature header the
-     *            signing string is the entire post body
-     * @param signature
-     *            Base64-encoded signature of the message
+     * @param message Exact string that was signed. In the case of the
+     *            x-amz-sns-signature header the signing string is the entire
+     *            post body
+     * @param signature Base64-encoded signature of the message
      * @return
      */
-    public boolean verifySignature(String message, String signature, PublicKey publicKey){
+    public boolean verifySignature(String message, String signature, PublicKey publicKey) {
         boolean result = false;
         byte[] sigbytes = null;
         try {
             sigbytes = Base64.decode(signature.getBytes());
-            sigChecker = Signature.getInstance("SHA1withRSA"); //check the signature
+            sigChecker = Signature.getInstance("SHA1withRSA"); // check the
+                                                               // signature
             sigChecker.initVerify(publicKey);
             sigChecker.update(message.getBytes());
             result = sigChecker.verify(sigbytes);
@@ -144,7 +142,7 @@ public class SignatureChecker {
     protected String stringToSign(SortedMap<String, String> signables) {
         // each key and value is followed by a newline
         StringBuilder sb = new StringBuilder();
-        for(String k: signables.keySet()){
+        for (String k : signables.keySet()) {
             sb.append(k).append("\n");
             sb.append(signables.get(k)).append("\n");
         }
@@ -152,7 +150,7 @@ public class SignatureChecker {
         return result;
     }
 
-    private Map<String, String> parseJSON(String jsonmessage){
+    private Map<String, String> parseJSON(String jsonmessage) {
         Map<String, String> parsed = new HashMap<String, String>();
         AwsJsonReader reader = JsonUtils.getJsonReader(new StringReader(jsonmessage));
         try {
@@ -165,7 +163,8 @@ public class SignatureChecker {
                     value = "";
                     boolean first = true;
                     while (reader.hasNext()) {
-                        if (!first) value += ",";
+                        if (!first)
+                            value += ",";
                         first = false;
                         value += reader.nextString();
                     }
@@ -184,22 +183,26 @@ public class SignatureChecker {
         return parsed;
     }
 
-    private TreeMap<String, String> publishMessageValues(Map<String, String> parsedMessage){
+    private TreeMap<String, String> publishMessageValues(Map<String, String> parsedMessage) {
         TreeMap<String, String> signables = new TreeMap<String, String>();
-        String[] keys = { MESSAGE, MESSAGE_ID, SUBJECT, TYPE, TIMESTAMP, TOPIC };
-        for(String key: keys){
-            if(parsedMessage.containsKey(key)){
+        String[] keys = {
+                MESSAGE, MESSAGE_ID, SUBJECT, TYPE, TIMESTAMP, TOPIC
+        };
+        for (String key : keys) {
+            if (parsedMessage.containsKey(key)) {
                 signables.put(key, parsedMessage.get(key));
             }
         }
         return signables;
     }
 
-    private TreeMap<String, String> subscribeMessageValues(Map<String, String> parsedMessage){
+    private TreeMap<String, String> subscribeMessageValues(Map<String, String> parsedMessage) {
         TreeMap<String, String> signables = new TreeMap<String, String>();
-        String[] keys = { SUBSCRIBE_URL, MESSAGE, MESSAGE_ID, TYPE, TIMESTAMP, TOKEN, TOPIC };
-        for(String key: keys){
-            if(parsedMessage.containsKey(key)){
+        String[] keys = {
+                SUBSCRIBE_URL, MESSAGE, MESSAGE_ID, TYPE, TIMESTAMP, TOKEN, TOPIC
+        };
+        for (String key : keys) {
+            if (parsedMessage.containsKey(key)) {
                 signables.put(key, parsedMessage.get(key));
             }
         }

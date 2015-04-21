@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -46,59 +47,54 @@ import com.amazonaws.services.s3.AmazonS3;
  */
 public class GetBucketWebsiteConfigurationRequest extends AmazonWebServiceRequest {
 
-	/** The name of the bucket whose website configuration is being retrieved. */
-	private String bucketName;
+    /** The name of the bucket whose website configuration is being retrieved. */
+    private String bucketName;
 
+    /**
+     * Creates a new request object, ready to be executed to retrieve the bucket
+     * website configuration for the specified bucket.
+     *
+     * @param bucketName The name of the bucket whose website configuration is
+     *            being retrieved.
+     */
+    public GetBucketWebsiteConfigurationRequest(String bucketName) {
+        this.bucketName = bucketName;
+    }
 
-	/**
-	 * Creates a new request object, ready to be executed to retrieve the bucket
-	 * website configuration for the specified bucket.
-	 *
-	 * @param bucketName
-	 *            The name of the bucket whose website configuration is being
-	 *            retrieved.
-	 */
-	public GetBucketWebsiteConfigurationRequest(String bucketName) {
-		this.bucketName = bucketName;
-	}
+    /**
+     * Sets the name of the bucket whose website configuration is being
+     * retrieved.
+     *
+     * @param bucketName The name of the bucket whose website configuration is
+     *            being retrieved.
+     */
+    public void setBucketName(String bucketName) {
+        this.bucketName = bucketName;
+    }
 
-	/**
-	 * Sets the name of the bucket whose website configuration is being
-	 * retrieved.
-	 *
-	 * @param bucketName
-	 *            The name of the bucket whose website configuration is being
-	 *            retrieved.
-	 */
-	public void setBucketName(String bucketName) {
-		this.bucketName = bucketName;
-	}
+    /**
+     * Returns the name of the bucket whose website configuration is being
+     * retrieved.
+     *
+     * @return The name of the bucket whose website configuration is being
+     *         retrieved.
+     */
+    public String getBucketName() {
+        return bucketName;
+    }
 
-	/**
-	 * Returns the name of the bucket whose website configuration is being
-	 * retrieved.
-	 *
-	 * @return The name of the bucket whose website configuration is being
-	 *         retrieved.
-	 */
-	public String getBucketName() {
-		return bucketName;
-	}
-
-	/**
-	 * Sets the name of the bucket whose website configuration is being
-	 * retrieved, and returns this updated request object so that additional
-	 * method calls can be chained together.
-	 *
-	 * @param bucketName
-	 *            The name of the bucket whose website configuration is being
-	 *            retrieved.
-	 *
-	 * @return This updated request object, so that additional method calls can
-	 *         be chained together.
-	 */
-	public GetBucketWebsiteConfigurationRequest withBucketName(String bucketName) {
-		setBucketName(bucketName);
-		return this;
-	}
+    /**
+     * Sets the name of the bucket whose website configuration is being
+     * retrieved, and returns this updated request object so that additional
+     * method calls can be chained together.
+     *
+     * @param bucketName The name of the bucket whose website configuration is
+     *            being retrieved.
+     * @return This updated request object, so that additional method calls can
+     *         be chained together.
+     */
+    public GetBucketWebsiteConfigurationRequest withBucketName(String bucketName) {
+        setBucketName(bucketName);
+        return this;
+    }
 }

@@ -12,12 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.event;
+
+import com.amazonaws.internal.SdkFilterInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.amazonaws.internal.SdkFilterInputStream;
 
 /**
  * Simple InputStream wrapper that occasionally notifies a progress listener
@@ -37,23 +38,30 @@ public class ProgressReportingInputStream extends SdkFilterInputStream {
     /** The listener callback executor */
     private final ProgressListenerCallbackExecutor listenerCallbackExecutor;
 
-    /** The number of bytes read that the listener hasn't been notified about yet. */
+    /**
+     * The number of bytes read that the listener hasn't been notified about
+     * yet.
+     */
     private int unnotifiedByteCount;
 
-    /** True if this stream should fire a completed progress event when the stream runs out. */
+    /**
+     * True if this stream should fire a completed progress event when the
+     * stream runs out.
+     */
     private boolean fireCompletedEvent;
 
     /**
      * Creates a new progress reporting input stream that simply wraps the
-     * specified input stream and uses the specified listener callback executor to
-     * asynchronously notify the listener about the number of bytes transferred.
-     * 
-     * @param in
-     *            The input stream to wrap.
-     * @param listenerCallbackExecutor
-     *            The listener callback executor that wraps the listener to notify about progress.
+     * specified input stream and uses the specified listener callback executor
+     * to asynchronously notify the listener about the number of bytes
+     * transferred.
+     *
+     * @param in The input stream to wrap.
+     * @param listenerCallbackExecutor The listener callback executor that wraps
+     *            the listener to notify about progress.
      */
-    public ProgressReportingInputStream(final InputStream in, final ProgressListenerCallbackExecutor listenerCallbackExecutor) {
+    public ProgressReportingInputStream(final InputStream in,
+            final ProgressListenerCallbackExecutor listenerCallbackExecutor) {
         super(in);
         this.listenerCallbackExecutor = listenerCallbackExecutor;
     }
@@ -63,9 +71,8 @@ public class ProgressReportingInputStream extends SdkFilterInputStream {
      * {@link ProgressEvent#COMPLETED_EVENT_CODE} when this stream runs out of
      * data. By default, completed events are not fired by this stream.
      *
-     * @param fireCompletedEvent
-     *            Whether this input stream should fire an event to indicate
-     *            that the stream has been fully read.
+     * @param fireCompletedEvent Whether this input stream should fire an event
+     *            to indicate that the stream has been fully read.
      */
     public void setFireCompletedEvent(boolean fireCompletedEvent) {
         this.fireCompletedEvent = fireCompletedEvent;
@@ -106,8 +113,10 @@ public class ProgressReportingInputStream extends SdkFilterInputStream {
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
         int bytesRead = super.read(b, off, len);
-        if (bytesRead == -1) notifyCompleted();
-        if (bytesRead != -1) notify(bytesRead);
+        if (bytesRead == -1)
+            notifyCompleted();
+        if (bytesRead != -1)
+            notify(bytesRead);
         return bytesRead;
     }
 
@@ -121,7 +130,8 @@ public class ProgressReportingInputStream extends SdkFilterInputStream {
     }
 
     private void notifyCompleted() {
-        if (fireCompletedEvent == false) return;
+        if (fireCompletedEvent == false)
+            return;
 
         ProgressEvent event = new ProgressEvent(unnotifiedByteCount);
         event.setEventCode(ProgressEvent.COMPLETED_EVENT_CODE);

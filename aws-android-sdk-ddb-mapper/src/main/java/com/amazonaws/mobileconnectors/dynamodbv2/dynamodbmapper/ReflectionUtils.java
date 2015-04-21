@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import java.lang.annotation.Annotation;
@@ -52,19 +53,17 @@ class ReflectionUtils {
      * Returns the field name that corresponds to the given getter method,
      * according to the Java naming convention.
      *
-     * @param getter
-     *            The getter method.
-     * @param forceCamelCase
-     *            True if the returned field name should be in camel-case, i.e.
-     *            the first letter is lower-cased.
+     * @param getter The getter method.
+     * @param forceCamelCase True if the returned field name should be in
+     *            camel-case, i.e. the first letter is lower-cased.
      */
     static String getFieldNameByGetter(Method getter, boolean forceCamelCase) {
         String getterName = getter.getName();
 
         String fieldNameWithUpperCamelCase = "";
-        if ( getterName.startsWith("get") ) {
+        if (getterName.startsWith("get")) {
             fieldNameWithUpperCamelCase = getterName.substring("get".length());
-        } else if ( getterName.startsWith("is") ) {
+        } else if (getterName.startsWith("is")) {
             fieldNameWithUpperCamelCase = getterName.substring("is".length());
         }
 
@@ -75,7 +74,8 @@ class ReflectionUtils {
 
         if (forceCamelCase) {
             // Lowercase the first letter of the name
-            return fieldNameWithUpperCamelCase.substring(0, 1).toLowerCase() + fieldNameWithUpperCamelCase.substring(1);
+            return fieldNameWithUpperCamelCase.substring(0, 1).toLowerCase()
+                    + fieldNameWithUpperCamelCase.substring(1);
         } else {
             return fieldNameWithUpperCamelCase;
         }
@@ -86,12 +86,10 @@ class ReflectionUtils {
      * Returns the Field object for the specified field name declared in the
      * specified class. Returns null if no such field can be found.
      *
-     * @param clazz
-     *            The declaring class where the field will be reflected. This
+     * @param clazz The declaring class where the field will be reflected. This
      *            method will NOT attempt to reflect its superclass if such
      *            field is not found in this class.
-     * @param fieldName
-     *            The case-sensitive name of the field to be searched.
+     * @param fieldName The case-sensitive name of the field to be searched.
      */
     static Field getClassFieldByName(Class<?> clazz, String fieldName) {
         try {
@@ -119,7 +117,8 @@ class ReflectionUtils {
 
         // Check annotation on the corresponding field
         String fieldName = getFieldNameByGetter(getter, true);
-        // Only consider the field declared in the same class where getter is defined.
+        // Only consider the field declared in the same class where getter is
+        // defined.
         Field field = getClassFieldByName(getter.getDeclaringClass(), fieldName);
         T onField = null;
         if (field != null) {

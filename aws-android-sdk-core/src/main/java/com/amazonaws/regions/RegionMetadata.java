@@ -12,10 +12,10 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.regions;
 
 import java.net.URI;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -42,7 +42,7 @@ public class RegionMetadata {
         }
 
         this.regions =
-            Collections.unmodifiableList(new ArrayList<Region>(regions));
+                Collections.unmodifiableList(new ArrayList<Region>(regions));
     }
 
     /**
@@ -95,21 +95,19 @@ public class RegionMetadata {
      * specified endpoint. If no region is found with a service at that
      * endpoint, an exception is thrown.
      *
-     * @param endpoint
-     *            The endpoint for any service residing in the desired region.
+     * @param endpoint The endpoint for any service residing in the desired
+     *            region.
      * @return The region containing any service running at the specified
      *         endpoint, otherwise an exception is thrown if no region is found
      *         with a service at the specified endpoint.
-     * @throws IllegalArgumentException
-     *             If the given URL is malformed, or if the one of the service
-     *             URLs on record is malformed.
+     * @throws IllegalArgumentException If the given URL is malformed, or if the
+     *             one of the service URLs on record is malformed.
      */
     public Region getRegionByEndpoint(final String endpoint) {
         String host = getHost(endpoint);
 
         for (Region region : regions) {
-            for (String serviceEndpoint
-                     : region.getServiceEndpoints().values()) {
+            for (String serviceEndpoint : region.getServiceEndpoints().values()) {
 
                 if (host.equals(getHost(serviceEndpoint))) {
                     return region;
@@ -118,12 +116,12 @@ public class RegionMetadata {
         }
 
         throw new IllegalArgumentException(
-            "No region found with any service for endpoint " + endpoint);
+                "No region found with any service for endpoint " + endpoint);
     }
 
     /**
-     * Parse the host portion out of an endpoint (which may or may not
-     * contain a scheme).
+     * Parse the host portion out of an endpoint (which may or may not contain a
+     * scheme).
      *
      * @param endpoint the endpoint to parse
      * @return the host portion of the endpoint

@@ -19,4 +19,6 @@
  * is evaluated for an incoming request.  Amazon SQS queues, Amazon SNS topics, and
  * Amazon S3 buckets and objects are all examples of AWS resources.
  */
+
 package com.amazonaws.auth.policy.resources;
+

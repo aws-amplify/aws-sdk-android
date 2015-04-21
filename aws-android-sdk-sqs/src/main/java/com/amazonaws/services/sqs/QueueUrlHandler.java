@@ -12,14 +12,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.sqs;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+package com.amazonaws.services.sqs;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.handlers.AbstractRequestHandler;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Custom request handler for SQS that processes the request before it gets
@@ -32,23 +33,27 @@ import com.amazonaws.handlers.AbstractRequestHandler;
 public class QueueUrlHandler extends AbstractRequestHandler {
     private static final String QUEUE_URL_PARAMETER = "QueueUrl";
 
+    @Override
     public void beforeRequest(Request<?> request) {
         if (request.getParameters().get(QUEUE_URL_PARAMETER) != null) {
-            String queueUrl = (String)request.getParameters().remove(QUEUE_URL_PARAMETER);
+            String queueUrl = request.getParameters().remove(QUEUE_URL_PARAMETER);
 
             try {
                 URI uri = new URI(queueUrl);
                 request.setResourcePath(uri.getPath());
 
                 if (uri.getHost() != null) {
-                    // If the URI has a host specified, set the request's endpoint to the queue URLs
-                    // endpoint, so that queue URLs from different regions will send the request to
+                    // If the URI has a host specified, set the request's
+                    // endpoint to the queue URLs
+                    // endpoint, so that queue URLs from different regions will
+                    // send the request to
                     // the correct endpoint.
                     URI uriWithoutPath = new URI(uri.toString().replace(uri.getPath(), ""));
                     request.setEndpoint(uriWithoutPath);
                 }
             } catch (URISyntaxException e) {
-                throw new AmazonClientException("Unable to parse SQS queue URL '" + queueUrl + "'", e);
+                throw new AmazonClientException("Unable to parse SQS queue URL '" + queueUrl + "'",
+                        e);
             }
         }
     }

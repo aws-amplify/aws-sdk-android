@@ -15,13 +15,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
+
+import com.amazonaws.internal.SdkFilterInputStream;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.amazonaws.internal.SdkFilterInputStream;
 
 /**
  * Common base class used to wrap an InputStream with a cipher input stream to
@@ -49,17 +50,16 @@ public abstract class AbstractRepeatableCipherInputStream<T>
 
     /**
      * Constructs a new repeatable cipher input stream using the specified
-     * InputStream as the source data, and the CipherFactory for building
-     * Cipher objects.
-     * 
-     * @param input
-     *            The original, unencrypted data stream. This stream should be
+     * InputStream as the source data, and the CipherFactory for building Cipher
+     * objects.
+     *
+     * @param input The original, unencrypted data stream. This stream should be
      *            markable/resetable in order for this class to work correctly.
-     * @param cipherInputStream
-     *            The cipher input stream wrapping the original input stream
-     * @param cipherFactory
-     *            The factory used for creating identical cipher objects when
-     *            this stream is reset and a new CipherInputStream is needed.
+     * @param cipherInputStream The cipher input stream wrapping the original
+     *            input stream
+     * @param cipherFactory The factory used for creating identical cipher
+     *            objects when this stream is reset and a new CipherInputStream
+     *            is needed.
      */
     protected AbstractRepeatableCipherInputStream(final InputStream input,
             final FilterInputStream cipherInputStream,
@@ -72,19 +72,19 @@ public abstract class AbstractRepeatableCipherInputStream<T>
     @Override
     public boolean markSupported() {
         abortIfNeeded();
-    	return unencryptedDataStream.markSupported();
+        return unencryptedDataStream.markSupported();
     }
-    
+
     @Override
     public void mark(final int readlimit) {
         abortIfNeeded();
         if (hasBeenAccessed) {
             throw new UnsupportedOperationException(
                     "Marking is only supported before your first call to "
-                    + "read or skip.");
+                            + "read or skip.");
         }
 
-    	unencryptedDataStream.mark(readlimit);
+        unencryptedDataStream.mark(readlimit);
     }
 
     @Override

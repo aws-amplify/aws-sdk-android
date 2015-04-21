@@ -12,24 +12,27 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.util.concurrent.Callable;
+package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CopyPartRequest;
 import com.amazonaws.services.s3.model.PartETag;
 
+import java.util.concurrent.Callable;
+
 /**
  * An implementation of the Callable interface responsible for carrying out the
  * Copy part requests.
- *
  */
 public class CopyPartCallable implements Callable<PartETag> {
 
-    /** Reference to the Amazon S3 client object used for initiating copy part request.*/
+    /**
+     * Reference to the Amazon S3 client object used for initiating copy part
+     * request.
+     */
     private final AmazonS3 s3;
-    /** Copy part request to be initiated.*/
+    /** Copy part request to be initiated. */
     private final CopyPartRequest request;
 
     public CopyPartCallable(AmazonS3 s3, CopyPartRequest request) {
@@ -37,6 +40,7 @@ public class CopyPartCallable implements Callable<PartETag> {
         this.request = request;
     }
 
+    @Override
     public PartETag call() throws Exception {
         return s3.copyPart(request).getPartETag();
     }

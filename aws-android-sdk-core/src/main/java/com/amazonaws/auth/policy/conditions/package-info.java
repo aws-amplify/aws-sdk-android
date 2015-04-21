@@ -29,4 +29,6 @@
  * In addition to the primary condition types, service specific functionality
  * is also provided.
  */
+
 package com.amazonaws.auth.policy.conditions;
+

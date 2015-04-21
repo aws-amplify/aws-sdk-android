@@ -12,15 +12,16 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.internal;
 
 import static com.amazonaws.util.SdkRuntime.shouldAbort;
 
+import com.amazonaws.AbortedException;
+
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.amazonaws.AbortedException;
 
 /**
  * Base class for AWS Java SDK specific {@link FilterInputStream}.
@@ -33,20 +34,21 @@ public class SdkFilterInputStream extends FilterInputStream implements MetricAwa
     @Override
     public boolean isMetricActivated() {
         if (in instanceof MetricAware) {
-            MetricAware metricAware = (MetricAware)in;
+            MetricAware metricAware = (MetricAware) in;
             return metricAware.isMetricActivated();
         }
         return false;
     }
 
     /**
-     * Aborts with subclass specific abortion logic executed if needed.
-     * Note the interrupted status of the thread is cleared by this method.
+     * Aborts with subclass specific abortion logic executed if needed. Note the
+     * interrupted status of the thread is cleared by this method.
+     *
      * @throws AbortedException if found necessary.
      */
     protected final void abortIfNeeded() {
         if (shouldAbort()) {
-            abort();    // execute subclass specific abortion logic
+            abort(); // execute subclass specific abortion logic
             throw new AbortedException();
         }
     }
@@ -56,7 +58,8 @@ public class SdkFilterInputStream extends FilterInputStream implements MetricAwa
      * AbortedException. No-op by default.
      */
     protected void abort() {
-        // no-op by default, but subclass such as S3ObjectInputStream may override
+        // no-op by default, but subclass such as S3ObjectInputStream may
+        // override
     }
 
     @Override

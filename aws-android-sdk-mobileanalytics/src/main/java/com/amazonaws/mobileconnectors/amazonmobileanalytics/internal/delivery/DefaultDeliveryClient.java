@@ -190,7 +190,7 @@ public class DefaultDeliveryClient implements DeliveryClient {
      * We only send if (time since last attempt) > minimumSubmissionInterval or
      * if user set clock back in time(which could mean we never submit if only
      * checking the first condition)
-     * 
+     *
      * @param long lastSubmissionAttemptTime The last time we attempted to
      *        submit to ERS
      * @param long minimumSubmissionInternal The minimum amount of time we must
@@ -206,7 +206,7 @@ public class DefaultDeliveryClient implements DeliveryClient {
     /**
      * Gets the next array of json objects to submit, up to the max number of
      * events These events will be removed from the iterator
-     * 
+     *
      * @param itr
      * @param maxNumOfEvents
      * @return JSONArray the array of events

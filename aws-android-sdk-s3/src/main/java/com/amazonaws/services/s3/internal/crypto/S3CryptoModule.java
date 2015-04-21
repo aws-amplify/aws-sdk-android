@@ -12,9 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.internal.crypto;
 
-import java.io.File;
+package com.amazonaws.services.s3.internal.crypto;
 
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
@@ -31,9 +30,11 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 
+import java.io.File;
+
 /**
- * An internal SPI used to implement different cryptographic modules
- * for use with the S3 encryption client.
+ * An internal SPI used to implement different cryptographic modules for use
+ * with the S3 encryption client.
  */
 public abstract class S3CryptoModule<T extends MultipartUploadContext> {
     public abstract PutObjectResult putObjectSecurely(PutObjectRequest req);

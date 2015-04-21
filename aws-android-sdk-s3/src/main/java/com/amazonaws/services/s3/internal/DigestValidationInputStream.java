@@ -12,26 +12,27 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.internal.SdkDigestInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.internal.SdkDigestInputStream;
-
 /**
- * Input stream extends MD5DigestValidationInputStream, when you finish reading the stream, it
- * will validate whether the computed digest equals the one from the server
- * side.
+ * Input stream extends MD5DigestValidationInputStream, when you finish reading
+ * the stream, it will validate whether the computed digest equals the one from
+ * the server side.
  */
 public class DigestValidationInputStream extends SdkDigestInputStream {
 
     private byte[] expectedHash;
 
-    //Flag do we don't validate twice.  See validateMD5Digest()
+    // Flag do we don't validate twice. See validateMD5Digest()
     private boolean digestValidated = false;
 
     public DigestValidationInputStream(InputStream in, MessageDigest digest, byte[] serverSideHash) {
@@ -73,12 +74,13 @@ public class DigestValidationInputStream extends SdkDigestInputStream {
          * once at the end of the stream. This class validates the digest once
          * -1 has been read so we must not validate twice.
          */
-        if (expectedHash != null && !digestValidated ) {
+        if (expectedHash != null && !digestValidated) {
             digestValidated = true;
             if (!Arrays.equals(digest.digest(), expectedHash)) {
-                throw new AmazonClientException("Unable to verify integrity of data download.  "
-                        + "Client calculated content hash didn't match hash calculated by Amazon S3.  "
-                        + "The data may be corrupt.");
+                throw new AmazonClientException(
+                        "Unable to verify integrity of data download.  "
+                                + "Client calculated content hash didn't match hash calculated by Amazon S3.  "
+                                + "The data may be corrupt.");
             }
         }
     }

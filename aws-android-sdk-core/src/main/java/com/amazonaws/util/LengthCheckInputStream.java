@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.util;
 
-import java.io.IOException;
-import java.io.InputStream;
+package com.amazonaws.util;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.internal.SdkFilterInputStream;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Used to perform length check to ensure the number of bytes read from the
@@ -47,17 +48,15 @@ public class LengthCheckInputStream extends SdkFilterInputStream {
      * Constructs an input stream that performs length check to ensure the
      * number of bytes read from the underlying input stream is the same as the
      * expected total.
-     * 
-     * @param in
-     *            the underlying input stream
-     * @param expectedLength
-     *            the total length of the data in bytes expected to be read from
-     *            the underlying input stream; must be non-negative.
-     * @param includeSkipped
-     *            true if bytes skipped are to be considered as part of the data
-     *            length; false otherwise. Typically, this parameter should be
-     *            set to false for uploading data to AWS, but set to true for
-     *            receiving data from AWS.
+     *
+     * @param in the underlying input stream
+     * @param expectedLength the total length of the data in bytes expected to
+     *            be read from the underlying input stream; must be
+     *            non-negative.
+     * @param includeSkipped true if bytes skipped are to be considered as part
+     *            of the data length; false otherwise. Typically, this parameter
+     *            should be set to false for uploading data to AWS, but set to
+     *            true for receiving data from AWS.
      */
     public LengthCheckInputStream(InputStream in, long expectedLength,
             boolean includeSkipped) {
@@ -70,11 +69,10 @@ public class LengthCheckInputStream extends SdkFilterInputStream {
 
     /**
      * {@inheritDoc}
-     * 
-     * @throws AmazonClientException
-     *             if the data length read has exceeded the expected total, or
-     *             if the total data length is not the same as the expected
-     *             total.
+     *
+     * @throws AmazonClientException if the data length read has exceeded the
+     *             expected total, or if the total data length is not the same
+     *             as the expected total.
      */
     @Override
     public int read() throws IOException {
@@ -87,11 +85,10 @@ public class LengthCheckInputStream extends SdkFilterInputStream {
 
     /**
      * {@inheritDoc}
-     * 
-     * @throws AmazonClientException
-     *             if the data length read has exceeded the expected total, or
-     *             if the total data length is not the same as the expected
-     *             total.
+     *
+     * @throws AmazonClientException if the data length read has exceeded the
+     *             expected total, or if the total data length is not the same
+     *             as the expected total.
      */
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
@@ -117,14 +114,11 @@ public class LengthCheckInputStream extends SdkFilterInputStream {
 
     /**
      * Checks the data length read so far against the expected total.
-     * 
-     * @param eof
-     *            true if end of stream has been encountered; false otherwise
-     * 
-     * @throws AmazonClientException
-     *             if the data length read has exceeded the expected total, or
-     *             if the total data length is not the same as the expected
-     *             total.
+     *
+     * @param eof true if end of stream has been encountered; false otherwise
+     * @throws AmazonClientException if the data length read has exceeded the
+     *             expected total, or if the total data length is not the same
+     *             as the expected total.
      */
     private void checkLength(boolean eof) {
         if (eof) {
@@ -141,10 +135,9 @@ public class LengthCheckInputStream extends SdkFilterInputStream {
 
     /**
      * {@inheritDoc}
-     * 
-     * @throws AmazonClientException
-     *             if {@link #includeSkipped} is true and the data length
-     *             skipped has exceeded the expected total.
+     *
+     * @throws AmazonClientException if {@link #includeSkipped} is true and the
+     *             data length skipped has exceeded the expected total.
      */
     @Override
     public long skip(long n) throws IOException {

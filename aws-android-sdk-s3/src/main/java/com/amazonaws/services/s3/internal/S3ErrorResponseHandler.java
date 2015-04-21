@@ -12,14 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
-
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.w3c.dom.Document;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonServiceException.ErrorType;
@@ -29,6 +23,13 @@ import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.util.IOUtils;
 import com.amazonaws.util.XpathUtils;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.w3c.dom.Document;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Response handler for S3 error responses. S3 error responses are different
@@ -56,7 +57,7 @@ public class S3ErrorResponseHandler
             String requestId = errorResponse.getHeaders().get(Headers.REQUEST_ID);
             String extendedRequestId = errorResponse.getHeaders().get(Headers.EXTENDED_REQUEST_ID);
             AmazonS3Exception ase = new AmazonS3Exception(errorResponse.getStatusText());
-            final int statusCode = errorResponse.getStatusCode(); 
+            final int statusCode = errorResponse.getStatusCode();
             ase.setStatusCode(statusCode);
             ase.setRequestId(requestId);
             ase.setExtendedRequestId(extendedRequestId);
@@ -67,7 +68,7 @@ public class S3ErrorResponseHandler
         String content = "";
         try {
             content = IOUtils.toString(is);
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             if (log.isDebugEnabled())
                 log.debug("Failed in reading the error response", ex);
             return newAmazonS3Exception(errorResponse.getStatusText(), errorResponse);
@@ -79,14 +80,14 @@ public class S3ErrorResponseHandler
             final String requestId = XpathUtils.asString("Error/RequestId", document);
             final String extendedRequestId = XpathUtils.asString("Error/HostId", document);
             final AmazonS3Exception ase = new AmazonS3Exception(message);
-            final int statusCode = errorResponse.getStatusCode(); 
+            final int statusCode = errorResponse.getStatusCode();
             ase.setStatusCode(statusCode);
             ase.setErrorType(errorTypeOf(statusCode));
             ase.setErrorCode(errorCode);
             ase.setRequestId(requestId);
             ase.setExtendedRequestId(extendedRequestId);
             return ase;
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             if (log.isDebugEnabled())
                 log.debug("Failed in parsing the response as XML: " + content, ex);
             return newAmazonS3Exception(content, errorResponse);
@@ -99,7 +100,7 @@ public class S3ErrorResponseHandler
      */
     private AmazonS3Exception newAmazonS3Exception(String errmsg, HttpResponse httpResponse) {
         final AmazonS3Exception ase = new AmazonS3Exception(errmsg);
-        final int statusCode = httpResponse.getStatusCode(); 
+        final int statusCode = httpResponse.getStatusCode();
         ase.setErrorCode(statusCode + " " + httpResponse.getStatusText());
         ase.setStatusCode(statusCode);
         ase.setErrorType(errorTypeOf(statusCode));
@@ -111,10 +112,9 @@ public class S3ErrorResponseHandler
      * in the error response. S3 error responses don't explicitly declare a
      * sender or client fault like other AWS services, so we have to use the
      * HTTP status code to infer this information.
-     * 
-     * @param httpResponse
-     *            The HTTP error response to use to determine the right error
-     *            type to set.
+     *
+     * @param httpResponse The HTTP error response to use to determine the right
+     *            error type to set.
      */
     private ErrorType errorTypeOf(int statusCode) {
         return statusCode >= 500 ? ErrorType.Service : ErrorType.Client;
@@ -127,6 +127,7 @@ public class S3ErrorResponseHandler
      *
      * @see com.amazonaws.http.HttpResponseHandler#needsConnectionLeftOpen()
      */
+    @Override
     public boolean needsConnectionLeftOpen() {
         return false;
     }

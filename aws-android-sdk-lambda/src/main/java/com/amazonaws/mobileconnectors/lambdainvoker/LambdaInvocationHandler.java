@@ -9,6 +9,7 @@ import com.amazonaws.services.lambda.model.InvocationType;
 import com.amazonaws.services.lambda.model.InvokeRequest;
 import com.amazonaws.services.lambda.model.InvokeResult;
 import com.amazonaws.services.lambda.model.LogType;
+import com.amazonaws.util.Base64;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -107,7 +108,8 @@ class LambdaInvocationHandler implements InvocationHandler {
     Object processInvokeResult(Method method, InvokeResult invokeResult)
             throws IOException {
         if (invokeResult.getLogResult() != null) {
-            Log.d(TAG, method.getName() + " log: " + invokeResult.getLogResult());
+            Log.d(TAG, method.getName() + " log: "
+                    + new String(Base64.decode(invokeResult.getLogResult())));
         }
 
         if (invokeResult.getFunctionError() != null) {

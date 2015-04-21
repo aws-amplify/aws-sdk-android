@@ -12,31 +12,33 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http.conn;
+
+import com.amazonaws.metrics.AwsSdkMetrics;
+import com.amazonaws.metrics.ServiceLatencyProvider;
+import com.amazonaws.util.AWSServiceMetrics;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.http.conn.ClientConnectionRequest;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.http.conn.ClientConnectionRequest;
-
-import com.amazonaws.metrics.AwsSdkMetrics;
-import com.amazonaws.metrics.ServiceLatencyProvider;
-import com.amazonaws.util.AWSServiceMetrics;
-
 class ClientConnectionRequestFactory {
     private static final Log log = LogFactory.getLog(ClientConnectionRequestFactory.class);
     private static final Class<?>[] interfaces = {
-        ClientConnectionRequest.class,
-        Wrapped.class
+            ClientConnectionRequest.class,
+            Wrapped.class
     };
 
     /**
-     * Returns a wrapped instance of {@link ClientConnectionRequest}
-     * to capture the necessary performance metrics.
+     * Returns a wrapped instance of {@link ClientConnectionRequest} to capture
+     * the necessary performance metrics.
+     *
      * @param orig the target instance to be wrapped
      */
     static ClientConnectionRequest wrap(ClientConnectionRequest orig) {
@@ -57,9 +59,11 @@ class ClientConnectionRequestFactory {
      */
     private static class Handler implements InvocationHandler {
         private final ClientConnectionRequest orig;
+
         Handler(ClientConnectionRequest orig) {
             this.orig = orig;
         }
+
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             try {

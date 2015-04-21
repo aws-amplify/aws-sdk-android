@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
@@ -26,10 +27,9 @@ public class DeleteBucketTaggingConfigurationRequest extends GenericBucketReques
     /**
      * Creates a new request object, ready to be executed to delete the tagging
      * configuration for the specified bucket.
-     * 
-     * @param bucketName
-     *            The name of the bucket whose tagging configuration is being
-     *            deleted.
+     *
+     * @param bucketName The name of the bucket whose tagging configuration is
+     *            being deleted.
      */
     public DeleteBucketTaggingConfigurationRequest(String bucketName) {
         super(bucketName);

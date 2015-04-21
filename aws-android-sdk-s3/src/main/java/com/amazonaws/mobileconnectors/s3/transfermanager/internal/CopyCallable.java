@@ -12,26 +12,16 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.amazonaws.Request;
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListenerCallbackExecutor;
 import com.amazonaws.event.ProgressListenerChain;
+import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer.TransferState;
+import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
+import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManagerConfiguration;
+import com.amazonaws.mobileconnectors.s3.transfermanager.model.CopyResult;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
@@ -42,11 +32,18 @@ import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.StorageClass;
-import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
-import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManagerConfiguration;
-import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer.TransferState;
-import com.amazonaws.mobileconnectors.s3.transfermanager.model.CopyResult;
-import com.amazonaws.util.DateUtils;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 /**
  * An implementation of the Callable interface that helps
@@ -54,7 +51,6 @@ import com.amazonaws.util.DateUtils;
  * method checks if multi-part copy request can be carried out on the Amazon S3
  * object. This is done by checking the size of the Amazon S3 object being
  * copied.
- *
  * <p>
  * If the size of the object is greater than the preferred size limit, then copy
  * operation is carried out as multi part copy requests to the server.
@@ -64,7 +60,6 @@ import com.amazonaws.util.DateUtils;
  * operation is carried out in a single request where the Amazon S3 object is
  * transferred as one chunk from the source bucket to the destination bucket.
  * </p>
- *
  */
 public class CopyCallable implements Callable<CopyResult> {
 
@@ -129,6 +124,7 @@ public class CopyCallable implements Callable<CopyResult> {
                 .getMultipartCopyThreshold());
     }
 
+    @Override
     public CopyResult call() throws Exception {
         copy.setState(TransferState.InProgress);
         if (isMultipartCopy()) {
@@ -167,8 +163,8 @@ public class CopyCallable implements Callable<CopyResult> {
      * the part to be copied is specified in the request as a byte range
      * (first-last)
      *
-     * @throws Exception
-     *             Any Exception that occurs while carrying out the request.
+     * @throws Exception Any Exception that occurs while carrying out the
+     *             request.
      */
     private void copyInParts() throws Exception {
         final String bucketName = copyObjectRequest.getDestinationBucketName();
@@ -250,16 +246,16 @@ public class CopyCallable implements Callable<CopyResult> {
         }
 
         ObjectMetadata newObjectMetadata = copyObjectRequest.getNewObjectMetadata();
-        if(newObjectMetadata == null){
+        if (newObjectMetadata == null) {
             newObjectMetadata = new ObjectMetadata();
         }
-        if(newObjectMetadata.getContentType() == null){
+        if (newObjectMetadata.getContentType() == null) {
             newObjectMetadata.setContentType(metadata.getContentType());
         }
 
         initiateMultipartUploadRequest.setObjectMetadata(newObjectMetadata);
 
-        populateMetadataWithEncryptionParams(metadata,newObjectMetadata);
+        populateMetadataWithEncryptionParams(metadata, newObjectMetadata);
 
         String uploadId = s3.initiateMultipartUpload(
                 initiateMultipartUploadRequest).getUploadId();
@@ -276,27 +272,30 @@ public class CopyCallable implements Callable<CopyResult> {
         progressListenerChainCallbackExecutor.progressChanged(event);
     }
 
-    private void populateMetadataWithEncryptionParams(ObjectMetadata source, ObjectMetadata destination) {
+    private void populateMetadataWithEncryptionParams(ObjectMetadata source,
+            ObjectMetadata destination) {
         Map<String, String> userMetadataSource = source.getUserMetadata();
         Map<String, String> userMetadataDestination = destination.getUserMetadata();
 
-        String[] headersToCopy = { Headers.CRYPTO_CEK_ALGORITHM,
+        String[] headersToCopy = {
+                Headers.CRYPTO_CEK_ALGORITHM,
                 Headers.CRYPTO_IV, Headers.CRYPTO_KEY, Headers.CRYPTO_KEY_V2,
                 Headers.CRYPTO_KEYWRAP_ALGORITHM, Headers.CRYPTO_TAG_LENGTH,
                 Headers.MATERIALS_DESCRIPTION,
                 Headers.UNENCRYPTED_CONTENT_LENGTH,
-                Headers.UNENCRYPTED_CONTENT_MD5 };
+                Headers.UNENCRYPTED_CONTENT_MD5
+        };
 
         if (userMetadataSource != null) {
-            if(userMetadataDestination == null){
-                userMetadataDestination= new HashMap<String,String>();
+            if (userMetadataDestination == null) {
+                userMetadataDestination = new HashMap<String, String>();
                 destination.setUserMetadata(userMetadataDestination);
             }
 
             String headerValue;
-            for(String header : headersToCopy){
+            for (String header : headersToCopy) {
                 headerValue = userMetadataSource.get(header);
-                if(headerValue != null){
+                if (headerValue != null) {
                     userMetadataDestination.put(header, headerValue);
                 }
             }

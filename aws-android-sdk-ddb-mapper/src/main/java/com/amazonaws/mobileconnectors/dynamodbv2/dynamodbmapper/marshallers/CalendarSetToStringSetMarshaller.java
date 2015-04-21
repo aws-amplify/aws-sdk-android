@@ -12,16 +12,17 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.marshallers;
+
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.StringSetAttributeMarshaller;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
-
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.StringSetAttributeMarshaller;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.amazonaws.util.DateUtils;
 
 /**
  * A marshaller that marshals sets of Java {@code Calendar} objects into

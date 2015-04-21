@@ -12,14 +12,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.auth.policy;
 
-import java.util.Arrays;
-import java.util.List;
+package com.amazonaws.auth.policy;
 
 import com.amazonaws.auth.policy.conditions.ConditionFactory;
 import com.amazonaws.auth.policy.conditions.NumericCondition;
 import com.amazonaws.auth.policy.conditions.NumericCondition.NumericComparisonType;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * AWS access control policy conditions are contained in {@link Statement}
@@ -77,8 +78,7 @@ public class Condition {
     /**
      * Sets the type of this condition.
      *
-     * @param type
-     *            The type of this condition.
+     * @param type The type of this condition.
      */
     public void setType(String type) {
         this.type = type;
@@ -101,17 +101,17 @@ public class Condition {
     }
 
     /**
-     * Sets the name of the condition key involved in this condition.
-     * Condition keys are predefined values supported by AWS that provide
-     * input to a condition's evaluation, such as the current time, or the IP
-     * address of the incoming request.
+     * Sets the name of the condition key involved in this condition. Condition
+     * keys are predefined values supported by AWS that provide input to a
+     * condition's evaluation, such as the current time, or the IP address of
+     * the incoming request.
      * <p>
      * Your policy is evaluated for each incoming request, and condition keys
      * specify what information to pull out of those incoming requests and plug
      * into the conditions in your policy.
      *
-     * @param conditionKey
-     *            The name of the condition key involved in this condition.
+     * @param conditionKey The name of the condition key involved in this
+     *            condition.
      */
     public void setConditionKey(String conditionKey) {
         this.conditionKey = conditionKey;
@@ -139,8 +139,8 @@ public class Condition {
      * <p>
      * Most conditions accept only one value, but multiple values are possible.
      *
-     * @param values
-     *            The values specified for this access control policy condition.
+     * @param values The values specified for this access control policy
+     *            condition.
      */
     public void setValues(List<String> values) {
         this.values = values;
@@ -148,6 +148,7 @@ public class Condition {
 
     /**
      * Fluent version of {@link Condition#setType(String)}
+     *
      * @return this
      */
     public Condition withType(String type) {
@@ -157,6 +158,7 @@ public class Condition {
 
     /**
      * Fluent version of {@link Condition#setConditionKey(String)}
+     *
      * @return this
      */
     public Condition withConditionKey(String key) {
@@ -166,6 +168,7 @@ public class Condition {
 
     /**
      * Fluent version of {@link Condition#setValues(List)}
+     *
      * @return this
      */
     public Condition withValues(String... values) {
@@ -173,9 +176,9 @@ public class Condition {
         return this;
     }
 
-
     /**
      * Fluent version of {@link Condition#setValues(List)}
+     *
      * @return this
      */
     public Condition withValues(List<String> values) {

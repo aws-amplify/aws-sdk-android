@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -74,17 +75,14 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      */
     private SSECustomerKey sseCustomerKey;
 
-
     /**
      * Constructs a request to initiate a new multipart upload in the specified
      * bucket, stored by the specified key.
      *
-     * @param bucketName
-     *            The name of the bucket in which to create the new multipart
-     *            upload, and hence, the eventual object created from the
-     *            multipart upload.
-     * @param key
-     *            The key by which to store the new multipart upload, and hence,
+     * @param bucketName The name of the bucket in which to create the new
+     *            multipart upload, and hence, the eventual object created from
+     *            the multipart upload.
+     * @param key The key by which to store the new multipart upload, and hence,
      *            the eventual object created from the multipart upload.
      */
     public InitiateMultipartUploadRequest(String bucketName, String key) {
@@ -97,23 +95,21 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * bucket, stored by the specified key, and with the additional specified
      * object metadata.
      *
-     * @param bucketName
-     *            The name of the bucket in which to create the new multipart
-     *            upload, and hence, the eventual object created from the
-     *            multipart upload.
-     * @param key
-     *            The key by which to store the new multipart upload, and hence,
+     * @param bucketName The name of the bucket in which to create the new
+     *            multipart upload, and hence, the eventual object created from
+     *            the multipart upload.
+     * @param key The key by which to store the new multipart upload, and hence,
      *            the eventual object created from the multipart upload.
-     * @param objectMetadata
-     *            Additional information about the new object being created,
-     *            such as content type, content encoding, user metadata, etc.
+     * @param objectMetadata Additional information about the new object being
+     *            created, such as content type, content encoding, user
+     *            metadata, etc.
      */
-    public InitiateMultipartUploadRequest(String bucketName, String key, ObjectMetadata objectMetadata) {
+    public InitiateMultipartUploadRequest(String bucketName, String key,
+            ObjectMetadata objectMetadata) {
         this.bucketName = bucketName;
         this.key = key;
         this.objectMetadata = objectMetadata;
     }
-
 
     /**
      * Returns the name of the bucket in which to create the new multipart
@@ -131,10 +127,9 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Sets the name of the bucket in which to create the new multipart upload,
      * and hence, the eventual object created from the multipart upload.
      *
-     * @param bucketName
-     *            The name of the bucket in which to create the new multipart
-     *            upload, and hence, the eventual object created from the
-     *            multipart upload.
+     * @param bucketName The name of the bucket in which to create the new
+     *            multipart upload, and hence, the eventual object created from
+     *            the multipart upload.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -147,11 +142,9 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Returns this updated InitiateMultipartUploadRequest object so that
      * additional method calls can be chained together.
      *
-     * @param bucketName
-     *            The name of the bucket in which to create the new multipart
-     *            upload, and hence, the eventual object created from the
-     *            multipart upload.
-     *
+     * @param bucketName The name of the bucket in which to create the new
+     *            multipart upload, and hence, the eventual object created from
+     *            the multipart upload.
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withBucketName(String bucketName) {
@@ -174,8 +167,7 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Sets the key by which to store the new multipart upload, and hence, the
      * eventual object created from the multipart upload.
      *
-     * @param key
-     *            The key by which to store the new multipart upload, and hence,
+     * @param key The key by which to store the new multipart upload, and hence,
      *            the eventual object created from the multipart upload.
      */
     public void setKey(String key) {
@@ -189,10 +181,8 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Returns this updated InitiateMultipartUploadRequest object so that
      * additional method calls can be chained together.
      *
-     * @param key
-     *            The key by which to store the new multipart upload, and hence,
+     * @param key The key by which to store the new multipart upload, and hence,
      *            the eventual object created from the multipart upload.
-     *
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withKey(String key) {
@@ -207,7 +197,6 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * @return The optional canned Access Control List (ACL) to set permissions
      *         for the new object created when the multipart upload is
      *         completed.
-     *
      * @see CannedAccessControlList
      */
     public CannedAccessControlList getCannedACL() {
@@ -218,10 +207,9 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Sets the optional canned Access Control List (ACL) to set permissions for
      * the new object created when the multipart upload is completed.
      *
-     * @param cannedACL
-     *            The canned Access Control List (ACL) to set permissions for
-     *            the new object created when the multipart upload is completed.
-     *
+     * @param cannedACL The canned Access Control List (ACL) to set permissions
+     *            for the new object created when the multipart upload is
+     *            completed.
      * @see CannedAccessControlList
      */
     public void setCannedACL(CannedAccessControlList cannedACL) {
@@ -235,11 +223,9 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Returns this updated InitiateMultipartUploadRequest object so that
      * additional method calls can be chained together.
      *
-     * @param acl
-     *            The optional canned Access Control List (ACL) to set
+     * @param acl The optional canned Access Control List (ACL) to set
      *            permissions for the new object created when the multipart
      *            upload is completed.
-     *
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withCannedACL(CannedAccessControlList acl) {
@@ -259,8 +245,7 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Sets the optional access control list for the new upload. If specified,
      * cannedAcl will be ignored.
      *
-     * @param accessControlList
-     *            The access control list for the new upload.
+     * @param accessControlList The access control list for the new upload.
      */
     public void setAccessControlList(AccessControlList accessControlList) {
         this.accessControlList = accessControlList;
@@ -268,11 +253,11 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the optional access control list for the new upload. If specified,
-     * cannedAcl will be ignored. Returns this {@link InitiateMultipartUploadRequest},
-     * enabling additional method calls to be chained together.
+     * cannedAcl will be ignored. Returns this
+     * {@link InitiateMultipartUploadRequest}, enabling additional method calls
+     * to be chained together.
      *
-     * @param accessControlList
-     *            The access control list for the new upload.
+     * @param accessControlList The access control list for the new upload.
      */
     public InitiateMultipartUploadRequest withAccessControlList(AccessControlList accessControlList) {
         setAccessControlList(accessControlList);
@@ -287,7 +272,6 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      *
      * @return The optional storage class to use when storing this upload's data
      *         in S3. If not specified, the default storage class is used.
-     *
      * @see StorageClass
      */
     public StorageClass getStorageClass() {
@@ -300,11 +284,9 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * <p>
      * If not specified, the default is {@link StorageClass#Standard}.
      *
-     * @param storageClass
-     *            The optional storage class to use when storing this upload's
-     *            data in S3. If not specified, the default storage class is
-     *            used.
-     *
+     * @param storageClass The optional storage class to use when storing this
+     *            upload's data in S3. If not specified, the default storage
+     *            class is used.
      * @see StorageClass
      */
     public void setStorageClass(StorageClass storageClass) {
@@ -318,11 +300,9 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Returns this updated InitiateMultipartUploadRequest object so that
      * additional method calls can be chained together.
      *
-     * @param storageClass
-     *            The optional storage class to use when storing this upload's
-     *            data in S3. If not specified, the default storage class is
-     *            used.
-     *
+     * @param storageClass The optional storage class to use when storing this
+     *            upload's data in S3. If not specified, the default storage
+     *            class is used.
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withStorageClass(StorageClass storageClass) {
@@ -345,9 +325,9 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Sets the additional information about the new object being created, such
      * as content type, content encoding, user metadata, etc.
      *
-     * @param objectMetadata
-     *            Additional information about the new object being created,
-     *            such as content type, content encoding, user metadata, etc.
+     * @param objectMetadata Additional information about the new object being
+     *            created, such as content type, content encoding, user
+     *            metadata, etc.
      */
     public void setObjectMetadata(ObjectMetadata objectMetadata) {
         this.objectMetadata = objectMetadata;
@@ -360,10 +340,9 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Returns this updated InitiateMultipartUploadRequest object so that
      * additional method calls can be chained together.
      *
-     * @param objectMetadata
-     *            Additional information about the new object being created,
-     *            such as content type, content encoding, user metadata, etc.
-     *
+     * @param objectMetadata Additional information about the new object being
+     *            created, such as content type, content encoding, user
+     *            metadata, etc.
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withObjectMetadata(ObjectMetadata objectMetadata) {
@@ -374,8 +353,7 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
     /**
      * Sets the optional redirect location for the new object.
      *
-     * @param redirectLocation
-     *            The redirect location for the new object.
+     * @param redirectLocation The redirect location for the new object.
      */
     public void setRedirectLocation(String redirectLocation) {
         this.redirectLocation = redirectLocation;
@@ -390,10 +368,10 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the optional redirect location for the new object. Returns this
-     * {@link InitiateMultipartUploadRequest}, enabling additional method calls to be chained
-     * together.
-     * @param redirectLocation
-     *            The redirect location for the new object.
+     * {@link InitiateMultipartUploadRequest}, enabling additional method calls
+     * to be chained together.
+     *
+     * @param redirectLocation The redirect location for the new object.
      */
     public InitiateMultipartUploadRequest withRedirectLocation(String redirectLocation) {
         this.redirectLocation = redirectLocation;
@@ -401,8 +379,8 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Returns the optional customer-provided server-side encryption key to use to
-     * encrypt the upload being started.
+     * Returns the optional customer-provided server-side encryption key to use
+     * to encrypt the upload being started.
      *
      * @return The optional customer-provided server-side encryption key to use
      *         to encrypt the upload being started.
@@ -415,9 +393,8 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * Sets the optional customer-provided server-side encryption key to use to
      * encrypt the upload being started.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to encrypt the upload being started.
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use to encrypt the upload being started.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
         this.sseCustomerKey = sseKey;
@@ -429,12 +406,10 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * InitiateMultipartUploadRequest so that additional method calls may be
      * chained together.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to encrypt the upload being started.
-     *
-     * @return The updated request object, so that additional method calls can
-     *         be chained together.
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use to encrypt the upload being started.
+     * @return The updated request object, so that additional method calls can be
+     *         chained together.
      */
     public InitiateMultipartUploadRequest withSSECustomerKey(SSECustomerKey sseKey) {
         setSSECustomerKey(sseKey);

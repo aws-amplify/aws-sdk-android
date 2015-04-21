@@ -12,19 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.internal;
-
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.amazonaws.auth.policy.Action;
 import com.amazonaws.auth.policy.Condition;
@@ -35,19 +24,31 @@ import com.amazonaws.auth.policy.Statement;
 import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Serializes an AWS policy object to a JSON string, suitable for sending to an
  * AWS service.
  */
 public class JsonPolicyWriter {
 
-    /** The JSON Generator to generator a JSON string.*/
+    /** The JSON Generator to generator a JSON string. */
     private AwsJsonWriter jsonWriter = null;
 
-    /** The output writer to which the JSON String is written.*/
+    /** The output writer to which the JSON String is written. */
     private final Writer writer;
 
-    /** Logger used to log exceptions that occurs while writing the JSON policy.*/
+    /** Logger used to log exceptions that occurs while writing the JSON policy. */
     private static final Log log = LogFactory.getLog("com.amazonaws.auth.policy");
 
     /**
@@ -62,18 +63,14 @@ public class JsonPolicyWriter {
      * Converts the specified AWS policy object to a JSON string, suitable for
      * passing to an AWS service.
      *
-     * @param policy
-     *            The AWS policy object to convert to a JSON string.
-     *
+     * @param policy The AWS policy object to convert to a JSON string.
      * @return The JSON string representation of the specified policy object.
-     *
-     * @throws IllegalArgumentException
-     *             If the specified policy is null or invalid and cannot be
-     *             serialized to a JSON string.
+     * @throws IllegalArgumentException If the specified policy is null or
+     *             invalid and cannot be serialized to a JSON string.
      */
     public String writePolicyToString(Policy policy) {
 
-        if(!isNotNull(policy))
+        if (!isNotNull(policy))
             throw new IllegalArgumentException("Policy cannot be null");
 
         try {
@@ -83,15 +80,17 @@ public class JsonPolicyWriter {
                     + e.getMessage();
             throw new IllegalArgumentException(message, e);
         } finally {
-            try { writer.close(); } catch (Exception e) { }
+            try {
+                writer.close();
+            } catch (Exception e) {
+            }
         }
     }
 
     /**
      * Converts the given <code>Policy</code> into a JSON String.
      *
-     * @param policy
-     *            the policy to be converted.
+     * @param policy the policy to be converted.
      * @return a JSON String of the specified policy object.
      */
     private String jsonStringOf(Policy policy) throws IOException {
@@ -145,8 +144,7 @@ public class JsonPolicyWriter {
     /**
      * Writes the list of conditions to the JSONGenerator.
      *
-     * @param conditions
-     *            the conditions to be written.
+     * @param conditions the conditions to be written.
      */
     private void writeConditions(List<Condition> conditions) throws IOException {
         Map<String, ConditionsByKey> conditionsByType = groupConditionsByTypeAndKey(conditions);
@@ -170,8 +168,7 @@ public class JsonPolicyWriter {
     /**
      * Writes the list of <code>Resource</code>s to the JSONGenerator.
      *
-     * @param resources
-     *            the list of resources to be written.
+     * @param resources the list of resources to be written.
      */
     private void writeResources(List<Resource> resources)
             throws IOException {
@@ -187,8 +184,7 @@ public class JsonPolicyWriter {
     /**
      * Writes the list of <code>Action</code>s to the JSONGenerator.
      *
-     * @param actions
-     *            the list of the actions to be written.
+     * @param actions the list of the actions to be written.
      */
     private void writeActions(List<Action> actions)
             throws IOException {
@@ -203,8 +199,7 @@ public class JsonPolicyWriter {
     /**
      * Writes the list of <code>Principal</code>s to the JSONGenerator.
      *
-     * @param principals
-     *            the list of principals to be written.
+     * @param principals the list of principals to be written.
      */
     private void writePrincipals(List<Principal> principals)
             throws IOException {
@@ -233,8 +228,7 @@ public class JsonPolicyWriter {
     /**
      * Groups the list of <code>Principal</code>s by the Scheme.
      *
-     * @param principals
-     *            the list of <code>Principal</code>s
+     * @param principals the list of <code>Principal</code>s
      * @return a map grouped by scheme of the principal.
      */
     private Map<String, List<String>> groupPrincipalByScheme(
@@ -259,29 +253,29 @@ public class JsonPolicyWriter {
      * Inner class to hold condition values for each key under a condition type.
      */
     static class ConditionsByKey {
-        private Map<String,List<String>> conditionsByKey;
+        private Map<String, List<String>> conditionsByKey;
 
-        public ConditionsByKey(){
-            conditionsByKey = new HashMap<String,List<String>>();
+        public ConditionsByKey() {
+            conditionsByKey = new HashMap<String, List<String>>();
         }
 
-        public Map<String,List<String>> getConditionsByKey() {
+        public Map<String, List<String>> getConditionsByKey() {
             return conditionsByKey;
         }
 
-        public void setConditionsByKey(Map<String,List<String>> conditionsByKey) {
+        public void setConditionsByKey(Map<String, List<String>> conditionsByKey) {
             this.conditionsByKey = conditionsByKey;
         }
 
-        public boolean containsKey(String key){
+        public boolean containsKey(String key) {
             return conditionsByKey.containsKey(key);
         }
 
-        public List<String> getConditionsByKey(String key){
+        public List<String> getConditionsByKey(String key) {
             return conditionsByKey.get(key);
         }
 
-        public Set<String> keySet(){
+        public Set<String> keySet() {
             return conditionsByKey.keySet();
         }
 
@@ -299,8 +293,7 @@ public class JsonPolicyWriter {
      * Groups the list of <code>Condition</code>s by the condition type and
      * condition key.
      *
-     * @param conditions
-     *            the list of conditions to be grouped
+     * @param conditions the list of conditions to be grouped
      * @return a map of conditions grouped by type and then key.
      */
     private Map<String, ConditionsByKey> groupConditionsByTypeAndKey(
@@ -327,10 +320,8 @@ public class JsonPolicyWriter {
     /**
      * Writes an array along with its values to the JSONGenerator.
      *
-     * @param arrayName
-     *            name of the JSON array.
-     * @param values
-     *            values of the JSON array.
+     * @param arrayName name of the JSON array.
+     * @param values values of the JSON array.
      */
     private void writeJsonArray(String arrayName, List<String> values)
             throws IOException {
@@ -344,8 +335,7 @@ public class JsonPolicyWriter {
      * Writes the Start of Object String to the JSONGenerator along with Object
      * Name.
      *
-     * @param fieldName
-     *            name of the JSON Object.
+     * @param fieldName name of the JSON Object.
      */
     private void writeJsonObjectStart(String fieldName)
             throws IOException {
@@ -364,8 +354,7 @@ public class JsonPolicyWriter {
      * Writes the Start of Array String to the JSONGenerator along with Array
      * Name.
      *
-     * @param fieldName
-     *            name of the JSON array
+     * @param fieldName name of the JSON array
      */
     private void writeJsonArrayStart(String fieldName)
             throws IOException {
@@ -383,10 +372,8 @@ public class JsonPolicyWriter {
     /**
      * Writes the given field and the value to the JsonGenerator
      *
-     * @param fieldName
-     *            the JSON field name
-     * @param value
-     *            value for the field
+     * @param fieldName the JSON field name
+     * @param value value for the field
      */
     private void writeJsonKeyValue(String fieldName, String value)
             throws IOException {
@@ -397,8 +384,7 @@ public class JsonPolicyWriter {
     /**
      * Checks if the given object is not null.
      *
-     * @param object
-     *            the object compared to null.
+     * @param object the object compared to null.
      * @return true if the object is not null else false
      */
     private boolean isNotNull(Object object) {

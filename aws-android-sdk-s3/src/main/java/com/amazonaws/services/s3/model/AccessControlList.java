@@ -15,6 +15,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.io.Serializable;
@@ -44,18 +45,17 @@ import java.util.Set;
  * </p>
  * <p>
  * Note: Bucket and object ACLs are completely independent; an object does not
- * inherit an ACL from its bucket. For example, if you create a bucket and
- * grant write access to another user, you will not be able to access the user's
+ * inherit an ACL from its bucket. For example, if you create a bucket and grant
+ * write access to another user, you will not be able to access the user's
  * objects unless the user explicitly grants access. This also applies if you
  * grant anonymous write access to a bucket. Only the user "anonymous" will be
  * able to access objects the user created unless permission is explicitly
  * granted to the bucket owner.
  * </p>
  * <p>
- * Important: Do not grant the anonymous group
- * write access to buckets, as you will have no control over the objects
- * others can store and their associated charges. For more information, see
- * {@link Grantee} and {@link Permissions}.
+ * Important: Do not grant the anonymous group write access to buckets, as you
+ * will have no control over the objects others can store and their associated
+ * charges. For more information, see {@link Grantee} and {@link Permissions}.
  * </p>
  *
  * @see CannedAccessControlList
@@ -68,7 +68,6 @@ public class AccessControlList implements Serializable {
 
     /**
      * Gets the owner of the {@link AccessControlList}.
-     * 
      * <p>
      * Every bucket and object in Amazon S3 has an owner, the user that created
      * the bucket or object. The owner of a bucket or object cannot be changed.
@@ -76,11 +75,11 @@ public class AccessControlList implements Serializable {
      * rewritten), the new object will have a new owner.
      * </p>
      * <p>
-     * Note: Even the owner is subject to the access control list (ACL). For example, if an owner does
-     * not have {@link Permission#Read} access to an object, the owner cannot
-     * read that object. However, the owner of an object always has write access
-     * to the access control policy ({@link Permission#WriteAcp}) and can change
-     * the ACL to read the object.
+     * Note: Even the owner is subject to the access control list (ACL). For
+     * example, if an owner does not have {@link Permission#Read} access to an
+     * object, the owner cannot read that object. However, the owner of an
+     * object always has write access to the access control policy (
+     * {@link Permission#WriteAcp}) and can change the ACL to read the object.
      * </p>
      *
      * @return The owner for this {@link AccessControlList}.
@@ -90,39 +89,35 @@ public class AccessControlList implements Serializable {
     }
 
     /**
-     * For internal use only. Sets the owner on this access control list (ACL). This method is only intended for internal use
-     * by the library. The owner of a bucket or object cannot be changed.
-     * However the object can be overwritten by the new desired owner (deleted
-     * and rewritten).
+     * For internal use only. Sets the owner on this access control list (ACL).
+     * This method is only intended for internal use by the library. The owner
+     * of a bucket or object cannot be changed. However the object can be
+     * overwritten by the new desired owner (deleted and rewritten).
      *
-     * @param owner
-     *            The owner for this ACL.
+     * @param owner The owner for this ACL.
      */
     public void setOwner(Owner owner) {
         this.owner = owner;
     }
 
     /**
-     * Adds a grantee to the access control list (ACL) with the given permission. 
-     * If this access control list already
-     * contains the grantee (i.e. the same grantee object) the permission for the
-     * grantee will be updated.
+     * Adds a grantee to the access control list (ACL) with the given
+     * permission. If this access control list already contains the grantee
+     * (i.e. the same grantee object) the permission for the grantee will be
+     * updated.
      *
-     * @param grantee
-     *            The grantee to whom the permission will apply.
-     * @param permission
-     *            The permission to apply to the grantee.
+     * @param grantee The grantee to whom the permission will apply.
+     * @param permission The permission to apply to the grantee.
      */
     public void grantPermission(Grantee grantee, Permission permission) {
         grants.add(new Grant(grantee, permission));
     }
 
     /**
-     * Adds a set of grantee/permission pairs to the access control list (ACL), where each item in the
-     * set is a {@link Grant} object.
+     * Adds a set of grantee/permission pairs to the access control list (ACL),
+     * where each item in the set is a {@link Grant} object.
      *
-     * @param grants
-     *            A collection of {@link Grant} objects
+     * @param grants A collection of {@link Grant} objects
      */
     public void grantAllPermissions(Grant... grantsVarArg) {
         for (Grant gap : grantsVarArg) {
@@ -131,10 +126,10 @@ public class AccessControlList implements Serializable {
     }
 
     /**
-     * Revokes the permissions of a grantee by removing the grantee from the access control list (ACL).
+     * Revokes the permissions of a grantee by removing the grantee from the
+     * access control list (ACL).
      *
-     * @param grantee
-     *        The grantee to remove from this ACL.
+     * @param grantee The grantee to remove from this ACL.
      */
     public void revokeAllPermissions(Grantee grantee) {
         ArrayList<Grant> grantsToRemove = new ArrayList<Grant>();
@@ -148,13 +143,14 @@ public class AccessControlList implements Serializable {
 
     /**
      * Gets the set of {@link Grant} objects in this access control list (ACL).
-     * 
+     *
      * @return The set of {@link Grant} objects in this ACL.
      */
     public Set<Grant> getGrants() {
         return grants;
     }
 
+    @Override
     public String toString() {
         return "AccessControlList [owner=" + owner + ", grants=" + getGrants() + "]";
     }

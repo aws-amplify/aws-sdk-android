@@ -12,14 +12,15 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
-import java.util.List;
-
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.PaginationLoadingStrategy;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.model.QueryRequest;
 import com.amazonaws.services.dynamodbv2.model.QueryResult;
+
+import java.util.List;
 
 /**
  * Implementation of the List interface that represents the results from a query
@@ -32,8 +33,7 @@ import com.amazonaws.services.dynamodbv2.model.QueryResult;
  * that modify this list, otherwise they will throw an
  * UnsupportedOperationException.
  *
- * @param <T>
- *            The type of objects held in this list.
+ * @param <T> The type of objects held in this list.
  * @see PaginatedList
  */
 public class PaginatedQueryList<T> extends PaginatedList<T> {
@@ -53,21 +53,19 @@ public class PaginatedQueryList<T> extends PaginatedList<T> {
             QueryRequest queryRequest,
             QueryResult queryResult,
             PaginationLoadingStrategy paginationLoadingStrategy,
-            DynamoDBMapperConfig config
-    ) {
+            DynamoDBMapperConfig config) {
         super(mapper, clazz, dynamo, paginationLoadingStrategy);
 
         this.queryRequest = queryRequest;
-        this.queryResult  = queryResult;
+        this.queryResult = queryResult;
         this.config = config;
 
-
         allResults.addAll(mapper.marshallIntoObjects(
-            mapper.toParameters(
-                    queryResult.getItems(),
-                    clazz,
-                    queryRequest.getTableName(),
-                    config)));
+                mapper.toParameters(
+                        queryResult.getItems(),
+                        clazz,
+                        queryRequest.getTableName(),
+                        config)));
 
         // If the results should be eagerly loaded at once
         if (paginationLoadingStrategy == PaginationLoadingStrategy.EAGER_LOADING) {

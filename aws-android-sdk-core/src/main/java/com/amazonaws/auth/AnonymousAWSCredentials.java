@@ -12,27 +12,31 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
-
 /**
- * Basic implementation of the AWSCredentials interface that allows use of "anonymous"
- * credentials.  Using anonymous credentials will result in requests not being signed
- * before sending to the service.  Any service that does not accept unsigned requests
- * will return a service exception in this case.
+ * Basic implementation of the AWSCredentials interface that allows use of
+ * "anonymous" credentials. Using anonymous credentials will result in requests
+ * not being signed before sending to the service. Any service that does not
+ * accept unsigned requests will return a service exception in this case.
  */
 public class AnonymousAWSCredentials implements AWSCredentials {
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.amazonaws.auth.AWSCredentials#getAWSAccessKeyId()
      */
+    @Override
     public String getAWSAccessKeyId() {
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.amazonaws.auth.AWSCredentials#getAWSSecretKey()
      */
+    @Override
     public String getAWSSecretKey() {
         return null;
     }

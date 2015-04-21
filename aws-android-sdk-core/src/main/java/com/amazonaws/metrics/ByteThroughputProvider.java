@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.metrics;
 
 /**
@@ -22,18 +23,31 @@ public abstract class ByteThroughputProvider {
     private int byteCount;
     private final ThroughputMetricType throughputType;
 
-    protected ByteThroughputProvider(ThroughputMetricType type) { this.throughputType = type; }
-    public ThroughputMetricType getThroughputMetricType() { return throughputType; }
-    public int getByteCount() { return byteCount; }
-    public long getDurationNano() { return duration; }
-    
+    protected ByteThroughputProvider(ThroughputMetricType type) {
+        this.throughputType = type;
+    }
+
+    public ThroughputMetricType getThroughputMetricType() {
+        return throughputType;
+    }
+
+    public int getByteCount() {
+        return byteCount;
+    }
+
+    public long getDurationNano() {
+        return duration;
+    }
+
     /**
      * Returns a provider id that can be used to compute the number of active
      * byte throughput provider of a specific metric type being active in a
      * given time interval.
      */
-    public String getProviderId() { return super.toString(); }
-    
+    public String getProviderId() {
+        return super.toString();
+    }
+
     /**
      * @param bytesDelta the number of bytes to increment
      * @param startTimeNano the start time in nano seconds
@@ -42,7 +56,7 @@ public abstract class ByteThroughputProvider {
         this.byteCount += bytesDelta;
         this.duration += System.nanoTime() - startTimeNano;
     }
-    
+
     protected void reset() {
         this.byteCount = 0;
         this.duration = 0;

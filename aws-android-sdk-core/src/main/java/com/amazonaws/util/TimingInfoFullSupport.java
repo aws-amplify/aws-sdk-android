@@ -12,23 +12,23 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
+
+import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.LogFactory;
-
 /**
  * In contrast to {@link TimingInfo}, which is intended to be a minimal support
  * of the timing info, this class is the full support of timing info including
  * features related to sub-measurements and counters.
  * <p>
- * This class is instantiated instead of {@link TimingInfo} when
- * request metric collection is required during a particular service
- * request/response cycle.
+ * This class is instantiated instead of {@link TimingInfo} when request metric
+ * collection is required during a particular service request/response cycle.
  */
 class TimingInfoFullSupport extends TimingInfo {
     private final Map<String, List<TimingInfo>> subMeasurementsByName = new HashMap<String, List<TimingInfo>>();
@@ -37,11 +37,10 @@ class TimingInfoFullSupport extends TimingInfo {
     /**
      * A private ctor to facilitate the deprecation of using millisecond and
      * migration to using nanosecond for timing measurement.
-     * 
+     *
      * @param startEpochTimeMilli start time since epoch in millisecond
      * @param startTimeNano start time in nanosecond
      * @param endTimeNano end time in nanosecond; or null if not known
-     * 
      * @see TimingInfo#startTimingFullSupport()
      * @see TimingInfo#startTimingFullSupport(long)
      * @see TimingInfo#newTimingInfoFullSupport(long, long)
@@ -62,8 +61,8 @@ class TimingInfoFullSupport extends TimingInfo {
             timings.add(ti);
         } else {
             LogFactory.getLog(getClass()).debug(
-                "Skip submeasurement timing info with no end time for "
-                + subMeasurementName);
+                    "Skip submeasurement timing info with no end time for "
+                            + subMeasurementName);
         }
     }
 

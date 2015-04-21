@@ -72,9 +72,6 @@ public class FileEventStore implements EventStore {
                     writer.newLine();
                     writer.flush();
                     success = true;
-                } else {
-                    Log.e(TAG, "The events file exceeded its allowed size of " + maxStorageSize
-                            + " bytes");
                 }
             }
         } catch (IOException e) {

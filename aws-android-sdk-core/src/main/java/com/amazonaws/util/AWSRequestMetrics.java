@@ -15,11 +15,11 @@
 
 package com.amazonaws.util;
 
-import java.util.Collections;
-import java.util.List;
-
 import com.amazonaws.metrics.MetricType;
 import com.amazonaws.metrics.RequestMetricType;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Used as both a base class and a minimal support of AWS SDK request metrics.
@@ -55,7 +55,8 @@ public class AWSRequestMetrics {
         CredentialsRequestTime,
         Exception,
         /**
-         * Number of milliseconds taken for a request/response round trip to AWS.
+         * Number of milliseconds taken for a request/response round trip to
+         * AWS.
          */
         HttpRequestTime,
         RedirectLocation,
@@ -65,7 +66,8 @@ public class AWSRequestMetrics {
          */
         RequestSigningTime,
         /**
-         * Number of milliseconds taken to execute the response handler for a response from AWS.
+         * Number of milliseconds taken to execute the response handler for a
+         * response from AWS.
          */
         ResponseProcessingTime,
         /**
@@ -75,7 +77,8 @@ public class AWSRequestMetrics {
         /**
          * Number of retries of AWS SDK sending a request to AWS.
          */
-        RetryCount, // captured via the RequestCount since (RetryCount = RequestCount - 1)
+        RetryCount, // captured via the RequestCount since (RetryCount =
+                    // RequestCount - 1)
         /**
          * Number of retries of the underlying http client library in sending a
          * request to AWS.
@@ -83,12 +86,12 @@ public class AWSRequestMetrics {
         HttpClientRetryCount,
         /**
          * Time taken to send a request to AWS by the http client library,
-         * excluding any retry. 
+         * excluding any retry.
          */
         HttpClientSendRequestTime,
         /**
          * Time taken to receive a response from AWS by the http client library,
-         * excluding any retry. 
+         * excluding any retry.
          */
         HttpClientReceiveResponseTime,
 
@@ -118,8 +121,10 @@ public class AWSRequestMetrics {
          */
         HttpClientPoolPendingCount,
         RetryPauseTime,
-//      S3DownloadThroughput, // migrated to S3RequestMetric in the S3 clint library
-//      S3UploadThroughput,   // migrated to S3RequestMetric in the S3 clint library
+        // S3DownloadThroughput, // migrated to S3RequestMetric in the S3 clint
+        // library
+        // S3UploadThroughput, // migrated to S3RequestMetric in the S3 clint
+        // library
         ServiceEndpoint,
         ServiceName,
         StatusCode, // The http status code
@@ -132,7 +137,7 @@ public class AWSRequestMetrics {
      * This constructor should be used only in the case when AWS SDK metrics
      * collector is disabled, when minimal timing info is supported for backward
      * compatibility reasons.
-     * 
+     *
      * @see AWSRequestMetricsFullSupport
      */
     public AWSRequestMetrics() {
@@ -146,25 +151,53 @@ public class AWSRequestMetrics {
     public final TimingInfo getTimingInfo() {
         return timingInfo;
     }
+
     /**
-     * Returns true if this metrics is enabled; false otherwise.
-     * Returns false by default.
-     * */
+     * Returns true if this metrics is enabled; false otherwise. Returns false
+     * by default.
+     */
     public boolean isEnabled() {
         return false;
     }
 
-    public void startEvent(String eventName) {}
-    public void startEvent(MetricType f) {}
-    public void endEvent(String eventName) {}
-    public void endEvent(MetricType f) {}
-    public void incrementCounter(String event) {}
-    public void incrementCounter(MetricType f) {}
-    public void setCounter(String counterName, long count) {}
-    public void setCounter(MetricType f, long count) {}
-    public void addProperty(String propertyName, Object value) {}
-    public void addProperty(MetricType f, Object value) {}
-    public void log() {}
-    public List<Object> getProperty(String propertyName){ return Collections.emptyList(); }
-    public List<Object> getProperty(MetricType f) { return Collections.emptyList(); }
+    public void startEvent(String eventName) {
+    }
+
+    public void startEvent(MetricType f) {
+    }
+
+    public void endEvent(String eventName) {
+    }
+
+    public void endEvent(MetricType f) {
+    }
+
+    public void incrementCounter(String event) {
+    }
+
+    public void incrementCounter(MetricType f) {
+    }
+
+    public void setCounter(String counterName, long count) {
+    }
+
+    public void setCounter(MetricType f, long count) {
+    }
+
+    public void addProperty(String propertyName, Object value) {
+    }
+
+    public void addProperty(MetricType f, Object value) {
+    }
+
+    public void log() {
+    }
+
+    public List<Object> getProperty(String propertyName) {
+        return Collections.emptyList();
+    }
+
+    public List<Object> getProperty(MetricType f) {
+        return Collections.emptyList();
+    }
 }

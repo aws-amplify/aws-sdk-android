@@ -4,22 +4,23 @@
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
+
+import com.amazonaws.internal.SdkFilterInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import com.amazonaws.internal.SdkFilterInputStream;
 
 /**
  * Simple InputStream wrapper that examines the wrapped stream's contents as
@@ -52,7 +53,7 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
         super.mark(readlimit);
         if (markSupported()) {
             try {
-                digestLastMarked = (MessageDigest)digest.clone();
+                digestLastMarked = (MessageDigest) digest.clone();
             } catch (CloneNotSupportedException e) { // should never occur
                 throw new IllegalStateException("unexpected", e);
             }
@@ -67,7 +68,7 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
         super.reset();
         if (digestLastMarked != null) {
             try {
-                digest = (MessageDigest)digestLastMarked.clone();
+                digest = (MessageDigest) digestLastMarked.clone();
             } catch (CloneNotSupportedException e) { // should never occur
                 throw new IllegalStateException("unexpected", e);
             }
@@ -78,7 +79,7 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
     public int read() throws IOException {
         int ch = super.read();
         if (ch != -1) {
-            digest.update((byte)ch);
+            digest.update((byte) ch);
         }
         return ch;
     }

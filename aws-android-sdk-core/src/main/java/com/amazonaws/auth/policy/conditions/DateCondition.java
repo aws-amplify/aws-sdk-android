@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.auth.policy.conditions;
 
-import java.util.Arrays;
-import java.util.Date;
+package com.amazonaws.auth.policy.conditions;
 
 import com.amazonaws.auth.policy.Condition;
 import com.amazonaws.util.DateUtils;
+
+import java.util.Arrays;
+import java.util.Date;
 
 /**
  * AWS access control policy condition that allows an access control statement
@@ -43,18 +44,18 @@ public class DateCondition extends Condition {
      * Constructs a new access policy condition that compares the current time
      * (on the AWS servers) to the specified date.
      *
-     * @param type
-     *            The type of comparison to perform. For example,
+     * @param type The type of comparison to perform. For example,
      *            {@link DateComparisonType#DateLessThan} will cause this policy
      *            condition to evaluate to true if the current date is less than
      *            the date specified in the second argument.
-     * @param date
-     *            The date to compare against.
+     * @param date The date to compare against.
      */
     public DateCondition(DateComparisonType type, Date date) {
         super.type = type.toString();
         super.conditionKey = ConditionFactory.CURRENT_TIME_CONDITION_KEY;
-        super.values = Arrays.asList(new String[] {DateUtils.formatISO8601Date(date)});
+        super.values = Arrays.asList(new String[] {
+            DateUtils.formatISO8601Date(date)
+        });
     }
 
 }

@@ -12,13 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model;
 
-import java.util.Date;
+package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.internal.ObjectExpirationResult;
 import com.amazonaws.services.s3.internal.SSEResultBase;
 
+import java.util.Date;
 
 /**
  * The CompleteMultipartUploadResult contains all the information about the
@@ -65,8 +65,7 @@ public class CompleteMultipartUploadResult extends SSEResultBase implements Obje
     /**
      * Sets the URL identifying the new multipart object.
      *
-     * @param location
-     *            The URL identifying the new multipart object.
+     * @param location The URL identifying the new multipart object.
      */
     public void setLocation(String location) {
         this.location = location;
@@ -84,9 +83,8 @@ public class CompleteMultipartUploadResult extends SSEResultBase implements Obje
     /**
      * Sets the name of the bucket containing the completed multipart object.
      *
-     * @param bucketName
-     *            The name of the bucket containing the completed multipart
-     *            object.
+     * @param bucketName The name of the bucket containing the completed
+     *            multipart object.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -121,8 +119,7 @@ public class CompleteMultipartUploadResult extends SSEResultBase implements Obje
      * Sets the entity tag identifying the new object. An entity tag is an
      * opaque string that changes if and only if an object's data changes.
      *
-     * @param etag
-     *            The entity tag.
+     * @param etag The entity tag.
      */
     public void setETag(String etag) {
         this.eTag = etag;
@@ -143,17 +140,18 @@ public class CompleteMultipartUploadResult extends SSEResultBase implements Obje
      * Sets the version ID of the new object, only present if versioning has
      * been enabled for the bucket.
      *
-     * @param versionId
-     *            The version ID of the new object, only present if versioning
-     *            has been enabled for the bucket.
+     * @param versionId The version ID of the new object, only present if
+     *            versioning has been enabled for the bucket.
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;
     }
 
     /**
-     * Returns the expiration time for this object, or null if it doesn't expire.
+     * Returns the expiration time for this object, or null if it doesn't
+     * expire.
      */
+    @Override
     public Date getExpirationTime() {
         return expirationTime;
     }
@@ -161,9 +159,9 @@ public class CompleteMultipartUploadResult extends SSEResultBase implements Obje
     /**
      * Sets the expiration time for the object.
      *
-     * @param expirationTime
-     *            The expiration time for the object.
+     * @param expirationTime The expiration time for the object.
      */
+    @Override
     public void setExpirationTime(Date expirationTime) {
         this.expirationTime = expirationTime;
     }
@@ -172,6 +170,7 @@ public class CompleteMultipartUploadResult extends SSEResultBase implements Obje
      * Returns the {@link BucketLifecycleConfiguration} rule ID for this
      * object's expiration, or null if it doesn't expire.
      */
+    @Override
     public String getExpirationTimeRuleId() {
         return expirationTimeRuleId;
     }
@@ -180,9 +179,9 @@ public class CompleteMultipartUploadResult extends SSEResultBase implements Obje
      * Sets the {@link BucketLifecycleConfiguration} rule ID for this object's
      * expiration
      *
-     * @param expirationTimeRuleId
-     *            The rule ID for this object's expiration
+     * @param expirationTimeRuleId The rule ID for this object's expiration
      */
+    @Override
     public void setExpirationTimeRuleId(String expirationTimeRuleId) {
         this.expirationTimeRuleId = expirationTimeRuleId;
     }

@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMappingException;
@@ -19,8 +20,8 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMarshall
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
- * An unmarshaller that delegates to an instance of a
- * {@code DynamoDBMarshaller}-derived custom marshaler.
+ * An unmarshaller that delegates to an instance of a {@code DynamoDBMarshaller}
+ * -derived custom marshaler.
  */
 public class CustomUnmarshaller extends SUnmarshaller {
 
@@ -36,7 +37,9 @@ public class CustomUnmarshaller extends SUnmarshaller {
     }
 
     @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({
+            "rawtypes", "unchecked"
+    })
     public Object unmarshall(AttributeValue value) {
 
         // TODO: Would be nice to cache this object, but not sure if we can
@@ -49,7 +52,9 @@ public class CustomUnmarshaller extends SUnmarshaller {
         return unmarshaller.unmarshall(targetClass, value.getS());
     }
 
-    @SuppressWarnings({ "rawtypes" })
+    @SuppressWarnings({
+            "rawtypes"
+    })
     private static DynamoDBMarshaller createUnmarshaller(Class<?> clazz) {
         try {
 

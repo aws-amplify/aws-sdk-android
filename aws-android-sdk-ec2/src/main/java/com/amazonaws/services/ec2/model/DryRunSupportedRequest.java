@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -19,17 +20,16 @@ import com.amazonaws.Request;
 
 /**
  * Generic interface for operation request that is supported with dry-run.
- * 
- * @param <X>
- *            The type of original, user facing request represented by this
+ *
+ * @param <X> The type of original, user facing request represented by this
  *            DryRunSupportedRequest.
  */
 public interface DryRunSupportedRequest<X extends AmazonWebServiceRequest> {
-    
+
     /**
-     * This method is intended for internal use only.
-     * Returns the marshaled request configured with additional parameters to
-     * enable operation dry-run.
+     * This method is intended for internal use only. Returns the marshaled
+     * request configured with additional parameters to enable operation
+     * dry-run.
      */
     public Request<X> getDryRunRequest();
 

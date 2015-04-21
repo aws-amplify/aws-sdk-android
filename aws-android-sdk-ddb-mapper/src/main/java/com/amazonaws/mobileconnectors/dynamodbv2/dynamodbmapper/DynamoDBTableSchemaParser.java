@@ -12,16 +12,8 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
-import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperFieldModel.DynamoDBAttributeType;
 import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
@@ -32,6 +24,15 @@ import com.amazonaws.services.dynamodbv2.model.KeyType;
 import com.amazonaws.services.dynamodbv2.model.LocalSecondaryIndex;
 import com.amazonaws.services.dynamodbv2.model.Projection;
 import com.amazonaws.services.dynamodbv2.model.ProjectionType;
+
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A class responsible for parsing the primary key and index schema of a table
@@ -49,14 +50,11 @@ class DynamoDBTableSchemaParser {
      * table and the GSIs, and that all secondary indexes are initialized with
      * the default projection type - KEY_ONLY.
      *
-     * @param clazz
-     *            The POJO class.
-     * @param config
-     *            The DynamoDBMapperConfig which contains the TableNameOverrides
-     *            parameter used to determine the table name.
-     * @param reflector
-     *            The DynamoDBReflector that provides all the relevant getters
-     *            of the POJO.
+     * @param clazz The POJO class.
+     * @param config The DynamoDBMapperConfig which contains the
+     *            TableNameOverrides parameter used to determine the table name.
+     * @param reflector The DynamoDBReflector that provides all the relevant
+     *            getters of the POJO.
      */
     CreateTableRequest parseTablePojoToCreateTableRequest(
             Class<?> clazz,
@@ -69,22 +67,25 @@ class DynamoDBTableSchemaParser {
 
         // Primary keys
         Method pHashKeyGetter = reflector.getPrimaryHashKeyGetter(clazz);
-        AttributeDefinition pHashAttrDefinition = getKeyAttributeDefinition(pHashKeyGetter, converter);
-        createTableRequest.withKeySchema(new KeySchemaElement(pHashAttrDefinition.getAttributeName(), KeyType.HASH));
+        AttributeDefinition pHashAttrDefinition = getKeyAttributeDefinition(pHashKeyGetter,
+                converter);
+        createTableRequest.withKeySchema(new KeySchemaElement(pHashAttrDefinition
+                .getAttributeName(), KeyType.HASH));
         // Primary range
         Method pRangeKeyGetter = reflector.getPrimaryRangeKeyGetter(clazz);
         AttributeDefinition pRangeAttrDefinition = null;
         if (pRangeKeyGetter != null) {
             pRangeAttrDefinition = getKeyAttributeDefinition(pRangeKeyGetter, converter);
-            createTableRequest.withKeySchema(new KeySchemaElement(pRangeAttrDefinition.getAttributeName(), KeyType.RANGE));
+            createTableRequest.withKeySchema(new KeySchemaElement(pRangeAttrDefinition
+                    .getAttributeName(), KeyType.RANGE));
         }
 
         // Parse the index schema
         TableIndexesInfo indexesInfo = parseTableIndexes(clazz, reflector);
-        if ( indexesInfo.getGlobalSecondaryIndexes().isEmpty() == false ) {
+        if (indexesInfo.getGlobalSecondaryIndexes().isEmpty() == false) {
             createTableRequest.setGlobalSecondaryIndexes(indexesInfo.getGlobalSecondaryIndexes());
         }
-        if ( indexesInfo.getLocalSecondaryIndexes().isEmpty() == false ) {
+        if (indexesInfo.getLocalSecondaryIndexes().isEmpty() == false) {
             createTableRequest.setLocalSecondaryIndexes(indexesInfo.getLocalSecondaryIndexes());
         }
 
@@ -97,7 +98,8 @@ class DynamoDBTableSchemaParser {
             putAfterCheckConflict(attrDefinitions, pRangeAttrDefinition);
         }
         for (Method indexKeyGetter : indexesInfo.getIndexKeyGetters()) {
-            AttributeDefinition indexKeyAttrDefinition = getKeyAttributeDefinition(indexKeyGetter, converter);
+            AttributeDefinition indexKeyAttrDefinition = getKeyAttributeDefinition(indexKeyGetter,
+                    converter);
             putAfterCheckConflict(attrDefinitions, indexKeyAttrDefinition);
         }
         createTableRequest.setAttributeDefinitions(attrDefinitions.values());
@@ -106,8 +108,8 @@ class DynamoDBTableSchemaParser {
     }
 
     TableIndexesInfo parseTableIndexes(final Class<?> clazz, final DynamoDBReflector reflector) {
-        synchronized(tableIndexesInfoCache) {
-            if ( !tableIndexesInfoCache.containsKey(clazz) ) {
+        synchronized (tableIndexesInfoCache) {
+            if (!tableIndexesInfoCache.containsKey(clazz)) {
                 TableIndexesInfo tableIndexInfo = new TableIndexesInfo();
                 String pHashName = reflector.getPrimaryHashKeyName(clazz);
 
@@ -119,25 +121,28 @@ class DynamoDBTableSchemaParser {
 
                     String attributeName = reflector.getAttributeName(getter);
 
-                    if (ReflectionUtils.getterOrFieldHasAnnotation(getter, DynamoDBIndexHashKey.class)) {
+                    if (ReflectionUtils.getterOrFieldHasAnnotation(getter,
+                            DynamoDBIndexHashKey.class)) {
                         DynamoDBIndexHashKey indexHashKeyAnnotation = ReflectionUtils
                                 .getAnnotationFromGetterOrField(getter, DynamoDBIndexHashKey.class);
                         String gsiName = indexHashKeyAnnotation.globalSecondaryIndexName();
                         String[] gsiNames = indexHashKeyAnnotation.globalSecondaryIndexNames();
 
                         boolean singleGsiName = gsiName != null &&
-                                                gsiName.length() != 0;
+                                gsiName.length() != 0;
                         boolean multipleGsiNames = gsiNames != null &&
-                                                   gsiNames.length != 0;
+                                gsiNames.length != 0;
 
-                        if ( singleGsiName && multipleGsiNames) {
+                        if (singleGsiName && multipleGsiNames) {
+                            throw new DynamoDBMappingException(
+                                    "@DynamoDBIndexHashKey annotation on getter "
+                                            + getter
+                                            +
+                                            " contains both globalSecondaryIndexName and globalSecondaryIndexNames.");
+                        } else if ((!singleGsiName) && (!multipleGsiNames)) {
                             throw new DynamoDBMappingException(
                                     "@DynamoDBIndexHashKey annotation on getter " + getter +
-                                    " contains both globalSecondaryIndexName and globalSecondaryIndexNames.");
-                        } else if ( (!singleGsiName) && (!multipleGsiNames) ) {
-                            throw new DynamoDBMappingException(
-                                    "@DynamoDBIndexHashKey annotation on getter " + getter +
-                                    " doesn't contain any index name.");
+                                            " doesn't contain any index name.");
                         }
 
                         if (singleGsiName) {
@@ -150,7 +155,8 @@ class DynamoDBTableSchemaParser {
                         tableIndexInfo.addIndexKeyGetter(getter);
                     }
 
-                    if (ReflectionUtils.getterOrFieldHasAnnotation(getter, DynamoDBIndexRangeKey.class)) {
+                    if (ReflectionUtils.getterOrFieldHasAnnotation(getter,
+                            DynamoDBIndexRangeKey.class)) {
                         DynamoDBIndexRangeKey indexRangeKeyAnnotation = ReflectionUtils
                                 .getAnnotationFromGetterOrField(getter, DynamoDBIndexRangeKey.class);
                         String gsiName = indexRangeKeyAnnotation.globalSecondaryIndexName();
@@ -159,28 +165,33 @@ class DynamoDBTableSchemaParser {
                         String[] lsiNames = indexRangeKeyAnnotation.localSecondaryIndexNames();
 
                         boolean singleGsiName = gsiName != null &&
-                                                gsiName.length() != 0;
+                                gsiName.length() != 0;
                         boolean multipleGsiNames = gsiNames != null &&
-                                                   gsiNames.length != 0;
+                                gsiNames.length != 0;
                         boolean singleLsiName = lsiName != null &&
-                                                lsiName.length() != 0;
+                                lsiName.length() != 0;
                         boolean multipleLsiNames = lsiNames != null &&
-                                                   lsiNames.length != 0;
+                                lsiNames.length != 0;
 
-                        if ( singleGsiName && multipleGsiNames ) {
+                        if (singleGsiName && multipleGsiNames) {
                             throw new DynamoDBMappingException(
-                                    "@DynamoDBIndexRangeKey annotation on getter " + getter +
-                                    " contains both globalSecondaryIndexName and globalSecondaryIndexNames.");
+                                    "@DynamoDBIndexRangeKey annotation on getter "
+                                            + getter
+                                            +
+                                            " contains both globalSecondaryIndexName and globalSecondaryIndexNames.");
                         }
-                        if ( singleLsiName && multipleLsiNames ) {
+                        if (singleLsiName && multipleLsiNames) {
                             throw new DynamoDBMappingException(
-                                    "@DynamoDBIndexRangeKey annotation on getter " + getter +
-                                    " contains both localSecondaryIndexName and localSecondaryIndexNames.");
+                                    "@DynamoDBIndexRangeKey annotation on getter "
+                                            + getter
+                                            +
+                                            " contains both localSecondaryIndexName and localSecondaryIndexNames.");
                         }
-                        if ( (!singleGsiName) && (!multipleGsiNames) && (!singleLsiName) && (!multipleLsiNames) ) {
+                        if ((!singleGsiName) && (!multipleGsiNames) && (!singleLsiName)
+                                && (!multipleLsiNames)) {
                             throw new DynamoDBMappingException(
                                     "@DynamoDBIndexRangeKey annotation on getter " + getter +
-                                    " doesn't contain any index name.");
+                                            " doesn't contain any index name.");
                         }
 
                         if (singleGsiName) {
@@ -216,24 +227,24 @@ class DynamoDBTableSchemaParser {
         DynamoDBAttributeType keyType = fieldModel.getDynamoDBAttributeType();
 
         if (keyType == DynamoDBAttributeType.S ||
-            keyType == DynamoDBAttributeType.N ||
-            keyType == DynamoDBAttributeType.B) {
+                keyType == DynamoDBAttributeType.N ||
+                keyType == DynamoDBAttributeType.B) {
             return new AttributeDefinition(keyAttrName, keyType.toString());
         }
 
         throw new DynamoDBMappingException(
                 "The key attribute must be in a scalar type "
-                + "(String, Number or Binary).");
+                        + "(String, Number or Binary).");
     }
 
     private static void putAfterCheckConflict(Map<String, AttributeDefinition> map,
-                                              AttributeDefinition attrDefinition) {
+            AttributeDefinition attrDefinition) {
         String attrName = attrDefinition.getAttributeName();
         AttributeDefinition existingDefinition = map.get(attrName);
         if (existingDefinition != null && !existingDefinition.equals(attrDefinition)) {
             throw new DynamoDBMappingException(
                     "Found conflicting definitions for attribute [" + attrName + "]: " +
-                    existingDefinition + " and " + attrDefinition + ".");
+                            existingDefinition + " and " + attrDefinition + ".");
         } else {
             map.put(attrName, attrDefinition);
         }
@@ -253,7 +264,10 @@ class DynamoDBTableSchemaParser {
         private final Map<String, Set<String>> gsiRangeKeyNameToIndexNames =
                 new HashMap<String, Set<String>>();
 
-        /** Note that the KeySchema in each LocalSecondaryIndex does not include the hash key. */
+        /**
+         * Note that the KeySchema in each LocalSecondaryIndex does not include
+         * the hash key.
+         */
         private final Map<String, LocalSecondaryIndex> lsiNameToLsiDefinition = new HashMap<String, LocalSecondaryIndex>();
         private final Map<String, GlobalSecondaryIndex> gsiNameToGsiDefinition = new HashMap<String, GlobalSecondaryIndex>();
 
@@ -322,9 +336,10 @@ class DynamoDBTableSchemaParser {
                 GlobalSecondaryIndex existingGsi = gsiNameToGsiDefinition.get(gsiName);
                 gsi = existingGsi;
 
-                if ( !gsiName.equals(existingGsi.getIndexName()) ) {
-                    throw new IllegalStateException("Found invalid state of an existing GlobalSecondaryIndex object " +
-                            "associated with the GSI [" + gsiName + "].");
+                if (!gsiName.equals(existingGsi.getIndexName())) {
+                    throw new IllegalStateException(
+                            "Found invalid state of an existing GlobalSecondaryIndex object " +
+                                    "associated with the GSI [" + gsiName + "].");
                 }
 
                 for (KeySchemaElement existingKey : existingGsi.getKeySchema()) {
@@ -333,35 +348,41 @@ class DynamoDBTableSchemaParser {
 
                     if (KeyType.HASH.toString().equals(existingKeyType)) {
                         if (gsiHashKeyName != null && !gsiHashKeyName.equals(existingKeyName)) {
-                            throw new DynamoDBMappingException("Multiple hash keys [" + existingKeyName + ", " + gsiHashKeyName +
+                            throw new DynamoDBMappingException("Multiple hash keys ["
+                                    + existingKeyName + ", " + gsiHashKeyName +
                                     "] are found for the GSI [" + gsiName + "]. " +
                                     "Each index allows at most one range key attribute.");
                         }
                     } else if (KeyType.RANGE.toString().equals(existingKeyType)) {
                         if (gsiRangeKeyName != null && !gsiRangeKeyName.equals(existingKeyName)) {
-                            throw new DynamoDBMappingException("Multiple range keys [" + existingKeyName + ", " + gsiRangeKeyName +
+                            throw new DynamoDBMappingException("Multiple range keys ["
+                                    + existingKeyName + ", " + gsiRangeKeyName +
                                     "] are found for the GSI [" + gsiName + "]. " +
                                     "Each index allows at most one range key attribute.");
                         }
                     } else {
                         // Existing key element is neither HASH nor RANGE.
-                        throw new IllegalStateException("Found invalid state of an existing GlobalSecondaryIndex object " +
-                                "associated with the GSI [" + gsiName + "].");
+                        throw new IllegalStateException(
+                                "Found invalid state of an existing GlobalSecondaryIndex object " +
+                                        "associated with the GSI [" + gsiName + "].");
                     }
                 }
             } else {
                 gsi = new GlobalSecondaryIndex()
-                    .withIndexName(gsiName)
-                    .withProjection(new Projection().withProjectionType(ProjectionType.KEYS_ONLY));
+                        .withIndexName(gsiName)
+                        .withProjection(
+                                new Projection().withProjectionType(ProjectionType.KEYS_ONLY));
                 gsiNameToGsiDefinition.put(gsiName, gsi);
             }
 
             if (gsiHashKeyName != null) {
-                // Make sure that the HASH key element is always inserted at the beginning of the list
+                // Make sure that the HASH key element is always inserted at the
+                // beginning of the list
                 if (gsi.getKeySchema() == null || gsi.getKeySchema().isEmpty()) {
                     gsi.withKeySchema(new KeySchemaElement(gsiHashKeyName, KeyType.HASH));
                 } else {
-                    LinkedList<KeySchemaElement> orderedKeys = new LinkedList<KeySchemaElement>(gsi.getKeySchema());
+                    LinkedList<KeySchemaElement> orderedKeys = new LinkedList<KeySchemaElement>(
+                            gsi.getKeySchema());
                     orderedKeys.addFirst(new KeySchemaElement(gsiHashKeyName, KeyType.HASH));
                     gsi.setKeySchema(orderedKeys);
                 }
@@ -379,22 +400,31 @@ class DynamoDBTableSchemaParser {
 
         private void addLsiRangeKey(String lsiName, String pHashKeyName, String lsiRangeKeyName) {
             if (pHashKeyName == null) {
-                throw new IllegalArgumentException("The name of the primary hash key must be specified.");
+                throw new IllegalArgumentException(
+                        "The name of the primary hash key must be specified.");
             }
 
             if (lsiNameToLsiDefinition.containsKey(lsiName)) {
                 LocalSecondaryIndex existingLsi = lsiNameToLsiDefinition.get(lsiName);
-                if ( !lsiName.equals(existingLsi.getIndexName())
+                if (!lsiName.equals(existingLsi.getIndexName())
                         || existingLsi.getKeySchema() == null
-                        || existingLsi.getKeySchema().size() != 2  // the hash key element should be already added
-                        || !KeyType.RANGE.toString().equals(existingLsi.getKeySchema().get(1).getKeyType()) ) {
-                    throw new IllegalStateException("Found invalid state of an existing LocalSecondaryIndex object " +
-                            "associated with the LSI [" + lsiName + "].");
+                        || existingLsi.getKeySchema().size() != 2 // the hash
+                                                                  // key element
+                                                                  // should be
+                                                                  // already
+                                                                  // added
+                        || !KeyType.RANGE.toString().equals(
+                                existingLsi.getKeySchema().get(1).getKeyType())) {
+                    throw new IllegalStateException(
+                            "Found invalid state of an existing LocalSecondaryIndex object " +
+                                    "associated with the LSI [" + lsiName + "].");
                 }
 
-                String existingLsiRangeKeyName = existingLsi.getKeySchema().get(1).getAttributeName();
-                if ( !existingLsiRangeKeyName.equals(lsiRangeKeyName) ) {
-                    throw new DynamoDBMappingException("Multiple range keys [" + existingLsiRangeKeyName + ", " + lsiRangeKeyName +
+                String existingLsiRangeKeyName = existingLsi.getKeySchema().get(1)
+                        .getAttributeName();
+                if (!existingLsiRangeKeyName.equals(lsiRangeKeyName)) {
+                    throw new DynamoDBMappingException("Multiple range keys ["
+                            + existingLsiRangeKeyName + ", " + lsiRangeKeyName +
                             "] are found for the LSI [" + lsiName + "]. " +
                             "Each index allows at most one range key attribute.");
                 }
@@ -406,7 +436,9 @@ class DynamoDBTableSchemaParser {
                                 .withKeySchema(
                                         new KeySchemaElement(pHashKeyName, KeyType.HASH),
                                         new KeySchemaElement(lsiRangeKeyName, KeyType.RANGE))
-                                .withProjection(new Projection().withProjectionType(ProjectionType.KEYS_ONLY)));
+                                .withProjection(
+                                        new Projection()
+                                                .withProjectionType(ProjectionType.KEYS_ONLY)));
                 mapLsiRangeKeyToIndexName(lsiRangeKeyName, lsiName);
             }
         }
@@ -424,8 +456,8 @@ class DynamoDBTableSchemaParser {
         }
 
         private void mapIndexKeyToIndexName(Map<String, Set<String>> indexKeyNameToIndexNames,
-                                            String indexKeyName,
-                                            String indexName) {
+                String indexKeyName,
+                String indexName) {
             if (indexKeyNameToIndexNames.get(indexKeyName) == null) {
                 Set<String> indexNames = new HashSet<String>();
                 indexNames.add(indexName);

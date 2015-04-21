@@ -12,25 +12,23 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.regions;
 
 import static com.amazonaws.SDKGlobalConfiguration.REGIONS_FILE_OVERRIDE_SYSTEM_PROPERTY;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.amazonaws.util.VersionInfoUtils;
 
 /**
  * Utilities for working with regions.
@@ -46,7 +44,7 @@ public class RegionUtils {
      * Returns a list of the available AWS regions.
      */
     public synchronized static List<Region> getRegions() {
-        if ( regions == null ) {
+        if (regions == null) {
             init();
         }
 
@@ -60,8 +58,8 @@ public class RegionUtils {
      */
     public synchronized static List<Region> getRegionsForService(String serviceAbbreviation) {
         List<Region> regions = new LinkedList<Region>();
-        for ( Region r : getRegions() ) {
-            if ( r.isServiceSupported(serviceAbbreviation) ) {
+        for (Region r : getRegions()) {
+            if (r.isServiceSupported(serviceAbbreviation)) {
                 regions.add(r);
             }
         }
@@ -73,8 +71,8 @@ public class RegionUtils {
      * null.
      */
     public static Region getRegion(String regionName) {
-        for ( Region r : getRegions() ) {
-            if ( r.getName().equals(regionName) ) {
+        for (Region r : getRegions()) {
+            if (r.getName().equals(regionName)) {
                 return r;
             }
         }
@@ -87,29 +85,29 @@ public class RegionUtils {
      * specified endpoint. If no region is found with a service at that
      * endpoint, an exception is thrown.
      *
-     * @param endpoint
-     *            The endpoint for any service residing in the desired region.
+     * @param endpoint The endpoint for any service residing in the desired
+     *            region.
      * @return The region containing any service running at the specified
      *         endpoint, otherwise an exception is thrown if no region is found
      *         with a service at the specified endpoint.
-     * @throws MalformedURLException
-     *             If the given URL is malformed, or if the one of the service
-     *             URLs on record is malformed.
+     * @throws MalformedURLException If the given URL is malformed, or if the
+     *             one of the service URLs on record is malformed.
      */
     public static Region getRegionByEndpoint(String endpoint) {
-    	URI targetEndpointUri = getUriByEndpoint(endpoint);
-    	String targetHost = targetEndpointUri.getHost();
+        URI targetEndpointUri = getUriByEndpoint(endpoint);
+        String targetHost = targetEndpointUri.getHost();
 
-        for ( Region region : getRegions() ) {
-            for ( String serviceEndpoint : region.getServiceEndpoints().values() ) {
+        for (Region region : getRegions()) {
+            for (String serviceEndpoint : region.getServiceEndpoints().values()) {
                 URI serviceEndpointUrl = getUriByEndpoint(serviceEndpoint);
 
-                if ( serviceEndpointUrl.getHost().equals(targetHost) )
+                if (serviceEndpointUrl.getHost().equals(targetHost))
                     return region;
             }
         }
 
-        throw new IllegalArgumentException("No region found with any service for endpoint " + endpoint);
+        throw new IllegalArgumentException("No region found with any service for endpoint "
+                + endpoint);
     }
 
     /**
@@ -118,30 +116,30 @@ public class RegionUtils {
      * initializes the static list of regions with it.
      */
     public static synchronized void init() {
-        if ( System.getProperty(REGIONS_FILE_OVERRIDE_SYSTEM_PROPERTY) != null ) {
+        if (System.getProperty(REGIONS_FILE_OVERRIDE_SYSTEM_PROPERTY) != null) {
             try {
                 loadRegionsFromOverrideFile();
-            } catch ( FileNotFoundException e ) {
+            } catch (FileNotFoundException e) {
                 throw new RuntimeException("Couldn't find regions override file specified", e);
             }
         }
 
         // Fall back onto the version we ship with the SDK
-        if ( regions == null ) {
+        if (regions == null) {
             initSDKRegions();
         }
         // Throw out RuntimeException explicitly
-        if ( regions == null ) {
+        if (regions == null) {
             throw new RuntimeException("Failed to initialize the regions.");
         }
     }
 
     private static void loadRegionsFromOverrideFile() throws FileNotFoundException {
         String overrideFilePath = System.getProperty(REGIONS_FILE_OVERRIDE_SYSTEM_PROPERTY);
-        if ( log.isDebugEnabled() ) {
+        if (log.isDebugEnabled()) {
             log.debug("Using local override of the regions file ("
-                        + overrideFilePath
-                        + ") to initiate regions data...");
+                    + overrideFilePath
+                    + ") to initiate regions data...");
         }
         File regionsFile = new File(overrideFilePath);
         FileInputStream override = new FileInputStream(regionsFile);
@@ -151,15 +149,14 @@ public class RegionUtils {
     /**
      * Tries to initialize the regions list from the stream given.
      *
-     * @param regionsFile
-     *            The input stream pointing to the retrieved region file.
-     *
+     * @param regionsFile The input stream pointing to the retrieved region
+     *            file.
      */
     private static void initRegions(InputStream regionsFile) {
         try {
             RegionMetadataParser parser = new RegionMetadataParser();
             regions = parser.parseRegionMetadata(regionsFile);
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             log.warn("Failed to parse regional endpoints", e);
         }
     }
@@ -169,18 +166,19 @@ public class RegionUtils {
      * the SDK, in case it cannot be fetched from the remote source.
      */
     private static void initSDKRegions() {
-        if ( log.isDebugEnabled() ) {
+        if (log.isDebugEnabled()) {
             log.debug("Initializing the regions with default regions");
         }
         regions = RegionDefaults.getRegions();
     }
 
     /**
-     * Get the URI object for the given endpoint. URI class cannot correctly parse the endpoint
-     * if it doesn't include protocol. This method will add the protocol if this happens.
+     * Get the URI object for the given endpoint. URI class cannot correctly
+     * parse the endpoint if it doesn't include protocol. This method will add
+     * the protocol if this happens.
      */
     private static URI getUriByEndpoint(String endpoint) {
-        URI targetEndpointUri= null;
+        URI targetEndpointUri = null;
         try {
             targetEndpointUri = new URI(endpoint);
             if (targetEndpointUri.getHost() == null) {

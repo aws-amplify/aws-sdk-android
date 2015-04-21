@@ -12,21 +12,22 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
 
 import static com.amazonaws.services.s3.internal.crypto.S3KeyWrapScheme.RSA_ECB_OAEPWithSHA256AndMGF1Padding;
+
+import org.apache.commons.logging.LogFactory;
 
 import java.security.Provider;
 import java.security.Security;
 
 import javax.crypto.Cipher;
 
-import org.apache.commons.logging.LogFactory;
-
 public class CryptoRuntime {
     static final String BOUNCY_CASTLE_PROVIDER = "BC";
     private static final String BC_PROVIDER_FQCN = "org.bouncycastle.jce.provider.BouncyCastleProvider";
-    
+
     public static boolean isBouncyCastleAvailable() {
         return Security.getProvider(BOUNCY_CASTLE_PROVIDER) != null;
     }
@@ -34,7 +35,7 @@ public class CryptoRuntime {
     public static void enableBouncyCastle() {
         try {
             @SuppressWarnings("unchecked")
-            Class<Provider> c = (Class<Provider>)Class.forName(BC_PROVIDER_FQCN);
+            Class<Provider> c = (Class<Provider>) Class.forName(BC_PROVIDER_FQCN);
             Provider provider = c.newInstance();
             Security.addProvider(provider);
         } catch (Exception e) {
@@ -42,7 +43,7 @@ public class CryptoRuntime {
                     "Bouncy Castle not available", e);
         }
     }
-    
+
     /**
      * Used only for unit test when the same class loader is used across
      * multiple unit tests.
@@ -51,9 +52,14 @@ public class CryptoRuntime {
         recheckAesGcmAvailablility();
         recheckRsaKeyWrapAvailablility();
     }
-    
-    public static boolean isAesGcmAvailable() { return AesGcm.isAvailable; }
-    private static void recheckAesGcmAvailablility() { AesGcm.recheck(); }
+
+    public static boolean isAesGcmAvailable() {
+        return AesGcm.isAvailable;
+    }
+
+    private static void recheckAesGcmAvailablility() {
+        AesGcm.recheck();
+    }
 
     static boolean isRsaKeyWrapAvailable() {
         return RsaEcbOaepWithSHA256AndMGF1Padding.isAvailable;
@@ -65,7 +71,11 @@ public class CryptoRuntime {
 
     private static final class AesGcm {
         static volatile boolean isAvailable = check();
-        static boolean recheck() { return isAvailable = check(); }
+
+        static boolean recheck() {
+            return isAvailable = check();
+        }
+
         private static boolean check() {
             try {
                 Cipher.getInstance(
@@ -77,9 +87,14 @@ public class CryptoRuntime {
             }
         }
     }
+
     private static final class RsaEcbOaepWithSHA256AndMGF1Padding {
         static volatile boolean isAvailable = check();
-        static boolean recheck() { return isAvailable = check(); }
+
+        static boolean recheck() {
+            return isAvailable = check();
+        }
+
         private static boolean check() {
             try {
                 Cipher.getInstance(RSA_ECB_OAEPWithSHA256AndMGF1Padding,

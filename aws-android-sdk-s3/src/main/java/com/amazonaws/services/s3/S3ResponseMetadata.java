@@ -12,11 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3;
 
-import java.util.Map;
-
 import com.amazonaws.ResponseMetadata;
+
+import java.util.Map;
 
 /**
  * Extension of {@link ResponseMetadata} with Amazon S3 specific data. In
@@ -31,8 +32,7 @@ public class S3ResponseMetadata extends ResponseMetadata {
      * Creates a new S3ResponseMetadata object from a specified map of metadata
      * information.
      *
-     * @param metadata
-     *            The raw metadata for the new S3ResponseMetadata object.
+     * @param metadata The raw metadata for the new S3ResponseMetadata object.
      */
     public S3ResponseMetadata(Map<String, String> metadata) {
         super(metadata);
@@ -42,9 +42,8 @@ public class S3ResponseMetadata extends ResponseMetadata {
      * Creates a new S3ResponseMetadata object from an existing ResponseMetadata
      * object.
      *
-     * @param originalResponseMetadata
-     *            The ResponseMetadata object from which to create the new
-     *            object.
+     * @param originalResponseMetadata The ResponseMetadata object from which to
+     *            create the new object.
      */
     public S3ResponseMetadata(ResponseMetadata originalResponseMetadata) {
         super(originalResponseMetadata);

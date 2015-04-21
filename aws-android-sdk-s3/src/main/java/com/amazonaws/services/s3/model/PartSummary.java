@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.util.Date;
@@ -38,7 +39,6 @@ public class PartSummary {
     /** The size, in bytes, of the part. */
     private long size;
 
-
     /**
      * Returns the part number describing this part's position relative to the
      * other parts in the multipart upload. Part number must be between 1 and
@@ -57,10 +57,9 @@ public class PartSummary {
      * other parts in the multipart upload. Part number must be between 1 and
      * 10,000 (inclusive).
      *
-     * @param partNumber
-     *            the part number describing this part's position relative to
-     *            the other parts in the multipart upload. Part number must be
-     *            between 1 and 10,000 (inclusive).
+     * @param partNumber the part number describing this part's position
+     *            relative to the other parts in the multipart upload. Part
+     *            number must be between 1 and 10,000 (inclusive).
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
@@ -78,8 +77,7 @@ public class PartSummary {
     /**
      * Sets the date this part was last modified.
      *
-     * @param lastModified
-     *            the date this part was last modified.
+     * @param lastModified the date this part was last modified.
      */
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
@@ -97,8 +95,7 @@ public class PartSummary {
     /**
      * Sets the entity tag generated from the part content.
      *
-     * @param eTag
-     *            the entity tag generated from the part content.
+     * @param eTag the entity tag generated from the part content.
      */
     public void setETag(String eTag) {
         this.eTag = eTag;
@@ -116,8 +113,7 @@ public class PartSummary {
     /**
      * Sets the size of this part, in bytes.
      *
-     * @param size
-     *            the size of this part, in bytes.
+     * @param size the size of this part, in bytes.
      */
     public void setSize(long size) {
         this.size = size;

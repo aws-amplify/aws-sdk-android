@@ -12,17 +12,17 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.handlers;
 
 import com.amazonaws.Request;
 import com.amazonaws.util.TimingInfo;
 
 /**
- * @deprecated by {@link RequestHandler2}.
- *  
- * Interface for addition request handling in clients. A request handler is
- * executed on a request object <b>before</b> it is sent to the client runtime
- * to be executed.
+ * @deprecated by {@link RequestHandler2}. Interface for addition request
+ *             handling in clients. A request handler is executed on a request
+ *             object <b>before</b> it is sent to the client runtime to be
+ *             executed.
  */
 @Deprecated
 public interface RequestHandler {
@@ -31,32 +31,26 @@ public interface RequestHandler {
      * Runs any additional processing logic on the specified request (before it
      * is executed by the client runtime).
      *
-     * @param request
-     *            The low level request being processed.
+     * @param request The low level request being processed.
      */
     public void beforeRequest(Request<?> request);
 
-	/**
-	 * Runs any additional processing logic on the specified request (after is
-	 * has been executed by the client runtime).
-	 *
-	 * @param request
-	 *            The low level request being processed.
-	 * @param response
-	 *            The response generated from the specified request.
-	 * @param timingInfo
-	 *            Timing information on the request's processing.
-	 */
+    /**
+     * Runs any additional processing logic on the specified request (after is
+     * has been executed by the client runtime).
+     *
+     * @param request The low level request being processed.
+     * @param response The response generated from the specified request.
+     * @param timingInfo Timing information on the request's processing.
+     */
     public void afterResponse(Request<?> request, Object response, TimingInfo timingInfo);
 
-	/**
-	 * Runs any additional processing logic on a request after it has failed.
-	 *
-	 * @param request
-	 *            The request that generated an error.
-	 * @param e
-	 *            The error that resulted from executing the request.
-	 */
+    /**
+     * Runs any additional processing logic on a request after it has failed.
+     *
+     * @param request The request that generated an error.
+     * @param e The error that resulted from executing the request.
+     */
     public void afterError(Request<?> request, Exception e);
 
 }

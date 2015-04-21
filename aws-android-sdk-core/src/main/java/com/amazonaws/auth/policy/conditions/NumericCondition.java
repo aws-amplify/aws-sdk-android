@@ -12,15 +12,16 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.auth.policy.conditions;
 
-import java.util.Arrays;
+package com.amazonaws.auth.policy.conditions;
 
 import com.amazonaws.auth.policy.Condition;
 
+import java.util.Arrays;
+
 /**
- * AWS access control policy condition that allows an access control statement to be
- * conditionally applied based on a numeric comparison.
+ * AWS access control policy condition that allows an access control statement
+ * to be conditionally applied based on a numeric comparison.
  */
 public class NumericCondition extends Condition {
 
@@ -37,18 +38,17 @@ public class NumericCondition extends Condition {
     /**
      * Constructs a new access policy condition that compares two numbers.
      *
-     * @param type
-     *            The type of comparison to perform.
-     * @param key
-     *            The access policy condition key specifying where to get the
+     * @param type The type of comparison to perform.
+     * @param key The access policy condition key specifying where to get the
      *            first number for the comparison.
-     * @param value
-     *            The second number to compare against.
+     * @param value The second number to compare against.
      */
     public NumericCondition(NumericComparisonType type, String key, String value) {
         super.type = type.toString();
         super.conditionKey = key;
-        super.values = Arrays.asList(new String[] {value});
+        super.values = Arrays.asList(new String[] {
+            value
+        });
     }
 
 }

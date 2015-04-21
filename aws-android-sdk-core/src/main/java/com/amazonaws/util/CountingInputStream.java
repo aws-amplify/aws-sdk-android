@@ -12,12 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
+
+import com.amazonaws.internal.SdkFilterInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.amazonaws.internal.SdkFilterInputStream;
 
 /**
  * Simple input stream wrapper utility to count the bytes read from a stream.

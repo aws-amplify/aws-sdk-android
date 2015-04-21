@@ -12,15 +12,15 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.Set;
+package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.util.DateUtils;
+
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * An unmarshaller that unmarshals sets of ISO-8601-formatted dates as sets of
@@ -43,7 +43,7 @@ public class CalendarSetUnmarshaller extends SSUnmarshaller {
         Set<Calendar> result = new HashSet<Calendar>();
 
         for (String s : value.getSS()) {
-            Calendar cal = GregorianCalendar.getInstance();
+            Calendar cal = Calendar.getInstance();
             cal.setTime(DateUtils.parseISO8601Date(s));
             result.add(cal);
         }

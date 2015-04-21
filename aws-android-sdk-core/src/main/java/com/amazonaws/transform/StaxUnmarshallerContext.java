@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.transform;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -50,8 +51,7 @@ public class StaxUnmarshallerContext {
      * Constructs a new unmarshaller context using the specified source of XML
      * events.
      *
-     * @param xpp
-     *            The source of XML events for this unmarshalling context.
+     * @param xpp The source of XML events for this unmarshalling context.
      */
     public StaxUnmarshallerContext(XmlPullParser xpp) {
         this(xpp, null);
@@ -61,11 +61,9 @@ public class StaxUnmarshallerContext {
      * Constructs a new unmarshaller context using the specified source of XML
      * events, and a set of response headers.
      *
-     * @param xpp
-     *            The source of XML events for this unmarshalling context.
-     * @param headers
-     *            The set of response headers associated with this unmarshaller
-     *            context.
+     * @param xpp The source of XML events for this unmarshalling context.
+     * @param headers The set of response headers associated with this
+     *            unmarshaller context.
      */
     public StaxUnmarshallerContext(XmlPullParser xpp, Map<String, String> headers) {
         this.xpp = xpp;
@@ -76,14 +74,13 @@ public class StaxUnmarshallerContext {
      * Returns the value of the header with the specified name from the
      * response, or null if not present.
      *
-     * @param header
-     *            The name of the header to lookup.
-     *
-     * @return The value of the header with the specified name from the
-     *         response, or null if not present.
+     * @param header The name of the header to lookup.
+     * @return The value of the header with the specified name from the response,
+     *         or null if not present.
      */
     public String getHeader(String header) {
-        if (headers == null) return null;
+        if (headers == null)
+            return null;
 
         return headers.get(header);
     }
@@ -124,8 +121,7 @@ public class StaxUnmarshallerContext {
      * Tests the specified expression against the current position in the XML
      * document being parsed.
      *
-     * @param expression
-     *            The psuedo-xpath expression to test.
+     * @param expression The psuedo-xpath expression to test.
      * @return True if the expression matches the current document position,
      *         otherwise false.
      */
@@ -138,17 +134,16 @@ public class StaxUnmarshallerContext {
      * document being parsed, and restricts the expression to matching at the
      * specified stack depth.
      *
-     * @param expression
-     *            The psuedo-xpath expression to test.
-     * @param startingStackDepth
-     *            The depth in the stack representing where the expression must
-     *            start matching in order for this method to return true.
-     *
+     * @param expression The psuedo-xpath expression to test.
+     * @param startingStackDepth The depth in the stack representing where the
+     *            expression must start matching in order for this method to
+     *            return true.
      * @return True if the specified expression matches the current position in
      *         the XML document, starting from the specified depth.
      */
     public boolean testExpression(String expression, int startingStackDepth) {
-        if (expression.equals(".")) return true;
+        if (expression.equals("."))
+            return true;
 
         int index = -1;
         while ((index = expression.indexOf("/", index + 1)) > -1) {
@@ -158,9 +153,8 @@ public class StaxUnmarshallerContext {
             }
         }
 
-
         return (getCurrentDepth() == startingStackDepth
-                && stackString.endsWith("/" + expression));
+        && stackString.endsWith("/" + expression));
     }
 
     /**
@@ -223,19 +217,16 @@ public class StaxUnmarshallerContext {
      * matching element to be stored in the metadata map under the specified
      * key.
      *
-     * @param expression
-     *            The expression an element must match in order for it's data to
-     *            be pulled out and stored in the metadata map.
-     * @param targetDepth
-     *            The depth in the XML document where the expression match must
-     *            start.
-     * @param storageKey
-     *            The key under which to store the matching element's data.
+     * @param expression The expression an element must match in order for it's
+     *            data to be pulled out and stored in the metadata map.
+     * @param targetDepth The depth in the XML document where the expression
+     *            match must start.
+     * @param storageKey The key under which to store the matching element's
+     *            data.
      */
     public void registerMetadataExpression(String expression, int targetDepth, String storageKey) {
         metadataExpressions.add(new MetadataExpression(expression, targetDepth, storageKey));
     }
-
 
     /*
      * Private Interface

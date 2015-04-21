@@ -12,16 +12,17 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 /**
  * Session credentials that can be refreshed upon request.
  */
 public interface AWSRefreshableSessionCredentials extends AWSSessionCredentials {
-    
+
     /**
      * Forces a refresh of these session credentials.
      */
     public void refreshCredentials();
-    
+
 }

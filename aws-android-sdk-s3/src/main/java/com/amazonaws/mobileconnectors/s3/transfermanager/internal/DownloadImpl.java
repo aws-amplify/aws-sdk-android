@@ -12,20 +12,21 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.io.File;
-import java.io.IOException;
+package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListenerChain;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.mobileconnectors.s3.transfermanager.Download;
 import com.amazonaws.mobileconnectors.s3.transfermanager.PersistableDownload;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferProgress;
 import com.amazonaws.mobileconnectors.s3.transfermanager.exception.PauseException;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.S3Object;
+
+import java.io.File;
+import java.io.IOException;
 
 public class DownloadImpl extends AbstractTransfer implements Download {
 
@@ -52,6 +53,7 @@ public class DownloadImpl extends AbstractTransfer implements Download {
      *
      * @return The ObjectMetadata for the object being downloaded.
      */
+    @Override
     public ObjectMetadata getObjectMetadata() {
         return s3Object.getObjectMetadata();
     }
@@ -61,6 +63,7 @@ public class DownloadImpl extends AbstractTransfer implements Download {
      *
      * @return The name of the bucket where the object is being downloaded from.
      */
+    @Override
     public String getBucketName() {
         return s3Object.getBucketName();
     }
@@ -70,6 +73,7 @@ public class DownloadImpl extends AbstractTransfer implements Download {
      *
      * @return The key under which this object was stored in Amazon S3.
      */
+    @Override
     public String getKey() {
         return s3Object.getKey();
     }
@@ -79,12 +83,13 @@ public class DownloadImpl extends AbstractTransfer implements Download {
      *
      * @throws IOException
      */
+    @Override
     public synchronized void abort() throws IOException {
 
         this.monitor.getFuture().cancel(true);
 
-        if ( s3Object != null ) {
-              s3Object.getObjectContent().abort();
+        if (s3Object != null) {
+            s3Object.getObjectContent().abort();
         }
         setState(TransferState.Canceled);
     }
@@ -104,7 +109,7 @@ public class DownloadImpl extends AbstractTransfer implements Download {
     }
 
     /**
-     *  Set the S3 object to download.
+     * Set the S3 object to download.
      */
     public synchronized void setS3Object(S3Object s3Object) {
         this.s3Object = s3Object;
@@ -142,7 +147,6 @@ public class DownloadImpl extends AbstractTransfer implements Download {
 
     /*
      * (non-Javadoc)
-     *
      * @see com.amazonaws.mobileconnectors.s3.transfermanager.Download#pause()
      */
     @Override

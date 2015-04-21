@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.internal.SSEResultBase;
@@ -40,8 +41,7 @@ public class UploadPartResult extends SSEResultBase {
     /**
      * Sets the part number of the newly uploaded part.
      *
-     * @param partNumber
-     *            the part number of the newly uploaded part.
+     * @param partNumber the part number of the newly uploaded part.
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
@@ -60,8 +60,7 @@ public class UploadPartResult extends SSEResultBase {
     /**
      * Sets the entity tag of the newly uploaded part.
      *
-     * @param eTag
-     *            the entity tag of the newly uploaded part.
+     * @param eTag the entity tag of the newly uploaded part.
      */
     public void setETag(String eTag) {
         this.eTag = eTag;

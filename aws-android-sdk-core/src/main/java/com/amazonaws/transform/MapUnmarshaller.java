@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.transform;
 
-import java.util.HashMap;
-import java.util.Map;
+package com.amazonaws.transform;
 
 import com.amazonaws.util.json.AwsJsonReader;
 import com.amazonaws.util.json.AwsJsonToken;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MapUnmarshaller<V> implements Unmarshaller<Map<String, V>, JsonUnmarshallerContext> {
 

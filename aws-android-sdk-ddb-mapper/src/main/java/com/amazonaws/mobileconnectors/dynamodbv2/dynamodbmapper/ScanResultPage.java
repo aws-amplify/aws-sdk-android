@@ -12,12 +12,13 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
+
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.util.List;
 import java.util.Map;
-
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
  * Container for a page of scan results.
@@ -25,7 +26,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 public class ScanResultPage<T> {
 
     private List<T> results;
-    private Map<String,AttributeValue> lastEvaluatedKey;
+    private Map<String, AttributeValue> lastEvaluatedKey;
 
     /**
      * Returns all matching items for this page of scan results, which may be
@@ -43,15 +44,15 @@ public class ScanResultPage<T> {
      * Returns the last evaluated key, which can be used as the
      * exclusiveStartKey to fetch the next page of results. Returns null if this
      * is the last page of results.
-     * 
-     * @return	The key-value pairs which map from the attribute name of each component 
-     * 			of the primary key to its value.
+     *
+     * @return The key-value pairs which map from the attribute name of each
+     *         component of the primary key to its value.
      */
-    public Map<String,AttributeValue> getLastEvaluatedKey() {
+    public Map<String, AttributeValue> getLastEvaluatedKey() {
         return lastEvaluatedKey;
     }
 
-    public void setLastEvaluatedKey(Map<String,AttributeValue> lastEvaluatedKey) {
+    public void setLastEvaluatedKey(Map<String, AttributeValue> lastEvaluatedKey) {
         this.lastEvaluatedKey = lastEvaluatedKey;
     }
 

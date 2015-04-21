@@ -12,7 +12,11 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy;
+
+import com.amazonaws.auth.policy.internal.JsonPolicyReader;
+import com.amazonaws.auth.policy.internal.JsonPolicyWriter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,9 +24,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import com.amazonaws.auth.policy.internal.JsonPolicyReader;
-import com.amazonaws.auth.policy.internal.JsonPolicyWriter;
 
 /**
  * An AWS access control policy is a object that acts as a container for one or
@@ -37,16 +38,18 @@ import com.amazonaws.auth.policy.internal.JsonPolicyWriter;
  * Each statement in an AWS access control policy takes the form:
  * "A has permission to do B to C where D applies".
  * <ul>
- *   <li>A is the <b>principal</b> - the AWS account that is making a request to
- *       access or modify one of your AWS resources.
- *   <li>B is the <b>action</b> - the way in which your AWS resource is being accessed or modified, such
- *       as sending a message to an Amazon SQS queue, or storing an object in an Amazon S3 bucket.
- *   <li>C is the <b>resource</b> - your AWS entity that the principal wants to access, such
- *       as an Amazon SQS queue, or an object stored in Amazon S3.
- *   <li>D is the set of <b>conditions</b> - optional constraints that specify when to allow or deny
- *       access for the principal to access your resource.  Many expressive conditions are available,
- *       some specific to each service.  For example you can use date conditions to allow access to
- *       your resources only after or before a specific time.
+ * <li>A is the <b>principal</b> - the AWS account that is making a request to
+ * access or modify one of your AWS resources.
+ * <li>B is the <b>action</b> - the way in which your AWS resource is being
+ * accessed or modified, such as sending a message to an Amazon SQS queue, or
+ * storing an object in an Amazon S3 bucket.
+ * <li>C is the <b>resource</b> - your AWS entity that the principal wants to
+ * access, such as an Amazon SQS queue, or an object stored in Amazon S3.
+ * <li>D is the set of <b>conditions</b> - optional constraints that specify
+ * when to allow or deny access for the principal to access your resource. Many
+ * expressive conditions are available, some specific to each service. For
+ * example you can use date conditions to allow access to your resources only
+ * after or before a specific time.
  * </ul>
  * <p>
  * Note that an AWS access control policy should not be confused with the
@@ -65,7 +68,8 @@ public class Policy {
      * Constructs an empty AWS access control policy ready to be populated with
      * statements.
      */
-    public Policy() {}
+    public Policy() {
+    }
 
     /**
      * Constructs a new AWS access control policy with the specified policy ID.
@@ -73,8 +77,7 @@ public class Policy {
      * keep track of multiple polices. Policy IDs are often used as a human
      * readable name for a policy.
      *
-     * @param id
-     *            The policy ID for the new policy object. Policy IDs serve to
+     * @param id The policy ID for the new policy object. Policy IDs serve to
      *            help developers keep track of multiple policies, and are often
      *            used to give the policy a meaningful, human readable name.
      */
@@ -91,12 +94,10 @@ public class Policy {
      * Any statements that don't have a statement ID yet will automatically be
      * assigned a unique ID within this policy.
      *
-     * @param id
-     *            The policy ID for the new policy object. Policy IDs serve to
+     * @param id The policy ID for the new policy object. Policy IDs serve to
      *            help developers keep track of multiple policies, and are often
      *            used to give the policy a meaningful, human readable name.
-     * @param statements
-     *            The statements to include in the new policy.
+     * @param statements The statements to include in the new policy.
      */
     public Policy(String id, Collection<Statement> statements) {
         this(id);
@@ -119,8 +120,7 @@ public class Policy {
      * keep track of multiple policies, and are often used as human readable
      * name for a policy.
      *
-     * @param id
-     *            The policy ID for this policy.
+     * @param id The policy ID for this policy.
      */
     public void setId(String id) {
         this.id = id;
@@ -133,9 +133,7 @@ public class Policy {
      * Policy IDs serve to help developers keep track of multiple policies, and
      * are often used as human readable name for a policy.
      *
-     * @param id
-     *            The policy ID for this policy.
-     *
+     * @param id The policy ID for this policy.
      * @return The updated Policy object so that additional calls can be chained
      *         together.
      */
@@ -172,8 +170,7 @@ public class Policy {
      * Any statements that don't have a statement ID yet will automatically be
      * assigned a unique ID within this policy.
      *
-     * @param statements
-     *            The collection of statements included in this policy.
+     * @param statements The collection of statements included in this policy.
      */
     public void setStatements(Collection<Statement> statements) {
         this.statements = new ArrayList<Statement>(statements);
@@ -191,9 +188,7 @@ public class Policy {
      * Any statements that don't have a statement ID yet will automatically be
      * assigned a unique ID within this policy.
      *
-     * @param statements
-     *            The collection of statements included in this policy.
-     *
+     * @param statements The collection of statements included in this policy.
      * @return The updated policy object, so that additional method calls can be
      *         chained together.
      */
@@ -216,14 +211,11 @@ public class Policy {
     /**
      * Returns an AWS access control policy object generated from JSON string.
      *
-     * @param jsonString
-     *            The JSON string representation of this AWS access control policy.
-     *
+     * @param jsonString The JSON string representation of this AWS access
+     *            control policy.
      * @return An AWS access control policy object.
-     *
-     * @throws IllegalArgumentException
-     *      If the specified JSON string is null or invalid and cannot be
-     *      converted to an AWS policy object.
+     * @throws IllegalArgumentException If the specified JSON string is null or
+     *             invalid and cannot be converted to an AWS policy object.
      */
     public static Policy fromJson(String jsonString) {
         return new JsonPolicyReader().createPolicyFromJsonString(jsonString);
@@ -232,14 +224,17 @@ public class Policy {
     private void assignUniqueStatementIds() {
         Set<String> usedStatementIds = new HashSet<String>();
         for (Statement statement : statements) {
-            if (statement.getId() != null) usedStatementIds.add(statement.getId());
+            if (statement.getId() != null)
+                usedStatementIds.add(statement.getId());
         }
 
         int counter = 0;
         for (Statement statement : statements) {
-            if (statement.getId() != null) continue;
+            if (statement.getId() != null)
+                continue;
 
-            while (usedStatementIds.contains(Integer.toString(++counter)));
+            while (usedStatementIds.contains(Integer.toString(++counter)))
+                ;
             statement.setId(Integer.toString(counter));
         }
     }

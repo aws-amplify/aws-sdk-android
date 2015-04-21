@@ -12,35 +12,36 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 public class KeyPair {
-	private Object hashKey;
-	private Object rangeKey;
-	
-	public KeyPair withHashKey(Object hashkey) {
-		this.hashKey = hashkey;
-		return this;
-	}
-	
-	public KeyPair withRangeKey(Object rangeKey) {
-		this.rangeKey = rangeKey;
-		return this;
-	}
-	
-	public void setHashKey(Object hashKey) {
-		this.hashKey = hashKey;
-	}
-	
-	public void setRangeKey(Object rangeKey) {
-		this.rangeKey = rangeKey;
-	}
-	
-	public Object getHashKey() {
-		return this.hashKey;
-	}
-	
-	public Object getRangeKey() {
-		return this.rangeKey;
-	}
+    private Object hashKey;
+    private Object rangeKey;
+
+    public KeyPair withHashKey(Object hashkey) {
+        this.hashKey = hashkey;
+        return this;
+    }
+
+    public KeyPair withRangeKey(Object rangeKey) {
+        this.rangeKey = rangeKey;
+        return this;
+    }
+
+    public void setHashKey(Object hashKey) {
+        this.hashKey = hashKey;
+    }
+
+    public void setRangeKey(Object rangeKey) {
+        this.rangeKey = rangeKey;
+    }
+
+    public Object getHashKey() {
+        return this.hashKey;
+    }
+
+    public Object getRangeKey() {
+        return this.rangeKey;
+    }
 }

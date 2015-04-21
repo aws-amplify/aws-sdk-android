@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 /**
@@ -27,10 +28,8 @@ public class BasicAWSCredentials implements AWSCredentials {
      * Constructs a new BasicAWSCredentials object, with the specified AWS
      * access key and AWS secret key.
      *
-     * @param accessKey
-     *            The AWS access key.
-     * @param secretKey
-     *            The AWS secret access key.
+     * @param accessKey The AWS access key.
+     * @param secretKey The AWS secret access key.
      */
     public BasicAWSCredentials(String accessKey, String secretKey) {
         if (accessKey == null) {
@@ -44,16 +43,20 @@ public class BasicAWSCredentials implements AWSCredentials {
         this.secretKey = secretKey;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.amazonaws.auth.AWSCredentials#getAWSAccessKeyId()
      */
+    @Override
     public String getAWSAccessKeyId() {
         return accessKey;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.amazonaws.auth.AWSCredentials#getAWSSecretKey()
      */
+    @Override
     public String getAWSSecretKey() {
         return secretKey;
     }

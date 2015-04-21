@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.handlers;
 
 import com.amazonaws.Request;
@@ -19,12 +20,21 @@ import com.amazonaws.util.TimingInfo;
 
 /**
  * @deprecated by {@link RequestHandler2}.
- * <p>
- * Simple implementation of RequestHandler to stub out required methods.
+ *             <p>
+ *             Simple implementation of RequestHandler to stub out required
+ *             methods.
  */
 @Deprecated
 public abstract class AbstractRequestHandler implements RequestHandler {
-	public void beforeRequest(Request<?> request) {}
-	public void afterResponse(Request<?> request, Object response, TimingInfo timingInfo) {}
-	public void afterError(Request<?> request, Exception e) {}
+    @Override
+    public void beforeRequest(Request<?> request) {
+    }
+
+    @Override
+    public void afterResponse(Request<?> request, Object response, TimingInfo timingInfo) {
+    }
+
+    @Override
+    public void afterError(Request<?> request, Exception e) {
+    }
 }

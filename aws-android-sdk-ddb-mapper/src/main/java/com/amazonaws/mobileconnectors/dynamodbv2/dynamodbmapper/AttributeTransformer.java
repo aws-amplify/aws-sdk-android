@@ -12,17 +12,18 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
-import java.util.Map;
+package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
+import java.util.Map;
+
 /**
- * A hook allowing a custom transform/untransform of the raw attribute
- * values immediately before writing them into DynamoDB and immediately
- * after reading them out of DynamoDB, but with extra context about
- * the model class not available at the raw AmazonDymnamoDB level.
+ * A hook allowing a custom transform/untransform of the raw attribute values
+ * immediately before writing them into DynamoDB and immediately after reading
+ * them out of DynamoDB, but with extra context about the model class not
+ * available at the raw AmazonDymnamoDB level.
  * <p>
  * This interface contains both a {@code transform} method and a corresponding
  * {@code untransform} method. These methods SHOULD be inverses, such that
@@ -30,11 +31,11 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
  */
 public interface AttributeTransformer {
     /**
-     * Parameters for the {@code transform} and {@code untransform} methods,
-     * so we don't have to break the interface in order to add additional
+     * Parameters for the {@code transform} and {@code untransform} methods, so
+     * we don't have to break the interface in order to add additional
      * parameters.
      * <p>
-     * Consuming code should NOT implement this interface. 
+     * Consuming code should NOT implement this interface.
      */
     interface Parameters<T> {
         /**
@@ -48,16 +49,15 @@ public interface AttributeTransformer {
         /**
          * Returns true if this transformation is being called as part of a
          * partial update operation. If true, the attributes returned by
-         * {@link #getAttributeValues()} do not represent the entire new
-         * item, but only a snapshot of the attributes which are getting
-         * new values.
+         * {@link #getAttributeValues()} do not represent the entire new item,
+         * but only a snapshot of the attributes which are getting new values.
          * <p>
-         * Implementations which do not support transforming a partial
-         * view of an item (for example, because they need to calculate a
-         * signature based on all of the item's attributes that won't be valid
-         * if only a subset of the attributes are taken into consideration)
-         * should check this flag and throw an exception rather than than
-         * corrupting the data in DynamoDB.
+         * Implementations which do not support transforming a partial view of
+         * an item (for example, because they need to calculate a signature
+         * based on all of the item's attributes that won't be valid if only a
+         * subset of the attributes are taken into consideration) should check
+         * this flag and throw an exception rather than than corrupting the data
+         * in DynamoDB.
          * <p>
          * This method always returns {@code false} for instances passed to
          * {@link AttributeTransformer#untransform(Parameters)}.
@@ -70,43 +70,43 @@ public interface AttributeTransformer {
          * @return the type of the model class we're transforming to or from
          */
         Class<T> getModelClass();
-        
+
         /**
          * @return the mapper config for this operation
          */
         DynamoDBMapperConfig getMapperConfig();
-        
+
         /**
-         * @return the name of the DynamoDB table the attributes were read
-         *         from or will be written to
+         * @return the name of the DynamoDB table the attributes were read from
+         *         or will be written to
          */
         String getTableName();
-        
+
         /**
          * @return the name of the hash key for the table
          */
         String getHashKeyName();
-        
+
         /**
          * @return the name of the range key for the table, if it has one,
          *         otherwise {@code null}
          */
         String getRangeKeyName();
     }
-    
+
     /**
      * Transforms the input set of attribute values derived from the model
      * object before writing them into DynamoDB.
-     * 
+     *
      * @param parameters transformation parameters
      * @return the transformed attribute value map
      */
     Map<String, AttributeValue> transform(Parameters<?> parameters);
-    
+
     /**
      * Untransform the input set of attribute values read from DynamoDB before
      * creating a model object from them.
-     * 
+     *
      * @param parameters transformation parameters
      * @return the untransformed attribute value map
      */

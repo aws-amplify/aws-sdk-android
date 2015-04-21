@@ -12,10 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.internal;
 
-import java.io.IOException;
-import java.io.InputStream;
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
@@ -25,6 +23,9 @@ import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.util.BinaryUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * AWS4 signer implementation for AWS S3
@@ -60,7 +61,7 @@ public class AWSS3V4Signer extends AWS4Signer {
     }
 
     @Override
-    protected String calculateContentHashPresign(Request<?> request){
+    protected String calculateContentHashPresign(Request<?> request) {
         return "UNSIGNED-PAYLOAD";
     }
 
@@ -77,7 +78,7 @@ public class AWSS3V4Signer extends AWS4Signer {
         request.addHeader("x-amz-content-sha256", "required");
         if (useChunkEncoding(request)) {
             final String contentLength =
-                request.getHeaders().get(Headers.CONTENT_LENGTH);
+                    request.getHeaders().get(Headers.CONTENT_LENGTH);
             final long originalContentLength;
             if (contentLength != null) {
                 originalContentLength = Long.parseLong(contentLength);

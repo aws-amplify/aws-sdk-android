@@ -12,15 +12,16 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.internal;
 
-import java.net.URI;
-import java.util.List;
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.AmazonWebServiceClient;
 import com.amazonaws.auth.Signer;
 import com.amazonaws.handlers.RequestHandler2;
 import com.amazonaws.http.ExecutionContext;
+
+import java.net.URI;
+import java.util.List;
 
 public class S3ExecutionContext extends ExecutionContext {
     private Signer signer;
@@ -38,7 +39,7 @@ public class S3ExecutionContext extends ExecutionContext {
     @Override
     public Signer getSignerByURI(URI uri) {
         // We don't support the mutation of the request URI by the request
-        // handlers in S3.  Hence the signer will remain the same.
+        // handlers in S3. Hence the signer will remain the same.
         return signer;
     }
 }

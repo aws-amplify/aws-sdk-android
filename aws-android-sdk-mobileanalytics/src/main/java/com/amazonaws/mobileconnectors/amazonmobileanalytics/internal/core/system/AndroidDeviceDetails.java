@@ -15,9 +15,9 @@
 
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system;
 
-import java.util.Locale;
-
 import android.os.Build;
+
+import java.util.Locale;
 
 public class AndroidDeviceDetails implements DeviceDetails {
 

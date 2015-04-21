@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 import com.amazonaws.AmazonClientException;
@@ -19,11 +20,9 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.event.ProgressListener;
 
 /**
- * Represents an asynchronous upload to or download from Amazon S3.
- * Use this class to check a tranfer's progress,
- * add listeners for progress events,
- * check the state of a transfer,
- * or wait for the transfer to complete.
+ * Represents an asynchronous upload to or download from Amazon S3. Use this
+ * class to check a tranfer's progress, add listeners for progress events, check
+ * the state of a transfer, or wait for the transfer to complete.
  * <p>
  * See {@link TransferManager} for more information about creating transfers.
  *
@@ -36,10 +35,16 @@ public interface Transfer {
      * Enumeration of the possible transfer states.
      */
     public static enum TransferState {
-        /** The transfer is waiting for resources to execute and has not started yet. */
+        /**
+         * The transfer is waiting for resources to execute and has not started
+         * yet.
+         */
         Waiting,
 
-        /** The transfer is actively uploading or downloading and hasn't finished yet. */
+        /**
+         * The transfer is actively uploading or downloading and hasn't finished
+         * yet.
+         */
         InProgress,
 
         /** The transfer completed successfully. */
@@ -53,11 +58,12 @@ public interface Transfer {
     }
 
     /**
-     * Returns whether or not the transfer is finished (i.e. completed successfully,
-     * failed, or was canceled).
+     * Returns whether or not the transfer is finished (i.e. completed
+     * successfully, failed, or was canceled).
      *
-     * @return Returns <code>true</code> if this transfer is finished (i.e. completed successfully,
-     *         failed, or was canceled).  Returns <code>false</code> if otherwise.
+     * @return Returns <code>true</code> if this transfer is finished (i.e.
+     *         completed successfully, failed, or was canceled). Returns
+     *         <code>false</code> if otherwise.
      */
     public boolean isDone();
 
@@ -65,35 +71,29 @@ public interface Transfer {
      * Waits for this transfer to complete. This is a blocking call; the current
      * thread is suspended until this transfer completes.
      *
-     * @throws AmazonClientException
-     *             If any errors were encountered in the client while making the
-     *             request or handling the response.
-     * @throws AmazonServiceException
-     *             If any errors occurred in Amazon S3 while processing the
-     *             request.
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the transfer
-     *             to complete.
+     * @throws AmazonClientException If any errors were encountered in the
+     *             client while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws InterruptedException If this thread is interrupted while waiting
+     *             for the transfer to complete.
      */
     public void waitForCompletion()
             throws AmazonClientException, AmazonServiceException, InterruptedException;
-    
+
     /**
      * Waits for this transfer to finish and returns any error that occurred, or
-     * returns <code>null</code> if no errors occurred.
-     * This is a blocking call; the current thread
-     * will be suspended until this transfer either fails or completes
-     * successfully.
+     * returns <code>null</code> if no errors occurred. This is a blocking call;
+     * the current thread will be suspended until this transfer either fails or
+     * completes successfully.
      *
-     * @return Any error that occurred while processing this transfer.
-     * 		   Otherwise returns <code>null</code> if no errors occurred.
-     *
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the transfer
-     *             to complete.
+     * @return Any error that occurred while processing this transfer. Otherwise
+     *         returns <code>null</code> if no errors occurred.
+     * @throws InterruptedException If this thread is interrupted while waiting
+     *             for the transfer to complete.
      */
     public AmazonClientException waitForException() throws InterruptedException;
-    
+
     /**
      * Returns a human-readable description of this transfer.
      *
@@ -109,11 +109,10 @@ public interface Transfer {
     public TransferState getState();
 
     /**
-     * Adds the specified progress listener to the list of listeners
-     * receiving updates about this transfer's progress.
+     * Adds the specified progress listener to the list of listeners receiving
+     * updates about this transfer's progress.
      *
-     * @param listener
-     *            The progress listener to add.
+     * @param listener The progress listener to add.
      */
     public void addProgressListener(ProgressListener listener);
 
@@ -121,8 +120,7 @@ public interface Transfer {
      * Removes the specified progress listener from the list of progress
      * listeners receiving updates about this transfer's progress.
      *
-     * @param listener
-     *            The progress listener to remove.
+     * @param listener The progress listener to remove.
      */
     public void removeProgressListener(ProgressListener listener);
 
@@ -132,7 +130,7 @@ public interface Transfer {
      * @return The progress information about this transfer.
      */
     public TransferProgress getProgress();
-    
+
     /**
      * @deprecated Replaced by {@link #addProgressListener(ProgressListener)}
      */

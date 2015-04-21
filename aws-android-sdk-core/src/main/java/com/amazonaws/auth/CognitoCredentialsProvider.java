@@ -25,12 +25,12 @@ import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
 import com.amazonaws.services.cognitoidentity.model.GetCredentialsForIdentityRequest;
 import com.amazonaws.services.cognitoidentity.model.GetCredentialsForIdentityResult;
+import com.amazonaws.services.cognitoidentity.model.ResourceNotFoundException;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClient;
 import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest;
 import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityResult;
 import com.amazonaws.services.securitytoken.model.Credentials;
-import com.amazonaws.services.cognitoidentity.model.ResourceNotFoundException;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -83,7 +83,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * authentication flow, to the AWS Security Token Service (STS) to request
      * short-lived session credentials, which will then be returned by this
      * class's {@link #getCredentials()} method.
-     * 
+     *
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cogntio identity pool to use
      * @param unauthRoleArn The ARN of the IAM Role that will be assumed when
@@ -108,7 +108,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * This version of the constructor allows you to specify a client
      * configuration for the Amazon Cognito and STS clients.
      * </p>
-     * 
+     *
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cognito identity pool to use
      * @param unauthRoleArn The ARN of the IAM Role that will be assumed when
@@ -151,7 +151,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * specified Amazon Cognito identity pool to make a request to Cognito,
      * using the enhanced flow, to get short lived session credentials, which
      * will then be returned by this class's {@link #getCredentials()} method.
-     * 
+     *
      * @param identityPoolId The Amazon Cognito identity pool to use
      * @param region The region to use when contacting Cognito Identity
      */
@@ -168,7 +168,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * This version of the constructor allows you to specify a client
      * configuration for the Amazon Cognito client.
      * </p>
-     * 
+     *
      * @param identityPoolId The Amazon Cognito identity pool to use
      * @param region The region to use when contacting Cognito Identity
      * @param clientConfiguration Configuration to apply to service clients
@@ -193,7 +193,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * Set the roles and stsClient to null to use the enhanced authentication
      * flow, not contacting STS. Otherwise the basic flow will be used.
      * </p>
-     * 
+     *
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cogntio identity pool to use
      * @param unauthRoleArn The ARN of the IAM Role that will be assumed when
@@ -240,7 +240,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * This version of the constructor allows you to specify your own Identity
      * Provider class.
      * </p>
-     * 
+     *
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with STS
      * @param unauthArn the unauthArn, for use with the STS call
@@ -261,7 +261,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * This version of the constructor allows you to specify your own Identity
      * Provider class, and the STS client to use.
      * </p>
-     * 
+     *
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with STS
      * @param unauthArn the unauthArn, for use with the STS call
@@ -288,7 +288,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * This version of the constructor allows you to specify your own Identity
      * Provider class.
      * </p>
-     * 
+     *
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with Amazon
      *            Cognito
@@ -307,7 +307,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * This version of the constructor allows you to specify your own Identity
      * Provider class and the configuration for the Amazon Cognito client.
      * </p>
-     * 
+     *
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with Amazon
      *            Cognito
@@ -371,7 +371,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     /**
      * Set the duration of the session credentials created by this client in
      * seconds. Values must be supported by AssumeRoleWithWebIdentityRequest.
-     * 
+     *
      * @see com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest
      * @param sessionDuration The new duration for session credentials created
      *            by this provider
@@ -384,7 +384,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * Set the duration of the session credentials created by this client in
      * seconds. Values must be supported by AssumeRoleWithWebIdentityRequest.
      * Returns reference to object so methods can be chained together.
-     * 
+     *
      * @see com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest
      * @param sessionDuration The new duration for session credentials created
      *            by this provider
@@ -399,7 +399,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     /**
      * Get the duration of the session credentials created by this client in
      * seconds. Values must be supported by AssumeRoleWithWebIdentityRequest.
-     * 
+     *
      * @see com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest
      * @return The duration for session credentials created by this provider
      */
@@ -411,7 +411,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * Set the refresh threshold for the session credentials created by this
      * client in seconds. This value will be used internally to determine if new
      * credentials should be fetched from STS.
-     * 
+     *
      * @see com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest
      * @param refreshThreshold The new refresh threshold for session credentials
      *            created by this provider
@@ -425,7 +425,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * client in seconds. This value will be used internally to determine if new
      * credentials should be fetched from STS. Returns a reference to the object
      * so methods can be chained.
-     * 
+     *
      * @see com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest
      * @param refreshThreshold The new refresh threshold for session credentials
      *            created by this provider
@@ -441,7 +441,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * Get the refresh threshold for the session credentials created by this
      * client in seconds. This value will be used internally to determine if new
      * credentials should be fetched from STS.
-     * 
+     *
      * @see com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest
      * @return The refresh threshold for session credentials created by this
      *         provider
@@ -458,7 +458,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * Set the logins map used to authenticated with Amazon Cognito. Note: You
      * should manually call refresh on on the credentials provider after adding
      * logins to the provider as your Identity Id may have changed.
-     * 
+     *
      * @param logins The new logins map (providerName, providerToken) to use to
      *            communicate with Amazon Cognito
      */
@@ -472,7 +472,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * reference to the object so methods can be chained. Note: You should
      * manually call refresh on on the credentials provider after adding logins
      * to the provider as your Identity Id may have changed.
-     * 
+     *
      * @see com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest
      * @param logins The new logins map (providerName, providerToken) to use to
      *            communicate with Amazon Cognito
@@ -486,7 +486,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
 
     /**
      * Get the logins map used to authenticated with Amazon Cognito
-     * 
+     *
      * @return The logins map (providerName, providerToken) to use to
      *         communicate with Amazon Cognito
      */
@@ -524,15 +524,16 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      */
     protected void startSession() {
 
-        // make sure we have an identityId. In the case of cognito identity, 
-        // the try catch will handle a deleted or corrupted id. 
-        // Developer authenticated won't throw amazon exceptions, 
-        // and for 2hop, it will be handled below, as the getId call 
+        // make sure we have an identityId. In the case of cognito identity,
+        // the try catch will handle a deleted or corrupted id.
+        // Developer authenticated won't throw amazon exceptions,
+        // and for 2hop, it will be handled below, as the getId call
         // won't fail since it is set.
         try {
             token = identityProvider.refresh();
         } catch (ResourceNotFoundException rnfe) {
-            // If the identity id or identity pool is non-existant, this is thrown
+            // If the identity id or identity pool is non-existant, this is
+            // thrown
             token = retryRefresh();
         } catch (AmazonServiceException ase) {
             // If it's a corrupt id, then a validation exception is thrown
@@ -551,17 +552,18 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
         }
 
     }
-    
+
     /**
-     * To be used to call the provider back end to get identifiers. Specifically,
-     * this is the helper that handles the case for when a refresh call ran into the corrupt 
-     * identity id case, either a deleted id or a malformed id. If that happens, this is 
-     * called, a new id and token are fetched, and the process is resumed.
-     * 
+     * To be used to call the provider back end to get identifiers.
+     * Specifically, this is the helper that handles the case for when a refresh
+     * call ran into the corrupt identity id case, either a deleted id or a
+     * malformed id. If that happens, this is called, a new id and token are
+     * fetched, and the process is resumed.
+     *
      * @return the new token gotten by the service
      */
     private String retryRefresh() {
-        
+
         // Ensure we get a new id and token
         setIdentityId(null);
         token = identityProvider.refresh();
@@ -569,16 +571,16 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     }
 
     /**
-     * To be used to help the calling of the 2hop flow in event of the identity id 
-     * being either missing or deleted. Once that is caught as having happened, this 
-     * call is made, which will clear the old id, get a new one/token, and get the 
-     * flow going back to where it was with a new request
-     * 
+     * To be used to help the calling of the 2hop flow in event of the identity
+     * id being either missing or deleted. Once that is caught as having
+     * happened, this call is made, which will clear the old id, get a new
+     * one/token, and get the flow going back to where it was with a new request
+     *
      * @return the result of the new request
      */
-    private GetCredentialsForIdentityResult retryGetCredentialsForIdentity(){
+    private GetCredentialsForIdentityResult retryGetCredentialsForIdentity() {
         token = retryRefresh();
-        
+
         Map<String, String> logins;
         if (token != null && !token.isEmpty()) {
             logins = new HashMap<String, String>();
@@ -586,14 +588,14 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
         } else {
             logins = getLogins();
         }
-        
+
         GetCredentialsForIdentityRequest request = new GetCredentialsForIdentityRequest()
-            .withIdentityId(getIdentityId())
-            .withLogins(logins);
+                .withIdentityId(getIdentityId())
+                .withLogins(logins);
 
         return cib.getCredentialsForIdentity(request);
     }
-    
+
     /**
      * Gets the session credentials from Amazon Cognito.
      */
@@ -620,7 +622,8 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
         try {
             result = cib.getCredentialsForIdentity(request);
         } catch (ResourceNotFoundException rnfe) {
-            // If the identity id or identity pool is non-existant, this is thrown
+            // If the identity id or identity pool is non-existant, this is
+            // thrown
             result = retryGetCredentialsForIdentity();
         } catch (AmazonServiceException ase) {
             // If it's a corrupt id, then a validation exception is thrown
@@ -631,7 +634,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
                 throw ase;
             }
         }
-        
+
         com.amazonaws.services.cognitoidentity.model.Credentials credentials = result
                 .getCredentials();
         sessionCredentials = new BasicSessionCredentials(credentials.getAccessKeyId(),
@@ -676,7 +679,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * Returns true if a new STS session needs to be started. A new STS session
      * is needed when no session has been started yet, or if the last session is
      * within the configured refresh threshold.
-     * 
+     *
      * @return True if a new STS session needs to be started.
      */
     protected boolean needsNewSession() {
@@ -693,7 +696,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     /**
      * Append user agent string to the request. The final string is what is set
      * in the ClientCofniguration concatenated with the given userAgent string.
-     * 
+     *
      * @param request the request object to be appended
      * @param userAgent additional user agent string to append
      */

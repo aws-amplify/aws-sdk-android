@@ -12,16 +12,17 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
-import java.util.HashMap;
-import java.util.Map;
+package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.amazonaws.services.dynamodbv2.model.ConditionalOperator;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Options for filtering results from a scan operation. For example, callers can
@@ -43,14 +44,14 @@ public class DynamoDBScanExpression {
     private Integer limit;
 
     /**
-     * The total number of segments into which the scan will be divided.
-     * Only required for parallel scan operation.
+     * The total number of segments into which the scan will be divided. Only
+     * required for parallel scan operation.
      */
     private Integer totalSegments;
 
     /**
-     * The ID (zero-based) of the segment to be scanned.
-     * Only required for parallel scan operation.
+     * The ID (zero-based) of the segment to be scanned. Only required for
+     * parallel scan operation.
      */
     private Integer segment;
 
@@ -60,45 +61,88 @@ public class DynamoDBScanExpression {
     private String conditionalOperator;
 
     /**
-     * Evaluates the scan results and returns only the desired values. <p>The
-     * condition you specify is applied to the items scanned; any items that
+     * Evaluates the scan results and returns only the desired values.
+     * <p>
+     * The condition you specify is applied to the items scanned; any items that
      * do not match the expression are not returned.
      */
     private String filterExpression;
 
     /**
-     * One or more substitution variables for simplifying complex
-     * expressions. The following are some use cases for an
-     * ExpressionAttributeName: <ul> <li> <p>Shorten an attribute name that
-     * is very long or unwieldy in an expression. </li> <li> <p>Create a
-     * placeholder for repeating occurrences of an attribute name in an
-     * expression. </li> <li> <p>Prevent special characters in an attribute
-     * name from being misinterpreted in an expression. </li> </ul> <p>Use
-     * the <b>#</b> character in an expression to dereference an attribute
+     * One or more substitution variables for simplifying complex expressions.
+     * The following are some use cases for an ExpressionAttributeName:
+     * <ul>
+     * <li>
+     * <p>
+     * Shorten an attribute name that is very long or unwieldy in an expression.
+     * </li>
+     * <li>
+     * <p>
+     * Create a placeholder for repeating occurrences of an attribute name in an
+     * expression.</li>
+     * <li>
+     * <p>
+     * Prevent special characters in an attribute name from being misinterpreted
+     * in an expression.</li>
+     * </ul>
+     * <p>
+     * Use the <b>#</b> character in an expression to dereference an attribute
      * name. For example, consider the following expression:
-     * <ul><li><p><code>order.customerInfo.LastName = "Smith" OR
-     * order.customerInfo.LastName = "Jones"</code></li></ul> <p>Now suppose
-     * that you specified the following for <i>ExpressionAttributeNames</i>:
-     * <ul><li><p><code>{"n":"order.customerInfo.LastName"}</code></li></ul>
-     * <p>The expression can now be simplified as follows:
-     * <ul><li><p><code>#n = "Smith" OR #n = "Jones"</code></li></ul>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>order.customerInfo.LastName = "Smith" OR
+     * order.customerInfo.LastName = "Jones"</code></li>
+     * </ul>
+     * <p>
+     * Now suppose that you specified the following for
+     * <i>ExpressionAttributeNames</i>:
+     * <ul>
+     * <li>
+     * <p>
+     * <code>{"n":"order.customerInfo.LastName"}</code></li>
+     * </ul>
+     * <p>
+     * The expression can now be simplified as follows:
+     * <ul>
+     * <li>
+     * <p>
+     * <code>#n = "Smith" OR #n = "Jones"</code></li>
+     * </ul>
      */
-    private java.util.Map<String,String> expressionAttributeNames;
+    private java.util.Map<String, String> expressionAttributeNames;
 
     /**
-     * One or more values that can be substituted in an expression. <p>Use
-     * the <b>:</b> character in an expression to dereference an attribute
+     * One or more values that can be substituted in an expression.
+     * <p>
+     * Use the <b>:</b> character in an expression to dereference an attribute
      * value. For example, consider the following expression:
-     * <ul><li><p><code>ProductStatus IN
-     * ("Available","Backordered","Discontinued")</code></li></ul> <p>Now
-     * suppose that you specified the following for
-     * <i>ExpressionAttributeValues</i>: <ul><li><p><code>{
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ProductStatus IN
+     * ("Available","Backordered","Discontinued")</code></li>
+     * </ul>
+     * <p>
+     * Now suppose that you specified the following for
+     * <i>ExpressionAttributeValues</i>:
+     * <ul>
+     * <li>
+     * <p>
+     * <code>{
      * "a":{"S":"Available"}, "b":{"S":"Backordered"},
-     * "d":{"S":"Discontinued"} }</code></li></ul> <p>The expression can now
-     * be simplified as follows: <ul><li> <p><code>ProductStatus IN
-     * (:a,:b,:c)</code></li></ul>
+     * "d":{"S":"Discontinued"} }</code></li>
+     * </ul>
+     * <p>
+     * The expression can now be simplified as follows:
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ProductStatus IN
+     * (:a,:b,:c)</code></li>
+     * </ul>
      */
-    private java.util.Map<String,AttributeValue> expressionAttributeValues;
+    private java.util.Map<String, AttributeValue> expressionAttributeValues;
 
     /**
      * Returns the scan filter as a map of attribute names to conditions.
@@ -112,9 +156,8 @@ public class DynamoDBScanExpression {
     /**
      * Sets the scan filter to the map of attribute names to conditions given.
      *
-     * @param scanFilter
-     *            The map of attribute names to conditions to use when filtering
-     *            scan results.
+     * @param scanFilter The map of attribute names to conditions to use when
+     *            filtering scan results.
      */
     public void setScanFilter(Map<String, Condition> scanFilter) {
         this.scanFilter = scanFilter;
@@ -124,9 +167,8 @@ public class DynamoDBScanExpression {
      * Sets the scan filter to the map of attribute names to conditions given
      * and returns a pointer to this object for method-chaining.
      *
-     * @param scanFilter
-     *            The map of attribute names to conditions to use when filtering
-     *            scan results.
+     * @param scanFilter The map of attribute names to conditions to use when
+     *            filtering scan results.
      */
     public DynamoDBScanExpression withScanFilter(Map<String, Condition> scanFilter) {
         setScanFilter(scanFilter);
@@ -136,16 +178,14 @@ public class DynamoDBScanExpression {
     /**
      * Adds a new filter condition to the current scan filter.
      *
-     * @param attributeName
-     *            The name of the attribute on which the specified condition
-     *            operates.
-     * @param condition
-     *            The condition which describes how the specified attribute is
-     *            compared and if a row of data is included in the results
-     *            returned by the scan operation.
+     * @param attributeName The name of the attribute on which the specified
+     *            condition operates.
+     * @param condition The condition which describes how the specified
+     *            attribute is compared and if a row of data is included in the
+     *            results returned by the scan operation.
      */
     public void addFilterCondition(String attributeName, Condition condition) {
-        if ( scanFilter == null )
+        if (scanFilter == null)
             scanFilter = new HashMap<String, Condition>();
 
         scanFilter.put(attributeName, condition);
@@ -155,22 +195,19 @@ public class DynamoDBScanExpression {
      * Adds a new filter condition to the current scan filter and returns a
      * pointer to this object for method-chaining.
      *
-     * @param attributeName
-     *            The name of the attribute on which the specified condition
-     *            operates.
-     * @param condition
-     *            The condition which describes how the specified attribute is
-     *            compared and if a row of data is included in the results
-     *            returned by the scan operation.
+     * @param attributeName The name of the attribute on which the specified
+     *            condition operates.
+     * @param condition The condition which describes how the specified
+     *            attribute is compared and if a row of data is included in the
+     *            results returned by the scan operation.
      */
     public DynamoDBScanExpression withFilterConditionEntry(String attributeName, Condition condition) {
-        if ( scanFilter == null )
+        if (scanFilter == null)
             scanFilter = new HashMap<String, Condition>();
 
         scanFilter.put(attributeName, condition);
         return this;
     }
-
 
     /**
      * Returns the exclusive start key for this scan.
@@ -190,7 +227,8 @@ public class DynamoDBScanExpression {
      * Sets the exclusive start key for this scan and returns a pointer to this
      * object for method-chaining.
      */
-    public DynamoDBScanExpression withExclusiveStartKey(Map<String, AttributeValue> exclusiveStartKey) {
+    public DynamoDBScanExpression withExclusiveStartKey(
+            Map<String, AttributeValue> exclusiveStartKey) {
         this.exclusiveStartKey = exclusiveStartKey;
         return this;
     }
@@ -346,9 +384,8 @@ public class DynamoDBScanExpression {
      * The condition you specify is applied to the items queried; any items that
      * do not match the expression are not returned.
      *
-     * @param filterExpression
-     *            Evaluates the query results and returns only the desired
-     *            values.
+     * @param filterExpression Evaluates the query results and returns only the
+     *            desired values.
      *            <p>
      *            The condition you specify is applied to the items queried; any
      *            items that do not match the expression are not returned.
@@ -367,13 +404,11 @@ public class DynamoDBScanExpression {
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param filterExpression
-     *            Evaluates the query results and returns only the desired
-     *            values.
+     * @param filterExpression Evaluates the query results and returns only the
+     *            desired values.
      *            <p>
      *            The condition you specify is applied to the items queried; any
      *            items that do not match the expression are not returned.
-     *
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ScanRequest#withFilterExpression(String)
@@ -398,9 +433,8 @@ public class DynamoDBScanExpression {
     /**
      * One or more substitution variables for simplifying complex expressions.
      *
-     * @param expressionAttributeNames
-     *            One or more substitution variables for simplifying complex
-     *            expressions.
+     * @param expressionAttributeNames One or more substitution variables for
+     *            simplifying complex expressions.
      * @see ScanRequest#setExpressionAttributeNames(Map)
      */
     public void setExpressionAttributeNames(
@@ -411,10 +445,8 @@ public class DynamoDBScanExpression {
     /**
      * One or more substitution variables for simplifying complex expressions.
      *
-     * @param expressionAttributeNames
-     *            One or more substitution variables for simplifying complex
-     *            expressions.
-     *
+     * @param expressionAttributeNames One or more substitution variables for
+     *            simplifying complex expressions.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ScanRequest#withExpressionAttributeNames(Map)
@@ -431,13 +463,10 @@ public class DynamoDBScanExpression {
      * parameter, and returns a reference to this object so that method calls
      * can be chained together.
      *
-     * @param key
-     *            The key of the entry to be added into
+     * @param key The key of the entry to be added into
      *            ExpressionAttributeNames.
-     * @param value
-     *            The corresponding value of the entry to be added into
+     * @param value The corresponding value of the entry to be added into
      *            ExpressionAttributeNames.
-     *
      * @see ScanRequest#addExpressionAttributeNamesEntry(String, String)
      */
     public DynamoDBScanExpression addExpressionAttributeNamesEntry(String key,
@@ -453,7 +482,8 @@ public class DynamoDBScanExpression {
     }
 
     /**
-     * Removes all the entries added into ExpressionAttributeNames.
+     * Removes all the entries added into ExpressionAttributeNames, setting
+     * ExpressAttributesNames to null
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -467,7 +497,6 @@ public class DynamoDBScanExpression {
      * One or more values that can be substituted in an expression.
      *
      * @return One or more values that can be substituted in an expression.
-     *
      * @see ScanRequest#getExpressionAttributeValues()
      */
     public java.util.Map<String, AttributeValue> getExpressionAttributeValues() {
@@ -478,9 +507,8 @@ public class DynamoDBScanExpression {
     /**
      * One or more values that can be substituted in an expression.
      *
-     * @param expressionAttributeValues
-     *            One or more values that can be substituted in an expression.
-     *
+     * @param expressionAttributeValues One or more values that can be
+     *            substituted in an expression.
      * @see ScanRequest#setExpressionAttributeValues(Map)
      */
     public void setExpressionAttributeValues(
@@ -491,9 +519,8 @@ public class DynamoDBScanExpression {
     /**
      * One or more values that can be substituted in an expression.
      *
-     * @param expressionAttributeValues
-     *            One or more values that can be substituted in an expression.
-     *
+     * @param expressionAttributeValues One or more values that can be
+     *            substituted in an expression.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ScanRequest#withExpressionAttributeValues(Map)
@@ -510,13 +537,10 @@ public class DynamoDBScanExpression {
      * returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param key
-     *            The key of the entry to be added into
+     * @param key The key of the entry to be added into
      *            ExpressionAttributeValues.
-     * @param value
-     *            The corresponding value of the entry to be added into
+     * @param value The corresponding value of the entry to be added into
      *            ExpressionAttributeValues.
-     *
      * @see ScanRequest#addExpressionAttributeValuesEntry(String,
      *      AttributeValue)
      */
@@ -533,7 +557,8 @@ public class DynamoDBScanExpression {
     }
 
     /**
-     * Removes all the entries added into ExpressionAttributeValues.
+     * Removes all the entries added into ExpressionAttributeValues, setting
+     * ExpressionAttributeValues to null
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.

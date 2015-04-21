@@ -15,14 +15,14 @@
 
 package com.amazonaws.auth;
 
-import java.util.Date;
-
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClient;
 import com.amazonaws.services.securitytoken.model.AssumeRoleRequest;
 import com.amazonaws.services.securitytoken.model.AssumeRoleResult;
 import com.amazonaws.services.securitytoken.model.Credentials;
+
+import java.util.Date;
 
 /**
  * AWSCredentialsProvider implementation that uses the AWS Security Token
@@ -58,11 +58,9 @@ public class STSAssumeRoleSessionCredentialsProvider implements AWSCredentialsPr
      * {@link #roleArn} to assume a role and then request short lived session
      * credentials, which will then be returned by this class's
      * {@link #getCredentials()} method.
-     * 
-     * @param roleArn
-     *            The ARN of the Role to be assumed.
-     * @param roleSessionName
-     *            An identifier for the assumed role session.
+     *
+     * @param roleArn The ARN of the Role to be assumed.
+     * @param roleSessionName An identifier for the assumed role session.
      */
     public STSAssumeRoleSessionCredentialsProvider(String roleArn, String roleSessionName) {
         this.roleArn = roleArn;
@@ -76,15 +74,14 @@ public class STSAssumeRoleSessionCredentialsProvider implements AWSCredentialsPr
      * Security Token Service (STS), uses the provided {@link #roleArn} to
      * assume a role and then request short lived session credentials, which
      * will then be returned by this class's {@link #getCredentials()} method.
-     * 
-     * @param longLivedCredentials
-     *            The main AWS credentials for a user's account.
-     * @param roleArn
-     *            The ARN of the Role to be assumed.
-     * @param roleSessionName
-     *            An identifier for the assumed role session.
+     *
+     * @param longLivedCredentials The main AWS credentials for a user's
+     *            account.
+     * @param roleArn The ARN of the Role to be assumed.
+     * @param roleSessionName An identifier for the assumed role session.
      */
-    public STSAssumeRoleSessionCredentialsProvider(AWSCredentials longLivedCredentials, String roleArn,
+    public STSAssumeRoleSessionCredentialsProvider(AWSCredentials longLivedCredentials,
+            String roleArn,
             String roleSessionName) {
         this(longLivedCredentials, roleArn, roleSessionName, new ClientConfiguration());
     }
@@ -95,21 +92,20 @@ public class STSAssumeRoleSessionCredentialsProvider implements AWSCredentialsPr
      * Security Token Service (STS), uses the provided {@link #roleArn} to
      * assume a role and then request short lived session credentials, which
      * will then be returned by this class's {@link #getCredentials()} method.
-     * 
-     * @param longLivedCredentials
-     *            The main AWS credentials for a user's account.
-     * @param roleArn
-     *            The ARN of the Role to be assumed.
-     * @param roleSessionName
-     *            An identifier for the assumed role session.
-     * @param clientConfiguration
-     *            Client configuration connection parameters.
+     *
+     * @param longLivedCredentials The main AWS credentials for a user's
+     *            account.
+     * @param roleArn The ARN of the Role to be assumed.
+     * @param roleSessionName An identifier for the assumed role session.
+     * @param clientConfiguration Client configuration connection parameters.
      */
-    public STSAssumeRoleSessionCredentialsProvider(AWSCredentials longLivedCredentials, String roleArn,
+    public STSAssumeRoleSessionCredentialsProvider(AWSCredentials longLivedCredentials,
+            String roleArn,
             String roleSessionName, ClientConfiguration clientConfiguration) {
         this.roleArn = roleArn;
         this.roleSessionName = roleSessionName;
-        securityTokenService = new AWSSecurityTokenServiceClient(longLivedCredentials, clientConfiguration);
+        securityTokenService = new AWSSecurityTokenServiceClient(longLivedCredentials,
+                clientConfiguration);
     }
 
     /**
@@ -119,16 +115,14 @@ public class STSAssumeRoleSessionCredentialsProvider implements AWSCredentialsPr
      * usess the provided {@link #roleArn} to assume a role and then request
      * short lived session credentials, which will then be returned by this
      * class's {@link #getCredentials()} method.
-     * 
-     * @param longLivedCredentialsProvider
-     *            Credentials provider for the main AWS credentials for a user's
-     *            account.
-     * @param roleArn
-     *            The ARN of the Role to be assumed.
-     * @param roleSessionName
-     *            An identifier for the assumed role session.
+     *
+     * @param longLivedCredentialsProvider Credentials provider for the main AWS
+     *            credentials for a user's account.
+     * @param roleArn The ARN of the Role to be assumed.
+     * @param roleSessionName An identifier for the assumed role session.
      */
-    public STSAssumeRoleSessionCredentialsProvider(AWSCredentialsProvider longLivedCredentialsProvider, String roleArn,
+    public STSAssumeRoleSessionCredentialsProvider(
+            AWSCredentialsProvider longLivedCredentialsProvider, String roleArn,
             String roleSessionName) {
         this.roleArn = roleArn;
         this.roleSessionName = roleSessionName;
@@ -142,34 +136,35 @@ public class STSAssumeRoleSessionCredentialsProvider implements AWSCredentialsPr
      * uses the provided {@link #roleArn} to assume a role and then request
      * short lived session credentials, which will then be returned by this
      * class's {@link #getCredentials()} method.
-     * 
-     * @param longLivedCredentialsProvider
-     *            Credentials provider for the main AWS credentials for a user's
-     *            account.
-     * @param roleArn
-     *            The ARN of the Role to be assumed.
-     * @param roleSessionName
-     *            An identifier for the assumed role session.
-     * @param clientConfiguration
-     *            Client configuration connection parameters.
+     *
+     * @param longLivedCredentialsProvider Credentials provider for the main AWS
+     *            credentials for a user's account.
+     * @param roleArn The ARN of the Role to be assumed.
+     * @param roleSessionName An identifier for the assumed role session.
+     * @param clientConfiguration Client configuration connection parameters.
      */
-    public STSAssumeRoleSessionCredentialsProvider(AWSCredentialsProvider longLivedCredentialsProvider, String roleArn,
+    public STSAssumeRoleSessionCredentialsProvider(
+            AWSCredentialsProvider longLivedCredentialsProvider, String roleArn,
             String roleSessionName, ClientConfiguration clientConfiguration) {
         this.roleArn = roleArn;
         this.roleSessionName = roleSessionName;
-        securityTokenService = new AWSSecurityTokenServiceClient(longLivedCredentialsProvider, clientConfiguration);
+        securityTokenService = new AWSSecurityTokenServiceClient(longLivedCredentialsProvider,
+                clientConfiguration);
     }
 
     /**
      * Sets the AWS Security Token Service (STS) endpoint where session
      * credentials are retrieved from.
-     * <p></p>
+     * <p>
+     * </p>
      * The default AWS Security Token Service (STS) endpoint
-     * ("sts.amazonaws.com") works for all accounts that are not for
-     * China (Beijing) region or GovCloud. You only need to change the endpoint to
+     * ("sts.amazonaws.com") works for all accounts that are not for China
+     * (Beijing) region or GovCloud. You only need to change the endpoint to
      * "sts.cn-north-1.amazonaws.com.cn" when you are requesting session
-     * credentials for services in China(Beijing) region or "sts.us-gov-west-1.amazonaws.com" for GovCloud.
-     * <p></p>
+     * credentials for services in China(Beijing) region or
+     * "sts.us-gov-west-1.amazonaws.com" for GovCloud.
+     * <p>
+     * </p>
      * Setting this invalidates existing session credentials.
      */
     public void setSTSClientEndpoint(String endpoint) {
@@ -211,7 +206,7 @@ public class STSAssumeRoleSessionCredentialsProvider implements AWSCredentialsPr
      * Returns true if a new STS session needs to be started. A new STS session
      * is needed when no session has been started yet, or if the last session is
      * within {@link #EXPIRY_TIME_MILLIS} seconds of expiring.
-     * 
+     *
      * @return True if a new STS session needs to be started.
      */
     private boolean needsNewSession() {

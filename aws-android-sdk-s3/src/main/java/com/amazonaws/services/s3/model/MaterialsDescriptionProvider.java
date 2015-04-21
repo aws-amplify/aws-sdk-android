@@ -12,19 +12,21 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.util.Map;
 
 /**
- * Interface for providing MaterialsDescription. 
- *
+ * Interface for providing MaterialsDescription.
  */
 public interface MaterialsDescriptionProvider {
-    
+
     /**
-     * Returns an unmodifiable view of the MaterialsDescription which the caller 
-     * can use to load EncryptionMaterials from any {@link EncryptionMaterialsAccessor}
+     * Returns an unmodifiable view of the MaterialsDescription which the caller
+     * can use to load EncryptionMaterials from any
+     * {@link EncryptionMaterialsAccessor}
+     *
      * @return materials description.
      */
     public Map<String, String> getMaterialsDescription();

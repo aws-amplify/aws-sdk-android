@@ -12,25 +12,8 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
-
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.BinaryAttributeMarshaller;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.BinarySetAttributeMarshaller;
@@ -99,6 +82,24 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers.St
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers.StringUnmarshaller;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Pre-defined strategies for mapping between Java types and DynamoDB types.
  */
@@ -111,8 +112,8 @@ public final class ConversionSchemas {
      * The V1 schema mapping, which retains strict backwards compatibility with
      * the original DynamoDB data model. In particular, it marshals Java
      * Booleans as DynamoDB Numbers rather than the newer Boolean type, and does
-     * not support marshaling Lists or Maps. It <em>can</em> unmarshal
-     * values written in newer formats to ease migration.
+     * not support marshaling Lists or Maps. It <em>can</em> unmarshal values
+     * written in newer formats to ease migration.
      * <p>
      * Use me if you have other code still using an old version of the SDK that
      * does not understand the new List and Map types and want to ensure that
@@ -125,10 +126,10 @@ public final class ConversionSchemas {
                     new StandardUnmarshallerSet());
 
     /**
-     * A V2 conversion schema which retains backwards compatibility with the
-     * V1 conversion schema for existing DynamoDB types, but adds the ability
-     * to marshall recursive structures using the new List and Map types. This
-     * is currently the default conversion schema.
+     * A V2 conversion schema which retains backwards compatibility with the V1
+     * conversion schema for existing DynamoDB types, but adds the ability to
+     * marshall recursive structures using the new List and Map types. This is
+     * currently the default conversion schema.
      */
     public static final ConversionSchema V2_COMPATIBLE =
             new StandardConversionSchema(
@@ -138,11 +139,10 @@ public final class ConversionSchemas {
 
     /**
      * The native V2 conversion schema. This schema breaks compatibility with
-     * older versions of the mapper that only support the V1 schema by
-     * storing booleans as native DynamoDB Booleans rather than as a 1 or 0
-     * in a DynamoDB Number. Switching to the V2 schema will prevent older
-     * versions of the mapper from reading items you write that contain
-     * booleans.
+     * older versions of the mapper that only support the V1 schema by storing
+     * booleans as native DynamoDB Booleans rather than as a 1 or 0 in a
+     * DynamoDB Number. Switching to the V2 schema will prevent older versions
+     * of the mapper from reading items you write that contain booleans.
      */
     public static final ConversionSchema V2 =
             new StandardConversionSchema(
@@ -151,7 +151,6 @@ public final class ConversionSchemas {
                     new StandardUnmarshallerSet());
 
     static final ConversionSchema DEFAULT = V2_COMPATIBLE;
-
 
     static class StandardConversionSchema implements ConversionSchema {
 
@@ -196,7 +195,6 @@ public final class ConversionSchemas {
             return name;
         }
     }
-
 
     static class StandardItemConverter implements ItemConverter {
 
@@ -326,7 +324,7 @@ public final class ConversionSchemas {
             if (!(type instanceof ParameterizedType)) {
                 throw new DynamoDBMappingException(
                         "Cannot tell what type of objects belong in the List "
-                        + "type " + type + ", which is not parameterized.");
+                                + "type " + type + ", which is not parameterized.");
             }
 
             ParameterizedType ptype = (ParameterizedType) type;
@@ -335,8 +333,8 @@ public final class ConversionSchemas {
             if (args == null || args.length != 1) {
                 throw new DynamoDBMappingException(
                         "Cannot tell what type of objects belong in the List "
-                        + "type " + type + "; unexpected number of type "
-                        + "arguments.");
+                                + "type " + type + "; unexpected number of type "
+                                + "arguments.");
             }
 
             ArgumentMarshaller memberMarshaller =
@@ -349,7 +347,7 @@ public final class ConversionSchemas {
             if (!(type instanceof ParameterizedType)) {
                 throw new DynamoDBMappingException(
                         "Cannot tell what type of objects belong in the Map "
-                        + "type " + type + ", which is not parameterized.");
+                                + "type " + type + ", which is not parameterized.");
             }
 
             ParameterizedType ptype = (ParameterizedType) type;
@@ -358,8 +356,8 @@ public final class ConversionSchemas {
             if (args == null || args.length != 2) {
                 throw new DynamoDBMappingException(
                         "Cannot tell what type of objects belong in the Map "
-                        + "type " + type + "; unexpected number of type "
-                        + "arguments.");
+                                + "type " + type + "; unexpected number of type "
+                                + "arguments.");
             }
 
             if (args[0] != String.class) {
@@ -388,8 +386,8 @@ public final class ConversionSchemas {
             if (clazz.getAnnotation(DynamoDBDocument.class) == null) {
                 throw new DynamoDBMappingException(
                         "Cannot marshall type " + type
-                        + " without a custom marshaler or @DynamoDBDocument "
-                        + "annotation.");
+                                + " without a custom marshaler or @DynamoDBDocument "
+                                + "annotation.");
             }
 
             return new ObjectToMapMarshaller(this);
@@ -493,7 +491,7 @@ public final class ConversionSchemas {
             if (!(type instanceof ParameterizedType)) {
                 throw new DynamoDBMappingException(
                         "Cannot tell what type of objects belong in the List "
-                        + "type " + type + ", which is not parameterized.");
+                                + "type " + type + ", which is not parameterized.");
             }
 
             ParameterizedType ptype = (ParameterizedType) type;
@@ -502,8 +500,8 @@ public final class ConversionSchemas {
             if (args == null || args.length != 1) {
                 throw new DynamoDBMappingException(
                         "Cannot tell what type of objects belong in the List "
-                        + "type " + type + "; unexpected number of type "
-                        + "arguments.");
+                                + "type " + type + "; unexpected number of type "
+                                + "arguments.");
             }
 
             ArgumentUnmarshaller memberUnmarshaller =
@@ -516,7 +514,7 @@ public final class ConversionSchemas {
             if (!(type instanceof ParameterizedType)) {
                 throw new DynamoDBMappingException(
                         "Cannot tell what type of objects belong in the Map "
-                        + "type " + type + ", which is not parameterized.");
+                                + "type " + type + ", which is not parameterized.");
             }
 
             ParameterizedType ptype = (ParameterizedType) type;
@@ -525,8 +523,8 @@ public final class ConversionSchemas {
             if (args == null || args.length != 2) {
                 throw new DynamoDBMappingException(
                         "Cannot tell what type of objects belong in the Map "
-                        + "type " + type + "; unexpected number of type "
-                        + "arguments.");
+                                + "type " + type + "; unexpected number of type "
+                                + "arguments.");
             }
 
             if (args[0] != String.class) {
@@ -555,8 +553,8 @@ public final class ConversionSchemas {
             if (clazz.getAnnotation(DynamoDBDocument.class) == null) {
                 throw new DynamoDBMappingException(
                         "Cannot unmarshall to type " + type
-                        + " without a custom marshaler or @DynamoDBDocument "
-                        + "annotation.");
+                                + " without a custom marshaler or @DynamoDBDocument "
+                                + "annotation.");
             }
 
             return new ObjectUnmarshaller(this, clazz);
@@ -581,7 +579,7 @@ public final class ConversionSchemas {
             } catch (ParseException e) {
                 throw new DynamoDBMappingException(
                         "Error attempting to parse date string " + value + " for "
-                        + setter,
+                                + setter,
                         e);
             }
         }
@@ -605,11 +603,13 @@ public final class ConversionSchemas {
 
     static interface MarshallerSet {
         ArgumentMarshaller getMarshaller(Method getter);
+
         ArgumentMarshaller getMemberMarshaller(Type memberType);
     }
 
     static interface UnmarshallerSet {
         ArgumentUnmarshaller getUnmarshaller(Method getter, Method setter);
+
         ArgumentUnmarshaller getMemberUnmarshaller(Type memberType);
     }
 
@@ -915,8 +915,8 @@ public final class ConversionSchemas {
 
                 throw new DynamoDBMappingException(
                         "Cannot marshall return type " + type
-                        + " of method " + className + "." + methodName
-                        + " without a custom marshaler.");
+                                + " of method " + className + "." + methodName
+                                + " without a custom marshaler.");
             }
 
             return marshaller;
@@ -935,8 +935,8 @@ public final class ConversionSchemas {
 
                 throw new DynamoDBMappingException(
                         "Cannot marshall return type Set<" + memberType
-                        + "> of method " + className + "." + methodName
-                        + " without a custom marshaller.");
+                                + "> of method " + className + "." + methodName
+                                + " without a custom marshaller.");
             }
 
             return marshaller;
@@ -1102,9 +1102,9 @@ public final class ConversionSchemas {
             if (unmarshaller == null) {
                 throw new DynamoDBMappingException(
                         "Cannot unmarshall to parameter type Set<"
-                        + paramType + "> of method "
-                        + className + "." + methodName + " without a custom "
-                        + "unmarshaler.");
+                                + paramType + "> of method "
+                                + className + "." + methodName + " without a custom "
+                                + "unmarshaler.");
             }
 
             return unmarshaller;
@@ -1123,8 +1123,8 @@ public final class ConversionSchemas {
             if (unmarshaller == null) {
                 throw new DynamoDBMappingException(
                         "Cannot unmarshall to parameter type " + type
-                        + "of method " + className + "." + methodName
-                        + " without a custom unmarshaler.");
+                                + "of method " + className + "." + methodName
+                                + " without a custom unmarshaler.");
             }
 
             return unmarshaller;
@@ -1167,14 +1167,14 @@ public final class ConversionSchemas {
 
     private static class Pair<T> {
 
-        public static Pair<ArgumentMarshaller> of (
+        public static Pair<ArgumentMarshaller> of(
                 Class<?> key,
                 ArgumentMarshaller value) {
 
             return new Pair<ArgumentMarshaller>(key, value);
         }
 
-        public static Pair<ArgumentUnmarshaller> of (
+        public static Pair<ArgumentUnmarshaller> of(
                 Class<?> key,
                 ArgumentUnmarshaller value) {
 

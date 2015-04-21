@@ -12,9 +12,11 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.services.s3.AmazonS3;
 
 /**
  * <p>
@@ -35,7 +37,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  *
  * @see GetObjectMetadataRequest#GetObjectMetadataRequest(String, String)
- * @see GetObjectMetadataRequest#GetObjectMetadataRequest(String, String, String)
+ * @see GetObjectMetadataRequest#GetObjectMetadataRequest(String, String,
+ *      String)
  * @see GetObjectRequest
  */
 public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
@@ -63,20 +66,15 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
      */
     private SSECustomerKey sseCustomerKey;
 
-
     /**
-     * Constructs a new
-     * {@link GetObjectMetadataRequest}
-     * used to retrieve a specified
-     * object's metadata.
+     * Constructs a new {@link GetObjectMetadataRequest} used to retrieve a
+     * specified object's metadata.
      *
-     * @param bucketName
-     *            The name of the bucket containing the object whose metadata
-     *            is being retrieved.
-     * @param key
-     *            The key of the object whose metadata is being retrieved.
-     *
-     * @see GetObjectMetadataRequest#GetObjectMetadataRequest(String bucketName, String key, String versionId)
+     * @param bucketName The name of the bucket containing the object whose
+     *            metadata is being retrieved.
+     * @param key The key of the object whose metadata is being retrieved.
+     * @see GetObjectMetadataRequest#GetObjectMetadataRequest(String bucketName,
+     *      String key, String versionId)
      */
     public GetObjectMetadataRequest(String bucketName, String key) {
         setBucketName(bucketName);
@@ -84,20 +82,15 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Constructs a new
-     * {@link GetObjectMetadataRequest}
-     * with basic options.
+     * Constructs a new {@link GetObjectMetadataRequest} with basic options.
      *
-     * @param bucketName
-     *            The name of the bucket containing the object whose metadata
-     *            is being retrieved.
-     * @param key
-     *            The key of the object whose metadata is being retrieved.
-     * @param versionId
-     *            The version ID of the object version whose metadata is being
-     *            retrieved.
-     *
-     * @see GetObjectMetadataRequest#GetObjectMetadataRequest(String bucketName, String key)
+     * @param bucketName The name of the bucket containing the object whose
+     *            metadata is being retrieved.
+     * @param key The key of the object whose metadata is being retrieved.
+     * @param versionId The version ID of the object version whose metadata is
+     *            being retrieved.
+     * @see GetObjectMetadataRequest#GetObjectMetadataRequest(String bucketName,
+     *      String key)
      */
     public GetObjectMetadataRequest(String bucketName, String key, String versionId) {
         this(bucketName, key);
@@ -105,12 +98,11 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the name of the bucket containing the object whose metadata is
-     * being retrieved.
+     * Gets the name of the bucket containing the object whose metadata is being
+     * retrieved.
      *
      * @return The name of the bucket containing the object whose metadata is
      *         being retrieved.
-     *
      * @see GetObjectMetadataRequest#setBucketName(String bucketName)
      * @see GetObjectMetadataRequest#withBucketName(String)
      */
@@ -119,13 +111,11 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the name of the bucket containing the object whose metadata is
-     * being retrieved.
+     * Sets the name of the bucket containing the object whose metadata is being
+     * retrieved.
      *
-     * @param bucketName
-     *            The name of the bucket containing the object's whose metadata
-     *            is being retrieved.
-     *
+     * @param bucketName The name of the bucket containing the object's whose
+     *            metadata is being retrieved.
      * @see GetObjectMetadataRequest#getBucketName()
      * @see GetObjectMetadataRequest#withBucketName(String)
      */
@@ -134,18 +124,14 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the name of the bucket containing the object whose metadata is
-     * being retrieved.
-     * Returns this {@link GetObjectMetadataRequest}, enabling additional method
-     * calls to be chained together.
+     * Sets the name of the bucket containing the object whose metadata is being
+     * retrieved. Returns this {@link GetObjectMetadataRequest}, enabling
+     * additional method calls to be chained together.
      *
-     * @param bucketName
-     *            The name of the bucket containing the object's whose metadata
-     *            is being retrieved.
-     *
+     * @param bucketName The name of the bucket containing the object's whose
+     *            metadata is being retrieved.
      * @return This {@link GetObjectMetadataRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see GetObjectMetadataRequest#getBucketName()
      * @see GetObjectMetadataRequest#setBucketName(String bucketName)
      */
@@ -158,7 +144,6 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
      * Gets the key of the object whose metadata is being retrieved.
      *
      * @return The key of the object whose metadata is being retrieved.
-     *
      * @see GetObjectMetadataRequest#setKey(String)
      * @see GetObjectMetadataRequest#withKey(String)
      */
@@ -169,9 +154,7 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
     /**
      * Sets the key of the object whose metadata is being retrieved.
      *
-     * @param key
-     *            The key of the object whose metadata is being retrieved.
-     *
+     * @param key The key of the object whose metadata is being retrieved.
      * @see GetObjectMetadataRequest#getKey()
      * @see GetObjectMetadataRequest#withKey(String)
      */
@@ -180,16 +163,13 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the key of the object whose metadata is being retrieved.
-     * Returns this {@link GetObjectMetadataRequest}, enabling additional method
-     * calls to be chained together.
+     * Sets the key of the object whose metadata is being retrieved. Returns
+     * this {@link GetObjectMetadataRequest}, enabling additional method calls
+     * to be chained together.
      *
-     * @param key
-     *            The key of the object whose metadata is being retrieved.
-     *
+     * @param key The key of the object whose metadata is being retrieved.
      * @return This {@link GetObjectMetadataRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see GetObjectMetadataRequest#getKey()
      * @see GetObjectMetadataRequest#setKey(String)
      */
@@ -205,7 +185,6 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
      * @return The optional version ID of the object version whose metadata is
      *         being retrieved. If not specified, the latest version will be
      *         used.
-     *
      * @see GetObjectMetadataRequest#setVersionId(String)
      * @see GetObjectMetadataRequest#withVersionId(String)
      */
@@ -217,11 +196,9 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
      * Sets the optional version ID of the object version whose metadata is
      * being retrieved. If not specified, the latest version will be used.
      *
-     * @param versionId
-     *            The optional version ID of the object version whose metadata
-     *            is being retrieved. If not specified, the latest version will
-     *            be used.
-     *
+     * @param versionId The optional version ID of the object version whose
+     *            metadata is being retrieved. If not specified, the latest
+     *            version will be used.
      * @see GetObjectMetadataRequest#getVersionId()
      * @see GetObjectMetadataRequest#withVersionId(String)
      */
@@ -231,18 +208,14 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the optional version ID of the object version whose metadata is
-     * being retrieved.
-     * Returns this {@link GetObjectMetadataRequest}, enabling additional method
-     * calls to be chained together.
-     * If not specified, the latest version will be used.
+     * being retrieved. Returns this {@link GetObjectMetadataRequest}, enabling
+     * additional method calls to be chained together. If not specified, the
+     * latest version will be used.
      *
-     * @param versionId
-     *            The optional version ID of the object version whose metadata
-     *            is being retrieved.
-     *
+     * @param versionId The optional version ID of the object version whose
+     *            metadata is being retrieved.
      * @return This {@link GetObjectMetadataRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see GetObjectMetadataRequest#getVersionId()
      * @see GetObjectMetadataRequest#setVersionId(String)
      */
@@ -266,9 +239,8 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
      * Sets the optional customer-provided server-side encryption key to use
      * when retrieving the metadata of a server-side encrypted object.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use when retrieving the metadata of a server-side encrypted
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use when retrieving the metadata of a server-side encrypted
      *            object.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
@@ -281,13 +253,11 @@ public class GetObjectMetadataRequest extends AmazonWebServiceRequest {
      * retuns the updated request object so that additional method calls can be
      * chained together.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use when retrieving the metadata of a server-side encrypted
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use when retrieving the metadata of a server-side encrypted
      *            object.
-     *
-     * @return This updated request object so that additional method calls can
-     *         be chained together.
+     * @return This updated request object so that additional method calls can be
+     *         chained together.
      */
     public GetObjectMetadataRequest withSSECustomerKey(SSECustomerKey sseKey) {
         setSSECustomerKey(sseKey);

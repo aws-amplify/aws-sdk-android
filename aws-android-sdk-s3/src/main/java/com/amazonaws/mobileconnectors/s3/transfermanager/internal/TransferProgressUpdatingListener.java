@@ -12,10 +12,11 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import com.amazonaws.event.ProgressListener;
 import com.amazonaws.event.ProgressEvent;
+import com.amazonaws.event.ProgressListener;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferProgress;
 
 public class TransferProgressUpdatingListener implements ProgressListener {
@@ -25,13 +26,12 @@ public class TransferProgressUpdatingListener implements ProgressListener {
         this.transferProgress = transferProgress;
     }
 
+    @Override
     public void progressChanged(ProgressEvent progressEvent) {
-        long bytes = progressEvent.getBytesTransferred(); 
-        
-        if (bytes == 0) 
-            return; // only interested in non-zero bytes 
+        long bytes = progressEvent.getBytesTransferred();
+
+        if (bytes == 0)
+            return; // only interested in non-zero bytes
         transferProgress.updateProgress(bytes);
     }
 }
-
-

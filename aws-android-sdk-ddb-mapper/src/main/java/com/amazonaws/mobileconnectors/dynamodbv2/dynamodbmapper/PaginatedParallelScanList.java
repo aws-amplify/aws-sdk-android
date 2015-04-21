@@ -12,33 +12,36 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
+
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.PaginationLoadingStrategy;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.model.ScanResult;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.PaginationLoadingStrategy;
-import com.amazonaws.services.dynamodbv2.model.ScanResult;
-
 /**
- * Implementation of the List interface that represents the results from a parallel scan
- * in AWS DynamoDB. Paginated results are loaded on demand when the user
- * executes an operation that requires them. Some operations, such as size(),
- * must fetch the entire list, but results are lazily fetched page by page when
- * possible.
+ * Implementation of the List interface that represents the results from a
+ * parallel scan in AWS DynamoDB. Paginated results are loaded on demand when
+ * the user executes an operation that requires them. Some operations, such as
+ * size(), must fetch the entire list, but results are lazily fetched page by
+ * page when possible.
  * <p>
  * This is an unmodifiable list, so callers should not invoke any operations
  * that modify this list, otherwise they will throw an
  * UnsupportedOperationException.
  *
- * @param <T>
- *            The type of objects held in this list.
+ * @param <T> The type of objects held in this list.
  * @see PaginatedList
  */
 public class PaginatedParallelScanList<T> extends PaginatedList<T> {
 
-    /** The current parallel scan task which contains all the information about the scan request */
+    /**
+     * The current parallel scan task which contains all the information about
+     * the scan request
+     */
     private final ParallelScanTask parallelScanTask;
 
     private final DynamoDBMapperConfig config;
@@ -56,7 +59,8 @@ public class PaginatedParallelScanList<T> extends PaginatedList<T> {
         this.config = config;
 
         // Marshal the first batch of results in allResults
-        allResults.addAll(marshalParallelScanResultsIntoObjects(parallelScanTask.getNextBatchOfScanResults()));
+        allResults.addAll(marshalParallelScanResultsIntoObjects(parallelScanTask
+                .getNextBatchOfScanResults()));
 
         // If the results should be eagerly loaded at once
         if (paginationLoadingStrategy == PaginationLoadingStrategy.EAGER_LOADING) {
@@ -79,11 +83,11 @@ public class PaginatedParallelScanList<T> extends PaginatedList<T> {
         for (ScanResult scanResult : scanResults) {
             if (null != scanResult) {
                 allItems.addAll(mapper.marshallIntoObjects(
-                    mapper.toParameters(
-                        scanResult.getItems(),
-                        clazz,
-                        parallelScanTask.getTableName(),
-                        config)));
+                        mapper.toParameters(
+                                scanResult.getItems(),
+                                clazz,
+                                parallelScanTask.getTableName(),
+                                config)));
             }
         }
         return allItems;

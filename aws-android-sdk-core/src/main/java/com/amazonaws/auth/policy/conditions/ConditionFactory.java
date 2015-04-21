@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.conditions;
 
 import com.amazonaws.auth.policy.Condition;
@@ -84,7 +85,8 @@ public class ConditionFactory {
      */
     public static final String SOURCE_ARN_CONDITION_KEY = "aws:SourceArn";
 
-    private ConditionFactory() {}
+    private ConditionFactory() {
+    }
 
     /**
      * Constructs a new access policy condition that compares the Amazon
@@ -108,13 +110,11 @@ public class ConditionFactory {
      *         .withConditions(ConditionFactory.newSourceArnCondition(myTopicArn)));
      * </pre>
      *
-     * @param arnPattern
-     *            The ARN pattern against which the source ARN will be compared.
-     *            Each of the six colon-delimited components of the ARN is
-     *            checked separately and each can include a wildcard.
-     *
-     * @return A new access control policy condition that compares the ARN of
-     *         the source specified in an incoming request with the ARN pattern
+     * @param arnPattern The ARN pattern against which the source ARN will be
+     *            compared. Each of the six colon-delimited components of the
+     *            ARN is checked separately and each can include a wildcard.
+     * @return A new access control policy condition that compares the ARN of the
+     *         source specified in an incoming request with the ARN pattern
      *         specified here.
      */
     public static Condition newSourceArnCondition(String arnPattern) {
@@ -139,13 +139,11 @@ public class ConditionFactory {
      * access to a resource based on what user agent is specified in the
      * request.
      *
-     * @param comparisonType
-     *            The type of string comparison to perform when testing an
-     *            incoming request's user agent field with the specified value.
-     * @param value
-     *            The value against which to compare the incoming request's user
-     *            agent.
-     *
+     * @param comparisonType The type of string comparison to perform when
+     *            testing an incoming request's user agent field with the
+     *            specified value.
+     * @param value The value against which to compare the incoming request's
+     *            user agent.
      * @return A new access control policy condition that tests an incoming
      *         request's user agent field.
      */
@@ -158,13 +156,11 @@ public class ConditionFactory {
      * request's referer field against the specified value, using the specified
      * comparison type.
      *
-     * @param comparisonType
-     *            The type of string comparison to perform when testing an
-     *            incoming request's referer field with the specified value.
-     * @param value
-     *            The value against which to compare the incoming request's
+     * @param comparisonType The type of string comparison to perform when
+     *            testing an incoming request's referer field with the specified
+     *            value.
+     * @param value The value against which to compare the incoming request's
      *            referer field.
-     *
      * @return A new access control policy condition that tests an incoming
      *         request's referer field.
      */

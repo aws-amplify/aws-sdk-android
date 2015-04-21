@@ -53,7 +53,7 @@ public class FileRecordStore {
 
     /**
      * Creates the FileRecordStore
-     * 
+     *
      * @param recorderDirectory The directory (which the FileRecordStore is only
      *            used for the KinesisRecorder) to use to store requests in
      * @param config
@@ -78,10 +78,6 @@ public class FileRecordStore {
                     writer.newLine();
                     writer.flush();
                     success = true;
-                } else {
-                    Log.e(TAG,
-                            "The record file exceeded its allowed size of "
-                                    + config.getMaxStorageSize() + " bytes");
                 }
             }
         } finally {

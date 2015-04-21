@@ -12,12 +12,12 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.services.s3.model;
 
-import java.util.Date;
+package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.internal.SSEResultBase;
 
+import java.util.Date;
 
 /**
  * Result of the copy part operation.
@@ -31,8 +31,8 @@ public class CopyPartResult extends SSEResultBase {
     private Date lastModifiedDate;
 
     /**
-     * The version ID of the source object. This field will only be present
-     * if object versioning has been enabled for the bucket from which the object
+     * The version ID of the source object. This field will only be present if
+     * object versioning has been enabled for the bucket from which the object
      * was copied.
      */
     private String versionId;
@@ -52,19 +52,17 @@ public class CopyPartResult extends SSEResultBase {
     /**
      * Sets the part number of the newly copied part.
      *
-     * @param partNumber
-     *            the part number of the newly uploaded part.
+     * @param partNumber the part number of the newly uploaded part.
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
     }
 
     /**
-     * Gets the ETag value for the new part that was created in the
-     * associated {@link CopyPartRequest}.
+     * Gets the ETag value for the new part that was created in the associated
+     * {@link CopyPartRequest}.
      *
      * @return The ETag value for the new part.
-     *
      * @see CopyPartResult#setETag(String)
      */
     public String getETag() {
@@ -72,12 +70,10 @@ public class CopyPartResult extends SSEResultBase {
     }
 
     /**
-     * Sets the ETag value for the new part that was created from the
-     * associated copy object request.
+     * Sets the ETag value for the new part that was created from the associated
+     * copy object request.
      *
-     * @param etag
-     *            The ETag value for the new part.
-     *
+     * @param etag The ETag value for the new part.
      * @see CopyPartResult#getETag()
      */
     public void setETag(String etag) {
@@ -100,7 +96,6 @@ public class CopyPartResult extends SSEResultBase {
      * Gets the date the newly copied part was last modified.
      *
      * @return The date the newly copied part was last modified.
-     *
      * @see CopyPartResult#setLastModifiedDate(Date)
      */
     public Date getLastModifiedDate() {
@@ -110,9 +105,7 @@ public class CopyPartResult extends SSEResultBase {
     /**
      * Sets the date the newly copied part was last modified.
      *
-     * @param lastModifiedDate
-     *            The date the new, copied part was last modified.
-     *
+     * @param lastModifiedDate The date the new, copied part was last modified.
      * @see CopyPartResult#getLastModifiedDate()
      */
     public void setLastModifiedDate(Date lastModifiedDate) {
@@ -120,12 +113,11 @@ public class CopyPartResult extends SSEResultBase {
     }
 
     /**
-     * Gets the version ID of the source object. This field is only
-     * present if object versioning has been enabled for the bucket the
-     * object was copied from.
+     * Gets the version ID of the source object. This field is only present if
+     * object versioning has been enabled for the bucket the object was copied
+     * from.
      *
      * @return The version ID of the newly copied object.
-     *
      * @see CopyPartResult#setVersionId(String)
      */
     public String getVersionId() {
@@ -135,9 +127,7 @@ public class CopyPartResult extends SSEResultBase {
     /**
      * Sets the version ID of the source object.
      *
-     * @param versionId
-     *            The version ID of the source object.
-     *
+     * @param versionId The version ID of the source object.
      * @see CopyPartResult#getVersionId()
      */
     public void setVersionId(String versionId) {

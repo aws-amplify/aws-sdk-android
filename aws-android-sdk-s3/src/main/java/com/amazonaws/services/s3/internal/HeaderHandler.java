@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.http.HttpResponse;
@@ -24,11 +25,9 @@ public interface HeaderHandler<T> {
 
     /**
      * Applies one or more headers to the response object given.
-     * 
-     * @param result
-     *            The response object to be returned to the client.
-     * @param response
-     *            The HTTP response from s3.
+     *
+     * @param result The response object to be returned to the client.
+     * @param response The HTTP response from s3.
      */
     public void handle(T result, HttpResponse response);
 }

@@ -12,11 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
-import java.util.Date;
-
 import com.amazonaws.services.s3.AmazonS3;
+
+import java.util.Date;
 
 /**
  * A multipart upload is an upload to Amazon S3 that is creating by uploading
@@ -52,7 +53,6 @@ public class MultipartUpload {
     /** The date at which this upload was initiated. */
     private Date initiated;
 
-
     /**
      * Returns the key by which this upload is stored.
      *
@@ -65,8 +65,7 @@ public class MultipartUpload {
     /**
      * Sets the key by which this upload is stored.
      *
-     * @param key
-     *            The key by which this upload is stored.
+     * @param key The key by which this upload is stored.
      */
     public void setKey(String key) {
         this.key = key;
@@ -84,8 +83,7 @@ public class MultipartUpload {
     /**
      * Sets the unique ID of this multipart upload.
      *
-     * @param uploadId
-     *            The unique ID of this multipart upload.
+     * @param uploadId The unique ID of this multipart upload.
      */
     public void setUploadId(String uploadId) {
         this.uploadId = uploadId;
@@ -103,8 +101,7 @@ public class MultipartUpload {
     /**
      * Sets the owner of this multipart upload.
      *
-     * @param owner
-     *            The owner of this multipart upload.
+     * @param owner The owner of this multipart upload.
      */
     public void setOwner(Owner owner) {
         this.owner = owner;
@@ -122,8 +119,7 @@ public class MultipartUpload {
     /**
      * Sets the user who initiated this multipart upload.
      *
-     * @param owner
-     *            The user who initiated this multipart upload.
+     * @param owner The user who initiated this multipart upload.
      */
     public void setInitiator(Owner initiator) {
         this.initiator = initiator;
@@ -144,9 +140,8 @@ public class MultipartUpload {
      * Sets the storage class indicating how the data in this multipart upload
      * will be stored.
      *
-     * @param storageClass
-     *            The storage class indicating how the data in this multipart
-     *            upload will be stored.
+     * @param storageClass The storage class indicating how the data in this
+     *            multipart upload will be stored.
      */
     public void setStorageClass(String storageClass) {
         this.storageClass = storageClass;
@@ -164,8 +159,7 @@ public class MultipartUpload {
     /**
      * Sets the date at which this upload was initiated.
      *
-     * @param initiated
-     *            The date at which this upload was initiated.
+     * @param initiated The date at which this upload was initiated.
      */
     public void setInitiated(Date initiated) {
         this.initiated = initiated;

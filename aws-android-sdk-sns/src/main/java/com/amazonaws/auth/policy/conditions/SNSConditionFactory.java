@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.conditions;
 
 import com.amazonaws.auth.policy.Condition;
@@ -45,7 +46,8 @@ public class SNSConditionFactory {
      */
     public static final String PROTOCOL_CONDITION_KEY = "sns:Protocol";
 
-    private SNSConditionFactory() {}
+    private SNSConditionFactory() {
+    }
 
     /**
      * Constructs a new access policy condition that compares the requested
@@ -64,10 +66,8 @@ public class SNSConditionFactory {
      *         .withConditions(SNSConditionFactory.newEndpointCondition(&quot;*@my-company.com&quot;)));
      * </pre>
      *
-     * @param endpointPattern
-     *            The endpoint pattern against which to compare the requested
-     *            endpoint for an Amazon SNS topic subscription.
-     *
+     * @param endpointPattern The endpoint pattern against which to compare the
+     *            requested endpoint for an Amazon SNS topic subscription.
      * @return A new access control policy condition that compares the endpoint
      *         used in a request to subscribe to an Amazon SNS topic with the
      *         endpoint pattern specified.
@@ -84,10 +84,8 @@ public class SNSConditionFactory {
      * condition can restrict subscriptions to a topic to endpoints using HTTPS
      * to ensure that messages are securely delivered.
      *
-     * @param protocol
-     *            The protocol against which to compare the requested protocol
-     *            for an Amazon SNS topic subscription.
-     *
+     * @param protocol The protocol against which to compare the requested
+     *            protocol for an Amazon SNS topic subscription.
      * @return A new access control policy condition that compares the
      *         notification protocol requested in a request to subscribe to an
      *         Amazon SNS topic with the protocol value specified.

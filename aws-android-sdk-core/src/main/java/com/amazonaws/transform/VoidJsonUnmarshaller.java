@@ -12,14 +12,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.transform;
 
-
 /**
- * Simple unmarshaller that iterates through the JSON events but always
- * returns null.
+ * Simple unmarshaller that iterates through the JSON events but always returns
+ * null.
  */
 public class VoidJsonUnmarshaller<T> implements Unmarshaller<T, JsonUnmarshallerContext> {
+    @Override
     public T unmarshall(JsonUnmarshallerContext context) throws Exception {
         return null;
     }

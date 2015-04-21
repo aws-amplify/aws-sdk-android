@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -20,65 +21,62 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.internal.Constants;
 
 /**
- * Provides options for returning
- * a list of summary information about the versions in a specified
- * bucket.
+ * Provides options for returning a list of summary information about the
+ * versions in a specified bucket.
  * <p>
- * Returned version summaries are ordered first by key and then by version.
- * Keys are sorted lexicographically (i.e. alphabetically from a-Z) and versions
- * are sorted from the most recent to the least recent.
- * Versions with data and
+ * Returned version summaries are ordered first by key and then by version. Keys
+ * are sorted lexicographically (i.e. alphabetically from a-Z) and versions are
+ * sorted from the most recent to the least recent. Versions with data and
  * versions with delete markers are included in the results.
  * </p>
  * <p>
  * Buckets can contain a virtually unlimited number of keys, and the complete
  * results of a list query can be extremely large. To manage large result sets,
- * Amazon S3 uses pagination to split them into multiple responses.
- * Always check the {@link ObjectListing#isTruncated()} method to see
- * if the returned listing is complete, or if callers need to make additional
- * calls to get more results. Alternatively, use the
+ * Amazon S3 uses pagination to split them into multiple responses. Always check
+ * the {@link ObjectListing#isTruncated()} method to see if the returned listing
+ * is complete, or if callers need to make additional calls to get more results.
+ * Alternatively, use the
  * {@link AmazonS3Client#listNextBatchOfVersions(VersionListing)} method as an
  * easy way to get the next page of object listings.
  * </p>
  * <p>
  * Objects created before versioning was enabled or when versioning is suspended
  * will be given the default <code>null</code> version ID (see
- * {@link Constants#NULL_VERSION_ID}). Note that the
- * <code>null</code> version ID is a valid version ID and is not the same
- * as not having a version ID.
+ * {@link Constants#NULL_VERSION_ID}). Note that the <code>null</code> version
+ * ID is a valid version ID and is not the same as not having a version ID.
  * </p>
  * <p>
- * Calling {@link ListVersionsRequest#setDelimiter(String)}
- * sets the delimiter, allowing groups of keys that share the
- * delimiter-terminated prefix to be included
- * in the returned listing. This allows applications to organize and browse
- * their keys hierarchically, similar to how a file system organizes files
- * into directories. These common prefixes can be retrieved
- * through the {@link VersionListing#getCommonPrefixes()} method.
+ * Calling {@link ListVersionsRequest#setDelimiter(String)} sets the delimiter,
+ * allowing groups of keys that share the delimiter-terminated prefix to be
+ * included in the returned listing. This allows applications to organize and
+ * browse their keys hierarchically, similar to how a file system organizes
+ * files into directories. These common prefixes can be retrieved through the
+ * {@link VersionListing#getCommonPrefixes()} method.
  * </p>
  * <p>
  * For example, consider a bucket that contains the following keys:
  * <ul>
- *  <li>"foo/bar/baz"</li>
- *  <li>"foo/bar/bash"</li>
- *  <li>"foo/bar/bang"</li>
- *  <li>"foo/boo"</li>
+ * <li>"foo/bar/baz"</li>
+ * <li>"foo/bar/bash"</li>
+ * <li>"foo/bar/bang"</li>
+ * <li>"foo/boo"</li>
  * </ul>
- * If calling <code>listVersions</code> with
- * a prefix value of "foo/" and a delimiter value of "/"
- * on this bucket, an <code>VersionListing</code> is returned that contains one key
- * ("foo/boo") and one entry in the common prefixes list ("foo/bar/").
- * To see deeper into the virtual hierarchy, make another
- * call to <code>listVersions</code> setting the prefix parameter to any interesting
- * common prefix to list the individual keys under that prefix.
+ * If calling <code>listVersions</code> with a prefix value of "foo/" and a
+ * delimiter value of "/" on this bucket, an <code>VersionListing</code> is
+ * returned that contains one key ("foo/boo") and one entry in the common
+ * prefixes list ("foo/bar/"). To see deeper into the virtual hierarchy, make
+ * another call to <code>listVersions</code> setting the prefix parameter to any
+ * interesting common prefix to list the individual keys under that prefix.
  * </p>
  * <p>
- * The total number of keys in a bucket doesn't substantially affect list performance,
- * nor does the presence or absence of additional request parameters.
+ * The total number of keys in a bucket doesn't substantially affect list
+ * performance, nor does the presence or absence of additional request
+ * parameters.
  * </p>
  * <p>
  * For more information about enabling versioning for a bucket, see
- * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
+ * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}
+ * .
  * </p>
  */
 public class ListVersionsRequest extends AmazonWebServiceRequest {
@@ -132,11 +130,10 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     /**
      * Optional parameter that causes keys that contain the same string between
      * the prefix and the first occurrence of the delimiter to be rolled up into
-     * a single result element in the
-     * {@link VersionListing#getCommonPrefixes()} list. These rolled-up keys
-     * are not returned elsewhere in the response. The most commonly used
-     * delimiter is "/", which simulates a hierarchical organization similar to
-     * a file system directory structure.
+     * a single result element in the {@link VersionListing#getCommonPrefixes()}
+     * list. These rolled-up keys are not returned elsewhere in the response.
+     * The most commonly used delimiter is "/", which simulates a hierarchical
+     * organization similar to a file system directory structure.
      */
     private String delimiter;
 
@@ -158,37 +155,32 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
      */
     private String encodingType;
 
-
     /**
-     * Constructs a new {@link ListVersionsRequest} object.
-     * The caller must populate
-     * the fields before the request is executed.
+     * Constructs a new {@link ListVersionsRequest} object. The caller must
+     * populate the fields before the request is executed.
      *
-     * @see ListVersionsRequest#ListVersionsRequest(String, String, String, String, String, Integer)
+     * @see ListVersionsRequest#ListVersionsRequest(String, String, String,
+     *      String, String, Integer)
      */
-    public ListVersionsRequest() {}
+    public ListVersionsRequest() {
+    }
 
     /**
-     * Constructs a new {@link ListVersionsRequest} object and initializes all required
-     * and optional fields.
+     * Constructs a new {@link ListVersionsRequest} object and initializes all
+     * required and optional fields.
      *
-     * @param bucketName
-     *            The name of the bucket whose versions are to be listed.
-     * @param prefix
-     *            The prefix restricting what keys will be listed.
-     * @param keyMarker
-     *            The key marker indicating where results should begin.
-     * @param versionIdMarker
-     *            The version ID marker indicating where results should begin.
-     * @param delimiter
-     *            The delimiter for condensing common prefixes in returned
+     * @param bucketName The name of the bucket whose versions are to be listed.
+     * @param prefix The prefix restricting what keys will be listed.
+     * @param keyMarker The key marker indicating where results should begin.
+     * @param versionIdMarker The version ID marker indicating where results
+     *            should begin.
+     * @param delimiter The delimiter for condensing common prefixes in returned
      *            results.
-     * @param maxResults
-     *            The maximum number of results to return.
-     *
+     * @param maxResults The maximum number of results to return.
      * @see ListVersionsRequest#ListVersionsRequest()
      */
-    public ListVersionsRequest(String bucketName, String prefix, String keyMarker, String versionIdMarker, String delimiter, Integer maxResults) {
+    public ListVersionsRequest(String bucketName, String prefix, String keyMarker,
+            String versionIdMarker, String delimiter, Integer maxResults) {
         setBucketName(bucketName);
         setPrefix(prefix);
         setKeyMarker(keyMarker);
@@ -197,12 +189,10 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
         setMaxResults(maxResults);
     }
 
-
     /**
      * Gets the name of the Amazon S3 bucket whose versions are to be listed.
      *
      * @return The name of the Amazon S3 bucket whose versions are to be listed.
-     *
      * @see ListVersionsRequest#setBucketName(String)
      * @see ListVersionsRequest#withBucketName(String)
      */
@@ -213,10 +203,8 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     /**
      * Sets the name of the Amazon S3 bucket whose versions are to be listed.
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose versions are to be
-     *            listed.
-     *
+     * @param bucketName The name of the Amazon S3 bucket whose versions are to
+     *            be listed.
      * @see ListVersionsRequest#getBucketName()
      * @see ListVersionsRequest#withBucketName(String)
      */
@@ -229,13 +217,10 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
      * Returns this {@link ListVersionsRequest}, enabling additional method
      * calls to be chained together.
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose versions are to be
-     *            listed.
-     *
-     * @return This {@link ListVersionsRequest}, enabling additional method
-     *         calls to be chained together.
-     *
+     * @param bucketName The name of the Amazon S3 bucket whose versions are to
+     *            be listed.
+     * @return This {@link ListVersionsRequest}, enabling additional method calls
+     *         to be chained together.
      * @see ListVersionsRequest#getBucketName()
      * @see ListVersionsRequest#setBucketName(String)
      */
@@ -245,14 +230,13 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the optional prefix parameter restricting the response to keys
-     * that begin with the specified prefix. Use prefixes to separate a
-     * bucket into different sets of keys, similar to how a file system organizes files
-     * into directories.
+     * Gets the optional prefix parameter restricting the response to keys that
+     * begin with the specified prefix. Use prefixes to separate a bucket into
+     * different sets of keys, similar to how a file system organizes files into
+     * directories.
      *
      * @return The optional prefix parameter restricting the response to keys
      *         that begin with the specified prefix.
-     *
      * @see ListVersionsRequest#setPrefix(String)
      * @see ListVersionsRequest#withPrefix(String)
      */
@@ -264,10 +248,8 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
      * Sets the optional prefix parameter restricting the response to keys that
      * begin with the specified prefix.
      *
-     * @param prefix
-     *            The optional prefix parameter restricting the response to keys
-     *            that begin with the specified prefix.
-     *
+     * @param prefix The optional prefix parameter restricting the response to
+     *            keys that begin with the specified prefix.
      * @see ListVersionsRequest#getPrefix()
      * @see ListVersionsRequest#withPrefix(String)
      */
@@ -277,17 +259,13 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the optional prefix parameter restricting the response to keys that
-     * begin with the specified prefix.
-     * Returns this {@link ListVersionsRequest}, enabling additional method
-     * calls to be chained together.
+     * begin with the specified prefix. Returns this {@link ListVersionsRequest}
+     * , enabling additional method calls to be chained together.
      *
-     * @param prefix
-     *            The optional prefix parameter restricting the response to keys
-     *            that begin with the specified prefix.
-     *
-     * @return This {@link ListVersionsRequest}, enabling additional method
-     *         calls to be chained together.
-     *
+     * @param prefix The optional prefix parameter restricting the response to
+     *            keys that begin with the specified prefix.
+     * @return This {@link ListVersionsRequest}, enabling additional method calls
+     *         to be chained together.
      * @see ListVersionsRequest#getPrefix()
      * @see ListVersionsRequest#setPrefix(String)
      */
@@ -297,23 +275,21 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the optional <code>keyMarker</code>
-     * parameter indicating where in the sorted
-     * list of all versions in the specified bucket to begin returning results.
-     * Results are always ordered first lexicographically (i.e. alphabetically)
-     * and then from most recent version to least recent version.
+     * Gets the optional <code>keyMarker</code> parameter indicating where in
+     * the sorted list of all versions in the specified bucket to begin
+     * returning results. Results are always ordered first lexicographically
+     * (i.e. alphabetically) and then from most recent version to least recent
+     * version.
      * <p>
-     * If a <code>keyMarker</code>
-     * is used without a version ID marker, results begin immediately after that
-     * key's last version. When a <code>keyMarker</code> is used with a version ID marker,
-     * results begin immediately after the version with the specified key and
-     * version ID.
+     * If a <code>keyMarker</code> is used without a version ID marker, results
+     * begin immediately after that key's last version. When a
+     * <code>keyMarker</code> is used with a version ID marker, results begin
+     * immediately after the version with the specified key and version ID.
      * </p>
      *
-     * @return The optional <code>keyMarker</code> parameter indicating where in the sorted
-     *         list of all versions in the specified bucket to begin returning
-     *         results.
-     *
+     * @return The optional <code>keyMarker</code> parameter indicating where in
+     *         the sorted list of all versions in the specified bucket to begin
+     *         returning results.
      * @see ListVersionsRequest#setKeyMarker(String)
      * @see ListVersionsRequest#withKeyMarker(String)
      */
@@ -322,14 +298,13 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional <code>keyMarker</code> parameter indicating where in the sorted list
-     * of all versions in the specified bucket to begin returning results.
+     * Sets the optional <code>keyMarker</code> parameter indicating where in
+     * the sorted list of all versions in the specified bucket to begin
+     * returning results.
      *
-     * @param keyMarker
-     *            The optional <code>keyMarker</code> parameter indicating where in the
-     *            sorted list of all versions in the specified bucket to begin
-     *            returning results.
-     *
+     * @param keyMarker The optional <code>keyMarker</code> parameter indicating
+     *            where in the sorted list of all versions in the specified
+     *            bucket to begin returning results.
      * @see ListVersionsRequest#getKeyMarker()
      * @see ListVersionsRequest#withKeyMarker(String)
      */
@@ -338,19 +313,16 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional <code>keyMarker</code> parameter indicating where in the sorted list
-     * of all versions in the specified bucket to begin returning results.
-     * Returns this {@link ListVersionsRequest}, enabling additional method
-     * calls to be chained together.
+     * Sets the optional <code>keyMarker</code> parameter indicating where in
+     * the sorted list of all versions in the specified bucket to begin
+     * returning results. Returns this {@link ListVersionsRequest}, enabling
+     * additional method calls to be chained together.
      *
-     * @param keyMarker
-     *            The optional <code>keyMarker</code> parameter indicating where in the
-     *            sorted list of all versions in the specified bucket to begin
-     *            returning results.
-     *
-     * @return This {@link ListVersionsRequest}, enabling additional method
-     *         calls to be chained together.
-     *
+     * @param keyMarker The optional <code>keyMarker</code> parameter indicating
+     *            where in the sorted list of all versions in the specified
+     *            bucket to begin returning results.
+     * @return This {@link ListVersionsRequest}, enabling additional method calls
+     *         to be chained together.
      * @see ListVersionsRequest#getKeyMarker()
      * @see ListVersionsRequest#setKeyMarker(String)
      */
@@ -360,21 +332,20 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the optional <code>versionIdMarker</code> parameter indicating where in the
-     * sorted list of all versions in the specified bucket to begin returning
-     * results. Results are always ordered first lexicographically (i.e.
-     * alphabetically) and then from most recent version to least recent
+     * Gets the optional <code>versionIdMarker</code> parameter indicating where
+     * in the sorted list of all versions in the specified bucket to begin
+     * returning results. Results are always ordered first lexicographically
+     * (i.e. alphabetically) and then from most recent version to least recent
      * version.
      * <p>
-     * A key marker must be specified when specifying a <code>versionIdMarker</code>.
-     * Results begin immediately after the version with the specified key and
-     * version ID.
+     * A key marker must be specified when specifying a
+     * <code>versionIdMarker</code>. Results begin immediately after the version
+     * with the specified key and version ID.
      * </p>
      *
-     * @return The optional <code>versionIdMarker</code> parameter indicating where in the
-     *         sorted list of all versions in the specified bucket to begin
-     *         returning results.
-     *
+     * @return The optional <code>versionIdMarker</code> parameter indicating
+     *         where in the sorted list of all versions in the specified bucket
+     *         to begin returning results.
      * @see ListVersionsRequest#setVersionIdMarker(String)
      * @see ListVersionsRequest#withVersionIdMarker(String)
      */
@@ -383,15 +354,13 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional <code>versionIdMarker</code> parameter indicating where in the
-     * sorted list of all versions in the specified bucket to begin returning
-     * results.
+     * Sets the optional <code>versionIdMarker</code> parameter indicating where
+     * in the sorted list of all versions in the specified bucket to begin
+     * returning results.
      *
-     * @param versionIdMarker
-     *            The optional <code>versionIdMarker</code> parameter indicating where in the
-     *            sorted list of all versions in the specified bucket to begin
-     *            returning results.
-     *
+     * @param versionIdMarker The optional <code>versionIdMarker</code>
+     *            parameter indicating where in the sorted list of all versions
+     *            in the specified bucket to begin returning results.
      * @see ListVersionsRequest#getVersionIdMarker()
      * @see ListVersionsRequest#withVersionIdMarker(String)
      */
@@ -400,20 +369,16 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional <code>versionIdMarker</code> parameter indicating where in the
-     * sorted list of all versions in the specified bucket to begin returning
-     * results.
-     * Returns this {@link ListVersionsRequest}, enabling additional method
-     * calls to be chained together.
+     * Sets the optional <code>versionIdMarker</code> parameter indicating where
+     * in the sorted list of all versions in the specified bucket to begin
+     * returning results. Returns this {@link ListVersionsRequest}, enabling
+     * additional method calls to be chained together.
      *
-     * @param versionIdMarker
-     *            The optional <code>versionIdMarker</code> parameter indicating where in the
-     *            sorted list of all versions in the specified bucket to begin
-     *            returning results.
-     *
-     * @return This {@link ListVersionsRequest}, enabling additional method
-     *         calls to be chained together.
-     *
+     * @param versionIdMarker The optional <code>versionIdMarker</code>
+     *            parameter indicating where in the sorted list of all versions
+     *            in the specified bucket to begin returning results.
+     * @return This {@link ListVersionsRequest}, enabling additional method calls
+     *         to be chained together.
      * @see ListVersionsRequest#getVersionIdMarker()
      * @see ListVersionsRequest#setVersionIdMarker(String)
      */
@@ -423,22 +388,20 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the optional delimiter parameter that causes keys that contain
-     * the same string between the prefix and the first occurrence of the
-     * delimiter to be combined into a single result element in the
-     * {@link VersionListing#getCommonPrefixes()} list. These combined keys
-     * are not returned elsewhere in the response.
+     * Gets the optional delimiter parameter that causes keys that contain the
+     * same string between the prefix and the first occurrence of the delimiter
+     * to be combined into a single result element in the
+     * {@link VersionListing#getCommonPrefixes()} list. These combined keys are
+     * not returned elsewhere in the response.
      * <p>
-     * The most commonly used
-     * delimiter is "/", which simulates a hierarchical organization similar to
-     * a file system directory structure.
+     * The most commonly used delimiter is "/", which simulates a hierarchical
+     * organization similar to a file system directory structure.
      * </p>
      *
      * @return The optional delimiter parameter that causes keys that contain
      *         the same string between the prefix and the first occurrence of
      *         the delimiter to be combined into a single result element in the
      *         {@link VersionListing#getCommonPrefixes()} list.
-     *
      * @see ListVersionsRequest#setDelimiter(String)
      * @see ListVersionsRequest#withDelimiter(String)
      */
@@ -452,12 +415,11 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
      * to be combined into a single result element in the
      * {@link VersionListing#getCommonPrefixes()} list.
      *
-     * @param delimiter
-     *            The optional delimiter parameter that causes keys that contain
-     *            the same string between the prefix and the first occurrence of
-     *            the delimiter to be combined into a single result element in
-     *            the {@link VersionListing#getCommonPrefixes()} list.
-     *
+     * @param delimiter The optional delimiter parameter that causes keys that
+     *            contain the same string between the prefix and the first
+     *            occurrence of the delimiter to be combined into a single
+     *            result element in the
+     *            {@link VersionListing#getCommonPrefixes()} list.
      * @see ListVersionsRequest#getDelimiter()
      * @see ListVersionsRequest#withDelimiter(String)
      */
@@ -469,19 +431,17 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
      * Sets the optional delimiter parameter that causes keys that contain the
      * same string between the prefix and the first occurrence of the delimiter
      * to be combined into a single result element in the
-     * {@link VersionListing#getCommonPrefixes()} list.
-     * Returns this {@link ListVersionsRequest}, enabling additional method
-     * calls to be chained together.
+     * {@link VersionListing#getCommonPrefixes()} list. Returns this
+     * {@link ListVersionsRequest}, enabling additional method calls to be
+     * chained together.
      *
-     * @param delimiter
-     *            The optional delimiter parameter that causes keys that contain
-     *            the same string between the prefix and the first occurrence of
-     *            the delimiter to be combined into a single result element in
-     *            the {@link VersionListing#getCommonPrefixes()} list.
-     *
-     * @return This {@link ListVersionsRequest}, enabling additional method
-     *         calls to be chained together.
-     *
+     * @param delimiter The optional delimiter parameter that causes keys that
+     *            contain the same string between the prefix and the first
+     *            occurrence of the delimiter to be combined into a single
+     *            result element in the
+     *            {@link VersionListing#getCommonPrefixes()} list.
+     * @return This {@link ListVersionsRequest}, enabling additional method calls
+     *         to be chained together.
      * @see ListVersionsRequest#getDelimiter()
      * @see ListVersionsRequest#setDelimiter(String)
      */
@@ -491,14 +451,14 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the optional <code>maxResults</code> parameter indicating the maximum number of results
-     * to include in the response. Amazon S3 might return fewer than this, but
-     * will never return more. Even if <code>maxResults</code> is not specified,
-     * Amazon S3 will
-     * limit the number of results in the response.
+     * Gets the optional <code>maxResults</code> parameter indicating the
+     * maximum number of results to include in the response. Amazon S3 might
+     * return fewer than this, but will never return more. Even if
+     * <code>maxResults</code> is not specified, Amazon S3 will limit the number
+     * of results in the response.
      *
-     * @return The optional <code>maxResults</code> parameter indicating the maximum number of results
-     *
+     * @return The optional <code>maxResults</code> parameter indicating the
+     *         maximum number of results
      * @see ListVersionsRequest#setMaxResults(Integer)
      * @see ListVersionsRequest#withMaxResults(Integer)
      */
@@ -507,13 +467,12 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional <code>maxResults</code> parameter indicating the maximum number of results to
-     * include in the response.
+     * Sets the optional <code>maxResults</code> parameter indicating the
+     * maximum number of results to include in the response.
      *
-     * @param maxResults
-     *            The optional <code>maxResults</code> parameter indicating the maximum number of
-     *            results to include in the response.
-     *
+     * @param maxResults The optional <code>maxResults</code> parameter
+     *            indicating the maximum number of results to include in the
+     *            response.
      * @see ListVersionsRequest#getMaxResults()
      * @see ListVersionsRequest#withMaxResults(Integer)
      */
@@ -522,18 +481,16 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional <code>maxResults</code> parameter indicating the maximum number of results to
-     * include in the response.
-     * Returns this {@link ListVersionsRequest}, enabling additional method
-     * calls to be chained together.
+     * Sets the optional <code>maxResults</code> parameter indicating the
+     * maximum number of results to include in the response. Returns this
+     * {@link ListVersionsRequest}, enabling additional method calls to be
+     * chained together.
      *
-     * @param maxResults
-     *            The optional <code>maxResults</code> parameter indicating the maximum number of
-     *            results to include in the response.
-     *
-     * @return This {@link ListVersionsRequest}, enabling additional method
-     *         calls to be chained together.
-     *
+     * @param maxResults The optional <code>maxResults</code> parameter
+     *            indicating the maximum number of results to include in the
+     *            response.
+     * @return This {@link ListVersionsRequest}, enabling additional method calls
+     *         to be chained together.
      * @see ListVersionsRequest#getMaxResults()
      * @see ListVersionsRequest#setMaxResults(Integer)
      */
@@ -545,7 +502,7 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
     /**
      * Gets the optional <code>encodingType</code> parameter indicating the
      * encoding method to be applied on the response.
-     * 
+     *
      * @return The encoding method to be applied on the response.
      */
     public String getEncodingType() {
@@ -559,28 +516,26 @@ public class ListVersionsRequest extends AmazonWebServiceRequest {
      * characters, such as characters with an ASCII value from 0 to 10. For
      * characters that are not supported in XML 1.0, you can add this parameter
      * to request that Amazon S3 encode the keys in the response.
-     * 
-     * @param encodingType
-     *            The encoding method to be applied on the response. Valid
-     *            values: null (not encoded) or "url".
+     *
+     * @param encodingType The encoding method to be applied on the response.
+     *            Valid values: null (not encoded) or "url".
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;
     }
-    
+
     /**
      * Sets the optional <code>encodingType</code> parameter indicating the
      * encoding method to be applied on the response. An object key can contain
      * any Unicode character; however, XML 1.0 parser cannot parse some
      * characters, such as characters with an ASCII value from 0 to 10. For
      * characters that are not supported in XML 1.0, you can add this parameter
-     * to request that Amazon S3 encode the keys in the response. 
-     * Returns this {@link ListVersionsRequest}, enabling additional method calls
-     * to be chained together.
-     * 
-     * @param encodingType
-     *            The encoding method to be applied on the response. Valid
-     *            values: null (not encoded) or "url".
+     * to request that Amazon S3 encode the keys in the response. Returns this
+     * {@link ListVersionsRequest}, enabling additional method calls to be
+     * chained together.
+     *
+     * @param encodingType The encoding method to be applied on the response.
+     *            Valid values: null (not encoded) or "url".
      */
     public ListVersionsRequest withEncodingType(String encodingType) {
         setEncodingType(encodingType);

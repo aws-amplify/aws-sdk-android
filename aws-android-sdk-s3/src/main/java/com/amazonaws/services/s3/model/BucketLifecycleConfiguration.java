@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.util.Arrays;
@@ -100,14 +101,13 @@ public class BucketLifecycleConfiguration {
 
         /**
          * The time, in days, between when a new version of the object is
-         * uploaded to the bucket and when older versions of the object
-         * expire.
+         * uploaded to the bucket and when older versions of the object expire.
          */
         private int noncurrentVersionExpirationInDays = -1;
 
         /**
-         * The expiration date of the object and should not coexist with expirationInDays within
-         * one lifecycle rule.
+         * The expiration date of the object and should not coexist with
+         * expirationInDays within one lifecycle rule.
          */
         private Date expirationDate;
 
@@ -268,8 +268,8 @@ public class BucketLifecycleConfiguration {
         }
 
         /**
-         * Sets the expiration date of the object and returns a reference to this
-         * object(Rule) for method chaining.
+         * Sets the expiration date of the object and returns a reference to
+         * this object(Rule) for method chaining.
          */
         public Rule withExpirationDate(Date expirationDate) {
             this.expirationDate = expirationDate;
@@ -312,8 +312,8 @@ public class BucketLifecycleConfiguration {
         }
 
         /**
-         * Returns the transition describing how non-current versions of
-         * objects will move between different storage classes in Amazon S3.
+         * Returns the transition describing how non-current versions of objects
+         * will move between different storage classes in Amazon S3.
          */
         public NoncurrentVersionTransition getNoncurrentVersionTransition() {
             return noncurrentVersionTransition;
@@ -321,8 +321,8 @@ public class BucketLifecycleConfiguration {
 
         /**
          * Sets the transition describing how non-current versions of objects
-         * will move between different storage classes in Amazon S3, and
-         * returns a reference to this object for method chaining.
+         * will move between different storage classes in Amazon S3, and returns
+         * a reference to this object for method chaining.
          */
         public Rule withNoncurrentVersionTransition(
                 NoncurrentVersionTransition value) {
@@ -346,8 +346,8 @@ public class BucketLifecycleConfiguration {
         private int days = -1;
 
         /**
-         * The expiration date of the object and should not coexist with expirationInDays within
-         * one lifecycle rule.
+         * The expiration date of the object and should not coexist with
+         * expirationInDays within one lifecycle rule.
          */
         private Date date;
 
@@ -429,8 +429,8 @@ public class BucketLifecycleConfiguration {
     }
 
     /**
-     * The non-current-version transition attribute of the rule, describing
-     * how non-current versions of objects will move between different storage
+     * The non-current-version transition attribute of the rule, describing how
+     * non-current versions of objects will move between different storage
      * classes in Amazon S3.
      */
     public static class NoncurrentVersionTransition {
@@ -444,25 +444,25 @@ public class BucketLifecycleConfiguration {
         private StorageClass storageClass;
 
         /**
-         * Sets the time, in days, between when a new version of the object
-         * is uploaded to the bucket and when older versions are archived.
+         * Sets the time, in days, between when a new version of the object is
+         * uploaded to the bucket and when older versions are archived.
          */
         public void setDays(int expirationInDays) {
             this.days = expirationInDays;
         }
 
         /**
-         * Returns the time in days from when a new version of the object
-         * is uploaded to the bucket and when older versions are archived.
+         * Returns the time in days from when a new version of the object is
+         * uploaded to the bucket and when older versions are archived.
          */
         public int getDays() {
             return days;
         }
 
         /**
-         * Sets the time in days from when a new version of the object
-         * is uploaded to the bucket and when older versions are archived,
-         * and returns a reference to this object for method chaining.
+         * Sets the time in days from when a new version of the object is
+         * uploaded to the bucket and when older versions are archived, and
+         * returns a reference to this object for method chaining.
          */
         public NoncurrentVersionTransition withDays(int expirationInDays) {
             this.days = expirationInDays;
@@ -484,8 +484,8 @@ public class BucketLifecycleConfiguration {
         }
 
         /**
-         * Sets the storage class of this object and returns a reference to
-         * this object for method chaining.
+         * Sets the storage class of this object and returns a reference to this
+         * object for method chaining.
          */
         public NoncurrentVersionTransition withStorageClass(
                 StorageClass storageClass) {

@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws;
 
-import java.util.HashMap;
-import java.util.Map;
+package com.amazonaws;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.metrics.RequestMetricCollector;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Base class for all user facing web service requests.
@@ -26,14 +27,14 @@ import com.amazonaws.metrics.RequestMetricCollector;
 public abstract class AmazonWebServiceRequest {
 
     /**
-     * Arbitrary options storage for individual {@link AmazonWebServiceRequest}s. This
-     * field is not intended to be used by clients.
+     * Arbitrary options storage for individual {@link AmazonWebServiceRequest}
+     * s. This field is not intended to be used by clients.
      */
     private final RequestClientOptions requestClientOptions = new RequestClientOptions();
 
     /**
      * A request metric collector used for this specific service request; or
-     * null if there is none.  This collector always takes precedence over the
+     * null if there is none. This collector always takes precedence over the
      * ones specified at the http client level and AWS SDK level.
      */
     private RequestMetricCollector requestMetricCollector;
@@ -42,22 +43,19 @@ public abstract class AmazonWebServiceRequest {
     private String delegationToken;
 
     /**
-     * The optional credentials to use for this request - overrides the
-     * default credentials set at the client level.
+     * The optional credentials to use for this request - overrides the default
+     * credentials set at the client level.
      */
     private AWSCredentials credentials;
 
-
     /**
-     * Returns the optional STS security token associated with the request.
-     *
-     * This method is not available in the external release of the SDK.
+     * Returns the optional STS security token associated with the request. This
+     * method is not available in the external release of the SDK.
      *
      * @return the optional STS security token associated with the request.
-     *
      * @deprecated Pass a {@link com.amazonaws.auth.AWSSessionCredentials} to
-     * your client constructor instead.  Note the delegationToken methods do not
-     * work for services other than s3.
+     *             your client constructor instead. Note the delegationToken
+     *             methods do not work for services other than s3.
      */
     @Deprecated
     public String getDelegationToken() {
@@ -65,16 +63,14 @@ public abstract class AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional STS security token associated with the request.
+     * Sets the optional STS security token associated with the request. This
+     * method is not available in the external release of the SDK.
      *
-     * This method is not available in the external release of the SDK.
-     *
-     * @param delegationToken
-     *            The optional STS security token associated with the request.
-     *
+     * @param delegationToken The optional STS security token associated with
+     *            the request.
      * @deprecated Pass a {@link com.amazonaws.auth.AWSSessionCredentials} to
-     * your client constructor instead.  Note the delegationToken methods do not
-     * work for services other than s3.
+     *             your client constructor instead. Note the delegationToken
+     *             methods do not work for services other than s3.
      */
     @Deprecated
     public void setDelegationToken(String delegationToken) {
@@ -85,9 +81,9 @@ public abstract class AmazonWebServiceRequest {
      * Sets the optional credentials to use for this request, overriding the
      * default credentials set at the client level.
      *
-     * @param credentials
-     *            The optional AWS security credentials to use for this request,
-     *            overriding the default credentials set at the client level.
+     * @param credentials The optional AWS security credentials to use for this
+     *            request, overriding the default credentials set at the client
+     *            level.
      */
     public void setRequestCredentials(AWSCredentials credentials) {
         this.credentials = credentials;
@@ -112,12 +108,12 @@ public abstract class AmazonWebServiceRequest {
      */
 
     public Map<String, String> copyPrivateRequestParameters() {
-        HashMap<String,String> map = new HashMap<String, String>();
-        if (delegationToken != null) map.put("SecurityToken", delegationToken);
+        HashMap<String, String> map = new HashMap<String, String>();
+        if (delegationToken != null)
+            map.put("SecurityToken", delegationToken);
 
         return map;
     }
-
 
     /**
      * Gets the options stored with this request object. Intended for internal
@@ -146,9 +142,11 @@ public abstract class AmazonWebServiceRequest {
      * Specifies a request level metric collector which takes precedence over
      * the ones at the http client level and AWS SDK level.
      */
-    public <T extends AmazonWebServiceRequest> T withRequestMetricCollector(RequestMetricCollector metricCollector) {
+    public <T extends AmazonWebServiceRequest> T withRequestMetricCollector(
+            RequestMetricCollector metricCollector) {
         setRequestMetricCollector(metricCollector);
-        @SuppressWarnings("unchecked") T t = (T)this;
+        @SuppressWarnings("unchecked")
+        T t = (T) this;
         return t;
     }
 }

@@ -12,17 +12,18 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
+
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-
 /**
- * A legacy unmarshaller that unmarshals DynamoDB NumberSets containing only
- * "0" and "1" into a set of Java Booleans (with "0" == false and "1" == true).
+ * A legacy unmarshaller that unmarshals DynamoDB NumberSets containing only "0"
+ * and "1" into a set of Java Booleans (with "0" == false and "1" == true).
  * Retained only for backwards compatibility - DynamoDB does not have a
  * BooleanSet type, and sets of booleans aren't particularly useful anyways.
  */
@@ -45,7 +46,7 @@ public class BooleanSetUnmarshaller extends NSUnmarshaller {
 
         for (String s : values) {
             if ("1".equals(s)) {
-                 result.add(Boolean.TRUE);
+                result.add(Boolean.TRUE);
             } else if ("0".equals(s)) {
                 result.add(Boolean.FALSE);
             } else {

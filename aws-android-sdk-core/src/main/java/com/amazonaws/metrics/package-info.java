@@ -15,10 +15,10 @@
 
 /**
  * Classes used to support the AWS SDK metrics API.
- * 
- * When the default metric collection system is enabled, 
+ *
+ * When the default metric collection system is enabled,
  * the default AWS SDK implementation
- * captures a set of predefined core metrics that are grouped under three major 
+ * captures a set of predefined core metrics that are grouped under three major
  * categories:  AWS Request Metrics, AWS Service Metrics, and Machine Metrics.
  * <h3>Nomenclature</h3>
  * <ul>
@@ -28,42 +28,42 @@
  * <li>Request type - the specific subtype of AmazonWebServiceRequest, such as PutItemRequest, PutObjectRequest, etc.</li>
  * <li>Http Client Library - the <a href="http://hc.apache.org/httpcomponents-client-4.2.x/index.html">Apache HttpComponents client</a> library</li>
  * </ul>
- * 
+ *
  * <h3>AWS Request Metrics</h3>
  * <ol>
- * <li>ClientExecuteTime - Total number of milliseconds taken for a 
+ * <li>ClientExecuteTime - Total number of milliseconds taken for a
  * request/response including the time taken to execute the request handlers,
  * round trip to AWS, and the time taken to execute the response handlers.
  * Captured on a per request type level.</li>
- * <li>Exception - Number of logical request failure. Captured both on a per service 
+ * <li>Exception - Number of logical request failure. Captured both on a per service
  * client type level and a per request type level.</li>
  * <li>HttpClientPoolAvailableCount - Number of idle persistent connections of
  * the underlying httpclient.
- * This metric is collected from the respective <a 
+ * This metric is collected from the respective <a
  * href="https://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/org/apache/http/pool/PoolStats.html"
  * >PoolStats</a> before the connection of a request is obtained.</li>
- * <li>HttpClientPoolLeasedCount - Number of persistent connections tracked by 
+ * <li>HttpClientPoolLeasedCount - Number of persistent connections tracked by
  * the underlying httpclient connection manager currently being used to execute
  * requests.
- * This metric is collected from the respective <a 
+ * This metric is collected from the respective <a
  * href="https://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/org/apache/http/pool/PoolStats.html"
  * >PoolStats</a> before the connection of a request is obtained.</li>
  * <li>HttpClientPoolPendingCount - Number of connection requests being blocked
  * awaiting a free connection of the underlying httpclient.
- * This metric is collected from the respective <a 
+ * This metric is collected from the respective <a
  * href="https://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/org/apache/http/pool/PoolStats.html"
  * >PoolStats</a>. before the connection of a request is obtained</li>
- * <li>HttpRequestTime - Number of milliseconds taken for a logical request/response 
+ * <li>HttpRequestTime - Number of milliseconds taken for a logical request/response
  * round trip to AWS. Captured on a per request type level.< /li>
  * <li>HttpClientSendRequestTime - Number of milliseconds taken for a physical request
  * to get sent to AWS. Captured on a per request type level.< /li>
  * <li>HttpClientReceiveResponseTime - Number of milliseconds taken for a physical response
  * to get received from AWS. Captured on a per request type level.< /li>
- * <li>HttpClientRetryCount - Number of retries per physical request. Captured on a per service 
+ * <li>HttpClientRetryCount - Number of retries per physical request. Captured on a per service
  * client type level. </li>
- * <li>RequestCount - Number of logical requests. Captured on a per service 
+ * <li>RequestCount - Number of logical requests. Captured on a per service
  * client type level. </li>
- * <li>RetryCount - Number of retries per logical request. Captured on a per service 
+ * <li>RetryCount - Number of retries per logical request. Captured on a per service
  * client type level. </li>
  * <li>DynamoDBConsumedCapacity - Number of Amazon DynamoDB capacity units consumed.
  * Captured on a per request type level, and is only available if the request
@@ -83,9 +83,9 @@
  * <h4>Memory</h4>
  * <ol>
  * <li>TotalMemory - Total amount of memory currently available to the JVM for
- * current and future objects, measured in bytes. This value may vary over 
+ * current and future objects, measured in bytes. This value may vary over
  * time, depending on the host environment.</li>
- * <li>FreeMemory - An approximation to the total amount of memory currently 
+ * <li>FreeMemory - An approximation to the total amount of memory currently
  * available to the JVM for future allocated objects, measured in bytes.</li>
  * <li>UsedMemory - TotalMemory minus FreeMemory.</li>
  * <li>SpareMemory - The maximum amount of memory that the JVM will attempt to
@@ -93,27 +93,28 @@
  * </ol>
  * <h4>Threads</h4>
  * <ol>
- * <li>ThreadCount - The current number of live threads including both daemon 
+ * <li>ThreadCount - The current number of live threads including both daemon
  * and non-daemon threads.</li>
- * <li>DeadLockThreadCount - The number of threads that are deadlocked waiting 
+ * <li>DeadLockThreadCount - The number of threads that are deadlocked waiting
  * for object monitors or ownable synchronizers, if any. Threads are deadlocked
- *  in a cycle waiting for a lock of these two types if each thread owns one 
+ *  in a cycle waiting for a lock of these two types if each thread owns one
  *  lock while trying to acquire another lock already held by another thread in
  *   the cycle. No metrics is generated when the value is zero.</li>
  * <li>DaemonThreadCount - The current number of live daemon threads. No metrics
  *  is generated when the value is zero.</li>
- * <li>PeakThreadCount - The peak live thread count since the JVM started or 
+ * <li>PeakThreadCount - The peak live thread count since the JVM started or
  * since the peak was reset.</li>
- * <li>TotalStartedThreadCount - The total number of threads created and also 
+ * <li>TotalStartedThreadCount - The total number of threads created and also
  * started since the JVM started.</li>
  * </ol>
  * <h4>File Descriptors</h4>
  * <ol>
- * <li>OpenFileDescriptorCount - Number of opened file descriptors of the 
+ * <li>OpenFileDescriptorCount - Number of opened file descriptors of the
  * operating system.</li>
- * <li>SpareFileDescriptorCount - Maximum number of file descriptors of the 
+ * <li>SpareFileDescriptorCount - Maximum number of file descriptors of the
  * operating system minus OpenFileDescriptorCount.</li>
  * </ol>
  */
+
 package com.amazonaws.metrics;
 

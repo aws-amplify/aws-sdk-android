@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 /**
@@ -23,7 +24,6 @@ import java.util.List;
 
 public class BucketCrossOriginConfiguration {
 
-	
     private List<CORSRule> rules;
 
     /**
@@ -61,7 +61,7 @@ public class BucketCrossOriginConfiguration {
     /**
      * Constructs a new {@link BucketCrossOriginConfiguration} object with the
      * rules given.
-     * 
+     *
      * @param rules
      */
     public BucketCrossOriginConfiguration(List<CORSRule> rules) {
@@ -71,7 +71,5 @@ public class BucketCrossOriginConfiguration {
     public BucketCrossOriginConfiguration() {
         super();
     }
-	
+
 }
-
-

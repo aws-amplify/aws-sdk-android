@@ -12,25 +12,27 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.internal;
 
 public class DynamoDBBackoffStrategy extends CustomBackoffStrategy {
-	public int getBackoffPeriod(int retries) {
+    @Override
+    public int getBackoffPeriod(int retries) {
 
-		if (retries <= 0) {
-			return 0;
-		} else {
+        if (retries <= 0) {
+            return 0;
+        } else {
 
-			int delay = 50 * (int) Math.pow(2, retries - 1);
+            int delay = 50 * (int) Math.pow(2, retries - 1);
 
-			if (delay < 0) {
-				delay = Integer.MAX_VALUE;
-			}
+            if (delay < 0) {
+                delay = Integer.MAX_VALUE;
+            }
 
-			return delay;
-		}
+            return delay;
+        }
 
-	}
+    }
 
     public static final CustomBackoffStrategy DEFAULT = new DynamoDBBackoffStrategy();
 }

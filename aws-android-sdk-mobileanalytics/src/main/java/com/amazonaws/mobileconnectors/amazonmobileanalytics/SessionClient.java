@@ -49,17 +49,17 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics;
  * </p>
  * <h3>Session Example</h3> The example below demonstrates how to pause and
  * resume a session within each Activity. Example:
- * 
+ *
  * <pre class="prettyprint">
  * public void onPause() {
  *     super.onPause();
- * 
+ *
  *     // Notify MobileAnalyticsManager that a session pause happened in this
  *     // Android activity.
  *     // Be sure to include this in every activity's onPause.
  *     this.mobileAnalyticsManager.getSessionClient().pauseSession();
  * }
- * 
+ *
  * public void onResume() {
  *     super.onResume();
  *     // Notify MobileAnalyticsManager that a session resume happened in this

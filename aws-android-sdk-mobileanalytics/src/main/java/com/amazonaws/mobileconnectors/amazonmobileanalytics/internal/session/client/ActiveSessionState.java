@@ -20,7 +20,7 @@ import android.util.Log;
 /**
  * Session Logic for when the Application Session is ACTIVE. ie: The session is
  * running and has not been paused
- * 
+ *
  * @author Dirk Hortensius [hortensi@amazon.com]
  */
 public final class ActiveSessionState extends SessionClientState {

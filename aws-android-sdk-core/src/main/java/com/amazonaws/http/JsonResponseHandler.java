@@ -12,17 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.ResponseMetadata;
@@ -35,13 +26,22 @@ import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.json.AwsJsonReader;
 import com.amazonaws.util.json.JsonUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Default implementation of HttpResponseHandler that handles a successful
  * response from an AWS service and unmarshalls the result using a JSON
  * unmarshaller.
  *
- * @param <T>
- *            Indicates the type being unmarshalled by this response handler.
+ * @param <T> Indicates the type being unmarshalled by this response handler.
  */
 public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServiceResponse<T>> {
 
@@ -53,31 +53,27 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
 
     public boolean needsConnectionLeftOpen = false;
 
-
     /**
      * Constructs a new response handler that will use the specified JSON
      * unmarshaller to unmarshall the service response and uses the specified
      * response element path to find the root of the business data in the
      * service's response.
      *
-     * @param responseUnmarshaller
-     *            The JSON unmarshaller to use on the response.
+     * @param responseUnmarshaller The JSON unmarshaller to use on the response.
      */
     public JsonResponseHandler(Unmarshaller<T, JsonUnmarshallerContext> responseUnmarshaller) {
         this.responseUnmarshaller = responseUnmarshaller;
 
         /*
          * Even if the invoked operation just returns null, we still need an
-         * unmarshaller to run so we can pull out response metadata.
-         *
-         * We might want to pass this in through the client class so that we
-         * don't have to do this check here.
+         * unmarshaller to run so we can pull out response metadata. We might
+         * want to pass this in through the client class so that we don't have
+         * to do this check here.
          */
         if (this.responseUnmarshaller == null) {
             this.responseUnmarshaller = new VoidJsonUnmarshaller<T>();
         }
     }
-
 
     /**
      * @see com.amazonaws.http.HttpResponseHandler#handle(com.amazonaws.http.HttpResponse)
@@ -117,14 +113,16 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
                 long serverSideCRC = Long.parseLong(CRC32Checksum);
                 long clientSideCRC = crc32ChecksumInputStream.getCRC32Checksum();
                 if (clientSideCRC != serverSideCRC) {
-                    throw new CRC32MismatchException("Client calculated crc32 checksum didn't match that calculated by server side");
+                    throw new CRC32MismatchException(
+                            "Client calculated crc32 checksum didn't match that calculated by server side");
                 }
             }
 
             awsResponse.setResult(result);
 
             Map<String, String> metadata = new HashMap<String, String>();
-            metadata.put(ResponseMetadata.AWS_REQUEST_ID, response.getHeaders().get("x-amzn-RequestId"));
+            metadata.put(ResponseMetadata.AWS_REQUEST_ID,
+                    response.getHeaders().get("x-amzn-RequestId"));
             awsResponse.setResponseMetadata(new ResponseMetadata(metadata));
 
             log.trace("Done parsing service response");
@@ -144,12 +142,12 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
      * Hook for subclasses to override in order to collect additional metadata
      * from service responses.
      *
-     * @param unmarshallerContext
-     *            The unmarshaller context used to process a service's response
-     *            data.
+     * @param unmarshallerContext The unmarshaller context used to process a
+     *            service's response data.
      */
     @Deprecated
-    protected void registerAdditionalMetadataExpressions(JsonUnmarshallerContext unmarshallerContext) {}
+    protected void registerAdditionalMetadataExpressions(JsonUnmarshallerContext unmarshallerContext) {
+    }
 
     /**
      * Since this response handler completely consumes all the data from the

@@ -12,7 +12,18 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.Request;
+import com.amazonaws.util.AwsHostNameUtils;
+import com.amazonaws.util.BinaryUtils;
+import com.amazonaws.util.DateUtils;
+import com.amazonaws.util.HttpUtils;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,21 +33,11 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.Request;
-import com.amazonaws.util.AwsHostNameUtils;
-import com.amazonaws.util.BinaryUtils;
-import com.amazonaws.util.DateUtils;
-import com.amazonaws.util.HttpUtils;
-
 /**
  * Signer implementation that signs requests with the AWS4 signing protocol.
  */
 public class AWS4Signer extends AbstractAWSSigner
-        implements ServiceAwareSigner, RegionAwareSigner,Presigner {
+        implements ServiceAwareSigner, RegionAwareSigner, Presigner {
 
     protected static final String ALGORITHM = "AWS4-HMAC-SHA256";
     protected static final String TERMINATOR = "aws4_request";
@@ -52,8 +53,8 @@ public class AWS4Signer extends AbstractAWSSigner
     protected String serviceName;
 
     /**
-     * Region name override for use when the endpoint can't be used to
-     * determine the region name.
+     * Region name override for use when the endpoint can't be used to determine
+     * the region name.
      */
     protected String regionName;
 
@@ -62,16 +63,15 @@ public class AWS4Signer extends AbstractAWSSigner
 
     /**
      * Whether double url-encode the resource path when constructing the
-     * canonical request. By default, we enable double url-encoding.
-     *
-     * TODO: Different sigv4 services seem to be inconsistent on this. So for
-     * services that want to suppress this, they should use new AWS4Signer(false).
+     * canonical request. By default, we enable double url-encoding. TODO:
+     * Different sigv4 services seem to be inconsistent on this. So for services
+     * that want to suppress this, they should use new AWS4Signer(false).
      */
     protected boolean doubleUrlEncode;
 
     /**
-     * Construct a new AWS4 signer instance.
-     * By default, enable double url-encoding.
+     * Construct a new AWS4 signer instance. By default, enable double
+     * url-encoding.
      */
     public AWS4Signer() {
         this(true);
@@ -80,9 +80,8 @@ public class AWS4Signer extends AbstractAWSSigner
     /**
      * Construct a new AWS4 signer instance.
      *
-     * @param doubleUrlEncoding
-     *            Whether double url-encode the resource path when constructing
-     *            the canonical request.
+     * @param doubleUrlEncoding Whether double url-encode the resource path when
+     *            constructing the canonical request.
      */
     public AWS4Signer(boolean doubleUrlEncoding) {
         this.doubleUrlEncode = doubleUrlEncoding;
@@ -93,12 +92,12 @@ public class AWS4Signer extends AbstractAWSSigner
     @Override
     public void sign(Request<?> request, AWSCredentials credentials) {
         // annonymous credentials, don't sign
-        if ( credentials instanceof AnonymousAWSCredentials ) {
+        if (credentials instanceof AnonymousAWSCredentials) {
             return;
         }
 
         AWSCredentials sanitizedCredentials = sanitizeCredentials(credentials);
-        if ( sanitizedCredentials instanceof AWSSessionCredentials ) {
+        if (sanitizedCredentials instanceof AWSSessionCredentials) {
             addSessionCredentials(request, (AWSSessionCredentials) sanitizedCredentials);
         }
 
@@ -107,26 +106,27 @@ public class AWS4Signer extends AbstractAWSSigner
         long dateMilli = getDateFromRequest(request);
 
         final String dateStamp = getDateStamp(dateMilli);
-        String scope =  getScope(request, dateStamp);
+        String scope = getScope(request, dateStamp);
 
         String contentSha256 = calculateContentHash(request);
 
         final String timeStamp = getTimeStamp(dateMilli);
         request.addHeader("X-Amz-Date", timeStamp);
 
-        if (request.getHeaders().get("x-amz-content-sha256") != null && request.getHeaders().get("x-amz-content-sha256").equals("required")) {
+        if (request.getHeaders().get("x-amz-content-sha256") != null
+                && request.getHeaders().get("x-amz-content-sha256").equals("required")) {
             request.addHeader("x-amz-content-sha256", contentSha256);
         }
 
         String signingCredentials = sanitizedCredentials.getAWSAccessKeyId() + "/" + scope;
 
         HeaderSigningResult headerSigningResult = computeSignature(
-            request,
-            dateStamp,
-            timeStamp,
-            ALGORITHM,
-            contentSha256,
-            sanitizedCredentials);
+                request,
+                dateStamp,
+                timeStamp,
+                ALGORITHM,
+                contentSha256,
+                sanitizedCredentials);
 
         String credentialsAuthorizationHeader =
                 "Credential=" + signingCredentials;
@@ -151,9 +151,8 @@ public class AWS4Signer extends AbstractAWSSigner
      * the request's end point, so you shouldn't need this method, but it's
      * provided for the edge case where the information is not in the endpoint.
      *
-     * @param serviceName
-     *            The service name to use when calculating signatures in this
-     *            signer.
+     * @param serviceName The service name to use when calculating signatures in
+     *            this signer.
      */
     @Override
     public void setServiceName(String serviceName) {
@@ -166,9 +165,8 @@ public class AWS4Signer extends AbstractAWSSigner
      * request's end point, so you shouldn't need this method, but it's provided
      * for the edge case where the information is not in the endpoint.
      *
-     * @param regionName
-     *            The region name to use when calculating signatures in this
-     *            signer.
+     * @param regionName The region name to use when calculating signatures in
+     *            this signer.
      */
     @Override
     public void setRegionName(String regionName) {
@@ -181,14 +179,16 @@ public class AWS4Signer extends AbstractAWSSigner
     }
 
     protected String extractRegionName(URI endpoint) {
-        if (regionName != null) return regionName;
+        if (regionName != null)
+            return regionName;
 
         return AwsHostNameUtils.parseRegionName(endpoint.getHost(),
-                                                serviceName);
+                serviceName);
     }
 
     protected String extractServiceName(URI endpoint) {
-        if (serviceName != null) return serviceName;
+        if (serviceName != null)
+            return serviceName;
 
         // This should never actually be called, as we should always be setting
         // a service name on the signer; retain it for now in case anyone is
@@ -197,7 +197,6 @@ public class AWS4Signer extends AbstractAWSSigner
 
         return AwsHostNameUtils.parseServiceName(endpoint);
     }
-
 
     void overrideDate(Date overriddenDate) {
         this.overriddenDate = overriddenDate;
@@ -234,7 +233,8 @@ public class AWS4Signer extends AbstractAWSSigner
         StringBuilder buffer = new StringBuilder();
         for (String header : sortedHeaders) {
             if (needsSign(header)) {
-                if (buffer.length() > 0) buffer.append(";");
+                if (buffer.length() > 0)
+                    buffer.append(";");
                 buffer.append(header.toLowerCase());
             }
         }
@@ -256,11 +256,15 @@ public class AWS4Signer extends AbstractAWSSigner
 
     protected String getCanonicalRequest(Request<?> request, String contentSha256) {
         /* This would url-encode the resource path for the first time */
-        String path = HttpUtils.appendUri(request.getEndpoint().getPath(), request.getResourcePath());
+        String path = HttpUtils.appendUri(request.getEndpoint().getPath(),
+                request.getResourcePath());
 
         String canonicalRequest =
                 request.getHttpMethod().toString() + "\n" +
-        /* This would optionally double url-encode the resource path */
+                        /*
+                         * This would optionally double url-encode the resource
+                         * path
+                         */
                         getCanonicalizedResourcePath(path, doubleUrlEncode) + "\n" +
                         getCanonicalizedQueryString(request) + "\n" +
                         getCanonicalizedHeaderString(request) + "\n" +
@@ -270,7 +274,8 @@ public class AWS4Signer extends AbstractAWSSigner
         return canonicalRequest;
     }
 
-    protected String getStringToSign(String algorithm, String dateTime, String scope, String canonicalRequest) {
+    protected String getStringToSign(String algorithm, String dateTime, String scope,
+            String canonicalRequest) {
         String stringToSign =
                 algorithm + "\n" +
                         dateTime + "\n" +
@@ -279,7 +284,6 @@ public class AWS4Signer extends AbstractAWSSigner
         log.debug("AWS4 String to Sign: '\"" + stringToSign + "\"");
         return stringToSign;
     }
-
 
     protected final HeaderSigningResult computeSignature(
             Request<?> request,
@@ -291,9 +295,10 @@ public class AWS4Signer extends AbstractAWSSigner
     {
         String regionName = extractRegionName(request.getEndpoint());
         String serviceName = extractServiceName(request.getEndpoint());
-        String scope =  dateStamp + "/" + regionName + "/" + serviceName + "/" + TERMINATOR;
+        String scope = dateStamp + "/" + regionName + "/" + serviceName + "/" + TERMINATOR;
 
-        String stringToSign = getStringToSign(algorithm, timeStamp, scope, getCanonicalRequest(request,contentSha256 ));
+        String stringToSign = getStringToSign(algorithm, timeStamp, scope,
+                getCanonicalRequest(request, contentSha256));
 
         // AWS4 uses a series of derived keys, formed by hashing different
         // pieces of data
@@ -318,10 +323,10 @@ public class AWS4Signer extends AbstractAWSSigner
     protected final long getDateFromRequest(Request<?> request) {
         int timeOffset = getTimeOffset(request);
         Date date = getSignatureDate(timeOffset);
-        if (overriddenDate != null) date = overriddenDate;
+        if (overriddenDate != null)
+            date = overriddenDate;
         return date.getTime();
     }
-
 
     protected void addHostHeader(Request<?> request) {
         // AWS4 requires that we sign the Host header so we
@@ -336,15 +341,15 @@ public class AWS4Signer extends AbstractAWSSigner
     protected String getScope(Request<?> request, String dateStamp) {
         String regionName = extractRegionName(request.getEndpoint());
         String serviceName = extractServiceName(request.getEndpoint());
-        String scope =  dateStamp + "/" + regionName + "/" + serviceName + "/" + TERMINATOR;
+        String scope = dateStamp + "/" + regionName + "/" + serviceName + "/" + TERMINATOR;
         return scope;
     }
 
     /**
-     * Calculate the hash of the request's payload.
-     * Subclass could override this method to provide different values for "x-amz-content-sha256" header
-     * or do any other necessary set-ups on the request headers.
-     * (e.g. aws-chunked uses a pre-defined header value, and needs to change some headers
+     * Calculate the hash of the request's payload. Subclass could override this
+     * method to provide different values for "x-amz-content-sha256" header or
+     * do any other necessary set-ups on the request headers. (e.g. aws-chunked
+     * uses a pre-defined header value, and needs to change some headers
      * relating to content-encoding and content-length.)
      */
     protected String calculateContentHash(Request<?> request) {
@@ -354,16 +359,17 @@ public class AWS4Signer extends AbstractAWSSigner
         try {
             payloadStream.reset();
         } catch (IOException e) {
-            throw new AmazonClientException("Unable to reset stream after calculating AWS4 signature", e);
+            throw new AmazonClientException(
+                    "Unable to reset stream after calculating AWS4 signature", e);
         }
         return contentSha256;
     }
 
     /**
-     * Subclass could override this method to perform any additional procedure on the request
-     * payload, with access to the result from signing the header. (e.g. Signing the payload by
-     * chunk-encoding).
-     * The default implementation doesn't need to do anything.
+     * Subclass could override this method to perform any additional procedure
+     * on the request payload, with access to the result from signing the
+     * header. (e.g. Signing the payload by chunk-encoding). The default
+     * implementation doesn't need to do anything.
      */
     protected void processRequestPayload(Request<?> request, HeaderSigningResult headerSigningResult) {
         return;
@@ -474,7 +480,6 @@ public class AWS4Signer extends AbstractAWSSigner
      * it. This method can be overridden by sub classes to provide different
      * values (e.g) For S3 pre-signing, the content hash calculation is
      * different from the general implementation.
-     *
      */
     protected String calculateContentHashPresign(Request<?> request) {
         return calculateContentHash(request);

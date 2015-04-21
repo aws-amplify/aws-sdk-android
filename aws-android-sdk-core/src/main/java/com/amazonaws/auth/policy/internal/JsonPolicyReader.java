@@ -12,12 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.auth.policy.internal;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.LinkedList;
-import java.util.List;
+package com.amazonaws.auth.policy.internal;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.policy.Action;
@@ -30,6 +26,11 @@ import com.amazonaws.auth.policy.Statement;
 import com.amazonaws.auth.policy.Statement.Effect;
 import com.amazonaws.util.json.AwsJsonReader;
 import com.amazonaws.util.json.JsonUtils;
+
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Generate an AWS policy object by parsing the given JSON string.
@@ -45,21 +46,15 @@ public class JsonPolicyReader {
     private AwsJsonReader reader;
 
     /**
-     * Converts the specified JSON string to an AWS policy object.
-     *
-     * For more information see, @see
-     * http://docs.aws.amazon.com/AWSSdkDocsJava/latest
+     * Converts the specified JSON string to an AWS policy object. For more
+     * information see, @see http://docs.aws.amazon.com/AWSSdkDocsJava/latest
      * /DeveloperGuide/java-dg-access-control.html
      *
-     * @param jsonString
-     *            the specified JSON string representation of this AWS access
-     *            control policy.
-     *
+     * @param jsonString the specified JSON string representation of this AWS
+     *            access control policy.
      * @return An AWS policy object.
-     *
-     * @throws IllegalArgumentException
-     *             If the specified JSON string is null or invalid and cannot be
-     *             converted to an AWS policy object.
+     * @throws IllegalArgumentException If the specified JSON string is null or
+     *             invalid and cannot be converted to an AWS policy object.
      */
     public Policy createPolicyFromJsonString(String jsonString) {
 
@@ -152,8 +147,7 @@ public class JsonPolicyReader {
     /**
      * Generates a list of actions from the Action JSON Node.
      *
-     * @param actionNodes
-     *            the action JSON node to be parsed.
+     * @param actionNodes the action JSON node to be parsed.
      * @return the list of actions.
      * @throws IOException
      */
@@ -176,8 +170,7 @@ public class JsonPolicyReader {
     /**
      * Generates a list of resources from the Resource JSON Node.
      *
-     * @param resourceNodes
-     *            the resource JSON node to be parsed.
+     * @param resourceNodes the resource JSON node to be parsed.
      * @return the list of resources.
      */
     private List<Resource> resourcesOf(AwsJsonReader reader) throws IOException {
@@ -199,8 +192,7 @@ public class JsonPolicyReader {
     /**
      * Generates a list of principals from the Principal JSON Node
      *
-     * @param principalNodes
-     *            the principal JSON to be parsed
+     * @param principalNodes the principal JSON to be parsed
      * @return a list of principals
      * @throws IOException
      */
@@ -238,11 +230,9 @@ public class JsonPolicyReader {
     /**
      * Creates a new principal instance for the given schema and the JSON node.
      *
-     * @param schema
-     *            the schema for the principal instance being created.
-     * @param principalNode
-     *            the node indicating the AWS account that is making the
-     *            request.
+     * @param schema the schema for the principal instance being created.
+     * @param principalNode the node indicating the AWS account that is making
+     *            the request.
      * @return a principal instance.
      */
     private Principal createPrincipal(String schema, String principal) {
@@ -258,7 +248,8 @@ public class JsonPolicyReader {
                 return new Principal(PRINICIPAL_SCHEMA_FEDERATED, principal);
             }
         }
-        throw new AmazonClientException("Schema " + schema + " is not a valid value for the principal.");
+        throw new AmazonClientException("Schema " + schema
+                + " is not a valid value for the principal.");
     }
 
     /**
@@ -285,12 +276,9 @@ public class JsonPolicyReader {
      * Generates a condition instance for each condition type under the
      * Condition JSON node.
      *
-     * @param conditions
-     *            the complete list of conditions
-     * @param conditionType
-     *            the condition type for the condition being created.
-     * @param conditionNode
-     *            each condition node to be parsed.
+     * @param conditions the complete list of conditions
+     * @param conditionType the condition type for the condition being created.
+     * @param conditionNode each condition node to be parsed.
      * @throws IOException
      */
     private void convertConditionRecord(List<Condition> conditions,

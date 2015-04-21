@@ -34,7 +34,7 @@ import java.util.NoSuchElementException;
  * methods, such as {@link PaginatedList#size()} and
  * {@link PaginatedList#toArray()}, require fetching the entire result set
  * eagerly. See the javadoc of individual methods for details on which are lazy.
- * 
+ *
  * @param <T> The domain object type stored in this list.
  */
 public abstract class PaginatedList<T> implements List<T> {
@@ -90,7 +90,7 @@ public abstract class PaginatedList<T> implements List<T> {
 
     /**
      * Constructs a PaginatedList instance.
-     * 
+     *
      * @param mapper The mapper for marshalling DynamoDB attributes into
      *            objects.
      * @param clazz The class of the annotated model.
@@ -168,7 +168,7 @@ public abstract class PaginatedList<T> implements List<T> {
     /**
      * Moves the contents of the nextResults buffer into allResults and resets
      * the buffer.
-     * 
+     *
      * @param clearPreviousResults Whether it should clear previous results in
      *            allResults field.
      */

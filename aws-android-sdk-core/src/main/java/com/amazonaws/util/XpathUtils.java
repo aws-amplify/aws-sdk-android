@@ -12,12 +12,19 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.Date;
@@ -29,15 +36,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import com.amazonaws.AmazonClientException;
-
 /**
  * Utility methods for extracting data from XML documents using Xpath
  * expressions.
@@ -48,14 +46,13 @@ public class XpathUtils {
     private static Log log = LogFactory.getLog(XpathUtils.class);
 
     private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
- 
 
     public static Document documentFrom(InputStream is)
             throws SAXException, IOException, ParserConfigurationException {
         is = new NamespaceRemovingInputStream(is);
         Document doc = factory.newDocumentBuilder().parse(is);
         is.close();
-		
+
         return doc;
     }
 
@@ -73,16 +70,11 @@ public class XpathUtils {
      * Evaluates the specified XPath expression and returns the results as a
      * Double.
      *
-     * @param expression
-     *            The XPath expression to evaluate.
-     * @param node
-     *            The node to run the expression on.
-     *
+     * @param expression The XPath expression to evaluate.
+     * @param node The node to run the expression on.
      * @return The Double result.
-     *
-     * @throws XPathExpressionException
-     *             If there was a problem processing the specified XPath
-     *             expression.
+     * @throws XPathExpressionException If there was a problem processing the
+     *             specified XPath expression.
      */
     public static Double asDouble(String expression, Node node)
             throws XPathExpressionException {
@@ -94,16 +86,11 @@ public class XpathUtils {
      * Evaluates the specified XPath expression and returns the result as a
      * string.
      *
-     * @param expression
-     *            The XPath expression to evaluate.
-     * @param node
-     *            The node to run the expression on.
-     *
+     * @param expression The XPath expression to evaluate.
+     * @param node The node to run the expression on.
      * @return The string result.
-     *
-     * @throws XPathExpressionException
-     *             If there was a problem processing the specified XPath
-     *             expression.
+     * @throws XPathExpressionException If there was a problem processing the
+     *             specified XPath expression.
      */
     public static String asString(String expression, Node node)
             throws XPathExpressionException {
@@ -114,16 +101,11 @@ public class XpathUtils {
      * Evaluates the specified XPath expression and returns the result as an
      * Integer.
      *
-     * @param expression
-     *            The XPath expression to evaluate.
-     * @param node
-     *            The node to run the expression on.
-     *
+     * @param expression The XPath expression to evaluate.
+     * @param node The node to run the expression on.
      * @return The Integer result.
-     *
-     * @throws XPathExpressionException
-     *             If there was a problem processing the specified XPath
-     *             expression.
+     * @throws XPathExpressionException If there was a problem processing the
+     *             specified XPath expression.
      */
     public static Integer asInteger(String expression, Node node)
             throws XPathExpressionException {
@@ -135,16 +117,11 @@ public class XpathUtils {
      * Evaluates the specified XPath expression and returns the result as a
      * Boolean.
      *
-     * @param expression
-     *            The XPath expression to evaluate.
-     * @param node
-     *            The node to run the expression on.
-     *
+     * @param expression The XPath expression to evaluate.
+     * @param node The node to run the expression on.
      * @return The Boolean result.
-     *
-     * @throws XPathExpressionException
-     *             If there was a problem processing the specified XPath
-     *             expression.
+     * @throws XPathExpressionException If there was a problem processing the
+     *             specified XPath expression.
      */
     public static Boolean asBoolean(String expression, Node node)
             throws XPathExpressionException {
@@ -156,16 +133,11 @@ public class XpathUtils {
      * Evaluates the specified XPath expression and returns the result as a
      * Float.
      *
-     * @param expression
-     *            The XPath expression to evaluate.
-     * @param node
-     *            The node to run the expression on.
-     *
+     * @param expression The XPath expression to evaluate.
+     * @param node The node to run the expression on.
      * @return The Float result.
-     *
-     * @throws XPathExpressionException
-     *             If there was a problem processing the specified XPath
-     *             expression.
+     * @throws XPathExpressionException If there was a problem processing the
+     *             specified XPath expression.
      */
     public static Float asFloat(String expression, Node node)
             throws XPathExpressionException {
@@ -177,16 +149,11 @@ public class XpathUtils {
      * Evaluates the specified XPath expression and returns the result as a
      * Long.
      *
-     * @param expression
-     *            The XPath expression to evaluate.
-     * @param node
-     *            The node to run the expression on.
-     *
+     * @param expression The XPath expression to evaluate.
+     * @param node The node to run the expression on.
      * @return The Long result.
-     *
-     * @throws XPathExpressionException
-     *             If there was a problem processing the specified XPath
-     *             expression.
+     * @throws XPathExpressionException If there was a problem processing the
+     *             specified XPath expression.
      */
     public static Long asLong(String expression, Node node)
             throws XPathExpressionException {
@@ -198,16 +165,11 @@ public class XpathUtils {
      * Evaluates the specified XPath expression and returns the result as a
      * Byte.
      *
-     * @param expression
-     *            The XPath expression to evaluate.
-     * @param node
-     *            The node to run the expression on.
-     *
+     * @param expression The XPath expression to evaluate.
+     * @param node The node to run the expression on.
      * @return The Byte result.
-     *
-     * @throws XPathExpressionException
-     *             If there was a problem processing the specified XPath
-     *             expression.
+     * @throws XPathExpressionException If there was a problem processing the
+     *             specified XPath expression.
      */
     public static Byte asByte(String expression, Node node)
             throws XPathExpressionException {
@@ -220,21 +182,17 @@ public class XpathUtils {
      * Date. Assumes that the node's text is formatted as an ISO 8601 date, as
      * specified by xs:dateTime.
      *
-     * @param expression
-     *            The XPath expression to evaluate.
-     * @param node
-     *            The node to run the expression on.
-     *
+     * @param expression The XPath expression to evaluate.
+     * @param node The node to run the expression on.
      * @return The Date result.
-     *
-     * @throws XPathExpressionException
-     *             If there was a problem processing the specified XPath
-     *             expression.
+     * @throws XPathExpressionException If there was a problem processing the
+     *             specified XPath expression.
      */
     public static Date asDate(String expression, Node node)
             throws XPathExpressionException {
         String dateString = evaluateAsString(expression, node);
-        if (isEmptyString(dateString)) return null;
+        if (isEmptyString(dateString))
+            return null;
 
         return DateUtils.parseISO8601Date(dateString);
     }
@@ -243,21 +201,18 @@ public class XpathUtils {
      * Evaluates the specified xpath expression, base64 decodes the data and
      * returns the result as a ByteBuffer.
      *
-     * @param expression
-     *            The Xpath expression to evaluate.
-     * @param node
-     *            The node on which to evaluate the expression.
-     *
+     * @param expression The Xpath expression to evaluate.
+     * @param node The node on which to evaluate the expression.
      * @return A ByteBuffer of base64 decoded data from the result of evaluating
      *         the specified Xpath expression.
-     *
-     * @throws XPathExpressionException
-     *             If there are any problems evaluating the Xpath expression.
+     * @throws XPathExpressionException If there are any problems evaluating the
+     *             Xpath expression.
      */
     public static ByteBuffer asByteBuffer(String expression, Node node)
             throws XPathExpressionException {
         String base64EncodedString = evaluateAsString(expression, node);
-        if (isEmptyString(base64EncodedString)) return null;
+        if (isEmptyString(base64EncodedString))
+            return null;
 
         if (!isEmpty(node)) {
             byte[] decodedBytes = Base64.decode(base64EncodedString);
@@ -269,9 +224,7 @@ public class XpathUtils {
     /**
      * Returns true if the specified node is null or has no children.
      *
-     * @param node
-     *            The node to test.
-     *
+     * @param node The node to test.
      * @return True if the specified node is null or has no children.
      */
     public static boolean isEmpty(Node node) {
@@ -281,9 +234,7 @@ public class XpathUtils {
     /**
      * Returns the length of the specified node list.
      *
-     * @param list
-     *            The node list to measure.
-     *
+     * @param list The node list to measure.
      * @return The length of the specified node list.
      */
     public static int nodeLength(NodeList list) {
@@ -294,19 +245,17 @@ public class XpathUtils {
      * Evaluates the specified expression on the specified node and returns the
      * result as a String.
      *
-     * @param expression
-     *            The Xpath expression to evaluate.
-     * @param node
-     *            The node on which to evaluate the expression.
-     *
+     * @param expression The Xpath expression to evaluate.
+     * @param node The node on which to evaluate the expression.
      * @return The result of evaluating the specified expression, or null if the
      *         evaluation didn't return any result.
-     *
-     * @throws XPathExpressionException
-     *             If there are any problems evaluating the Xpath expression.
+     * @throws XPathExpressionException If there are any problems evaluating the
+     *             Xpath expression.
      */
-    private static String evaluateAsString(String expression, Node node) throws XPathExpressionException {
-        if (isEmpty(node)) return null;
+    private static String evaluateAsString(String expression, Node node)
+            throws XPathExpressionException {
+        if (isEmpty(node))
+            return null;
 
         if (!expression.equals(".")) {
             /*
@@ -314,12 +263,11 @@ public class XpathUtils {
              * to return null to distinguish between cases where a node isn't
              * present (which should be represented as null) and when a node is
              * present, but empty (which should be represented as the empty
-             * string).
-             *
-             * We skip this test if the expression is "." since we've already
-             * checked that the node exists.
+             * string). We skip this test if the expression is "." since we've
+             * already checked that the node exists.
              */
-            if (asNode(expression, node) == null) return null;
+            if (asNode(expression, node) == null)
+                return null;
         }
 
         String s = xpath().evaluate(expression, node);
@@ -329,25 +277,26 @@ public class XpathUtils {
 
     public static Node asNode(String nodeName, Node node)
             throws XPathExpressionException {
-        if (node == null) return null;
+        if (node == null)
+            return null;
         return (Node) xpath().evaluate(nodeName, node, XPathConstants.NODE);
     }
-   
 
     /**
      * Returns true if the specified string is null or empty.
      *
-     * @param s
-     *            The string to test.
+     * @param s The string to test.
      * @return True if the specified string is null or empty.
      */
     private static boolean isEmptyString(String s) {
-        if (s == null) return true;
-        if (s.trim().equals("")) return true;
+        if (s == null)
+            return true;
+        if (s.trim().equals(""))
+            return true;
 
         return false;
     }
-    
+
     /**
      * Returns a new instance of XPath, which is not thread safe and not
      * reentrant.

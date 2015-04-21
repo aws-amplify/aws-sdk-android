@@ -19,7 +19,7 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics;
  * EventClient is the entry point into the Amazon Mobile Analytics SDK where
  * {@link AnalyticsEvent} objects are created, recorded, and submitted to the
  * Amazon Mobile Analytics Service. <h3>Recording Events</h3> Example:
- * 
+ *
  * <pre class="prettyprint">
  * // get the event client from your MobileAnalyticsManager instance
  * EventClient eventClient = mobileAnalyticsManager.getEventClient();
@@ -27,9 +27,9 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics;
  * // create and record an event
  * Event level1CompleteEvent = eventClient.createEvent(&quot;level1Complete&quot;);
  * eventClient.recordEvent(level1CompleteEvent);
- * 
+ *
  * </pre>
- * 
+ *
  * <h3>Submitting Events</h3>
  * <p>
  * The example below demonstrates how to submit events to the Amazon Mobile
@@ -37,23 +37,30 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics;
  * your app. Events are submitted in a background thread.
  * </p>
  * Example:
- * 
+ *
  * <pre class="prettyprint">
  * // submit events to the website
  * EventClient eventClient = mobileAnalyticsManager.getEventClient();
  * eventClient.submitEvents();
  * </pre>
- * 
+ *
  * Amazon recommends that you call <code>submitEvents</code> in the onPause
  * method of each Activity object that records events. The SDK ensures that you
  * do not submit events too frequently. If you try submitting events within one
  * minute of a previous submission, the submission request will be ignored.
+ * <p>
+ * Note: This client will store at most 5MiB of event data locally. Past that
+ * events will be dropped. When events successfully submitted, they are removed
+ * from the local filestore
+ * </p>
  */
 public interface EventClient {
 
     /**
-     * Record the specified event to the local filestore
-     * 
+     * Record the specified event to the local filestore Please note if the
+     * amount of data stored events takes up EXCEEDS 5MiB further recordings
+     * will be dropped
+     *
      * @param event The event to persist
      */
     public void recordEvent(final AnalyticsEvent event);
@@ -63,7 +70,7 @@ public interface EventClient {
      * developer defined String that can be used to distinguish between
      * different scenarios within an application. Note: You can have at most
      * 1,500 different eventTypes per app.
-     * 
+     *
      * @param eventType the type of event to create
      * @return an Event with the specified eventType
      */
@@ -73,7 +80,7 @@ public interface EventClient {
      * Adds the specified attribute to all subsequently created events Note: The
      * maximum allowed attributes and metrics on a single event is 40. Attempts
      * to add more may be ignored
-     * 
+     *
      * @param attributeName the name of the attribute to add
      * @param attributeValue the value of the attribute
      */
@@ -83,7 +90,7 @@ public interface EventClient {
      * Adds the specified attribute to all subsequently created events with the
      * specified event type Note: The maximum allowed attributes and metrics on
      * a single event is 40. Attempts to add more may be ignored
-     * 
+     *
      * @param eventType the type of events to add the attribute to
      * @param attributeName the name of the attribute to add
      * @param attributeValue the value of the attribute
@@ -95,7 +102,7 @@ public interface EventClient {
      * Adds the specified metric to all subsequently created events Note: The
      * maximum allowed attributes and metrics on a single event is 40. Attempts
      * to add more may be ignored
-     * 
+     *
      * @param metricName the name of the metric to add
      * @param metricValue the value of the metric
      */
@@ -105,7 +112,7 @@ public interface EventClient {
      * Adds the specified metric to all subsequently created events with the
      * specified event type Note: The maximum allowed attributes and metrics on
      * a single event is 40. Attempts to add more may be ignored
-     * 
+     *
      * @param eventType the type of events to add the metric to
      * @param metricName the name of the metric to add
      * @param metricValue the value of the metric
@@ -116,7 +123,7 @@ public interface EventClient {
     /**
      * Removes the specified attribute. All subsequently created events will no
      * longer have this global attribute.
-     * 
+     *
      * @param attributeName the name of the attribute to remove
      */
     public void removeGlobalAttribute(final String attributeName);
@@ -124,7 +131,7 @@ public interface EventClient {
     /**
      * Removes the specified attribute. All subsequently created events with the
      * specified event type will no longer have this global attribute.
-     * 
+     *
      * @param eventType the type of events to remove the attribute from
      * @param attributeName the name of the attribute to remove
      */
@@ -133,7 +140,7 @@ public interface EventClient {
     /**
      * Removes the specified metric. All subsequently created events will no
      * longer have this global metric.
-     * 
+     *
      * @param metricName the name of the metric to remove
      */
     public void removeGlobalMetric(final String metricName);
@@ -141,7 +148,7 @@ public interface EventClient {
     /**
      * Removes the specified metric. All subsequently created events with the
      * specified event type will no longer have this global metric.
-     * 
+     *
      * @param eventType the type of events to remove the metric from
      * @param metricName the name of the metric to remove
      */

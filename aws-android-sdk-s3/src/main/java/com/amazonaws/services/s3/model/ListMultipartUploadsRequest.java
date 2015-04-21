@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -29,23 +30,23 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
     /** The name of the bucket containing the uploads to list. */
     private String bucketName;
 
-	/**
-	 * Optional parameter that causes multipart uploads for keys that contain
-	 * the same string between the prefix and the first occurrence of the
-	 * delimiter to be rolled up into a single result element in the
-	 * {@link MultipartUploadListing#getCommonPrefixes()} list. These rolled-up
-	 * keys are not returned elsewhere in the response. The most commonly used
-	 * delimiter is "/", which simulates a hierarchical organization similar to
-	 * a file system directory structure.
-	 */
+    /**
+     * Optional parameter that causes multipart uploads for keys that contain
+     * the same string between the prefix and the first occurrence of the
+     * delimiter to be rolled up into a single result element in the
+     * {@link MultipartUploadListing#getCommonPrefixes()} list. These rolled-up
+     * keys are not returned elsewhere in the response. The most commonly used
+     * delimiter is "/", which simulates a hierarchical organization similar to
+     * a file system directory structure.
+     */
     private String delimiter;
 
-	/**
-	 * Optional parameter restricting the response to multipart uploads for keys
-	 * which begin with the specified prefix. You can use prefixes to separate a
-	 * bucket into different sets of keys in a way similar to how a file system
-	 * uses folders.
-	 */
+    /**
+     * Optional parameter restricting the response to multipart uploads for keys
+     * which begin with the specified prefix. You can use prefixes to separate a
+     * bucket into different sets of keys in a way similar to how a file system
+     * uses folders.
+     */
     private String prefix;
 
     /** The optional maximum number of uploads to return. */
@@ -78,7 +79,7 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
      * lexicographically greater than the specified marker.
      */
     private String uploadIdMarker;
-    
+
     /**
      * Optional parameter indicating the encoding method to be applied on the
      * response. An object key can contain any Unicode character; however, XML
@@ -89,18 +90,15 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
      */
     private String encodingType;
 
-
     /**
      * Constructs a new ListMultipartUploadsRequest to list the multipart
      * uploads from the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket containing the uploads to list.
+     * @param bucketName The name of the bucket containing the uploads to list.
      */
     public ListMultipartUploadsRequest(String bucketName) {
         this.bucketName = bucketName;
     }
-
 
     /**
      * Returns the name of the bucket containing the uploads to list.
@@ -114,8 +112,7 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
     /**
      * Sets the name of the bucket containing the multipart uploads to list.
      *
-     * @param bucketName
-     *            The name of the bucket containing the uploads to list.
+     * @param bucketName The name of the bucket containing the uploads to list.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -126,9 +123,7 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
      * this updated ListMultipartUploadsRequest object so that additional method
      * calls can be chained together.
      *
-     * @param bucketName
-     *            The name of the bucket containing the uploads to list.
-     *
+     * @param bucketName The name of the bucket containing the uploads to list.
      * @return This updated ListMultipartUploadsRequest object.
      */
     public ListMultipartUploadsRequest withBucketName(String bucketName) {
@@ -149,8 +144,7 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
     /**
      * Sets the optional maximum number of uploads to return.
      *
-     * @param maxUploads
-     *            The maximum number of uploads to return.
+     * @param maxUploads The maximum number of uploads to return.
      */
     public void setMaxUploads(Integer maxUploads) {
         this.maxUploads = maxUploads;
@@ -161,9 +155,7 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
      * updated ListMultipartUploadsRequest object so that additional method
      * calls can be chained together.
      *
-     * @param maxUploadsInt
-     *            The optional maximum number of uploads to return.
-     *
+     * @param maxUploadsInt The optional maximum number of uploads to return.
      * @return This updated ListMultipartUploadsRequest object.
      */
     public ListMultipartUploadsRequest withMaxUploads(int maxUploadsInt) {
@@ -208,9 +200,8 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
      * uploads have upload IDs lexicographically greater than the specified
      * marker.
      *
-     * @param keyMarker
-     *            The optional key marker indicating where in the results to
-     *            begin listing.
+     * @param keyMarker The optional key marker indicating where in the results
+     *            to begin listing.
      */
     public void setKeyMarker(String keyMarker) {
         this.keyMarker = keyMarker;
@@ -219,8 +210,7 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
     /**
      * Sets the KeyMarker property for this request.
      *
-     * @param keyMarker
-     *            The value that KeyMarker is set to
+     * @param keyMarker The value that KeyMarker is set to
      * @return the request with the KeyMarker set
      */
     public ListMultipartUploadsRequest withKeyMarker(String keyMarker) {
@@ -255,9 +245,8 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
      * marker may be included in the list only if they have an upload ID
      * lexicographically greater than the specified marker.
      *
-     * @param uploadIdMarker
-     *            The optional upload ID marker indicating where in the results
-     *            to begin listing.
+     * @param uploadIdMarker The optional upload ID marker indicating where in
+     *            the results to begin listing.
      */
     public void setUploadIdMarker(String uploadIdMarker) {
         this.uploadIdMarker = uploadIdMarker;
@@ -274,10 +263,8 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
      * marker may be included in the list only if they have an upload ID
      * lexicographically greater than the specified marker.
      *
-     * @param uploadIdMarker
-     *            The optional upload ID marker indicating where in the results
-     *            to begin listing.
-     *
+     * @param uploadIdMarker The optional upload ID marker indicating where in
+     *            the results to begin listing.
      * @return This updated ListMultipartUploadsRequest object.
      */
     public ListMultipartUploadsRequest withUploadIdMarker(String uploadIdMarker) {
@@ -285,114 +272,108 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
         return this;
     }
 
-	/**
-	 * Returns the optional delimiter parameter that causes multipart uploads for
-	 * keys that contain the same string between the prefix and the first
-	 * occurrence of the delimiter to be combined into a single result element
-	 * in the {@link MultipartUploadListing#getCommonPrefixes()} list. These
-	 * combined keys are not returned elsewhere in the response. The most
-	 * commonly used delimiter is "/", which simulates a hierarchical
-	 * organization similar to a file system directory structure.
-	 *
-	 * @return The optional delimiter parameter that causes multipart uploads
-	 *         for keys that contain the same string between the prefix and the
-	 *         first occurrence of the delimiter to be combined into a single
-	 *         result element in the {@link MultipartUploadListing#getCommonPrefixes()}
-	 *         list.
-	 */
+    /**
+     * Returns the optional delimiter parameter that causes multipart uploads
+     * for keys that contain the same string between the prefix and the first
+     * occurrence of the delimiter to be combined into a single result element
+     * in the {@link MultipartUploadListing#getCommonPrefixes()} list. These
+     * combined keys are not returned elsewhere in the response. The most
+     * commonly used delimiter is "/", which simulates a hierarchical
+     * organization similar to a file system directory structure.
+     *
+     * @return The optional delimiter parameter that causes multipart uploads
+     *         for keys that contain the same string between the prefix and the
+     *         first occurrence of the delimiter to be combined into a single
+     *         result element in the
+     *         {@link MultipartUploadListing#getCommonPrefixes()} list.
+     */
     public String getDelimiter() {
         return delimiter;
     }
 
-	/**
-	 * Sets the optional delimiter parameter that causes multipart uploads for
-	 * keys that contain the same string between the prefix and the first
-	 * occurrence of the delimiter to be combined into a single result element
-	 * in the {@link MultipartUploadListing#getCommonPrefixes()} list.
-	 *
-	 * @param delimiter
-	 *            The optional delimiter parameter that causes multipart uploads
-	 *            for keys that contain the same string between the prefix and
-	 *            the first occurrence of the delimiter to be combined into a
-	 *            single result element in the
-	 *            {@link MultipartUploadListing#getCommonPrefixes()} list.
-	 */
+    /**
+     * Sets the optional delimiter parameter that causes multipart uploads for
+     * keys that contain the same string between the prefix and the first
+     * occurrence of the delimiter to be combined into a single result element
+     * in the {@link MultipartUploadListing#getCommonPrefixes()} list.
+     *
+     * @param delimiter The optional delimiter parameter that causes multipart
+     *            uploads for keys that contain the same string between the
+     *            prefix and the first occurrence of the delimiter to be
+     *            combined into a single result element in the
+     *            {@link MultipartUploadListing#getCommonPrefixes()} list.
+     */
     public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
     }
 
-	/**
-	 * Sets the optional delimiter parameter that causes multipart uploads for
-	 * keys that contain the same string between the prefix and the first
-	 * occurrence of the delimiter to be rolled up into a single result element
-	 * in the {@link MultipartUploadListing#getCommonPrefixes()} list. Returns
-	 * this {@link ListMultipartUploadsRequest}, enabling additional method
-	 * calls to be chained together.
-	 *
-	 * @param delimiter
-	 *            The optional delimiter parameter that causes multipart uploads
-	 *            for keys that contain the same string between the prefix and
-	 *            the first occurrence of the delimiter to be rolled up into a
-	 *            single result element in the
-	 *            {@link MultipartUploadListing#getCommonPrefixes()} list.
-	 *
-	 * @return This {@link ListMultipartUploadsRequest}, enabling additional
-	 *         method calls to be chained together.
-	 */
+    /**
+     * Sets the optional delimiter parameter that causes multipart uploads for
+     * keys that contain the same string between the prefix and the first
+     * occurrence of the delimiter to be rolled up into a single result element
+     * in the {@link MultipartUploadListing#getCommonPrefixes()} list. Returns
+     * this {@link ListMultipartUploadsRequest}, enabling additional method
+     * calls to be chained together.
+     *
+     * @param delimiter The optional delimiter parameter that causes multipart
+     *            uploads for keys that contain the same string between the
+     *            prefix and the first occurrence of the delimiter to be rolled
+     *            up into a single result element in the
+     *            {@link MultipartUploadListing#getCommonPrefixes()} list.
+     * @return This {@link ListMultipartUploadsRequest}, enabling additional
+     *         method calls to be chained together.
+     */
     public ListMultipartUploadsRequest withDelimiter(String delimiter) {
         setDelimiter(delimiter);
         return this;
     }
 
-	/**
-	 * Returns the optional prefix parameter that restricts the response to
-	 * multipart uploads for keys that begin with the specified prefix. Use
-	 * prefixes to separate a bucket into different sets of keys, similar to how
-	 * a file system organizes files into directories.
-	 *
-	 * @return The optional prefix parameter restricting the response to
-	 *         multipart uploads for keys that begin with the specified prefix.
-	 */
+    /**
+     * Returns the optional prefix parameter that restricts the response to
+     * multipart uploads for keys that begin with the specified prefix. Use
+     * prefixes to separate a bucket into different sets of keys, similar to how
+     * a file system organizes files into directories.
+     *
+     * @return The optional prefix parameter restricting the response to
+     *         multipart uploads for keys that begin with the specified prefix.
+     */
     public String getPrefix() {
         return prefix;
     }
 
-	/**
-	 * Sets the optional prefix parameter, restricting the response to multipart
-	 * uploads for keys that begin with the specified prefix.
-	 *
-	 * @param prefix
-	 *            The optional prefix parameter, restricting the response to
-	 *            multipart uploads for keys that begin with the specified
-	 *            prefix.
-	 */
+    /**
+     * Sets the optional prefix parameter, restricting the response to multipart
+     * uploads for keys that begin with the specified prefix.
+     *
+     * @param prefix The optional prefix parameter, restricting the response to
+     *            multipart uploads for keys that begin with the specified
+     *            prefix.
+     */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
 
-	/**
-	 * Sets the optional prefix parameter restricting the response to multipart
-	 * uploads for keys that begin with the specified prefix. Returns this
-	 * {@link ListMultipartUploadsRequest}, enabling additional method calls to
-	 * be chained together.
-	 *
-	 * @param prefix
-	 *            The optional prefix parameter restricting the response to
-	 *            multipart uploads for keys that begin with the specified
-	 *            prefix.
-	 *
-	 * @return This {@link ListMultipartUploadsRequest}, enabling additional
-	 *         method calls to be chained together.
-	 */
+    /**
+     * Sets the optional prefix parameter restricting the response to multipart
+     * uploads for keys that begin with the specified prefix. Returns this
+     * {@link ListMultipartUploadsRequest}, enabling additional method calls to
+     * be chained together.
+     *
+     * @param prefix The optional prefix parameter restricting the response to
+     *            multipart uploads for keys that begin with the specified
+     *            prefix.
+     * @return This {@link ListMultipartUploadsRequest}, enabling additional
+     *         method calls to be chained together.
+     */
     public ListMultipartUploadsRequest withPrefix(String prefix) {
         setPrefix(prefix);
         return this;
     }
-    
+
     /**
      * Gets the optional <code>encodingType</code> parameter indicating the
      * encoding method to be applied on the response.
-     * 
+     *
      * @return The encoding method to be applied on the response.
      */
     public String getEncodingType() {
@@ -406,28 +387,26 @@ public class ListMultipartUploadsRequest extends AmazonWebServiceRequest {
      * characters, such as characters with an ASCII value from 0 to 10. For
      * characters that are not supported in XML 1.0, you can add this parameter
      * to request that Amazon S3 encode the keys in the response.
-     * 
-     * @param encodingType
-     *            The encoding method to be applied on the response. Valid
-     *            values: null (not encoded) or "url".
+     *
+     * @param encodingType The encoding method to be applied on the response.
+     *            Valid values: null (not encoded) or "url".
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;
     }
-    
+
     /**
      * Sets the optional <code>encodingType</code> parameter indicating the
      * encoding method to be applied on the response. An object key can contain
      * any Unicode character; however, XML 1.0 parser cannot parse some
      * characters, such as characters with an ASCII value from 0 to 10. For
      * characters that are not supported in XML 1.0, you can add this parameter
-     * to request that Amazon S3 encode the keys in the response. 
-     * Returns this {@link ListMultipartUploadsRequest}, enabling additional method calls
-     * to be chained together.
-     * 
-     * @param encodingType
-     *            The encoding method to be applied on the response. Valid
-     *            values: null (not encoded) or "url".
+     * to request that Amazon S3 encode the keys in the response. Returns this
+     * {@link ListMultipartUploadsRequest}, enabling additional method calls to
+     * be chained together.
+     *
+     * @param encodingType The encoding method to be applied on the response.
+     *            Valid values: null (not encoded) or "url".
      */
     public ListMultipartUploadsRequest withEncodingType(String encodingType) {
         setEncodingType(encodingType);

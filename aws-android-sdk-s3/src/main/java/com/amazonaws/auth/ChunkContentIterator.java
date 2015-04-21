@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 class ChunkContentIterator {
@@ -30,7 +31,7 @@ class ChunkContentIterator {
     public int read(byte[] output, int offset, int length) {
         if (length == 0)
             return 0;
-        if ( !hasNext() )
+        if (!hasNext())
             return -1;
         int remaingBytesNum = signedChunk.length - pos;
         int bytesToRead = Math.min(remaingBytesNum, length);

@@ -12,11 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.conditions;
 
-import java.util.Arrays;
-
 import com.amazonaws.auth.policy.Condition;
+
+import java.util.Arrays;
 
 /**
  * AWS access control policy condition that allows an access control statement
@@ -40,9 +41,9 @@ import com.amazonaws.auth.policy.Condition;
  * <p>
  * <p>
  * Currently the only valid condition key to use in an ARN condition is
- * {@link ConditionFactory#SOURCE_ARN_CONDITION_KEY}, which indicates the
- * source resource that is modifying another resource, for example, an SNS topic
- * is the source ARN when publishing messages from the topic to an SQS queue.
+ * {@link ConditionFactory#SOURCE_ARN_CONDITION_KEY}, which indicates the source
+ * resource that is modifying another resource, for example, an SNS topic is the
+ * source ARN when publishing messages from the topic to an SQS queue.
  */
 public class ArnCondition extends Condition {
 
@@ -72,14 +73,11 @@ public class ArnCondition extends Condition {
      * Constructs a new access control policy condition that compares ARNs
      * (Amazon Resource Names).
      *
-     * @param type
-     *            The type of comparison to perform.
-     * @param key
-     *            The access policy condition key specifying where to get the
+     * @param type The type of comparison to perform.
+     * @param key The access policy condition key specifying where to get the
      *            first ARN for the comparison (ex:
      *            {@link ConditionFactory#SOURCE_ARN_CONDITION_KEY}).
-     * @param value
-     *            The second ARN to compare against. When using
+     * @param value The second ARN to compare against. When using
      *            {@link ArnComparisonType#ArnLike} or
      *            {@link ArnComparisonType#ArnNotLike} this may contain the
      *            multi-character wildcard (*) or the single-character wildcard
@@ -88,7 +86,9 @@ public class ArnCondition extends Condition {
     public ArnCondition(ArnComparisonType type, String key, String value) {
         super.type = type.toString();
         super.conditionKey = key;
-        super.values = Arrays.asList(new String[] {value});
+        super.values = Arrays.asList(new String[] {
+            value
+        });
     }
 
 }

@@ -12,17 +12,18 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
+
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.lang.reflect.Method;
 import java.text.ParseException;
 
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-
 /**
  * Unmarshaller interface to make it possible to cache the expensive
- * type-determination behavior necessary when turning a service result back
- * into an object.
+ * type-determination behavior necessary when turning a service result back into
+ * an object.
  */
 public interface ArgumentUnmarshaller {
 
@@ -30,12 +31,12 @@ public interface ArgumentUnmarshaller {
      * Asserts that the value given can be processed using the setter given.
      */
     public void typeCheck(AttributeValue value, Method setter);
-    
+
     /**
      * Unmarshalls the {@link AttributeValue} given into an instance of the
      * appropriate type, as determined by {@link DynamoDBReflector} and
      * {@link DynamoDBMapper}
-     * 
+     *
      * @throws ParseException when unable to parse a date string
      */
     public Object unmarshall(AttributeValue value) throws ParseException;

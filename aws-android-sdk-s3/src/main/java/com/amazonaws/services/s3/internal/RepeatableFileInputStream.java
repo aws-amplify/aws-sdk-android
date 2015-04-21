@@ -15,18 +15,19 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
+
+import com.amazonaws.internal.SdkInputStream;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.amazonaws.internal.SdkInputStream;
 
 /**
  * A repeatable input stream for files. This input stream can be repeated an
@@ -43,11 +44,9 @@ public class RepeatableFileInputStream extends SdkInputStream {
     /**
      * Creates a repeatable input stream based on a file.
      *
-     * @param file
-     *            The file from which this input stream reads data.
-     *
-     * @throws FileNotFoundException
-     *             If the specified file doesn't exist, or can't be opened.
+     * @param file The file from which this input stream reads data.
+     * @throws FileNotFoundException If the specified file doesn't exist, or
+     *             can't be opened.
      */
     public RepeatableFileInputStream(File file) throws FileNotFoundException {
         if (file == null) {
@@ -71,8 +70,7 @@ public class RepeatableFileInputStream extends SdkInputStream {
      * stream if there is no mark point, by creating a new FileInputStream based
      * on the underlying file.
      *
-     * @throws IOException
-     *             when the FileInputStream cannot be re-created.
+     * @throws IOException when the FileInputStream cannot be re-created.
      */
     @Override
     public void reset() throws IOException {

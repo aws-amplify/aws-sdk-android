@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.handlers;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -22,22 +23,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public interface AsyncHandler<REQUEST extends AmazonWebServiceRequest, RESULT> {
 
-	/**
-	 * Invoked after an asynchronous request 
-	 * @param exception
-	 */
-	public void onError(Exception exception);
+    /**
+     * Invoked after an asynchronous request
+     *
+     * @param exception
+     */
+    public void onError(Exception exception);
 
-	/**
-	 * Invoked after an asynchronous request has completed successfully. Callers
-	 * have access to the original request object and the returned response
-	 * object.
-	 *
-	 * @param request
-	 *            The initial request created by the caller
-	 * @param result
-	 *            The successful result of the executed operation.
-	 */
-	public void onSuccess(REQUEST request, RESULT result);
+    /**
+     * Invoked after an asynchronous request has completed successfully. Callers
+     * have access to the original request object and the returned response
+     * object.
+     *
+     * @param request The initial request created by the caller
+     * @param result The successful result of the executed operation.
+     */
+    public void onSuccess(REQUEST request, RESULT result);
 
 }

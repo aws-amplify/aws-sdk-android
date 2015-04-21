@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.internal;
 
 import java.io.FilterOutputStream;
@@ -28,7 +29,7 @@ public class SdkFilterOutputStream extends FilterOutputStream implements MetricA
     @Override
     public boolean isMetricActivated() {
         if (out instanceof MetricAware) {
-            MetricAware metricAware = (MetricAware)out;
+            MetricAware metricAware = (MetricAware) out;
             return metricAware.isMetricActivated();
         }
         return false;

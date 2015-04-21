@@ -12,30 +12,31 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.internal.Constants;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * <p>
- * Provides options for copying an Amazon S3 object
- * from a source location to a new destination.
+ * Provides options for copying an Amazon S3 object from a source location to a
+ * new destination.
  * </p>
  * <p>
- * All <code>CopyObjectRequests</code> must specify a source bucket and key, along with a destination
- * bucket and key.  Beyond that, requests also specify:
+ * All <code>CopyObjectRequests</code> must specify a source bucket and key,
+ * along with a destination bucket and key. Beyond that, requests also specify:
  * </p>
  * <ul>
- *  <li>Object metadata for new object,</li>
- *  <li>A {@link CannedAccessControlList} for the new object,</li>
- *  <li>Constraints controlling if the copy will be performed or not.</li>
+ * <li>Object metadata for new object,</li>
+ * <li>A {@link CannedAccessControlList} for the new object,</li>
+ * <li>Constraints controlling if the copy will be performed or not.</li>
  * </ul>
  *
  * @see AmazonS3Client#copyObject(String, String, String, String)
@@ -74,7 +75,8 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * The optional Amazon S3 storage class to use when storing the newly copied
-     * object.  If not specified, the default, standard storage class will be used.
+     * object. If not specified, the default, standard storage class will be
+     * used.
      * <p>
      * For more information on Amazon S3 storage classes and available values,
      * see the {@link StorageClass} enumeration.
@@ -134,59 +136,51 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      */
     private SSECustomerKey destinationSSECustomerKey;
 
-
     /**
      * <p>
      * Constructs a new
-     * {@link com.amazonaws.services.s3.model#CopyObjectRequest}
-     * with only basic options.
+     * {@link com.amazonaws.services.s3.model#CopyObjectRequest} with only basic
+     * options.
      * </p>
      *
-     * @param sourceBucketName
-     *            The name of the S3 bucket containing the object to copy.
-     * @param sourceKey
-     *            The source bucket key under which the object to copy is
+     * @param sourceBucketName The name of the S3 bucket containing the object
+     *            to copy.
+     * @param sourceKey The source bucket key under which the object to copy is
      *            stored.
-     * @param destinationBucketName
-     *            The name of the S3 bucket to which the new object will be
-     *            copied.
-     * @param destinationKey
-     *            The destination bucket key under which the new object
-     *            will be copied.
-     *
-     * @see CopyObjectRequest#CopyObjectRequest(String, String, String, String, String)
+     * @param destinationBucketName The name of the S3 bucket to which the new
+     *            object will be copied.
+     * @param destinationKey The destination bucket key under which the new
+     *            object will be copied.
+     * @see CopyObjectRequest#CopyObjectRequest(String, String, String, String,
+     *      String)
      */
     public CopyObjectRequest(String sourceBucketName, String sourceKey,
-                             String destinationBucketName, String destinationKey) {
+            String destinationBucketName, String destinationKey) {
         this(sourceBucketName, sourceKey, null, destinationBucketName, destinationKey);
     }
 
     /**
      * <p>
      * Constructs a new {@link CopyObjectRequest} with basic options, providing
-     * an S3 version ID identifying the specific version of the source object
-     * to copy.
+     * an S3 version ID identifying the specific version of the source object to
+     * copy.
      * </p>
      *
-     * @param sourceBucketName
-     *            The name of the S3 bucket containing the object to copy.
-     * @param sourceKey
-     *            The key in the source bucket under which the object to copy is
-     *            stored.
-     * @param sourceVersionId
-     *            The S3 version ID which uniquely identifies a specific version
-     *            of the source object to copy.
-     * @param destinationBucketName
-     *            The name of the S3 bucket in which the new object will be
-     *            copied.
-     * @param destinationKey
-     *            The key in the destination bucket under which the new object
-     *            will be copied.
-     *
-     * @see CopyObjectRequest#CopyObjectRequest(String sourceBucketName, String sourceKey, String destinationBucketName, String destinationKey)
+     * @param sourceBucketName The name of the S3 bucket containing the object
+     *            to copy.
+     * @param sourceKey The key in the source bucket under which the object to
+     *            copy is stored.
+     * @param sourceVersionId The S3 version ID which uniquely identifies a
+     *            specific version of the source object to copy.
+     * @param destinationBucketName The name of the S3 bucket in which the new
+     *            object will be copied.
+     * @param destinationKey The key in the destination bucket under which the
+     *            new object will be copied.
+     * @see CopyObjectRequest#CopyObjectRequest(String sourceBucketName, String
+     *      sourceKey, String destinationBucketName, String destinationKey)
      */
     public CopyObjectRequest(String sourceBucketName, String sourceKey, String sourceVersionId,
-                             String destinationBucketName, String destinationKey) {
+            String destinationBucketName, String destinationKey) {
         this.sourceBucketName = sourceBucketName;
         this.sourceKey = sourceKey;
         this.sourceVersionId = sourceVersionId;
@@ -198,7 +192,6 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * Gets the name of the bucket containing the source object to be copied.
      *
      * @return The name of the bucket containing the source object to be copied.
-     *
      * @see CopyObjectRequest#setSourceBucketName(String sourceBucketName)
      */
     public String getSourceBucketName() {
@@ -208,9 +201,8 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     /**
      * Sets the name of the bucket containing the source object to be copied.
      *
-     * @param sourceBucketName
-     *            The name of the bucket containing the source object to be
-     *            copied.
+     * @param sourceBucketName The name of the bucket containing the source
+     *            object to be copied.
      * @see CopyObjectRequest#getSourceBucketName()
      */
     public void setSourceBucketName(String sourceBucketName) {
@@ -222,12 +214,10 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * and returns this object, enabling additional method calls to be chained
      * together.
      *
-     * @param sourceBucketName
-     *            The name of the bucket containing the source object to be
-     *            copied.
-     *
-     * @return This <code>CopyObjectRequest</code> instance,
-     *         enabling additional method calls to be chained together.
+     * @param sourceBucketName The name of the bucket containing the source
+     *            object to be copied.
+     * @return This <code>CopyObjectRequest</code> instance, enabling additional
+     *         method calls to be chained together.
      */
     public CopyObjectRequest withSourceBucketName(String sourceBucketName) {
         setSourceBucketName(sourceBucketName);
@@ -235,12 +225,11 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the source bucket key under which the source object to be
-     * copied is stored.
+     * Gets the source bucket key under which the source object to be copied is
+     * stored.
      *
-     * @return The source bucket key under which the source object to be
-     *         copied is stored.
-     *
+     * @return The source bucket key under which the source object to be copied
+     *         is stored.
      * @see CopyObjectRequest#setSourceKey(String sourceKey)
      */
     public String getSourceKey() {
@@ -248,14 +237,12 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the source bucket key under which the source object to be
-     * copied is stored.
+     * Sets the source bucket key under which the source object to be copied is
+     * stored.
      *
-     * @param sourceKey
-     *            The source bucket key under which the source object to
+     * @param sourceKey The source bucket key under which the source object to
      *            be copied is stored.
-     *
-     * @see CopyObjectRequest#setSourceKey(String sourceKey)}
+     * @see CopyObjectRequest#setSourceKey(String sourceKey)
      */
     public void setSourceKey(String sourceKey) {
         this.sourceKey = sourceKey;
@@ -263,15 +250,13 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the key in the source bucket under which the source object to be
-     * copied is stored and returns this object, enabling additional method calls
-     * to be chained together.
+     * copied is stored and returns this object, enabling additional method
+     * calls to be chained together.
      *
-     * @param sourceKey
-     *            The key in the source bucket under which the source object to
-     *            be copied is stored.
-     *
-     * @return This <code>CopyObjectRequest</code> instance, enabling additional method calls to be
-     *         chained together.
+     * @param sourceKey The key in the source bucket under which the source
+     *            object to be copied is stored.
+     * @return This <code>CopyObjectRequest</code> instance, enabling additional
+     *         method calls to be chained together.
      */
     public CopyObjectRequest withSourceKey(String sourceKey) {
         setSourceKey(sourceKey);
@@ -280,26 +265,25 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Gets the version ID specifying which version of the source
-     * object to copy. If not specified, the most recent version of the source
-     * object will be copied.
+     * Gets the version ID specifying which version of the source object to
+     * copy. If not specified, the most recent version of the source object will
+     * be copied.
      * </p>
      * <p>
      * Objects created before enabling versioning or when versioning is
      * suspended are given the default <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the
-     * <code>null</code> version ID is a valid version ID and is not the
-     * same as not having a version ID.
+     * {@link Constants#NULL_VERSION_ID}). Note that the <code>null</code>
+     * version ID is a valid version ID and is not the same as not having a
+     * version ID.
      * </p>
      * <p>
      * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
+     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}
+     * .
      * </p>
      *
-     * @return The version ID specifying which version of the source
-     *         object to copy.
-     *
-     *
+     * @return The version ID specifying which version of the source object to
+     *         copy.
      * @see Constants#NULL_VERSION_ID
      * @see CopyObjectRequest#setSourceVersionId(String sourceVersionId)
      */
@@ -316,18 +300,18 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * <p>
      * Objects created before enabling versioning or when versioning is
      * suspended are given the default <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the
-     * <code>null</code> version ID is a valid version ID and is not the
-     * same as not having a version ID.
+     * {@link Constants#NULL_VERSION_ID}). Note that the <code>null</code>
+     * version ID is a valid version ID and is not the same as not having a
+     * version ID.
      * </p>
      * <p>
      * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
+     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}
+     * .
      * </p>
      *
-     * @param sourceVersionId
-     *            The optional version ID specifying which version of the
-     *            source object to copy.
+     * @param sourceVersionId The optional version ID specifying which version
+     *            of the source object to copy.
      */
     public void setSourceVersionId(String sourceVersionId) {
         this.sourceVersionId = sourceVersionId;
@@ -343,21 +327,20 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * <p>
      * Objects created before enabling versioning or when versioning is
      * suspended are given the default <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the
-     * <code>null</code> version ID is a valid version ID and is not the
-     * same as not having a version ID.
+     * {@link Constants#NULL_VERSION_ID}). Note that the <code>null</code>
+     * version ID is a valid version ID and is not the same as not having a
+     * version ID.
      * </p>
      * <p>
      * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
+     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}
+     * .
      * </p>
      *
-     * @param sourceVersionId
-     *            The optional version ID specifying which version of the
-     *            source object to copy.
-     *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @param sourceVersionId The optional version ID specifying which version
+     *            of the source object to copy.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withSourceVersionId(String sourceVersionId) {
         setSourceVersionId(sourceVersionId);
@@ -365,26 +348,24 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the destination bucket name which will contain the new,
-     * copied object.
+     * Gets the destination bucket name which will contain the new, copied
+     * object.
      *
      * @return The name of the destination bucket which will contain the new,
      *         copied object.
-     *
-     * @see CopyObjectRequest#setDestinationBucketName(String destinationBucketName)
+     * @see CopyObjectRequest#setDestinationBucketName(String
+     *      destinationBucketName)
      */
     public String getDestinationBucketName() {
         return destinationBucketName;
     }
 
     /**
-     * Sets the destination bucket name which will contain the new,
-     * copied object.
+     * Sets the destination bucket name which will contain the new, copied
+     * object.
      *
-     * @param destinationBucketName
-     *            The name of the destination bucket which will contain the new,
-     *            copied object.
-     *
+     * @param destinationBucketName The name of the destination bucket which
+     *            will contain the new, copied object.
      * @see CopyObjectRequest#getDestinationBucketName()
      */
     public void setDestinationBucketName(String destinationBucketName) {
@@ -396,12 +377,10 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * copied object and returns this object, enabling additional method calls
      * to be chained together.
      *
-     * @param destinationBucketName
-     *            The name of the destination bucket which will contain the new,
-     *            copied object.
-     *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @param destinationBucketName The name of the destination bucket which
+     *            will contain the new, copied object.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withDestinationBucketName(String destinationBucketName) {
         setDestinationBucketName(destinationBucketName);
@@ -409,12 +388,11 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the destination bucket key under which the new, copied
-     * object will be stored.
+     * Gets the destination bucket key under which the new, copied object will
+     * be stored.
      *
-     * @return The destination bucket key under which the new, copied
-     *         object will be stored.
-     *
+     * @return The destination bucket key under which the new, copied object
+     *         will be stored.
      * @see CopyObjectRequest#setDestinationKey(String destinationKey)
      */
     public String getDestinationKey() {
@@ -422,13 +400,11 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the destination bucket key under which the new, copied object
-     * will be stored.
+     * Sets the destination bucket key under which the new, copied object will
+     * be stored.
      *
-     * @param destinationKey
-     *            The destination bucket key under which the new, copied
-     *            object will be stored.
-     *
+     * @param destinationKey The destination bucket key under which the new,
+     *            copied object will be stored.
      * @see CopyObjectRequest#getDestinationKey()
      */
     public void setDestinationKey(String destinationKey) {
@@ -436,16 +412,14 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the destination bucket key under which the new, copied object
-     * will be stored and returns this object, enabling additional method calls
-     * can be chained together.
+     * Sets the destination bucket key under which the new, copied object will
+     * be stored and returns this object, enabling additional method calls can
+     * be chained together.
      *
-     * @param destinationKey
-     *            The destination bucket key under which the new, copied
-     *            object will be stored.
-     *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @param destinationKey The destination bucket key under which the new,
+     *            copied object will be stored.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withDestinationKey(String destinationKey) {
         setDestinationKey(destinationKey);
@@ -469,7 +443,6 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      *
      * @return The Amazon S3 storage class to use when storing the newly copied
      *         object.
-     *
      * @see CopyObjectRequest#setStorageClass(String)
      * @see CopyObjectRequest#setStorageClass(StorageClass)
      */
@@ -490,7 +463,6 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      *
      * @return The Amazon S3 storage class to use when storing the newly copied
      *         object.
-     *
      * @see CopyObjectRequest#getStorageClass()
      * @see CopyObjectRequest#setStorageClass(StorageClass)
      */
@@ -501,17 +473,17 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     /**
      * <p>
      * Sets the optional Amazon S3 storage class to use when storing the newly
-     * copied object and returns this <code>CopyObjectRequest</code>, enabling additional
-     * method calls to be chained together. If not specified, the default
-     * standard storage class is used.
+     * copied object and returns this <code>CopyObjectRequest</code>, enabling
+     * additional method calls to be chained together. If not specified, the
+     * default standard storage class is used.
      * </p>
      * <p>
      * For more information on Amazon S3 storage classes and available values,
      * see the {@link StorageClass} enumeration.
      * </p>
      *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withStorageClass(String storageClass) {
         setStorageClass(storageClass);
@@ -521,8 +493,8 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     /**
      * <p>
      * Sets the optional Amazon S3 storage class to use when storing the newly
-     * copied object. If not specified, the default standard storage class
-     * is used.
+     * copied object. If not specified, the default standard storage class is
+     * used.
      * </p>
      * <p>
      * For more information on Amazon S3 storage classes and available values,
@@ -531,7 +503,6 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      *
      * @return The Amazon S3 storage class to use when storing the newly copied
      *         object.
-     *
      * @see CopyObjectRequest#getStorageClass()
      * @see CopyObjectRequest#setStorageClass(String)
      */
@@ -543,16 +514,16 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * <p>
      * Sets the optional Amazon S3 storage class to use when storing the newly
      * copied object and returns this CopyObjectRequest, enabling additional
-     * method calls to be chained together. If not specified, the default standard storage class
-     * is used.
+     * method calls to be chained together. If not specified, the default
+     * standard storage class is used.
      * </p>
      * <p>
      * For more information on Amazon S3 storage classes and available values,
      * see the {@link StorageClass} enumeration.
      * </p>
      *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withStorageClass(StorageClass storageClass) {
         setStorageClass(storageClass);
@@ -560,14 +531,13 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the canned ACL to use for the new, copied object. If no canned
-     * ACL is specified, S3 will default to using the
+     * Gets the canned ACL to use for the new, copied object. If no canned ACL
+     * is specified, S3 will default to using the
      * {@link CannedAccessControlList#Private} canned ACL for all copied
      * objects.
      *
-     * @return The canned ACL to set for the newly copied object,
-     *         or <code>null</code> if no
-     *         canned ACL has been specified.
+     * @return The canned ACL to set for the newly copied object, or
+     *         <code>null</code> if no canned ACL has been specified.
      */
     public CannedAccessControlList getCannedAccessControlList() {
         return cannedACL;
@@ -579,8 +549,7 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * {@link CannedAccessControlList#Private} canned ACL for all copied
      * objects.
      *
-     * @param cannedACL
-     *            The canned ACL to set for the newly copied object.
+     * @param cannedACL The canned ACL to set for the newly copied object.
      */
     public void setCannedAccessControlList(CannedAccessControlList cannedACL) {
         this.cannedACL = cannedACL;
@@ -588,14 +557,12 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the canned ACL to use for the newly copied object, and returns this
-     * <code>CopyObjectRequest</code>, enabling additional method calls to be chained
-     * together.
+     * <code>CopyObjectRequest</code>, enabling additional method calls to be
+     * chained together.
      *
-     * @param cannedACL
-     *            The canned ACL to set for the newly copied object.
-     *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @param cannedACL The canned ACL to set for the newly copied object.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withCannedAccessControlList(CannedAccessControlList cannedACL) {
         setCannedAccessControlList(cannedACL);
@@ -614,8 +581,7 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * Sets the optional access control list for the new object. If specified,
      * cannedAcl will be ignored.
      *
-     * @param accessControlList
-     *            The access control list for the new object.
+     * @param accessControlList The access control list for the new object.
      */
     public void setAccessControlList(AccessControlList accessControlList) {
         this.accessControlList = accessControlList;
@@ -626,8 +592,7 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * cannedAcl will be ignored. Returns this {@link CopyObjectRequest},
      * enabling additional method calls to be chained together.
      *
-     * @param accessControlList
-     *            The access control list for the new object.
+     * @param accessControlList The access control list for the new object.
      */
     public CopyObjectRequest withAccessControlList(AccessControlList accessControlList) {
         setAccessControlList(accessControlList);
@@ -637,10 +602,10 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     /**
      * Gets the optional object metadata to set for the new, copied object.
      *
-     * @return The object metadata to set for the newly copied object.
-     *         Returns <code>null</code> if no object metadata has been specified.
-     *
-     * @see CopyObjectRequest#setNewObjectMetadata(ObjectMetadata newObjectMetadata)
+     * @return The object metadata to set for the newly copied object. Returns
+     *         <code>null</code> if no object metadata has been specified.
+     * @see CopyObjectRequest#setNewObjectMetadata(ObjectMetadata
+     *      newObjectMetadata)
      */
     public ObjectMetadata getNewObjectMetadata() {
         return newObjectMetadata;
@@ -648,14 +613,13 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the object metadata to use for the new, copied object. By default
-     * the object metadata from the source object is copied to the
-     * destination object, but when setting object metadata with this method,
-     * no metadata from the source object is copied. Instead, the new
-     * destination object will have the metadata specified with this call.
+     * the object metadata from the source object is copied to the destination
+     * object, but when setting object metadata with this method, no metadata
+     * from the source object is copied. Instead, the new destination object
+     * will have the metadata specified with this call.
      *
-     * @param newObjectMetadata
-     *            The object metadata to use for the newly copied object.
-     *
+     * @param newObjectMetadata The object metadata to use for the newly copied
+     *            object.
      * @see CopyObjectRequest#getNewObjectMetadata()
      */
     public void setNewObjectMetadata(ObjectMetadata newObjectMetadata) {
@@ -669,11 +633,10 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * destination object, but if callers set object metadata with this method,
      * it will be used instead.
      *
-     * @param newObjectMetadata
-     *            The object metadata to use for the newly copied object.
-     *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @param newObjectMetadata The object metadata to use for the newly copied
+     *            object.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withNewObjectMetadata(ObjectMetadata newObjectMetadata) {
         setNewObjectMetadata(newObjectMetadata);
@@ -686,10 +649,10 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Gets the optional list of ETag constraints that, when present, <b>must</b>
-     * include a match for the source object's current ETag in order for the
-     * copy object request to be executed. Only one ETag in the list needs to
-     * match for the request to be executed by Amazon S3.
+     * Gets the optional list of ETag constraints that, when present,
+     * <b>must</b> include a match for the source object's current ETag in order
+     * for the copy object request to be executed. Only one ETag in the list
+     * needs to match for the request to be executed by Amazon S3.
      * </p>
      * <p>
      * Matching ETag constraints may be used with the unmodified since
@@ -706,20 +669,19 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Sets the optional list of ETag constraints that, when present, <b>must</b>
-     * include a match for the source object's current ETag in order for the
-     * copy object request to be executed. If none of the specified ETags match
-     * the source object's current ETag, the copy object operation will be
-     * aborted. Only one ETag in the list needs to match for the request to be
-     * executed by Amazon S3.
+     * Sets the optional list of ETag constraints that, when present,
+     * <b>must</b> include a match for the source object's current ETag in order
+     * for the copy object request to be executed. If none of the specified
+     * ETags match the source object's current ETag, the copy object operation
+     * will be aborted. Only one ETag in the list needs to match for the request
+     * to be executed by Amazon S3.
      * </p>
      * <p>
      * Matching ETag constraints may be used with the unmodified since
      * constraint, but not with any other type of constraint.
      * </p>
      *
-     * @param eTagList
-     *            The optional list of ETag constraints that must include a
+     * @param eTagList The optional list of ETag constraints that must include a
      *            match for the source object's current ETag in order for this
      *            request to be executed.
      */
@@ -741,11 +703,9 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * constraint, but not with any other type of constraint.
      * </p>
      *
-     * @param eTag
-     *            The matching ETag constraint to add to this request.
-     *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @param eTag The matching ETag constraint to add to this request.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withMatchingETagConstraint(String eTag) {
         this.matchingETagConstraints.add(eTag);
@@ -786,10 +746,9 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * constraint, but not with any other type of constraint.
      * </p>
      *
-     * @param eTagList
-     *            The list of ETag constraints that, when present, <b>must not</b>
-     *            include a match for the source object's current ETag in
-     *            order for this request to be executed.
+     * @param eTagList The list of ETag constraints that, when present, <b>must
+     *            not</b> include a match for the source object's current ETag
+     *            in order for this request to be executed.
      */
     public void setNonmatchingETagConstraints(List<String> eTagList) {
         this.nonmatchingEtagConstraints = eTagList;
@@ -797,8 +756,8 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Adds a single ETag constraint to this request and returns this object, enabling
-     * additional method calls to be chained together. Multiple ETag
+     * Adds a single ETag constraint to this request and returns this object,
+     * enabling additional method calls to be chained together. Multiple ETag
      * constraints can be added to a request, but all ETag constraints <b>must
      * not</b> match the source object's current ETag in order for the copy
      * object request to be executed. If any entry in the non-matching ETag
@@ -810,11 +769,9 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * constraint, but not with any other type of constraint.
      * </p>
      *
-     * @param eTag
-     *            The non-matching ETag constraint to add to this request.
-     *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @param eTag The non-matching ETag constraint to add to this request.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withNonmatchingETagConstraint(String eTag) {
         this.nonmatchingEtagConstraints.add(eTag);
@@ -823,18 +780,18 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Gets the optional unmodified  constraint that restricts this
-     * request to executing only if the source object has <b>not</b> been
-     * modified after the specified date.
+     * Gets the optional unmodified constraint that restricts this request to
+     * executing only if the source object has <b>not</b> been modified after
+     * the specified date.
      * </p>
      * <p>
      * The unmodified since constraint may be used with matching ETag
      * constraints, but not with any other type of constraint.
      * </p>
      *
-     * @return The optional unmodified constraint that restricts this
-     *         request to executing only if the source object has <b>not</b>
-     *         been modified after the specified date.
+     * @return The optional unmodified constraint that restricts this request to
+     *         executing only if the source object has <b>not</b> been modified
+     *         after the specified date.
      */
     public Date getUnmodifiedSinceConstraint() {
         return unmodifiedSinceConstraint;
@@ -842,20 +799,19 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Sets the optional unmodified constraint that restricts this request
-     * to executing only if the source object has <b>not</b> been
-     * modified after the specified date.
+     * Sets the optional unmodified constraint that restricts this request to
+     * executing only if the source object has <b>not</b> been modified after
+     * the specified date.
      * </p>
      * <p>
-     * The unmodified constraint may be used with matching ETag
-     * constraints, but not with any other type of constraint.
+     * The unmodified constraint may be used with matching ETag constraints, but
+     * not with any other type of constraint.
      * </p>
      * <p>
      * Note that Amazon S3 will ignore any dates occurring in the future.
      * </p>
      *
-     * @param date
-     *            The unmodified constraint that restricts this request to
+     * @param date The unmodified constraint that restricts this request to
      *            executing only if the source object has <b>not</b> been
      *            modified after this date.
      */
@@ -865,26 +821,24 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Sets the optional unmodified constraint that restricts this request
-     * to executing only if the source object has <b>not</b> been
-     * modified after the specified date. Returns this object, enabling
-     * additional method calls to be chained together.
+     * Sets the optional unmodified constraint that restricts this request to
+     * executing only if the source object has <b>not</b> been modified after
+     * the specified date. Returns this object, enabling additional method calls
+     * to be chained together.
      * </p>
      * <p>
-     * The unmodified constraint may be used with matching ETag
-     * constraints, but not with any other type of constraint.
+     * The unmodified constraint may be used with matching ETag constraints, but
+     * not with any other type of constraint.
      * </p>
      * <p>
      * Note that Amazon S3 will ignore any dates occurring in the future.
      * </p>
      *
-     * @param date
-     *            The unmodified constraint that restricts this request to
+     * @param date The unmodified constraint that restricts this request to
      *            executing only if the source object has <b>not</b> been
      *            modified after this date.
-     *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withUnmodifiedSinceConstraint(Date date) {
         setUnmodifiedSinceConstraint(date);
@@ -893,18 +847,18 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Gets the optional modified constraint that restricts this
-     * request to executing only if the source object <b>has</b> been
-     * modified after the specified date.
+     * Gets the optional modified constraint that restricts this request to
+     * executing only if the source object <b>has</b> been modified after the
+     * specified date.
      * </p>
      * <p>
-     * The modified constraint may be used with non-matching ETag
-     * constraints, but not with any other type of constraint.
+     * The modified constraint may be used with non-matching ETag constraints,
+     * but not with any other type of constraint.
      * </p>
      *
-     * @return The optional modified constraint that restricts this
-     *         request to executing only if the source object <b>has</b>
-     *         been modified after the specified date.
+     * @return The optional modified constraint that restricts this request to
+     *         executing only if the source object <b>has</b> been modified
+     *         after the specified date.
      */
     public Date getModifiedSinceConstraint() {
         return modifiedSinceConstraint;
@@ -912,22 +866,21 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Sets the optional modified constraint that restricts this request
-     * to executing only if the source object <b>has</b> been modified
-     * after the specified date.
+     * Sets the optional modified constraint that restricts this request to
+     * executing only if the source object <b>has</b> been modified after the
+     * specified date.
      * </p>
      * <p>
-     * The modified constraint may be used with non-matching ETag
-     * constraints, but not with any other type of constraint.
+     * The modified constraint may be used with non-matching ETag constraints,
+     * but not with any other type of constraint.
      * </p>
      * <p>
      * Note that Amazon S3 will ignore any dates occurring in the future.
      * </p>
      *
-     * @param date
-     *            The modified constraint that restricts this request to
-     *            executing only if the source object <b>has</b> been
-     *            modified after the specified date.
+     * @param date The modified constraint that restricts this request to
+     *            executing only if the source object <b>has</b> been modified
+     *            after the specified date.
      */
     public void setModifiedSinceConstraint(Date date) {
         this.modifiedSinceConstraint = date;
@@ -935,26 +888,24 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Sets the optional modified constraint that restricts this request
-     * to executing only if the source object <b>has</b> been modified
-     * after the specified date. Returns this object, enabling additional
-     * method calls to be chained together.
+     * Sets the optional modified constraint that restricts this request to
+     * executing only if the source object <b>has</b> been modified after the
+     * specified date. Returns this object, enabling additional method calls to
+     * be chained together.
      * </p>
      * <p>
-     * The modified constraint may be used with non-matching ETag
-     * constraints, but not with any other type of constraint.
+     * The modified constraint may be used with non-matching ETag constraints,
+     * but not with any other type of constraint.
      * </p>
      * <p>
      * Note that Amazon S3 will ignore any dates occurring in the future.
      * </p>
      *
-     * @param date
-     *            The modified constraint that restricts this request to
-     *            executing only if the source object <b>has</b> been
-     *            modified after the specified date.
-     *
-     * @return This <code>CopyObjectRequest</code>, enabling additional method calls to be
-     *         chained together.
+     * @param date The modified constraint that restricts this request to
+     *            executing only if the source object <b>has</b> been modified
+     *            after the specified date.
+     * @return This <code>CopyObjectRequest</code>, enabling additional method
+     *         calls to be chained together.
      */
     public CopyObjectRequest withModifiedSinceConstraint(Date date) {
         setModifiedSinceConstraint(date);
@@ -964,8 +915,8 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     /**
      * Sets the optional redirect location for the newly copied object.
      *
-     * @param redirectLocation
-     *            The redirect location for the newly copied object.
+     * @param redirectLocation The redirect location for the newly copied
+     *            object.
      */
     public void setRedirectLocation(String redirectLocation) {
         this.redirectLocation = redirectLocation;
@@ -979,11 +930,12 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional redirect location for the newly copied object.Returns this
-     * {@link CopyObjectRequest}, enabling additional method calls to be chained
-     * together.
-     * @param redirectLocation
-     *            The redirect location for the newly copied object.
+     * Sets the optional redirect location for the newly copied object.Returns
+     * this {@link CopyObjectRequest}, enabling additional method calls to be
+     * chained together.
+     *
+     * @param redirectLocation The redirect location for the newly copied
+     *            object.
      */
     public CopyObjectRequest withRedirectLocation(String redirectLocation) {
         this.redirectLocation = redirectLocation;
@@ -1005,9 +957,8 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * Sets the optional customer-provided server-side encryption key to use to
      * decrypt the source object being copied.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to decrypt the source object being copied.
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use to decrypt the source object being copied.
      */
     public void setSourceSSECustomerKey(SSECustomerKey sseKey) {
         this.sourceSSECustomerKey = sseKey;
@@ -1018,12 +969,10 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * decrypt the source object being copied, and returns the updated request
      * object so that additional method calls can be chained together.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to decrypt the source object being copied.
-     *
-     * @return This updated request object so that additional method calls can
-     *         be chained together.
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use to decrypt the source object being copied.
+     * @return This updated request object so that additional method calls can be
+     *         chained together.
      */
     public CopyObjectRequest withSourceSSECustomerKey(SSECustomerKey sseKey) {
         setSourceSSECustomerKey(sseKey);
@@ -1045,9 +994,8 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * Sets the optional customer-provided server-side encryption key to use to
      * encrypt the destination object being copied.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to encrypt the destination object being copied.
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use to encrypt the destination object being copied.
      */
     public void setDestinationSSECustomerKey(SSECustomerKey sseKey) {
         this.destinationSSECustomerKey = sseKey;
@@ -1058,12 +1006,10 @@ public class CopyObjectRequest extends AmazonWebServiceRequest {
      * encrypt the destination object being copied, and returns the updated
      * request object so that additional method calls can be chained together.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to encrypt the destination object being copied.
-     *
-     * @return This updated request object so that additional method calls can
-     *         be chained together.
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use to encrypt the destination object being copied.
+     * @return This updated request object so that additional method calls can be
+     *         chained together.
      */
     public CopyObjectRequest withDestinationSSECustomerKey(SSECustomerKey sseKey) {
         setDestinationSSECustomerKey(sseKey);

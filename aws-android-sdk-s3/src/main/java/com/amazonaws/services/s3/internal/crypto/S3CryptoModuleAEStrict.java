@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
 
 import com.amazonaws.ClientConfiguration;
@@ -42,10 +43,12 @@ class S3CryptoModuleAEStrict extends S3CryptoModuleAE {
         super(s3, encryptionMaterialsProvider, cryptoConfig);
     }
 
+    @Override
     protected final boolean isStrict() {
         return true;
     }
 
+    @Override
     protected void securityCheck(ContentCryptoMaterial cekMaterial,
             S3ObjectWrapper retrieved) {
         if (!ContentCryptoScheme.AES_GCM.equals(cekMaterial.getContentCryptoScheme())) {

@@ -15,7 +15,10 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.util;
+
+import org.apache.commons.logging.LogFactory;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -26,17 +29,16 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.commons.logging.LogFactory;
-
 /**
  * Utility methods for computing MD5 sums.
  */
 public class Md5Utils {
     private static final int SIXTEEN_K = 1 << 14;
+
     /**
      * Computes the MD5 hash of the data in the given input stream and returns
-     * it as an array of bytes.
-     * Note this method closes the given input stream upon completion.
+     * it as an array of bytes. Note this method closes the given input stream
+     * upon completion.
      */
     public static byte[] computeMD5Hash(InputStream is) throws IOException {
         BufferedInputStream bis = new BufferedInputStream(is);
@@ -44,7 +46,7 @@ public class Md5Utils {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             byte[] buffer = new byte[SIXTEEN_K];
             int bytesRead;
-            while ( (bytesRead = bis.read(buffer, 0, buffer.length)) != -1 ) {
+            while ((bytesRead = bis.read(buffer, 0, buffer.length)) != -1) {
                 messageDigest.update(buffer, 0, bytesRead);
             }
             return messageDigest.digest();
@@ -62,8 +64,8 @@ public class Md5Utils {
     }
 
     /**
-     * Returns the MD5 in base64 for the data from the given input stream.
-     * Note this method closes the given input stream upon completion.
+     * Returns the MD5 in base64 for the data from the given input stream. Note
+     * this method closes the given input stream upon completion.
      */
     public static String md5AsBase64(InputStream is) throws IOException {
         return Base64.encodeAsString(computeMD5Hash(is));

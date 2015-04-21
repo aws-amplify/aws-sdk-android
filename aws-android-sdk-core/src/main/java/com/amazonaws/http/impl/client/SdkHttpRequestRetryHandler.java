@@ -12,21 +12,25 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http.impl.client;
-
-import java.io.IOException;
-
-import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
-import org.apache.http.protocol.HttpContext;
 
 import com.amazonaws.util.AWSRequestMetrics;
 import com.amazonaws.util.AWSRequestMetrics.Field;
 
+import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
+import org.apache.http.protocol.HttpContext;
+
+import java.io.IOException;
+
 public class SdkHttpRequestRetryHandler extends DefaultHttpRequestRetryHandler {
     public static final SdkHttpRequestRetryHandler Singleton = new SdkHttpRequestRetryHandler();
-    private SdkHttpRequestRetryHandler() {}
 
-    @Override public boolean retryRequest(
+    private SdkHttpRequestRetryHandler() {
+    }
+
+    @Override
+    public boolean retryRequest(
             final IOException exception,
             int executionCount,
             final HttpContext context) {

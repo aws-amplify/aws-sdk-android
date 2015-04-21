@@ -15,13 +15,13 @@
 
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util;
 
+import com.amazonaws.SDKGlobalConfiguration;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import com.amazonaws.SDKGlobalConfiguration;
 
 public class DateUtil {
 
@@ -49,7 +49,7 @@ public class DateUtil {
     /**
      * Creates a DateFormat object using the specified format string that is
      * independent of Locale
-     * 
+     *
      * @param dateFormatString The date format string to use when formatting a
      *            date
      * @return A Locale Independent DateFormat object

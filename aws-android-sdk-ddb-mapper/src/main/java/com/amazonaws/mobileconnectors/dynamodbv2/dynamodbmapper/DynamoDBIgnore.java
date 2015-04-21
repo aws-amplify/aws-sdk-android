@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import java.lang.annotation.ElementType;
@@ -29,7 +30,9 @@ import java.lang.annotation.Target;
  * properties and included in any save() requests.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD})
+@Target({
+        ElementType.FIELD, ElementType.METHOD
+})
 public @interface DynamoDBIgnore {
 
 }

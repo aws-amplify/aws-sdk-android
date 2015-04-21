@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 /**
@@ -25,17 +26,16 @@ public interface AWSIdentityProvider {
 
     /**
      * Get the token from the relevant provider
-     * 
+     *
      * @return the token which was retrieved from the provider
      */
     public String getToken();
-
 
     /**
      * To be used to call the provider back end to get a token and identityId.
      * Once that has returned, a call to the superclass' update(String, Token)
      * method should be called
-     * 
+     *
      * @return token returns the token that was updated in the refresh
      */
     public String refresh();

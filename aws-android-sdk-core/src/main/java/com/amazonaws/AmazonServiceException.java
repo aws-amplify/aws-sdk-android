@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws;
 
 /**
@@ -21,38 +22,36 @@ package com.amazonaws;
  * reason, the service was not able to process it, and returned an error
  * response instead.
  * <p>
- * AmazonServiceException provides callers several pieces of
- * information that can be used to obtain more information about the error and
- * why it occurred. In particular, the errorType field can be used to determine
- * if the caller's request was invalid, or the service encountered an error on
- * the server side while processing it.
+ * AmazonServiceException provides callers several pieces of information that
+ * can be used to obtain more information about the error and why it occurred.
+ * In particular, the errorType field can be used to determine if the caller's
+ * request was invalid, or the service encountered an error on the server side
+ * while processing it.
  */
 public class AmazonServiceException extends AmazonClientException {
     private static final long serialVersionUID = 1L;
 
     /**
      * Indicates who is responsible (if known) for a failed request.
-     *
-     * <p>For example, if a client is using an invalid AWS access key,
-     * the returned exception will indicate that there is an error in the
-     * request the caller is sending. Retrying that same request will *not*
-     * result in a successful response. The Client ErrorType indicates that
-     * there is a problem in the request the user is sending (ex: incorrect
-     * access keys, invalid parameter value, missing parameter, etc.), and that
-     * the caller must take some action to correct the request before it should
-     * be resent. Client errors are typically associated an HTTP error code in
-     * the 4xx range.
-     *
-     * <p>The Service ErrorType indicates that although the request the
-     * caller sent was valid, the service was unable to fulfill the request
-     * because of problems on the service's side. These types of errors can be
-     * retried by the caller since the caller's request was valid and the
-     * problem occurred while processing the request on the service side.
-     * Service errors will be accompanied by an HTTP error code in the 5xx
-     * range.
-     *
-     * <p>Finally, if there isn't enough information to determine who's
-     * fault the error response is, an Unknown ErrorType will be set.
+     * <p>
+     * For example, if a client is using an invalid AWS access key, the returned
+     * exception will indicate that there is an error in the request the caller
+     * is sending. Retrying that same request will *not* result in a successful
+     * response. The Client ErrorType indicates that there is a problem in the
+     * request the user is sending (ex: incorrect access keys, invalid parameter
+     * value, missing parameter, etc.), and that the caller must take some
+     * action to correct the request before it should be resent. Client errors
+     * are typically associated an HTTP error code in the 4xx range.
+     * <p>
+     * The Service ErrorType indicates that although the request the caller sent
+     * was valid, the service was unable to fulfill the request because of
+     * problems on the service's side. These types of errors can be retried by
+     * the caller since the caller's request was valid and the problem occurred
+     * while processing the request on the service side. Service errors will be
+     * accompanied by an HTTP error code in the 5xx range.
+     * <p>
+     * Finally, if there isn't enough information to determine who's fault the
+     * error response is, an Unknown ErrorType will be set.
      */
     public enum ErrorType {
         Client,
@@ -97,8 +96,7 @@ public class AmazonServiceException extends AmazonClientException {
     /**
      * Constructs a new AmazonServiceException with the specified message.
      *
-     * @param errorMessage
-     *            An error message describing what went wrong.
+     * @param errorMessage An error message describing what went wrong.
      */
     public AmazonServiceException(String errorMessage) {
         super(null);
@@ -109,10 +107,8 @@ public class AmazonServiceException extends AmazonClientException {
      * Constructs a new AmazonServiceException with the specified message and
      * exception indicating the root cause.
      *
-     * @param errorMessage
-     *            An error message describing what went wrong.
-     * @param cause
-     *            The root exception that caused this exception to be thrown.
+     * @param errorMessage An error message describing what went wrong.
+     * @param cause The root exception that caused this exception to be thrown.
      */
     public AmazonServiceException(String errorMessage, Exception cause) {
         super(null, cause);
@@ -122,8 +118,8 @@ public class AmazonServiceException extends AmazonClientException {
     /**
      * Sets the AWS requestId for this exception.
      *
-     * @param requestId
-     *            The unique identifier for the service request the caller made.
+     * @param requestId The unique identifier for the service request the caller
+     *            made.
      */
     public void setRequestId(String requestId) {
         this.requestId = requestId;
@@ -143,8 +139,7 @@ public class AmazonServiceException extends AmazonClientException {
     /**
      * Sets the name of the service that sent this error response.
      *
-     * @param serviceName
-     *            The name of the service that sent this error response.
+     * @param serviceName The name of the service that sent this error response.
      */
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
@@ -162,8 +157,7 @@ public class AmazonServiceException extends AmazonClientException {
     /**
      * Sets the AWS error code represented by this exception.
      *
-     * @param errorCode
-     *            The AWS error code represented by this exception.
+     * @param errorCode The AWS error code represented by this exception.
      */
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
@@ -183,20 +177,20 @@ public class AmazonServiceException extends AmazonClientException {
      * or unknown), indicating if this exception was the caller's fault, or the
      * service's fault.
      *
-     * @param errorType
-     *            The type of error represented by this exception (sender or
-     *            receiver), indicating if this exception was the caller's fault
-     *            or the service's fault.
+     * @param errorType The type of error represented by this exception (sender
+     *            or receiver), indicating if this exception was the caller's
+     *            fault or the service's fault.
      */
     public void setErrorType(ErrorType errorType) {
         this.errorType = errorType;
     }
 
     /**
-     * Indicates who is responsible for this exception (caller, service,
-     * or unknown).
+     * Indicates who is responsible for this exception (caller, service, or
+     * unknown).
      *
-     * @return A value indicating who is responsible for this exception (caller, service, or unknown).
+     * @return A value indicating who is responsible for this exception (caller,
+     *         service, or unknown).
      */
     public ErrorType getErrorType() {
         return errorType;
@@ -212,9 +206,8 @@ public class AmazonServiceException extends AmazonClientException {
     /**
      * Sets the HTTP status code that was returned with this service exception.
      *
-     * @param statusCode
-     *            The HTTP status code that was returned with this service
-     *            exception.
+     * @param statusCode The HTTP status code that was returned with this
+     *            service exception.
      */
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
@@ -234,9 +227,9 @@ public class AmazonServiceException extends AmazonClientException {
     @Override
     public String getMessage() {
         return getErrorMessage()
-            + " (Service: " + getServiceName()
-            + "; Status Code: " + getStatusCode()
-            + "; Error Code: " + getErrorCode()
-            + "; Request ID: " + getRequestId() + ")";
+                + " (Service: " + getServiceName()
+                + "; Status Code: " + getStatusCode()
+                + "; Error Code: " + getErrorCode()
+                + "; Request ID: " + getRequestId() + ")";
     }
 }

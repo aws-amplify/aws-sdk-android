@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -45,96 +46,92 @@ import com.amazonaws.services.s3.AmazonS3;
  */
 public class SetBucketWebsiteConfigurationRequest extends AmazonWebServiceRequest {
 
-	/** The name of the bucket whose website configuration is being set. */
-	private String bucketName;
+    /** The name of the bucket whose website configuration is being set. */
+    private String bucketName;
 
-	/** The new website configuration for the specified bucket. */
-	private BucketWebsiteConfiguration configuration;
+    /** The new website configuration for the specified bucket. */
+    private BucketWebsiteConfiguration configuration;
 
+    /**
+     * Creates a new request object, ready to be executed to set the specified
+     * bucket's website configuration.
+     *
+     * @param bucketName The name of the bucket whose website configuration is
+     *            being set.
+     * @param configuration The new configuration for the specified bucket.
+     */
+    public SetBucketWebsiteConfigurationRequest(String bucketName,
+            BucketWebsiteConfiguration configuration) {
+        this.bucketName = bucketName;
+        this.configuration = configuration;
+    }
 
-	/**
-	 * Creates a new request object, ready to be executed to set the specified
-	 * bucket's website configuration.
-	 *
-	 * @param bucketName
-	 *            The name of the bucket whose website configuration is being
-	 *            set.
-	 * @param configuration
-	 *            The new configuration for the specified bucket.
-	 */
-	public SetBucketWebsiteConfigurationRequest(String bucketName, BucketWebsiteConfiguration configuration) {
-		this.bucketName = bucketName;
-		this.configuration = configuration;
-	}
+    /**
+     * Sets the name of the bucket whose website configuration is to be updated.
+     *
+     * @param bucketName The name of the bucket whose website configuration is
+     *            being set.
+     */
+    public void setBucketName(String bucketName) {
+        this.bucketName = bucketName;
+    }
 
-	/**
-	 * Sets the name of the bucket whose website configuration is to be updated.
-	 *
-	 * @param bucketName
-	 *            The name of the bucket whose website configuration is being
-	 *            set.
-	 */
-	public void setBucketName(String bucketName) {
-		this.bucketName = bucketName;
-	}
+    /**
+     * Returns the name of the bucket whose website configuration is being set.
+     *
+     * @return The name of the bucket whose website configuration is being set.
+     */
+    public String getBucketName() {
+        return bucketName;
+    }
 
-	/**
-	 * Returns the name of the bucket whose website configuration is being set.
-	 *
-	 * @return The name of the bucket whose website configuration is being set.
-	 */
-	public String getBucketName() {
-		return bucketName;
-	}
+    /**
+     * Sets the name of the bucket whose website configuration is being set and
+     * returns this updated request object so that additional method calls can
+     * be chained together.
+     *
+     * @param bucketName The name of the bucket whose website configuration is
+     *            being set.
+     * @return This updated request object so that additional method calls can
+     *         be chained together.
+     */
+    public SetBucketWebsiteConfigurationRequest withBucketName(String bucketName) {
+        setBucketName(bucketName);
+        return this;
+    }
 
-	/**
-	 * Sets the name of the bucket whose website configuration is being set and
-	 * returns this updated request object so that additional method calls can
-	 * be chained together.
-	 *
-	 * @param bucketName
-	 *            The name of the bucket whose website configuration is being
-	 *            set.
-	 * @return This updated request object so that additional method calls can
-	 *         be chained together.
-	 */
-	public SetBucketWebsiteConfigurationRequest withBucketName(String bucketName) {
-		setBucketName(bucketName);
-		return this;
-	}
+    /**
+     * Sets the website configuration to send as part of this request.
+     *
+     * @param configuration The new website configuration to set for the
+     *            specified bucket.
+     */
+    public void setConfiguration(BucketWebsiteConfiguration configuration) {
+        this.configuration = configuration;
+    }
 
-	/**
-	 * Sets the website configuration to send as part of this request.
-	 *
-	 * @param configuration
-	 *            The new website configuration to set for the specified bucket.
-	 */
-	public void setConfiguration(BucketWebsiteConfiguration configuration) {
-		this.configuration = configuration;
-	}
+    /**
+     * Returns the website configuration to send as part of this request.
+     *
+     * @return The new website configuration to set for the specified bucket.
+     */
+    public BucketWebsiteConfiguration getConfiguration() {
+        return configuration;
+    }
 
-	/**
-	 * Returns the website configuration to send as part of this request.
-	 *
-	 * @return The new website configuration to set for the specified bucket.
-	 */
-	public BucketWebsiteConfiguration getConfiguration() {
-		return configuration;
-	}
-
-	/**
-	 * Sets the website configuration to send as part of this request, and
-	 * returns this updated request object so that additional method calls can
-	 * be chained together.
-	 *
-	 * @param configuration
-	 *            The new website configuration to set for the specified bucket.
-	 *
-	 * @return This updated request object so that additional method calls can
-	 *         be chained together.
-	 */
-	public SetBucketWebsiteConfigurationRequest withConfiguration(BucketWebsiteConfiguration configuration) {
-		setConfiguration(configuration);
-		return this;
-	}
+    /**
+     * Sets the website configuration to send as part of this request, and
+     * returns this updated request object so that additional method calls can
+     * be chained together.
+     *
+     * @param configuration The new website configuration to set for the
+     *            specified bucket.
+     * @return This updated request object so that additional method calls can be
+     *         chained together.
+     */
+    public SetBucketWebsiteConfigurationRequest withConfiguration(
+            BucketWebsiteConfiguration configuration) {
+        setConfiguration(configuration);
+        return this;
+    }
 }

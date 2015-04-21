@@ -12,24 +12,18 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListenerCallbackExecutor;
 import com.amazonaws.event.ProgressListenerChain;
+import com.amazonaws.mobileconnectors.s3.transfermanager.PersistableUpload;
+import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer.TransferState;
+import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
+import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManagerConfiguration;
+import com.amazonaws.mobileconnectors.s3.transfermanager.TransferProgress;
+import com.amazonaws.mobileconnectors.s3.transfermanager.model.UploadResult;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3EncryptionClient;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
@@ -46,12 +40,19 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.StorageClass;
 import com.amazonaws.services.s3.model.UploadPartRequest;
-import com.amazonaws.mobileconnectors.s3.transfermanager.PersistableUpload;
-import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer.TransferState;
-import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
-import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManagerConfiguration;
-import com.amazonaws.mobileconnectors.s3.transfermanager.TransferProgress;
-import com.amazonaws.mobileconnectors.s3.transfermanager.model.UploadResult;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 public class UploadCallable implements Callable<UploadResult> {
     private final AmazonS3 s3;
@@ -64,7 +65,7 @@ public class UploadCallable implements Callable<UploadResult> {
     private final TransferManagerConfiguration configuration;
     private final List<Future<PartETag>> futures = new ArrayList<Future<PartETag>>();
     private final ProgressListenerChain listener;
-    private final TransferProgress transferProgress; 
+    private final TransferProgress transferProgress;
 
     /**
      * ETags retrieved from Amazon S3 for a multi-part upload id. These parts
@@ -77,7 +78,7 @@ public class UploadCallable implements Callable<UploadResult> {
     public UploadCallable(TransferManager transferManager,
             ExecutorService threadPool, UploadImpl upload,
             PutObjectRequest putObjectRequest,
-            ProgressListenerChain progressListenerChain, String uploadId, 
+            ProgressListenerChain progressListenerChain, String uploadId,
             TransferProgress transferProgress) {
         this.s3 = transferManager.getAmazonS3Client();
         this.configuration = transferManager.getConfiguration();
@@ -87,7 +88,7 @@ public class UploadCallable implements Callable<UploadResult> {
         this.listener = progressListenerChain;
         this.upload = upload;
         this.multipartUploadId = uploadId;
-        this.transferProgress = transferProgress; 
+        this.transferProgress = transferProgress;
     }
 
     List<Future<PartETag>> getFutures() {
@@ -108,12 +109,14 @@ public class UploadCallable implements Callable<UploadResult> {
 
     /**
      * Returns true if this UploadCallable is processing a multipart upload.
+     *
      * @return True if this UploadCallable is processing a multipart upload.
      */
     public boolean isMultipartUpload() {
         return TransferManagerUtils.shouldUseMultipartUpload(putObjectRequest, configuration);
     }
 
+    @Override
     public UploadResult call() throws Exception {
         upload.setState(TransferState.InProgress);
         if (isMultipartUpload()) {
@@ -179,7 +182,8 @@ public class UploadCallable implements Callable<UploadResult> {
         }
 
         try {
-            UploadPartRequestFactory requestFactory = new UploadPartRequestFactory(putObjectRequest, multipartUploadId, optimalPartSize);
+            UploadPartRequestFactory requestFactory = new UploadPartRequestFactory(
+                    putObjectRequest, multipartUploadId, optimalPartSize);
 
             if (TransferManagerUtils.isUploadParallelizable(putObjectRequest, isUsingEncryption)) {
                 captureUploadStateIfPossible();
@@ -194,7 +198,9 @@ public class UploadCallable implements Callable<UploadResult> {
             throw e;
         } finally {
             if (putObjectRequest.getInputStream() != null) {
-                try {putObjectRequest.getInputStream().close(); } catch (Exception e) {
+                try {
+                    putObjectRequest.getInputStream().close();
+                } catch (Exception e) {
                     log.warn("Unable to cleanly close input stream: " + e.getMessage(), e);
                 }
             }
@@ -223,10 +229,12 @@ public class UploadCallable implements Callable<UploadResult> {
      * Computes and returns the optimal part size for the upload.
      */
     private long getOptimalPartSize(boolean isUsingEncryption) {
-        long optimalPartSize = TransferManagerUtils.calculateOptimalPartSize(putObjectRequest, configuration);
+        long optimalPartSize = TransferManagerUtils.calculateOptimalPartSize(putObjectRequest,
+                configuration);
         if (isUsingEncryption && optimalPartSize % 32 > 0) {
-            // When using encryption, parts must line up correctly along cipher block boundaries
-            optimalPartSize = optimalPartSize - (optimalPartSize % 32) + 32 ;
+            // When using encryption, parts must line up correctly along cipher
+            // block boundaries
+            optimalPartSize = optimalPartSize - (optimalPartSize % 32) + 32;
         }
         log.debug("Calculated optimal part size: " + optimalPartSize);
         return optimalPartSize;
@@ -241,7 +249,8 @@ public class UploadCallable implements Callable<UploadResult> {
         final List<PartETag> partETags = new ArrayList<PartETag>();
 
         while (requestFactory.hasMoreRequests()) {
-            if (threadPool.isShutdown()) throw new CancellationException("TransferManager has been shutdown");
+            if (threadPool.isShutdown())
+                throw new CancellationException("TransferManager has been shutdown");
             UploadPartRequest uploadPartRequest = requestFactory.getNextUploadPartRequest();
             // Mark the stream in case we need to reset it
             InputStream inputStream = uploadPartRequest.getInputStream();
@@ -249,14 +258,15 @@ public class UploadCallable implements Callable<UploadResult> {
                 if (uploadPartRequest.getPartSize() >= Integer.MAX_VALUE) {
                     inputStream.mark(Integer.MAX_VALUE);
                 } else {
-                    inputStream.mark((int)uploadPartRequest.getPartSize());
+                    inputStream.mark((int) uploadPartRequest.getPartSize());
                 }
             }
             partETags.add(s3.uploadPart(uploadPartRequest).getPartETag());
         }
 
         CompleteMultipartUploadResult completeMultipartUploadResult = s3
-                .completeMultipartUpload(new CompleteMultipartUploadRequest(putObjectRequest.getBucketName(),
+                .completeMultipartUpload(new CompleteMultipartUploadRequest(putObjectRequest
+                        .getBucketName(),
                         putObjectRequest.getKey(), multipartUploadId, partETags));
 
         UploadResult uploadResult = new UploadResult();
@@ -268,21 +278,23 @@ public class UploadCallable implements Callable<UploadResult> {
     }
 
     /**
-     * Submits a callable for each part to upload to our thread pool and records its corresponding Future.
+     * Submits a callable for each part to upload to our thread pool and records
+     * its corresponding Future.
      */
     private void uploadPartsInParallel(UploadPartRequestFactory requestFactory,
             String uploadId) {
 
-        Map<Integer,PartSummary> partNumbers = identifyExistingPartsForResume(uploadId);
+        Map<Integer, PartSummary> partNumbers = identifyExistingPartsForResume(uploadId);
 
         while (requestFactory.hasMoreRequests()) {
-            if (threadPool.isShutdown()) throw new CancellationException("TransferManager has been shutdown");
+            if (threadPool.isShutdown())
+                throw new CancellationException("TransferManager has been shutdown");
             UploadPartRequest request = requestFactory.getNextUploadPartRequest();
             if (partNumbers.containsKey(request.getPartNumber())) {
                 PartSummary summary = partNumbers.get(request.getPartNumber());
                 eTagsToSkip.add(new PartETag(request.getPartNumber(), summary
                         .getETag()));
-                transferProgress.updateProgress(summary.getSize()); 
+                transferProgress.updateProgress(summary.getSize());
                 continue;
             }
             futures.add(threadPool.submit(new UploadPartCallable(s3, request)));
@@ -314,23 +326,28 @@ public class UploadCallable implements Callable<UploadResult> {
 
     /**
      * Initiates a multipart upload and returns the upload id
+     *
      * @param isUsingEncryption
      */
-    private String initiateMultipartUpload(PutObjectRequest putObjectRequest, boolean isUsingEncryption) {
+    private String initiateMultipartUpload(PutObjectRequest putObjectRequest,
+            boolean isUsingEncryption) {
 
         InitiateMultipartUploadRequest initiateMultipartUploadRequest = null;
         if (isUsingEncryption && putObjectRequest instanceof EncryptedPutObjectRequest) {
             initiateMultipartUploadRequest = new EncryptedInitiateMultipartUploadRequest(
                     putObjectRequest.getBucketName(), putObjectRequest.getKey()).withCannedACL(
-                    putObjectRequest.getCannedAcl()).withObjectMetadata(putObjectRequest.getMetadata());
+                    putObjectRequest.getCannedAcl()).withObjectMetadata(
+                    putObjectRequest.getMetadata());
             ((EncryptedInitiateMultipartUploadRequest) initiateMultipartUploadRequest)
-                    .setMaterialsDescription(((EncryptedPutObjectRequest) putObjectRequest).getMaterialsDescription());
+                    .setMaterialsDescription(((EncryptedPutObjectRequest) putObjectRequest)
+                            .getMaterialsDescription());
         } else {
-            initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(putObjectRequest.getBucketName(), putObjectRequest.getKey())
-                .withCannedACL(putObjectRequest.getCannedAcl())
-                .withObjectMetadata(putObjectRequest.getMetadata());
+            initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(
+                    putObjectRequest.getBucketName(), putObjectRequest.getKey())
+                    .withCannedACL(putObjectRequest.getCannedAcl())
+                    .withObjectMetadata(putObjectRequest.getMetadata());
         }
-        
+
         TransferManager.appendMultipartUserAgent(initiateMultipartUploadRequest);
 
         if (putObjectRequest.getStorageClass() != null) {

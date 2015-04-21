@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model;
 
-import java.io.File;
-import java.io.InputStream;
+package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.event.ProgressListener;
+
+import java.io.File;
+import java.io.InputStream;
 
 /**
  * Contains the parameters used for the UploadPart operation on Amazon S3.
@@ -31,12 +32,12 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * The transfer id of this upload part
      */
     private int id;
-    
+
     /**
      * The transfer id of the main upload record of this upload part
      */
     private int mainUploadId;
-    
+
     /**
      * The name of the bucket containing the initiated multipart upload with
      * which this new part will be associated.
@@ -89,8 +90,8 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
     private long fileOffset;
 
     /**
-     * The optional progress listener for receiving updates about object download
-     * status.
+     * The optional progress listener for receiving updates about object
+     * download status.
      */
     private ProgressListener generalProgressListener;
 
@@ -109,54 +110,54 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
     /**
      * @param id the transfer id of the upload part
      */
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
-    
+
     /**
      * @return the transfer id of the upload part
      */
-    public int getId(){
+    public int getId() {
         return id;
     }
-    
+
     /**
      * @param id the transfer id of the upload part
      * @return the updated UploadPartRequest object
      */
-    public UploadPartRequest withId(int id){
+    public UploadPartRequest withId(int id) {
         this.id = id;
         return this;
     }
-    
+
     /**
      * @param id The transfer id of the main upload record of this upload part
      */
-    public void setMainUploadId(int id){
+    public void setMainUploadId(int id) {
         this.mainUploadId = id;
     }
-    
+
     /**
      * @return The transfer id of the main upload record of this upload part
      */
-    public int getMainUploadId(){
+    public int getMainUploadId() {
         return mainUploadId;
     }
-    
+
     /**
      * @param id The transfer id of the main upload record of this upload part
      * @return the updated UploadPartRequest object
      */
-    public UploadPartRequest withMainUploadId(int id){
+    public UploadPartRequest withMainUploadId(int id) {
         this.mainUploadId = id;
         return this;
     }
-    
+
     /**
      * Sets the stream containing the data to upload for the new part.
      *
-     * @param inputStream
-     *            the stream containing the data to upload for the new part.
+     * @param inputStream the stream containing the data to upload for the new
+     *            part.
      */
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
@@ -176,9 +177,8 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * returns this updated object so that additional method calls can be
      * chained together.
      *
-     * @param inputStream
-     *            the stream containing the data to upload for the new part.
-     *
+     * @param inputStream the stream containing the data to upload for the new
+     *            part.
      * @return The updated UploadPartRequest object.
      */
     public UploadPartRequest withInputStream(InputStream inputStream) {
@@ -201,9 +201,9 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Sets the name of the bucket containing the existing, initiated multipart
      * upload, with which this new part will be associated.
      *
-     * @param bucketName
-     *            the name of the bucket containing the existing, initiated
-     *            multipart upload, with which this new part will be associated.
+     * @param bucketName the name of the bucket containing the existing,
+     *            initiated multipart upload, with which this new part will be
+     *            associated.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -214,10 +214,9 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * upload, with which this new part will be associated, and returns this
      * updated object so that additional method calls can be chained together.
      *
-     * @param bucketName
-     *            the name of the bucket containing the existing, initiated
-     *            multipart upload, with which this new part will be associated.
-     *
+     * @param bucketName the name of the bucket containing the existing,
+     *            initiated multipart upload, with which this new part will be
+     *            associated.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withBucketName(String bucketName) {
@@ -237,8 +236,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
     /**
      * Sets the key of the initiated multipart upload.
      *
-     * @param key
-     *            the key of the initiated multipart upload.
+     * @param key the key of the initiated multipart upload.
      */
     public void setKey(String key) {
         this.key = key;
@@ -248,9 +246,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Sets the key of the initiated multipart upload, and returns this updated
      * object so that additional method calls can be chained together.
      *
-     * @param key
-     *            the key of the initiated multipart upload.
-     *
+     * @param key the key of the initiated multipart upload.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withKey(String key) {
@@ -273,9 +269,8 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Sets the ID of the existing, initiated multipart upload with which this
      * new part will be associated.
      *
-     * @param uploadId
-     *            the ID of the existing, initiated multipart upload with which
-     *            this new part will be associated.
+     * @param uploadId the ID of the existing, initiated multipart upload with
+     *            which this new part will be associated.
      */
     public void setUploadId(String uploadId) {
         this.uploadId = uploadId;
@@ -286,10 +281,8 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * new part will be associated, and returns this updated UploadPartRequest
      * object so that additional method calls can be chained together.
      *
-     * @param uploadId
-     *            the ID of the existing, initiated multipart upload with which
-     *            this new part will be associated.
-     *
+     * @param uploadId the ID of the existing, initiated multipart upload with
+     *            which this new part will be associated.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withUploadId(String uploadId) {
@@ -315,10 +308,9 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * other parts in the multipart upload. Part number must be between 1 and
      * 10,000 (inclusive).
      *
-     * @param partNumber
-     *            the part number describing this part's position relative to
-     *            the other parts in the multipart upload. Part number must be
-     *            between 1 and 10,000 (inclusive).
+     * @param partNumber the part number describing this part's position
+     *            relative to the other parts in the multipart upload. Part
+     *            number must be between 1 and 10,000 (inclusive).
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
@@ -332,11 +324,9 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Returns this updated UploadPartRequest object so that additional method
      * calls can be chained together.
      *
-     * @param partNumber
-     *            the part number describing this part's position relative to
-     *            the other parts in the multipart upload. Part number must be
-     *            between 1 and 10,000 (inclusive).
-     *
+     * @param partNumber the part number describing this part's position
+     *            relative to the other parts in the multipart upload. Part
+     *            number must be between 1 and 10,000 (inclusive).
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withPartNumber(int partNumber) {
@@ -356,8 +346,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
     /**
      * Sets the size of this part, in bytes.
      *
-     * @param partSize
-     *            the size of this part, in bytes.
+     * @param partSize the size of this part, in bytes.
      */
     public void setPartSize(long partSize) {
         this.partSize = partSize;
@@ -368,9 +357,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * UploadPartRequest object so that additional method calls can be chained
      * together.
      *
-     * @param partSize
-     *            the size of this part, in bytes.
-     *
+     * @param partSize the size of this part, in bytes.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withPartSize(long partSize) {
@@ -396,10 +383,10 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * If specified, this value will be sent to Amazon S3 to verify the data
      * integrity when the data reaches Amazon S3.
      *
-     * @param md5Digest
-     *            The optional, but recommended, MD5 hash of the content of this
-     *            part. If specified, this value will be sent to Amazon S3 to
-     *            verify the data integrity when the data reaches Amazon S3.
+     * @param md5Digest The optional, but recommended, MD5 hash of the content
+     *            of this part. If specified, this value will be sent to Amazon
+     *            S3 to verify the data integrity when the data reaches Amazon
+     *            S3.
      */
     public void setMd5Digest(String md5Digest) {
         this.md5Digest = md5Digest;
@@ -413,11 +400,10 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Returns this updated UploadPartRequest object so that additional method
      * calls can be chained together.
      *
-     * @param md5Digest
-     *            The optional, but recommended, MD5 hash of the content of this
-     *            part. If specified, this value will be sent to Amazon S3 to
-     *            verify the data integrity when the data reaches Amazon S3.
-     *
+     * @param md5Digest The optional, but recommended, MD5 hash of the content
+     *            of this part. If specified, this value will be sent to Amazon
+     *            S3 to verify the data integrity when the data reaches Amazon
+     *            S3.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withMD5Digest(String md5Digest) {
@@ -440,8 +426,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Sets the file containing the data to upload. Exactly one File or
      * InputStream must be specified as the input to this operation.
      *
-     * @param file
-     *            The file containing the data to upload. Exactly one File or
+     * @param file The file containing the data to upload. Exactly one File or
      *            InputStream must be specified as the input to this operation.
      */
     public void setFile(File file) {
@@ -456,10 +441,8 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Exactly one File or InputStream must be specified as the input to this
      * operation.
      *
-     * @param file
-     *            The file containing the data to upload. Exactly one File or
+     * @param file The file containing the data to upload. Exactly one File or
      *            InputStream must be specified as the input to this operation.
-     *
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withFile(File file) {
@@ -485,10 +468,9 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * uploading data for this part. If not specified, data will be read from
      * the beginning of the file.
      *
-     * @param fileOffset
-     *            The optional offset in the specified file, at which to begin
-     *            uploading data for this part. If not specified, data will be
-     *            read from the beginning of the file.
+     * @param fileOffset The optional offset in the specified file, at which to
+     *            begin uploading data for this part. If not specified, data
+     *            will be read from the beginning of the file.
      */
     public void setFileOffset(long fileOffset) {
         this.fileOffset = fileOffset;
@@ -501,11 +483,9 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * <p>
      * If not specified, data will be read from the beginning of the file.
      *
-     * @param fileOffset
-     *            The optional offset in the specified file, at which to begin
-     *            uploading data for this part. If not specified, data will be
-     *            read from the beginning of the file.
-     *
+     * @param fileOffset The optional offset in the specified file, at which to
+     *            begin uploading data for this part. If not specified, data
+     *            will be read from the beginning of the file.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withFileOffset(long fileOffset) {
@@ -517,13 +497,14 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Sets the optional progress listener for receiving updates about object
      * upload status.
      *
-     * @param progressListener
-     *            The legacy progress listener that is used exclusively for Amazon S3 client.
-     *
-     * @deprecated use {@link #setGeneralProgressListener(ProgressListener)} instead.
+     * @param progressListener The legacy progress listener that is used
+     *            exclusively for Amazon S3 client.
+     * @deprecated use {@link #setGeneralProgressListener(ProgressListener)}
+     *             instead.
      */
     @Deprecated
-    public void setProgressListener(com.amazonaws.services.s3.model.ProgressListener progressListener) {
+    public void setProgressListener(
+            com.amazonaws.services.s3.model.ProgressListener progressListener) {
         this.generalProgressListener = new LegacyS3ProgressListener(progressListener);
     }
 
@@ -533,15 +514,14 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      *
      * @return the optional progress listener for receiving updates about object
      *         upload status.
-     *
      * @deprecated use {@link #getGeneralProgressListener()} instead.
      */
     @Deprecated
     public com.amazonaws.services.s3.model.ProgressListener getProgressListener() {
         if (generalProgressListener instanceof LegacyS3ProgressListener) {
-            return ((LegacyS3ProgressListener)generalProgressListener).unwrap();
+            return ((LegacyS3ProgressListener) generalProgressListener).unwrap();
         } else {
-             return null;
+            return null;
         }
     }
 
@@ -550,15 +530,15 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * upload status, and returns this updated object so that additional method
      * calls can be chained together.
      *
-     * @param progressListener
-     *            The legacy progress listener that is used exclusively for Amazon S3 client.
-     *
+     * @param progressListener The legacy progress listener that is used
+     *            exclusively for Amazon S3 client.
      * @return This updated UploadPartRequest object.
-     *
-     * @deprecated use {@link #withGeneralProgressListener(ProgressListener)} instead.
+     * @deprecated use {@link #withGeneralProgressListener(ProgressListener)}
+     *             instead.
      */
     @Deprecated
-    public UploadPartRequest withProgressListener(com.amazonaws.services.s3.model.ProgressListener progressListener) {
+    public UploadPartRequest withProgressListener(
+            com.amazonaws.services.s3.model.ProgressListener progressListener) {
         setProgressListener(progressListener);
         return this;
     }
@@ -575,12 +555,11 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
     }
 
     /**
-    * Marks this part as the last part being uploaded in a multipart upload.
-    *
-    * @param isLastPart
-    *            Whether or not this is the last part being uploaded in a
-    *            multipart upload.
-    */
+     * Marks this part as the last part being uploaded in a multipart upload.
+     *
+     * @param isLastPart Whether or not this is the last part being uploaded in
+     *            a multipart upload.
+     */
     public void setLastPart(boolean isLastPart) {
         this.isLastPart = isLastPart;
     }
@@ -590,12 +569,10 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * and returns this updated request object so that additional method calls
      * can be chained together.
      *
-     * @param isLastPart
-     *            Whether or not this is the last part being uploaded in a
-     *            multipart upload.
-     *
-     * @return This updated request object so that additional method calls can
-     *         be chained together.
+     * @param isLastPart Whether or not this is the last part being uploaded in
+     *            a multipart upload.
+     * @return This updated request object so that additional method calls can be
+     *         chained together.
      */
     public UploadPartRequest withLastPart(boolean isLastPart) {
         setLastPart(isLastPart);
@@ -617,9 +594,8 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Sets the optional customer-provided server-side encryption key to use to
      * encrypt the object part being uploaded.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to encrypt the object part being uploaded.
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use to encrypt the object part being uploaded.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
         this.sseCustomerKey = sseKey;
@@ -630,12 +606,10 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * encrypt the object part being uploaded, and returns the updated request
      * object so that additional method calls can be chained together.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to encrypt the object part being uploaded.
-     *
-     * @return This updated request object so that additional method calls can
-     *         be chained together.
+     * @param sseKey The optional customer-provided server-side encryption key
+     *            to use to encrypt the object part being uploaded.
+     * @return This updated request object so that additional method calls can be
+     *         chained together.
      */
     public UploadPartRequest withSSECustomerKey(SSECustomerKey sseKey) {
         setSSECustomerKey(sseKey);
@@ -646,8 +620,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * Sets the optional progress listener for receiving updates about object
      * download status.
      *
-     * @param generalProgressListener
-     *            The new progress listener.
+     * @param generalProgressListener The new progress listener.
      */
     public void setGeneralProgressListener(ProgressListener generalProgressListener) {
         this.generalProgressListener = generalProgressListener;
@@ -658,7 +631,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * download status.
      *
      * @return the optional progress listener for receiving updates about object
-     *          download status.
+     *         download status.
      */
     public ProgressListener getGeneralProgressListener() {
         return generalProgressListener;
@@ -669,9 +642,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * upload status, and returns this updated object so that additional method
      * calls can be chained together.
      *
-     * @param generalProgressListener
-     *            The new progress listener.
-     *
+     * @param generalProgressListener The new progress listener.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withGeneralProgressListener(ProgressListener progressListener) {

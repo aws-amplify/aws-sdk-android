@@ -15,9 +15,6 @@
 
 package com.amazonaws.auth;
 
-
-import com.amazonaws.regions.Regions;
-
 import java.util.Map;
 
 /**
@@ -31,28 +28,28 @@ public interface AWSCognitoIdentityProvider extends AWSIdentityProvider {
 
     /**
      * Gets the identityId of the user
-     * 
+     *
      * @return the identityId of the user
      */
     public String getIdentityId();
-    
+
     /**
      * Get the identityPoolId from the provider
-     * 
+     *
      * @return the identityPoolId
      */
     public String getIdentityPoolId();
 
     /**
      * Pass the logins to the provider
-     * 
+     *
      * @param loginsMap the logins map
      */
     public void setLogins(Map<String, String> loginsMap);
 
     /**
      * Get the logins from the provider
-     * 
+     *
      * @return the logins map
      */
     public Map<String, String> getLogins();
@@ -67,7 +64,7 @@ public interface AWSCognitoIdentityProvider extends AWSIdentityProvider {
     /**
      * Handles the new version of an identity changed listener to be handled by
      * the provider
-     * 
+     *
      * @param listener the new listener to be registered
      */
     public void registerIdentityChangedListener(IdentityChangedListener listener);
@@ -75,7 +72,7 @@ public interface AWSCognitoIdentityProvider extends AWSIdentityProvider {
     /**
      * Handles the removing of a version of an identity changed listener from
      * the list with the provider
-     * 
+     *
      * @param listener the listener to be removed
      */
     public void unregisterIdentityChangedListener(IdentityChangedListener listener);
@@ -83,7 +80,7 @@ public interface AWSCognitoIdentityProvider extends AWSIdentityProvider {
     /**
      * Handles the updating of the identityId locally once it has been changed
      * for one reason or another
-     * 
+     *
      * @param newIdentity the new identityId for the user
      */
     public void identityChanged(String newIdentity);

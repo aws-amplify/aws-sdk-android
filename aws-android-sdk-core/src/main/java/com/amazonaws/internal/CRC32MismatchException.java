@@ -12,12 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.internal;
 
 import java.io.IOException;
 
 /**
- * The exception will be thrown when client side CRC32 checksum does not match the one from server side.
+ * The exception will be thrown when client side CRC32 checksum does not match
+ * the one from server side.
  */
 public class CRC32MismatchException extends IOException {
 
@@ -27,10 +29,8 @@ public class CRC32MismatchException extends IOException {
      * Creates a new CRC32MismatchException with the specified message, and root
      * cause.
      *
-     * @param message
-     *            An error message describing why this exception was thrown.
-     * @param t
-     *            The underlying cause of this exception.
+     * @param message An error message describing why this exception was thrown.
+     * @param t The underlying cause of this exception.
      */
     public CRC32MismatchException(String message, Throwable t) {
         super(message, t);
@@ -39,8 +39,7 @@ public class CRC32MismatchException extends IOException {
     /**
      * Creates a new CRC32MismatchException with the specified message.
      *
-     * @param message
-     *            An error message describing why this exception was thrown.
+     * @param message An error message describing why this exception was thrown.
      */
     public CRC32MismatchException(String message) {
         super(message);

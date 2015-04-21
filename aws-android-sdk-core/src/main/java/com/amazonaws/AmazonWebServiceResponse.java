@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws;
 
 /**
@@ -20,8 +21,7 @@ package com.amazonaws;
  * request ID, which can be used for debugging purposes when services aren't
  * acting as expected.
  *
- * @param <T>
- *            The type of result contained by this response.
+ * @param <T> The type of result contained by this response.
  */
 public class AmazonWebServiceResponse<T> {
 
@@ -43,8 +43,7 @@ public class AmazonWebServiceResponse<T> {
     /**
      * Sets the result contained by this response.
      *
-     * @param result
-     *            The result contained by this response.
+     * @param result The result contained by this response.
      */
     public void setResult(T result) {
         this.result = result;
@@ -52,9 +51,8 @@ public class AmazonWebServiceResponse<T> {
 
     /**
      * Sets the response metadata associated with this response.
-     * 
-     * @param responseMetadata
-     *            The response metadata for this response.
+     *
+     * @param responseMetadata The response metadata for this response.
      */
     public void setResponseMetadata(ResponseMetadata responseMetadata) {
         this.responseMetadata = responseMetadata;
@@ -66,7 +64,7 @@ public class AmazonWebServiceResponse<T> {
      * directly part of the data the service is returning. Response metadata is
      * primarily used for debugging issues with AWS support when a service isn't
      * working as expected.
-     * 
+     *
      * @return The response metadata for this response.
      */
     public ResponseMetadata getResponseMetadata() {
@@ -81,7 +79,8 @@ public class AmazonWebServiceResponse<T> {
      *         response.
      */
     public String getRequestId() {
-        if (responseMetadata == null) return null;
+        if (responseMetadata == null)
+            return null;
         return responseMetadata.getRequestId();
     }
 

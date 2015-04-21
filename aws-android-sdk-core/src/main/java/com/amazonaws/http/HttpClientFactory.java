@@ -12,24 +12,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http;
 
 import static com.amazonaws.SDKGlobalConfiguration.DISABLE_CERT_CHECKING_SYSTEM_PROPERTY;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.http.impl.client.HttpRequestNoRetryHandler;
+import com.amazonaws.http.impl.client.SdkHttpClient;
 
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
@@ -51,23 +42,30 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpContext;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.http.impl.client.HttpRequestNoRetryHandler;
-import com.amazonaws.http.impl.client.SdkHttpClient;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 /** Responsible for creating and configuring instances of Apache HttpClient4. */
 class HttpClientFactory {
-
 
     /**
      * Creates a new HttpClient object using the specified AWS
      * ClientConfiguration to configure the client.
      *
-     * @param config
-     *            Client configuration options (ex: proxy settings, connection
-     *            limits, etc).
-     *
+     * @param config Client configuration options (ex: proxy settings,
+     *            connection limits, etc).
      * @return The new, configured HttpClient.
      */
     public HttpClient createHttpClient(ClientConfiguration config) {
@@ -119,19 +117,21 @@ class HttpClientFactory {
         String proxyHost = config.getProxyHost();
         int proxyPort = config.getProxyPort();
         if (proxyHost != null && proxyPort > 0) {
-            AmazonHttpClient.log.info("Configuring Proxy. Proxy Host: " + proxyHost + " " + "Proxy Port: " + proxyPort);
+            AmazonHttpClient.log.info("Configuring Proxy. Proxy Host: " + proxyHost + " "
+                    + "Proxy Port: " + proxyPort);
             HttpHost proxyHttpHost = new HttpHost(proxyHost, proxyPort);
             httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxyHttpHost);
 
-            String proxyUsername    = config.getProxyUsername();
-            String proxyPassword    = config.getProxyPassword();
-            String proxyDomain      = config.getProxyDomain();
+            String proxyUsername = config.getProxyUsername();
+            String proxyPassword = config.getProxyPassword();
+            String proxyDomain = config.getProxyDomain();
             String proxyWorkstation = config.getProxyWorkstation();
 
             if (proxyUsername != null && proxyPassword != null) {
                 httpClient.getCredentialsProvider().setCredentials(
                         new AuthScope(proxyHost, proxyPort),
-                        new NTCredentials(proxyUsername, proxyPassword, proxyWorkstation, proxyDomain));
+                        new NTCredentials(proxyUsername, proxyPassword, proxyWorkstation,
+                                proxyDomain));
             }
 
             // TODO: support preemptive proxy auth?
@@ -141,9 +141,9 @@ class HttpClientFactory {
     }
 
     /**
-     * Customization of the default redirect strategy provided by HttpClient to be a little
-     * less strict about the Location header to account for S3 not sending the Location
-     * header with 301 responses.
+     * Customization of the default redirect strategy provided by HttpClient to
+     * be a little less strict about the Location header to account for S3 not
+     * sending the Location header with 301 responses.
      */
     private static final class LocationHeaderNotRequiredRedirectHandler
             extends DefaultRedirectHandler {
@@ -156,7 +156,8 @@ class HttpClientFactory {
             // Instead of throwing a ProtocolException in this case, just
             // return false to indicate that this is not redirected
             if (locationHeader == null &&
-                statusCode == HttpStatus.SC_MOVED_PERMANENTLY) return false;
+                    statusCode == HttpStatus.SC_MOVED_PERMANENTLY)
+                return false;
 
             return super.isRedirectRequested(response, context);
         }
@@ -213,15 +214,18 @@ class HttpClientFactory {
     private static class TrustingX509TrustManager implements X509TrustManager {
         private static final X509Certificate[] X509_CERTIFICATES = new X509Certificate[0];
 
+        @Override
         public X509Certificate[] getAcceptedIssuers() {
             return X509_CERTIFICATES;
         }
 
+        @Override
         public void checkServerTrusted(X509Certificate[] chain, String authType)
                 throws CertificateException {
             // No-op, to trust all certs
         }
 
+        @Override
         public void checkClientTrusted(X509Certificate[] chain, String authType)
                 throws CertificateException {
             // No-op, to trust all certs

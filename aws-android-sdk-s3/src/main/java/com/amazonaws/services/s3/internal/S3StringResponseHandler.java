@@ -15,12 +15,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.internal;
 
-import java.io.InputStream;
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.http.HttpResponse;
+
+import java.io.InputStream;
 
 /**
  * Custom S3 response handler for responses that simply contain text data that
@@ -28,9 +29,13 @@ import com.amazonaws.http.HttpResponse;
  */
 public class S3StringResponseHandler extends AbstractS3ResponseHandler<String> {
 
-    /* (non-Javadoc)
-     * @see com.amazonaws.http.HttpResponseHandler#handle(com.amazonaws.http.HttpResponse)
+    /*
+     * (non-Javadoc)
+     * @see
+     * com.amazonaws.http.HttpResponseHandler#handle(com.amazonaws.http.HttpResponse
+     * )
      */
+    @Override
     public AmazonWebServiceResponse<String> handle(HttpResponse response) throws Exception {
         AmazonWebServiceResponse<String> awsResponse = parseResponseMetadata(response);
 

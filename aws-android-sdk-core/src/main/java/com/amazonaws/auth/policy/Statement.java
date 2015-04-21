@@ -12,13 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * A statement is the formal description of a single permission, and is always
@@ -37,22 +37,22 @@ import java.util.UUID;
  * <li>using the SendMessage operation (the action)
  * <li>and the request occurs before a specific date (a condition)
  * </ul>
- *
  * <p>
- * Statements takes the form:  "A has permission to do B to C where D applies".
+ * Statements takes the form: "A has permission to do B to C where D applies".
  * <ul>
- *   <li>A is the <b>principal</b> - the AWS account that is making a request to
- *       access or modify one of your AWS resources.
- *   <li>B is the <b>action</b> - the way in which your AWS resource is being accessed or modified, such
- *       as sending a message to an Amazon SQS queue, or storing an object in an Amazon S3 bucket.
- *   <li>C is the <b>resource</b> - your AWS entity that the principal wants to access, such
- *       as an Amazon SQS queue, or an object stored in Amazon S3.
- *   <li>D is the set of <b>conditions</b> - optional constraints that specify when to allow or deny
- *       access for the principal to access your resource.  Many expressive conditions are available,
- *       some specific to each service.  For example you can use date conditions to allow access to
- *       your resources only after or before a specific time.
+ * <li>A is the <b>principal</b> - the AWS account that is making a request to
+ * access or modify one of your AWS resources.
+ * <li>B is the <b>action</b> - the way in which your AWS resource is being
+ * accessed or modified, such as sending a message to an Amazon SQS queue, or
+ * storing an object in an Amazon S3 bucket.
+ * <li>C is the <b>resource</b> - your AWS entity that the principal wants to
+ * access, such as an Amazon SQS queue, or an object stored in Amazon S3.
+ * <li>D is the set of <b>conditions</b> - optional constraints that specify
+ * when to allow or deny access for the principal to access your resource. Many
+ * expressive conditions are available, some specific to each service. For
+ * example you can use date conditions to allow access to your resources only
+ * after or before a specific time.
  * </ul>
- *
  * <p>
  * There are many resources and conditions available for use in statements, and
  * you can combine them to form fine grained custom access control polices.
@@ -83,8 +83,7 @@ public class Statement {
      * principals, resources, and actions (as well as any optional conditions)
      * involved in the statement.
      *
-     * @param effect
-     *            The effect this statement has (allowing access or denying
+     * @param effect The effect this statement has (allowing access or denying
      *            access) when all conditions, resources, principals, and
      *            actions are matched.
      */
@@ -129,8 +128,7 @@ public class Statement {
      * multiple statements in the same policy. Reusing the same statement ID in
      * different policies is not a problem.
      *
-     * @param id
-     *            The new statement ID for this statement.
+     * @param id The new statement ID for this statement.
      */
     public void setId(String id) {
         this.id = id;
@@ -150,8 +148,7 @@ public class Statement {
      * multiple statements in the same policy. Reusing the same statement ID in
      * different policies is not a problem.
      *
-     * @param id
-     *            The new statement ID for this statement.
+     * @param id The new statement ID for this statement.
      */
     public Statement withId(String id) {
         setId(id);
@@ -172,8 +169,7 @@ public class Statement {
      * Sets the result effect of this policy statement when it is evaluated. A
      * policy statement can either allow access or explicitly
      *
-     * @param effect
-     *            The result effect of this policy statement.
+     * @param effect The result effect of this policy statement.
      */
     public void setEffect(Effect effect) {
         this.effect = effect;
@@ -201,8 +197,8 @@ public class Statement {
      * SendMessage action, but you don't want to allow those users other actions
      * such as ReceiveMessage or DeleteQueue.
      *
-     * @param actions
-     *            The list of actions to which this policy statement applies.
+     * @param actions The list of actions to which this policy statement
+     *            applies.
      */
     public void setActions(Collection<Action> actions) {
         this.actions = new ArrayList<Action>(actions);
@@ -219,9 +215,7 @@ public class Statement {
      * SendMessage action, but you don't want to allow those users other actions
      * such as ReceiveMessage or DeleteQueue.
      *
-     * @param actions
-     *            The list of actions to which this statement applies.
-     *
+     * @param actions The list of actions to which this statement applies.
      * @return The updated Statement object so that additional method calls can
      *         be chained together.
      */
@@ -252,8 +246,7 @@ public class Statement {
      * Note that some services allow only one resource to be specified per
      * policy statement.
      *
-     * @param resources
-     *            The resources associated with this policy statement.
+     * @param resources The resources associated with this policy statement.
      */
     public void setResources(Collection<Resource> resources) {
         this.resources = new ArrayList<Resource>(resources);
@@ -270,9 +263,7 @@ public class Statement {
      * Note that some services allow only one resource to be specified per
      * policy statement.
      *
-     * @param resources
-     *            The resources associated with this policy statement.
-     *
+     * @param resources The resources associated with this policy statement.
      * @return The updated Statement object so that additional method calls can
      *         be chained together.
      */
@@ -315,8 +306,7 @@ public class Statement {
      * conditions must evaluate to true in order for the statement to take
      * effect.
      *
-     * @param conditions
-     *            The conditions associated with this policy statement.
+     * @param conditions The conditions associated with this policy statement.
      */
     public void setConditions(List<Condition> conditions) {
         this.conditions = conditions;
@@ -339,9 +329,7 @@ public class Statement {
      * conditions must evaluate to true in order for the statement to take
      * effect.
      *
-     * @param conditions
-     *            The conditions associated with this policy statement.
-     *
+     * @param conditions The conditions associated with this policy statement.
      * @return The updated Statement object so that additional method calls can
      *         be chained together.
      */
@@ -368,8 +356,8 @@ public class Statement {
      * {@link Principal#AllUsers} to apply the policy to any user trying to
      * access your resource.
      *
-     * @param principals
-     *            The list of principals associated with this policy statement.
+     * @param principals The list of principals associated with this policy
+     *            statement.
      */
     public void setPrincipals(Collection<Principal> principals) {
         this.principals = new ArrayList<Principal>(principals);
@@ -383,8 +371,8 @@ public class Statement {
      * {@link Principal#AllUsers} to apply the policy to any user trying to
      * access your resource.
      *
-     * @param principals
-     *            The list of principals associated with this policy statement.
+     * @param principals The list of principals associated with this policy
+     *            statement.
      */
     public void setPrincipals(Principal... principals) {
         setPrincipals(new ArrayList<Principal>(Arrays.asList(principals)));
@@ -399,9 +387,8 @@ public class Statement {
      * {@link Principal#AllUsers} to apply the policy to any user trying to
      * access your resource.
      *
-     * @param principals
-     *            The list of principals associated with this policy statement.
-     *
+     * @param principals The list of principals associated with this policy
+     *            statement.
      * @return The updated Statement object so that additional method calls can
      *         be chained together.
      */

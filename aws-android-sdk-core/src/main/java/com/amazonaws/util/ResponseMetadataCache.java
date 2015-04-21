@@ -12,12 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
+
+import com.amazonaws.ResponseMetadata;
 
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
-
-import com.amazonaws.ResponseMetadata;
 
 /**
  * Cache of response metadata for recently executed requests for diagnostic
@@ -27,13 +28,11 @@ import com.amazonaws.ResponseMetadata;
 public class ResponseMetadataCache {
     private final InternalCache internalCache;
 
-
     /**
      * Creates a new cache that will contain, at most the specified number of
      * entries.
      *
-     * @param maxEntries
-     *            The maximum size of this cache.
+     * @param maxEntries The maximum size of this cache.
      */
     public ResponseMetadataCache(int maxEntries) {
         internalCache = new InternalCache(maxEntries);
@@ -43,13 +42,12 @@ public class ResponseMetadataCache {
      * Adds a new entry to this cache, possibly evicting the oldest entry if the
      * cache is at its size limit.
      *
-     * @param obj
-     *            The key by which to store the metadata.
-     * @param metadata
-     *            The metadata for this entry.
+     * @param obj The key by which to store the metadata.
+     * @param metadata The metadata for this entry.
      */
     public synchronized void add(Object obj, ResponseMetadata metadata) {
-        if (obj == null) return;
+        if (obj == null)
+            return;
         internalCache.put(System.identityHashCode(obj), metadata);
     }
 
@@ -57,20 +55,17 @@ public class ResponseMetadataCache {
      * Returns the response metadata associated with the specified object, or
      * null if no metadata is associated with that object.
      *
-     * @param obj
-     *            The key by which the desired metadata is stored.
-     *
+     * @param obj The key by which the desired metadata is stored.
      * @return The response metadata associated with the given object key,
      *         otherwise null if no metadata is associated with that object.
      */
     public ResponseMetadata get(Object obj) {
         // System.identityHashCode isn't guaranteed to be unique
         // on all platforms, but should be reasonable enough to use
-        // for a few requests at a time.  We can always easily move
+        // for a few requests at a time. We can always easily move
         // to our own unique IDs if needed.
         return internalCache.get(System.identityHashCode(obj));
     }
-
 
     /**
      * Simple implementation of LinkedHashMap that overrides the

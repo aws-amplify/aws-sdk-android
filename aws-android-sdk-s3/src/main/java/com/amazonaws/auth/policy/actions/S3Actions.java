@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.actions;
 
 import com.amazonaws.auth.policy.Action;
@@ -31,8 +32,8 @@ public enum S3Actions implements Action {
     AllS3Actions("s3:*"),
 
     /**
-     * Action for retrieving an object (GET), object metadata (HEAD) or an object
-     * torrent.
+     * Action for retrieving an object (GET), object metadata (HEAD) or an
+     * object torrent.
      * <p>
      * Valid for use with {@link S3ObjectResource} resources.
      *
@@ -84,8 +85,10 @@ public enum S3Actions implements Action {
      * <p>
      * Valid for use with {@link S3ObjectResource} resources.
      *
-     * @see AmazonS3#setObjectAcl(String, String, com.amazonaws.services.s3.model.AccessControlList)
-     * @see AmazonS3#setObjectAcl(String, String, com.amazonaws.services.s3.model.CannedAccessControlList)
+     * @see AmazonS3#setObjectAcl(String, String,
+     *      com.amazonaws.services.s3.model.AccessControlList)
+     * @see AmazonS3#setObjectAcl(String, String,
+     *      com.amazonaws.services.s3.model.CannedAccessControlList)
      */
     SetObjectAcl("s3:PutObjectAcl"),
 
@@ -94,8 +97,10 @@ public enum S3Actions implements Action {
      * <p>
      * Valid for use with {@link S3ObjectResource} resources.
      *
-     * @see AmazonS3#setObjectAcl(String, String, String, com.amazonaws.services.s3.model.AccessControlList)
-     * @see AmazonS3#setObjectAcl(String, String, String, com.amazonaws.services.s3.model.CannedAccessControlList)
+     * @see AmazonS3#setObjectAcl(String, String, String,
+     *      com.amazonaws.services.s3.model.AccessControlList)
+     * @see AmazonS3#setObjectAcl(String, String, String,
+     *      com.amazonaws.services.s3.model.CannedAccessControlList)
      */
     SetObjectVersionAcl("s3:PutObjectAclVersion"),
 
@@ -176,8 +181,10 @@ public enum S3Actions implements Action {
      * <p>
      * Valid for use with {@link S3BucketResource} resources.
      *
-     * @see AmazonS3#setBucketAcl(String, com.amazonaws.services.s3.model.AccessControlList)
-     * @see AmazonS3#setBucketAcl(String, com.amazonaws.services.s3.model.CannedAccessControlList)
+     * @see AmazonS3#setBucketAcl(String,
+     *      com.amazonaws.services.s3.model.AccessControlList)
+     * @see AmazonS3#setBucketAcl(String,
+     *      com.amazonaws.services.s3.model.CannedAccessControlList)
      */
     SetBucketAcl("s3:PutBucketAcl"),
 
@@ -262,16 +269,17 @@ public enum S3Actions implements Action {
      */
     SetBucketNotificationConfiguration("s3:PutBucketNotification");
 
-
     private final String action;
 
     private S3Actions(String action) {
         this.action = action;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.amazonaws.auth.policy.Action#getId()
      */
+    @Override
     public String getActionName() {
         return this.action;
     }

@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.transform;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -21,6 +22,7 @@ import org.xmlpull.v1.XmlPullParser;
  * returns null.
  */
 public class VoidStaxUnmarshaller<T> implements Unmarshaller<T, StaxUnmarshallerContext> {
+    @Override
     public T unmarshall(StaxUnmarshallerContext context) throws Exception {
         while (context.nextEvent() != XmlPullParser.END_DOCUMENT)
             ;

@@ -12,20 +12,21 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager.model;
 
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
 
 /**
- * Contains information returned by Amazon S3 for a completed upload. 
+ * Contains information returned by Amazon S3 for a completed upload.
  * <p>
  * See {@link TransferManager} for more information about creating transfers.
- * 
+ *
  * @see TransferManager#upload(String, String, java.io.File)
  * @see TransferManager#upload(com.amazonaws.services.s3.model.PutObjectRequest)
  */
 public class UploadResult {
-    
+
     /** The name of the bucket containing the completed upload. */
     private String bucketName;
 
@@ -55,9 +56,8 @@ public class UploadResult {
 
     /**
      * Sets the name of the bucket containing the uploaded object.
-     * 
-     * @param bucketName
-     *            The name of the bucket containing the uploaded object.
+     *
+     * @param bucketName The name of the bucket containing the uploaded object.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -92,20 +92,18 @@ public class UploadResult {
      * Sets the entity tag identifying the new object. An entity tag is an
      * opaque string that changes if and only if an object's data changes.
      *
-     * @param etag
-     *            The entity tag.
+     * @param etag The entity tag.
      */
     public void setETag(String etag) {
         this.eTag = etag;
     }
 
     /**
-     * Returns the version ID of the new object. The version ID is only
-     * set if versioning has been enabled for the bucket.
+     * Returns the version ID of the new object. The version ID is only set if
+     * versioning has been enabled for the bucket.
      *
-     * @return The version ID of the new object. 
-     * 		   The version ID is only
-     *  	   set if versioning has been enabled for the bucket.
+     * @return The version ID of the new object. The version ID is only set if
+     *         versioning has been enabled for the bucket.
      */
     public String getVersionId() {
         return versionId;
@@ -115,9 +113,8 @@ public class UploadResult {
      * Sets the version ID of the new object, only present if versioning has
      * been enabled for the bucket.
      *
-     * @param versionId
-     *            The version ID of the new object, only present if versioning
-     *            has been enabled for the bucket.
+     * @param versionId The version ID of the new object, only present if
+     *            versioning has been enabled for the bucket.
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;

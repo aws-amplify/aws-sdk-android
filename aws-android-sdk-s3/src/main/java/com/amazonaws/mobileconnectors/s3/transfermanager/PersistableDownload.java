@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
@@ -75,7 +76,7 @@ public final class PersistableDownload extends PersistableTransfer {
         this.bucketName = bucketName;
         this.key = key;
         this.versionId = versionId;
-        this.range = range  == null ? null : range.clone();
+        this.range = range == null ? null : range.clone();
         this.responseHeaders = responseHeaders;
         this.isRequesterPays = isRequesterPays;
         this.file = file;
@@ -106,7 +107,7 @@ public final class PersistableDownload extends PersistableTransfer {
      * Returns the byte range of the object to download.
      */
     long[] getRange() {
-        return range  == null ? null : range.clone();
+        return range == null ? null : range.clone();
     }
 
     /**
@@ -162,7 +163,7 @@ public final class PersistableDownload extends PersistableTransfer {
                         .name("cacheControl").value(responseHeaders.getCacheControl())
                         .name("contentDisposition").value(responseHeaders.getContentDisposition())
                         .name("contentEncoding").value(responseHeaders.getContentEncoding())
-                .endObject();
+                        .endObject();
             }
             writer.endObject().close();
         } catch (IOException e) {

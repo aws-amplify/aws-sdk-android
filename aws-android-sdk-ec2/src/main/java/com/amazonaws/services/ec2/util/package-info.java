@@ -16,4 +16,6 @@
  * Utilities for working with Amazon EC2 such as generating policy
  * signatures for use with the bundling API.
  */
+
 package com.amazonaws.services.ec2.util;
+

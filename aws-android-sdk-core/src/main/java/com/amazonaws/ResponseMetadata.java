@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws;
 
 import java.util.Map;
@@ -33,9 +34,8 @@ public class ResponseMetadata {
     /**
      * Creates a new ResponseMetadata object from a specified map of raw
      * metadata information.
-     * 
-     * @param metadata
-     *            The raw metadata for the new ResponseMetadata object.
+     *
+     * @param metadata The raw metadata for the new ResponseMetadata object.
      */
     public ResponseMetadata(Map<String, String> metadata) {
         this.metadata = metadata;
@@ -45,9 +45,8 @@ public class ResponseMetadata {
      * Creates a new ResponseMetadata object from an existing ResponseMetadata
      * object.
      *
-     * @param originalResponseMetadata
-     *            The ResponseMetadata object from which to create the new
-     *            object.
+     * @param originalResponseMetadata The ResponseMetadata object from which to
+     *            create the new object.
      */
     public ResponseMetadata(ResponseMetadata originalResponseMetadata) {
         this(originalResponseMetadata.metadata);
@@ -66,7 +65,8 @@ public class ResponseMetadata {
 
     @Override
     public String toString() {
-        if (metadata == null) return "{}";
+        if (metadata == null)
+            return "{}";
         return metadata.toString();
     }
 

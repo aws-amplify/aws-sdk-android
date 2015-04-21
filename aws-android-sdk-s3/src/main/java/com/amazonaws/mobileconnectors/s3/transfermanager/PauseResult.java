@@ -12,17 +12,18 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 /**
  * The result of a pause operation.
  *
- * @param <T> information that can be used to resume the paused operation;
- * can be null if the pause failed.
+ * @param <T> information that can be used to resume the paused operation; can
+ *            be null if the pause failed.
  */
 public final class PauseResult<T> {
     private final PauseStatus pauseStatus;
-    private final T infoToResume;   // non-null only if pauseStatus == SUCCESS
+    private final T infoToResume; // non-null only if pauseStatus == SUCCESS
 
     public PauseResult(PauseStatus pauseStatus, T infoToResume) {
         if (pauseStatus == null)
@@ -36,8 +37,8 @@ public final class PauseResult<T> {
     }
 
     /**
-     * Returns information about whether the pause was successful or not; and
-     * if not why.
+     * Returns information about whether the pause was successful or not; and if
+     * not why.
      */
     public PauseStatus getPauseStatus() {
         return pauseStatus;

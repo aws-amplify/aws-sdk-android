@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 import org.apache.commons.logging.LogFactory;
@@ -32,16 +33,16 @@ public enum Throwables {
             return orig;
         Throwable t = orig;
         // defend against (malicious?) circularity
-        for (int i=0; i < 1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             Throwable cause = t.getCause();
             if (cause == null)
                 return t;
             t = cause;
         }
-        // Too bad.  Return the original exception.
+        // Too bad. Return the original exception.
         LogFactory.getLog(Throwables.class).debug(
-            "Possible circular reference detected on " + orig.getClass()
-                    + ": [" + orig + "]");
+                "Possible circular reference detected on " + orig.getClass()
+                        + ": [" + orig + "]");
         return orig;
     }
 }

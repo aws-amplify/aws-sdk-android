@@ -15,6 +15,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 import java.io.File;
@@ -31,12 +32,10 @@ public enum Classes {
      * Returns the class of the immediate subclass of the given parent class for
      * the given object instance; or null if such immediate subclass cannot be
      * uniquely identified for the given object instance.
-     * 
-     * @param parentClass
-     *            the parent class. The child class is {@link Object} if and
-     *            only if the parent class is null.
-     * @param instance
-     *            the given object instance
+     *
+     * @param parentClass the parent class. The child class is {@link Object} if
+     *            and only if the parent class is null.
+     * @param instance the given object instance
      */
     public static Class<?> childClassOf(Class<?> parentClass,
             Object instance) {
@@ -60,12 +59,12 @@ public enum Classes {
     }
 
     /**
-     * Returns the jar file from which the given class is loaded; or null
-     * if no such jar file can be located.
+     * Returns the jar file from which the given class is loaded; or null if no
+     * such jar file can be located.
      */
     public static JarFile jarFileOf(Class<?> klass) {
         URL url = klass.getResource(
-            "/" + klass.getName().replace('.', '/') + ".class");
+                "/" + klass.getName().replace('.', '/') + ".class");
         if (url == null)
             return null;
         String s = url.getFile();

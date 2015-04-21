@@ -12,12 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 
 /**
  * Utilities for IO operations.
@@ -45,8 +45,8 @@ public enum IOUtils {
     }
 
     /**
-     * Reads and returns the rest of the given input stream as a string,
-     * closing the input stream afterwards.
+     * Reads and returns the rest of the given input stream as a string, closing
+     * the input stream afterwards.
      */
     public static String toString(InputStream is) throws IOException {
         return new String(toByteArray(is), StringUtils.UTF8);

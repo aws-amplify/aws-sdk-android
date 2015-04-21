@@ -111,7 +111,7 @@ public class KinesisRecorder {
      * recommend using a directory that is only readable by your application and
      * not storing highly sensitive information in requests stored by Kinesis
      * Recorder.
-     * 
+     *
      * @param credentialsProvider The credentials provider to use when making
      *            requests to AWS
      * @param region The region of Amazon Kinesis this Recorder should save and
@@ -133,7 +133,7 @@ public class KinesisRecorder {
      * in plain-text, we recommend using a directory that is only readable by
      * your application and not storing highly sensitive information in requests
      * stored by Kinesis Recorder.
-     * 
+     *
      * @param credentialsProvider The credentials provider to use when making
      *            requests to AWS
      * @param region The region of Amazon Kinesis this Recorder should save and
@@ -170,7 +170,7 @@ public class KinesisRecorder {
      * key to ensure equal distribution across shards. Note: Since operation
      * involves file I/O it is recommended not to call this method on the main
      * thread to ensure responsive applications.
-     * 
+     *
      * @param data The data to submit to the stream
      * @param streamName The stream to submit the data to.
      */
@@ -197,7 +197,7 @@ public class KinesisRecorder {
      * invalid) will be deleted. Note: Since KinesisRecorder uses synchronous
      * methods to make calls to Amazon Kinesis, do not call submitAll() on the
      * main thread of your application.
-     * 
+     *
      * @throws AmazonClientException Thrown if there was an unrecoverable error
      *             during submission. Note: If the request appears to be
      *             invalid, the record will be deleted. If the request appears
@@ -268,7 +268,7 @@ public class KinesisRecorder {
     /**
      * Returns the number of bytes KinesisRecorder currently has stored in the
      * directory passed in the constructor
-     * 
+     *
      * @return long The number of bytes used
      */
     public long getDiskBytesUsed() {
@@ -277,7 +277,7 @@ public class KinesisRecorder {
 
     /**
      * Returns the size of a directory including all sub-directories
-     * 
+     *
      * @param directory
      * @return
      */
@@ -302,7 +302,7 @@ public class KinesisRecorder {
      * disk. This is the same as specified in getMaxStorageSize() in the
      * KinesisRecorderConfig, either the one passed into the constructor or the
      * default one that was constructed.
-     * 
+     *
      * @return The number of bytes allowed
      */
     public long getDiskByteLimit() {
@@ -313,7 +313,7 @@ public class KinesisRecorder {
      * Returns the KinesisRecorderConfig this Kinesis Recorder is using. This is
      * either the config passed into the constructor or the default one if one
      * was not specified
-     * 
+     *
      * @return The KinesisRecorderConfig
      */
     public KinesisRecorderConfig getKinesisRecorderConfig() {

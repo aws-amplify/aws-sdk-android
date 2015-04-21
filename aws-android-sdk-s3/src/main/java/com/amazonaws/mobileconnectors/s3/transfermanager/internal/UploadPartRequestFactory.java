@@ -12,14 +12,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.io.File;
+package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.services.s3.internal.InputSubstream;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.SSECustomerKey;
 import com.amazonaws.services.s3.model.UploadPartRequest;
+
+import java.io.File;
 
 /**
  * Factory for creating all the individual UploadPartRequest objects for a
@@ -42,7 +43,8 @@ public class UploadPartRequestFactory {
     private long remainingBytes;
     private SSECustomerKey sseCustomerKey;
 
-    public UploadPartRequestFactory(PutObjectRequest putObjectRequest, String uploadId, long optimalPartSize) {
+    public UploadPartRequestFactory(PutObjectRequest putObjectRequest, String uploadId,
+            long optimalPartSize) {
         this.putObjectRequest = putObjectRequest;
         this.uploadId = uploadId;
         this.optimalPartSize = optimalPartSize;
@@ -64,24 +66,27 @@ public class UploadPartRequestFactory {
         UploadPartRequest request = null;
         if (putObjectRequest.getInputStream() != null) {
             request = new UploadPartRequest()
-                .withBucketName(bucketName)
-                .withKey(key)
-                .withUploadId(uploadId)
-                .withInputStream(new InputSubstream(putObjectRequest.getInputStream(), 0, partSize, isLastPart))
-                .withPartNumber(partNumber++)
-                .withPartSize(partSize);
+                    .withBucketName(bucketName)
+                    .withKey(key)
+                    .withUploadId(uploadId)
+                    .withInputStream(
+                            new InputSubstream(putObjectRequest.getInputStream(), 0, partSize,
+                                    isLastPart))
+                    .withPartNumber(partNumber++)
+                    .withPartSize(partSize);
         } else {
             request = new UploadPartRequest()
-                .withBucketName(bucketName)
-                .withKey(key)
-                .withUploadId(uploadId)
-                .withFile(file)
-                .withFileOffset(offset)
-                .withPartNumber(partNumber++)
-                .withPartSize(partSize);
+                    .withBucketName(bucketName)
+                    .withKey(key)
+                    .withUploadId(uploadId)
+                    .withFile(file)
+                    .withFileOffset(offset)
+                    .withPartNumber(partNumber++)
+                    .withPartSize(partSize);
         }
 
-        if (sseCustomerKey != null) request.setSSECustomerKey(sseCustomerKey);
+        if (sseCustomerKey != null)
+            request.setSSECustomerKey(sseCustomerKey);
 
         offset += partSize;
         remainingBytes -= partSize;

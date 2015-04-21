@@ -15,6 +15,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.util.Date;
@@ -26,32 +27,32 @@ import java.util.Date;
  * <p>
  * Every object stored in Amazon S3 is contained within a bucket. Buckets
  * partition the namespace of objects stored in Amazon S3 at the top level.
- * Within a bucket, any name can be used for objects. However, bucket names
- * must be unique across all of Amazon S3.
+ * Within a bucket, any name can be used for objects. However, bucket names must
+ * be unique across all of Amazon S3.
  * </p>
  * <p>
- * Bucket ownership is similar to the ownership of Internet domain names. 
- * Within Amazon S3, only a single user owns each bucket. 
- * Once a uniquely named bucket is created in Amazon S3, 
- * organize and name the objects within the bucket in any way.
- * Ownership of the bucket is retained as long as the owner has an Amazon S3 account.
+ * Bucket ownership is similar to the ownership of Internet domain names. Within
+ * Amazon S3, only a single user owns each bucket. Once a uniquely named bucket
+ * is created in Amazon S3, organize and name the objects within the bucket in
+ * any way. Ownership of the bucket is retained as long as the owner has an
+ * Amazon S3 account.
  * </p>
  * <p>
  * To conform with DNS requirements, the following constraints apply:
- *  <ul>
- *      <li>Bucket names should not contain underscores</li>
- *      <li>Bucket names should be between 3 and 63 characters long</li>
- *      <li>Bucket names should not end with a dash</li>
- *      <li>Bucket names cannot contain adjacent periods</li>
- *      <li>Bucket names cannot contain dashes next to periods (e.g.,
- *      "my-.bucket.com" and "my.-bucket" are invalid)</li>
- *      <li>Bucket names cannot contain uppercase characters</li>
- *  </ul>
+ * <ul>
+ * <li>Bucket names should not contain underscores</li>
+ * <li>Bucket names should be between 3 and 63 characters long</li>
+ * <li>Bucket names should not end with a dash</li>
+ * <li>Bucket names cannot contain adjacent periods</li>
+ * <li>Bucket names cannot contain dashes next to periods (e.g.,
+ * "my-.bucket.com" and "my.-bucket" are invalid)</li>
+ * <li>Bucket names cannot contain uppercase characters</li>
+ * </ul>
  * </p>
  * <p>
  * There are no limits to the number of objects that can be stored in a bucket.
- * Performance does not vary based on the number of buckets used. Store
- * all objects within a single bucket or organize them across several buckets.
+ * Performance does not vary based on the number of buckets used. Store all
+ * objects within a single bucket or organize them across several buckets.
  * </p>
  */
 public class Bucket {
@@ -68,20 +69,18 @@ public class Bucket {
 
     /**
      * Constructs a bucket without any name specified.
-     * 
+     *
      * @see Bucket#Bucket(String)
      */
-    public Bucket() {}
+    public Bucket() {
+    }
 
     /**
-     * Creates a bucket with a name. 
-     * All buckets in Amazon S3 share a single namespace;
-     * ensure the bucket is given a unique name.
+     * Creates a bucket with a name. All buckets in Amazon S3 share a single
+     * namespace; ensure the bucket is given a unique name.
      *
-     * @param name
-     *            The name for the bucket.
-     *            
-     * @see Bucket#Bucket()        
+     * @param name The name for the bucket.
+     * @see Bucket#Bucket()
      */
     public Bucket(String name) {
         this.name = name;
@@ -90,6 +89,7 @@ public class Bucket {
     /**
      * @see java.lang.Object#toString()
      */
+    @Override
     public String toString() {
         return "S3Bucket [name=" + getName()
                 + ", creationDate=" + getCreationDate()
@@ -97,26 +97,22 @@ public class Bucket {
     }
 
     /**
-     * Gets the bucket's owner.  Returns <code>null</code>
-     * if the bucket's owner is unknown.
-     * 
-     * @return 
-     *  The bucket's owner, or <code>null</code> if it is unknown.
-     *  
-     *  @see Bucket#setOwner(Owner)
+     * Gets the bucket's owner. Returns <code>null</code> if the bucket's owner
+     * is unknown.
+     *
+     * @return The bucket's owner, or <code>null</code> if it is unknown.
+     * @see Bucket#setOwner(Owner)
      */
     public Owner getOwner() {
         return owner;
     }
 
     /**
-     * For internal use only.
-     * Sets the bucket's owner in Amazon S3. This should only be used internally by
-     * the AWS Java client methods that retrieve information directly from Amazon S3.
+     * For internal use only. Sets the bucket's owner in Amazon S3. This should
+     * only be used internally by the AWS Java client methods that retrieve
+     * information directly from Amazon S3.
      *
-     * @param owner
-     *          The bucket's owner.
-     * 
+     * @param owner The bucket's owner.
      * @see @link Bucket#getOwner()
      */
     public void setOwner(Owner owner) {
@@ -124,24 +120,21 @@ public class Bucket {
     }
 
     /**
-     * Gets the bucket's creation date. Returns <code>null</code>
-     * if the creation date is not known.
+     * Gets the bucket's creation date. Returns <code>null</code> if the
+     * creation date is not known.
      *
-     * @return The bucket's creation date, or <code>null</code> 
-     * if not known.
+     * @return The bucket's creation date, or <code>null</code> if not known.
      */
     public Date getCreationDate() {
         return creationDate;
     }
 
     /**
-     * For internal use only.
-     * Sets the bucket's creation date in S3. This should only be used
-     * internally by AWS Java client methods that retrieve information directly
-     * from Amazon S3.
+     * For internal use only. Sets the bucket's creation date in S3. This should
+     * only be used internally by AWS Java client methods that retrieve
+     * information directly from Amazon S3.
      *
-     * @param creationDate
-     *          The bucket's creation date.
+     * @param creationDate The bucket's creation date.
      */
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
@@ -151,7 +144,6 @@ public class Bucket {
      * Gets the name of the bucket.
      *
      * @return The name of this bucket.
-     * 
      * @see Bucket#setName(String)
      */
     public String getName() {
@@ -159,12 +151,10 @@ public class Bucket {
     }
 
     /**
-     * Sets the name of the bucket. 
-     * All buckets in Amazon S3 share a single namespace;
-     * ensure the bucket is given a unique name.
+     * Sets the name of the bucket. All buckets in Amazon S3 share a single
+     * namespace; ensure the bucket is given a unique name.
      *
-     * @param name
-     *            The name for the bucket.
+     * @param name The name for the bucket.
      */
     public void setName(String name) {
         this.name = name;

@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model.transform;
 
 import com.amazonaws.services.s3.internal.ServerSideEncryptionResult;
@@ -36,7 +37,7 @@ abstract class AbstractSSEHandler extends AbstractHandler implements ServerSideE
     @Override
     public final void setSSEAlgorithm(String serverSideEncryption) {
         ServerSideEncryptionResult result = sseResult();
-        if ( result != null )
+        if (result != null)
             result.setSSEAlgorithm(serverSideEncryption);
     }
 

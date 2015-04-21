@@ -12,13 +12,14 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer;
 import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer.TransferState;
 
 /**
- * Listener for transfer state changes.  Not intended to be consumed externally.
+ * Listener for transfer state changes. Not intended to be consumed externally.
  */
 public interface TransferStateChangeListener {
     public void transferStateChanged(Transfer transfer, TransferState state);

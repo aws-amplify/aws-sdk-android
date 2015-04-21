@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.S3ClientCache;
@@ -25,7 +26,6 @@ public class S3LinkUnmarshaller extends SUnmarshaller {
     public static S3LinkUnmarshaller instance() {
         return INSTANCE;
     }
-
 
     private final S3ClientCache clientCache;
 
@@ -42,7 +42,7 @@ public class S3LinkUnmarshaller extends SUnmarshaller {
         if (clientCache == null) {
             throw new IllegalStateException(
                     "Mapper must be constructed with S3 AWS Credentials to "
-                    + "load S3Link");
+                            + "load S3Link");
         }
 
         return S3Link.fromJson(clientCache, value.getS());

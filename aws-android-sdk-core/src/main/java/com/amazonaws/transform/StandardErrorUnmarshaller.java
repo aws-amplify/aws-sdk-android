@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.transform;
 
-import org.w3c.dom.Node;
+package com.amazonaws.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonServiceException.ErrorType;
 import com.amazonaws.util.XpathUtils;
+
+import org.w3c.dom.Node;
 
 /**
  * Error unmarshaller that knows how to interpret a standard AWS error message
@@ -33,16 +34,16 @@ public class StandardErrorUnmarshaller extends AbstractErrorUnmarshaller<Node> {
      * Constructs a new unmarshaller that will unmarshall a standard AWS error
      * message as a generic AmazonServiceException object.
      */
-    public StandardErrorUnmarshaller() {}
+    public StandardErrorUnmarshaller() {
+    }
 
     /**
      * Constructor allowing subclasses to specify a specific type of
      * AmazonServiceException to instantiating when populating the exception
      * object with data from the error message.
      *
-     * @param exceptionClass
-     *            The class of AmazonServiceException to create and populate
-     *            when unmarshalling the error message.
+     * @param exceptionClass The class of AmazonServiceException to create and
+     *            populate when unmarshalling the error message.
      */
     protected StandardErrorUnmarshaller(Class<? extends AmazonServiceException> exceptionClass) {
         super(exceptionClass);
@@ -51,6 +52,7 @@ public class StandardErrorUnmarshaller extends AbstractErrorUnmarshaller<Node> {
     /**
      * @see com.amazonaws.transform.Unmarshaller#unmarshall(java.lang.Object)
      */
+    @Override
     public AmazonServiceException unmarshall(Node in) throws Exception {
         String errorCode = parseErrorCode(in);
         String errorType = XpathUtils.asString("ErrorResponse/Error/Type", in);
@@ -75,14 +77,10 @@ public class StandardErrorUnmarshaller extends AbstractErrorUnmarshaller<Node> {
     /**
      * Returns the AWS error code for the specified error response.
      *
-     * @param in
-     *            The DOM tree node containing the error response.
-     *
+     * @param in The DOM tree node containing the error response.
      * @return The AWS error code contained in the specified error response.
-     *
-     * @throws Exception
-     *             If any problems were encountered pulling out the AWS error
-     *             code.
+     * @throws Exception If any problems were encountered pulling out the AWS
+     *             error code.
      */
     public String parseErrorCode(Node in) throws Exception {
         return XpathUtils.asString("ErrorResponse/Error/Code", in);
@@ -91,9 +89,7 @@ public class StandardErrorUnmarshaller extends AbstractErrorUnmarshaller<Node> {
     /**
      * Returns the path to the specified property within an error response.
      *
-     * @param property
-     *            The name of the desired property.
-     *
+     * @param property The name of the desired property.
      * @return The path to the specified property within an error message.
      */
     public String getErrorPropertyPath(String property) {

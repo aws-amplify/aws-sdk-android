@@ -12,12 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 /**
  * A proxy class that wraps the deprecated S3 progress listener and implements
  * the new {@link com.amazonaws.event.ProgressListener} interface.
- * 
+ *
  * @see ProgressListener
  * @see com.amazonaws.event.ProgressListener
  */
@@ -36,9 +37,11 @@ public class LegacyS3ProgressListener implements com.amazonaws.event.ProgressLis
         return listener;
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public void progressChanged(com.amazonaws.event.ProgressEvent progressEvent) {
-        if (listener == null) return;
+        if (listener == null)
+            return;
         listener.progressChanged(transform(progressEvent));
     }
 

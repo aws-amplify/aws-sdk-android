@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 import com.amazonaws.AmazonClientException;
@@ -36,16 +37,12 @@ public interface Copy extends Transfer {
      * through this method.
      *
      * @return The result of this transfer.
-     *
-     * @throws AmazonClientException
-     *             If any errors were encountered in the client while making the
-     *             request or handling the response.
-     * @throws AmazonServiceException
-     *             If any errors occurred in Amazon S3 while processing the
-     *             request.
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the upload to
-     *             complete.
+     * @throws AmazonClientException If any errors were encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws InterruptedException If this thread is interrupted while waiting
+     *             for the upload to complete.
      */
     public CopyResult waitForCopyResult() throws AmazonClientException,
             AmazonServiceException, InterruptedException;

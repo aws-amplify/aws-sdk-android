@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.services.dynamodbv2.metrics;
 
 import com.amazonaws.metrics.RequestMetricType;
@@ -21,6 +22,5 @@ import com.amazonaws.metrics.RequestMetricType;
  */
 public enum DynamoDBRequestMetric implements RequestMetricType {
     /** Number of capacity units consumed. */
-    DynamoDBConsumedCapacity,
-    ;
+    DynamoDBConsumedCapacity, ;
 }

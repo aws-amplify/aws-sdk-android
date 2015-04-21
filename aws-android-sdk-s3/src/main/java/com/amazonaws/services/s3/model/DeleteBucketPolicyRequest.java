@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -37,19 +38,16 @@ public class DeleteBucketPolicyRequest extends AmazonWebServiceRequest {
     /** The name of the Amazon S3 bucket whose policy is being deleted. */
     private String bucketName;
 
-
     /**
      * Creates a new request object, ready to be executed to delete the bucket
      * policy of an Amazon S3 bucket.
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose policy is being
+     * @param bucketName The name of the Amazon S3 bucket whose policy is being
      *            deleted.
      */
     public DeleteBucketPolicyRequest(String bucketName) {
         this.bucketName = bucketName;
     }
-
 
     /**
      * Returns the name of the Amazon S3 bucket whose policy is being deleted.
@@ -63,8 +61,7 @@ public class DeleteBucketPolicyRequest extends AmazonWebServiceRequest {
     /**
      * Sets the name of the Amazon S3 bucket whose policy is being deleted.
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose policy is being
+     * @param bucketName The name of the Amazon S3 bucket whose policy is being
      *            deleted.
      */
     public void setBucketName(String bucketName) {
@@ -76,10 +73,8 @@ public class DeleteBucketPolicyRequest extends AmazonWebServiceRequest {
      * returns the updated request object so that additional method calls can be
      * chained together.
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose policy is being
+     * @param bucketName The name of the Amazon S3 bucket whose policy is being
      *            deleted.
-     *
      * @return The updated request object so that additional method calls can be
      *         chained together.
      */

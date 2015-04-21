@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws;
 
 /**
@@ -37,8 +38,7 @@ public class AbortedException extends AmazonClientException {
     }
 
     /**
-     * {@inheritDoc}
-     * An aborted exception is not intended to be retried.
+     * {@inheritDoc} An aborted exception is not intended to be retried.
      */
     @Override
     public boolean isRetryable() {

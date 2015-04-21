@@ -36,7 +36,7 @@ public final class StringUtil {
 
     /**
      * Determines if a string is null or zero-length.
-     * 
+     *
      * @param string a string
      * @return true if the argument is null or zero-length, otherwise false
      */
@@ -50,7 +50,7 @@ public final class StringUtil {
 
     /**
      * Converts an input stream into a string value.
-     * 
+     *
      * @param is an input stream
      * @return a string containing the content of the input stream
      * @throws IOException upon a failure reading the input stream
@@ -69,7 +69,7 @@ public final class StringUtil {
 
     /**
      * Converts an input stream into a string value.
-     * 
+     *
      * @param is an input stream
      * @return a string containing the content of the input stream
      * @throws IOException upon a failure reading the input stream
@@ -81,7 +81,7 @@ public final class StringUtil {
     /**
      * Reduces the input string to the number of chars, or its length if the
      * number of chars exceeds the input string's length
-     * 
+     *
      * @param input The string to clip
      * @param numChars the number of leading chars to keep (all others will be
      *            removed)
@@ -129,7 +129,7 @@ public final class StringUtil {
     /**
      * Trims string to its last X characters. If string is too short, is padded
      * at the front with given char
-     * 
+     *
      * @param str - string to trim
      * @param len - length of desired string. (must be positive)
      * @param pad - character to pad with

@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.util.concurrent.Callable;
+package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
+
+import java.util.concurrent.Callable;
 
 public class UploadPartCallable implements Callable<PartETag> {
     private final AmazonS3 s3;
@@ -29,6 +30,7 @@ public class UploadPartCallable implements Callable<PartETag> {
         this.request = request;
     }
 
+    @Override
     public PartETag call() throws Exception {
         return s3.uploadPart(request).getPartETag();
     }

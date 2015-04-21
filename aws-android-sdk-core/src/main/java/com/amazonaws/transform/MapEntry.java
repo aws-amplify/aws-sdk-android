@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.transform;
 
 import java.util.Map;
@@ -19,32 +20,36 @@ import java.util.Map;
 /**
  * Simple implementation of the Map.Entry interface.
  *
- * @param <K>
- *            The type of the key held in this map entry.
- * @param <V>
- *            The type of the value held in this map entry.
+ * @param <K> The type of the key held in this map entry.
+ * @param <V> The type of the value held in this map entry.
  */
 public class MapEntry<K, V> implements Map.Entry<K, V> {
     private K key;
     private V value;
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see java.util.Map.Entry#getKey()
      */
+    @Override
     public K getKey() {
         return key;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see java.util.Map.Entry#getValue()
      */
+    @Override
     public V getValue() {
         return value;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see java.util.Map.Entry#setValue(java.lang.Object)
      */
+    @Override
     public V setValue(V value) {
         this.value = value;
         return this.value;

@@ -24,21 +24,21 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.EventClient;
  * automatically sets the store attribute to "Amazon". This Builder will return
  * null if the ProductId, Formatted Localized Price, or Quantity are not set.
  * </p> Example:
- * 
+ *
  * <pre class="prettyprint">
  * // get the event client from your MobileAnalyticsManager instance
  * EventClient eventClient = mobileAnalyticsManager.getEventClient();
- * 
+ *
  * // create a builder that can record purchase events for Amazon IAP
  * AmazonMonetizationEventBuilder builder = AmazonMonetizationEventBuilder.create(eventClient);
- * 
+ *
  * // build the monetization event with the product id, formatted item price, and
  * // quantity
  * // product id and formatted item price are obtained from the Item object
  * // Amazon IAP currently only supports a quantity of 1
  * Event purchaseEvent = builder.withProductId(purchasedItem.getSku())
  *         .withFormattedItemPrice(purchasedItem.getPrice()).withQuantity(1).build();
- * 
+ *
  * // record the monetization event
  * eventClient.recordEvent(purchaseEvent);
  * </pre>
@@ -49,7 +49,7 @@ public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Create a AmazonMonetizationEventBuilder with the specified Event client
-     * 
+     *
      * @param eventClient The event client to use when creating monetization
      *            events
      * @return a AmazonMonetizationEventBuilder to build monetization events
@@ -61,7 +61,7 @@ public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Sets the product identifier field of the item being purchased
-     * 
+     *
      * @param productId The product id representing the item being purchased
      * @return this for chaining
      */
@@ -73,7 +73,7 @@ public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
     /**
      * Sets the formatted localized price of the item being purchased (accessed
      * from the getPrice() method of the Item class).
-     * 
+     *
      * @param formattedItemPrice The localized formatted price of the item
      * @return this for chaining
      */
@@ -84,7 +84,7 @@ public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Sets the quantity of the item being purchased.
-     * 
+     *
      * @param quantity Currently, Amazon IAP only supports purchasing 1 item at
      *            a time.
      * @return this for chaining
@@ -96,7 +96,7 @@ public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Construct a AmazonMonetizationEventBuilder with the specified EventClient
-     * 
+     *
      * @param eventClient The EventClient to use when building the event
      */
     protected AmazonMonetizationEventBuilder(EventClient eventClient) {

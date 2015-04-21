@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
@@ -47,10 +48,9 @@ public class DeleteBucketWebsiteConfigurationRequest extends GenericBucketReques
     /**
      * Creates a new request object, ready to be executed to delete the website
      * configuration for the specified bucket.
-     * 
-     * @param bucketName
-     *            The name of the bucket whose website configuration is being
-     *            deleted.
+     *
+     * @param bucketName The name of the bucket whose website configuration is
+     *            being deleted.
      */
     public DeleteBucketWebsiteConfigurationRequest(String bucketName) {
         super(bucketName);

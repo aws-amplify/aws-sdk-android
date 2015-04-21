@@ -12,23 +12,23 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws;
 
 import com.amazonaws.internal.config.HttpClientConfig;
 import com.amazonaws.internal.config.InternalConfig;
 
 /**
- * An internal service name factory. 
+ * An internal service name factory.
  */
 enum ServiceNameFactory {
     ;
 
     /**
      * Returns a non-null signer for the specified service and region.
-     * 
-     * @throws UnsupportedOperationException
-     *             if the internal signer type configured is not currently
-     *             supported.
+     *
+     * @throws UnsupportedOperationException if the internal signer type
+     *             configured is not currently supported.
      */
     static String getServiceName(String httpClientName) {
         InternalConfig config = InternalConfig.Factory.getInternalConfig();

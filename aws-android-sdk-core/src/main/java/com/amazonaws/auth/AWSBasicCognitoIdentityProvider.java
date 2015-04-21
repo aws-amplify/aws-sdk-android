@@ -29,11 +29,9 @@ public class AWSBasicCognitoIdentityProvider extends AWSAbstractCognitoIdentityP
     /**
      * An extension of the AbstractCognitoProvider that is used to communicate
      * with Cognito.
-     * 
-     * @param accountId
-     *            the account id of the developer
-     * @param identityPoolId
-     *            the identity pool id of the app/user in question
+     *
+     * @param accountId the account id of the developer
+     * @param identityPoolId the identity pool id of the app/user in question
      */
     public AWSBasicCognitoIdentityProvider(String accountId, String identityPoolId) {
         this(accountId, identityPoolId, new ClientConfiguration());
@@ -42,7 +40,7 @@ public class AWSBasicCognitoIdentityProvider extends AWSAbstractCognitoIdentityP
     /**
      * An extension of the AbstractCognitoProvider that is used to communicate
      * with Cognito.
-     * 
+     *
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      * @param clientConfiguration the configuration to apply to service clients
@@ -57,7 +55,7 @@ public class AWSBasicCognitoIdentityProvider extends AWSAbstractCognitoIdentityP
     /**
      * An extension of the AbstractCognitoProvider that is used to communicate
      * with Cognito.
-     * 
+     *
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      * @param cibClient the cib client which will be used to contact the cib
@@ -72,7 +70,7 @@ public class AWSBasicCognitoIdentityProvider extends AWSAbstractCognitoIdentityP
     public String getProviderName() {
         return "Cognito";
     }
-    
+
     @Override
     public String refresh() {
         setToken(null);

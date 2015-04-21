@@ -12,24 +12,25 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
+
+import com.amazonaws.services.s3.AmazonS3;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.amazonaws.services.s3.AmazonS3;
 
 /**
  * Successful response to {@link AmazonS3#deleteObjects(DeleteObjectsRequest)}.
  * If one or more objects couldn't be deleted as instructed, a
  * {@link MultiObjectDeleteException} is thrown instead.
- * 
+ *
  * @see AmazonS3#deleteObjects(DeleteObjectsRequest)
  */
 public class DeleteObjectsResult {
 
     private final List<DeletedObject> deletedObjects = new ArrayList<DeleteObjectsResult.DeletedObject>();
-    
+
     public DeleteObjectsResult(List<DeletedObject> deletedObjects) {
         this.deletedObjects.addAll(deletedObjects);
     }

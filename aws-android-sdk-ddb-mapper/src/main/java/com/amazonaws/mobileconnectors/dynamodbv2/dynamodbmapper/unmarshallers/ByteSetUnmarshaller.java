@@ -12,12 +12,13 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
+
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
  * An unmarshaller that unmarshals DynamoDB NumberSets into sets of Java

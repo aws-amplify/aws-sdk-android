@@ -15,14 +15,14 @@
 
 package com.amazonaws.auth;
 
-import java.util.Date;
-
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClient;
 import com.amazonaws.services.securitytoken.model.Credentials;
 import com.amazonaws.services.securitytoken.model.GetSessionTokenRequest;
 import com.amazonaws.services.securitytoken.model.GetSessionTokenResult;
+
+import java.util.Date;
 
 /**
  * AWSCredentialsProvider implementation that uses the AWS Security Token
@@ -42,7 +42,6 @@ public class STSSessionCredentialsProvider implements AWSCredentialsProvider {
     /** The expiration time for the current session credentials */
     private Date sessionCredentialsExpiration;
 
-
     /**
      * Constructs a new STSSessionCredentialsProvider, which will use the
      * specified long lived AWS credentials to make a request to the AWS
@@ -50,8 +49,8 @@ public class STSSessionCredentialsProvider implements AWSCredentialsProvider {
      * which will then be returned by this class's {@link #getCredentials()}
      * method.
      *
-     * @param longLivedCredentials
-     *            The main AWS credentials for a user's account.
+     * @param longLivedCredentials The main AWS credentials for a user's
+     *            account.
      */
     public STSSessionCredentialsProvider(AWSCredentials longLivedCredentials) {
         this(longLivedCredentials, new ClientConfiguration());
@@ -64,13 +63,14 @@ public class STSSessionCredentialsProvider implements AWSCredentialsProvider {
      * which will then be returned by this class's {@link #getCredentials()}
      * method.
      *
-     * @param longLivedCredentials
-     *            The main AWS credentials for a user's account.
-     * @param clientConfiguration
-     *            Client configuration connection parameters.
+     * @param longLivedCredentials The main AWS credentials for a user's
+     *            account.
+     * @param clientConfiguration Client configuration connection parameters.
      */
-    public STSSessionCredentialsProvider(AWSCredentials longLivedCredentials, ClientConfiguration clientConfiguration) {
-        securityTokenService = new AWSSecurityTokenServiceClient(longLivedCredentials, clientConfiguration);
+    public STSSessionCredentialsProvider(AWSCredentials longLivedCredentials,
+            ClientConfiguration clientConfiguration) {
+        securityTokenService = new AWSSecurityTokenServiceClient(longLivedCredentials,
+                clientConfiguration);
     }
 
     /**
@@ -80,9 +80,8 @@ public class STSSessionCredentialsProvider implements AWSCredentialsProvider {
      * short lived session credentials, which will then be returned by this
      * class's {@link #getCredentials()} method.
      *
-     * @param longLivedCredentialsProvider
-     *            Credentials provider for the main AWS credentials for a user's
-     *            account.
+     * @param longLivedCredentialsProvider Credentials provider for the main AWS
+     *            credentials for a user's account.
      */
     public STSSessionCredentialsProvider(AWSCredentialsProvider longLivedCredentialsProvider) {
         securityTokenService = new AWSSecurityTokenServiceClient(longLivedCredentialsProvider);
@@ -95,26 +94,29 @@ public class STSSessionCredentialsProvider implements AWSCredentialsProvider {
      * short lived session credentials, which will then be returned by this
      * class's {@link #getCredentials()} method.
      *
-     * @param longLivedCredentialsProvider
-     *            Credentials provider for the main AWS credentials for a user's
-     *            account.
-     * @param clientConfiguration
-     *            Client configuration connection parameters.
+     * @param longLivedCredentialsProvider Credentials provider for the main AWS
+     *            credentials for a user's account.
+     * @param clientConfiguration Client configuration connection parameters.
      */
-    public STSSessionCredentialsProvider(AWSCredentialsProvider longLivedCredentialsProvider, ClientConfiguration clientConfiguration) {
-        securityTokenService = new AWSSecurityTokenServiceClient(longLivedCredentialsProvider, clientConfiguration);
+    public STSSessionCredentialsProvider(AWSCredentialsProvider longLivedCredentialsProvider,
+            ClientConfiguration clientConfiguration) {
+        securityTokenService = new AWSSecurityTokenServiceClient(longLivedCredentialsProvider,
+                clientConfiguration);
     }
 
     /**
      * Sets the AWS Security Token Service (STS) endpoint where session
      * credentials are retrieved from.
-     * <p></p>
+     * <p>
+     * </p>
      * The default AWS Security Token Service (STS) endpoint
-     * ("sts.amazonaws.com") works for all accounts that are not for
-     * China (Beijing) region or GovCloud. You only need to change the endpoint to
+     * ("sts.amazonaws.com") works for all accounts that are not for China
+     * (Beijing) region or GovCloud. You only need to change the endpoint to
      * "sts.cn-north-1.amazonaws.com.cn" when you are requesting session
-     * credentials for services in China(Beijing) region or "sts.us-gov-west-1.amazonaws.com" for GovCloud.
-     * <p></p>
+     * credentials for services in China(Beijing) region or
+     * "sts.us-gov-west-1.amazonaws.com" for GovCloud.
+     * <p>
+     * </p>
      * Setting this invalidates existing session credentials.
      */
     public void setSTSClientEndpoint(String endpoint) {
@@ -124,7 +126,8 @@ public class STSSessionCredentialsProvider implements AWSCredentialsProvider {
 
     @Override
     public AWSCredentials getCredentials() {
-        if (needsNewSession()) startSession();
+        if (needsNewSession())
+            startSession();
 
         return sessionCredentials;
     }
@@ -141,7 +144,8 @@ public class STSSessionCredentialsProvider implements AWSCredentialsProvider {
      */
     private void startSession() {
         GetSessionTokenResult sessionTokenResult = securityTokenService
-                .getSessionToken(new GetSessionTokenRequest().withDurationSeconds(DEFAULT_DURATION_SECONDS));
+                .getSessionToken(new GetSessionTokenRequest()
+                        .withDurationSeconds(DEFAULT_DURATION_SECONDS));
         Credentials stsCredentials = sessionTokenResult.getCredentials();
 
         sessionCredentials = new BasicSessionCredentials(
@@ -159,7 +163,8 @@ public class STSSessionCredentialsProvider implements AWSCredentialsProvider {
      * @return True if a new STS session needs to be started.
      */
     private boolean needsNewSession() {
-        if (sessionCredentials == null) return true;
+        if (sessionCredentials == null)
+            return true;
 
         long timeRemaining = sessionCredentialsExpiration.getTime() - System.currentTimeMillis();
         return timeRemaining < (60 * 1000);

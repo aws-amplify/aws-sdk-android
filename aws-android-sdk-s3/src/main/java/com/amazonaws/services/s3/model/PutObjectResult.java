@@ -12,22 +12,24 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model;
 
-import java.util.Date;
+package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.internal.ObjectExpirationResult;
 import com.amazonaws.services.s3.internal.SSEResultBase;
 
+import java.util.Date;
+
 /**
  * Contains the data returned by Amazon S3 from the <code>putObject</code>
- * operation.
- * Use this request to access information about the new object created from the
- * <code>putObject</code> request, such as its ETag and optional version ID.
+ * operation. Use this request to access information about the new object
+ * created from the <code>putObject</code> request, such as its ETag and
+ * optional version ID.
  *
  * @see AmazonS3#putObject(String, String, java.io.File)
- * @see AmazonS3#putObject(String, String, java.io.InputStream, S3ObjectMetadata)
+ * @see AmazonS3#putObject(String, String, java.io.InputStream,
+ *      S3ObjectMetadata)
  * @see AmazonS3#putObject(PutObjectRequest)
  */
 public class PutObjectResult extends SSEResultBase implements ObjectExpirationResult {
@@ -52,25 +54,21 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
     private String contentMd5;
 
     /**
-     * Gets the optional version ID of the newly uploaded object. This field will
-     * be set only if object versioning is enabled for the bucket the
+     * Gets the optional version ID of the newly uploaded object. This field
+     * will be set only if object versioning is enabled for the bucket the
      * object was uploaded to.
      *
      * @return The optional version ID of the newly uploaded object.
-     *
      * @see PutObjectResult#setVersionId(String)
      */
     public String getVersionId() {
         return versionId;
     }
 
-
     /**
      * Sets the optional version ID of the newly uploaded object.
      *
-     * @param versionId
-     *            The optional version ID of the newly uploaded object.
-     *
+     * @param versionId The optional version ID of the newly uploaded object.
      * @see PutObjectResult#getVersionId()
      */
     public void setVersionId(String versionId) {
@@ -81,7 +79,6 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
      * Gets the ETag value for the newly created object.
      *
      * @return The ETag value for the new object.
-     *
      * @see PutObjectResult#setETag(String)
      */
     public String getETag() {
@@ -92,9 +89,7 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
      * Sets the ETag value for the new object that was created from the
      * associated <code>putObject</code> request.
      *
-     * @param eTag
-     *            The ETag value for the new object.
-     *
+     * @param eTag The ETag value for the new object.
      * @see PutObjectResult#getETag()
      */
     public void setETag(String eTag) {
@@ -102,8 +97,10 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
     }
 
     /**
-     * Returns the expiration time for this object, or null if it doesn't expire.
+     * Returns the expiration time for this object, or null if it doesn't
+     * expire.
      */
+    @Override
     public Date getExpirationTime() {
         return expirationTime;
     }
@@ -111,9 +108,9 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
     /**
      * Sets the expiration time for the object.
      *
-     * @param expirationTime
-     *            The expiration time for the object.
+     * @param expirationTime The expiration time for the object.
      */
+    @Override
     public void setExpirationTime(Date expirationTime) {
         this.expirationTime = expirationTime;
     }
@@ -122,6 +119,7 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
      * Returns the {@link BucketLifecycleConfiguration} rule ID for this
      * object's expiration, or null if it doesn't expire.
      */
+    @Override
     public String getExpirationTimeRuleId() {
         return expirationTimeRuleId;
     }
@@ -130,9 +128,9 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
      * Sets the {@link BucketLifecycleConfiguration} rule ID for this object's
      * expiration
      *
-     * @param expirationTimeRuleId
-     *            The rule ID for this object's expiration
+     * @param expirationTimeRuleId The rule ID for this object's expiration
      */
+    @Override
     public void setExpirationTimeRuleId(String expirationTimeRuleId) {
         this.expirationTimeRuleId = expirationTimeRuleId;
     }
@@ -140,8 +138,7 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
     /**
      * Sets the content MD5.
      *
-     * @param contentMd5
-     *            The content MD5
+     * @param contentMd5 The content MD5
      */
     public void setContentMd5(String contentMd5) {
         this.contentMd5 = contentMd5;

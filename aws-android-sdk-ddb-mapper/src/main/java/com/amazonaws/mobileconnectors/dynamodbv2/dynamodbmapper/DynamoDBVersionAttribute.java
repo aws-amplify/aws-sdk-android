@@ -12,7 +12,10 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
+
+import com.amazonaws.services.dynamodbv2.model.BatchWriteItemRequest;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -36,7 +39,9 @@ import java.lang.annotation.Target;
  * API.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD})
+@Target({
+        ElementType.FIELD, ElementType.METHOD
+})
 public @interface DynamoDBVersionAttribute {
     /**
      * Optional parameter when the name of the attribute as stored in DynamoDB

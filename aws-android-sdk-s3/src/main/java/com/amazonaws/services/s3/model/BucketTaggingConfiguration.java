@@ -15,13 +15,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
+
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.BucketNotificationConfiguration.TopicConfiguration;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import com.amazonaws.services.s3.AmazonS3;
 
 public class BucketTaggingConfiguration {
 
@@ -29,65 +31,62 @@ public class BucketTaggingConfiguration {
 
     /**
      * <p>
-     * Creates a new bucket tagging configuration.
-     * By default, the newly created configuration is empty.
+     * Creates a new bucket tagging configuration. By default, the newly created
+     * configuration is empty.
      * </p>
      * <p>
      * Passing the new configuration directly to
      * {@link AmazonS3#setBucketTaggingConfiguration(String,BucketTaggingConfiguration)}
      * will remove any existing bucket tagging configuration.
      * </p>
-     * 
+     *
      * @see BucketTaggingConfiguration#BucketTaggingConfiguration(Collection)
      */
     public BucketTaggingConfiguration() {
-        this.tagSets = new ArrayList<TagSet>( 1 );
+        this.tagSets = new ArrayList<TagSet>(1);
     }
-    
+
     /**
      * <p>
-     * Creates a new bucket Tagging configuration containing the specified 
+     * Creates a new bucket Tagging configuration containing the specified
      * <code>TopicConfigurations</code>.
      * </p>
      * <p>
      * Passing the new configuration directly to
      * {@link AmazonS3#setBucketTaggingConfiguration(String,BucketTaggingConfiguration)}
-     * will set the bucket's Tagging configuration and overwrite any existing configuration.
+     * will set the bucket's Tagging configuration and overwrite any existing
+     * configuration.
      * </p>
-     * 
+     *
      * @see BucketTaggingConfiguration#BucketTaggingConfiguration()
      */
-    public BucketTaggingConfiguration( Collection<TagSet> tagSets ) {
-        this.tagSets = new ArrayList<TagSet>( 1 );
-        this.tagSets.addAll( tagSets );
+    public BucketTaggingConfiguration(Collection<TagSet> tagSets) {
+        this.tagSets = new ArrayList<TagSet>(1);
+        this.tagSets.addAll(tagSets);
     }
 
     /**
      * <p>
-     * Sets the {@link TagSet}
-     * <code>TagSets</code> and returns this object,
+     * Sets the {@link TagSet} <code>TagSets</code> and returns this object,
      * enabling additional method calls to be chained together.
      * </p>
      * <p>
-     * Calling this method will overwrite any 
-     * previously set <code>TagSets</code> for this object.
+     * Calling this method will overwrite any previously set
+     * <code>TagSets</code> for this object.
      * </p>
-     * 
-     * @param tagSets
-     *            A set of TagSet objects.
-     * 
-     * @return The updated {@link BucketTaggingConfiguration} object,
-     * 		   enabling additional method calls to be chained together.
-     * 
+     *
+     * @param tagSets A set of TagSet objects.
+     * @return The updated {@link BucketTaggingConfiguration} object, enabling
+     *         additional method calls to be chained together.
      * @see BucketTaggingConfiguration#setTagSets(Collection)
      */
-    public BucketTaggingConfiguration withTagSets( TagSet... tagSets ) {
+    public BucketTaggingConfiguration withTagSets(TagSet... tagSets) {
         this.tagSets.clear();
-        
-        for ( int index = 0; index < tagSets.length; index++ ) {
-            this.tagSets.add( tagSets[ index ] );
+
+        for (int index = 0; index < tagSets.length; index++) {
+            this.tagSets.add(tagSets[index]);
         }
-        
+
         return this;
     }
 
@@ -96,65 +95,65 @@ public class BucketTaggingConfiguration {
      * Sets the {@link TagSet}.
      * </p>
      * <p>
-     * Calling this method will overwrite any 
-     * previously set <code>TagSets</code> for this object.
+     * Calling this method will overwrite any previously set
+     * <code>TagSets</code> for this object.
      * </p>
-     * 
-     * @param tagSets
-     *            A collection of TagSet objects.
-     *            
-     * @see BucketTaggingConfiguration#withTopicConfigurations(TopicConfiguration)         
+     *
+     * @param tagSets A collection of TagSet objects.
+     * @see BucketTaggingConfiguration#withTopicConfigurations(TopicConfiguration)
      */
-    public void setTagSets( Collection<TagSet> tagSets ) {
+    public void setTagSets(Collection<TagSet> tagSets) {
         this.tagSets.clear();
-        this.tagSets.addAll( tagSets );
+        this.tagSets.addAll(tagSets);
     }
 
     /**
      * <p>
-     * Gets the list of {@link TagSet} objects
-     * contained in this object. This method may return an empty list if no <code>TagSet</code>
-     * objects are present.
+     * Gets the list of {@link TagSet} objects contained in this object. This
+     * method may return an empty list if no <code>TagSet</code> objects are
+     * present.
      * </p>
-     * 
+     *
      * @return The list of <code>TagSet</code> objects contained in this object.
-     *   May return an empty list.
+     *         May return an empty list.
      */
     public List<TagSet> getAllTagSets() {
         return this.tagSets;
     }
 
-    /** 
+    /**
      * <p>
-     * Gets the first {@link TagSet} object contained in this object. This method may return null
-     * list if no <code>TagSet</code> objects are present.
+     * Gets the first {@link TagSet} object contained in this object. This
+     * method may return null list if no <code>TagSet</code> objects are
+     * present.
      * </p>
+     *
      * @return The first <code>TagSet</code> object contained in the object
      */
     public TagSet getTagSet() {
-    	return this.tagSets.get( 0 );
+        return this.tagSets.get(0);
     }
-    
-    /** 
+
+    /**
      * <p>
-     * Gets the {@link TagSet} object at the specified index contained in this object.
+     * Gets the {@link TagSet} object at the specified index contained in this
+     * object.
      * </p>
-     * 
-     * @param index
-     * 			The index of the <code>TagSet</code> object to return
-     * 
+     *
+     * @param index The index of the <code>TagSet</code> object to return
      * @return The <code>TagSet</code> object contained in the object
      */
-    public TagSet getTagSetAtIndex( int index ) {
-    	return this.tagSets.get( index );
+    public TagSet getTagSetAtIndex(int index) {
+        return this.tagSets.get(index);
     }
-    
+
+    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("{");
-        sb.append("TagSets: " + this.getAllTagSets() );
+        sb.append("TagSets: " + this.getAllTagSets());
         sb.append("}");
         return sb.toString();
     }
-    
+
 }

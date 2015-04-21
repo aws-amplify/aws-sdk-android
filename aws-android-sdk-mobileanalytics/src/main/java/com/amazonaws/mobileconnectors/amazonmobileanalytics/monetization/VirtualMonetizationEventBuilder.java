@@ -29,19 +29,19 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.EventClient;
  * of 1 sword that costs 500 Gold.
  * </p>
  * Example:
- * 
+ *
  * <pre class="prettyprint">
  * // get the event client from your MobileAnalyticsManager instance
  * EventClient eventClient = mobileAnalyticsManager.getEventClient();
- * 
+ *
  * // create a builder that can record purchase events for a Virtual In Game Store
  * VirtualMonetizationEventBuilder builder = VirtualMonetizationEventBuilder.create(eventClient);
- * 
+ *
  * // build the monetization event with the product id, item price, currency type,
  * // and quantity
  * Event purchaseEvent = builder.withProductId(&quot;com.yourgame.sword&quot;).withItemPrice(500)
  *         .withCurrency(&quot;Gold&quot;).withQuantity(1).build();
- * 
+ *
  * // record the monetization event
  * eventClient.recordEvent(purchaseEvent);
  * </pre>
@@ -52,7 +52,7 @@ public class VirtualMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Create a VirtualMonetizationEventBuilder with the specified Event client
-     * 
+     *
      * @param eventClient The event client to use when creating monetization
      *            events
      * @return a VirtualMonetizationEventBuilder to build monetization events
@@ -64,7 +64,7 @@ public class VirtualMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Sets the product identifier field of the item being purchased.
-     * 
+     *
      * @param productId The product id representing the item being purchased
      * @return this for chaining
      */
@@ -75,7 +75,7 @@ public class VirtualMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Sets the numerical price of the item being purchased
-     * 
+     *
      * @param itemPrice The numerical price of the item
      * @return this for chaining
      */
@@ -86,7 +86,7 @@ public class VirtualMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Sets the quantity of the item being purchased.
-     * 
+     *
      * @param quantity The number of items purchased in this transaction
      * @return this for chaining
      */
@@ -97,7 +97,7 @@ public class VirtualMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Sets the currency of the item being purchased.
-     * 
+     *
      * @param currency The name of the virtual currency used to purchase this
      *            item (i.e. Coins or Gold)
      * @return this for chaining
@@ -110,7 +110,7 @@ public class VirtualMonetizationEventBuilder extends MonetizationEventBuilder {
     /**
      * Construct a VirtualMonetizationEventBuilder with the specified
      * EventClient
-     * 
+     *
      * @param eventClient The EventClient to use when building the event
      */
     protected VirtualMonetizationEventBuilder(EventClient eventClient) {

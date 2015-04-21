@@ -12,16 +12,17 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model.transform;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+package com.amazonaws.services.s3.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.internal.XmlWriter;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.RestoreObjectRequest;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class RequestXmlFactory {
 
@@ -29,10 +30,8 @@ public class RequestXmlFactory {
      * Converts the specified list of PartETags to an XML fragment that can be
      * sent to the CompleteMultipartUpload operation of Amazon S3.
      *
-     * @param partETags
-     *            The list of part ETags containing the data to include in the
-     *            new XML fragment.
-     *
+     * @param partETags The list of part ETags containing the data to include in
+     *            the new XML fragment.
      * @return A byte array containing the data
      */
     public static byte[] convertToXmlByteArray(List<PartETag> partETags) {
@@ -40,9 +39,12 @@ public class RequestXmlFactory {
         xml.start("CompleteMultipartUpload");
         if (partETags != null) {
             Collections.sort(partETags, new Comparator<PartETag>() {
+                @Override
                 public int compare(PartETag tag1, PartETag tag2) {
-                    if (tag1.getPartNumber() < tag2.getPartNumber()) return -1;
-                    if (tag1.getPartNumber() > tag2.getPartNumber()) return 1;
+                    if (tag1.getPartNumber() < tag2.getPartNumber())
+                        return -1;
+                    if (tag1.getPartNumber() > tag2.getPartNumber())
+                        return 1;
                     return 0;
                 }
             });
@@ -63,16 +65,14 @@ public class RequestXmlFactory {
      * Converts the RestoreObjectRequest to an XML fragment that can be sent to
      * the RestoreObject operation of Amazon S3.
      *
-     * @param restoreObjectRequest
-     *            The container which provides options for restoring an object,
-     *            which was transitioned to the Glacier from S3 when it was
-     *            expired, into S3 again.
-     *
+     * @param restoreObjectRequest The container which provides options for
+     *            restoring an object, which was transitioned to the Glacier
+     *            from S3 when it was expired, into S3 again.
      * @return A byte array containing the data
-     *
      * @throws AmazonClientException
      */
-    public static byte[] convertToXmlByteArray(RestoreObjectRequest restoreObjectRequest) throws AmazonClientException {
+    public static byte[] convertToXmlByteArray(RestoreObjectRequest restoreObjectRequest)
+            throws AmazonClientException {
         XmlWriter xml = new XmlWriter();
 
         xml.start("RestoreRequest");

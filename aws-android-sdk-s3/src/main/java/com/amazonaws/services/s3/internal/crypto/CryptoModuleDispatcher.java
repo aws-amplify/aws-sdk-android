@@ -12,9 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.internal.crypto;
 
-import java.io.File;
+package com.amazonaws.services.s3.internal.crypto;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -39,6 +38,8 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 
+import java.io.File;
+
 /**
  * A proxy cryptographic module used to dispatch method calls to the appropriate
  * underlying cryptographic module depending on the current configuration.
@@ -57,7 +58,7 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
             CryptoConfiguration cryptoConfig) {
         CryptoMode cryptoMode = cryptoConfig.getCryptoMode();
         this.defaultCryptoMode = cryptoMode == null ? CryptoMode.EncryptionOnly : cryptoMode;
-        switch(defaultCryptoMode) {
+        switch (defaultCryptoMode) {
             case StrictAuthenticatedEncryption:
                 this.ae = new S3CryptoModuleAEStrict(s3, credentialsProvider,
                         encryptionMaterialsProvider, clientConfig, cryptoConfig);
@@ -81,9 +82,8 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
     public PutObjectResult putObjectSecurely(PutObjectRequest putObjectRequest)
             throws AmazonClientException, AmazonServiceException {
         return defaultCryptoMode == CryptoMode.EncryptionOnly
-             ? eo.putObjectSecurely(putObjectRequest)
-             : ae.putObjectSecurely(putObjectRequest)
-             ;
+                ? eo.putObjectSecurely(putObjectRequest)
+                : ae.putObjectSecurely(putObjectRequest);
     }
 
     @Override
@@ -103,11 +103,10 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
     @Override
     public CompleteMultipartUploadResult completeMultipartUploadSecurely(
             CompleteMultipartUploadRequest req)
-                    throws AmazonClientException, AmazonServiceException {
-        return defaultCryptoMode == CryptoMode.EncryptionOnly 
-             ? eo.completeMultipartUploadSecurely(req)
-             : ae.completeMultipartUploadSecurely(req)
-             ;
+            throws AmazonClientException, AmazonServiceException {
+        return defaultCryptoMode == CryptoMode.EncryptionOnly
+                ? eo.completeMultipartUploadSecurely(req)
+                : ae.completeMultipartUploadSecurely(req);
     }
 
     @Override
@@ -121,16 +120,14 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
     @Override
     public InitiateMultipartUploadResult initiateMultipartUploadSecurely(
             InitiateMultipartUploadRequest req)
-                    throws AmazonClientException, AmazonServiceException {
-        return defaultCryptoMode == CryptoMode.EncryptionOnly 
-             ? eo.initiateMultipartUploadSecurely(req)
-             : ae.initiateMultipartUploadSecurely(req)
-             ;
+            throws AmazonClientException, AmazonServiceException {
+        return defaultCryptoMode == CryptoMode.EncryptionOnly
+                ? eo.initiateMultipartUploadSecurely(req)
+                : ae.initiateMultipartUploadSecurely(req);
     }
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * <b>NOTE:</b> Because the encryption process requires context from block
      * N-1 in order to encrypt block N, parts uploaded with the
@@ -140,18 +137,16 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
      */
     @Override
     public UploadPartResult uploadPartSecurely(UploadPartRequest req)
-        throws AmazonClientException, AmazonServiceException {
+            throws AmazonClientException, AmazonServiceException {
         return defaultCryptoMode == CryptoMode.EncryptionOnly
-             ? eo.uploadPartSecurely(req)
-             : ae.uploadPartSecurely(req)
-             ;
+                ? eo.uploadPartSecurely(req)
+                : ae.uploadPartSecurely(req);
     }
 
     @Override
     public CopyPartResult copyPartSecurely(CopyPartRequest req) {
-        return defaultCryptoMode == CryptoMode.EncryptionOnly 
-             ? eo.copyPartSecurely(req)
-             : ae.copyPartSecurely(req)
-             ;
+        return defaultCryptoMode == CryptoMode.EncryptionOnly
+                ? eo.copyPartSecurely(req)
+                : ae.copyPartSecurely(req);
     }
 }

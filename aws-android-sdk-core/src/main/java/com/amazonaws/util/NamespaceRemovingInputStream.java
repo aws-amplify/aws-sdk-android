@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
+
+import com.amazonaws.internal.SdkFilterInputStream;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.amazonaws.internal.SdkFilterInputStream;
 
 /**
  * FilterInputStream implementation that wraps an InputStream containing an XML
@@ -36,8 +37,7 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
      * Constructs a new NamespaceRemovingInputStream wrapping the specified
      * InputStream.
      *
-     * @param in
-     *            The InputStream containing an XML document whose XML namespace
+     * @param in The InputStream containing an XML document whose XML namespace
      *            is to be removed.
      */
     public NamespaceRemovingInputStream(InputStream in) {
@@ -46,7 +46,8 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
         super(new BufferedInputStream(in));
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see java.io.FilterInputStream#read()
      */
     @Override
@@ -54,7 +55,7 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
         abortIfNeeded();
         int b = in.read();
         if (b == 'x' && !hasRemovedNamespace) {
-            lookAheadData[0] = (byte)b;
+            lookAheadData[0] = (byte) b;
             in.mark(lookAheadData.length);
             int bytesRead = in.read(lookAheadData, 1, lookAheadData.length - 1);
             in.reset();
@@ -74,7 +75,8 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
         return b;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see java.io.FilterInputStream#read(byte[], int, int)
      */
     @Override
@@ -82,17 +84,19 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
         for (int i = 0; i < len; i++) {
             int j = this.read();
             if (j == -1) {
-                if (i == 0) return -1;
+                if (i == 0)
+                    return -1;
                 return i;
             }
 
-            b[i + off] = (byte)j;
+            b[i + off] = (byte) j;
         }
 
         return len;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see java.io.FilterInputStream#read(byte[])
      */
     @Override
@@ -104,9 +108,7 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
      * Checks if the string starts with a complete XML namespace attribute, and
      * if so, returns the number of characters that match.
      *
-     * @param s
-     *            The string to check for an XML namespace definition.
-     *
+     * @param s The string to check for an XML namespace definition.
      * @return -1 if no XML namespace definition was found, otherwise the length
      *         of the identified XML namespace definition.
      */
@@ -115,14 +117,18 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
          * The regex we're simulating is: "xmlns\\s*=\\s*\".+?\".*"
          */
         StringPrefixSlicer stringSlicer = new StringPrefixSlicer(s);
-        if (stringSlicer.removePrefix("xmlns") == false) return -1;
+        if (stringSlicer.removePrefix("xmlns") == false)
+            return -1;
 
         stringSlicer.removeRepeatingPrefix(" ");
-        if (stringSlicer.removePrefix("=") == false) return -1;
+        if (stringSlicer.removePrefix("=") == false)
+            return -1;
         stringSlicer.removeRepeatingPrefix(" ");
 
-        if (stringSlicer.removePrefix("\"") == false) return -1;
-        if (stringSlicer.removePrefixEndingWith("\"") == false) return -1;
+        if (stringSlicer.removePrefix("\"") == false)
+            return -1;
+        if (stringSlicer.removePrefixEndingWith("\"") == false)
+            return -1;
 
         return s.length() - stringSlicer.getString().length();
     }
@@ -146,13 +152,15 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
         }
 
         public boolean removePrefix(String prefix) {
-            if (s.startsWith(prefix) == false) return false;
+            if (s.startsWith(prefix) == false)
+                return false;
             s = s.substring(prefix.length());
             return true;
         }
 
         public boolean removeRepeatingPrefix(String prefix) {
-            if (s.startsWith(prefix) == false) return false;
+            if (s.startsWith(prefix) == false)
+                return false;
 
             while (s.startsWith(prefix)) {
                 s = s.substring(prefix.length());
@@ -162,7 +170,8 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
 
         public boolean removePrefixEndingWith(String marker) {
             int i = s.indexOf(marker);
-            if (i < 0) return false;
+            if (i < 0)
+                return false;
             s = s.substring(i + marker.length());
             return true;
         }

@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.auth;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+package com.amazonaws.auth;
 
 import com.amazonaws.internal.config.InternalConfig;
 import com.amazonaws.internal.config.SignerConfig;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /** Signer factory. */
 public final class SignerFactory {
@@ -28,8 +29,7 @@ public final class SignerFactory {
     private static final String VERSION_FOUR_SIGNER = "AWS4SignerType";
     private static final String NO_OP_SIGNER = "NoOpSignerType";
 
-    private static final Map<String, Class<? extends Signer>> SIGNERS
-        = new ConcurrentHashMap<String, Class<? extends Signer>>();
+    private static final Map<String, Class<? extends Signer>> SIGNERS = new ConcurrentHashMap<String, Class<? extends Signer>>();
 
     static {
         // Register the standard signer types.
@@ -48,7 +48,7 @@ public final class SignerFactory {
     /**
      * Register an implementation class for the given signer type.
      *
-     * @param signerType  The name of the signer type to register.
+     * @param signerType The name of the signer type to register.
      * @param signerClass The class implementing the given signature protocol.
      */
     public static void registerSigner(
@@ -70,11 +70,9 @@ public final class SignerFactory {
      * to the internal configuration which provides a basic default algorithm
      * used for signer determination.
      *
-     * @param serviceName
-     *            The name of the service to talk to.
-     * @param regionName
-     *            The name of the region to talk to; not necessarily the region
-     *            used for signing.
+     * @param serviceName The name of the service to talk to.
+     * @param regionName The name of the region to talk to; not necessarily the
+     *            region used for signing.
      */
     public static Signer getSigner(String serviceName, String regionName) {
         return lookupAndCreateSigner(serviceName, regionName);
@@ -84,10 +82,8 @@ public final class SignerFactory {
      * Returns an instance of the given signer type and configures it with the
      * given service name (if applicable).
      *
-     * @param signerType
-     *            The type of signer to create.
-     * @param serviceName
-     *            The name of the service to configure on the signer.
+     * @param signerType The type of signer to create.
+     * @param serviceName The name of the service to configure on the signer.
      * @return a non-null signer.
      */
     public static Signer getSignerByTypeAndService(String signerType,
@@ -102,14 +98,14 @@ public final class SignerFactory {
     private static Signer lookupAndCreateSigner(String serviceName, String regionName) {
         InternalConfig config = InternalConfig.Factory.getInternalConfig();
         SignerConfig signerConfig =
-            config.getSignerConfig(serviceName, regionName);
+                config.getSignerConfig(serviceName, regionName);
         String signerType = signerConfig.getSignerType();
         return createSigner(signerType, serviceName);
     }
 
     /**
-     * Internal implementation to create a signer by type and service name,
-     * and configuring it with the service name if applicable.
+     * Internal implementation to create a signer by type and service name, and
+     * configuring it with the service name if applicable.
      */
     private static Signer createSigner(String signerType,
             final String serviceName) {
@@ -121,12 +117,12 @@ public final class SignerFactory {
             signer = signerClass.newInstance();
         } catch (InstantiationException ex) {
             throw new IllegalStateException(
-                "Cannot create an instance of " + signerClass.getName(),
-                ex);
+                    "Cannot create an instance of " + signerClass.getName(),
+                    ex);
         } catch (IllegalAccessException ex) {
             throw new IllegalStateException(
-                "Cannot create an instance of " + signerClass.getName(),
-                ex);
+                    "Cannot create an instance of " + signerClass.getName(),
+                    ex);
         }
 
         if (signer instanceof ServiceAwareSigner) {

@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.http.HttpResponse;
@@ -26,7 +27,6 @@ public class S3VersionHeaderHandler implements HeaderHandler<CopyObjectResultHan
 
     /*
      * (non-Javadoc)
-     * 
      * @see
      * com.amazonaws.services.s3.internal.HeaderHandler#handle(java.lang.Object,
      * com.amazonaws.http.HttpResponse)

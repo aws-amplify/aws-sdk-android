@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 import java.io.File;
@@ -33,28 +34,23 @@ public class PropertiesCredentials implements AWSCredentials {
     private final String secretAccessKey;
 
     /**
-     * Reads the specified file as a Java properties file and extracts the
-     * AWS access key from the "accessKey" property and AWS secret access
-     * key from the "secretKey" property. If the specified file doesn't
-     * contain the AWS access keys an IOException will be thrown.
+     * Reads the specified file as a Java properties file and extracts the AWS
+     * access key from the "accessKey" property and AWS secret access key from
+     * the "secretKey" property. If the specified file doesn't contain the AWS
+     * access keys an IOException will be thrown.
      *
-     * @param file
-     *            The file from which to read the AWS credentials
-     *            properties.
-     *
-     * @throws FileNotFoundException
-     *             If the specified file isn't found.
-     * @throws IOException
-     *             If any problems are encountered reading the AWS access
-     *             keys from the specified file.
-     * @throws IllegalArgumentException
-     *             If the specified properties file does not contain the
-     *             required keys.
+     * @param file The file from which to read the AWS credentials properties.
+     * @throws FileNotFoundException If the specified file isn't found.
+     * @throws IOException If any problems are encountered reading the AWS
+     *             access keys from the specified file.
+     * @throws IllegalArgumentException If the specified properties file does
+     *             not contain the required keys.
      */
-    public PropertiesCredentials(File file) throws FileNotFoundException, IOException, IllegalArgumentException {
+    public PropertiesCredentials(File file) throws FileNotFoundException, IOException,
+            IllegalArgumentException {
         if (!file.exists()) {
             throw new FileNotFoundException("File doesn't exist:  "
-                                            + file.getAbsolutePath());
+                    + file.getAbsolutePath());
         }
 
         FileInputStream stream = new FileInputStream(file);
@@ -64,12 +60,11 @@ public class PropertiesCredentials implements AWSCredentials {
             accountProperties.load(stream);
 
             if (accountProperties.getProperty("accessKey") == null ||
-                accountProperties.getProperty("secretKey") == null) {
+                    accountProperties.getProperty("secretKey") == null) {
                 throw new IllegalArgumentException(
-                    "The specified file (" + file.getAbsolutePath()
-                    + ") doesn't contain the expected properties 'accessKey' "
-                    + "and 'secretKey'."
-                );
+                        "The specified file (" + file.getAbsolutePath()
+                                + ") doesn't contain the expected properties 'accessKey' "
+                                + "and 'secretKey'.");
             }
 
             accessKey = accountProperties.getProperty("accessKey");
@@ -88,22 +83,24 @@ public class PropertiesCredentials implements AWSCredentials {
      * content and extracts the AWS access key ID and secret access key from the
      * properties.
      *
-     * @param inputStream
-     *            The input stream containing the AWS credential properties.
-     *
-     * @throws IOException
-     *             If any problems occur while reading from the input stream.
+     * @param inputStream The input stream containing the AWS credential
+     *            properties.
+     * @throws IOException If any problems occur while reading from the input
+     *             stream.
      */
     public PropertiesCredentials(InputStream inputStream) throws IOException {
         Properties accountProperties = new Properties();
         try {
             accountProperties.load(inputStream);
         } finally {
-            try {inputStream.close();} catch (Exception e) {}
+            try {
+                inputStream.close();
+            } catch (Exception e) {
+            }
         }
 
         if (accountProperties.getProperty("accessKey") == null ||
-            accountProperties.getProperty("secretKey") == null) {
+                accountProperties.getProperty("secretKey") == null) {
             throw new IllegalArgumentException("The specified properties data " +
                     "doesn't contain the expected properties 'accessKey' and 'secretKey'.");
         }
@@ -112,16 +109,20 @@ public class PropertiesCredentials implements AWSCredentials {
         secretAccessKey = accountProperties.getProperty("secretKey");
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.amazonaws.auth.AWSCredentials#getAWSAccessKeyId()
      */
+    @Override
     public String getAWSAccessKeyId() {
         return accessKey;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.amazonaws.auth.AWSCredentials#getAWSSecretKey()
      */
+    @Override
     public String getAWSSecretKey() {
         return secretAccessKey;
     }

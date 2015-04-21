@@ -12,10 +12,12 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 /**
- * Marker interface for credentials that should not be used to start
- * AWS Security Token Service sessions.
+ * Marker interface for credentials that should not be used to start AWS
+ * Security Token Service sessions.
  */
-public interface NoSessionSupportCredentials {}
+public interface NoSessionSupportCredentials {
+}

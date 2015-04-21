@@ -11,22 +11,22 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- * 
- * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt 
- * for applicable license terms and NOTICE.txt for applicable notices. 
+ *
+ * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
+ * for applicable license terms and NOTICE.txt for applicable notices.
  */
+
 package com.amazonaws.services.s3.model;
+
+import com.amazonaws.services.s3.AmazonS3;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.amazonaws.services.s3.AmazonS3;
-
 /**
- * Represents an object stored in Amazon S3. This object contains
- * the data content
- * and the object metadata stored by Amazon S3, such as content type,
+ * Represents an object stored in Amazon S3. This object contains the data
+ * content and the object metadata stored by Amazon S3, such as content type,
  * content length, etc.
  *
  * @see ObjectMetadata
@@ -43,7 +43,7 @@ public class S3Object implements Closeable {
 
     /** The stream containing the contents of this object from S3 */
     private S3ObjectInputStream objectContent;
-    
+
     /** The redirect location for this object */
     private String redirectLocation;
 
@@ -55,12 +55,11 @@ public class S3Object implements Closeable {
 
     /**
      * Gets the metadata stored by Amazon S3 for this object. The
-     * {@link ObjectMetadata} object includes any custom user metadata supplied by the
-     * caller when the object was uploaded, as well as HTTP metadata such as
-     * content length and content type.
+     * {@link ObjectMetadata} object includes any custom user metadata supplied
+     * by the caller when the object was uploaded, as well as HTTP metadata such
+     * as content length and content type.
      *
      * @return The metadata stored by Amazon S3 for this object.
-     *
      * @see S3Object#getObjectContent()
      */
     public ObjectMetadata getObjectMetadata() {
@@ -84,12 +83,10 @@ public class S3Object implements Closeable {
 
     /**
      * Gets an input stream containing the contents of this object. Callers
-     * should close this input stream as soon as possible, because the
-     * object contents aren't buffered in memory and stream directly from Amazon
-     * S3.
+     * should close this input stream as soon as possible, because the object
+     * contents aren't buffered in memory and stream directly from Amazon S3.
      *
      * @return An input stream containing the contents of this object.
-     *
      * @see S3Object#getObjectMetadata()
      * @see S3Object#setObjectContent(InputStream)
      */
@@ -100,21 +97,18 @@ public class S3Object implements Closeable {
     /**
      * Sets the input stream containing this object's contents.
      *
-     * @param objectContent
-     *            The input stream containing this object's contents.
-     *
+     * @param objectContent The input stream containing this object's contents.
      * @see S3Object#getObjectContent()
      */
     public void setObjectContent(S3ObjectInputStream objectContent) {
         this.objectContent = objectContent;
     }
-    
+
     /**
      * Sets the input stream containing this object's contents.
-     * 
-     * @param objectContent
-     *            The input stream containing this object's contents. Will get
-     *            wrapped in an S3ObjectInputStream.
+     *
+     * @param objectContent The input stream containing this object's contents.
+     *            Will get wrapped in an S3ObjectInputStream.
      * @see S3Object#getObjectContent()
      */
     public void setObjectContent(InputStream objectContent) {
@@ -126,7 +120,6 @@ public class S3Object implements Closeable {
      * Gets the name of the bucket in which this object is contained.
      *
      * @return The name of the bucket in which this object is contained.
-     *
      * @see S3Object#setBucketName(String)
      */
     public String getBucketName() {
@@ -136,9 +129,7 @@ public class S3Object implements Closeable {
     /**
      * Sets the name of the bucket in which this object is contained.
      *
-     * @param bucketName
-     *            The name of the bucket containing this object.
-     *
+     * @param bucketName The name of the bucket containing this object.
      * @see S3Object#getBucketName()
      */
     public void setBucketName(String bucketName) {
@@ -149,7 +140,6 @@ public class S3Object implements Closeable {
      * Gets the key under which this object is stored.
      *
      * @return The key under which this object is stored.
-     *
      * @see S3Object#setKey(String)
      */
     public String getKey() {
@@ -159,51 +149,48 @@ public class S3Object implements Closeable {
     /**
      * Sets the key under which this object is stored.
      *
-     * @param key
-     *            The key under which this object is stored.
-     *
+     * @param key The key under which this object is stored.
      * @see S3Object#getKey()
      */
     public void setKey(String key) {
         this.key = key;
     }
-    
+
     /**
      * Gets the redirect location for this object.
-     *
      */
     public String getRedirectLocation() {
-    	return this.redirectLocation;
+        return this.redirectLocation;
     }
-    
+
     /**
      * Sets the redirect location for this object.
      *
-     * @param redirectLocation
-     *            the redirect location for that object.
+     * @param redirectLocation the redirect location for that object.
      */
     public void setRedirectLocation(String redirectLocation) {
-    	this.redirectLocation = redirectLocation;
+        this.redirectLocation = redirectLocation;
     }
 
     /**
      * @see java.lang.Object#toString()
      */
+    @Override
     public String toString() {
         return "S3Object [key=" + getKey()
-            + ",bucket=" + (bucketName == null ? "<Unknown>" : bucketName)
-            + "]";
+                + ",bucket=" + (bucketName == null ? "<Unknown>" : bucketName)
+                + "]";
     }
 
     /**
-     * Releases any underlying system resources. If the resources
-     * are already released then invoking this method has no effect.
+     * Releases any underlying system resources. If the resources are already
+     * released then invoking this method has no effect.
      *
      * @throws IOException if an I/O error occurs
      */
     @Override
     public void close() throws IOException {
-        if(getObjectContent() != null){
+        if (getObjectContent() != null) {
             getObjectContent().close();
         }
     }
@@ -211,7 +198,6 @@ public class S3Object implements Closeable {
     /**
      * Returns true if the user is charged for downloading the object from an
      * Requester Pays Bucket; else false.
-     *
      * <p>
      * If a bucket is enabled for Requester Pays, then any attempt to read an
      * object from it without Requester Pays enabled will result in a 403 error
@@ -227,14 +213,13 @@ public class S3Object implements Closeable {
     /**
      * Used for downloading an Amazon S3 Object from a Requester Pays Bucket. If
      * set the requester is charged for downloading the data from the bucket.
-     *
      * <p>
      * If a bucket is enabled for Requester Pays, then any attempt to read an
      * object from it without Requester Pays enabled will result in a 403 error
      * and the bucket owner will be charged for the request.
      *
-     * @param isRequesterCharged
-     *            Indicates requester is charged for this operation.
+     * @param isRequesterCharged Indicates requester is charged for this
+     *            operation.
      */
     public void setRequesterCharged(boolean isRequesterCharged) {
         this.isRequesterCharged = isRequesterCharged;

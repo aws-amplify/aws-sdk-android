@@ -12,7 +12,17 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.services.s3.Headers;
+import com.amazonaws.services.s3.model.EncryptionMaterials;
+import com.amazonaws.services.s3.model.EncryptionMaterialsAccessor;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.util.Base64;
+import com.amazonaws.util.json.JsonUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,15 +37,6 @@ import java.util.Map;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.services.s3.Headers;
-import com.amazonaws.services.s3.model.EncryptionMaterials;
-import com.amazonaws.services.s3.model.EncryptionMaterialsAccessor;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.util.Base64;
-import com.amazonaws.util.json.JsonUtils;
 
 /**
  * Cryptographic material used for client-side content encrypt/decryption in S3.
@@ -108,7 +109,6 @@ final class ContentCryptoMaterial {
         return metadata;
     }
 
-
     String toJsonString() {
         Map<String, String> map = new HashMap<String, String>();
         byte[] encryptedCEK = getEncryptedCEK();
@@ -135,7 +135,7 @@ final class ContentCryptoMaterial {
      * string;
      */
     private String kekMaterialDescAsJson() {
-        Map<String,String> kekMaterialDesc = getKEKMaterialsDescription();
+        Map<String, String> kekMaterialDesc = getKEKMaterialsDescription();
         if (kekMaterialDesc == null)
             kekMaterialDesc = Collections.emptyMap();
         return JsonUtils.mapToString(kekMaterialDesc);
@@ -146,7 +146,7 @@ final class ContentCryptoMaterial {
      * or null if the input is null.
      */
     private static Map<String, String> matdescFromJson(String json) {
-        if(json == null){
+        if (json == null) {
             return null;
         }
         Map<String, String> map = JsonUtils.jsonToMap(json);
@@ -156,18 +156,14 @@ final class ContentCryptoMaterial {
     /**
      * Returns the content encrypting key unwrapped or decrypted.
      *
-     * @param cekSecured
-     *            the content encrypting key in wrapped or encrypted form; must
-     *            not be null
-     * @param keyWrapAlgo
-     *            key wrapping algorithm; or null if direct encryption instead
-     *            of key wrapping is used
-     * @param materials
-     *            the client key encrypting key material for the content
+     * @param cekSecured the content encrypting key in wrapped or encrypted
+     *            form; must not be null
+     * @param keyWrapAlgo key wrapping algorithm; or null if direct encryption
+     *            instead of key wrapping is used
+     * @param materials the client key encrypting key material for the content
      *            encrypting key
-     * @param securityProvider
-     *            security provider or null if the default security provider of
-     *            the JCE is used
+     * @param securityProvider security provider or null if the default security
+     *            provider of the JCE is used
      */
     private static SecretKey cek(byte[] cekSecured, String keyWrapAlgo,
             EncryptionMaterials materials, Provider securityProvider) {
@@ -236,9 +232,8 @@ final class ContentCryptoMaterial {
         String matdescStr = userMeta.get(Headers.MATERIALS_DESCRIPTION);
         Map<String, String> matdesc = matdescFromJson(matdescStr);
         EncryptionMaterials materials = kekMaterialAccessor == null
-            ? null
-            : kekMaterialAccessor.getEncryptionMaterials(matdesc)
-            ;
+                ? null
+                : kekMaterialAccessor.getEncryptionMaterials(matdesc);
         if (materials == null) {
             throw new AmazonClientException(
                     "Unable to retrieve the client encryption materials");
@@ -279,16 +274,16 @@ final class ContentCryptoMaterial {
      * instruction file, using the specified key encrypting key material
      * accessor and an optional security provider.
      */
-    static ContentCryptoMaterial fromInstructionFile(Map<String,String> instFile,
-        EncryptionMaterialsAccessor kekMaterialAccessor,
-        Provider securityProvider,
-        long[] range) {
+    static ContentCryptoMaterial fromInstructionFile(Map<String, String> instFile,
+            EncryptionMaterialsAccessor kekMaterialAccessor,
+            Provider securityProvider,
+            long[] range) {
         return fromInstructionFile0(instFile, kekMaterialAccessor,
                 securityProvider, range);
     }
 
     private static ContentCryptoMaterial fromInstructionFile0(
-            Map<String,String> map,
+            Map<String, String> map,
             EncryptionMaterialsAccessor kekMaterialAccessor,
             Provider securityProvider,
             long[] range) {
@@ -310,9 +305,8 @@ final class ContentCryptoMaterial {
         String matdescStr = map.get(Headers.MATERIALS_DESCRIPTION);
         Map<String, String> matdesc = matdescFromJson(matdescStr);
         EncryptionMaterials materials = kekMaterialAccessor == null
-            ? null
-            : kekMaterialAccessor.getEncryptionMaterials(matdesc)
-            ;
+                ? null
+                : kekMaterialAccessor.getEncryptionMaterials(matdesc);
         if (materials == null) {
             throw new AmazonClientException(
                     "Unable to retrieve the encryption materials that originally "
@@ -356,7 +350,8 @@ final class ContentCryptoMaterial {
         try {
             return convertStreamToString(instructionFile.getObjectContent());
         } catch (Exception e) {
-            throw new AmazonClientException("Error parsing JSON instruction file: " + e.getMessage());
+            throw new AmazonClientException("Error parsing JSON instruction file: "
+                    + e.getMessage());
         }
     }
 
@@ -366,7 +361,7 @@ final class ContentCryptoMaterial {
     private static String convertStreamToString(InputStream inputStream) throws IOException {
         if (inputStream == null) {
             return "";
-        }else {
+        } else {
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             try {
@@ -389,8 +384,8 @@ final class ContentCryptoMaterial {
     }
 
     /**
-     * Returns the description of the kek materials that were used to
-     * encrypt the cek.
+     * Returns the description of the kek materials that were used to encrypt
+     * the cek.
      */
     Map<String, String> getKEKMaterialsDescription() {
         return this.kekMaterialsDescription;

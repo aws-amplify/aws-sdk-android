@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.util.Map;
@@ -22,12 +23,13 @@ import java.util.Map;
 public interface EncryptionMaterialsAccessor {
 
     /**
-     * Retrieves encryption materials matching the specified description from some source.
-     *  
-     * @param materialsDescription
-     *      A Map<String, String> whose key-value pairs describe an encryption materials object
-     * @return
-     *      The encryption materials that match the description, or null if no matching encryption materials found.
+     * Retrieves encryption materials matching the specified description from
+     * some source.
+     *
+     * @param materialsDescription A Map<String, String> whose key-value pairs
+     *            describe an encryption materials object
+     * @return The encryption materials that match the description, or null if
+     *         no matching encryption materials found.
      */
     public EncryptionMaterials getEncryptionMaterials(Map<String, String> materialsDescription);
 }

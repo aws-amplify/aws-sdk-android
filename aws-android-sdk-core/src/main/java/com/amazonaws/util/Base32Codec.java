@@ -12,31 +12,32 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 /**
  * A Base 32 codec implementation.
- * 
+ *
  * @author Hanson Char
  */
 class Base32Codec extends AbstractBase32Codec {
     private static final int OFFSET_OF_2 = '2' - 26;
-    
+
     private static class LazyHolder {
         private static final byte[] DECODED = decodeTable();
-        
+
         private static byte[] decodeTable() {
-            final byte[] dest = new byte['z'+1];
-            
-            for (int i=0; i <= 'z'; i++) 
+            final byte[] dest = new byte['z' + 1];
+
+            for (int i = 0; i <= 'z'; i++)
             {
                 if (i >= 'A' && i <= 'Z')
-                    dest[i] = (byte)(i - 'A');
+                    dest[i] = (byte) (i - 'A');
                 else if (i >= '2' && i <= '7')
-                    dest[i] = (byte)(i - OFFSET_OF_2);
+                    dest[i] = (byte) (i - OFFSET_OF_2);
                 else if (i >= 'a' && i <= 'z')
-                    dest[i] = (byte)(i - 'a');
-                else 
+                    dest[i] = (byte) (i - 'a');
+                else
                     dest[i] = -1;
             }
             return dest;
@@ -51,13 +52,13 @@ class Base32Codec extends AbstractBase32Codec {
     Base32Codec() {
         super(alphabets());
     }
-    
+
     @Override
     protected int pos(byte in) {
         int pos = LazyHolder.DECODED[in];
-        
+
         if (pos > -1)
             return pos;
-        throw new IllegalArgumentException("Invalid base 32 character: \'" + (char)in + "\'");
+        throw new IllegalArgumentException("Invalid base 32 character: \'" + (char) in + "\'");
     }
 }

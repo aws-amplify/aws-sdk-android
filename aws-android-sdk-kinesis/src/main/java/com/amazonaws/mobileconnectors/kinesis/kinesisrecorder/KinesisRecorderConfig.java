@@ -37,7 +37,7 @@ public class KinesisRecorderConfig {
     /**
      * Construct an instance of KinesisRecorderConfig which has default values
      * of maxStorageSize = 5MiB; and the specified ClientConfiguration
-     * 
+     *
      * @param clientConfiguration The client configuration used when making
      *            requests to Amazon Kinesis
      */
@@ -51,7 +51,7 @@ public class KinesisRecorderConfig {
 
     /**
      * Creates a copy of the passed in KinesisRecorderConfig
-     * 
+     *
      * @param other the KinesisRecorderConfig to copy.
      */
     public KinesisRecorderConfig(KinesisRecorderConfig other) {
@@ -62,7 +62,7 @@ public class KinesisRecorderConfig {
     /**
      * Sets the max storage in bytes that KinesisRecorder is allowed to use.
      * Requests saved that exceed the max stoarge limit will be dropped.
-     * 
+     *
      * @param maxStorageSize
      * @return This class for chaining
      */
@@ -82,7 +82,7 @@ public class KinesisRecorderConfig {
     /**
      * Returns the client configuration the Kinesis Recorder will use when
      * making requests to Amazon Kinesis
-     * 
+     *
      * @return The client configuration
      */
     public ClientConfiguration getClientConfiguration() {

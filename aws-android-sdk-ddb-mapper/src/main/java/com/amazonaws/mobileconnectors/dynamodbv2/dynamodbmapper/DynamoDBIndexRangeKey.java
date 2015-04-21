@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import java.lang.annotation.ElementType;
@@ -30,7 +31,9 @@ import java.lang.annotation.Target;
  * item queries.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD})
+@Target({
+        ElementType.FIELD, ElementType.METHOD
+})
 public @interface DynamoDBIndexRangeKey {
 
     /**
@@ -38,36 +41,36 @@ public @interface DynamoDBIndexRangeKey {
      * should differ from the name used by the getter / setter.
      */
     String attributeName() default "";
-    
+
     /**
      * Parameter for the name of the local secondary index.
      * <p>
-     * This is required if this attribute is the index key for only one local secondary
-     * index.
+     * This is required if this attribute is the index key for only one local
+     * secondary index.
      */
     String localSecondaryIndexName() default "";
-    
+
     /**
      * Parameter for the names of the local secondary indexes.
      * <p>
-     * This is required if this attribute is the index key for multiple local secondary
-     * indexes.
+     * This is required if this attribute is the index key for multiple local
+     * secondary indexes.
      */
     String[] localSecondaryIndexNames() default {};
-    
+
     /**
      * Parameter for the name of the global secondary index.
      * <p>
-     * This is required if this attribute is the index key for only one global secondary
-     * index.
+     * This is required if this attribute is the index key for only one global
+     * secondary index.
      */
     String globalSecondaryIndexName() default "";
-    
+
     /**
      * Parameter for the names of the global secondary indexes.
      * <p>
-     * This is required if this attribute is the index key for multiple global secondary
-     * indexes.
+     * This is required if this attribute is the index key for multiple global
+     * secondary indexes.
      */
     String[] globalSecondaryIndexNames() default {};
 

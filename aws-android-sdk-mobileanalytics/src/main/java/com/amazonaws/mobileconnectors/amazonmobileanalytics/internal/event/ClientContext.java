@@ -17,13 +17,13 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event;
 
 import android.util.Log;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.Preconditions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.Preconditions;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClientContext {
     private static final String TAG = "ClientContext";

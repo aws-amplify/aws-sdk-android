@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3;
 
 /**
@@ -25,9 +26,10 @@ public class S3ClientOptions {
     /** Flag for use of path-style access */
     private boolean pathStyleAccess = DEFAULT_PATH_STYLE_ACCESS;
 
-    public S3ClientOptions() {}
+    public S3ClientOptions() {
+    }
 
-    public S3ClientOptions( S3ClientOptions other ) {
+    public S3ClientOptions(S3ClientOptions other) {
         this.pathStyleAccess = other.pathStyleAccess;
     }
 
@@ -41,12 +43,12 @@ public class S3ClientOptions {
      * region-specific endpoint when attempting to access a bucket.
      * </p>
      * <p>
-     * The default behaviour is to detect which access style to use based on
-     * the configured endpoint (an IP will result in path-style access) and
-     * the bucket being accessed (some buckets are not valid DNS names).
-     * Setting this flag will result in path-style access being used for all
-     * requests.
+     * The default behaviour is to detect which access style to use based on the
+     * configured endpoint (an IP will result in path-style access) and the
+     * bucket being accessed (some buckets are not valid DNS names). Setting
+     * this flag will result in path-style access being used for all requests.
      * </p>
+     *
      * @return True is the client should always use path-style access
      */
     public boolean isPathStyleAccess() {
@@ -63,17 +65,16 @@ public class S3ClientOptions {
      * region-specific endpoint when attempting to access a bucket.
      * </p>
      * <p>
-     * The default behaviour is to detect which access style to use based on
-     * the configured endpoint (an IP will result in path-style access) and
-     * the bucket being accessed (some buckets are not valid DNS names).
-     * Setting this flag will result in path-style access being used for all
-     * requests.
+     * The default behaviour is to detect which access style to use based on the
+     * configured endpoint (an IP will result in path-style access) and the
+     * bucket being accessed (some buckets are not valid DNS names). Setting
+     * this flag will result in path-style access being used for all requests.
      * </p>
-     * @param pathStyleAccess
-     *            True to always use path-style access.
+     *
+     * @param pathStyleAccess True to always use path-style access.
      */
     public void setPathStyleAccess(boolean pathStyleAccess) {
-      this.pathStyleAccess = pathStyleAccess;
+        this.pathStyleAccess = pathStyleAccess;
     }
 
     /**
@@ -86,21 +87,19 @@ public class S3ClientOptions {
      * region-specific endpoint when attempting to access a bucket.
      * </p>
      * <p>
-     * The default behaviour is to detect which access style to use based on
-     * the configured endpoint (an IP will result in path-style access) and
-     * the bucket being accessed (some buckets are not valid DNS names).
-     * Setting this flag will result in path-style access being used for all
-     * requests.
+     * The default behaviour is to detect which access style to use based on the
+     * configured endpoint (an IP will result in path-style access) and the
+     * bucket being accessed (some buckets are not valid DNS names). Setting
+     * this flag will result in path-style access being used for all requests.
      * </p>
-     * @param pathStyleAccess
-     *            True to always use path-style access.
      *
-     * @return The updated S3ClientOptions object with the new path-style
-     *         access setting.
+     * @param pathStyleAccess True to always use path-style access.
+     * @return The updated S3ClientOptions object with the new path-style access
+     *         setting.
      */
     public S3ClientOptions withPathStyleAccess(boolean pathStyleAccess) {
-      setPathStyleAccess(pathStyleAccess);
-      return this;
+        setPathStyleAccess(pathStyleAccess);
+        return this;
     }
 
 }

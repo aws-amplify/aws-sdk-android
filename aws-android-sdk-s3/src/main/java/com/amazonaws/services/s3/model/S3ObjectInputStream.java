@@ -12,21 +12,22 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
-
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.commons.logging.LogFactory;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.conn.EofSensorInputStream;
 
 import com.amazonaws.internal.MetricAware;
 import com.amazonaws.internal.SdkFilterInputStream;
 import com.amazonaws.metrics.AwsSdkMetrics;
 import com.amazonaws.metrics.MetricFilterInputStream;
 import com.amazonaws.services.s3.metrics.S3ServiceMetric;
+
+import org.apache.commons.logging.LogFactory;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.conn.EofSensorInputStream;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Input stream representing the content of an {@link S3Object}. In addition to
@@ -66,20 +67,20 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
      */
     private static boolean wrapWithByteCounting(InputStream in) {
         if (!AwsSdkMetrics.isMetricsEnabled())
-            return false;   // metrics is disabled
+            return false; // metrics is disabled
         if (in instanceof MetricAware) {
-            MetricAware aware = (MetricAware)in;
-            // wrap only if not already wrapped in one of it's inner chain of input stream
+            MetricAware aware = (MetricAware) in;
+            // wrap only if not already wrapped in one of it's inner chain of
+            // input stream
             return !aware.isMetricActivated();
         }
-        return true; // this is a raw input stream so metric wrapping is necessary
+        return true; // this is a raw input stream so metric wrapping is
+                     // necessary
     }
 
     /**
-     * {@inheritDoc}
-     * 
-     * Aborts the underlying http request without reading any more data and
-     * closes the stream.
+     * {@inheritDoc} Aborts the underlying http request without reading any more
+     * data and closes the stream.
      * <p>
      * By default Apache {@link HttpClient} tries to reuse http connections by
      * reading to the end of an attached input stream on

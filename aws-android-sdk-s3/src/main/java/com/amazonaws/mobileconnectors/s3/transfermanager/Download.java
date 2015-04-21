@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
-import java.io.IOException;
-
+import com.amazonaws.mobileconnectors.s3.transfermanager.exception.PauseException;
 import com.amazonaws.services.s3.model.CryptoMode;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.mobileconnectors.s3.transfermanager.exception.PauseException;
+
+import java.io.IOException;
 
 /**
  * Represents an asynchronous download from Amazon S3.
@@ -26,7 +27,8 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.exception.PauseExceptio
  * See {@link TransferManager} for more information about creating transfers.
  * </p>
  *
- * @see TransferManager#download(com.amazonaws.services.s3.model.GetObjectRequest);
+ * @see TransferManager#download(com.amazonaws.services.s3.model.GetObjectRequest)
+ *      ;
  */
 public interface Download extends Transfer {
 
@@ -60,19 +62,15 @@ public interface Download extends Transfer {
 
     /**
      * Pause the current download operation and returns the information that can
-     * be used to resume the download at a later time.
-     *
-     * Resuming a download would not perform ETag check as range get is
-     * performed for downloading the object's remaining contents.
-     *
-     * Resuming a download for an object encrypted using
-     * {@link CryptoMode#StrictAuthenticatedEncryption} would result in
+     * be used to resume the download at a later time. Resuming a download would
+     * not perform ETag check as range get is performed for downloading the
+     * object's remaining contents. Resuming a download for an object encrypted
+     * using {@link CryptoMode#StrictAuthenticatedEncryption} would result in
      * AmazonClientException as authenticity cannot be guaranteed for a range
      * get operation.
      *
-     * @throws PauseException
-     *             If any errors were encountered while trying to pause the
-     *             download.
+     * @throws PauseException If any errors were encountered while trying to
+     *             pause the download.
      */
     public PersistableDownload pause() throws PauseException;
 }

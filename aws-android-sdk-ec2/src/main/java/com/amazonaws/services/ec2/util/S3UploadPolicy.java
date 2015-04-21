@@ -12,8 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.util;
+
 import static com.amazonaws.util.StringUtils.UTF8;
+
+import com.amazonaws.util.Base64;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -24,8 +28,6 @@ import java.util.SimpleTimeZone;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-
-import com.amazonaws.util.Base64;
 
 /**
  * This class represents S3 upload policy. Policy string representation and
@@ -42,18 +44,14 @@ public class S3UploadPolicy {
      * constructed, callers can access the policy string and policy signature to
      * use with the EC2 bundling API.
      *
-     * @param awsAccessKeyId
-     *            The AWS access key ID for the S3 bucket the bundling artifacts
-     *            should be stored in.
-     * @param awsSecretKey
-     *            The AWS secret key for the specified access key.
-     * @param bucketName
-     *            The name of the bucket to store the bundling artifacts in.
-     * @param prefix
-     *            The prefix for the bundling artifacts.
-     * @param expireInMinutes
-     *            The number of minutes before the upload policy expires and is
-     *            unable to be used.
+     * @param awsAccessKeyId The AWS access key ID for the S3 bucket the
+     *            bundling artifacts should be stored in.
+     * @param awsSecretKey The AWS secret key for the specified access key.
+     * @param bucketName The name of the bucket to store the bundling artifacts
+     *            in.
+     * @param prefix The prefix for the bundling artifacts.
+     * @param expireInMinutes The number of minutes before the upload policy
+     *            expires and is unable to be used.
      */
     public S3UploadPolicy(String awsAccessKeyId,
             String awsSecretKey,
@@ -84,7 +82,7 @@ public class S3UploadPolicy {
             this.policyString = base64Encode(builder.toString().getBytes(UTF8));
             this.policySignature = signPolicy(awsSecretKey, policyString);
         } catch (Exception ex) {
-            throw new RuntimeException ("Unable to generate S3 upload policy", ex);
+            throw new RuntimeException("Unable to generate S3 upload policy", ex);
         }
     }
 
@@ -118,7 +116,7 @@ public class S3UploadPolicy {
         return base64Encode(mac.doFinal(base64EncodedPolicy.getBytes()));
     }
 
-    private String base64Encode(byte [] data) {
+    private String base64Encode(byte[] data) {
         return Base64.encodeAsString(data).replaceAll("\\s", "");
     }
 

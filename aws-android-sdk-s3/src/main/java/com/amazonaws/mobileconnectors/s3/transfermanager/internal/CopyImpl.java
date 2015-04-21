@@ -12,16 +12,17 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.mobileconnectors.s3.transfermanager.Copy;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferProgress;
 import com.amazonaws.mobileconnectors.s3.transfermanager.model.CopyResult;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * An implementation of the Copy Interface that helps in retrieving the result
@@ -43,17 +44,14 @@ public class CopyImpl extends AbstractTransfer implements Copy {
      * through this method.
      *
      * @return The result of this transfer.
-     *
-     * @throws AmazonClientException
-     *             If any errors were encountered in the client while making the
-     *             request or handling the response.
-     * @throws AmazonServiceException
-     *             If any errors occurred in Amazon S3 while processing the
-     *             request.
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the upload to
-     *             complete.
+     * @throws AmazonClientException If any errors were encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws InterruptedException If this thread is interrupted while waiting
+     *             for the upload to complete.
      */
+    @Override
     public CopyResult waitForCopyResult() throws AmazonClientException,
             AmazonServiceException, InterruptedException {
         try {

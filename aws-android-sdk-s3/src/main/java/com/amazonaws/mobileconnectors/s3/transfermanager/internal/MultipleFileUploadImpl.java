@@ -12,12 +12,8 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -26,16 +22,21 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.MultipleFileUpload;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferProgress;
 import com.amazonaws.mobileconnectors.s3.transfermanager.Upload;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * Multiple file upload when uploading an entire directory.
  */
-public class MultipleFileUploadImpl extends MultipleFileTransfer<Upload> implements MultipleFileUpload {
+public class MultipleFileUploadImpl extends MultipleFileTransfer<Upload> implements
+        MultipleFileUpload {
 
     private final String keyPrefix;
     private final String bucketName;
 
     public MultipleFileUploadImpl(String description, TransferProgress transferProgress,
-            ProgressListenerChain progressListenerChain, String keyPrefix, String bucketName, Collection<? extends Upload> subTransfers) {
+            ProgressListenerChain progressListenerChain, String keyPrefix, String bucketName,
+            Collection<? extends Upload> subTransfers) {
         super(description, transferProgress, progressListenerChain, subTransfers);
         this.keyPrefix = keyPrefix;
         this.bucketName = bucketName;
@@ -44,6 +45,7 @@ public class MultipleFileUploadImpl extends MultipleFileTransfer<Upload> impleme
     /**
      * Returns the key prefix of the virtual directory being uploaded to.
      */
+    @Override
     public String getKeyPrefix() {
         return keyPrefix;
     }
@@ -51,6 +53,7 @@ public class MultipleFileUploadImpl extends MultipleFileTransfer<Upload> impleme
     /**
      * Returns the name of the bucket to which files are uploaded.
      */
+    @Override
     public String getBucketName() {
         return bucketName;
     }
@@ -59,15 +62,12 @@ public class MultipleFileUploadImpl extends MultipleFileTransfer<Upload> impleme
      * Waits for this transfer to complete. This is a blocking call; the current
      * thread is suspended until this transfer completes.
      *
-     * @throws AmazonClientException
-     *             If any errors were encountered in the client while making the
-     *             request or handling the response.
-     * @throws AmazonServiceException
-     *             If any errors occurred in Amazon S3 while processing the
-     *             request.
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the transfer
-     *             to complete.
+     * @throws AmazonClientException If any errors were encountered in the
+     *             client while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws InterruptedException If this thread is interrupted while waiting
+     *             for the transfer to complete.
      */
     @Override
     public void waitForCompletion()
@@ -77,8 +77,11 @@ public class MultipleFileUploadImpl extends MultipleFileTransfer<Upload> impleme
         super.waitForCompletion();
     }
 
-    /* (non-Javadoc)
-     * @see com.amazonaws.mobileconnectors.s3.transfermanager.MultipleFileUpload#getSubTransfers()
+    /*
+     * (non-Javadoc)
+     * @see
+     * com.amazonaws.mobileconnectors.s3.transfermanager.MultipleFileUpload#
+     * getSubTransfers()
      */
     @Override
     public Collection<? extends Upload> getSubTransfers() {

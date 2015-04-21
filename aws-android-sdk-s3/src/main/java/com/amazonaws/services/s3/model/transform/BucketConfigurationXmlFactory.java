@@ -12,9 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model.transform;
 
-import java.util.List;
+package com.amazonaws.services.s3.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.internal.Constants;
@@ -33,10 +32,12 @@ import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
 import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
 import com.amazonaws.services.s3.model.CORSRule;
 import com.amazonaws.services.s3.model.CORSRule.AllowedMethods;
-import com.amazonaws.services.s3.model.RoutingRule;
 import com.amazonaws.services.s3.model.RedirectRule;
+import com.amazonaws.services.s3.model.RoutingRule;
 import com.amazonaws.services.s3.model.RoutingRuleCondition;
 import com.amazonaws.services.s3.model.TagSet;
+
+import java.util.List;
 
 /**
  * Converts bucket configuration objects into XML byte arrays.
@@ -46,9 +47,7 @@ public class BucketConfigurationXmlFactory {
     /**
      * Converts the specified versioning configuration into an XML byte array.
      *
-     * @param versioningConfiguration
-     *            The configuration to convert.
-     *
+     * @param versioningConfiguration The configuration to convert.
      * @return The XML byte array representation.
      */
     public byte[] convertToXmlByteArray(BucketVersioningConfiguration versioningConfiguration) {
@@ -73,9 +72,7 @@ public class BucketConfigurationXmlFactory {
     /**
      * Converts the specified logging configuration into an XML byte array.
      *
-     * @param loggingConfiguration
-     *            The configuration to convert.
-     *
+     * @param loggingConfiguration The configuration to convert.
      * @return The XML byte array representation.
      */
     public byte[] convertToXmlByteArray(BucketLoggingConfiguration loggingConfiguration) {
@@ -100,20 +97,19 @@ public class BucketConfigurationXmlFactory {
     /**
      * Converts the specified notification configuration into an XML byte array.
      *
-     * @param notificationConfiguration
-     *            The configuration to convert.
-     *
+     * @param notificationConfiguration The configuration to convert.
      * @return The XML byte array representation.
      */
     public byte[] convertToXmlByteArray(BucketNotificationConfiguration notificationConfiguration) {
         XmlWriter xml = new XmlWriter();
         xml.start("NotificationConfiguration", "xmlns", Constants.XML_NAMESPACE);
 
-        List<TopicConfiguration> topicConfigurations = notificationConfiguration.getTopicConfigurations();
-        for ( TopicConfiguration topicConfiguration : topicConfigurations ) {
-            xml.start( "TopicConfiguration" );
-            xml.start( "Topic" ).value( topicConfiguration.getTopic() ).end();
-            xml.start( "Event" ).value( topicConfiguration.getEvent() ).end();
+        List<TopicConfiguration> topicConfigurations = notificationConfiguration
+                .getTopicConfigurations();
+        for (TopicConfiguration topicConfiguration : topicConfigurations) {
+            xml.start("TopicConfiguration");
+            xml.start("Topic").value(topicConfiguration.getTopic()).end();
+            xml.start("Event").value(topicConfiguration.getEvent()).end();
             xml.end();
         }
 
@@ -124,20 +120,12 @@ public class BucketConfigurationXmlFactory {
 
     /**
      * Converts the specified website configuration into an XML byte array to
-     * send to S3.
+     * send to S3. Sample XML: <WebsiteConfiguration
+     * xmlns="http://s3.amazonaws.com/doc/2006-03-01/"> <IndexDocument>
+     * <Suffix>index.html</Suffix> </IndexDocument> <ErrorDocument>
+     * <Key>404.html</Key> </ErrorDocument> </WebsiteConfiguration>
      *
-     * Sample XML:
-     * <WebsiteConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-     *    <IndexDocument>
-     *      <Suffix>index.html</Suffix>
-     *    </IndexDocument>
-     *    <ErrorDocument>
-     *      <Key>404.html</Key>
-     *    </ErrorDocument>
-     *  </WebsiteConfiguration>
-     *
-     * @param websiteConfiguration
-     *            The configuration to convert.
+     * @param websiteConfiguration The configuration to convert.
      * @return The XML byte array representation.
      */
     public byte[] convertToXmlByteArray(BucketWebsiteConfiguration websiteConfiguration) {
@@ -146,7 +134,8 @@ public class BucketConfigurationXmlFactory {
 
         if (websiteConfiguration.getIndexDocumentSuffix() != null) {
             XmlWriter indexDocumentElement = xml.start("IndexDocument");
-            indexDocumentElement.start("Suffix").value(websiteConfiguration.getIndexDocumentSuffix()).end();
+            indexDocumentElement.start("Suffix")
+                    .value(websiteConfiguration.getIndexDocumentSuffix()).end();
             indexDocumentElement.end();
         }
 
@@ -168,7 +157,8 @@ public class BucketConfigurationXmlFactory {
             }
 
             if (redirectAllRequestsTo.getReplaceKeyPrefixWith() != null) {
-                xml.start("ReplaceKeyPrefixWith").value(redirectAllRequestsTo.getReplaceKeyPrefixWith()).end();
+                xml.start("ReplaceKeyPrefixWith")
+                        .value(redirectAllRequestsTo.getReplaceKeyPrefixWith()).end();
             }
 
             if (redirectAllRequestsTo.getReplaceKeyWith() != null) {
@@ -177,7 +167,8 @@ public class BucketConfigurationXmlFactory {
             redirectAllRequestsElement.end();
         }
 
-        if (websiteConfiguration.getRoutingRules() != null && websiteConfiguration.getRoutingRules().size() > 0) {
+        if (websiteConfiguration.getRoutingRules() != null
+                && websiteConfiguration.getRoutingRules().size() > 0) {
 
             XmlWriter routingRules = xml.start("RoutingRules");
             for (RoutingRule rule : websiteConfiguration.getRoutingRules()) {
@@ -192,47 +183,28 @@ public class BucketConfigurationXmlFactory {
     }
 
     /**
-     * Converts the specified {@link BucketLifecycleConfiguration} object to an XML fragment that
-     * can be sent to Amazon S3.
+     * Converts the specified {@link BucketLifecycleConfiguration} object to an
+     * XML fragment that can be sent to Amazon S3.
      *
-     * @param config
-     *            The {@link BucketLifecycleConfiguration}
+     * @param config The {@link BucketLifecycleConfiguration}
      */
-     /* <LifecycleConfiguration>
-           <Rule>
-               <ID>logs-rule</ID>
-               <Prefix>logs/</Prefix>
-               <Status>Enabled</Status>
-               <Transition>
-                   <Days>30</Days>
-                   <StorageClass>GLACIER</StorageClass>
-               </Transition>
-               <Expiration>
-                   <Days>365</Days>
-               </Expiration>
-               <NoncurrentVersionTransition>
-                   <NoncurrentDays>7</NoncurrentDays>
-                   <StorageClass>GLACIER</StorageClass>
-               </NoncurrentVersionTransition>
-               <NoncurrentVersionExpiration>
-                   <NoncurrentDays>14</NoncurrentDays>
-               </NoncurrentVersionExpiration>
-           </Rule>
-           <Rule>
-               <ID>image-rule</ID>
-               <Prefix>image/</Prefix>
-               <Status>Enabled</Status>
-               <Transition>
-                   <Date>2012-12-31T00:00:00.000Z</Date>
-                   <StorageClass>GLACIER</StorageClass>
-               </Transition>
-               <Expiration>
-                   <Date>2020-12-31T00:00:00.000Z</Date>
-               </Expiration>
-          </Rule>
-    </LifecycleConfiguration>
-    */
-    public byte[] convertToXmlByteArray(BucketLifecycleConfiguration config) throws AmazonClientException {
+    /*
+     * <LifecycleConfiguration> <Rule> <ID>logs-rule</ID> <Prefix>logs/</Prefix>
+     * <Status>Enabled</Status> <Transition> <Days>30</Days>
+     * <StorageClass>GLACIER</StorageClass> </Transition> <Expiration>
+     * <Days>365</Days> </Expiration> <NoncurrentVersionTransition>
+     * <NoncurrentDays>7</NoncurrentDays> <StorageClass>GLACIER</StorageClass>
+     * </NoncurrentVersionTransition> <NoncurrentVersionExpiration>
+     * <NoncurrentDays>14</NoncurrentDays> </NoncurrentVersionExpiration>
+     * </Rule> <Rule> <ID>image-rule</ID> <Prefix>image/</Prefix>
+     * <Status>Enabled</Status> <Transition>
+     * <Date>2012-12-31T00:00:00.000Z</Date>
+     * <StorageClass>GLACIER</StorageClass> </Transition> <Expiration>
+     * <Date>2020-12-31T00:00:00.000Z</Date> </Expiration> </Rule>
+     * </LifecycleConfiguration>
+     */
+    public byte[] convertToXmlByteArray(BucketLifecycleConfiguration config)
+            throws AmazonClientException {
 
         XmlWriter xml = new XmlWriter();
         xml.start("LifecycleConfiguration");
@@ -247,23 +219,20 @@ public class BucketConfigurationXmlFactory {
     }
 
     /**
-     * Converts the specified {@link BucketCrossOriginConfiguration} object to an XML fragment that
-     * can be sent to Amazon S3.
+     * Converts the specified {@link BucketCrossOriginConfiguration} object to
+     * an XML fragment that can be sent to Amazon S3.
      *
-     * @param config
-     *            The {@link BucketCrossOriginConfiguration}
+     * @param config The {@link BucketCrossOriginConfiguration}
      */
     /*
-     * <CORSConfiguration>
-             <CORSRule>
-               <AllowedOrigin>http://www.foobar.com</AllowedOrigin>
-               <AllowedMethod>GET</AllowedMethod>
-               <MaxAgeSeconds>3000</MaxAgeSec>
-               <ExposeHeader>x-amz-server-side-encryption</ExposeHeader>
-             </CORSRule>
-       </CORSConfiguration>
+     * <CORSConfiguration> <CORSRule>
+     * <AllowedOrigin>http://www.foobar.com</AllowedOrigin>
+     * <AllowedMethod>GET</AllowedMethod> <MaxAgeSeconds>3000</MaxAgeSec>
+     * <ExposeHeader>x-amz-server-side-encryption</ExposeHeader> </CORSRule>
+     * </CORSConfiguration>
      */
-    public byte[] convertToXmlByteArray(BucketCrossOriginConfiguration config) throws AmazonClientException {
+    public byte[] convertToXmlByteArray(BucketCrossOriginConfiguration config)
+            throws AmazonClientException {
 
         XmlWriter xml = new XmlWriter();
         xml.start("CORSConfiguration", "xmlns", Constants.XML_NAMESPACE);
@@ -306,7 +275,7 @@ public class BucketConfigurationXmlFactory {
         }
 
         NoncurrentVersionTransition ncvTransition =
-            rule.getNoncurrentVersionTransition();
+                rule.getNoncurrentVersionTransition();
         if (ncvTransition != null) {
             xml.start("NoncurrentVersionTransition");
             if (ncvTransition.getDays() != -1) {
@@ -317,8 +286,8 @@ public class BucketConfigurationXmlFactory {
 
             xml.start("StorageClass");
             xml.value(ncvTransition.getStorageClass().toString());
-            xml.end();  // </StorageClass>
-            xml.end();  // </NoncurrentVersionTransition>
+            xml.end(); // </StorageClass>
+            xml.end(); // </NoncurrentVersionTransition>
         }
 
         if (rule.getExpirationInDays() != -1) {
@@ -330,9 +299,9 @@ public class BucketConfigurationXmlFactory {
         if (rule.getNoncurrentVersionExpirationInDays() != -1) {
             xml.start("NoncurrentVersionExpiration");
             xml.start("NoncurrentDays")
-                .value(Integer.toString(
-                    rule.getNoncurrentVersionExpirationInDays()))
-                .end();
+                    .value(Integer.toString(
+                            rule.getNoncurrentVersionExpirationInDays()))
+                    .end();
             xml.end(); // </NoncurrentVersionExpiration>
         }
 
@@ -360,7 +329,7 @@ public class BucketConfigurationXmlFactory {
                 xml.start("AllowedMethod").value(method.toString()).end();
             }
         }
-        if(rule.getMaxAgeSeconds() != 0) {
+        if (rule.getMaxAgeSeconds() != 0) {
             xml.start("MaxAgeSeconds").value(Integer.toString(rule.getMaxAgeSeconds())).end();
         }
         if (rule.getExposedHeaders() != null) {
@@ -369,11 +338,11 @@ public class BucketConfigurationXmlFactory {
             }
         }
         if (rule.getAllowedHeaders() != null) {
-            for(String header : rule.getAllowedHeaders()) {
+            for (String header : rule.getAllowedHeaders()) {
                 xml.start("AllowedHeader").value(header).end();
             }
         }
-        xml.end();//</CORSRule>
+        xml.end();// </CORSRule>
     }
 
     private void writeRule(XmlWriter xml, RoutingRule rule) {
@@ -388,7 +357,8 @@ public class BucketConfigurationXmlFactory {
             xml.end(); // </KeyPrefixEquals">
 
             if (condition.getHttpErrorCodeReturnedEquals() != null) {
-                xml.start("HttpErrorCodeReturnedEquals ").value(condition.getHttpErrorCodeReturnedEquals()).end();
+                xml.start("HttpErrorCodeReturnedEquals ")
+                        .value(condition.getHttpErrorCodeReturnedEquals()).end();
             }
 
             xml.end(); // </Condition>
@@ -421,29 +391,18 @@ public class BucketConfigurationXmlFactory {
         xml.end();// </CORSRule>
     }
 
-
     /**
-     * Converts the specified {@link BucketTaggingConfiguration} object to an XML fragment that
-     * can be sent to Amazon S3.
+     * Converts the specified {@link BucketTaggingConfiguration} object to an
+     * XML fragment that can be sent to Amazon S3.
      *
-     * @param config
-     *            The {@link BucketTaggingConfiguration}
+     * @param config The {@link BucketTaggingConfiguration}
      */
     /*
-     * <Tagging>
-         <TagSet>
-            <Tag>
-                   <Key>Project</Key>
-                   <Value>Foo</Value>
-            </Tag>
-            <Tag>
-                   <Key>User</Key>
-                   <Value>nschnarr</Value>
-            </Tag>
-         </TagSet>
-        </Tagging>
-    */
-    public byte[] convertToXmlByteArray(BucketTaggingConfiguration config) throws AmazonClientException {
+     * <Tagging> <TagSet> <Tag> <Key>Project</Key> <Value>Foo</Value> </Tag>
+     * <Tag> <Key>User</Key> <Value>nschnarr</Value> </Tag> </TagSet> </Tagging>
+     */
+    public byte[] convertToXmlByteArray(BucketTaggingConfiguration config)
+            throws AmazonClientException {
 
         XmlWriter xml = new XmlWriter();
         xml.start("Tagging");
@@ -459,7 +418,7 @@ public class BucketConfigurationXmlFactory {
 
     private void writeRule(XmlWriter xml, TagSet tagset) {
         xml.start("TagSet");
-        for ( String key : tagset.getAllTags().keySet() ) {
+        for (String key : tagset.getAllTags().keySet()) {
             xml.start("Tag");
             xml.start("Key").value(key).end();
             xml.start("Value").value(tagset.getTag(key)).end();

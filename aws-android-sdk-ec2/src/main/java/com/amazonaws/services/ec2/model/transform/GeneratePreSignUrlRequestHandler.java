@@ -12,10 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.ec2.model.transform;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+package com.amazonaws.services.ec2.model.transform;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.Protocol;
@@ -28,6 +26,9 @@ import com.amazonaws.regions.RegionUtils;
 import com.amazonaws.services.ec2.model.CopySnapshotRequest;
 import com.amazonaws.util.HttpUtils;
 import com.amazonaws.util.StringUtils;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * RequestHandler that generates a pre-signed URL for copying encrypted

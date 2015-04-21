@@ -12,12 +12,14 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.auth;
+
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.amazonaws.ClientConfiguration;
 
 /**
  * Session credentials provider factory to share providers across potentially
@@ -50,22 +52,22 @@ public class SessionCredentialsProviderFactory {
 
         @Override
         public boolean equals(Object obj) {
-            if ( this == obj )
+            if (this == obj)
                 return true;
-            if ( obj == null )
+            if (obj == null)
                 return false;
-            if ( getClass() != obj.getClass() )
+            if (getClass() != obj.getClass())
                 return false;
             Key other = (Key) obj;
-            if ( awsAccessKeyId == null ) {
-                if ( other.awsAccessKeyId != null )
+            if (awsAccessKeyId == null) {
+                if (other.awsAccessKeyId != null)
                     return false;
-            } else if ( !awsAccessKeyId.equals(other.awsAccessKeyId) )
+            } else if (!awsAccessKeyId.equals(other.awsAccessKeyId))
                 return false;
-            if ( serviceEndpoint == null ) {
-                if ( other.serviceEndpoint != null )
+            if (serviceEndpoint == null) {
+                if (other.serviceEndpoint != null)
                     return false;
-            } else if ( !serviceEndpoint.equals(other.serviceEndpoint) )
+            } else if (!serviceEndpoint.equals(other.serviceEndpoint))
                 return false;
             return true;
         }
@@ -77,23 +79,23 @@ public class SessionCredentialsProviderFactory {
      * Gets a session credentials provider for the long-term credentials and
      * service endpoint given. These are shared globally to support reuse of
      * session tokens.
-     * 
-     * @param longTermCredentials
-     *            The long-term AWS account credentials used to initiate a
-     *            session.
-     * @param serviceEndpoint
-     *            The service endpoint for the service the session credentials
-     *            will be used to access.
-     * @param stsClientConfiguration
-     *            Client configuration for the {@link AWSSecurityTokenService}
-     *            used to fetch session credentials.
+     *
+     * @param longTermCredentials The long-term AWS account credentials used to
+     *            initiate a session.
+     * @param serviceEndpoint The service endpoint for the service the session
+     *            credentials will be used to access.
+     * @param stsClientConfiguration Client configuration for the
+     *            {@link AWSSecurityTokenService} used to fetch session
+     *            credentials.
      */
-    public static synchronized STSSessionCredentialsProvider getSessionCredentialsProvider(AWSCredentials longTermCredentials,
-                                                                                           String serviceEndpoint,
-                                                                                           ClientConfiguration stsClientConfiguration) {
+    public static synchronized STSSessionCredentialsProvider getSessionCredentialsProvider(
+            AWSCredentials longTermCredentials,
+            String serviceEndpoint,
+            ClientConfiguration stsClientConfiguration) {
         Key key = new Key(longTermCredentials.getAWSAccessKeyId(), serviceEndpoint);
-        if ( !cache.containsKey(key) ) {
-            cache.put(key, new STSSessionCredentialsProvider(longTermCredentials, stsClientConfiguration));
+        if (!cache.containsKey(key)) {
+            cache.put(key, new STSSessionCredentialsProvider(longTermCredentials,
+                    stsClientConfiguration));
         }
         return cache.get(key);
     }

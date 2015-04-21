@@ -15,7 +15,11 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,9 +29,6 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * Utility class that maintains a listing of known Mimetypes, and determines the
@@ -63,7 +64,8 @@ public class Mimetypes {
     private static Mimetypes mimetypes = null;
 
     /**
-     * Map that stores file extensions as keys, and the corresponding mimetype as values.
+     * Map that stores file extensions as keys, and the corresponding mimetype
+     * as values.
      */
     private final HashMap<String, String> extensionToMimetypeMap = new HashMap<String, String>();
 
@@ -259,7 +261,8 @@ public class Mimetypes {
      * @return an instance of {@link Mimetypes}
      */
     public synchronized static Mimetypes getInstance() {
-        if (mimetypes != null) return mimetypes;
+        if (mimetypes != null)
+            return mimetypes;
 
         mimetypes = new Mimetypes();
         if (log.isDebugEnabled()) {
@@ -273,17 +276,17 @@ public class Mimetypes {
     }
 
     /**
-     * Reads and stores the mime type setting corresponding to a file extension, by reading
-     * text from an InputStream. If a mime type setting already exists when this method is run,
-     * the mime type value is replaced with the newer one.
+     * Reads and stores the mime type setting corresponding to a file extension,
+     * by reading text from an InputStream. If a mime type setting already
+     * exists when this method is run, the mime type value is replaced with the
+     * newer one.
      *
      * @param is
-     *
      * @throws IOException
      */
     public void loadAndReplaceMimetypes(InputStream is) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String line =  null;
+        String line = null;
 
         while ((line = br.readLine()) != null) {
             line = line.trim();
@@ -298,12 +301,14 @@ public class Mimetypes {
                         String extension = st.nextToken();
                         extensionToMimetypeMap.put(extension.toLowerCase(), mimetype);
                         if (log.isDebugEnabled()) {
-                            log.debug("Setting mime type for extension '" + extension.toLowerCase() + "' to '" + mimetype + "'");
+                            log.debug("Setting mime type for extension '" + extension.toLowerCase()
+                                    + "' to '" + mimetype + "'");
                         }
                     }
                 } else {
                     if (log.isDebugEnabled()) {
-                        log.debug("Ignoring mimetype with no associated file extensions: '" + line + "'");
+                        log.debug("Ignoring mimetype with no associated file extensions: '" + line
+                                + "'");
                     }
                 }
             }
@@ -321,10 +326,8 @@ public class Mimetypes {
      * period (.) in the file's name. If a file has no extension, Guesses the
      * mimetype of file data based on the file's extension.
      *
-     * @param fileName
-     *            The name of the file whose extension may match a known
+     * @param fileName The name of the file whose extension may match a known
      *            mimetype.
-     *
      * @return The file's mimetype based on its extension, or a default value of
      *         <code>application/octet-stream</code> if a mime type value cannot
      *         be found.
@@ -342,36 +345,36 @@ public class Mimetypes {
             } else {
                 if (log.isDebugEnabled()) {
                     log.debug("Extension '" + ext + "' is unrecognized in mime type listing"
-                    + ", using default mime type: '" + MIMETYPE_OCTET_STREAM + "'");
+                            + ", using default mime type: '" + MIMETYPE_OCTET_STREAM + "'");
                 }
             }
         } else {
             if (log.isDebugEnabled()) {
-                log.debug("File name has no extension, mime type cannot be recognised for: " + fileName);
+                log.debug("File name has no extension, mime type cannot be recognised for: "
+                        + fileName);
             }
         }
         return MIMETYPE_OCTET_STREAM;
     }
 
     /**
-     * Determines the mimetype of a file by looking up the file's extension in an internal listing
-     * to find the corresponding mime type. If the file has no extension, or the extension is not
-     * available in the listing contained in this class, the default mimetype
-     * <code>application/octet-stream</code> is returned.
+     * Determines the mimetype of a file by looking up the file's extension in
+     * an internal listing to find the corresponding mime type. If the file has
+     * no extension, or the extension is not available in the listing contained
+     * in this class, the default mimetype <code>application/octet-stream</code>
+     * is returned.
      * <p>
-     * A file extension is one or more characters that occur after the last period (.) in the file's name.
-     * If a file has no extension,
-     * Guesses the mimetype of file data based on the file's extension.
+     * A file extension is one or more characters that occur after the last
+     * period (.) in the file's name. If a file has no extension, Guesses the
+     * mimetype of file data based on the file's extension.
      *
-     * @param file
-     * the file whose extension may match a known mimetype.
-     *
-     * @return
-     * the file's mimetype based on its extension, or a default value of
-     * <code>application/octet-stream</code> if a mime type value cannot be found.
+     * @param file the file whose extension may match a known mimetype.
+     * @return the file's mimetype based on its extension, or a default value of
+     *         <code>application/octet-stream</code> if a mime type value cannot
+     *         be found.
      */
     public String getMimetype(File file) {
-       return getMimetype(file.getName());
+        return getMimetype(file.getName());
     }
 
 }

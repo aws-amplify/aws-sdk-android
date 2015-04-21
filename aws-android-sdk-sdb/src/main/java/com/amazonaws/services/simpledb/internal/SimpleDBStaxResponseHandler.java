@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.simpledb.internal;
 
 import com.amazonaws.http.StaxResponseHandler;
@@ -27,7 +28,8 @@ public class SimpleDBStaxResponseHandler<T> extends StaxResponseHandler<T> {
 
     @Override
     protected void registerAdditionalMetadataExpressions(StaxUnmarshallerContext unmarshallerContext) {
-        unmarshallerContext.registerMetadataExpression("ResponseMetadata/BoxUsage", 2, SimpleDBResponseMetadata.BOX_USAGE);
+        unmarshallerContext.registerMetadataExpression("ResponseMetadata/BoxUsage", 2,
+                SimpleDBResponseMetadata.BOX_USAGE);
     }
 
 }

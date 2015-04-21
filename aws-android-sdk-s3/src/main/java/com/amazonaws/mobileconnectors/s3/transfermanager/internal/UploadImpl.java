@@ -12,10 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -28,6 +26,9 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.Upload;
 import com.amazonaws.mobileconnectors.s3.transfermanager.exception.PauseException;
 import com.amazonaws.mobileconnectors.s3.transfermanager.model.UploadResult;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 public class UploadImpl extends AbstractTransfer implements Upload {
 
     public UploadImpl(String description, TransferProgress transferProgressInternalState,
@@ -36,30 +37,27 @@ public class UploadImpl extends AbstractTransfer implements Upload {
     }
 
     /**
-     * Waits for this upload to complete and returns the result of this
-     * upload. Be prepared to handle errors when calling this method. Any
-     * errors that occurred during the asynchronous transfer will be re-thrown
-     * through this method.
+     * Waits for this upload to complete and returns the result of this upload.
+     * Be prepared to handle errors when calling this method. Any errors that
+     * occurred during the asynchronous transfer will be re-thrown through this
+     * method.
      *
      * @return The result of this transfer.
-     *
-     * @throws AmazonClientException
-     *             If any errors were encountered in the client while making the
-     *             request or handling the response.
-     * @throws AmazonServiceException
-     *             If any errors occurred in Amazon S3 while processing the
-     *             request.
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the upload to
-     *             complete.
+     * @throws AmazonClientException If any errors were encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws InterruptedException If this thread is interrupted while waiting
+     *             for the upload to complete.
      */
+    @Override
     public UploadResult waitForUploadResult()
             throws AmazonClientException, AmazonServiceException, InterruptedException {
         try {
             UploadResult result = null;
             while (!monitor.isDone() || result == null) {
                 Future<?> f = monitor.getFuture();
-                result = (UploadResult)f.get();
+                result = (UploadResult) f.get();
             }
             return result;
         } catch (ExecutionException e) {
@@ -70,7 +68,6 @@ public class UploadImpl extends AbstractTransfer implements Upload {
 
     /*
      * (non-Javadoc)
-     *
      * @see com.amazonaws.mobileconnectors.s3.transfermanager.Upload#pause()
      */
     @Override
@@ -94,8 +91,9 @@ public class UploadImpl extends AbstractTransfer implements Upload {
 
     /*
      * (non-Javadoc)
-     *
-     * @see com.amazonaws.mobileconnectors.s3.transfermanager.Upload#tryPause(boolean)
+     * @see
+     * com.amazonaws.mobileconnectors.s3.transfermanager.Upload#tryPause(boolean
+     * )
      */
     @Override
     public PauseResult<PersistableUpload> tryPause(boolean forceCancelTransfers) {
@@ -104,7 +102,6 @@ public class UploadImpl extends AbstractTransfer implements Upload {
 
     /*
      * (non-Javadoc)
-     *
      * @see com.amazonaws.mobileconnectors.s3.transfermanager.Upload#abort()
      */
     @Override

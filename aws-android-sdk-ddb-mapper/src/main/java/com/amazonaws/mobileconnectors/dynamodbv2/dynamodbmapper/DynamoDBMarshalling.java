@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import java.lang.annotation.ElementType;
@@ -29,12 +30,14 @@ import java.util.Set;
  * the specific property. If the annotation is applied directly to the class
  * field, the corresponding getter and setter must be declared in the same
  * class.
- * 
+ *
  * @see DynamoDBMarshaller
  * @see JsonMarshaller
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD})
+@Target({
+        ElementType.FIELD, ElementType.METHOD
+})
 public @interface DynamoDBMarshalling {
 
     /**

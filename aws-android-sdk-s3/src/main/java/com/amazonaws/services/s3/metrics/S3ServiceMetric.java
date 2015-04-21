@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.metrics;
 
 import com.amazonaws.metrics.ServiceMetricType;
@@ -55,16 +56,25 @@ public class S3ServiceMetric extends SimpleMetricType implements ServiceMetricTy
     public static final S3ServiceMetric S3UploadByteCount = new S3ServiceMetric(
             metricName(UPLOAD_BYTE_COUNT_NAME_SUFFIX));
     private static final S3ServiceMetric[] values = {
-        S3DownloadThroughput,
-        S3DownloadByteCount,
-        S3UploadThroughput,
-        S3UploadByteCount
+            S3DownloadThroughput,
+            S3DownloadByteCount,
+            S3UploadThroughput,
+            S3UploadByteCount
     };
 
     private final String name;
-    private S3ServiceMetric(String name) { this.name = name; }
-    @Override public String name() { return name; }
-    @Override public String getServiceName() {
+
+    private S3ServiceMetric(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String name() {
+        return name;
+    }
+
+    @Override
+    public String getServiceName() {
         return Constants.S3_SERVICE_NAME;
     }
 
@@ -75,13 +85,16 @@ public class S3ServiceMetric extends SimpleMetricType implements ServiceMetricTy
         }
     };
 
-    public static S3ServiceMetric[] values() { return values.clone(); }
+    public static S3ServiceMetric[] values() {
+        return values.clone();
+    }
+
     public static S3ServiceMetric valueOf(String name) {
-        for (S3ServiceMetric e: values()) {
+        for (S3ServiceMetric e : values()) {
             if (e.name().equals(name)) {
                 return e;
             }
         }
-        throw new IllegalArgumentException("No S3ServiceMetric defined for the name "+ name);
+        throw new IllegalArgumentException("No S3ServiceMetric defined for the name " + name);
     }
 }

@@ -12,12 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy;
 
 /**
- * A principal is an AWS account or AWS web serivce, which is being allowed or denied access to a
- * resource through an access control policy. The principal is a property of the
- * {@link Statement} object, not directly the {@link Policy} object.
+ * A principal is an AWS account or AWS web serivce, which is being allowed or
+ * denied access to a resource through an access control policy. The principal
+ * is a property of the {@link Statement} object, not directly the
+ * {@link Policy} object.
  * <p>
  * The principal is A in the statement
  * "A has permission to do B to C where D applies."
@@ -50,7 +52,8 @@ public class Principal {
     public static final Principal AllWebProviders = new Principal("Federated", "*");
 
     /**
-     * Principal instance that includes all the AWS accounts, AWS web services and web identity providers.
+     * Principal instance that includes all the AWS accounts, AWS web services
+     * and web identity providers.
      */
     public static final Principal All = new Principal("*", "*");
 
@@ -58,19 +61,18 @@ public class Principal {
     private final String provider;
 
     /**
-     * Constructs a new principal with the specified AWS web service which
-     * is being allowed or denied access to a resource through an access control
+     * Constructs a new principal with the specified AWS web service which is
+     * being allowed or denied access to a resource through an access control
      * policy.
      *
-     * @param service
-     *            An AWS service.
+     * @param service An AWS service.
      */
     public Principal(Services service) {
         if (service == null) {
             throw new IllegalArgumentException("Null AWS service name specified");
         }
-       id = service.getServiceId();
-       provider = "Service";
+        id = service.getServiceId();
+        provider = "Service";
     }
 
     /**
@@ -87,8 +89,7 @@ public class Principal {
     /**
      * Constructs a new principal with the specified AWS account ID.
      *
-     * @param accountId
-     *            An AWS account ID.
+     * @param accountId An AWS account ID.
      */
     public Principal(String accountId) {
         if (accountId == null) {
@@ -102,8 +103,7 @@ public class Principal {
     /**
      * Constructs a new principal with the specified web identity provider.
      *
-     * @param webIdentityProvider
-     *            An web identity provider.
+     * @param webIdentityProvider An web identity provider.
      */
     public Principal(WebIdentityProviders webIdentityProvider) {
         if (webIdentityProvider == null) {
@@ -120,7 +120,7 @@ public class Principal {
      * @return The provider for this principal.
      */
     public String getProvider() {
-       return provider;
+        return provider;
     }
 
     /**
@@ -129,15 +129,15 @@ public class Principal {
      * @return The unique ID for this principal.
      */
     public String getId() {
-            return id;
+        return id;
     }
 
     /**
-     * The services who have the right to do the assume the role
-     * action. The AssumeRole action returns a set of temporary security
-     * credentials that you can use to access resources that are defined in the
-     * role's policy. The returned credentials consist of an Access Key ID, a
-     * Secret Access Key, and a security token.
+     * The services who have the right to do the assume the role action. The
+     * AssumeRole action returns a set of temporary security credentials that
+     * you can use to access resources that are defined in the role's policy.
+     * The returned credentials consist of an Access Key ID, a Secret Access
+     * Key, and a security token.
      */
     static public enum Services {
 
@@ -161,7 +161,8 @@ public class Principal {
         }
 
         /**
-         * Construct the Services object from a string representing the service id.
+         * Construct the Services object from a string representing the service
+         * id.
          */
         public static Services fromString(String serviceId) {
             if (serviceId != null) {
@@ -174,7 +175,6 @@ public class Principal {
 
             return null;
         }
-
 
     }
 
@@ -202,7 +202,8 @@ public class Principal {
         }
 
         /**
-         * Construct the Services object from a string representing web identity provider.
+         * Construct the Services object from a string representing web identity
+         * provider.
          */
         public static WebIdentityProviders fromString(String webIdentityProvider) {
             if (webIdentityProvider != null) {
@@ -215,7 +216,6 @@ public class Principal {
 
             return null;
         }
-
 
     }
 
@@ -252,7 +252,5 @@ public class Principal {
 
         return false;
     }
-
-
 
 }

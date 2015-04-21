@@ -43,7 +43,7 @@ public class AnalyticsConfig {
     /**
      * Creates an {@link AnalyticsConfig} object with the specified client
      * configuration configuration
-     * 
+     *
      * @param clientConfiguration
      */
     public AnalyticsConfig(ClientConfiguration clientConfiguration) {
@@ -56,7 +56,7 @@ public class AnalyticsConfig {
 
     /**
      * Sets the client configuration this client will use when making request
-     * 
+     *
      * @return AnalyticsConfig the current instance
      */
     public AnalyticsConfig withClientConfiguration(ClientConfiguration clientConfig) {
@@ -68,7 +68,7 @@ public class AnalyticsConfig {
      * Gets the client configuration this client will use when making requests.
      * If none was supplied to the constructor this will return the default
      * client configuration.
-     * 
+     *
      * @return The ClientConfiguration used for making requests
      */
     public ClientConfiguration getClientConfiguration() {
@@ -77,7 +77,7 @@ public class AnalyticsConfig {
 
     /**
      * Sets whether or not event collection is enabled for the SDK.
-     * 
+     *
      * @param allowEventCollection
      * @return AnalyticsConfig the current instance
      */
@@ -88,7 +88,7 @@ public class AnalyticsConfig {
 
     /**
      * Indicates whether or not event collection is enabled for the SDK.
-     * 
+     *
      * @return true/false indicating if event collection is enabled
      */
     public boolean getAllowEventCollection() {
@@ -98,7 +98,7 @@ public class AnalyticsConfig {
     /**
      * Sets whether or not events will be sent to the Amazon Mobile Analytics
      * website over WAN (mobile) networks.
-     * 
+     *
      * @param allowWANDelivery
      * @return AnalyticsConfig the current instance
      */
@@ -110,7 +110,7 @@ public class AnalyticsConfig {
     /**
      * Indicates whether or not events will be sent to the Amazon Mobile
      * Analytics website over WAN (mobile) networks.
-     * 
+     *
      * @return true indicates events will be delivered via WAN or WIFI networks.
      *         false indicates events will be delivered via WIFI network only.
      */

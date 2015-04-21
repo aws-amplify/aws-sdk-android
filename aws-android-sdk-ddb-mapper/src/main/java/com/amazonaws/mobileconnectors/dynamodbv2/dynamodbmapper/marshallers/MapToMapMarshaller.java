@@ -12,14 +12,15 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.marshallers;
 
-import java.util.HashMap;
-import java.util.Map;
+package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.marshallers;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.MapAttributeMarshaller;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MapToMapMarshaller implements MapAttributeMarshaller {
 
@@ -29,7 +30,6 @@ public class MapToMapMarshaller implements MapAttributeMarshaller {
     public static MapToMapMarshaller instance() {
         return INSTANCE;
     }
-
 
     private final ArgumentMarshaller memberMarshaller;
 

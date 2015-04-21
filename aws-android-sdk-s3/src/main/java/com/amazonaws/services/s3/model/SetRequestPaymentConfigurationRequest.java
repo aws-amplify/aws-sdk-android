@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -22,10 +23,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class SetRequestPaymentConfigurationRequest extends AmazonWebServiceRequest {
 
-    /** The name of the Amazon S3 bucket.*/
+    /** The name of the Amazon S3 bucket. */
     private String bucketName;
 
-    /** The configuration associated with the Amazon S3 bucket.*/
+    /** The configuration associated with the Amazon S3 bucket. */
     private RequestPaymentConfiguration configuration;
 
     public SetRequestPaymentConfigurationRequest(String bucketName,

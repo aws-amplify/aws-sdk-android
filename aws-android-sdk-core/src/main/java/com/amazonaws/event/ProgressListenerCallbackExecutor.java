@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.event;
 
 import java.util.concurrent.ExecutorService;
@@ -33,12 +34,14 @@ public class ProgressListenerCallbackExecutor {
 
     /**
      * Used to submit a task to publish a progress event to the given listener.
-     * 
-     * @return the future of the submitted task; or null if there is no listener.
+     *
+     * @return the future of the submitted task; or null if there is no
+     *         listener.
      */
     public static Future<?> progressChanged(final ProgressListener listener,
             final ProgressEvent progressEvent) {
-        if (listener == null) return null;
+        if (listener == null)
+            return null;
         return executor.submit(new Runnable() {
             @Override
             public void run() {
@@ -47,7 +50,7 @@ public class ProgressListenerCallbackExecutor {
         });
     }
 
-    /////////////////////////
+    // ///////////////////////
     public ProgressListenerCallbackExecutor(ProgressListener listener) {
         this.listener = listener;
     }
@@ -57,7 +60,8 @@ public class ProgressListenerCallbackExecutor {
     }
 
     public void progressChanged(final ProgressEvent progressEvent) {
-        if (listener == null) return;
+        if (listener == null)
+            return;
         executor.submit(new Runnable() {
             @Override
             public void run() {
@@ -96,6 +100,7 @@ public class ProgressListenerCallbackExecutor {
      */
     private static ExecutorService createNewExecutorService() {
         return Executors.newSingleThreadExecutor(new ThreadFactory() {
+            @Override
             public Thread newThread(Runnable r) {
                 Thread t = new Thread(r);
                 t.setName("java-sdk-progress-listener-callback-thread");

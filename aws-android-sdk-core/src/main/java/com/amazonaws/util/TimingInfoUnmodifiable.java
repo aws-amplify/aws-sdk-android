@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 /**
@@ -21,13 +22,10 @@ final class TimingInfoUnmodifiable extends TimingInfo {
     /**
      * @see TimingInfo#unmodifiableTimingInfo(long, Long)
      * @see TimingInfo#unmodifiableTimingInfo(long, long, Long)
-     * 
-     * @param startEpochTimeMilli
-     *            start time since epoch in millisecond; or null if not known
-     * @param startTimeNano
-     *            start time in nanosecond
-     * @param endTimeNano
-     *            end time in nanosecond; or null if not known
+     * @param startEpochTimeMilli start time since epoch in millisecond; or null
+     *            if not known
+     * @param startTimeNano start time in nanosecond
+     * @param endTimeNano end time in nanosecond; or null if not known
      */
     TimingInfoUnmodifiable(Long startEpochTimeMilli, long startTimeNano, Long endTimeNano) {
         super(startEpochTimeMilli, startTimeNano, endTimeNano);
@@ -36,19 +34,24 @@ final class TimingInfoUnmodifiable extends TimingInfo {
     /**
      * Always throws {@link UnsupportedOperationException}.
      */
-    @Override public void setEndTime(long _) {
+    @Override
+    public void setEndTime(long _) {
         throw new UnsupportedOperationException();
     }
+
     /**
      * Always throws {@link UnsupportedOperationException}.
      */
-    @Override public void setEndTimeNano(long _) {
+    @Override
+    public void setEndTimeNano(long _) {
         throw new UnsupportedOperationException();
     }
+
     /**
      * Always throws {@link UnsupportedOperationException}.
      */
-    @Override public TimingInfo endTiming() {
+    @Override
+    public TimingInfo endTiming() {
         throw new UnsupportedOperationException();
     }
 }

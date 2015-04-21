@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http;
 
 import com.amazonaws.AmazonClientException;
@@ -36,8 +37,7 @@ import java.util.Map;
  * response from an AWS service and unmarshalls the result using a StAX
  * unmarshaller.
  *
- * @param <T>
- *            Indicates the type being unmarshalled by this response handler.
+ * @param <T> Indicates the type being unmarshalled by this response handler.
  */
 public class StaxResponseHandler<T> implements HttpResponseHandler<AmazonWebServiceResponse<T>> {
 
@@ -63,32 +63,31 @@ public class StaxResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
      * response element path to find the root of the business data in the
      * service's response.
      *
-     * @param responseUnmarshaller
-     *            The StAX unmarshaller to use on the response.
+     * @param responseUnmarshaller The StAX unmarshaller to use on the response.
      */
     public StaxResponseHandler(Unmarshaller<T, StaxUnmarshallerContext> responseUnmarshaller) {
         this.responseUnmarshaller = responseUnmarshaller;
 
         /*
          * Even if the invoked operation just returns null, we still need an
-         * unmarshaller to run so we can pull out response metadata.
-         *
-         * We might want to pass this in through the client class so that we
-         * don't have to do this check here.
+         * unmarshaller to run so we can pull out response metadata. We might
+         * want to pass this in through the client class so that we don't have
+         * to do this check here.
          */
         if (this.responseUnmarshaller == null) {
             this.responseUnmarshaller = new VoidStaxUnmarshaller<T>();
         }
     }
 
-
     /**
      * @see com.amazonaws.http.HttpResponseHandler#handle(com.amazonaws.http.HttpResponse)
      */
+    @Override
     public AmazonWebServiceResponse<T> handle(HttpResponse response) throws Exception {
         log.trace("Parsing service response XML");
         InputStream content = response.getContent();
-        if (content == null) content = new ByteArrayInputStream("<eof/>".getBytes());
+        if (content == null)
+            content = new ByteArrayInputStream("<eof/>".getBytes());
 
         XmlPullParser xpp = xmlPullParserFactory.newPullParser();
         xpp.setInput(content, null);
@@ -123,11 +122,11 @@ public class StaxResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
      * Hook for subclasses to override in order to collect additional metadata
      * from service responses.
      *
-     * @param unmarshallerContext
-     *            The unmarshaller context used to process a service's response
-     *            data.
+     * @param unmarshallerContext The unmarshaller context used to process a
+     *            service's response data.
      */
-    protected void registerAdditionalMetadataExpressions(StaxUnmarshallerContext unmarshallerContext) {}
+    protected void registerAdditionalMetadataExpressions(StaxUnmarshallerContext unmarshallerContext) {
+    }
 
     /**
      * Since this response handler completely consumes all the data from the
@@ -136,6 +135,7 @@ public class StaxResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
      *
      * @see com.amazonaws.http.HttpResponseHandler#needsConnectionLeftOpen()
      */
+    @Override
     public boolean needsConnectionLeftOpen() {
         return false;
     }

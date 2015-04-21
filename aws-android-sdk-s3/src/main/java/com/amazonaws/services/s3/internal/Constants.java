@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.internal;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.services.s3.AmazonS3Client;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Constants used by the AWS S3 Java client.
@@ -71,14 +72,14 @@ public class Constants {
     public static final int DEFAULT_STREAM_BUFFER_SIZE = 128 * KB;
 
     /**
-     * Returns the buffer size override if it is specified in the system property,
-     * otherwise returns the default value.
+     * Returns the buffer size override if it is specified in the system
+     * property, otherwise returns the default value.
      */
     public static int getStreamBufferSize() {
-    	int streamBufferSize = DEFAULT_STREAM_BUFFER_SIZE;
+        int streamBufferSize = DEFAULT_STREAM_BUFFER_SIZE;
         String bufferSizeOverride =
-            System.getProperty(SDKGlobalConfiguration
-                                   .DEFAULT_S3_STREAM_BUFFER_SIZE);
+                System.getProperty(SDKGlobalConfiguration
+                        .DEFAULT_S3_STREAM_BUFFER_SIZE);
 
         if (bufferSizeOverride != null) {
             try {
@@ -99,6 +100,7 @@ public class Constants {
 
     public static final int BUCKET_REDIRECT_STATUS_CODE = 301;
 
-    // Constant indicating the requester pays for data transfer cost for a bucket.
+    // Constant indicating the requester pays for data transfer cost for a
+    // bucket.
     public static final String REQUESTER_PAYS = "requester";
 }

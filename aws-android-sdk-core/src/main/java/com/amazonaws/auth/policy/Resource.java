@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy;
 
 /**
@@ -53,8 +54,7 @@ public class Resource {
      * in Amazon S3 are global, so they omit the region field:
      * <b>arn:aws:s3:::bucket/*</b>
      *
-     * @param resource
-     *            The Amazon Resource Name (ARN) uniquely identifying the
+     * @param resource The Amazon Resource Name (ARN) uniquely identifying the
      *            desired AWS resource.
      */
     public Resource(String resource) {

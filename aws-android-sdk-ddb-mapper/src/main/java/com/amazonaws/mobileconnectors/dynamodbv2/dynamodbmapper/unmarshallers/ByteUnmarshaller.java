@@ -12,13 +12,13 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
- * An unmarshaller that unmarshals DynamoDB Numbers into Java
- * {@code Byte}s.
+ * An unmarshaller that unmarshals DynamoDB Numbers into Java {@code Byte}s.
  */
 public class ByteUnmarshaller extends NUnmarshaller {
 

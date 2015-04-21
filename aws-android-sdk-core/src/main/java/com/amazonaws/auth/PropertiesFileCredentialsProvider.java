@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 import com.amazonaws.AmazonClientException;
@@ -35,12 +36,10 @@ public class PropertiesFileCredentialsProvider implements
     /**
      * Creates a new PropertiesFileCredentialsProvider that will attempt to load
      * a custom file from the path specified to read AWS security credentials.
-     * 
-     * @param credentialsFilePath
-     *            The custom classpath resource path to a properties file from
-     *            which the AWS security credentials should be loaded.
-     * 
-     *            For example,
+     *
+     * @param credentialsFilePath The custom classpath resource path to a
+     *            properties file from which the AWS security credentials should
+     *            be loaded. For example,
      *            <ul>
      *            <li>/etc/somewhere/credentials.properties</li>
      *            </ul>
@@ -52,6 +51,7 @@ public class PropertiesFileCredentialsProvider implements
         this.credentialsFilePath = credentialsFilePath;
     }
 
+    @Override
     public AWSCredentials getCredentials() {
         try {
             return new PropertiesCredentials(new File(this.credentialsFilePath));
@@ -62,6 +62,7 @@ public class PropertiesFileCredentialsProvider implements
         }
     }
 
+    @Override
     public void refresh() {
     }
 

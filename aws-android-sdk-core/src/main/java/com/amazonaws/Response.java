@@ -12,23 +12,31 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws;
 
 import com.amazonaws.http.HttpResponse;
 
 /**
- * Response wrapper to provide access to not only the original AWS response
- * but also the associated http response.
+ * Response wrapper to provide access to not only the original AWS response but
+ * also the associated http response.
  *
  * @param <T> the underlying AWS response type.
  */
 public final class Response<T> {
     private final T response;
     private final HttpResponse httpResponse;
+
     public Response(T response, HttpResponse httpResponse) {
         this.response = response;
         this.httpResponse = httpResponse;
     }
-    public T getAwsResponse() { return response; }
-    public HttpResponse getHttpResponse() { return httpResponse; }
+
+    public T getAwsResponse() {
+        return response;
+    }
+
+    public HttpResponse getHttpResponse() {
+        return httpResponse;
+    }
 }

@@ -12,16 +12,17 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.internal;
 
 import static com.amazonaws.util.SdkRuntime.shouldAbort;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.amazonaws.AbortedException;
 
 import org.apache.commons.logging.LogFactory;
 
-import com.amazonaws.AbortedException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Base class for AWS Java SDK specific {@link InputStream}.
@@ -37,21 +38,22 @@ public abstract class SdkInputStream extends InputStream implements MetricAware 
     public final boolean isMetricActivated() {
         InputStream in = getWrappedInputStream();
         if (in instanceof MetricAware) {
-            MetricAware metricAware = (MetricAware)in;
+            MetricAware metricAware = (MetricAware) in;
             return metricAware.isMetricActivated();
         }
         return false;
     }
 
     /**
-     * Aborts with subclass specific abortion logic executed if needed.
-     * Note the interrupted status of the thread is cleared by this method.
+     * Aborts with subclass specific abortion logic executed if needed. Note the
+     * interrupted status of the thread is cleared by this method.
+     *
      * @throws AbortedException if found necessary.
      */
     protected final void abortIfNeeded() {
         if (shouldAbort()) {
             try {
-                abort();    // execute subclass specific abortion logic
+                abort(); // execute subclass specific abortion logic
             } catch (IOException e) {
                 LogFactory.getLog(getClass()).debug("FYI", e);
             }
@@ -64,6 +66,7 @@ public abstract class SdkInputStream extends InputStream implements MetricAware 
      * AbortedException. No-op by default.
      */
     protected void abort() throws IOException {
-        // no-op by default, but subclass such as S3ObjectInputStream may override
+        // no-op by default, but subclass such as S3ObjectInputStream may
+        // override
     }
 }

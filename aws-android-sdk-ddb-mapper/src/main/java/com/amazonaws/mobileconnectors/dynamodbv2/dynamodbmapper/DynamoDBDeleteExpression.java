@@ -15,17 +15,18 @@
 
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ConditionalOperator;
 import com.amazonaws.services.dynamodbv2.model.DeleteItemRequest;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Enables adding options to a delete operation.
- * For example, you may want to delete only if an attribute has a particular value.
+ * Enables adding options to a delete operation. For example, you may want to
+ * delete only if an attribute has a particular value.
+ *
  * @see DynamoDBMapper#delete(Object, DynamoDBDeleteExpression)
  */
 public class DynamoDBDeleteExpression {
@@ -37,36 +38,38 @@ public class DynamoDBDeleteExpression {
     private String conditionalOperator;
 
     /**
-     * A condition that must be satisfied in order for a conditional
-     * DeleteItem to succeed.
+     * A condition that must be satisfied in order for a conditional DeleteItem
+     * to succeed.
      */
     private String conditionExpression;
 
     /**
-     * One or more substitution variables for simplifying complex
-     * expressions.
+     * One or more substitution variables for simplifying complex expressions.
      */
-    private java.util.Map<String,String> expressionAttributeNames;
+    private java.util.Map<String, String> expressionAttributeNames;
 
     /**
      * One or more values that can be substituted in an expression.
      */
-    private java.util.Map<String,AttributeValue> expressionAttributeValues;
+    private java.util.Map<String, AttributeValue> expressionAttributeValues;
 
     /**
-     * Gets the map of attribute names to expected attribute values to check on delete.
+     * Gets the map of attribute names to expected attribute values to check on
+     * delete.
      *
-     * @return The map of attribute names to expected attribute value conditions to check on delete
+     * @return The map of attribute names to expected attribute value conditions
+     *         to check on delete
      */
     public Map<String, ExpectedAttributeValue> getExpected() {
         return expectedAttributes;
     }
 
     /**
-     * Sets the expected condition to the map of attribute names to expected attribute values given.
+     * Sets the expected condition to the map of attribute names to expected
+     * attribute values given.
      *
-     * @param expectedAttributes
-     *            The map of attribute names to expected attribute value conditions to check on delete
+     * @param expectedAttributes The map of attribute names to expected
+     *            attribute value conditions to check on delete
      */
     public void setExpected(Map<String, ExpectedAttributeValue> expectedAttributes) {
         this.expectedAttributes = expectedAttributes;
@@ -77,11 +80,11 @@ public class DynamoDBDeleteExpression {
      * attribute values given and returns a pointer to this object for
      * method-chaining.
      *
-     * @param expectedAttributes
-     *            The map of attribute names to expected attribute value
-     *            conditions to check on delete
+     * @param expectedAttributes The map of attribute names to expected
+     *            attribute value conditions to check on delete
      */
-    public DynamoDBDeleteExpression withExpected(Map<String, ExpectedAttributeValue> expectedAttributes) {
+    public DynamoDBDeleteExpression withExpected(
+            Map<String, ExpectedAttributeValue> expectedAttributes) {
         setExpected(expectedAttributes);
         return this;
     }
@@ -90,14 +93,13 @@ public class DynamoDBDeleteExpression {
      * Adds one entry to the expected conditions and returns a pointer to this
      * object for method-chaining.
      *
-     * @param attributeName
-     *            The name of the attribute.
-     * @param expected
-     *            The expected attribute value.
+     * @param attributeName The name of the attribute.
+     * @param expected The expected attribute value.
      */
-    public DynamoDBDeleteExpression withExpectedEntry(String attributeName, ExpectedAttributeValue expected) {
+    public DynamoDBDeleteExpression withExpectedEntry(String attributeName,
+            ExpectedAttributeValue expected) {
         if (expectedAttributes == null) {
-            expectedAttributes = new HashMap<String,ExpectedAttributeValue>();
+            expectedAttributes = new HashMap<String, ExpectedAttributeValue>();
         }
         expectedAttributes.put(attributeName, expected);
         return this;
@@ -172,7 +174,6 @@ public class DynamoDBDeleteExpression {
      *
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     *
      * @see DeleteItemRequest#withConditionExpression(String)
      */
     public DynamoDBDeleteExpression withConditionExpression(
@@ -196,9 +197,8 @@ public class DynamoDBDeleteExpression {
     /**
      * One or more substitution variables for simplifying complex expressions.
      *
-     * @param expressionAttributeNames
-     *            One or more substitution variables for simplifying complex
-     *            expressions.
+     * @param expressionAttributeNames One or more substitution variables for
+     *            simplifying complex expressions.
      * @see DeleteItemRequest#setExpressionAttributeNames(Map)
      */
     public void setExpressionAttributeNames(
@@ -209,10 +209,8 @@ public class DynamoDBDeleteExpression {
     /**
      * One or more substitution variables for simplifying complex expressions.
      *
-     * @param expressionAttributeNames
-     *            One or more substitution variables for simplifying complex
-     *            expressions.
-     *
+     * @param expressionAttributeNames One or more substitution variables for
+     *            simplifying complex expressions.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see DeleteItemRequest#withExpressionAttributeNames(Map)
@@ -229,13 +227,10 @@ public class DynamoDBDeleteExpression {
      * parameter, and returns a reference to this object so that method calls
      * can be chained together.
      *
-     * @param key
-     *            The key of the entry to be added into
+     * @param key The key of the entry to be added into
      *            ExpressionAttributeNames.
-     * @param value
-     *            The corresponding value of the entry to be added into
+     * @param value The corresponding value of the entry to be added into
      *            ExpressionAttributeNames.
-     *
      * @see DeleteItemRequest#addExpressionAttributeNamesEntry(String, String)
      */
     public DynamoDBDeleteExpression addExpressionAttributeNamesEntry(
@@ -274,9 +269,8 @@ public class DynamoDBDeleteExpression {
     /**
      * One or more values that can be substituted in an expression.
      *
-     * @param expressionAttributeValues
-     *            One or more values that can be substituted in an expression.
-     *
+     * @param expressionAttributeValues One or more values that can be
+     *            substituted in an expression.
      * @see DeleteItemRequest#setExpressionAttributeValues(Map)
      */
     public void setExpressionAttributeValues(
@@ -287,9 +281,8 @@ public class DynamoDBDeleteExpression {
     /**
      * One or more values that can be substituted in an expression.
      *
-     * @param expressionAttributeValues
-     *            One or more values that can be substituted in an expression.
-     *
+     * @param expressionAttributeValues One or more values that can be
+     *            substituted in an expression.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see DeleteItemRequest#withExpressionAttributeValues(Map)
@@ -306,13 +299,10 @@ public class DynamoDBDeleteExpression {
      * returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param key
-     *            The key of the entry to be added into
+     * @param key The key of the entry to be added into
      *            ExpressionAttributeValues.
-     * @param value
-     *            The corresponding value of the entry to be added into
+     * @param value The corresponding value of the entry to be added into
      *            ExpressionAttributeValues.
-     *
      * @see DeleteItemRequest#addExpressionAttributeValuesEntry(String,
      *      AttributeValue)
      */

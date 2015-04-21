@@ -12,16 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.ResponseMetadata;
@@ -32,13 +24,21 @@ import com.amazonaws.services.s3.S3ResponseMetadata;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.util.DateUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
 /**
  * Abstract HTTP response handler for Amazon S3 responses. Provides common
  * utilities that other specialized S3 response handlers need to share such as
  * pulling common response metadata (ex: request IDs) out of headers.
  *
- * @param <T>
- *            The output type resulting from handling a response.
+ * @param <T> The output type resulting from handling a response.
  */
 public abstract class AbstractS3ResponseHandler<T>
         implements HttpResponseHandler<AmazonWebServiceResponse<T>> {
@@ -64,6 +64,7 @@ public abstract class AbstractS3ResponseHandler<T>
      *
      * @see com.amazonaws.http.HttpResponseHandler#needsConnectionLeftOpen()
      */
+    @Override
     public boolean needsConnectionLeftOpen() {
         return false;
     }
@@ -73,11 +74,10 @@ public abstract class AbstractS3ResponseHandler<T>
      * response, and returns a AmazonWebServiceResponse<T> object ready for the
      * result to be plugged in.
      *
-     * @param response
-     *            The response containing the response metadata to pull out.
-     *
-     * @return A new, populated AmazonWebServiceResponse<T> object, ready for
-     *         the result to be plugged in.
+     * @param response The response containing the response metadata to pull
+     *            out.
+     * @return A new, populated AmazonWebServiceResponse<T> object, ready for the
+     *         result to be plugged in.
      */
     protected AmazonWebServiceResponse<T> parseResponseMetadata(HttpResponse response) {
         AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();
@@ -96,11 +96,10 @@ public abstract class AbstractS3ResponseHandler<T>
      * Populates the specified S3ObjectMetadata object with all object metadata
      * pulled from the headers in the specified response.
      *
-     * @param response
-     *            The HTTP response containing the object metadata within the
+     * @param response The HTTP response containing the object metadata within
+     *            the headers.
+     * @param metadata The metadata object to populate from the response's
      *            headers.
-     * @param metadata
-     *            The metadata object to populate from the response's headers.
      */
     protected void populateObjectMetadata(HttpResponse response, ObjectMetadata metadata) {
         for (Entry<String, String> header : response.getHeaders().entrySet()) {

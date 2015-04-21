@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 import java.math.BigDecimal;
@@ -65,7 +66,6 @@ public class StringUtils {
         return value.toString();
     }
 
-
     public static BigInteger toBigInteger(String s) {
         return new BigInteger(s);
     }
@@ -82,9 +82,7 @@ public class StringUtils {
      * Converts the specified date to an ISO 8601 timestamp string and returns
      * it.
      *
-     * @param value
-     *            The date to format as an ISO 8601 timestamp string.
-     *
+     * @param value The date to format as an ISO 8601 timestamp string.
      * @return An ISO 8601 timestamp string created from the specified date.
      */
     public static String fromDate(Date value) {
@@ -94,9 +92,7 @@ public class StringUtils {
     /**
      * Returns the string representation of the specified double.
      *
-     * @param d
-     *            The double to represent as a string.
-     *
+     * @param d The double to represent as a string.
      * @return The string representation of the specified double.
      */
     public static String fromDouble(Double d) {
@@ -106,9 +102,7 @@ public class StringUtils {
     /**
      * Returns the string representation of the specified Byte.
      *
-     * @param b
-     *            The Byte to represent as a string.
-     *
+     * @param b The Byte to represent as a string.
      * @return The string representation of the specified Byte.
      */
     public static String fromByte(Byte b) {
@@ -119,9 +113,7 @@ public class StringUtils {
      * Base64 encodes the data in the specified byte buffer and returns it as a
      * base64 encoded string.
      *
-     * @param byteBuffer
-     *            The data to base64 encode and return as a string.
-     *
+     * @param byteBuffer The data to base64 encode and return as a string.
      * @return The base64 encoded contents of the specified byte buffer.
      */
     public static String fromByteBuffer(ByteBuffer byteBuffer) {
@@ -132,14 +124,14 @@ public class StringUtils {
         return Base64.encodeAsString(binaryData);
     }
 
-    public static String replace( String originalString, String partToMatch, String replacement ) {
-        StringBuffer buffer = new StringBuffer( originalString.length() );
-        buffer.append( originalString );
+    public static String replace(String originalString, String partToMatch, String replacement) {
+        StringBuffer buffer = new StringBuffer(originalString.length());
+        buffer.append(originalString);
 
-        int indexOf = buffer.indexOf( partToMatch );
-        while ( indexOf != -1 ) {
-            buffer = buffer.replace( indexOf, indexOf + partToMatch.length(), replacement );
-            indexOf = buffer.indexOf( partToMatch );
+        int indexOf = buffer.indexOf(partToMatch);
+        while (indexOf != -1) {
+            buffer = buffer.replace(indexOf, indexOf + partToMatch.length(), replacement);
+            indexOf = buffer.indexOf(partToMatch);
         }
 
         return buffer.toString();
@@ -147,6 +139,7 @@ public class StringUtils {
 
     /**
      * Joins the strings in parts with joiner between each string
+     *
      * @param joiner the string to insert between the strings in parts
      * @param parts the parts to join
      */

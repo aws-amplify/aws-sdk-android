@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
 
 import java.util.Arrays;
@@ -24,9 +25,8 @@ import javax.crypto.SecretKey;
 /**
  * A AES/GCM specific {@link CipherLite} that support re-processing of input
  * data via {@link #mark()} and {@link #reset()}.
- * 
+ *
  * @author Hanson Char
- * 
  * @see CipherLite
  */
 final class GCMCipherLite extends CipherLite {
@@ -87,6 +87,7 @@ final class GCMCipherLite extends CipherLite {
         }
     }
 
+    @Override
     byte[] doFinal() throws IllegalBlockSizeException,
             BadPaddingException {
         if (doneFinal) {
@@ -98,16 +99,18 @@ final class GCMCipherLite extends CipherLite {
         doneFinal = true;
         finalBytes = super.doFinal();
         if (finalBytes == null)
-            return null;    // only possible for decryption
+            return null; // only possible for decryption
         outputByteCount += checkMax(finalBytes.length - tagLen);
         return finalBytes.clone();
     }
 
+    @Override
     final byte[] doFinal(byte[] input) throws IllegalBlockSizeException,
             BadPaddingException {
         return doFinal0(input, 0, input.length);
     }
 
+    @Override
     final byte[] doFinal(byte[] input, int inputOffset, int inputLen)
             throws IllegalBlockSizeException, BadPaddingException {
         return doFinal0(input, inputOffset, inputLen);
@@ -136,17 +139,17 @@ final class GCMCipherLite extends CipherLite {
         // compute final bytes for the first time
         finalBytes = super.doFinal(input, inputOffset, inputLen);
         if (finalBytes == null)
-            return null;    // only possible for decryption
+            return null; // only possible for decryption
         outputByteCount += checkMax(finalBytes.length - tagLen);
         return finalBytes.clone();
     }
 
     /**
-     * @param inputLen
-     *            for {@link #mark()} and {@link #reset()} to work correctly,
-     *            inputLen should always be in multiple of 16 bytes except for
-     *            the very last part of the plaintext.
+     * @param inputLen for {@link #mark()} and {@link #reset()} to work
+     *            correctly, inputLen should always be in multiple of 16 bytes
+     *            except for the very last part of the plaintext.
      */
+    @Override
     byte[] update(byte[] input, int inputOffset, int inputLen) {
         byte[] out;
         if (aux == null) {
@@ -163,14 +166,14 @@ final class GCMCipherLite extends CipherLite {
         } else {
             out = aux.update(input, inputOffset, inputLen);
             if (out == null)
-                return null;    // possible even for encryption
+                return null; // possible even for encryption
             currentCount += out.length;
             if (currentCount == outputByteCount) {
                 aux = null; // flip back to the original GCM cipher
             } else if (currentCount > outputByteCount) {
                 if (Cipher.ENCRYPT_MODE == getCipherMode()) {
                     throw new IllegalStateException("currentCount=" + currentCount
-                        + " > outputByteCount=" + outputByteCount);
+                            + " > outputByteCount=" + outputByteCount);
                 }
                 // For decryption, this is possible since AES/CTR doesn't know
                 // about the tag at the end
@@ -178,7 +181,7 @@ final class GCMCipherLite extends CipherLite {
                 long diff = outputByteCount - (currentCount - out.length) - finalBytesLen;
                 currentCount = outputByteCount - finalBytesLen;
                 aux = null; // flip back to the original GCM cipher
-                return Arrays.copyOf(out, (int)diff);
+                return Arrays.copyOf(out, (int) diff);
             }
         }
         return out;
@@ -187,10 +190,9 @@ final class GCMCipherLite extends CipherLite {
     /**
      * Returns the input delta but only if it will not result in exceeding the
      * limit of the maximum number of bytes that can be processed by AES/GCM.
-     * 
-     * @throws SecurityException
-     *             if the number of bytes processed has exceeded the maximum
-     *             allowed by AES/GCM.
+     *
+     * @throws SecurityException if the number of bytes processed has exceeded
+     *             the maximum allowed by AES/GCM.
      */
     private int checkMax(int delta) {
         if (outputByteCount + delta > ContentCryptoScheme.MAX_GCM_BYTES) {
@@ -202,13 +204,18 @@ final class GCMCipherLite extends CipherLite {
         return delta;
     }
 
-    @Override long mark() {
+    @Override
+    long mark() {
         return this.markedCount = aux == null ? outputByteCount : currentCount;
     }
 
-    @Override boolean markSupported() { return true; }
+    @Override
+    boolean markSupported() {
+        return true;
+    }
 
-    @Override void reset() {
+    @Override
+    void reset() {
         if (markedCount < outputByteCount || invisiblyProcessed) {
             try {
                 aux = createAuxiliary(markedCount);
@@ -217,9 +224,8 @@ final class GCMCipherLite extends CipherLite {
                 currentCount = markedCount;
             } catch (Exception e) {
                 throw ((e instanceof RuntimeException)
-                    ? (RuntimeException)e
-                    : new IllegalStateException(e))
-                    ;
+                        ? (RuntimeException) e
+                        : new IllegalStateException(e));
             }
         }
     }
@@ -232,16 +238,14 @@ final class GCMCipherLite extends CipherLite {
     }
 
     /**
-     * For testing purposes.
-     * Applicable only during encryption: returns the tag that has been
-     * produced; or null otherwise.
+     * For testing purposes. Applicable only during encryption: returns the tag
+     * that has been produced; or null otherwise.
      */
     byte[] getTag() {
         return getCipherMode() != Cipher.ENCRYPT_MODE || finalBytes == null
-             ? null
-             : Arrays.copyOfRange(finalBytes,
-                 finalBytes.length - tagLen, finalBytes.length)
-             ;
+                ? null
+                : Arrays.copyOfRange(finalBytes,
+                        finalBytes.length - tagLen, finalBytes.length);
     }
 
     /**

@@ -15,14 +15,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
+
+import com.amazonaws.services.s3.internal.crypto.CipherFactory;
 
 import java.io.FilterInputStream;
 import java.io.InputStream;
 
 import javax.crypto.CipherInputStream;
-
-import com.amazonaws.services.s3.internal.crypto.CipherFactory;
 
 /**
  * Wraps an InputStream with a CipherInputStream to encrypt it, and handles
@@ -32,36 +33,35 @@ import com.amazonaws.services.s3.internal.crypto.CipherFactory;
  * <p>
  * It's repeatable if and only if the underlying unencryptedDataStream is
  * repeatable - if the underlying input stream is not repeatable and you're
- * going to buffer to make it repeatable anyways, it makes more sense to do
- * so after wrapping in this object, so we buffer the encrypted data and don't
- * have to bother re-encrypting on retry.
+ * going to buffer to make it repeatable anyways, it makes more sense to do so
+ * after wrapping in this object, so we buffer the encrypted data and don't have
+ * to bother re-encrypting on retry.
  * <p>
  * This stream <em>only</em> supports being marked before the first call to
  * {@code read} or {@code skip}, since it's not possible to rewind the
- * encryption state of a {@code CipherInputStream} to an arbitrary point. If
- * you call {@code mark} after calling {@code read} or {@code skip}, it will
- * throw an {@code UnsupportedOperationException}.
+ * encryption state of a {@code CipherInputStream} to an arbitrary point. If you
+ * call {@code mark} after calling {@code read} or {@code skip}, it will throw
+ * an {@code UnsupportedOperationException}.
  */
 public class RepeatableCipherInputStream extends
         AbstractRepeatableCipherInputStream<CipherFactory> {
     /**
      * Constructs a new repeatable cipher input stream using the specified
-     * InputStream as the source data, and the CipherFactory for building
-     * Cipher objects.
-     * 
-     * @param input
-     *            The original, unencrypted data stream. This stream should be
+     * InputStream as the source data, and the CipherFactory for building Cipher
+     * objects.
+     *
+     * @param input The original, unencrypted data stream. This stream should be
      *            markable/resetable in order for this class to work correctly.
-     * @param cipherFactory
-     *            The factory used for creating identical cipher objects when
-     *            this stream is reset and a new CipherInputStream is needed.
+     * @param cipherFactory The factory used for creating identical cipher
+     *            objects when this stream is reset and a new CipherInputStream
+     *            is needed.
      */
     public RepeatableCipherInputStream(final InputStream input,
-                                       final CipherFactory cipherFactory) {
+            final CipherFactory cipherFactory) {
 
         super(input,
-            newCipherInputStream(input, cipherFactory),
-            cipherFactory);
+                newCipherInputStream(input, cipherFactory),
+                cipherFactory);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class RepeatableCipherInputStream extends
             InputStream unencryptedDataStream, CipherFactory cipherFactory) {
         return newCipherInputStream(unencryptedDataStream, cipherFactory);
     }
-    
+
     private static FilterInputStream newCipherInputStream(
             InputStream unencryptedDataStream, CipherFactory cipherFactory) {
         return new CipherInputStream(unencryptedDataStream,

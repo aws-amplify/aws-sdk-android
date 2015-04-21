@@ -12,13 +12,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.transform;
 
-import java.lang.reflect.Constructor;
+package com.amazonaws.transform;
 
 import com.amazonaws.AmazonServiceException;
 
-public abstract class AbstractErrorUnmarshaller<T> implements Unmarshaller<AmazonServiceException, T> {
+import java.lang.reflect.Constructor;
+
+public abstract class AbstractErrorUnmarshaller<T> implements
+        Unmarshaller<AmazonServiceException, T> {
 
     /**
      * The type of AmazonServiceException that will be instantiated. Subclasses
@@ -38,10 +40,9 @@ public abstract class AbstractErrorUnmarshaller<T> implements Unmarshaller<Amazo
     /**
      * Constructs a new error unmarshaller that will unmarshall error responses
      * into objects of the specified class, extending AmazonServiceException.
-     * 
-     * @param exceptionClass
-     *            The subclass of AmazonServiceException which will be
-     *            instantiated and populated by this class.
+     *
+     * @param exceptionClass The subclass of AmazonServiceException which will
+     *            be instantiated and populated by this class.
      */
     public AbstractErrorUnmarshaller(Class<? extends AmazonServiceException> exceptionClass) {
         this.exceptionClass = exceptionClass;
@@ -50,19 +51,16 @@ public abstract class AbstractErrorUnmarshaller<T> implements Unmarshaller<Amazo
     /**
      * Constructs a new exception object of the type specified in this class's
      * constructor and sets the specified error message.
-     * 
-     * @param message
-     *            The error message to set in the new exception object.
-     * 
+     *
+     * @param message The error message to set in the new exception object.
      * @return A new exception object of the type specified in this class's
      *         constructor and sets the specified error message.
-     * 
-     * @throws Exception
-     *             If there are any problems using reflection to invoke the
+     * @throws Exception If there are any problems using reflection to invoke the
      *             exception class's constructor.
      */
     protected AmazonServiceException newException(String message) throws Exception {
-        Constructor<? extends AmazonServiceException> constructor = exceptionClass.getConstructor(String.class);
+        Constructor<? extends AmazonServiceException> constructor = exceptionClass
+                .getConstructor(String.class);
         return constructor.newInstance(message);
     }
 

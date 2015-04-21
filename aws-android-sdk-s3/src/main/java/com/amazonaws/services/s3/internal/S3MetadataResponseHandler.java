@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.AmazonWebServiceResponse;
@@ -27,6 +28,7 @@ public class S3MetadataResponseHandler extends AbstractS3ResponseHandler<ObjectM
     /**
      * @see com.amazonaws.http.HttpResponseHandler#handle(com.amazonaws.http.HttpResponse)
      */
+    @Override
     public AmazonWebServiceResponse<ObjectMetadata> handle(HttpResponse response) throws Exception {
         ObjectMetadata metadata = new ObjectMetadata();
         populateObjectMetadata(response, metadata);

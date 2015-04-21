@@ -22,15 +22,15 @@ import java.util.Map;
  * <p>
  * The example below demonstrates how to record events.
  * </p>
- * 
+ *
  * <pre class="prettyprint">
  * // get the event client from your amazon MobileAnalyticsManager instance
  * EventClient eventClient = mobileAnalyticsManager.getEventClient();
- * 
+ *
  * // create and record the view event
  * Event level1CompleteEvent = eventClient.createEvent(&quot;level1Complete&quot;);
  * eventClient.recordEvent(level1CompleteEvent);
- * 
+ *
  * // record if the user bought an upgrade (conversion)
  * if (userBoughtUpgrade) {
  *     Event level1UserBoughtUpgradeEvent = eventClient.createEvent(&quot;level1UserBoughtUpgrade&quot;);
@@ -43,7 +43,7 @@ public interface AnalyticsEvent {
      * Adds an attribute to this {@link AnalyticsEvent} with the specified key.
      * Only 40 attributes/metrics are allowed to be added to an Event. If 40
      * attribute/metrics already exist on this Event, the call may be ignored.
-     * 
+     *
      * @param name The name of the attribute. The name will be truncated if it
      *            exceeds 50 characters.
      * @param value The value of the attribute. The value will be truncated if
@@ -53,7 +53,7 @@ public interface AnalyticsEvent {
 
     /**
      * Determines if this {@link AnalyticsEvent} contains a specific attribute
-     * 
+     *
      * @param attributeName The name of the attribute
      * @return true if this {@link AnalyticsEvent} has an attribute with the
      *         specified name, false otherwise
@@ -64,7 +64,7 @@ public interface AnalyticsEvent {
      * Adds a metric to this {@link AnalyticsEvent} with the specified key. Only
      * 40 attributes/metrics are allowed to be added to an Event. If 50
      * attribute/metrics already exist on this Event, the call may be ignored.
-     * 
+     *
      * @param name The name of the metric. The name will be truncated if it
      *            exceeds 50 characters.
      * @param value The value of the metric.
@@ -73,7 +73,7 @@ public interface AnalyticsEvent {
 
     /**
      * Determines if this {@link AnalyticsEvent} contains a specific metric.
-     * 
+     *
      * @param metricName The name of the metric
      * @return true if this {@link AnalyticsEvent} has a metric with the
      *         specified name, false otherwise
@@ -82,14 +82,14 @@ public interface AnalyticsEvent {
 
     /**
      * Returns the name/type of this {@link AnalyticsEvent}
-     * 
+     *
      * @return the name/type of this {@link AnalyticsEvent}
      */
     public String getEventType();
 
     /**
      * Returns the value of the attribute with the specified name.
-     * 
+     *
      * @param name The name of the attribute to return
      * @return The attribute with the specified name, or null if attribute does
      *         not exist
@@ -98,7 +98,7 @@ public interface AnalyticsEvent {
 
     /**
      * Returns the value of the metric with the specified name.
-     * 
+     *
      * @param name The name of the metric to return
      * @return The metric with the specified name, or null if metric does not
      *         exist
@@ -110,7 +110,7 @@ public interface AnalyticsEvent {
      * Only 40 attributes/metrics are allowed to be added to an
      * {@link AnalyticsEvent}. If 40 attribute/metrics already exist on this
      * {@link AnalyticsEvent}, the call may be ignored.
-     * 
+     *
      * @param name The name of the attribute. The name will be truncated if it
      *            exceeds 50 characters.
      * @param value The value of the attribute. The value will be truncated if
@@ -125,7 +125,7 @@ public interface AnalyticsEvent {
      * 40 attributes/metrics are allowed to be added to an
      * {@link AnalyticsEvent}. If 40 attribute/metrics already exist on this
      * {@link AnalyticsEvent}, the call may be ignored.
-     * 
+     *
      * @param name The name of the metric. The name will be truncated if it
      *            exceeds 50 characters.
      * @param value The value of the metric.
@@ -137,7 +137,7 @@ public interface AnalyticsEvent {
     /**
      * Returns a map of all attributes contained within this
      * {@link AnalyticsEvent}
-     * 
+     *
      * @return a map of all attributes, where the attribute names are the keys
      *         and the attribute values are the values
      */
@@ -145,7 +145,7 @@ public interface AnalyticsEvent {
 
     /**
      * Returns a map of all metrics contained within this {@link AnalyticsEvent}
-     * 
+     *
      * @return a map of all metrics, where the metric names are the keys and the
      *         metric values are the values
      */

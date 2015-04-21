@@ -27,7 +27,7 @@ public abstract class AnalyticsCallback<T> {
     /**
      * This is called by the accepting object when a specific method or action
      * completes
-     * 
+     *
      * @param response The kind of response expected upon completion
      */
     public abstract void onComplete(final T response);

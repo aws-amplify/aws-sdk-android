@@ -12,14 +12,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 public enum SdkRuntime {
     ;
 
     /**
-     * Returns true if the current operation should abort; false otherwise.
-     * Note the interrupted status of the thread is cleared by this method.
+     * Returns true if the current operation should abort; false otherwise. Note
+     * the interrupted status of the thread is cleared by this method.
      */
     public static boolean shouldAbort() {
         return Thread.interrupted();

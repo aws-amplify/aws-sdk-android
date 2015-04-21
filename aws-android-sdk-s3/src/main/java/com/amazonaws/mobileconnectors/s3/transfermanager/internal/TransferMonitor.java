@@ -12,10 +12,10 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import java.util.concurrent.Future;
-
 
 /**
  * Monitors long-running transfers.
@@ -25,7 +25,7 @@ public interface TransferMonitor {
     /**
      * Returns a Future to wait on. Calling get() on this future will block
      * while the transfer progress is checked, but its return does not guarantee
-     * the transfer is complete. Call isDone() to check for completion.  Repeated
+     * the transfer is complete. Call isDone() to check for completion. Repeated
      * calls to getFuture() can return different objects.
      */
     public Future<?> getFuture();

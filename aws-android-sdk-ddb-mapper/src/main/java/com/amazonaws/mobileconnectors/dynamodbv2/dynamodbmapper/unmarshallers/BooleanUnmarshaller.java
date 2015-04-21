@@ -12,20 +12,21 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
-import java.lang.reflect.Method;
+package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentUnmarshaller;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMappingException;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
+import java.lang.reflect.Method;
+
 /**
  * An unmarshaller that unmarshals DynamoDB Bools (or Numbers) into Java
  * {@code Boolean}s. Numbers are handled for backwards compatibility with
- * versions of the mapper written before the DynamoDB native Boolean type
- * was added, which stored Java {@code Boolean}s as either the Number 0 (false)
- * or 1 (true).
+ * versions of the mapper written before the DynamoDB native Boolean type was
+ * added, which stored Java {@code Boolean}s as either the Number 0 (false) or 1
+ * (true).
  */
 public class BooleanUnmarshaller implements ArgumentUnmarshaller {
 
@@ -44,7 +45,7 @@ public class BooleanUnmarshaller implements ArgumentUnmarshaller {
         if (value.getN() == null && value.getBOOL() == null) {
             throw new DynamoDBMappingException(
                     "Expected either N or BOOL in value " + value
-                    + " when invoking " + setter);
+                            + " when invoking " + setter);
         }
     }
 
@@ -62,6 +63,6 @@ public class BooleanUnmarshaller implements ArgumentUnmarshaller {
 
         throw new IllegalArgumentException(
                 "Expected '1', '0', or BOOL value for boolean value, was "
-                + value);
+                        + value);
     }
 }

@@ -70,6 +70,7 @@ public class DefaultSessionClient implements InternalSessionClient {
     /**
      * Starts an application session Used solely by Amazon Insights
      */
+    @Override
     public synchronized void startSession() {
         state.start();
     }
@@ -77,6 +78,7 @@ public class DefaultSessionClient implements InternalSessionClient {
     /**
      * Stops an application session Used solely by Amazon Insights
      */
+    @Override
     public synchronized void stopSession() {
         state.stop();
     }
@@ -85,6 +87,7 @@ public class DefaultSessionClient implements InternalSessionClient {
      * Briefly pauses an application session. Should be called in an activity's
      * onPause() method.
      */
+    @Override
     public synchronized void pauseSession() {
         state.pause();
     }
@@ -94,13 +97,14 @@ public class DefaultSessionClient implements InternalSessionClient {
      * defined time interval. Otherwise, stops the old session and starts a new
      * one. Should be called in an activity's onResume() method.
      */
+    @Override
     public synchronized void resumeSession() {
         state.resume();
     }
 
     /**
      * Overridden toString method for testing
-     * 
+     *
      * @return diagnostic string
      */
     @Override
@@ -113,7 +117,7 @@ public class DefaultSessionClient implements InternalSessionClient {
 
     /**
      * CONSTRUCTOR
-     * 
+     *
      * @param context
      * @param eventClient
      */

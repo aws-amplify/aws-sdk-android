@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.util.concurrent.Future;
+package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.event.ProgressListener;
 import com.amazonaws.event.ProgressListenerCallbackExecutor;
 import com.amazonaws.mobileconnectors.s3.transfermanager.PersistableTransfer;
+
+import java.util.concurrent.Future;
 
 /**
  * Used to publish transfer events.
@@ -29,16 +30,17 @@ public class S3ProgressPublisher extends
     /**
      * Used to submit a task to publish the availability of a persistable
      * transfer to the given listener.
-     * 
-     * @return the future of the submitted task; or null if there is no listener.
+     *
+     * @return the future of the submitted task; or null if there is no
+     *         listener.
      */
     public static Future<?> publishTransferPersistable(
             final ProgressListener listener,
             final PersistableTransfer persistableTransfer) {
-        if (persistableTransfer == null 
-        || !(listener instanceof S3ProgressListener))
+        if (persistableTransfer == null
+                || !(listener instanceof S3ProgressListener))
             return null;
-        final S3ProgressListener s3listener = (S3ProgressListener)listener;
+        final S3ProgressListener s3listener = (S3ProgressListener) listener;
         return getExecutorService().submit(new Runnable() {
             @Override
             public void run() {

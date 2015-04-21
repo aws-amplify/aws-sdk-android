@@ -12,22 +12,22 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.metrics;
+
+import com.amazonaws.internal.MetricAware;
+
+import org.apache.http.entity.InputStreamEntity;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.apache.http.entity.InputStreamEntity;
-
-import com.amazonaws.internal.MetricAware;
-
 /**
  * Used to help capture the throughput metrics.
  * <p>
- * Note this class is only relevant
- * when metric is enabled. Otherwise it should not even be involved in the call
- * stack to minimize runtime overhead.
+ * Note this class is only relevant when metric is enabled. Otherwise it should
+ * not even be involved in the call stack to minimize runtime overhead.
  */
 public class MetricInputStreamEntity extends InputStreamEntity {
     private final static int BUFFER_SIZE = 2048;
@@ -45,7 +45,7 @@ public class MetricInputStreamEntity extends InputStreamEntity {
             // hchar: There is currently no implementation of output stream that
             // has metric gathering capability but there could be!
             // So the code here is for future proof purposes.
-            MetricAware aware = (MetricAware)outstream;
+            MetricAware aware = (MetricAware) outstream;
             if (aware.isMetricActivated()) {
                 // let the underlying output stream takes care of byte counting
                 super.writeTo(outstream);
@@ -80,7 +80,7 @@ public class MetricInputStreamEntity extends InputStreamEntity {
                 // consume no more than length
                 long remaining = length;
                 while (remaining > 0) {
-                    l = instream.read(buffer, 0, (int)Math.min(BUFFER_SIZE, remaining));
+                    l = instream.read(buffer, 0, (int) Math.min(BUFFER_SIZE, remaining));
                     if (l == -1) {
                         break;
                     }

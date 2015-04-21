@@ -31,7 +31,7 @@ public class AndroidConnectivity implements Connectivity {
 
     /**
      * Constructor
-     * 
+     *
      * @param context
      */
     public AndroidConnectivity(final Context context) {

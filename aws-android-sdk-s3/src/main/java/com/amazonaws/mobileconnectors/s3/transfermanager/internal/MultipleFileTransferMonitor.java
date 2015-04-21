@@ -12,7 +12,10 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
+
+import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer;
 
 import java.util.Collection;
 import java.util.concurrent.ExecutionException;
@@ -20,15 +23,14 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer;
-
 public class MultipleFileTransferMonitor implements TransferMonitor {
 
     private final Collection<? extends AbstractTransfer> subTransfers;
     private final AbstractTransfer transfer;
     private final Future<?> future;
 
-    public MultipleFileTransferMonitor(AbstractTransfer transfer, Collection<? extends AbstractTransfer> subTransfers) {
+    public MultipleFileTransferMonitor(AbstractTransfer transfer,
+            Collection<? extends AbstractTransfer> subTransfers) {
         this.subTransfers = subTransfers;
         this.transfer = transfer;
 
@@ -47,17 +49,18 @@ public class MultipleFileTransferMonitor implements TransferMonitor {
             @Override
             public Object get() throws InterruptedException, ExecutionException {
                 Object result = null;
-                for ( AbstractTransfer download : MultipleFileTransferMonitor.this.subTransfers ) {
+                for (AbstractTransfer download : MultipleFileTransferMonitor.this.subTransfers) {
                     result = download.getMonitor().getFuture().get();
                 }
                 return result;
             }
 
             @Override
-            public Object get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException,
+            public Object get(long timeout, TimeUnit unit) throws InterruptedException,
+                    ExecutionException,
                     TimeoutException {
                 Object result = null;
-                for ( AbstractTransfer subTransfer : MultipleFileTransferMonitor.this.subTransfers ) {
+                for (AbstractTransfer subTransfer : MultipleFileTransferMonitor.this.subTransfers) {
                     result = subTransfer.getMonitor().getFuture().get(timeout, unit);
                 }
                 return result;
@@ -71,7 +74,7 @@ public class MultipleFileTransferMonitor implements TransferMonitor {
             @Override
             public boolean isDone() {
                 return MultipleFileTransferMonitor.this.isDone();
-            }            
+            }
         };
     }
 
@@ -82,12 +85,11 @@ public class MultipleFileTransferMonitor implements TransferMonitor {
 
     @Override
     public synchronized boolean isDone() {
-        for ( Transfer subTransfer : subTransfers ) {
-            if ( !subTransfer.isDone() )
+        for (Transfer subTransfer : subTransfers) {
+            if (!subTransfer.isDone())
                 return false;
         }
         return true;
     }
 
-    
 }

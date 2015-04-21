@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.metrics.internal;
 
 import com.amazonaws.AmazonWebServiceRequest;
@@ -22,12 +23,11 @@ import com.amazonaws.metrics.SimpleThroughputMetricType;
 import com.amazonaws.metrics.ThroughputMetricType;
 
 /**
- * An internal helper factory for generating service specific {@link ServiceMetricType}
- * without causing compile time dependency on the service specific artifacts.
- * 
- * There exists a S3ServiceMetricTest.java unit test in the S3 client library
- * that ensures this class behaves consistently with the service metric enum
- * defined in the S3 client library.
+ * An internal helper factory for generating service specific
+ * {@link ServiceMetricType} without causing compile time dependency on the
+ * service specific artifacts. There exists a S3ServiceMetricTest.java unit test
+ * in the S3 client library that ensures this class behaves consistently with
+ * the service metric enum defined in the S3 client library.
  */
 public enum ServiceMetricTypeGuesser {
     ;
@@ -41,13 +41,13 @@ public enum ServiceMetricTypeGuesser {
             final String byteCountMetricNameSuffix)
     {
         if (!AwsSdkMetrics.isMetricsEnabled())
-            return null;    // metric disabled
+            return null; // metric disabled
         AmazonWebServiceRequest orig = req.getOriginalRequest();
         if (orig.getClass().getName().startsWith("com.amazonaws.services.s3")) {
             return new SimpleThroughputMetricType(
-                "S3" + metricNameSuffix,
-                req.getServiceName(),
-                "S3" + byteCountMetricNameSuffix);
+                    "S3" + metricNameSuffix,
+                    req.getServiceName(),
+                    "S3" + byteCountMetricNameSuffix);
         }
         return null;
     }

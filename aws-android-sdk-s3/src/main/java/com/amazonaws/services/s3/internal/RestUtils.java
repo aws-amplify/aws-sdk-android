@@ -15,7 +15,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
+
+import com.amazonaws.Request;
+import com.amazonaws.services.s3.Headers;
+import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -24,10 +29,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
-import com.amazonaws.Request;
-import com.amazonaws.services.s3.Headers;
-import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
 
 /**
  * Utilities useful for REST/HTTP S3Service implementations.
@@ -39,7 +40,8 @@ public class RestUtils {
      */
     private static final List<String> SIGNED_PARAMETERS = Arrays.asList(new String[] {
             "acl", "torrent", "logging", "location", "policy", "requestPayment", "versioning",
-            "versions", "versionId", "notification", "uploadId", "uploads", "partNumber", "website",
+            "versions", "versionId", "notification", "uploadId", "uploads", "partNumber",
+            "website",
             "delete", "lifecycle", "tagging", "cors", "restore",
             ResponseHeaderOverrides.RESPONSE_HEADER_CACHE_CONTROL,
             ResponseHeaderOverrides.RESPONSE_HEADER_CONTENT_DISPOSITION,
@@ -50,32 +52,33 @@ public class RestUtils {
     });
 
     /**
-     * Calculate the canonical string for a REST/HTTP request to S3.
-     *
-     * When expires is non-null, it will be used instead of the Date header.
+     * Calculate the canonical string for a REST/HTTP request to S3. When
+     * expires is non-null, it will be used instead of the Date header.
      */
-    public static <T> String makeS3CanonicalString(String method, String resource, Request<T> request, String expires)
+    public static <T> String makeS3CanonicalString(String method, String resource,
+            Request<T> request, String expires)
     {
         StringBuilder buf = new StringBuilder();
         buf.append(method + "\n");
 
-        // Add all interesting headers to a list, then sort them.  "Interesting"
+        // Add all interesting headers to a list, then sort them. "Interesting"
         // is defined as Content-MD5, Content-Type, Date, and x-amz-
         Map<String, String> headersMap = request.getHeaders();
         SortedMap<String, String> interestingHeaders = new TreeMap<String, String>();
         if (headersMap != null && headersMap.size() > 0) {
             Iterator<Map.Entry<String, String>> headerIter = headersMap.entrySet().iterator();
             while (headerIter.hasNext()) {
-                Map.Entry<String, String> entry = (Map.Entry<String, String>) headerIter.next();
+                Map.Entry<String, String> entry = headerIter.next();
                 String key = entry.getKey();
                 String value = entry.getValue();
 
-                if (key == null) continue;
+                if (key == null)
+                    continue;
                 String lk = key.toString().toLowerCase(Locale.getDefault());
 
                 // Ignore any headers that are not particularly interesting.
                 if (lk.equals("content-type") || lk.equals("content-md5") || lk.equals("date") ||
-                    lk.startsWith(Headers.AMAZON_PREFIX))
+                        lk.startsWith(Headers.AMAZON_PREFIX))
                 {
                     interestingHeaders.put(lk, value);
                 }
@@ -87,7 +90,8 @@ public class RestUtils {
             interestingHeaders.put("date", "");
         }
 
-        // Use the expires value as the timestamp if it is available. This trumps both the default
+        // Use the expires value as the timestamp if it is available. This
+        // trumps both the default
         // "date" timestamp, and the "x-amz-date" header.
         if (expires != null) {
             interestingHeaders.put("date", expires);
@@ -95,25 +99,26 @@ public class RestUtils {
 
         // These headers require that we still put a new line in after them,
         // even if they don't exist.
-        if (! interestingHeaders.containsKey("content-type")) {
+        if (!interestingHeaders.containsKey("content-type")) {
             interestingHeaders.put("content-type", "");
         }
-        if (! interestingHeaders.containsKey("content-md5")) {
+        if (!interestingHeaders.containsKey("content-md5")) {
             interestingHeaders.put("content-md5", "");
         }
 
         // Any parameters that are prefixed with "x-amz-" need to be included
         // in the headers section of the canonical string to sign
-        for (Map.Entry<String, String> parameter: request.getParameters().entrySet()) {
+        for (Map.Entry<String, String> parameter : request.getParameters().entrySet()) {
             if (parameter.getKey().startsWith("x-amz-")) {
                 interestingHeaders.put(parameter.getKey(), parameter.getValue());
             }
         }
 
         // Add all the interesting headers (i.e.: all that startwith x-amz- ;-))
-        for (Iterator<Map.Entry<String, String>> i = interestingHeaders.entrySet().iterator(); i.hasNext(); ) {
-            Map.Entry<String, String> entry = (Map.Entry<String, String>) i.next();
-            String key = (String) entry.getKey();
+        for (Iterator<Map.Entry<String, String>> i = interestingHeaders.entrySet().iterator(); i
+                .hasNext();) {
+            Map.Entry<String, String> entry = i.next();
+            String key = entry.getKey();
             String value = entry.getValue();
 
             if (key.startsWith(Headers.AMAZON_PREFIX)) {
@@ -134,8 +139,10 @@ public class RestUtils {
         Arrays.sort(parameterNames);
         char separator = '?';
         for (String parameterName : parameterNames) {
-            // Skip any parameters that aren't part of the canonical signed string
-            if (SIGNED_PARAMETERS.contains(parameterName) == false) continue;
+            // Skip any parameters that aren't part of the canonical signed
+            // string
+            if (SIGNED_PARAMETERS.contains(parameterName) == false)
+                continue;
 
             buf.append(separator);
             buf.append(parameterName);

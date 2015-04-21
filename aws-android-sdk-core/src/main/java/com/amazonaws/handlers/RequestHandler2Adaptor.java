@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.handlers;
 
 import com.amazonaws.Request;
@@ -20,20 +21,24 @@ import com.amazonaws.util.AWSRequestMetrics;
 import com.amazonaws.util.TimingInfo;
 
 /**
- * Internal class used to adapt a request handler that implements the
- * deprecated {@link RequestHandler} interface to the deprecating
- * {@link RequestHandler2} interface.
+ * Internal class used to adapt a request handler that implements the deprecated
+ * {@link RequestHandler} interface to the deprecating {@link RequestHandler2}
+ * interface.
  */
 final class RequestHandler2Adaptor extends RequestHandler2 {
     @SuppressWarnings("deprecation")
     private final RequestHandler old;
-    RequestHandler2Adaptor(@SuppressWarnings("deprecation") RequestHandler old) {
+
+    RequestHandler2Adaptor(@SuppressWarnings("deprecation")
+    RequestHandler old) {
         if (old == null)
             throw new IllegalArgumentException();
         this.old = old;
     }
+
     @SuppressWarnings("deprecation")
-    @Override public void beforeRequest(Request<?> request) {
+    @Override
+    public void beforeRequest(Request<?> request) {
         old.beforeRequest(request);
     }
 
@@ -50,19 +55,22 @@ final class RequestHandler2Adaptor extends RequestHandler2 {
     }
 
     @SuppressWarnings("deprecation")
-    @Override public void afterError(Request<?> request, Response<?> response,
+    @Override
+    public void afterError(Request<?> request, Response<?> response,
             Exception e) {
         old.afterError(request, e);
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         return old.hashCode();
     }
 
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
         if (!(o instanceof RequestHandler2Adaptor))
             return false;
-        RequestHandler2Adaptor that = (RequestHandler2Adaptor)o;
+        RequestHandler2Adaptor that = (RequestHandler2Adaptor) o;
         return this.old.equals(that.old);
     }
 }

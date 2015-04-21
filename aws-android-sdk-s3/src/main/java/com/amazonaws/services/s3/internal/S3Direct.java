@@ -1,6 +1,5 @@
-package com.amazonaws.services.s3.internal;
 
-import java.io.File;
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
@@ -16,6 +15,8 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
+
+import java.io.File;
 
 /**
  * Used to provide direct access to the underlying/original S3 client methods

@@ -12,7 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.services.s3.Headers;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -21,18 +28,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Map;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.services.s3.Headers;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
-
 /**
  * A convenient S3 object wrapper useful for crypto purposes.
  */
 class S3ObjectWrapper implements Closeable {
     private final S3Object s3obj;
-    
+
     S3ObjectWrapper(S3Object s3obj) {
         if (s3obj == null)
             throw new IllegalArgumentException();
@@ -54,7 +55,7 @@ class S3ObjectWrapper implements Closeable {
     void setObjectContent(S3ObjectInputStream objectContent) {
         s3obj.setObjectContent(objectContent);
     }
-    
+
     void setObjectContent(InputStream objectContent) {
         s3obj.setObjectContent(objectContent);
     }
@@ -74,16 +75,17 @@ class S3ObjectWrapper implements Closeable {
     void setKey(String key) {
         s3obj.setKey(key);
     }
-    
+
     String getRedirectLocation() {
         return s3obj.getRedirectLocation();
     }
-    
+
     void setRedirectLocation(String redirectLocation) {
         s3obj.setRedirectLocation(redirectLocation);
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return s3obj.toString();
     }
 
@@ -94,25 +96,25 @@ class S3ObjectWrapper implements Closeable {
         ObjectMetadata metadata = s3obj.getObjectMetadata();
         Map<String, String> userMeta = metadata.getUserMetadata();
         return userMeta != null
-            && userMeta.containsKey(Headers.CRYPTO_INSTRUCTION_FILE);
+                && userMeta.containsKey(Headers.CRYPTO_INSTRUCTION_FILE);
     }
 
     /**
-     * Returns true if this S3 object has the encryption information stored
-     * as user meta data; false otherwise.
+     * Returns true if this S3 object has the encryption information stored as
+     * user meta data; false otherwise.
      */
     final boolean hasEncryptionInfo() {
         ObjectMetadata metadata = s3obj.getObjectMetadata();
         Map<String, String> userMeta = metadata.getUserMetadata();
         return userMeta != null
-            && userMeta.containsKey(Headers.CRYPTO_IV)
-            && (userMeta.containsKey(Headers.CRYPTO_KEY_V2)
+                && userMeta.containsKey(Headers.CRYPTO_IV)
+                && (userMeta.containsKey(Headers.CRYPTO_KEY_V2)
                 || userMeta.containsKey(Headers.CRYPTO_KEY));
     }
 
     /**
      * Converts and return the underlying S3 object as a json string.
-     * 
+     *
      * @throws AmazonClientException if failed in JSON conversion.
      */
     String toJsonString() {
@@ -145,18 +147,19 @@ class S3ObjectWrapper implements Closeable {
         s3obj.close();
     }
 
-    S3Object getS3Object() { return s3obj; }
+    S3Object getS3Object() {
+        return s3obj;
+    }
 
     /**
-     * Returns the original crypto scheme used for encryption, which may
-     * differ from the crypto scheme used for decryption during, for example,
-     * a range-get operation. 
-     * 
-     * @param instructionFile
-     *            the instruction file of the s3 object; or null if there is
-     *            none.
+     * Returns the original crypto scheme used for encryption, which may differ
+     * from the crypto scheme used for decryption during, for example, a
+     * range-get operation.
+     *
+     * @param instructionFile the instruction file of the s3 object; or null if
+     *            there is none.
      */
-    ContentCryptoScheme encryptionSchemeOf(Map<String,String> instructionFile) {
+    ContentCryptoScheme encryptionSchemeOf(Map<String, String> instructionFile) {
         if (instructionFile != null) {
             String cekAlgo = instructionFile.get(Headers.CRYPTO_CEK_ALGORITHM);
             return ContentCryptoScheme.fromCEKAlgo(cekAlgo);

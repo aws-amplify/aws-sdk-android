@@ -12,7 +12,21 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.event.ProgressEvent;
+import com.amazonaws.event.ProgressListenerCallbackExecutor;
+import com.amazonaws.event.ProgressListenerChain;
+import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer.TransferState;
+import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
+import com.amazonaws.mobileconnectors.s3.transfermanager.model.CopyResult;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
+import com.amazonaws.services.s3.model.CompleteMultipartUploadResult;
+import com.amazonaws.services.s3.model.CopyObjectRequest;
+import com.amazonaws.services.s3.model.PartETag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,31 +37,18 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.event.ProgressEvent;
-import com.amazonaws.event.ProgressListenerCallbackExecutor;
-import com.amazonaws.event.ProgressListenerChain;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
-import com.amazonaws.services.s3.model.CompleteMultipartUploadResult;
-import com.amazonaws.services.s3.model.CopyObjectRequest;
-import com.amazonaws.services.s3.model.PartETag;
-import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer.TransferState;
-import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
-import com.amazonaws.mobileconnectors.s3.transfermanager.model.CopyResult;
-
 /**
- * Monitors an copy operation by periodically checking to see if the operation is
- * completed, and returning a result if so. Otherwise, schedules a copy of
- * itself to be run in the future. When waiting on the result
- * of this class via a Future object, clients must call
- * {@link CopyMonitor#isDone()} and {@link CopyMonitor#getFuture()}
+ * Monitors an copy operation by periodically checking to see if the operation
+ * is completed, and returning a result if so. Otherwise, schedules a copy of
+ * itself to be run in the future. When waiting on the result of this class via
+ * a Future object, clients must call {@link CopyMonitor#isDone()} and
+ * {@link CopyMonitor#getFuture()}
  */
 public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
 
     /**
-     * Reference to the Amazon S3 client object that is used to initiate the copy
-     * or copy part request.
+     * Reference to the Amazon S3 client object that is used to initiate the
+     * copy or copy part request.
      */
     private final AmazonS3 s3;
     /** Thread pool used during multi-part copy is performed. */
@@ -76,6 +77,7 @@ public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
     private boolean isCopyDone = false;
     private Future<CopyResult> nextFuture;
 
+    @Override
     public synchronized Future<CopyResult> getFuture() {
         return nextFuture;
     }
@@ -84,6 +86,7 @@ public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
         this.nextFuture = nextFuture;
     }
 
+    @Override
     public synchronized boolean isDone() {
         return isCopyDone;
     }
@@ -100,16 +103,12 @@ public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
      * Constructs a new watcher for copy operation, which immediately submits
      * itself to the thread pool.
      *
-     * @param manager
-     *            The {@link TransferManager} that owns this copy request.
-     * @param threadPool
-     *            The {@link ExecutorService} to which we should submit new
-     *            tasks.
-     * @param multipartCopyCallable
-     *            The callable responsible for processing the copy
-     *            asynchronously
-     * @param copyObjectRequest
-     *            The original CopyObject request
+     * @param manager The {@link TransferManager} that owns this copy request.
+     * @param threadPool The {@link ExecutorService} to which we should submit
+     *            new tasks.
+     * @param multipartCopyCallable The callable responsible for processing the
+     *            copy asynchronously
+     * @param copyObjectRequest The original CopyObject request
      */
     public CopyMonitor(TransferManager manager, CopyImpl transfer,
             ExecutorService threadPool, CopyCallable multipartCopyCallable,
@@ -211,8 +210,9 @@ public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
         }
     }
 
-    private void reschedule()  {
+    private void reschedule() {
         setNextFuture(timedThreadPool.schedule(new Callable<CopyResult>() {
+            @Override
             public CopyResult call() throws Exception {
                 setNextFuture(threadPool.submit(CopyMonitor.this));
                 return null;

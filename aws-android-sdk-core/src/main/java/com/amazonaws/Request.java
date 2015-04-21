@@ -12,14 +12,15 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws;
+
+import com.amazonaws.http.HttpMethodName;
+import com.amazonaws.util.AWSRequestMetrics;
 
 import java.io.InputStream;
 import java.net.URI;
 import java.util.Map;
-
-import com.amazonaws.http.HttpMethodName;
-import com.amazonaws.util.AWSRequestMetrics;
 
 /**
  * Represents a request being sent to an Amazon Web Service, including the
@@ -29,8 +30,7 @@ import com.amazonaws.util.AWSRequestMetrics;
  * This class is only intended for internal use inside the AWS client libraries.
  * Callers shouldn't ever interact directly with objects of this class.
  *
- * @param <T>
- *            The type of original, user facing request represented by this
+ * @param <T> The type of original, user facing request represented by this
  *            request.
  */
 public interface Request<T> {
@@ -38,10 +38,8 @@ public interface Request<T> {
     /**
      * Sets the specified header for this request.
      *
-     * @param name
-     *            The name of the header to set.
-     * @param value
-     *            The header's value.
+     * @param name The name of the header to set.
+     * @param value The header's value.
      */
     public void addHeader(String name, String value);
 
@@ -51,7 +49,7 @@ public interface Request<T> {
      * @return A map of all the headers included in this request.
      */
     public Map<String, String> getHeaders();
-    
+
     /**
      * Sets all headers, clearing any existing ones.
      */
@@ -60,8 +58,7 @@ public interface Request<T> {
     /**
      * Sets the path to the resource being requested.
      *
-     * @param path
-     *            The path to the resource being requested.
+     * @param path The path to the resource being requested.
      */
     public void setResourcePath(String path);
 
@@ -75,10 +72,8 @@ public interface Request<T> {
     /**
      * Adds the specified request parameter to this request.
      *
-     * @param name
-     *            The name of the request parameter.
-     * @param value
-     *            The value of the request parameter.
+     * @param name The name of the request parameter.
+     * @param value The value of the request parameter.
      */
     public void addParameter(String name, String value);
 
@@ -86,11 +81,8 @@ public interface Request<T> {
      * Adds the specified request parameter to this request, and returns the
      * updated request object.
      *
-     * @param name
-     *            The name of the request parameter.
-     * @param value
-     *            The value of the request parameter.
-     *
+     * @param name The name of the request parameter.
+     * @param value The value of the request parameter.
      * @return The updated request object.
      */
     public Request<T> withParameter(String name, String value);
@@ -101,11 +93,11 @@ public interface Request<T> {
      * @return A map of all parameters in this request.
      */
     public Map<String, String> getParameters();
-    
+
     /**
      * Sets all parameters, clearing any existing values.
      */
-    public void setParameters(Map<String, String> parameters);       
+    public void setParameters(Map<String, String> parameters);
 
     /**
      * Returns the service endpoint (ex: "https://ec2.amazonaws.com") to which
@@ -119,44 +111,42 @@ public interface Request<T> {
      * Sets the service endpoint (ex: "https://ec2.amazonaws.com") to which this
      * request should be sent.
      *
-     * @param endpoint
-     *            The service endpoint to which this request should be sent.
+     * @param endpoint The service endpoint to which this request should be
+     *            sent.
      */
     public void setEndpoint(URI endpoint);
 
-	/**
-	 * Returns the HTTP method (GET, POST, etc) to use when sending this
-	 * request.
-	 * 
-	 * @return The HTTP method to use when sending this request.
-	 */
+    /**
+     * Returns the HTTP method (GET, POST, etc) to use when sending this
+     * request.
+     *
+     * @return The HTTP method to use when sending this request.
+     */
     public HttpMethodName getHttpMethod();
 
-	/**
-	 * Sets the HTTP method (GET, POST, etc) to use when sending this request.
-	 * 
-	 * @param httpMethod
-	 *            The HTTP method to use when sending this request.
-	 */
+    /**
+     * Sets the HTTP method (GET, POST, etc) to use when sending this request.
+     *
+     * @param httpMethod The HTTP method to use when sending this request.
+     */
     public void setHttpMethod(HttpMethodName httpMethod);
 
-	/**
-	 * Returns the optional stream containing the payload data to include for
-	 * this request.  Not all requests will contain payload data.
-	 * 
-	 * @return The optional stream containing the payload data to include for
-	 *         this request.
-	 */
+    /**
+     * Returns the optional stream containing the payload data to include for
+     * this request. Not all requests will contain payload data.
+     *
+     * @return The optional stream containing the payload data to include for
+     *         this request.
+     */
     public InputStream getContent();
 
-	/**
-	 * Sets the optional stream containing the payload data to include for this
-	 * request. Not all requests will contain payload data.
-	 * 
-	 * @param content
-	 *            The optional stream containing the payload data to include for
-	 *            this request.
-	 */
+    /**
+     * Sets the optional stream containing the payload data to include for this
+     * request. Not all requests will contain payload data.
+     *
+     * @param content The optional stream containing the payload data to include
+     *            for this request.
+     */
     public void setContent(InputStream content);
 
     /**
@@ -174,34 +164,33 @@ public interface Request<T> {
      *         object is representing.
      */
     public AmazonWebServiceRequest getOriginalRequest();
-    
+
     /**
-     * Returns the optional value for time offset for this request.  This
-     * will be used by the signer to adjust for potential clock skew.  
-     * Value is in seconds, positive values imply the current clock is "fast",
-     * negative values imply clock is slow.
-     * 
+     * Returns the optional value for time offset for this request. This will be
+     * used by the signer to adjust for potential clock skew. Value is in
+     * seconds, positive values imply the current clock is "fast", negative
+     * values imply clock is slow.
+     *
      * @return The optional value for time offset (in seconds) for this request.
      */
     public int getTimeOffset();
-    
+
     /**
-     * Sets the optional value for time offset for this request.  This
-     * will be used by the signer to adjust for potential clock skew.  
-     * Value is in seconds, positive values imply the current clock is "fast",
-     * negative values imply clock is slow.
+     * Sets the optional value for time offset for this request. This will be
+     * used by the signer to adjust for potential clock skew. Value is in
+     * seconds, positive values imply the current clock is "fast", negative
+     * values imply clock is slow.
      *
-     * @param timeOffset
-     *            The optional value for time offset (in seconds) for this request.
+     * @param timeOffset The optional value for time offset (in seconds) for
+     *            this request.
      */
     public void setTimeOffset(int timeOffset);
-    
-    
+
     /**
-     * Sets the optional value for time offset for this request.  This
-     * will be used by the signer to adjust for potential clock skew.  
-     * Value is in seconds, positive values imply the current clock is "fast",
-     * negative values imply clock is slow.
+     * Sets the optional value for time offset for this request. This will be
+     * used by the signer to adjust for potential clock skew. Value is in
+     * seconds, positive values imply the current clock is "fast", negative
+     * values imply clock is slow.
      *
      * @return The updated request object.
      */
@@ -215,7 +204,7 @@ public interface Request<T> {
     /**
      * Bind the request metrics to the request. Note metrics can be captured
      * before the request is created.
-     * 
+     *
      * @throws IllegalStateException if the binding has already occurred
      */
     public void setAWSRequestMetrics(AWSRequestMetrics metrics);

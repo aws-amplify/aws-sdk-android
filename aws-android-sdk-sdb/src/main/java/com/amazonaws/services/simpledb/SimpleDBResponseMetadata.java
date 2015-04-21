@@ -12,11 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.simpledb;
 
-import java.util.Map;
-
 import com.amazonaws.ResponseMetadata;
+
+import java.util.Map;
 
 /**
  * Extension of {@link ResponseMetadata} with Amazon SimpleDB specific data. In
@@ -35,8 +36,8 @@ public class SimpleDBResponseMetadata extends ResponseMetadata {
      * Creates a new SimpleDBResponseMetadata object from a specified map of
      * metadata information.
      *
-     * @param metadata
-     *            The raw metadata for the new SimpleDBResponseMetadata object.
+     * @param metadata The raw metadata for the new SimpleDBResponseMetadata
+     *            object.
      */
     public SimpleDBResponseMetadata(Map<String, String> metadata) {
         super(metadata);
@@ -46,9 +47,8 @@ public class SimpleDBResponseMetadata extends ResponseMetadata {
      * Creates a new SimpleDBResponseMetadata object from an existing
      * ResponseMetadata object.
      *
-     * @param originalResponseMetadata
-     *            The ResponseMetadata object from which to create the new
-     *            object.
+     * @param originalResponseMetadata The ResponseMetadata object from which to
+     *            create the new object.
      */
     public SimpleDBResponseMetadata(ResponseMetadata originalResponseMetadata) {
         super(originalResponseMetadata);
@@ -67,7 +67,8 @@ public class SimpleDBResponseMetadata extends ResponseMetadata {
      */
     public float getBoxUsage() {
         String boxUsage = metadata.get(BOX_USAGE);
-        if (boxUsage == null || boxUsage.trim().length() == 0) return 0;
+        if (boxUsage == null || boxUsage.trim().length() == 0)
+            return 0;
         return Float.parseFloat(boxUsage);
     }
 }

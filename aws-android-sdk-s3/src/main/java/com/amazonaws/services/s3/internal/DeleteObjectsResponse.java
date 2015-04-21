@@ -12,16 +12,17 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.services.s3.internal;
 
-import java.util.ArrayList;
-import java.util.List;
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.DeleteObjectsResult;
 import com.amazonaws.services.s3.model.DeleteObjectsResult.DeletedObject;
 import com.amazonaws.services.s3.model.MultiObjectDeleteException;
 import com.amazonaws.services.s3.model.MultiObjectDeleteException.DeleteError;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Service response for deleteObjects API call. Not exposed to clients directly,

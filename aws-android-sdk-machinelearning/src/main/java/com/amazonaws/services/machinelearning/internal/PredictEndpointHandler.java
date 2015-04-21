@@ -15,14 +15,14 @@
 
 package com.amazonaws.services.machinelearning.internal;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.Response;
 import com.amazonaws.handlers.RequestHandler2;
 import com.amazonaws.services.machinelearning.model.PredictRequest;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Predict calls are sent to a predictor-specific endpoint. This handler

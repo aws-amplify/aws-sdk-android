@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
@@ -49,9 +50,8 @@ public class InitiateMultipartUploadResult extends SSEResultBase {
      * Sets the name of the bucket in which the new multipart upload was
      * initiated.
      *
-     * @param bucketName
-     *            The name of the bucket in which the new multipart upload was
-     *            initiated.
+     * @param bucketName The name of the bucket in which the new multipart
+     *            upload was initiated.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -69,8 +69,7 @@ public class InitiateMultipartUploadResult extends SSEResultBase {
     /**
      * Sets the object key for which the multipart upload was initiated.
      *
-     * @param key
-     *            The object key for which the multipart upload was initiated.
+     * @param key The object key for which the multipart upload was initiated.
      */
     public void setKey(String key) {
         this.key = key;
@@ -88,8 +87,7 @@ public class InitiateMultipartUploadResult extends SSEResultBase {
     /**
      * Sets the initiated multipart upload ID.
      *
-     * @param uploadId
-     *            The initiated multipart upload ID.
+     * @param uploadId The initiated multipart upload ID.
      */
     public void setUploadId(String uploadId) {
         this.uploadId = uploadId;

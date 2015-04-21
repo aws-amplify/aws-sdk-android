@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.transform;
 
-import java.util.ArrayList;
-import java.util.List;
+package com.amazonaws.transform;
 
 import com.amazonaws.util.json.AwsJsonReader;
 import com.amazonaws.util.json.AwsJsonToken;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListUnmarshaller<T>
         implements Unmarshaller<List<T>, JsonUnmarshallerContext> {
@@ -26,8 +27,7 @@ public class ListUnmarshaller<T>
     private final Unmarshaller<T, JsonUnmarshallerContext> itemUnmarshaller;
 
     public ListUnmarshaller(
-        Unmarshaller<T, JsonUnmarshallerContext> itemUnmarshaller
-    ) {
+            Unmarshaller<T, JsonUnmarshallerContext> itemUnmarshaller) {
         this.itemUnmarshaller = itemUnmarshaller;
     }
 

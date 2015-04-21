@@ -15,9 +15,9 @@
 
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.adapter;
 
-import org.json.JSONException;
-
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.InternalEvent;
+
+import org.json.JSONException;
 
 public interface EventAdapter<T> {
     public T translateFromEvent(InternalEvent source);

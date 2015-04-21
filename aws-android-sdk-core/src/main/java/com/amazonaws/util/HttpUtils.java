@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 import com.amazonaws.ClientConfiguration;
@@ -42,13 +43,13 @@ public class HttpUtils {
         StringBuilder pattern = new StringBuilder();
 
         pattern
-            .append(Pattern.quote("+"))
-            .append("|")
-            .append(Pattern.quote("*"))
-            .append("|")
-            .append(Pattern.quote("%7E"))
-            .append("|")
-            .append(Pattern.quote("%2F"));
+                .append(Pattern.quote("+"))
+                .append("|")
+                .append(Pattern.quote("*"))
+                .append("|")
+                .append(Pattern.quote("%7E"))
+                .append("|")
+                .append(Pattern.quote("%2F"));
 
         ENCODED_CHARACTERS_PATTERN = Pattern.compile(pattern.toString());
     }
@@ -57,8 +58,8 @@ public class HttpUtils {
      * Encode a string for use in the path of a URL; uses URLEncoder.encode,
      * (which encodes a string for use in the query portion of a URL), then
      * applies some postfilters to fix things up per the RFC. Can optionally
-     * handle strings which are meant to encode a path (ie include '/'es
-     * which should NOT be escaped).
+     * handle strings which are meant to encode a path (ie include '/'es which
+     * should NOT be escaped).
      *
      * @param value the value to encode
      * @param path true if the value is intended to represent a path
@@ -105,7 +106,6 @@ public class HttpUtils {
      * URIs).
      *
      * @param uri
-     *
      * @return True if the specified URI is using a non-standard port, otherwise
      *         false.
      */
@@ -113,9 +113,12 @@ public class HttpUtils {
         String scheme = uri.getScheme().toLowerCase();
         int port = uri.getPort();
 
-        if (port <= 0) return false;
-        if (scheme.equals("http") && port == 80) return false;
-        if (scheme.equals("https") && port == 443) return false;
+        if (port <= 0)
+            return false;
+        if (scheme.equals("http") && port == 80)
+            return false;
+        if (scheme.equals("https") && port == 443)
+            return false;
 
         return true;
     }
@@ -131,9 +134,7 @@ public class HttpUtils {
      * Creates an encoded query string from all the parameters in the specified
      * request.
      *
-     * @param request
-     *            The request containing the parameters to encode.
-     *
+     * @param request The request containing the parameters to encode.
      * @return Null if no parameters were present, otherwise the encoded query
      *         string for the parameters present in the specified request.
      */
@@ -163,8 +164,8 @@ public class HttpUtils {
     }
 
     /**
-     * Append the given path to the given baseUri.
-     * By default, all slash characters in path will not be url-encoded.
+     * Append the given path to the given baseUri. By default, all slash
+     * characters in path will not be url-encoded.
      */
     public static String appendUri(String baseUri, String path) {
         return appendUri(baseUri, path, false);
@@ -172,20 +173,23 @@ public class HttpUtils {
 
     /**
      * Append the given path to the given baseUri.
-     *
-     * <p>This method will encode the given path but not the given
-     * baseUri.</p>
+     * <p>
+     * This method will encode the given path but not the given baseUri.
+     * </p>
      *
      * @param baseUri The URI to append to (required, may be relative)
      * @param path The path to append (may be null or empty)
-     * @param escapeDoubleSlash Whether double-slash in the path should be escaped to "/%2F"
+     * @param escapeDoubleSlash Whether double-slash in the path should be
+     *            escaped to "/%2F"
      * @return The baseUri with the (encoded) path appended
      */
-    public static String appendUri(final String baseUri, String path, final boolean escapeDoubleSlash ) {
+    public static String appendUri(final String baseUri, String path,
+            final boolean escapeDoubleSlash) {
         String resultUri = baseUri;
         if (path != null && path.length() > 0) {
             if (path.startsWith("/")) {
-                // trim the trailing slash in baseUri, since the path already starts with a slash
+                // trim the trailing slash in baseUri, since the path already
+                // starts with a slash
                 if (resultUri.endsWith("/")) {
                     resultUri = resultUri.substring(0, resultUri.length() - 1);
                 }

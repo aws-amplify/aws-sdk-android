@@ -20,7 +20,7 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.Analyt
 public interface UniqueIdService {
     /**
      * Get the Id based on the passed in context
-     * 
+     *
      * @param context The Analytics context to use when looking up the id
      * @return the Id of Analytics context
      */

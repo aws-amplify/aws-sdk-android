@@ -12,37 +12,38 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Request object containing all the options for requesting a bucket's Access Control List (ACL).
+ * Request object containing all the options for requesting a bucket's Access
+ * Control List (ACL).
  */
 public class GetBucketAclRequest extends AmazonWebServiceRequest {
-	/** The name of the bucket whose ACL is being retrieved. */
-	private String bucketName;
+    /** The name of the bucket whose ACL is being retrieved. */
+    private String bucketName;
 
-	/**
-	 * Constructs a new GetBucketAclRequest object, ready to retrieve the ACL
-	 * for the specified bucket when executed.
-	 * 
-	 * @param bucketName
-	 *            The name of the bucket whose ACL will be retrieved by this
-	 *            request when executed.
-	 */
-	public GetBucketAclRequest(String bucketName) {
-		this.bucketName = bucketName;
-	}
+    /**
+     * Constructs a new GetBucketAclRequest object, ready to retrieve the ACL
+     * for the specified bucket when executed.
+     *
+     * @param bucketName The name of the bucket whose ACL will be retrieved by
+     *            this request when executed.
+     */
+    public GetBucketAclRequest(String bucketName) {
+        this.bucketName = bucketName;
+    }
 
-	/**
-	 * Returns the name of the bucket whose ACL will be retrieved by this
-	 * request, when executed.
-	 * 
-	 * @return The name of the bucket whose ACL will be retrieved by this
-	 *         request, when executed.
-	 */
-	public String getBucketName() {
-		return bucketName;
-	}
+    /**
+     * Returns the name of the bucket whose ACL will be retrieved by this
+     * request, when executed.
+     *
+     * @return The name of the bucket whose ACL will be retrieved by this
+     *         request, when executed.
+     */
+    public String getBucketName() {
+        return bucketName;
+    }
 }

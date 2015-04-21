@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
 
 import java.util.Collections;
@@ -25,8 +26,9 @@ public abstract class MultipartUploadContext {
     private final String bucketName;
     private final String key;
     private boolean hasFinalPartBeenSeen;
-    /** the materialDescription is an optional attribute that is only non-null 
-     * when the material description is set on a per request basis 
+    /**
+     * the materialDescription is an optional attribute that is only non-null
+     * when the material description is set on a per request basis
      */
     private Map<String, String> materialsDescription;
 
@@ -63,8 +65,8 @@ public abstract class MultipartUploadContext {
      */
     public final void setMaterialsDescription(
             Map<String, String> materialsDescription) {
-        this.materialsDescription = materialsDescription == null 
-            ? null
-            : Collections.unmodifiableMap(new HashMap<String, String>(materialsDescription));
+        this.materialsDescription = materialsDescription == null
+                ? null
+                : Collections.unmodifiableMap(new HashMap<String, String>(materialsDescription));
     }
 }

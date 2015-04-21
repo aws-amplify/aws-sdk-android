@@ -12,13 +12,37 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
 
 class AesCbc extends ContentCryptoScheme {
-    @Override String getKeyGeneratorAlgorithm() { return "AES"; }
-    @Override String getCipherAlgorithm() { return "AES/CBC/PKCS5Padding"; }
-    @Override int getKeyLengthInBits() { return 256; }
-    @Override int getBlockSizeInBytes() { return 16; }
-    @Override int getIVLengthInBytes() { return 16; }
-    @Override long getMaxPlaintextSize() { return MAX_CBC_BYTES; }
+    @Override
+    String getKeyGeneratorAlgorithm() {
+        return "AES";
+    }
+
+    @Override
+    String getCipherAlgorithm() {
+        return "AES/CBC/PKCS5Padding";
+    }
+
+    @Override
+    int getKeyLengthInBits() {
+        return 256;
+    }
+
+    @Override
+    int getBlockSizeInBytes() {
+        return 16;
+    }
+
+    @Override
+    int getIVLengthInBytes() {
+        return 16;
+    }
+
+    @Override
+    long getMaxPlaintextSize() {
+        return MAX_CBC_BYTES;
+    }
 }

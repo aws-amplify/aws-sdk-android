@@ -32,7 +32,7 @@ import java.util.List;
  * This is an unmodifiable list, so callers should not invoke any operations
  * that modify this list, otherwise they will throw an
  * UnsupportedOperationException.
- * 
+ *
  * @param <T> The type of objects held in this list.
  * @see PaginatedList
  */

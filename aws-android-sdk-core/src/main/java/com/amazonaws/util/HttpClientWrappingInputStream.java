@@ -12,18 +12,19 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
+
+import com.amazonaws.internal.SdkFilterInputStream;
+
+import org.apache.http.client.HttpClient;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.http.client.HttpClient;
-
-import com.amazonaws.internal.SdkFilterInputStream;
-
 /**
- * An {@code InputStream} that closes the associated {@code HttpClient}
- * when the stream is closed.
+ * An {@code InputStream} that closes the associated {@code HttpClient} when the
+ * stream is closed.
  */
 class HttpClientWrappingInputStream extends SdkFilterInputStream {
 

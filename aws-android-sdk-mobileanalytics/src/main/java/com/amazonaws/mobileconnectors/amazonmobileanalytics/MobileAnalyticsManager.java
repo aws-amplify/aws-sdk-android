@@ -71,7 +71,7 @@ public class MobileAnalyticsManager {
     /**
      * Create an {@link MobileAnalyticsManager} object using the specified
      * {@link AnalyticsConfig} values
-     * 
+     *
      * @param appContext The Android ApplicationContext
      * @param AWSCredentialsProvider The credentials provider
      *            MobileAnalyticsManager should use when making requests to AWS
@@ -139,7 +139,7 @@ public class MobileAnalyticsManager {
 
     /**
      * For testing purposes only
-     * 
+     *
      * @param appContext
      * @param appId
      * @param region
@@ -194,7 +194,7 @@ public class MobileAnalyticsManager {
     /**
      * The {@link EventClient} is the primary class used to create, store, and
      * submit events from your application.
-     * 
+     *
      * @return an {@link EventClient}
      */
     public EventClient getEventClient() {
@@ -207,7 +207,7 @@ public class MobileAnalyticsManager {
      * interacting with your application. You should use the
      * {@link SessionClient} onPause and onResume method in each of your
      * activities onPause and onResume methods.
-     * 
+     *
      * @return an {@link SessionClient}
      */
     public SessionClient getSessionClient() {

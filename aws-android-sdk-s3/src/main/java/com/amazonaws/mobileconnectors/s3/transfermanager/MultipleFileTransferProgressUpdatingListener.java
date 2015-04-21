@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 import com.amazonaws.event.ProgressEvent;
@@ -19,9 +20,9 @@ import com.amazonaws.event.ProgressListenerChain;
 import com.amazonaws.mobileconnectors.s3.transfermanager.internal.TransferProgressUpdatingListener;
 
 /**
- * TransferProgressUpdatingListener for multiple-file transfer. In addition
- * to updating the TransferProgress, it also sends out ByteTrasnferred
- * events to a ProgressListenerChain.
+ * TransferProgressUpdatingListener for multiple-file transfer. In addition to
+ * updating the TransferProgress, it also sends out ByteTrasnferred events to a
+ * ProgressListenerChain.
  */
 final class MultipleFileTransferProgressUpdatingListener extends
         TransferProgressUpdatingListener {

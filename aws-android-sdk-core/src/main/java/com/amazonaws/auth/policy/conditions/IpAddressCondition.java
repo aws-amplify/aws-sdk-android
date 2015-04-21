@@ -12,11 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.conditions;
 
-import java.util.Arrays;
-
 import com.amazonaws.auth.policy.Condition;
+
+import java.util.Arrays;
 
 /**
  * AWS access control policy condition that allows an access control statement
@@ -30,7 +31,8 @@ import com.amazonaws.auth.policy.Condition;
 public class IpAddressCondition extends Condition {
 
     /**
-     * Enumeration of the supported ways an IP address comparison can be evaluated.
+     * Enumeration of the supported ways an IP address comparison can be
+     * evaluated.
      */
     public static enum IpAddressComparisonType {
         /**
@@ -64,8 +66,7 @@ public class IpAddressCondition extends Condition {
      * href="http://en.wikipedia.org/wiki/CIDR_notation">
      * http://en.wikipedia.org/wiki/CIDR_notation</a>
      *
-     * @param ipAddressRange
-     *            The CIDR IP range involved in the policy condition.
+     * @param ipAddressRange The CIDR IP range involved in the policy condition.
      */
     public IpAddressCondition(String ipAddressRange) {
         this(IpAddressComparisonType.IpAddress, ipAddressRange);
@@ -82,15 +83,15 @@ public class IpAddressCondition extends Condition {
      * href="http://en.wikipedia.org/wiki/CIDR_notation">
      * http://en.wikipedia.org/wiki/CIDR_notation</a>
      *
-     * @param type
-     *            The type of comparison to to perform.
-     * @param ipAddressRange
-     *            The CIDR IP range involved in the policy condition.
+     * @param type The type of comparison to to perform.
+     * @param ipAddressRange The CIDR IP range involved in the policy condition.
      */
     public IpAddressCondition(IpAddressComparisonType type, String ipAddressRange) {
         super.type = type.toString();
         super.conditionKey = ConditionFactory.SOURCE_IP_CONDITION_KEY;
-        super.values = Arrays.asList(new String[] {ipAddressRange});
+        super.values = Arrays.asList(new String[] {
+            ipAddressRange
+        });
     }
 
 }

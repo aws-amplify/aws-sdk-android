@@ -12,24 +12,25 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
 
 /**
- * Request object for the parameters to delete a bucket's cross origin configuration.
+ * Request object for the parameters to delete a bucket's cross origin
+ * configuration.
  *
  * @see AmazonS3#deleteBucketCrossOriginConfiguration(DeleteBucketCrossOriginConfigurationRequest)
  */
 public class DeleteBucketCrossOriginConfigurationRequest extends GenericBucketRequest {
 
     /**
-     * Creates a new request object, ready to be executed to delete the cross origin
-     * configuration for the specified bucket.
-     * 
-     * @param bucketName
-     *            The name of the bucket whose cross origin configuration is being
-     *            deleted.
+     * Creates a new request object, ready to be executed to delete the cross
+     * origin configuration for the specified bucket.
+     *
+     * @param bucketName The name of the bucket whose cross origin configuration
+     *            is being deleted.
      */
     public DeleteBucketCrossOriginConfigurationRequest(String bucketName) {
         super(bucketName);

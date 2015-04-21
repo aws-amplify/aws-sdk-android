@@ -12,11 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.conditions;
 
-import java.util.Arrays;
-
 import com.amazonaws.auth.policy.Condition;
+
+import java.util.Arrays;
 
 /**
  * String conditions let you constrain AWS access control policy statements
@@ -55,15 +56,12 @@ public class StringCondition extends Condition {
      * Constructs a new access control policy condition that compares two
      * strings.
      *
-     * @param type
-     *            The type of comparison to perform.
-     * @param key
-     *            The access policy condition key specifying where to get the
+     * @param type The type of comparison to perform.
+     * @param key The access policy condition key specifying where to get the
      *            first string for the comparison (ex: aws:UserAgent). See
      *            {@link ConditionFactory} for a list of the condition keys
      *            available for all services.
-     * @param value
-     *            The second string to compare against. When using
+     * @param value The second string to compare against. When using
      *            {@link StringComparisonType#StringLike} or
      *            {@link StringComparisonType#StringNotLike} this may contain
      *            the multi-character wildcard (*) or the single-character
@@ -72,7 +70,9 @@ public class StringCondition extends Condition {
     public StringCondition(StringComparisonType type, String key, String value) {
         super.type = type.toString();
         super.conditionKey = key;
-        super.values = Arrays.asList(new String[] {value});
+        super.values = Arrays.asList(new String[] {
+            value
+        });
     }
 
 }

@@ -12,17 +12,18 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
+
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-
 /**
  * The concrete realization of a strategy for converting between Java objects
- * and DynamoDB AttributeValues. Typically created by a
- * {@link ConversionSchema}.
+ * and DynamoDB AttributeValues. Typically created by a {@link ConversionSchema}
+ * .
  */
 public interface ItemConverter {
     /**
@@ -54,9 +55,9 @@ public interface ItemConverter {
     Map<String, AttributeValue> convert(Object value);
 
     /**
-     * Reverses the {@link #convert(Method, Object)} method, turning a
-     * DynamoDB AttributeValue back into a Java object suitable for passing
-     * to the given setter.
+     * Reverses the {@link #convert(Method, Object)} method, turning a DynamoDB
+     * AttributeValue back into a Java object suitable for passing to the given
+     * setter.
      *
      * @param getter the getter for the value to be unconverted
      * @param setter the setter for the value to be unconverted

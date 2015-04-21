@@ -12,15 +12,16 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http.impl.client;
+
+import com.amazonaws.http.conn.ClientConnectionManagerFactory;
+import com.amazonaws.http.protocol.SdkHttpRequestExecutor;
 
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpRequestExecutor;
-
-import com.amazonaws.http.conn.ClientConnectionManagerFactory;
-import com.amazonaws.http.protocol.SdkHttpRequestExecutor;
 
 public class SdkHttpClient extends DefaultHttpClient {
     public SdkHttpClient(

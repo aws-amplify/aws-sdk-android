@@ -16,4 +16,6 @@
  * Utilities for working with Amazon Simple Notification Service such as validating
  * message signatures.
  */
+
 package com.amazonaws.services.sns.util;
+

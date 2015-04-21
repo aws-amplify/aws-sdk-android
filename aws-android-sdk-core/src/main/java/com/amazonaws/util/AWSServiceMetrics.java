@@ -26,12 +26,16 @@ public enum AWSServiceMetrics implements ServiceMetricType {
     /**
      * Time taken to get a connection by the http client library.
      */
-    HttpClientGetConnectionTime("HttpClient"),
-    ;
+    HttpClientGetConnectionTime("HttpClient"), ;
 
     private final String serviceName;
+
     private AWSServiceMetrics(String serviceName) {
         this.serviceName = serviceName;
     }
-    @Override public String getServiceName() { return serviceName; }
+
+    @Override
+    public String getServiceName() {
+        return serviceName;
+    }
 }

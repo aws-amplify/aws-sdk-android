@@ -94,6 +94,19 @@ class HttpRequestFactory {
             }
         }
 
+        /*
+         * Amazon DynamoDB sets CRC32 checksum in the header 'x-amz-crc32'. If
+         * compression is turned on, then the checksum is calculated on the
+         * compressed data. On the client side, compression is handled by the
+         * HTTP client. In most cases, the client doesn't have access to
+         * compressed data, so there is no way to compute the checksum of
+         * compressed data unless the client compress it. To get around it,
+         * compression is turned off explicitly.
+         */
+        if (request.getHeaders().get("Accept-Encoding") == null) {
+            request.addHeader("Accept-Encoding", "identity");
+        }
+
         Map<String, String> headers = new HashMap<String, String>();
         configureHeaders(headers, request, context, clientConfiguration);
 

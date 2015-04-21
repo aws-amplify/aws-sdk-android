@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.handlers;
 
 import com.amazonaws.Request;
@@ -36,33 +37,27 @@ public abstract class RequestHandler2 {
     /**
      * Runs any additional processing logic on the specified request (before it
      * is executed by the client runtime).
-     * 
-     * @param request
-     *            The low level request being processed.
+     *
+     * @param request The low level request being processed.
      */
     public abstract void beforeRequest(Request<?> request);
 
     /**
      * Runs any additional processing logic on the specified request (after is
      * has been executed by the client runtime).
-     * 
-     * @param request
-     *            The low level request being processed.
-     * @param response
-     *            The response generated from the specified request.
+     *
+     * @param request The low level request being processed.
+     * @param response The response generated from the specified request.
      */
     public abstract void afterResponse(Request<?> request, Response<?> response);
 
     /**
      * Runs any additional processing logic on a request after it has failed.
-     * 
-     * @param request
-     *            The request that generated an error.
-     * @param response
-     *            the response or null if the failure occurred before the
+     *
+     * @param request The request that generated an error.
+     * @param response the response or null if the failure occurred before the
      *            response is made available
-     * @param e
-     *            The error that resulted from executing the request.
+     * @param e The error that resulted from executing the request.
      */
     public abstract void afterError(Request<?> request, Response<?> response,
             Exception e);
@@ -73,7 +68,8 @@ public abstract class RequestHandler2 {
      * implementing the deprecated {@link RequestHandler} interface.
      */
     public static RequestHandler2 adapt(
-            @SuppressWarnings("deprecation") RequestHandler old) {
+            @SuppressWarnings("deprecation")
+            RequestHandler old) {
         return new RequestHandler2Adaptor(old);
     }
 }

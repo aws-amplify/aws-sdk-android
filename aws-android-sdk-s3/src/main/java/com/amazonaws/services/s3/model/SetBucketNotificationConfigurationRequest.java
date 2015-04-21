@@ -12,14 +12,16 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * Contains options for setting the notification configuration for a bucket.
- * 
- * @see SetBucketNotificationConfigurationRequest#SetBucketNotificationConfigurationRequest(String, BucketNotificationConfiguration)
+ *
+ * @see SetBucketNotificationConfigurationRequest#SetBucketNotificationConfigurationRequest(String,
+ *      BucketNotificationConfiguration)
  */
 public class SetBucketNotificationConfigurationRequest extends AmazonWebServiceRequest {
 
@@ -28,26 +30,26 @@ public class SetBucketNotificationConfigurationRequest extends AmazonWebServiceR
     private String bucketName;
 
     /**
-     * @deprecated Use SetBucketNotificationConfigurationRequest(String, BucketNotificationConfiguration) instead.
+     * @deprecated Use SetBucketNotificationConfigurationRequest(String,
+     *             BucketNotificationConfiguration) instead.
      */
     @Deprecated
-    public SetBucketNotificationConfigurationRequest(BucketNotificationConfiguration bucketNotificationConfiguration,
+    public SetBucketNotificationConfigurationRequest(
+            BucketNotificationConfiguration bucketNotificationConfiguration,
             String bucket) {
         this.notificationConfiguration = bucketNotificationConfiguration;
         this.bucketName = bucket;
     }
 
     /**
-     * Constructs a new {@link SetBucketNotificationConfigurationRequest} 
-     * to set the bucket notification configuration of
-     * the specified bucket.
-     * 
-     * @param bucketName
-     *            The name of the bucket for which to set the notification
+     * Constructs a new {@link SetBucketNotificationConfigurationRequest} to set
+     * the bucket notification configuration of the specified bucket.
+     *
+     * @param bucketName The name of the bucket for which to set the
+     *            notification configuration.
+     * @param notificationConfiguration The new notification configuration for
+     *            this bucket, which completely replaces any existing
      *            configuration.
-     * @param notificationConfiguration
-     *            The new notification configuration for this bucket, which
-     *            completely replaces any existing configuration.
      */
     public SetBucketNotificationConfigurationRequest(
             String bucketName, BucketNotificationConfiguration notificationConfiguration) {
@@ -65,9 +67,8 @@ public class SetBucketNotificationConfigurationRequest extends AmazonWebServiceR
 
     /**
      * Gets the new notification configuration for the specified bucket.
-     * 
+     *
      * @return The new notification configuration for the specified bucket.
-     * 
      * @see SetBucketNotificationConfigurationRequest#withNotificationConfiguration(BucketNotificationConfiguration)
      */
     public BucketNotificationConfiguration getNotificationConfiguration() {
@@ -75,22 +76,25 @@ public class SetBucketNotificationConfigurationRequest extends AmazonWebServiceR
     }
 
     /**
-     * @deprecated Use setNotificationConfiguration(BucketNotificationConfiguration) instead.
+     * @deprecated Use
+     *             setNotificationConfiguration(BucketNotificationConfiguration)
+     *             instead.
      */
     @Deprecated
-    public void setBucketNotificationConfiguration(BucketNotificationConfiguration bucketNotificationConfiguration) {
+    public void setBucketNotificationConfiguration(
+            BucketNotificationConfiguration bucketNotificationConfiguration) {
         this.notificationConfiguration = bucketNotificationConfiguration;
     }
 
     /**
      * Sets the new notification configuration for the specified bucket.
-     * 
-     * @param notificationConfiguration
-     *            The new notification configuration for the specified bucket.
-     * 
+     *
+     * @param notificationConfiguration The new notification configuration for
+     *            the specified bucket.
      * @see SetBucketNotificationConfigurationRequest#withNotificationConfiguration(BucketNotificationConfiguration)
      */
-    public void setNotificationConfiguration(BucketNotificationConfiguration notificationConfiguration) {
+    public void setNotificationConfiguration(
+            BucketNotificationConfiguration notificationConfiguration) {
         this.notificationConfiguration = notificationConfiguration;
     }
 
@@ -98,13 +102,11 @@ public class SetBucketNotificationConfigurationRequest extends AmazonWebServiceR
      * Sets the new notification configuration for the specified bucket and
      * returns this object, enabling additional method calls to be chained
      * together.
-     * 
-     * @param notificationConfiguration
-     *            The new notification configuration for the specified bucket.
-     * 
+     *
+     * @param notificationConfiguration The new notification configuration for
+     *            the specified bucket.
      * @return This {@link SetBucketNotificationConfigurationRequest} object,
      *         enabling that additional method calls may be chained together.
-     * 
      * @see SetBucketNotificationConfigurationRequest#getNotificationConfiguration()
      */
     public SetBucketNotificationConfigurationRequest withNotificationConfiguration(
@@ -124,10 +126,9 @@ public class SetBucketNotificationConfigurationRequest extends AmazonWebServiceR
     /**
      * Gets the name of the bucket whose notification configuration is being
      * set.
-     * 
+     *
      * @return The name of the bucket whose notification configuration is being
      *         set.
-     * 
      * @see SetBucketNotificationConfigurationRequest#setBucketName(String)
      */
     public String getBucketName() {
@@ -145,11 +146,9 @@ public class SetBucketNotificationConfigurationRequest extends AmazonWebServiceR
     /**
      * Sets the name of the bucket whose notification configuration is being
      * set.
-     * 
-     * @param bucketName
-     *            The name of the bucket whose notification configuration is
-     *            being set.
-     * 
+     *
+     * @param bucketName The name of the bucket whose notification configuration
+     *            is being set.
      * @see SetBucketNotificationConfigurationRequest#getBucketName()
      */
     public void setBucketName(String bucketName) {
@@ -160,14 +159,11 @@ public class SetBucketNotificationConfigurationRequest extends AmazonWebServiceR
      * Sets the name of the bucket whose notification configuration is being
      * set, and returns this object so that additional method calls may be
      * chained together.
-     * 
-     * @param bucketName
-     *            The name of the bucket whose notification configuration is
-     *            being set.
-     * 
+     *
+     * @param bucketName The name of the bucket whose notification configuration
+     *            is being set.
      * @return This {@link SetBucketNotificationConfigurationRequest} object so
      *         that additional method calls may be chained together.
-     * 
      * @see SetBucketNotificationConfigurationRequest#setBucketName(String)
      */
     public SetBucketNotificationConfigurationRequest withBucketName(

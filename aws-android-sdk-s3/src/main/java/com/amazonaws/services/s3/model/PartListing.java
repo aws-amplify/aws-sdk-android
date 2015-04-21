@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class PartListing {
      * specify where in the results to begin listing parts.
      */
     private Integer partNumberMarker;
-    
+
     /**
      * The encodingType parameter originally specified by the caller when this
      * part listing was returned.
@@ -65,7 +66,10 @@ public class PartListing {
     /** The initiator of the associated multipart upload. */
     private Owner initiator;
 
-    /** The class of storage used for the parts in the associated multipart upload. */
+    /**
+     * The class of storage used for the parts in the associated multipart
+     * upload.
+     */
     private String storageClass;
 
     /**
@@ -83,7 +87,6 @@ public class PartListing {
     /** The list of parts described in this part listing. */
     private List<PartSummary> parts;
 
-
     /**
      * Returns the name of the bucket containing the listed parts, as specified
      * in the original request.
@@ -99,8 +102,7 @@ public class PartListing {
      * Sets the name of the bucket containing the listed parts, as specified in
      * the original request.
      *
-     * @param bucketName
-     *            the name of the bucket containing the listed parts, as
+     * @param bucketName the name of the bucket containing the listed parts, as
      *            specified in the original request.
      */
     public void setBucketName(String bucketName) {
@@ -122,8 +124,7 @@ public class PartListing {
      * Sets the key value specified in the original request used to identify
      * which multipart upload contains the parts to list.
      *
-     * @param key
-     *            the key value specified in the original request used to
+     * @param key the key value specified in the original request used to
      *            identify which multipart upload contains the parts to list.
      */
     public void setKey(String key) {
@@ -145,20 +146,18 @@ public class PartListing {
      * Sets the upload ID value specified in the original request used to
      * identify which multipart upload contains the parts to list.
      *
-     * @param uploadId
-     *            the upload ID value specified in the original request used to
-     *            identify which multipart upload contains the parts to list.
+     * @param uploadId the upload ID value specified in the original request
+     *            used to identify which multipart upload contains the parts to
+     *            list.
      */
     public void setUploadId(String uploadId) {
         this.uploadId = uploadId;
     }
 
     /**
-     * Returns details on the user who owns the associated multipart
-     * upload.
+     * Returns details on the user who owns the associated multipart upload.
      *
-     * @return details on the user who owns the associated multipart
-     *         upload.
+     * @return details on the user who owns the associated multipart upload.
      */
     public Owner getOwner() {
         return owner;
@@ -167,8 +166,7 @@ public class PartListing {
     /**
      * Sets the user who owns the associated multipart upload.
      *
-     * @param owner
-     *            the user who owns the associated multipart upload.
+     * @param owner the user who owns the associated multipart upload.
      */
     public void setOwner(Owner owner) {
         this.owner = owner;
@@ -188,8 +186,7 @@ public class PartListing {
     /**
      * Sets the user who initiated the associated multipart upload.
      *
-     * @param owner
-     *            the user who initiated the associated multipart upload.
+     * @param owner the user who initiated the associated multipart upload.
      */
     public void setInitiator(Owner initiator) {
         this.initiator = initiator;
@@ -210,9 +207,8 @@ public class PartListing {
      * Sets the class of storage used for the parts in the associated multipart
      * upload.
      *
-     * @param storageClass
-     *            The class of storage used for the parts in the associated
-     *            multipart upload.
+     * @param storageClass The class of storage used for the parts in the
+     *            associated multipart upload.
      */
     public void setStorageClass(String storageClass) {
         this.storageClass = storageClass;
@@ -233,10 +229,9 @@ public class PartListing {
      * Sets the optional part number marker specified in the original request to
      * specify where in the results to begin listing parts.
      *
-     * @param partNumberMarker
-     *            the optional part number marker specified in the original
-     *            request to specify where in the results to begin listing
-     *            parts.
+     * @param partNumberMarker the optional part number marker specified in the
+     *            original request to specify where in the results to begin
+     *            listing parts.
      */
     public void setPartNumberMarker(int partNumberMarker) {
         this.partNumberMarker = partNumberMarker;
@@ -259,8 +254,7 @@ public class PartListing {
      * the part number marker that should be used in the next request to get the
      * next page of results.
      *
-     * @param nextPartNumberMarker
-     *            The next part number marker.
+     * @param nextPartNumberMarker The next part number marker.
      */
     public void setNextPartNumberMarker(int nextPartNumberMarker) {
         this.nextPartNumberMarker = nextPartNumberMarker;
@@ -281,9 +275,8 @@ public class PartListing {
      * Sets the optional max parts value specified in the original request to
      * limit how many parts are listed.
      *
-     * @param maxParts
-     *            The optional max parts value specified in the original request
-     *            to limit how many parts are listed.
+     * @param maxParts The optional max parts value specified in the original
+     *            request to limit how many parts are listed.
      */
     public void setMaxParts(int maxParts) {
         this.maxParts = maxParts;
@@ -294,7 +287,7 @@ public class PartListing {
      * the XML response. If you specify <code>encodingType</code> request
      * parameter, Amazon S3 includes this element in the response, and returns
      * encoded key name values in the <code>Key</code> element.
-     * 
+     *
      * @return <code>Null</code> if <code>encodingType</code> is not specified
      *         in the request parameter.
      */
@@ -305,9 +298,8 @@ public class PartListing {
     /**
      * For internal use only. Sets the encoding type used by Amazon S3 to encode
      * object key names in the XML response.
-     * 
-     * @param encodingType
-     *            <code>Null</code> if <code>encodingType</code> is not
+     *
+     * @param encodingType <code>Null</code> if <code>encodingType</code> is not
      *            specified in the request parameter.
      */
     public void setEncodingType(String encodingType) {
@@ -329,9 +321,8 @@ public class PartListing {
      * Sets whether or not this listing is truncated, and additional requests
      * need to be made to get more results.
      *
-     * @param isTruncated
-     *            whether or not this listing is truncated, and additional
-     *            requests need to be made to get more results.
+     * @param isTruncated whether or not this listing is truncated, and
+     *            additional requests need to be made to get more results.
      */
     public void setTruncated(boolean isTruncated) {
         this.isTruncated = isTruncated;
@@ -343,15 +334,15 @@ public class PartListing {
      * @return The list of parts described in this part listing.
      */
     public List<PartSummary> getParts() {
-        if (parts == null) parts = new ArrayList<PartSummary>();
+        if (parts == null)
+            parts = new ArrayList<PartSummary>();
         return parts;
     }
 
     /**
      * Sets the list of parts described in this part listing.
      *
-     * @param parts
-     *            The list of parts described in this part listing.
+     * @param parts The list of parts described in this part listing.
      */
     public void setParts(List<PartSummary> parts) {
         this.parts = parts;

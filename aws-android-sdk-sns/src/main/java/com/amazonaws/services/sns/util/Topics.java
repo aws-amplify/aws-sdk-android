@@ -12,10 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.sns.util;
 
-import java.util.HashMap;
-import java.util.Map;
+package com.amazonaws.services.sns.util;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -34,6 +32,9 @@ import com.amazonaws.services.sqs.model.GetQueueAttributesRequest;
 import com.amazonaws.services.sqs.model.QueueAttributeName;
 import com.amazonaws.services.sqs.model.SetQueueAttributesRequest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Set of utility methods for working with Amazon SNS topics.
  */
@@ -47,6 +48,7 @@ public class Topics {
      * the queue to allow it to receive messages from the SNS topic.
      * <p>
      * The policy applied to the SQS queue is similar to this:
+     *
      * <pre>
      * {
      *    "Version" : "2008-10-17",
@@ -81,45 +83,42 @@ public class Topics {
      * <b>IMPORTANT</b>: The specified queue and topic (as well as the SNS and
      * SQS client) should both be located in the same AWS region.
      *
-     * @param sns
-     *            The Amazon SNS client to use when subscribing the queue to the
+     * @param sns The Amazon SNS client to use when subscribing the queue to the
      *            topic.
-     * @param sqs
-     *            The Amazon SQS client to use when applying the policy to allow
+     * @param sqs The Amazon SQS client to use when applying the policy to allow
      *            subscribing to the topic.
-     * @param snsTopicArn
-     *            The Amazon Resource Name (ARN) uniquely identifying the Amazon
-     *            SNS topic. This value is returned form Amazon SNS when
-     *            creating the topic.
-     * @param sqsQueueUrl
-     *            The URL uniquely identifying the Amazon SQS queue. This value
-     *            is returned from Amazon SQS when creating the queue.
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client
-     *             while attempting to make the request or handle the response.
-     *             For example if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server
-     *             side issue.
-     *
+     * @param snsTopicArn The Amazon Resource Name (ARN) uniquely identifying
+     *            the Amazon SNS topic. This value is returned form Amazon SNS
+     *            when creating the topic.
+     * @param sqsQueueUrl The URL uniquely identifying the Amazon SQS queue.
+     *            This value is returned from Amazon SQS when creating the
+     *            queue.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonSNS indicating either a problem with the data in the
+     *             request, or a server side issue.
      * @return The subscription ARN as returned by Amazon SNS when the queue is
      *         successfully subscribed to the topic.
      */
-    public static String subscribeQueue(AmazonSNS sns, AmazonSQS sqs, String snsTopicArn, String sqsQueueUrl)
-                throws AmazonClientException, AmazonServiceException {
-        Map<String, String> queueAttributes = sqs.getQueueAttributes(new GetQueueAttributesRequest(sqsQueueUrl)
-                .withAttributeNames(QueueAttributeName.QueueArn.toString())).getAttributes();
+    public static String subscribeQueue(AmazonSNS sns, AmazonSQS sqs, String snsTopicArn,
+            String sqsQueueUrl)
+            throws AmazonClientException, AmazonServiceException {
+        Map<String, String> queueAttributes = sqs.getQueueAttributes(
+                new GetQueueAttributesRequest(sqsQueueUrl)
+                        .withAttributeNames(QueueAttributeName.QueueArn.toString()))
+                .getAttributes();
         String sqsQueueArn = queueAttributes.get(QueueAttributeName.QueueArn.toString());
 
         Policy policy = new Policy().withStatements(
                 new Statement(Effect.Allow)
-                    .withId("topic-subscription-" + snsTopicArn)
-                    .withPrincipals(Principal.AllUsers)
-                    .withActions(SQSActions.SendMessage)
-                    .withResources(new Resource(sqsQueueArn))
-                    .withConditions(ConditionFactory.newSourceArnCondition(snsTopicArn)));
+                        .withId("topic-subscription-" + snsTopicArn)
+                        .withPrincipals(Principal.AllUsers)
+                        .withActions(SQSActions.SendMessage)
+                        .withResources(new Resource(sqsQueueArn))
+                        .withConditions(ConditionFactory.newSourceArnCondition(snsTopicArn)));
 
         System.out.println("Policy: " + policy.toJson());
 
@@ -129,9 +128,9 @@ public class Topics {
 
         SubscribeResult subscribeResult =
                 sns.subscribe(new SubscribeRequest()
-                    .withEndpoint(sqsQueueArn)
-                    .withProtocol("sqs")
-                    .withTopicArn(snsTopicArn));
+                        .withEndpoint(sqsQueueArn)
+                        .withProtocol("sqs")
+                        .withTopicArn(snsTopicArn));
         return subscribeResult.getSubscriptionArn();
     }
 }

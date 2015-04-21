@@ -12,15 +12,15 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 import java.util.Collection;
 
-
 /**
  * Multiple file download of an entire virtual directory.
  */
-public interface  MultipleFileUpload extends Transfer {
+public interface MultipleFileUpload extends Transfer {
 
     /**
      * Returns the key prefix of the virtual directory being uploaded.
@@ -33,7 +33,9 @@ public interface  MultipleFileUpload extends Transfer {
     public String getBucketName();
 
     /**
-     * Returns a collection of sub transfers associated with the multi file upload.
+     * Returns a collection of sub transfers associated with the multi file
+     * upload.
+     *
      * @return
      */
     public Collection<? extends Upload> getSubTransfers();

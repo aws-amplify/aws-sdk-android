@@ -12,15 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http;
-
-import java.io.IOException;
-import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -28,11 +21,19 @@ import com.amazonaws.transform.Unmarshaller;
 import com.amazonaws.util.IOUtils;
 import com.amazonaws.util.XpathUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+
+import java.io.IOException;
+import java.util.List;
+
 /**
  * Implementation of HttpResponseHandler that handles only error responses from
  * Amazon Web Services. A list of unmarshallers is passed into the constructor,
  * and while handling a response, each unmarshaller is tried, in order, until
- * one is found that can successfully unmarshall the error response.  If no
+ * one is found that can successfully unmarshall the error response. If no
  * unmarshaller is found that can unmarshall the error response, a generic
  * AmazonServiceException is created and populated with the AWS error response
  * information (error message, AWS error code, AWS request ID, etc).
@@ -53,9 +54,8 @@ public class DefaultErrorResponseHandler
      * Each unmarshaller will be tried, in order, until one is found that can
      * unmarshall the error response.
      *
-     * @param unmarshallerList
-     *            The list of unmarshallers to try using when handling an error
-     *            response.
+     * @param unmarshallerList The list of unmarshallers to try using when
+     *            handling an error response.
      */
     public DefaultErrorResponseHandler(
             List<Unmarshaller<AmazonServiceException, Node>> unmarshallerList) {
@@ -68,7 +68,7 @@ public class DefaultErrorResponseHandler
         String content = "";
         try {
             content = IOUtils.toString(errorResponse.getContent());
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             if (log.isDebugEnabled())
                 log.debug("Failed in reading the error response", ex);
             return newAmazonServiceException(
@@ -109,12 +109,13 @@ public class DefaultErrorResponseHandler
     private AmazonServiceException newAmazonServiceException(String errmsg,
             HttpResponse httpResponse, Exception readFailure) {
         AmazonServiceException exception = new AmazonServiceException(errmsg, readFailure);
-            final int statusCode = httpResponse.getStatusCode();
-            exception.setErrorCode(statusCode + " " + httpResponse.getStatusText());
-            exception.setErrorType(AmazonServiceException.ErrorType.Unknown);
-            exception.setStatusCode(statusCode);
-            return exception;
+        final int statusCode = httpResponse.getStatusCode();
+        exception.setErrorCode(statusCode + " " + httpResponse.getStatusText());
+        exception.setErrorType(AmazonServiceException.ErrorType.Unknown);
+        exception.setStatusCode(statusCode);
+        return exception;
     }
+
     /**
      * Since this response handler completely consumes all the data from the
      * underlying HTTP connection during the handle method, we don't need to
@@ -122,6 +123,7 @@ public class DefaultErrorResponseHandler
      *
      * @see com.amazonaws.http.HttpResponseHandler#needsConnectionLeftOpen()
      */
+    @Override
     public boolean needsConnectionLeftOpen() {
         return false;
     }

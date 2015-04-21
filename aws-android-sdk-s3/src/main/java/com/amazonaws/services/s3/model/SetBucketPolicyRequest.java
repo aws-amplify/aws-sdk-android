@@ -12,25 +12,24 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 
 /**
- * Sets the policy associated with the specified bucket. Only the owner of
- * the bucket can set a bucket policy. If a policy already exists for the
- * specified bucket, the new policy replaces the existing policy.
- * </p>
+ * Sets the policy associated with the specified bucket. Only the owner of the
+ * bucket can set a bucket policy. If a policy already exists for the specified
+ * bucket, the new policy replaces the existing policy. </p>
  * <p>
  * Bucket policies provide access control management at the bucket level for
- * both the bucket resource and contained object resources. Only one policy
- * can be specified per-bucket.
+ * both the bucket resource and contained object resources. Only one policy can
+ * be specified per-bucket.
  * </p>
  * <p>
  * See the <a href="http://docs.amazonwebservices.com/AmazonS3/latest/dev/">
- * Amazon S3 developer guide</a> for more information on forming bucket
- * polices.
+ * Amazon S3 developer guide</a> for more information on forming bucket polices.
  * </p>
  *
  * @see AmazonS3#setBucketPolicy(SetBucketPolicyRequest)
@@ -43,21 +42,18 @@ public class SetBucketPolicyRequest extends AmazonWebServiceRequest {
     /** The policy to apply to the specified bucket. */
     private String policyText;
 
-
     /**
      * Creates a new request object, ready to be executed to set an Amazon S3
      * bucket's policy.
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose policy is being set.
-     * @param policyText
-     *            The policy to apply to the specified bucket.
+     * @param bucketName The name of the Amazon S3 bucket whose policy is being
+     *            set.
+     * @param policyText The policy to apply to the specified bucket.
      */
     public SetBucketPolicyRequest(String bucketName, String policyText) {
         this.bucketName = bucketName;
         this.policyText = policyText;
     }
-
 
     /**
      * Returns the name of the Amazon S3 bucket whose policy is being set.
@@ -71,8 +67,8 @@ public class SetBucketPolicyRequest extends AmazonWebServiceRequest {
     /**
      * Sets the name of the Amazon S3 bucket whose policy is being set.
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose policy is being set.
+     * @param bucketName The name of the Amazon S3 bucket whose policy is being
+     *            set.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -83,9 +79,8 @@ public class SetBucketPolicyRequest extends AmazonWebServiceRequest {
      * returns the updated request object so that additional method calls can be
      * chained together.
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose policy is being set.
-     *
+     * @param bucketName The name of the Amazon S3 bucket whose policy is being
+     *            set.
      * @return The updated request object so that additional method calls can be
      *         chained together.
      */
@@ -106,8 +101,7 @@ public class SetBucketPolicyRequest extends AmazonWebServiceRequest {
     /**
      * Sets the policy to apply to the specified bucket.
      *
-     * @param policyText
-     *            The policy to apply to the specified bucket.
+     * @param policyText The policy to apply to the specified bucket.
      */
     public void setPolicyText(String policyText) {
         this.policyText = policyText;
@@ -117,11 +111,9 @@ public class SetBucketPolicyRequest extends AmazonWebServiceRequest {
      * Sets the policy to apply to the specified bucket, and returns the updated
      * request object so that additional method calls can be chained together.
      *
-     * @param policyText
-     *            The policy to apply to the specified bucket.
-     *
-     * @return The updated request object, so that additional method calls can
-     *         be chained together.
+     * @param policyText The policy to apply to the specified bucket.
+     * @return The updated request object, so that additional method calls can be
+     *         chained together.
      */
     public SetBucketPolicyRequest withPolicyText(String policyText) {
         setPolicyText(policyText);

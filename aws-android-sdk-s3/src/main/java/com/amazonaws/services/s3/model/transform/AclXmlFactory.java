@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model.transform;
 
 import com.amazonaws.AmazonClientException;
@@ -35,9 +36,7 @@ public class AclXmlFactory {
      * Converts the specified AccessControlList object to an XML fragment that
      * can be sent to Amazon S3.
      *
-     * @param acl
-     *            The AccessControlList to convert to XML.
-     *
+     * @param acl The AccessControlList to convert to XML.
      * @return an XML representation of the Access Control List object, suitable
      *         to send in a request to Amazon S3.
      */
@@ -73,24 +72,20 @@ public class AclXmlFactory {
     /**
      * Returns an XML fragment representing the specified Grantee.
      *
-     * @param grantee
-     *            The grantee to convert to an XML representation that can be
-     *            sent to Amazon S3 as part of a request.
-     * @param xml
-     *            The XmlWriter to which to concatenate this node to.
-     *
+     * @param grantee The grantee to convert to an XML representation that can
+     *            be sent to Amazon S3 as part of a request.
+     * @param xml The XmlWriter to which to concatenate this node to.
      * @return The given XmlWriter containing the specified grantee.
-     *
-     * @throws AmazonClientException
-     *             If the specified grantee type isn't recognized.
+     * @throws AmazonClientException If the specified grantee type isn't
+     *             recognized.
      */
     protected XmlWriter convertToXml(Grantee grantee, XmlWriter xml) throws AmazonClientException {
         if (grantee instanceof CanonicalGrantee) {
-            return convertToXml((CanonicalGrantee)grantee, xml);
+            return convertToXml((CanonicalGrantee) grantee, xml);
         } else if (grantee instanceof EmailAddressGrantee) {
-            return convertToXml((EmailAddressGrantee)grantee, xml);
+            return convertToXml((EmailAddressGrantee) grantee, xml);
         } else if (grantee instanceof GroupGrantee) {
-            return convertToXml((GroupGrantee)grantee, xml);
+            return convertToXml((GroupGrantee) grantee, xml);
         } else {
             throw new AmazonClientException("Unknown Grantee type: " + grantee.getClass().getName());
         }
@@ -99,17 +94,18 @@ public class AclXmlFactory {
     /**
      * Returns an XML fragment representing the specified canonical grantee.
      *
-     * @param grantee
-     *            The canonical grantee to convert to an XML representation that
-     *            can be sent to Amazon S3 as part of request.
-     * @param xml
-     *            The XmlWriter to which to concatenate this node to.
-     *
+     * @param grantee The canonical grantee to convert to an XML representation
+     *            that can be sent to Amazon S3 as part of request.
+     * @param xml The XmlWriter to which to concatenate this node to.
      * @return The given XmlWriter containing the specified canonical grantee.
      */
     protected XmlWriter convertToXml(CanonicalGrantee grantee, XmlWriter xml) {
-        xml.start("Grantee", new String[] {"xmlns:xsi" , "xsi:type"},
-                new String[] {"http://www.w3.org/2001/XMLSchema-instance", "CanonicalUser"});
+        xml.start("Grantee", new String[] {
+                "xmlns:xsi", "xsi:type"
+        },
+                new String[] {
+                        "http://www.w3.org/2001/XMLSchema-instance", "CanonicalUser"
+                });
         xml.start("ID").value(grantee.getIdentifier()).end();
         xml.end();
 
@@ -119,17 +115,19 @@ public class AclXmlFactory {
     /**
      * Returns an XML fragment representing the specified email address grantee.
      *
-     * @param grantee
-     *            The email address grantee to convert to an XML representation
-     *            that can be sent to Amazon S3 as part of request.
-     * @param xml
-     *            The XmlWriter to which to concatenate this node to.
-     *
+     * @param grantee The email address grantee to convert to an XML
+     *            representation that can be sent to Amazon S3 as part of
+     *            request.
+     * @param xml The XmlWriter to which to concatenate this node to.
      * @return The given XmlWriter containing the specified email address grantee
      */
     protected XmlWriter convertToXml(EmailAddressGrantee grantee, XmlWriter xml) {
-        xml.start("Grantee", new String[] {"xmlns:xsi" , "xsi:type"},
-                new String[] {"http://www.w3.org/2001/XMLSchema-instance", "AmazonCustomerByEmail"});
+        xml.start("Grantee", new String[] {
+                "xmlns:xsi", "xsi:type"
+        },
+                new String[] {
+                        "http://www.w3.org/2001/XMLSchema-instance", "AmazonCustomerByEmail"
+                });
         xml.start("EmailAddress").value(grantee.getIdentifier()).end();
         xml.end();
 
@@ -139,17 +137,18 @@ public class AclXmlFactory {
     /**
      * Returns an XML fragment representing the specified group grantee.
      *
-     * @param grantee
-     *            The group grantee to convert to an XML representation that can
-     *            be sent to Amazon S3 as part of request.
-     * @param xml
-     *            The XmlWriter to which to concatenate this node to.
-     *
+     * @param grantee The group grantee to convert to an XML representation that
+     *            can be sent to Amazon S3 as part of request.
+     * @param xml The XmlWriter to which to concatenate this node to.
      * @return The given XmlWriter containing the specified group grantee.
      */
     protected XmlWriter convertToXml(GroupGrantee grantee, XmlWriter xml) {
-        xml.start("Grantee", new String[] {"xmlns:xsi" , "xsi:type"},
-                new String[] {"http://www.w3.org/2001/XMLSchema-instance", "Group"});
+        xml.start("Grantee", new String[] {
+                "xmlns:xsi", "xsi:type"
+        },
+                new String[] {
+                        "http://www.w3.org/2001/XMLSchema-instance", "Group"
+                });
         xml.start("URI").value(grantee.getIdentifier()).end();
         xml.end();
 

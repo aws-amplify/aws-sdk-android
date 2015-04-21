@@ -26,15 +26,16 @@ import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
  * developers can extend for implementing a developer provider, when using
  * developer authenticated identities
  */
-public abstract class AWSAbstractCognitoDeveloperIdentityProvider extends AWSAbstractCognitoIdentityProvider {
-    
+public abstract class AWSAbstractCognitoDeveloperIdentityProvider extends
+        AWSAbstractCognitoIdentityProvider {
+
     /**
      * Wraps around the AbstractIdentityProvider to cover some back end code
      * that is consistent across all providers, utilizing the CIB client to
      * handle the identity management.
-     * 
-     * @deprecated please use AWSAbstractCognitoDeveloperIdentityProvider(String accountId, 
-     * String identityPoolId, Regions region) instead
+     *
+     * @deprecated please use AWSAbstractCognitoDeveloperIdentityProvider(String
+     *             accountId, String identityPoolId, Regions region) instead
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      */
@@ -42,17 +43,18 @@ public abstract class AWSAbstractCognitoDeveloperIdentityProvider extends AWSAbs
     public AWSAbstractCognitoDeveloperIdentityProvider(String accountId, String identityPoolId) {
         this(accountId, identityPoolId, new ClientConfiguration());
     }
-    
+
     /**
      * Wraps around the AbstractIdentityProvider to cover some back end code
      * that is consistent across all providers, utilizing the CIB client to
      * handle the identity management.
-     * 
+     *
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      * @param region the region the cib client will use
      */
-    public AWSAbstractCognitoDeveloperIdentityProvider(String accountId, String identityPoolId, Regions region) {
+    public AWSAbstractCognitoDeveloperIdentityProvider(String accountId, String identityPoolId,
+            Regions region) {
         this(accountId, identityPoolId, new ClientConfiguration(), region);
     }
 
@@ -60,9 +62,10 @@ public abstract class AWSAbstractCognitoDeveloperIdentityProvider extends AWSAbs
      * Wraps around the AbstractIdentityProvider to cover some back end code
      * that is consistent across all providers, utilizing the CIB client to
      * handle the identity management.
-     * 
-     * @deprecated please use AWSAbstractCognitoDeveloperIdentityProvider(String accountId, 
-     * String identityPoolId, ClientConfiguration clientConfiguration, Regions region) instead
+     *
+     * @deprecated please use AWSAbstractCognitoDeveloperIdentityProvider(String
+     *             accountId, String identityPoolId, ClientConfiguration
+     *             clientConfiguration, Regions region) instead
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      * @param clientConfiguration the configuration to apply to service clients
@@ -79,7 +82,7 @@ public abstract class AWSAbstractCognitoDeveloperIdentityProvider extends AWSAbs
      * Wraps around the AbstractIdentityProvider to cover some back end code
      * that is consistent across all providers, utilizing the CIB client to
      * handle the identity management.
-     * 
+     *
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      * @param clientConfiguration the configuration to apply to service clients
@@ -92,12 +95,12 @@ public abstract class AWSAbstractCognitoDeveloperIdentityProvider extends AWSAbs
                 (new AnonymousAWSCredentials(), clientConfiguration));
         this.cib.setRegion(Region.getRegion(region));
     }
-    
+
     /**
      * Wraps around the AbstractIdentityProvider to cover some back end code
      * that is consistent across all providers, utilizing the CIB client to
      * handle the identity management.
-     * 
+     *
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      * @param cibClient the cib client which will be used to contact the cib
@@ -108,7 +111,8 @@ public abstract class AWSAbstractCognitoDeveloperIdentityProvider extends AWSAbs
         super(accountId, identityPoolId, cibClient);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.amazonaws.auth.AWSBasicCognitoIdentityProvider#getProviderName()
      */
     @Override

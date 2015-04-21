@@ -12,13 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 /**
  * AWS credentials provider chain that looks for credentials in this order:
  * <ul>
- *   <li>System Properties - aws.accessKeyId and aws.secretKey</li>
- *   <li>Classpath Properties File - AwsCredentials.properties in classpath</li> 
+ * <li>System Properties - aws.accessKeyId and aws.secretKey</li>
+ * <li>Classpath Properties File - AwsCredentials.properties in classpath</li>
  * </ul>
  *
  * @see SystemPropertiesCredentialsProvider
@@ -27,6 +28,6 @@ package com.amazonaws.auth;
 public class DefaultAWSCredentialsProviderChain extends AWSCredentialsProviderChain {
     public DefaultAWSCredentialsProviderChain() {
         super(new SystemPropertiesCredentialsProvider(),
-              new ClasspathPropertiesFileCredentialsProvider()); 
+                new ClasspathPropertiesFileCredentialsProvider());
     }
 }

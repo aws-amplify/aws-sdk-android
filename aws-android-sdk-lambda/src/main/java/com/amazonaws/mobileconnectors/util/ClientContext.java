@@ -61,7 +61,7 @@ public class ClientContext {
     /**
      * Name of the shared preferences where client id is saved.
      */
-    static final String SHARED_PREFERENCES = "com.amazonaws.commom";
+    static final String SHARED_PREFERENCES = "com.amazonaws.common";
 
     private final JSONObject json;
     private String base64String;

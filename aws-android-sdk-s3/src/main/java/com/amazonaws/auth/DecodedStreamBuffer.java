@@ -12,12 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
+
+import com.amazonaws.AmazonClientException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.amazonaws.AmazonClientException;
 
 class DecodedStreamBuffer {
     private static final Log log = LogFactory.getLog(DecodedStreamBuffer.class);

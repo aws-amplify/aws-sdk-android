@@ -12,14 +12,16 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 /**
  * Codec SPI
- * 
+ *
  * @author Hanson Char
  */
 interface Codec {
     public byte[] encode(byte[] src);
-    public byte[] decode(byte[] src, final int length); 
+
+    public byte[] decode(byte[] src, final int length);
 }

@@ -12,14 +12,15 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.util.DateUtils;
 
 /**
- * An unmarshaller that unmarshals ISO-8601-formatted dates as Java
- * {@code Date} objects.
+ * An unmarshaller that unmarshals ISO-8601-formatted dates as Java {@code Date}
+ * objects.
  */
 public class DateUnmarshaller extends SUnmarshaller {
 

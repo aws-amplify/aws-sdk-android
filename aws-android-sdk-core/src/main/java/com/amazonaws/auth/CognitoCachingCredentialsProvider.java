@@ -39,31 +39,30 @@ import java.util.Map;
  * constructor, then that one is the one that is consumed, but if not/a
  * constructor that doesn't take an identity provider is used, then the Cognito
  * identity provider is used by default.
- * 
  * <p>
  * Note: if you haven't yet associated your IAM roles with your identity pool,
  * please do so via the Cognito console before using this constructor. You will
  * get an InvalidIdentityPoolConfigurationException if you use it and have not.
  * </p>
- * 
+ *
  * <pre>
  * // initiate a credentials provider
  * CognitoCachingCredentialsProvider provider = new CognitoCachingCredentialsProvider(
  *         context,
  *         &quot;identityPoolId&quot;,
  *         Regions.US_EAST_1);
- * 
+ *
  * // use the provider to instantiate an AWS client
  * AmazonSNS snsClient = new AmazonSNSClient(provider);
- * 
+ *
  * // If the user is authenticated through login with Amazon, you can set the map
  * // of token to the provider
  * Map&lt;String, String&gt; logins = new HashMap&lt;String, String&gt;();
  * logins.put(""www.amazon.com", "login with Amazon token");
  * provider.setLogins(logins);
- * 
+ *
  * // Note: Please reuse the provider when possible.
- * 
+ *
  * //The existing constructor will work without doing so, but will not use the enhanced flow:
  * CognitoCachingCredentialsProvider provider = new CognitoCachingCredentialsProvider(
  *         context,
@@ -107,7 +106,7 @@ public class CognitoCachingCredentialsProvider
      * the basic authentication flow, to the AWS Security Token Service (STS) to
      * request short-lived session credentials, which will then be returned by
      * this class's {@link #getCredentials()} method.
-     * 
+     *
      * @param context The Android context to be used for the caching
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cogntio identity pool to use
@@ -138,7 +137,7 @@ public class CognitoCachingCredentialsProvider
      * This version of the constructor allows you to specify a client
      * configuration for the Amazon Cognito and STS clients.
      * </p>
-     * 
+     *
      * @param context The Android context to be used for the caching
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cognito identity pool to use
@@ -168,7 +167,6 @@ public class CognitoCachingCredentialsProvider
      * Cognito, using the enhanced flow, to get short lived session credentials,
      * which will then be returned by this class's {@link #getCredentials()}
      * method.
-     * 
      * <p>
      * Note: if you haven't yet associated your IAM roles with your identity
      * pool, please do so via the Cognito console before using this constructor.
@@ -177,7 +175,7 @@ public class CognitoCachingCredentialsProvider
      * and an account id) will work without doing so, but will not use the
      * enhanced flow.
      * </p>
-     * 
+     *
      * @param context The Android context to be used for the caching
      * @param identityPoolId The Amazon Cognito identity pool to use
      * @param region The region to use when contacting Cognito Identity
@@ -202,7 +200,6 @@ public class CognitoCachingCredentialsProvider
      * This version of the constructor allows you to specify a client
      * configuration for the Amazon Cognito client.
      * </p>
-     * 
      * <p>
      * Note: if you haven't yet associated your IAM roles with your identity
      * pool, please do so via the Cognito console before using this constructor.
@@ -211,7 +208,7 @@ public class CognitoCachingCredentialsProvider
      * and an account id) will work without doing so, but will not use the
      * enhanced flow.
      * </p>
-     * 
+     *
      * @param context The Android context to be used for the caching
      * @param identityPoolId The Amazon Cognito identity pool to use
      * @param region The region to use when contacting Cognito Identity
@@ -243,7 +240,7 @@ public class CognitoCachingCredentialsProvider
      * Set the roles and stsClient to null to use the enhanced authentication
      * flow, not contacting STS. Otherwise the basic flow will be used.
      * </p>
-     * 
+     *
      * @param context The Android context to be used for the caching
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cogntio identity pool to use
@@ -276,7 +273,7 @@ public class CognitoCachingCredentialsProvider
      * This version of the constructor allows you to specify your own Identity
      * Provider class.
      * </p>
-     * 
+     *
      * @param context The Android context to be used for the caching
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with STS
@@ -303,7 +300,7 @@ public class CognitoCachingCredentialsProvider
      * This version of the constructor allows you to specify your own Identity
      * Provider class, and the STS client to use.
      * </p>
-     * 
+     *
      * @param context The Android context to be used for the caching
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with STS
@@ -331,15 +328,14 @@ public class CognitoCachingCredentialsProvider
      * This version of the constructor allows you to specify your own Identity
      * Provider class.
      * </p>
-     * 
      * <p>
      * Note: if you haven't yet associated your IAM roles with your identity
      * pool, please do so via the Cognito console before using this constructor.
      * You will get an InvalidIdentityPoolConfigurationException if you use it
-     * and have not. The existing constructor (mirroring this one but with roles) 
-     * will work without doing so, but will not use the enhanced flow.
+     * and have not. The existing constructor (mirroring this one but with
+     * roles) will work without doing so, but will not use the enhanced flow.
      * </p>
-     * 
+     *
      * @param context The Android context to be used for the caching
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with Amazon
@@ -366,15 +362,14 @@ public class CognitoCachingCredentialsProvider
      * This version of the constructor allows you to specify your own Identity
      * Provider class and the configuration for the Amazon Cognito client.
      * </p>
-     * 
      * <p>
      * Note: if you haven't yet associated your IAM roles with your identity
      * pool, please do so via the Cognito console before using this constructor.
      * You will get an InvalidIdentityPoolConfigurationException if you use it
-     * and have not. The existing constructor (mirroring this one but with roles) 
-     * will work without doing so, but will not use the enhanced flow.
+     * and have not. The existing constructor (mirroring this one but with
+     * roles) will work without doing so, but will not use the enhanced flow.
      * </p>
-     * 
+     *
      * @param context The Android context to be used for the caching
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with Amazon
@@ -400,13 +395,13 @@ public class CognitoCachingCredentialsProvider
         loadCachedCredentials();
         registerIdentityChangedListener(listener);
     }
-    
+
     /**
      * Gets the Cognito identity id of the user. The first time when this method
      * is called, a network request will be made to retrieve a new identity id.
      * After that it's saved in {@link SharedPreferences}. Please don't call it
      * in the main thread.
-     * 
+     *
      * @return identity id of the user
      */
     @Override
@@ -505,7 +500,7 @@ public class CognitoCachingCredentialsProvider
 
     /**
      * Gets the cached identity id without making a network request.
-     * 
+     *
      * @return cached identity id, null if it doesn't exist
      */
     public String getCachedIdentityId() {

@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import java.lang.annotation.ElementType;
@@ -30,7 +31,9 @@ import java.lang.annotation.Target;
  * item queries.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD})
+@Target({
+        ElementType.FIELD, ElementType.METHOD
+})
 public @interface DynamoDBIndexHashKey {
 
     /**
@@ -38,19 +41,18 @@ public @interface DynamoDBIndexHashKey {
      * should differ from the name used by the getter / setter.
      */
     String attributeName() default "";
-    
+
     /**
      * Parameter for the name of the global secondary index.
      * <p>
-     * This is required if this attribute is the index key for only one global secondary
-     * index.
+     * This is required if this attribute is the index key for only one global
+     * secondary index.
      */
     String globalSecondaryIndexName() default "";
-    
+
     /**
-     * Parameter for the names of the global secondary indexes.
-     * This is required if this attribute is the index key for multiple global secondary
-     * indexes.
+     * Parameter for the names of the global secondary indexes. This is required
+     * if this attribute is the index key for multiple global secondary indexes.
      */
     String[] globalSecondaryIndexNames() default {};
 

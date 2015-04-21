@@ -12,20 +12,20 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.metrics;
+
+import com.amazonaws.internal.SdkFilterInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.amazonaws.internal.SdkFilterInputStream;
 
 /**
  * Used to capture the input stream throughput metrics, but excluding the
  * {@link #read()} API.
  * <p>
- * Note this class is only relevant
- * when metric is enabled. Otherwise it should not even be involved in the call
- * stack to minimize runtime overhead.
+ * Note this class is only relevant when metric is enabled. Otherwise it should
+ * not even be involved in the call stack to minimize runtime overhead.
  */
 public class MetricFilterInputStream extends SdkFilterInputStream {
     private final ByteThroughputHelper helper;

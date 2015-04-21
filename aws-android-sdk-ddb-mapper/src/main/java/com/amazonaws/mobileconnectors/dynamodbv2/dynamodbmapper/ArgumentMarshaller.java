@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
@@ -27,13 +28,30 @@ public interface ArgumentMarshaller {
      */
     AttributeValue marshall(Object obj);
 
-    interface BooleanAttributeMarshaller extends ArgumentMarshaller {}
-    interface StringAttributeMarshaller extends ArgumentMarshaller {}
-    interface NumberAttributeMarshaller extends ArgumentMarshaller {}
-    interface BinaryAttributeMarshaller extends ArgumentMarshaller {}
-    interface StringSetAttributeMarshaller extends ArgumentMarshaller {}
-    interface NumberSetAttributeMarshaller extends ArgumentMarshaller {}
-    interface BinarySetAttributeMarshaller extends ArgumentMarshaller {}
-    interface ListAttributeMarshaller extends ArgumentMarshaller {}
-    interface MapAttributeMarshaller extends ArgumentMarshaller {}
+    interface BooleanAttributeMarshaller extends ArgumentMarshaller {
+    }
+
+    interface StringAttributeMarshaller extends ArgumentMarshaller {
+    }
+
+    interface NumberAttributeMarshaller extends ArgumentMarshaller {
+    }
+
+    interface BinaryAttributeMarshaller extends ArgumentMarshaller {
+    }
+
+    interface StringSetAttributeMarshaller extends ArgumentMarshaller {
+    }
+
+    interface NumberSetAttributeMarshaller extends ArgumentMarshaller {
+    }
+
+    interface BinarySetAttributeMarshaller extends ArgumentMarshaller {
+    }
+
+    interface ListAttributeMarshaller extends ArgumentMarshaller {
+    }
+
+    interface MapAttributeMarshaller extends ArgumentMarshaller {
+    }
 }

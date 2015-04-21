@@ -58,7 +58,7 @@ public class Session implements JSONSerializable {
 
     /**
      * STATIC FACTORY
-     * 
+     *
      * @param context
      * @return new Session object
      */
@@ -69,7 +69,7 @@ public class Session implements JSONSerializable {
     /**
      * Re-Generates a session object that has been serialized Returns null if
      * the input is null
-     * 
+     *
      * @param serializedSession - a Session's serialization string.
      * @return a session object identical to the one that was serialized
      */
@@ -95,7 +95,7 @@ public class Session implements JSONSerializable {
 
     /**
      * CONSTRUCTOR - ACTUAL Used by DefaultSessionClient
-     * 
+     *
      * @param context
      */
     protected Session(final AnalyticsContext context) {
@@ -112,7 +112,7 @@ public class Session implements JSONSerializable {
 
     /**
      * CONSTRUCTOR - EXPLICIT Used by the
-     * 
+     *
      * @param sessionID
      * @param startTime
      * @param stopTime
@@ -135,7 +135,7 @@ public class Session implements JSONSerializable {
 
     /**
      * Session is considered paused if stopTime is not null
-     * 
+     *
      * @return true iff session is currently paused
      */
     public boolean isPaused() {
@@ -161,7 +161,7 @@ public class Session implements JSONSerializable {
     /**
      * Calculates and returns the session's duration Returns a duration of 0 if
      * session is not paused or the system clock has been tampered with.
-     * 
+     *
      * @return session duration in milliseconds
      */
     public Long getSessionDuration() {
@@ -186,7 +186,7 @@ public class Session implements JSONSerializable {
      * Generates Session ID by concatenating present AppKey, UniqueID, and
      * Timestamp more detail:
      * https://w.amazon.com/index.php/GameLab:SessionEvents#Session_ID
-     * 
+     *
      * @return [String] SessionID
      */
     public String generateSessionID(final AnalyticsContext context) {

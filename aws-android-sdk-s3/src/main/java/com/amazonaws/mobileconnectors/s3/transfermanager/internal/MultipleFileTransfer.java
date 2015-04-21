@@ -12,15 +12,16 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
-import java.util.Collection;
-import java.util.concurrent.atomic.AtomicBoolean;
+package com.amazonaws.mobileconnectors.s3.transfermanager.internal;
 
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListenerChain;
 import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferProgress;
+
+import java.util.Collection;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Interface for multiple file transfers
@@ -48,50 +49,53 @@ public abstract class MultipleFileTransfer<T extends Transfer> extends AbstractT
      */
     public void collateFinalState() {
         boolean seenCanceled = false;
-        for ( T download : subTransfers ) {
-            if ( download.getState() == TransferState.Failed ) {
+        for (T download : subTransfers) {
+            if (download.getState() == TransferState.Failed) {
                 setState(TransferState.Failed);
                 return;
-            } else if ( download.getState() == TransferState.Canceled ) {
+            } else if (download.getState() == TransferState.Canceled) {
                 seenCanceled = true;
             }
         }
-        if ( seenCanceled )
+        if (seenCanceled)
             setState(TransferState.Canceled);
         else
             setState(TransferState.Completed);
     }
 
     /**
-     * Override this method so that TransferState updates are also sent out to the
-     * progress listener chain in forms of ProgressEvent.
+     * Override this method so that TransferState updates are also sent out to
+     * the progress listener chain in forms of ProgressEvent.
      */
     @Override
     public void setState(TransferState state) {
         super.setState(state);
 
         switch (state) {
-        case Waiting:
-            fireProgressEvent(ProgressEvent.PREPARING_EVENT_CODE);
-            break;
-        case InProgress:
-            if ( subTransferStarted.compareAndSet(false, true) ) {
-                /* The first InProgress signal */
-                fireProgressEvent(ProgressEvent.STARTED_EVENT_CODE);
-            }
-            /* Don't need any event code update for subsequent InProgress signals */
-            break;
-        case Completed:
-            fireProgressEvent(ProgressEvent.COMPLETED_EVENT_CODE);
-            break;
-        case Canceled:
-            fireProgressEvent(ProgressEvent.CANCELED_EVENT_CODE);
-            break;
-        case Failed:
-            fireProgressEvent(ProgressEvent.FAILED_EVENT_CODE);
-            break;
-        default:
-            break;
+            case Waiting:
+                fireProgressEvent(ProgressEvent.PREPARING_EVENT_CODE);
+                break;
+            case InProgress:
+                if (subTransferStarted.compareAndSet(false, true)) {
+                    /* The first InProgress signal */
+                    fireProgressEvent(ProgressEvent.STARTED_EVENT_CODE);
+                }
+                /*
+                 * Don't need any event code update for subsequent InProgress
+                 * signals
+                 */
+                break;
+            case Completed:
+                fireProgressEvent(ProgressEvent.COMPLETED_EVENT_CODE);
+                break;
+            case Canceled:
+                fireProgressEvent(ProgressEvent.CANCELED_EVENT_CODE);
+                break;
+            case Failed:
+                fireProgressEvent(ProgressEvent.FAILED_EVENT_CODE);
+                break;
+            default:
+                break;
         }
     }
 }

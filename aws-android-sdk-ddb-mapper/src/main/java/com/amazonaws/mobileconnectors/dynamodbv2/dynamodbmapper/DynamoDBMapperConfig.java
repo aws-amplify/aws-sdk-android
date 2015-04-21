@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import com.amazonaws.metrics.RequestMetricCollector;
@@ -26,11 +27,12 @@ import com.amazonaws.metrics.RequestMetricCollector;
  * <pre class="brush: java">
  * DynamoDBMapper mapper = new DynamoDBMapper(dynamoDBClient);
  * // Force this read to be consistent
- * DomainClass obj = mapper.load(DomainClass.class, key, new DynamoDBMapperConfig(ConsistentReads.CONSISTENT));
+ * DomainClass obj = mapper.load(DomainClass.class, key, new DynamoDBMapperConfig(
+ *         ConsistentReads.CONSISTENT));
  * // Force this save operation to use putItem rather than updateItem
  * mapper.save(obj, new DynamoDBMapperConfig(SaveBehavior.CLOBBER));
  * // Save the object into a different table
- * mapper.save(obj, new DynamoDBMapperConfig(new TableNameOverride("AnotherTable")));
+ * mapper.save(obj, new DynamoDBMapperConfig(new TableNameOverride(&quot;AnotherTable&quot;)));
  * // Delete the object even if the version field is out of date
  * mapper.delete(obj, new DynamoDBMapperConfig(SaveBehavior.CLOBBER));
  * </pre>
@@ -88,7 +90,6 @@ public class DynamoDBMapperConfig {
             return this;
         }
 
-
         /**
          * @return the currently-configured consistent read behavior
          */
@@ -111,7 +112,6 @@ public class DynamoDBMapperConfig {
             setConsistentReads(value);
             return this;
         }
-
 
         /**
          * @return the current table name override
@@ -136,7 +136,6 @@ public class DynamoDBMapperConfig {
             return this;
         }
 
-
         /**
          * @return the current table name resolver
          */
@@ -159,7 +158,6 @@ public class DynamoDBMapperConfig {
             setTableNameResolver(value);
             return this;
         }
-
 
         /**
          * @return the current object table name resolver
@@ -211,7 +209,6 @@ public class DynamoDBMapperConfig {
             return this;
         }
 
-
         /**
          * @return the currently-configured request metric collector
          */
@@ -235,7 +232,6 @@ public class DynamoDBMapperConfig {
             return this;
         }
 
-
         /**
          * @return the current conversion schema
          */
@@ -258,7 +254,6 @@ public class DynamoDBMapperConfig {
             setConversionSchema(value);
             return this;
         }
-
 
         /**
          * Builds a new {@code DynamoDBMapperConfig} object.
@@ -434,9 +429,9 @@ public class DynamoDBMapperConfig {
     }
 
     /**
-     * Interface for a strategy used to determine the table name of an object based on it's class.
-     * This resolver is used when an object isn't available such as in
-     * {@link DynamoDBMapper#query(Class, DynamoDBQueryExpression)}
+     * Interface for a strategy used to determine the table name of an object
+     * based on it's class. This resolver is used when an object isn't available
+     * such as in {@link DynamoDBMapper#query(Class, DynamoDBQueryExpression)}
      *
      * @see ObjectTableNameResolver
      * @author Raniz
@@ -444,8 +439,9 @@ public class DynamoDBMapperConfig {
     public static interface TableNameResolver {
 
         /**
-         * Get the table name for a class. This method is used when an object is not available
-         * such as when creating requests for scan or query operations.
+         * Get the table name for a class. This method is used when an object is
+         * not available such as when creating requests for scan or query
+         * operations.
          *
          * @param clazz The class to get the table name for
          * @param config The {@link DynamoDBMapperConfig}
@@ -455,12 +451,11 @@ public class DynamoDBMapperConfig {
     }
 
     /**
-     * Interface for a strategy used to determine the table name of an object based on it's class.
-     * This resolver is used when an object is available such as in
-     * {@link DynamoDBMapper#batchLoad(java.util.List)}.
-     *
-     * If no table name resolver for objects is set, {@link DynamoDBMapper} reverts to using the
-     * {@link TableNameResolver} on each object's class.
+     * Interface for a strategy used to determine the table name of an object
+     * based on it's class. This resolver is used when an object is available
+     * such as in {@link DynamoDBMapper#batchLoad(java.util.List)}. If no table
+     * name resolver for objects is set, {@link DynamoDBMapper} reverts to using
+     * the {@link TableNameResolver} on each object's class.
      *
      * @see TableNameResolver
      * @author Raniz
@@ -479,8 +474,9 @@ public class DynamoDBMapperConfig {
     }
 
     /**
-     * Default implementation of {@link TableNameResolver} that mimics the behavior
-     * of DynamoDBMapper before the addition of {@link TableNameResolver}.
+     * Default implementation of {@link TableNameResolver} that mimics the
+     * behavior of DynamoDBMapper before the addition of
+     * {@link TableNameResolver}.
      *
      * @author Raniz
      */
@@ -494,12 +490,12 @@ public class DynamoDBMapperConfig {
         public String getTableName(Class<?> clazz, DynamoDBMapperConfig config) {
             DynamoDBTable table = reflector.getTable(clazz);
             String tableName = table.tableName();
-            if ( config.getTableNameOverride() != null ) {
-                if ( config.getTableNameOverride().getTableName() != null ) {
+            if (config.getTableNameOverride() != null) {
+                if (config.getTableNameOverride().getTableName() != null) {
                     tableName = config.getTableNameOverride().getTableName();
                 } else {
                     tableName = config.getTableNameOverride().getTableNamePrefix()
-                                + tableName;
+                            + tableName;
                 }
             }
 
@@ -518,6 +514,7 @@ public class DynamoDBMapperConfig {
 
     /**
      * Legacy constructor, using default PaginationLoadingStrategy
+     *
      * @deprecated in favor of the fluent {@link Builder}
      **/
     @Deprecated
@@ -533,14 +530,13 @@ public class DynamoDBMapperConfig {
      * Constructs a new configuration object with the save behavior, consistent
      * read behavior, and table name override given.
      *
-     * @param saveBehavior
-     *            The {@link SaveBehavior} to use, or null for default.
-     * @param consistentReads
-     *            The {@link ConsistentReads} to use, or null for default.
-     * @param tableNameOverride
-     *            An override for the table name, or null for no override.
-     * @param paginationLoadingStrategy
-     *            The pagination loading strategy, or null for default.
+     * @param saveBehavior The {@link SaveBehavior} to use, or null for default.
+     * @param consistentReads The {@link ConsistentReads} to use, or null for
+     *            default.
+     * @param tableNameOverride An override for the table name, or null for no
+     *            override.
+     * @param paginationLoadingStrategy The pagination loading strategy, or null
+     *            for default.
      * @deprecated in favor of the fluent {@code Builder}
      */
     @Deprecated
@@ -557,16 +553,14 @@ public class DynamoDBMapperConfig {
      * Constructs a new configuration object with the save behavior, consistent
      * read behavior, and table name override given.
      *
-     * @param saveBehavior
-     *            The {@link SaveBehavior} to use, or null for default.
-     * @param consistentReads
-     *            The {@link ConsistentReads} to use, or null for default.
-     * @param tableNameOverride
-     *            An override for the table name, or null for no override.
-     * @param paginationLoadingStrategy
-     *            The pagination loading strategy, or null for default.
-     * @param requestMetricCollector
-     *            optional request metric collector
+     * @param saveBehavior The {@link SaveBehavior} to use, or null for default.
+     * @param consistentReads The {@link ConsistentReads} to use, or null for
+     *            default.
+     * @param tableNameOverride An override for the table name, or null for no
+     *            override.
+     * @param paginationLoadingStrategy The pagination loading strategy, or null
+     *            for default.
+     * @param requestMetricCollector optional request metric collector
      * @deprecated in favor of the fluent {@code Builder}
      */
     @Deprecated
@@ -633,7 +627,8 @@ public class DynamoDBMapperConfig {
     }
 
     /**
-     * Constructs a new configuration object with the table name resolver strategy given.
+     * Constructs a new configuration object with the table name resolver
+     * strategy given.
      */
     public DynamoDBMapperConfig(TableNameResolver tableNameResolver) {
         this(null, null, null, tableNameResolver, null, null, null,
@@ -641,7 +636,8 @@ public class DynamoDBMapperConfig {
     }
 
     /**
-     * Constructs a new configuration object with the object table name resolver strategy given.
+     * Constructs a new configuration object with the object table name resolver
+     * strategy given.
      */
     public DynamoDBMapperConfig(ObjectTableNameResolver objectTableNameResolver) {
         this(null, null, null, null, objectTableNameResolver, null, null,
@@ -649,9 +645,11 @@ public class DynamoDBMapperConfig {
     }
 
     /**
-     * Constructs a new configuration object with the table name resolver strategies given.
+     * Constructs a new configuration object with the table name resolver
+     * strategies given.
      */
-    public DynamoDBMapperConfig(TableNameResolver tableNameResolver, ObjectTableNameResolver objectTableNameResolver) {
+    public DynamoDBMapperConfig(TableNameResolver tableNameResolver,
+            ObjectTableNameResolver objectTableNameResolver) {
         this(null, null, null, tableNameResolver, objectTableNameResolver, null, null,
                 ConversionSchemas.DEFAULT);
     }
@@ -682,17 +680,15 @@ public class DynamoDBMapperConfig {
      * Used internally to merge the {@link DynamoDBMapperConfig} provided at
      * construction with an overriding object for a particular operation.
      *
-     * @param defaults
-     *            The default mapper configuration values.
-     * @param overrides
-     *            The overridden mapper configuration values. Any non-null
+     * @param defaults The default mapper configuration values.
+     * @param overrides The overridden mapper configuration values. Any non-null
      *            config settings will be applied to the returned object.
      */
     public DynamoDBMapperConfig(
             DynamoDBMapperConfig defaults,
             DynamoDBMapperConfig overrides) {
 
-        if ( overrides == null ) {
+        if (overrides == null) {
 
             this.saveBehavior = defaults.getSaveBehavior();
             this.consistentReads = defaults.getConsistentReads();
@@ -728,13 +724,13 @@ public class DynamoDBMapperConfig {
 
             this.paginationLoadingStrategy =
                     (overrides.getPaginationLoadingStrategy() == null)
-                    ? defaults.getPaginationLoadingStrategy()
-                    : overrides.getPaginationLoadingStrategy();
+                            ? defaults.getPaginationLoadingStrategy()
+                            : overrides.getPaginationLoadingStrategy();
 
             this.requestMetricCollector =
                     (overrides.getRequestMetricCollector() == null)
-                    ? defaults.getRequestMetricCollector()
-                    : overrides.getRequestMetricCollector();
+                            ? defaults.getRequestMetricCollector()
+                            : overrides.getRequestMetricCollector();
 
             this.conversionSchema = (overrides.getConversionSchema() == null)
                     ? defaults.getConversionSchema()
@@ -773,9 +769,9 @@ public class DynamoDBMapperConfig {
 
     /**
      * Returns the table name resolver for this configuration. This value will
-     * be used to determine the table name for classes. It can be
-     * used for more powerful customization of table name than is possible using
-     * only {@link TableNameOverride}.
+     * be used to determine the table name for classes. It can be used for more
+     * powerful customization of table name than is possible using only
+     * {@link TableNameOverride}.
      *
      * @see TableNameResolver#getTableName(Class, DynamoDBMapperConfig)
      */
@@ -784,10 +780,10 @@ public class DynamoDBMapperConfig {
     }
 
     /**
-     * Returns the object table name resolver for this configuration. This value will
-     * be used to determine the table name for objects. It can be
-     * used for more powerful customization of table name than is possible using
-     * only {@link TableNameOverride}.
+     * Returns the object table name resolver for this configuration. This value
+     * will be used to determine the table name for objects. It can be used for
+     * more powerful customization of table name than is possible using only
+     * {@link TableNameOverride}.
      *
      * @see ObjectTableNameResolver#getTableName(Object, DynamoDBMapperConfig)
      */
@@ -823,10 +819,10 @@ public class DynamoDBMapperConfig {
     public static final DynamoDBMapperConfig DEFAULT = new DynamoDBMapperConfig(
             SaveBehavior.UPDATE,
             ConsistentReads.EVENTUAL,
-            null,  // TableNameOverride
+            null, // TableNameOverride
             null, // TableNameResolver
             null, // ObjectTableNameResolver
             PaginationLoadingStrategy.LAZY_LOADING,
-            null,  // RequestMetricCollector
+            null, // RequestMetricCollector
             ConversionSchemas.DEFAULT);
 }

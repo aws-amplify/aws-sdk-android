@@ -12,20 +12,22 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
-import java.lang.reflect.Method;
+package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentUnmarshaller;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMappingException;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
+import java.lang.reflect.Method;
+
 abstract class NUnmarshaller implements ArgumentUnmarshaller {
 
     @Override
     public void typeCheck(AttributeValue value, Method setter) {
-        if ( value.getN() == null ) {
-            throw new DynamoDBMappingException("Expected N in value " + value + " when invoking " + setter);
+        if (value.getN() == null) {
+            throw new DynamoDBMappingException("Expected N in value " + value + " when invoking "
+                    + setter);
         }
     }
 

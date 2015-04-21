@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.services.s3.Headers;
@@ -35,8 +36,7 @@ public interface ServerSideEncryptionResult {
     /**
      * Sets the server-side encryption algorithm for the response.
      *
-     * @param algorithm
-     *            The server-side encryption algorithm for the response.
+     * @param algorithm The server-side encryption algorithm for the response.
      */
     public void setSSEAlgorithm(String algorithm);
 
@@ -50,9 +50,8 @@ public interface ServerSideEncryptionResult {
      * Sets the server-side encryption algorithm used when encrypting the object
      * with customer-provided keys.
      *
-     * @param algorithm
-     *            The server-side encryption algorithm used when encrypting the
-     *            object with customer-provided keys.
+     * @param algorithm The server-side encryption algorithm used when
+     *            encrypting the object with customer-provided keys.
      */
     public void setSSECustomerAlgorithm(String algorithm);
 
@@ -67,8 +66,7 @@ public interface ServerSideEncryptionResult {
      * Sets the base64-encoded MD5 digest of the encryption key for server-side
      * encryption.
      *
-     * @param md5Digest
-     *            The base64-encoded MD5 digest of the encryption key for
+     * @param md5Digest The base64-encoded MD5 digest of the encryption key for
      *            server-side encryption.
      */
     public void setSSECustomerKeyMd5(String md5Digest);

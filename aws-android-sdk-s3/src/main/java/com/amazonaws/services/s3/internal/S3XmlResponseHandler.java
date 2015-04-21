@@ -12,17 +12,18 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
-
-import java.io.InputStream;
-import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.http.HttpResponse;
 import com.amazonaws.transform.Unmarshaller;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.InputStream;
+import java.util.Map;
 
 /**
  * S3 Implementation of HttpResponseHandler. Relies on a SAX unmarshaller for
@@ -43,8 +44,8 @@ public class S3XmlResponseHandler<T> extends AbstractS3ResponseHandler<T> {
      * Constructs a new S3 response handler that will use the specified SAX
      * unmarshaller to turn the response into an object.
      *
-     * @param responseUnmarshaller
-     *            The SAX unmarshaller to use on the response from S3.
+     * @param responseUnmarshaller The SAX unmarshaller to use on the response
+     *            from S3.
      */
     public S3XmlResponseHandler(Unmarshaller<T, InputStream> responseUnmarshaller) {
         this.responseUnmarshaller = responseUnmarshaller;
@@ -53,6 +54,7 @@ public class S3XmlResponseHandler<T> extends AbstractS3ResponseHandler<T> {
     /**
      * @see com.amazonaws.http.HttpResponseHandler#handle(com.amazonaws.http.HttpResponse)
      */
+    @Override
     public AmazonWebServiceResponse<T> handle(HttpResponse response) throws Exception {
         AmazonWebServiceResponse<T> awsResponse = parseResponseMetadata(response);
         responseHeaders = response.getHeaders();

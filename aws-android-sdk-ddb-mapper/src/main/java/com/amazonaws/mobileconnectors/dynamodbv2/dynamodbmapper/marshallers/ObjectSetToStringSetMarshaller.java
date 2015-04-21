@@ -12,17 +12,18 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.marshallers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.StringSetAttributeMarshaller;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentMarshaller.StringSetAttributeMarshaller;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * A legacy marshaller that marshals sets of arbitrary Java objects into

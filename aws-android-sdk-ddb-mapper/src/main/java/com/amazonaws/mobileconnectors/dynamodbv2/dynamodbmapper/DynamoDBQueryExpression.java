@@ -12,20 +12,21 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
-import java.util.HashMap;
-import java.util.Map;
+package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.amazonaws.services.dynamodbv2.model.ConditionalOperator;
 import com.amazonaws.services.dynamodbv2.model.QueryRequest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A query expression.
  */
-public class DynamoDBQueryExpression <T> {
+public class DynamoDBQueryExpression<T> {
 
     private boolean consistentRead = true;
     private boolean scanIndexForward = true;
@@ -117,7 +118,8 @@ public class DynamoDBQueryExpression <T> {
      * Sets the exclusive start key for this query and returns a pointer to this
      * object for method-chaining.
      */
-    public DynamoDBQueryExpression<T> withExclusiveStartKey(Map<String, AttributeValue> exclusiveStartKey) {
+    public DynamoDBQueryExpression<T> withExclusiveStartKey(
+            Map<String, AttributeValue> exclusiveStartKey) {
         this.exclusiveStartKey = exclusiveStartKey;
         return this;
     }
@@ -128,8 +130,8 @@ public class DynamoDBQueryExpression <T> {
      * <p>
      * Note that when calling {@code DynamoDBMapper.query}, multiple requests
      * are made to DynamoDB if needed to retrieve the entire result set. Setting
-     * this will limit the number of items retrieved by each request, NOT
-     * the total number of results that will be retrieved. Use
+     * this will limit the number of items retrieved by each request, NOT the
+     * total number of results that will be retrieved. Use
      * {@code DynamoDBMapper.queryPage} to retrieve a single page of items from
      * DynamoDB.
      */
@@ -143,8 +145,8 @@ public class DynamoDBQueryExpression <T> {
      * <p>
      * Note that when calling {@code DynamoDBMapper.query}, multiple requests
      * are made to DynamoDB if needed to retrieve the entire result set. Setting
-     * this will limit the number of items retrieved by each request, NOT
-     * the total number of results that will be retrieved. Use
+     * this will limit the number of items retrieved by each request, NOT the
+     * total number of results that will be retrieved. Use
      * {@code DynamoDBMapper.queryPage} to retrieve a single page of items from
      * DynamoDB.
      */
@@ -158,8 +160,8 @@ public class DynamoDBQueryExpression <T> {
      * <p>
      * Note that when calling {@code DynamoDBMapper.query}, multiple requests
      * are made to DynamoDB if needed to retrieve the entire result set. Setting
-     * this will limit the number of items retrieved by each request, NOT
-     * the total number of results that will be retrieved. Use
+     * this will limit the number of items retrieved by each request, NOT the
+     * total number of results that will be retrieved. Use
      * {@code DynamoDBMapper.queryPage} to retrieve a single page of items from
      * DynamoDB.
      */
@@ -176,14 +178,11 @@ public class DynamoDBQueryExpression <T> {
         return hashKeyValues;
     }
 
-
     /**
      * Sets the hash key value(s) for this query. All hash key attributes for
-     * the table must be specified with this key object.
-     *
-     * Note 1: Currently the DynamoDBMapper supports only one value per hash key.
-     * Note 2: Currently the Amazon DynamoDB supports only one hash key per
-     *         table/index.
+     * the table must be specified with this key object. Note 1: Currently the
+     * DynamoDBMapper supports only one value per hash key. Note 2: Currently
+     * the Amazon DynamoDB supports only one hash key per table/index.
      */
     public void setHashKeyValues(T hashKeyValues) {
         this.hashKeyValues = hashKeyValues;
@@ -209,11 +208,11 @@ public class DynamoDBQueryExpression <T> {
     /**
      * Sets the range key condition for this query. All range key attributes for
      * the table must be specified by attribute name in the map.
-     * 
-     * @param rangeKeyConditions a map from key name to condition
-     * 	        NOTE: The current DynamoDB service only allows up to one
-     *          range key condition per query. Providing more than one
-     *          range key condition will result in an AmazonClientException.
+     *
+     * @param rangeKeyConditions a map from key name to condition NOTE: The
+     *            current DynamoDB service only allows up to one range key
+     *            condition per query. Providing more than one range key
+     *            condition will result in an AmazonClientException.
      */
     public void setRangeKeyConditions(Map<String, Condition> rangeKeyConditions) {
         this.rangeKeyConditions = rangeKeyConditions;
@@ -222,13 +221,14 @@ public class DynamoDBQueryExpression <T> {
     /**
      * Sets the range key condition for this query. All range key attributes for
      * the table must be specified by attribute name in the map.
-     * 
-     * @param rangeKeyConditions a map from key name to condition
-     *         NOTE: The current DynamoDB service only allows up to one range
-     *         key condition per query. Providing more than one range key
-     *         condition will result in an AmazonClientException.
+     *
+     * @param rangeKeyConditions a map from key name to condition NOTE: The
+     *            current DynamoDB service only allows up to one range key
+     *            condition per query. Providing more than one range key
+     *            condition will result in an AmazonClientException.
      */
-    public DynamoDBQueryExpression<T> withRangeKeyConditions(Map<String, Condition> rangeKeyConditions) {
+    public DynamoDBQueryExpression<T> withRangeKeyConditions(
+            Map<String, Condition> rangeKeyConditions) {
         setRangeKeyConditions(rangeKeyConditions);
         return this;
     }
@@ -236,30 +236,28 @@ public class DynamoDBQueryExpression <T> {
     /**
      * Sets one range key condition for this query, using the attribute name of
      * the range key. All range key attributes for the table must be specified
-     * by using {@link DynamoDBRangeKey} or {@link DynamoDBIndexRangeKey} annotations
-     * before executing the query.
+     * by using {@link DynamoDBRangeKey} or {@link DynamoDBIndexRangeKey}
+     * annotations before executing the query.
      * <dl>
-     *   <dt>If the attribute is the primary range key</dt>
-     *   <dd>users should NOT set any index name for this query.</dd>
-     *   <dt>If the attribute is an index range key</dt>
-     * 	 <dd>
+     * <dt>If the attribute is the primary range key</dt>
+     * <dd>users should NOT set any index name for this query.</dd>
+     * <dt>If the attribute is an index range key</dt>
+     * <dd>
      *       {@link DynamoDBMapper} will automatically set the index name if the
-     *       range key is annotated as only used by one local secondary index,
-     *       otherwise users must set the index name manually by either
-     *       {@link DynamoDBQueryExpression#setIndexName(String)} or
-     *       {@link DynamoDBQueryExpression#withIndexName(String)}.
-     *   </dd>
+     * range key is annotated as only used by one local secondary index,
+     * otherwise users must set the index name manually by either
+     * {@link DynamoDBQueryExpression#setIndexName(String)} or
+     * {@link DynamoDBQueryExpression#withIndexName(String)}.</dd>
      * </dl>
      *
-     * @param rangeKeyAttributeName
-     * 	        This can be either the primary range key of the table or an
-     *          index range key.
-     *
-     * @param rangeKeyCondition
-     * 	        Condition specified on the given range key for this query.
+     * @param rangeKeyAttributeName This can be either the primary range key of
+     *            the table or an index range key.
+     * @param rangeKeyCondition Condition specified on the given range key for
+     *            this query.
      */
-    public DynamoDBQueryExpression<T> withRangeKeyCondition(String rangeKeyAttributeName, Condition rangeKeyCondition) {
-        if ( rangeKeyConditions == null )
+    public DynamoDBQueryExpression<T> withRangeKeyCondition(String rangeKeyAttributeName,
+            Condition rangeKeyCondition) {
+        if (rangeKeyConditions == null)
             rangeKeyConditions = new HashMap<String, Condition>();
         rangeKeyConditions.put(rangeKeyAttributeName, rangeKeyCondition);
         return this;
@@ -273,22 +271,20 @@ public class DynamoDBQueryExpression <T> {
     }
 
     /**
-     * Sets the name of the index to be used by this query. The hash key
-     * and/or range key of the index must be specified by adding
-     * {@link DynamoDBIndexHashKey} or {@code DynamoDBIndexRangeKey}
-     * annotations to the appropriate getter methods of the mapped
-     * object.
+     * Sets the name of the index to be used by this query. The hash key and/or
+     * range key of the index must be specified by adding
+     * {@link DynamoDBIndexHashKey} or {@code DynamoDBIndexRangeKey} annotations
+     * to the appropriate getter methods of the mapped object.
      */
     public void setIndexName(String indexName) {
         this.indexName = indexName;
     }
 
     /**
-     * Sets the name of the index to be used by this query. The hash key
-     * and/or range key of the index must be specified by adding
-     * {@link DynamoDBIndexHashKey} or {@code DynamoDBIndexRangeKey}
-     * annotations to the appropriate getter methods of the mapped
-     * object.
+     * Sets the name of the index to be used by this query. The hash key and/or
+     * range key of the index must be specified by adding
+     * {@link DynamoDBIndexHashKey} or {@code DynamoDBIndexRangeKey} annotations
+     * to the appropriate getter methods of the mapped object.
      * <p>
      * Returns a pointer to this object for method-chaining.
      */
@@ -313,7 +309,8 @@ public class DynamoDBQueryExpression <T> {
 
     /**
      * Sets the query filter applied on this query.
-     * <p>Returns a pointer to this object for method-chaining.
+     * <p>
+     * Returns a pointer to this object for method-chaining.
      */
     public DynamoDBQueryExpression<T> withQueryFilter(Map<String, Condition> queryFilter) {
         setQueryFilter(queryFilter);
@@ -322,17 +319,16 @@ public class DynamoDBQueryExpression <T> {
 
     /**
      * Adds a new condition to the the query filter.
-     * <p>Returns a pointer to this object for method-chaining.
+     * <p>
+     * Returns a pointer to this object for method-chaining.
      *
-     * @param attributeName
-     *            The name of the attribute on which the specified condition
-     *            operates.
-     * @param condition
-     *            The filter condition applied on the attribute.
+     * @param attributeName The name of the attribute on which the specified
+     *            condition operates.
+     * @param condition The filter condition applied on the attribute.
      */
     public DynamoDBQueryExpression<T> withQueryFilterEntry(String attributeName, Condition condition) {
         if (queryFilter == null) {
-            queryFilter = new HashMap<String,Condition>();
+            queryFilter = new HashMap<String, Condition>();
         }
         queryFilter.put(attributeName, condition);
         return this;
@@ -354,7 +350,8 @@ public class DynamoDBQueryExpression <T> {
 
     /**
      * Sets the logical operator on the query filter conditions.
-     * <p>Returns a pointer to this object for method-chaining.
+     * <p>
+     * Returns a pointer to this object for method-chaining.
      */
     public DynamoDBQueryExpression<T> withConditionalOperator(String conditionalOperator) {
         setConditionalOperator(conditionalOperator);
@@ -370,9 +367,11 @@ public class DynamoDBQueryExpression <T> {
 
     /**
      * Sets the logical operator on the query filter conditions.
-     * <p>Returns a pointer to this object for method-chaining.
+     * <p>
+     * Returns a pointer to this object for method-chaining.
      */
-    public DynamoDBQueryExpression<T> withConditionalOperator(ConditionalOperator conditionalOperator) {
+    public DynamoDBQueryExpression<T> withConditionalOperator(
+            ConditionalOperator conditionalOperator) {
         setConditionalOperator(conditionalOperator);
         return this;
     }
@@ -399,9 +398,8 @@ public class DynamoDBQueryExpression <T> {
      * The condition you specify is applied to the items queried; any items that
      * do not match the expression are not returned.
      *
-     * @param filterExpression
-     *            Evaluates the query results and returns only the desired
-     *            values.
+     * @param filterExpression Evaluates the query results and returns only the
+     *            desired values.
      *            <p>
      *            The condition you specify is applied to the items queried; any
      *            items that do not match the expression are not returned.
@@ -420,13 +418,11 @@ public class DynamoDBQueryExpression <T> {
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param filterExpression
-     *            Evaluates the query results and returns only the desired
-     *            values.
+     * @param filterExpression Evaluates the query results and returns only the
+     *            desired values.
      *            <p>
      *            The condition you specify is applied to the items queried; any
      *            items that do not match the expression are not returned.
-     *
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see QueryRequest#withFilterExpression(String)
@@ -452,9 +448,8 @@ public class DynamoDBQueryExpression <T> {
     /**
      * One or more substitution variables for simplifying complex expressions.
      *
-     * @param expressionAttributeNames
-     *            One or more substitution variables for simplifying complex
-     *            expressions.
+     * @param expressionAttributeNames One or more substitution variables for
+     *            simplifying complex expressions.
      * @see QueryRequest#setExpressionAttributeNames(Map)
      */
     public void setExpressionAttributeNames(
@@ -465,10 +460,8 @@ public class DynamoDBQueryExpression <T> {
     /**
      * One or more substitution variables for simplifying complex expressions.
      *
-     * @param expressionAttributeNames
-     *            One or more substitution variables for simplifying complex
-     *            expressions.
-     *
+     * @param expressionAttributeNames One or more substitution variables for
+     *            simplifying complex expressions.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see QueryRequest#withExpressionAttributeNames(Map)
@@ -485,13 +478,10 @@ public class DynamoDBQueryExpression <T> {
      * parameter, and returns a reference to this object so that method calls
      * can be chained together.
      *
-     * @param key
-     *            The key of the entry to be added into
+     * @param key The key of the entry to be added into
      *            ExpressionAttributeNames.
-     * @param value
-     *            The corresponding value of the entry to be added into
+     * @param value The corresponding value of the entry to be added into
      *            ExpressionAttributeNames.
-     *
      * @see QueryRequest#addExpressionAttributeNamesEntry(String, String)
      */
     public DynamoDBQueryExpression<T> addExpressionAttributeNamesEntry(
@@ -507,7 +497,8 @@ public class DynamoDBQueryExpression <T> {
     }
 
     /**
-     * Removes all the entries added into ExpressionAttributeNames.
+     * Removes all the entries added into ExpressionAttributeNames. Setting
+     * ExpressionAttributeNames to null.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -521,7 +512,6 @@ public class DynamoDBQueryExpression <T> {
      * One or more values that can be substituted in an expression.
      *
      * @return One or more values that can be substituted in an expression.
-     *
      * @see QueryRequest#getExpressionAttributeValues()
      */
     public java.util.Map<String, AttributeValue> getExpressionAttributeValues() {
@@ -532,9 +522,8 @@ public class DynamoDBQueryExpression <T> {
     /**
      * One or more values that can be substituted in an expression.
      *
-     * @param expressionAttributeValues
-     *            One or more values that can be substituted in an expression.
-     *
+     * @param expressionAttributeValues One or more values that can be
+     *            substituted in an expression.
      * @see QueryRequest#setExpressionAttributeValues(Map)
      */
     public void setExpressionAttributeValues(
@@ -545,9 +534,8 @@ public class DynamoDBQueryExpression <T> {
     /**
      * One or more values that can be substituted in an expression.
      *
-     * @param expressionAttributeValues
-     *            One or more values that can be substituted in an expression.
-     *
+     * @param expressionAttributeValues One or more values that can be
+     *            substituted in an expression.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see QueryRequest#withExpressionAttributeValues(Map)
@@ -564,13 +552,10 @@ public class DynamoDBQueryExpression <T> {
      * returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param key
-     *            The key of the entry to be added into
+     * @param key The key of the entry to be added into
      *            ExpressionAttributeValues.
-     * @param value
-     *            The corresponding value of the entry to be added into
+     * @param value The corresponding value of the entry to be added into
      *            ExpressionAttributeValues.
-     *
      * @see QueryRequest#addExpressionAttributeValuesEntry(String,
      *      AttributeValue)
      */
@@ -587,7 +572,8 @@ public class DynamoDBQueryExpression <T> {
     }
 
     /**
-     * Removes all the entries added into ExpressionAttributeValues.
+     * Removes all the entries added into ExpressionAttributeValues. Setting
+     * ExpressionAttributeValues to null.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.

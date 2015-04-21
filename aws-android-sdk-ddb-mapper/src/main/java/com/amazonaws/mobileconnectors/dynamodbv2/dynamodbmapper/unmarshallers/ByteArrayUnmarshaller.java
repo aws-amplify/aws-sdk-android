@@ -12,11 +12,12 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
-import java.nio.ByteBuffer;
-
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+
+import java.nio.ByteBuffer;
 
 /**
  * An unmarshaller that unmarshals Binary values as Java {@code byte[]}s.

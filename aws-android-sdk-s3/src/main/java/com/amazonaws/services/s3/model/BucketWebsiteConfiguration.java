@@ -12,7 +12,10 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
+
+import com.amazonaws.services.s3.AmazonS3;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,27 +36,30 @@ import java.util.List;
  * To enable hosting websites, Amazon S3 introduces the following
  * concepts/features:
  * <ul>
- *   <li><b>Website endpoints</b> - When you configure a bucket as a website, the website
- *   is available via the the region-specific website endpoint where the bucket
- *   resides.
- *   <li><b>Index document support</b> - When configuring a bucket as a website you must
- *   provide an index document name. This is the webpage that Amazon S3 returns when
- *   it receives a request to the root of your website, or one of its
- *   subdirectories. Amazon S3 supports index documents in subdirectories.
- *   <li><b>Error document support</b> - Should an error occur, Amazon S3 will return an
- *   HTML error document, instead of an XML document.You can optionally provide
- *   your own error document that contains HTML, or any other static content
- *   specific to your website. You provide the error document name when you
- *   configure a bucket as a website. If you provide the custom error document,
- *   Amazon S3 returns your custom error document when an HTTP 4XX class error
- *   occurs. For other error non-4XX class errors, Amazon S3 will return its own
- *   error document.
+ * <li><b>Website endpoints</b> - When you configure a bucket as a website, the
+ * website is available via the the region-specific website endpoint where the
+ * bucket resides.
+ * <li><b>Index document support</b> - When configuring a bucket as a website
+ * you must provide an index document name. This is the webpage that Amazon S3
+ * returns when it receives a request to the root of your website, or one of its
+ * subdirectories. Amazon S3 supports index documents in subdirectories.
+ * <li><b>Error document support</b> - Should an error occur, Amazon S3 will
+ * return an HTML error document, instead of an XML document.You can optionally
+ * provide your own error document that contains HTML, or any other static
+ * content specific to your website. You provide the error document name when
+ * you configure a bucket as a website. If you provide the custom error
+ * document, Amazon S3 returns your custom error document when an HTTP 4XX class
+ * error occurs. For other error non-4XX class errors, Amazon S3 will return its
+ * own error document.
  * </ul>
  * <p>
- * For more information on how to host a website on Amazon S3, see:
- * <a href="http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteHosting.html">http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteHosting.html</a>.
+ * For more information on how to host a website on Amazon S3, see: <a href=
+ * "http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteHosting.html"
+ * >http
+ * ://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteHosting.html</a>.
  *
- * @see AmazonS3#setBucketWebsiteConfiguration(String, BucketWebsiteConfiguration)
+ * @see AmazonS3#setBucketWebsiteConfiguration(String,
+ *      BucketWebsiteConfiguration)
  * @see AmazonS3#getBucketWebsiteConfiguration(String)
  * @see AmazonS3#deleteBucketWebsiteConfiguration(String)
  */
@@ -92,9 +98,9 @@ public class BucketWebsiteConfiguration {
      * Creates a new BucketWebsiteConfiguration with the specified index
      * document suffix.
      *
-     * @param indexDocumentSuffix
-     *            The document to serve when a directory is specified (ex:
-     *            index.html). This path is relative to the requested resource.
+     * @param indexDocumentSuffix The document to serve when a directory is
+     *            specified (ex: index.html). This path is relative to the
+     *            requested resource.
      */
     public BucketWebsiteConfiguration(String indexDocumentSuffix) {
         this.indexDocumentSuffix = indexDocumentSuffix;
@@ -104,11 +110,11 @@ public class BucketWebsiteConfiguration {
      * Creates a new BucketWebsiteConfiguration with the specified index
      * document suffix and error document.
      *
-     * @param indexDocumentSuffix
-     *            The document to serve when a directory is specified (ex:
-     *            index.html). This path is relative to the requested resource.
-     * @param errorDocument
-     *            The complete path to the document to serve for 4xx errors.
+     * @param indexDocumentSuffix The document to serve when a directory is
+     *            specified (ex: index.html). This path is relative to the
+     *            requested resource.
+     * @param errorDocument The complete path to the document to serve for 4xx
+     *            errors.
      */
     public BucketWebsiteConfiguration(String indexDocumentSuffix, String errorDocument) {
         this.indexDocumentSuffix = indexDocumentSuffix;
@@ -130,9 +136,9 @@ public class BucketWebsiteConfiguration {
      * Sets the document to serve when a directory is specified (ex:
      * index.html). This path is relative to the requested resource.
      *
-     * @param indexDocumentSuffix
-     *            The document to serve when a directory is specified (ex:
-     *            index.html). This path is relative to the requested resource.
+     * @param indexDocumentSuffix The document to serve when a directory is
+     *            specified (ex: index.html). This path is relative to the
+     *            requested resource.
      */
     public void setIndexDocumentSuffix(String indexDocumentSuffix) {
         this.indexDocumentSuffix = indexDocumentSuffix;
@@ -152,8 +158,8 @@ public class BucketWebsiteConfiguration {
     /**
      * Sets the complete path to the document to serve for 4xx errors.
      *
-     * @param errorDocument
-     *            The complete path to the document to serve for 4xx errors.
+     * @param errorDocument The complete path to the document to serve for 4xx
+     *            errors.
      */
     public void setErrorDocument(String errorDocument) {
         this.errorDocument = errorDocument;
@@ -162,9 +168,8 @@ public class BucketWebsiteConfiguration {
     /**
      * Sets the redirect information where all requests will be redirect to.
      *
-     * @param redirectAllRequestsTo
-     *            The Redirect information where all requests will be redirect
-     *            to.
+     * @param redirectAllRequestsTo The Redirect information where all requests
+     *            will be redirect to.
      */
     public void setRedirectAllRequestsTo(RedirectRule redirectAllRequestsTo) {
         this.redirectAllRequestsTo = redirectAllRequestsTo;
@@ -182,9 +187,8 @@ public class BucketWebsiteConfiguration {
      * returns a reference to this object(BucketWebsiteConfiguration) for method
      * chaining.
      *
-     * @param redirectAllRequestsTo
-     *            The Redirect information where all requests will be redirect
-     *            to.
+     * @param redirectAllRequestsTo The Redirect information where all requests
+     *            will be redirect to.
      * @return a reference to this object(BucketWebsiteConfiguration) for method
      *         chaining.
      */
@@ -197,9 +201,8 @@ public class BucketWebsiteConfiguration {
      * Set the list of routing rules that can be used for configuring redirects
      * if certain conditions are meet.
      *
-     * @param routingRules
-     *            The list of routing rules that can be used for configuring
-     *            redirects.
+     * @param routingRules The list of routing rules that can be used for
+     *            configuring redirects.
      */
     public void setRoutingRules(List<RoutingRule> routingRules) {
         this.routingRules = routingRules;
@@ -218,12 +221,10 @@ public class BucketWebsiteConfiguration {
      * if certain conditions are meet and returns a reference to this
      * object(BucketWebsiteConfiguration) for method chaining.
      *
-     * @param routingRules
-     *            The list of routing rules that can be used for configuring
-     *            redirects.
+     * @param routingRules The list of routing rules that can be used for
+     *            configuring redirects.
      * @return A reference to this object(BucketWebsiteConfiguration) for method
      *         chaining.
-     *
      */
     public BucketWebsiteConfiguration withRoutingRules(List<RoutingRule> routingRules) {
         this.routingRules = routingRules;

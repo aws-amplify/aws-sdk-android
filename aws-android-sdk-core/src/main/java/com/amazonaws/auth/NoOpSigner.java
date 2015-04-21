@@ -12,16 +12,17 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 import com.amazonaws.Request;
 
 /**
  * A No-Op Signer Implementation.
- *
  */
 public class NoOpSigner implements Signer {
 
     @Override
-    public void sign(Request<?> request, AWSCredentials credentials) { }
+    public void sign(Request<?> request, AWSCredentials credentials) {
+    }
 }

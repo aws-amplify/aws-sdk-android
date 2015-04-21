@@ -246,12 +246,9 @@ public class DefaultEventClient implements InternalEventClient, JSONSerializable
 
     @Override
     public void addEventObserver(EventObserver observer) {
-        Log.v(TAG, "Adding EventObserver");
         if (observer == null) {
             Log.w(TAG, "Null EventObserver provided to addObserver");
             return;
-        } else {
-            Log.v(TAG, observer.toString());
         }
 
         if (!getEventObservers().contains(observer)) {
@@ -287,8 +284,6 @@ public class DefaultEventClient implements InternalEventClient, JSONSerializable
     }
 
     protected void notifyObservers(InternalEvent event) {
-        Log.v(TAG, "Notifying EventObservers for event...");
-        Log.v(TAG, event.toString());
         for (final EventObserver observer : getEventObservers()) {
             observer.notify(event);
         }

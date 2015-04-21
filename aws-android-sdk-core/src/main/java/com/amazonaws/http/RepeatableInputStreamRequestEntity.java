@@ -12,22 +12,23 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.http;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.http.entity.BasicHttpEntity;
-import org.apache.http.entity.InputStreamEntity;
 
 import com.amazonaws.Request;
 import com.amazonaws.metrics.MetricInputStreamEntity;
 import com.amazonaws.metrics.ServiceMetricType;
 import com.amazonaws.metrics.ThroughputMetricType;
 import com.amazonaws.metrics.internal.ServiceMetricTypeGuesser;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.http.entity.BasicHttpEntity;
+import org.apache.http.entity.InputStreamEntity;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Custom implementation of {@link RequestEntity} that delegates to an
@@ -58,29 +59,25 @@ class RepeatableInputStreamRequestEntity extends BasicHttpEntity {
      */
     private IOException originalException;
 
-
     /**
      * Creates a new RepeatableInputStreamRequestEntity using the information
      * from the specified request. If the input stream containing the request's
      * contents is repeatable, then this RequestEntity will report as being
      * repeatable.
      *
-     * @param request
-     *            The details of the request being written out (content type,
-     *            content length, and content).
+     * @param request The details of the request being written out (content
+     *            type, content length, and content).
      */
     RepeatableInputStreamRequestEntity(final Request<?> request) {
-    	setChunked(false);
+        setChunked(false);
 
         /*
          * If we don't specify a content length when we instantiate our
-         * InputStreamRequestEntity, then HttpClient will attempt to
-         * buffer the entire stream contents into memory to determine
-         * the content length.
-         *
+         * InputStreamRequestEntity, then HttpClient will attempt to buffer the
+         * entire stream contents into memory to determine the content length.
          * TODO: It'd be nice to have easier access to content length and
-         *       content type from the request, instead of having to look
-         *       directly into the headers.
+         * content type from the request, instead of having to look directly
+         * into the headers.
          */
         long contentLength = -1;
         try {
@@ -90,7 +87,7 @@ class RepeatableInputStreamRequestEntity extends BasicHttpEntity {
             }
         } catch (NumberFormatException nfe) {
             log.warn("Unable to parse content length from request.  " +
-            		"Buffering contents in memory.");
+                    "Buffering contents in memory.");
         }
 
         String contentType = request.getHeaders().get("Content-Type");
@@ -99,11 +96,11 @@ class RepeatableInputStreamRequestEntity extends BasicHttpEntity {
                         ServiceMetricType.UPLOAD_THROUGHPUT_NAME_SUFFIX,
                         ServiceMetricType.UPLOAD_BYTE_COUNT_NAME_SUFFIX);
         if (type == null) {
-            inputStreamRequestEntity = 
-                new InputStreamEntity(request.getContent(), contentLength);
+            inputStreamRequestEntity =
+                    new InputStreamEntity(request.getContent(), contentLength);
         } else {
-            inputStreamRequestEntity = 
-                new MetricInputStreamEntity(type, request.getContent(), contentLength);
+            inputStreamRequestEntity =
+                    new MetricInputStreamEntity(type, request.getContent(), contentLength);
         }
         inputStreamRequestEntity.setContentType(contentType);
         content = request.getContent();
@@ -114,9 +111,9 @@ class RepeatableInputStreamRequestEntity extends BasicHttpEntity {
     }
 
     @Override
-	public boolean isChunked() {
-    	return false;
-	}
+    public boolean isChunked() {
+        return false;
+    }
 
     /**
      * Returns true if the underlying InputStream supports marking/reseting or
@@ -147,12 +144,14 @@ class RepeatableInputStreamRequestEntity extends BasicHttpEntity {
     @Override
     public void writeTo(OutputStream output) throws IOException {
         try {
-            if (!firstAttempt && isRepeatable()) content.reset();
+            if (!firstAttempt && isRepeatable())
+                content.reset();
 
             firstAttempt = false;
             inputStreamRequestEntity.writeTo(output);
         } catch (IOException ioe) {
-            if (originalException == null) originalException = ioe;
+            if (originalException == null)
+                originalException = ioe;
             throw originalException;
         }
     }

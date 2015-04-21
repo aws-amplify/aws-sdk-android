@@ -34,7 +34,7 @@ public class SharedPrefsUniqueIdService implements UniqueIdService {
 
     /**
      * Uses Shared prefs to recall and store the unique ID
-     * 
+     *
      * @param generator used to create new unique id's
      */
     public SharedPrefsUniqueIdService(String appId, Context applicationContext) {

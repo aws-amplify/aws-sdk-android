@@ -12,15 +12,16 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.http;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+package com.amazonaws.http;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.conn.ClientConnectionManager;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Daemon thread to periodically check connection pools for idle connections.
@@ -46,13 +47,13 @@ public final class IdleConnectionReaper extends Thread {
     private static final int PERIOD_MILLISECONDS = 1000 * 60 * 1;
 
     /**
-     * The list of registered connection managers, whose connections
-     * will be periodically checked and idle connections closed.
+     * The list of registered connection managers, whose connections will be
+     * periodically checked and idle connections closed.
      */
     private static final ArrayList<ClientConnectionManager> connectionManagers = new ArrayList<ClientConnectionManager>();
     /**
-     * Set to true when shutting down the reaper;  Once set to true, this
-     * flag is never set back to false.
+     * Set to true when shutting down the reaper; Once set to true, this flag is
+     * never set back to false.
      */
     private volatile boolean shuttingDown;
 
@@ -70,11 +71,12 @@ public final class IdleConnectionReaper extends Thread {
 
     /**
      * Registers the given connection manager with this reaper;
-     * 
+     *
      * @return true if the connection manager has been successfully registered;
-     * false otherwise.
+     *         false otherwise.
      */
-    public static synchronized boolean registerConnectionManager(ClientConnectionManager connectionManager) {
+    public static synchronized boolean registerConnectionManager(
+            ClientConnectionManager connectionManager) {
         if (instance == null) {
             instance = new IdleConnectionReaper();
             instance.start();
@@ -83,19 +85,20 @@ public final class IdleConnectionReaper extends Thread {
     }
 
     /**
-     * Removes the given connection manager from this reaper, 
-     * and shutting down the reaper if there is zero connection manager left.
-     * 
+     * Removes the given connection manager from this reaper, and shutting down
+     * the reaper if there is zero connection manager left.
+     *
      * @return true if the connection manager has been successfully removed;
-     * false otherwise.
+     *         false otherwise.
      */
-    public static synchronized boolean removeConnectionManager(ClientConnectionManager connectionManager) {
+    public static synchronized boolean removeConnectionManager(
+            ClientConnectionManager connectionManager) {
         boolean b = connectionManagers.remove(connectionManager);
         if (connectionManagers.isEmpty())
             shutdown();
         return b;
     }
-    
+
     private void markShuttingDown() {
         shuttingDown = true;
     }
@@ -112,16 +115,20 @@ public final class IdleConnectionReaper extends Thread {
                 Thread.sleep(PERIOD_MILLISECONDS);
 
                 // Copy the list of managed ConnectionManagers to avoid possible
-                // ConcurrentModificationExceptions if registerConnectionManager or
-                // removeConnectionManager are called while we're iterating (rather
+                // ConcurrentModificationExceptions if registerConnectionManager
+                // or
+                // removeConnectionManager are called while we're iterating
+                // (rather
                 // than block/lock while this loop executes).
                 List<ClientConnectionManager> connectionManagers = null;
                 synchronized (IdleConnectionReaper.class) {
-                    connectionManagers = (List<ClientConnectionManager>)IdleConnectionReaper.connectionManagers.clone();
+                    connectionManagers = (List<ClientConnectionManager>) IdleConnectionReaper.connectionManagers
+                            .clone();
                 }
                 for (ClientConnectionManager connectionManager : connectionManagers) {
-                    // When we release connections, the connection manager leaves them
-                    // open so they can be reused.  We want to close out any idle
+                    // When we release connections, the connection manager
+                    // leaves them
+                    // open so they can be reused. We want to close out any idle
                     // connections so that they don't sit around in CLOSE_WAIT.
                     try {
                         connectionManager.closeIdleConnections(60, TimeUnit.SECONDS);
@@ -130,7 +137,7 @@ public final class IdleConnectionReaper extends Thread {
                     }
                 }
             } catch (Throwable t) {
-                log.debug("Reaper thread: ",  t);
+                log.debug("Reaper thread: ", t);
             }
         }
     }
@@ -143,11 +150,11 @@ public final class IdleConnectionReaper extends Thread {
      * collected, in the context of a long-running application, until it is
      * interrupted. This method will stop the thread's execution and clear its
      * state. Any use of a service client will cause the thread to be restarted.
-     * 
+     *
      * @return true if an actual shutdown has been made; false otherwise.
      */
     public static synchronized boolean shutdown() {
-        if ( instance != null ) {
+        if (instance != null) {
             instance.markShuttingDown();
             instance.interrupt();
             connectionManagers.clear();
@@ -158,9 +165,10 @@ public final class IdleConnectionReaper extends Thread {
     }
 
     /**
-     * For testing purposes.
-     * Returns the number of connection managers currently monitored by this
-     * reaper.
+     * For testing purposes. Returns the number of connection managers currently
+     * monitored by this reaper.
      */
-    static synchronized int size() { return connectionManagers.size(); }
+    static synchronized int size() {
+        return connectionManagers.size();
+    }
 }

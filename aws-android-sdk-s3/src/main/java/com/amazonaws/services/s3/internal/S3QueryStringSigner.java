@@ -12,9 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.internal;
 
-import java.util.Date;
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
@@ -23,29 +22,24 @@ import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.AbstractAWSSigner;
 import com.amazonaws.auth.SigningAlgorithm;
 
+import java.util.Date;
+
 public class S3QueryStringSigner<T> extends AbstractAWSSigner {
 
     /**
-     * The HTTP verb (GET, PUT, HEAD, DELETE) the request to sign
-     * is using.
-     *
-     * TODO: We need to know the HTTP verb in order to
-     *       create the authentication signature, but we don't
-     *       have easy access to it through the request object.
-     *
-     *       Maybe it'd be better for the S3 signer (or all signers?)
-     *       to work directly off of the HttpRequest instead of
-     *       the Request object?
+     * The HTTP verb (GET, PUT, HEAD, DELETE) the request to sign is using.
+     * TODO: We need to know the HTTP verb in order to create the authentication
+     * signature, but we don't have easy access to it through the request
+     * object. Maybe it'd be better for the S3 signer (or all signers?) to work
+     * directly off of the HttpRequest instead of the Request object?
      */
     private final String httpVerb;
 
     /**
-     * The canonical resource path portion of the S3 string to sign.
-     * Examples: "/", "/<bucket name>/", or "/<bucket name>/<key>"
-     *
-     * TODO: We don't want to hold the resource path as member data in the S3
-     *       signer, but we need access to it and can't get it through the
-     *       request yet.
+     * The canonical resource path portion of the S3 string to sign. Examples:
+     * "/", "/<bucket name>/", or "/<bucket name>/<key>" TODO: We don't want to
+     * hold the resource path as member data in the S3 signer, but we need
+     * access to it and can't get it through the request yet.
      */
     private final String resourcePath;
 
@@ -60,19 +54,21 @@ public class S3QueryStringSigner<T> extends AbstractAWSSigner {
             throw new IllegalArgumentException("Parameter resourcePath is empty");
     }
 
+    @Override
     public void sign(Request<?> request, AWSCredentials credentials) throws AmazonClientException {
         AWSCredentials sanitizedCredentials = sanitizeCredentials(credentials);
 
-        if ( sanitizedCredentials instanceof AWSSessionCredentials ) {
+        if (sanitizedCredentials instanceof AWSSessionCredentials) {
             addSessionCredentials(request, (AWSSessionCredentials) sanitizedCredentials);
         }
-        
+
         String expirationInSeconds = Long.toString(expiration.getTime() / 1000L);
 
         String canonicalString = RestUtils.makeS3CanonicalString(
                 httpVerb, resourcePath, request, expirationInSeconds);
-        
-        String signature = super.signAndBase64Encode(canonicalString, sanitizedCredentials.getAWSSecretKey(), SigningAlgorithm.HmacSHA1);
+
+        String signature = super.signAndBase64Encode(canonicalString,
+                sanitizedCredentials.getAWSSecretKey(), SigningAlgorithm.HmacSHA1);
 
         request.addParameter("AWSAccessKeyId", sanitizedCredentials.getAWSAccessKeyId());
         request.addParameter("Expires", expirationInSeconds);

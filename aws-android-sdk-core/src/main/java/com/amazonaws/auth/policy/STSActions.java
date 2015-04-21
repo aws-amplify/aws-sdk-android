@@ -12,16 +12,18 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.auth.policy;
 
-import com.amazonaws.auth.policy.Action;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 
 /**
- * The available AWS access control policy actions for Amazon Security Token Service.
+ * The available AWS access control policy actions for Amazon Security Token
+ * Service.
  *
  * @see Statement#setActions(java.util.Collection)
- * @deprecated in favor of {@link com.amazonaws.auth.policy.actions.SecurityTokenServiceActions}
+ * @deprecated in favor of
+ *             {@link com.amazonaws.auth.policy.actions.SecurityTokenServiceActions}
  */
 @Deprecated
 public enum STSActions implements Action {
@@ -32,7 +34,6 @@ public enum STSActions implements Action {
      * @see AWSSecurityTokenService#assumeRole(com.amazonaws.services.securitytoken.model.AssumeRoleRequest)
      */
     AssumeRole("sts:AssumeRole"),
-
 
     /**
      * Action for assuming role with web federation to get a set of temporary
@@ -49,9 +50,11 @@ public enum STSActions implements Action {
         this.action = action;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.amazonaws.auth.policy.Action#getId()
      */
+    @Override
     public String getActionName() {
         return this.action;
     }

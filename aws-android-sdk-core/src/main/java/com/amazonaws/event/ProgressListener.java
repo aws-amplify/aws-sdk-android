@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.event;
 
 /**
@@ -22,20 +23,19 @@ package com.amazonaws.event;
  * com.amazonaws.services.s3.model.ProgressListener has been deprecated in favor
  * of this new class.
  * </p>
- * 
+ *
  * @see ProgressEvent
  */
 public interface ProgressListener {
 
     /**
      * Called when progress has changed, such as additional bytes transferred,
-     * transfer failed, etc. The execution of the callback of this listener is managed
-     * by {@link ProgressListenerCallbackExecutor} class, which maintains a single thread
-     * to sequentially execute all progressChanged callbacks.
+     * transfer failed, etc. The execution of the callback of this listener is
+     * managed by {@link ProgressListenerCallbackExecutor} class, which
+     * maintains a single thread to sequentially execute all progressChanged
+     * callbacks.
      *
-     * @param progressEvent
-     *            The event describing the progress change.
-     *            
+     * @param progressEvent The event describing the progress change.
      * @see ProgressListenerCallbackExecutor
      */
     public void progressChanged(ProgressEvent progressEvent);

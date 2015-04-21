@@ -15,6 +15,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 /**
@@ -29,15 +30,13 @@ public interface Grantee {
      * specifying grants in the header of a request.
      */
     public String getTypeIdentifier();
-    
+
     /**
      * Sets the identifier for this grantee. The meaning of the identifier is
      * specific to each implementation of the {@link Grantee}.
      *
-     * @param id
-     *            The identifier for this grantee.
-     *            
-     * @see Grantee#getIdentifier()        
+     * @param id The identifier for this grantee.
+     * @see Grantee#getIdentifier()
      */
     public void setIdentifier(String id);
 
@@ -46,8 +45,7 @@ public interface Grantee {
      * identifier is specific to each implementation of the {@link Grantee}.
      *
      * @return The identifier for this grantee.
-     * 
-     * @see Grantee#setIdentifier() 
+     * @see Grantee#setIdentifier()
      */
     public String getIdentifier();
 

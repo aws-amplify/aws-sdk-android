@@ -12,18 +12,24 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
 
 import java.security.Key;
 
 class S3KeyWrapScheme {
     static final S3KeyWrapScheme NONE = new S3KeyWrapScheme() {
+        @Override
         String getKeyWrapAlgorithm(Key key) {
             return null;
         }
-        @Override public String toString() { return "NONE"; }
+
+        @Override
+        public String toString() {
+            return "NONE";
+        }
     };
-    public static final String AESWrap = "AESWrap"; 
+    public static final String AESWrap = "AESWrap";
     public static final String RSA_ECB_OAEPWithSHA256AndMGF1Padding = "RSA/ECB/OAEPWithSHA-256AndMGF1Padding";
 
     String getKeyWrapAlgorithm(Key key) {

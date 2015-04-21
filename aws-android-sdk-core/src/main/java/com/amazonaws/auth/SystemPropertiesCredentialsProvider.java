@@ -12,7 +12,9 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
+
 import static com.amazonaws.SDKGlobalConfiguration.ACCESS_KEY_SYSTEM_PROPERTY;
 import static com.amazonaws.SDKGlobalConfiguration.SECRET_KEY_SYSTEM_PROPERTY;
 
@@ -25,9 +27,10 @@ import com.amazonaws.AmazonClientException;
  */
 public class SystemPropertiesCredentialsProvider implements AWSCredentialsProvider {
 
+    @Override
     public AWSCredentials getCredentials() {
         if (System.getProperty(ACCESS_KEY_SYSTEM_PROPERTY) != null &&
-            System.getProperty(SECRET_KEY_SYSTEM_PROPERTY) != null) {
+                System.getProperty(SECRET_KEY_SYSTEM_PROPERTY) != null) {
             return new BasicAWSCredentials(
                     System.getProperty(ACCESS_KEY_SYSTEM_PROPERTY),
                     System.getProperty(SECRET_KEY_SYSTEM_PROPERTY));
@@ -35,10 +38,13 @@ public class SystemPropertiesCredentialsProvider implements AWSCredentialsProvid
 
         throw new AmazonClientException(
                 "Unable to load AWS credentials from Java system properties " +
-                "(" + ACCESS_KEY_SYSTEM_PROPERTY + " and " + SECRET_KEY_SYSTEM_PROPERTY + ")");
+                        "(" + ACCESS_KEY_SYSTEM_PROPERTY + " and " + SECRET_KEY_SYSTEM_PROPERTY
+                        + ")");
     }
 
-    public void refresh() {}
+    @Override
+    public void refresh() {
+    }
 
     @Override
     public String toString() {

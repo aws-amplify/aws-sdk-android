@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
 import org.apache.commons.logging.Log;
@@ -21,14 +22,15 @@ import org.apache.commons.logging.LogFactory;
  * Describes the progress of a transfer.
  */
 public final class TransferProgress {
-    
-    private static final Log log = LogFactory.getLog(TransferProgress.class); 
+
+    private static final Log log = LogFactory.getLog(TransferProgress.class);
     protected volatile long bytesTransferred = 0;
     protected volatile long totalBytesToTransfer = -1;
 
     /**
      * @deprecated Replaced by {@link #getBytesTransferred()}
      */
+    @Deprecated
     public long getBytesTransfered() {
         return getBytesTransferred();
     }
@@ -43,12 +45,11 @@ public final class TransferProgress {
     }
 
     /**
-     * Returns the total size in bytes of the associated transfer, or -1
-     * if the total size isn't known.
+     * Returns the total size in bytes of the associated transfer, or -1 if the
+     * total size isn't known.
      *
-     * @return The total size in bytes of the associated transfer.
-     * 		   Returns or -1 if the total size of the associated
-     * 		   transfer isn't known yet.
+     * @return The total size in bytes of the associated transfer. Returns or -1
+     *         if the total size of the associated transfer isn't known yet.
      */
     public long getTotalBytesToTransfer() {
         return totalBytesToTransfer;
@@ -70,17 +71,18 @@ public final class TransferProgress {
      *         number of bytes to transfer.
      */
     public synchronized double getPercentTransferred() {
-        if (getBytesTransferred() < 0) return 0;
+        if (getBytesTransferred() < 0)
+            return 0;
 
         return totalBytesToTransfer < 0
-                ? -1.0 
-                : ((double)bytesTransferred / (double)totalBytesToTransfer) * (double)100;
+                ? -1.0
+                : ((double) bytesTransferred / (double) totalBytesToTransfer) * 100;
     }
-    
+
     public synchronized void updateProgress(long bytes) {
         this.bytesTransferred += bytes;
         if (totalBytesToTransfer > -1
-        &&  this.bytesTransferred > this.totalBytesToTransfer) {
+                && this.bytesTransferred > this.totalBytesToTransfer) {
             this.bytesTransferred = this.totalBytesToTransfer;
             if (log.isDebugEnabled()) {
                 log.debug("Number of bytes transfered is more than the actual total bytes to transfer. Total number of bytes to Transfer : "

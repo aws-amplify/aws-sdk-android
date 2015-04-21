@@ -12,24 +12,25 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
 
 /**
- * Request object for the parameters to delete a bucket's lifecycle configuration.
+ * Request object for the parameters to delete a bucket's lifecycle
+ * configuration.
  *
  * @see AmazonS3#deleteBucketLifecycleConfiguration(DeleteBucketLifecycleConfigurationRequest)
  */
 public class DeleteBucketLifecycleConfigurationRequest extends GenericBucketRequest {
 
     /**
-     * Creates a new request object, ready to be executed to delete the lifecycle
-     * configuration for the specified bucket.
-     * 
-     * @param bucketName
-     *            The name of the bucket whose lifecycle configuration is being
-     *            deleted.
+     * Creates a new request object, ready to be executed to delete the
+     * lifecycle configuration for the specified bucket.
+     *
+     * @param bucketName The name of the bucket whose lifecycle configuration is
+     *            being deleted.
      */
     public DeleteBucketLifecycleConfigurationRequest(String bucketName) {
         super(bucketName);

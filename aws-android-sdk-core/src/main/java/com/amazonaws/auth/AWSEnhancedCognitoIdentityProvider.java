@@ -29,7 +29,7 @@ public final class AWSEnhancedCognitoIdentityProvider extends AWSAbstractCognito
     /**
      * An extension of the AbstractCognitoProvider that is used to communicate
      * with Cognito.
-     * 
+     *
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      */
@@ -40,7 +40,7 @@ public final class AWSEnhancedCognitoIdentityProvider extends AWSAbstractCognito
     /**
      * An extension of the AbstractCognitoProvider that is used to communicate
      * with Cognito.
-     * 
+     *
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      * @param clientConfiguration the configuration to apply to service clients
@@ -55,7 +55,7 @@ public final class AWSEnhancedCognitoIdentityProvider extends AWSAbstractCognito
     /**
      * An extension of the AbstractCognitoProvider that is used to communicate
      * with Cognito.
-     * 
+     *
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
      * @param cibClient the cib client which will be used to contact the cib

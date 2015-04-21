@@ -12,14 +12,15 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
+
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentUnmarshaller;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.ArgumentUnmarshaller;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 /**
  * An unmarshaller that unmarshals Lists into Java {@code Lists}.

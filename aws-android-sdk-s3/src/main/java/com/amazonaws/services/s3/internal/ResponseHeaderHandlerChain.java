@@ -12,44 +12,48 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.services.s3.internal;
 
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
+package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.http.HttpResponse;
 import com.amazonaws.transform.Unmarshaller;
 
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * An XML response handler that can also process an arbitrary number of headers
  * in the response.
  */
-public class ResponseHeaderHandlerChain <T> extends S3XmlResponseHandler<T> {
+public class ResponseHeaderHandlerChain<T> extends S3XmlResponseHandler<T> {
 
     private final List<HeaderHandler<T>> headerHandlers;
-    
-    public ResponseHeaderHandlerChain(Unmarshaller<T, InputStream> responseUnmarshaller, HeaderHandler<T>... headerHandlers) {
+
+    public ResponseHeaderHandlerChain(Unmarshaller<T, InputStream> responseUnmarshaller,
+            HeaderHandler<T>... headerHandlers) {
         super(responseUnmarshaller);
         this.headerHandlers = Arrays.asList(headerHandlers);
     }
 
-    /* (non-Javadoc)
-     * @see com.amazonaws.services.s3.internal.S3XmlResponseHandler#handle(com.amazonaws.http.HttpResponse)
+    /*
+     * (non-Javadoc)
+     * @see
+     * com.amazonaws.services.s3.internal.S3XmlResponseHandler#handle(com.amazonaws
+     * .http.HttpResponse)
      */
     @Override
     public AmazonWebServiceResponse<T> handle(HttpResponse response) throws Exception {
         AmazonWebServiceResponse<T> awsResponse = super.handle(response);
-        
+
         T result = awsResponse.getResult();
         if (result != null) {
             for (HeaderHandler<T> handler : headerHandlers) {
                 handler.handle(result, response);
             }
         }
-        
+
         return awsResponse;
     }
 }

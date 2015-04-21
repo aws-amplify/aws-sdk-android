@@ -12,15 +12,16 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.auth;
 
-import java.util.Date;
+package com.amazonaws.auth;
 
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClient;
 import com.amazonaws.services.securitytoken.model.Credentials;
 import com.amazonaws.services.securitytoken.model.GetSessionTokenRequest;
 import com.amazonaws.services.securitytoken.model.GetSessionTokenResult;
+
+import java.util.Date;
 
 /**
  * Session credentials periodically refreshed by AWS SecurityTokenService.
@@ -33,8 +34,8 @@ import com.amazonaws.services.securitytoken.model.GetSessionTokenResult;
  * {@link STSSessionCredentials#getImmutableCredentials()} to ensure a
  * consistent set of access key, secret key, and token.
  * <p>
- * This class is deprecated and should not be used anymore.
- * Instead, use {@link STSSessionCredentialsProvider}.
+ * This class is deprecated and should not be used anymore. Instead, use
+ * {@link STSSessionCredentialsProvider}.
  */
 @Deprecated
 public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
@@ -50,22 +51,20 @@ public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
      * Create a new credentials object that will periodically and automatically
      * obtain a session from STS.
      *
-     * @param credentials
-     *            Primary AWS account credentials.
+     * @param credentials Primary AWS account credentials.
      */
     public STSSessionCredentials(AWSCredentials credentials) {
         this(credentials, DEFAULT_DURATION_SECONDS);
     }
 
-	/**
-	 * Create a new credentials object that will periodically and automatically
-	 * obtain a session from STS.
-	 *
-	 * @param credentials
-	 *            Primary AWS account credentials.
-	 * @param sessionDurationSeconds
-	 *            The duration, in seconds, for each session to last.
-	 */
+    /**
+     * Create a new credentials object that will periodically and automatically
+     * obtain a session from STS.
+     *
+     * @param credentials Primary AWS account credentials.
+     * @param sessionDurationSeconds The duration, in seconds, for each session
+     *            to last.
+     */
     public STSSessionCredentials(AWSCredentials credentials, int sessionDurationSeconds) {
         this.securityTokenService = new AWSSecurityTokenServiceClient(credentials);
         this.sessionDurationSeconds = sessionDurationSeconds;
@@ -75,8 +74,8 @@ public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
      * Create a new credentials object that will periodically and automatically
      * obtain a session from STS, using a preconfigured STS client.
      *
-     * @param stsClient
-     *            A pre-configured STS client from which to get credentials.
+     * @param stsClient A pre-configured STS client from which to get
+     *            credentials.
      */
     public STSSessionCredentials(AWSSecurityTokenService stsClient) {
         this(stsClient, DEFAULT_DURATION_SECONDS);
@@ -86,10 +85,9 @@ public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
      * Create a new credentials object that will periodically and automatically
      * obtain a session from STS, using a preconfigured STS client.
      *
-     * @param stsClient
-     *            A pre-configured STS client from which to get credentials.
-     * @param settings
-     *            Session settings for all sessions created
+     * @param stsClient A pre-configured STS client from which to get
+     *            credentials.
+     * @param settings Session settings for all sessions created
      */
     public STSSessionCredentials(AWSSecurityTokenService stsClient, int sessionDuratinSeconds) {
         this.securityTokenService = stsClient;
@@ -101,7 +99,8 @@ public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
      * one if necessary.
      * <p>
      * Clients are encouraged to call the atomic
-     * {@link RenewableAWSSessionCredentials#getImmutableCredentials()} as a proxy to this method.
+     * {@link RenewableAWSSessionCredentials#getImmutableCredentials()} as a
+     * proxy to this method.
      */
     @Override
     public synchronized String getAWSAccessKeyId() {
@@ -113,7 +112,8 @@ public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
      * one if necessary.
      * <p>
      * Clients are encouraged to call the atomic
-     * {@link RenewableAWSSessionCredentials#getImmutableCredentials()} as a proxy to this method.
+     * {@link RenewableAWSSessionCredentials#getImmutableCredentials()} as a
+     * proxy to this method.
      */
     @Override
     public synchronized String getAWSSecretKey() {
@@ -125,7 +125,8 @@ public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
      * one if necessary.
      * <p>
      * Clients are encouraged to call the atomic
-     * {@link RenewableAWSSessionCredentials#getImmutableCredentials()} as a proxy to this method.
+     * {@link RenewableAWSSessionCredentials#getImmutableCredentials()} as a
+     * proxy to this method.
      */
     @Override
     public synchronized String getSessionToken() {
@@ -133,11 +134,13 @@ public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
     }
 
     /**
-     * Returns immutable session credentials for this session, beginning a new one if necessary.
+     * Returns immutable session credentials for this session, beginning a new
+     * one if necessary.
      */
     public synchronized AWSSessionCredentials getImmutableCredentials() {
         Credentials creds = getSessionCredentials();
-        return new BasicSessionCredentials(creds.getAccessKeyId(), creds.getSecretAccessKey(), creds.getSessionToken());
+        return new BasicSessionCredentials(creds.getAccessKeyId(), creds.getSecretAccessKey(),
+                creds.getSessionToken());
     }
 
     /**
@@ -146,7 +149,8 @@ public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
     @Override
     public synchronized void refreshCredentials() {
         GetSessionTokenResult sessionTokenResult = securityTokenService
-                .getSessionToken(new GetSessionTokenRequest().withDurationSeconds(sessionDurationSeconds));
+                .getSessionToken(new GetSessionTokenRequest()
+                        .withDurationSeconds(sessionDurationSeconds));
         sessionCredentials = sessionTokenResult.getCredentials();
     }
 
@@ -154,18 +158,18 @@ public class STSSessionCredentials implements AWSRefreshableSessionCredentials {
      * Gets a current session credentials object, reinitializing if necessary.
      */
     private synchronized Credentials getSessionCredentials() {
-        if ( needsNewSession() )
+        if (needsNewSession())
             refreshCredentials();
         return sessionCredentials;
     }
 
     private boolean needsNewSession() {
-        if ( sessionCredentials == null )
+        if (sessionCredentials == null)
             return true;
 
         Date expiration = sessionCredentials.getExpiration();
         long timeRemaining = expiration.getTime() - System.currentTimeMillis();
-        if ( timeRemaining < (60 * 1000) )
+        if (timeRemaining < (60 * 1000))
             return true;
 
         return false;

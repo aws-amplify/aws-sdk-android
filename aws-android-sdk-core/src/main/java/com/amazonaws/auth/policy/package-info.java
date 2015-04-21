@@ -53,4 +53,6 @@
  * <p>
  * Once you've created a policy, you need to use methods on the service to upload your policy to AWS.
  */
+
 package com.amazonaws.auth.policy;
+

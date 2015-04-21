@@ -12,12 +12,13 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal;
+
 import static com.amazonaws.util.StringUtils.UTF8;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Basic XML Writer helper library. It does not do full XML Well-Formedness
@@ -25,6 +26,7 @@ import java.util.List;
  * open tags to simplify use.
  * <p>
  * Sampe usage:
+ *
  * <pre class="brush: java">
  * <code>
  * XmlWriter w = new XmlWriter();
@@ -64,17 +66,18 @@ public class XmlWriter {
     }
 
     public XmlWriter end() {
-        assert(tags.size() > 0);
+        assert (tags.size() > 0);
         String name = tags.remove(tags.size() - 1);
         sb.append("</").append(name).append(">");
         return this;
     }
 
     public byte[] getBytes() {
-        assert(tags.size() == 0);
+        assert (tags.size() == 0);
         return this.toString().getBytes(UTF8);
     }
 
+    @Override
     public String toString() {
         return sb.toString();
     }
@@ -95,11 +98,8 @@ public class XmlWriter {
      * replaced with the corresponding escape code) to the specified
      * StringBuilder.
      *
-     * @param s
-     *            The string to escape and append to the specified
-     *            StringBuilder.
-     * @param builder
-     *            The StringBuilder to which the escaped string should be
+     * @param s The string to escape and append to the specified StringBuilder.
+     * @param builder The StringBuilder to which the escaped string should be
      *            appened.
      */
     private void appendEscapedString(String s, StringBuilder builder) {
@@ -112,33 +112,34 @@ public class XmlWriter {
             char ch = s.charAt(pos);
             String escape;
             switch (ch) {
-            case '\t':
-                escape = "&#9;";
-                break;
-            case '\n':
-                escape = "&#10;";
-                break;
-            case '\r':
-                escape = "&#13;";
-                break;
-            case '&':
-                escape = "&amp;";
-                break;
-            case '"':
-                escape = "&quot;";
-                break;
-            case '<':
-                escape = "&lt;";
-                break;
-            case '>':
-                escape = "&gt;";
-                break;
-            default:
-                escape = null;
-                break;
+                case '\t':
+                    escape = "&#9;";
+                    break;
+                case '\n':
+                    escape = "&#10;";
+                    break;
+                case '\r':
+                    escape = "&#13;";
+                    break;
+                case '&':
+                    escape = "&amp;";
+                    break;
+                case '"':
+                    escape = "&quot;";
+                    break;
+                case '<':
+                    escape = "&lt;";
+                    break;
+                case '>':
+                    escape = "&gt;";
+                    break;
+                default:
+                    escape = null;
+                    break;
             }
 
-            // If we found an escape character, write all the characters up to that
+            // If we found an escape character, write all the characters up to
+            // that
             // character, then write the escaped char and get back to scanning
             if (escape != null) {
                 if (start < pos)
@@ -149,7 +150,8 @@ public class XmlWriter {
         }
 
         // Write anything that's left
-        if (start < pos) sb.append(s, start, pos);
+        if (start < pos)
+            sb.append(s, start, pos);
     }
 
 }

@@ -12,24 +12,26 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.http.conn;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
+package com.amazonaws.http.conn;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.ClientConnectionRequest;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
 public class ClientConnectionManagerFactory {
     private static final Log log = LogFactory.getLog(ClientConnectionManagerFactory.class);
 
     /**
-     * Returns a wrapped instance of {@link ClientConnectionManager}
-     * to capture the necessary performance metrics.
+     * Returns a wrapped instance of {@link ClientConnectionManager} to capture
+     * the necessary performance metrics.
+     *
      * @param orig the target instance to be wrapped
      */
     public static ClientConnectionManager wrap(ClientConnectionManager orig) {
@@ -53,17 +55,18 @@ public class ClientConnectionManagerFactory {
      */
     private static class Handler implements InvocationHandler {
         private final ClientConnectionManager orig;
+
         Handler(ClientConnectionManager real) {
             this.orig = real;
         }
+
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             try {
                 Object ret = method.invoke(orig, args);
                 return ret instanceof ClientConnectionRequest
-                     ? ClientConnectionRequestFactory.wrap((ClientConnectionRequest) ret)
-                     : ret
-                     ;
+                        ? ClientConnectionRequestFactory.wrap((ClientConnectionRequest) ret)
+                        : ret;
             } catch (InvocationTargetException e) {
                 log.debug("", e);
                 throw e.getCause();

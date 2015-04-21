@@ -12,21 +12,22 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.iterable;
 
-import java.util.Iterator;
+package com.amazonaws.services.s3.iterable;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ListVersionsRequest;
 import com.amazonaws.services.s3.model.S3VersionSummary;
 import com.amazonaws.services.s3.model.VersionListing;
 
+import java.util.Iterator;
+
 /**
  * Provides an easy way to iterate Amazon S3 object versions in a "foreach"
  * statement. For example:
  *
  * <pre class="brush: java">
- * for ( S3VersionSummary summary : S3Versions.forPrefix(s3, &quot;my-bucket&quot;, &quot;photos/&quot;) ) {
+ * for (S3VersionSummary summary : S3Versions.forPrefix(s3, &quot;my-bucket&quot;, &quot;photos/&quot;)) {
  *     System.out.printf(&quot;Version '%s' of key '%s'\n&quot;, summary.getVersionId(), summary.getKey());
  * }
  * </pre>
@@ -52,10 +53,8 @@ public class S3Versions implements Iterable<S3VersionSummary> {
      * Constructs an iterable that covers all the object versions in an Amazon
      * S3 bucket.
      *
-     * @param s3
-     *            The Amazon S3 client.
-     * @param bucketName
-     *            The bucket name.
+     * @param s3 The Amazon S3 client.
+     * @param bucketName The bucket name.
      * @return An iterator for object version summaries.
      */
     public static S3Versions inBucket(AmazonS3 s3, String bucketName) {
@@ -66,12 +65,9 @@ public class S3Versions implements Iterable<S3VersionSummary> {
      * Constructs an iterable that covers the versions in an Amazon S3 bucket
      * where the object key begins with the given prefix.
      *
-     * @param s3
-     *            The Amazon S3 client.
-     * @param bucketName
-     *            The bucket name.
-     * @param prefix
-     *            The prefix.
+     * @param s3 The Amazon S3 client.
+     * @param bucketName The bucket name.
+     * @param prefix The prefix.
      * @return An iterator for object version summaries.
      */
     public static S3Versions withPrefix(AmazonS3 s3, String bucketName,
@@ -85,12 +81,9 @@ public class S3Versions implements Iterable<S3VersionSummary> {
      * Constructs an iterable that covers the versions of a single Amazon S3
      * object.
      *
-     * @param s3
-     *            The Amazon S3 client.
-     * @param bucketName
-     *            The bucket name.
-     * @param key
-     *            The key.
+     * @param s3 The Amazon S3 client.
+     * @param bucketName The bucket name.
+     * @param key The key.
      * @return An iterator for object version summaries.
      */
     public static S3Versions forKey(AmazonS3 s3, String bucketName, String key) {
@@ -100,11 +93,10 @@ public class S3Versions implements Iterable<S3VersionSummary> {
     }
 
     /**
-     * Sets the batch size, i.e., how many {@link S3VersionSummary}s will be fetched at
-     * once.
+     * Sets the batch size, i.e., how many {@link S3VersionSummary}s will be
+     * fetched at once.
      *
-     * @param batchSize
-     *            How many object summaries to fetch at once.
+     * @param batchSize How many object summaries to fetch at once.
      */
     public S3Versions withBatchSize(int batchSize) {
         this.batchSize = batchSize;

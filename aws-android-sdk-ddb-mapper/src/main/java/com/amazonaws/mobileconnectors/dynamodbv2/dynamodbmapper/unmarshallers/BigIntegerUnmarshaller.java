@@ -12,15 +12,16 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
-import java.math.BigInteger;
+package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
+import java.math.BigInteger;
+
 /**
- * An unmarshaller that unmarshals DynamoDB Numbers into Java
- * {@code BigInteger}s.
+ * An unmarshaller that unmarshals DynamoDB Numbers into Java {@code BigInteger}
+ * s.
  */
 public class BigIntegerUnmarshaller extends NUnmarshaller {
 

@@ -1,31 +1,27 @@
 /*
  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.internal.config;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import com.amazonaws.regions.Regions;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.amazonaws.regions.Regions;
-import com.amazonaws.util.ClassLoaderHelper;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Internal configuration for the AWS Java SDK.
@@ -56,8 +52,8 @@ public class InternalConfig {
     }
 
     /**
-     * Returns the signer configuration for the specified service, not
-     * specific to any region.
+     * Returns the signer configuration for the specified service, not specific
+     * to any region.
      */
     public SignerConfig getSignerConfig(String serviceName) {
         return getSignerConfig(serviceName, null);
@@ -71,11 +67,12 @@ public class InternalConfig {
     }
 
     /**
-     * Returns the signer configuration for the specified service name and
-     * an optional region name.
+     * Returns the signer configuration for the specified service name and an
+     * optional region name.
+     *
      * @param serviceName must not be null
-     * @param regionName similar to the region name in {@link Regions};
-     * can be null.
+     * @param regionName similar to the region name in {@link Regions}; can be
+     *            null.
      * @return the signer
      */
     public SignerConfig getSignerConfig(String serviceName, String regionName) {
@@ -84,7 +81,7 @@ public class InternalConfig {
         SignerConfig signerConfig = null;
         if (regionName != null) {
             // Service+Region signer config has the highest precedence
-            String key = serviceName + SERVICE_REGION_DELIMITOR +regionName;
+            String key = serviceName + SERVICE_REGION_DELIMITOR + regionName;
             signerConfig = serviceRegionSigners.get(key);
             if (signerConfig != null) {
                 return signerConfig;
@@ -102,7 +99,7 @@ public class InternalConfig {
     }
 
     private static Map<String, HttpClientConfig> getDefaultHttpClients() {
-        //map from service client name to sigv4 service name
+        // map from service client name to sigv4 service name
         Map<String, HttpClientConfig> ret = new HashMap<String, HttpClientConfig>();
         ret.put("AmazonSimpleWorkflowClient", new HttpClientConfig("swf"));
         ret.put("AmazonCloudWatchClient", new HttpClientConfig("monitoring"));
@@ -117,7 +114,7 @@ public class InternalConfig {
     }
 
     private static Map<String, SignerConfig> getDefaultRegionSigners() {
-        //map from region name to signer type
+        // map from region name to signer type
         Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         ret.put("eu-central-1", new SignerConfig("AWS4SignerType"));
         ret.put("cn-north-1", new SignerConfig("AWS4SignerType"));
@@ -125,7 +122,7 @@ public class InternalConfig {
     }
 
     private static Map<String, SignerConfig> getDefaultServiceRegionSigners() {
-        //map from "<service>/<region>" to signer type
+        // map from "<service>/<region>" to signer type
         Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         ret.put("s3/eu-central-1", new SignerConfig("AWSS3V4SignerType"));
         ret.put("s3/cn-north-1", new SignerConfig("AWSS3V4SignerType"));
@@ -133,7 +130,7 @@ public class InternalConfig {
     }
 
     private static Map<String, SignerConfig> getDefaultServiceSigners() {
-        //map from abbreviated service name to signer type
+        // map from abbreviated service name to signer type
         Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         ret.put("ec2", new SignerConfig("QueryStringSignerType"));
         ret.put("email", new SignerConfig("AWS3SignerType"));
@@ -150,29 +147,29 @@ public class InternalConfig {
     }
 
     private static Map<String, HttpClientConfig> getOverrideHttpClients() {
-        //map from service client name to sigv4 service name
+        // map from service client name to sigv4 service name
         Map<String, HttpClientConfig> ret = new HashMap<String, HttpClientConfig>();
         return ret;
     }
 
     private static Map<String, SignerConfig> getOverrideRegionSigners() {
-        //map from region name to signer type
+        // map from region name to signer type
         Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         return ret;
     }
 
     private static Map<String, SignerConfig> getOverrideServiceRegionSigners() {
-        //map from "<service>/<region>" to signer type
+        // map from "<service>/<region>" to signer type
         Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         return ret;
     }
 
     private static Map<String, SignerConfig> getOverrideServiceSigners() {
-        //map from abbreviated service name to signer type
+        // map from abbreviated service name to signer type
         Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         return ret;
     }
-    
+
     // For debugging purposes
     void dump() {
         StringBuilder sb = new StringBuilder().append("defaultSignerConfig: ")
@@ -189,19 +186,22 @@ public class InternalConfig {
             InternalConfig config = null;
             try {
                 config = new InternalConfig();
-            } catch(RuntimeException ex) {
+            } catch (RuntimeException ex) {
                 throw ex;
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 throw new IllegalStateException(
                         "Fatal: Failed to load the internal config for AWS Java SDK",
                         ex);
             }
             SINGELTON = config;
         }
+
         /**
          * Returns a non-null and immutable instance of the AWS SDK internal
          * configuration.
          */
-        public static InternalConfig getInternalConfig() { return SINGELTON; }
+        public static InternalConfig getInternalConfig() {
+            return SINGELTON;
+        }
     }
 }

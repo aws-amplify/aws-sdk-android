@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth;
 
 /**
@@ -23,13 +24,14 @@ package com.amazonaws.auth;
 public interface AWSCredentialsProvider {
 
     /**
-     * Returns AWSCredentials which the caller can use to authorize an AWS request.
-     * Each implementation of AWSCredentialsProvider can chose its own strategy for
-     * loading credentials.  For example, an implementation might load credentials
-     * from an existing key management system, or load new credentials when
-     * credentials are rotated.
+     * Returns AWSCredentials which the caller can use to authorize an AWS
+     * request. Each implementation of AWSCredentialsProvider can chose its own
+     * strategy for loading credentials. For example, an implementation might
+     * load credentials from an existing key management system, or load new
+     * credentials when credentials are rotated.
      *
-     * @return AWSCredentials which the caller can use to authorize an AWS request.
+     * @return AWSCredentials which the caller can use to authorize an AWS
+     *         request.
      */
     public AWSCredentials getCredentials();
 

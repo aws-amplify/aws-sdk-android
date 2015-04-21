@@ -12,28 +12,32 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
-import static com.amazonaws.services.s3.internal.Constants.*;
+import static com.amazonaws.services.s3.internal.Constants.GB;
+import static com.amazonaws.services.s3.internal.Constants.MB;
 
 /**
  * Configuration options for how {@link TransferManager} processes requests.
  * <p>
- * The best configuration settings depend on network
- * configuration, latency and bandwidth.
- * The default configuration settings are suitable
- * for most applications, but this class enables developers to experiment with
- * different configurations and tune transfer manager performance.
+ * The best configuration settings depend on network configuration, latency and
+ * bandwidth. The default configuration settings are suitable for most
+ * applications, but this class enables developers to experiment with different
+ * configurations and tune transfer manager performance.
  */
 public class TransferManagerConfiguration {
 
     /** Default minimum part size for upload parts. */
     private static final int DEFAULT_MINIMUM_UPLOAD_PART_SIZE = 5 * MB;
 
-    /** Default size threshold for when to use multipart uploads.  */
+    /** Default size threshold for when to use multipart uploads. */
     private static final long DEFAULT_MULTIPART_UPLOAD_THRESHOLD = 16 * MB;
 
-    /** Default size threshold for Amazon S3 object after which multi-part copy is initiated. */
+    /**
+     * Default size threshold for Amazon S3 object after which multi-part copy
+     * is initiated.
+     */
     private static final long DEFAULT_MULTIPART_COPY_THRESHOLD = 5 * GB;
 
     /** Default minimum size of each part for multi-part copy. */
@@ -78,12 +82,11 @@ public class TransferManagerConfiguration {
     private long multipartCopyPartSize = DEFAULT_MINIMUM_COPY_PART_SIZE;
 
     /**
-     * Returns the minimum part size for upload parts.
-     * Decreasing the minimum part size causes
-     * multipart uploads to be split into a larger number
-     * of smaller parts. Setting this value too low has a negative effect
-     * on transfer speeds, causing extra latency and network
-     * communication for each part.
+     * Returns the minimum part size for upload parts. Decreasing the minimum
+     * part size causes multipart uploads to be split into a larger number of
+     * smaller parts. Setting this value too low has a negative effect on
+     * transfer speeds, causing extra latency and network communication for each
+     * part.
      *
      * @return The minimum part size for upload parts.
      */
@@ -92,15 +95,12 @@ public class TransferManagerConfiguration {
     }
 
     /**
-     * Sets the minimum part size for upload parts.
-     * Decreasing the minimum part size causes
-     * multipart uploads to be split into a larger number
-     * of smaller parts. Setting this value too low has a negative effect
-     * on transfer speeds, causing extra latency and network
-     * communication for each part.
+     * Sets the minimum part size for upload parts. Decreasing the minimum part
+     * size causes multipart uploads to be split into a larger number of smaller
+     * parts. Setting this value too low has a negative effect on transfer
+     * speeds, causing extra latency and network communication for each part.
      *
-     * @param minimumUploadPartSize
-     *            The minimum part size for upload parts.
+     * @param minimumUploadPartSize The minimum part size for upload parts.
      */
     public void setMinimumUploadPartSize(long minimumUploadPartSize) {
         this.minimumUploadPartSize = minimumUploadPartSize;
@@ -112,11 +112,10 @@ public class TransferManagerConfiguration {
      * strategy, while uploads smaller than this threshold will use a single
      * connection to upload the whole object.
      * <p>
-     * Multipart uploads are easier to recover from and potentially faster
-     * than single part uploads, especially when the upload parts can be
-     * uploaded in parallel as with files. Due to additional network
-     * communication, small uploads should use a single
-     * connection for the upload.
+     * Multipart uploads are easier to recover from and potentially faster than
+     * single part uploads, especially when the upload parts can be uploaded in
+     * parallel as with files. Due to additional network communication, small
+     * uploads should use a single connection for the upload.
      *
      * @return The size threshold in bytes for when to use multipart uploads.
      */
@@ -130,15 +129,13 @@ public class TransferManagerConfiguration {
      * strategy, while uploads smaller than this threshold will use a single
      * connection to upload the whole object.
      * <p>
-     * Multipart uploads are easier to recover from and potentially faster
-     * than single part uploads, especially when the upload parts can be
-     * uploaded in parallel as with files. Due to additional network
-     * communication, small uploads should use a single
-     * connection for the upload.
+     * Multipart uploads are easier to recover from and potentially faster than
+     * single part uploads, especially when the upload parts can be uploaded in
+     * parallel as with files. Due to additional network communication, small
+     * uploads should use a single connection for the upload.
      *
-     * @param multipartUploadThreshold
-     *            The size threshold in bytes for when to use multipart
-     *            uploads.
+     * @param multipartUploadThreshold The size threshold in bytes for when to
+     *            use multipart uploads.
      */
     public void setMultipartUploadThreshold(long multipartUploadThreshold) {
         this.multipartUploadThreshold = multipartUploadThreshold;
@@ -161,9 +158,8 @@ public class TransferManagerConfiguration {
      * request. Decreasing this size will result in increase in the number of
      * copy part requests to the server.
      *
-     * @param multipartCopyPartSize
-     *            The minimum size in bytes for each part in a multi part copy
-     *            request.
+     * @param multipartCopyPartSize The minimum size in bytes for each part in a
+     *            multi part copy request.
      */
     public void setMultipartCopyPartSize(long multipartCopyPartSize) {
         this.multipartCopyPartSize = multipartCopyPartSize;
@@ -186,8 +182,8 @@ public class TransferManagerConfiguration {
      * a multi-part copy strategy, while copy requests for objects smaller than
      * this threshold will use a single connection to copy the whole object.
      *
-     * @param multipartCopyThreshold
-     *            The size threshold in bytes for when to use multi part copy.
+     * @param multipartCopyThreshold The size threshold in bytes for when to use
+     *            multi part copy.
      */
     public void setMultipartCopyThreshold(long multipartCopyThreshold) {
         this.multipartCopyThreshold = multipartCopyThreshold;

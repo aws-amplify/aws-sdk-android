@@ -15,6 +15,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 import java.text.ParseException;
@@ -56,7 +57,7 @@ public class DateUtils {
     /**
      * A helper function to retrieve a SimpleDateFormat object for the given
      * date pattern
-     * 
+     *
      * @param pattern date pattern
      * @return SimpleDateFormat object
      */
@@ -85,7 +86,7 @@ public class DateUtils {
     /**
      * Parses the specified date string with the given date pattern and returns
      * the Date object.
-     * 
+     *
      * @param pattern date pattern
      * @param dateString The date string to parse.
      * @return The parsed Date object.
@@ -100,7 +101,7 @@ public class DateUtils {
 
     /**
      * Formats the specific date into the given pattern
-     * 
+     *
      * @param pattern date pattern
      * @param date date to be formatted
      * @return formated string representing the give date
@@ -113,9 +114,7 @@ public class DateUtils {
      * Parses the specified date string as an ISO 8601 date and returns the Date
      * object.
      *
-     * @param dateString
-     *            The date string to parse.
-     *
+     * @param dateString The date string to parse.
      * @return The parsed Date object.
      */
     public static Date parseISO8601Date(String dateString) {
@@ -131,9 +130,7 @@ public class DateUtils {
     /**
      * Formats the specified date as an ISO 8601 string.
      *
-     * @param date
-     *            The date to format.
-     *
+     * @param date The date to format.
      * @return The ISO 8601 string representing the specified date.
      */
     public static String formatISO8601Date(Date date) {
@@ -144,9 +141,7 @@ public class DateUtils {
      * Parses the specified date string as an RFC 822 date and returns the Date
      * object.
      *
-     * @param dateString
-     *            The date string to parse.
-     *
+     * @param dateString The date string to parse.
      * @return The parsed Date object.
      */
     public static Date parseRFC822Date(String dateString) {
@@ -156,9 +151,7 @@ public class DateUtils {
     /**
      * Formats the specified date as an RFC 822 string.
      *
-     * @param date
-     *            The date to format.
-     *
+     * @param date The date to format.
      * @return The RFC 822 string representing the specified date.
      */
     public static String formatRFC822Date(Date date) {
@@ -166,15 +159,13 @@ public class DateUtils {
     }
 
     /**
-     * Parses the specified date string as a compressedIso8601DateFormat ("yyyyMMdd'T'HHmmss'Z'") and returns the Date
-     * object.
+     * Parses the specified date string as a compressedIso8601DateFormat
+     * ("yyyyMMdd'T'HHmmss'Z'") and returns the Date object.
      *
-     * @param dateString
-     *            The date string to parse.
-     *
+     * @param dateString The date string to parse.
      * @return The parsed Date object.
      */
     public static Date parseCompressedISO8601Date(String dateString) {
         return parse(COMPRESSED_DATE_PATTERN, dateString);
-   }
+    }
 }

@@ -1,18 +1,24 @@
 /*
- * Copyright 2013-2015 Amazon Technologies, Inc. 
+ * Copyright 2013-2015 Amazon Technologies, Inc.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at:
- * 
+ *
  *    http://aws.amazon.com/apache2.0
  *
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
- * OR CONDITIONS OF ANY KIND, either express or implied. See the 
- * License for the specific language governing permissions and 
- * limitations under the License. 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+ * OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 package com.amazonaws.regions;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,16 +28,9 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-
 /**
- * Parses a region metadata file to pull out information about the
- * available regions, names, IDs, and what service endpoints are available
- * in each region.
+ * Parses a region metadata file to pull out information about the available
+ * regions, names, IDs, and what service endpoints are available in each region.
  */
 public class RegionMetadataParser {
 
@@ -64,15 +63,13 @@ public class RegionMetadataParser {
     @Deprecated
     public RegionMetadataParser() {
     }
-    
+
     /**
      * Parses the specified input stream and returns a list of the regions
      * declared in it. By default, verification on the region endpoints is
      * disabled.
-     * 
-     * @param input
-     *            The stream containing the region metadata to parse.
-     * 
+     *
+     * @param input The stream containing the region metadata to parse.
      * @return The list of parsed regions.
      * @deprecated in favor of {@link #parse(InputStream)}
      */
@@ -84,21 +81,18 @@ public class RegionMetadataParser {
     }
 
     /**
-     * Parses the specified input stream and optionally verifies that all of
-     * the endpoints end in ".amazonaws.com". This method is deprecated, since
-     * not all valid AWS endpoints end in ".amazonaws.com" any more.
-     * 
-     * @param input
-     *            The stream containing the region metadata to parse.
-     * @param endpointVerification
-     *            Whether to verify each region endpoint
-     * 
+     * Parses the specified input stream and optionally verifies that all of the
+     * endpoints end in ".amazonaws.com". This method is deprecated, since not
+     * all valid AWS endpoints end in ".amazonaws.com" any more.
+     *
+     * @param input The stream containing the region metadata to parse.
+     * @param endpointVerification Whether to verify each region endpoint
      * @return The list of parsed regions.
      * @deprecated in favor of {@link #parse(InputStream)}
      */
     @Deprecated
     public List<Region> parseRegionMetadata(final InputStream input,
-                                            final boolean endpointVerification)
+            final boolean endpointVerification)
             throws IOException {
 
         return internalParse(input, endpointVerification);
@@ -112,7 +106,7 @@ public class RegionMetadataParser {
         try {
 
             DocumentBuilderFactory factory =
-                DocumentBuilderFactory.newInstance();
+                    DocumentBuilderFactory.newInstance();
 
             DocumentBuilder documentBuilder = factory.newDocumentBuilder();
             document = documentBuilder.parse(input);
@@ -121,25 +115,25 @@ public class RegionMetadataParser {
             throw exception;
         } catch (Exception exception) {
             throw new IOException("Unable to parse region metadata file: "
-                                  + exception.getMessage(),
-                                  exception);
+                    + exception.getMessage(),
+                    exception);
         } finally {
             try {
                 input.close();
             } catch (IOException exception) {
             }
         }
-        
+
         NodeList regionNodes = document.getElementsByTagName(REGION_TAG);
         List<Region> regions = new ArrayList<Region>();
         for (int i = 0; i < regionNodes.getLength(); i++) {
             Node node = regionNodes.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element)node;
+                Element element = (Element) node;
                 regions.add(parseRegionElement(element, endpointVerification));
             }
         }
-        
+
         return regions;
     }
 
@@ -153,17 +147,17 @@ public class RegionMetadataParser {
         Region region = new Region(name, domain);
 
         NodeList endpointNodes =
-            regionElement.getElementsByTagName(ENDPOINT_TAG);
+                regionElement.getElementsByTagName(ENDPOINT_TAG);
 
         for (int i = 0; i < endpointNodes.getLength(); i++) {
             addRegionEndpoint(region,
-                              (Element) endpointNodes.item(i),
-                              endpointVerification);
+                    (Element) endpointNodes.item(i),
+                    endpointVerification);
         }
 
         return region;
     }
-    
+
     private static void addRegionEndpoint(
             final Region region,
             final Element endpointElement,
@@ -174,9 +168,9 @@ public class RegionMetadataParser {
         String http = getChildElementValue(HTTP_TAG, endpointElement);
         String https = getChildElementValue(HTTPS_TAG, endpointElement);
 
-        if ( endpointVerification && !verifyLegacyEndpoint(hostname) ) {
+        if (endpointVerification && !verifyLegacyEndpoint(hostname)) {
             throw new IllegalStateException("Invalid service endpoint ("
-                                            + hostname + ") is detected.");
+                    + hostname + ") is detected.");
         }
 
         region.getServiceEndpoints().put(serviceName, hostname);
@@ -189,12 +183,12 @@ public class RegionMetadataParser {
             final Element element) {
 
         Node tagNode = element.getElementsByTagName(tagName).item(0);
-        if ( tagNode == null )
+        if (tagNode == null)
             return null;
-        NodeList nodes= tagNode.getChildNodes();
-        Node node = (Node)nodes.item(0); 
-     
-        return node.getNodeValue();    
+        NodeList nodes = tagNode.getChildNodes();
+        Node node = nodes.item(0);
+
+        return node.getNodeValue();
     }
 
     /**

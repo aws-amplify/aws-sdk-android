@@ -33,15 +33,15 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.EventClient;
  * between builds.
  * </p>
  * Example:
- * 
+ *
  * <pre class="prettyprint">
  * // get the event client from your MobileAnalyticsManager instance
  * EventClient eventClient = mobileAnalyticsManager.getEventClient();
- * 
+ *
  * // create a builder that can record purchase events for the IAP Framework you
  * // are using
  * CustomMonetizationEventBuilder builder = CustomMonetizationEventBuilder.create(eventClient);
- * 
+ *
  * // build the monetization event with at minimum the store, product id, quantity,
  * // and price information
  * // The price information can be supplied in either of the following ways:
@@ -51,15 +51,15 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.EventClient;
  * // - The formatted localized price of the item as a string (i.e. &quot;$1.99&quot;)
  * // You may also build with any additional available attributes that the IAP
  * // Framework provides such as Transaction ID
- * 
+ *
  * // Price and currency
  * Event purchaseEvent = builder.withStore(&quot;Custom Store&quot;).withProductId(&quot;com.yourgame.sword&quot;)
  *         .withItemPrice(1.99).withCurrency(&quot;USD&quot;).withQuantity(1).build();
- * 
+ *
  * // Formatted Price
  * purchaseEvent = builder.withStore(&quot;Custom Store&quot;).withProductId(&quot;com.yourgame.sword&quot;)
  *         .withFormattedItemPrice(&quot;$1.99&quot;).withQuantity(1).build();
- * 
+ *
  * // record the monetization event
  * eventClient.recordEvent(purchaseEvent);
  * </pre>
@@ -70,7 +70,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Create a CustomMonetizationEventBuilder with the specified Event client
-     * 
+     *
      * @param eventClient The event client to use when creating monetization
      *            events
      * @return a CustomMonetizationEventBuilder to build monetization events
@@ -82,7 +82,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Sets the store in which the transaction is taking place (Required)
-     * 
+     *
      * @param store The store in which the transaction is taking place
      * @return this for chaining
      */
@@ -93,7 +93,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Sets the product identifier field of the item being purchased (Required)
-     * 
+     *
      * @param productId The product id representing the item being purchased
      * @return this for chaining
      */
@@ -104,7 +104,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Sets the quantity of the item being purchased (Required)
-     * 
+     *
      * @param quantity The quantity of the item being purchased
      * @return this for chaining
      */
@@ -116,7 +116,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
     /**
      * Sets the formatted localized price of the item being purchased (Required
      * if numerical price and currency are not specified)
-     * 
+     *
      * @param formattedItemPrice The formatted localized price of the item
      * @return this for chaining
      */
@@ -128,7 +128,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
     /**
      * Sets the numerical price of the item being purchased (Required if
      * formatted localized price is not specified)
-     * 
+     *
      * @param itemPrice The numerical price of the item
      * @return this for chaining
      */
@@ -140,7 +140,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
     /**
      * Sets the currency of the item being purchased (Required if formatted
      * localized price is not specified)
-     * 
+     *
      * @param currency The currency code of the currency used to purchase this
      *            item (i.e. "USD")
      * @return this for chaining
@@ -152,7 +152,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * The transaction identifier of the purchase (Optional)
-     * 
+     *
      * @param transactionId The transaction id of the purchase
      * @return this for chaining
      */
@@ -163,7 +163,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
     /**
      * Construct a CustomMonetizationEventBuilder with the specified EventClient
-     * 
+     *
      * @param eventClient The EventClient to use when building the event
      */
     protected CustomMonetizationEventBuilder(EventClient eventClient) {

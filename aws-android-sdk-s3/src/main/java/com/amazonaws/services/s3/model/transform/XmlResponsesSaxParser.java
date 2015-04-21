@@ -15,31 +15,10 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model.transform;
 
 import static com.amazonaws.util.StringUtils.UTF8;
-
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.helpers.XMLReaderFactory;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.internal.Constants;
@@ -92,6 +71,28 @@ import com.amazonaws.services.s3.model.TagSet;
 import com.amazonaws.services.s3.model.VersionListing;
 import com.amazonaws.util.DateUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.helpers.XMLReaderFactory;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 /**
  * XML Sax parser to read XML documents returned by S3 via the REST interface,
  * converting these documents into objects.
@@ -118,7 +119,8 @@ public class XmlResponsesSaxParser {
                 // Try once more...
                 xr = XMLReaderFactory.createXMLReader();
             } catch (SAXException e2) {
-                throw new AmazonClientException("Couldn't initialize a sax driver for the XMLReader", e);
+                throw new AmazonClientException(
+                        "Couldn't initialize a sax driver for the XMLReader", e);
             }
         }
     }
@@ -126,15 +128,11 @@ public class XmlResponsesSaxParser {
     /**
      * Parses an XML document from an input stream using a document handler.
      *
-     * @param handler
-     *            the handler for the XML document
-     * @param inputStream
-     *            an input stream containing the XML document to parse
-     *
-     * @throws IOException
-     *             on error reading from the input stream (ie connection reset)
-     * @throws AmazonClientException
-     *             on error with malformed XML, etc
+     * @param handler the handler for the XML document
+     * @param inputStream an input stream containing the XML document to parse
+     * @throws IOException on error reading from the input stream (ie connection
+     *             reset)
+     * @throws AmazonClientException on error with malformed XML, etc
      */
     protected void parseXmlInputStream(DefaultHandler handler, InputStream inputStream)
             throws IOException {
@@ -145,7 +143,7 @@ public class XmlResponsesSaxParser {
             }
 
             BufferedReader breader = new BufferedReader(new InputStreamReader(inputStream,
-                Constants.DEFAULT_ENCODING));
+                    Constants.DEFAULT_ENCODING));
             xr.setContentHandler(handler);
             xr.setErrorHandler(handler);
             xr.parse(new InputSource(breader));
@@ -162,7 +160,7 @@ public class XmlResponsesSaxParser {
                 }
             }
             throw new AmazonClientException("Failed to parse XML document with handler "
-                + handler.getClass(), t);
+                    + handler.getClass(), t);
         }
     }
 
@@ -170,7 +168,8 @@ public class XmlResponsesSaxParser {
             throws IOException {
 
         if (!sanitizeXmlDocument) {
-            // No sanitizing will be performed, return the original input stream unchanged.
+            // No sanitizing will be performed, return the original input stream
+            // unchanged.
             return inputStream;
         } else {
             if (log.isDebugEnabled()) {
@@ -182,13 +181,13 @@ public class XmlResponsesSaxParser {
             try {
 
                 /*
-                 * Read object listing XML document from input stream provided into a
-                 * string buffer, so we can replace troublesome characters before
-                 * sending the document to the XML parser.
+                 * Read object listing XML document from input stream provided
+                 * into a string buffer, so we can replace troublesome
+                 * characters before sending the document to the XML parser.
                  */
                 StringBuilder listingDocBuffer = new StringBuilder();
                 BufferedReader br = new BufferedReader(
-                    new InputStreamReader(inputStream, Constants.DEFAULT_ENCODING));
+                        new InputStreamReader(inputStream, Constants.DEFAULT_ENCODING));
 
                 char[] buf = new char[8192];
                 int read = -1;
@@ -206,7 +205,7 @@ public class XmlResponsesSaxParser {
                 String listingDoc = listingDocBuffer.toString().replaceAll("\r", "&#013;");
 
                 sanitizedInputStream = new ByteArrayInputStream(
-                    listingDoc.getBytes(UTF8));
+                        listingDoc.getBytes(UTF8));
 
             } catch (IOException e) {
                 throw e;
@@ -216,11 +215,14 @@ public class XmlResponsesSaxParser {
                     inputStream.close();
                 } catch (IOException e) {
                     if (log.isErrorEnabled()) {
-                        log.error("Unable to close response InputStream after failure sanitizing XML document", e);
+                        log.error(
+                                "Unable to close response InputStream after failure sanitizing XML document",
+                                e);
                     }
                 }
-                throw new AmazonClientException("Failed to sanitize XML document destined for handler "
-                    + handler.getClass(), t);
+                throw new AmazonClientException(
+                        "Failed to sanitize XML document destined for handler "
+                                + handler.getClass(), t);
             }
             return sanitizedInputStream;
         }
@@ -230,14 +232,15 @@ public class XmlResponsesSaxParser {
      * Checks if the specified string is empty or null and if so, returns null.
      * Otherwise simply returns the string.
      *
-     * @param s
-     *            The string to check.
+     * @param s The string to check.
      * @return Null if the specified string was null, or empty, otherwise
      *         returns the string the caller passed in.
      */
     private static String checkForEmptyString(String s) {
-        if (s == null) return null;
-        if (s.length() == 0) return null;
+        if (s == null)
+            return null;
+        if (s.length() == 0)
+            return null;
 
         return s;
     }
@@ -247,9 +250,7 @@ public class XmlResponsesSaxParser {
      * If a NumberFormatException occurs while parsing the integer, an error is
      * logged and -1 is returned.
      *
-     * @param s
-     *            The string to parse and return as an integer.
-     *
+     * @param s The string to parse and return as an integer.
      * @return The integer value of the specified string, otherwise -1 if there
      *         were any problems parsing the string as an integer.
      */
@@ -268,11 +269,9 @@ public class XmlResponsesSaxParser {
      * NumberFormatException occurs while parsing the long, an error is logged
      * and -1 is returned.
      *
-     * @param s
-     *            The string to parse and return as a long.
-     *
-     * @return The long value of the specified string, otherwise -1 if there
-     *         were any problems parsing the string as a long.
+     * @param s The string to parse and return as a long.
+     * @return The long value of the specified string, otherwise -1 if there were
+     *         any problems parsing the string as a long.
      */
     private static long parseLong(String s) {
         try {
@@ -287,8 +286,7 @@ public class XmlResponsesSaxParser {
     /**
      * Parses a ListBucket response XML document from an input stream.
      *
-     * @param inputStream
-     *            XML data input stream.
+     * @param inputStream XML data input stream.
      * @return the XML handler object populated with data parsed from the XML
      *         stream.
      * @throws AmazonClientException
@@ -303,8 +301,7 @@ public class XmlResponsesSaxParser {
     /**
      * Parses a ListVersions response XML document from an input stream.
      *
-     * @param inputStream
-     *            XML data input stream.
+     * @param inputStream XML data input stream.
      * @return the XML handler object populated with data parsed from the XML
      *         stream.
      * @throws AmazonClientException
@@ -319,8 +316,7 @@ public class XmlResponsesSaxParser {
     /**
      * Parses a ListAllMyBuckets response XML document from an input stream.
      *
-     * @param inputStream
-     *            XML data input stream.
+     * @param inputStream XML data input stream.
      * @return the XML handler object populated with data parsed from the XML
      *         stream.
      * @throws AmazonClientException
@@ -336,11 +332,9 @@ public class XmlResponsesSaxParser {
      * Parses an AccessControlListHandler response XML document from an input
      * stream.
      *
-     * @param inputStream
-     *            XML data input stream.
+     * @param inputStream XML data input stream.
      * @return the XML handler object populated with data parsed from the XML
      *         stream.
-     *
      * @throws AmazonClientException
      */
     public AccessControlListHandler parseAccessControlListResponse(InputStream inputStream)
@@ -354,11 +348,9 @@ public class XmlResponsesSaxParser {
      * Parses a LoggingStatus response XML document for a bucket from an input
      * stream.
      *
-     * @param inputStream
-     *            XML data input stream.
+     * @param inputStream XML data input stream.
      * @return the XML handler object populated with data parsed from the XML
      *         stream.
-     *
      * @throws AmazonClientException
      */
     public BucketLoggingConfigurationHandler parseLoggingStatusResponse(InputStream inputStream)
@@ -368,14 +360,16 @@ public class XmlResponsesSaxParser {
         return handler;
     }
 
-    public BucketLifecycleConfigurationHandler parseBucketLifecycleConfigurationResponse(InputStream inputStream)
+    public BucketLifecycleConfigurationHandler parseBucketLifecycleConfigurationResponse(
+            InputStream inputStream)
             throws IOException {
         BucketLifecycleConfigurationHandler handler = new BucketLifecycleConfigurationHandler();
         parseXmlInputStream(handler, inputStream);
         return handler;
     }
 
-    public BucketCrossOriginConfigurationHandler parseBucketCrossOriginConfigurationResponse(InputStream inputStream)
+    public BucketCrossOriginConfigurationHandler parseBucketCrossOriginConfigurationResponse(
+            InputStream inputStream)
             throws IOException {
         BucketCrossOriginConfigurationHandler handler = new BucketCrossOriginConfigurationHandler();
         parseXmlInputStream(handler, inputStream);
@@ -389,28 +383,32 @@ public class XmlResponsesSaxParser {
         return handler.getLocation();
     }
 
-    public BucketVersioningConfigurationHandler parseVersioningConfigurationResponse(InputStream inputStream)
+    public BucketVersioningConfigurationHandler parseVersioningConfigurationResponse(
+            InputStream inputStream)
             throws IOException {
         BucketVersioningConfigurationHandler handler = new BucketVersioningConfigurationHandler();
         parseXmlInputStream(handler, inputStream);
         return handler;
     }
 
-    public BucketWebsiteConfigurationHandler parseWebsiteConfigurationResponse(InputStream inputStream)
+    public BucketWebsiteConfigurationHandler parseWebsiteConfigurationResponse(
+            InputStream inputStream)
             throws IOException {
         BucketWebsiteConfigurationHandler handler = new BucketWebsiteConfigurationHandler();
         parseXmlInputStream(handler, inputStream);
         return handler;
     }
 
-    public BucketNotificationConfigurationHandler parseNotificationConfigurationResponse(InputStream inputStream)
+    public BucketNotificationConfigurationHandler parseNotificationConfigurationResponse(
+            InputStream inputStream)
             throws IOException {
         BucketNotificationConfigurationHandler handler = new BucketNotificationConfigurationHandler();
         parseXmlInputStream(handler, inputStream);
         return handler;
     }
 
-    public BucketTaggingConfigurationHandler parseTaggingConfigurationResponse(InputStream inputStream)
+    public BucketTaggingConfigurationHandler parseTaggingConfigurationResponse(
+            InputStream inputStream)
             throws IOException {
         BucketTaggingConfigurationHandler handler = new BucketTaggingConfigurationHandler();
         parseXmlInputStream(handler, inputStream);
@@ -431,14 +429,16 @@ public class XmlResponsesSaxParser {
         return handler;
     }
 
-    public CompleteMultipartUploadHandler parseCompleteMultipartUploadResponse(InputStream inputStream)
+    public CompleteMultipartUploadHandler parseCompleteMultipartUploadResponse(
+            InputStream inputStream)
             throws IOException {
         CompleteMultipartUploadHandler handler = new CompleteMultipartUploadHandler();
         parseXmlInputStream(handler, inputStream);
         return handler;
     }
 
-    public InitiateMultipartUploadHandler parseInitiateMultipartUploadResponse(InputStream inputStream)
+    public InitiateMultipartUploadHandler parseInitiateMultipartUploadResponse(
+            InputStream inputStream)
             throws IOException {
         InitiateMultipartUploadHandler handler = new InitiateMultipartUploadHandler();
         parseXmlInputStream(handler, inputStream);
@@ -459,16 +459,14 @@ public class XmlResponsesSaxParser {
         return handler;
     }
 
-
     /**
      * @param inputStream
-     *
      * @return true if the bucket's is configured as Requester Pays, false if it
      *         is configured as Owner pays.
-     *
      * @throws AmazonClientException
      */
-    public RequestPaymentConfigurationHandler parseRequestPaymentConfigurationResponse(InputStream inputStream)
+    public RequestPaymentConfigurationHandler parseRequestPaymentConfigurationResponse(
+            InputStream inputStream)
             throws IOException {
         RequestPaymentConfigurationHandler handler = new RequestPaymentConfigurationHandler();
         parseXmlInputStream(handler, inputStream);
@@ -527,17 +525,17 @@ public class XmlResponsesSaxParser {
                      * we're returning a list of results that's truncated.
                      */
                     if (objectListing.isTruncated()
-                        && objectListing.getNextMarker() == null) {
+                            && objectListing.getNextMarker() == null) {
 
                         String nextMarker = null;
                         if (!objectListing.getObjectSummaries().isEmpty()) {
                             nextMarker = objectListing.getObjectSummaries()
-                                .get(objectListing.getObjectSummaries().size() - 1)
-                                .getKey();
+                                    .get(objectListing.getObjectSummaries().size() - 1)
+                                    .getKey();
 
                         } else if (!objectListing.getCommonPrefixes().isEmpty()) {
                             nextMarker = objectListing.getCommonPrefixes()
-                                .get(objectListing.getCommonPrefixes().size() - 1);
+                                    .get(objectListing.getCommonPrefixes().size() - 1);
                         } else {
                             log.error("S3 response indicates truncated results, "
                                     + "but contains no object summaries or "
@@ -577,7 +575,7 @@ public class XmlResponsesSaxParser {
 
                 } else if (name.equals("IsTruncated")) {
                     String isTruncatedStr =
-                        getText().toLowerCase(Locale.getDefault());
+                            getText().toLowerCase(Locale.getDefault());
 
                     if (isTruncatedStr.startsWith("false")) {
                         objectListing.setTruncated(false);
@@ -586,7 +584,7 @@ public class XmlResponsesSaxParser {
                     } else {
                         throw new IllegalStateException(
                                 "Invalid value for IsTruncated field: "
-                                + isTruncatedStr);
+                                        + isTruncatedStr);
                     }
 
                 } else if (name.equals("Contents")) {
@@ -720,7 +718,7 @@ public class XmlResponsesSaxParser {
     public static class AccessControlListHandler extends AbstractHandler {
 
         private final AccessControlList accessControlList =
-            new AccessControlList();
+                new AccessControlList();
 
         private Grantee currentGrantee = null;
         private Permission currentPermission = null;
@@ -749,7 +747,7 @@ public class XmlResponsesSaxParser {
             else if (in("AccessControlPolicy", "AccessControlList", "Grant")) {
                 if (name.equals("Grantee")) {
                     String type = XmlResponsesSaxParser
-                        .findAttributeValue( "xsi:type", attrs );
+                            .findAttributeValue("xsi:type", attrs);
 
                     if ("AmazonCustomerByEmail".equals(type)) {
                         currentGrantee = new EmailAddressGrantee(null);
@@ -757,8 +755,8 @@ public class XmlResponsesSaxParser {
                         currentGrantee = new CanonicalGrantee(null);
                     } else if ("Group".equals(type)) {
                         /*
-                         * Nothing to do for GroupGrantees here since we
-                         * can't construct an empty enum value early.
+                         * Nothing to do for GroupGrantees here since we can't
+                         * construct an empty enum value early.
                          */
                     }
                 }
@@ -808,7 +806,7 @@ public class XmlResponsesSaxParser {
 
                 } else if (name.equals("DisplayName")) {
                     ((CanonicalGrantee) currentGrantee)
-                        .setDisplayName(getText());
+                            .setDisplayName(getText());
                 }
             }
         }
@@ -816,8 +814,8 @@ public class XmlResponsesSaxParser {
 
     /**
      * Handler for LoggingStatus response XML documents for a bucket. The
-     * document is parsed into an {@link BucketLoggingConfiguration} object available
-     * via the {@link #getBucketLoggingConfiguration()} method.
+     * document is parsed into an {@link BucketLoggingConfiguration} object
+     * available via the {@link #getBucketLoggingConfiguration()} method.
      */
     public static class BucketLoggingConfigurationHandler extends AbstractHandler {
 
@@ -825,8 +823,7 @@ public class XmlResponsesSaxParser {
                 new BucketLoggingConfiguration();
 
         /**
-         * @return
-         * an object representing the bucket's LoggingStatus document.
+         * @return an object representing the bucket's LoggingStatus document.
          */
         public BucketLoggingConfiguration getBucketLoggingConfiguration() {
             return bucketLoggingConfiguration;
@@ -846,11 +843,11 @@ public class XmlResponsesSaxParser {
             if (in("BucketLoggingStatus", "LoggingEnabled")) {
                 if (name.equals("TargetBucket")) {
                     bucketLoggingConfiguration
-                        .setDestinationBucketName(getText());
+                            .setDestinationBucketName(getText());
 
                 } else if (name.equals("TargetPrefix")) {
                     bucketLoggingConfiguration
-                        .setLogFilePrefix(getText());
+                            .setLogFilePrefix(getText());
                 }
             }
         }
@@ -866,8 +863,7 @@ public class XmlResponsesSaxParser {
         private String location = null;
 
         /**
-         * @return
-         * the bucket's location.
+         * @return the bucket's location.
          */
         public String getLocation() {
             return location;
@@ -897,7 +893,8 @@ public class XmlResponsesSaxParser {
         }
     }
 
-    public static class CopyObjectResultHandler extends AbstractSSEHandler implements ObjectExpirationResult {
+    public static class CopyObjectResultHandler extends AbstractSSEHandler implements
+            ObjectExpirationResult {
 
         // Data items for successful copy
         private final CopyObjectResult result = new CopyObjectResult();
@@ -988,7 +985,7 @@ public class XmlResponsesSaxParser {
 
         @Override
         protected void doEndElement(String uri, String name, String qName) {
-            if (in("CopyObjectResult") || in ("CopyPartResult")) {
+            if (in("CopyObjectResult") || in("CopyPartResult")) {
                 if (name.equals("LastModified")) {
                     result.setLastModifiedDate(ServiceUtils.parseIso8601Date(getText()));
                 } else if (name.equals("ETag")) {
@@ -1019,7 +1016,7 @@ public class XmlResponsesSaxParser {
 
         private String payer = null;
 
-        public RequestPaymentConfiguration getConfiguration(){
+        public RequestPaymentConfiguration getConfiguration() {
             return new RequestPaymentConfiguration(Payer.valueOf(payer));
         }
 
@@ -1128,7 +1125,7 @@ public class XmlResponsesSaxParser {
                         || name.equals("DeleteMarker")) {
 
                     versionListing.getVersionSummaries()
-                        .add(currentVersionSummary);
+                            .add(currentVersionSummary);
 
                     currentVersionSummary = null;
                 }
@@ -1137,7 +1134,7 @@ public class XmlResponsesSaxParser {
             else if (in("ListVersionsResult", "CommonPrefixes")) {
                 if (name.equals("Prefix")) {
                     versionListing.getCommonPrefixes()
-                        .add(checkForEmptyString(getText()));
+                            .add(checkForEmptyString(getText()));
                 }
             }
 
@@ -1199,7 +1196,7 @@ public class XmlResponsesSaxParser {
         }
 
         @Override
-        protected  void doStartElement(
+        protected void doStartElement(
                 String uri,
                 String name,
                 String qName,
@@ -1299,7 +1296,9 @@ public class XmlResponsesSaxParser {
         private final BucketVersioningConfiguration configuration =
                 new BucketVersioningConfiguration();
 
-        public BucketVersioningConfiguration getConfiguration() { return configuration; }
+        public BucketVersioningConfiguration getConfiguration() {
+            return configuration;
+        }
 
         @Override
         protected void doStartElement(
@@ -1331,24 +1330,19 @@ public class XmlResponsesSaxParser {
         }
     }
 
-
     /*
-     * <?xml version="1.0" encoding="UTF-8"?>
-     * <CompleteMultipartUploadResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-     *     <Location>http://Example-Bucket.s3.amazonaws.com/Example-Object</Location>
-     *     <Bucket>Example-Bucket</Bucket>
-     *     <Key>Example-Object</Key>
-     *     <ETag>"3858f62230ac3c915f300c664312c11f-9"</ETag>
-     * </CompleteMultipartUploadResult>
-     *
-     * Or if an error occurred while completing:
-     *
-     * <?xml version="1.0" encoding="UTF-8"?>
-     * <Error>
-     *     <Code>InternalError</Code>
-     *     <Message>We encountered an internal error. Please try again.</Message>
-     *     <RequestId>656c76696e6727732072657175657374</RequestId>
-     *     <HostId>Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==</HostId>
+     * <?xml version="1.0" encoding="UTF-8"?> <CompleteMultipartUploadResult
+     * xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+     * <Location>http://Example-
+     * Bucket.s3.amazonaws.com/Example-Object</Location>
+     * <Bucket>Example-Bucket</Bucket> <Key>Example-Object</Key>
+     * <ETag>"3858f62230ac3c915f300c664312c11f-9"</ETag>
+     * </CompleteMultipartUploadResult> Or if an error occurred while
+     * completing: <?xml version="1.0" encoding="UTF-8"?> <Error>
+     * <Code>InternalError</Code> <Message>We encountered an internal error.
+     * Please try again.</Message>
+     * <RequestId>656c76696e6727732072657175657374</RequestId>
+     * <HostId>Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==</HostId>
      * </Error>
      */
     public static class CompleteMultipartUploadHandler extends AbstractSSEHandler
@@ -1366,6 +1360,7 @@ public class XmlResponsesSaxParser {
         protected ServerSideEncryptionResult sseResult() {
             return result;
         }
+
         /**
          * @see com.amazonaws.services.s3.model.CompleteMultipartUploadResult#getExpirationTime()
          */
@@ -1463,12 +1458,11 @@ public class XmlResponsesSaxParser {
     }
 
     /*
-     * <?xml version="1.0" encoding="UTF-8"?>
-     * <InitiateMultipartUploadResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-     *     <Bucket>example-bucket</Bucket>
-     *     <Key>example-object</Key>
-     *     <UploadId>VXBsb2FkIElEIGZvciA2aWWpbmcncyBteS1tb3ZpZS5tMnRzIHVwbG9hZA</UploadId>
-     * </InitiateMultipartUploadResult>
+     * <?xml version="1.0" encoding="UTF-8"?> <InitiateMultipartUploadResult
+     * xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+     * <Bucket>example-bucket</Bucket> <Key>example-object</Key>
+     * <UploadId>VXBsb2FkIElEIGZvciA2aWWpbmcncyBteS1tb3ZpZS5tMnRzIHVwbG9hZA
+     * </UploadId> </InitiateMultipartUploadResult>
      */
     public static class InitiateMultipartUploadHandler extends AbstractHandler {
 
@@ -1505,62 +1499,36 @@ public class XmlResponsesSaxParser {
     }
 
     /*
-     * HTTP/1.1 200 OK
-     * x-amz-id-2: Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
-     * x-amz-request-id: 656c76696e6727732072657175657374
-     * Date: Tue, 16 Feb 2010 20:34:56 GMT
-     * Content-Length: 1330
-     * Connection: keep-alive
-     * Server: AmazonS3
-     *
-     * <?xml version="1.0" encoding="UTF-8"?>
-     * <ListMultipartUploadsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-     *     <Bucket>bucket</Bucket>
-     *     <KeyMarker></KeyMarker>
-     *     <Delimiter>/</Delimiter>
-     *     <Prefix/>
-     *     <UploadIdMarker></UploadIdMarker>
-     *     <NextKeyMarker>my-movie.m2ts</NextKeyMarker>
-     *     <NextUploadIdMarker>YW55IGlkZWEgd2h5IGVsdmluZydzIHVwbG9hZCBmYWlsZWQ</NextUploadIdMarker>
-     *     <MaxUploads>3</MaxUploads>
-     *     <IsTruncated>true</IsTruncated>
-     *     <Upload>
-     *         <Key>my-divisor</Key>
-     *         <UploadId>XMgbGlrZSBlbHZpbmcncyBub3QgaGF2aW5nIG11Y2ggbHVjaw</UploadId>
-     *         <Owner>
-     *             <ID>b1d16700c70b0b05597d7acd6a3f92be</ID>
-     *             <DisplayName>delving</DisplayName>
-     *         </Owner>
-     *         <StorageClass>STANDARD</StorageClass>
-     *         <Initiated>Tue, 26 Jan 2010 19:42:19 GMT</Initiated>
-     *     </Upload>
-     *     <Upload>
-     *         <Key>my-movie.m2ts</Key>
-     *         <UploadId>VXBsb2FkIElEIGZvciBlbHZpbmcncyBteS1tb3ZpZS5tMnRzIHVwbG9hZA</UploadId>
-     *         <Owner>
-     *             <ID>b1d16700c70b0b05597d7acd6a3f92be</ID>
-     *             <DisplayName>delving</DisplayName>
-     *         </Owner>
-     *         <StorageClass>STANDARD</StorageClass>
-     *         <Initiated>Tue, 16 Feb 2010 20:34:56 GMT</Initiated>
-     *     </Upload>
-     *     <Upload>
-     *         <Key>my-movie.m2ts</Key>
-     *         <UploadId>YW55IGlkZWEgd2h5IGVsdmluZydzIHVwbG9hZCBmYWlsZWQ</UploadId>
-     *         <Owner>
-     *             <ID>b1d16700c70b0b05597d7acd6a3f92be</ID>
-     *             <DisplayName>delving</DisplayName>
-     *         </Owner>
-     *         <StorageClass>STANDARD</StorageClass>
-     *         <Initiated>Wed, 27 Jan 2010 03:02:01 GMT</Initiated>
-     *     </Upload>
-     *    <CommonPrefixes>
-     *        <Prefix>photos/</Prefix>
-     *    </CommonPrefixes>
-     *    <CommonPrefixes>
-     *        <Prefix>videos/</Prefix>
-     *    </CommonPrefixes>
-     * </ListMultipartUploadsResult>
+     * HTTP/1.1 200 OK x-amz-id-2:
+     * Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
+     * x-amz-request-id: 656c76696e6727732072657175657374 Date: Tue, 16 Feb 2010
+     * 20:34:56 GMT Content-Length: 1330 Connection: keep-alive Server: AmazonS3
+     * <?xml version="1.0" encoding="UTF-8"?> <ListMultipartUploadsResult
+     * xmlns="http://s3.amazonaws.com/doc/2006-03-01/"> <Bucket>bucket</Bucket>
+     * <KeyMarker></KeyMarker> <Delimiter>/</Delimiter> <Prefix/>
+     * <UploadIdMarker></UploadIdMarker>
+     * <NextKeyMarker>my-movie.m2ts</NextKeyMarker>
+     * <NextUploadIdMarker>YW55IGlkZWEgd2h5IGVsdmluZydzIHVwbG9hZCBmYWlsZWQ
+     * </NextUploadIdMarker> <MaxUploads>3</MaxUploads>
+     * <IsTruncated>true</IsTruncated> <Upload> <Key>my-divisor</Key>
+     * <UploadId>XMgbGlrZSBlbHZpbmcncyBub3QgaGF2aW5nIG11Y2ggbHVjaw</UploadId>
+     * <Owner> <ID>b1d16700c70b0b05597d7acd6a3f92be</ID>
+     * <DisplayName>delving</DisplayName> </Owner>
+     * <StorageClass>STANDARD</StorageClass> <Initiated>Tue, 26 Jan 2010
+     * 19:42:19 GMT</Initiated> </Upload> <Upload> <Key>my-movie.m2ts</Key>
+     * <UploadId
+     * >VXBsb2FkIElEIGZvciBlbHZpbmcncyBteS1tb3ZpZS5tMnRzIHVwbG9hZA</UploadId>
+     * <Owner> <ID>b1d16700c70b0b05597d7acd6a3f92be</ID>
+     * <DisplayName>delving</DisplayName> </Owner>
+     * <StorageClass>STANDARD</StorageClass> <Initiated>Tue, 16 Feb 2010
+     * 20:34:56 GMT</Initiated> </Upload> <Upload> <Key>my-movie.m2ts</Key>
+     * <UploadId>YW55IGlkZWEgd2h5IGVsdmluZydzIHVwbG9hZCBmYWlsZWQ</UploadId>
+     * <Owner> <ID>b1d16700c70b0b05597d7acd6a3f92be</ID>
+     * <DisplayName>delving</DisplayName> </Owner>
+     * <StorageClass>STANDARD</StorageClass> <Initiated>Wed, 27 Jan 2010
+     * 03:02:01 GMT</Initiated> </Upload> <CommonPrefixes>
+     * <Prefix>photos/</Prefix> </CommonPrefixes> <CommonPrefixes>
+     * <Prefix>videos/</Prefix> </CommonPrefixes> </ListMultipartUploadsResult>
      */
     public static class ListMultipartUploadsHandler extends AbstractHandler {
 
@@ -1647,7 +1615,7 @@ public class XmlResponsesSaxParser {
             }
 
             else if (in("ListMultipartUploadsResult", "Upload", "Owner")
-                  || in("ListMultipartUploadsResult", "Upload", "Initiator")) {
+                    || in("ListMultipartUploadsResult", "Upload", "Initiator")) {
 
                 if (name.equals("ID")) {
                     currentOwner.setId(checkForEmptyString(getText()));
@@ -1659,45 +1627,28 @@ public class XmlResponsesSaxParser {
     }
 
     /*
-     * HTTP/1.1 200 OK
-     * x-amz-id-2: Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
-     * x-amz-request-id: 656c76696e6727732072657175657374
-     * Date: Tue, 16 Feb 2010 20:34:56 GMT
-     * Content-Length: 985
-     * Connection: keep-alive
-     * Server: AmazonS3
-     *
-     * <?xml version="1.0" encoding="UTF-8"?>
-     * <ListPartsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-     *     <Bucket>example-bucket</Bucket>
-     *     <Key>example-object</Key>
-     *     <UploadId>XXBsb2FkIElEIGZvciBlbHZpbmcncyVcdS1tb3ZpZS5tMnRzEEEwbG9hZA</UploadId>
-     *     <Owner>
-     *         <ID>x1x16700c70b0b05597d7ecd6a3f92be</ID>
-     *         <DisplayName>username</DisplayName>
-     *     </Owner>
-     *     <Initiator>
-     *         <ID>x1x16700c70b0b05597d7ecd6a3f92be</ID>
-     *         <DisplayName>username</DisplayName>
-     *     </Initiator>
-     *     <StorageClass>STANDARD</StorageClass>
-     *     <PartNumberMarker>1</PartNumberMarker>
-     *     <NextPartNumberMarker>3</NextPartNumberMarker>
-     *     <MaxParts>2</MaxParts>
-     *     <IsTruncated>true</IsTruncated>
-     *     <Part>
-     *         <PartNumber>2</PartNumber>
-     *         <LastModified>Wed, 27 Jan 2010 03:02:03 GMT</LastModified>
-     *         <ETag>"7778aef83f66abc1fa1e8477f296d394"</ETag>
-     *         <Size>10485760</Size>
-     *     </Part>
-     *     <Part>
-     *        <PartNumber>3</PartNumber>
-     *        <LastModified>Wed, 27 Jan 2010 03:02:02 GMT</LastModified>
-     *        <ETag>"aaaa18db4cc2f85cedef654fccc4a4x8"</ETag>
-     *        <Size>10485760</Size>
-     *     </Part>
-     * </ListPartsResult>
+     * HTTP/1.1 200 OK x-amz-id-2:
+     * Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
+     * x-amz-request-id: 656c76696e6727732072657175657374 Date: Tue, 16 Feb 2010
+     * 20:34:56 GMT Content-Length: 985 Connection: keep-alive Server: AmazonS3
+     * <?xml version="1.0" encoding="UTF-8"?> <ListPartsResult
+     * xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+     * <Bucket>example-bucket</Bucket> <Key>example-object</Key>
+     * <UploadId>XXBsb2FkIElEIGZvciBlbHZpbmcncyVcdS1tb3ZpZS5tMnRzEEEwbG9hZA
+     * </UploadId> <Owner> <ID>x1x16700c70b0b05597d7ecd6a3f92be</ID>
+     * <DisplayName>username</DisplayName> </Owner> <Initiator>
+     * <ID>x1x16700c70b0b05597d7ecd6a3f92be</ID>
+     * <DisplayName>username</DisplayName> </Initiator>
+     * <StorageClass>STANDARD</StorageClass>
+     * <PartNumberMarker>1</PartNumberMarker>
+     * <NextPartNumberMarker>3</NextPartNumberMarker> <MaxParts>2</MaxParts>
+     * <IsTruncated>true</IsTruncated> <Part> <PartNumber>2</PartNumber>
+     * <LastModified>Wed, 27 Jan 2010 03:02:03 GMT</LastModified>
+     * <ETag>"7778aef83f66abc1fa1e8477f296d394"</ETag> <Size>10485760</Size>
+     * </Part> <Part> <PartNumber>3</PartNumber> <LastModified>Wed, 27 Jan 2010
+     * 03:02:02 GMT</LastModified>
+     * <ETag>"aaaa18db4cc2f85cedef654fccc4a4x8"</ETag> <Size>10485760</Size>
+     * </Part> </ListPartsResult>
      */
     public static class ListPartsHandler extends AbstractHandler {
 
@@ -1773,7 +1724,7 @@ public class XmlResponsesSaxParser {
             }
 
             else if (in("ListPartsResult", "Owner")
-                  || in("ListPartsResult", "Initiator")) {
+                    || in("ListPartsResult", "Initiator")) {
 
                 if (name.equals("ID")) {
                     currentOwner.setId(checkForEmptyString(getText()));
@@ -1785,7 +1736,8 @@ public class XmlResponsesSaxParser {
 
         private Integer parseInteger(String text) {
             text = checkForEmptyString(getText());
-            if (text == null) return null;
+            if (text == null)
+                return null;
             return Integer.parseInt(text);
         }
     }
@@ -1823,7 +1775,7 @@ public class XmlResponsesSaxParser {
                 if (name.equals("TopicConfiguration")) {
                     if (topic != null && event != null) {
                         configuration.getTopicConfigurations()
-                        .add(new TopicConfiguration(topic, event));
+                                .add(new TopicConfiguration(topic, event));
                     }
 
                     topic = null;
@@ -1865,7 +1817,7 @@ public class XmlResponsesSaxParser {
             if (in("Tagging")) {
                 if (name.equals("TagSet")) {
                     configuration.getAllTagSets()
-                        .add(new TagSet(currentTagSet));
+                            .add(new TagSet(currentTagSet));
                     currentTagSet = null;
                 }
             }
@@ -1891,33 +1843,18 @@ public class XmlResponsesSaxParser {
     }
 
     /*
-        HTTP/1.1 200 OK
-        x-amz-id-2: Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
-        x-amz-request-id: 656c76696e6727732072657175657374
-        Date: Tue, 20 Sep 2012 20:34:56 GMT
-        Content-Type: application/xml
-        Transfer-Encoding: chunked
-        Connection: keep-alive
-        Server: AmazonS3
-
-        <?xml version="1.0" encoding="UTF-8"?>
-        <DeleteResult>
-            <Deleted>
-               <Key>Key</Key>
-               <VersionId>Version</VersionId>
-            </Deleted>
-            <Error>
-               <Key>Key</Key>
-               <VersionId>Version</VersionId>
-               <Code>Code</Code>
-               <Message>Message</Message>
-            </Error>
-            <Deleted>
-               <Key>Key</Key>
-               <DeleteMarker>true</DeleteMarker>
-               <DeleteMarkerVersionId>Version</DeleteMarkerVersionId>
-            </Deleted>
-        </DeleteResult>
+     * HTTP/1.1 200 OK x-amz-id-2:
+     * Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
+     * x-amz-request-id: 656c76696e6727732072657175657374 Date: Tue, 20 Sep 2012
+     * 20:34:56 GMT Content-Type: application/xml Transfer-Encoding: chunked
+     * Connection: keep-alive Server: AmazonS3 <?xml version="1.0"
+     * encoding="UTF-8"?> <DeleteResult> <Deleted> <Key>Key</Key>
+     * <VersionId>Version</VersionId> </Deleted> <Error> <Key>Key</Key>
+     * <VersionId>Version</VersionId> <Code>Code</Code>
+     * <Message>Message</Message> </Error> <Deleted> <Key>Key</Key>
+     * <DeleteMarker>true</DeleteMarker>
+     * <DeleteMarkerVersionId>Version</DeleteMarkerVersionId> </Deleted>
+     * </DeleteResult>
      */
     public static class DeleteObjectsHandler extends AbstractHandler {
 
@@ -1993,48 +1930,24 @@ public class XmlResponsesSaxParser {
     }
 
     /*
-    HTTP/1.1 200 OK
-    x-amz-id-2: Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
-    x-amz-request-id: 656c76696e6727732072657175657374
-    Date: Tue, 20 Sep 2012 20:34:56 GMT
-    Content-Length: xxx
-    Connection: keep-alive
-    Server: AmazonS3
-
-  <LifecycleConfiguration>
-      <Rule>
-          <ID>logs-rule</ID>
-          <Prefix>logs/</Prefix>
-          <Status>Enabled</Status>
-          <Transition>
-              <Days>30</Days>
-              <StorageClass>GLACIER</StorageClass>
-          </Transition>
-          <Expiration>
-              <Days>365</Days>
-          </Expiration>
-          <NoncurrentVersionTransition>
-              <NoncurrentDays>7</NoncurrentDays>
-              <StorageClass>GLACIER</StorageClass>
-          </NoncurrentVersionTransition>
-          <NoncurrentVersionExpiration>
-              <NoncurrentDays>14</NoncurrentDays>
-          </NoncurrentVersionExpiration>
-     </Rule>
-     <Rule>
-         <ID>image-rule</ID>
-         <Prefix>image/</Prefix>
-         <Status>Enabled</Status>
-         <Transition>
-             <Date>2012-12-31T00:00:00.000Z</Date>
-             <StorageClass>GLACIER</StorageClass>
-         </Transition>
-         <Expiration>
-             <Date>2020-12-31T00:00:00.000Z</Date>
-         </Expiration>
-     </Rule>
-  </LifecycleConfiguration>
-    */
+     * HTTP/1.1 200 OK x-amz-id-2:
+     * Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
+     * x-amz-request-id: 656c76696e6727732072657175657374 Date: Tue, 20 Sep 2012
+     * 20:34:56 GMT Content-Length: xxx Connection: keep-alive Server: AmazonS3
+     * <LifecycleConfiguration> <Rule> <ID>logs-rule</ID> <Prefix>logs/</Prefix>
+     * <Status>Enabled</Status> <Transition> <Days>30</Days>
+     * <StorageClass>GLACIER</StorageClass> </Transition> <Expiration>
+     * <Days>365</Days> </Expiration> <NoncurrentVersionTransition>
+     * <NoncurrentDays>7</NoncurrentDays> <StorageClass>GLACIER</StorageClass>
+     * </NoncurrentVersionTransition> <NoncurrentVersionExpiration>
+     * <NoncurrentDays>14</NoncurrentDays> </NoncurrentVersionExpiration>
+     * </Rule> <Rule> <ID>image-rule</ID> <Prefix>image/</Prefix>
+     * <Status>Enabled</Status> <Transition>
+     * <Date>2012-12-31T00:00:00.000Z</Date>
+     * <StorageClass>GLACIER</StorageClass> </Transition> <Expiration>
+     * <Date>2020-12-31T00:00:00.000Z</Date> </Expiration> </Rule>
+     * </LifecycleConfiguration>
+     */
     public static class BucketLifecycleConfigurationHandler extends AbstractHandler {
 
         private final BucketLifecycleConfiguration configuration =
@@ -2078,13 +1991,13 @@ public class XmlResponsesSaxParser {
             }
 
             else if (in("LifecycleConfiguration", "Rule")) {
-                if ( name.equals("ID") ) {
+                if (name.equals("ID")) {
                     currentRule.setId(getText());
 
-                } else if ( name.equals("Prefix") ) {
+                } else if (name.equals("Prefix")) {
                     currentRule.setPrefix(getText());
 
-                } else if ( name.equals("Status") ) {
+                } else if (name.equals("Status")) {
                     currentRule.setStatus(getText());
 
                 } else if (name.equals("Transition")) {
@@ -2142,22 +2055,16 @@ public class XmlResponsesSaxParser {
     }
 
     /*
-    HTTP/1.1 200 OK
-    x-amz-id-2: Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
-    x-amz-request-id: 656c76696e6727732072657175657374
-    Date: Tue, 20 Sep 2011 20:34:56 GMT
-    Content-Length: Some Length
-    Connection: keep-alive
-    Server: AmazonS3
-    <CORSConfiguration>
-       <CORSRule>
-         <AllowedOrigin>http://www.foobar.com</AllowedOrigin>
-         <AllowedMethod>GET</AllowedMethod>
-         <MaxAgeSeconds>3000</MaxAgeSec>
-         <ExposeHeader>x-amz-server-side-encryption</ExposeHeader>
-       </CORSRule>
-    </CORSConfiguration>
-    */
+     * HTTP/1.1 200 OK x-amz-id-2:
+     * Uuag1LuByRx9e6j5Onimru9pO4ZVKnJ2Qz7/C1NPcfTWAtRPfTaOFg==
+     * x-amz-request-id: 656c76696e6727732072657175657374 Date: Tue, 20 Sep 2011
+     * 20:34:56 GMT Content-Length: Some Length Connection: keep-alive Server:
+     * AmazonS3 <CORSConfiguration> <CORSRule>
+     * <AllowedOrigin>http://www.foobar.com</AllowedOrigin>
+     * <AllowedMethod>GET</AllowedMethod> <MaxAgeSeconds>3000</MaxAgeSec>
+     * <ExposeHeader>x-amz-server-side-encryption</ExposeHeader> </CORSRule>
+     * </CORSConfiguration>
+     */
     public static class BucketCrossOriginConfigurationHandler extends AbstractHandler {
 
         private final BucketCrossOriginConfiguration configuration =

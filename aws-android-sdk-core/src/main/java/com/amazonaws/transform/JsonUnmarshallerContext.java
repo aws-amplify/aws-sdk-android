@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.transform;
 
 import com.amazonaws.http.HttpResponse;
@@ -39,14 +40,13 @@ public class JsonUnmarshallerContext {
      * Returns the value of the header with the specified name from the
      * response, or null if not present.
      *
-     * @param header
-     *            The name of the header to lookup.
-     *
-     * @return The value of the header with the specified name from the
-     *         response, or null if not present.
+     * @param header The name of the header to lookup.
+     * @return The value of the header with the specified name from the response,
+     *         or null if not present.
      */
     public String getHeader(String header) {
-        if (httpResponse == null) return null;
+        if (httpResponse == null)
+            return null;
 
         return httpResponse.getHeaders().get(header);
     }

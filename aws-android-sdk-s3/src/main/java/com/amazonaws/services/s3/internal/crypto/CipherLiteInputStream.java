@@ -15,13 +15,13 @@
 
 package com.amazonaws.services.s3.internal.crypto;
 
+import com.amazonaws.internal.SdkFilterInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
-
-import com.amazonaws.internal.SdkFilterInputStream;
 
 /**
  * @author Hanson Char
@@ -100,7 +100,7 @@ public final class CipherLiteInputStream extends SdkFilterInputStream {
             if (len == -1)
                 return -1;
         }
-        return ((int) bufout[curr_pos++] & 0xFF);
+        return (bufout[curr_pos++] & 0xFF);
     };
 
     @Override
@@ -202,14 +202,12 @@ public final class CipherLiteInputStream extends SdkFilterInputStream {
 
     /**
      * Reads and process the next chunk of data into memory.
-     * 
+     *
      * @return the length of the data chunk read and processed, or -1 if end of
      *         stream.
-     * @throws IOException
-     *             if there is an IO exception from the underlying input stream
-     * 
-     * @throws SecurityException
-     *             if there is authentication failure
+     * @throws IOException if there is an IO exception from the underlying input
+     *             stream
+     * @throws SecurityException if there is authentication failure
      */
     private int nextChunk() throws IOException {
         abortIfNeeded();
@@ -219,13 +217,13 @@ public final class CipherLiteInputStream extends SdkFilterInputStream {
         int len = in.read(bufin);
         if (len == -1) {
             eof = true;
-            // Skip doFinal if it's a multi-part upload but not the last part 
+            // Skip doFinal if it's a multi-part upload but not the last part
             if (!multipart || lastMultiPart) {
                 try {
                     bufout = cipherLite.doFinal();
                     if (bufout == null) {
                         // bufout can be null, for example, when it was the
-                        // javax.crypto.NullCipher 
+                        // javax.crypto.NullCipher
                         return -1;
                     }
                     curr_pos = 0;
@@ -243,6 +241,5 @@ public final class CipherLiteInputStream extends SdkFilterInputStream {
         curr_pos = 0;
         return max_pos = (bufout == null ? 0 : bufout.length);
     }
-    
-    
+
 }

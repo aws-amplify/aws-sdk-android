@@ -12,7 +12,10 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
+
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.TableNameOverride;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -20,15 +23,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.TableNameOverride;
-
-
 /**
  * Annotation to mark a class as a DynamoDB table.
  * <p>
  * This annotation is inherited by subclasses, and can be overridden by them as
  * well.
- * 
+ *
  * @see TableNameOverride
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -40,5 +40,5 @@ public @interface DynamoDBTable {
      * The name of the table to use for this class.
      */
     String tableName();
-    
+
 }

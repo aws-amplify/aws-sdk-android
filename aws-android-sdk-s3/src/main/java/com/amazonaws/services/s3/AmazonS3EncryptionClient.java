@@ -12,9 +12,8 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3;
 
-import java.io.File;
+package com.amazonaws.services.s3;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -51,13 +50,15 @@ import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 import com.amazonaws.util.VersionInfoUtils;
 
+import java.io.File;
+
 /**
  * Used to perform client-side encryption for storing data securely in S3. Data
- * encryption is done using a one-time randomly generated content encryption
- * key (CEK) per S3 object. 
+ * encryption is done using a one-time randomly generated content encryption key
+ * (CEK) per S3 object.
  * <p>
- * The encryption materials specified in the constructor will be used to
- * protect the CEK which is then stored along side with the S3 object.
+ * The encryption materials specified in the constructor will be used to protect
+ * the CEK which is then stored along side with the S3 object.
  */
 public class AmazonS3EncryptionClient extends AmazonS3Client {
     public static final String USER_AGENT = AmazonS3EncryptionClient.class.getName()
@@ -67,31 +68,32 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
     // ///////////////////// Constructors ////////////////
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client that will make <b>anonymous</b>
-     * requests to Amazon S3.  If {@link #getObject(String, String)} is called,
-     * the object contents will be decrypted with the encryption materials provided.
+     * Constructs a new Amazon S3 Encryption client that will make
+     * <b>anonymous</b> requests to Amazon S3. If
+     * {@link #getObject(String, String)} is called, the object contents will be
+     * decrypted with the encryption materials provided.
      * </p>
      * <p>
-     * Only a subset of the Amazon S3 API will work with anonymous
-     * <i>(i.e. unsigned)</i> requests, but this can prove useful in some situations.
-     * For example:
+     * Only a subset of the Amazon S3 API will work with anonymous <i>(i.e.
+     * unsigned)</i> requests, but this can prove useful in some situations. For
+     * example:
      * <ul>
-     *  <li>If an Amazon S3 bucket has {@link Permission#Read} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can call
-     *  {@link #listObjects(String)} to see what objects are stored in a bucket.</li>
-     *  <li>If an object has {@link Permission#Read} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can call
-     *  {@link #getObject(String, String)} and
-     *  {@link #getObjectMetadata(String, String)} to pull object content and
-     *  metadata.</li>
-     *  <li>If a bucket has {@link Permission#Write} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can upload objects
-     *  to the bucket.</li>
+     * <li>If an Amazon S3 bucket has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #listObjects(String)} to see what objects are stored in a bucket.</li>
+     * <li>If an object has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #getObject(String, String)} and
+     * {@link #getObjectMetadata(String, String)} to pull object content and
+     * metadata.</li>
+     * <li>If a bucket has {@link Permission#Write} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can upload objects
+     * to the bucket.</li>
      * </ul>
      * </p>
      *
-     * @param encryptionMaterials
-     *            The encryption materials to be used to encrypt and decrypt data.
+     * @param encryptionMaterials The encryption materials to be used to encrypt
+     *            and decrypt data.
      */
     public AmazonS3EncryptionClient(EncryptionMaterials encryptionMaterials) {
         this(new StaticEncryptionMaterialsProvider(encryptionMaterials));
@@ -99,31 +101,32 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client that will make <b>anonymous</b>
-     * requests to Amazon S3.  If {@link #getObject(String, String)} is called,
-     * the object contents will be decrypted with the encryption materials provided.
+     * Constructs a new Amazon S3 Encryption client that will make
+     * <b>anonymous</b> requests to Amazon S3. If
+     * {@link #getObject(String, String)} is called, the object contents will be
+     * decrypted with the encryption materials provided.
      * </p>
      * <p>
-     * Only a subset of the Amazon S3 API will work with anonymous
-     * <i>(i.e. unsigned)</i> requests, but this can prove useful in some situations.
-     * For example:
+     * Only a subset of the Amazon S3 API will work with anonymous <i>(i.e.
+     * unsigned)</i> requests, but this can prove useful in some situations. For
+     * example:
      * <ul>
-     *  <li>If an Amazon S3 bucket has {@link Permission#Read} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can call
-     *  {@link #listObjects(String)} to see what objects are stored in a bucket.</li>
-     *  <li>If an object has {@link Permission#Read} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can call
-     *  {@link #getObject(String, String)} and
-     *  {@link #getObjectMetadata(String, String)} to pull object content and
-     *  metadata.</li>
-     *  <li>If a bucket has {@link Permission#Write} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can upload objects
-     *  to the bucket.</li>
+     * <li>If an Amazon S3 bucket has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #listObjects(String)} to see what objects are stored in a bucket.</li>
+     * <li>If an object has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #getObject(String, String)} and
+     * {@link #getObjectMetadata(String, String)} to pull object content and
+     * metadata.</li>
+     * <li>If a bucket has {@link Permission#Write} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can upload objects
+     * to the bucket.</li>
      * </ul>
      * </p>
      *
-     * @param encryptionMaterialsProvider
-     *            A provider for the encryption materials to be used to encrypt and decrypt data.
+     * @param encryptionMaterialsProvider A provider for the encryption
+     *            materials to be used to encrypt and decrypt data.
      */
     public AmazonS3EncryptionClient(
             EncryptionMaterialsProvider encryptionMaterialsProvider) {
@@ -131,38 +134,38 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
                 new ClientConfiguration(), new CryptoConfiguration());
     }
 
-
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client that will make <b>anonymous</b>
-     * requests to Amazon S3.  If {@link #getObject(String, String)} is called,
-     * the object contents will be decrypted with the encryption materials provided.
-     * The encryption implementation of the provided crypto provider will be
-     * used to encrypt and decrypt data.
+     * Constructs a new Amazon S3 Encryption client that will make
+     * <b>anonymous</b> requests to Amazon S3. If
+     * {@link #getObject(String, String)} is called, the object contents will be
+     * decrypted with the encryption materials provided. The encryption
+     * implementation of the provided crypto provider will be used to encrypt
+     * and decrypt data.
      * </p>
      * <p>
-     * Only a subset of the Amazon S3 API will work with anonymous
-     * <i>(i.e. unsigned)</i> requests, but this can prove useful in some situations.
-     * For example:
+     * Only a subset of the Amazon S3 API will work with anonymous <i>(i.e.
+     * unsigned)</i> requests, but this can prove useful in some situations. For
+     * example:
      * <ul>
-     *  <li>If an Amazon S3 bucket has {@link Permission#Read} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can call
-     *  {@link #listObjects(String)} to see what objects are stored in a bucket.</li>
-     *  <li>If an object has {@link Permission#Read} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can call
-     *  {@link #getObject(String, String)} and
-     *  {@link #getObjectMetadata(String, String)} to pull object content and
-     *  metadata.</li>
-     *  <li>If a bucket has {@link Permission#Write} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can upload objects
-     *  to the bucket.</li>
+     * <li>If an Amazon S3 bucket has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #listObjects(String)} to see what objects are stored in a bucket.</li>
+     * <li>If an object has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #getObject(String, String)} and
+     * {@link #getObjectMetadata(String, String)} to pull object content and
+     * metadata.</li>
+     * <li>If a bucket has {@link Permission#Write} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can upload objects
+     * to the bucket.</li>
      * </ul>
      * </p>
      *
-     * @param encryptionMaterials
-     *              The encryption materials to be used to encrypt and decrypt data.
-     * @param cryptoConfig
-     *                The crypto configuration whose parameters will be used to encrypt and decrypt data.
+     * @param encryptionMaterials The encryption materials to be used to encrypt
+     *            and decrypt data.
+     * @param cryptoConfig The crypto configuration whose parameters will be
+     *            used to encrypt and decrypt data.
      */
     public AmazonS3EncryptionClient(EncryptionMaterials encryptionMaterials,
             CryptoConfiguration cryptoConfig) {
@@ -172,35 +175,36 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client that will make <b>anonymous</b>
-     * requests to Amazon S3.  If {@link #getObject(String, String)} is called,
-     * the object contents will be decrypted with the encryption materials provided.
-     * The encryption implementation of the provided crypto provider will be
-     * used to encrypt and decrypt data.
+     * Constructs a new Amazon S3 Encryption client that will make
+     * <b>anonymous</b> requests to Amazon S3. If
+     * {@link #getObject(String, String)} is called, the object contents will be
+     * decrypted with the encryption materials provided. The encryption
+     * implementation of the provided crypto provider will be used to encrypt
+     * and decrypt data.
      * </p>
      * <p>
-     * Only a subset of the Amazon S3 API will work with anonymous
-     * <i>(i.e. unsigned)</i> requests, but this can prove useful in some situations.
-     * For example:
+     * Only a subset of the Amazon S3 API will work with anonymous <i>(i.e.
+     * unsigned)</i> requests, but this can prove useful in some situations. For
+     * example:
      * <ul>
-     *  <li>If an Amazon S3 bucket has {@link Permission#Read} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can call
-     *  {@link #listObjects(String)} to see what objects are stored in a bucket.</li>
-     *  <li>If an object has {@link Permission#Read} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can call
-     *  {@link #getObject(String, String)} and
-     *  {@link #getObjectMetadata(String, String)} to pull object content and
-     *  metadata.</li>
-     *  <li>If a bucket has {@link Permission#Write} permission for the
-     *  {@link GroupGrantee#AllUsers} group, anonymous clients can upload objects
-     *  to the bucket.</li>
+     * <li>If an Amazon S3 bucket has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #listObjects(String)} to see what objects are stored in a bucket.</li>
+     * <li>If an object has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #getObject(String, String)} and
+     * {@link #getObjectMetadata(String, String)} to pull object content and
+     * metadata.</li>
+     * <li>If a bucket has {@link Permission#Write} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can upload objects
+     * to the bucket.</li>
      * </ul>
      * </p>
      *
-     * @param encryptionMaterialsProvider
-     *            A provider for the encryption materials to be used to encrypt and decrypt data.
-     * @param cryptoConfig
-     *            The crypto configuration whose parameters will be used to encrypt and decrypt data.
+     * @param encryptionMaterialsProvider A provider for the encryption
+     *            materials to be used to encrypt and decrypt data.
+     * @param cryptoConfig The crypto configuration whose parameters will be
+     *            used to encrypt and decrypt data.
      */
     public AmazonS3EncryptionClient(
             EncryptionMaterialsProvider encryptionMaterialsProvider,
@@ -211,16 +215,15 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client using the specified AWS credentials to
-     * access Amazon S3.  Object contents will be encrypted and decrypted with the encryption
-     * materials provided.
+     * Constructs a new Amazon S3 Encryption client using the specified AWS
+     * credentials to access Amazon S3. Object contents will be encrypted and
+     * decrypted with the encryption materials provided.
      * </p>
      *
-     * @param credentials
-     *            The AWS credentials to use when making requests to Amazon S3
-     *            with this client.
-     * @param encryptionMaterials
-     *            The encryption materials to be used to encrypt and decrypt data.
+     * @param credentials The AWS credentials to use when making requests to
+     *            Amazon S3 with this client.
+     * @param encryptionMaterials The encryption materials to be used to encrypt
+     *            and decrypt data.
      */
     public AmazonS3EncryptionClient(AWSCredentials credentials,
             EncryptionMaterials encryptionMaterials) {
@@ -230,16 +233,15 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client using the specified AWS credentials to
-     * access Amazon S3.  Object contents will be encrypted and decrypted with the encryption
-     * materials provided.
+     * Constructs a new Amazon S3 Encryption client using the specified AWS
+     * credentials to access Amazon S3. Object contents will be encrypted and
+     * decrypted with the encryption materials provided.
      * </p>
      *
-     * @param credentials
-     *            The AWS credentials to use when making requests to Amazon S3
-     *            with this client.
-     * @param encryptionMaterialsProvider
-     *            A provider for the encryption materials to be used to encrypt and decrypt data.
+     * @param credentials The AWS credentials to use when making requests to
+     *            Amazon S3 with this client.
+     * @param encryptionMaterialsProvider A provider for the encryption
+     *            materials to be used to encrypt and decrypt data.
      */
     public AmazonS3EncryptionClient(AWSCredentials credentials,
             EncryptionMaterialsProvider encryptionMaterialsProvider) {
@@ -249,16 +251,16 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client using the specified AWS credentials to
-     * access Amazon S3.  Object contents will be encrypted and decrypted with the encryption
-     * materials provided.
+     * Constructs a new Amazon S3 Encryption client using the specified AWS
+     * credentials to access Amazon S3. Object contents will be encrypted and
+     * decrypted with the encryption materials provided.
      * </p>
      *
-     * @param credentialsProvider
-     *            The AWS credentials provider which will provide credentials
-     *            to authenticate requests with AWS services.
-     * @param encryptionMaterialsProvider
-     *            A provider for the encryption materials to be used to encrypt and decrypt data.
+     * @param credentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param encryptionMaterialsProvider A provider for the encryption
+     *            materials to be used to encrypt and decrypt data.
      */
     public AmazonS3EncryptionClient(
             AWSCredentialsProvider credentialsProvider,
@@ -269,19 +271,19 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client using the specified AWS credentials to
-     * access Amazon S3.  Object contents will be encrypted and decrypted with the encryption
-     * materials provided.  The encryption implementation of the provided crypto provider will
-     * be used to encrypt and decrypt data.
+     * Constructs a new Amazon S3 Encryption client using the specified AWS
+     * credentials to access Amazon S3. Object contents will be encrypted and
+     * decrypted with the encryption materials provided. The encryption
+     * implementation of the provided crypto provider will be used to encrypt
+     * and decrypt data.
      * </p>
      *
-     * @param credentials
-     *            The AWS credentials to use when making requests to Amazon S3
-     *            with this client.
-     * @param encryptionMaterials
-     *            The encryption materials to be used to encrypt and decrypt data.
-     * @param cryptoConfig
-     *            The crypto configuration whose parameters will be used to encrypt and decrypt data.
+     * @param credentials The AWS credentials to use when making requests to
+     *            Amazon S3 with this client.
+     * @param encryptionMaterials The encryption materials to be used to encrypt
+     *            and decrypt data.
+     * @param cryptoConfig The crypto configuration whose parameters will be
+     *            used to encrypt and decrypt data.
      */
     public AmazonS3EncryptionClient(AWSCredentials credentials,
             EncryptionMaterials encryptionMaterials,
@@ -292,19 +294,19 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client using the specified AWS credentials to
-     * access Amazon S3.  Object contents will be encrypted and decrypted with the encryption
-     * materials provided.  The encryption implementation of the provided crypto provider will
-     * be used to encrypt and decrypt data.
+     * Constructs a new Amazon S3 Encryption client using the specified AWS
+     * credentials to access Amazon S3. Object contents will be encrypted and
+     * decrypted with the encryption materials provided. The encryption
+     * implementation of the provided crypto provider will be used to encrypt
+     * and decrypt data.
      * </p>
      *
-     * @param credentials
-     *            The AWS credentials to use when making requests to Amazon S3
-     *            with this client.
-     * @param encryptionMaterialsProvider
-     *            A provider for the encryption materials to be used to encrypt and decrypt data.
-     * @param cryptoConfig
-     *            The crypto configuration whose parameters will be used to encrypt and decrypt data.
+     * @param credentials The AWS credentials to use when making requests to
+     *            Amazon S3 with this client.
+     * @param encryptionMaterialsProvider A provider for the encryption
+     *            materials to be used to encrypt and decrypt data.
+     * @param cryptoConfig The crypto configuration whose parameters will be
+     *            used to encrypt and decrypt data.
      */
     public AmazonS3EncryptionClient(AWSCredentials credentials,
             EncryptionMaterialsProvider encryptionMaterialsProvider,
@@ -315,19 +317,20 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client using the specified AWS credentials to
-     * access Amazon S3.  Object contents will be encrypted and decrypted with the encryption
-     * materials provided.  The encryption implementation of the provided crypto provider will
-     * be used to encrypt and decrypt data.
+     * Constructs a new Amazon S3 Encryption client using the specified AWS
+     * credentials to access Amazon S3. Object contents will be encrypted and
+     * decrypted with the encryption materials provided. The encryption
+     * implementation of the provided crypto provider will be used to encrypt
+     * and decrypt data.
      * </p>
      *
-     * @param credentialsProvider
-     *            The AWS credentials provider which will provide credentials
-     *            to authenticate requests with AWS services.
-     * @param encryptionMaterialsProvider
-     *            A provider for the encryption materials to be used to encrypt and decrypt data.
-     * @param cryptoConfig
-     *            The crypto configuration whose parameters will be used to encrypt and decrypt data.
+     * @param credentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param encryptionMaterialsProvider A provider for the encryption
+     *            materials to be used to encrypt and decrypt data.
+     * @param cryptoConfig The crypto configuration whose parameters will be
+     *            used to encrypt and decrypt data.
      */
     public AmazonS3EncryptionClient(
             AWSCredentialsProvider credentialsProvider,
@@ -339,24 +342,24 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * <p>
-     * Constructs a new Amazon S3 Encryption client using the specified AWS credentials and
-     * client configuration to access Amazon S3.  Object contents will be encrypted and decrypted
-     * with the encryption materials provided. The crypto provider and storage mode denoted in
-     * the specified crypto configuration will be used to encrypt and decrypt data.
+     * Constructs a new Amazon S3 Encryption client using the specified AWS
+     * credentials and client configuration to access Amazon S3. Object contents
+     * will be encrypted and decrypted with the encryption materials provided.
+     * The crypto provider and storage mode denoted in the specified crypto
+     * configuration will be used to encrypt and decrypt data.
      * </p>
      *
-     * @param credentials
-     *            The AWS credentials to use when making requests to Amazon S3
-     *            with this client.
-     * @param encryptionMaterials
-     *            The encryption materials to be used to encrypt and decrypt data.
-     * @param clientConfiguration
-     *            The client configuration options controlling how this client
-     *            connects to Amazon S3 (ex: proxy settings, retry counts, etc).
-     * @param cryptoConfig
-     *            The crypto configuration whose parameters will be used to encrypt and decrypt data.
-     * @throws IllegalArgumentException
-     *            If either of the encryption materials or crypto configuration parameters are null.
+     * @param credentials The AWS credentials to use when making requests to
+     *            Amazon S3 with this client.
+     * @param encryptionMaterials The encryption materials to be used to encrypt
+     *            and decrypt data.
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to Amazon S3 (ex: proxy settings,
+     *            retry counts, etc).
+     * @param cryptoConfig The crypto configuration whose parameters will be
+     *            used to encrypt and decrypt data.
+     * @throws IllegalArgumentException If either of the encryption materials or
+     *             crypto configuration parameters are null.
      */
     public AmazonS3EncryptionClient(AWSCredentials credentials,
             EncryptionMaterials encryptionMaterials,
@@ -396,11 +399,13 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
     /**
      * {@inheritDoc}
      * <p>
-     * Use {@link EncryptedPutObjectRequest} to specify materialsDescription for the EncryptionMaterials to be used for 
-     * this request.AmazonS3EncryptionClient would use {@link EncryptionMaterialsProvider#getEncryptionMaterials(java.util.Map)} to 
-     * retrieve encryption materials corresponding to the materialsDescription specified in the current request.
+     * Use {@link EncryptedPutObjectRequest} to specify materialsDescription for
+     * the EncryptionMaterials to be used for this
+     * request.AmazonS3EncryptionClient would use
+     * {@link EncryptionMaterialsProvider#getEncryptionMaterials(java.util.Map)}
+     * to retrieve encryption materials corresponding to the
+     * materialsDescription specified in the current request.
      * </p>
-     * 
      */
     @Override
     public PutObjectResult putObject(PutObjectRequest req) {
@@ -434,12 +439,15 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
         return crypto.completeMultipartUploadSecurely(req);
     }
 
-    /** 
+    /**
      * {@inheritDoc}
      * <p>
-     * Use {@link EncryptedInitiateMultipartUploadRequest} to specify materialsDescription for the EncryptionMaterials to be used for this request.
-     * AmazonS3EncryptionClient would use {@link EncryptionMaterialsProvider#getEncryptionMaterials(java.util.Map)} to retrieve encryption materials
-     * corresponding to the materialsDescription specified in the current request.
+     * Use {@link EncryptedInitiateMultipartUploadRequest} to specify
+     * materialsDescription for the EncryptionMaterials to be used for this
+     * request. AmazonS3EncryptionClient would use
+     * {@link EncryptionMaterialsProvider#getEncryptionMaterials(java.util.Map)}
+     * to retrieve encryption materials corresponding to the
+     * materialsDescription specified in the current request.
      * </p>
      */
     @Override
@@ -450,7 +458,6 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * <b>NOTE:</b> Because the encryption process requires context from block
      * N-1 in order to encrypt block N, parts uploaded with the

@@ -34,14 +34,14 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.EventClient;
  * request to Google's In App Billing API for product skus.
  * </p>
  * Example:
- * 
+ *
  * <pre class="prettyprint">
  * // get the event client from your MobileAnalyticsManager instance
  * EventClient eventClient = mobileAnalyticsManager.getEventClient();
- * 
+ *
  * // create a builder that can record purchase events for Google Play IAP
  * GooglePlayMonetizationEventBuilder builder = GooglePlayMonetizationEventBuilder.create(eventClient);
- * 
+ *
  * // build the monetization event with the product id, formatted item price,
  * // transaction id, and quantity
  * // product id and formatted item price can be obtained from the JSONObject
@@ -51,7 +51,7 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.EventClient;
  * // Google IAP currently only supports a quantity of 1
  * Event purchaseEvent = builder.withProductId(sku).withFormattedItemPrice(price)
  *         .withTransactionId(purchase.getOrderId()).withQuantity(1).build();
- * 
+ *
  * // record the monetization event
  * eventClient.recordEvent(purchaseEvent);
  * </pre>
@@ -63,7 +63,7 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
     /**
      * Create a GooglePlayMonetizationEventBuilder with the specified Event
      * client
-     * 
+     *
      * @param eventClient The event client to use when creating monetization
      *            events
      * @return a GooglePlayMonetizationEventBuilder to build monetization events
@@ -75,7 +75,7 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
 
     /**
      * Sets the product identifier field of the item being purchased.
-     * 
+     *
      * @param productId The product id representing the item being purchased
      * @return this for chaining
      */
@@ -88,7 +88,7 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
      * Sets the formatted localized item price of the item being purchased
      * (accessed from the product item details price field after calling
      * getSkuDetails()).
-     * 
+     *
      * @param formattedItemPrice The localized formatted price of the item
      * @return this for chaining
      */
@@ -99,7 +99,7 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
 
     /**
      * Sets the quantity of the item purchased.
-     * 
+     *
      * @param quantity Currently, Google Play only supports purchasing 1 item at
      *            a time.
      * @return this for chaining
@@ -111,7 +111,7 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
 
     /**
      * The transaction identifier of the purchase.
-     * 
+     *
      * @param transactionId The orderId found in the INAPP_PURCHASE_DATA of a
      *            purchase request
      * @return this for chaining
@@ -124,7 +124,7 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
     /**
      * Construct a GooglePlayMonetizationEventBuilder with the specified
      * EventClient
-     * 
+     *
      * @param eventClient The EventClient to use when building the event
      */
     protected GooglePlayMonetizationEventBuilder(EventClient eventClient) {

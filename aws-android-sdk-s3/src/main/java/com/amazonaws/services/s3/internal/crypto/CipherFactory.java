@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
 
 import java.security.Provider;
@@ -21,12 +22,10 @@ import javax.crypto.SecretKey;
 
 /**
  * Factory for creating Ciphers based on the crypto key and configuration
- * specified in the constructor.
- *
- * Each invocation of {@link #createCipher()} will produce a new, identical
- * Cipher object. Each returned Cipher will encrypt data with
- * <bold>exactly</bold> the same output as any other Cipher returned by this
- * instance of CipherFactory.
+ * specified in the constructor. Each invocation of {@link #createCipher()} will
+ * produce a new, identical Cipher object. Each returned Cipher will encrypt
+ * data with <bold>exactly</bold> the same output as any other Cipher returned
+ * by this instance of CipherFactory.
  */
 public class CipherFactory {
     private final SecretKey symmetricKey;
@@ -38,18 +37,17 @@ public class CipherFactory {
      * Creates a new CipherFactory that will produce ciphers using the specified
      * key, mode, IV and provider.
      *
-     * @param symmetricKey
-     *            The symmetric key used in the ciphers created by this factory.
-     * @param cipherMode
-     *            The mode indicating whether the created ciphers are for
+     * @param symmetricKey The symmetric key used in the ciphers created by this
+     *            factory.
+     * @param cipherMode The mode indicating whether the created ciphers are for
      *            encrypting or decrypting.
-     * @param initVectorBytes
-     *            The optional crypto IV used to initialize the ciphers.
-     * @param cryptoProvider
-     *            The optional Java crypto provider implementation, if an
-     *            alternate crypto provider is to be used.
+     * @param initVectorBytes The optional crypto IV used to initialize the
+     *            ciphers.
+     * @param cryptoProvider The optional Java crypto provider implementation,
+     *            if an alternate crypto provider is to be used.
      */
-    public CipherFactory(SecretKey symmetricKey, int cipherMode, byte[] initVectorBytes, Provider cryptoProvider) {
+    public CipherFactory(SecretKey symmetricKey, int cipherMode, byte[] initVectorBytes,
+            Provider cryptoProvider) {
         this.symmetricKey = symmetricKey;
         this.cipherMode = cipherMode;
         this.initVectorBytes = initVectorBytes;
@@ -65,11 +63,15 @@ public class CipherFactory {
      *         factory instance.
      */
     public Cipher createCipher() {
-        Cipher cipher = EncryptionUtils.createSymmetricCipher(symmetricKey, cipherMode, cryptoProvider, initVectorBytes);
+        Cipher cipher = EncryptionUtils.createSymmetricCipher(symmetricKey, cipherMode,
+                cryptoProvider, initVectorBytes);
 
-        // If we weren't given an IV to use, make sure we store the one the first Cipher
-        // used so we can use it for all future Ciphers created by this instance.
-        if (initVectorBytes == null) initVectorBytes = cipher.getIV();
+        // If we weren't given an IV to use, make sure we store the one the
+        // first Cipher
+        // used so we can use it for all future Ciphers created by this
+        // instance.
+        if (initVectorBytes == null)
+            initVectorBytes = cipher.getIV();
 
         return cipher;
     }

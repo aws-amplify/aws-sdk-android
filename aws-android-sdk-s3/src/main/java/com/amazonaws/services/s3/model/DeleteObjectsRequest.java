@@ -4,21 +4,22 @@
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model;
 
-import java.util.ArrayList;
-import java.util.List;
+package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provides options for deleting multiple objects in a specified bucket. Once
@@ -26,13 +27,13 @@ import com.amazonaws.services.s3.AmazonS3;
  * the object(s) was deleted.You may specify up to <a href=
  * "http://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html"
  * >1000 keys</a>. </p>
- * 
+ *
  * @see AmazonS3#deleteObjects(DeleteObjectsRequest)
  */
 public class DeleteObjectsRequest extends AmazonWebServiceRequest {
 
     /**
-     * The name of the Amazon S3 bucket containing the object(s) to delete. 
+     * The name of the Amazon S3 bucket containing the object(s) to delete.
      */
     private String bucketName;
 
@@ -41,7 +42,7 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
      * are reported. Defaults to false.
      */
     private boolean quiet;
- 
+
     /**
      * The optional Multi-Factor Authentication information to include with this
      * request. Multi-Factor Authentication is required when deleting a version
@@ -60,10 +61,9 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
     /**
      * Constructs a new {@link DeleteObjectsRequest}, specifying the objects'
      * bucket name.
-     * 
-     * @param bucketName
-     *            The name of the Amazon S3 bucket containing the object(s) to
-     *            delete.
+     *
+     * @param bucketName The name of the Amazon S3 bucket containing the
+     *            object(s) to delete.
      */
     public DeleteObjectsRequest(String bucketName) {
         setBucketName(bucketName);
@@ -71,7 +71,7 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
 
     /**
      * Gets the name of the Amazon S3 bucket containing the object(s) to delete.
-     * 
+     *
      * @return The name of the Amazon S3 bucket containing the object(s) to
      *         delete.
      * @see DeleteObjectsRequest#setBucketName(String)
@@ -82,10 +82,9 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the name of the Amazon S3 bucket containing the object(s) to delete.
-     * 
-     * @param bucketName
-     *            The name of the Amazon S3 bucket containing the object(s) to
-     *            delete.
+     *
+     * @param bucketName The name of the Amazon S3 bucket containing the
+     *            object(s) to delete.
      * @see DeleteObjectsRequest#getBucketName()
      */
     public void setBucketName(String bucketName) {
@@ -96,10 +95,9 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
      * Sets the name of the Amazon S3 bucket containing the object(s) to delete
      * and returns this object, enabling additional method calls to be chained
      * together.
-     * 
-     * @param bucketName
-     *            The name of the Amazon S3 bucket containing the object(s) to
-     *            delete.
+     *
+     * @param bucketName The name of the Amazon S3 bucket containing the
+     *            object(s) to delete.
      * @return The updated {@link DeleteObjectsRequest} object, enabling
      *         additional method calls to be chained together.
      */
@@ -110,8 +108,8 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
 
     /**
      * <p>
-     * Gets the optional Multi-Factor Authentication information included
-     * with this request.
+     * Gets the optional Multi-Factor Authentication information included with
+     * this request.
      * </p>
      * <p>
      * Multi-Factor Authentication is required when deleting an object version
@@ -122,7 +120,7 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
      * See {@link BucketVersioningConfiguration#setMfaDeleteEnabled(Boolean)}
      * for more information on MFADelete.
      * </p>
-     * 
+     *
      * @return The optional Multi-Factor Authentication information included
      *         with this request.
      */
@@ -144,9 +142,8 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
      * See {@link BucketVersioningConfiguration#setMfaDeleteEnabled(Boolean)}
      * for more information on MFADelete.
      * </p>
-     * 
-     * @param mfa
-     *            The optional Multi-Factor Authentication information to
+     *
+     * @param mfa The optional Multi-Factor Authentication information to
      *            include with this request.
      */
     public void setMfa(MultiFactorAuthentication mfa) {
@@ -156,9 +153,8 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
     /**
      * <p>
      * Sets the optional Multi-Factor Authentication information to include with
-     * this request
-     * Returns this, enabling additional method
-     * calls to be chained together.
+     * this request Returns this, enabling additional method calls to be chained
+     * together.
      * </p>
      * <p>
      * Multi-Factor Authentication is required when deleting an object version
@@ -169,19 +165,16 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
      * See {@link BucketVersioningConfiguration#setMfaDeleteEnabled(Boolean)}
      * for more information on MFADelete.
      * </p>
-     * 
-     * @param mfa
-     *            The optional Multi-Factor Authentication information to
+     *
+     * @param mfa The optional Multi-Factor Authentication information to
      *            include with this request.
-     * 
-     * @return this, enabling additional method
-     *         calls to be chained together.
+     * @return this, enabling additional method calls to be chained together.
      */
     public DeleteObjectsRequest withMfa(MultiFactorAuthentication mfa) {
         setMfa(mfa);
         return this;
     }
-    
+
     /**
      * Sets the quiet element for this request. When true, only errors will be
      * returned in the service response.
@@ -189,32 +182,31 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
     public void setQuiet(boolean quiet) {
         this.quiet = quiet;
     }
-    
+
     /**
-     * Returns the quiet element for this request. When true, only errors will be
-     * returned in the service response.
+     * Returns the quiet element for this request. When true, only errors will
+     * be returned in the service response.
      */
     public boolean getQuiet() {
         return quiet;
     }
-    
+
     /**
      * Sets the quiet element for this request. When true, only errors will be
      * returned in the service response.
-     * 
+     *
      * @return this, to chain multiple calls together.
      */
     public DeleteObjectsRequest withQuiet(boolean quiet) {
         this.setQuiet(quiet);
         return this;
     }
-    
+
     /**
      * Sets the list of keys to delete from this bucket, clearing any existing
      * list of keys.
-     * 
-     * @param keys
-     *            The list of keys to delete from this bucket
+     *
+     * @param keys The list of keys to delete from this bucket
      */
     public void setKeys(List<KeyVersion> keys) {
         this.keys.clear();
@@ -224,27 +216,25 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
     /**
      * Sets the list of keys to delete from this bucket, clearing any existing
      * list of keys.
-     * 
-     * @param keys
-     *            The list of keys to delete from this bucket
-     *            
+     *
+     * @param keys The list of keys to delete from this bucket
      * @return this, to chain multiple calls togethers.
      */
     public DeleteObjectsRequest withKeys(List<KeyVersion> keys) {
         setKeys(keys);
         return this;
     }
-    
+
     /**
      * Returns the list of keys to delete from this bucket.
      */
     public List<KeyVersion> getKeys() {
         return keys;
     }
-    
+
     /**
      * Convenience method to specify a set of keys without versions.
-     * 
+     *
      * @see DeleteObjectsRequest#withKeys(List)
      */
     public DeleteObjectsRequest withKeys(String... keys) {
@@ -255,7 +245,7 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
         setKeys(keyVersions);
         return this;
     }
-    
+
     /**
      * A key to delete, with an optional version attribute.
      */
@@ -278,11 +268,11 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
             this.key = key;
             this.version = version;
         }
-        
+
         public String getKey() {
-            return key;            
+            return key;
         }
-        
+
         public String getVersion() {
             return version;
         }

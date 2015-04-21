@@ -15,6 +15,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.util;
 
 import java.io.ByteArrayInputStream;
@@ -29,9 +30,7 @@ public class BinaryUtils {
     /**
      * Converts byte data to a Hex-encoded string.
      *
-     * @param data
-     *            data to hex encode.
-     *
+     * @param data data to hex encode.
      * @return hex-encoded string.
      */
     public static String toHex(byte[] data) {
@@ -53,8 +52,7 @@ public class BinaryUtils {
     /**
      * Converts a Hex-encoded data string to the original byte data.
      *
-     * @param hexData
-     *            hex-encoded data to decode.
+     * @param hexData hex-encoded data to decode.
      * @return decoded data from the hex string.
      */
     public static byte[] fromHex(String hexData) {
@@ -73,8 +71,7 @@ public class BinaryUtils {
     /**
      * Converts byte data to a Base64-encoded string.
      *
-     * @param data
-     *            data to Base64 encode.
+     * @param data data to Base64 encode.
      * @return encoded Base64 string.
      */
     public static String toBase64(byte[] data) {
@@ -84,9 +81,7 @@ public class BinaryUtils {
     /**
      * Converts a Base64-encoded string to the original byte data.
      *
-     * @param b64Data
-     *            a Base64-encoded string to decode.
-     *
+     * @param b64Data a Base64-encoded string to decode.
      * @return bytes decoded from a Base64 string.
      */
     public static byte[] fromBase64(String b64Data) {
@@ -97,7 +92,6 @@ public class BinaryUtils {
      * Wraps a ByteBuffer in an InputStream.
      *
      * @param byteBuffer The ByteBuffer to wrap.
-     *
      * @return An InputStream wrapping the ByteBuffer content.
      */
     public static InputStream toStream(ByteBuffer byteBuffer) {

@@ -12,6 +12,7 @@
  * License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 public class DynamoDBMapperFieldModel {
@@ -53,8 +54,8 @@ public class DynamoDBMapperFieldModel {
     }
 
     /**
-     * (Internal usage only)
-     * Returns the argument marshaller that is bound to this mapped field.
+     * (Internal usage only) Returns the argument marshaller that is bound to
+     * this mapped field.
      */
     ArgumentMarshaller getArgumentMarshaller() {
         return argumentMarshaller;

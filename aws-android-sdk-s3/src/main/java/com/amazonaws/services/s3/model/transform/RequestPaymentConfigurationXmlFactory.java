@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model.transform;
 
 import com.amazonaws.services.s3.internal.Constants;
@@ -26,15 +27,12 @@ public class RequestPaymentConfigurationXmlFactory {
 
     /**
      * Converts the specified request payment configuration into an XML byte
-     * array to send to Amazon S3.
-     *
-     * Sample XML:
-     * <RequestPaymentConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-     * 		<Payer>Requester</Payer>
+     * array to send to Amazon S3. Sample XML: <RequestPaymentConfiguration
+     * xmlns="http://s3.amazonaws.com/doc/2006-03-01/"> <Payer>Requester</Payer>
      * </RequestPaymentConfiguration>
      *
-     * @param requestPaymentConfiguration
-     *            The request payment configuration request to convert..
+     * @param requestPaymentConfiguration The request payment configuration
+     *            request to convert..
      * @return The XML byte array representation.
      */
     public byte[] convertToXmlByteArray(

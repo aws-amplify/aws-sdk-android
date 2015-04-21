@@ -12,29 +12,12 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.internal.crypto;
 
 import static com.amazonaws.services.s3.internal.crypto.EncryptionUtils.INSTRUCTION_SUFFIX;
 import static com.amazonaws.util.LengthCheckInputStream.EXCLUDE_SKIPPED_BYTES;
 import static com.amazonaws.util.StringUtils.UTF8;
-
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.InputStream;
-import java.security.Key;
-import java.security.KeyPair;
-import java.security.NoSuchAlgorithmException;
-import java.security.Provider;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonWebServiceRequest;
@@ -53,12 +36,30 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.util.LengthCheckInputStream;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.security.Key;
+import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
+import java.security.Provider;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
 /**
  * Common implementation for different S3 cryptographic modules.
  */
 public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
         extends S3CryptoModule<T> {
-    protected static final int DEFAULT_BUFFER_SIZE = 1024*2;    // 2K
+    protected static final int DEFAULT_BUFFER_SIZE = 1024 * 2; // 2K
     protected final EncryptionMaterialsProvider kekMaterialsProvider;
     protected final CryptoConfiguration cryptoConfig;
     protected final Log log = LogFactory.getLog(getClass());
@@ -67,8 +68,8 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
     protected final ContentCryptoScheme contentCryptoScheme;
 
     /** Map of data about in progress encrypted multipart uploads. */
-    protected final  Map<String, T> multipartUploadContexts =
-        Collections.synchronizedMap(new HashMap<String,T>());
+    protected final Map<String, T> multipartUploadContexts =
+            Collections.synchronizedMap(new HashMap<String, T>());
     protected final S3Direct s3;
 
     protected S3CryptoModuleBase(S3Direct s3,
@@ -87,14 +88,13 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
     /**
      * Returns the length of the ciphertext computed from the length of the
      * plaintext.
-     * 
-     * @param plaintextLength
-     *            a non-negative number
+     *
+     * @param plaintextLength a non-negative number
      * @return a non-negative number
      */
     protected abstract long ciphertextLength(long plaintextLength);
 
-    //////////////////////// Common Implementation ////////////////////////
+    // ////////////////////// Common Implementation ////////////////////////
     @Override
     public final void abortMultipartUploadSecurely(AbortMultipartUploadRequest req) {
         s3.abortMultipartUpload(req);
@@ -103,7 +103,7 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
 
     protected final ObjectMetadata updateMetadataWithContentCryptoMaterial(
             ObjectMetadata metadata, File file, ContentCryptoMaterial instruction) {
-        if (metadata == null) 
+        if (metadata == null)
             metadata = new ObjectMetadata();
         if (file != null) {
             Mimetypes mimetypes = Mimetypes.getInstance();
@@ -111,14 +111,15 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
         }
         return instruction.toObjectMetadata(metadata);
     }
-    
+
     protected final ContentCryptoMaterial createContentCryptoMaterial(AmazonWebServiceRequest req) {
         if (req instanceof MaterialsDescriptionProvider) {
-            return newContentCryptoMaterial(this.kekMaterialsProvider, 
-                    ((MaterialsDescriptionProvider) req).getMaterialsDescription(), 
+            return newContentCryptoMaterial(this.kekMaterialsProvider,
+                    ((MaterialsDescriptionProvider) req).getMaterialsDescription(),
                     this.cryptoConfig.getCryptoProvider());
         } else {
-            return newContentCryptoMaterial(this.kekMaterialsProvider, this.cryptoConfig.getCryptoProvider());
+            return newContentCryptoMaterial(this.kekMaterialsProvider,
+                    this.cryptoConfig.getCryptoProvider());
         }
     }
 
@@ -129,7 +130,8 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
     private ContentCryptoMaterial newContentCryptoMaterial(
             EncryptionMaterialsProvider kekMaterialProvider,
             Map<String, String> materialsDescription, Provider provider) {
-        EncryptionMaterials kekMaterials = kekMaterialProvider.getEncryptionMaterials(materialsDescription);
+        EncryptionMaterials kekMaterials = kekMaterialProvider
+                .getEncryptionMaterials(materialsDescription);
         return buildContentCryptoMaterial(kekMaterials, provider);
     }
 
@@ -143,10 +145,11 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
         EncryptionMaterials kekMaterials = kekMaterialProvider.getEncryptionMaterials();
         return buildContentCryptoMaterial(kekMaterials, provider);
     }
-    
+
     private ContentCryptoMaterial buildContentCryptoMaterial(
             EncryptionMaterials kekMaterials, Provider provider) {
-        // Generate a one-time use symmetric key and initialize a cipher to encrypt object data
+        // Generate a one-time use symmetric key and initialize a cipher to
+        // encrypt object data
         SecretKey cek = generateCEK(kekMaterials, provider);
         // Randomly generate the IV
         byte[] iv = new byte[contentCryptoScheme.getIVLengthInBytes()];
@@ -155,54 +158,54 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
         SecuredCEK cekSecured = secureCEK(cek, kekMaterials, provider);
         // Return a new instruction with the appropriate fields.
         return new ContentCryptoMaterial(
-            kekMaterials.getMaterialsDescription(),
-            cekSecured.encrypted, 
-            cekSecured.keyWrapAlgorithm,
-            contentCryptoScheme.createCipherLite
-                (cek, iv,Cipher.ENCRYPT_MODE, provider));
-        
+                kekMaterials.getMaterialsDescription(),
+                cekSecured.encrypted,
+                cekSecured.keyWrapAlgorithm,
+                contentCryptoScheme.createCipherLite
+                        (cek, iv, Cipher.ENCRYPT_MODE, provider));
+
     }
 
     protected final SecretKey generateCEK(
             final EncryptionMaterials kekMaterials,
             final Provider providerIn) {
-        final String keygenAlgo = 
-            contentCryptoScheme.getKeyGeneratorAlgorithm();
+        final String keygenAlgo =
+                contentCryptoScheme.getKeyGeneratorAlgorithm();
         KeyGenerator generator;
         try {
             generator = providerIn == null ?
-                KeyGenerator.getInstance(keygenAlgo) :
-                KeyGenerator.getInstance(keygenAlgo, providerIn);
+                    KeyGenerator.getInstance(keygenAlgo) :
+                    KeyGenerator.getInstance(keygenAlgo, providerIn);
             generator.init(contentCryptoScheme.getKeyLengthInBits(),
                     cryptoScheme.getSecureRandom());
-            //set to true iff key encryption involves BC's public key
+            // set to true iff key encryption involves BC's public key
             boolean involvesBcPublicKey = false;
             KeyPair keyPair = kekMaterials.getKeyPair();
-            if(keyPair != null) {
+            if (keyPair != null) {
                 String keyWrapAlgo = cryptoScheme
-                    .getKeyWrapScheme()
-                    .getKeyWrapAlgorithm(keyPair.getPublic());
-                if(keyWrapAlgo == null) {
+                        .getKeyWrapScheme()
+                        .getKeyWrapAlgorithm(keyPair.getPublic());
+                if (keyWrapAlgo == null) {
                     Provider provider = generator.getProvider();
                     String providerName = provider == null ?
-                        null :
-                        provider.getName();
+                            null :
+                            provider.getName();
                     involvesBcPublicKey = CryptoRuntime.BOUNCY_CASTLE_PROVIDER
-                        .equals(providerName);
+                            .equals(providerName);
                 }
             }
-            if(!involvesBcPublicKey) {
+            if (!involvesBcPublicKey) {
                 return generator.generateKey();
             } else {
-                for(int retry = 0; retry < 10; retry++) {
-                    //generate the random key until leading byte is nonzero
-                    //see https://github.com/aws/aws-sdk-android/issues/15
+                for (int retry = 0; retry < 10; retry++) {
+                    // generate the random key until leading byte is nonzero
+                    // see https://github.com/aws/aws-sdk-android/issues/15
                     SecretKey secretKey = generator.generateKey();
-                    if(secretKey.getEncoded()[0] != 0) {
+                    if (secretKey.getEncoded()[0] != 0) {
                         return secretKey;
                     }
                 }
-                //if using public BC key, this happens with p = 2^-80
+                // if using public BC key, this happens with p = 2^-80
                 throw new AmazonClientException(
                         "Failed to generate secret key");
             }
@@ -216,22 +219,21 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
     protected final SecuredCEK secureCEK(SecretKey toBeEncrypted,
             EncryptionMaterials materials, Provider cryptoProvider)
     {
-        Key kek; 
+        Key kek;
         if (materials.getKeyPair() != null) {
             // Do envelope encryption with public key from key pair
             kek = materials.getKeyPair().getPublic();
         } else {
             // Do envelope encryption with symmetric key
-            kek= materials.getSymmetricKey();
+            kek = materials.getSymmetricKey();
         }
         S3KeyWrapScheme kwScheme = cryptoScheme.getKeyWrapScheme();
         String keyWrapAlgo = kwScheme.getKeyWrapAlgorithm(kek);
         try {
             if (keyWrapAlgo != null) {
-                Cipher cipher = cryptoProvider == null 
-                    ? Cipher.getInstance(keyWrapAlgo)
-                    : Cipher.getInstance(keyWrapAlgo, cryptoProvider)
-                    ;
+                Cipher cipher = cryptoProvider == null
+                        ? Cipher.getInstance(keyWrapAlgo)
+                        : Cipher.getInstance(keyWrapAlgo, cryptoProvider);
                 cipher.init(Cipher.WRAP_MODE, kek, cryptoScheme.getSecureRandom());
                 return new SecuredCEK(cipher.wrap(toBeEncrypted), keyWrapAlgo);
             }
@@ -251,7 +253,10 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
         }
     }
 
-    /** Used to carry both the secured CEK and the key wrapping algorithm, if any. */
+    /**
+     * Used to carry both the secured CEK and the key wrapping algorithm, if
+     * any.
+     */
     private static class SecuredCEK {
         /**
          * The encrypted CEK either via key wrapping or simple encryption.
@@ -262,6 +267,7 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
          * via key wrapping.
          */
         final String keyWrapAlgorithm;
+
         SecuredCEK(byte[] encryptedKey, String keyWrapAlgorithm) {
             this.encrypted = encryptedKey;
             this.keyWrapAlgorithm = keyWrapAlgorithm;
@@ -300,7 +306,7 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
         }
         request.setMetadata(metadata);
         request.setInputStream(newS3CipherLiteInputStream(
-            request, cekMaterial, plaintextLength));
+                request, cekMaterial, plaintextLength));
         // Treat all encryption requests as input stream upload requests, not as
         // file upload requests.
         request.setFile(null);
@@ -318,7 +324,7 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
                 // S3 allows a single PUT to be no more than 5GB, which
                 // therefore won't exceed the maximum length that can be
                 // encrypted either using any cipher such as CBC or GCM.
-                
+
                 // This ensures the plain-text read from the underlying data
                 // stream has the same length as the expected total.
                 is = new LengthCheckInputStream(is, plaintextLength,
@@ -356,12 +362,10 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
     /**
      * Updates put request to store the specified instruction object in S3.
      *
-     * @param request
-     *      The put request for the original object to be stored in S3.
-     * @param cekMaterial
-     *      The instruction object to be stored in S3.
-     * @return
-     *      A put request to store the specified instruction object in S3.
+     * @param request The put request for the original object to be stored in
+     *            S3.
+     * @param cekMaterial The instruction object to be stored in S3.
+     * @return A put request to store the specified instruction object in S3.
      */
     protected final PutObjectRequest upateInstructionPutRequest(
             PutObjectRequest request, ContentCryptoMaterial cekMaterial) {
@@ -396,8 +400,8 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadContext>
     }
 
     /**
-     * Appends a user agent to the request's USER_AGENT client marker.
-     * This method is intended only for internal use by the AWS SDK. 
+     * Appends a user agent to the request's USER_AGENT client marker. This
+     * method is intended only for internal use by the AWS SDK.
      */
     final <X extends AmazonWebServiceRequest> X appendUserAgent(
             X request, String userAgent) {
