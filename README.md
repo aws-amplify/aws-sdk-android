@@ -1,8 +1,8 @@
 # AWS SDK for Android
 
-The [AWS SDK for Android](http://aws.amazon.com/sdkforandroid) provides a library, code samples, and documentation for developers to build connected mobile applications using AWS.
+The [AWS SDK for Android](http://aws.amazon.com/sdkforandroid) provides a library, and documentation for developers to build connected mobile applications using AWS.
 
-To learn more about using the SDK, see the  [documentation](http://aws.amazon.com/documentation/sdkforandroid/). 
+To learn more about using the SDK, see the [documentation](http://aws.amazon.com/documentation/sdkforandroid/) and [code samples](https://github.com/awslabs/aws-sdk-android-samples).
 
 For updates and guidance on using the AWS SDK for Android, please consider following our [AWS Mobile Developer Blog](http://mobile.awsblog.com/).
 
