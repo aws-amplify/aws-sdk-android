@@ -1,5 +1,6 @@
 /*
  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015 Numenta, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +36,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Default implementation of HttpResponseHandler that handles a successful
@@ -93,13 +95,17 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
         }
 
         if (!needsConnectionLeftOpen) {
+            InputStream input = content;
             if (CRC32Checksum != null) {
                 crc32ChecksumInputStream = new CRC32ChecksumCalculatingInputStream(content);
-                jsonReader = JsonUtils
-                        .getJsonReader(new InputStreamReader(crc32ChecksumInputStream));
-            } else {
-                jsonReader = JsonUtils.getJsonReader(new InputStreamReader(content));
+                input = crc32ChecksumInputStream;
             }
+            // Check for gzip encoding
+            if ("gzip".equals(response.getHeaders().get("Content-Encoding"))) {
+                // Unzip the input stream
+                input = new GZIPInputStream(input);
+            }
+            jsonReader = JsonUtils.getJsonReader(new InputStreamReader(input));
         }
 
         try {
