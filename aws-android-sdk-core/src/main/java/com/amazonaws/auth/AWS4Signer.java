@@ -242,18 +242,6 @@ public class AWS4Signer extends AbstractAWSSigner
         return buffer.toString();
     }
 
-    /**
-     * Determine if a header needs to be signed. The headers must be signed
-     * according to sigv4 spec are host, date, and all x-amz headers.
-     *
-     * @param header header key
-     * @return true if it should be sign, false otherwise
-     */
-    private boolean needsSign(String header) {
-        return header.equalsIgnoreCase("date") || header.equalsIgnoreCase("host")
-                || header.startsWith("x-amz") || header.startsWith("X-Amz");
-    }
-
     protected String getCanonicalRequest(Request<?> request, String contentSha256) {
         /* This would url-encode the resource path for the first time */
         String path = HttpUtils.appendUri(request.getEndpoint().getPath(),
@@ -483,5 +471,18 @@ public class AWS4Signer extends AbstractAWSSigner
      */
     protected String calculateContentHashPresign(Request<?> request) {
         return calculateContentHash(request);
+    }
+
+    /**
+     * Determine if a header needs to be signed. The headers must be signed
+     * according to sigv4 spec are host, date, Content-MD5and all x-amz headers.
+     *
+     * @param header header key
+     * @return true if it should be sign, false otherwise
+     */
+    boolean needsSign(String header) {
+        return header.equalsIgnoreCase("date") || header.equalsIgnoreCase("Content-MD5")
+                || header.equalsIgnoreCase("host")
+                || header.startsWith("x-amz") || header.startsWith("X-Amz");
     }
 }

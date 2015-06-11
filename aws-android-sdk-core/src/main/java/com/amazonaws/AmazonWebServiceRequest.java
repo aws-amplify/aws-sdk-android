@@ -37,6 +37,7 @@ public abstract class AmazonWebServiceRequest {
      * null if there is none. This collector always takes precedence over the
      * ones specified at the http client level and AWS SDK level.
      */
+    @Deprecated
     private RequestMetricCollector requestMetricCollector;
 
     /** The optional STS security token associated with this request */
@@ -105,8 +106,9 @@ public abstract class AmazonWebServiceRequest {
      * Not intended for direct use by callers.
      *
      * @return private, internal request parameter information.
+     * @deprecated only passes back the deprecated delegationToken
      */
-
+    @Deprecated
     public Map<String, String> copyPrivateRequestParameters() {
         HashMap<String, String> map = new HashMap<String, String>();
         if (delegationToken != null)
@@ -125,7 +127,10 @@ public abstract class AmazonWebServiceRequest {
 
     /**
      * Returns a request level metric collector; or null if not specified.
+     * 
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     public RequestMetricCollector getRequestMetricCollector() {
         return requestMetricCollector;
     }
@@ -133,7 +138,10 @@ public abstract class AmazonWebServiceRequest {
     /**
      * Sets a request level request metric collector which takes precedence over
      * the ones at the http client level and AWS SDK level.
+     * 
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     public void setRequestMetricCollector(RequestMetricCollector requestMetricCollector) {
         this.requestMetricCollector = requestMetricCollector;
     }
@@ -141,7 +149,10 @@ public abstract class AmazonWebServiceRequest {
     /**
      * Specifies a request level metric collector which takes precedence over
      * the ones at the http client level and AWS SDK level.
+     * 
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     public <T extends AmazonWebServiceRequest> T withRequestMetricCollector(
             RequestMetricCollector metricCollector) {
         setRequestMetricCollector(metricCollector);

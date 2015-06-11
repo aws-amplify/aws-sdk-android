@@ -30,7 +30,7 @@ public class ProgressListenerCallbackExecutor {
     private final ProgressListener listener;
 
     /** A single thread pool for executing all ProgressListener callbacks. **/
-    private static final ExecutorService executor = createNewExecutorService();
+    static ExecutorService executor = createNewExecutorService();
 
     /**
      * Used to submit a task to publish a progress event to the given listener.
@@ -98,12 +98,12 @@ public class ProgressListenerCallbackExecutor {
      * Creates a new single threaded executor service for performing the
      * callbacks.
      */
-    private static ExecutorService createNewExecutorService() {
+    static ExecutorService createNewExecutorService() {
         return Executors.newSingleThreadExecutor(new ThreadFactory() {
             @Override
             public Thread newThread(Runnable r) {
                 Thread t = new Thread(r);
-                t.setName("java-sdk-progress-listener-callback-thread");
+                t.setName("android-sdk-progress-listener-callback-thread");
                 t.setDaemon(true);
                 return t;
             }

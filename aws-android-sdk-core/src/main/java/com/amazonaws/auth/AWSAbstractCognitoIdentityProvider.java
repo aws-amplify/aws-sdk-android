@@ -146,7 +146,7 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
 
     /**
      * Gets a string with the name of the provider being used. For example,
-     * Cognito would return "Cognito";
+     * Cognito would return "Cognito"
      *
      * @return the name of the provider in a string
      */
@@ -232,8 +232,7 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     }
 
     @Override
-    public void unregisterIdentityChangedListener(
-            IdentityChangedListener listener) {
+    public void unregisterIdentityChangedListener(IdentityChangedListener listener) {
         listeners.remove(listener);
     }
 
@@ -255,7 +254,7 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
         }
         String oldIdentityId = identityId;
         identityId = newIdentityId;
-        for (IdentityChangedListener listener : listeners) {
+        for (IdentityChangedListener listener: listeners) {
             listener.identityChanged(oldIdentityId, identityId);
         }
     }

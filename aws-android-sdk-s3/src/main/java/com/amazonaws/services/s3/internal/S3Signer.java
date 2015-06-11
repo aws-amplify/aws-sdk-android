@@ -80,9 +80,11 @@ public class S3Signer extends AbstractAWSSigner {
             throw new IllegalArgumentException("Parameter resourcePath is empty");
     }
 
-    @Override
-    public void sign(Request<?> request, AWSCredentials credentials) {
-
+    /**
+     * Signs the request, using the passed in date. overrideDate is only used
+     * for tesitng purposes
+     */
+    void sign(Request<?> request, AWSCredentials credentials, Date overrideDate) {
         if (resourcePath == null) {
             throw new UnsupportedOperationException(
                     "Cannot sign a request using a dummy S3Signer instance with "
@@ -111,6 +113,11 @@ public class S3Signer extends AbstractAWSSigner {
 
         int timeOffset = getTimeOffset(request);
         Date date = getSignatureDate(timeOffset);
+
+        if (overrideDate != null) {
+            date = overrideDate;
+        }
+
         request.addHeader(Headers.DATE, ServiceUtils.formatRfc822Date(date));
         String canonicalString = RestUtils.makeS3CanonicalString(
                 httpVerb, encodedResourcePath, request, null);
@@ -120,6 +127,11 @@ public class S3Signer extends AbstractAWSSigner {
                 sanitizedCredentials.getAWSSecretKey(), SigningAlgorithm.HmacSHA1);
         request.addHeader("Authorization", "AWS " + sanitizedCredentials.getAWSAccessKeyId() + ":"
                 + signature);
+    }
+
+    @Override
+    public void sign(Request<?> request, AWSCredentials credentials) {
+        sign(request, credentials, null);
     }
 
     @Override

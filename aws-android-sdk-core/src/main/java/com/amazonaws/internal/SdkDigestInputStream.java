@@ -21,7 +21,7 @@ import java.security.DigestInputStream;
 import java.security.MessageDigest;
 
 /**
- * Base class for AWS Java SDK specific {@link DigestInputStream}.
+ * Base class for AWS Android SDK specific {@link DigestInputStream}.
  */
 public class SdkDigestInputStream extends DigestInputStream implements MetricAware {
     private static final int SKIP_BUF_SIZE = 2 * 1024;
@@ -31,6 +31,7 @@ public class SdkDigestInputStream extends DigestInputStream implements MetricAwa
     }
 
     @Override
+    @Deprecated
     public final boolean isMetricActivated() {
         if (in instanceof MetricAware) {
             MetricAware metricAware = (MetricAware) in;

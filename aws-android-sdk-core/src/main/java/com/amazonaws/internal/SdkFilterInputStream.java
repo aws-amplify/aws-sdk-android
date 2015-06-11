@@ -15,8 +15,6 @@
 
 package com.amazonaws.internal;
 
-import static com.amazonaws.util.SdkRuntime.shouldAbort;
-
 import com.amazonaws.AbortedException;
 
 import java.io.FilterInputStream;
@@ -32,6 +30,7 @@ public class SdkFilterInputStream extends FilterInputStream implements MetricAwa
     }
 
     @Override
+    @Deprecated
     public boolean isMetricActivated() {
         if (in instanceof MetricAware) {
             MetricAware metricAware = (MetricAware) in;
@@ -47,7 +46,7 @@ public class SdkFilterInputStream extends FilterInputStream implements MetricAwa
      * @throws AbortedException if found necessary.
      */
     protected final void abortIfNeeded() {
-        if (shouldAbort()) {
+        if (Thread.interrupted()) {
             abort(); // execute subclass specific abortion logic
             throw new AbortedException();
         }

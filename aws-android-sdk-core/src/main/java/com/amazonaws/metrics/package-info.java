@@ -114,7 +114,10 @@
  * <li>SpareFileDescriptorCount - Maximum number of file descriptors of the
  * operating system minus OpenFileDescriptorCount.</li>
  * </ol>
+ * 
+ * @Deprecated The metrics package is deprecated
  */
 
+@Deprecated
 package com.amazonaws.metrics;
 

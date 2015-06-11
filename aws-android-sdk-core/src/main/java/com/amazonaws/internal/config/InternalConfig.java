@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Internal configuration for the AWS Java SDK.
+ * Internal configuration for the AWS Android SDK.
  */
 public class InternalConfig {
     private static final Log log = LogFactory.getLog(InternalConfig.class);
@@ -190,7 +190,7 @@ public class InternalConfig {
                 throw ex;
             } catch (Exception ex) {
                 throw new IllegalStateException(
-                        "Fatal: Failed to load the internal config for AWS Java SDK",
+                        "Fatal: Failed to load the internal config for AWS Android SDK",
                         ex);
             }
             SINGELTON = config;

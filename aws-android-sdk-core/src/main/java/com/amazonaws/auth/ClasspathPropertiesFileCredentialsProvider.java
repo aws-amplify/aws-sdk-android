@@ -31,7 +31,14 @@ import java.io.InputStream;
  * The AWS access key ID is expected to be in the <code>accessKey</code>
  * property and the AWS secret key is expected to be in the
  * <code>secretKey</code> property.
+ * 
+ * @deprecated This is unsafe in mobile applications and should not be used. Use
+ *             temporary credentials provided by services such as Cognito
+ *             Identity
+ *             (http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide
+ *             /cognito-auth.html)
  */
+@Deprecated
 public class ClasspathPropertiesFileCredentialsProvider implements AWSCredentialsProvider {
 
     /** The name of the properties file to check for credentials */

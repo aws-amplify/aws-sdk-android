@@ -36,7 +36,10 @@ import java.util.Map.Entry;
  * This class is instantiated instead of {@link AWSRequestMetrics} when request
  * metric collection is required during a particular service request/response
  * cycle.
+ * 
+ * @deprecated metrics is deprecated
  */
+@Deprecated
 public class AWSRequestMetricsFullSupport extends AWSRequestMetrics {
     /* Stores some key value pairs. */
     private final Map<String, List<Object>> properties = new HashMap<String, List<Object>>();

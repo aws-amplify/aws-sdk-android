@@ -37,8 +37,8 @@ public class HandlerChainFactory {
      *
      * @param resource The resource to load from the classpath containing the
      *            list of request handlers to instantiate.
-     * @return A list of request handlers based on the handlers referenced in the
-     *         specified resource.
+     * @return A list of request handlers based on the handlers referenced in
+     *         the specified resource.
      */
     public List<RequestHandler2> newRequestHandlerChain(String resource) {
         return createRequestHandlerChain(resource, RequestHandler.class);
@@ -50,8 +50,8 @@ public class HandlerChainFactory {
      *
      * @param resource The resource to load from the classpath containing the
      *            list of request handlers to instantiate.
-     * @return A list of request handlers based on the handlers referenced in the
-     *         specified resource.
+     * @return A list of request handlers based on the handlers referenced in
+     *         the specified resource.
      */
     public List<RequestHandler2> newRequestHandler2Chain(String resource) {
         return createRequestHandlerChain(resource, RequestHandler2.class);

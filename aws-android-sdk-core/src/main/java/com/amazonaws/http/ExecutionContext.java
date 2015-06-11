@@ -38,6 +38,7 @@ public class ExecutionContext {
     private AWSCredentials credentials;
 
     /** For testing purposes. */
+    @Deprecated
     public ExecutionContext(boolean isMetricEnabled) {
         this(null, isMetricEnabled, null);
     }
@@ -68,6 +69,7 @@ public class ExecutionContext {
         return requestHandler2s;
     }
 
+    @Deprecated
     public AWSRequestMetrics getAwsRequestMetrics() {
         return awsRequestMetrics;
     }

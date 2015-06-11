@@ -60,7 +60,10 @@ public class SDKGlobalConfiguration {
     /**
      * Path to an override file for the region metadata loaded by the SDK that
      * maps service/region pairs to endpoints and vice versa.
+     * 
+     * @deprecated The SDK no longer supports a regions.xml override
      */
+    @Deprecated
     public static final String REGIONS_FILE_OVERRIDE_SYSTEM_PROPERTY =
             "com.amazonaws.regions.RegionUtils.fileOverride";
 

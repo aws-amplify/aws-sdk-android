@@ -35,6 +35,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Default implementation of HttpResponseHandler that handles a successful
@@ -85,22 +86,23 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
         String CRC32Checksum = response.getHeaders().get("x-amz-crc32");
         CRC32ChecksumCalculatingInputStream crc32ChecksumInputStream = null;
 
-        AwsJsonReader jsonReader = null;
-        InputStream content = response.getContent();
+        // Get the raw content input stream to calculate the crc32 checksum on
+        // gzipped data.
+        InputStream content = response.getRawContent();
         if (content == null) {
             // An empty input stream to avoid NPE
             content = new ByteArrayInputStream("{}".getBytes(StringUtils.UTF8));
         }
 
-        if (!needsConnectionLeftOpen) {
-            if (CRC32Checksum != null) {
-                crc32ChecksumInputStream = new CRC32ChecksumCalculatingInputStream(content);
-                jsonReader = JsonUtils
-                        .getJsonReader(new InputStreamReader(crc32ChecksumInputStream));
+        if (CRC32Checksum != null) {
+            crc32ChecksumInputStream = new CRC32ChecksumCalculatingInputStream(content);
+            if ("gzip".equals(response.getHeaders().get("Content-Encoding"))) {
+                content = new GZIPInputStream(crc32ChecksumInputStream);
             } else {
-                jsonReader = JsonUtils.getJsonReader(new InputStreamReader(content));
+                content = crc32ChecksumInputStream;
             }
         }
+        AwsJsonReader jsonReader = JsonUtils.getJsonReader(new InputStreamReader(content));
 
         try {
             AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();

@@ -189,7 +189,9 @@ public final class AwsChunkedEncodingInputStream extends SdkInputStream {
     }
 
     /**
-     * The readlimit parameter is ignored.
+     * The read limit parameter is ignored if an internal buffer is being used
+     * because the underlying input stream does not support mark, or INTEGER_MAX
+     * if underlying input stream does support marking
      */
     @Override
     public synchronized void mark(int readlimit) {
@@ -202,7 +204,7 @@ public final class AwsChunkedEncodingInputStream extends SdkInputStream {
                 log.debug("AwsChunkedEncodingInputStream marked at the start of the stream "
                         + "(will directly mark the wrapped stream since it's mark-supported).");
             }
-            is.mark(readlimit);
+            is.mark(Integer.MAX_VALUE);
         }
         else {
             if (log.isDebugEnabled()) {

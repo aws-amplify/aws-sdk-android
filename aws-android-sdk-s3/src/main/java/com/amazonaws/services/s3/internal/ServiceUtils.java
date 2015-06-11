@@ -128,8 +128,8 @@ public class ServiceUtils {
      *
      * @param request The request to convert into a URL.
      * @return A new URL representing the specified request.
-     * @throws AmazonClientException If the request cannot be converted to a well
-     *             formed URL.
+     * @throws AmazonClientException If the request cannot be converted to a
+     *             well formed URL.
      */
     public static URL convertRequestToUrl(Request<?> request) {
         // To be backward compatible, this method by default does not
@@ -146,11 +146,12 @@ public class ServiceUtils {
      *            resource-path should be removed before appending to the
      *            endpoint.
      * @return A new URL representing the specified request.
-     * @throws AmazonClientException If the request cannot be converted to a well
-     *             formed URL.
+     * @throws AmazonClientException If the request cannot be converted to a
+     *             well formed URL.
      */
     public static URL convertRequestToUrl(Request<?> request,
             boolean removeLeadingSlashInResourcePath) {
+
         String resourcePath = HttpUtils.urlEncode(request.getResourcePath(), true);
 
         // Removed the padding "/" that was already added into the request's

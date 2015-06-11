@@ -3430,7 +3430,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     /**
      * (non-Javadoc)
      *
-     * @see
+     * @see 
      *      com.amazonaws.services.s3.AmazonS3#copyGlacierObject((java.lang.String
      *      , java.lang.String, int)
      */
@@ -3702,7 +3702,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             credentials = originalRequest.getRequestCredentials();
         }
 
-        new S3QueryStringSigner<T>(methodName.toString(), resourcePath, expiration).sign(request,
+        new S3QueryStringSigner(methodName.toString(), resourcePath, expiration).sign(request,
                 credentials);
 
         // The Amazon S3 DevPay token header is a special exception and can be

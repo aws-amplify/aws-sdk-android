@@ -122,28 +122,11 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     public CognitoCredentialsProvider(String accountId, String identityPoolId,
             String unauthRoleArn, String authRoleArn, Regions region,
             ClientConfiguration clientConfiguration) {
-
-        this.cib = new AmazonCognitoIdentityClient(
-                new AnonymousAWSCredentials(), clientConfiguration);
+        this(accountId, identityPoolId, unauthRoleArn, authRoleArn, 
+                new AmazonCognitoIdentityClient(new AnonymousAWSCredentials(), clientConfiguration),
+                (unauthRoleArn == null && authRoleArn == null) ? 
+                        null : new AWSSecurityTokenServiceClient(new AnonymousAWSCredentials(), clientConfiguration));
         this.cib.setRegion(Region.getRegion(region));
-
-        this.sessionDuration = DEFAULT_DURATION_SECONDS;
-        this.refreshThreshold = DEFAULT_THRESHOLD_SECONDS;
-
-        this.unauthRoleArn = unauthRoleArn;
-        this.authRoleArn = authRoleArn;
-        this.useEnhancedFlow = (unauthRoleArn == null && authRoleArn == null);
-
-        if (this.useEnhancedFlow) {
-            this.securityTokenService = null;
-            this.identityProvider = new AWSEnhancedCognitoIdentityProvider(accountId,
-                    identityPoolId, cib);
-        } else {
-            this.securityTokenService = new AWSSecurityTokenServiceClient(
-                    new AnonymousAWSCredentials(), clientConfiguration);
-            this.identityProvider = new AWSBasicCognitoIdentityProvider(accountId, identityPoolId,
-                    this.cib);
-        }
     }
 
     /**
@@ -317,11 +300,32 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      */
     public CognitoCredentialsProvider(AWSCognitoIdentityProvider provider,
             Regions region, ClientConfiguration clientConfiguration) {
-
-        this.cib = new AmazonCognitoIdentityClient(
-                new AnonymousAWSCredentials(), new ClientConfiguration());
+        this(provider, new AmazonCognitoIdentityClient(
+                new AnonymousAWSCredentials(), new ClientConfiguration()));
         this.cib.setRegion(Region.getRegion(region));
+    }
+    
+    /**
+     * Constructs a new CognitoCredentialsProvider, which will set up a link to
+     * the provider passed in using the enhanced authentication flow to get
+     * short-lived credentials from Amazon Cognito, which can be retrieved from
+     * {@link #getCredentials()}
+     * <p>
+     * This version of the constructor allows you to specify your own Identity
+     * Provider class and the Amazon Cognito client.
+     * </p>
+     *
+     * @param provider a reference to the provider in question, including what's
+     *            needed to interact with it to later connect with Amazon
+     *            Cognito
+     * @param cibClient Preconfigured CognitoIdentity client to make requests
+     *            with
+     * @param region The region to use when contacting Cognito Identity
+     */
+    public CognitoCredentialsProvider(AWSCognitoIdentityProvider provider,
+            AmazonCognitoIdentityClient cib) {
 
+        this.cib = cib;
         this.identityProvider = provider;
         this.unauthRoleArn = null;
         this.authRoleArn = null;
@@ -713,13 +717,23 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
         return "";
     }
 
+    /**
+     * Adds a new identity changed listener to process some event when the 
+     * identity has changed. 
+     * 
+     * @param listener the listener to be triggered on id change
+     */
     public void registerIdentityChangedListener(IdentityChangedListener listener) {
         identityProvider.registerIdentityChangedListener(listener);
     }
 
-    public void unregisterIdentityChangedListener(
-            IdentityChangedListener listener) {
+    /**
+     * Removes an identity changed listener from being triggered when the 
+     * identity has changed. 
+     * 
+     * @param listener the listener to be removed
+     */
+    public void unregisterIdentityChangedListener(IdentityChangedListener listener) {
         identityProvider.unregisterIdentityChangedListener(listener);
     }
-
 }

@@ -64,7 +64,7 @@ public interface AWSCognitoIdentityProvider extends AWSIdentityProvider {
     /**
      * Handles the new version of an identity changed listener to be handled by
      * the provider
-     *
+     * 
      * @param listener the new listener to be registered
      */
     public void registerIdentityChangedListener(IdentityChangedListener listener);
@@ -72,10 +72,11 @@ public interface AWSCognitoIdentityProvider extends AWSIdentityProvider {
     /**
      * Handles the removing of a version of an identity changed listener from
      * the list with the provider
-     *
+     * 
      * @param listener the listener to be removed
      */
     public void unregisterIdentityChangedListener(IdentityChangedListener listener);
+
 
     /**
      * Handles the updating of the identityId locally once it has been changed

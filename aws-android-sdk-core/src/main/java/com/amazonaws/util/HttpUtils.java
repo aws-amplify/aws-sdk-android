@@ -239,7 +239,7 @@ public class HttpUtils {
         return connection.getInputStream();
     }
 
-    private static String getUserAgent(final ClientConfiguration config) {
+    static String getUserAgent(final ClientConfiguration config) {
         String userAgent = null;
 
         if (config != null) {
@@ -255,14 +255,14 @@ public class HttpUtils {
         return userAgent;
     }
 
-    private static int getConnectionTimeout(final ClientConfiguration config) {
+    static int getConnectionTimeout(final ClientConfiguration config) {
         if (config != null) {
             return config.getConnectionTimeout();
         }
         return ClientConfiguration.DEFAULT_CONNECTION_TIMEOUT;
     }
 
-    private static int getSocketTimeout(final ClientConfiguration config) {
+    static int getSocketTimeout(final ClientConfiguration config) {
         if (config != null) {
             return config.getSocketTimeout();
         }

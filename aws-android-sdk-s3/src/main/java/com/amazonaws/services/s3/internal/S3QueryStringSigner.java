@@ -24,7 +24,7 @@ import com.amazonaws.auth.SigningAlgorithm;
 
 import java.util.Date;
 
-public class S3QueryStringSigner<T> extends AbstractAWSSigner {
+public class S3QueryStringSigner extends AbstractAWSSigner {
 
     /**
      * The HTTP verb (GET, PUT, HEAD, DELETE) the request to sign is using.

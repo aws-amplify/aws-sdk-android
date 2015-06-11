@@ -194,7 +194,7 @@ public class AWS3Signer extends AbstractAWSSigner {
         return builder.toString();
     }
 
-    protected boolean shouldUseHttpsScheme(Request<?> request) throws AmazonClientException {
+    boolean shouldUseHttpsScheme(Request<?> request) throws AmazonClientException {
         try {
             String protocol = request.getEndpoint().toURL().getProtocol().toLowerCase();
             if (protocol.equals("http")) {

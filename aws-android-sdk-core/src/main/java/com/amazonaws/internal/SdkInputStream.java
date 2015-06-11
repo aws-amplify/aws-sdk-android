@@ -15,8 +15,6 @@
 
 package com.amazonaws.internal;
 
-import static com.amazonaws.util.SdkRuntime.shouldAbort;
-
 import com.amazonaws.AbortedException;
 
 import org.apache.commons.logging.LogFactory;
@@ -35,6 +33,7 @@ public abstract class SdkInputStream extends InputStream implements MetricAware 
     abstract protected InputStream getWrappedInputStream();
 
     @Override
+    @Deprecated
     public final boolean isMetricActivated() {
         InputStream in = getWrappedInputStream();
         if (in instanceof MetricAware) {
@@ -51,7 +50,7 @@ public abstract class SdkInputStream extends InputStream implements MetricAware 
      * @throws AbortedException if found necessary.
      */
     protected final void abortIfNeeded() {
-        if (shouldAbort()) {
+        if (Thread.interrupted()) {
             try {
                 abort(); // execute subclass specific abortion logic
             } catch (IOException e) {

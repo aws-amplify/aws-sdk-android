@@ -241,7 +241,6 @@ public abstract class AmazonWebServiceClient {
      *            the overriding region for signing purposes.
      * @throws IllegalArgumentException If any problems are detected with the
      *             specified endpoint.
-     * @deprecated
      */
     @Deprecated
     public void setEndpoint(String endpoint, String serviceName, String regionId) {
@@ -474,6 +473,7 @@ public abstract class AmazonWebServiceClient {
      * @param requestHandler The handler to remove from the current list of
      *            request handlers.
      */
+    @Deprecated
     public void removeRequestHandler(RequestHandler requestHandler) {
         requestHandler2s.remove(RequestHandler2.adapt(requestHandler));
     }
@@ -508,6 +508,7 @@ public abstract class AmazonWebServiceClient {
     }
 
     /* Check the profiling system property and return true if set */
+    @Deprecated
     protected static boolean isProfilingEnabled() {
         return System.getProperty(PROFILING_SYSTEM_PROPERTY) != null;
     }
@@ -515,7 +516,10 @@ public abstract class AmazonWebServiceClient {
     /**
      * Returns true if request metric collection is applicable to the given
      * request; false otherwise.
+     *
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     protected final boolean isRequestMetricsEnabled(AmazonWebServiceRequest req) {
         RequestMetricCollector c = req.getRequestMetricCollector(); // request
                                                                     // level
@@ -529,7 +533,10 @@ public abstract class AmazonWebServiceClient {
     /**
      * Returns true if request metric collection is enabled at the service
      * client or AWS SDK level request; false otherwise.
+     * 
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     private boolean isRMCEnabledAtClientOrSdkLevel() {
         RequestMetricCollector c = requestMetricCollector();
         return c != null && c.isEnabled();
@@ -578,7 +585,10 @@ public abstract class AmazonWebServiceClient {
     /**
      * Returns the client specific {@link RequestMetricCollector}; or null if
      * there is none.
+     * 
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     public RequestMetricCollector getRequestMetricsCollector() {
         return client.getRequestMetricCollector();
     }
@@ -586,7 +596,10 @@ public abstract class AmazonWebServiceClient {
     /**
      * Returns the client specific request metric collector if there is one; or
      * the one at the AWS SDK level otherwise.
+     *
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     protected RequestMetricCollector requestMetricCollector() {
         RequestMetricCollector mc = client.getRequestMetricCollector();
         return mc == null ? AwsSdkMetrics.getRequestMetricCollector() : mc;
@@ -595,7 +608,10 @@ public abstract class AmazonWebServiceClient {
     /**
      * Returns the most specific request metric collector, starting from the
      * request level, then client level, then finally the AWS SDK level.
+     * 
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     protected final RequestMetricCollector findRequestMetricCollector(Request<?> req) {
         AmazonWebServiceRequest origReq = req.getOriginalRequest();
         RequestMetricCollector mc = origReq.getRequestMetricCollector();
@@ -609,7 +625,10 @@ public abstract class AmazonWebServiceClient {
     /**
      * Convenient method to end the client execution without logging the
      * awsRequestMetrics.
+     * 
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     protected final void endClientExecution(
             AWSRequestMetrics awsRequestMetrics, Request<?> request,
             Response<?> response) {
@@ -625,7 +644,9 @@ public abstract class AmazonWebServiceClient {
      *
      * @param loggingAwsRequestMetrics true to log the awsRequestMetrics; false
      *            otherwise.
+     * @deprecated metrics is deprecated
      */
+    @Deprecated
     protected final void endClientExecution(
             AWSRequestMetrics awsRequestMetrics, Request<?> request,
             Response<?> response, boolean loggingAwsRequestMetrics) {

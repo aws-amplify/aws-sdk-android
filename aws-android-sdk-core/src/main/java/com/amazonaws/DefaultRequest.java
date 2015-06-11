@@ -305,11 +305,13 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     @Override
+    @Deprecated
     public AWSRequestMetrics getAWSRequestMetrics() {
         return metrics;
     }
 
     @Override
+    @Deprecated
     public void setAWSRequestMetrics(AWSRequestMetrics metrics) {
         if (this.metrics == null) {
             this.metrics = metrics;

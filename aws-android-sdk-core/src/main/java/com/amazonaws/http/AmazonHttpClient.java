@@ -72,10 +72,10 @@ public class AmazonHttpClient {
     static final Log log = LogFactory.getLog(AmazonHttpClient.class);
 
     /** Internal client for sending HTTP requests */
-    private final HttpClient httpClient;
+    final HttpClient httpClient;
 
     /** Client configuration options, such as proxy settings, max retries, etc. */
-    private final ClientConfiguration config;
+    final ClientConfiguration config;
 
     /**
      * A request metric collector used specifically for this http client; or
@@ -160,8 +160,8 @@ public class AmazonHttpClient {
      *
      * @param request A previously executed AmazonWebServiceRequest object,
      *            whose response metadata is desired.
-     * @return The response metadata for the specified request, otherwise null if
-     *         there is no response metadata available for the request.
+     * @return The response metadata for the specified request, otherwise null
+     *         if there is no response metadata available for the request.
      * @deprecated ResponseMetadata cache can hold up to 50 requests and
      *             responses in memory and will cause memory issue. This method
      *             now always returns null.
@@ -204,14 +204,14 @@ public class AmazonHttpClient {
         }
     }
 
-    private void afterError(Request<?> request, Response<?> response,
+    void afterError(Request<?> request, Response<?> response,
             List<RequestHandler2> requestHandler2s, AmazonClientException e) {
         for (RequestHandler2 handler2 : requestHandler2s) {
             handler2.afterError(request, response, e);
         }
     }
 
-    private <T> void afterResponse(Request<?> request,
+    <T> void afterResponse(Request<?> request,
             List<RequestHandler2> requestHandler2s,
             Response<T> response,
             TimingInfo timingInfo) {
@@ -220,7 +220,7 @@ public class AmazonHttpClient {
         }
     }
 
-    private List<RequestHandler2> requestHandler2s(Request<?> request,
+    List<RequestHandler2> requestHandler2s(Request<?> request,
             ExecutionContext executionContext) {
         List<RequestHandler2> requestHandler2s = executionContext
                 .getRequestHandler2s();
@@ -248,7 +248,7 @@ public class AmazonHttpClient {
      * @see AmazonHttpClient#execute(Request, HttpResponseHandler,
      *      HttpResponseHandler, ExecutionContext)
      */
-    private <T> Response<T> executeHelper(Request<?> request,
+    <T> Response<T> executeHelper(Request<?> request,
             HttpResponseHandler<AmazonWebServiceResponse<T>> responseHandler,
             HttpResponseHandler<AmazonServiceException> errorResponseHandler,
             ExecutionContext executionContext)
@@ -442,10 +442,11 @@ public class AmazonHttpClient {
                  * connection left open, we go ahead and release the it to free
                  * up resources.
                  */
-                if (!leaveHttpConnectionOpen && httpResponse != null
-                        && httpResponse.getContent() != null) {
+                if (!leaveHttpConnectionOpen && httpResponse != null) {
                     try {
-                        httpResponse.getContent().close();
+                        if (httpResponse.getContent() != null) {
+                            httpResponse.getContent().close();
+                        }
                     } catch (IOException e) {
                         log.warn("Cannot close the response content.", e);
                     }
@@ -474,7 +475,7 @@ public class AmazonHttpClient {
      * @param cause The original error that caused the request to fail.
      * @throws AmazonClientException If the request can't be reset.
      */
-    private void resetRequestAfterError(Request<?> request, Exception cause)
+    void resetRequestAfterError(Request<?> request, Exception cause)
             throws AmazonClientException {
         if (request.getContent() == null) {
             return; // no reset needed
@@ -521,7 +522,7 @@ public class AmazonHttpClient {
     /**
      * Appends the given user-agent string to the existing one and returns it.
      */
-    private static String createUserAgentString(String existingUserAgentString, String userAgent) {
+    static String createUserAgentString(String existingUserAgentString, String userAgent) {
         if (existingUserAgentString.contains(userAgent)) {
             return existingUserAgentString;
         } else {
@@ -616,7 +617,7 @@ public class AmazonHttpClient {
      * @throws IOException If any problems were encountered reading the response
      *             contents from the HTTP method object.
      */
-    private <T> T handleResponse(Request<?> request,
+    <T> T handleResponse(Request<?> request,
             HttpResponseHandler<AmazonWebServiceResponse<T>> responseHandler,
             HttpResponse response,
             ExecutionContext executionContext) throws IOException
@@ -669,7 +670,7 @@ public class AmazonHttpClient {
      * @throws IOException If any problems are encountering reading the error
      *             response.
      */
-    private AmazonServiceException handleErrorResponse(Request<?> request,
+    AmazonServiceException handleErrorResponse(Request<?> request,
             HttpResponseHandler<AmazonServiceException> errorResponseHandler,
             HttpResponse response) throws IOException {
         int status = response.getStatusCode();
@@ -769,7 +770,7 @@ public class AmazonHttpClient {
         return msg;
     }
 
-    private int parseClockSkewOffset(HttpResponse response, AmazonServiceException exception) {
+    int parseClockSkewOffset(HttpResponse response, AmazonServiceException exception) {
         Date deviceDate = new Date();
         Date serverDate = null;
         String serverDateStr = null;

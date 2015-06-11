@@ -20,7 +20,10 @@ import java.io.OutputStream;
 
 /**
  * Base class for AWS Java SDK specific {@link FilterOutputStream}.
+ * 
+ * @deprecated class only adds metrics, which is deprecated
  */
+@Deprecated
 public class SdkFilterOutputStream extends FilterOutputStream implements MetricAware {
     public SdkFilterOutputStream(OutputStream out) {
         super(out);

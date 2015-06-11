@@ -15,10 +15,12 @@
 
 package com.amazonaws.http;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Represents an HTTP response returned by an AWS service in response to a
@@ -28,15 +30,17 @@ public class HttpResponse {
 
     private final String statusText;
     private final int statusCode;
-    private final InputStream content;
+    // Raw content input stream without decoding
+    private final InputStream rawContent;
     private final Map<String, String> headers;
+    private InputStream content;
 
     private HttpResponse(String statusText, int statusCode, Map<String, String> headers,
-            InputStream content) {
+            InputStream rawContent) {
         this.statusText = statusText;
         this.statusCode = statusCode;
         this.headers = headers;
-        this.content = content;
+        this.rawContent = rawContent;
     }
 
     /**
@@ -52,9 +56,31 @@ public class HttpResponse {
      * Returns the input stream containing the response content.
      *
      * @return The input stream containing the response content.
+     * @throws IOException if an I/O error has occurred
      */
-    public InputStream getContent() {
+    public InputStream getContent() throws IOException {
+        if (content == null) {
+            // Avoid decoding the content multiple times
+            synchronized(this) {
+                if (rawContent != null && "gzip".equals(headers.get("Content-Encoding"))) {
+                    content = new GZIPInputStream(rawContent);
+                } else {
+                    content = rawContent;
+                }
+            }
+        }
         return content;
+    }
+
+    /**
+     * Get the raw content without considering Content-Encoding. This is useful
+     * if you want full control of the content.
+     *
+     * @return the raw content input stream.
+     * @throws IOException if an I/O error has occurred
+     */
+    public InputStream getRawContent() throws IOException {
+        return rawContent;
     }
 
     /**

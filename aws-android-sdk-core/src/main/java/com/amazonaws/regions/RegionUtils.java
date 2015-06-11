@@ -111,9 +111,12 @@ public class RegionUtils {
     }
 
     /**
-     * Fetches the most recent version of the regions file from the remote
-     * source and caches it to the workspace metadata directory, then
-     * initializes the static list of regions with it.
+     * There is no need to call this method, it is public only for
+     * Compatibility. Every regions method makes sure this method has already
+     * been called. This method will load the regions (specified by the
+     * developer if the system property
+     * SDKGlobalConfiguraiton.REGIONS_FILE_OVERRIDE_SYSTEM_PROPERTY is set, or
+     * the defaults shipped with the SDK) into memory.
      */
     public static synchronized void init() {
         if (System.getProperty(REGIONS_FILE_OVERRIDE_SYSTEM_PROPERTY) != null) {

@@ -19,6 +19,7 @@ package com.amazonaws.internal;
  * Used to check if any metrics gathering activity is already turned on in one
  * of the underlying wrapped objects.
  */
+@Deprecated
 public interface MetricAware {
     /**
      * Returns true if this object or one of it's inner wrapped objects has

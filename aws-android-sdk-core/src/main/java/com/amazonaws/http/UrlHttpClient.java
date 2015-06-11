@@ -57,7 +57,17 @@ public class UrlHttpClient implements HttpClient {
 
     @Override
     public HttpResponse execute(HttpRequest request) throws IOException {
-        HttpURLConnection connection = createConnection(request);
+        URL url = request.getUri().toURL();
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        configureConnection(connection);
+        applyHeadersAndMethod(request, connection);
+        writeContentToConnection(request, connection);
+        return createHttpResponse(request, connection);
+    }
+
+    HttpResponse createHttpResponse(HttpRequest request, HttpURLConnection connection)
+            throws IOException {
 
         String statusText = connection.getResponseMessage();
         int statusCode = connection.getResponseCode();
@@ -99,11 +109,31 @@ public class UrlHttpClient implements HttpClient {
         // No op
     }
 
-    private HttpURLConnection createConnection(HttpRequest request) throws IOException {
-        URL url = request.getUri().toURL();
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        configureConnection(connection);
+    /**
+     * Writes the content (if any) of the request to the passed connection
+     *
+     * @param request
+     * @param connection
+     * @throws IOException
+     */
+    void writeContentToConnection(HttpRequest request, HttpURLConnection connection)
+            throws IOException {
+        // Note: if DoOutput is set to true and method is GET, HttpUrlConnection
+        // will silently change the method to POST.
+        if (request.getContent() != null && request.getContentLength() >= 0) {
+            connection.setDoOutput(true);
+            // This is for backward compatibility, because
+            // setFixedLengthStreamingMode(long) is available in API level 19.
+            connection.setFixedLengthStreamingMode((int) request.getContentLength());
+            OutputStream os = connection.getOutputStream();
+            write(request.getContent(), os);
+            os.flush();
+            os.close();
+        }
+    }
 
+    HttpURLConnection applyHeadersAndMethod(HttpRequest request, HttpURLConnection connection)
+            throws ProtocolException {
         // add headers
         if (request.getHeaders() != null && !request.getHeaders().isEmpty()) {
             for (Map.Entry<String, String> header : request.getHeaders().entrySet()) {
@@ -132,19 +162,6 @@ public class UrlHttpClient implements HttpClient {
 
         String method = request.getMethod();
         connection.setRequestMethod(method);
-        // Note: if DoOutput is set to true and method is GET, HttpUrlConnection
-        // will silently change the method to POST.
-        if (request.getContent() != null && request.getContentLength() > 0) {
-            connection.setDoOutput(true);
-            // This is for backward compatibility, because
-            // setFixedLengthStreamingMode(long) is available in API level 19.
-            connection.setFixedLengthStreamingMode((int) request.getContentLength());
-            OutputStream os = connection.getOutputStream();
-            write(request.getContent(), os);
-            os.flush();
-            os.close();
-        }
-
         return connection;
     }
 
@@ -156,7 +173,7 @@ public class UrlHttpClient implements HttpClient {
         }
     }
 
-    private void configureConnection(HttpURLConnection connection) {
+    void configureConnection(HttpURLConnection connection) {
         // configure the connection
         connection.setConnectTimeout(config.getConnectionTimeout());
         connection.setReadTimeout(config.getSocketTimeout());

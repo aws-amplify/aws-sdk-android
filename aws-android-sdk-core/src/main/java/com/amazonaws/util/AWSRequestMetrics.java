@@ -35,7 +35,10 @@ import java.util.List;
  * This class is instantiated instead of {@link AWSRequestMetricsFullSupport}
  * when request metric collection is not required during a particular service
  * request/response cycle.
+ * 
+ * @deprecated metrics is deprecated
  */
+@Deprecated
 public class AWSRequestMetrics {
     /**
      * Predefined AWS SDK metric types general across all AWS clients. Client

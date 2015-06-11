@@ -106,9 +106,11 @@ public class ClientConfiguration {
     private String proxyPassword = null;
 
     /** Optional Windows domain name for configuring NTLM proxy support. */
+    @Deprecated
     private String proxyDomain = null;
 
     /** Optional Windows workstation name for configuring NTLM proxy support. */
+    @Deprecated
     private String proxyWorkstation = null;
 
     /**
@@ -471,6 +473,7 @@ public class ClientConfiguration {
      *
      * @return The optional Windows domain name for configuring an NTLM proxy.
      */
+    @Deprecated
     public String getProxyDomain() {
         return proxyDomain;
     }
@@ -482,6 +485,7 @@ public class ClientConfiguration {
      * @param proxyDomain The optional Windows domain name for configuring an
      *            NTLM proxy.
      */
+    @Deprecated
     public void setProxyDomain(String proxyDomain) {
         this.proxyDomain = proxyDomain;
     }
@@ -496,6 +500,7 @@ public class ClientConfiguration {
      *            NTLM proxy.
      * @return The updated ClientConfiguration object.
      */
+    @Deprecated
     public ClientConfiguration withProxyDomain(String proxyDomain) {
         setProxyDomain(proxyDomain);
         return this;
@@ -521,6 +526,7 @@ public class ClientConfiguration {
      * @param proxyWorkstation The optional Windows workstation name for
      *            configuring NTLM proxy support.
      */
+    @Deprecated
     public void setProxyWorkstation(String proxyWorkstation) {
         this.proxyWorkstation = proxyWorkstation;
     }
@@ -535,6 +541,7 @@ public class ClientConfiguration {
      *            configuring NTLM proxy support.
      * @return The updated ClientConfiguration object.
      */
+    @Deprecated
     public ClientConfiguration withProxyWorkstation(String proxyWorkstation) {
         setProxyWorkstation(proxyWorkstation);
         return this;

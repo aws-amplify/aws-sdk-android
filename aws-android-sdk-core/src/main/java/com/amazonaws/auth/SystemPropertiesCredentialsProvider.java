@@ -25,6 +25,7 @@ import com.amazonaws.AmazonClientException;
  * looking at the <code>aws.accessKeyId</code> and <code>aws.secretKey</code>
  * Java system properties.
  */
+@Deprecated
 public class SystemPropertiesCredentialsProvider implements AWSCredentialsProvider {
 
     @Override
