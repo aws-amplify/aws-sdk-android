@@ -71,9 +71,7 @@ public abstract class PersistableTransfer {
         long mutlipartUploadThreshold = -1;
 
         String versionId = null;
-        long[] range = new long[] {
-                -1, -1
-        };
+        long[] range = null;
         ResponseHeaderOverrides responseHeaders = null;
         boolean isRequesterPays = false;
 
@@ -106,6 +104,7 @@ public abstract class PersistableTransfer {
                     versionId = reader.nextString();
                 } else if (name.equals("range")) {
                     reader.beginArray();
+                    range = new long[2];
                     range[0] = Long.parseLong(reader.nextString());
                     range[1] = Long.parseLong(reader.nextString());
                     reader.endArray();

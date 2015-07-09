@@ -15,6 +15,7 @@
 package com.amazonaws.services.kinesis.model.transform;
 
 import static com.amazonaws.util.StringUtils.UTF8;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
@@ -22,6 +23,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 import java.util.List;
+import java.util.zip.GZIPOutputStream;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
@@ -53,8 +55,10 @@ public class PutRecordRequestMarshaller implements Marshaller<Request<PutRecordR
         request.setResourcePath("");
         
         try {
-            StringWriter stringWriter = new StringWriter();
-            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            GZIPOutputStream gos = new GZIPOutputStream(baos, 8192);
+            Writer writer = new OutputStreamWriter(gos, StringUtils.UTF8);
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(writer);
 
             jsonWriter.beginObject();
             
@@ -75,13 +79,15 @@ public class PutRecordRequestMarshaller implements Marshaller<Request<PutRecordR
             }
 
             jsonWriter.endObject();
+            jsonWriter.flush();
+            gos.finish();
+            writer.close();
 
-            jsonWriter.close();
-            String snippet = stringWriter.toString();
-            byte[] content = snippet.getBytes(UTF8);
-            request.setContent(new StringInputStream(snippet));
+            byte[] content = baos.toByteArray();
+            request.setContent(new ByteArrayInputStream(content));
             request.addHeader("Content-Length", Integer.toString(content.length));
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Encoding", "gzip");
         } catch(Throwable t) {
             throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }

@@ -456,6 +456,13 @@ public class CognitoCachingCredentialsProvider
 
         return sessionCredentials;
     }
+    
+    @Override
+    public void refresh() {
+        super.refresh();
+        saveCredentials(sessionCredentials,
+                getSessionCredentitalsExpiration().getTime());
+    }
 
     @Override
     public void setLogins(Map<String, String> logins) {
@@ -488,14 +495,12 @@ public class CognitoCachingCredentialsProvider
     public void clearCredentials() {
         super.clearCredentials();
         Log.d(TAG, "Clearing credentials from SharedPreferences");
-        if (sessionCredentials != null) {
-            prefs.edit()
-                    .remove(namespace(AK_KEY))
-                    .remove(namespace(SK_KEY))
-                    .remove(namespace(ST_KEY))
-                    .remove(namespace(EXP_KEY))
-                    .apply();
-        }
+        prefs.edit()
+                .remove(namespace(AK_KEY))
+                .remove(namespace(SK_KEY))
+                .remove(namespace(ST_KEY))
+                .remove(namespace(EXP_KEY))
+                .apply();
     }
 
     /**
@@ -514,7 +519,7 @@ public class CognitoCachingCredentialsProvider
     /**
      * Load the credentials from prefs
      */
-    private void loadCachedCredentials() {
+    void loadCachedCredentials() {
         Log.d(TAG, "Loading credentials from SharedPreferences");
         sessionCredentialsExpiration = new Date(prefs.getLong(namespace(EXP_KEY), 0));
         // make sure we have valid data in prefs

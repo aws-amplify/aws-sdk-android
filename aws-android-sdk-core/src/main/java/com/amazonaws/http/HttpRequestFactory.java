@@ -29,23 +29,24 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * Responsible for creating Http request objects from AWS {@link Request}s.
+ * Responsible for converting AWS {@link Request}s to {@link HttpRequest}s.
  */
-class HttpRequestFactory {
+public class HttpRequestFactory {
 
     private static final String DEFAULT_ENCODING = "UTF-8";
 
     /**
-     * Creates an HttpClient method object based on the specified request and
-     * populates any parameters, headers, etc. from the original request.
+     * Creates an {@link HttpClient} request object based on the specified AWS
+     * request and populates any parameters, headers, etc. from the original
+     * request.
      *
-     * @param request The request to convert to an HttpClient method object.
-     * @param context The execution context of the HTTP method to be executed
-     * @return The converted HttpClient method object with any parameters,
+     * @param request The request to convert to an HttpClient request object.
+     * @param context The execution context of the HTTP request to be executed
+     * @return The converted HttpClient request object with any parameters,
      *         headers, etc. from the original request set.
      */
-    HttpRequest createHttpRequest(Request<?> request, ClientConfiguration clientConfiguration,
-            ExecutionContext context) {
+    public HttpRequest createHttpRequest(Request<?> request,
+            ClientConfiguration clientConfiguration, ExecutionContext context) {
         URI endpoint = request.getEndpoint();
 
         /*
