@@ -29,7 +29,10 @@ import java.io.IOException;
  *
  * @see TransferManager#download(com.amazonaws.services.s3.model.GetObjectRequest)
  *      ;
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public interface Download extends Transfer {
 
     /**

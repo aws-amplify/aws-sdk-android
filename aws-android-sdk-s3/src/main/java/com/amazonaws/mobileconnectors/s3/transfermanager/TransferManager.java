@@ -111,7 +111,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * TransferManager tx = new TransferManager(
  *         credentialProviderChain.getCredentials());
  * Upload myUpload = tx.upload(myBucket, myFile.getName(), myFile);
- *
+ * 
  * // You can poll your transfer's status to check its progress
  * if (myUpload.isDone() == false) {
  *     System.out.println(&quot;Transfer: &quot; + myUpload.getDescription());
@@ -119,16 +119,16 @@ import java.util.concurrent.atomic.AtomicInteger;
  *     System.out.println(&quot;  - Progress: &quot;
  *             + myUpload.getProgress().getBytesTransferred());
  * }
- *
+ * 
  * // Transfers also allow you to set a &lt;code&gt;ProgressListener&lt;/code&gt; to receive
  * // asynchronous notifications about your transfer's progress.
  * myUpload.addProgressListener(myProgressListener);
- *
+ * 
  * // Or you can block the current thread and wait for your transfer to
  * // to complete. If the transfer fails, this method will throw an
  * // AmazonClientException or AmazonServiceException detailing the reason.
  * myUpload.waitForCompletion();
- *
+ * 
  * // After the upload is complete, call shutdownNow to release the resources.
  * tx.shutdownNow();
  * </pre>
@@ -142,7 +142,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @see Download#pause()
  * @see TransferManager#resumeUpload(PersistableUpload)
  * @see TransferManager#resumeDownload(PersistableDownload)
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public class TransferManager {
 
     /** The low level client we use to make the actual calls to Amazon S3. */

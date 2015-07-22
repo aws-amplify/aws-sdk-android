@@ -28,7 +28,10 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.model.UploadResult;
  *
  * @see TransferManager#upload(String, String, java.io.File)
  * @see TransferManager#upload(com.amazonaws.services.s3.model.PutObjectRequest)
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public interface Upload extends Transfer {
 
     /**
@@ -38,8 +41,8 @@ public interface Upload extends Transfer {
      * method.
      *
      * @return The result of this transfer.
-     * @throws AmazonClientException If any errors were encountered in the client
-     *             while making the request or handling the response.
+     * @throws AmazonClientException If any errors were encountered in the
+     *             client while making the request or handling the response.
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
      * @throws InterruptedException If this thread is interrupted while waiting

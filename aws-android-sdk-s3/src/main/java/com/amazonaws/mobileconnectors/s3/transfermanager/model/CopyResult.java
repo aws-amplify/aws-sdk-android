@@ -24,7 +24,10 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
  *
  * @see TransferManager#copy(String, String, String, String)
  * @see TransferManager#copy(com.amazonaws.services.s3.model.CopyObjectRequest)
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public class CopyResult {
 
     /** The name of the bucket containing the object to be copied */

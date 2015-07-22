@@ -25,7 +25,11 @@ import static com.amazonaws.services.s3.internal.Constants.MB;
  * bandwidth. The default configuration settings are suitable for most
  * applications, but this class enables developers to experiment with different
  * configurations and tune transfer manager performance.
+ * 
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public class TransferManagerConfiguration {
 
     /** Default minimum part size for upload parts. */

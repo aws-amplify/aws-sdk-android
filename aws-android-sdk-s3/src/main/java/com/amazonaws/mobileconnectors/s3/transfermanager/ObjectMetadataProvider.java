@@ -25,7 +25,11 @@ import java.io.File;
  * callback is invoked for each file that is uploaded by
  * <code>TransferManager</code> and given an opportunity to specify the metadata
  * for each file.
+ * 
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public interface ObjectMetadataProvider {
 
     /*

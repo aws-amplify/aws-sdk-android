@@ -20,7 +20,10 @@ package com.amazonaws.mobileconnectors.s3.transfermanager;
  *
  * @param <T> information that can be used to resume the paused operation; can
  *            be null if the pause failed.
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public final class PauseResult<T> {
     private final PauseStatus pauseStatus;
     private final T infoToResume; // non-null only if pauseStatus == SUCCESS

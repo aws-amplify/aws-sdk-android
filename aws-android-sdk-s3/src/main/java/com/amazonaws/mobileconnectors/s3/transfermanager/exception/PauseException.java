@@ -20,7 +20,11 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.PauseStatus;
 
 /**
  * Failed to complete a pause operation.
+ * 
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public class PauseException extends AmazonClientException {
 
     private static final long serialVersionUID = 1L;

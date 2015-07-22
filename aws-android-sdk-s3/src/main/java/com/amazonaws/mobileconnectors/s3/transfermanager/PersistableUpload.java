@@ -24,7 +24,11 @@ import java.io.StringWriter;
 /**
  * An opaque token that holds some private state and can be used to resume a
  * paused download operation.
+ * 
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public final class PersistableUpload extends PersistableTransfer {
     static final String TYPE = "upload";
 

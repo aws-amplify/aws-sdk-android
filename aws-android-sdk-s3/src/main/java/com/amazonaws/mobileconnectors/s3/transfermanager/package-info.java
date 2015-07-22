@@ -1,6 +1,7 @@
 /**
- * Primary classes for interacting with the S3 Transfer Manager connector which simplifies uploading and downloading files from S3.
+ * The Transfer Manager is now deprecated, and has been replaced by {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
 
+@Deprecated
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 

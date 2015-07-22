@@ -18,7 +18,11 @@ package com.amazonaws.mobileconnectors.s3.transfermanager;
 /**
  * The status of a pause operation initiated on a {@link Upload}/
  * {@link Download}.
+ * 
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public enum PauseStatus {
 
     /**

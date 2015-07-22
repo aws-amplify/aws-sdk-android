@@ -35,6 +35,7 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.validate.Pe
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.mobileanalytics.AmazonMobileAnalyticsClient;
 import com.amazonaws.util.VersionInfoUtils;
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 
 import java.util.HashMap;
 
@@ -228,9 +229,26 @@ public class MobileAnalyticsManager {
     }
 
     /*
-     * Same as getOrCreateInstance(Context, AWSCredentialsProvider, String,
-     * AnalyticsConfig, AnalyticsCallback<MobileAnalyticsManager>) without
-     * optional parameters
+     * Same as getOrCreateInstance(Context, String, Regions, AWSCredentialsProvider)
+     * without the Regions and AWSCredentialsProvider parameters. This method defaults
+     * to use Regions.US_EAST_1 and create a CognitoCachingCredentialsProvider with the
+     * provided Cognito identity pool Id.
+     */
+    public static MobileAnalyticsManager getOrCreateInstance(Context context, String appId,
+            String cognitoId
+            ) throws InitializationException {
+
+        CognitoCachingCredentialsProvider cognitoProvider = new CognitoCachingCredentialsProvider(
+                context,
+                cognitoId,
+                Regions.US_EAST_1
+        );
+        return getOrCreateInstance(context, appId, Regions.US_EAST_1, cognitoProvider, null, null);
+    }
+
+    /*
+     * Same as getOrCreateInstance(Context, String, Regions, AWSCredentialsProvider,
+     * AnalyticsConfig) without the AnalyticsConfig options parameter.
      */
     public static MobileAnalyticsManager getOrCreateInstance(Context context, String appId,
             Regions region, AWSCredentialsProvider credentialsProvider
@@ -239,9 +257,9 @@ public class MobileAnalyticsManager {
     }
 
     /*
-     * Same as getOrCreateInstance(Context, AWSCredentialsProvider, String,
-     * AnalyticsConfig, AnalyticsCallback<MobileAnalyticsManager>) without
-     * optional parameters
+     * Same as getOrCreateInstance(Context, String, Regions, AWSCredentialsProvider,
+     * AnalyticsConfig,  AnalyticsCallback<MobileAnalyticsManager>) without the AnalyticsCallback
+     * initCompletionCallback parameter.
      */
     public static MobileAnalyticsManager getOrCreateInstance(Context context, String appId,
             Regions region, AWSCredentialsProvider credentialsProvider,
@@ -250,7 +268,7 @@ public class MobileAnalyticsManager {
     }
 
     /*
-     * Same as getOrCreateInstance(Context, AWSCredentialsProvider, String,
+     * Same as getOrCreateInstance(Context, String, Regions, AWSCredentialsProvider,
      * AnalyticsConfig, AnalyticsCallback<MobileAnalyticsManager>) without
      * optional parameters
      */

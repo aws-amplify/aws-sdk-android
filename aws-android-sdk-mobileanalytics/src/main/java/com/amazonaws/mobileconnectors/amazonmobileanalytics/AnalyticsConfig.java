@@ -29,7 +29,7 @@ import com.amazonaws.ClientConfiguration;
 public class AnalyticsConfig {
 
     private boolean allowEventCollection = true;
-    private boolean allowWANDelivery = false;
+    private boolean allowWANDelivery = true;
     private ClientConfiguration clientConfiguration;
 
     /**

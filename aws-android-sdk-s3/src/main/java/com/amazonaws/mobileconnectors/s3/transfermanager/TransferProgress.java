@@ -20,7 +20,11 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * Describes the progress of a transfer.
+ * 
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public final class TransferProgress {
 
     private static final Log log = LogFactory.getLog(TransferProgress.class);

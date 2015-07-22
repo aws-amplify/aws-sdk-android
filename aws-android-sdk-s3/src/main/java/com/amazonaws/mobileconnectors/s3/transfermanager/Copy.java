@@ -27,7 +27,10 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.model.CopyResult;
  *
  * @see TransferManager#copy(String, String, String, String)
  * @see TransferManager#copy(com.amazonaws.services.s3.model.CopyObjectRequest)
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public interface Copy extends Transfer {
 
     /**
@@ -37,8 +40,8 @@ public interface Copy extends Transfer {
      * through this method.
      *
      * @return The result of this transfer.
-     * @throws AmazonClientException If any errors were encountered in the client
-     *             while making the request or handling the response.
+     * @throws AmazonClientException If any errors were encountered in the
+     *             client while making the request or handling the response.
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
      * @throws InterruptedException If this thread is interrupted while waiting

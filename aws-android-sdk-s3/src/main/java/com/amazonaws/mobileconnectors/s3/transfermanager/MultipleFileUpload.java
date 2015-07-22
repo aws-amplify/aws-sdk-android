@@ -19,7 +19,11 @@ import java.util.Collection;
 
 /**
  * Multiple file download of an entire virtual directory.
+ * 
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public interface MultipleFileUpload extends Transfer {
 
     /**

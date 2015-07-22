@@ -32,7 +32,11 @@ import java.io.OutputStream;
  * Abstract base class for the information of a pausible upload or download;
  * such information can be used to resume the upload or download later on, and
  * can be serialized/deserialized for persistence purposes.
+ * 
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public abstract class PersistableTransfer {
 
     /**

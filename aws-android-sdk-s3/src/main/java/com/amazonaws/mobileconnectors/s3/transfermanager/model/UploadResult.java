@@ -24,7 +24,10 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
  *
  * @see TransferManager#upload(String, String, java.io.File)
  * @see TransferManager#upload(com.amazonaws.services.s3.model.PutObjectRequest)
+ * @deprecated The Transfer Manager is now deprecated in favor of the
+ *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
+@Deprecated
 public class UploadResult {
 
     /** The name of the bucket containing the completed upload. */
