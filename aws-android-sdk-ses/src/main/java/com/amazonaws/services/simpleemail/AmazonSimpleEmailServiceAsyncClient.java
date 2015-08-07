@@ -639,11 +639,13 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * returns a structure describing identity notification attributes.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * This action is throttled at one request per second and can only get
+     * notification attributes for up to 100 identities at a time.
      * </p>
      * <p>
-     * For more information about feedback notification, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/bounce-complaint-notifications.html"> Amazon SES Developer Guide </a>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      *
@@ -679,11 +681,13 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * returns a structure describing identity notification attributes.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * This action is throttled at one request per second and can only get
+     * notification attributes for up to 100 identities at a time.
      * </p>
      * <p>
-     * For more information about feedback notification, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/bounce-complaint-notifications.html"> Amazon SES Developer Guide </a>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      *
@@ -862,7 +866,8 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * 
      * </ul>
      * <p>
-     * This action is throttled at one request per second.
+     * This action is throttled at one request per second and can only get
+     * DKIM attributes for up to 100 identities at a time.
      * </p>
      * <p>
      * For more information about creating DNS records using DKIM tokens, go
@@ -920,7 +925,8 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * 
      * </ul>
      * <p>
-     * This action is throttled at one request per second.
+     * This action is throttled at one request per second and can only get
+     * DKIM attributes for up to 100 identities at a time.
      * </p>
      * <p>
      * For more information about creating DNS records using DKIM tokens, go
@@ -964,6 +970,116 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
             throw ex;
               }
               asyncHandler.onSuccess(getIdentityDkimAttributesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns a list of sending authorization policies that are attached to
+     * the given identity (email address or domain). This API returns only a
+     * list. If you want the actual policy content, you can use
+     * <code>GetIdentityPolicies</code> .
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param listIdentityPoliciesRequest Container for the necessary
+     *           parameters to execute the ListIdentityPolicies operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ListIdentityPolicies service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ListIdentityPoliciesResult> listIdentityPoliciesAsync(final ListIdentityPoliciesRequest listIdentityPoliciesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListIdentityPoliciesResult>() {
+            public ListIdentityPoliciesResult call() throws Exception {
+                return listIdentityPolicies(listIdentityPoliciesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns a list of sending authorization policies that are attached to
+     * the given identity (email address or domain). This API returns only a
+     * list. If you want the actual policy content, you can use
+     * <code>GetIdentityPolicies</code> .
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param listIdentityPoliciesRequest Container for the necessary
+     *           parameters to execute the ListIdentityPolicies operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ListIdentityPolicies service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ListIdentityPoliciesResult> listIdentityPoliciesAsync(
+            final ListIdentityPoliciesRequest listIdentityPoliciesRequest,
+            final AsyncHandler<ListIdentityPoliciesRequest, ListIdentityPoliciesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListIdentityPoliciesResult>() {
+            public ListIdentityPoliciesResult call() throws Exception {
+              ListIdentityPoliciesResult result;
+                try {
+                result = listIdentityPolicies(listIdentityPoliciesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(listIdentityPoliciesRequest, result);
                  return result;
         }
     });
@@ -1071,31 +1187,67 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Internet email standards; otherwise, the message cannot be sent.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b> You can only send email from verified email
-     * addresses and domains. If you have not requested production access to
-     * Amazon SES, you must also verify every recipient email address except
-     * for the recipients provided by the Amazon SES mailbox simulator. For
-     * more information, go to the Amazon SES Developer Guide.
+     * There are several important points to know about
+     * <code>SendRawEmail</code> :
      * </p>
-     * <p>
-     * The total size of the message cannot exceed 10 MB. This includes any
-     * attachments that are part of the message.
-     * </p>
-     * <p>
-     * Amazon SES has a limit on the total number of recipients per message:
-     * The combined number of To:, CC: and BCC: email addresses cannot exceed
-     * 50. If you need to send an email message to a larger audience, you can
-     * divide your recipient list into groups of 50 or fewer, and then call
-     * Amazon SES repeatedly to send the message to each group.
-     * </p>
-     * <p>
-     * For every message that you send, the total number of recipients (To:,
-     * CC: and BCC:) is counted against your <i>sending quota</i> - the
+     * 
+     * <ul>
+     * <li>You can only send email from verified email addresses and
+     * domains; otherwise, you will get an "Email address not verified"
+     * error. If your account is still in the Amazon SES sandbox, you must
+     * also verify every recipient email address except for the recipients
+     * provided by the Amazon SES mailbox simulator. For more information, go
+     * to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"> Amazon SES Developer Guide </a>
+     * .</li>
+     * <li>The total size of the message cannot exceed 10 MB. This includes
+     * any attachments that are part of the message.</li>
+     * <li>Amazon SES has a limit on the total number of recipients per
+     * message. The combined number of To:, CC: and BCC: email addresses
+     * cannot exceed 50. If you need to send an email message to a larger
+     * audience, you can divide your recipient list into groups of 50 or
+     * fewer, and then call Amazon SES repeatedly to send the message to each
+     * group.</li>
+     * <li>The To:, CC:, and BCC: headers in the raw message can contain a
+     * group list. Note that each recipient in a group list counts towards
+     * the 50-recipient limit.</li>
+     * <li>For every message that you send, the total number of recipients
+     * (To:, CC: and BCC:) is counted against your sending quota - the
      * maximum number of emails you can send in a 24-hour period. For
      * information about your sending quota, go to the
      * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"> Amazon SES Developer Guide </a>
-     * .
+     * .</li>
+     * <li>If you are using sending authorization to send on behalf of
+     * another user, <code>SendRawEmail</code> enables you to specify the
+     * cross-account identity for the email's "Source," "From," and
+     * "Return-Path" parameters in one of two ways: you can pass optional
+     * parameters <code>SourceArn</code> , <code>FromArn</code> , and/or
+     * <code>ReturnPathArn</code> to the API, or you can include the
+     * following X-headers in the header of your raw email:
+     * <ul>
+     * <li> <code>X-SES-SOURCE-ARN</code> </li>
+     * <li> <code>X-SES-FROM-ARN</code> </li>
+     * <li> <code>X-SES-RETURN-PATH-ARN</code> </li>
+     * 
+     * </ul>
+     * <p>
+     * <b>IMPORTANT:</b>Do not include these X-headers in the DKIM
+     * signature, because they are removed by Amazon SES before sending the
+     * email.
      * </p>
+     * For the most common sending authorization use case, we recommend that
+     * you specify the <code>SourceIdentityArn</code> and do not specify
+     * either the <code>FromIdentityArn</code> or
+     * <code>ReturnPathIdentityArn</code> . (The same note applies to the
+     * corresponding X-headers.) If you only specify the
+     * <code>SourceIdentityArn</code> , Amazon SES will simply set the "From"
+     * address and the "Return Path" address to the identity specified in
+     * <code>SourceIdentityArn</code> . For more information about sending
+     * authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .</li>
+     * 
+     * </ul>
      *
      * @param sendRawEmailRequest Container for the necessary parameters to
      *           execute the SendRawEmail operation on AmazonSimpleEmailService.
@@ -1129,31 +1281,67 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Internet email standards; otherwise, the message cannot be sent.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b> You can only send email from verified email
-     * addresses and domains. If you have not requested production access to
-     * Amazon SES, you must also verify every recipient email address except
-     * for the recipients provided by the Amazon SES mailbox simulator. For
-     * more information, go to the Amazon SES Developer Guide.
+     * There are several important points to know about
+     * <code>SendRawEmail</code> :
      * </p>
-     * <p>
-     * The total size of the message cannot exceed 10 MB. This includes any
-     * attachments that are part of the message.
-     * </p>
-     * <p>
-     * Amazon SES has a limit on the total number of recipients per message:
-     * The combined number of To:, CC: and BCC: email addresses cannot exceed
-     * 50. If you need to send an email message to a larger audience, you can
-     * divide your recipient list into groups of 50 or fewer, and then call
-     * Amazon SES repeatedly to send the message to each group.
-     * </p>
-     * <p>
-     * For every message that you send, the total number of recipients (To:,
-     * CC: and BCC:) is counted against your <i>sending quota</i> - the
+     * 
+     * <ul>
+     * <li>You can only send email from verified email addresses and
+     * domains; otherwise, you will get an "Email address not verified"
+     * error. If your account is still in the Amazon SES sandbox, you must
+     * also verify every recipient email address except for the recipients
+     * provided by the Amazon SES mailbox simulator. For more information, go
+     * to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"> Amazon SES Developer Guide </a>
+     * .</li>
+     * <li>The total size of the message cannot exceed 10 MB. This includes
+     * any attachments that are part of the message.</li>
+     * <li>Amazon SES has a limit on the total number of recipients per
+     * message. The combined number of To:, CC: and BCC: email addresses
+     * cannot exceed 50. If you need to send an email message to a larger
+     * audience, you can divide your recipient list into groups of 50 or
+     * fewer, and then call Amazon SES repeatedly to send the message to each
+     * group.</li>
+     * <li>The To:, CC:, and BCC: headers in the raw message can contain a
+     * group list. Note that each recipient in a group list counts towards
+     * the 50-recipient limit.</li>
+     * <li>For every message that you send, the total number of recipients
+     * (To:, CC: and BCC:) is counted against your sending quota - the
      * maximum number of emails you can send in a 24-hour period. For
      * information about your sending quota, go to the
      * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"> Amazon SES Developer Guide </a>
-     * .
+     * .</li>
+     * <li>If you are using sending authorization to send on behalf of
+     * another user, <code>SendRawEmail</code> enables you to specify the
+     * cross-account identity for the email's "Source," "From," and
+     * "Return-Path" parameters in one of two ways: you can pass optional
+     * parameters <code>SourceArn</code> , <code>FromArn</code> , and/or
+     * <code>ReturnPathArn</code> to the API, or you can include the
+     * following X-headers in the header of your raw email:
+     * <ul>
+     * <li> <code>X-SES-SOURCE-ARN</code> </li>
+     * <li> <code>X-SES-FROM-ARN</code> </li>
+     * <li> <code>X-SES-RETURN-PATH-ARN</code> </li>
+     * 
+     * </ul>
+     * <p>
+     * <b>IMPORTANT:</b>Do not include these X-headers in the DKIM
+     * signature, because they are removed by Amazon SES before sending the
+     * email.
      * </p>
+     * For the most common sending authorization use case, we recommend that
+     * you specify the <code>SourceIdentityArn</code> and do not specify
+     * either the <code>FromIdentityArn</code> or
+     * <code>ReturnPathIdentityArn</code> . (The same note applies to the
+     * corresponding X-headers.) If you only specify the
+     * <code>SourceIdentityArn</code> , Amazon SES will simply set the "From"
+     * address and the "Return Path" address to the identity specified in
+     * <code>SourceIdentityArn</code> . For more information about sending
+     * authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .</li>
+     * 
+     * </ul>
      *
      * @param sendRawEmailRequest Container for the necessary parameters to
      *           execute the SendRawEmail operation on AmazonSimpleEmailService.
@@ -1284,7 +1472,8 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * token for each identity.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * This action is throttled at one request per second and can only get
+     * verification attributes for up to 100 identities at a time.
      * </p>
      *
      * @param getIdentityVerificationAttributesRequest Container for the
@@ -1320,7 +1509,8 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * token for each identity.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * This action is throttled at one request per second and can only get
+     * verification attributes for up to 100 identities at a time.
      * </p>
      *
      * @param getIdentityVerificationAttributesRequest Container for the
@@ -1358,6 +1548,222 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
             throw ex;
               }
               asyncHandler.onSuccess(getIdentityVerificationAttributesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Adds or updates a sending authorization policy for the specified
+     * identity (email address or domain).
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param putIdentityPolicyRequest Container for the necessary parameters
+     *           to execute the PutIdentityPolicy operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         PutIdentityPolicy service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<PutIdentityPolicyResult> putIdentityPolicyAsync(final PutIdentityPolicyRequest putIdentityPolicyRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<PutIdentityPolicyResult>() {
+            public PutIdentityPolicyResult call() throws Exception {
+                return putIdentityPolicy(putIdentityPolicyRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Adds or updates a sending authorization policy for the specified
+     * identity (email address or domain).
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param putIdentityPolicyRequest Container for the necessary parameters
+     *           to execute the PutIdentityPolicy operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         PutIdentityPolicy service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<PutIdentityPolicyResult> putIdentityPolicyAsync(
+            final PutIdentityPolicyRequest putIdentityPolicyRequest,
+            final AsyncHandler<PutIdentityPolicyRequest, PutIdentityPolicyResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<PutIdentityPolicyResult>() {
+            public PutIdentityPolicyResult call() throws Exception {
+              PutIdentityPolicyResult result;
+                try {
+                result = putIdentityPolicy(putIdentityPolicyRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(putIdentityPolicyRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns the requested sending authorization policies for the given
+     * identity (email address or domain). The policies are returned as a map
+     * of policy names to policy contents. You can retrieve a maximum of 20
+     * policies at a time.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param getIdentityPoliciesRequest Container for the necessary
+     *           parameters to execute the GetIdentityPolicies operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetIdentityPolicies service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetIdentityPoliciesResult> getIdentityPoliciesAsync(final GetIdentityPoliciesRequest getIdentityPoliciesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetIdentityPoliciesResult>() {
+            public GetIdentityPoliciesResult call() throws Exception {
+                return getIdentityPolicies(getIdentityPoliciesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns the requested sending authorization policies for the given
+     * identity (email address or domain). The policies are returned as a map
+     * of policy names to policy contents. You can retrieve a maximum of 20
+     * policies at a time.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param getIdentityPoliciesRequest Container for the necessary
+     *           parameters to execute the GetIdentityPolicies operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetIdentityPolicies service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetIdentityPoliciesResult> getIdentityPoliciesAsync(
+            final GetIdentityPoliciesRequest getIdentityPoliciesRequest,
+            final AsyncHandler<GetIdentityPoliciesRequest, GetIdentityPoliciesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetIdentityPoliciesResult>() {
+            public GetIdentityPoliciesResult call() throws Exception {
+              GetIdentityPoliciesResult result;
+                try {
+                result = getIdentityPolicies(getIdentityPoliciesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(getIdentityPoliciesRequest, result);
                  return result;
         }
     });
@@ -1567,17 +1973,132 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
+     * Deletes the specified sending authorization policy for the given
+     * identity (email address or domain). This API returns successfully even
+     * if a policy with the specified name does not exist.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteIdentityPolicyRequest Container for the necessary
+     *           parameters to execute the DeleteIdentityPolicy operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteIdentityPolicy service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteIdentityPolicyResult> deleteIdentityPolicyAsync(final DeleteIdentityPolicyRequest deleteIdentityPolicyRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteIdentityPolicyResult>() {
+            public DeleteIdentityPolicyResult call() throws Exception {
+                return deleteIdentityPolicy(deleteIdentityPolicyRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified sending authorization policy for the given
+     * identity (email address or domain). This API returns successfully even
+     * if a policy with the specified name does not exist.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteIdentityPolicyRequest Container for the necessary
+     *           parameters to execute the DeleteIdentityPolicy operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteIdentityPolicy service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteIdentityPolicyResult> deleteIdentityPolicyAsync(
+            final DeleteIdentityPolicyRequest deleteIdentityPolicyRequest,
+            final AsyncHandler<DeleteIdentityPolicyRequest, DeleteIdentityPolicyResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteIdentityPolicyResult>() {
+            public DeleteIdentityPolicyResult call() throws Exception {
+              DeleteIdentityPolicyResult result;
+                try {
+                result = deleteIdentityPolicy(deleteIdentityPolicyRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteIdentityPolicyRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Given an identity (email address or domain), enables or disables
-     * whether Amazon SES forwards feedback notifications as email. Feedback
-     * forwarding may only be disabled when both complaint and bounce topics
-     * are set.
+     * whether Amazon SES forwards bounce and complaint notifications as
+     * email. Feedback forwarding can only be disabled when Amazon Simple
+     * Notification Service (Amazon SNS) topics are specified for both
+     * bounces and complaints.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>Feedback forwarding does not apply to delivery
+     * notifications. Delivery notifications are only available through
+     * Amazon SNS.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      * <p>
-     * For more information about feedback notification, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/bounce-complaint-notifications.html"> Amazon SES Developer Guide </a>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      *
@@ -1611,16 +2132,23 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     /**
      * <p>
      * Given an identity (email address or domain), enables or disables
-     * whether Amazon SES forwards feedback notifications as email. Feedback
-     * forwarding may only be disabled when both complaint and bounce topics
-     * are set.
+     * whether Amazon SES forwards bounce and complaint notifications as
+     * email. Feedback forwarding can only be disabled when Amazon Simple
+     * Notification Service (Amazon SNS) topics are specified for both
+     * bounces and complaints.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>Feedback forwarding does not apply to delivery
+     * notifications. Delivery notifications are only available through
+     * Amazon SNS.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      * <p>
-     * For more information about feedback notification, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/bounce-complaint-notifications.html"> Amazon SES Developer Guide </a>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      *
@@ -1753,30 +2281,35 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * queues the message for sending.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b> You can only send email from verified email
-     * addresses and domains. If you have not requested production access to
-     * Amazon SES, you must also verify every recipient email address except
-     * for the recipients provided by the Amazon SES mailbox simulator. For
-     * more information, go to the Amazon SES Developer Guide.
+     * There are several important points to know about
+     * <code>SendEmail</code> :
      * </p>
-     * <p>
-     * The total size of the message cannot exceed 10 MB.
-     * </p>
-     * <p>
-     * Amazon SES has a limit on the total number of recipients per message:
-     * The combined number of To:, CC: and BCC: email addresses cannot exceed
-     * 50. If you need to send an email message to a larger audience, you can
-     * divide your recipient list into groups of 50 or fewer, and then call
-     * Amazon SES repeatedly to send the message to each group.
-     * </p>
-     * <p>
-     * For every message that you send, the total number of recipients (To:,
-     * CC: and BCC:) is counted against your <i>sending quota</i> - the
+     * 
+     * <ul>
+     * <li>You can only send email from verified email addresses and
+     * domains; otherwise, you will get an "Email address not verified"
+     * error. If your account is still in the Amazon SES sandbox, you must
+     * also verify every recipient email address except for the recipients
+     * provided by the Amazon SES mailbox simulator. For more information, go
+     * to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"> Amazon SES Developer Guide </a>
+     * .</li>
+     * <li>The total size of the message cannot exceed 10 MB. This includes
+     * any attachments that are part of the message.</li>
+     * <li>Amazon SES has a limit on the total number of recipients per
+     * message. The combined number of To:, CC: and BCC: email addresses
+     * cannot exceed 50. If you need to send an email message to a larger
+     * audience, you can divide your recipient list into groups of 50 or
+     * fewer, and then call Amazon SES repeatedly to send the message to each
+     * group.</li>
+     * <li>For every message that you send, the total number of recipients
+     * (To:, CC: and BCC:) is counted against your sending quota - the
      * maximum number of emails you can send in a 24-hour period. For
      * information about your sending quota, go to the
      * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
+     * .</li>
+     * 
+     * </ul>
      *
      * @param sendEmailRequest Container for the necessary parameters to
      *           execute the SendEmail operation on AmazonSimpleEmailService.
@@ -1808,30 +2341,35 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * queues the message for sending.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b> You can only send email from verified email
-     * addresses and domains. If you have not requested production access to
-     * Amazon SES, you must also verify every recipient email address except
-     * for the recipients provided by the Amazon SES mailbox simulator. For
-     * more information, go to the Amazon SES Developer Guide.
+     * There are several important points to know about
+     * <code>SendEmail</code> :
      * </p>
-     * <p>
-     * The total size of the message cannot exceed 10 MB.
-     * </p>
-     * <p>
-     * Amazon SES has a limit on the total number of recipients per message:
-     * The combined number of To:, CC: and BCC: email addresses cannot exceed
-     * 50. If you need to send an email message to a larger audience, you can
-     * divide your recipient list into groups of 50 or fewer, and then call
-     * Amazon SES repeatedly to send the message to each group.
-     * </p>
-     * <p>
-     * For every message that you send, the total number of recipients (To:,
-     * CC: and BCC:) is counted against your <i>sending quota</i> - the
+     * 
+     * <ul>
+     * <li>You can only send email from verified email addresses and
+     * domains; otherwise, you will get an "Email address not verified"
+     * error. If your account is still in the Amazon SES sandbox, you must
+     * also verify every recipient email address except for the recipients
+     * provided by the Amazon SES mailbox simulator. For more information, go
+     * to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"> Amazon SES Developer Guide </a>
+     * .</li>
+     * <li>The total size of the message cannot exceed 10 MB. This includes
+     * any attachments that are part of the message.</li>
+     * <li>Amazon SES has a limit on the total number of recipients per
+     * message. The combined number of To:, CC: and BCC: email addresses
+     * cannot exceed 50. If you need to send an email message to a larger
+     * audience, you can divide your recipient list into groups of 50 or
+     * fewer, and then call Amazon SES repeatedly to send the message to each
+     * group.</li>
+     * <li>For every message that you send, the total number of recipients
+     * (To:, CC: and BCC:) is counted against your sending quota - the
      * maximum number of emails you can send in a 24-hour period. For
      * information about your sending quota, go to the
      * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
+     * .</li>
+     * 
+     * </ul>
      *
      * @param sendEmailRequest Container for the necessary parameters to
      *           execute the SendEmail operation on AmazonSimpleEmailService.
@@ -1967,18 +2505,22 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Given an identity (email address or domain), sets the Amazon SNS
-     * topic to which Amazon SES will publish bounce and complaint
-     * notifications for emails sent with that identity as the
-     * <code>Source</code> . Publishing to topics may only be disabled when
-     * feedback forwarding is enabled.
+     * Given an identity (email address or domain), sets the Amazon Simple
+     * Notification Service (Amazon SNS) topic to which Amazon SES will
+     * publish bounce, complaint, and/or delivery notifications for emails
+     * sent with that identity as the <code>Source</code> .
+     * </p>
+     * <p>
+     * <b>NOTE:</b>Unless feedback forwarding is enabled, you must specify
+     * Amazon SNS topics for bounce and complaint notifications. For more
+     * information, see SetIdentityFeedbackForwardingEnabled.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      * <p>
      * For more information about feedback notification, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/bounce-complaint-notifications.html"> Amazon SES Developer Guide </a>
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      *
@@ -2010,18 +2552,22 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
 
     /**
      * <p>
-     * Given an identity (email address or domain), sets the Amazon SNS
-     * topic to which Amazon SES will publish bounce and complaint
-     * notifications for emails sent with that identity as the
-     * <code>Source</code> . Publishing to topics may only be disabled when
-     * feedback forwarding is enabled.
+     * Given an identity (email address or domain), sets the Amazon Simple
+     * Notification Service (Amazon SNS) topic to which Amazon SES will
+     * publish bounce, complaint, and/or delivery notifications for emails
+     * sent with that identity as the <code>Source</code> .
+     * </p>
+     * <p>
+     * <b>NOTE:</b>Unless feedback forwarding is enabled, you must specify
+     * Amazon SNS topics for bounce and complaint notifications. For more
+     * information, see SetIdentityFeedbackForwardingEnabled.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      * <p>
      * For more information about feedback notification, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/bounce-complaint-notifications.html"> Amazon SES Developer Guide </a>
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      *

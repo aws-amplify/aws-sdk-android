@@ -25,6 +25,9 @@ import com.amazonaws.services.ec2.model.transform.ResetImageAttributeRequestMars
  * <p>
  * Resets an attribute of an AMI to its default value.
  * </p>
+ * <p>
+ * <b>NOTE:</b> The productCodes attribute can't be reset.
+ * </p>
  *
  * @see com.amazonaws.services.ec2.AmazonEC2#resetImageAttribute(ResetImageAttributeRequest)
  */

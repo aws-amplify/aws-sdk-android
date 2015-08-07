@@ -39,7 +39,7 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     private ProvisionedThroughput provisionedThroughput;
 
@@ -94,14 +94,14 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return Represents the provisioned throughput settings for a specified table
      *         or index. The settings can be modified using the <i>UpdateTable</i>
      *         operation. <p>For current minimum and maximum provisioned throughput
      *         values, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     *         in the Amazon DynamoDB Developer Guide.
+     *         in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public ProvisionedThroughput getProvisionedThroughput() {
         return provisionedThroughput;
@@ -113,14 +113,14 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @param provisionedThroughput Represents the provisioned throughput settings for a specified table
      *         or index. The settings can be modified using the <i>UpdateTable</i>
      *         operation. <p>For current minimum and maximum provisioned throughput
      *         values, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     *         in the Amazon DynamoDB Developer Guide.
+     *         in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setProvisionedThroughput(ProvisionedThroughput provisionedThroughput) {
         this.provisionedThroughput = provisionedThroughput;
@@ -132,7 +132,7 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -141,7 +141,7 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
      *         operation. <p>For current minimum and maximum provisioned throughput
      *         values, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     *         in the Amazon DynamoDB Developer Guide.
+     *         in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

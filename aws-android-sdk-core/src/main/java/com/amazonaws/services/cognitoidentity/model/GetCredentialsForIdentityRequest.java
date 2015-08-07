@@ -20,44 +20,67 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getCredentialsForIdentity(GetCredentialsForIdentityRequest) GetCredentialsForIdentity operation}.
- * 
+ * <p>
+ * Returns credentials for the the provided identity ID. Any provided
+ * logins will be validated against supported login providers. If the
+ * token is for cognito-identity.amazonaws.com, it will be passed through
+ * to AWS Security Token Service with the appropriate role for the token.
+ * </p>
+ * <p>
+ * This is a public API. You do not need any credentials to call this
+ * API.
+ * </p>
  *
  * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getCredentialsForIdentity(GetCredentialsForIdentityRequest)
  */
 public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest implements Serializable {
 
+    /**
+     * A unique identifier in the format REGION:GUID.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 50<br/>
+     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     */
     private String identityId;
 
+    /**
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10<br/>
+     */
     private java.util.Map<String,String> logins;
 
     /**
-     * Returns the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @return The value of the IdentityId property for this object.
+     * @return A unique identifier in the format REGION:GUID.
      */
     public String getIdentityId() {
         return identityId;
     }
     
     /**
-     * Sets the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId The new value for the IdentityId property for this object.
+     * @param identityId A unique identifier in the format REGION:GUID.
      */
     public void setIdentityId(String identityId) {
         this.identityId = identityId;
     }
     
     /**
-     * Sets the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -65,7 +88,7 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId The new value for the IdentityId property for this object.
+     * @param identityId A unique identifier in the format REGION:GUID.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -76,12 +99,14 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * Returns the value of the Logins property for this object.
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @return The value of the Logins property for this object.
+     * @return A set of optional name-value pairs that map provider names to provider
+     *         tokens.
      */
     public java.util.Map<String,String> getLogins() {
         
@@ -92,26 +117,30 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
     }
     
     /**
-     * Sets the value of the Logins property for this object.
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @param logins The new value for the Logins property for this object.
+     * @param logins A set of optional name-value pairs that map provider names to provider
+     *         tokens.
      */
     public void setLogins(java.util.Map<String,String> logins) {
         this.logins = logins;
     }
     
     /**
-     * Sets the value of the Logins property for this object.
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @param logins The new value for the Logins property for this object.
+     * @param logins A set of optional name-value pairs that map provider names to provider
+     *         tokens.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -122,7 +151,8 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * Sets the value of the Logins property for this object.
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens.
      * <p>
      * The method adds a new key-value pair into Logins parameter, and
      * returns a reference to this object so that method calls can be chained

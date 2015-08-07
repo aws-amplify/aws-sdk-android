@@ -32,26 +32,26 @@ public class PutItemResult implements Serializable {
     private java.util.Map<String,AttributeValue> attributes;
 
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     private ConsumedCapacity consumedCapacity;
 
     /**
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     * asked for in the request. If the table does not have any local
-     * secondary indexes, this information is not returned in the response.
-     * <p>Each <i>ItemCollectionMetrics</i> element consists of: <ul>
+     * operation. <i>ItemCollectionMetrics</i> is only returned if the
+     * request asked for it. If the table does not have any local secondary
+     * indexes, this information is not returned in the response. <p>Each
+     * <i>ItemCollectionMetrics</i> element consists of: <ul>
      * <li><p><i>ItemCollectionKey</i> - The hash key value of the item
      * collection. This is the same as the hash key of the item.</li>
      * <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * measured in gigabytes. This is a two-element array containing a lower
+     * in gigabytes. This value is a two-element array containing a lower
      * bound and an upper bound for the estimate. The estimate includes the
      * size of all the items in the table, plus the size of all attributes
      * projected into all of the local secondary indexes on that table. Use
@@ -148,65 +148,65 @@ public class PutItemResult implements Serializable {
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @return Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @return The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public ConsumedCapacity getConsumedCapacity() {
         return consumedCapacity;
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @param consumedCapacity Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @param consumedCapacity The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setConsumedCapacity(ConsumedCapacity consumedCapacity) {
         this.consumedCapacity = consumedCapacity;
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param consumedCapacity Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @param consumedCapacity The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -218,14 +218,14 @@ public class PutItemResult implements Serializable {
 
     /**
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     * asked for in the request. If the table does not have any local
-     * secondary indexes, this information is not returned in the response.
-     * <p>Each <i>ItemCollectionMetrics</i> element consists of: <ul>
+     * operation. <i>ItemCollectionMetrics</i> is only returned if the
+     * request asked for it. If the table does not have any local secondary
+     * indexes, this information is not returned in the response. <p>Each
+     * <i>ItemCollectionMetrics</i> element consists of: <ul>
      * <li><p><i>ItemCollectionKey</i> - The hash key value of the item
      * collection. This is the same as the hash key of the item.</li>
      * <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * measured in gigabytes. This is a two-element array containing a lower
+     * in gigabytes. This value is a two-element array containing a lower
      * bound and an upper bound for the estimate. The estimate includes the
      * size of all the items in the table, plus the size of all attributes
      * projected into all of the local secondary indexes on that table. Use
@@ -235,14 +235,14 @@ public class PutItemResult implements Serializable {
      * estimate. </li> </ul>
      *
      * @return Information about item collections, if any, that were affected by the
-     *         operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     *         asked for in the request. If the table does not have any local
-     *         secondary indexes, this information is not returned in the response.
-     *         <p>Each <i>ItemCollectionMetrics</i> element consists of: <ul>
+     *         operation. <i>ItemCollectionMetrics</i> is only returned if the
+     *         request asked for it. If the table does not have any local secondary
+     *         indexes, this information is not returned in the response. <p>Each
+     *         <i>ItemCollectionMetrics</i> element consists of: <ul>
      *         <li><p><i>ItemCollectionKey</i> - The hash key value of the item
      *         collection. This is the same as the hash key of the item.</li>
      *         <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         measured in gigabytes. This is a two-element array containing a lower
+     *         in gigabytes. This value is a two-element array containing a lower
      *         bound and an upper bound for the estimate. The estimate includes the
      *         size of all the items in the table, plus the size of all attributes
      *         projected into all of the local secondary indexes on that table. Use
@@ -257,14 +257,14 @@ public class PutItemResult implements Serializable {
     
     /**
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     * asked for in the request. If the table does not have any local
-     * secondary indexes, this information is not returned in the response.
-     * <p>Each <i>ItemCollectionMetrics</i> element consists of: <ul>
+     * operation. <i>ItemCollectionMetrics</i> is only returned if the
+     * request asked for it. If the table does not have any local secondary
+     * indexes, this information is not returned in the response. <p>Each
+     * <i>ItemCollectionMetrics</i> element consists of: <ul>
      * <li><p><i>ItemCollectionKey</i> - The hash key value of the item
      * collection. This is the same as the hash key of the item.</li>
      * <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * measured in gigabytes. This is a two-element array containing a lower
+     * in gigabytes. This value is a two-element array containing a lower
      * bound and an upper bound for the estimate. The estimate includes the
      * size of all the items in the table, plus the size of all attributes
      * projected into all of the local secondary indexes on that table. Use
@@ -274,14 +274,14 @@ public class PutItemResult implements Serializable {
      * estimate. </li> </ul>
      *
      * @param itemCollectionMetrics Information about item collections, if any, that were affected by the
-     *         operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     *         asked for in the request. If the table does not have any local
-     *         secondary indexes, this information is not returned in the response.
-     *         <p>Each <i>ItemCollectionMetrics</i> element consists of: <ul>
+     *         operation. <i>ItemCollectionMetrics</i> is only returned if the
+     *         request asked for it. If the table does not have any local secondary
+     *         indexes, this information is not returned in the response. <p>Each
+     *         <i>ItemCollectionMetrics</i> element consists of: <ul>
      *         <li><p><i>ItemCollectionKey</i> - The hash key value of the item
      *         collection. This is the same as the hash key of the item.</li>
      *         <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         measured in gigabytes. This is a two-element array containing a lower
+     *         in gigabytes. This value is a two-element array containing a lower
      *         bound and an upper bound for the estimate. The estimate includes the
      *         size of all the items in the table, plus the size of all attributes
      *         projected into all of the local secondary indexes on that table. Use
@@ -296,14 +296,14 @@ public class PutItemResult implements Serializable {
     
     /**
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     * asked for in the request. If the table does not have any local
-     * secondary indexes, this information is not returned in the response.
-     * <p>Each <i>ItemCollectionMetrics</i> element consists of: <ul>
+     * operation. <i>ItemCollectionMetrics</i> is only returned if the
+     * request asked for it. If the table does not have any local secondary
+     * indexes, this information is not returned in the response. <p>Each
+     * <i>ItemCollectionMetrics</i> element consists of: <ul>
      * <li><p><i>ItemCollectionKey</i> - The hash key value of the item
      * collection. This is the same as the hash key of the item.</li>
      * <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * measured in gigabytes. This is a two-element array containing a lower
+     * in gigabytes. This value is a two-element array containing a lower
      * bound and an upper bound for the estimate. The estimate includes the
      * size of all the items in the table, plus the size of all attributes
      * projected into all of the local secondary indexes on that table. Use
@@ -315,14 +315,14 @@ public class PutItemResult implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param itemCollectionMetrics Information about item collections, if any, that were affected by the
-     *         operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     *         asked for in the request. If the table does not have any local
-     *         secondary indexes, this information is not returned in the response.
-     *         <p>Each <i>ItemCollectionMetrics</i> element consists of: <ul>
+     *         operation. <i>ItemCollectionMetrics</i> is only returned if the
+     *         request asked for it. If the table does not have any local secondary
+     *         indexes, this information is not returned in the response. <p>Each
+     *         <i>ItemCollectionMetrics</i> element consists of: <ul>
      *         <li><p><i>ItemCollectionKey</i> - The hash key value of the item
      *         collection. This is the same as the hash key of the item.</li>
      *         <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         measured in gigabytes. This is a two-element array containing a lower
+     *         in gigabytes. This value is a two-element array containing a lower
      *         bound and an upper bound for the estimate. The estimate includes the
      *         size of all the items in the table, plus the size of all attributes
      *         projected into all of the local secondary indexes on that table. Use

@@ -20,46 +20,82 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getId(GetIdRequest) GetId operation}.
- * 
+ * <p>
+ * Generates (or retrieves) a Cognito ID. Supplying multiple logins will
+ * create an implicit linked account.
+ * </p>
+ * <p>
+ * token+";"+tokenSecret.
+ * </p>
+ * <p>
+ * This is a public API. You do not need any credentials to call this
+ * API.
+ * </p>
  *
  * @see com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getId(GetIdRequest)
  */
 public class GetIdRequest extends AmazonWebServiceRequest implements Serializable {
 
+    /**
+     * A standard AWS account ID (9+ digits).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 15<br/>
+     * <b>Pattern: </b>\d+<br/>
+     */
     private String accountId;
 
+    /**
+     * An identity pool ID in the format REGION:GUID.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 50<br/>
+     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     */
     private String identityPoolId;
 
+    /**
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens. <p>The available provider names for <code>Logins</code> are as
+     * follows: <ul> <li>Facebook: <code>graph.facebook.com</code></li>
+     * <li>Google: <code>accounts.google.com</code></li> <li>Amazon:
+     * <code>www.amazon.com</code></li> <li>Twitter:
+     * <code>www.twitter.com</code></li> <li>Digits:
+     * <code>www.digits.com</code></li> </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10<br/>
+     */
     private java.util.Map<String,String> logins;
 
     /**
-     * Returns the value of the AccountId property for this object.
+     * A standard AWS account ID (9+ digits).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 15<br/>
      * <b>Pattern: </b>\d+<br/>
      *
-     * @return The value of the AccountId property for this object.
+     * @return A standard AWS account ID (9+ digits).
      */
     public String getAccountId() {
         return accountId;
     }
     
     /**
-     * Sets the value of the AccountId property for this object.
+     * A standard AWS account ID (9+ digits).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 15<br/>
      * <b>Pattern: </b>\d+<br/>
      *
-     * @param accountId The new value for the AccountId property for this object.
+     * @param accountId A standard AWS account ID (9+ digits).
      */
     public void setAccountId(String accountId) {
         this.accountId = accountId;
     }
     
     /**
-     * Sets the value of the AccountId property for this object.
+     * A standard AWS account ID (9+ digits).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -67,7 +103,7 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * <b>Length: </b>1 - 15<br/>
      * <b>Pattern: </b>\d+<br/>
      *
-     * @param accountId The new value for the AccountId property for this object.
+     * @param accountId A standard AWS account ID (9+ digits).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -78,33 +114,33 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
     }
 
     /**
-     * Returns the value of the IdentityPoolId property for this object.
+     * An identity pool ID in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @return The value of the IdentityPoolId property for this object.
+     * @return An identity pool ID in the format REGION:GUID.
      */
     public String getIdentityPoolId() {
         return identityPoolId;
     }
     
     /**
-     * Sets the value of the IdentityPoolId property for this object.
+     * An identity pool ID in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityPoolId The new value for the IdentityPoolId property for this object.
+     * @param identityPoolId An identity pool ID in the format REGION:GUID.
      */
     public void setIdentityPoolId(String identityPoolId) {
         this.identityPoolId = identityPoolId;
     }
     
     /**
-     * Sets the value of the IdentityPoolId property for this object.
+     * An identity pool ID in the format REGION:GUID.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -112,7 +148,7 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityPoolId The new value for the IdentityPoolId property for this object.
+     * @param identityPoolId An identity pool ID in the format REGION:GUID.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -123,12 +159,24 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
     }
 
     /**
-     * Returns the value of the Logins property for this object.
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens. <p>The available provider names for <code>Logins</code> are as
+     * follows: <ul> <li>Facebook: <code>graph.facebook.com</code></li>
+     * <li>Google: <code>accounts.google.com</code></li> <li>Amazon:
+     * <code>www.amazon.com</code></li> <li>Twitter:
+     * <code>www.twitter.com</code></li> <li>Digits:
+     * <code>www.digits.com</code></li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @return The value of the Logins property for this object.
+     * @return A set of optional name-value pairs that map provider names to provider
+     *         tokens. <p>The available provider names for <code>Logins</code> are as
+     *         follows: <ul> <li>Facebook: <code>graph.facebook.com</code></li>
+     *         <li>Google: <code>accounts.google.com</code></li> <li>Amazon:
+     *         <code>www.amazon.com</code></li> <li>Twitter:
+     *         <code>www.twitter.com</code></li> <li>Digits:
+     *         <code>www.digits.com</code></li> </ul>
      */
     public java.util.Map<String,String> getLogins() {
         
@@ -139,26 +187,50 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
     }
     
     /**
-     * Sets the value of the Logins property for this object.
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens. <p>The available provider names for <code>Logins</code> are as
+     * follows: <ul> <li>Facebook: <code>graph.facebook.com</code></li>
+     * <li>Google: <code>accounts.google.com</code></li> <li>Amazon:
+     * <code>www.amazon.com</code></li> <li>Twitter:
+     * <code>www.twitter.com</code></li> <li>Digits:
+     * <code>www.digits.com</code></li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @param logins The new value for the Logins property for this object.
+     * @param logins A set of optional name-value pairs that map provider names to provider
+     *         tokens. <p>The available provider names for <code>Logins</code> are as
+     *         follows: <ul> <li>Facebook: <code>graph.facebook.com</code></li>
+     *         <li>Google: <code>accounts.google.com</code></li> <li>Amazon:
+     *         <code>www.amazon.com</code></li> <li>Twitter:
+     *         <code>www.twitter.com</code></li> <li>Digits:
+     *         <code>www.digits.com</code></li> </ul>
      */
     public void setLogins(java.util.Map<String,String> logins) {
         this.logins = logins;
     }
     
     /**
-     * Sets the value of the Logins property for this object.
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens. <p>The available provider names for <code>Logins</code> are as
+     * follows: <ul> <li>Facebook: <code>graph.facebook.com</code></li>
+     * <li>Google: <code>accounts.google.com</code></li> <li>Amazon:
+     * <code>www.amazon.com</code></li> <li>Twitter:
+     * <code>www.twitter.com</code></li> <li>Digits:
+     * <code>www.digits.com</code></li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @param logins The new value for the Logins property for this object.
+     * @param logins A set of optional name-value pairs that map provider names to provider
+     *         tokens. <p>The available provider names for <code>Logins</code> are as
+     *         follows: <ul> <li>Facebook: <code>graph.facebook.com</code></li>
+     *         <li>Google: <code>accounts.google.com</code></li> <li>Amazon:
+     *         <code>www.amazon.com</code></li> <li>Twitter:
+     *         <code>www.twitter.com</code></li> <li>Digits:
+     *         <code>www.digits.com</code></li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -169,7 +241,13 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
     }
 
     /**
-     * Sets the value of the Logins property for this object.
+     * A set of optional name-value pairs that map provider names to provider
+     * tokens. <p>The available provider names for <code>Logins</code> are as
+     * follows: <ul> <li>Facebook: <code>graph.facebook.com</code></li>
+     * <li>Google: <code>accounts.google.com</code></li> <li>Amazon:
+     * <code>www.amazon.com</code></li> <li>Twitter:
+     * <code>www.twitter.com</code></li> <li>Digits:
+     * <code>www.digits.com</code></li> </ul>
      * <p>
      * The method adds a new key-value pair into Logins parameter, and
      * returns a reference to this object so that method calls can be chained

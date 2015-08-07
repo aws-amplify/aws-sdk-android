@@ -25,41 +25,44 @@ public class UpdateItemResult implements Serializable {
 
     /**
      * A map of attribute values as they appeared before the
-     * <i>UpdateItem</i> operation, but only if <i>ReturnValues</i> was
-     * specified as something other than <code>NONE</code> in the request.
-     * Each element represents one attribute.
+     * <i>UpdateItem</i> operation. This map only appears if
+     * <i>ReturnValues</i> was specified as something other than
+     * <code>NONE</code> in the request. Each element represents one
+     * attribute.
      */
     private java.util.Map<String,AttributeValue> attributes;
 
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     private ConsumedCapacity consumedCapacity;
 
     /**
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     * asked for in the request. If the table does not have any local
-     * secondary indexes, this information is not returned in the response.
+     * operation. <i>ItemCollectionMetrics</i> is only returned if the
+     * request asked for it. If the table does not have any local secondary
+     * indexes, this information is not returned in the response.
      */
     private ItemCollectionMetrics itemCollectionMetrics;
 
     /**
      * A map of attribute values as they appeared before the
-     * <i>UpdateItem</i> operation, but only if <i>ReturnValues</i> was
-     * specified as something other than <code>NONE</code> in the request.
-     * Each element represents one attribute.
+     * <i>UpdateItem</i> operation. This map only appears if
+     * <i>ReturnValues</i> was specified as something other than
+     * <code>NONE</code> in the request. Each element represents one
+     * attribute.
      *
      * @return A map of attribute values as they appeared before the
-     *         <i>UpdateItem</i> operation, but only if <i>ReturnValues</i> was
-     *         specified as something other than <code>NONE</code> in the request.
-     *         Each element represents one attribute.
+     *         <i>UpdateItem</i> operation. This map only appears if
+     *         <i>ReturnValues</i> was specified as something other than
+     *         <code>NONE</code> in the request. Each element represents one
+     *         attribute.
      */
     public java.util.Map<String,AttributeValue> getAttributes() {
         
@@ -68,14 +71,16 @@ public class UpdateItemResult implements Serializable {
     
     /**
      * A map of attribute values as they appeared before the
-     * <i>UpdateItem</i> operation, but only if <i>ReturnValues</i> was
-     * specified as something other than <code>NONE</code> in the request.
-     * Each element represents one attribute.
+     * <i>UpdateItem</i> operation. This map only appears if
+     * <i>ReturnValues</i> was specified as something other than
+     * <code>NONE</code> in the request. Each element represents one
+     * attribute.
      *
      * @param attributes A map of attribute values as they appeared before the
-     *         <i>UpdateItem</i> operation, but only if <i>ReturnValues</i> was
-     *         specified as something other than <code>NONE</code> in the request.
-     *         Each element represents one attribute.
+     *         <i>UpdateItem</i> operation. This map only appears if
+     *         <i>ReturnValues</i> was specified as something other than
+     *         <code>NONE</code> in the request. Each element represents one
+     *         attribute.
      */
     public void setAttributes(java.util.Map<String,AttributeValue> attributes) {
         this.attributes = attributes;
@@ -83,16 +88,18 @@ public class UpdateItemResult implements Serializable {
     
     /**
      * A map of attribute values as they appeared before the
-     * <i>UpdateItem</i> operation, but only if <i>ReturnValues</i> was
-     * specified as something other than <code>NONE</code> in the request.
-     * Each element represents one attribute.
+     * <i>UpdateItem</i> operation. This map only appears if
+     * <i>ReturnValues</i> was specified as something other than
+     * <code>NONE</code> in the request. Each element represents one
+     * attribute.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param attributes A map of attribute values as they appeared before the
-     *         <i>UpdateItem</i> operation, but only if <i>ReturnValues</i> was
-     *         specified as something other than <code>NONE</code> in the request.
-     *         Each element represents one attribute.
+     *         <i>UpdateItem</i> operation. This map only appears if
+     *         <i>ReturnValues</i> was specified as something other than
+     *         <code>NONE</code> in the request. Each element represents one
+     *         attribute.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -104,9 +111,10 @@ public class UpdateItemResult implements Serializable {
 
     /**
      * A map of attribute values as they appeared before the
-     * <i>UpdateItem</i> operation, but only if <i>ReturnValues</i> was
-     * specified as something other than <code>NONE</code> in the request.
-     * Each element represents one attribute.
+     * <i>UpdateItem</i> operation. This map only appears if
+     * <i>ReturnValues</i> was specified as something other than
+     * <code>NONE</code> in the request. Each element represents one
+     * attribute.
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -136,65 +144,65 @@ public class UpdateItemResult implements Serializable {
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @return Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @return The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public ConsumedCapacity getConsumedCapacity() {
         return consumedCapacity;
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @param consumedCapacity Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @param consumedCapacity The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setConsumedCapacity(ConsumedCapacity consumedCapacity) {
         this.consumedCapacity = consumedCapacity;
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param consumedCapacity Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @param consumedCapacity The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -206,14 +214,14 @@ public class UpdateItemResult implements Serializable {
 
     /**
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     * asked for in the request. If the table does not have any local
-     * secondary indexes, this information is not returned in the response.
+     * operation. <i>ItemCollectionMetrics</i> is only returned if the
+     * request asked for it. If the table does not have any local secondary
+     * indexes, this information is not returned in the response.
      *
      * @return Information about item collections, if any, that were affected by the
-     *         operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     *         asked for in the request. If the table does not have any local
-     *         secondary indexes, this information is not returned in the response.
+     *         operation. <i>ItemCollectionMetrics</i> is only returned if the
+     *         request asked for it. If the table does not have any local secondary
+     *         indexes, this information is not returned in the response.
      */
     public ItemCollectionMetrics getItemCollectionMetrics() {
         return itemCollectionMetrics;
@@ -221,14 +229,14 @@ public class UpdateItemResult implements Serializable {
     
     /**
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     * asked for in the request. If the table does not have any local
-     * secondary indexes, this information is not returned in the response.
+     * operation. <i>ItemCollectionMetrics</i> is only returned if the
+     * request asked for it. If the table does not have any local secondary
+     * indexes, this information is not returned in the response.
      *
      * @param itemCollectionMetrics Information about item collections, if any, that were affected by the
-     *         operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     *         asked for in the request. If the table does not have any local
-     *         secondary indexes, this information is not returned in the response.
+     *         operation. <i>ItemCollectionMetrics</i> is only returned if the
+     *         request asked for it. If the table does not have any local secondary
+     *         indexes, this information is not returned in the response.
      */
     public void setItemCollectionMetrics(ItemCollectionMetrics itemCollectionMetrics) {
         this.itemCollectionMetrics = itemCollectionMetrics;
@@ -236,16 +244,16 @@ public class UpdateItemResult implements Serializable {
     
     /**
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     * asked for in the request. If the table does not have any local
-     * secondary indexes, this information is not returned in the response.
+     * operation. <i>ItemCollectionMetrics</i> is only returned if the
+     * request asked for it. If the table does not have any local secondary
+     * indexes, this information is not returned in the response.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param itemCollectionMetrics Information about item collections, if any, that were affected by the
-     *         operation. <i>ItemCollectionMetrics</i> is only returned if it was
-     *         asked for in the request. If the table does not have any local
-     *         secondary indexes, this information is not returned in the response.
+     *         operation. <i>ItemCollectionMetrics</i> is only returned if the
+     *         request asked for it. If the table does not have any local secondary
+     *         indexes, this information is not returned in the response.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

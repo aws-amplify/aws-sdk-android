@@ -95,6 +95,10 @@ public class InstanceAttributeStaxUnmarshaller implements Unmarshaller<InstanceA
                     instanceAttribute.setSourceDestCheck(BooleanStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("groupSet/item", targetDepth)) {
+                    instanceAttribute.getGroups().add(GroupIdentifierStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return instanceAttribute;

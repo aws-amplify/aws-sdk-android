@@ -23,23 +23,18 @@ import com.amazonaws.services.ec2.model.transform.DescribeSpotPriceHistoryReques
 /**
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#describeSpotPriceHistory(DescribeSpotPriceHistoryRequest) DescribeSpotPriceHistory operation}.
  * <p>
- * Describes the Spot Price history. Spot Instances are instances that
- * Amazon EC2 starts on your behalf when the maximum price that you
- * specify exceeds the current Spot Price. Amazon EC2 periodically sets
- * the Spot Price based on available Spot Instance capacity and current
- * Spot Instance requests. For more information about Spot Instances, see
- * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+ * Describes the Spot Price history. The prices returned are listed in
+ * chronological order, from the oldest to the most recent, for up to the
+ * past 90 days. For more information, see
+ * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html"> Spot Instance Pricing History </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>
  * <p>
- * When you specify an Availability Zone, this operation describes the
- * price history for the specified Availability Zone with the most recent
- * set of prices listed first. If you don't specify an Availability Zone,
- * you get the prices across all Availability Zones, starting with the
- * most recent set. However, if you're using an API version earlier than
- * 2011-05-15, you get the lowest price across the region for the
- * specified time period. The prices returned are listed in chronological
- * order, from the oldest to the most recent.
+ * When you specify a start and end time, this operation returns the
+ * prices of the instance types within the time range that you specified
+ * and the time when the price changed. The price is valid within the
+ * time period that you specified; the response merely indicates the last
+ * time that the price changed.
  * </p>
  *
  * @see com.amazonaws.services.ec2.AmazonEC2#describeSpotPriceHistory(DescribeSpotPriceHistoryRequest)
@@ -47,22 +42,26 @@ import com.amazonaws.services.ec2.model.transform.DescribeSpotPriceHistoryReques
 public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<DescribeSpotPriceHistoryRequest> {
 
     /**
-     * The start date and time of the Spot Price history data.
+     * The date and time, up to the past 90 days, from which to start
+     * retrieving the price history data, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      */
     private java.util.Date startTime;
 
     /**
-     * The end date and time of the Spot Price history data.
+     * The date and time, up to the current date, from which to stop
+     * retrieving the price history data, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      */
     private java.util.Date endTime;
 
     /**
-     * One or more instance types.
+     * Filters the results by the specified instance types.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> instanceTypes;
 
     /**
-     * One or more basic product descriptions.
+     * Filters the results by the specified basic product descriptions.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> productDescriptions;
 
@@ -78,51 +77,67 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * <p><code>spot-price</code> - The Spot Price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history (for example, 2010-08-16T05:06:11.000Z). You
+     * the Spot Price history, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filters;
 
     /**
-     * The Availability Zone.
+     * Filters the results by the specified Availability Zone.
      */
     private String availabilityZone;
 
     /**
-     * The number of rows to return.
+     * The maximum number of results to return in a single call. Specify a
+     * value between 1 and 1000. The default value is 1000. To retrieve the
+     * remaining results, make another call with the returned
+     * <code>NextToken</code> value.
      */
     private Integer maxResults;
 
     /**
-     * The next set of rows to return.
+     * The token for the next set of results.
      */
     private String nextToken;
 
     /**
-     * The start date and time of the Spot Price history data.
+     * The date and time, up to the past 90 days, from which to start
+     * retrieving the price history data, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      *
-     * @return The start date and time of the Spot Price history data.
+     * @return The date and time, up to the past 90 days, from which to start
+     *         retrieving the price history data, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      */
     public java.util.Date getStartTime() {
         return startTime;
     }
     
     /**
-     * The start date and time of the Spot Price history data.
+     * The date and time, up to the past 90 days, from which to start
+     * retrieving the price history data, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      *
-     * @param startTime The start date and time of the Spot Price history data.
+     * @param startTime The date and time, up to the past 90 days, from which to start
+     *         retrieving the price history data, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      */
     public void setStartTime(java.util.Date startTime) {
         this.startTime = startTime;
     }
     
     /**
-     * The start date and time of the Spot Price history data.
+     * The date and time, up to the past 90 days, from which to start
+     * retrieving the price history data, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param startTime The start date and time of the Spot Price history data.
+     * @param startTime The date and time, up to the past 90 days, from which to start
+     *         retrieving the price history data, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -133,29 +148,41 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
 
     /**
-     * The end date and time of the Spot Price history data.
+     * The date and time, up to the current date, from which to stop
+     * retrieving the price history data, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      *
-     * @return The end date and time of the Spot Price history data.
+     * @return The date and time, up to the current date, from which to stop
+     *         retrieving the price history data, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      */
     public java.util.Date getEndTime() {
         return endTime;
     }
     
     /**
-     * The end date and time of the Spot Price history data.
+     * The date and time, up to the current date, from which to stop
+     * retrieving the price history data, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      *
-     * @param endTime The end date and time of the Spot Price history data.
+     * @param endTime The date and time, up to the current date, from which to stop
+     *         retrieving the price history data, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      */
     public void setEndTime(java.util.Date endTime) {
         this.endTime = endTime;
     }
     
     /**
-     * The end date and time of the Spot Price history data.
+     * The date and time, up to the current date, from which to stop
+     * retrieving the price history data, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param endTime The end date and time of the Spot Price history data.
+     * @param endTime The date and time, up to the current date, from which to stop
+     *         retrieving the price history data, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -166,9 +193,9 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
 
     /**
-     * One or more instance types.
+     * Filters the results by the specified instance types.
      *
-     * @return One or more instance types.
+     * @return Filters the results by the specified instance types.
      */
     public java.util.List<String> getInstanceTypes() {
         if (instanceTypes == null) {
@@ -179,9 +206,9 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * One or more instance types.
+     * Filters the results by the specified instance types.
      *
-     * @param instanceTypes One or more instance types.
+     * @param instanceTypes Filters the results by the specified instance types.
      */
     public void setInstanceTypes(java.util.Collection<String> instanceTypes) {
         if (instanceTypes == null) {
@@ -194,11 +221,11 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * One or more instance types.
+     * Filters the results by the specified instance types.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceTypes One or more instance types.
+     * @param instanceTypes Filters the results by the specified instance types.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -212,11 +239,11 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * One or more instance types.
+     * Filters the results by the specified instance types.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceTypes One or more instance types.
+     * @param instanceTypes Filters the results by the specified instance types.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -234,11 +261,11 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
 
     /**
-     * One or more instance types.
+     * Filters the results by the specified instance types.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceTypes One or more instance types.
+     * @param instanceTypes Filters the results by the specified instance types.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -257,9 +284,9 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
 
     /**
-     * One or more basic product descriptions.
+     * Filters the results by the specified basic product descriptions.
      *
-     * @return One or more basic product descriptions.
+     * @return Filters the results by the specified basic product descriptions.
      */
     public java.util.List<String> getProductDescriptions() {
         if (productDescriptions == null) {
@@ -270,9 +297,9 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * One or more basic product descriptions.
+     * Filters the results by the specified basic product descriptions.
      *
-     * @param productDescriptions One or more basic product descriptions.
+     * @param productDescriptions Filters the results by the specified basic product descriptions.
      */
     public void setProductDescriptions(java.util.Collection<String> productDescriptions) {
         if (productDescriptions == null) {
@@ -285,11 +312,11 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * One or more basic product descriptions.
+     * Filters the results by the specified basic product descriptions.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param productDescriptions One or more basic product descriptions.
+     * @param productDescriptions Filters the results by the specified basic product descriptions.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -303,11 +330,11 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * One or more basic product descriptions.
+     * Filters the results by the specified basic product descriptions.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param productDescriptions One or more basic product descriptions.
+     * @param productDescriptions Filters the results by the specified basic product descriptions.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -336,7 +363,8 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * <p><code>spot-price</code> - The Spot Price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history (for example, 2010-08-16T05:06:11.000Z). You
+     * the Spot Price history, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
      *
@@ -351,7 +379,8 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      *         <p><code>spot-price</code> - The Spot Price. The value must match
      *         exactly (or use wildcards; greater than or less than comparison is not
      *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot Price history (for example, 2010-08-16T05:06:11.000Z). You
+     *         the Spot Price history, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
      */
@@ -375,7 +404,8 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * <p><code>spot-price</code> - The Spot Price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history (for example, 2010-08-16T05:06:11.000Z). You
+     * the Spot Price history, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
      *
@@ -390,7 +420,8 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      *         <p><code>spot-price</code> - The Spot Price. The value must match
      *         exactly (or use wildcards; greater than or less than comparison is not
      *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot Price history (for example, 2010-08-16T05:06:11.000Z). You
+     *         the Spot Price history, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
      */
@@ -416,7 +447,8 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * <p><code>spot-price</code> - The Spot Price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history (for example, 2010-08-16T05:06:11.000Z). You
+     * the Spot Price history, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
      * <p>
@@ -433,7 +465,8 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      *         <p><code>spot-price</code> - The Spot Price. The value must match
      *         exactly (or use wildcards; greater than or less than comparison is not
      *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot Price history (for example, 2010-08-16T05:06:11.000Z). You
+     *         the Spot Price history, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
      *
@@ -460,7 +493,8 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * <p><code>spot-price</code> - The Spot Price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history (for example, 2010-08-16T05:06:11.000Z). You
+     * the Spot Price history, in UTC format (for example,
+     * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
      * <p>
@@ -477,7 +511,8 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      *         <p><code>spot-price</code> - The Spot Price. The value must match
      *         exactly (or use wildcards; greater than or less than comparison is not
      *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot Price history (for example, 2010-08-16T05:06:11.000Z). You
+     *         the Spot Price history, in UTC format (for example,
+     *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
      *
@@ -497,29 +532,29 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
 
     /**
-     * The Availability Zone.
+     * Filters the results by the specified Availability Zone.
      *
-     * @return The Availability Zone.
+     * @return Filters the results by the specified Availability Zone.
      */
     public String getAvailabilityZone() {
         return availabilityZone;
     }
     
     /**
-     * The Availability Zone.
+     * Filters the results by the specified Availability Zone.
      *
-     * @param availabilityZone The Availability Zone.
+     * @param availabilityZone Filters the results by the specified Availability Zone.
      */
     public void setAvailabilityZone(String availabilityZone) {
         this.availabilityZone = availabilityZone;
     }
     
     /**
-     * The Availability Zone.
+     * Filters the results by the specified Availability Zone.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param availabilityZone The Availability Zone.
+     * @param availabilityZone Filters the results by the specified Availability Zone.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -530,29 +565,47 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
 
     /**
-     * The number of rows to return.
+     * The maximum number of results to return in a single call. Specify a
+     * value between 1 and 1000. The default value is 1000. To retrieve the
+     * remaining results, make another call with the returned
+     * <code>NextToken</code> value.
      *
-     * @return The number of rows to return.
+     * @return The maximum number of results to return in a single call. Specify a
+     *         value between 1 and 1000. The default value is 1000. To retrieve the
+     *         remaining results, make another call with the returned
+     *         <code>NextToken</code> value.
      */
     public Integer getMaxResults() {
         return maxResults;
     }
     
     /**
-     * The number of rows to return.
+     * The maximum number of results to return in a single call. Specify a
+     * value between 1 and 1000. The default value is 1000. To retrieve the
+     * remaining results, make another call with the returned
+     * <code>NextToken</code> value.
      *
-     * @param maxResults The number of rows to return.
+     * @param maxResults The maximum number of results to return in a single call. Specify a
+     *         value between 1 and 1000. The default value is 1000. To retrieve the
+     *         remaining results, make another call with the returned
+     *         <code>NextToken</code> value.
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
     
     /**
-     * The number of rows to return.
+     * The maximum number of results to return in a single call. Specify a
+     * value between 1 and 1000. The default value is 1000. To retrieve the
+     * remaining results, make another call with the returned
+     * <code>NextToken</code> value.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param maxResults The number of rows to return.
+     * @param maxResults The maximum number of results to return in a single call. Specify a
+     *         value between 1 and 1000. The default value is 1000. To retrieve the
+     *         remaining results, make another call with the returned
+     *         <code>NextToken</code> value.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -563,29 +616,29 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
     }
 
     /**
-     * The next set of rows to return.
+     * The token for the next set of results.
      *
-     * @return The next set of rows to return.
+     * @return The token for the next set of results.
      */
     public String getNextToken() {
         return nextToken;
     }
     
     /**
-     * The next set of rows to return.
+     * The token for the next set of results.
      *
-     * @param nextToken The next set of rows to return.
+     * @param nextToken The token for the next set of results.
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
     
     /**
-     * The next set of rows to return.
+     * The token for the next set of results.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param nextToken The next set of rows to return.
+     * @param nextToken The token for the next set of results.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -17,21 +17,19 @@ package com.amazonaws.services.elasticloadbalancing.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * The output for the DescribeLoadBalancerPolicies action.
- * </p>
+ * 
  */
 public class DescribeLoadBalancerPoliciesResult implements Serializable {
 
     /**
-     * A list of policy description structures.
+     * Information about the policies.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<PolicyDescription> policyDescriptions;
 
     /**
-     * A list of policy description structures.
+     * Information about the policies.
      *
-     * @return A list of policy description structures.
+     * @return Information about the policies.
      */
     public java.util.List<PolicyDescription> getPolicyDescriptions() {
         if (policyDescriptions == null) {
@@ -42,9 +40,9 @@ public class DescribeLoadBalancerPoliciesResult implements Serializable {
     }
     
     /**
-     * A list of policy description structures.
+     * Information about the policies.
      *
-     * @param policyDescriptions A list of policy description structures.
+     * @param policyDescriptions Information about the policies.
      */
     public void setPolicyDescriptions(java.util.Collection<PolicyDescription> policyDescriptions) {
         if (policyDescriptions == null) {
@@ -57,11 +55,11 @@ public class DescribeLoadBalancerPoliciesResult implements Serializable {
     }
     
     /**
-     * A list of policy description structures.
+     * Information about the policies.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyDescriptions A list of policy description structures.
+     * @param policyDescriptions Information about the policies.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -75,11 +73,11 @@ public class DescribeLoadBalancerPoliciesResult implements Serializable {
     }
     
     /**
-     * A list of policy description structures.
+     * Information about the policies.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyDescriptions A list of policy description structures.
+     * @param policyDescriptions Information about the policies.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -18,15 +18,18 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Specifies whether the PutScalingPolicy <code>ScalingAdjustment</code>
- * parameter is an absolute number or a percentage of the current
- * capacity.
+ * Describes a policy adjustment type.
+ * </p>
+ * <p>
+ * For more information, see
+ * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html"> Dynamic Scaling </a>
+ * in the <i>Auto Scaling Developer Guide</i> .
  * </p>
  */
 public class AdjustmentType implements Serializable {
 
     /**
-     * A policy adjustment type. Valid values are
+     * The policy adjustment type. The valid values are
      * <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      * <code>PercentChangeInCapacity</code>.
      * <p>
@@ -37,7 +40,7 @@ public class AdjustmentType implements Serializable {
     private String adjustmentType;
 
     /**
-     * A policy adjustment type. Valid values are
+     * The policy adjustment type. The valid values are
      * <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      * <code>PercentChangeInCapacity</code>.
      * <p>
@@ -45,7 +48,7 @@ public class AdjustmentType implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return A policy adjustment type. Valid values are
+     * @return The policy adjustment type. The valid values are
      *         <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      *         <code>PercentChangeInCapacity</code>.
      */
@@ -54,7 +57,7 @@ public class AdjustmentType implements Serializable {
     }
     
     /**
-     * A policy adjustment type. Valid values are
+     * The policy adjustment type. The valid values are
      * <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      * <code>PercentChangeInCapacity</code>.
      * <p>
@@ -62,7 +65,7 @@ public class AdjustmentType implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param adjustmentType A policy adjustment type. Valid values are
+     * @param adjustmentType The policy adjustment type. The valid values are
      *         <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      *         <code>PercentChangeInCapacity</code>.
      */
@@ -71,7 +74,7 @@ public class AdjustmentType implements Serializable {
     }
     
     /**
-     * A policy adjustment type. Valid values are
+     * The policy adjustment type. The valid values are
      * <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      * <code>PercentChangeInCapacity</code>.
      * <p>
@@ -81,7 +84,7 @@ public class AdjustmentType implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param adjustmentType A policy adjustment type. Valid values are
+     * @param adjustmentType The policy adjustment type. The valid values are
      *         <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      *         <code>PercentChangeInCapacity</code>.
      *

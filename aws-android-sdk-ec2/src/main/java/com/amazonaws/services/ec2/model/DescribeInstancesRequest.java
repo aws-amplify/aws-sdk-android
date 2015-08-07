@@ -52,31 +52,32 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * instance architecture (<code>i386</code> | <code>x86_64</code>). </li>
      * <li> <p><code>availability-zone</code> - The Availability Zone of the
      * instance. </li> <li> <p><code>block-device-mapping.attach-time</code>
-     * - The attach time for an Amazon EBS volume mapped to the instance.
-     * </li> <li> <p><code>block-device-mapping.delete-on-termination</code>
-     * - A Boolean that indicates whether the Amazon EBS volume is deleted on
-     * instance termination. </li> <li>
+     * - The attach time for an EBS volume mapped to the instance, for
+     * example, <code>2010-09-15T17:15:20.000Z</code>. </li> <li>
+     * <p><code>block-device-mapping.delete-on-termination</code> - A Boolean
+     * that indicates whether the EBS volume is deleted on instance
+     * termination. </li> <li>
      * <p><code>block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>). </li> <li>
-     * <p><code>block-device-mapping.status</code> - The status for the
-     * Amazon EBS volume (<code>attaching</code> | <code>attached</code> |
+     * the EBS volume (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>). </li> <li>
+     * <p><code>block-device-mapping.status</code> - The status for the EBS
+     * volume (<code>attaching</code> | <code>attached</code> |
      * <code>detaching</code> | <code>detached</code>). </li> <li>
      * <p><code>block-device-mapping.volume-id</code> - The volume ID of the
-     * Amazon EBS volume. </li> <li> <p><code>client-token</code> - The
-     * idempotency token you provided when you launched the instance. </li>
-     * <li> <p><code>dns-name</code> - The public DNS name of the instance.
-     * </li> <li> <p><code>group-id</code> - The ID of the security group for
-     * the instance. If the instance is in EC2-Classic or a default VPC, you
-     * can use <code>group-name</code> instead. </li> <li>
-     * <p><code>group-name</code> - The name of the security group for the
-     * instance. If the instance is in a nondefault VPC, you must use
-     * <code>group-id</code> instead. </li> <li> <p><code>hypervisor</code> -
-     * The hypervisor type of the instance (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image used to launch the instance. </li> <li>
-     * <p><code>instance-id</code> - The ID of the instance. </li> <li>
-     * <p><code>instance-lifecycle</code> - Indicates whether this is a Spot
-     * Instance (<code>spot</code>). </li> <li>
+     * EBS volume. </li> <li> <p><code>client-token</code> - The idempotency
+     * token you provided when you launched the instance. </li> <li>
+     * <p><code>dns-name</code> - The public DNS name of the instance. </li>
+     * <li> <p><code>group-id</code> - The ID of the security group for the
+     * instance. EC2-Classic only. </li> <li> <p><code>group-name</code> -
+     * The name of the security group for the instance. EC2-Classic only.
+     * </li> <li> <p><code>hypervisor</code> - The hypervisor type of the
+     * instance (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>iam-instance-profile.arn</code> - The instance profile
+     * associated with the instance. Specified as an ARN. </li> <li>
+     * <p><code>image-id</code> - The ID of the image used to launch the
+     * instance. </li> <li> <p><code>instance-id</code> - The ID of the
+     * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
+     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -87,34 +88,30 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>shutting-down</code> | <code>terminated</code> |
      * <code>stopping</code> | <code>stopped</code>). </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>instance.group-id</code> -
-     * The ID of the security group for the instance. If the instance is in
-     * EC2-Classic or a default VPC, you can use
-     * <code>instance.group-name</code> instead. </li> <li>
+     * <code>t2.micro</code>). </li> <li> <p><code>instance.group-id</code> -
+     * The ID of the security group for the instance. </li> <li>
      * <p><code>instance.group-name</code> - The name of the security group
-     * for the instance. If the instance is in a nondefault VPC, you must use
-     * <code>instance.group-id</code> instead. </li> <li>
-     * <p><code>ip-address</code> - The public IP address of the instance.
-     * </li> <li> <p><code>kernel-id</code> - The kernel ID. </li> <li>
-     * <p><code>key-name</code> - The name of the key pair used when the
-     * instance was launched. </li> <li> <p><code>launch-index</code> - When
-     * launching multiple instances, this is the index for the instance in
-     * the launch group (for example, 0, 1, 2, and so on). </li> <li>
-     * <p><code>launch-time</code> - The time when the instance was launched.
-     * </li> <li> <p><code>monitoring-state</code> - Indicates whether
-     * monitoring is enabled for the instance (<code>disabled</code> |
-     * <code>enabled</code>). </li> <li> <p><code>owner-id</code> - The AWS
-     * account ID of the instance owner. </li> <li>
-     * <p><code>placement-group-name</code> - The name of the placement group
-     * for the instance. </li> <li> <p><code>platform</code> - The platform.
-     * Use <code>windows</code> if you have Windows instances; otherwise,
-     * leave blank. </li> <li> <p><code>private-dns-name</code> - The private
-     * DNS name of the instance. </li> <li>
-     * <p><code>private-ip-address</code> - The private IP address of the
-     * instance. </li> <li> <p><code>product-code</code> - The product code
-     * associated with the AMI used to launch the instance. </li> <li>
-     * <p><code>product-code.type</code> - The type of product code
-     * (<code>devpay</code> | <code>marketplace</code>). </li> <li>
+     * for the instance. </li> <li> <p><code>ip-address</code> - The public
+     * IP address of the instance. </li> <li> <p><code>kernel-id</code> - The
+     * kernel ID. </li> <li> <p><code>key-name</code> - The name of the key
+     * pair used when the instance was launched. </li> <li>
+     * <p><code>launch-index</code> - When launching multiple instances, this
+     * is the index for the instance in the launch group (for example, 0, 1,
+     * 2, and so on). </li> <li> <p><code>launch-time</code> - The time when
+     * the instance was launched. </li> <li> <p><code>monitoring-state</code>
+     * - Indicates whether monitoring is enabled for the instance
+     * (<code>disabled</code> | <code>enabled</code>). </li> <li>
+     * <p><code>owner-id</code> - The AWS account ID of the instance owner.
+     * </li> <li> <p><code>placement-group-name</code> - The name of the
+     * placement group for the instance. </li> <li> <p><code>platform</code>
+     * - The platform. Use <code>windows</code> if you have Windows
+     * instances; otherwise, leave blank. </li> <li>
+     * <p><code>private-dns-name</code> - The private DNS name of the
+     * instance. </li> <li> <p><code>private-ip-address</code> - The private
+     * IP address of the instance. </li> <li> <p><code>product-code</code> -
+     * The product code associated with the AMI used to launch the instance.
+     * </li> <li> <p><code>product-code.type</code> - The type of product
+     * code (<code>devpay</code> | <code>marketplace</code>). </li> <li>
      * <p><code>ramdisk-id</code> - The RAM disk ID. </li> <li>
      * <p><code>reason</code> - The reason for the current state of the
      * instance (for example, shows "User Initiated [date]" when you stop or
@@ -131,14 +128,15 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * launch ten instances using the same launch request, you'll also get
      * one reservation ID. </li> <li> <p><code>root-device-name</code> - The
      * name of the root device for the instance (for example,
-     * <code>/dev/sda1</code>). </li> <li> <p><code>root-device-type</code> -
-     * The type of root device that the instance uses (<code>ebs</code> |
-     * <code>instance-store</code>). </li> <li>
-     * <p><code>source-dest-check</code> - Indicates whether the instance
-     * performs source/destination checking. A value of <code>true</code>
-     * means that checking is enabled, and <code>false</code> means checking
-     * is disabled. The value must be <code>false</code> for the instance to
-     * perform network address translation (NAT) in your VPC. </li> <li>
+     * <code>/dev/sda1</code> or <code>/dev/xvda</code>). </li> <li>
+     * <p><code>root-device-type</code> - The type of root device that the
+     * instance uses (<code>ebs</code> | <code>instance-store</code>). </li>
+     * <li> <p><code>source-dest-check</code> - Indicates whether the
+     * instance performs source/destination checking. A value of
+     * <code>true</code> means that checking is enabled, and
+     * <code>false</code> means checking is disabled. The value must be
+     * <code>false</code> for the instance to perform network address
+     * translation (NAT) in your VPC. </li> <li>
      * <p><code>spot-instance-request-id</code> - The ID of the Spot Instance
      * request. </li> <li> <p><code>state-reason-code</code> - The reason
      * code for the state change. </li> <li>
@@ -158,12 +156,13 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>tag</code>:<i>key</i>=<i>value</i> filter. </li> <li>
      * <p><code>tag-value</code> - The value of a tag assigned to the
      * resource. This filter is independent of the <code>tag-key</code>
-     * filter. </li> <li> <p><code>virtualization-type</code> - The
-     * virtualization type of the instance (<code>paravirtual</code> |
-     * <code>hvm</code>). </li> <li> <p><code>vpc-id</code> - The ID of the
-     * VPC that the instance is running in. </li> <li>
-     * <p><code>network-interface.description</code> - The description of the
-     * network interface. </li> <li>
+     * filter. </li> <li> <p><code>tenancy</code> - The tenancy of an
+     * instance (<code>dedicated</code> | <code>default</code>). </li> <li>
+     * <p><code>virtualization-type</code> - The virtualization type of the
+     * instance (<code>paravirtual</code> | <code>hvm</code>). </li> <li>
+     * <p><code>vpc-id</code> - The ID of the VPC that the instance is
+     * running in. </li> <li> <p><code>network-interface.description</code> -
+     * The description of the network interface. </li> <li>
      * <p><code>network-interface.subnet-id</code> - The ID of the subnet for
      * the network interface. </li> <li>
      * <p><code>network-interface.vpc-id</code> - The ID of the VPC for the
@@ -184,8 +183,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * network interface. </li> <li>
      * <p><code>network-interface-private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
-     * <p><code>network-interface.source-destination-check</code> - Whether
-     * the network interface performs source/destination checking. A value of
+     * <p><code>network-interface.source-dest-check</code> - Whether the
+     * network interface performs source/destination checking. A value of
      * <code>true</code> means checking is enabled, and <code>false</code>
      * means checking is disabled. The value must be <code>false</code> for
      * the network interface to perform network address translation (NAT) in
@@ -233,16 +232,18 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
     private com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filters;
 
     /**
-     * The token for the next set of items to return. (You received this
-     * token from a prior call.)
+     * The token to request the next page of results.
      */
     private String nextToken;
 
     /**
-     * The maximum number of items to return for this call. The call also
-     * returns a token that you can specify in a subsequent call to get the
-     * next set of results. If the value is greater than 1000, we return only
-     * 1000 items.
+     * The maximum number of results to return for the request in a single
+     * page. The remaining results of the initial request can be seen by
+     * sending another request with the returned <code>NextToken</code>
+     * value. This value can be between 5 and 1000; if
+     * <code>MaxResults</code> is given a value larger than 1000, only 1000
+     * results are returned. You cannot specify this parameter and the
+     * instance IDs parameter in the same request.
      */
     private Integer maxResults;
 
@@ -319,31 +320,32 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * instance architecture (<code>i386</code> | <code>x86_64</code>). </li>
      * <li> <p><code>availability-zone</code> - The Availability Zone of the
      * instance. </li> <li> <p><code>block-device-mapping.attach-time</code>
-     * - The attach time for an Amazon EBS volume mapped to the instance.
-     * </li> <li> <p><code>block-device-mapping.delete-on-termination</code>
-     * - A Boolean that indicates whether the Amazon EBS volume is deleted on
-     * instance termination. </li> <li>
+     * - The attach time for an EBS volume mapped to the instance, for
+     * example, <code>2010-09-15T17:15:20.000Z</code>. </li> <li>
+     * <p><code>block-device-mapping.delete-on-termination</code> - A Boolean
+     * that indicates whether the EBS volume is deleted on instance
+     * termination. </li> <li>
      * <p><code>block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>). </li> <li>
-     * <p><code>block-device-mapping.status</code> - The status for the
-     * Amazon EBS volume (<code>attaching</code> | <code>attached</code> |
+     * the EBS volume (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>). </li> <li>
+     * <p><code>block-device-mapping.status</code> - The status for the EBS
+     * volume (<code>attaching</code> | <code>attached</code> |
      * <code>detaching</code> | <code>detached</code>). </li> <li>
      * <p><code>block-device-mapping.volume-id</code> - The volume ID of the
-     * Amazon EBS volume. </li> <li> <p><code>client-token</code> - The
-     * idempotency token you provided when you launched the instance. </li>
-     * <li> <p><code>dns-name</code> - The public DNS name of the instance.
-     * </li> <li> <p><code>group-id</code> - The ID of the security group for
-     * the instance. If the instance is in EC2-Classic or a default VPC, you
-     * can use <code>group-name</code> instead. </li> <li>
-     * <p><code>group-name</code> - The name of the security group for the
-     * instance. If the instance is in a nondefault VPC, you must use
-     * <code>group-id</code> instead. </li> <li> <p><code>hypervisor</code> -
-     * The hypervisor type of the instance (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image used to launch the instance. </li> <li>
-     * <p><code>instance-id</code> - The ID of the instance. </li> <li>
-     * <p><code>instance-lifecycle</code> - Indicates whether this is a Spot
-     * Instance (<code>spot</code>). </li> <li>
+     * EBS volume. </li> <li> <p><code>client-token</code> - The idempotency
+     * token you provided when you launched the instance. </li> <li>
+     * <p><code>dns-name</code> - The public DNS name of the instance. </li>
+     * <li> <p><code>group-id</code> - The ID of the security group for the
+     * instance. EC2-Classic only. </li> <li> <p><code>group-name</code> -
+     * The name of the security group for the instance. EC2-Classic only.
+     * </li> <li> <p><code>hypervisor</code> - The hypervisor type of the
+     * instance (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>iam-instance-profile.arn</code> - The instance profile
+     * associated with the instance. Specified as an ARN. </li> <li>
+     * <p><code>image-id</code> - The ID of the image used to launch the
+     * instance. </li> <li> <p><code>instance-id</code> - The ID of the
+     * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
+     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -354,34 +356,30 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>shutting-down</code> | <code>terminated</code> |
      * <code>stopping</code> | <code>stopped</code>). </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>instance.group-id</code> -
-     * The ID of the security group for the instance. If the instance is in
-     * EC2-Classic or a default VPC, you can use
-     * <code>instance.group-name</code> instead. </li> <li>
+     * <code>t2.micro</code>). </li> <li> <p><code>instance.group-id</code> -
+     * The ID of the security group for the instance. </li> <li>
      * <p><code>instance.group-name</code> - The name of the security group
-     * for the instance. If the instance is in a nondefault VPC, you must use
-     * <code>instance.group-id</code> instead. </li> <li>
-     * <p><code>ip-address</code> - The public IP address of the instance.
-     * </li> <li> <p><code>kernel-id</code> - The kernel ID. </li> <li>
-     * <p><code>key-name</code> - The name of the key pair used when the
-     * instance was launched. </li> <li> <p><code>launch-index</code> - When
-     * launching multiple instances, this is the index for the instance in
-     * the launch group (for example, 0, 1, 2, and so on). </li> <li>
-     * <p><code>launch-time</code> - The time when the instance was launched.
-     * </li> <li> <p><code>monitoring-state</code> - Indicates whether
-     * monitoring is enabled for the instance (<code>disabled</code> |
-     * <code>enabled</code>). </li> <li> <p><code>owner-id</code> - The AWS
-     * account ID of the instance owner. </li> <li>
-     * <p><code>placement-group-name</code> - The name of the placement group
-     * for the instance. </li> <li> <p><code>platform</code> - The platform.
-     * Use <code>windows</code> if you have Windows instances; otherwise,
-     * leave blank. </li> <li> <p><code>private-dns-name</code> - The private
-     * DNS name of the instance. </li> <li>
-     * <p><code>private-ip-address</code> - The private IP address of the
-     * instance. </li> <li> <p><code>product-code</code> - The product code
-     * associated with the AMI used to launch the instance. </li> <li>
-     * <p><code>product-code.type</code> - The type of product code
-     * (<code>devpay</code> | <code>marketplace</code>). </li> <li>
+     * for the instance. </li> <li> <p><code>ip-address</code> - The public
+     * IP address of the instance. </li> <li> <p><code>kernel-id</code> - The
+     * kernel ID. </li> <li> <p><code>key-name</code> - The name of the key
+     * pair used when the instance was launched. </li> <li>
+     * <p><code>launch-index</code> - When launching multiple instances, this
+     * is the index for the instance in the launch group (for example, 0, 1,
+     * 2, and so on). </li> <li> <p><code>launch-time</code> - The time when
+     * the instance was launched. </li> <li> <p><code>monitoring-state</code>
+     * - Indicates whether monitoring is enabled for the instance
+     * (<code>disabled</code> | <code>enabled</code>). </li> <li>
+     * <p><code>owner-id</code> - The AWS account ID of the instance owner.
+     * </li> <li> <p><code>placement-group-name</code> - The name of the
+     * placement group for the instance. </li> <li> <p><code>platform</code>
+     * - The platform. Use <code>windows</code> if you have Windows
+     * instances; otherwise, leave blank. </li> <li>
+     * <p><code>private-dns-name</code> - The private DNS name of the
+     * instance. </li> <li> <p><code>private-ip-address</code> - The private
+     * IP address of the instance. </li> <li> <p><code>product-code</code> -
+     * The product code associated with the AMI used to launch the instance.
+     * </li> <li> <p><code>product-code.type</code> - The type of product
+     * code (<code>devpay</code> | <code>marketplace</code>). </li> <li>
      * <p><code>ramdisk-id</code> - The RAM disk ID. </li> <li>
      * <p><code>reason</code> - The reason for the current state of the
      * instance (for example, shows "User Initiated [date]" when you stop or
@@ -398,14 +396,15 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * launch ten instances using the same launch request, you'll also get
      * one reservation ID. </li> <li> <p><code>root-device-name</code> - The
      * name of the root device for the instance (for example,
-     * <code>/dev/sda1</code>). </li> <li> <p><code>root-device-type</code> -
-     * The type of root device that the instance uses (<code>ebs</code> |
-     * <code>instance-store</code>). </li> <li>
-     * <p><code>source-dest-check</code> - Indicates whether the instance
-     * performs source/destination checking. A value of <code>true</code>
-     * means that checking is enabled, and <code>false</code> means checking
-     * is disabled. The value must be <code>false</code> for the instance to
-     * perform network address translation (NAT) in your VPC. </li> <li>
+     * <code>/dev/sda1</code> or <code>/dev/xvda</code>). </li> <li>
+     * <p><code>root-device-type</code> - The type of root device that the
+     * instance uses (<code>ebs</code> | <code>instance-store</code>). </li>
+     * <li> <p><code>source-dest-check</code> - Indicates whether the
+     * instance performs source/destination checking. A value of
+     * <code>true</code> means that checking is enabled, and
+     * <code>false</code> means checking is disabled. The value must be
+     * <code>false</code> for the instance to perform network address
+     * translation (NAT) in your VPC. </li> <li>
      * <p><code>spot-instance-request-id</code> - The ID of the Spot Instance
      * request. </li> <li> <p><code>state-reason-code</code> - The reason
      * code for the state change. </li> <li>
@@ -425,12 +424,13 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>tag</code>:<i>key</i>=<i>value</i> filter. </li> <li>
      * <p><code>tag-value</code> - The value of a tag assigned to the
      * resource. This filter is independent of the <code>tag-key</code>
-     * filter. </li> <li> <p><code>virtualization-type</code> - The
-     * virtualization type of the instance (<code>paravirtual</code> |
-     * <code>hvm</code>). </li> <li> <p><code>vpc-id</code> - The ID of the
-     * VPC that the instance is running in. </li> <li>
-     * <p><code>network-interface.description</code> - The description of the
-     * network interface. </li> <li>
+     * filter. </li> <li> <p><code>tenancy</code> - The tenancy of an
+     * instance (<code>dedicated</code> | <code>default</code>). </li> <li>
+     * <p><code>virtualization-type</code> - The virtualization type of the
+     * instance (<code>paravirtual</code> | <code>hvm</code>). </li> <li>
+     * <p><code>vpc-id</code> - The ID of the VPC that the instance is
+     * running in. </li> <li> <p><code>network-interface.description</code> -
+     * The description of the network interface. </li> <li>
      * <p><code>network-interface.subnet-id</code> - The ID of the subnet for
      * the network interface. </li> <li>
      * <p><code>network-interface.vpc-id</code> - The ID of the VPC for the
@@ -451,8 +451,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * network interface. </li> <li>
      * <p><code>network-interface-private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
-     * <p><code>network-interface.source-destination-check</code> - Whether
-     * the network interface performs source/destination checking. A value of
+     * <p><code>network-interface.source-dest-check</code> - Whether the
+     * network interface performs source/destination checking. A value of
      * <code>true</code> means checking is enabled, and <code>false</code>
      * means checking is disabled. The value must be <code>false</code> for
      * the network interface to perform network address translation (NAT) in
@@ -501,31 +501,32 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         instance architecture (<code>i386</code> | <code>x86_64</code>). </li>
      *         <li> <p><code>availability-zone</code> - The Availability Zone of the
      *         instance. </li> <li> <p><code>block-device-mapping.attach-time</code>
-     *         - The attach time for an Amazon EBS volume mapped to the instance.
-     *         </li> <li> <p><code>block-device-mapping.delete-on-termination</code>
-     *         - A Boolean that indicates whether the Amazon EBS volume is deleted on
-     *         instance termination. </li> <li>
+     *         - The attach time for an EBS volume mapped to the instance, for
+     *         example, <code>2010-09-15T17:15:20.000Z</code>. </li> <li>
+     *         <p><code>block-device-mapping.delete-on-termination</code> - A Boolean
+     *         that indicates whether the EBS volume is deleted on instance
+     *         termination. </li> <li>
      *         <p><code>block-device-mapping.device-name</code> - The device name for
-     *         the Amazon EBS volume (for example, <code>/dev/sdh</code>). </li> <li>
-     *         <p><code>block-device-mapping.status</code> - The status for the
-     *         Amazon EBS volume (<code>attaching</code> | <code>attached</code> |
+     *         the EBS volume (for example, <code>/dev/sdh</code> or
+     *         <code>xvdh</code>). </li> <li>
+     *         <p><code>block-device-mapping.status</code> - The status for the EBS
+     *         volume (<code>attaching</code> | <code>attached</code> |
      *         <code>detaching</code> | <code>detached</code>). </li> <li>
      *         <p><code>block-device-mapping.volume-id</code> - The volume ID of the
-     *         Amazon EBS volume. </li> <li> <p><code>client-token</code> - The
-     *         idempotency token you provided when you launched the instance. </li>
-     *         <li> <p><code>dns-name</code> - The public DNS name of the instance.
-     *         </li> <li> <p><code>group-id</code> - The ID of the security group for
-     *         the instance. If the instance is in EC2-Classic or a default VPC, you
-     *         can use <code>group-name</code> instead. </li> <li>
-     *         <p><code>group-name</code> - The name of the security group for the
-     *         instance. If the instance is in a nondefault VPC, you must use
-     *         <code>group-id</code> instead. </li> <li> <p><code>hypervisor</code> -
-     *         The hypervisor type of the instance (<code>ovm</code> |
-     *         <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     *         image used to launch the instance. </li> <li>
-     *         <p><code>instance-id</code> - The ID of the instance. </li> <li>
-     *         <p><code>instance-lifecycle</code> - Indicates whether this is a Spot
-     *         Instance (<code>spot</code>). </li> <li>
+     *         EBS volume. </li> <li> <p><code>client-token</code> - The idempotency
+     *         token you provided when you launched the instance. </li> <li>
+     *         <p><code>dns-name</code> - The public DNS name of the instance. </li>
+     *         <li> <p><code>group-id</code> - The ID of the security group for the
+     *         instance. EC2-Classic only. </li> <li> <p><code>group-name</code> -
+     *         The name of the security group for the instance. EC2-Classic only.
+     *         </li> <li> <p><code>hypervisor</code> - The hypervisor type of the
+     *         instance (<code>ovm</code> | <code>xen</code>). </li> <li>
+     *         <p><code>iam-instance-profile.arn</code> - The instance profile
+     *         associated with the instance. Specified as an ARN. </li> <li>
+     *         <p><code>image-id</code> - The ID of the image used to launch the
+     *         instance. </li> <li> <p><code>instance-id</code> - The ID of the
+     *         instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
+     *         whether this is a Spot Instance (<code>spot</code>). </li> <li>
      *         <p><code>instance-state-code</code> - The state of the instance, as a
      *         16-bit unsigned integer. The high byte is an opaque internal value and
      *         should be ignored. The low byte is set based on the state represented.
@@ -536,34 +537,30 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <code>shutting-down</code> | <code>terminated</code> |
      *         <code>stopping</code> | <code>stopped</code>). </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
-     *         <code>m1.small</code>). </li> <li> <p><code>instance.group-id</code> -
-     *         The ID of the security group for the instance. If the instance is in
-     *         EC2-Classic or a default VPC, you can use
-     *         <code>instance.group-name</code> instead. </li> <li>
+     *         <code>t2.micro</code>). </li> <li> <p><code>instance.group-id</code> -
+     *         The ID of the security group for the instance. </li> <li>
      *         <p><code>instance.group-name</code> - The name of the security group
-     *         for the instance. If the instance is in a nondefault VPC, you must use
-     *         <code>instance.group-id</code> instead. </li> <li>
-     *         <p><code>ip-address</code> - The public IP address of the instance.
-     *         </li> <li> <p><code>kernel-id</code> - The kernel ID. </li> <li>
-     *         <p><code>key-name</code> - The name of the key pair used when the
-     *         instance was launched. </li> <li> <p><code>launch-index</code> - When
-     *         launching multiple instances, this is the index for the instance in
-     *         the launch group (for example, 0, 1, 2, and so on). </li> <li>
-     *         <p><code>launch-time</code> - The time when the instance was launched.
-     *         </li> <li> <p><code>monitoring-state</code> - Indicates whether
-     *         monitoring is enabled for the instance (<code>disabled</code> |
-     *         <code>enabled</code>). </li> <li> <p><code>owner-id</code> - The AWS
-     *         account ID of the instance owner. </li> <li>
-     *         <p><code>placement-group-name</code> - The name of the placement group
-     *         for the instance. </li> <li> <p><code>platform</code> - The platform.
-     *         Use <code>windows</code> if you have Windows instances; otherwise,
-     *         leave blank. </li> <li> <p><code>private-dns-name</code> - The private
-     *         DNS name of the instance. </li> <li>
-     *         <p><code>private-ip-address</code> - The private IP address of the
-     *         instance. </li> <li> <p><code>product-code</code> - The product code
-     *         associated with the AMI used to launch the instance. </li> <li>
-     *         <p><code>product-code.type</code> - The type of product code
-     *         (<code>devpay</code> | <code>marketplace</code>). </li> <li>
+     *         for the instance. </li> <li> <p><code>ip-address</code> - The public
+     *         IP address of the instance. </li> <li> <p><code>kernel-id</code> - The
+     *         kernel ID. </li> <li> <p><code>key-name</code> - The name of the key
+     *         pair used when the instance was launched. </li> <li>
+     *         <p><code>launch-index</code> - When launching multiple instances, this
+     *         is the index for the instance in the launch group (for example, 0, 1,
+     *         2, and so on). </li> <li> <p><code>launch-time</code> - The time when
+     *         the instance was launched. </li> <li> <p><code>monitoring-state</code>
+     *         - Indicates whether monitoring is enabled for the instance
+     *         (<code>disabled</code> | <code>enabled</code>). </li> <li>
+     *         <p><code>owner-id</code> - The AWS account ID of the instance owner.
+     *         </li> <li> <p><code>placement-group-name</code> - The name of the
+     *         placement group for the instance. </li> <li> <p><code>platform</code>
+     *         - The platform. Use <code>windows</code> if you have Windows
+     *         instances; otherwise, leave blank. </li> <li>
+     *         <p><code>private-dns-name</code> - The private DNS name of the
+     *         instance. </li> <li> <p><code>private-ip-address</code> - The private
+     *         IP address of the instance. </li> <li> <p><code>product-code</code> -
+     *         The product code associated with the AMI used to launch the instance.
+     *         </li> <li> <p><code>product-code.type</code> - The type of product
+     *         code (<code>devpay</code> | <code>marketplace</code>). </li> <li>
      *         <p><code>ramdisk-id</code> - The RAM disk ID. </li> <li>
      *         <p><code>reason</code> - The reason for the current state of the
      *         instance (for example, shows "User Initiated [date]" when you stop or
@@ -580,14 +577,15 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         launch ten instances using the same launch request, you'll also get
      *         one reservation ID. </li> <li> <p><code>root-device-name</code> - The
      *         name of the root device for the instance (for example,
-     *         <code>/dev/sda1</code>). </li> <li> <p><code>root-device-type</code> -
-     *         The type of root device that the instance uses (<code>ebs</code> |
-     *         <code>instance-store</code>). </li> <li>
-     *         <p><code>source-dest-check</code> - Indicates whether the instance
-     *         performs source/destination checking. A value of <code>true</code>
-     *         means that checking is enabled, and <code>false</code> means checking
-     *         is disabled. The value must be <code>false</code> for the instance to
-     *         perform network address translation (NAT) in your VPC. </li> <li>
+     *         <code>/dev/sda1</code> or <code>/dev/xvda</code>). </li> <li>
+     *         <p><code>root-device-type</code> - The type of root device that the
+     *         instance uses (<code>ebs</code> | <code>instance-store</code>). </li>
+     *         <li> <p><code>source-dest-check</code> - Indicates whether the
+     *         instance performs source/destination checking. A value of
+     *         <code>true</code> means that checking is enabled, and
+     *         <code>false</code> means checking is disabled. The value must be
+     *         <code>false</code> for the instance to perform network address
+     *         translation (NAT) in your VPC. </li> <li>
      *         <p><code>spot-instance-request-id</code> - The ID of the Spot Instance
      *         request. </li> <li> <p><code>state-reason-code</code> - The reason
      *         code for the state change. </li> <li>
@@ -607,12 +605,13 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <code>tag</code>:<i>key</i>=<i>value</i> filter. </li> <li>
      *         <p><code>tag-value</code> - The value of a tag assigned to the
      *         resource. This filter is independent of the <code>tag-key</code>
-     *         filter. </li> <li> <p><code>virtualization-type</code> - The
-     *         virtualization type of the instance (<code>paravirtual</code> |
-     *         <code>hvm</code>). </li> <li> <p><code>vpc-id</code> - The ID of the
-     *         VPC that the instance is running in. </li> <li>
-     *         <p><code>network-interface.description</code> - The description of the
-     *         network interface. </li> <li>
+     *         filter. </li> <li> <p><code>tenancy</code> - The tenancy of an
+     *         instance (<code>dedicated</code> | <code>default</code>). </li> <li>
+     *         <p><code>virtualization-type</code> - The virtualization type of the
+     *         instance (<code>paravirtual</code> | <code>hvm</code>). </li> <li>
+     *         <p><code>vpc-id</code> - The ID of the VPC that the instance is
+     *         running in. </li> <li> <p><code>network-interface.description</code> -
+     *         The description of the network interface. </li> <li>
      *         <p><code>network-interface.subnet-id</code> - The ID of the subnet for
      *         the network interface. </li> <li>
      *         <p><code>network-interface.vpc-id</code> - The ID of the VPC for the
@@ -633,8 +632,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         network interface. </li> <li>
      *         <p><code>network-interface-private-dns-name</code> - The private DNS
      *         name of the network interface. </li> <li>
-     *         <p><code>network-interface.source-destination-check</code> - Whether
-     *         the network interface performs source/destination checking. A value of
+     *         <p><code>network-interface.source-dest-check</code> - Whether the
+     *         network interface performs source/destination checking. A value of
      *         <code>true</code> means checking is enabled, and <code>false</code>
      *         means checking is disabled. The value must be <code>false</code> for
      *         the network interface to perform network address translation (NAT) in
@@ -692,31 +691,32 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * instance architecture (<code>i386</code> | <code>x86_64</code>). </li>
      * <li> <p><code>availability-zone</code> - The Availability Zone of the
      * instance. </li> <li> <p><code>block-device-mapping.attach-time</code>
-     * - The attach time for an Amazon EBS volume mapped to the instance.
-     * </li> <li> <p><code>block-device-mapping.delete-on-termination</code>
-     * - A Boolean that indicates whether the Amazon EBS volume is deleted on
-     * instance termination. </li> <li>
+     * - The attach time for an EBS volume mapped to the instance, for
+     * example, <code>2010-09-15T17:15:20.000Z</code>. </li> <li>
+     * <p><code>block-device-mapping.delete-on-termination</code> - A Boolean
+     * that indicates whether the EBS volume is deleted on instance
+     * termination. </li> <li>
      * <p><code>block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>). </li> <li>
-     * <p><code>block-device-mapping.status</code> - The status for the
-     * Amazon EBS volume (<code>attaching</code> | <code>attached</code> |
+     * the EBS volume (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>). </li> <li>
+     * <p><code>block-device-mapping.status</code> - The status for the EBS
+     * volume (<code>attaching</code> | <code>attached</code> |
      * <code>detaching</code> | <code>detached</code>). </li> <li>
      * <p><code>block-device-mapping.volume-id</code> - The volume ID of the
-     * Amazon EBS volume. </li> <li> <p><code>client-token</code> - The
-     * idempotency token you provided when you launched the instance. </li>
-     * <li> <p><code>dns-name</code> - The public DNS name of the instance.
-     * </li> <li> <p><code>group-id</code> - The ID of the security group for
-     * the instance. If the instance is in EC2-Classic or a default VPC, you
-     * can use <code>group-name</code> instead. </li> <li>
-     * <p><code>group-name</code> - The name of the security group for the
-     * instance. If the instance is in a nondefault VPC, you must use
-     * <code>group-id</code> instead. </li> <li> <p><code>hypervisor</code> -
-     * The hypervisor type of the instance (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image used to launch the instance. </li> <li>
-     * <p><code>instance-id</code> - The ID of the instance. </li> <li>
-     * <p><code>instance-lifecycle</code> - Indicates whether this is a Spot
-     * Instance (<code>spot</code>). </li> <li>
+     * EBS volume. </li> <li> <p><code>client-token</code> - The idempotency
+     * token you provided when you launched the instance. </li> <li>
+     * <p><code>dns-name</code> - The public DNS name of the instance. </li>
+     * <li> <p><code>group-id</code> - The ID of the security group for the
+     * instance. EC2-Classic only. </li> <li> <p><code>group-name</code> -
+     * The name of the security group for the instance. EC2-Classic only.
+     * </li> <li> <p><code>hypervisor</code> - The hypervisor type of the
+     * instance (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>iam-instance-profile.arn</code> - The instance profile
+     * associated with the instance. Specified as an ARN. </li> <li>
+     * <p><code>image-id</code> - The ID of the image used to launch the
+     * instance. </li> <li> <p><code>instance-id</code> - The ID of the
+     * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
+     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -727,34 +727,30 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>shutting-down</code> | <code>terminated</code> |
      * <code>stopping</code> | <code>stopped</code>). </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>instance.group-id</code> -
-     * The ID of the security group for the instance. If the instance is in
-     * EC2-Classic or a default VPC, you can use
-     * <code>instance.group-name</code> instead. </li> <li>
+     * <code>t2.micro</code>). </li> <li> <p><code>instance.group-id</code> -
+     * The ID of the security group for the instance. </li> <li>
      * <p><code>instance.group-name</code> - The name of the security group
-     * for the instance. If the instance is in a nondefault VPC, you must use
-     * <code>instance.group-id</code> instead. </li> <li>
-     * <p><code>ip-address</code> - The public IP address of the instance.
-     * </li> <li> <p><code>kernel-id</code> - The kernel ID. </li> <li>
-     * <p><code>key-name</code> - The name of the key pair used when the
-     * instance was launched. </li> <li> <p><code>launch-index</code> - When
-     * launching multiple instances, this is the index for the instance in
-     * the launch group (for example, 0, 1, 2, and so on). </li> <li>
-     * <p><code>launch-time</code> - The time when the instance was launched.
-     * </li> <li> <p><code>monitoring-state</code> - Indicates whether
-     * monitoring is enabled for the instance (<code>disabled</code> |
-     * <code>enabled</code>). </li> <li> <p><code>owner-id</code> - The AWS
-     * account ID of the instance owner. </li> <li>
-     * <p><code>placement-group-name</code> - The name of the placement group
-     * for the instance. </li> <li> <p><code>platform</code> - The platform.
-     * Use <code>windows</code> if you have Windows instances; otherwise,
-     * leave blank. </li> <li> <p><code>private-dns-name</code> - The private
-     * DNS name of the instance. </li> <li>
-     * <p><code>private-ip-address</code> - The private IP address of the
-     * instance. </li> <li> <p><code>product-code</code> - The product code
-     * associated with the AMI used to launch the instance. </li> <li>
-     * <p><code>product-code.type</code> - The type of product code
-     * (<code>devpay</code> | <code>marketplace</code>). </li> <li>
+     * for the instance. </li> <li> <p><code>ip-address</code> - The public
+     * IP address of the instance. </li> <li> <p><code>kernel-id</code> - The
+     * kernel ID. </li> <li> <p><code>key-name</code> - The name of the key
+     * pair used when the instance was launched. </li> <li>
+     * <p><code>launch-index</code> - When launching multiple instances, this
+     * is the index for the instance in the launch group (for example, 0, 1,
+     * 2, and so on). </li> <li> <p><code>launch-time</code> - The time when
+     * the instance was launched. </li> <li> <p><code>monitoring-state</code>
+     * - Indicates whether monitoring is enabled for the instance
+     * (<code>disabled</code> | <code>enabled</code>). </li> <li>
+     * <p><code>owner-id</code> - The AWS account ID of the instance owner.
+     * </li> <li> <p><code>placement-group-name</code> - The name of the
+     * placement group for the instance. </li> <li> <p><code>platform</code>
+     * - The platform. Use <code>windows</code> if you have Windows
+     * instances; otherwise, leave blank. </li> <li>
+     * <p><code>private-dns-name</code> - The private DNS name of the
+     * instance. </li> <li> <p><code>private-ip-address</code> - The private
+     * IP address of the instance. </li> <li> <p><code>product-code</code> -
+     * The product code associated with the AMI used to launch the instance.
+     * </li> <li> <p><code>product-code.type</code> - The type of product
+     * code (<code>devpay</code> | <code>marketplace</code>). </li> <li>
      * <p><code>ramdisk-id</code> - The RAM disk ID. </li> <li>
      * <p><code>reason</code> - The reason for the current state of the
      * instance (for example, shows "User Initiated [date]" when you stop or
@@ -771,14 +767,15 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * launch ten instances using the same launch request, you'll also get
      * one reservation ID. </li> <li> <p><code>root-device-name</code> - The
      * name of the root device for the instance (for example,
-     * <code>/dev/sda1</code>). </li> <li> <p><code>root-device-type</code> -
-     * The type of root device that the instance uses (<code>ebs</code> |
-     * <code>instance-store</code>). </li> <li>
-     * <p><code>source-dest-check</code> - Indicates whether the instance
-     * performs source/destination checking. A value of <code>true</code>
-     * means that checking is enabled, and <code>false</code> means checking
-     * is disabled. The value must be <code>false</code> for the instance to
-     * perform network address translation (NAT) in your VPC. </li> <li>
+     * <code>/dev/sda1</code> or <code>/dev/xvda</code>). </li> <li>
+     * <p><code>root-device-type</code> - The type of root device that the
+     * instance uses (<code>ebs</code> | <code>instance-store</code>). </li>
+     * <li> <p><code>source-dest-check</code> - Indicates whether the
+     * instance performs source/destination checking. A value of
+     * <code>true</code> means that checking is enabled, and
+     * <code>false</code> means checking is disabled. The value must be
+     * <code>false</code> for the instance to perform network address
+     * translation (NAT) in your VPC. </li> <li>
      * <p><code>spot-instance-request-id</code> - The ID of the Spot Instance
      * request. </li> <li> <p><code>state-reason-code</code> - The reason
      * code for the state change. </li> <li>
@@ -798,12 +795,13 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>tag</code>:<i>key</i>=<i>value</i> filter. </li> <li>
      * <p><code>tag-value</code> - The value of a tag assigned to the
      * resource. This filter is independent of the <code>tag-key</code>
-     * filter. </li> <li> <p><code>virtualization-type</code> - The
-     * virtualization type of the instance (<code>paravirtual</code> |
-     * <code>hvm</code>). </li> <li> <p><code>vpc-id</code> - The ID of the
-     * VPC that the instance is running in. </li> <li>
-     * <p><code>network-interface.description</code> - The description of the
-     * network interface. </li> <li>
+     * filter. </li> <li> <p><code>tenancy</code> - The tenancy of an
+     * instance (<code>dedicated</code> | <code>default</code>). </li> <li>
+     * <p><code>virtualization-type</code> - The virtualization type of the
+     * instance (<code>paravirtual</code> | <code>hvm</code>). </li> <li>
+     * <p><code>vpc-id</code> - The ID of the VPC that the instance is
+     * running in. </li> <li> <p><code>network-interface.description</code> -
+     * The description of the network interface. </li> <li>
      * <p><code>network-interface.subnet-id</code> - The ID of the subnet for
      * the network interface. </li> <li>
      * <p><code>network-interface.vpc-id</code> - The ID of the VPC for the
@@ -824,8 +822,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * network interface. </li> <li>
      * <p><code>network-interface-private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
-     * <p><code>network-interface.source-destination-check</code> - Whether
-     * the network interface performs source/destination checking. A value of
+     * <p><code>network-interface.source-dest-check</code> - Whether the
+     * network interface performs source/destination checking. A value of
      * <code>true</code> means checking is enabled, and <code>false</code>
      * means checking is disabled. The value must be <code>false</code> for
      * the network interface to perform network address translation (NAT) in
@@ -874,31 +872,32 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         instance architecture (<code>i386</code> | <code>x86_64</code>). </li>
      *         <li> <p><code>availability-zone</code> - The Availability Zone of the
      *         instance. </li> <li> <p><code>block-device-mapping.attach-time</code>
-     *         - The attach time for an Amazon EBS volume mapped to the instance.
-     *         </li> <li> <p><code>block-device-mapping.delete-on-termination</code>
-     *         - A Boolean that indicates whether the Amazon EBS volume is deleted on
-     *         instance termination. </li> <li>
+     *         - The attach time for an EBS volume mapped to the instance, for
+     *         example, <code>2010-09-15T17:15:20.000Z</code>. </li> <li>
+     *         <p><code>block-device-mapping.delete-on-termination</code> - A Boolean
+     *         that indicates whether the EBS volume is deleted on instance
+     *         termination. </li> <li>
      *         <p><code>block-device-mapping.device-name</code> - The device name for
-     *         the Amazon EBS volume (for example, <code>/dev/sdh</code>). </li> <li>
-     *         <p><code>block-device-mapping.status</code> - The status for the
-     *         Amazon EBS volume (<code>attaching</code> | <code>attached</code> |
+     *         the EBS volume (for example, <code>/dev/sdh</code> or
+     *         <code>xvdh</code>). </li> <li>
+     *         <p><code>block-device-mapping.status</code> - The status for the EBS
+     *         volume (<code>attaching</code> | <code>attached</code> |
      *         <code>detaching</code> | <code>detached</code>). </li> <li>
      *         <p><code>block-device-mapping.volume-id</code> - The volume ID of the
-     *         Amazon EBS volume. </li> <li> <p><code>client-token</code> - The
-     *         idempotency token you provided when you launched the instance. </li>
-     *         <li> <p><code>dns-name</code> - The public DNS name of the instance.
-     *         </li> <li> <p><code>group-id</code> - The ID of the security group for
-     *         the instance. If the instance is in EC2-Classic or a default VPC, you
-     *         can use <code>group-name</code> instead. </li> <li>
-     *         <p><code>group-name</code> - The name of the security group for the
-     *         instance. If the instance is in a nondefault VPC, you must use
-     *         <code>group-id</code> instead. </li> <li> <p><code>hypervisor</code> -
-     *         The hypervisor type of the instance (<code>ovm</code> |
-     *         <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     *         image used to launch the instance. </li> <li>
-     *         <p><code>instance-id</code> - The ID of the instance. </li> <li>
-     *         <p><code>instance-lifecycle</code> - Indicates whether this is a Spot
-     *         Instance (<code>spot</code>). </li> <li>
+     *         EBS volume. </li> <li> <p><code>client-token</code> - The idempotency
+     *         token you provided when you launched the instance. </li> <li>
+     *         <p><code>dns-name</code> - The public DNS name of the instance. </li>
+     *         <li> <p><code>group-id</code> - The ID of the security group for the
+     *         instance. EC2-Classic only. </li> <li> <p><code>group-name</code> -
+     *         The name of the security group for the instance. EC2-Classic only.
+     *         </li> <li> <p><code>hypervisor</code> - The hypervisor type of the
+     *         instance (<code>ovm</code> | <code>xen</code>). </li> <li>
+     *         <p><code>iam-instance-profile.arn</code> - The instance profile
+     *         associated with the instance. Specified as an ARN. </li> <li>
+     *         <p><code>image-id</code> - The ID of the image used to launch the
+     *         instance. </li> <li> <p><code>instance-id</code> - The ID of the
+     *         instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
+     *         whether this is a Spot Instance (<code>spot</code>). </li> <li>
      *         <p><code>instance-state-code</code> - The state of the instance, as a
      *         16-bit unsigned integer. The high byte is an opaque internal value and
      *         should be ignored. The low byte is set based on the state represented.
@@ -909,34 +908,30 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <code>shutting-down</code> | <code>terminated</code> |
      *         <code>stopping</code> | <code>stopped</code>). </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
-     *         <code>m1.small</code>). </li> <li> <p><code>instance.group-id</code> -
-     *         The ID of the security group for the instance. If the instance is in
-     *         EC2-Classic or a default VPC, you can use
-     *         <code>instance.group-name</code> instead. </li> <li>
+     *         <code>t2.micro</code>). </li> <li> <p><code>instance.group-id</code> -
+     *         The ID of the security group for the instance. </li> <li>
      *         <p><code>instance.group-name</code> - The name of the security group
-     *         for the instance. If the instance is in a nondefault VPC, you must use
-     *         <code>instance.group-id</code> instead. </li> <li>
-     *         <p><code>ip-address</code> - The public IP address of the instance.
-     *         </li> <li> <p><code>kernel-id</code> - The kernel ID. </li> <li>
-     *         <p><code>key-name</code> - The name of the key pair used when the
-     *         instance was launched. </li> <li> <p><code>launch-index</code> - When
-     *         launching multiple instances, this is the index for the instance in
-     *         the launch group (for example, 0, 1, 2, and so on). </li> <li>
-     *         <p><code>launch-time</code> - The time when the instance was launched.
-     *         </li> <li> <p><code>monitoring-state</code> - Indicates whether
-     *         monitoring is enabled for the instance (<code>disabled</code> |
-     *         <code>enabled</code>). </li> <li> <p><code>owner-id</code> - The AWS
-     *         account ID of the instance owner. </li> <li>
-     *         <p><code>placement-group-name</code> - The name of the placement group
-     *         for the instance. </li> <li> <p><code>platform</code> - The platform.
-     *         Use <code>windows</code> if you have Windows instances; otherwise,
-     *         leave blank. </li> <li> <p><code>private-dns-name</code> - The private
-     *         DNS name of the instance. </li> <li>
-     *         <p><code>private-ip-address</code> - The private IP address of the
-     *         instance. </li> <li> <p><code>product-code</code> - The product code
-     *         associated with the AMI used to launch the instance. </li> <li>
-     *         <p><code>product-code.type</code> - The type of product code
-     *         (<code>devpay</code> | <code>marketplace</code>). </li> <li>
+     *         for the instance. </li> <li> <p><code>ip-address</code> - The public
+     *         IP address of the instance. </li> <li> <p><code>kernel-id</code> - The
+     *         kernel ID. </li> <li> <p><code>key-name</code> - The name of the key
+     *         pair used when the instance was launched. </li> <li>
+     *         <p><code>launch-index</code> - When launching multiple instances, this
+     *         is the index for the instance in the launch group (for example, 0, 1,
+     *         2, and so on). </li> <li> <p><code>launch-time</code> - The time when
+     *         the instance was launched. </li> <li> <p><code>monitoring-state</code>
+     *         - Indicates whether monitoring is enabled for the instance
+     *         (<code>disabled</code> | <code>enabled</code>). </li> <li>
+     *         <p><code>owner-id</code> - The AWS account ID of the instance owner.
+     *         </li> <li> <p><code>placement-group-name</code> - The name of the
+     *         placement group for the instance. </li> <li> <p><code>platform</code>
+     *         - The platform. Use <code>windows</code> if you have Windows
+     *         instances; otherwise, leave blank. </li> <li>
+     *         <p><code>private-dns-name</code> - The private DNS name of the
+     *         instance. </li> <li> <p><code>private-ip-address</code> - The private
+     *         IP address of the instance. </li> <li> <p><code>product-code</code> -
+     *         The product code associated with the AMI used to launch the instance.
+     *         </li> <li> <p><code>product-code.type</code> - The type of product
+     *         code (<code>devpay</code> | <code>marketplace</code>). </li> <li>
      *         <p><code>ramdisk-id</code> - The RAM disk ID. </li> <li>
      *         <p><code>reason</code> - The reason for the current state of the
      *         instance (for example, shows "User Initiated [date]" when you stop or
@@ -953,14 +948,15 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         launch ten instances using the same launch request, you'll also get
      *         one reservation ID. </li> <li> <p><code>root-device-name</code> - The
      *         name of the root device for the instance (for example,
-     *         <code>/dev/sda1</code>). </li> <li> <p><code>root-device-type</code> -
-     *         The type of root device that the instance uses (<code>ebs</code> |
-     *         <code>instance-store</code>). </li> <li>
-     *         <p><code>source-dest-check</code> - Indicates whether the instance
-     *         performs source/destination checking. A value of <code>true</code>
-     *         means that checking is enabled, and <code>false</code> means checking
-     *         is disabled. The value must be <code>false</code> for the instance to
-     *         perform network address translation (NAT) in your VPC. </li> <li>
+     *         <code>/dev/sda1</code> or <code>/dev/xvda</code>). </li> <li>
+     *         <p><code>root-device-type</code> - The type of root device that the
+     *         instance uses (<code>ebs</code> | <code>instance-store</code>). </li>
+     *         <li> <p><code>source-dest-check</code> - Indicates whether the
+     *         instance performs source/destination checking. A value of
+     *         <code>true</code> means that checking is enabled, and
+     *         <code>false</code> means checking is disabled. The value must be
+     *         <code>false</code> for the instance to perform network address
+     *         translation (NAT) in your VPC. </li> <li>
      *         <p><code>spot-instance-request-id</code> - The ID of the Spot Instance
      *         request. </li> <li> <p><code>state-reason-code</code> - The reason
      *         code for the state change. </li> <li>
@@ -980,12 +976,13 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <code>tag</code>:<i>key</i>=<i>value</i> filter. </li> <li>
      *         <p><code>tag-value</code> - The value of a tag assigned to the
      *         resource. This filter is independent of the <code>tag-key</code>
-     *         filter. </li> <li> <p><code>virtualization-type</code> - The
-     *         virtualization type of the instance (<code>paravirtual</code> |
-     *         <code>hvm</code>). </li> <li> <p><code>vpc-id</code> - The ID of the
-     *         VPC that the instance is running in. </li> <li>
-     *         <p><code>network-interface.description</code> - The description of the
-     *         network interface. </li> <li>
+     *         filter. </li> <li> <p><code>tenancy</code> - The tenancy of an
+     *         instance (<code>dedicated</code> | <code>default</code>). </li> <li>
+     *         <p><code>virtualization-type</code> - The virtualization type of the
+     *         instance (<code>paravirtual</code> | <code>hvm</code>). </li> <li>
+     *         <p><code>vpc-id</code> - The ID of the VPC that the instance is
+     *         running in. </li> <li> <p><code>network-interface.description</code> -
+     *         The description of the network interface. </li> <li>
      *         <p><code>network-interface.subnet-id</code> - The ID of the subnet for
      *         the network interface. </li> <li>
      *         <p><code>network-interface.vpc-id</code> - The ID of the VPC for the
@@ -1006,8 +1003,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         network interface. </li> <li>
      *         <p><code>network-interface-private-dns-name</code> - The private DNS
      *         name of the network interface. </li> <li>
-     *         <p><code>network-interface.source-destination-check</code> - Whether
-     *         the network interface performs source/destination checking. A value of
+     *         <p><code>network-interface.source-dest-check</code> - Whether the
+     *         network interface performs source/destination checking. A value of
      *         <code>true</code> means checking is enabled, and <code>false</code>
      *         means checking is disabled. The value must be <code>false</code> for
      *         the network interface to perform network address translation (NAT) in
@@ -1067,31 +1064,32 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * instance architecture (<code>i386</code> | <code>x86_64</code>). </li>
      * <li> <p><code>availability-zone</code> - The Availability Zone of the
      * instance. </li> <li> <p><code>block-device-mapping.attach-time</code>
-     * - The attach time for an Amazon EBS volume mapped to the instance.
-     * </li> <li> <p><code>block-device-mapping.delete-on-termination</code>
-     * - A Boolean that indicates whether the Amazon EBS volume is deleted on
-     * instance termination. </li> <li>
+     * - The attach time for an EBS volume mapped to the instance, for
+     * example, <code>2010-09-15T17:15:20.000Z</code>. </li> <li>
+     * <p><code>block-device-mapping.delete-on-termination</code> - A Boolean
+     * that indicates whether the EBS volume is deleted on instance
+     * termination. </li> <li>
      * <p><code>block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>). </li> <li>
-     * <p><code>block-device-mapping.status</code> - The status for the
-     * Amazon EBS volume (<code>attaching</code> | <code>attached</code> |
+     * the EBS volume (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>). </li> <li>
+     * <p><code>block-device-mapping.status</code> - The status for the EBS
+     * volume (<code>attaching</code> | <code>attached</code> |
      * <code>detaching</code> | <code>detached</code>). </li> <li>
      * <p><code>block-device-mapping.volume-id</code> - The volume ID of the
-     * Amazon EBS volume. </li> <li> <p><code>client-token</code> - The
-     * idempotency token you provided when you launched the instance. </li>
-     * <li> <p><code>dns-name</code> - The public DNS name of the instance.
-     * </li> <li> <p><code>group-id</code> - The ID of the security group for
-     * the instance. If the instance is in EC2-Classic or a default VPC, you
-     * can use <code>group-name</code> instead. </li> <li>
-     * <p><code>group-name</code> - The name of the security group for the
-     * instance. If the instance is in a nondefault VPC, you must use
-     * <code>group-id</code> instead. </li> <li> <p><code>hypervisor</code> -
-     * The hypervisor type of the instance (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image used to launch the instance. </li> <li>
-     * <p><code>instance-id</code> - The ID of the instance. </li> <li>
-     * <p><code>instance-lifecycle</code> - Indicates whether this is a Spot
-     * Instance (<code>spot</code>). </li> <li>
+     * EBS volume. </li> <li> <p><code>client-token</code> - The idempotency
+     * token you provided when you launched the instance. </li> <li>
+     * <p><code>dns-name</code> - The public DNS name of the instance. </li>
+     * <li> <p><code>group-id</code> - The ID of the security group for the
+     * instance. EC2-Classic only. </li> <li> <p><code>group-name</code> -
+     * The name of the security group for the instance. EC2-Classic only.
+     * </li> <li> <p><code>hypervisor</code> - The hypervisor type of the
+     * instance (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>iam-instance-profile.arn</code> - The instance profile
+     * associated with the instance. Specified as an ARN. </li> <li>
+     * <p><code>image-id</code> - The ID of the image used to launch the
+     * instance. </li> <li> <p><code>instance-id</code> - The ID of the
+     * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
+     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -1102,34 +1100,30 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>shutting-down</code> | <code>terminated</code> |
      * <code>stopping</code> | <code>stopped</code>). </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>instance.group-id</code> -
-     * The ID of the security group for the instance. If the instance is in
-     * EC2-Classic or a default VPC, you can use
-     * <code>instance.group-name</code> instead. </li> <li>
+     * <code>t2.micro</code>). </li> <li> <p><code>instance.group-id</code> -
+     * The ID of the security group for the instance. </li> <li>
      * <p><code>instance.group-name</code> - The name of the security group
-     * for the instance. If the instance is in a nondefault VPC, you must use
-     * <code>instance.group-id</code> instead. </li> <li>
-     * <p><code>ip-address</code> - The public IP address of the instance.
-     * </li> <li> <p><code>kernel-id</code> - The kernel ID. </li> <li>
-     * <p><code>key-name</code> - The name of the key pair used when the
-     * instance was launched. </li> <li> <p><code>launch-index</code> - When
-     * launching multiple instances, this is the index for the instance in
-     * the launch group (for example, 0, 1, 2, and so on). </li> <li>
-     * <p><code>launch-time</code> - The time when the instance was launched.
-     * </li> <li> <p><code>monitoring-state</code> - Indicates whether
-     * monitoring is enabled for the instance (<code>disabled</code> |
-     * <code>enabled</code>). </li> <li> <p><code>owner-id</code> - The AWS
-     * account ID of the instance owner. </li> <li>
-     * <p><code>placement-group-name</code> - The name of the placement group
-     * for the instance. </li> <li> <p><code>platform</code> - The platform.
-     * Use <code>windows</code> if you have Windows instances; otherwise,
-     * leave blank. </li> <li> <p><code>private-dns-name</code> - The private
-     * DNS name of the instance. </li> <li>
-     * <p><code>private-ip-address</code> - The private IP address of the
-     * instance. </li> <li> <p><code>product-code</code> - The product code
-     * associated with the AMI used to launch the instance. </li> <li>
-     * <p><code>product-code.type</code> - The type of product code
-     * (<code>devpay</code> | <code>marketplace</code>). </li> <li>
+     * for the instance. </li> <li> <p><code>ip-address</code> - The public
+     * IP address of the instance. </li> <li> <p><code>kernel-id</code> - The
+     * kernel ID. </li> <li> <p><code>key-name</code> - The name of the key
+     * pair used when the instance was launched. </li> <li>
+     * <p><code>launch-index</code> - When launching multiple instances, this
+     * is the index for the instance in the launch group (for example, 0, 1,
+     * 2, and so on). </li> <li> <p><code>launch-time</code> - The time when
+     * the instance was launched. </li> <li> <p><code>monitoring-state</code>
+     * - Indicates whether monitoring is enabled for the instance
+     * (<code>disabled</code> | <code>enabled</code>). </li> <li>
+     * <p><code>owner-id</code> - The AWS account ID of the instance owner.
+     * </li> <li> <p><code>placement-group-name</code> - The name of the
+     * placement group for the instance. </li> <li> <p><code>platform</code>
+     * - The platform. Use <code>windows</code> if you have Windows
+     * instances; otherwise, leave blank. </li> <li>
+     * <p><code>private-dns-name</code> - The private DNS name of the
+     * instance. </li> <li> <p><code>private-ip-address</code> - The private
+     * IP address of the instance. </li> <li> <p><code>product-code</code> -
+     * The product code associated with the AMI used to launch the instance.
+     * </li> <li> <p><code>product-code.type</code> - The type of product
+     * code (<code>devpay</code> | <code>marketplace</code>). </li> <li>
      * <p><code>ramdisk-id</code> - The RAM disk ID. </li> <li>
      * <p><code>reason</code> - The reason for the current state of the
      * instance (for example, shows "User Initiated [date]" when you stop or
@@ -1146,14 +1140,15 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * launch ten instances using the same launch request, you'll also get
      * one reservation ID. </li> <li> <p><code>root-device-name</code> - The
      * name of the root device for the instance (for example,
-     * <code>/dev/sda1</code>). </li> <li> <p><code>root-device-type</code> -
-     * The type of root device that the instance uses (<code>ebs</code> |
-     * <code>instance-store</code>). </li> <li>
-     * <p><code>source-dest-check</code> - Indicates whether the instance
-     * performs source/destination checking. A value of <code>true</code>
-     * means that checking is enabled, and <code>false</code> means checking
-     * is disabled. The value must be <code>false</code> for the instance to
-     * perform network address translation (NAT) in your VPC. </li> <li>
+     * <code>/dev/sda1</code> or <code>/dev/xvda</code>). </li> <li>
+     * <p><code>root-device-type</code> - The type of root device that the
+     * instance uses (<code>ebs</code> | <code>instance-store</code>). </li>
+     * <li> <p><code>source-dest-check</code> - Indicates whether the
+     * instance performs source/destination checking. A value of
+     * <code>true</code> means that checking is enabled, and
+     * <code>false</code> means checking is disabled. The value must be
+     * <code>false</code> for the instance to perform network address
+     * translation (NAT) in your VPC. </li> <li>
      * <p><code>spot-instance-request-id</code> - The ID of the Spot Instance
      * request. </li> <li> <p><code>state-reason-code</code> - The reason
      * code for the state change. </li> <li>
@@ -1173,12 +1168,13 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>tag</code>:<i>key</i>=<i>value</i> filter. </li> <li>
      * <p><code>tag-value</code> - The value of a tag assigned to the
      * resource. This filter is independent of the <code>tag-key</code>
-     * filter. </li> <li> <p><code>virtualization-type</code> - The
-     * virtualization type of the instance (<code>paravirtual</code> |
-     * <code>hvm</code>). </li> <li> <p><code>vpc-id</code> - The ID of the
-     * VPC that the instance is running in. </li> <li>
-     * <p><code>network-interface.description</code> - The description of the
-     * network interface. </li> <li>
+     * filter. </li> <li> <p><code>tenancy</code> - The tenancy of an
+     * instance (<code>dedicated</code> | <code>default</code>). </li> <li>
+     * <p><code>virtualization-type</code> - The virtualization type of the
+     * instance (<code>paravirtual</code> | <code>hvm</code>). </li> <li>
+     * <p><code>vpc-id</code> - The ID of the VPC that the instance is
+     * running in. </li> <li> <p><code>network-interface.description</code> -
+     * The description of the network interface. </li> <li>
      * <p><code>network-interface.subnet-id</code> - The ID of the subnet for
      * the network interface. </li> <li>
      * <p><code>network-interface.vpc-id</code> - The ID of the VPC for the
@@ -1199,8 +1195,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * network interface. </li> <li>
      * <p><code>network-interface-private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
-     * <p><code>network-interface.source-destination-check</code> - Whether
-     * the network interface performs source/destination checking. A value of
+     * <p><code>network-interface.source-dest-check</code> - Whether the
+     * network interface performs source/destination checking. A value of
      * <code>true</code> means checking is enabled, and <code>false</code>
      * means checking is disabled. The value must be <code>false</code> for
      * the network interface to perform network address translation (NAT) in
@@ -1251,31 +1247,32 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         instance architecture (<code>i386</code> | <code>x86_64</code>). </li>
      *         <li> <p><code>availability-zone</code> - The Availability Zone of the
      *         instance. </li> <li> <p><code>block-device-mapping.attach-time</code>
-     *         - The attach time for an Amazon EBS volume mapped to the instance.
-     *         </li> <li> <p><code>block-device-mapping.delete-on-termination</code>
-     *         - A Boolean that indicates whether the Amazon EBS volume is deleted on
-     *         instance termination. </li> <li>
+     *         - The attach time for an EBS volume mapped to the instance, for
+     *         example, <code>2010-09-15T17:15:20.000Z</code>. </li> <li>
+     *         <p><code>block-device-mapping.delete-on-termination</code> - A Boolean
+     *         that indicates whether the EBS volume is deleted on instance
+     *         termination. </li> <li>
      *         <p><code>block-device-mapping.device-name</code> - The device name for
-     *         the Amazon EBS volume (for example, <code>/dev/sdh</code>). </li> <li>
-     *         <p><code>block-device-mapping.status</code> - The status for the
-     *         Amazon EBS volume (<code>attaching</code> | <code>attached</code> |
+     *         the EBS volume (for example, <code>/dev/sdh</code> or
+     *         <code>xvdh</code>). </li> <li>
+     *         <p><code>block-device-mapping.status</code> - The status for the EBS
+     *         volume (<code>attaching</code> | <code>attached</code> |
      *         <code>detaching</code> | <code>detached</code>). </li> <li>
      *         <p><code>block-device-mapping.volume-id</code> - The volume ID of the
-     *         Amazon EBS volume. </li> <li> <p><code>client-token</code> - The
-     *         idempotency token you provided when you launched the instance. </li>
-     *         <li> <p><code>dns-name</code> - The public DNS name of the instance.
-     *         </li> <li> <p><code>group-id</code> - The ID of the security group for
-     *         the instance. If the instance is in EC2-Classic or a default VPC, you
-     *         can use <code>group-name</code> instead. </li> <li>
-     *         <p><code>group-name</code> - The name of the security group for the
-     *         instance. If the instance is in a nondefault VPC, you must use
-     *         <code>group-id</code> instead. </li> <li> <p><code>hypervisor</code> -
-     *         The hypervisor type of the instance (<code>ovm</code> |
-     *         <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     *         image used to launch the instance. </li> <li>
-     *         <p><code>instance-id</code> - The ID of the instance. </li> <li>
-     *         <p><code>instance-lifecycle</code> - Indicates whether this is a Spot
-     *         Instance (<code>spot</code>). </li> <li>
+     *         EBS volume. </li> <li> <p><code>client-token</code> - The idempotency
+     *         token you provided when you launched the instance. </li> <li>
+     *         <p><code>dns-name</code> - The public DNS name of the instance. </li>
+     *         <li> <p><code>group-id</code> - The ID of the security group for the
+     *         instance. EC2-Classic only. </li> <li> <p><code>group-name</code> -
+     *         The name of the security group for the instance. EC2-Classic only.
+     *         </li> <li> <p><code>hypervisor</code> - The hypervisor type of the
+     *         instance (<code>ovm</code> | <code>xen</code>). </li> <li>
+     *         <p><code>iam-instance-profile.arn</code> - The instance profile
+     *         associated with the instance. Specified as an ARN. </li> <li>
+     *         <p><code>image-id</code> - The ID of the image used to launch the
+     *         instance. </li> <li> <p><code>instance-id</code> - The ID of the
+     *         instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
+     *         whether this is a Spot Instance (<code>spot</code>). </li> <li>
      *         <p><code>instance-state-code</code> - The state of the instance, as a
      *         16-bit unsigned integer. The high byte is an opaque internal value and
      *         should be ignored. The low byte is set based on the state represented.
@@ -1286,34 +1283,30 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <code>shutting-down</code> | <code>terminated</code> |
      *         <code>stopping</code> | <code>stopped</code>). </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
-     *         <code>m1.small</code>). </li> <li> <p><code>instance.group-id</code> -
-     *         The ID of the security group for the instance. If the instance is in
-     *         EC2-Classic or a default VPC, you can use
-     *         <code>instance.group-name</code> instead. </li> <li>
+     *         <code>t2.micro</code>). </li> <li> <p><code>instance.group-id</code> -
+     *         The ID of the security group for the instance. </li> <li>
      *         <p><code>instance.group-name</code> - The name of the security group
-     *         for the instance. If the instance is in a nondefault VPC, you must use
-     *         <code>instance.group-id</code> instead. </li> <li>
-     *         <p><code>ip-address</code> - The public IP address of the instance.
-     *         </li> <li> <p><code>kernel-id</code> - The kernel ID. </li> <li>
-     *         <p><code>key-name</code> - The name of the key pair used when the
-     *         instance was launched. </li> <li> <p><code>launch-index</code> - When
-     *         launching multiple instances, this is the index for the instance in
-     *         the launch group (for example, 0, 1, 2, and so on). </li> <li>
-     *         <p><code>launch-time</code> - The time when the instance was launched.
-     *         </li> <li> <p><code>monitoring-state</code> - Indicates whether
-     *         monitoring is enabled for the instance (<code>disabled</code> |
-     *         <code>enabled</code>). </li> <li> <p><code>owner-id</code> - The AWS
-     *         account ID of the instance owner. </li> <li>
-     *         <p><code>placement-group-name</code> - The name of the placement group
-     *         for the instance. </li> <li> <p><code>platform</code> - The platform.
-     *         Use <code>windows</code> if you have Windows instances; otherwise,
-     *         leave blank. </li> <li> <p><code>private-dns-name</code> - The private
-     *         DNS name of the instance. </li> <li>
-     *         <p><code>private-ip-address</code> - The private IP address of the
-     *         instance. </li> <li> <p><code>product-code</code> - The product code
-     *         associated with the AMI used to launch the instance. </li> <li>
-     *         <p><code>product-code.type</code> - The type of product code
-     *         (<code>devpay</code> | <code>marketplace</code>). </li> <li>
+     *         for the instance. </li> <li> <p><code>ip-address</code> - The public
+     *         IP address of the instance. </li> <li> <p><code>kernel-id</code> - The
+     *         kernel ID. </li> <li> <p><code>key-name</code> - The name of the key
+     *         pair used when the instance was launched. </li> <li>
+     *         <p><code>launch-index</code> - When launching multiple instances, this
+     *         is the index for the instance in the launch group (for example, 0, 1,
+     *         2, and so on). </li> <li> <p><code>launch-time</code> - The time when
+     *         the instance was launched. </li> <li> <p><code>monitoring-state</code>
+     *         - Indicates whether monitoring is enabled for the instance
+     *         (<code>disabled</code> | <code>enabled</code>). </li> <li>
+     *         <p><code>owner-id</code> - The AWS account ID of the instance owner.
+     *         </li> <li> <p><code>placement-group-name</code> - The name of the
+     *         placement group for the instance. </li> <li> <p><code>platform</code>
+     *         - The platform. Use <code>windows</code> if you have Windows
+     *         instances; otherwise, leave blank. </li> <li>
+     *         <p><code>private-dns-name</code> - The private DNS name of the
+     *         instance. </li> <li> <p><code>private-ip-address</code> - The private
+     *         IP address of the instance. </li> <li> <p><code>product-code</code> -
+     *         The product code associated with the AMI used to launch the instance.
+     *         </li> <li> <p><code>product-code.type</code> - The type of product
+     *         code (<code>devpay</code> | <code>marketplace</code>). </li> <li>
      *         <p><code>ramdisk-id</code> - The RAM disk ID. </li> <li>
      *         <p><code>reason</code> - The reason for the current state of the
      *         instance (for example, shows "User Initiated [date]" when you stop or
@@ -1330,14 +1323,15 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         launch ten instances using the same launch request, you'll also get
      *         one reservation ID. </li> <li> <p><code>root-device-name</code> - The
      *         name of the root device for the instance (for example,
-     *         <code>/dev/sda1</code>). </li> <li> <p><code>root-device-type</code> -
-     *         The type of root device that the instance uses (<code>ebs</code> |
-     *         <code>instance-store</code>). </li> <li>
-     *         <p><code>source-dest-check</code> - Indicates whether the instance
-     *         performs source/destination checking. A value of <code>true</code>
-     *         means that checking is enabled, and <code>false</code> means checking
-     *         is disabled. The value must be <code>false</code> for the instance to
-     *         perform network address translation (NAT) in your VPC. </li> <li>
+     *         <code>/dev/sda1</code> or <code>/dev/xvda</code>). </li> <li>
+     *         <p><code>root-device-type</code> - The type of root device that the
+     *         instance uses (<code>ebs</code> | <code>instance-store</code>). </li>
+     *         <li> <p><code>source-dest-check</code> - Indicates whether the
+     *         instance performs source/destination checking. A value of
+     *         <code>true</code> means that checking is enabled, and
+     *         <code>false</code> means checking is disabled. The value must be
+     *         <code>false</code> for the instance to perform network address
+     *         translation (NAT) in your VPC. </li> <li>
      *         <p><code>spot-instance-request-id</code> - The ID of the Spot Instance
      *         request. </li> <li> <p><code>state-reason-code</code> - The reason
      *         code for the state change. </li> <li>
@@ -1357,12 +1351,13 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <code>tag</code>:<i>key</i>=<i>value</i> filter. </li> <li>
      *         <p><code>tag-value</code> - The value of a tag assigned to the
      *         resource. This filter is independent of the <code>tag-key</code>
-     *         filter. </li> <li> <p><code>virtualization-type</code> - The
-     *         virtualization type of the instance (<code>paravirtual</code> |
-     *         <code>hvm</code>). </li> <li> <p><code>vpc-id</code> - The ID of the
-     *         VPC that the instance is running in. </li> <li>
-     *         <p><code>network-interface.description</code> - The description of the
-     *         network interface. </li> <li>
+     *         filter. </li> <li> <p><code>tenancy</code> - The tenancy of an
+     *         instance (<code>dedicated</code> | <code>default</code>). </li> <li>
+     *         <p><code>virtualization-type</code> - The virtualization type of the
+     *         instance (<code>paravirtual</code> | <code>hvm</code>). </li> <li>
+     *         <p><code>vpc-id</code> - The ID of the VPC that the instance is
+     *         running in. </li> <li> <p><code>network-interface.description</code> -
+     *         The description of the network interface. </li> <li>
      *         <p><code>network-interface.subnet-id</code> - The ID of the subnet for
      *         the network interface. </li> <li>
      *         <p><code>network-interface.vpc-id</code> - The ID of the VPC for the
@@ -1383,8 +1378,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         network interface. </li> <li>
      *         <p><code>network-interface-private-dns-name</code> - The private DNS
      *         name of the network interface. </li> <li>
-     *         <p><code>network-interface.source-destination-check</code> - Whether
-     *         the network interface performs source/destination checking. A value of
+     *         <p><code>network-interface.source-dest-check</code> - Whether the
+     *         network interface performs source/destination checking. A value of
      *         <code>true</code> means checking is enabled, and <code>false</code>
      *         means checking is disabled. The value must be <code>false</code> for
      *         the network interface to perform network address translation (NAT) in
@@ -1445,31 +1440,32 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * instance architecture (<code>i386</code> | <code>x86_64</code>). </li>
      * <li> <p><code>availability-zone</code> - The Availability Zone of the
      * instance. </li> <li> <p><code>block-device-mapping.attach-time</code>
-     * - The attach time for an Amazon EBS volume mapped to the instance.
-     * </li> <li> <p><code>block-device-mapping.delete-on-termination</code>
-     * - A Boolean that indicates whether the Amazon EBS volume is deleted on
-     * instance termination. </li> <li>
+     * - The attach time for an EBS volume mapped to the instance, for
+     * example, <code>2010-09-15T17:15:20.000Z</code>. </li> <li>
+     * <p><code>block-device-mapping.delete-on-termination</code> - A Boolean
+     * that indicates whether the EBS volume is deleted on instance
+     * termination. </li> <li>
      * <p><code>block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>). </li> <li>
-     * <p><code>block-device-mapping.status</code> - The status for the
-     * Amazon EBS volume (<code>attaching</code> | <code>attached</code> |
+     * the EBS volume (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>). </li> <li>
+     * <p><code>block-device-mapping.status</code> - The status for the EBS
+     * volume (<code>attaching</code> | <code>attached</code> |
      * <code>detaching</code> | <code>detached</code>). </li> <li>
      * <p><code>block-device-mapping.volume-id</code> - The volume ID of the
-     * Amazon EBS volume. </li> <li> <p><code>client-token</code> - The
-     * idempotency token you provided when you launched the instance. </li>
-     * <li> <p><code>dns-name</code> - The public DNS name of the instance.
-     * </li> <li> <p><code>group-id</code> - The ID of the security group for
-     * the instance. If the instance is in EC2-Classic or a default VPC, you
-     * can use <code>group-name</code> instead. </li> <li>
-     * <p><code>group-name</code> - The name of the security group for the
-     * instance. If the instance is in a nondefault VPC, you must use
-     * <code>group-id</code> instead. </li> <li> <p><code>hypervisor</code> -
-     * The hypervisor type of the instance (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image used to launch the instance. </li> <li>
-     * <p><code>instance-id</code> - The ID of the instance. </li> <li>
-     * <p><code>instance-lifecycle</code> - Indicates whether this is a Spot
-     * Instance (<code>spot</code>). </li> <li>
+     * EBS volume. </li> <li> <p><code>client-token</code> - The idempotency
+     * token you provided when you launched the instance. </li> <li>
+     * <p><code>dns-name</code> - The public DNS name of the instance. </li>
+     * <li> <p><code>group-id</code> - The ID of the security group for the
+     * instance. EC2-Classic only. </li> <li> <p><code>group-name</code> -
+     * The name of the security group for the instance. EC2-Classic only.
+     * </li> <li> <p><code>hypervisor</code> - The hypervisor type of the
+     * instance (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>iam-instance-profile.arn</code> - The instance profile
+     * associated with the instance. Specified as an ARN. </li> <li>
+     * <p><code>image-id</code> - The ID of the image used to launch the
+     * instance. </li> <li> <p><code>instance-id</code> - The ID of the
+     * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
+     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -1480,34 +1476,30 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>shutting-down</code> | <code>terminated</code> |
      * <code>stopping</code> | <code>stopped</code>). </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>instance.group-id</code> -
-     * The ID of the security group for the instance. If the instance is in
-     * EC2-Classic or a default VPC, you can use
-     * <code>instance.group-name</code> instead. </li> <li>
+     * <code>t2.micro</code>). </li> <li> <p><code>instance.group-id</code> -
+     * The ID of the security group for the instance. </li> <li>
      * <p><code>instance.group-name</code> - The name of the security group
-     * for the instance. If the instance is in a nondefault VPC, you must use
-     * <code>instance.group-id</code> instead. </li> <li>
-     * <p><code>ip-address</code> - The public IP address of the instance.
-     * </li> <li> <p><code>kernel-id</code> - The kernel ID. </li> <li>
-     * <p><code>key-name</code> - The name of the key pair used when the
-     * instance was launched. </li> <li> <p><code>launch-index</code> - When
-     * launching multiple instances, this is the index for the instance in
-     * the launch group (for example, 0, 1, 2, and so on). </li> <li>
-     * <p><code>launch-time</code> - The time when the instance was launched.
-     * </li> <li> <p><code>monitoring-state</code> - Indicates whether
-     * monitoring is enabled for the instance (<code>disabled</code> |
-     * <code>enabled</code>). </li> <li> <p><code>owner-id</code> - The AWS
-     * account ID of the instance owner. </li> <li>
-     * <p><code>placement-group-name</code> - The name of the placement group
-     * for the instance. </li> <li> <p><code>platform</code> - The platform.
-     * Use <code>windows</code> if you have Windows instances; otherwise,
-     * leave blank. </li> <li> <p><code>private-dns-name</code> - The private
-     * DNS name of the instance. </li> <li>
-     * <p><code>private-ip-address</code> - The private IP address of the
-     * instance. </li> <li> <p><code>product-code</code> - The product code
-     * associated with the AMI used to launch the instance. </li> <li>
-     * <p><code>product-code.type</code> - The type of product code
-     * (<code>devpay</code> | <code>marketplace</code>). </li> <li>
+     * for the instance. </li> <li> <p><code>ip-address</code> - The public
+     * IP address of the instance. </li> <li> <p><code>kernel-id</code> - The
+     * kernel ID. </li> <li> <p><code>key-name</code> - The name of the key
+     * pair used when the instance was launched. </li> <li>
+     * <p><code>launch-index</code> - When launching multiple instances, this
+     * is the index for the instance in the launch group (for example, 0, 1,
+     * 2, and so on). </li> <li> <p><code>launch-time</code> - The time when
+     * the instance was launched. </li> <li> <p><code>monitoring-state</code>
+     * - Indicates whether monitoring is enabled for the instance
+     * (<code>disabled</code> | <code>enabled</code>). </li> <li>
+     * <p><code>owner-id</code> - The AWS account ID of the instance owner.
+     * </li> <li> <p><code>placement-group-name</code> - The name of the
+     * placement group for the instance. </li> <li> <p><code>platform</code>
+     * - The platform. Use <code>windows</code> if you have Windows
+     * instances; otherwise, leave blank. </li> <li>
+     * <p><code>private-dns-name</code> - The private DNS name of the
+     * instance. </li> <li> <p><code>private-ip-address</code> - The private
+     * IP address of the instance. </li> <li> <p><code>product-code</code> -
+     * The product code associated with the AMI used to launch the instance.
+     * </li> <li> <p><code>product-code.type</code> - The type of product
+     * code (<code>devpay</code> | <code>marketplace</code>). </li> <li>
      * <p><code>ramdisk-id</code> - The RAM disk ID. </li> <li>
      * <p><code>reason</code> - The reason for the current state of the
      * instance (for example, shows "User Initiated [date]" when you stop or
@@ -1524,14 +1516,15 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * launch ten instances using the same launch request, you'll also get
      * one reservation ID. </li> <li> <p><code>root-device-name</code> - The
      * name of the root device for the instance (for example,
-     * <code>/dev/sda1</code>). </li> <li> <p><code>root-device-type</code> -
-     * The type of root device that the instance uses (<code>ebs</code> |
-     * <code>instance-store</code>). </li> <li>
-     * <p><code>source-dest-check</code> - Indicates whether the instance
-     * performs source/destination checking. A value of <code>true</code>
-     * means that checking is enabled, and <code>false</code> means checking
-     * is disabled. The value must be <code>false</code> for the instance to
-     * perform network address translation (NAT) in your VPC. </li> <li>
+     * <code>/dev/sda1</code> or <code>/dev/xvda</code>). </li> <li>
+     * <p><code>root-device-type</code> - The type of root device that the
+     * instance uses (<code>ebs</code> | <code>instance-store</code>). </li>
+     * <li> <p><code>source-dest-check</code> - Indicates whether the
+     * instance performs source/destination checking. A value of
+     * <code>true</code> means that checking is enabled, and
+     * <code>false</code> means checking is disabled. The value must be
+     * <code>false</code> for the instance to perform network address
+     * translation (NAT) in your VPC. </li> <li>
      * <p><code>spot-instance-request-id</code> - The ID of the Spot Instance
      * request. </li> <li> <p><code>state-reason-code</code> - The reason
      * code for the state change. </li> <li>
@@ -1551,12 +1544,13 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <code>tag</code>:<i>key</i>=<i>value</i> filter. </li> <li>
      * <p><code>tag-value</code> - The value of a tag assigned to the
      * resource. This filter is independent of the <code>tag-key</code>
-     * filter. </li> <li> <p><code>virtualization-type</code> - The
-     * virtualization type of the instance (<code>paravirtual</code> |
-     * <code>hvm</code>). </li> <li> <p><code>vpc-id</code> - The ID of the
-     * VPC that the instance is running in. </li> <li>
-     * <p><code>network-interface.description</code> - The description of the
-     * network interface. </li> <li>
+     * filter. </li> <li> <p><code>tenancy</code> - The tenancy of an
+     * instance (<code>dedicated</code> | <code>default</code>). </li> <li>
+     * <p><code>virtualization-type</code> - The virtualization type of the
+     * instance (<code>paravirtual</code> | <code>hvm</code>). </li> <li>
+     * <p><code>vpc-id</code> - The ID of the VPC that the instance is
+     * running in. </li> <li> <p><code>network-interface.description</code> -
+     * The description of the network interface. </li> <li>
      * <p><code>network-interface.subnet-id</code> - The ID of the subnet for
      * the network interface. </li> <li>
      * <p><code>network-interface.vpc-id</code> - The ID of the VPC for the
@@ -1577,8 +1571,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * network interface. </li> <li>
      * <p><code>network-interface-private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
-     * <p><code>network-interface.source-destination-check</code> - Whether
-     * the network interface performs source/destination checking. A value of
+     * <p><code>network-interface.source-dest-check</code> - Whether the
+     * network interface performs source/destination checking. A value of
      * <code>true</code> means checking is enabled, and <code>false</code>
      * means checking is disabled. The value must be <code>false</code> for
      * the network interface to perform network address translation (NAT) in
@@ -1629,31 +1623,32 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         instance architecture (<code>i386</code> | <code>x86_64</code>). </li>
      *         <li> <p><code>availability-zone</code> - The Availability Zone of the
      *         instance. </li> <li> <p><code>block-device-mapping.attach-time</code>
-     *         - The attach time for an Amazon EBS volume mapped to the instance.
-     *         </li> <li> <p><code>block-device-mapping.delete-on-termination</code>
-     *         - A Boolean that indicates whether the Amazon EBS volume is deleted on
-     *         instance termination. </li> <li>
+     *         - The attach time for an EBS volume mapped to the instance, for
+     *         example, <code>2010-09-15T17:15:20.000Z</code>. </li> <li>
+     *         <p><code>block-device-mapping.delete-on-termination</code> - A Boolean
+     *         that indicates whether the EBS volume is deleted on instance
+     *         termination. </li> <li>
      *         <p><code>block-device-mapping.device-name</code> - The device name for
-     *         the Amazon EBS volume (for example, <code>/dev/sdh</code>). </li> <li>
-     *         <p><code>block-device-mapping.status</code> - The status for the
-     *         Amazon EBS volume (<code>attaching</code> | <code>attached</code> |
+     *         the EBS volume (for example, <code>/dev/sdh</code> or
+     *         <code>xvdh</code>). </li> <li>
+     *         <p><code>block-device-mapping.status</code> - The status for the EBS
+     *         volume (<code>attaching</code> | <code>attached</code> |
      *         <code>detaching</code> | <code>detached</code>). </li> <li>
      *         <p><code>block-device-mapping.volume-id</code> - The volume ID of the
-     *         Amazon EBS volume. </li> <li> <p><code>client-token</code> - The
-     *         idempotency token you provided when you launched the instance. </li>
-     *         <li> <p><code>dns-name</code> - The public DNS name of the instance.
-     *         </li> <li> <p><code>group-id</code> - The ID of the security group for
-     *         the instance. If the instance is in EC2-Classic or a default VPC, you
-     *         can use <code>group-name</code> instead. </li> <li>
-     *         <p><code>group-name</code> - The name of the security group for the
-     *         instance. If the instance is in a nondefault VPC, you must use
-     *         <code>group-id</code> instead. </li> <li> <p><code>hypervisor</code> -
-     *         The hypervisor type of the instance (<code>ovm</code> |
-     *         <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     *         image used to launch the instance. </li> <li>
-     *         <p><code>instance-id</code> - The ID of the instance. </li> <li>
-     *         <p><code>instance-lifecycle</code> - Indicates whether this is a Spot
-     *         Instance (<code>spot</code>). </li> <li>
+     *         EBS volume. </li> <li> <p><code>client-token</code> - The idempotency
+     *         token you provided when you launched the instance. </li> <li>
+     *         <p><code>dns-name</code> - The public DNS name of the instance. </li>
+     *         <li> <p><code>group-id</code> - The ID of the security group for the
+     *         instance. EC2-Classic only. </li> <li> <p><code>group-name</code> -
+     *         The name of the security group for the instance. EC2-Classic only.
+     *         </li> <li> <p><code>hypervisor</code> - The hypervisor type of the
+     *         instance (<code>ovm</code> | <code>xen</code>). </li> <li>
+     *         <p><code>iam-instance-profile.arn</code> - The instance profile
+     *         associated with the instance. Specified as an ARN. </li> <li>
+     *         <p><code>image-id</code> - The ID of the image used to launch the
+     *         instance. </li> <li> <p><code>instance-id</code> - The ID of the
+     *         instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
+     *         whether this is a Spot Instance (<code>spot</code>). </li> <li>
      *         <p><code>instance-state-code</code> - The state of the instance, as a
      *         16-bit unsigned integer. The high byte is an opaque internal value and
      *         should be ignored. The low byte is set based on the state represented.
@@ -1664,34 +1659,30 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <code>shutting-down</code> | <code>terminated</code> |
      *         <code>stopping</code> | <code>stopped</code>). </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
-     *         <code>m1.small</code>). </li> <li> <p><code>instance.group-id</code> -
-     *         The ID of the security group for the instance. If the instance is in
-     *         EC2-Classic or a default VPC, you can use
-     *         <code>instance.group-name</code> instead. </li> <li>
+     *         <code>t2.micro</code>). </li> <li> <p><code>instance.group-id</code> -
+     *         The ID of the security group for the instance. </li> <li>
      *         <p><code>instance.group-name</code> - The name of the security group
-     *         for the instance. If the instance is in a nondefault VPC, you must use
-     *         <code>instance.group-id</code> instead. </li> <li>
-     *         <p><code>ip-address</code> - The public IP address of the instance.
-     *         </li> <li> <p><code>kernel-id</code> - The kernel ID. </li> <li>
-     *         <p><code>key-name</code> - The name of the key pair used when the
-     *         instance was launched. </li> <li> <p><code>launch-index</code> - When
-     *         launching multiple instances, this is the index for the instance in
-     *         the launch group (for example, 0, 1, 2, and so on). </li> <li>
-     *         <p><code>launch-time</code> - The time when the instance was launched.
-     *         </li> <li> <p><code>monitoring-state</code> - Indicates whether
-     *         monitoring is enabled for the instance (<code>disabled</code> |
-     *         <code>enabled</code>). </li> <li> <p><code>owner-id</code> - The AWS
-     *         account ID of the instance owner. </li> <li>
-     *         <p><code>placement-group-name</code> - The name of the placement group
-     *         for the instance. </li> <li> <p><code>platform</code> - The platform.
-     *         Use <code>windows</code> if you have Windows instances; otherwise,
-     *         leave blank. </li> <li> <p><code>private-dns-name</code> - The private
-     *         DNS name of the instance. </li> <li>
-     *         <p><code>private-ip-address</code> - The private IP address of the
-     *         instance. </li> <li> <p><code>product-code</code> - The product code
-     *         associated with the AMI used to launch the instance. </li> <li>
-     *         <p><code>product-code.type</code> - The type of product code
-     *         (<code>devpay</code> | <code>marketplace</code>). </li> <li>
+     *         for the instance. </li> <li> <p><code>ip-address</code> - The public
+     *         IP address of the instance. </li> <li> <p><code>kernel-id</code> - The
+     *         kernel ID. </li> <li> <p><code>key-name</code> - The name of the key
+     *         pair used when the instance was launched. </li> <li>
+     *         <p><code>launch-index</code> - When launching multiple instances, this
+     *         is the index for the instance in the launch group (for example, 0, 1,
+     *         2, and so on). </li> <li> <p><code>launch-time</code> - The time when
+     *         the instance was launched. </li> <li> <p><code>monitoring-state</code>
+     *         - Indicates whether monitoring is enabled for the instance
+     *         (<code>disabled</code> | <code>enabled</code>). </li> <li>
+     *         <p><code>owner-id</code> - The AWS account ID of the instance owner.
+     *         </li> <li> <p><code>placement-group-name</code> - The name of the
+     *         placement group for the instance. </li> <li> <p><code>platform</code>
+     *         - The platform. Use <code>windows</code> if you have Windows
+     *         instances; otherwise, leave blank. </li> <li>
+     *         <p><code>private-dns-name</code> - The private DNS name of the
+     *         instance. </li> <li> <p><code>private-ip-address</code> - The private
+     *         IP address of the instance. </li> <li> <p><code>product-code</code> -
+     *         The product code associated with the AMI used to launch the instance.
+     *         </li> <li> <p><code>product-code.type</code> - The type of product
+     *         code (<code>devpay</code> | <code>marketplace</code>). </li> <li>
      *         <p><code>ramdisk-id</code> - The RAM disk ID. </li> <li>
      *         <p><code>reason</code> - The reason for the current state of the
      *         instance (for example, shows "User Initiated [date]" when you stop or
@@ -1708,14 +1699,15 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         launch ten instances using the same launch request, you'll also get
      *         one reservation ID. </li> <li> <p><code>root-device-name</code> - The
      *         name of the root device for the instance (for example,
-     *         <code>/dev/sda1</code>). </li> <li> <p><code>root-device-type</code> -
-     *         The type of root device that the instance uses (<code>ebs</code> |
-     *         <code>instance-store</code>). </li> <li>
-     *         <p><code>source-dest-check</code> - Indicates whether the instance
-     *         performs source/destination checking. A value of <code>true</code>
-     *         means that checking is enabled, and <code>false</code> means checking
-     *         is disabled. The value must be <code>false</code> for the instance to
-     *         perform network address translation (NAT) in your VPC. </li> <li>
+     *         <code>/dev/sda1</code> or <code>/dev/xvda</code>). </li> <li>
+     *         <p><code>root-device-type</code> - The type of root device that the
+     *         instance uses (<code>ebs</code> | <code>instance-store</code>). </li>
+     *         <li> <p><code>source-dest-check</code> - Indicates whether the
+     *         instance performs source/destination checking. A value of
+     *         <code>true</code> means that checking is enabled, and
+     *         <code>false</code> means checking is disabled. The value must be
+     *         <code>false</code> for the instance to perform network address
+     *         translation (NAT) in your VPC. </li> <li>
      *         <p><code>spot-instance-request-id</code> - The ID of the Spot Instance
      *         request. </li> <li> <p><code>state-reason-code</code> - The reason
      *         code for the state change. </li> <li>
@@ -1735,12 +1727,13 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <code>tag</code>:<i>key</i>=<i>value</i> filter. </li> <li>
      *         <p><code>tag-value</code> - The value of a tag assigned to the
      *         resource. This filter is independent of the <code>tag-key</code>
-     *         filter. </li> <li> <p><code>virtualization-type</code> - The
-     *         virtualization type of the instance (<code>paravirtual</code> |
-     *         <code>hvm</code>). </li> <li> <p><code>vpc-id</code> - The ID of the
-     *         VPC that the instance is running in. </li> <li>
-     *         <p><code>network-interface.description</code> - The description of the
-     *         network interface. </li> <li>
+     *         filter. </li> <li> <p><code>tenancy</code> - The tenancy of an
+     *         instance (<code>dedicated</code> | <code>default</code>). </li> <li>
+     *         <p><code>virtualization-type</code> - The virtualization type of the
+     *         instance (<code>paravirtual</code> | <code>hvm</code>). </li> <li>
+     *         <p><code>vpc-id</code> - The ID of the VPC that the instance is
+     *         running in. </li> <li> <p><code>network-interface.description</code> -
+     *         The description of the network interface. </li> <li>
      *         <p><code>network-interface.subnet-id</code> - The ID of the subnet for
      *         the network interface. </li> <li>
      *         <p><code>network-interface.vpc-id</code> - The ID of the VPC for the
@@ -1761,8 +1754,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         network interface. </li> <li>
      *         <p><code>network-interface-private-dns-name</code> - The private DNS
      *         name of the network interface. </li> <li>
-     *         <p><code>network-interface.source-destination-check</code> - Whether
-     *         the network interface performs source/destination checking. A value of
+     *         <p><code>network-interface.source-dest-check</code> - Whether the
+     *         network interface performs source/destination checking. A value of
      *         <code>true</code> means checking is enabled, and <code>false</code>
      *         means checking is disabled. The value must be <code>false</code> for
      *         the network interface to perform network address translation (NAT) in
@@ -1823,35 +1816,29 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * The token for the next set of items to return. (You received this
-     * token from a prior call.)
+     * The token to request the next page of results.
      *
-     * @return The token for the next set of items to return. (You received this
-     *         token from a prior call.)
+     * @return The token to request the next page of results.
      */
     public String getNextToken() {
         return nextToken;
     }
     
     /**
-     * The token for the next set of items to return. (You received this
-     * token from a prior call.)
+     * The token to request the next page of results.
      *
-     * @param nextToken The token for the next set of items to return. (You received this
-     *         token from a prior call.)
+     * @param nextToken The token to request the next page of results.
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
     
     /**
-     * The token for the next set of items to return. (You received this
-     * token from a prior call.)
+     * The token to request the next page of results.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param nextToken The token for the next set of items to return. (You received this
-     *         token from a prior call.)
+     * @param nextToken The token to request the next page of results.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1862,47 +1849,65 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * The maximum number of items to return for this call. The call also
-     * returns a token that you can specify in a subsequent call to get the
-     * next set of results. If the value is greater than 1000, we return only
-     * 1000 items.
+     * The maximum number of results to return for the request in a single
+     * page. The remaining results of the initial request can be seen by
+     * sending another request with the returned <code>NextToken</code>
+     * value. This value can be between 5 and 1000; if
+     * <code>MaxResults</code> is given a value larger than 1000, only 1000
+     * results are returned. You cannot specify this parameter and the
+     * instance IDs parameter in the same request.
      *
-     * @return The maximum number of items to return for this call. The call also
-     *         returns a token that you can specify in a subsequent call to get the
-     *         next set of results. If the value is greater than 1000, we return only
-     *         1000 items.
+     * @return The maximum number of results to return for the request in a single
+     *         page. The remaining results of the initial request can be seen by
+     *         sending another request with the returned <code>NextToken</code>
+     *         value. This value can be between 5 and 1000; if
+     *         <code>MaxResults</code> is given a value larger than 1000, only 1000
+     *         results are returned. You cannot specify this parameter and the
+     *         instance IDs parameter in the same request.
      */
     public Integer getMaxResults() {
         return maxResults;
     }
     
     /**
-     * The maximum number of items to return for this call. The call also
-     * returns a token that you can specify in a subsequent call to get the
-     * next set of results. If the value is greater than 1000, we return only
-     * 1000 items.
+     * The maximum number of results to return for the request in a single
+     * page. The remaining results of the initial request can be seen by
+     * sending another request with the returned <code>NextToken</code>
+     * value. This value can be between 5 and 1000; if
+     * <code>MaxResults</code> is given a value larger than 1000, only 1000
+     * results are returned. You cannot specify this parameter and the
+     * instance IDs parameter in the same request.
      *
-     * @param maxResults The maximum number of items to return for this call. The call also
-     *         returns a token that you can specify in a subsequent call to get the
-     *         next set of results. If the value is greater than 1000, we return only
-     *         1000 items.
+     * @param maxResults The maximum number of results to return for the request in a single
+     *         page. The remaining results of the initial request can be seen by
+     *         sending another request with the returned <code>NextToken</code>
+     *         value. This value can be between 5 and 1000; if
+     *         <code>MaxResults</code> is given a value larger than 1000, only 1000
+     *         results are returned. You cannot specify this parameter and the
+     *         instance IDs parameter in the same request.
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
     
     /**
-     * The maximum number of items to return for this call. The call also
-     * returns a token that you can specify in a subsequent call to get the
-     * next set of results. If the value is greater than 1000, we return only
-     * 1000 items.
+     * The maximum number of results to return for the request in a single
+     * page. The remaining results of the initial request can be seen by
+     * sending another request with the returned <code>NextToken</code>
+     * value. This value can be between 5 and 1000; if
+     * <code>MaxResults</code> is given a value larger than 1000, only 1000
+     * results are returned. You cannot specify this parameter and the
+     * instance IDs parameter in the same request.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param maxResults The maximum number of items to return for this call. The call also
-     *         returns a token that you can specify in a subsequent call to get the
-     *         next set of results. If the value is greater than 1000, we return only
-     *         1000 items.
+     * @param maxResults The maximum number of results to return for the request in a single
+     *         page. The remaining results of the initial request can be seen by
+     *         sending another request with the returned <code>NextToken</code>
+     *         value. This value can be between 5 and 1000; if
+     *         <code>MaxResults</code> is given a value larger than 1000, only 1000
+     *         results are returned. You cannot specify this parameter and the
+     *         instance IDs parameter in the same request.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

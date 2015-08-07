@@ -60,11 +60,23 @@ public class TableDescriptionJsonUnmarshaller implements Unmarshaller<TableDescr
             if (name.equals("ItemCount")) {
                 tableDescription.setItemCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
+            if (name.equals("TableArn")) {
+                tableDescription.setTableArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
             if (name.equals("LocalSecondaryIndexes")) {
                 tableDescription.setLocalSecondaryIndexes(new ListUnmarshaller<LocalSecondaryIndexDescription>(LocalSecondaryIndexDescriptionJsonUnmarshaller.getInstance()).unmarshall(context));
             } else 
             if (name.equals("GlobalSecondaryIndexes")) {
                 tableDescription.setGlobalSecondaryIndexes(new ListUnmarshaller<GlobalSecondaryIndexDescription>(GlobalSecondaryIndexDescriptionJsonUnmarshaller.getInstance()).unmarshall(context));
+            } else 
+            if (name.equals("StreamSpecification")) {
+                tableDescription.setStreamSpecification(StreamSpecificationJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LatestStreamLabel")) {
+                tableDescription.setLatestStreamLabel(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("LatestStreamArn")) {
+                tableDescription.setLatestStreamArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
             {
                 reader.skipValue();

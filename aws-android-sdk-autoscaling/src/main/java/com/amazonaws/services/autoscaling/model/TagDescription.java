@@ -18,13 +18,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The tag applied to an Auto Scaling group.
+ * Describes a tag for an Auto Scaling group.
  * </p>
  */
 public class TagDescription implements Serializable {
 
     /**
-     * The name of the Auto Scaling group.
+     * The name of the group.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
@@ -32,8 +32,8 @@ public class TagDescription implements Serializable {
     private String resourceId;
 
     /**
-     * The kind of resource to which the tag is applied. Currently, Auto
-     * Scaling supports the <code>auto-scaling-group</code> resource type.
+     * The type of resource. The only supported value is
+     * <code>auto-scaling-group</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
@@ -41,7 +41,7 @@ public class TagDescription implements Serializable {
     private String resourceType;
 
     /**
-     * The key of the tag.
+     * The tag key.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -50,7 +50,7 @@ public class TagDescription implements Serializable {
     private String key;
 
     /**
-     * The value of the tag.
+     * The tag value.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 256<br/>
@@ -59,46 +59,44 @@ public class TagDescription implements Serializable {
     private String value;
 
     /**
-     * Specifies whether the new tag will be applied to instances launched
-     * after the tag is created. The same behavior applies to updates: If you
-     * change a tag, the changed tag will be applied to all instances
-     * launched after you made the change.
+     * Determines whether the tag is added to new instances as they are
+     * launched in the group.
      */
     private Boolean propagateAtLaunch;
 
     /**
-     * The name of the Auto Scaling group.
+     * The name of the group.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The name of the Auto Scaling group.
+     * @return The name of the group.
      */
     public String getResourceId() {
         return resourceId;
     }
     
     /**
-     * The name of the Auto Scaling group.
+     * The name of the group.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param resourceId The name of the Auto Scaling group.
+     * @param resourceId The name of the group.
      */
     public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
     }
     
     /**
-     * The name of the Auto Scaling group.
+     * The name of the group.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param resourceId The name of the Auto Scaling group.
+     * @param resourceId The name of the group.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -109,44 +107,44 @@ public class TagDescription implements Serializable {
     }
 
     /**
-     * The kind of resource to which the tag is applied. Currently, Auto
-     * Scaling supports the <code>auto-scaling-group</code> resource type.
+     * The type of resource. The only supported value is
+     * <code>auto-scaling-group</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The kind of resource to which the tag is applied. Currently, Auto
-     *         Scaling supports the <code>auto-scaling-group</code> resource type.
+     * @return The type of resource. The only supported value is
+     *         <code>auto-scaling-group</code>.
      */
     public String getResourceType() {
         return resourceType;
     }
     
     /**
-     * The kind of resource to which the tag is applied. Currently, Auto
-     * Scaling supports the <code>auto-scaling-group</code> resource type.
+     * The type of resource. The only supported value is
+     * <code>auto-scaling-group</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param resourceType The kind of resource to which the tag is applied. Currently, Auto
-     *         Scaling supports the <code>auto-scaling-group</code> resource type.
+     * @param resourceType The type of resource. The only supported value is
+     *         <code>auto-scaling-group</code>.
      */
     public void setResourceType(String resourceType) {
         this.resourceType = resourceType;
     }
     
     /**
-     * The kind of resource to which the tag is applied. Currently, Auto
-     * Scaling supports the <code>auto-scaling-group</code> resource type.
+     * The type of resource. The only supported value is
+     * <code>auto-scaling-group</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param resourceType The kind of resource to which the tag is applied. Currently, Auto
-     *         Scaling supports the <code>auto-scaling-group</code> resource type.
+     * @param resourceType The type of resource. The only supported value is
+     *         <code>auto-scaling-group</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -157,33 +155,33 @@ public class TagDescription implements Serializable {
     }
 
     /**
-     * The key of the tag.
+     * The tag key.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The key of the tag.
+     * @return The tag key.
      */
     public String getKey() {
         return key;
     }
     
     /**
-     * The key of the tag.
+     * The tag key.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param key The key of the tag.
+     * @param key The tag key.
      */
     public void setKey(String key) {
         this.key = key;
     }
     
     /**
-     * The key of the tag.
+     * The tag key.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -191,7 +189,7 @@ public class TagDescription implements Serializable {
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param key The key of the tag.
+     * @param key The tag key.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -202,33 +200,33 @@ public class TagDescription implements Serializable {
     }
 
     /**
-     * The value of the tag.
+     * The tag value.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 256<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The value of the tag.
+     * @return The tag value.
      */
     public String getValue() {
         return value;
     }
     
     /**
-     * The value of the tag.
+     * The tag value.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 256<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param value The value of the tag.
+     * @param value The tag value.
      */
     public void setValue(String value) {
         this.value = value;
     }
     
     /**
-     * The value of the tag.
+     * The tag value.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -236,7 +234,7 @@ public class TagDescription implements Serializable {
      * <b>Length: </b>0 - 256<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param value The value of the tag.
+     * @param value The tag value.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -247,47 +245,35 @@ public class TagDescription implements Serializable {
     }
 
     /**
-     * Specifies whether the new tag will be applied to instances launched
-     * after the tag is created. The same behavior applies to updates: If you
-     * change a tag, the changed tag will be applied to all instances
-     * launched after you made the change.
+     * Determines whether the tag is added to new instances as they are
+     * launched in the group.
      *
-     * @return Specifies whether the new tag will be applied to instances launched
-     *         after the tag is created. The same behavior applies to updates: If you
-     *         change a tag, the changed tag will be applied to all instances
-     *         launched after you made the change.
+     * @return Determines whether the tag is added to new instances as they are
+     *         launched in the group.
      */
     public Boolean isPropagateAtLaunch() {
         return propagateAtLaunch;
     }
     
     /**
-     * Specifies whether the new tag will be applied to instances launched
-     * after the tag is created. The same behavior applies to updates: If you
-     * change a tag, the changed tag will be applied to all instances
-     * launched after you made the change.
+     * Determines whether the tag is added to new instances as they are
+     * launched in the group.
      *
-     * @param propagateAtLaunch Specifies whether the new tag will be applied to instances launched
-     *         after the tag is created. The same behavior applies to updates: If you
-     *         change a tag, the changed tag will be applied to all instances
-     *         launched after you made the change.
+     * @param propagateAtLaunch Determines whether the tag is added to new instances as they are
+     *         launched in the group.
      */
     public void setPropagateAtLaunch(Boolean propagateAtLaunch) {
         this.propagateAtLaunch = propagateAtLaunch;
     }
     
     /**
-     * Specifies whether the new tag will be applied to instances launched
-     * after the tag is created. The same behavior applies to updates: If you
-     * change a tag, the changed tag will be applied to all instances
-     * launched after you made the change.
+     * Determines whether the tag is added to new instances as they are
+     * launched in the group.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param propagateAtLaunch Specifies whether the new tag will be applied to instances launched
-     *         after the tag is created. The same behavior applies to updates: If you
-     *         change a tag, the changed tag will be applied to all instances
-     *         launched after you made the change.
+     * @param propagateAtLaunch Determines whether the tag is added to new instances as they are
+     *         launched in the group.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -298,15 +284,11 @@ public class TagDescription implements Serializable {
     }
 
     /**
-     * Specifies whether the new tag will be applied to instances launched
-     * after the tag is created. The same behavior applies to updates: If you
-     * change a tag, the changed tag will be applied to all instances
-     * launched after you made the change.
+     * Determines whether the tag is added to new instances as they are
+     * launched in the group.
      *
-     * @return Specifies whether the new tag will be applied to instances launched
-     *         after the tag is created. The same behavior applies to updates: If you
-     *         change a tag, the changed tag will be applied to all instances
-     *         launched after you made the change.
+     * @return Determines whether the tag is added to new instances as they are
+     *         launched in the group.
      */
     public Boolean getPropagateAtLaunch() {
         return propagateAtLaunch;

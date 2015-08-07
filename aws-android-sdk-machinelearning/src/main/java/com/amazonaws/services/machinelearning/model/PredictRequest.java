@@ -21,12 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.machinelearning.AmazonMachineLearning#predict(PredictRequest) Predict operation}.
  * <p>
- * A realtime operation that generates prediction for the observation
- * using given ML Model Id
+ * Generates a prediction for the observation using the specified
+ * <code>MLModel</code> .
  * </p>
  * <p>
- * Note that not all response fields will be populated as this is
- * dependent on the type of requested model
+ * <b>NOTE:</b> Note Not all response parameters will be populated
+ * because this is dependent on the type of requested model.
  * </p>
  *
  * @see com.amazonaws.services.machinelearning.AmazonMachineLearning#predict(PredictRequest)
@@ -34,7 +34,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class PredictRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * Unique identifier of the predictor.
+     * A unique identifier of the <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
@@ -43,40 +43,40 @@ public class PredictRequest extends AmazonWebServiceRequest implements Serializa
     private String mLModelId;
 
     /**
-     * Map of variable name-value pairs representing an observation.
+     * A map of variable name-value pairs that represent an observation.
      */
     private java.util.Map<String,String> record;
 
     private String predictEndpoint;
 
     /**
-     * Unique identifier of the predictor.
+     * A unique identifier of the <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return Unique identifier of the predictor.
+     * @return A unique identifier of the <code>MLModel</code>.
      */
     public String getMLModelId() {
         return mLModelId;
     }
     
     /**
-     * Unique identifier of the predictor.
+     * A unique identifier of the <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param mLModelId Unique identifier of the predictor.
+     * @param mLModelId A unique identifier of the <code>MLModel</code>.
      */
     public void setMLModelId(String mLModelId) {
         this.mLModelId = mLModelId;
     }
     
     /**
-     * Unique identifier of the predictor.
+     * A unique identifier of the <code>MLModel</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -84,7 +84,7 @@ public class PredictRequest extends AmazonWebServiceRequest implements Serializa
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param mLModelId Unique identifier of the predictor.
+     * @param mLModelId A unique identifier of the <code>MLModel</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -95,9 +95,9 @@ public class PredictRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * Map of variable name-value pairs representing an observation.
+     * A map of variable name-value pairs that represent an observation.
      *
-     * @return Map of variable name-value pairs representing an observation.
+     * @return A map of variable name-value pairs that represent an observation.
      */
     public java.util.Map<String,String> getRecord() {
         
@@ -108,20 +108,20 @@ public class PredictRequest extends AmazonWebServiceRequest implements Serializa
     }
     
     /**
-     * Map of variable name-value pairs representing an observation.
+     * A map of variable name-value pairs that represent an observation.
      *
-     * @param record Map of variable name-value pairs representing an observation.
+     * @param record A map of variable name-value pairs that represent an observation.
      */
     public void setRecord(java.util.Map<String,String> record) {
         this.record = record;
     }
     
     /**
-     * Map of variable name-value pairs representing an observation.
+     * A map of variable name-value pairs that represent an observation.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param record Map of variable name-value pairs representing an observation.
+     * @param record A map of variable name-value pairs that represent an observation.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -132,7 +132,7 @@ public class PredictRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * Map of variable name-value pairs representing an observation.
+     * A map of variable name-value pairs that represent an observation.
      * <p>
      * The method adds a new key-value pair into Record parameter, and
      * returns a reference to this object so that method calls can be chained

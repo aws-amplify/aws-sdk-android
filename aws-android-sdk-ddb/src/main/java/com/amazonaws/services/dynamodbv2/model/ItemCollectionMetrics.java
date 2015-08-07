@@ -19,21 +19,21 @@ import java.io.Serializable;
 /**
  * <p>
  * Information about item collections, if any, that were affected by the
- * operation. <i>ItemCollectionMetrics</i> is only returned if it was
- * asked for in the request. If the table does not have any local
- * secondary indexes, this information is not returned in the response.
+ * operation. <i>ItemCollectionMetrics</i> is only returned if the
+ * request asked for it. If the table does not have any local secondary
+ * indexes, this information is not returned in the response.
  * </p>
  */
 public class ItemCollectionMetrics implements Serializable {
 
     /**
-     * The hash key value of the item collection. This is the same as the
-     * hash key of the item.
+     * The hash key value of the item collection. This value is the same as
+     * the hash key of the item.
      */
     private java.util.Map<String,AttributeValue> itemCollectionKey;
 
     /**
-     * An estimate of item collection size, measured in gigabytes. This is a
+     * An estimate of item collection size, in gigabytes. This value is a
      * two-element array containing a lower bound and an upper bound for the
      * estimate. The estimate includes the size of all the items in the
      * table, plus the size of all attributes projected into all of the local
@@ -45,11 +45,11 @@ public class ItemCollectionMetrics implements Serializable {
     private com.amazonaws.internal.ListWithAutoConstructFlag<Double> sizeEstimateRangeGB;
 
     /**
-     * The hash key value of the item collection. This is the same as the
-     * hash key of the item.
+     * The hash key value of the item collection. This value is the same as
+     * the hash key of the item.
      *
-     * @return The hash key value of the item collection. This is the same as the
-     *         hash key of the item.
+     * @return The hash key value of the item collection. This value is the same as
+     *         the hash key of the item.
      */
     public java.util.Map<String,AttributeValue> getItemCollectionKey() {
         
@@ -57,24 +57,24 @@ public class ItemCollectionMetrics implements Serializable {
     }
     
     /**
-     * The hash key value of the item collection. This is the same as the
-     * hash key of the item.
+     * The hash key value of the item collection. This value is the same as
+     * the hash key of the item.
      *
-     * @param itemCollectionKey The hash key value of the item collection. This is the same as the
-     *         hash key of the item.
+     * @param itemCollectionKey The hash key value of the item collection. This value is the same as
+     *         the hash key of the item.
      */
     public void setItemCollectionKey(java.util.Map<String,AttributeValue> itemCollectionKey) {
         this.itemCollectionKey = itemCollectionKey;
     }
     
     /**
-     * The hash key value of the item collection. This is the same as the
-     * hash key of the item.
+     * The hash key value of the item collection. This value is the same as
+     * the hash key of the item.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param itemCollectionKey The hash key value of the item collection. This is the same as the
-     *         hash key of the item.
+     * @param itemCollectionKey The hash key value of the item collection. This value is the same as
+     *         the hash key of the item.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -85,8 +85,8 @@ public class ItemCollectionMetrics implements Serializable {
     }
 
     /**
-     * The hash key value of the item collection. This is the same as the
-     * hash key of the item.
+     * The hash key value of the item collection. This value is the same as
+     * the hash key of the item.
      * <p>
      * The method adds a new key-value pair into ItemCollectionKey parameter,
      * and returns a reference to this object so that method calls can be
@@ -116,7 +116,7 @@ public class ItemCollectionMetrics implements Serializable {
     }
     
     /**
-     * An estimate of item collection size, measured in gigabytes. This is a
+     * An estimate of item collection size, in gigabytes. This value is a
      * two-element array containing a lower bound and an upper bound for the
      * estimate. The estimate includes the size of all the items in the
      * table, plus the size of all attributes projected into all of the local
@@ -125,7 +125,7 @@ public class ItemCollectionMetrics implements Serializable {
      * is subject to change over time; therefore, do not rely on the
      * precision or accuracy of the estimate.
      *
-     * @return An estimate of item collection size, measured in gigabytes. This is a
+     * @return An estimate of item collection size, in gigabytes. This value is a
      *         two-element array containing a lower bound and an upper bound for the
      *         estimate. The estimate includes the size of all the items in the
      *         table, plus the size of all attributes projected into all of the local
@@ -139,7 +139,7 @@ public class ItemCollectionMetrics implements Serializable {
     }
     
     /**
-     * An estimate of item collection size, measured in gigabytes. This is a
+     * An estimate of item collection size, in gigabytes. This value is a
      * two-element array containing a lower bound and an upper bound for the
      * estimate. The estimate includes the size of all the items in the
      * table, plus the size of all attributes projected into all of the local
@@ -148,7 +148,7 @@ public class ItemCollectionMetrics implements Serializable {
      * is subject to change over time; therefore, do not rely on the
      * precision or accuracy of the estimate.
      *
-     * @param sizeEstimateRangeGB An estimate of item collection size, measured in gigabytes. This is a
+     * @param sizeEstimateRangeGB An estimate of item collection size, in gigabytes. This value is a
      *         two-element array containing a lower bound and an upper bound for the
      *         estimate. The estimate includes the size of all the items in the
      *         table, plus the size of all attributes projected into all of the local
@@ -168,7 +168,7 @@ public class ItemCollectionMetrics implements Serializable {
     }
     
     /**
-     * An estimate of item collection size, measured in gigabytes. This is a
+     * An estimate of item collection size, in gigabytes. This value is a
      * two-element array containing a lower bound and an upper bound for the
      * estimate. The estimate includes the size of all the items in the
      * table, plus the size of all attributes projected into all of the local
@@ -179,7 +179,7 @@ public class ItemCollectionMetrics implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sizeEstimateRangeGB An estimate of item collection size, measured in gigabytes. This is a
+     * @param sizeEstimateRangeGB An estimate of item collection size, in gigabytes. This value is a
      *         two-element array containing a lower bound and an upper bound for the
      *         estimate. The estimate includes the size of all the items in the
      *         table, plus the size of all attributes projected into all of the local
@@ -200,7 +200,7 @@ public class ItemCollectionMetrics implements Serializable {
     }
     
     /**
-     * An estimate of item collection size, measured in gigabytes. This is a
+     * An estimate of item collection size, in gigabytes. This value is a
      * two-element array containing a lower bound and an upper bound for the
      * estimate. The estimate includes the size of all the items in the
      * table, plus the size of all attributes projected into all of the local
@@ -211,7 +211,7 @@ public class ItemCollectionMetrics implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sizeEstimateRangeGB An estimate of item collection size, measured in gigabytes. This is a
+     * @param sizeEstimateRangeGB An estimate of item collection size, in gigabytes. This value is a
      *         two-element array containing a lower bound and an upper bound for the
      *         estimate. The estimate includes the size of all the items in the
      *         table, plus the size of all attributes projected into all of the local

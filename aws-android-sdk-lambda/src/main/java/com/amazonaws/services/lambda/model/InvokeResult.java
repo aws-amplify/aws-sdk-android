@@ -17,42 +17,94 @@ package com.amazonaws.services.lambda.model;
 import java.io.Serializable;
 
 /**
- * Invoke Result
+ * <p>
+ * Upon success, returns an empty response. Otherwise, throws an
+ * exception.
+ * </p>
  */
 public class InvokeResult implements Serializable {
 
+    /**
+     * The HTTP status code will be in the 200 range for successful request.
+     * For the "RequestResonse" invocation type this status code will be 200.
+     * For the "Event" invocation type this status code will be 202. For the
+     * "DryRun" invocation type the status code will be 204.
+     */
     private Integer statusCode;
 
+    /**
+     * Indicates whether an error occurred while executing the Lambda
+     * function. If an error occurred this field will have one of two values;
+     * <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
+     * errors are errors that are reported by the function while the
+     * <code>Unhandled</code> errors are those detected and reported by AWS
+     * Lambda. Unhandled errors include out of memory errors and function
+     * timeouts. For information about how to report an <code>Handled</code>
+     * error, see <a
+     * href="http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html">Programming
+     * Model</a>.
+     */
     private String functionError;
 
+    /**
+     * It is the base64-encoded logs for the Lambda function invocation. This
+     * is present only if the invocation type is "RequestResponse" and the
+     * logs were requested.
+     */
     private String logResult;
 
+    /**
+     * It is the JSON representation of the object returned by the Lambda
+     * function. In This is present only if the invocation type is
+     * "RequestResponse". <p>In the event of a function error this field
+     * contains a message describing the error. For the <code>Handled</code>
+     * errors the Lambda function will report this message. For
+     * <code>Unhandled</code> errors AWS Lambda reports the message.
+     */
     private java.nio.ByteBuffer payload;
 
     /**
-     * Returns the value of the StatusCode property for this object.
+     * The HTTP status code will be in the 200 range for successful request.
+     * For the "RequestResonse" invocation type this status code will be 200.
+     * For the "Event" invocation type this status code will be 202. For the
+     * "DryRun" invocation type the status code will be 204.
      *
-     * @return The value of the StatusCode property for this object.
+     * @return The HTTP status code will be in the 200 range for successful request.
+     *         For the "RequestResonse" invocation type this status code will be 200.
+     *         For the "Event" invocation type this status code will be 202. For the
+     *         "DryRun" invocation type the status code will be 204.
      */
     public Integer getStatusCode() {
         return statusCode;
     }
     
     /**
-     * Sets the value of the StatusCode property for this object.
+     * The HTTP status code will be in the 200 range for successful request.
+     * For the "RequestResonse" invocation type this status code will be 200.
+     * For the "Event" invocation type this status code will be 202. For the
+     * "DryRun" invocation type the status code will be 204.
      *
-     * @param statusCode The new value for the StatusCode property for this object.
+     * @param statusCode The HTTP status code will be in the 200 range for successful request.
+     *         For the "RequestResonse" invocation type this status code will be 200.
+     *         For the "Event" invocation type this status code will be 202. For the
+     *         "DryRun" invocation type the status code will be 204.
      */
     public void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
     }
     
     /**
-     * Sets the value of the StatusCode property for this object.
+     * The HTTP status code will be in the 200 range for successful request.
+     * For the "RequestResonse" invocation type this status code will be 200.
+     * For the "Event" invocation type this status code will be 202. For the
+     * "DryRun" invocation type the status code will be 204.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param statusCode The new value for the StatusCode property for this object.
+     * @param statusCode The HTTP status code will be in the 200 range for successful request.
+     *         For the "RequestResonse" invocation type this status code will be 200.
+     *         For the "Event" invocation type this status code will be 202. For the
+     *         "DryRun" invocation type the status code will be 204.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -63,29 +115,83 @@ public class InvokeResult implements Serializable {
     }
 
     /**
-     * Returns the value of the FunctionError property for this object.
+     * Indicates whether an error occurred while executing the Lambda
+     * function. If an error occurred this field will have one of two values;
+     * <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
+     * errors are errors that are reported by the function while the
+     * <code>Unhandled</code> errors are those detected and reported by AWS
+     * Lambda. Unhandled errors include out of memory errors and function
+     * timeouts. For information about how to report an <code>Handled</code>
+     * error, see <a
+     * href="http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html">Programming
+     * Model</a>.
      *
-     * @return The value of the FunctionError property for this object.
+     * @return Indicates whether an error occurred while executing the Lambda
+     *         function. If an error occurred this field will have one of two values;
+     *         <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
+     *         errors are errors that are reported by the function while the
+     *         <code>Unhandled</code> errors are those detected and reported by AWS
+     *         Lambda. Unhandled errors include out of memory errors and function
+     *         timeouts. For information about how to report an <code>Handled</code>
+     *         error, see <a
+     *         href="http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html">Programming
+     *         Model</a>.
      */
     public String getFunctionError() {
         return functionError;
     }
     
     /**
-     * Sets the value of the FunctionError property for this object.
+     * Indicates whether an error occurred while executing the Lambda
+     * function. If an error occurred this field will have one of two values;
+     * <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
+     * errors are errors that are reported by the function while the
+     * <code>Unhandled</code> errors are those detected and reported by AWS
+     * Lambda. Unhandled errors include out of memory errors and function
+     * timeouts. For information about how to report an <code>Handled</code>
+     * error, see <a
+     * href="http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html">Programming
+     * Model</a>.
      *
-     * @param functionError The new value for the FunctionError property for this object.
+     * @param functionError Indicates whether an error occurred while executing the Lambda
+     *         function. If an error occurred this field will have one of two values;
+     *         <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
+     *         errors are errors that are reported by the function while the
+     *         <code>Unhandled</code> errors are those detected and reported by AWS
+     *         Lambda. Unhandled errors include out of memory errors and function
+     *         timeouts. For information about how to report an <code>Handled</code>
+     *         error, see <a
+     *         href="http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html">Programming
+     *         Model</a>.
      */
     public void setFunctionError(String functionError) {
         this.functionError = functionError;
     }
     
     /**
-     * Sets the value of the FunctionError property for this object.
+     * Indicates whether an error occurred while executing the Lambda
+     * function. If an error occurred this field will have one of two values;
+     * <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
+     * errors are errors that are reported by the function while the
+     * <code>Unhandled</code> errors are those detected and reported by AWS
+     * Lambda. Unhandled errors include out of memory errors and function
+     * timeouts. For information about how to report an <code>Handled</code>
+     * error, see <a
+     * href="http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html">Programming
+     * Model</a>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param functionError The new value for the FunctionError property for this object.
+     * @param functionError Indicates whether an error occurred while executing the Lambda
+     *         function. If an error occurred this field will have one of two values;
+     *         <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
+     *         errors are errors that are reported by the function while the
+     *         <code>Unhandled</code> errors are those detected and reported by AWS
+     *         Lambda. Unhandled errors include out of memory errors and function
+     *         timeouts. For information about how to report an <code>Handled</code>
+     *         error, see <a
+     *         href="http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html">Programming
+     *         Model</a>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -96,29 +202,41 @@ public class InvokeResult implements Serializable {
     }
 
     /**
-     * Returns the value of the LogResult property for this object.
+     * It is the base64-encoded logs for the Lambda function invocation. This
+     * is present only if the invocation type is "RequestResponse" and the
+     * logs were requested.
      *
-     * @return The value of the LogResult property for this object.
+     * @return It is the base64-encoded logs for the Lambda function invocation. This
+     *         is present only if the invocation type is "RequestResponse" and the
+     *         logs were requested.
      */
     public String getLogResult() {
         return logResult;
     }
     
     /**
-     * Sets the value of the LogResult property for this object.
+     * It is the base64-encoded logs for the Lambda function invocation. This
+     * is present only if the invocation type is "RequestResponse" and the
+     * logs were requested.
      *
-     * @param logResult The new value for the LogResult property for this object.
+     * @param logResult It is the base64-encoded logs for the Lambda function invocation. This
+     *         is present only if the invocation type is "RequestResponse" and the
+     *         logs were requested.
      */
     public void setLogResult(String logResult) {
         this.logResult = logResult;
     }
     
     /**
-     * Sets the value of the LogResult property for this object.
+     * It is the base64-encoded logs for the Lambda function invocation. This
+     * is present only if the invocation type is "RequestResponse" and the
+     * logs were requested.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param logResult The new value for the LogResult property for this object.
+     * @param logResult It is the base64-encoded logs for the Lambda function invocation. This
+     *         is present only if the invocation type is "RequestResponse" and the
+     *         logs were requested.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -129,29 +247,59 @@ public class InvokeResult implements Serializable {
     }
 
     /**
-     * Returns the value of the Payload property for this object.
+     * It is the JSON representation of the object returned by the Lambda
+     * function. In This is present only if the invocation type is
+     * "RequestResponse". <p>In the event of a function error this field
+     * contains a message describing the error. For the <code>Handled</code>
+     * errors the Lambda function will report this message. For
+     * <code>Unhandled</code> errors AWS Lambda reports the message.
      *
-     * @return The value of the Payload property for this object.
+     * @return It is the JSON representation of the object returned by the Lambda
+     *         function. In This is present only if the invocation type is
+     *         "RequestResponse". <p>In the event of a function error this field
+     *         contains a message describing the error. For the <code>Handled</code>
+     *         errors the Lambda function will report this message. For
+     *         <code>Unhandled</code> errors AWS Lambda reports the message.
      */
     public java.nio.ByteBuffer getPayload() {
         return payload;
     }
     
     /**
-     * Sets the value of the Payload property for this object.
+     * It is the JSON representation of the object returned by the Lambda
+     * function. In This is present only if the invocation type is
+     * "RequestResponse". <p>In the event of a function error this field
+     * contains a message describing the error. For the <code>Handled</code>
+     * errors the Lambda function will report this message. For
+     * <code>Unhandled</code> errors AWS Lambda reports the message.
      *
-     * @param payload The new value for the Payload property for this object.
+     * @param payload It is the JSON representation of the object returned by the Lambda
+     *         function. In This is present only if the invocation type is
+     *         "RequestResponse". <p>In the event of a function error this field
+     *         contains a message describing the error. For the <code>Handled</code>
+     *         errors the Lambda function will report this message. For
+     *         <code>Unhandled</code> errors AWS Lambda reports the message.
      */
     public void setPayload(java.nio.ByteBuffer payload) {
         this.payload = payload;
     }
     
     /**
-     * Sets the value of the Payload property for this object.
+     * It is the JSON representation of the object returned by the Lambda
+     * function. In This is present only if the invocation type is
+     * "RequestResponse". <p>In the event of a function error this field
+     * contains a message describing the error. For the <code>Handled</code>
+     * errors the Lambda function will report this message. For
+     * <code>Unhandled</code> errors AWS Lambda reports the message.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param payload The new value for the Payload property for this object.
+     * @param payload It is the JSON representation of the object returned by the Lambda
+     *         function. In This is present only if the invocation type is
+     *         "RequestResponse". <p>In the event of a function error this field
+     *         contains a message describing the error. For the <code>Handled</code>
+     *         errors the Lambda function will report this message. For
+     *         <code>Unhandled</code> errors AWS Lambda reports the message.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

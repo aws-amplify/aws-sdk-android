@@ -18,44 +18,46 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The Listener data type.
+ * Information about a listener.
+ * </p>
+ * <p>
+ * For information about the protocols and the ports supported by Elastic
+ * Load Balancing, see
+ * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html"> Listener Configurations for Elastic Load Balancing </a>
+ * in the <i>Elastic Load Balancing Developer Guide</i> .
  * </p>
  */
 public class Listener implements Serializable {
 
     /**
-     * Specifies the load balancer transport protocol to use for routing -
-     * HTTP, HTTPS, TCP or SSL. This property cannot be modified for the life
-     * of the load balancer.
+     * The load balancer transport protocol to use for routing: HTTP, HTTPS,
+     * TCP, or SSL.
      */
     private String protocol;
 
     /**
-     * Specifies the external load balancer port number. This property cannot
-     * be modified for the life of the load balancer.
+     * The port on which the load balancer is listening: 25, 80, 443, 465,
+     * 587, or 1024-65535.
      */
     private Integer loadBalancerPort;
 
     /**
-     * Specifies the protocol to use for routing traffic to back-end
-     * instances - HTTP, HTTPS, TCP, or SSL. This property cannot be modified
-     * for the life of the load balancer. <note> If the front-end protocol is
-     * HTTP or HTTPS, <code>InstanceProtocol</code> has to be at the same
-     * protocol layer, i.e., HTTP or HTTPS. Likewise, if the front-end
-     * protocol is TCP or SSL, InstanceProtocol has to be TCP or SSL. </note>
-     * <note> If there is another listener with the same
+     * The protocol to use for routing traffic to back-end instances: HTTP,
+     * HTTPS, TCP, or SSL. <p>If the front-end protocol is HTTP, HTTPS, TCP,
+     * or SSL, <code>InstanceProtocol</code> must be at the same protocol.
+     * <p>If there is another listener with the same
      * <code>InstancePort</code> whose <code>InstanceProtocol</code> is
-     * secure, i.e., HTTPS or SSL, the listener's
-     * <code>InstanceProtocol</code> has to be secure, i.e., HTTPS or SSL. If
-     * there is another listener with the same <code>InstancePort</code>
-     * whose <code>InstanceProtocol</code> is HTTP or TCP, the listener's
-     * <code>InstanceProtocol</code> must be either HTTP or TCP. </note>
+     * secure, (HTTPS or SSL), the listener's <code>InstanceProtocol</code>
+     * must also be secure. <p>If there is another listener with the same
+     * <code>InstancePort</code> whose <code>InstanceProtocol</code> is HTTP
+     * or TCP, the listener's <code>InstanceProtocol</code> must be HTTP or
+     * TCP.
      */
     private String instanceProtocol;
 
     /**
-     * Specifies the TCP port on which the instance server is listening. This
-     * property cannot be modified for the life of the load balancer.
+     * The port on which the instance server is listening - 25, 80, 443, 465,
+     * 587, or 1024-65535.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 65535<br/>
@@ -63,10 +65,7 @@ public class Listener implements Serializable {
     private Integer instancePort;
 
     /**
-     * The ARN string of the server certificate. To get the ARN of the server
-     * certificate, call the AWS Identity and Access Management <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/index.html?API_UploadServerCertificate.html">UploadServerCertificate
-     * </a> API.
+     * The Amazon Resource Name (ARN) of the server certificate.
      */
     private String sSLCertificateId;
 
@@ -81,15 +80,12 @@ public class Listener implements Serializable {
      * Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      * 
-     * @param protocol Specifies the load balancer transport protocol to use
-     * for routing - HTTP, HTTPS, TCP or SSL. This property cannot be
-     * modified for the life of the load balancer.
-     * @param loadBalancerPort Specifies the external load balancer port
-     * number. This property cannot be modified for the life of the load
-     * balancer.
-     * @param instancePort Specifies the TCP port on which the instance
-     * server is listening. This property cannot be modified for the life of
-     * the load balancer.
+     * @param protocol The load balancer transport protocol to use for
+     * routing: HTTP, HTTPS, TCP, or SSL.
+     * @param loadBalancerPort The port on which the load balancer is
+     * listening: 25, 80, 443, 465, 587, or 1024-65535.
+     * @param instancePort The port on which the instance server is listening
+     * - 25, 80, 443, 465, 587, or 1024-65535.
      */
     public Listener(String protocol, Integer loadBalancerPort, Integer instancePort) {
         setProtocol(protocol);
@@ -98,41 +94,35 @@ public class Listener implements Serializable {
     }
 
     /**
-     * Specifies the load balancer transport protocol to use for routing -
-     * HTTP, HTTPS, TCP or SSL. This property cannot be modified for the life
-     * of the load balancer.
+     * The load balancer transport protocol to use for routing: HTTP, HTTPS,
+     * TCP, or SSL.
      *
-     * @return Specifies the load balancer transport protocol to use for routing -
-     *         HTTP, HTTPS, TCP or SSL. This property cannot be modified for the life
-     *         of the load balancer.
+     * @return The load balancer transport protocol to use for routing: HTTP, HTTPS,
+     *         TCP, or SSL.
      */
     public String getProtocol() {
         return protocol;
     }
     
     /**
-     * Specifies the load balancer transport protocol to use for routing -
-     * HTTP, HTTPS, TCP or SSL. This property cannot be modified for the life
-     * of the load balancer.
+     * The load balancer transport protocol to use for routing: HTTP, HTTPS,
+     * TCP, or SSL.
      *
-     * @param protocol Specifies the load balancer transport protocol to use for routing -
-     *         HTTP, HTTPS, TCP or SSL. This property cannot be modified for the life
-     *         of the load balancer.
+     * @param protocol The load balancer transport protocol to use for routing: HTTP, HTTPS,
+     *         TCP, or SSL.
      */
     public void setProtocol(String protocol) {
         this.protocol = protocol;
     }
     
     /**
-     * Specifies the load balancer transport protocol to use for routing -
-     * HTTP, HTTPS, TCP or SSL. This property cannot be modified for the life
-     * of the load balancer.
+     * The load balancer transport protocol to use for routing: HTTP, HTTPS,
+     * TCP, or SSL.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param protocol Specifies the load balancer transport protocol to use for routing -
-     *         HTTP, HTTPS, TCP or SSL. This property cannot be modified for the life
-     *         of the load balancer.
+     * @param protocol The load balancer transport protocol to use for routing: HTTP, HTTPS,
+     *         TCP, or SSL.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -143,35 +133,35 @@ public class Listener implements Serializable {
     }
 
     /**
-     * Specifies the external load balancer port number. This property cannot
-     * be modified for the life of the load balancer.
+     * The port on which the load balancer is listening: 25, 80, 443, 465,
+     * 587, or 1024-65535.
      *
-     * @return Specifies the external load balancer port number. This property cannot
-     *         be modified for the life of the load balancer.
+     * @return The port on which the load balancer is listening: 25, 80, 443, 465,
+     *         587, or 1024-65535.
      */
     public Integer getLoadBalancerPort() {
         return loadBalancerPort;
     }
     
     /**
-     * Specifies the external load balancer port number. This property cannot
-     * be modified for the life of the load balancer.
+     * The port on which the load balancer is listening: 25, 80, 443, 465,
+     * 587, or 1024-65535.
      *
-     * @param loadBalancerPort Specifies the external load balancer port number. This property cannot
-     *         be modified for the life of the load balancer.
+     * @param loadBalancerPort The port on which the load balancer is listening: 25, 80, 443, 465,
+     *         587, or 1024-65535.
      */
     public void setLoadBalancerPort(Integer loadBalancerPort) {
         this.loadBalancerPort = loadBalancerPort;
     }
     
     /**
-     * Specifies the external load balancer port number. This property cannot
-     * be modified for the life of the load balancer.
+     * The port on which the load balancer is listening: 25, 80, 443, 465,
+     * 587, or 1024-65535.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param loadBalancerPort Specifies the external load balancer port number. This property cannot
-     *         be modified for the life of the load balancer.
+     * @param loadBalancerPort The port on which the load balancer is listening: 25, 80, 443, 465,
+     *         587, or 1024-65535.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -182,101 +172,83 @@ public class Listener implements Serializable {
     }
 
     /**
-     * Specifies the protocol to use for routing traffic to back-end
-     * instances - HTTP, HTTPS, TCP, or SSL. This property cannot be modified
-     * for the life of the load balancer. <note> If the front-end protocol is
-     * HTTP or HTTPS, <code>InstanceProtocol</code> has to be at the same
-     * protocol layer, i.e., HTTP or HTTPS. Likewise, if the front-end
-     * protocol is TCP or SSL, InstanceProtocol has to be TCP or SSL. </note>
-     * <note> If there is another listener with the same
+     * The protocol to use for routing traffic to back-end instances: HTTP,
+     * HTTPS, TCP, or SSL. <p>If the front-end protocol is HTTP, HTTPS, TCP,
+     * or SSL, <code>InstanceProtocol</code> must be at the same protocol.
+     * <p>If there is another listener with the same
      * <code>InstancePort</code> whose <code>InstanceProtocol</code> is
-     * secure, i.e., HTTPS or SSL, the listener's
-     * <code>InstanceProtocol</code> has to be secure, i.e., HTTPS or SSL. If
-     * there is another listener with the same <code>InstancePort</code>
-     * whose <code>InstanceProtocol</code> is HTTP or TCP, the listener's
-     * <code>InstanceProtocol</code> must be either HTTP or TCP. </note>
+     * secure, (HTTPS or SSL), the listener's <code>InstanceProtocol</code>
+     * must also be secure. <p>If there is another listener with the same
+     * <code>InstancePort</code> whose <code>InstanceProtocol</code> is HTTP
+     * or TCP, the listener's <code>InstanceProtocol</code> must be HTTP or
+     * TCP.
      *
-     * @return Specifies the protocol to use for routing traffic to back-end
-     *         instances - HTTP, HTTPS, TCP, or SSL. This property cannot be modified
-     *         for the life of the load balancer. <note> If the front-end protocol is
-     *         HTTP or HTTPS, <code>InstanceProtocol</code> has to be at the same
-     *         protocol layer, i.e., HTTP or HTTPS. Likewise, if the front-end
-     *         protocol is TCP or SSL, InstanceProtocol has to be TCP or SSL. </note>
-     *         <note> If there is another listener with the same
+     * @return The protocol to use for routing traffic to back-end instances: HTTP,
+     *         HTTPS, TCP, or SSL. <p>If the front-end protocol is HTTP, HTTPS, TCP,
+     *         or SSL, <code>InstanceProtocol</code> must be at the same protocol.
+     *         <p>If there is another listener with the same
      *         <code>InstancePort</code> whose <code>InstanceProtocol</code> is
-     *         secure, i.e., HTTPS or SSL, the listener's
-     *         <code>InstanceProtocol</code> has to be secure, i.e., HTTPS or SSL. If
-     *         there is another listener with the same <code>InstancePort</code>
-     *         whose <code>InstanceProtocol</code> is HTTP or TCP, the listener's
-     *         <code>InstanceProtocol</code> must be either HTTP or TCP. </note>
+     *         secure, (HTTPS or SSL), the listener's <code>InstanceProtocol</code>
+     *         must also be secure. <p>If there is another listener with the same
+     *         <code>InstancePort</code> whose <code>InstanceProtocol</code> is HTTP
+     *         or TCP, the listener's <code>InstanceProtocol</code> must be HTTP or
+     *         TCP.
      */
     public String getInstanceProtocol() {
         return instanceProtocol;
     }
     
     /**
-     * Specifies the protocol to use for routing traffic to back-end
-     * instances - HTTP, HTTPS, TCP, or SSL. This property cannot be modified
-     * for the life of the load balancer. <note> If the front-end protocol is
-     * HTTP or HTTPS, <code>InstanceProtocol</code> has to be at the same
-     * protocol layer, i.e., HTTP or HTTPS. Likewise, if the front-end
-     * protocol is TCP or SSL, InstanceProtocol has to be TCP or SSL. </note>
-     * <note> If there is another listener with the same
+     * The protocol to use for routing traffic to back-end instances: HTTP,
+     * HTTPS, TCP, or SSL. <p>If the front-end protocol is HTTP, HTTPS, TCP,
+     * or SSL, <code>InstanceProtocol</code> must be at the same protocol.
+     * <p>If there is another listener with the same
      * <code>InstancePort</code> whose <code>InstanceProtocol</code> is
-     * secure, i.e., HTTPS or SSL, the listener's
-     * <code>InstanceProtocol</code> has to be secure, i.e., HTTPS or SSL. If
-     * there is another listener with the same <code>InstancePort</code>
-     * whose <code>InstanceProtocol</code> is HTTP or TCP, the listener's
-     * <code>InstanceProtocol</code> must be either HTTP or TCP. </note>
+     * secure, (HTTPS or SSL), the listener's <code>InstanceProtocol</code>
+     * must also be secure. <p>If there is another listener with the same
+     * <code>InstancePort</code> whose <code>InstanceProtocol</code> is HTTP
+     * or TCP, the listener's <code>InstanceProtocol</code> must be HTTP or
+     * TCP.
      *
-     * @param instanceProtocol Specifies the protocol to use for routing traffic to back-end
-     *         instances - HTTP, HTTPS, TCP, or SSL. This property cannot be modified
-     *         for the life of the load balancer. <note> If the front-end protocol is
-     *         HTTP or HTTPS, <code>InstanceProtocol</code> has to be at the same
-     *         protocol layer, i.e., HTTP or HTTPS. Likewise, if the front-end
-     *         protocol is TCP or SSL, InstanceProtocol has to be TCP or SSL. </note>
-     *         <note> If there is another listener with the same
+     * @param instanceProtocol The protocol to use for routing traffic to back-end instances: HTTP,
+     *         HTTPS, TCP, or SSL. <p>If the front-end protocol is HTTP, HTTPS, TCP,
+     *         or SSL, <code>InstanceProtocol</code> must be at the same protocol.
+     *         <p>If there is another listener with the same
      *         <code>InstancePort</code> whose <code>InstanceProtocol</code> is
-     *         secure, i.e., HTTPS or SSL, the listener's
-     *         <code>InstanceProtocol</code> has to be secure, i.e., HTTPS or SSL. If
-     *         there is another listener with the same <code>InstancePort</code>
-     *         whose <code>InstanceProtocol</code> is HTTP or TCP, the listener's
-     *         <code>InstanceProtocol</code> must be either HTTP or TCP. </note>
+     *         secure, (HTTPS or SSL), the listener's <code>InstanceProtocol</code>
+     *         must also be secure. <p>If there is another listener with the same
+     *         <code>InstancePort</code> whose <code>InstanceProtocol</code> is HTTP
+     *         or TCP, the listener's <code>InstanceProtocol</code> must be HTTP or
+     *         TCP.
      */
     public void setInstanceProtocol(String instanceProtocol) {
         this.instanceProtocol = instanceProtocol;
     }
     
     /**
-     * Specifies the protocol to use for routing traffic to back-end
-     * instances - HTTP, HTTPS, TCP, or SSL. This property cannot be modified
-     * for the life of the load balancer. <note> If the front-end protocol is
-     * HTTP or HTTPS, <code>InstanceProtocol</code> has to be at the same
-     * protocol layer, i.e., HTTP or HTTPS. Likewise, if the front-end
-     * protocol is TCP or SSL, InstanceProtocol has to be TCP or SSL. </note>
-     * <note> If there is another listener with the same
+     * The protocol to use for routing traffic to back-end instances: HTTP,
+     * HTTPS, TCP, or SSL. <p>If the front-end protocol is HTTP, HTTPS, TCP,
+     * or SSL, <code>InstanceProtocol</code> must be at the same protocol.
+     * <p>If there is another listener with the same
      * <code>InstancePort</code> whose <code>InstanceProtocol</code> is
-     * secure, i.e., HTTPS or SSL, the listener's
-     * <code>InstanceProtocol</code> has to be secure, i.e., HTTPS or SSL. If
-     * there is another listener with the same <code>InstancePort</code>
-     * whose <code>InstanceProtocol</code> is HTTP or TCP, the listener's
-     * <code>InstanceProtocol</code> must be either HTTP or TCP. </note>
+     * secure, (HTTPS or SSL), the listener's <code>InstanceProtocol</code>
+     * must also be secure. <p>If there is another listener with the same
+     * <code>InstancePort</code> whose <code>InstanceProtocol</code> is HTTP
+     * or TCP, the listener's <code>InstanceProtocol</code> must be HTTP or
+     * TCP.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceProtocol Specifies the protocol to use for routing traffic to back-end
-     *         instances - HTTP, HTTPS, TCP, or SSL. This property cannot be modified
-     *         for the life of the load balancer. <note> If the front-end protocol is
-     *         HTTP or HTTPS, <code>InstanceProtocol</code> has to be at the same
-     *         protocol layer, i.e., HTTP or HTTPS. Likewise, if the front-end
-     *         protocol is TCP or SSL, InstanceProtocol has to be TCP or SSL. </note>
-     *         <note> If there is another listener with the same
+     * @param instanceProtocol The protocol to use for routing traffic to back-end instances: HTTP,
+     *         HTTPS, TCP, or SSL. <p>If the front-end protocol is HTTP, HTTPS, TCP,
+     *         or SSL, <code>InstanceProtocol</code> must be at the same protocol.
+     *         <p>If there is another listener with the same
      *         <code>InstancePort</code> whose <code>InstanceProtocol</code> is
-     *         secure, i.e., HTTPS or SSL, the listener's
-     *         <code>InstanceProtocol</code> has to be secure, i.e., HTTPS or SSL. If
-     *         there is another listener with the same <code>InstancePort</code>
-     *         whose <code>InstanceProtocol</code> is HTTP or TCP, the listener's
-     *         <code>InstanceProtocol</code> must be either HTTP or TCP. </note>
+     *         secure, (HTTPS or SSL), the listener's <code>InstanceProtocol</code>
+     *         must also be secure. <p>If there is another listener with the same
+     *         <code>InstancePort</code> whose <code>InstanceProtocol</code> is HTTP
+     *         or TCP, the listener's <code>InstanceProtocol</code> must be HTTP or
+     *         TCP.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -287,44 +259,44 @@ public class Listener implements Serializable {
     }
 
     /**
-     * Specifies the TCP port on which the instance server is listening. This
-     * property cannot be modified for the life of the load balancer.
+     * The port on which the instance server is listening - 25, 80, 443, 465,
+     * 587, or 1024-65535.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 65535<br/>
      *
-     * @return Specifies the TCP port on which the instance server is listening. This
-     *         property cannot be modified for the life of the load balancer.
+     * @return The port on which the instance server is listening - 25, 80, 443, 465,
+     *         587, or 1024-65535.
      */
     public Integer getInstancePort() {
         return instancePort;
     }
     
     /**
-     * Specifies the TCP port on which the instance server is listening. This
-     * property cannot be modified for the life of the load balancer.
+     * The port on which the instance server is listening - 25, 80, 443, 465,
+     * 587, or 1024-65535.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 65535<br/>
      *
-     * @param instancePort Specifies the TCP port on which the instance server is listening. This
-     *         property cannot be modified for the life of the load balancer.
+     * @param instancePort The port on which the instance server is listening - 25, 80, 443, 465,
+     *         587, or 1024-65535.
      */
     public void setInstancePort(Integer instancePort) {
         this.instancePort = instancePort;
     }
     
     /**
-     * Specifies the TCP port on which the instance server is listening. This
-     * property cannot be modified for the life of the load balancer.
+     * The port on which the instance server is listening - 25, 80, 443, 465,
+     * 587, or 1024-65535.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 65535<br/>
      *
-     * @param instancePort Specifies the TCP port on which the instance server is listening. This
-     *         property cannot be modified for the life of the load balancer.
+     * @param instancePort The port on which the instance server is listening - 25, 80, 443, 465,
+     *         587, or 1024-65535.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -335,47 +307,29 @@ public class Listener implements Serializable {
     }
 
     /**
-     * The ARN string of the server certificate. To get the ARN of the server
-     * certificate, call the AWS Identity and Access Management <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/index.html?API_UploadServerCertificate.html">UploadServerCertificate
-     * </a> API.
+     * The Amazon Resource Name (ARN) of the server certificate.
      *
-     * @return The ARN string of the server certificate. To get the ARN of the server
-     *         certificate, call the AWS Identity and Access Management <a
-     *         href="http://docs.aws.amazon.com/IAM/latest/APIReference/index.html?API_UploadServerCertificate.html">UploadServerCertificate
-     *         </a> API.
+     * @return The Amazon Resource Name (ARN) of the server certificate.
      */
     public String getSSLCertificateId() {
         return sSLCertificateId;
     }
     
     /**
-     * The ARN string of the server certificate. To get the ARN of the server
-     * certificate, call the AWS Identity and Access Management <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/index.html?API_UploadServerCertificate.html">UploadServerCertificate
-     * </a> API.
+     * The Amazon Resource Name (ARN) of the server certificate.
      *
-     * @param sSLCertificateId The ARN string of the server certificate. To get the ARN of the server
-     *         certificate, call the AWS Identity and Access Management <a
-     *         href="http://docs.aws.amazon.com/IAM/latest/APIReference/index.html?API_UploadServerCertificate.html">UploadServerCertificate
-     *         </a> API.
+     * @param sSLCertificateId The Amazon Resource Name (ARN) of the server certificate.
      */
     public void setSSLCertificateId(String sSLCertificateId) {
         this.sSLCertificateId = sSLCertificateId;
     }
     
     /**
-     * The ARN string of the server certificate. To get the ARN of the server
-     * certificate, call the AWS Identity and Access Management <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/index.html?API_UploadServerCertificate.html">UploadServerCertificate
-     * </a> API.
+     * The Amazon Resource Name (ARN) of the server certificate.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sSLCertificateId The ARN string of the server certificate. To get the ARN of the server
-     *         certificate, call the AWS Identity and Access Management <a
-     *         href="http://docs.aws.amazon.com/IAM/latest/APIReference/index.html?API_UploadServerCertificate.html">UploadServerCertificate
-     *         </a> API.
+     * @param sSLCertificateId The Amazon Resource Name (ARN) of the server certificate.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

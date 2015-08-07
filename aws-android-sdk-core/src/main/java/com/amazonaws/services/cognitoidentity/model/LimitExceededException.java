@@ -17,7 +17,10 @@ package com.amazonaws.services.cognitoidentity.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * AmazonCognitoIdentity exception
+ * <p>
+ * Thrown when the total number of user pools has exceeded a preset
+ * limit.
+ * </p>
  */        
 public class LimitExceededException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

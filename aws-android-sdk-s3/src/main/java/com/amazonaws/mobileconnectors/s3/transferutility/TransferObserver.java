@@ -27,6 +27,28 @@ import java.util.HashSet;
  * TransferObserver is used to track state and progress of a transfer.
  * Applications can set a listener and will get notified when progress or state
  * changes.
+ * <p>
+ * For example, you can track the progress of an upload as the following:
+ * </p>
+ *
+ * <pre>
+ * TransferObserver transfer = transferUtility.upload(bucket, key, file);
+ * transfer.setListener(new TransferListener() {
+ *     public onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+ *         // update progress bar
+ *         progressBar.setProgress(bytesCurrent);
+ *     }
+ *
+ *     public void onStateChanged(int id, TransferState state) {
+ *     }
+ *
+ *     public void onError(int id, Exception ex) {
+ *     }
+ * });
+ * </pre>
+ * <p>
+ * Note that callbacks of a listener will be invoked on the main thread.
+ * </p>
  */
 public class TransferObserver {
 
@@ -63,7 +85,7 @@ public class TransferObserver {
         transferState = TransferState.WAITING;
         dbUtil = new TransferDBUtil(this.context);
         refresh();
-        observer = new TransferContentObserver();
+        observer = new TransferContentObserver(new Handler(context.getMainLooper()));
     }
 
     /**
@@ -87,6 +109,9 @@ public class TransferObserver {
     /**
      * Sets a listener used to receive notification when state or progress
      * changes.
+     * <p>
+     * Note that callbacks of the listener will be invoked on the main thread.
+     * </p>
      *
      * @param listener A TransferListener used to receive notification.
      */
@@ -157,8 +182,8 @@ public class TransferObserver {
      * specific transfer record in the database.
      */
     private class TransferContentObserver extends ContentObserver {
-        public TransferContentObserver() {
-            super(new Handler());
+        public TransferContentObserver(Handler handler) {
+            super(handler);
         }
 
         @Override

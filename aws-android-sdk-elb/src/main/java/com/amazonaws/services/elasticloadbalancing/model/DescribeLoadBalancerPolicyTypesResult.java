@@ -17,27 +17,19 @@ package com.amazonaws.services.elasticloadbalancing.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * The output for the DescribeLoadBalancerPolicyTypes action.
- * </p>
+ * 
  */
 public class DescribeLoadBalancerPolicyTypesResult implements Serializable {
 
     /**
-     * List of policy type description structures of the specified policy
-     * type. If no policy type names are specified, returns the description
-     * of all the policy types defined by Elastic Load Balancing service.
+     * Information about the policy types.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<PolicyTypeDescription> policyTypeDescriptions;
 
     /**
-     * List of policy type description structures of the specified policy
-     * type. If no policy type names are specified, returns the description
-     * of all the policy types defined by Elastic Load Balancing service.
+     * Information about the policy types.
      *
-     * @return List of policy type description structures of the specified policy
-     *         type. If no policy type names are specified, returns the description
-     *         of all the policy types defined by Elastic Load Balancing service.
+     * @return Information about the policy types.
      */
     public java.util.List<PolicyTypeDescription> getPolicyTypeDescriptions() {
         if (policyTypeDescriptions == null) {
@@ -48,13 +40,9 @@ public class DescribeLoadBalancerPolicyTypesResult implements Serializable {
     }
     
     /**
-     * List of policy type description structures of the specified policy
-     * type. If no policy type names are specified, returns the description
-     * of all the policy types defined by Elastic Load Balancing service.
+     * Information about the policy types.
      *
-     * @param policyTypeDescriptions List of policy type description structures of the specified policy
-     *         type. If no policy type names are specified, returns the description
-     *         of all the policy types defined by Elastic Load Balancing service.
+     * @param policyTypeDescriptions Information about the policy types.
      */
     public void setPolicyTypeDescriptions(java.util.Collection<PolicyTypeDescription> policyTypeDescriptions) {
         if (policyTypeDescriptions == null) {
@@ -67,15 +55,11 @@ public class DescribeLoadBalancerPolicyTypesResult implements Serializable {
     }
     
     /**
-     * List of policy type description structures of the specified policy
-     * type. If no policy type names are specified, returns the description
-     * of all the policy types defined by Elastic Load Balancing service.
+     * Information about the policy types.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyTypeDescriptions List of policy type description structures of the specified policy
-     *         type. If no policy type names are specified, returns the description
-     *         of all the policy types defined by Elastic Load Balancing service.
+     * @param policyTypeDescriptions Information about the policy types.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -89,15 +73,11 @@ public class DescribeLoadBalancerPolicyTypesResult implements Serializable {
     }
     
     /**
-     * List of policy type description structures of the specified policy
-     * type. If no policy type names are specified, returns the description
-     * of all the policy types defined by Elastic Load Balancing service.
+     * Information about the policy types.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyTypeDescriptions List of policy type description structures of the specified policy
-     *         type. If no policy type names are specified, returns the description
-     *         of all the policy types defined by Elastic Load Balancing service.
+     * @param policyTypeDescriptions Information about the policy types.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

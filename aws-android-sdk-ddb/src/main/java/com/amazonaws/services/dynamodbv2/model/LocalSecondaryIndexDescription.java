@@ -64,6 +64,11 @@ public class LocalSecondaryIndexDescription implements Serializable {
     private Long itemCount;
 
     /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the index.
+     */
+    private String indexArn;
+
+    /**
      * Represents the name of the local secondary index.
      * <p>
      * <b>Constraints:</b><br/>
@@ -336,6 +341,39 @@ public class LocalSecondaryIndexDescription implements Serializable {
     }
 
     /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the index.
+     *
+     * @return The Amazon Resource Name (ARN) that uniquely identifies the index.
+     */
+    public String getIndexArn() {
+        return indexArn;
+    }
+    
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the index.
+     *
+     * @param indexArn The Amazon Resource Name (ARN) that uniquely identifies the index.
+     */
+    public void setIndexArn(String indexArn) {
+        this.indexArn = indexArn;
+    }
+    
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the index.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param indexArn The Amazon Resource Name (ARN) that uniquely identifies the index.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public LocalSecondaryIndexDescription withIndexArn(String indexArn) {
+        this.indexArn = indexArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -351,7 +389,8 @@ public class LocalSecondaryIndexDescription implements Serializable {
         if (getKeySchema() != null) sb.append("KeySchema: " + getKeySchema() + ",");
         if (getProjection() != null) sb.append("Projection: " + getProjection() + ",");
         if (getIndexSizeBytes() != null) sb.append("IndexSizeBytes: " + getIndexSizeBytes() + ",");
-        if (getItemCount() != null) sb.append("ItemCount: " + getItemCount() );
+        if (getItemCount() != null) sb.append("ItemCount: " + getItemCount() + ",");
+        if (getIndexArn() != null) sb.append("IndexArn: " + getIndexArn() );
         sb.append("}");
         return sb.toString();
     }
@@ -366,6 +405,7 @@ public class LocalSecondaryIndexDescription implements Serializable {
         hashCode = prime * hashCode + ((getProjection() == null) ? 0 : getProjection().hashCode()); 
         hashCode = prime * hashCode + ((getIndexSizeBytes() == null) ? 0 : getIndexSizeBytes().hashCode()); 
         hashCode = prime * hashCode + ((getItemCount() == null) ? 0 : getItemCount().hashCode()); 
+        hashCode = prime * hashCode + ((getIndexArn() == null) ? 0 : getIndexArn().hashCode()); 
         return hashCode;
     }
     
@@ -387,6 +427,8 @@ public class LocalSecondaryIndexDescription implements Serializable {
         if (other.getIndexSizeBytes() != null && other.getIndexSizeBytes().equals(this.getIndexSizeBytes()) == false) return false; 
         if (other.getItemCount() == null ^ this.getItemCount() == null) return false;
         if (other.getItemCount() != null && other.getItemCount().equals(this.getItemCount()) == false) return false; 
+        if (other.getIndexArn() == null ^ this.getIndexArn() == null) return false;
+        if (other.getIndexArn() != null && other.getIndexArn().equals(this.getIndexArn()) == false) return false; 
         return true;
     }
     

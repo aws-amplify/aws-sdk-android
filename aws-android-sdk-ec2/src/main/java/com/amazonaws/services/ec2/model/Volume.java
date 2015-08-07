@@ -57,7 +57,7 @@ public class Volume implements Serializable {
     private java.util.Date createTime;
 
     /**
-     * 
+     * Information about the volume attachments.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<VolumeAttachment> attachments;
 
@@ -72,20 +72,39 @@ public class Volume implements Serializable {
      * <code>standard</code> for Magnetic volumes.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      */
     private String volumeType;
 
     /**
      * The number of I/O operations per second (IOPS) that the volume
-     * supports.
+     * supports. For Provisioned IOPS (SSD) volumes, this represents the
+     * number of IOPS that are provisioned for the volume. For General
+     * Purpose (SSD) volumes, this represents the baseline performance of the
+     * volume and the rate at which the volume accumulates I/O credits for
+     * bursting. For more information on General Purpose (SSD) baseline
+     * performance, I/O credits, and bursting, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
+     * (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
+     * <p>Condition: This parameter is required for requests to create
+     * <code>io1</code> volumes; it is not used in requests to create
+     * <code>standard</code> or <code>gp2</code> volumes.
      */
     private Integer iops;
 
     /**
-     * Indicates whether the volume is encrypted.
+     * Indicates whether the volume will be encrypted.
      */
     private Boolean encrypted;
+
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) that was used to protect the volume encryption key
+     * for the volume.
+     */
+    private String kmsKeyId;
 
     /**
      * The ID of the volume.
@@ -335,9 +354,9 @@ public class Volume implements Serializable {
     }
 
     /**
-     * 
+     * Information about the volume attachments.
      *
-     * @return 
+     * @return Information about the volume attachments.
      */
     public java.util.List<VolumeAttachment> getAttachments() {
         if (attachments == null) {
@@ -348,9 +367,9 @@ public class Volume implements Serializable {
     }
     
     /**
-     * 
+     * Information about the volume attachments.
      *
-     * @param attachments 
+     * @param attachments Information about the volume attachments.
      */
     public void setAttachments(java.util.Collection<VolumeAttachment> attachments) {
         if (attachments == null) {
@@ -363,11 +382,11 @@ public class Volume implements Serializable {
     }
     
     /**
-     * 
+     * Information about the volume attachments.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param attachments 
+     * @param attachments Information about the volume attachments.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -381,11 +400,11 @@ public class Volume implements Serializable {
     }
     
     /**
-     * 
+     * Information about the volume attachments.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param attachments 
+     * @param attachments Information about the volume attachments.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -476,7 +495,7 @@ public class Volume implements Serializable {
      * <code>standard</code> for Magnetic volumes.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @return The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -494,7 +513,7 @@ public class Volume implements Serializable {
      * <code>standard</code> for Magnetic volumes.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -514,7 +533,7 @@ public class Volume implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -536,7 +555,7 @@ public class Volume implements Serializable {
      * <code>standard</code> for Magnetic volumes.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -556,7 +575,7 @@ public class Volume implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -574,10 +593,34 @@ public class Volume implements Serializable {
 
     /**
      * The number of I/O operations per second (IOPS) that the volume
-     * supports.
+     * supports. For Provisioned IOPS (SSD) volumes, this represents the
+     * number of IOPS that are provisioned for the volume. For General
+     * Purpose (SSD) volumes, this represents the baseline performance of the
+     * volume and the rate at which the volume accumulates I/O credits for
+     * bursting. For more information on General Purpose (SSD) baseline
+     * performance, I/O credits, and bursting, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
+     * (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
+     * <p>Condition: This parameter is required for requests to create
+     * <code>io1</code> volumes; it is not used in requests to create
+     * <code>standard</code> or <code>gp2</code> volumes.
      *
      * @return The number of I/O operations per second (IOPS) that the volume
-     *         supports.
+     *         supports. For Provisioned IOPS (SSD) volumes, this represents the
+     *         number of IOPS that are provisioned for the volume. For General
+     *         Purpose (SSD) volumes, this represents the baseline performance of the
+     *         volume and the rate at which the volume accumulates I/O credits for
+     *         bursting. For more information on General Purpose (SSD) baseline
+     *         performance, I/O credits, and bursting, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     *         EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
+     *         (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
+     *         <p>Condition: This parameter is required for requests to create
+     *         <code>io1</code> volumes; it is not used in requests to create
+     *         <code>standard</code> or <code>gp2</code> volumes.
      */
     public Integer getIops() {
         return iops;
@@ -585,10 +628,34 @@ public class Volume implements Serializable {
     
     /**
      * The number of I/O operations per second (IOPS) that the volume
-     * supports.
+     * supports. For Provisioned IOPS (SSD) volumes, this represents the
+     * number of IOPS that are provisioned for the volume. For General
+     * Purpose (SSD) volumes, this represents the baseline performance of the
+     * volume and the rate at which the volume accumulates I/O credits for
+     * bursting. For more information on General Purpose (SSD) baseline
+     * performance, I/O credits, and bursting, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
+     * (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
+     * <p>Condition: This parameter is required for requests to create
+     * <code>io1</code> volumes; it is not used in requests to create
+     * <code>standard</code> or <code>gp2</code> volumes.
      *
      * @param iops The number of I/O operations per second (IOPS) that the volume
-     *         supports.
+     *         supports. For Provisioned IOPS (SSD) volumes, this represents the
+     *         number of IOPS that are provisioned for the volume. For General
+     *         Purpose (SSD) volumes, this represents the baseline performance of the
+     *         volume and the rate at which the volume accumulates I/O credits for
+     *         bursting. For more information on General Purpose (SSD) baseline
+     *         performance, I/O credits, and bursting, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     *         EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
+     *         (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
+     *         <p>Condition: This parameter is required for requests to create
+     *         <code>io1</code> volumes; it is not used in requests to create
+     *         <code>standard</code> or <code>gp2</code> volumes.
      */
     public void setIops(Integer iops) {
         this.iops = iops;
@@ -596,12 +663,36 @@ public class Volume implements Serializable {
     
     /**
      * The number of I/O operations per second (IOPS) that the volume
-     * supports.
+     * supports. For Provisioned IOPS (SSD) volumes, this represents the
+     * number of IOPS that are provisioned for the volume. For General
+     * Purpose (SSD) volumes, this represents the baseline performance of the
+     * volume and the rate at which the volume accumulates I/O credits for
+     * bursting. For more information on General Purpose (SSD) baseline
+     * performance, I/O credits, and bursting, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
+     * (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
+     * <p>Condition: This parameter is required for requests to create
+     * <code>io1</code> volumes; it is not used in requests to create
+     * <code>standard</code> or <code>gp2</code> volumes.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param iops The number of I/O operations per second (IOPS) that the volume
-     *         supports.
+     *         supports. For Provisioned IOPS (SSD) volumes, this represents the
+     *         number of IOPS that are provisioned for the volume. For General
+     *         Purpose (SSD) volumes, this represents the baseline performance of the
+     *         volume and the rate at which the volume accumulates I/O credits for
+     *         bursting. For more information on General Purpose (SSD) baseline
+     *         performance, I/O credits, and bursting, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     *         EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
+     *         (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
+     *         <p>Condition: This parameter is required for requests to create
+     *         <code>io1</code> volumes; it is not used in requests to create
+     *         <code>standard</code> or <code>gp2</code> volumes.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -612,29 +703,29 @@ public class Volume implements Serializable {
     }
 
     /**
-     * Indicates whether the volume is encrypted.
+     * Indicates whether the volume will be encrypted.
      *
-     * @return Indicates whether the volume is encrypted.
+     * @return Indicates whether the volume will be encrypted.
      */
     public Boolean isEncrypted() {
         return encrypted;
     }
     
     /**
-     * Indicates whether the volume is encrypted.
+     * Indicates whether the volume will be encrypted.
      *
-     * @param encrypted Indicates whether the volume is encrypted.
+     * @param encrypted Indicates whether the volume will be encrypted.
      */
     public void setEncrypted(Boolean encrypted) {
         this.encrypted = encrypted;
     }
     
     /**
-     * Indicates whether the volume is encrypted.
+     * Indicates whether the volume will be encrypted.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param encrypted Indicates whether the volume is encrypted.
+     * @param encrypted Indicates whether the volume will be encrypted.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -645,12 +736,57 @@ public class Volume implements Serializable {
     }
 
     /**
-     * Indicates whether the volume is encrypted.
+     * Indicates whether the volume will be encrypted.
      *
-     * @return Indicates whether the volume is encrypted.
+     * @return Indicates whether the volume will be encrypted.
      */
     public Boolean getEncrypted() {
         return encrypted;
+    }
+
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) that was used to protect the volume encryption key
+     * for the volume.
+     *
+     * @return The full ARN of the AWS Key Management Service (AWS KMS) customer
+     *         master key (CMK) that was used to protect the volume encryption key
+     *         for the volume.
+     */
+    public String getKmsKeyId() {
+        return kmsKeyId;
+    }
+    
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) that was used to protect the volume encryption key
+     * for the volume.
+     *
+     * @param kmsKeyId The full ARN of the AWS Key Management Service (AWS KMS) customer
+     *         master key (CMK) that was used to protect the volume encryption key
+     *         for the volume.
+     */
+    public void setKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+    }
+    
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) that was used to protect the volume encryption key
+     * for the volume.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param kmsKeyId The full ARN of the AWS Key Management Service (AWS KMS) customer
+     *         master key (CMK) that was used to protect the volume encryption key
+     *         for the volume.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public Volume withKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+        return this;
     }
 
     /**
@@ -675,7 +811,8 @@ public class Volume implements Serializable {
         if (getTags() != null) sb.append("Tags: " + getTags() + ",");
         if (getVolumeType() != null) sb.append("VolumeType: " + getVolumeType() + ",");
         if (getIops() != null) sb.append("Iops: " + getIops() + ",");
-        if (isEncrypted() != null) sb.append("Encrypted: " + isEncrypted() );
+        if (isEncrypted() != null) sb.append("Encrypted: " + isEncrypted() + ",");
+        if (getKmsKeyId() != null) sb.append("KmsKeyId: " + getKmsKeyId() );
         sb.append("}");
         return sb.toString();
     }
@@ -696,6 +833,7 @@ public class Volume implements Serializable {
         hashCode = prime * hashCode + ((getVolumeType() == null) ? 0 : getVolumeType().hashCode()); 
         hashCode = prime * hashCode + ((getIops() == null) ? 0 : getIops().hashCode()); 
         hashCode = prime * hashCode + ((isEncrypted() == null) ? 0 : isEncrypted().hashCode()); 
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode()); 
         return hashCode;
     }
     
@@ -729,6 +867,8 @@ public class Volume implements Serializable {
         if (other.getIops() != null && other.getIops().equals(this.getIops()) == false) return false; 
         if (other.isEncrypted() == null ^ this.isEncrypted() == null) return false;
         if (other.isEncrypted() != null && other.isEncrypted().equals(this.isEncrypted()) == false) return false; 
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null) return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false) return false; 
         return true;
     }
     

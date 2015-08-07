@@ -20,50 +20,142 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.lambda.AWSLambda#invoke(InvokeRequest) Invoke operation}.
- * 
+ * <p>
+ * Invokes a specified Lambda function.
+ * </p>
+ * <p>
+ * This operation requires permission for the
+ * <code>lambda:InvokeFunction</code> action.
+ * </p>
  *
  * @see com.amazonaws.services.lambda.AWSLambda#invoke(InvokeRequest)
  */
 public class InvokeRequest extends AmazonWebServiceRequest implements Serializable {
 
+    /**
+     * The Lambda function name. <p> You can specify an unqualified function
+     * name (for example, "Thumbnail") or you can specify Amazon Resource
+     * Name (ARN) of the function (for example,
+     * "arn:aws:lambda:us-west-2:account-id:function:ThumbNail"). AWS Lambda
+     * also allows you to specify only the account ID qualifier (for example,
+     * "account-id:Thumbnail"). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * character in length.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 111<br/>
+     * <b>Pattern: </b>(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)<br/>
+     */
     private String functionName;
 
+    /**
+     * By default, the <code>Invoke</code> API assumes "RequestResponse"
+     * invocation type. You can optionally request asynchronous execution by
+     * specifying "Event" as the <code>InvocationType</code>. You can also
+     * use this parameter to request AWS Lambda to not execute the function
+     * but do some verification, such as if the caller is authorized to
+     * invoke the function and if the inputs are valid. You request this by
+     * specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     * in a cross-account scenario when you want to verify access to a
+     * function without running it.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Event, RequestResponse, DryRun
+     */
     private String invocationType;
 
+    /**
+     * You can set this optional parameter to "Tail" in the request only if
+     * you specify the <code>InvocationType</code> parameter with value
+     * "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     * last 4 KB of log data produced by your Lambda function in the
+     * <code>x-amz-log-results</code> header.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>None, Tail
+     */
     private String logType;
 
+    /**
+     * Using the <code>ClientContext</code> you can pass client-specific
+     * information to the Lambda function you are invoking. You can then
+     * process the client information in your Lambda function as you choose
+     * through the context variable. For an example of a ClientContext JSON,
+     * go to <a
+     * href="http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html">PutEvents</a>
+     * in the <i>Amazon Mobile Analytics API Reference and User Guide</i>.
+     * <p>The ClientContext JSON must be base64-encoded.
+     */
     private String clientContext;
 
+    /**
+     * JSON that you want to provide to your Lambda function as input.
+     */
     private java.nio.ByteBuffer payload;
 
     /**
-     * Returns the value of the FunctionName property for this object.
+     * The Lambda function name. <p> You can specify an unqualified function
+     * name (for example, "Thumbnail") or you can specify Amazon Resource
+     * Name (ARN) of the function (for example,
+     * "arn:aws:lambda:us-west-2:account-id:function:ThumbNail"). AWS Lambda
+     * also allows you to specify only the account ID qualifier (for example,
+     * "account-id:Thumbnail"). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * character in length.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 111<br/>
      * <b>Pattern: </b>(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)<br/>
      *
-     * @return The value of the FunctionName property for this object.
+     * @return The Lambda function name. <p> You can specify an unqualified function
+     *         name (for example, "Thumbnail") or you can specify Amazon Resource
+     *         Name (ARN) of the function (for example,
+     *         "arn:aws:lambda:us-west-2:account-id:function:ThumbNail"). AWS Lambda
+     *         also allows you to specify only the account ID qualifier (for example,
+     *         "account-id:Thumbnail"). Note that the length constraint applies only
+     *         to the ARN. If you specify only the function name, it is limited to 64
+     *         character in length.
      */
     public String getFunctionName() {
         return functionName;
     }
     
     /**
-     * Sets the value of the FunctionName property for this object.
+     * The Lambda function name. <p> You can specify an unqualified function
+     * name (for example, "Thumbnail") or you can specify Amazon Resource
+     * Name (ARN) of the function (for example,
+     * "arn:aws:lambda:us-west-2:account-id:function:ThumbNail"). AWS Lambda
+     * also allows you to specify only the account ID qualifier (for example,
+     * "account-id:Thumbnail"). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * character in length.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 111<br/>
      * <b>Pattern: </b>(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)<br/>
      *
-     * @param functionName The new value for the FunctionName property for this object.
+     * @param functionName The Lambda function name. <p> You can specify an unqualified function
+     *         name (for example, "Thumbnail") or you can specify Amazon Resource
+     *         Name (ARN) of the function (for example,
+     *         "arn:aws:lambda:us-west-2:account-id:function:ThumbNail"). AWS Lambda
+     *         also allows you to specify only the account ID qualifier (for example,
+     *         "account-id:Thumbnail"). Note that the length constraint applies only
+     *         to the ARN. If you specify only the function name, it is limited to 64
+     *         character in length.
      */
     public void setFunctionName(String functionName) {
         this.functionName = functionName;
     }
     
     /**
-     * Sets the value of the FunctionName property for this object.
+     * The Lambda function name. <p> You can specify an unqualified function
+     * name (for example, "Thumbnail") or you can specify Amazon Resource
+     * Name (ARN) of the function (for example,
+     * "arn:aws:lambda:us-west-2:account-id:function:ThumbNail"). AWS Lambda
+     * also allows you to specify only the account ID qualifier (for example,
+     * "account-id:Thumbnail"). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * character in length.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -71,7 +163,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <b>Length: </b>1 - 111<br/>
      * <b>Pattern: </b>(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)<br/>
      *
-     * @param functionName The new value for the FunctionName property for this object.
+     * @param functionName The Lambda function name. <p> You can specify an unqualified function
+     *         name (for example, "Thumbnail") or you can specify Amazon Resource
+     *         Name (ARN) of the function (for example,
+     *         "arn:aws:lambda:us-west-2:account-id:function:ThumbNail"). AWS Lambda
+     *         also allows you to specify only the account ID qualifier (for example,
+     *         "account-id:Thumbnail"). Note that the length constraint applies only
+     *         to the ARN. If you specify only the function name, it is limited to 64
+     *         character in length.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -82,12 +181,28 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
 
     /**
-     * Returns the value of the InvocationType property for this object.
+     * By default, the <code>Invoke</code> API assumes "RequestResponse"
+     * invocation type. You can optionally request asynchronous execution by
+     * specifying "Event" as the <code>InvocationType</code>. You can also
+     * use this parameter to request AWS Lambda to not execute the function
+     * but do some verification, such as if the caller is authorized to
+     * invoke the function and if the inputs are valid. You request this by
+     * specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     * in a cross-account scenario when you want to verify access to a
+     * function without running it.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Event, RequestResponse, DryRun
      *
-     * @return The value of the InvocationType property for this object.
+     * @return By default, the <code>Invoke</code> API assumes "RequestResponse"
+     *         invocation type. You can optionally request asynchronous execution by
+     *         specifying "Event" as the <code>InvocationType</code>. You can also
+     *         use this parameter to request AWS Lambda to not execute the function
+     *         but do some verification, such as if the caller is authorized to
+     *         invoke the function and if the inputs are valid. You request this by
+     *         specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     *         in a cross-account scenario when you want to verify access to a
+     *         function without running it.
      *
      * @see InvocationType
      */
@@ -96,12 +211,28 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
     
     /**
-     * Sets the value of the InvocationType property for this object.
+     * By default, the <code>Invoke</code> API assumes "RequestResponse"
+     * invocation type. You can optionally request asynchronous execution by
+     * specifying "Event" as the <code>InvocationType</code>. You can also
+     * use this parameter to request AWS Lambda to not execute the function
+     * but do some verification, such as if the caller is authorized to
+     * invoke the function and if the inputs are valid. You request this by
+     * specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     * in a cross-account scenario when you want to verify access to a
+     * function without running it.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Event, RequestResponse, DryRun
      *
-     * @param invocationType The new value for the InvocationType property for this object.
+     * @param invocationType By default, the <code>Invoke</code> API assumes "RequestResponse"
+     *         invocation type. You can optionally request asynchronous execution by
+     *         specifying "Event" as the <code>InvocationType</code>. You can also
+     *         use this parameter to request AWS Lambda to not execute the function
+     *         but do some verification, such as if the caller is authorized to
+     *         invoke the function and if the inputs are valid. You request this by
+     *         specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     *         in a cross-account scenario when you want to verify access to a
+     *         function without running it.
      *
      * @see InvocationType
      */
@@ -110,14 +241,30 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
     
     /**
-     * Sets the value of the InvocationType property for this object.
+     * By default, the <code>Invoke</code> API assumes "RequestResponse"
+     * invocation type. You can optionally request asynchronous execution by
+     * specifying "Event" as the <code>InvocationType</code>. You can also
+     * use this parameter to request AWS Lambda to not execute the function
+     * but do some verification, such as if the caller is authorized to
+     * invoke the function and if the inputs are valid. You request this by
+     * specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     * in a cross-account scenario when you want to verify access to a
+     * function without running it.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Event, RequestResponse, DryRun
      *
-     * @param invocationType The new value for the InvocationType property for this object.
+     * @param invocationType By default, the <code>Invoke</code> API assumes "RequestResponse"
+     *         invocation type. You can optionally request asynchronous execution by
+     *         specifying "Event" as the <code>InvocationType</code>. You can also
+     *         use this parameter to request AWS Lambda to not execute the function
+     *         but do some verification, such as if the caller is authorized to
+     *         invoke the function and if the inputs are valid. You request this by
+     *         specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     *         in a cross-account scenario when you want to verify access to a
+     *         function without running it.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -130,12 +277,28 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
 
     /**
-     * Sets the value of the InvocationType property for this object.
+     * By default, the <code>Invoke</code> API assumes "RequestResponse"
+     * invocation type. You can optionally request asynchronous execution by
+     * specifying "Event" as the <code>InvocationType</code>. You can also
+     * use this parameter to request AWS Lambda to not execute the function
+     * but do some verification, such as if the caller is authorized to
+     * invoke the function and if the inputs are valid. You request this by
+     * specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     * in a cross-account scenario when you want to verify access to a
+     * function without running it.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Event, RequestResponse, DryRun
      *
-     * @param invocationType The new value for the InvocationType property for this object.
+     * @param invocationType By default, the <code>Invoke</code> API assumes "RequestResponse"
+     *         invocation type. You can optionally request asynchronous execution by
+     *         specifying "Event" as the <code>InvocationType</code>. You can also
+     *         use this parameter to request AWS Lambda to not execute the function
+     *         but do some verification, such as if the caller is authorized to
+     *         invoke the function and if the inputs are valid. You request this by
+     *         specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     *         in a cross-account scenario when you want to verify access to a
+     *         function without running it.
      *
      * @see InvocationType
      */
@@ -144,14 +307,30 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
     
     /**
-     * Sets the value of the InvocationType property for this object.
+     * By default, the <code>Invoke</code> API assumes "RequestResponse"
+     * invocation type. You can optionally request asynchronous execution by
+     * specifying "Event" as the <code>InvocationType</code>. You can also
+     * use this parameter to request AWS Lambda to not execute the function
+     * but do some verification, such as if the caller is authorized to
+     * invoke the function and if the inputs are valid. You request this by
+     * specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     * in a cross-account scenario when you want to verify access to a
+     * function without running it.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Event, RequestResponse, DryRun
      *
-     * @param invocationType The new value for the InvocationType property for this object.
+     * @param invocationType By default, the <code>Invoke</code> API assumes "RequestResponse"
+     *         invocation type. You can optionally request asynchronous execution by
+     *         specifying "Event" as the <code>InvocationType</code>. You can also
+     *         use this parameter to request AWS Lambda to not execute the function
+     *         but do some verification, such as if the caller is authorized to
+     *         invoke the function and if the inputs are valid. You request this by
+     *         specifying "DryRun" as the <code>InvocationType</code>. This is useful
+     *         in a cross-account scenario when you want to verify access to a
+     *         function without running it.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -164,12 +343,20 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
 
     /**
-     * Returns the value of the LogType property for this object.
+     * You can set this optional parameter to "Tail" in the request only if
+     * you specify the <code>InvocationType</code> parameter with value
+     * "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     * last 4 KB of log data produced by your Lambda function in the
+     * <code>x-amz-log-results</code> header.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>None, Tail
      *
-     * @return The value of the LogType property for this object.
+     * @return You can set this optional parameter to "Tail" in the request only if
+     *         you specify the <code>InvocationType</code> parameter with value
+     *         "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     *         last 4 KB of log data produced by your Lambda function in the
+     *         <code>x-amz-log-results</code> header.
      *
      * @see LogType
      */
@@ -178,12 +365,20 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
     
     /**
-     * Sets the value of the LogType property for this object.
+     * You can set this optional parameter to "Tail" in the request only if
+     * you specify the <code>InvocationType</code> parameter with value
+     * "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     * last 4 KB of log data produced by your Lambda function in the
+     * <code>x-amz-log-results</code> header.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>None, Tail
      *
-     * @param logType The new value for the LogType property for this object.
+     * @param logType You can set this optional parameter to "Tail" in the request only if
+     *         you specify the <code>InvocationType</code> parameter with value
+     *         "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     *         last 4 KB of log data produced by your Lambda function in the
+     *         <code>x-amz-log-results</code> header.
      *
      * @see LogType
      */
@@ -192,14 +387,22 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
     
     /**
-     * Sets the value of the LogType property for this object.
+     * You can set this optional parameter to "Tail" in the request only if
+     * you specify the <code>InvocationType</code> parameter with value
+     * "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     * last 4 KB of log data produced by your Lambda function in the
+     * <code>x-amz-log-results</code> header.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>None, Tail
      *
-     * @param logType The new value for the LogType property for this object.
+     * @param logType You can set this optional parameter to "Tail" in the request only if
+     *         you specify the <code>InvocationType</code> parameter with value
+     *         "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     *         last 4 KB of log data produced by your Lambda function in the
+     *         <code>x-amz-log-results</code> header.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -212,12 +415,20 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
 
     /**
-     * Sets the value of the LogType property for this object.
+     * You can set this optional parameter to "Tail" in the request only if
+     * you specify the <code>InvocationType</code> parameter with value
+     * "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     * last 4 KB of log data produced by your Lambda function in the
+     * <code>x-amz-log-results</code> header.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>None, Tail
      *
-     * @param logType The new value for the LogType property for this object.
+     * @param logType You can set this optional parameter to "Tail" in the request only if
+     *         you specify the <code>InvocationType</code> parameter with value
+     *         "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     *         last 4 KB of log data produced by your Lambda function in the
+     *         <code>x-amz-log-results</code> header.
      *
      * @see LogType
      */
@@ -226,14 +437,22 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
     
     /**
-     * Sets the value of the LogType property for this object.
+     * You can set this optional parameter to "Tail" in the request only if
+     * you specify the <code>InvocationType</code> parameter with value
+     * "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     * last 4 KB of log data produced by your Lambda function in the
+     * <code>x-amz-log-results</code> header.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>None, Tail
      *
-     * @param logType The new value for the LogType property for this object.
+     * @param logType You can set this optional parameter to "Tail" in the request only if
+     *         you specify the <code>InvocationType</code> parameter with value
+     *         "RequestResponse". In this case, AWS Lambda returns the base64-encoded
+     *         last 4 KB of log data produced by your Lambda function in the
+     *         <code>x-amz-log-results</code> header.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -246,29 +465,71 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
 
     /**
-     * Returns the value of the ClientContext property for this object.
+     * Using the <code>ClientContext</code> you can pass client-specific
+     * information to the Lambda function you are invoking. You can then
+     * process the client information in your Lambda function as you choose
+     * through the context variable. For an example of a ClientContext JSON,
+     * go to <a
+     * href="http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html">PutEvents</a>
+     * in the <i>Amazon Mobile Analytics API Reference and User Guide</i>.
+     * <p>The ClientContext JSON must be base64-encoded.
      *
-     * @return The value of the ClientContext property for this object.
+     * @return Using the <code>ClientContext</code> you can pass client-specific
+     *         information to the Lambda function you are invoking. You can then
+     *         process the client information in your Lambda function as you choose
+     *         through the context variable. For an example of a ClientContext JSON,
+     *         go to <a
+     *         href="http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html">PutEvents</a>
+     *         in the <i>Amazon Mobile Analytics API Reference and User Guide</i>.
+     *         <p>The ClientContext JSON must be base64-encoded.
      */
     public String getClientContext() {
         return clientContext;
     }
     
     /**
-     * Sets the value of the ClientContext property for this object.
+     * Using the <code>ClientContext</code> you can pass client-specific
+     * information to the Lambda function you are invoking. You can then
+     * process the client information in your Lambda function as you choose
+     * through the context variable. For an example of a ClientContext JSON,
+     * go to <a
+     * href="http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html">PutEvents</a>
+     * in the <i>Amazon Mobile Analytics API Reference and User Guide</i>.
+     * <p>The ClientContext JSON must be base64-encoded.
      *
-     * @param clientContext The new value for the ClientContext property for this object.
+     * @param clientContext Using the <code>ClientContext</code> you can pass client-specific
+     *         information to the Lambda function you are invoking. You can then
+     *         process the client information in your Lambda function as you choose
+     *         through the context variable. For an example of a ClientContext JSON,
+     *         go to <a
+     *         href="http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html">PutEvents</a>
+     *         in the <i>Amazon Mobile Analytics API Reference and User Guide</i>.
+     *         <p>The ClientContext JSON must be base64-encoded.
      */
     public void setClientContext(String clientContext) {
         this.clientContext = clientContext;
     }
     
     /**
-     * Sets the value of the ClientContext property for this object.
+     * Using the <code>ClientContext</code> you can pass client-specific
+     * information to the Lambda function you are invoking. You can then
+     * process the client information in your Lambda function as you choose
+     * through the context variable. For an example of a ClientContext JSON,
+     * go to <a
+     * href="http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html">PutEvents</a>
+     * in the <i>Amazon Mobile Analytics API Reference and User Guide</i>.
+     * <p>The ClientContext JSON must be base64-encoded.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param clientContext The new value for the ClientContext property for this object.
+     * @param clientContext Using the <code>ClientContext</code> you can pass client-specific
+     *         information to the Lambda function you are invoking. You can then
+     *         process the client information in your Lambda function as you choose
+     *         through the context variable. For an example of a ClientContext JSON,
+     *         go to <a
+     *         href="http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html">PutEvents</a>
+     *         in the <i>Amazon Mobile Analytics API Reference and User Guide</i>.
+     *         <p>The ClientContext JSON must be base64-encoded.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -279,29 +540,29 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     }
 
     /**
-     * Returns the value of the Payload property for this object.
+     * JSON that you want to provide to your Lambda function as input.
      *
-     * @return The value of the Payload property for this object.
+     * @return JSON that you want to provide to your Lambda function as input.
      */
     public java.nio.ByteBuffer getPayload() {
         return payload;
     }
     
     /**
-     * Sets the value of the Payload property for this object.
+     * JSON that you want to provide to your Lambda function as input.
      *
-     * @param payload The new value for the Payload property for this object.
+     * @param payload JSON that you want to provide to your Lambda function as input.
      */
     public void setPayload(java.nio.ByteBuffer payload) {
         this.payload = payload;
     }
     
     /**
-     * Sets the value of the Payload property for this object.
+     * JSON that you want to provide to your Lambda function as input.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param payload The new value for the Payload property for this object.
+     * @param payload JSON that you want to provide to your Lambda function as input.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

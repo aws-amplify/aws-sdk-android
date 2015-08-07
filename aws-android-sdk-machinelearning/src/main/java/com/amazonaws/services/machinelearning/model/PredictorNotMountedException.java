@@ -18,8 +18,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * This exception is thrown when a predict request is made to an
- * unmounted predictor
+ * The exception is thrown when a predict request is made to an unmounted
+ * <code>MLModel</code> .
  * </p>
  */        
 public class PredictorNotMountedException extends AmazonServiceException {

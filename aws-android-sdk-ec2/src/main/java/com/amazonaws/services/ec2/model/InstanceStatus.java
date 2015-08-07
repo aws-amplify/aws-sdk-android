@@ -34,7 +34,7 @@ public class InstanceStatus implements Serializable {
     private String availabilityZone;
 
     /**
-     * Extra information regarding events associated with the instance.
+     * Any scheduled events associated with the instance.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<InstanceStatusEvent> events;
 
@@ -124,9 +124,9 @@ public class InstanceStatus implements Serializable {
     }
 
     /**
-     * Extra information regarding events associated with the instance.
+     * Any scheduled events associated with the instance.
      *
-     * @return Extra information regarding events associated with the instance.
+     * @return Any scheduled events associated with the instance.
      */
     public java.util.List<InstanceStatusEvent> getEvents() {
         if (events == null) {
@@ -137,9 +137,9 @@ public class InstanceStatus implements Serializable {
     }
     
     /**
-     * Extra information regarding events associated with the instance.
+     * Any scheduled events associated with the instance.
      *
-     * @param events Extra information regarding events associated with the instance.
+     * @param events Any scheduled events associated with the instance.
      */
     public void setEvents(java.util.Collection<InstanceStatusEvent> events) {
         if (events == null) {
@@ -152,11 +152,11 @@ public class InstanceStatus implements Serializable {
     }
     
     /**
-     * Extra information regarding events associated with the instance.
+     * Any scheduled events associated with the instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param events Extra information regarding events associated with the instance.
+     * @param events Any scheduled events associated with the instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -170,11 +170,11 @@ public class InstanceStatus implements Serializable {
     }
     
     /**
-     * Extra information regarding events associated with the instance.
+     * Any scheduled events associated with the instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param events Extra information regarding events associated with the instance.
+     * @param events Any scheduled events associated with the instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

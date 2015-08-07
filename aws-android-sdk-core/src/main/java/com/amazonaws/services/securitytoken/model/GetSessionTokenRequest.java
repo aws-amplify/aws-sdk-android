@@ -58,8 +58,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information about using <code>GetSessionToken</code> to
  * create temporary credentials, go to
- * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/CreatingSessionTokens.html"> Creating Temporary Credentials to Enable Access for IAM Users </a>
- * in <i>Using Temporary Security Credentials</i> .
+ * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingSessionTokens.html"> Creating Temporary Credentials to Enable Access for IAM Users </a>
+ * .
  * </p>
  *
  * @see com.amazonaws.services.securitytoken.AWSSecurityTokenService#getSessionToken(GetSessionTokenRequest)

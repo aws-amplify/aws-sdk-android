@@ -47,6 +47,10 @@ public class ConfirmProductInstanceResultStaxUnmarshaller implements Unmarshalle
                     confirmProductInstanceResult.setOwnerId(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("return", targetDepth)) {
+                    confirmProductInstanceResult.setReturn(BooleanStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return confirmProductInstanceResult;

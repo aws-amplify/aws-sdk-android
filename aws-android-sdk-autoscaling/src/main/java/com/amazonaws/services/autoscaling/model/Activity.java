@@ -18,16 +18,15 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A scaling Activity is a long-running process that represents a change
- * to your AutoScalingGroup, such as changing the size of the group. It
- * can also be a process to replace an instance, or a process to perform
- * any other long-running operations supported by the API.
+ * Describes scaling activity, which is a long-running process that
+ * represents a change to your Auto Scaling group, such as changing its
+ * size or replacing an instance.
  * </p>
  */
 public class Activity implements Serializable {
 
     /**
-     * Specifies the ID of the activity.
+     * The ID of the activity.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
@@ -44,7 +43,7 @@ public class Activity implements Serializable {
     private String autoScalingGroupName;
 
     /**
-     * Contains a friendly, more verbose description of the scaling activity.
+     * A friendly, more verbose description of the activity.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
@@ -52,7 +51,7 @@ public class Activity implements Serializable {
     private String description;
 
     /**
-     * Contains the reason the activity was begun.
+     * The reason the activity began.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1023<br/>
@@ -61,25 +60,25 @@ public class Activity implements Serializable {
     private String cause;
 
     /**
-     * Provides the start time of this activity.
+     * The start time of the activity.
      */
     private java.util.Date startTime;
 
     /**
-     * Provides the end time of this activity.
+     * The end time of the activity.
      */
     private java.util.Date endTime;
 
     /**
-     * Contains the current status of the activity.
+     * The current status of the activity.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, Successful, Failed, Cancelled
+     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, WaitingForELBConnectionDraining, MidLifecycleAction, WaitingForInstanceWarmup, Successful, Failed, Cancelled
      */
     private String statusCode;
 
     /**
-     * Contains a friendly, more verbose description of the activity status.
+     * A friendly, more verbose description of the activity status.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -88,13 +87,12 @@ public class Activity implements Serializable {
     private String statusMessage;
 
     /**
-     * Specifies a value between 0 and 100 that indicates the progress of the
-     * activity.
+     * A value between 0 and 100 that indicates the progress of the activity.
      */
     private Integer progress;
 
     /**
-     * Contains details of the scaling activity.
+     * The details about the activity.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
@@ -102,38 +100,38 @@ public class Activity implements Serializable {
     private String details;
 
     /**
-     * Specifies the ID of the activity.
+     * The ID of the activity.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Specifies the ID of the activity.
+     * @return The ID of the activity.
      */
     public String getActivityId() {
         return activityId;
     }
     
     /**
-     * Specifies the ID of the activity.
+     * The ID of the activity.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param activityId Specifies the ID of the activity.
+     * @param activityId The ID of the activity.
      */
     public void setActivityId(String activityId) {
         this.activityId = activityId;
     }
     
     /**
-     * Specifies the ID of the activity.
+     * The ID of the activity.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param activityId Specifies the ID of the activity.
+     * @param activityId The ID of the activity.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -189,38 +187,38 @@ public class Activity implements Serializable {
     }
 
     /**
-     * Contains a friendly, more verbose description of the scaling activity.
+     * A friendly, more verbose description of the activity.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Contains a friendly, more verbose description of the scaling activity.
+     * @return A friendly, more verbose description of the activity.
      */
     public String getDescription() {
         return description;
     }
     
     /**
-     * Contains a friendly, more verbose description of the scaling activity.
+     * A friendly, more verbose description of the activity.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param description Contains a friendly, more verbose description of the scaling activity.
+     * @param description A friendly, more verbose description of the activity.
      */
     public void setDescription(String description) {
         this.description = description;
     }
     
     /**
-     * Contains a friendly, more verbose description of the scaling activity.
+     * A friendly, more verbose description of the activity.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param description Contains a friendly, more verbose description of the scaling activity.
+     * @param description A friendly, more verbose description of the activity.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -231,33 +229,33 @@ public class Activity implements Serializable {
     }
 
     /**
-     * Contains the reason the activity was begun.
+     * The reason the activity began.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1023<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Contains the reason the activity was begun.
+     * @return The reason the activity began.
      */
     public String getCause() {
         return cause;
     }
     
     /**
-     * Contains the reason the activity was begun.
+     * The reason the activity began.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1023<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param cause Contains the reason the activity was begun.
+     * @param cause The reason the activity began.
      */
     public void setCause(String cause) {
         this.cause = cause;
     }
     
     /**
-     * Contains the reason the activity was begun.
+     * The reason the activity began.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -265,7 +263,7 @@ public class Activity implements Serializable {
      * <b>Length: </b>1 - 1023<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param cause Contains the reason the activity was begun.
+     * @param cause The reason the activity began.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -276,29 +274,29 @@ public class Activity implements Serializable {
     }
 
     /**
-     * Provides the start time of this activity.
+     * The start time of the activity.
      *
-     * @return Provides the start time of this activity.
+     * @return The start time of the activity.
      */
     public java.util.Date getStartTime() {
         return startTime;
     }
     
     /**
-     * Provides the start time of this activity.
+     * The start time of the activity.
      *
-     * @param startTime Provides the start time of this activity.
+     * @param startTime The start time of the activity.
      */
     public void setStartTime(java.util.Date startTime) {
         this.startTime = startTime;
     }
     
     /**
-     * Provides the start time of this activity.
+     * The start time of the activity.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param startTime Provides the start time of this activity.
+     * @param startTime The start time of the activity.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -309,29 +307,29 @@ public class Activity implements Serializable {
     }
 
     /**
-     * Provides the end time of this activity.
+     * The end time of the activity.
      *
-     * @return Provides the end time of this activity.
+     * @return The end time of the activity.
      */
     public java.util.Date getEndTime() {
         return endTime;
     }
     
     /**
-     * Provides the end time of this activity.
+     * The end time of the activity.
      *
-     * @param endTime Provides the end time of this activity.
+     * @param endTime The end time of the activity.
      */
     public void setEndTime(java.util.Date endTime) {
         this.endTime = endTime;
     }
     
     /**
-     * Provides the end time of this activity.
+     * The end time of the activity.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param endTime Provides the end time of this activity.
+     * @param endTime The end time of the activity.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -342,12 +340,12 @@ public class Activity implements Serializable {
     }
 
     /**
-     * Contains the current status of the activity.
+     * The current status of the activity.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, Successful, Failed, Cancelled
+     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, WaitingForELBConnectionDraining, MidLifecycleAction, WaitingForInstanceWarmup, Successful, Failed, Cancelled
      *
-     * @return Contains the current status of the activity.
+     * @return The current status of the activity.
      *
      * @see ScalingActivityStatusCode
      */
@@ -356,12 +354,12 @@ public class Activity implements Serializable {
     }
     
     /**
-     * Contains the current status of the activity.
+     * The current status of the activity.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, Successful, Failed, Cancelled
+     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, WaitingForELBConnectionDraining, MidLifecycleAction, WaitingForInstanceWarmup, Successful, Failed, Cancelled
      *
-     * @param statusCode Contains the current status of the activity.
+     * @param statusCode The current status of the activity.
      *
      * @see ScalingActivityStatusCode
      */
@@ -370,14 +368,14 @@ public class Activity implements Serializable {
     }
     
     /**
-     * Contains the current status of the activity.
+     * The current status of the activity.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, Successful, Failed, Cancelled
+     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, WaitingForELBConnectionDraining, MidLifecycleAction, WaitingForInstanceWarmup, Successful, Failed, Cancelled
      *
-     * @param statusCode Contains the current status of the activity.
+     * @param statusCode The current status of the activity.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -390,12 +388,12 @@ public class Activity implements Serializable {
     }
 
     /**
-     * Contains the current status of the activity.
+     * The current status of the activity.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, Successful, Failed, Cancelled
+     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, WaitingForELBConnectionDraining, MidLifecycleAction, WaitingForInstanceWarmup, Successful, Failed, Cancelled
      *
-     * @param statusCode Contains the current status of the activity.
+     * @param statusCode The current status of the activity.
      *
      * @see ScalingActivityStatusCode
      */
@@ -404,14 +402,14 @@ public class Activity implements Serializable {
     }
     
     /**
-     * Contains the current status of the activity.
+     * The current status of the activity.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, Successful, Failed, Cancelled
+     * <b>Allowed Values: </b>WaitingForSpotInstanceRequestId, WaitingForSpotInstanceId, WaitingForInstanceId, PreInService, InProgress, WaitingForELBConnectionDraining, MidLifecycleAction, WaitingForInstanceWarmup, Successful, Failed, Cancelled
      *
-     * @param statusCode Contains the current status of the activity.
+     * @param statusCode The current status of the activity.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -424,33 +422,33 @@ public class Activity implements Serializable {
     }
 
     /**
-     * Contains a friendly, more verbose description of the activity status.
+     * A friendly, more verbose description of the activity status.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Contains a friendly, more verbose description of the activity status.
+     * @return A friendly, more verbose description of the activity status.
      */
     public String getStatusMessage() {
         return statusMessage;
     }
     
     /**
-     * Contains a friendly, more verbose description of the activity status.
+     * A friendly, more verbose description of the activity status.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param statusMessage Contains a friendly, more verbose description of the activity status.
+     * @param statusMessage A friendly, more verbose description of the activity status.
      */
     public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
     }
     
     /**
-     * Contains a friendly, more verbose description of the activity status.
+     * A friendly, more verbose description of the activity status.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -458,7 +456,7 @@ public class Activity implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param statusMessage Contains a friendly, more verbose description of the activity status.
+     * @param statusMessage A friendly, more verbose description of the activity status.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -469,35 +467,29 @@ public class Activity implements Serializable {
     }
 
     /**
-     * Specifies a value between 0 and 100 that indicates the progress of the
-     * activity.
+     * A value between 0 and 100 that indicates the progress of the activity.
      *
-     * @return Specifies a value between 0 and 100 that indicates the progress of the
-     *         activity.
+     * @return A value between 0 and 100 that indicates the progress of the activity.
      */
     public Integer getProgress() {
         return progress;
     }
     
     /**
-     * Specifies a value between 0 and 100 that indicates the progress of the
-     * activity.
+     * A value between 0 and 100 that indicates the progress of the activity.
      *
-     * @param progress Specifies a value between 0 and 100 that indicates the progress of the
-     *         activity.
+     * @param progress A value between 0 and 100 that indicates the progress of the activity.
      */
     public void setProgress(Integer progress) {
         this.progress = progress;
     }
     
     /**
-     * Specifies a value between 0 and 100 that indicates the progress of the
-     * activity.
+     * A value between 0 and 100 that indicates the progress of the activity.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param progress Specifies a value between 0 and 100 that indicates the progress of the
-     *         activity.
+     * @param progress A value between 0 and 100 that indicates the progress of the activity.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -508,38 +500,38 @@ public class Activity implements Serializable {
     }
 
     /**
-     * Contains details of the scaling activity.
+     * The details about the activity.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Contains details of the scaling activity.
+     * @return The details about the activity.
      */
     public String getDetails() {
         return details;
     }
     
     /**
-     * Contains details of the scaling activity.
+     * The details about the activity.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param details Contains details of the scaling activity.
+     * @param details The details about the activity.
      */
     public void setDetails(String details) {
         this.details = details;
     }
     
     /**
-     * Contains details of the scaling activity.
+     * The details about the activity.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param details Contains details of the scaling activity.
+     * @param details The details about the activity.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

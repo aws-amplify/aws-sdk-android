@@ -23,8 +23,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * The <i>BatchWriteItem</i> operation puts or deletes multiple items in
  * one or more tables. A single call to <i>BatchWriteItem</i> can write
- * up to 1 MB of data, which can comprise as many as 25 put or delete
- * requests. Individual items to be written can be as large as 64 KB.
+ * up to 16 MB of data, which can comprise as many as 25 put or delete
+ * requests. Individual items to be written can be as large as 400 KB.
  * </p>
  * <p>
  * <b>NOTE:</b> BatchWriteItem cannot update items. To update items, use
@@ -45,12 +45,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Note that if <i>none</i> of the items can be processed due to
  * insufficient provisioned throughput on all of the tables in the
- * request, then <i>BatchGetItem</i> will throw a
+ * request, then <i>BatchWriteItem</i> will return a
  * <i>ProvisionedThroughputExceededException</i> .
  * </p>
  * <p>
- * To write one item, you can use the <i>PutItem</i> operation; to delete
- * one item, you can use the <i>DeleteItem</i> operation.
+ * <b>IMPORTANT:</b> If DynamoDB returns any unprocessed items, you
+ * should retry the batch operation on those items. However, we strongly
+ * recommend that you use an exponential backoff algorithm. If you retry
+ * the batch operation immediately, the underlying read or write requests
+ * can still fail due to throttling on the individual tables. If you
+ * delay the batch operation using exponential backoff, the individual
+ * requests in the batch are much more likely to succeed. For more
+ * information, see Batch Operations and Error Handling in the Amazon
+ * DynamoDB Developer Guide.
  * </p>
  * <p>
  * With <i>BatchWriteItem</i> , you can efficiently write or delete large
@@ -58,20 +65,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * data from another database into DynamoDB. In order to improve
  * performance with these large-scale operations, <i>BatchWriteItem</i>
  * does not behave in the same way as individual <i>PutItem</i> and
- * <i>DeleteItem</i> calls would For example, you cannot specify
+ * <i>DeleteItem</i> calls would. For example, you cannot specify
  * conditions on individual put and delete requests, and
  * <i>BatchWriteItem</i> does not return deleted items in the response.
  * </p>
  * <p>
- * If you use a programming language that supports concurrency, such as
- * Java, you can use threads to write items in parallel. Your application
- * must include the necessary logic to manage the threads. With languages
- * that don't support threading, such as PHP, you must update or delete
- * the specified items one at a time. In both situations,
- * <i>BatchWriteItem</i> provides an alternative where the API performs
- * the specified put and delete operations in parallel, giving you the
- * power of the thread pool approach without having to introduce
- * complexity into your application.
+ * If you use a programming language that supports concurrency, you can
+ * use threads to write items in parallel. Your application must include
+ * the necessary logic to manage the threads. With languages that don't
+ * support threading, you must update or delete the specified items one
+ * at a time. In both situations, <i>BatchWriteItem</i> provides an
+ * alternative where the API performs the specified put and delete
+ * operations in parallel, giving you the power of the thread pool
+ * approach without having to introduce complexity into your application.
  * </p>
  * <p>
  * Parallel processing reduces latency, but each specified put and delete
@@ -102,11 +108,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * <li> <p>
- * The total request size exceeds 1 MB.
+ * There are more than 25 requests in the batch.
  * </p>
  * </li>
  * <li> <p>
- * Any individual item in a batch exceeds 64 KB.
+ * Any individual item in a batch exceeds 400 KB.
+ * </p>
+ * </li>
+ * <li> <p>
+ * The total request size exceeds 16 MB.
  * </p>
  * </li>
  * 
@@ -123,8 +133,12 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * <ul> <li> <p><i>DeleteRequest</i> - Perform a <i>DeleteItem</i>
      * operation on the specified item. The item to be deleted is identified
      * by a <i>Key</i> subelement: <ul> <li> <p><i>Key</i> - A map of primary
-     * key attribute values that uniquely identify the item. Each entry in
-     * this map consists of an attribute name and an attribute value. </li>
+     * key attribute values that uniquely identify the ! item. Each entry in
+     * this map consists of an attribute name and an attribute value. For
+     * each primary key, you must provide <i>all</i> of the key attributes.
+     * For example, with a hash type primary key, you only need to provide
+     * the hash attribute. For a hash-and-range type primary key, you must
+     * provide <i>both</i> the hash attribute and the range attribute. </li>
      * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
@@ -132,10 +146,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * attribute name and an attribute value. Attribute values must not be
      * null; string and binary type attributes must have lengths greater than
      * zero; and set type attributes must not be empty. Requests that contain
-     * empty values will be rejected with a <i>ValidationException</i>. <p>If
-     * you specify any attributes that are part of an index key, then the
-     * data types for those attributes must match those of the schema in the
-     * table's attribute definition. </li> </ul> </li> </ul>
+     * empty values will be rejected with a <i>ValidationException</i>
+     * exception. <p>If you specify any attributes that are part of an index
+     * key, then the data types for those attributes must match those of the
+     * schema in the table's attribute definition. </li> </ul> </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 25<br/>
@@ -143,11 +157,18 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     private java.util.Map<String,java.util.List<WriteRequest>> requestItems;
 
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
@@ -155,10 +176,11 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     private String returnConsumedCapacity;
 
     /**
-     * If set to <code>SIZE</code>, statistics about item collections, if
-     * any, that were modified during the operation are returned in the
-     * response. If set to <code>NONE</code> (the default), no statistics are
-     * returned.
+     * Determines whether item collection metrics are returned. If set to
+     * <code>SIZE</code>, the response includes statistics about item
+     * collections, if any, that were modified during the operation are
+     * returned in the response. If set to <code>NONE</code> (the default),
+     * no statistics are returned.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SIZE, NONE
@@ -182,8 +204,12 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * <ul> <li> <p><i>DeleteRequest</i> - Perform a <i>DeleteItem</i>
      * operation on the specified item. The item to be deleted is identified
      * by a <i>Key</i> subelement: <ul> <li> <p><i>Key</i> - A map of primary
-     * key attribute values that uniquely identify the item. Each entry in
-     * this map consists of an attribute name and an attribute value. </li>
+     * key attribute values that uniquely identify the ! item. Each entry in
+     * this map consists of an attribute name and an attribute value. For
+     * each primary key, you must provide <i>all</i> of the key attributes.
+     * For example, with a hash type primary key, you only need to provide
+     * the hash attribute. For a hash-and-range type primary key, you must
+     * provide <i>both</i> the hash attribute and the range attribute. </li>
      * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
@@ -191,10 +217,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * attribute name and an attribute value. Attribute values must not be
      * null; string and binary type attributes must have lengths greater than
      * zero; and set type attributes must not be empty. Requests that contain
-     * empty values will be rejected with a <i>ValidationException</i>. <p>If
-     * you specify any attributes that are part of an index key, then the
-     * data types for those attributes must match those of the schema in the
-     * table's attribute definition. </li> </ul> </li> </ul>
+     * empty values will be rejected with a <i>ValidationException</i>
+     * exception. <p>If you specify any attributes that are part of an index
+     * key, then the data types for those attributes must match those of the
+     * schema in the table's attribute definition. </li> </ul> </li> </ul>
      */
     public BatchWriteItemRequest(java.util.Map<String,java.util.List<WriteRequest>> requestItems) {
         setRequestItems(requestItems);
@@ -207,8 +233,12 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * <ul> <li> <p><i>DeleteRequest</i> - Perform a <i>DeleteItem</i>
      * operation on the specified item. The item to be deleted is identified
      * by a <i>Key</i> subelement: <ul> <li> <p><i>Key</i> - A map of primary
-     * key attribute values that uniquely identify the item. Each entry in
-     * this map consists of an attribute name and an attribute value. </li>
+     * key attribute values that uniquely identify the ! item. Each entry in
+     * this map consists of an attribute name and an attribute value. For
+     * each primary key, you must provide <i>all</i> of the key attributes.
+     * For example, with a hash type primary key, you only need to provide
+     * the hash attribute. For a hash-and-range type primary key, you must
+     * provide <i>both</i> the hash attribute and the range attribute. </li>
      * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
@@ -216,10 +246,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * attribute name and an attribute value. Attribute values must not be
      * null; string and binary type attributes must have lengths greater than
      * zero; and set type attributes must not be empty. Requests that contain
-     * empty values will be rejected with a <i>ValidationException</i>. <p>If
-     * you specify any attributes that are part of an index key, then the
-     * data types for those attributes must match those of the schema in the
-     * table's attribute definition. </li> </ul> </li> </ul>
+     * empty values will be rejected with a <i>ValidationException</i>
+     * exception. <p>If you specify any attributes that are part of an index
+     * key, then the data types for those attributes must match those of the
+     * schema in the table's attribute definition. </li> </ul> </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 25<br/>
@@ -230,8 +260,12 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      *         <ul> <li> <p><i>DeleteRequest</i> - Perform a <i>DeleteItem</i>
      *         operation on the specified item. The item to be deleted is identified
      *         by a <i>Key</i> subelement: <ul> <li> <p><i>Key</i> - A map of primary
-     *         key attribute values that uniquely identify the item. Each entry in
-     *         this map consists of an attribute name and an attribute value. </li>
+     *         key attribute values that uniquely identify the ! item. Each entry in
+     *         this map consists of an attribute name and an attribute value. For
+     *         each primary key, you must provide <i>all</i> of the key attributes.
+     *         For example, with a hash type primary key, you only need to provide
+     *         the hash attribute. For a hash-and-range type primary key, you must
+     *         provide <i>both</i> the hash attribute and the range attribute. </li>
      *         </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      *         operation on the specified item. The item to be put is identified by
      *         an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
@@ -239,10 +273,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      *         attribute name and an attribute value. Attribute values must not be
      *         null; string and binary type attributes must have lengths greater than
      *         zero; and set type attributes must not be empty. Requests that contain
-     *         empty values will be rejected with a <i>ValidationException</i>. <p>If
-     *         you specify any attributes that are part of an index key, then the
-     *         data types for those attributes must match those of the schema in the
-     *         table's attribute definition. </li> </ul> </li> </ul>
+     *         empty values will be rejected with a <i>ValidationException</i>
+     *         exception. <p>If you specify any attributes that are part of an index
+     *         key, then the data types for those attributes must match those of the
+     *         schema in the table's attribute definition. </li> </ul> </li> </ul>
      */
     public java.util.Map<String,java.util.List<WriteRequest>> getRequestItems() {
         
@@ -256,8 +290,12 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * <ul> <li> <p><i>DeleteRequest</i> - Perform a <i>DeleteItem</i>
      * operation on the specified item. The item to be deleted is identified
      * by a <i>Key</i> subelement: <ul> <li> <p><i>Key</i> - A map of primary
-     * key attribute values that uniquely identify the item. Each entry in
-     * this map consists of an attribute name and an attribute value. </li>
+     * key attribute values that uniquely identify the ! item. Each entry in
+     * this map consists of an attribute name and an attribute value. For
+     * each primary key, you must provide <i>all</i> of the key attributes.
+     * For example, with a hash type primary key, you only need to provide
+     * the hash attribute. For a hash-and-range type primary key, you must
+     * provide <i>both</i> the hash attribute and the range attribute. </li>
      * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
@@ -265,10 +303,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * attribute name and an attribute value. Attribute values must not be
      * null; string and binary type attributes must have lengths greater than
      * zero; and set type attributes must not be empty. Requests that contain
-     * empty values will be rejected with a <i>ValidationException</i>. <p>If
-     * you specify any attributes that are part of an index key, then the
-     * data types for those attributes must match those of the schema in the
-     * table's attribute definition. </li> </ul> </li> </ul>
+     * empty values will be rejected with a <i>ValidationException</i>
+     * exception. <p>If you specify any attributes that are part of an index
+     * key, then the data types for those attributes must match those of the
+     * schema in the table's attribute definition. </li> </ul> </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 25<br/>
@@ -279,8 +317,12 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      *         <ul> <li> <p><i>DeleteRequest</i> - Perform a <i>DeleteItem</i>
      *         operation on the specified item. The item to be deleted is identified
      *         by a <i>Key</i> subelement: <ul> <li> <p><i>Key</i> - A map of primary
-     *         key attribute values that uniquely identify the item. Each entry in
-     *         this map consists of an attribute name and an attribute value. </li>
+     *         key attribute values that uniquely identify the ! item. Each entry in
+     *         this map consists of an attribute name and an attribute value. For
+     *         each primary key, you must provide <i>all</i> of the key attributes.
+     *         For example, with a hash type primary key, you only need to provide
+     *         the hash attribute. For a hash-and-range type primary key, you must
+     *         provide <i>both</i> the hash attribute and the range attribute. </li>
      *         </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      *         operation on the specified item. The item to be put is identified by
      *         an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
@@ -288,10 +330,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      *         attribute name and an attribute value. Attribute values must not be
      *         null; string and binary type attributes must have lengths greater than
      *         zero; and set type attributes must not be empty. Requests that contain
-     *         empty values will be rejected with a <i>ValidationException</i>. <p>If
-     *         you specify any attributes that are part of an index key, then the
-     *         data types for those attributes must match those of the schema in the
-     *         table's attribute definition. </li> </ul> </li> </ul>
+     *         empty values will be rejected with a <i>ValidationException</i>
+     *         exception. <p>If you specify any attributes that are part of an index
+     *         key, then the data types for those attributes must match those of the
+     *         schema in the table's attribute definition. </li> </ul> </li> </ul>
      */
     public void setRequestItems(java.util.Map<String,java.util.List<WriteRequest>> requestItems) {
         this.requestItems = requestItems;
@@ -304,8 +346,12 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * <ul> <li> <p><i>DeleteRequest</i> - Perform a <i>DeleteItem</i>
      * operation on the specified item. The item to be deleted is identified
      * by a <i>Key</i> subelement: <ul> <li> <p><i>Key</i> - A map of primary
-     * key attribute values that uniquely identify the item. Each entry in
-     * this map consists of an attribute name and an attribute value. </li>
+     * key attribute values that uniquely identify the ! item. Each entry in
+     * this map consists of an attribute name and an attribute value. For
+     * each primary key, you must provide <i>all</i> of the key attributes.
+     * For example, with a hash type primary key, you only need to provide
+     * the hash attribute. For a hash-and-range type primary key, you must
+     * provide <i>both</i> the hash attribute and the range attribute. </li>
      * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
@@ -313,10 +359,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * attribute name and an attribute value. Attribute values must not be
      * null; string and binary type attributes must have lengths greater than
      * zero; and set type attributes must not be empty. Requests that contain
-     * empty values will be rejected with a <i>ValidationException</i>. <p>If
-     * you specify any attributes that are part of an index key, then the
-     * data types for those attributes must match those of the schema in the
-     * table's attribute definition. </li> </ul> </li> </ul>
+     * empty values will be rejected with a <i>ValidationException</i>
+     * exception. <p>If you specify any attributes that are part of an index
+     * key, then the data types for those attributes must match those of the
+     * schema in the table's attribute definition. </li> </ul> </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -329,8 +375,12 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      *         <ul> <li> <p><i>DeleteRequest</i> - Perform a <i>DeleteItem</i>
      *         operation on the specified item. The item to be deleted is identified
      *         by a <i>Key</i> subelement: <ul> <li> <p><i>Key</i> - A map of primary
-     *         key attribute values that uniquely identify the item. Each entry in
-     *         this map consists of an attribute name and an attribute value. </li>
+     *         key attribute values that uniquely identify the ! item. Each entry in
+     *         this map consists of an attribute name and an attribute value. For
+     *         each primary key, you must provide <i>all</i> of the key attributes.
+     *         For example, with a hash type primary key, you only need to provide
+     *         the hash attribute. For a hash-and-range type primary key, you must
+     *         provide <i>both</i> the hash attribute and the range attribute. </li>
      *         </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      *         operation on the specified item. The item to be put is identified by
      *         an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
@@ -338,10 +388,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      *         attribute name and an attribute value. Attribute values must not be
      *         null; string and binary type attributes must have lengths greater than
      *         zero; and set type attributes must not be empty. Requests that contain
-     *         empty values will be rejected with a <i>ValidationException</i>. <p>If
-     *         you specify any attributes that are part of an index key, then the
-     *         data types for those attributes must match those of the schema in the
-     *         table's attribute definition. </li> </ul> </li> </ul>
+     *         empty values will be rejected with a <i>ValidationException</i>
+     *         exception. <p>If you specify any attributes that are part of an index
+     *         key, then the data types for those attributes must match those of the
+     *         schema in the table's attribute definition. </li> </ul> </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -358,8 +408,12 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * <ul> <li> <p><i>DeleteRequest</i> - Perform a <i>DeleteItem</i>
      * operation on the specified item. The item to be deleted is identified
      * by a <i>Key</i> subelement: <ul> <li> <p><i>Key</i> - A map of primary
-     * key attribute values that uniquely identify the item. Each entry in
-     * this map consists of an attribute name and an attribute value. </li>
+     * key attribute values that uniquely identify the ! item. Each entry in
+     * this map consists of an attribute name and an attribute value. For
+     * each primary key, you must provide <i>all</i> of the key attributes.
+     * For example, with a hash type primary key, you only need to provide
+     * the hash attribute. For a hash-and-range type primary key, you must
+     * provide <i>both</i> the hash attribute and the range attribute. </li>
      * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
@@ -367,10 +421,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * attribute name and an attribute value. Attribute values must not be
      * null; string and binary type attributes must have lengths greater than
      * zero; and set type attributes must not be empty. Requests that contain
-     * empty values will be rejected with a <i>ValidationException</i>. <p>If
-     * you specify any attributes that are part of an index key, then the
-     * data types for those attributes must match those of the schema in the
-     * table's attribute definition. </li> </ul> </li> </ul>
+     * empty values will be rejected with a <i>ValidationException</i>
+     * exception. <p>If you specify any attributes that are part of an index
+     * key, then the data types for those attributes must match those of the
+     * schema in the table's attribute definition. </li> </ul> </li> </ul>
      * <p>
      * The method adds a new key-value pair into RequestItems parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -403,20 +457,34 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @return If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @return Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @see ReturnConsumedCapacity
      */
@@ -425,20 +493,34 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @param returnConsumedCapacity If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @param returnConsumedCapacity Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @see ReturnConsumedCapacity
      */
@@ -447,22 +529,36 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @param returnConsumedCapacity If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @param returnConsumedCapacity Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -475,20 +571,34 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @param returnConsumedCapacity If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @param returnConsumedCapacity Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @see ReturnConsumedCapacity
      */
@@ -497,22 +607,36 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @param returnConsumedCapacity If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @param returnConsumedCapacity Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -525,18 +649,20 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * If set to <code>SIZE</code>, statistics about item collections, if
-     * any, that were modified during the operation are returned in the
-     * response. If set to <code>NONE</code> (the default), no statistics are
-     * returned.
+     * Determines whether item collection metrics are returned. If set to
+     * <code>SIZE</code>, the response includes statistics about item
+     * collections, if any, that were modified during the operation are
+     * returned in the response. If set to <code>NONE</code> (the default),
+     * no statistics are returned.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SIZE, NONE
      *
-     * @return If set to <code>SIZE</code>, statistics about item collections, if
-     *         any, that were modified during the operation are returned in the
-     *         response. If set to <code>NONE</code> (the default), no statistics are
-     *         returned.
+     * @return Determines whether item collection metrics are returned. If set to
+     *         <code>SIZE</code>, the response includes statistics about item
+     *         collections, if any, that were modified during the operation are
+     *         returned in the response. If set to <code>NONE</code> (the default),
+     *         no statistics are returned.
      *
      * @see ReturnItemCollectionMetrics
      */
@@ -545,18 +671,20 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * If set to <code>SIZE</code>, statistics about item collections, if
-     * any, that were modified during the operation are returned in the
-     * response. If set to <code>NONE</code> (the default), no statistics are
-     * returned.
+     * Determines whether item collection metrics are returned. If set to
+     * <code>SIZE</code>, the response includes statistics about item
+     * collections, if any, that were modified during the operation are
+     * returned in the response. If set to <code>NONE</code> (the default),
+     * no statistics are returned.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SIZE, NONE
      *
-     * @param returnItemCollectionMetrics If set to <code>SIZE</code>, statistics about item collections, if
-     *         any, that were modified during the operation are returned in the
-     *         response. If set to <code>NONE</code> (the default), no statistics are
-     *         returned.
+     * @param returnItemCollectionMetrics Determines whether item collection metrics are returned. If set to
+     *         <code>SIZE</code>, the response includes statistics about item
+     *         collections, if any, that were modified during the operation are
+     *         returned in the response. If set to <code>NONE</code> (the default),
+     *         no statistics are returned.
      *
      * @see ReturnItemCollectionMetrics
      */
@@ -565,20 +693,22 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * If set to <code>SIZE</code>, statistics about item collections, if
-     * any, that were modified during the operation are returned in the
-     * response. If set to <code>NONE</code> (the default), no statistics are
-     * returned.
+     * Determines whether item collection metrics are returned. If set to
+     * <code>SIZE</code>, the response includes statistics about item
+     * collections, if any, that were modified during the operation are
+     * returned in the response. If set to <code>NONE</code> (the default),
+     * no statistics are returned.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SIZE, NONE
      *
-     * @param returnItemCollectionMetrics If set to <code>SIZE</code>, statistics about item collections, if
-     *         any, that were modified during the operation are returned in the
-     *         response. If set to <code>NONE</code> (the default), no statistics are
-     *         returned.
+     * @param returnItemCollectionMetrics Determines whether item collection metrics are returned. If set to
+     *         <code>SIZE</code>, the response includes statistics about item
+     *         collections, if any, that were modified during the operation are
+     *         returned in the response. If set to <code>NONE</code> (the default),
+     *         no statistics are returned.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -591,18 +721,20 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * If set to <code>SIZE</code>, statistics about item collections, if
-     * any, that were modified during the operation are returned in the
-     * response. If set to <code>NONE</code> (the default), no statistics are
-     * returned.
+     * Determines whether item collection metrics are returned. If set to
+     * <code>SIZE</code>, the response includes statistics about item
+     * collections, if any, that were modified during the operation are
+     * returned in the response. If set to <code>NONE</code> (the default),
+     * no statistics are returned.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SIZE, NONE
      *
-     * @param returnItemCollectionMetrics If set to <code>SIZE</code>, statistics about item collections, if
-     *         any, that were modified during the operation are returned in the
-     *         response. If set to <code>NONE</code> (the default), no statistics are
-     *         returned.
+     * @param returnItemCollectionMetrics Determines whether item collection metrics are returned. If set to
+     *         <code>SIZE</code>, the response includes statistics about item
+     *         collections, if any, that were modified during the operation are
+     *         returned in the response. If set to <code>NONE</code> (the default),
+     *         no statistics are returned.
      *
      * @see ReturnItemCollectionMetrics
      */
@@ -611,20 +743,22 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * If set to <code>SIZE</code>, statistics about item collections, if
-     * any, that were modified during the operation are returned in the
-     * response. If set to <code>NONE</code> (the default), no statistics are
-     * returned.
+     * Determines whether item collection metrics are returned. If set to
+     * <code>SIZE</code>, the response includes statistics about item
+     * collections, if any, that were modified during the operation are
+     * returned in the response. If set to <code>NONE</code> (the default),
+     * no statistics are returned.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SIZE, NONE
      *
-     * @param returnItemCollectionMetrics If set to <code>SIZE</code>, statistics about item collections, if
-     *         any, that were modified during the operation are returned in the
-     *         response. If set to <code>NONE</code> (the default), no statistics are
-     *         returned.
+     * @param returnItemCollectionMetrics Determines whether item collection metrics are returned. If set to
+     *         <code>SIZE</code>, the response includes statistics about item
+     *         collections, if any, that were modified during the operation are
+     *         returned in the response. If set to <code>NONE</code> (the default),
+     *         no statistics are returned.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

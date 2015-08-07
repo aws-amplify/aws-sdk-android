@@ -25,6 +25,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * the table, when it was created, the primary key schema, and any
  * indexes on the table.
  * </p>
+ * <p>
+ * <b>NOTE:</b> If you issue a DescribeTable request immediately after a
+ * CreateTable request, DynamoDB might return a
+ * ResourceNotFoundException. This is because DescribeTable uses an
+ * eventually consistent query, and the metadata for your table might not
+ * be available at that moment. Wait for a few seconds, and then try the
+ * DescribeTable request again.
+ * </p>
  *
  * @see com.amazonaws.services.dynamodbv2.AmazonDynamoDB#describeTable(DescribeTableRequest)
  */

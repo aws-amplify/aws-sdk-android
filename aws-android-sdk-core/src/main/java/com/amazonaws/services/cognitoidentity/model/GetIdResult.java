@@ -17,40 +17,49 @@ package com.amazonaws.services.cognitoidentity.model;
 import java.io.Serializable;
 
 /**
- * Get Id Result
+ * <p>
+ * Returned in response to a GetId request.
+ * </p>
  */
 public class GetIdResult implements Serializable {
 
+    /**
+     * A unique identifier in the format REGION:GUID.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 50<br/>
+     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     */
     private String identityId;
 
     /**
-     * Returns the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @return The value of the IdentityId property for this object.
+     * @return A unique identifier in the format REGION:GUID.
      */
     public String getIdentityId() {
         return identityId;
     }
     
     /**
-     * Sets the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId The new value for the IdentityId property for this object.
+     * @param identityId A unique identifier in the format REGION:GUID.
      */
     public void setIdentityId(String identityId) {
         this.identityId = identityId;
     }
     
     /**
-     * Sets the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -58,7 +67,7 @@ public class GetIdResult implements Serializable {
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId The new value for the IdentityId property for this object.
+     * @param identityId A unique identifier in the format REGION:GUID.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

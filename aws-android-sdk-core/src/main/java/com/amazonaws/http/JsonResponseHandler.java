@@ -96,12 +96,12 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
 
         if (CRC32Checksum != null) {
             crc32ChecksumInputStream = new CRC32ChecksumCalculatingInputStream(content);
-            if ("gzip".equals(response.getHeaders().get("Content-Encoding"))) {
-                content = new GZIPInputStream(crc32ChecksumInputStream);
-            } else {
-                content = crc32ChecksumInputStream;
-            }
+            content = crc32ChecksumInputStream;
         }
+        if ("gzip".equals(response.getHeaders().get("Content-Encoding"))) {
+            content = new GZIPInputStream(content);
+        }
+
         AwsJsonReader jsonReader = JsonUtils.getJsonReader(new InputStreamReader(content));
 
         try {

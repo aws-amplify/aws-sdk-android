@@ -23,18 +23,18 @@ import com.amazonaws.services.ec2.model.transform.AttachVolumeRequestMarshaller;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#attachVolume(AttachVolumeRequest) AttachVolume operation}.
  * <p>
- * Attaches an Amazon EBS volume to a running or stopped instance and
- * exposes it to the instance with the specified device name.
+ * Attaches an EBS volume to a running or stopped instance and exposes it
+ * to the instance with the specified device name.
  * </p>
  * <p>
- * Encrypted Amazon EBS volumes may only be attached to instances that
- * support Amazon EBS encryption. For more information, see
+ * Encrypted EBS volumes may only be attached to instances that support
+ * Amazon EBS encryption. For more information, see
  * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"> Amazon EBS Encryption </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>
  * <p>
  * For a list of supported device names, see
- * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching an Amazon EBS Volume to an Instance </a> . Any device names that aren't reserved for instance store volumes can be used for Amazon EBS volumes. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html"> Amazon EC2 Instance Store </a>
+ * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching an EBS Volume to an Instance </a> . Any device names that aren't reserved for instance store volumes can be used for EBS volumes. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html"> Amazon EC2 Instance Store </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>
  * <p>
@@ -42,25 +42,22 @@ import com.amazonaws.services.ec2.model.transform.AttachVolumeRequestMarshaller;
  * </p>
  * 
  * <ul>
- * <li>The volume can only be attached as the root device of a stopped
- * instance.</li>
- * <li>You must be subscribed to the AWS Marketplace code that is on the
- * volume.</li>
- * <li>The configuration (instance type, operating system) of the
- * instance must support that specific AWS Marketplace code. For example,
- * you cannot take a volume from a Windows instance and attach it to a
- * Linux instance.</li>
+ * <li>The volume can be attached only to a stopped instance.</li>
  * <li>AWS Marketplace product codes are copied from the volume to the
  * instance.</li>
+ * <li>You must be subscribed to the product.</li>
+ * <li>The instance type and operating system of the instance must
+ * support the product. For example, you can't detach a volume from a
+ * Windows instance and attach it to a Linux instance.</li>
  * 
  * </ul>
  * <p>
  * For an overview of the AWS Marketplace, see
- * <a href="https://aws.amazon.com/marketplace/help/200900000"> https://aws.amazon.com/marketplace/help/200900000 </a> . For more information about how to use the AWS Marketplace, see <a href="https://aws.amazon.com/marketplace"> AWS Marketplace </a>
+ * <a href="https://aws.amazon.com/marketplace/help/200900000"> Introducing AWS Marketplace </a>
  * .
  * </p>
  * <p>
- * For more information about Amazon EBS volumes, see
+ * For more information about EBS volumes, see
  * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching Amazon EBS Volumes </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>
@@ -70,8 +67,8 @@ import com.amazonaws.services.ec2.model.transform.AttachVolumeRequestMarshaller;
 public class AttachVolumeRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<AttachVolumeRequest> {
 
     /**
-     * The ID of the Amazon EBS volume. The volume and instance must be
-     * within the same Availability Zone.
+     * The ID of the EBS volume. The volume and instance must be within the
+     * same Availability Zone.
      */
     private String volumeId;
 
@@ -97,8 +94,8 @@ public class AttachVolumeRequest extends AmazonWebServiceRequest implements Seri
      * Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      * 
-     * @param volumeId The ID of the Amazon EBS volume. The volume and
-     * instance must be within the same Availability Zone.
+     * @param volumeId The ID of the EBS volume. The volume and instance must
+     * be within the same Availability Zone.
      * @param instanceId The ID of the instance.
      * @param device The device name to expose to the instance (for example,
      * <code>/dev/sdh</code> or <code>xvdh</code>).
@@ -110,35 +107,35 @@ public class AttachVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The ID of the Amazon EBS volume. The volume and instance must be
-     * within the same Availability Zone.
+     * The ID of the EBS volume. The volume and instance must be within the
+     * same Availability Zone.
      *
-     * @return The ID of the Amazon EBS volume. The volume and instance must be
-     *         within the same Availability Zone.
+     * @return The ID of the EBS volume. The volume and instance must be within the
+     *         same Availability Zone.
      */
     public String getVolumeId() {
         return volumeId;
     }
     
     /**
-     * The ID of the Amazon EBS volume. The volume and instance must be
-     * within the same Availability Zone.
+     * The ID of the EBS volume. The volume and instance must be within the
+     * same Availability Zone.
      *
-     * @param volumeId The ID of the Amazon EBS volume. The volume and instance must be
-     *         within the same Availability Zone.
+     * @param volumeId The ID of the EBS volume. The volume and instance must be within the
+     *         same Availability Zone.
      */
     public void setVolumeId(String volumeId) {
         this.volumeId = volumeId;
     }
     
     /**
-     * The ID of the Amazon EBS volume. The volume and instance must be
-     * within the same Availability Zone.
+     * The ID of the EBS volume. The volume and instance must be within the
+     * same Availability Zone.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param volumeId The ID of the Amazon EBS volume. The volume and instance must be
-     *         within the same Availability Zone.
+     * @param volumeId The ID of the EBS volume. The volume and instance must be within the
+     *         same Availability Zone.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

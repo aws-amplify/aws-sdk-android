@@ -18,50 +18,50 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The <code>PolicyDescription</code> data type.
+ * Information about a policy.
  * </p>
  */
 public class PolicyDescription implements Serializable {
 
     /**
-     * The name of the policy associated with the load balancer.
+     * The name of the policy.
      */
     private String policyName;
 
     /**
-     * The name of the policy type associated with the load balancer.
+     * The name of the policy type.
      */
     private String policyTypeName;
 
     /**
-     * A list of policy attribute description structures.
+     * The policy attributes.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<PolicyAttributeDescription> policyAttributeDescriptions;
 
     /**
-     * The name of the policy associated with the load balancer.
+     * The name of the policy.
      *
-     * @return The name of the policy associated with the load balancer.
+     * @return The name of the policy.
      */
     public String getPolicyName() {
         return policyName;
     }
     
     /**
-     * The name of the policy associated with the load balancer.
+     * The name of the policy.
      *
-     * @param policyName The name of the policy associated with the load balancer.
+     * @param policyName The name of the policy.
      */
     public void setPolicyName(String policyName) {
         this.policyName = policyName;
     }
     
     /**
-     * The name of the policy associated with the load balancer.
+     * The name of the policy.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyName The name of the policy associated with the load balancer.
+     * @param policyName The name of the policy.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -72,29 +72,29 @@ public class PolicyDescription implements Serializable {
     }
 
     /**
-     * The name of the policy type associated with the load balancer.
+     * The name of the policy type.
      *
-     * @return The name of the policy type associated with the load balancer.
+     * @return The name of the policy type.
      */
     public String getPolicyTypeName() {
         return policyTypeName;
     }
     
     /**
-     * The name of the policy type associated with the load balancer.
+     * The name of the policy type.
      *
-     * @param policyTypeName The name of the policy type associated with the load balancer.
+     * @param policyTypeName The name of the policy type.
      */
     public void setPolicyTypeName(String policyTypeName) {
         this.policyTypeName = policyTypeName;
     }
     
     /**
-     * The name of the policy type associated with the load balancer.
+     * The name of the policy type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyTypeName The name of the policy type associated with the load balancer.
+     * @param policyTypeName The name of the policy type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -105,9 +105,9 @@ public class PolicyDescription implements Serializable {
     }
 
     /**
-     * A list of policy attribute description structures.
+     * The policy attributes.
      *
-     * @return A list of policy attribute description structures.
+     * @return The policy attributes.
      */
     public java.util.List<PolicyAttributeDescription> getPolicyAttributeDescriptions() {
         if (policyAttributeDescriptions == null) {
@@ -118,9 +118,9 @@ public class PolicyDescription implements Serializable {
     }
     
     /**
-     * A list of policy attribute description structures.
+     * The policy attributes.
      *
-     * @param policyAttributeDescriptions A list of policy attribute description structures.
+     * @param policyAttributeDescriptions The policy attributes.
      */
     public void setPolicyAttributeDescriptions(java.util.Collection<PolicyAttributeDescription> policyAttributeDescriptions) {
         if (policyAttributeDescriptions == null) {
@@ -133,11 +133,11 @@ public class PolicyDescription implements Serializable {
     }
     
     /**
-     * A list of policy attribute description structures.
+     * The policy attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyAttributeDescriptions A list of policy attribute description structures.
+     * @param policyAttributeDescriptions The policy attributes.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -151,11 +151,11 @@ public class PolicyDescription implements Serializable {
     }
     
     /**
-     * A list of policy attribute description structures.
+     * The policy attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyAttributeDescriptions A list of policy attribute description structures.
+     * @param policyAttributeDescriptions The policy attributes.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

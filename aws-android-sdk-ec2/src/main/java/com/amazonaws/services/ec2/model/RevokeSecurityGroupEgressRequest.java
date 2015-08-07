@@ -48,14 +48,16 @@ public class RevokeSecurityGroupEgressRequest extends AmazonWebServiceRequest im
     private String groupId;
 
     /**
-     * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * The name of a destination security group. To revoke outbound access to
+     * a destination security group, we recommend that you use a set of IP
+     * permissions instead.
      */
     private String sourceSecurityGroupName;
 
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * The AWS account number for a destination security group. To revoke
+     * outbound access to a destination security group, we recommend that you
+     * use a set of IP permissions instead.
      */
     private String sourceSecurityGroupOwnerId;
 
@@ -88,7 +90,8 @@ public class RevokeSecurityGroupEgressRequest extends AmazonWebServiceRequest im
     private String cidrIp;
 
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a destination security
+     * group and a CIDR IP address range.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<IpPermission> ipPermissions;
 
@@ -126,35 +129,41 @@ public class RevokeSecurityGroupEgressRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * The name of a destination security group. To revoke outbound access to
+     * a destination security group, we recommend that you use a set of IP
+     * permissions instead.
      *
-     * @return [EC2-Classic, default VPC] The name of the source security group. You
-     *         can't specify a source security group and a CIDR IP address range.
+     * @return The name of a destination security group. To revoke outbound access to
+     *         a destination security group, we recommend that you use a set of IP
+     *         permissions instead.
      */
     public String getSourceSecurityGroupName() {
         return sourceSecurityGroupName;
     }
     
     /**
-     * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * The name of a destination security group. To revoke outbound access to
+     * a destination security group, we recommend that you use a set of IP
+     * permissions instead.
      *
-     * @param sourceSecurityGroupName [EC2-Classic, default VPC] The name of the source security group. You
-     *         can't specify a source security group and a CIDR IP address range.
+     * @param sourceSecurityGroupName The name of a destination security group. To revoke outbound access to
+     *         a destination security group, we recommend that you use a set of IP
+     *         permissions instead.
      */
     public void setSourceSecurityGroupName(String sourceSecurityGroupName) {
         this.sourceSecurityGroupName = sourceSecurityGroupName;
     }
     
     /**
-     * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * The name of a destination security group. To revoke outbound access to
+     * a destination security group, we recommend that you use a set of IP
+     * permissions instead.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sourceSecurityGroupName [EC2-Classic, default VPC] The name of the source security group. You
-     *         can't specify a source security group and a CIDR IP address range.
+     * @param sourceSecurityGroupName The name of a destination security group. To revoke outbound access to
+     *         a destination security group, we recommend that you use a set of IP
+     *         permissions instead.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -165,35 +174,41 @@ public class RevokeSecurityGroupEgressRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * The AWS account number for a destination security group. To revoke
+     * outbound access to a destination security group, we recommend that you
+     * use a set of IP permissions instead.
      *
-     * @return The ID of the source security group. You can't specify a source
-     *         security group and a CIDR IP address range.
+     * @return The AWS account number for a destination security group. To revoke
+     *         outbound access to a destination security group, we recommend that you
+     *         use a set of IP permissions instead.
      */
     public String getSourceSecurityGroupOwnerId() {
         return sourceSecurityGroupOwnerId;
     }
     
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * The AWS account number for a destination security group. To revoke
+     * outbound access to a destination security group, we recommend that you
+     * use a set of IP permissions instead.
      *
-     * @param sourceSecurityGroupOwnerId The ID of the source security group. You can't specify a source
-     *         security group and a CIDR IP address range.
+     * @param sourceSecurityGroupOwnerId The AWS account number for a destination security group. To revoke
+     *         outbound access to a destination security group, we recommend that you
+     *         use a set of IP permissions instead.
      */
     public void setSourceSecurityGroupOwnerId(String sourceSecurityGroupOwnerId) {
         this.sourceSecurityGroupOwnerId = sourceSecurityGroupOwnerId;
     }
     
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * The AWS account number for a destination security group. To revoke
+     * outbound access to a destination security group, we recommend that you
+     * use a set of IP permissions instead.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sourceSecurityGroupOwnerId The ID of the source security group. You can't specify a source
-     *         security group and a CIDR IP address range.
+     * @param sourceSecurityGroupOwnerId The AWS account number for a destination security group. To revoke
+     *         outbound access to a destination security group, we recommend that you
+     *         use a set of IP permissions instead.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -384,9 +399,11 @@ public class RevokeSecurityGroupEgressRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a destination security
+     * group and a CIDR IP address range.
      *
-     * @return <p/>
+     * @return A set of IP permissions. You can't specify a destination security
+     *         group and a CIDR IP address range.
      */
     public java.util.List<IpPermission> getIpPermissions() {
         if (ipPermissions == null) {
@@ -397,9 +414,11 @@ public class RevokeSecurityGroupEgressRequest extends AmazonWebServiceRequest im
     }
     
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a destination security
+     * group and a CIDR IP address range.
      *
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. You can't specify a destination security
+     *         group and a CIDR IP address range.
      */
     public void setIpPermissions(java.util.Collection<IpPermission> ipPermissions) {
         if (ipPermissions == null) {
@@ -412,11 +431,13 @@ public class RevokeSecurityGroupEgressRequest extends AmazonWebServiceRequest im
     }
     
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a destination security
+     * group and a CIDR IP address range.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. You can't specify a destination security
+     *         group and a CIDR IP address range.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -430,11 +451,13 @@ public class RevokeSecurityGroupEgressRequest extends AmazonWebServiceRequest im
     }
     
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a destination security
+     * group and a CIDR IP address range.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. You can't specify a destination security
+     *         group and a CIDR IP address range.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

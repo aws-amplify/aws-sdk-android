@@ -457,6 +457,100 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Creates one or more flow logs to capture IP traffic for a specific
+     * network interface, subnet, or VPC. Flow logs are delivered to a
+     * specified log group in Amazon CloudWatch Logs. If you specify a VPC or
+     * subnet in the request, a log stream is created in CloudWatch Logs for
+     * each network interface in the subnet or VPC. Log streams can include
+     * information about accepted and rejected traffic to a network
+     * interface. You can view the data in your log streams using Amazon
+     * CloudWatch Logs.
+     * </p>
+     * <p>
+     * In your request, you must also specify an IAM role that has
+     * permission to publish logs to CloudWatch Logs.
+     * </p>
+     *
+     * @param createFlowLogsRequest Container for the necessary parameters to
+     *           execute the CreateFlowLogs operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateFlowLogs service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CreateFlowLogsResult> createFlowLogsAsync(final CreateFlowLogsRequest createFlowLogsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateFlowLogsResult>() {
+            public CreateFlowLogsResult call() throws Exception {
+                return createFlowLogs(createFlowLogsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Creates one or more flow logs to capture IP traffic for a specific
+     * network interface, subnet, or VPC. Flow logs are delivered to a
+     * specified log group in Amazon CloudWatch Logs. If you specify a VPC or
+     * subnet in the request, a log stream is created in CloudWatch Logs for
+     * each network interface in the subnet or VPC. Log streams can include
+     * information about accepted and rejected traffic to a network
+     * interface. You can view the data in your log streams using Amazon
+     * CloudWatch Logs.
+     * </p>
+     * <p>
+     * In your request, you must also specify an IAM role that has
+     * permission to publish logs to CloudWatch Logs.
+     * </p>
+     *
+     * @param createFlowLogsRequest Container for the necessary parameters to
+     *           execute the CreateFlowLogs operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateFlowLogs service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CreateFlowLogsResult> createFlowLogsAsync(
+            final CreateFlowLogsRequest createFlowLogsRequest,
+            final AsyncHandler<CreateFlowLogsRequest, CreateFlowLogsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateFlowLogsResult>() {
+            public CreateFlowLogsResult call() throws Exception {
+              CreateFlowLogsResult result;
+                try {
+                result = createFlowLogs(createFlowLogsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(createFlowLogsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Describes one or more of the Availability Zones that are available to
      * you. The results include zones only for the region you're currently
      * using. If there is an event impacting an Availability Zone, you can
@@ -549,8 +643,90 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Detaches an Amazon EBS volume from an instance. Make sure to unmount
-     * any file systems on the device within your operating system before
+     * Restores an Elastic IP address that was previously moved to the
+     * EC2-VPC platform back to the EC2-Classic platform. You cannot move an
+     * Elastic IP address that was originally allocated for use in EC2-VPC.
+     * The Elastic IP address must not be associated with an instance or
+     * network interface.
+     * </p>
+     *
+     * @param restoreAddressToClassicRequest Container for the necessary
+     *           parameters to execute the RestoreAddressToClassic operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         RestoreAddressToClassic service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<RestoreAddressToClassicResult> restoreAddressToClassicAsync(final RestoreAddressToClassicRequest restoreAddressToClassicRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<RestoreAddressToClassicResult>() {
+            public RestoreAddressToClassicResult call() throws Exception {
+                return restoreAddressToClassic(restoreAddressToClassicRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Restores an Elastic IP address that was previously moved to the
+     * EC2-VPC platform back to the EC2-Classic platform. You cannot move an
+     * Elastic IP address that was originally allocated for use in EC2-VPC.
+     * The Elastic IP address must not be associated with an instance or
+     * network interface.
+     * </p>
+     *
+     * @param restoreAddressToClassicRequest Container for the necessary
+     *           parameters to execute the RestoreAddressToClassic operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         RestoreAddressToClassic service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<RestoreAddressToClassicResult> restoreAddressToClassicAsync(
+            final RestoreAddressToClassicRequest restoreAddressToClassicRequest,
+            final AsyncHandler<RestoreAddressToClassicRequest, RestoreAddressToClassicResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<RestoreAddressToClassicResult>() {
+            public RestoreAddressToClassicResult call() throws Exception {
+              RestoreAddressToClassicResult result;
+                try {
+                result = restoreAddressToClassic(restoreAddressToClassicRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(restoreAddressToClassicRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Detaches an EBS volume from an instance. Make sure to unmount any
+     * file systems on the device within your operating system before
      * detaching the volume. Failure to do so results in the volume being
      * stuck in a busy state while detaching.
      * </p>
@@ -560,9 +736,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * stop the instance first.
      * </p>
      * <p>
-     * If the root volume is detached from an instance with an AWS
-     * Marketplace product code, then the AWS Marketplace product codes from
-     * that volume are no longer associated with the instance.
+     * When a volume with an AWS Marketplace product code is detached from
+     * an instance, the product code is no longer associated with the
+     * instance.
      * </p>
      * <p>
      * For more information, see
@@ -596,8 +772,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Detaches an Amazon EBS volume from an instance. Make sure to unmount
-     * any file systems on the device within your operating system before
+     * Detaches an EBS volume from an instance. Make sure to unmount any
+     * file systems on the device within your operating system before
      * detaching the volume. Failure to do so results in the volume being
      * stuck in a busy state while detaching.
      * </p>
@@ -607,9 +783,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * stop the instance first.
      * </p>
      * <p>
-     * If the root volume is detached from an instance with an AWS
-     * Marketplace product code, then the AWS Marketplace product codes from
-     * that volume are no longer associated with the instance.
+     * When a volume with an AWS Marketplace product code is detached from
+     * an instance, the product code is no longer associated with the
+     * instance.
      * </p>
      * <p>
      * For more information, see
@@ -1069,7 +1245,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Exports a running or stopped instance to an Amazon S3 bucket.
+     * Exports a running or stopped instance to an S3 bucket.
      * </p>
      * <p>
      * For information about the supported operating systems, image formats,
@@ -1105,7 +1281,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Exports a running or stopped instance to an Amazon S3 bucket.
+     * Exports a running or stopped instance to an S3 bucket.
      * </p>
      * <p>
      * For information about the supported operating systems, image formats,
@@ -1149,6 +1325,130 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
               }
               asyncHandler.onSuccess(createInstanceExportTaskRequest, result);
                  return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Adds one or more egress rules to a security group for use with a VPC.
+     * Specifically, this action permits instances to send traffic to one or
+     * more destination CIDR IP address ranges, or to one or more destination
+     * security groups for the same VPC.
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b> You can have up to 50 rules per security group
+     * (covering both ingress and egress rules).
+     * </p>
+     * <p>
+     * A security group is for use with instances either in the EC2-Classic
+     * platform or in a specific VPC. This action doesn't apply to security
+     * groups for use in EC2-Classic. For more information, see
+     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"> Security Groups for Your VPC </a>
+     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * Each rule consists of the protocol (for example, TCP), plus either a
+     * CIDR range or a source group. For the TCP and UDP protocols, you must
+     * also specify the destination port or port range. For the ICMP
+     * protocol, you must also specify the ICMP type and code. You can use -1
+     * for the type or code to mean all types or all codes.
+     * </p>
+     * <p>
+     * Rule changes are propagated to affected instances as quickly as
+     * possible. However, a small delay might occur.
+     * </p>
+     *
+     * @param authorizeSecurityGroupEgressRequest Container for the necessary
+     *           parameters to execute the AuthorizeSecurityGroupEgress operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         AuthorizeSecurityGroupEgress service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> authorizeSecurityGroupEgressAsync(final AuthorizeSecurityGroupEgressRequest authorizeSecurityGroupEgressRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                authorizeSecurityGroupEgress(authorizeSecurityGroupEgressRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Adds one or more egress rules to a security group for use with a VPC.
+     * Specifically, this action permits instances to send traffic to one or
+     * more destination CIDR IP address ranges, or to one or more destination
+     * security groups for the same VPC.
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b> You can have up to 50 rules per security group
+     * (covering both ingress and egress rules).
+     * </p>
+     * <p>
+     * A security group is for use with instances either in the EC2-Classic
+     * platform or in a specific VPC. This action doesn't apply to security
+     * groups for use in EC2-Classic. For more information, see
+     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"> Security Groups for Your VPC </a>
+     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * Each rule consists of the protocol (for example, TCP), plus either a
+     * CIDR range or a source group. For the TCP and UDP protocols, you must
+     * also specify the destination port or port range. For the ICMP
+     * protocol, you must also specify the ICMP type and code. You can use -1
+     * for the type or code to mean all types or all codes.
+     * </p>
+     * <p>
+     * Rule changes are propagated to affected instances as quickly as
+     * possible. However, a small delay might occur.
+     * </p>
+     *
+     * @param authorizeSecurityGroupEgressRequest Container for the necessary
+     *           parameters to execute the AuthorizeSecurityGroupEgress operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         AuthorizeSecurityGroupEgress service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> authorizeSecurityGroupEgressAsync(
+            final AuthorizeSecurityGroupEgressRequest authorizeSecurityGroupEgressRequest,
+            final AsyncHandler<AuthorizeSecurityGroupEgressRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                authorizeSecurityGroupEgress(authorizeSecurityGroupEgressRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(authorizeSecurityGroupEgressRequest, null);
+                 return null;
         }
     });
     }
@@ -1255,137 +1555,16 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Adds one or more egress rules to a security group for use with a VPC.
-     * Specifically, this action permits instances to send traffic to one or
-     * more CIDR IP address ranges, or to one or more security groups for the
-     * same VPC.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b> You can have up to 50 rules per security group
-     * (covering both ingress and egress rules).
-     * </p>
-     * <p>
-     * A security group is for use with instances either in the EC2-Classic
-     * platform or in a specific VPC. This action doesn't apply to security
-     * groups for use in EC2-Classic. For more information, see
-     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"> Security Groups for Your VPC </a>
-     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * Each rule consists of the protocol (for example, TCP), plus either a
-     * CIDR range or a source group. For the TCP and UDP protocols, you must
-     * also specify the destination port or port range. For the ICMP
-     * protocol, you must also specify the ICMP type and code. You can use -1
-     * for the type or code to mean all types or all codes.
-     * </p>
-     * <p>
-     * Rule changes are propagated to affected instances as quickly as
-     * possible. However, a small delay might occur.
-     * </p>
-     *
-     * @param authorizeSecurityGroupEgressRequest Container for the necessary
-     *           parameters to execute the AuthorizeSecurityGroupEgress operation on
-     *           AmazonEC2.
-     * 
-     * @return A Java Future object containing the response from the
-     *         AuthorizeSecurityGroupEgress service method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> authorizeSecurityGroupEgressAsync(final AuthorizeSecurityGroupEgressRequest authorizeSecurityGroupEgressRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                authorizeSecurityGroupEgress(authorizeSecurityGroupEgressRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Adds one or more egress rules to a security group for use with a VPC.
-     * Specifically, this action permits instances to send traffic to one or
-     * more CIDR IP address ranges, or to one or more security groups for the
-     * same VPC.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b> You can have up to 50 rules per security group
-     * (covering both ingress and egress rules).
-     * </p>
-     * <p>
-     * A security group is for use with instances either in the EC2-Classic
-     * platform or in a specific VPC. This action doesn't apply to security
-     * groups for use in EC2-Classic. For more information, see
-     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"> Security Groups for Your VPC </a>
-     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * Each rule consists of the protocol (for example, TCP), plus either a
-     * CIDR range or a source group. For the TCP and UDP protocols, you must
-     * also specify the destination port or port range. For the ICMP
-     * protocol, you must also specify the ICMP type and code. You can use -1
-     * for the type or code to mean all types or all codes.
-     * </p>
-     * <p>
-     * Rule changes are propagated to affected instances as quickly as
-     * possible. However, a small delay might occur.
-     * </p>
-     *
-     * @param authorizeSecurityGroupEgressRequest Container for the necessary
-     *           parameters to execute the AuthorizeSecurityGroupEgress operation on
-     *           AmazonEC2.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         AuthorizeSecurityGroupEgress service method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> authorizeSecurityGroupEgressAsync(
-            final AuthorizeSecurityGroupEgressRequest authorizeSecurityGroupEgressRequest,
-            final AsyncHandler<AuthorizeSecurityGroupEgressRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                authorizeSecurityGroupEgress(authorizeSecurityGroupEgressRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(authorizeSecurityGroupEgressRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
      * Retrieves the encrypted administrator password for an instance
      * running Windows.
      * </p>
      * <p>
-     * The Windows password is only generated the first time an AMI is
-     * launched. It is not generated for rebundled AMIs or after the password
-     * is changed on an instance.
+     * The Windows password is generated at boot if the
+     * <code>EC2Config</code> service plugin, <code>Ec2SetPassword</code> ,
+     * is enabled. This usually only happens the first time an AMI is
+     * launched, and then <code>Ec2SetPassword</code> is automatically
+     * disabled. The password is not generated for rebundled AMIs unless
+     * <code>Ec2SetPassword</code> is enabled before bundling.
      * </p>
      * <p>
      * The password is encrypted using the key pair that you specified when
@@ -1428,9 +1607,12 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * running Windows.
      * </p>
      * <p>
-     * The Windows password is only generated the first time an AMI is
-     * launched. It is not generated for rebundled AMIs or after the password
-     * is changed on an instance.
+     * The Windows password is generated at boot if the
+     * <code>EC2Config</code> service plugin, <code>Ec2SetPassword</code> ,
+     * is enabled. This usually only happens the first time an AMI is
+     * launched, and then <code>Ec2SetPassword</code> is automatically
+     * disabled. The password is not generated for rebundled AMIs unless
+     * <code>Ec2SetPassword</code> is enabled before bundling.
      * </p>
      * <p>
      * The password is encrypted using the key pair that you specified when
@@ -1873,6 +2055,80 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Describes the running instances for the specified Spot fleet.
+     * </p>
+     *
+     * @param describeSpotFleetInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeSpotFleetInstances operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeSpotFleetInstances service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeSpotFleetInstancesResult> describeSpotFleetInstancesAsync(final DescribeSpotFleetInstancesRequest describeSpotFleetInstancesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeSpotFleetInstancesResult>() {
+            public DescribeSpotFleetInstancesResult call() throws Exception {
+                return describeSpotFleetInstances(describeSpotFleetInstancesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the running instances for the specified Spot fleet.
+     * </p>
+     *
+     * @param describeSpotFleetInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeSpotFleetInstances operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeSpotFleetInstances service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeSpotFleetInstancesResult> describeSpotFleetInstancesAsync(
+            final DescribeSpotFleetInstancesRequest describeSpotFleetInstancesRequest,
+            final AsyncHandler<DescribeSpotFleetInstancesRequest, DescribeSpotFleetInstancesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeSpotFleetInstancesResult>() {
+            public DescribeSpotFleetInstancesResult call() throws Exception {
+              DescribeSpotFleetInstancesResult result;
+                try {
+                result = describeSpotFleetInstances(describeSpotFleetInstancesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeSpotFleetInstancesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Creates a security group.
      * </p>
      * <p>
@@ -2005,23 +2261,18 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Describes the Spot Price history. Spot Instances are instances that
-     * Amazon EC2 starts on your behalf when the maximum price that you
-     * specify exceeds the current Spot Price. Amazon EC2 periodically sets
-     * the Spot Price based on available Spot Instance capacity and current
-     * Spot Instance requests. For more information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Describes the Spot Price history. The prices returned are listed in
+     * chronological order, from the oldest to the most recent, for up to the
+     * past 90 days. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html"> Spot Instance Pricing History </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
-     * When you specify an Availability Zone, this operation describes the
-     * price history for the specified Availability Zone with the most recent
-     * set of prices listed first. If you don't specify an Availability Zone,
-     * you get the prices across all Availability Zones, starting with the
-     * most recent set. However, if you're using an API version earlier than
-     * 2011-05-15, you get the lowest price across the region for the
-     * specified time period. The prices returned are listed in chronological
-     * order, from the oldest to the most recent.
+     * When you specify a start and end time, this operation returns the
+     * prices of the instance types within the time range that you specified
+     * and the time when the price changed. The price is valid within the
+     * time period that you specified; the response merely indicates the last
+     * time that the price changed.
      * </p>
      *
      * @param describeSpotPriceHistoryRequest Container for the necessary
@@ -2051,23 +2302,18 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Describes the Spot Price history. Spot Instances are instances that
-     * Amazon EC2 starts on your behalf when the maximum price that you
-     * specify exceeds the current Spot Price. Amazon EC2 periodically sets
-     * the Spot Price based on available Spot Instance capacity and current
-     * Spot Instance requests. For more information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Describes the Spot Price history. The prices returned are listed in
+     * chronological order, from the oldest to the most recent, for up to the
+     * past 90 days. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html"> Spot Instance Pricing History </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
-     * When you specify an Availability Zone, this operation describes the
-     * price history for the specified Availability Zone with the most recent
-     * set of prices listed first. If you don't specify an Availability Zone,
-     * you get the prices across all Availability Zones, starting with the
-     * most recent set. However, if you're using an API version earlier than
-     * 2011-05-15, you get the lowest price across the region for the
-     * specified time period. The prices returned are listed in chronological
-     * order, from the oldest to the most recent.
+     * When you specify a start and end time, this operation returns the
+     * prices of the instance types within the time range that you specified
+     * and the time when the price changed. The price is valid within the
+     * time period that you specified; the response merely indicates the last
+     * time that the price changed.
      * </p>
      *
      * @param describeSpotPriceHistoryRequest Container for the necessary
@@ -2267,96 +2513,6 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Creates a listing for Amazon EC2 Reserved Instances to be sold in the
-     * Reserved Instance Marketplace. You can submit one Reserved Instance
-     * listing at a time.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param createReservedInstancesListingRequest Container for the
-     *           necessary parameters to execute the CreateReservedInstancesListing
-     *           operation on AmazonEC2.
-     * 
-     * @return A Java Future object containing the response from the
-     *         CreateReservedInstancesListing service method, as returned by
-     *         AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<CreateReservedInstancesListingResult> createReservedInstancesListingAsync(final CreateReservedInstancesListingRequest createReservedInstancesListingRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CreateReservedInstancesListingResult>() {
-            public CreateReservedInstancesListingResult call() throws Exception {
-                return createReservedInstancesListing(createReservedInstancesListingRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Creates a listing for Amazon EC2 Reserved Instances to be sold in the
-     * Reserved Instance Marketplace. You can submit one Reserved Instance
-     * listing at a time.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param createReservedInstancesListingRequest Container for the
-     *           necessary parameters to execute the CreateReservedInstancesListing
-     *           operation on AmazonEC2.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         CreateReservedInstancesListing service method, as returned by
-     *         AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<CreateReservedInstancesListingResult> createReservedInstancesListingAsync(
-            final CreateReservedInstancesListingRequest createReservedInstancesListingRequest,
-            final AsyncHandler<CreateReservedInstancesListingRequest, CreateReservedInstancesListingResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CreateReservedInstancesListingResult>() {
-            public CreateReservedInstancesListingResult call() throws Exception {
-              CreateReservedInstancesListingResult result;
-                try {
-                result = createReservedInstancesListing(createReservedInstancesListingRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(createReservedInstancesListingRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
      * Creates a set of DHCP options for your VPC. After creating the set,
      * you must associate it with the VPC, causing all existing and new
      * instances that you launch in the VPC to use this set of DHCP options.
@@ -2377,7 +2533,13 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * using AmazonProvidedDNS in another region, specify
      * <code>region.compute.internal</code> (for example,
      * <code>ap-northeast-1.compute.internal</code> ). Otherwise, specify a
-     * domain name (for example, <code>MyCompany.com</code> ).</li>
+     * domain name (for example, <code>MyCompany.com</code> ).
+     * <b>Important</b> : Some Linux operating systems accept multiple domain
+     * names separated by spaces. However, Windows and other Linux operating
+     * systems treat the value as a single domain, which results in
+     * unexpected behavior. If your DHCP options set is associated with a VPC
+     * that has instances with multiple operating systems, specify only one
+     * domain name.</li>
      * <li> <code>ntp-servers</code> - The IP addresses of up to four
      * Network Time Protocol (NTP) servers.</li>
      * <li> <code>netbios-name-servers</code> - The IP addresses of up to
@@ -2391,7 +2553,12 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * 
      * </ul>
      * <p>
-     * For more information about DHCP options, see
+     * Your VPC automatically starts out with a set of DHCP options that
+     * includes only a DNS server that we provide (AmazonProvidedDNS). If you
+     * create a set of options, and if your VPC has an Internet gateway, make
+     * sure to set the <code>domain-name-servers</code> option either to
+     * <code>AmazonProvidedDNS</code> or to a domain name server of your
+     * choice. For more information about DHCP options, see
      * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html"> DHCP Options Sets </a>
      * in the <i>Amazon Virtual Private Cloud User Guide</i> .
      * </p>
@@ -2442,7 +2609,13 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * using AmazonProvidedDNS in another region, specify
      * <code>region.compute.internal</code> (for example,
      * <code>ap-northeast-1.compute.internal</code> ). Otherwise, specify a
-     * domain name (for example, <code>MyCompany.com</code> ).</li>
+     * domain name (for example, <code>MyCompany.com</code> ).
+     * <b>Important</b> : Some Linux operating systems accept multiple domain
+     * names separated by spaces. However, Windows and other Linux operating
+     * systems treat the value as a single domain, which results in
+     * unexpected behavior. If your DHCP options set is associated with a VPC
+     * that has instances with multiple operating systems, specify only one
+     * domain name.</li>
      * <li> <code>ntp-servers</code> - The IP addresses of up to four
      * Network Time Protocol (NTP) servers.</li>
      * <li> <code>netbios-name-servers</code> - The IP addresses of up to
@@ -2456,7 +2629,12 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * 
      * </ul>
      * <p>
-     * For more information about DHCP options, see
+     * Your VPC automatically starts out with a set of DHCP options that
+     * includes only a DNS server that we provide (AmazonProvidedDNS). If you
+     * create a set of options, and if your VPC has an Internet gateway, make
+     * sure to set the <code>domain-name-servers</code> option either to
+     * <code>AmazonProvidedDNS</code> or to a domain name server of your
+     * choice. For more information about DHCP options, see
      * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html"> DHCP Options Sets </a>
      * in the <i>Amazon Virtual Private Cloud User Guide</i> .
      * </p>
@@ -2494,6 +2672,208 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
             throw ex;
               }
               asyncHandler.onSuccess(createDhcpOptionsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Creates a listing for Amazon EC2 Reserved Instances to be sold in the
+     * Reserved Instance Marketplace. You can submit one Reserved Instance
+     * listing at a time. To get a list of your Reserved Instances, you can
+     * use the DescribeReservedInstances operation.
+     * </p>
+     * <p>
+     * The Reserved Instance Marketplace matches sellers who want to resell
+     * Reserved Instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved Instances bought and
+     * sold through the Reserved Instance Marketplace work like any other
+     * Reserved Instances.
+     * </p>
+     * <p>
+     * To sell your Reserved Instances, you must first register as a seller
+     * in the Reserved Instance Marketplace. After completing the
+     * registration process, you can create a Reserved Instance Marketplace
+     * listing of some or all of your Reserved Instances, and specify the
+     * upfront price to receive for them. Your Reserved Instance listings
+     * then become available for purchase. To view the details of your
+     * Reserved Instance listing, you can use the
+     * DescribeReservedInstancesListings operation.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param createReservedInstancesListingRequest Container for the
+     *           necessary parameters to execute the CreateReservedInstancesListing
+     *           operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateReservedInstancesListing service method, as returned by
+     *         AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CreateReservedInstancesListingResult> createReservedInstancesListingAsync(final CreateReservedInstancesListingRequest createReservedInstancesListingRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateReservedInstancesListingResult>() {
+            public CreateReservedInstancesListingResult call() throws Exception {
+                return createReservedInstancesListing(createReservedInstancesListingRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Creates a listing for Amazon EC2 Reserved Instances to be sold in the
+     * Reserved Instance Marketplace. You can submit one Reserved Instance
+     * listing at a time. To get a list of your Reserved Instances, you can
+     * use the DescribeReservedInstances operation.
+     * </p>
+     * <p>
+     * The Reserved Instance Marketplace matches sellers who want to resell
+     * Reserved Instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved Instances bought and
+     * sold through the Reserved Instance Marketplace work like any other
+     * Reserved Instances.
+     * </p>
+     * <p>
+     * To sell your Reserved Instances, you must first register as a seller
+     * in the Reserved Instance Marketplace. After completing the
+     * registration process, you can create a Reserved Instance Marketplace
+     * listing of some or all of your Reserved Instances, and specify the
+     * upfront price to receive for them. Your Reserved Instance listings
+     * then become available for purchase. To view the details of your
+     * Reserved Instance listing, you can use the
+     * DescribeReservedInstancesListings operation.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param createReservedInstancesListingRequest Container for the
+     *           necessary parameters to execute the CreateReservedInstancesListing
+     *           operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateReservedInstancesListing service method, as returned by
+     *         AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CreateReservedInstancesListingResult> createReservedInstancesListingAsync(
+            final CreateReservedInstancesListingRequest createReservedInstancesListingRequest,
+            final AsyncHandler<CreateReservedInstancesListingRequest, CreateReservedInstancesListingResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateReservedInstancesListingResult>() {
+            public CreateReservedInstancesListingResult call() throws Exception {
+              CreateReservedInstancesListingResult result;
+                try {
+                result = createReservedInstancesListing(createReservedInstancesListingRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(createReservedInstancesListingRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes one or more specified VPC endpoints. Deleting the endpoint
+     * also deletes the endpoint routes in the route tables that were
+     * associated with the endpoint.
+     * </p>
+     *
+     * @param deleteVpcEndpointsRequest Container for the necessary
+     *           parameters to execute the DeleteVpcEndpoints operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteVpcEndpoints service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteVpcEndpointsResult> deleteVpcEndpointsAsync(final DeleteVpcEndpointsRequest deleteVpcEndpointsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteVpcEndpointsResult>() {
+            public DeleteVpcEndpointsResult call() throws Exception {
+                return deleteVpcEndpoints(deleteVpcEndpointsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes one or more specified VPC endpoints. Deleting the endpoint
+     * also deletes the endpoint routes in the route tables that were
+     * associated with the endpoint.
+     * </p>
+     *
+     * @param deleteVpcEndpointsRequest Container for the necessary
+     *           parameters to execute the DeleteVpcEndpoints operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteVpcEndpoints service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteVpcEndpointsResult> deleteVpcEndpointsAsync(
+            final DeleteVpcEndpointsRequest deleteVpcEndpointsRequest,
+            final AsyncHandler<DeleteVpcEndpointsRequest, DeleteVpcEndpointsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteVpcEndpointsResult>() {
+            public DeleteVpcEndpointsResult call() throws Exception {
+              DeleteVpcEndpointsResult result;
+                try {
+                result = deleteVpcEndpoints(deleteVpcEndpointsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteVpcEndpointsRequest, result);
                  return result;
         }
     });
@@ -2733,8 +3113,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * Creates an import volume task using metadata from the specified disk
      * image. After importing the image, you then upload it using the
-     * ec2-import-volume command in the Amazon EC2 command-line interface
-     * (CLI) tools. For more information, see
+     * <code>ec2-import-volume</code> command in the Amazon EC2 command-line
+     * interface (CLI) tools. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -2767,8 +3147,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * Creates an import volume task using metadata from the specified disk
      * image. After importing the image, you then upload it using the
-     * ec2-import-volume command in the Amazon EC2 command-line interface
-     * (CLI) tools. For more information, see
+     * <code>ec2-import-volume</code> command in the Amazon EC2 command-line
+     * interface (CLI) tools. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -2901,8 +3281,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * Rejects a VPC peering connection request. The VPC peering connection
      * must be in the <code>pending-acceptance</code> state. Use the
-     * <code>DescribeVpcPeeringConnections</code> request to view your
-     * outstanding VPC peering connection requests.
+     * DescribeVpcPeeringConnections request to view your outstanding VPC
+     * peering connection requests. To delete an active VPC peering
+     * connection, or to delete a VPC peering connection request that you
+     * initiated, use DeleteVpcPeeringConnection.
      * </p>
      *
      * @param rejectVpcPeeringConnectionRequest Container for the necessary
@@ -2934,8 +3316,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * Rejects a VPC peering connection request. The VPC peering connection
      * must be in the <code>pending-acceptance</code> state. Use the
-     * <code>DescribeVpcPeeringConnections</code> request to view your
-     * outstanding VPC peering connection requests.
+     * DescribeVpcPeeringConnections request to view your outstanding VPC
+     * peering connection requests. To delete an active VPC peering
+     * connection, or to delete a VPC peering connection request that you
+     * initiated, use DeleteVpcPeeringConnection.
      * </p>
      *
      * @param rejectVpcPeeringConnectionRequest Container for the necessary
@@ -2972,6 +3356,78 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
             throw ex;
               }
               asyncHandler.onSuccess(rejectVpcPeeringConnectionRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes one or more flow logs.
+     * </p>
+     *
+     * @param deleteFlowLogsRequest Container for the necessary parameters to
+     *           execute the DeleteFlowLogs operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteFlowLogs service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteFlowLogsResult> deleteFlowLogsAsync(final DeleteFlowLogsRequest deleteFlowLogsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteFlowLogsResult>() {
+            public DeleteFlowLogsResult call() throws Exception {
+                return deleteFlowLogs(deleteFlowLogsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes one or more flow logs.
+     * </p>
+     *
+     * @param deleteFlowLogsRequest Container for the necessary parameters to
+     *           execute the DeleteFlowLogs operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteFlowLogs service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteFlowLogsResult> deleteFlowLogsAsync(
+            final DeleteFlowLogsRequest deleteFlowLogsRequest,
+            final AsyncHandler<DeleteFlowLogsRequest, DeleteFlowLogsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteFlowLogsResult>() {
+            public DeleteFlowLogsResult call() throws Exception {
+              DeleteFlowLogsResult result;
+                try {
+                result = deleteFlowLogs(deleteFlowLogsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteFlowLogsRequest, result);
                  return result;
         }
     });
@@ -3149,8 +3605,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Describes the datafeed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Describes the data feed for Spot Instances. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -3182,8 +3638,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Describes the datafeed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Describes the data feed for Spot Instances. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -3389,8 +3845,43 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Describes the specified attribute of your AWS account.
+     * Describes attributes of your AWS account. The following are the
+     * supported account attributes:
      * </p>
+     * 
+     * <ul>
+     * <li> <p>
+     * <code>supported-platforms</code> : Indicates whether your account can
+     * launch instances into EC2-Classic and EC2-VPC, or only into EC2-VPC.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>default-vpc</code> : The ID of the default VPC for your
+     * account, or <code>none</code> .
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>max-instances</code> : The maximum number of On-Demand
+     * instances that you can run.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>vpc-max-security-groups-per-interface</code> : The maximum
+     * number of security groups that you can assign to a network interface.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>max-elastic-ips</code> : The maximum number of Elastic IP
+     * addresses that you can allocate for use with EC2-Classic.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>vpc-max-elastic-ips</code> : The maximum number of Elastic IP
+     * addresses that you can allocate for use with EC2-VPC.
+     * </p>
+     * </li>
+     * 
+     * </ul>
      *
      * @param describeAccountAttributesRequest Container for the necessary
      *           parameters to execute the DescribeAccountAttributes operation on
@@ -3419,8 +3910,43 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Describes the specified attribute of your AWS account.
+     * Describes attributes of your AWS account. The following are the
+     * supported account attributes:
      * </p>
+     * 
+     * <ul>
+     * <li> <p>
+     * <code>supported-platforms</code> : Indicates whether your account can
+     * launch instances into EC2-Classic and EC2-VPC, or only into EC2-VPC.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>default-vpc</code> : The ID of the default VPC for your
+     * account, or <code>none</code> .
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>max-instances</code> : The maximum number of On-Demand
+     * instances that you can run.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>vpc-max-security-groups-per-interface</code> : The maximum
+     * number of security groups that you can assign to a network interface.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>max-elastic-ips</code> : The maximum number of Elastic IP
+     * addresses that you can allocate for use with EC2-Classic.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>vpc-max-elastic-ips</code> : The maximum number of Elastic IP
+     * addresses that you can allocate for use with EC2-VPC.
+     * </p>
+     * </li>
+     * 
+     * </ul>
      *
      * @param describeAccountAttributesRequest Container for the necessary
      *           parameters to execute the DescribeAccountAttributes operation on
@@ -3456,6 +3982,106 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
             throw ex;
               }
               asyncHandler.onSuccess(describeAccountAttributesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Links an EC2-Classic instance to a ClassicLink-enabled VPC through
+     * one or more of the VPC's security groups. You cannot link an
+     * EC2-Classic instance to more than one VPC at a time. You can only link
+     * an instance that's in the <code>running</code> state. An instance is
+     * automatically unlinked from a VPC when it's stopped - you can link it
+     * to the VPC again when you restart it.
+     * </p>
+     * <p>
+     * After you've linked an instance, you cannot change the VPC security
+     * groups that are associated with it. To change the security groups, you
+     * must first unlink the instance, and then link it again.
+     * </p>
+     * <p>
+     * Linking your instance to a VPC is sometimes referred to as
+     * <i>attaching</i> your instance.
+     * </p>
+     *
+     * @param attachClassicLinkVpcRequest Container for the necessary
+     *           parameters to execute the AttachClassicLinkVpc operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         AttachClassicLinkVpc service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<AttachClassicLinkVpcResult> attachClassicLinkVpcAsync(final AttachClassicLinkVpcRequest attachClassicLinkVpcRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<AttachClassicLinkVpcResult>() {
+            public AttachClassicLinkVpcResult call() throws Exception {
+                return attachClassicLinkVpc(attachClassicLinkVpcRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Links an EC2-Classic instance to a ClassicLink-enabled VPC through
+     * one or more of the VPC's security groups. You cannot link an
+     * EC2-Classic instance to more than one VPC at a time. You can only link
+     * an instance that's in the <code>running</code> state. An instance is
+     * automatically unlinked from a VPC when it's stopped - you can link it
+     * to the VPC again when you restart it.
+     * </p>
+     * <p>
+     * After you've linked an instance, you cannot change the VPC security
+     * groups that are associated with it. To change the security groups, you
+     * must first unlink the instance, and then link it again.
+     * </p>
+     * <p>
+     * Linking your instance to a VPC is sometimes referred to as
+     * <i>attaching</i> your instance.
+     * </p>
+     *
+     * @param attachClassicLinkVpcRequest Container for the necessary
+     *           parameters to execute the AttachClassicLinkVpc operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         AttachClassicLinkVpc service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<AttachClassicLinkVpcResult> attachClassicLinkVpcAsync(
+            final AttachClassicLinkVpcRequest attachClassicLinkVpcRequest,
+            final AsyncHandler<AttachClassicLinkVpcRequest, AttachClassicLinkVpcResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<AttachClassicLinkVpcResult>() {
+            public AttachClassicLinkVpcResult call() throws Exception {
+              AttachClassicLinkVpcResult result;
+                try {
+                result = attachClassicLinkVpc(attachClassicLinkVpcRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(attachClassicLinkVpcRequest, result);
                  return result;
         }
     });
@@ -3623,6 +4249,92 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Moves an Elastic IP address from the EC2-Classic platform to the
+     * EC2-VPC platform. The Elastic IP address must be allocated to your
+     * account, and it must not be associated with an instance. After the
+     * Elastic IP address is moved, it is no longer available for use in the
+     * EC2-Classic platform, unless you move it back using the
+     * RestoreAddressToClassic request. You cannot move an Elastic IP address
+     * that's allocated for use in the EC2-VPC platform to the EC2-Classic
+     * platform.
+     * </p>
+     *
+     * @param moveAddressToVpcRequest Container for the necessary parameters
+     *           to execute the MoveAddressToVpc operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         MoveAddressToVpc service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<MoveAddressToVpcResult> moveAddressToVpcAsync(final MoveAddressToVpcRequest moveAddressToVpcRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<MoveAddressToVpcResult>() {
+            public MoveAddressToVpcResult call() throws Exception {
+                return moveAddressToVpc(moveAddressToVpcRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Moves an Elastic IP address from the EC2-Classic platform to the
+     * EC2-VPC platform. The Elastic IP address must be allocated to your
+     * account, and it must not be associated with an instance. After the
+     * Elastic IP address is moved, it is no longer available for use in the
+     * EC2-Classic platform, unless you move it back using the
+     * RestoreAddressToClassic request. You cannot move an Elastic IP address
+     * that's allocated for use in the EC2-VPC platform to the EC2-Classic
+     * platform.
+     * </p>
+     *
+     * @param moveAddressToVpcRequest Container for the necessary parameters
+     *           to execute the MoveAddressToVpc operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         MoveAddressToVpc service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<MoveAddressToVpcResult> moveAddressToVpcAsync(
+            final MoveAddressToVpcRequest moveAddressToVpcRequest,
+            final AsyncHandler<MoveAddressToVpcRequest, MoveAddressToVpcResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<MoveAddressToVpcResult>() {
+            public MoveAddressToVpcResult call() throws Exception {
+              MoveAddressToVpcResult result;
+                try {
+                result = moveAddressToVpc(moveAddressToVpcRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(moveAddressToVpcRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Deletes the specified virtual private gateway. We recommend that
      * before you delete a virtual private gateway, you detach it from the
      * VPC and delete the VPN connection. Note that you don't need to delete
@@ -3703,18 +4415,18 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Attaches an Amazon EBS volume to a running or stopped instance and
-     * exposes it to the instance with the specified device name.
+     * Attaches an EBS volume to a running or stopped instance and exposes
+     * it to the instance with the specified device name.
      * </p>
      * <p>
-     * Encrypted Amazon EBS volumes may only be attached to instances that
-     * support Amazon EBS encryption. For more information, see
+     * Encrypted EBS volumes may only be attached to instances that support
+     * Amazon EBS encryption. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"> Amazon EBS Encryption </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
      * For a list of supported device names, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching an Amazon EBS Volume to an Instance </a> . Any device names that aren't reserved for instance store volumes can be used for Amazon EBS volumes. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html"> Amazon EC2 Instance Store </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching an EBS Volume to an Instance </a> . Any device names that aren't reserved for instance store volumes can be used for EBS volumes. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html"> Amazon EC2 Instance Store </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -3722,25 +4434,22 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * </p>
      * 
      * <ul>
-     * <li>The volume can only be attached as the root device of a stopped
-     * instance.</li>
-     * <li>You must be subscribed to the AWS Marketplace code that is on the
-     * volume.</li>
-     * <li>The configuration (instance type, operating system) of the
-     * instance must support that specific AWS Marketplace code. For example,
-     * you cannot take a volume from a Windows instance and attach it to a
-     * Linux instance.</li>
+     * <li>The volume can be attached only to a stopped instance.</li>
      * <li>AWS Marketplace product codes are copied from the volume to the
      * instance.</li>
+     * <li>You must be subscribed to the product.</li>
+     * <li>The instance type and operating system of the instance must
+     * support the product. For example, you can't detach a volume from a
+     * Windows instance and attach it to a Linux instance.</li>
      * 
      * </ul>
      * <p>
      * For an overview of the AWS Marketplace, see
-     * <a href="https://aws.amazon.com/marketplace/help/200900000"> https://aws.amazon.com/marketplace/help/200900000 </a> . For more information about how to use the AWS Marketplace, see <a href="https://aws.amazon.com/marketplace"> AWS Marketplace </a>
+     * <a href="https://aws.amazon.com/marketplace/help/200900000"> Introducing AWS Marketplace </a>
      * .
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -3771,18 +4480,18 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Attaches an Amazon EBS volume to a running or stopped instance and
-     * exposes it to the instance with the specified device name.
+     * Attaches an EBS volume to a running or stopped instance and exposes
+     * it to the instance with the specified device name.
      * </p>
      * <p>
-     * Encrypted Amazon EBS volumes may only be attached to instances that
-     * support Amazon EBS encryption. For more information, see
+     * Encrypted EBS volumes may only be attached to instances that support
+     * Amazon EBS encryption. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"> Amazon EBS Encryption </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
      * For a list of supported device names, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching an Amazon EBS Volume to an Instance </a> . Any device names that aren't reserved for instance store volumes can be used for Amazon EBS volumes. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html"> Amazon EC2 Instance Store </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching an EBS Volume to an Instance </a> . Any device names that aren't reserved for instance store volumes can be used for EBS volumes. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html"> Amazon EC2 Instance Store </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -3790,25 +4499,22 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * </p>
      * 
      * <ul>
-     * <li>The volume can only be attached as the root device of a stopped
-     * instance.</li>
-     * <li>You must be subscribed to the AWS Marketplace code that is on the
-     * volume.</li>
-     * <li>The configuration (instance type, operating system) of the
-     * instance must support that specific AWS Marketplace code. For example,
-     * you cannot take a volume from a Windows instance and attach it to a
-     * Linux instance.</li>
+     * <li>The volume can be attached only to a stopped instance.</li>
      * <li>AWS Marketplace product codes are copied from the volume to the
      * instance.</li>
+     * <li>You must be subscribed to the product.</li>
+     * <li>The instance type and operating system of the instance must
+     * support the product. For example, you can't detach a volume from a
+     * Windows instance and attach it to a Linux instance.</li>
      * 
      * </ul>
      * <p>
      * For an overview of the AWS Marketplace, see
-     * <a href="https://aws.amazon.com/marketplace/help/200900000"> https://aws.amazon.com/marketplace/help/200900000 </a> . For more information about how to use the AWS Marketplace, see <a href="https://aws.amazon.com/marketplace"> AWS Marketplace </a>
+     * <a href="https://aws.amazon.com/marketplace/help/200900000"> Introducing AWS Marketplace </a>
      * .
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -4019,14 +4725,15 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Resets an attribute of an AMI to its default value.
+     * Describes your import snapshot tasks.
      * </p>
      *
-     * @param resetImageAttributeRequest Container for the necessary
-     *           parameters to execute the ResetImageAttribute operation on AmazonEC2.
+     * @param describeImportSnapshotTasksRequest Container for the necessary
+     *           parameters to execute the DescribeImportSnapshotTasks operation on
+     *           AmazonEC2.
      * 
      * @return A Java Future object containing the response from the
-     *         ResetImageAttribute service method, as returned by AmazonEC2.
+     *         DescribeImportSnapshotTasks service method, as returned by AmazonEC2.
      * 
      *
      * @throws AmazonClientException
@@ -4037,30 +4744,30 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> resetImageAttributeAsync(final ResetImageAttributeRequest resetImageAttributeRequest) 
+    public Future<DescribeImportSnapshotTasksResult> describeImportSnapshotTasksAsync(final DescribeImportSnapshotTasksRequest describeImportSnapshotTasksRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                resetImageAttribute(resetImageAttributeRequest);
-                return null;
+        return executorService.submit(new Callable<DescribeImportSnapshotTasksResult>() {
+            public DescribeImportSnapshotTasksResult call() throws Exception {
+                return describeImportSnapshotTasks(describeImportSnapshotTasksRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Resets an attribute of an AMI to its default value.
+     * Describes your import snapshot tasks.
      * </p>
      *
-     * @param resetImageAttributeRequest Container for the necessary
-     *           parameters to execute the ResetImageAttribute operation on AmazonEC2.
+     * @param describeImportSnapshotTasksRequest Container for the necessary
+     *           parameters to execute the DescribeImportSnapshotTasks operation on
+     *           AmazonEC2.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         ResetImageAttribute service method, as returned by AmazonEC2.
+     *         DescribeImportSnapshotTasks service method, as returned by AmazonEC2.
      * 
      *
      * @throws AmazonClientException
@@ -4071,20 +4778,21 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> resetImageAttributeAsync(
-            final ResetImageAttributeRequest resetImageAttributeRequest,
-            final AsyncHandler<ResetImageAttributeRequest, Void> asyncHandler)
+    public Future<DescribeImportSnapshotTasksResult> describeImportSnapshotTasksAsync(
+            final DescribeImportSnapshotTasksRequest describeImportSnapshotTasksRequest,
+            final AsyncHandler<DescribeImportSnapshotTasksRequest, DescribeImportSnapshotTasksResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                resetImageAttribute(resetImageAttributeRequest);
+        return executorService.submit(new Callable<DescribeImportSnapshotTasksResult>() {
+            public DescribeImportSnapshotTasksResult call() throws Exception {
+              DescribeImportSnapshotTasksResult result;
+                try {
+                result = describeImportSnapshotTasks(describeImportSnapshotTasksRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(resetImageAttributeRequest, null);
-                 return null;
+              asyncHandler.onSuccess(describeImportSnapshotTasksRequest, result);
+                 return result;
         }
     });
     }
@@ -4175,8 +4883,86 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Resets an attribute of an AMI to its default value.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> The productCodes attribute can't be reset.
+     * </p>
+     *
+     * @param resetImageAttributeRequest Container for the necessary
+     *           parameters to execute the ResetImageAttribute operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ResetImageAttribute service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> resetImageAttributeAsync(final ResetImageAttributeRequest resetImageAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                resetImageAttribute(resetImageAttributeRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Resets an attribute of an AMI to its default value.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> The productCodes attribute can't be reset.
+     * </p>
+     *
+     * @param resetImageAttributeRequest Container for the necessary
+     *           parameters to execute the ResetImageAttribute operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ResetImageAttribute service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> resetImageAttributeAsync(
+            final ResetImageAttributeRequest resetImageAttributeRequest,
+            final AsyncHandler<ResetImageAttributeRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                resetImageAttribute(resetImageAttributeRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(resetImageAttributeRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Enables a virtual private gateway (VGW) to propagate routes to the
-     * routing tables of a VPC.
+     * specified route table of a VPC.
      * </p>
      *
      * @param enableVgwRoutePropagationRequest Container for the necessary
@@ -4208,7 +4994,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Enables a virtual private gateway (VGW) to propagate routes to the
-     * routing tables of a VPC.
+     * specified route table of a VPC.
      * </p>
      *
      * @param enableVgwRoutePropagationRequest Container for the necessary
@@ -4251,9 +5037,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Creates a snapshot of an Amazon EBS volume and stores it in Amazon
-     * S3. You can use snapshots for backups, to make copies of Amazon EBS
-     * volumes, and to save data before shutting down an instance.
+     * Creates a snapshot of an EBS volume and stores it in Amazon S3. You
+     * can use snapshots for backups, to make copies of EBS volumes, and to
+     * save data before shutting down an instance.
      * </p>
      * <p>
      * When a snapshot is created, any AWS Marketplace product codes that
@@ -4261,20 +5047,20 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * </p>
      * <p>
      * You can take a snapshot of an attached volume that is in use.
-     * However, snapshots only capture data that has been written to your
-     * Amazon EBS volume at the time the snapshot command is issued; this may
-     * exclude any data that has been cached by any applications or the
-     * operating system. If you can pause any file writes to the volume long
-     * enough to take a snapshot, your snapshot should be complete. However,
-     * if you cannot pause all file writes to the volume, you should unmount
-     * the volume from within the instance, issue the snapshot command, and
-     * then remount the volume to ensure a consistent and complete snapshot.
-     * You may remount and use your volume while the snapshot status is
+     * However, snapshots only capture data that has been written to your EBS
+     * volume at the time the snapshot command is issued; this may exclude
+     * any data that has been cached by any applications or the operating
+     * system. If you can pause any file systems on the volume long enough to
+     * take a snapshot, your snapshot should be complete. However, if you
+     * cannot pause all file writes to the volume, you should unmount the
+     * volume from within the instance, issue the snapshot command, and then
+     * remount the volume to ensure a consistent and complete snapshot. You
+     * may remount and use your volume while the snapshot status is
      * <code>pending</code> .
      * </p>
      * <p>
-     * To create a snapshot for Amazon EBS volumes that serve as root
-     * devices, you should stop the instance before taking the snapshot.
+     * To create a snapshot for EBS volumes that serve as root devices, you
+     * should stop the instance before taking the snapshot.
      * </p>
      * <p>
      * Snapshots that are taken from encrypted volumes are automatically
@@ -4314,9 +5100,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Creates a snapshot of an Amazon EBS volume and stores it in Amazon
-     * S3. You can use snapshots for backups, to make copies of Amazon EBS
-     * volumes, and to save data before shutting down an instance.
+     * Creates a snapshot of an EBS volume and stores it in Amazon S3. You
+     * can use snapshots for backups, to make copies of EBS volumes, and to
+     * save data before shutting down an instance.
      * </p>
      * <p>
      * When a snapshot is created, any AWS Marketplace product codes that
@@ -4324,20 +5110,20 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * </p>
      * <p>
      * You can take a snapshot of an attached volume that is in use.
-     * However, snapshots only capture data that has been written to your
-     * Amazon EBS volume at the time the snapshot command is issued; this may
-     * exclude any data that has been cached by any applications or the
-     * operating system. If you can pause any file writes to the volume long
-     * enough to take a snapshot, your snapshot should be complete. However,
-     * if you cannot pause all file writes to the volume, you should unmount
-     * the volume from within the instance, issue the snapshot command, and
-     * then remount the volume to ensure a consistent and complete snapshot.
-     * You may remount and use your volume while the snapshot status is
+     * However, snapshots only capture data that has been written to your EBS
+     * volume at the time the snapshot command is issued; this may exclude
+     * any data that has been cached by any applications or the operating
+     * system. If you can pause any file systems on the volume long enough to
+     * take a snapshot, your snapshot should be complete. However, if you
+     * cannot pause all file writes to the volume, you should unmount the
+     * volume from within the instance, issue the snapshot command, and then
+     * remount the volume to ensure a consistent and complete snapshot. You
+     * may remount and use your volume while the snapshot status is
      * <code>pending</code> .
      * </p>
      * <p>
-     * To create a snapshot for Amazon EBS volumes that serve as root
-     * devices, you should stop the instance before taking the snapshot.
+     * To create a snapshot for EBS volumes that serve as root devices, you
+     * should stop the instance before taking the snapshot.
      * </p>
      * <p>
      * Snapshots that are taken from encrypted volumes are automatically
@@ -4391,7 +5177,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Deletes the specified Amazon EBS volume. The volume must be in the
+     * Deletes the specified EBS volume. The volume must be in the
      * <code>available</code> state (not attached to an instance).
      * </p>
      * <p>
@@ -4431,7 +5217,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Deletes the specified Amazon EBS volume. The volume must be in the
+     * Deletes the specified EBS volume. The volume must be in the
      * <code>available</code> state (not attached to an instance).
      * </p>
      * <p>
@@ -4572,6 +5358,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * The Reserved Instances to be modified must be identical, except for
      * Availability Zone, network platform, and instance type.
      * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html"> Modifying Reserved Instances </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
+     * </p>
      *
      * @param modifyReservedInstancesRequest Container for the necessary
      *           parameters to execute the ModifyReservedInstances operation on
@@ -4604,6 +5395,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * network platform (EC2-Classic or EC2-VPC) of your Reserved Instances.
      * The Reserved Instances to be modified must be identical, except for
      * Availability Zone, network platform, and instance type.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html"> Modifying Reserved Instances </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
      * </p>
      *
      * @param modifyReservedInstancesRequest Container for the necessary
@@ -4640,6 +5436,80 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
             throw ex;
               }
               asyncHandler.onSuccess(modifyReservedInstancesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Cancels the specified Spot fleet requests.
+     * </p>
+     *
+     * @param cancelSpotFleetRequestsRequest Container for the necessary
+     *           parameters to execute the CancelSpotFleetRequests operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CancelSpotFleetRequests service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CancelSpotFleetRequestsResult> cancelSpotFleetRequestsAsync(final CancelSpotFleetRequestsRequest cancelSpotFleetRequestsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CancelSpotFleetRequestsResult>() {
+            public CancelSpotFleetRequestsResult call() throws Exception {
+                return cancelSpotFleetRequests(cancelSpotFleetRequestsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Cancels the specified Spot fleet requests.
+     * </p>
+     *
+     * @param cancelSpotFleetRequestsRequest Container for the necessary
+     *           parameters to execute the CancelSpotFleetRequests operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CancelSpotFleetRequests service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CancelSpotFleetRequestsResult> cancelSpotFleetRequestsAsync(
+            final CancelSpotFleetRequestsRequest cancelSpotFleetRequestsRequest,
+            final AsyncHandler<CancelSpotFleetRequestsRequest, CancelSpotFleetRequestsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CancelSpotFleetRequestsResult>() {
+            public CancelSpotFleetRequestsResult call() throws Exception {
+              CancelSpotFleetRequestsResult result;
+                try {
+                result = cancelSpotFleetRequests(cancelSpotFleetRequestsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(cancelSpotFleetRequestsRequest, result);
                  return result;
         }
     });
@@ -4895,15 +5765,17 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
-     * [EC2-Classic, default VPC] If the Elastic IP address is already
-     * associated with a different instance, it is disassociated from that
-     * instance and associated with the specified instance.
+     * [EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP
+     * address is already associated with a different instance, it is
+     * disassociated from that instance and associated with the specified
+     * instance.
      * </p>
      * <p>
-     * [EC2-VPC] If you don't specify a private IP address, the Elastic IP
-     * address is associated with the primary IP address. If the Elastic IP
-     * address is already associated with a different instance or a network
-     * interface, you get an error unless you allow reassociation.
+     * [VPC in an EC2-Classic account] If you don't specify a private IP
+     * address, the Elastic IP address is associated with the primary IP
+     * address. If the Elastic IP address is already associated with a
+     * different instance or a network interface, you get an error unless you
+     * allow reassociation.
      * </p>
      * <p>
      * This is an idempotent operation. If you perform the operation more
@@ -4946,15 +5818,17 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
-     * [EC2-Classic, default VPC] If the Elastic IP address is already
-     * associated with a different instance, it is disassociated from that
-     * instance and associated with the specified instance.
+     * [EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP
+     * address is already associated with a different instance, it is
+     * disassociated from that instance and associated with the specified
+     * instance.
      * </p>
      * <p>
-     * [EC2-VPC] If you don't specify a private IP address, the Elastic IP
-     * address is associated with the primary IP address. If the Elastic IP
-     * address is already associated with a different instance or a network
-     * interface, you get an error unless you allow reassociation.
+     * [VPC in an EC2-Classic account] If you don't specify a private IP
+     * address, the Elastic IP address is associated with the primary IP
+     * address. If the Elastic IP address is already associated with a
+     * different instance or a network interface, you get an error unless you
+     * allow reassociation.
      * </p>
      * <p>
      * This is an idempotent operation. If you perform the operation more
@@ -5609,10 +6483,92 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Describes the specified Amazon EBS volumes.
+     * Cancels an in-process import virtual machine or import snapshot task.
+     * </p>
+     *
+     * @param cancelImportTaskRequest Container for the necessary parameters
+     *           to execute the CancelImportTask operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CancelImportTask service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CancelImportTaskResult> cancelImportTaskAsync(final CancelImportTaskRequest cancelImportTaskRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CancelImportTaskResult>() {
+            public CancelImportTaskResult call() throws Exception {
+                return cancelImportTask(cancelImportTaskRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Cancels an in-process import virtual machine or import snapshot task.
+     * </p>
+     *
+     * @param cancelImportTaskRequest Container for the necessary parameters
+     *           to execute the CancelImportTask operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CancelImportTask service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CancelImportTaskResult> cancelImportTaskAsync(
+            final CancelImportTaskRequest cancelImportTaskRequest,
+            final AsyncHandler<CancelImportTaskRequest, CancelImportTaskResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CancelImportTaskResult>() {
+            public CancelImportTaskResult call() throws Exception {
+              CancelImportTaskResult result;
+                try {
+                result = cancelImportTask(cancelImportTaskRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(cancelImportTaskRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the specified EBS volumes.
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * If you are describing a long list of volumes, you can paginate the
+     * output to make the list more manageable. The <code>MaxResults</code>
+     * parameter sets the maximum number of results returned in a single
+     * page. If the list of results exceeds your <code>MaxResults</code>
+     * value, then that number of results is returned along with a
+     * <code>NextToken</code> value that can be passed to a subsequent
+     * <code>DescribeVolumes</code> request to retrieve the remaining
+     * results.
+     * </p>
+     * <p>
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"> Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -5643,10 +6599,20 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Describes the specified Amazon EBS volumes.
+     * Describes the specified EBS volumes.
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * If you are describing a long list of volumes, you can paginate the
+     * output to make the list more manageable. The <code>MaxResults</code>
+     * parameter sets the maximum number of results returned in a single
+     * page. If the list of results exceeds your <code>MaxResults</code>
+     * value, then that number of results is returned along with a
+     * <code>NextToken</code> value that can be passed to a subsequent
+     * <code>DescribeVolumes</code> request to retrieve the remaining
+     * results.
+     * </p>
+     * <p>
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"> Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -5695,6 +6661,27 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * Instance Marketplace.
      * </p>
      * <p>
+     * The Reserved Instance Marketplace matches sellers who want to resell
+     * Reserved Instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved Instances bought and
+     * sold through the Reserved Instance Marketplace work like any other
+     * Reserved Instances.
+     * </p>
+     * <p>
+     * As a seller, you choose to list some or all of your Reserved
+     * Instances, and you specify the upfront price to receive for them. Your
+     * Reserved Instances are then listed in the Reserved Instance
+     * Marketplace and are available for purchase.
+     * </p>
+     * <p>
+     * As a buyer, you specify the configuration of the Reserved Instance to
+     * purchase, and the Marketplace matches what you're searching for with
+     * what's available. The Marketplace first sells the lowest priced
+     * Reserved Instances to you, and continues to sell available Reserved
+     * Instance listings to you until your demand is met. You are charged
+     * based on the total price of all of the listings that you purchase.
+     * </p>
+     * <p>
      * For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
@@ -5730,6 +6717,27 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * Describes your account's Reserved Instance listings in the Reserved
      * Instance Marketplace.
+     * </p>
+     * <p>
+     * The Reserved Instance Marketplace matches sellers who want to resell
+     * Reserved Instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved Instances bought and
+     * sold through the Reserved Instance Marketplace work like any other
+     * Reserved Instances.
+     * </p>
+     * <p>
+     * As a seller, you choose to list some or all of your Reserved
+     * Instances, and you specify the upfront price to receive for them. Your
+     * Reserved Instances are then listed in the Reserved Instance
+     * Marketplace and are available for purchase.
+     * </p>
+     * <p>
+     * As a buyer, you specify the configuration of the Reserved Instance to
+     * purchase, and the Marketplace matches what you're searching for with
+     * what's available. The Marketplace first sells the lowest priced
+     * Reserved Instances to you, and continues to sell available Reserved
+     * Instance listings to you until your demand is met. You are charged
+     * based on the total price of all of the listings that you purchase.
      * </p>
      * <p>
      * For more information, see
@@ -5786,6 +6794,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * experience with the instance. Amazon EC2 collects this information to
      * improve the accuracy of status checks.
      * </p>
+     * <p>
+     * Use of this action does not change the value returned by
+     * DescribeInstanceStatus.
+     * </p>
      *
      * @param reportInstanceStatusRequest Container for the necessary
      *           parameters to execute the ReportInstanceStatus operation on AmazonEC2.
@@ -5820,6 +6832,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * DescribeInstanceStatus, use ReportInstanceStatus to report your
      * experience with the instance. Amazon EC2 collects this information to
      * improve the accuracy of status checks.
+     * </p>
+     * <p>
+     * Use of this action does not change the value returned by
+     * DescribeInstanceStatus.
      * </p>
      *
      * @param reportInstanceStatusRequest Container for the necessary
@@ -5864,6 +6880,12 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * Describes one or more of your route tables.
      * </p>
      * <p>
+     * Each subnet in your VPC must be associated with a route table. If a
+     * subnet is not explicitly associated with any route table, it is
+     * implicitly associated with the main route table. This command does not
+     * return the subnet ID for implicit associations.
+     * </p>
+     * <p>
      * For more information about route tables, see
      * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html"> Route Tables </a>
      * in the <i>Amazon Virtual Private Cloud User Guide</i> .
@@ -5896,6 +6918,12 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Describes one or more of your route tables.
+     * </p>
+     * <p>
+     * Each subnet in your VPC must be associated with a route table. If a
+     * subnet is not explicitly associated with any route table, it is
+     * implicitly associated with the main route table. This command does not
+     * return the subnet ID for implicit associations.
      * </p>
      * <p>
      * For more information about route tables, see
@@ -6103,6 +7131,244 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Describes available AWS services in a prefix list format, which
+     * includes the prefix list name and prefix list ID of the service and
+     * the IP address range for the service. A prefix list ID is required for
+     * creating an outbound security group rule that allows traffic from a
+     * VPC to access an AWS service through a VPC endpoint.
+     * </p>
+     *
+     * @param describePrefixListsRequest Container for the necessary
+     *           parameters to execute the DescribePrefixLists operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribePrefixLists service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribePrefixListsResult> describePrefixListsAsync(final DescribePrefixListsRequest describePrefixListsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribePrefixListsResult>() {
+            public DescribePrefixListsResult call() throws Exception {
+                return describePrefixLists(describePrefixListsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes available AWS services in a prefix list format, which
+     * includes the prefix list name and prefix list ID of the service and
+     * the IP address range for the service. A prefix list ID is required for
+     * creating an outbound security group rule that allows traffic from a
+     * VPC to access an AWS service through a VPC endpoint.
+     * </p>
+     *
+     * @param describePrefixListsRequest Container for the necessary
+     *           parameters to execute the DescribePrefixLists operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribePrefixLists service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribePrefixListsResult> describePrefixListsAsync(
+            final DescribePrefixListsRequest describePrefixListsRequest,
+            final AsyncHandler<DescribePrefixListsRequest, DescribePrefixListsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribePrefixListsResult>() {
+            public DescribePrefixListsResult call() throws Exception {
+              DescribePrefixListsResult result;
+                try {
+                result = describePrefixLists(describePrefixListsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describePrefixListsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Creates a Spot fleet request.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html"> Spot Fleets </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param requestSpotFleetRequest Container for the necessary parameters
+     *           to execute the RequestSpotFleet operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         RequestSpotFleet service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<RequestSpotFleetResult> requestSpotFleetAsync(final RequestSpotFleetRequest requestSpotFleetRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<RequestSpotFleetResult>() {
+            public RequestSpotFleetResult call() throws Exception {
+                return requestSpotFleet(requestSpotFleetRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Creates a Spot fleet request.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html"> Spot Fleets </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param requestSpotFleetRequest Container for the necessary parameters
+     *           to execute the RequestSpotFleet operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         RequestSpotFleet service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<RequestSpotFleetResult> requestSpotFleetAsync(
+            final RequestSpotFleetRequest requestSpotFleetRequest,
+            final AsyncHandler<RequestSpotFleetRequest, RequestSpotFleetResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<RequestSpotFleetResult>() {
+            public RequestSpotFleetResult call() throws Exception {
+              RequestSpotFleetResult result;
+                try {
+                result = requestSpotFleet(requestSpotFleetRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(requestSpotFleetRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Displays details about an import virtual machine or import snapshot
+     * tasks that are already created.
+     * </p>
+     *
+     * @param describeImportImageTasksRequest Container for the necessary
+     *           parameters to execute the DescribeImportImageTasks operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeImportImageTasks service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeImportImageTasksResult> describeImportImageTasksAsync(final DescribeImportImageTasksRequest describeImportImageTasksRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeImportImageTasksResult>() {
+            public DescribeImportImageTasksResult call() throws Exception {
+                return describeImportImageTasks(describeImportImageTasksRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Displays details about an import virtual machine or import snapshot
+     * tasks that are already created.
+     * </p>
+     *
+     * @param describeImportImageTasksRequest Container for the necessary
+     *           parameters to execute the DescribeImportImageTasks operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeImportImageTasks service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeImportImageTasksResult> describeImportImageTasksAsync(
+            final DescribeImportImageTasksRequest describeImportImageTasksRequest,
+            final AsyncHandler<DescribeImportImageTasksRequest, DescribeImportImageTasksResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeImportImageTasksResult>() {
+            public DescribeImportImageTasksResult call() throws Exception {
+              DescribeImportImageTasksResult result;
+                try {
+                result = describeImportImageTasks(describeImportImageTasksRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeImportImageTasksRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Describes one or more of your network ACLs.
      * </p>
      * <p>
@@ -6270,10 +7536,12 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Creates an import instance task using metadata from the specified
-     * disk image. After importing the image, you then upload it using the
-     * ec2-import-volume command in the EC2 command line tools. For more
-     * information, see Using the Command Line Tools to Import Your Virtual
-     * Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User Guide.
+     * disk image. <code>ImportInstance</code> only supports single-volume
+     * VMs. To import multi-volume VMs, use ImportImage. After importing the
+     * image, you then upload it using the <code>ec2-import-volume</code>
+     * command in the EC2 command line tools. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
      * @param importInstanceRequest Container for the necessary parameters to
@@ -6303,10 +7571,12 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Creates an import instance task using metadata from the specified
-     * disk image. After importing the image, you then upload it using the
-     * ec2-import-volume command in the EC2 command line tools. For more
-     * information, see Using the Command Line Tools to Import Your Virtual
-     * Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User Guide.
+     * disk image. <code>ImportInstance</code> only supports single-volume
+     * VMs. To import multi-volume VMs, use ImportImage. After importing the
+     * image, you then upload it using the <code>ec2-import-volume</code>
+     * command in the EC2 command line tools. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
      * @param importInstanceRequest Container for the necessary parameters to
@@ -6544,15 +7814,15 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * recent post.
      * </p>
      * <p>
-     * For Linux/Unix instances, the instance console output displays the
-     * exact console output that would normally be displayed on a physical
-     * monitor attached to a machine. This output is buffered because the
-     * instance produces it and then posts it to a store where the instance's
-     * owner can retrieve it.
+     * For Linux instances, the instance console output displays the exact
+     * console output that would normally be displayed on a physical monitor
+     * attached to a computer. This output is buffered because the instance
+     * produces it and then posts it to a store where the instance's owner
+     * can retrieve it.
      * </p>
      * <p>
-     * For Windows instances, the instance console output displays the last
-     * three system event log errors.
+     * For Windows instances, the instance console output includes output
+     * from the EC2Config service.
      * </p>
      *
      * @param getConsoleOutputRequest Container for the necessary parameters
@@ -6596,15 +7866,15 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * recent post.
      * </p>
      * <p>
-     * For Linux/Unix instances, the instance console output displays the
-     * exact console output that would normally be displayed on a physical
-     * monitor attached to a machine. This output is buffered because the
-     * instance produces it and then posts it to a store where the instance's
-     * owner can retrieve it.
+     * For Linux instances, the instance console output displays the exact
+     * console output that would normally be displayed on a physical monitor
+     * attached to a computer. This output is buffered because the instance
+     * produces it and then posts it to a store where the instance's owner
+     * can retrieve it.
      * </p>
      * <p>
-     * For Windows instances, the instance console output displays the last
-     * three system event log errors.
+     * For Windows instances, the instance console output includes output
+     * from the EC2Config service.
      * </p>
      *
      * @param getConsoleOutputRequest Container for the necessary parameters
@@ -6993,6 +8263,14 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html"> Adding a Hardware Virtual Private Gateway to Your VPC </a>
      * in the <i>Amazon Virtual Private Cloud User Guide</i> .
      * </p>
+     * <p>
+     * <b>IMPORTANT:</b> You cannot create more than one customer gateway
+     * with the same VPN type, IP address, and BGP ASN parameter values. If
+     * you run an identical request more than one time, the first request
+     * creates the customer gateway, and subsequent requests return
+     * information about the existing customer gateway. The subsequent
+     * requests do not create new customer gateway resources.
+     * </p>
      *
      * @param createCustomerGatewayRequest Container for the necessary
      *           parameters to execute the CreateCustomerGateway operation on
@@ -7045,6 +8323,14 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html"> Adding a Hardware Virtual Private Gateway to Your VPC </a>
      * in the <i>Amazon Virtual Private Cloud User Guide</i> .
      * </p>
+     * <p>
+     * <b>IMPORTANT:</b> You cannot create more than one customer gateway
+     * with the same VPN type, IP address, and BGP ASN parameter values. If
+     * you run an identical request more than one time, the first request
+     * creates the customer gateway, and subsequent requests return
+     * information about the existing customer gateway. The subsequent
+     * requests do not create new customer gateway resources.
+     * </p>
      *
      * @param createCustomerGatewayRequest Container for the necessary
      *           parameters to execute the CreateCustomerGateway operation on
@@ -7087,10 +8373,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Creates a datafeed for Spot Instances, enabling you to view Spot
+     * Creates a data feed for Spot Instances, enabling you to view Spot
      * Instance usage logs. You can create one data feed per AWS account. For
      * more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -7122,10 +8408,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Creates a datafeed for Spot Instances, enabling you to view Spot
+     * Creates a data feed for Spot Instances, enabling you to view Spot
      * Instance usage logs. You can create one data feed per AWS account. For
      * more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -7258,7 +8544,13 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * If you're deleting the VPC and its associated components, we
      * recommend that you detach the virtual private gateway from the VPC and
-     * delete the VPC before deleting the VPN connection.
+     * delete the VPC before deleting the VPN connection. If you believe that
+     * the tunnel credentials for your VPN connection have been compromised,
+     * you can delete the VPN connection and create a new one that has new
+     * keys, without needing to delete the VPC or virtual private gateway. If
+     * you create a new VPN connection, you must reconfigure the customer
+     * gateway using the new configuration information returned with the new
+     * VPN connection ID.
      * </p>
      *
      * @param deleteVpnConnectionRequest Container for the necessary
@@ -7293,7 +8585,13 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * If you're deleting the VPC and its associated components, we
      * recommend that you detach the virtual private gateway from the VPC and
-     * delete the VPC before deleting the VPN connection.
+     * delete the VPC before deleting the VPN connection. If you believe that
+     * the tunnel credentials for your VPN connection have been compromised,
+     * you can delete the VPN connection and create a new one that has new
+     * keys, without needing to delete the VPC or virtual private gateway. If
+     * you create a new VPN connection, you must reconfigure the customer
+     * gateway using the new configuration information returned with the new
+     * VPN connection ID.
      * </p>
      *
      * @param deleteVpnConnectionRequest Container for the necessary
@@ -7329,6 +8627,86 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
               }
               asyncHandler.onSuccess(deleteVpnConnectionRequest, null);
                  return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes your Elastic IP addresses that are being moved to the
+     * EC2-VPC platform, or that are being restored to the EC2-Classic
+     * platform. This request does not return information about any other
+     * Elastic IP addresses in your account.
+     * </p>
+     *
+     * @param describeMovingAddressesRequest Container for the necessary
+     *           parameters to execute the DescribeMovingAddresses operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeMovingAddresses service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeMovingAddressesResult> describeMovingAddressesAsync(final DescribeMovingAddressesRequest describeMovingAddressesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeMovingAddressesResult>() {
+            public DescribeMovingAddressesResult call() throws Exception {
+                return describeMovingAddresses(describeMovingAddressesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes your Elastic IP addresses that are being moved to the
+     * EC2-VPC platform, or that are being restored to the EC2-Classic
+     * platform. This request does not return information about any other
+     * Elastic IP addresses in your account.
+     * </p>
+     *
+     * @param describeMovingAddressesRequest Container for the necessary
+     *           parameters to execute the DescribeMovingAddresses operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeMovingAddresses service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeMovingAddressesResult> describeMovingAddressesAsync(
+            final DescribeMovingAddressesRequest describeMovingAddressesRequest,
+            final AsyncHandler<DescribeMovingAddressesRequest, DescribeMovingAddressesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeMovingAddressesResult>() {
+            public DescribeMovingAddressesResult call() throws Exception {
+              DescribeMovingAddressesResult result;
+                try {
+                result = describeMovingAddresses(describeMovingAddressesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeMovingAddressesRequest, result);
+                 return result;
         }
     });
     }
@@ -7529,8 +8907,165 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Import single or multi-volume disk images or EBS snapshots into an
+     * Amazon Machine Image (AMI).
+     * </p>
+     *
+     * @param importImageRequest Container for the necessary parameters to
+     *           execute the ImportImage operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ImportImage service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ImportImageResult> importImageAsync(final ImportImageRequest importImageRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ImportImageResult>() {
+            public ImportImageResult call() throws Exception {
+                return importImage(importImageRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Import single or multi-volume disk images or EBS snapshots into an
+     * Amazon Machine Image (AMI).
+     * </p>
+     *
+     * @param importImageRequest Container for the necessary parameters to
+     *           execute the ImportImage operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ImportImage service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ImportImageResult> importImageAsync(
+            final ImportImageRequest importImageRequest,
+            final AsyncHandler<ImportImageRequest, ImportImageResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ImportImageResult>() {
+            public ImportImageResult call() throws Exception {
+              ImportImageResult result;
+                try {
+                result = importImage(importImageRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(importImageRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Disables ClassicLink for a VPC. You cannot disable ClassicLink for a
+     * VPC that has EC2-Classic instances linked to it.
+     * </p>
+     *
+     * @param disableVpcClassicLinkRequest Container for the necessary
+     *           parameters to execute the DisableVpcClassicLink operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DisableVpcClassicLink service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DisableVpcClassicLinkResult> disableVpcClassicLinkAsync(final DisableVpcClassicLinkRequest disableVpcClassicLinkRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DisableVpcClassicLinkResult>() {
+            public DisableVpcClassicLinkResult call() throws Exception {
+                return disableVpcClassicLink(disableVpcClassicLinkRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Disables ClassicLink for a VPC. You cannot disable ClassicLink for a
+     * VPC that has EC2-Classic instances linked to it.
+     * </p>
+     *
+     * @param disableVpcClassicLinkRequest Container for the necessary
+     *           parameters to execute the DisableVpcClassicLink operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DisableVpcClassicLink service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DisableVpcClassicLinkResult> disableVpcClassicLinkAsync(
+            final DisableVpcClassicLinkRequest disableVpcClassicLinkRequest,
+            final AsyncHandler<DisableVpcClassicLinkRequest, DisableVpcClassicLinkResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DisableVpcClassicLinkResult>() {
+            public DisableVpcClassicLinkResult call() throws Exception {
+              DisableVpcClassicLinkResult result;
+                try {
+                result = disableVpcClassicLink(disableVpcClassicLinkRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(disableVpcClassicLinkRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Describes the specified attribute of the specified instance. You can
-     * specify only one attribute at a time.
+     * specify only one attribute at a time. Valid attribute values are:
+     * <code>instanceType</code> | <code>kernel</code> | <code>ramdisk</code>
+     * | <code>userData</code> | <code>disableApiTermination</code> |
+     * <code>instanceInitiatedShutdownBehavior</code> |
+     * <code>rootDeviceName</code> | <code>blockDeviceMapping</code> |
+     * <code>productCodes</code> | <code>sourceDestCheck</code> |
+     * <code>groupSet</code> | <code>ebsOptimized</code> |
+     * <code>sriovNetSupport</code>
      * </p>
      *
      * @param describeInstanceAttributeRequest Container for the necessary
@@ -7561,7 +9096,14 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Describes the specified attribute of the specified instance. You can
-     * specify only one attribute at a time.
+     * specify only one attribute at a time. Valid attribute values are:
+     * <code>instanceType</code> | <code>kernel</code> | <code>ramdisk</code>
+     * | <code>userData</code> | <code>disableApiTermination</code> |
+     * <code>instanceInitiatedShutdownBehavior</code> |
+     * <code>rootDeviceName</code> | <code>blockDeviceMapping</code> |
+     * <code>productCodes</code> | <code>sourceDestCheck</code> |
+     * <code>groupSet</code> | <code>ebsOptimized</code> |
+     * <code>sriovNetSupport</code>
      * </p>
      *
      * @param describeInstanceAttributeRequest Container for the necessary
@@ -7598,6 +9140,82 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
             throw ex;
               }
               asyncHandler.onSuccess(describeInstanceAttributeRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes one or more flow logs. To view the information in your flow
+     * logs (the log streams for the network interfaces), you must use the
+     * CloudWatch Logs console or the CloudWatch Logs API.
+     * </p>
+     *
+     * @param describeFlowLogsRequest Container for the necessary parameters
+     *           to execute the DescribeFlowLogs operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeFlowLogs service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeFlowLogsResult> describeFlowLogsAsync(final DescribeFlowLogsRequest describeFlowLogsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeFlowLogsResult>() {
+            public DescribeFlowLogsResult call() throws Exception {
+                return describeFlowLogs(describeFlowLogsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes one or more flow logs. To view the information in your flow
+     * logs (the log streams for the network interfaces), you must use the
+     * CloudWatch Logs console or the CloudWatch Logs API.
+     * </p>
+     *
+     * @param describeFlowLogsRequest Container for the necessary parameters
+     *           to execute the DescribeFlowLogs operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeFlowLogs service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeFlowLogsResult> describeFlowLogsAsync(
+            final DescribeFlowLogsRequest describeFlowLogsRequest,
+            final AsyncHandler<DescribeFlowLogsRequest, DescribeFlowLogsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeFlowLogsResult>() {
+            public DescribeFlowLogsResult call() throws Exception {
+              DescribeFlowLogsResult result;
+                try {
+                result = describeFlowLogs(describeFlowLogsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeFlowLogsRequest, result);
                  return result;
         }
     });
@@ -7681,6 +9299,160 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Launches the specified number of instances using an AMI for which you
+     * have permissions.
+     * </p>
+     * <p>
+     * When you launch an instance, it enters the <code>pending</code>
+     * state. After the instance is ready for you, it enters the
+     * <code>running</code> state. To check the state of your instance, call
+     * DescribeInstances.
+     * </p>
+     * <p>
+     * If you don't specify a security group when launching an instance,
+     * Amazon EC2 uses the default security group. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"> Security Groups </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * Linux instances have access to the public key of the key pair at
+     * boot. You can use this key to provide secure access to the instance.
+     * Amazon EC2 public images use this feature to provide secure access
+     * without passwords. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"> Key Pairs </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * You can provide optional user data when launching an instance. For
+     * more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html"> Instance Metadata </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * If any of the AMIs have a product code attached for which the user
+     * has not subscribed, <code>RunInstances</code> fails.
+     * </p>
+     * <p>
+     * T2 instance types can only be launched into a VPC. If you do not have
+     * a default VPC, or if you do not specify a subnet ID in the request,
+     * <code>RunInstances</code> fails.
+     * </p>
+     * <p>
+     * For more information about troubleshooting, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html"> What To Do If An Instance Immediately Terminates </a> , and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html"> Troubleshooting Connecting to Your Instance </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param runInstancesRequest Container for the necessary parameters to
+     *           execute the RunInstances operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         RunInstances service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<RunInstancesResult> runInstancesAsync(final RunInstancesRequest runInstancesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<RunInstancesResult>() {
+            public RunInstancesResult call() throws Exception {
+                return runInstances(runInstancesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Launches the specified number of instances using an AMI for which you
+     * have permissions.
+     * </p>
+     * <p>
+     * When you launch an instance, it enters the <code>pending</code>
+     * state. After the instance is ready for you, it enters the
+     * <code>running</code> state. To check the state of your instance, call
+     * DescribeInstances.
+     * </p>
+     * <p>
+     * If you don't specify a security group when launching an instance,
+     * Amazon EC2 uses the default security group. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"> Security Groups </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * Linux instances have access to the public key of the key pair at
+     * boot. You can use this key to provide secure access to the instance.
+     * Amazon EC2 public images use this feature to provide secure access
+     * without passwords. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"> Key Pairs </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * You can provide optional user data when launching an instance. For
+     * more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html"> Instance Metadata </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * If any of the AMIs have a product code attached for which the user
+     * has not subscribed, <code>RunInstances</code> fails.
+     * </p>
+     * <p>
+     * T2 instance types can only be launched into a VPC. If you do not have
+     * a default VPC, or if you do not specify a subnet ID in the request,
+     * <code>RunInstances</code> fails.
+     * </p>
+     * <p>
+     * For more information about troubleshooting, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html"> What To Do If An Instance Immediately Terminates </a> , and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html"> Troubleshooting Connecting to Your Instance </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param runInstancesRequest Container for the necessary parameters to
+     *           execute the RunInstances operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         RunInstances service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<RunInstancesResult> runInstancesAsync(
+            final RunInstancesRequest runInstancesRequest,
+            final AsyncHandler<RunInstancesRequest, RunInstancesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<RunInstancesResult>() {
+            public RunInstancesResult call() throws Exception {
+              RunInstancesResult result;
+                try {
+                result = runInstances(runInstancesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(runInstancesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Describes one or more of your subnets.
      * </p>
      * <p>
@@ -7756,150 +9528,6 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
             throw ex;
               }
               asyncHandler.onSuccess(describeSubnetsRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Launches the specified number of instances using an AMI for which you
-     * have permissions.
-     * </p>
-     * <p>
-     * When you launch an instance, it enters the <code>pending</code>
-     * state. After the instance is ready for you, it enters the
-     * <code>running</code> state. To check the state of your instance, call
-     * DescribeInstances.
-     * </p>
-     * <p>
-     * If you don't specify a security group when launching an instance,
-     * Amazon EC2 uses the default security group. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"> Security Groups </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * Linux instances have access to the public key of the key pair at
-     * boot. You can use this key to provide secure access to the instance.
-     * Amazon EC2 public images use this feature to provide secure access
-     * without passwords. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"> Key Pairs </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * You can provide optional user data when launching an instance. For
-     * more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html"> Instance Metadata </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * If any of the AMIs have a product code attached for which the user
-     * has not subscribed, <code>RunInstances</code> fails.
-     * </p>
-     * <p>
-     * For more information about troubleshooting, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html"> What To Do If An Instance Immediately Terminates </a> , and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html"> Troubleshooting Connecting to Your Instance </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param runInstancesRequest Container for the necessary parameters to
-     *           execute the RunInstances operation on AmazonEC2.
-     * 
-     * @return A Java Future object containing the response from the
-     *         RunInstances service method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<RunInstancesResult> runInstancesAsync(final RunInstancesRequest runInstancesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<RunInstancesResult>() {
-            public RunInstancesResult call() throws Exception {
-                return runInstances(runInstancesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Launches the specified number of instances using an AMI for which you
-     * have permissions.
-     * </p>
-     * <p>
-     * When you launch an instance, it enters the <code>pending</code>
-     * state. After the instance is ready for you, it enters the
-     * <code>running</code> state. To check the state of your instance, call
-     * DescribeInstances.
-     * </p>
-     * <p>
-     * If you don't specify a security group when launching an instance,
-     * Amazon EC2 uses the default security group. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"> Security Groups </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * Linux instances have access to the public key of the key pair at
-     * boot. You can use this key to provide secure access to the instance.
-     * Amazon EC2 public images use this feature to provide secure access
-     * without passwords. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"> Key Pairs </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * You can provide optional user data when launching an instance. For
-     * more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html"> Instance Metadata </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * If any of the AMIs have a product code attached for which the user
-     * has not subscribed, <code>RunInstances</code> fails.
-     * </p>
-     * <p>
-     * For more information about troubleshooting, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html"> What To Do If An Instance Immediately Terminates </a> , and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html"> Troubleshooting Connecting to Your Instance </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param runInstancesRequest Container for the necessary parameters to
-     *           execute the RunInstances operation on AmazonEC2.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         RunInstances service method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<RunInstancesResult> runInstancesAsync(
-            final RunInstancesRequest runInstancesRequest,
-            final AsyncHandler<RunInstancesRequest, RunInstancesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<RunInstancesResult>() {
-            public RunInstancesResult call() throws Exception {
-              RunInstancesResult result;
-                try {
-                result = runInstances(runInstancesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(runInstancesRequest, result);
                  return result;
         }
     });
@@ -8175,80 +9803,6 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Deletes the specified network ACL. You can't delete the ACL if it's
-     * associated with any subnets. You can't delete the default network ACL.
-     * </p>
-     *
-     * @param deleteNetworkAclRequest Container for the necessary parameters
-     *           to execute the DeleteNetworkAcl operation on AmazonEC2.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteNetworkAcl service method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteNetworkAclAsync(final DeleteNetworkAclRequest deleteNetworkAclRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                deleteNetworkAcl(deleteNetworkAclRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified network ACL. You can't delete the ACL if it's
-     * associated with any subnets. You can't delete the default network ACL.
-     * </p>
-     *
-     * @param deleteNetworkAclRequest Container for the necessary parameters
-     *           to execute the DeleteNetworkAcl operation on AmazonEC2.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteNetworkAcl service method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteNetworkAclAsync(
-            final DeleteNetworkAclRequest deleteNetworkAclRequest,
-            final AsyncHandler<DeleteNetworkAclRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                deleteNetworkAcl(deleteNetworkAclRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteNetworkAclRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
      * Modifies a volume attribute.
      * </p>
      * <p>
@@ -8340,6 +9894,80 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
             throw ex;
               }
               asyncHandler.onSuccess(modifyVolumeAttributeRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the specified network ACL. You can't delete the ACL if it's
+     * associated with any subnets. You can't delete the default network ACL.
+     * </p>
+     *
+     * @param deleteNetworkAclRequest Container for the necessary parameters
+     *           to execute the DeleteNetworkAcl operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteNetworkAcl service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteNetworkAclAsync(final DeleteNetworkAclRequest deleteNetworkAclRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteNetworkAcl(deleteNetworkAclRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified network ACL. You can't delete the ACL if it's
+     * associated with any subnets. You can't delete the default network ACL.
+     * </p>
+     *
+     * @param deleteNetworkAclRequest Container for the necessary parameters
+     *           to execute the DeleteNetworkAcl operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteNetworkAcl service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteNetworkAclAsync(
+            final DeleteNetworkAclRequest deleteNetworkAclRequest,
+            final AsyncHandler<DeleteNetworkAclRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                deleteNetworkAcl(deleteNetworkAclRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteNetworkAclRequest, null);
                  return null;
         }
     });
@@ -8555,94 +10183,6 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Cancels the specified Reserved Instance listing in the Reserved
-     * Instance Marketplace.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param cancelReservedInstancesListingRequest Container for the
-     *           necessary parameters to execute the CancelReservedInstancesListing
-     *           operation on AmazonEC2.
-     * 
-     * @return A Java Future object containing the response from the
-     *         CancelReservedInstancesListing service method, as returned by
-     *         AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<CancelReservedInstancesListingResult> cancelReservedInstancesListingAsync(final CancelReservedInstancesListingRequest cancelReservedInstancesListingRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CancelReservedInstancesListingResult>() {
-            public CancelReservedInstancesListingResult call() throws Exception {
-                return cancelReservedInstancesListing(cancelReservedInstancesListingRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Cancels the specified Reserved Instance listing in the Reserved
-     * Instance Marketplace.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param cancelReservedInstancesListingRequest Container for the
-     *           necessary parameters to execute the CancelReservedInstancesListing
-     *           operation on AmazonEC2.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         CancelReservedInstancesListing service method, as returned by
-     *         AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<CancelReservedInstancesListingResult> cancelReservedInstancesListingAsync(
-            final CancelReservedInstancesListingRequest cancelReservedInstancesListingRequest,
-            final AsyncHandler<CancelReservedInstancesListingRequest, CancelReservedInstancesListingResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CancelReservedInstancesListingResult>() {
-            public CancelReservedInstancesListingResult call() throws Exception {
-              CancelReservedInstancesListingResult result;
-                try {
-                result = cancelReservedInstancesListing(cancelReservedInstancesListingRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(cancelReservedInstancesListingRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
      * Modifies the specified attribute of the specified instance. You can
      * specify only one attribute at a time.
      * </p>
@@ -8725,6 +10265,94 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
               }
               asyncHandler.onSuccess(modifyInstanceAttributeRequest, null);
                  return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Cancels the specified Reserved Instance listing in the Reserved
+     * Instance Marketplace.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param cancelReservedInstancesListingRequest Container for the
+     *           necessary parameters to execute the CancelReservedInstancesListing
+     *           operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CancelReservedInstancesListing service method, as returned by
+     *         AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CancelReservedInstancesListingResult> cancelReservedInstancesListingAsync(final CancelReservedInstancesListingRequest cancelReservedInstancesListingRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CancelReservedInstancesListingResult>() {
+            public CancelReservedInstancesListingResult call() throws Exception {
+                return cancelReservedInstancesListing(cancelReservedInstancesListingRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Cancels the specified Reserved Instance listing in the Reserved
+     * Instance Marketplace.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param cancelReservedInstancesListingRequest Container for the
+     *           necessary parameters to execute the CancelReservedInstancesListing
+     *           operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CancelReservedInstancesListing service method, as returned by
+     *         AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CancelReservedInstancesListingResult> cancelReservedInstancesListingAsync(
+            final CancelReservedInstancesListingRequest cancelReservedInstancesListingRequest,
+            final AsyncHandler<CancelReservedInstancesListingRequest, CancelReservedInstancesListingResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CancelReservedInstancesListingResult>() {
+            public CancelReservedInstancesListingResult call() throws Exception {
+              CancelReservedInstancesListingResult result;
+                try {
+                result = cancelReservedInstancesListing(cancelReservedInstancesListingRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(cancelReservedInstancesListingRequest, result);
+                 return result;
         }
     });
     }
@@ -8932,12 +10560,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Describes the Spot Instance requests that belong to your account.
-     * Spot Instances are instances that Amazon EC2 starts on your behalf
-     * when the maximum price that you specify exceeds the current Spot
-     * Price. Amazon EC2 periodically sets the Spot Price based on available
-     * Spot Instance capacity and current Spot Instance requests. For more
-     * information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Spot Instances are instances that Amazon EC2 launches when the bid
+     * price that you specify exceeds the current Spot Price. Amazon EC2
+     * periodically sets the Spot Price based on available Spot Instance
+     * capacity and current Spot Instance requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -8977,12 +10604,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Describes the Spot Instance requests that belong to your account.
-     * Spot Instances are instances that Amazon EC2 starts on your behalf
-     * when the maximum price that you specify exceeds the current Spot
-     * Price. Amazon EC2 periodically sets the Spot Price based on available
-     * Spot Instance capacity and current Spot Instance requests. For more
-     * information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Spot Instances are instances that Amazon EC2 launches when the bid
+     * price that you specify exceeds the current Spot Price. Amazon EC2
+     * periodically sets the Spot Price based on available Spot Instance
+     * capacity and current Spot Instance requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -9300,8 +10926,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * Creates a route in a route table within a VPC.
      * </p>
      * <p>
-     * You must specify one of the following targets: Internet gateway, NAT
-     * instance, VPC peering connection, or network interface.
+     * You must specify one of the following targets: Internet gateway or
+     * virtual private gateway, NAT instance, VPC peering connection, or
+     * network interface.
      * </p>
      * <p>
      * When determining how to route traffic, we use the route with the most
@@ -9348,12 +10975,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> createRouteAsync(final CreateRouteRequest createRouteRequest) 
+    public Future<CreateRouteResult> createRouteAsync(final CreateRouteRequest createRouteRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                createRoute(createRouteRequest);
-                return null;
+        return executorService.submit(new Callable<CreateRouteResult>() {
+            public CreateRouteResult call() throws Exception {
+                return createRoute(createRouteRequest);
         }
     });
     }
@@ -9363,8 +10989,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * Creates a route in a route table within a VPC.
      * </p>
      * <p>
-     * You must specify one of the following targets: Internet gateway, NAT
-     * instance, VPC peering connection, or network interface.
+     * You must specify one of the following targets: Internet gateway or
+     * virtual private gateway, NAT instance, VPC peering connection, or
+     * network interface.
      * </p>
      * <p>
      * When determining how to route traffic, we use the route with the most
@@ -9415,20 +11042,109 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> createRouteAsync(
+    public Future<CreateRouteResult> createRouteAsync(
             final CreateRouteRequest createRouteRequest,
-            final AsyncHandler<CreateRouteRequest, Void> asyncHandler)
+            final AsyncHandler<CreateRouteRequest, CreateRouteResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                createRoute(createRouteRequest);
+        return executorService.submit(new Callable<CreateRouteResult>() {
+            public CreateRouteResult call() throws Exception {
+              CreateRouteResult result;
+                try {
+                result = createRoute(createRouteRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(createRouteRequest, null);
-                 return null;
+              asyncHandler.onSuccess(createRouteRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Creates a VPC endpoint for a specified AWS service. An endpoint
+     * enables you to create a private connection between your VPC and
+     * another AWS service in your account. You can specify an endpoint
+     * policy to attach to the endpoint that will control access to the
+     * service from your VPC. You can also specify the VPC route tables that
+     * use the endpoint.
+     * </p>
+     * <p>
+     * Currently, only endpoints to Amazon S3 are supported.
+     * </p>
+     *
+     * @param createVpcEndpointRequest Container for the necessary parameters
+     *           to execute the CreateVpcEndpoint operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateVpcEndpoint service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CreateVpcEndpointResult> createVpcEndpointAsync(final CreateVpcEndpointRequest createVpcEndpointRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateVpcEndpointResult>() {
+            public CreateVpcEndpointResult call() throws Exception {
+                return createVpcEndpoint(createVpcEndpointRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Creates a VPC endpoint for a specified AWS service. An endpoint
+     * enables you to create a private connection between your VPC and
+     * another AWS service in your account. You can specify an endpoint
+     * policy to attach to the endpoint that will control access to the
+     * service from your VPC. You can also specify the VPC route tables that
+     * use the endpoint.
+     * </p>
+     * <p>
+     * Currently, only endpoints to Amazon S3 are supported.
+     * </p>
+     *
+     * @param createVpcEndpointRequest Container for the necessary parameters
+     *           to execute the CreateVpcEndpoint operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateVpcEndpoint service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CreateVpcEndpointResult> createVpcEndpointAsync(
+            final CreateVpcEndpointRequest createVpcEndpointRequest,
+            final AsyncHandler<CreateVpcEndpointRequest, CreateVpcEndpointResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateVpcEndpointResult>() {
+            public CreateVpcEndpointResult call() throws Exception {
+              CreateVpcEndpointResult result;
+                try {
+                result = createVpcEndpoint(createVpcEndpointRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(createVpcEndpointRequest, result);
+                 return result;
         }
     });
     }
@@ -9436,9 +11152,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Initiates the copy of an AMI from the specified source region to the
-     * region in which the request was made. You specify the destination
-     * region by using its endpoint when making the request. AMIs that use
-     * encrypted Amazon EBS snapshots cannot be copied with this method.
+     * current region. You specify the destination region by using its
+     * endpoint when making the request. AMIs that use encrypted EBS
+     * snapshots cannot be copied with this method.
      * </p>
      * <p>
      * For more information, see
@@ -9473,9 +11189,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Initiates the copy of an AMI from the specified source region to the
-     * region in which the request was made. You specify the destination
-     * region by using its endpoint when making the request. AMIs that use
-     * encrypted Amazon EBS snapshots cannot be copied with this method.
+     * current region. You specify the destination region by using its
+     * endpoint when making the request. AMIs that use encrypted EBS
+     * snapshots cannot be copied with this method.
      * </p>
      * <p>
      * For more information, see
@@ -9516,6 +11232,80 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
             throw ex;
               }
               asyncHandler.onSuccess(copyImageRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the ClassicLink status of one or more VPCs.
+     * </p>
+     *
+     * @param describeVpcClassicLinkRequest Container for the necessary
+     *           parameters to execute the DescribeVpcClassicLink operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeVpcClassicLink service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeVpcClassicLinkResult> describeVpcClassicLinkAsync(final DescribeVpcClassicLinkRequest describeVpcClassicLinkRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeVpcClassicLinkResult>() {
+            public DescribeVpcClassicLinkResult call() throws Exception {
+                return describeVpcClassicLink(describeVpcClassicLinkRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the ClassicLink status of one or more VPCs.
+     * </p>
+     *
+     * @param describeVpcClassicLinkRequest Container for the necessary
+     *           parameters to execute the DescribeVpcClassicLink operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeVpcClassicLink service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeVpcClassicLinkResult> describeVpcClassicLinkAsync(
+            final DescribeVpcClassicLinkRequest describeVpcClassicLinkRequest,
+            final AsyncHandler<DescribeVpcClassicLinkRequest, DescribeVpcClassicLinkResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeVpcClassicLinkResult>() {
+            public DescribeVpcClassicLinkResult call() throws Exception {
+              DescribeVpcClassicLinkResult result;
+                try {
+                result = describeVpcClassicLink(describeVpcClassicLinkRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeVpcClassicLinkRequest, result);
                  return result;
         }
     });
@@ -9755,12 +11545,92 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Describes one or more of your linked EC2-Classic instances. This
+     * request only returns information about EC2-Classic instances linked to
+     * a VPC through ClassicLink; you cannot use this request to return
+     * information about other instances.
+     * </p>
+     *
+     * @param describeClassicLinkInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeClassicLinkInstances operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeClassicLinkInstances service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeClassicLinkInstancesResult> describeClassicLinkInstancesAsync(final DescribeClassicLinkInstancesRequest describeClassicLinkInstancesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeClassicLinkInstancesResult>() {
+            public DescribeClassicLinkInstancesResult call() throws Exception {
+                return describeClassicLinkInstances(describeClassicLinkInstancesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes one or more of your linked EC2-Classic instances. This
+     * request only returns information about EC2-Classic instances linked to
+     * a VPC through ClassicLink; you cannot use this request to return
+     * information about other instances.
+     * </p>
+     *
+     * @param describeClassicLinkInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeClassicLinkInstances operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeClassicLinkInstances service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeClassicLinkInstancesResult> describeClassicLinkInstancesAsync(
+            final DescribeClassicLinkInstancesRequest describeClassicLinkInstancesRequest,
+            final AsyncHandler<DescribeClassicLinkInstancesRequest, DescribeClassicLinkInstancesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeClassicLinkInstancesResult>() {
+            public DescribeClassicLinkInstancesResult call() throws Exception {
+              DescribeClassicLinkInstancesResult result;
+                try {
+                result = describeClassicLinkInstances(describeClassicLinkInstancesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeClassicLinkInstancesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Creates a Spot Instance request. Spot Instances are instances that
-     * Amazon EC2 starts on your behalf when the maximum price that you
-     * specify exceeds the current Spot Price. Amazon EC2 periodically sets
-     * the Spot Price based on available Spot Instance capacity and current
-     * Spot Instance requests. For more information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Amazon EC2 launches when the bid price that you specify exceeds the
+     * current Spot Price. Amazon EC2 periodically sets the Spot Price based
+     * on available Spot Instance capacity and current Spot Instance
+     * requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -9791,11 +11661,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Creates a Spot Instance request. Spot Instances are instances that
-     * Amazon EC2 starts on your behalf when the maximum price that you
-     * specify exceeds the current Spot Price. Amazon EC2 periodically sets
-     * the Spot Price based on available Spot Instance capacity and current
-     * Spot Instance requests. For more information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Amazon EC2 launches when the bid price that you specify exceeds the
+     * current Spot Price. Amazon EC2 periodically sets the Spot Price based
+     * on available Spot Instance capacity and current Spot Instance
+     * requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -9839,10 +11709,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Adds or overwrites one or more tags for the specified EC2 resource or
-     * resources. Each resource can have a maximum of 10 tags. Each tag
-     * consists of a key and optional value. Tag keys must be unique per
-     * resource.
+     * Adds or overwrites one or more tags for the specified Amazon EC2
+     * resource or resources. Each resource can have a maximum of 10 tags.
+     * Each tag consists of a key and optional value. Tag keys must be unique
+     * per resource.
      * </p>
      * <p>
      * For more information about tags, see
@@ -9877,10 +11747,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Adds or overwrites one or more tags for the specified EC2 resource or
-     * resources. Each resource can have a maximum of 10 tags. Each tag
-     * consists of a key and optional value. Tag keys must be unique per
-     * resource.
+     * Adds or overwrites one or more tags for the specified Amazon EC2
+     * resource or resources. Each resource can have a maximum of 10 tags.
+     * Each tag consists of a key and optional value. Tag keys must be unique
+     * per resource.
      * </p>
      * <p>
      * For more information about tags, see
@@ -9931,7 +11801,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * specify only one attribute at a time.
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"> Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -9967,7 +11837,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * specify only one attribute at a time.
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"> Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -10088,8 +11958,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Replaces an existing route within a route table in a VPC. You must
-     * provide only one of the following: Internet gateway, NAT instance, VPC
-     * peering connection, or network interface.
+     * provide only one of the following: Internet gateway or virtual private
+     * gateway, NAT instance, VPC peering connection, or network interface.
      * </p>
      * <p>
      * For more information about route tables, see
@@ -10125,8 +11995,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Replaces an existing route within a route table in a VPC. You must
-     * provide only one of the following: Internet gateway, NAT instance, VPC
-     * peering connection, or network interface.
+     * provide only one of the following: Internet gateway or virtual private
+     * gateway, NAT instance, VPC peering connection, or network interface.
      * </p>
      * <p>
      * For more information about route tables, see
@@ -10329,8 +12199,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Disables a virtual private gateway (VGW) from propagating routes to
-     * the routing tables of a VPC.
+     * Disables a virtual private gateway (VGW) from propagating routes to a
+     * specified route table of a VPC.
      * </p>
      *
      * @param disableVgwRoutePropagationRequest Container for the necessary
@@ -10361,8 +12231,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Disables a virtual private gateway (VGW) from propagating routes to
-     * the routing tables of a VPC.
+     * Disables a virtual private gateway (VGW) from propagating routes to a
+     * specified route table of a VPC.
      * </p>
      *
      * @param disableVgwRoutePropagationRequest Container for the necessary
@@ -10405,13 +12275,84 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Imports a disk into an EBS snapshot.
+     * </p>
+     *
+     * @param importSnapshotRequest Container for the necessary parameters to
+     *           execute the ImportSnapshot operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ImportSnapshot service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ImportSnapshotResult> importSnapshotAsync(final ImportSnapshotRequest importSnapshotRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ImportSnapshotResult>() {
+            public ImportSnapshotResult call() throws Exception {
+                return importSnapshot(importSnapshotRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Imports a disk into an EBS snapshot.
+     * </p>
+     *
+     * @param importSnapshotRequest Container for the necessary parameters to
+     *           execute the ImportSnapshot operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ImportSnapshot service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ImportSnapshotResult> importSnapshotAsync(
+            final ImportSnapshotRequest importSnapshotRequest,
+            final AsyncHandler<ImportSnapshotRequest, ImportSnapshotResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ImportSnapshotResult>() {
+            public ImportSnapshotResult call() throws Exception {
+              ImportSnapshotResult result;
+                try {
+                result = importSnapshot(importSnapshotRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(importSnapshotRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Cancels one or more Spot Instance requests. Spot Instances are
-     * instances that Amazon EC2 starts on your behalf when the maximum price
+     * instances that Amazon EC2 starts on your behalf when the bid price
      * that you specify exceeds the current Spot Price. Amazon EC2
      * periodically sets the Spot Price based on available Spot Instance
-     * capacity and current Spot Instance requests. For more information
-     * about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * capacity and current Spot Instance requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -10447,12 +12388,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Cancels one or more Spot Instance requests. Spot Instances are
-     * instances that Amazon EC2 starts on your behalf when the maximum price
+     * instances that Amazon EC2 starts on your behalf when the bid price
      * that you specify exceeds the current Spot Price. Amazon EC2
      * periodically sets the Spot Price based on available Spot Instance
-     * capacity and current Spot Instance requests. For more information
-     * about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * capacity and current Spot Instance requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -10501,15 +12441,94 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Describes your Spot fleet requests.
+     * </p>
+     *
+     * @param describeSpotFleetRequestsRequest Container for the necessary
+     *           parameters to execute the DescribeSpotFleetRequests operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeSpotFleetRequests service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeSpotFleetRequestsResult> describeSpotFleetRequestsAsync(final DescribeSpotFleetRequestsRequest describeSpotFleetRequestsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeSpotFleetRequestsResult>() {
+            public DescribeSpotFleetRequestsResult call() throws Exception {
+                return describeSpotFleetRequests(describeSpotFleetRequestsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes your Spot fleet requests.
+     * </p>
+     *
+     * @param describeSpotFleetRequestsRequest Container for the necessary
+     *           parameters to execute the DescribeSpotFleetRequests operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeSpotFleetRequests service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeSpotFleetRequestsResult> describeSpotFleetRequestsAsync(
+            final DescribeSpotFleetRequestsRequest describeSpotFleetRequestsRequest,
+            final AsyncHandler<DescribeSpotFleetRequestsRequest, DescribeSpotFleetRequestsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeSpotFleetRequestsResult>() {
+            public DescribeSpotFleetRequestsResult call() throws Exception {
+              DescribeSpotFleetRequestsResult result;
+                try {
+                result = describeSpotFleetRequests(describeSpotFleetRequestsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeSpotFleetRequestsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Purchases a Reserved Instance for use with your account. With Amazon
      * EC2 Reserved Instances, you obtain a capacity reservation for a
-     * certain instance configuration over a specified period of time. You
-     * pay a lower usage rate than with On-Demand instances for the time that
-     * you actually use the capacity reservation.
+     * certain instance configuration over a specified period of time and pay
+     * a lower hourly rate compared to on-Demand Instance pricing.
+     * </p>
+     * <p>
+     * Use DescribeReservedInstancesOfferings to get a list of Reserved
+     * Instance offerings that match your specifications. After you've
+     * purchased a Reserved Instance, you can check for your new Reserved
+     * Instance with DescribeReservedInstances.
      * </p>
      * <p>
      * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html"> Reserved Instances </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -10543,13 +12562,18 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * Purchases a Reserved Instance for use with your account. With Amazon
      * EC2 Reserved Instances, you obtain a capacity reservation for a
-     * certain instance configuration over a specified period of time. You
-     * pay a lower usage rate than with On-Demand instances for the time that
-     * you actually use the capacity reservation.
+     * certain instance configuration over a specified period of time and pay
+     * a lower hourly rate compared to on-Demand Instance pricing.
+     * </p>
+     * <p>
+     * Use DescribeReservedInstancesOfferings to get a list of Reserved
+     * Instance offerings that match your specifications. After you've
+     * purchased a Reserved Instance, you can check for your new Reserved
+     * Instance with DescribeReservedInstances.
      * </p>
      * <p>
      * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html"> Reserved Instances </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -10595,7 +12619,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Adds or removes permission settings for the specified snapshot.
+     * Adds or removes permission settings for the specified snapshot. You
+     * may add or remove specified AWS account IDs from a snapshot's list of
+     * create volume permissions, but you cannot do both in a single API
+     * call. If you need to both add and remove account IDs for a snapshot,
+     * you must use multiple API calls.
      * </p>
      * <p>
      * For more information on modifying snapshot permissions, see
@@ -10635,7 +12663,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Adds or removes permission settings for the specified snapshot.
+     * Adds or removes permission settings for the specified snapshot. You
+     * may add or remove specified AWS account IDs from a snapshot's list of
+     * create volume permissions, but you cannot do both in a single API
+     * call. If you need to both add and remove account IDs for a snapshot,
+     * you must use multiple API calls.
      * </p>
      * <p>
      * For more information on modifying snapshot permissions, see
@@ -10692,6 +12724,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * modification requests is returned. If a modification ID is specified,
      * only information about the specific modification is returned.
      * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html"> Modifying Reserved Instances </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
+     * </p>
      *
      * @param describeReservedInstancesModificationsRequest Container for the
      *           necessary parameters to execute the
@@ -10725,6 +12762,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * parameter is specified, information about all your Reserved Instances
      * modification requests is returned. If a modification ID is specified,
      * only information about the specific modification is returned.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html"> Modifying Reserved Instances </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
      * </p>
      *
      * @param describeReservedInstancesModificationsRequest Container for the
@@ -10777,9 +12819,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * approximately one hour).
      * </p>
      * <p>
-     * By default, Amazon EC2 deletes all Amazon EBS volumes that were
-     * attached when the instance launched. Volumes attached after instance
-     * launch continue running.
+     * By default, Amazon EC2 deletes all EBS volumes that were attached
+     * when the instance launched. Volumes attached after instance launch
+     * continue running.
      * </p>
      * <p>
      * You can stop, start, and terminate EBS-backed instances. You can only
@@ -10833,9 +12875,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * approximately one hour).
      * </p>
      * <p>
-     * By default, Amazon EC2 deletes all Amazon EBS volumes that were
-     * attached when the instance launched. Volumes attached after instance
-     * launch continue running.
+     * By default, Amazon EC2 deletes all EBS volumes that were attached
+     * when the instance launched. Volumes attached after instance launch
+     * continue running.
      * </p>
      * <p>
      * You can stop, start, and terminate EBS-backed instances. You can only
@@ -10895,8 +12937,84 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Deletes the datafeed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Modifies attributes of a specified VPC endpoint. You can modify the
+     * policy associated with the endpoint, and you can add and remove route
+     * tables associated with the endpoint.
+     * </p>
+     *
+     * @param modifyVpcEndpointRequest Container for the necessary parameters
+     *           to execute the ModifyVpcEndpoint operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ModifyVpcEndpoint service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ModifyVpcEndpointResult> modifyVpcEndpointAsync(final ModifyVpcEndpointRequest modifyVpcEndpointRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ModifyVpcEndpointResult>() {
+            public ModifyVpcEndpointResult call() throws Exception {
+                return modifyVpcEndpoint(modifyVpcEndpointRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Modifies attributes of a specified VPC endpoint. You can modify the
+     * policy associated with the endpoint, and you can add and remove route
+     * tables associated with the endpoint.
+     * </p>
+     *
+     * @param modifyVpcEndpointRequest Container for the necessary parameters
+     *           to execute the ModifyVpcEndpoint operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ModifyVpcEndpoint service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ModifyVpcEndpointResult> modifyVpcEndpointAsync(
+            final ModifyVpcEndpointRequest modifyVpcEndpointRequest,
+            final AsyncHandler<ModifyVpcEndpointRequest, ModifyVpcEndpointResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ModifyVpcEndpointResult>() {
+            public ModifyVpcEndpointResult call() throws Exception {
+              ModifyVpcEndpointResult result;
+                try {
+                result = modifyVpcEndpoint(modifyVpcEndpointRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(modifyVpcEndpointRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the data feed for Spot Instances. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -10929,8 +13047,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Deletes the datafeed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Deletes the data feed for Spot Instances. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -11055,7 +13173,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * specify only one attribute at a time.
      * </p>
      * <p>
-     * For more information about Amazon EBS snapshots, see
+     * For more information about EBS snapshots, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"> Amazon EBS Snapshots </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -11091,7 +13209,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * specify only one attribute at a time.
      * </p>
      * <p>
-     * For more information about Amazon EBS snapshots, see
+     * For more information about EBS snapshots, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"> Amazon EBS Snapshots </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -11891,13 +14009,15 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Creates an Amazon EBS volume that can be attached to an instance in
-     * the same Availability Zone. The volume is created in the specified
-     * region.
+     * Creates an EBS volume that can be attached to an instance in the same
+     * Availability Zone. The volume is created in the regional endpoint that
+     * you send the HTTP request to. For more information see
+     * <a href="http://docs.aws.amazon.com/general/latest/gr/rande.html"> Regions and Endpoints </a>
+     * .
      * </p>
      * <p>
-     * You can create a new empty volume or restore a volume from an Amazon
-     * EBS snapshot. Any AWS Marketplace product codes from the snapshot are
+     * You can create a new empty volume or restore a volume from an EBS
+     * snapshot. Any AWS Marketplace product codes from the snapshot are
      * propagated to the volume.
      * </p>
      * <p>
@@ -11940,13 +14060,15 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Creates an Amazon EBS volume that can be attached to an instance in
-     * the same Availability Zone. The volume is created in the specified
-     * region.
+     * Creates an EBS volume that can be attached to an instance in the same
+     * Availability Zone. The volume is created in the regional endpoint that
+     * you send the HTTP request to. For more information see
+     * <a href="http://docs.aws.amazon.com/general/latest/gr/rande.html"> Regions and Endpoints </a>
+     * .
      * </p>
      * <p>
-     * You can create a new empty volume or restore a volume from an Amazon
-     * EBS snapshot. Any AWS Marketplace product codes from the snapshot are
+     * You can create a new empty volume or restore a volume from an EBS
+     * snapshot. Any AWS Marketplace product codes from the snapshot are
      * propagated to the volume.
      * </p>
      * <p>
@@ -12003,96 +14125,39 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Describes the status of one or more instances, including any
-     * scheduled events.
+     * Describes the status of one or more instances.
      * </p>
      * <p>
-     * Instance status has two main components:
+     * Instance status includes the following components:
      * </p>
      * 
      * <ul>
      * <li> <p>
-     * System Status reports impaired functionality that stems from issues
-     * related to the systems that support an instance, such as such as
-     * hardware failures and network connectivity problems. This call reports
-     * such problems as impaired reachability.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Instance Status reports impaired functionality that arises from
-     * problems internal to the instance. This call reports such problems as
-     * impaired reachability.
-     * </p>
-     * </li>
-     * 
-     * </ul>
-     * <p>
-     * Instance status provides information about four types of scheduled
-     * events for an instance that may require your attention:
-     * </p>
-     * 
-     * <ul>
-     * <li> <p>
-     * Scheduled Reboot: When Amazon EC2 determines that an instance must be
-     * rebooted, the instances status returns one of two event codes:
-     * <code>system-reboot</code> or <code>instance-reboot</code> . System
-     * reboot commonly occurs if certain maintenance or upgrade operations
-     * require a reboot of the underlying host that supports an instance.
-     * Instance reboot commonly occurs if the instance must be rebooted,
-     * rather than the underlying host. Rebooting events include a scheduled
-     * start and end time.
-     * </p>
-     * </li>
-     * <li> <p>
-     * System Maintenance: When Amazon EC2 determines that an instance
-     * requires maintenance that requires power or network impact, the
-     * instance status is the event code <code>system-maintenance</code> .
-     * System maintenance is either power maintenance or network maintenance.
-     * For power maintenance, your instance will be unavailable for a brief
-     * period of time and then rebooted. For network maintenance, your
-     * instance will experience a brief loss of network connectivity. System
-     * maintenance events include a scheduled start and end time. You will
-     * also be notified by email if one of your instances is set for system
-     * maintenance. The email message indicates when your instance is
-     * scheduled for maintenance.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Scheduled Retirement: When Amazon EC2 determines that an instance
-     * must be shut down, the instance status is the event code
-     * <code>instance-retirement</code> . Retirement commonly occurs when the
-     * underlying host is degraded and must be replaced. Retirement events
-     * include a scheduled start and end time. You will also be notified by
-     * email if one of your instances is set to retiring. The email message
-     * indicates when your instance will be permanently retired.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Scheduled Stop: When Amazon EC2 determines that an instance must be
-     * shut down, the instances status returns an event code called
-     * <code>instance-stop</code> . Stop events include a scheduled start and
-     * end time. You will also be notified by email if one of your instances
-     * is set to stop. The email message indicates when your instance will be
-     * stopped.
-     * </p>
-     * </li>
-     * 
-     * </ul>
-     * <p>
-     * When your instance is retired, it will either be terminated (if its
-     * root device type is the instance-store) or stopped (if its root device
-     * type is an EBS volume). Instances stopped due to retirement will not
-     * be restarted, but you can do so manually. You can also avoid
-     * retirement of EBS-backed instances by manually restarting your
-     * instance when its event code is <code>instance-retirement</code> .
-     * This ensures that your instance is started on a different underlying
-     * host.
-     * </p>
-     * <p>
-     * For more information about failed status checks, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html"> Troubleshooting Instances with Failed Status Checks </a> in the <i>Amazon Elastic Compute Cloud User Guide</i> . For more information about working with scheduled events, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html#schedevents_actions"> Working with an Instance That Has a Scheduled Event </a>
+     * <b>Status checks</b> - Amazon EC2 performs status checks on running
+     * EC2 instances to identify hardware and software issues. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html"> Status Checks for Your Instances </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html"> Troubleshooting Instances with Failed Status Checks </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
+     * </li>
+     * <li> <p>
+     * <b>Scheduled events</b> - Amazon EC2 can schedule events (such as
+     * reboot, stop, or terminate) for your instances related to hardware
+     * issues, software updates, or system maintenance. For more information,
+     * see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html"> Scheduled Events for Your Instances </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * </li>
+     * <li> <p>
+     * <b>Instance state</b> - You can manage your instances from the moment
+     * you launch them through their termination. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html"> Instance Lifecycle </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * </li>
+     * 
+     * </ul>
      *
      * @param describeInstanceStatusRequest Container for the necessary
      *           parameters to execute the DescribeInstanceStatus operation on
@@ -12121,96 +14186,39 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Describes the status of one or more instances, including any
-     * scheduled events.
+     * Describes the status of one or more instances.
      * </p>
      * <p>
-     * Instance status has two main components:
+     * Instance status includes the following components:
      * </p>
      * 
      * <ul>
      * <li> <p>
-     * System Status reports impaired functionality that stems from issues
-     * related to the systems that support an instance, such as such as
-     * hardware failures and network connectivity problems. This call reports
-     * such problems as impaired reachability.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Instance Status reports impaired functionality that arises from
-     * problems internal to the instance. This call reports such problems as
-     * impaired reachability.
-     * </p>
-     * </li>
-     * 
-     * </ul>
-     * <p>
-     * Instance status provides information about four types of scheduled
-     * events for an instance that may require your attention:
-     * </p>
-     * 
-     * <ul>
-     * <li> <p>
-     * Scheduled Reboot: When Amazon EC2 determines that an instance must be
-     * rebooted, the instances status returns one of two event codes:
-     * <code>system-reboot</code> or <code>instance-reboot</code> . System
-     * reboot commonly occurs if certain maintenance or upgrade operations
-     * require a reboot of the underlying host that supports an instance.
-     * Instance reboot commonly occurs if the instance must be rebooted,
-     * rather than the underlying host. Rebooting events include a scheduled
-     * start and end time.
-     * </p>
-     * </li>
-     * <li> <p>
-     * System Maintenance: When Amazon EC2 determines that an instance
-     * requires maintenance that requires power or network impact, the
-     * instance status is the event code <code>system-maintenance</code> .
-     * System maintenance is either power maintenance or network maintenance.
-     * For power maintenance, your instance will be unavailable for a brief
-     * period of time and then rebooted. For network maintenance, your
-     * instance will experience a brief loss of network connectivity. System
-     * maintenance events include a scheduled start and end time. You will
-     * also be notified by email if one of your instances is set for system
-     * maintenance. The email message indicates when your instance is
-     * scheduled for maintenance.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Scheduled Retirement: When Amazon EC2 determines that an instance
-     * must be shut down, the instance status is the event code
-     * <code>instance-retirement</code> . Retirement commonly occurs when the
-     * underlying host is degraded and must be replaced. Retirement events
-     * include a scheduled start and end time. You will also be notified by
-     * email if one of your instances is set to retiring. The email message
-     * indicates when your instance will be permanently retired.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Scheduled Stop: When Amazon EC2 determines that an instance must be
-     * shut down, the instances status returns an event code called
-     * <code>instance-stop</code> . Stop events include a scheduled start and
-     * end time. You will also be notified by email if one of your instances
-     * is set to stop. The email message indicates when your instance will be
-     * stopped.
-     * </p>
-     * </li>
-     * 
-     * </ul>
-     * <p>
-     * When your instance is retired, it will either be terminated (if its
-     * root device type is the instance-store) or stopped (if its root device
-     * type is an EBS volume). Instances stopped due to retirement will not
-     * be restarted, but you can do so manually. You can also avoid
-     * retirement of EBS-backed instances by manually restarting your
-     * instance when its event code is <code>instance-retirement</code> .
-     * This ensures that your instance is started on a different underlying
-     * host.
-     * </p>
-     * <p>
-     * For more information about failed status checks, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html"> Troubleshooting Instances with Failed Status Checks </a> in the <i>Amazon Elastic Compute Cloud User Guide</i> . For more information about working with scheduled events, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html#schedevents_actions"> Working with an Instance That Has a Scheduled Event </a>
+     * <b>Status checks</b> - Amazon EC2 performs status checks on running
+     * EC2 instances to identify hardware and software issues. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html"> Status Checks for Your Instances </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html"> Troubleshooting Instances with Failed Status Checks </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
+     * </li>
+     * <li> <p>
+     * <b>Scheduled events</b> - Amazon EC2 can schedule events (such as
+     * reboot, stop, or terminate) for your instances related to hardware
+     * issues, software updates, or system maintenance. For more information,
+     * see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html"> Scheduled Events for Your Instances </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * </li>
+     * <li> <p>
+     * <b>Instance state</b> - You can manage your instances from the moment
+     * you launch them through their termination. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html"> Instance Lifecycle </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * </li>
+     * 
+     * </ul>
      *
      * @param describeInstanceStatusRequest Container for the necessary
      *           parameters to execute the DescribeInstanceStatus operation on
@@ -12356,6 +14364,14 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * topology with a logical router in the middle.
      * </p>
      * <p>
+     * If you launch an instance in a VPC using an Amazon EBS-backed AMI,
+     * the IP address doesn't change if you stop and restart the instance
+     * (unlike a similar instance launched outside a VPC, which gets a new IP
+     * address when restarted). It's therefore possible to have a subnet with
+     * no running instances (they're all stopped), but no remaining IP
+     * addresses available.
+     * </p>
+     * <p>
      * For more information about subnets, see
      * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html"> Your VPC and Subnets </a>
      * in the <i>Amazon Virtual Private Cloud User Guide</i> .
@@ -12406,6 +14422,14 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * If you add more than one subnet to a VPC, they're set up in a star
      * topology with a logical router in the middle.
+     * </p>
+     * <p>
+     * If you launch an instance in a VPC using an Amazon EBS-backed AMI,
+     * the IP address doesn't change if you stop and restart the instance
+     * (unlike a similar instance launched outside a VPC, which gets a new IP
+     * address when restarted). It's therefore possible to have a subnet with
+     * no running instances (they're all stopped), but no remaining IP
+     * addresses available.
      * </p>
      * <p>
      * For more information about subnets, see
@@ -12643,6 +14667,94 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Describes the events for the specified Spot fleet request during the
+     * specified time.
+     * </p>
+     * <p>
+     * Spot fleet events are delayed by up to 30 seconds before they can be
+     * described. This ensures that you can query by the last evaluated time
+     * and not miss a recorded event.
+     * </p>
+     *
+     * @param describeSpotFleetRequestHistoryRequest Container for the
+     *           necessary parameters to execute the DescribeSpotFleetRequestHistory
+     *           operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeSpotFleetRequestHistory service method, as returned by
+     *         AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeSpotFleetRequestHistoryResult> describeSpotFleetRequestHistoryAsync(final DescribeSpotFleetRequestHistoryRequest describeSpotFleetRequestHistoryRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeSpotFleetRequestHistoryResult>() {
+            public DescribeSpotFleetRequestHistoryResult call() throws Exception {
+                return describeSpotFleetRequestHistory(describeSpotFleetRequestHistoryRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the events for the specified Spot fleet request during the
+     * specified time.
+     * </p>
+     * <p>
+     * Spot fleet events are delayed by up to 30 seconds before they can be
+     * described. This ensures that you can query by the last evaluated time
+     * and not miss a recorded event.
+     * </p>
+     *
+     * @param describeSpotFleetRequestHistoryRequest Container for the
+     *           necessary parameters to execute the DescribeSpotFleetRequestHistory
+     *           operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeSpotFleetRequestHistory service method, as returned by
+     *         AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeSpotFleetRequestHistoryResult> describeSpotFleetRequestHistoryAsync(
+            final DescribeSpotFleetRequestHistoryRequest describeSpotFleetRequestHistoryRequest,
+            final AsyncHandler<DescribeSpotFleetRequestHistoryRequest, DescribeSpotFleetRequestHistoryResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeSpotFleetRequestHistoryResult>() {
+            public DescribeSpotFleetRequestHistoryResult call() throws Exception {
+              DescribeSpotFleetRequestHistoryResult result;
+                try {
+                result = describeSpotFleetRequestHistory(describeSpotFleetRequestHistoryRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeSpotFleetRequestHistoryRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Deletes the specified snapshot.
      * </p>
      * <p>
@@ -12655,9 +14767,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * the volume.
      * </p>
      * <p>
-     * You cannot delete a snapshot of the root device of an Amazon EBS
-     * volume used by a registered AMI. You must first de-register the AMI
-     * before you can delete the snapshot.
+     * You cannot delete a snapshot of the root device of an EBS volume used
+     * by a registered AMI. You must first de-register the AMI before you can
+     * delete the snapshot.
      * </p>
      * <p>
      * For more information, see
@@ -12704,9 +14816,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * the volume.
      * </p>
      * <p>
-     * You cannot delete a snapshot of the root device of an Amazon EBS
-     * volume used by a registered AMI. You must first de-register the AMI
-     * before you can delete the snapshot.
+     * You cannot delete a snapshot of the root device of an EBS volume used
+     * by a registered AMI. You must first de-register the AMI before you can
+     * delete the snapshot.
      * </p>
      * <p>
      * For more information, see
@@ -12839,6 +14951,12 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * interface it's associated with.
      * </p>
      * <p>
+     * An Elastic IP address is for use in either the EC2-Classic platform
+     * or in a VPC. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html"> Elastic IP Addresses </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * <p>
      * This is an idempotent operation. If you perform the operation more
      * than once, Amazon EC2 doesn't return an error.
      * </p>
@@ -12872,6 +14990,12 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <p>
      * Disassociates an Elastic IP address from the instance or network
      * interface it's associated with.
+     * </p>
+     * <p>
+     * An Elastic IP address is for use in either the EC2-Classic platform
+     * or in a VPC. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html"> Elastic IP Addresses </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
      * This is an idempotent operation. If you perform the operation more
@@ -13012,8 +15136,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * on other instance store volumes is not preserved.
      * </p>
      * <p>
-     * <b>NOTE:</b> This procedure is not applicable for Linux/Unix
-     * instances or Windows instances that are backed by Amazon EBS.
+     * <b>NOTE:</b> This action is not applicable for Linux/Unix instances
+     * or Windows instances that are backed by Amazon EBS.
      * </p>
      * <p>
      * For more information, see
@@ -13054,8 +15178,8 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * on other instance store volumes is not preserved.
      * </p>
      * <p>
-     * <b>NOTE:</b> This procedure is not applicable for Linux/Unix
-     * instances or Windows instances that are backed by Amazon EBS.
+     * <b>NOTE:</b> This action is not applicable for Linux/Unix instances
+     * or Windows instances that are backed by Amazon EBS.
      * </p>
      * <p>
      * For more information, see
@@ -13185,6 +15309,80 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Modifies a subnet attribute.
+     * </p>
+     *
+     * @param modifySubnetAttributeRequest Container for the necessary
+     *           parameters to execute the ModifySubnetAttribute operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ModifySubnetAttribute service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> modifySubnetAttributeAsync(final ModifySubnetAttributeRequest modifySubnetAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                modifySubnetAttribute(modifySubnetAttributeRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Modifies a subnet attribute.
+     * </p>
+     *
+     * @param modifySubnetAttributeRequest Container for the necessary
+     *           parameters to execute the ModifySubnetAttribute operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ModifySubnetAttribute service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> modifySubnetAttributeAsync(
+            final ModifySubnetAttributeRequest modifySubnetAttributeRequest,
+            final AsyncHandler<ModifySubnetAttributeRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                modifySubnetAttribute(modifySubnetAttributeRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(modifySubnetAttributeRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Deletes the specified VPC. You must detach or delete all gateways and
      * resources that are associated with the VPC before you can delete it.
      * For example, you must terminate all instances running in the VPC,
@@ -13267,15 +15465,20 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Copies a point-in-time snapshot of an Amazon EBS volume and stores it
-     * in Amazon S3. You can copy the snapshot within the same region or from
-     * one region to another. You can use the snapshot to create Amazon EBS
-     * volumes or Amazon Machine Images (AMIs). The snapshot is copied to the
+     * Copies a point-in-time snapshot of an EBS volume and stores it in
+     * Amazon S3. You can copy the snapshot within the same region or from
+     * one region to another. You can use the snapshot to create EBS volumes
+     * or Amazon Machine Images (AMIs). The snapshot is copied to the
      * regional endpoint that you send the HTTP request to.
      * </p>
      * <p>
-     * Copies of encrypted Amazon EBS snapshots remain encrypted. Copies of
-     * unencrypted snapshots remain unencrypted.
+     * Copies of encrypted EBS snapshots remain encrypted. Copies of
+     * unencrypted snapshots remain unencrypted, unless the
+     * <code>Encrypted</code> flag is specified during the snapshot copy
+     * operation. By default, encrypted snapshot copies use the default AWS
+     * Key Management Service (AWS KMS) customer master key (CMK); however,
+     * you can specify a non-default CMK with the <code>KmsKeyId</code>
+     * parameter.
      * </p>
      * <p>
      * For more information, see
@@ -13309,15 +15512,20 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Copies a point-in-time snapshot of an Amazon EBS volume and stores it
-     * in Amazon S3. You can copy the snapshot within the same region or from
-     * one region to another. You can use the snapshot to create Amazon EBS
-     * volumes or Amazon Machine Images (AMIs). The snapshot is copied to the
+     * Copies a point-in-time snapshot of an EBS volume and stores it in
+     * Amazon S3. You can copy the snapshot within the same region or from
+     * one region to another. You can use the snapshot to create EBS volumes
+     * or Amazon Machine Images (AMIs). The snapshot is copied to the
      * regional endpoint that you send the HTTP request to.
      * </p>
      * <p>
-     * Copies of encrypted Amazon EBS snapshots remain encrypted. Copies of
-     * unencrypted snapshots remain unencrypted.
+     * Copies of encrypted EBS snapshots remain encrypted. Copies of
+     * unencrypted snapshots remain unencrypted, unless the
+     * <code>Encrypted</code> flag is specified during the snapshot copy
+     * operation. By default, encrypted snapshot copies use the default AWS
+     * Key Management Service (AWS KMS) customer master key (CMK); however,
+     * you can specify a non-default CMK with the <code>KmsKeyId</code>
+     * parameter.
      * </p>
      * <p>
      * For more information, see
@@ -13358,6 +15566,82 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
             throw ex;
               }
               asyncHandler.onSuccess(copySnapshotRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes all supported AWS services that can be specified when
+     * creating a VPC endpoint.
+     * </p>
+     *
+     * @param describeVpcEndpointServicesRequest Container for the necessary
+     *           parameters to execute the DescribeVpcEndpointServices operation on
+     *           AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeVpcEndpointServices service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeVpcEndpointServicesResult> describeVpcEndpointServicesAsync(final DescribeVpcEndpointServicesRequest describeVpcEndpointServicesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeVpcEndpointServicesResult>() {
+            public DescribeVpcEndpointServicesResult call() throws Exception {
+                return describeVpcEndpointServices(describeVpcEndpointServicesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes all supported AWS services that can be specified when
+     * creating a VPC endpoint.
+     * </p>
+     *
+     * @param describeVpcEndpointServicesRequest Container for the necessary
+     *           parameters to execute the DescribeVpcEndpointServices operation on
+     *           AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeVpcEndpointServices service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeVpcEndpointServicesResult> describeVpcEndpointServicesAsync(
+            final DescribeVpcEndpointServicesRequest describeVpcEndpointServicesRequest,
+            final AsyncHandler<DescribeVpcEndpointServicesRequest, DescribeVpcEndpointServicesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeVpcEndpointServicesResult>() {
+            public DescribeVpcEndpointServicesResult call() throws Exception {
+              DescribeVpcEndpointServicesResult result;
+                try {
+                result = describeVpcEndpointServices(describeVpcEndpointServicesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeVpcEndpointServicesRequest, result);
                  return result;
         }
     });
@@ -13466,9 +15750,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * DisassociateAddress.
      * </p>
      * <p>
-     * [Nondefault VPC] You must use the DisassociateAddress to disassociate
-     * the Elastic IP address before you try to release it. Otherwise, Amazon
-     * EC2 returns an error ( <code>InvalidIPAddress.InUse</code> ).
+     * [Nondefault VPC] You must use DisassociateAddress to disassociate the
+     * Elastic IP address before you try to release it. Otherwise, Amazon EC2
+     * returns an error ( <code>InvalidIPAddress.InUse</code> ).
      * </p>
      *
      * @param releaseAddressRequest Container for the necessary parameters to
@@ -13515,9 +15799,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * DisassociateAddress.
      * </p>
      * <p>
-     * [Nondefault VPC] You must use the DisassociateAddress to disassociate
-     * the Elastic IP address before you try to release it. Otherwise, Amazon
-     * EC2 returns an error ( <code>InvalidIPAddress.InUse</code> ).
+     * [Nondefault VPC] You must use DisassociateAddress to disassociate the
+     * Elastic IP address before you try to release it. Otherwise, Amazon EC2
+     * returns an error ( <code>InvalidIPAddress.InUse</code> ).
      * </p>
      *
      * @param releaseAddressRequest Container for the necessary parameters to
@@ -13560,9 +15844,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Resets an attribute of an instance to its default value. To reset the
-     * kernel or RAM disk, the instance must be in a stopped state. To reset
-     * the <code>SourceDestCheck</code> , the instance can be either running
-     * or stopped.
+     * <code>kernel</code> or <code>ramdisk</code> , the instance must be in
+     * a stopped state. To reset the <code>SourceDestCheck</code> , the
+     * instance can be either running or stopped.
      * </p>
      * <p>
      * The <code>SourceDestCheck</code> attribute controls whether
@@ -13603,9 +15887,9 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Resets an attribute of an instance to its default value. To reset the
-     * kernel or RAM disk, the instance must be in a stopped state. To reset
-     * the <code>SourceDestCheck</code> , the instance can be either running
-     * or stopped.
+     * <code>kernel</code> or <code>ramdisk</code> , the instance must be in
+     * a stopped state. To reset the <code>SourceDestCheck</code> , the
+     * instance can be either running or stopped.
      * </p>
      * <p>
      * The <code>SourceDestCheck</code> attribute controls whether
@@ -13667,6 +15951,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * You can have up to five thousand key pairs per region.
      * </p>
      * <p>
+     * The key pair returned to you is available only in the region in which
+     * you create it. To create a key pair that is available in all regions,
+     * use ImportKeyPair.
+     * </p>
+     * <p>
      * For more information about key pairs, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"> Key Pairs </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
@@ -13706,6 +15995,11 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * </p>
      * <p>
      * You can have up to five thousand key pairs per region.
+     * </p>
+     * <p>
+     * The key pair returned to you is available only in the region in which
+     * you create it. To create a key pair that is available in all regions,
+     * use ImportKeyPair.
      * </p>
      * <p>
      * For more information about key pairs, see
@@ -13833,7 +16127,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
-     * Describes one or more of the Amazon EBS snapshots available to you.
+     * Describes one or more of the EBS snapshots available to you.
      * Available snapshots include public snapshots available for any AWS
      * account to launch, private snapshots that you own, and private
      * snapshots owned by another AWS account but for which you've been given
@@ -13880,7 +16174,17 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <code>all</code> for public snapshots.
      * </p>
      * <p>
-     * For more information about Amazon EBS snapshots, see
+     * If you are describing a long list of snapshots, you can paginate the
+     * output to make the list more manageable. The <code>MaxResults</code>
+     * parameter sets the maximum number of results returned in a single
+     * page. If the list of results exceeds your <code>MaxResults</code>
+     * value, then that number of results is returned along with a
+     * <code>NextToken</code> value that can be passed to a subsequent
+     * <code>DescribeSnapshots</code> request to retrieve the remaining
+     * results.
+     * </p>
+     * <p>
+     * For more information about EBS snapshots, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"> Amazon EBS Snapshots </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -13911,7 +16215,7 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
 
     /**
      * <p>
-     * Describes one or more of the Amazon EBS snapshots available to you.
+     * Describes one or more of the EBS snapshots available to you.
      * Available snapshots include public snapshots available for any AWS
      * account to launch, private snapshots that you own, and private
      * snapshots owned by another AWS account but for which you've been given
@@ -13958,7 +16262,17 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * <code>all</code> for public snapshots.
      * </p>
      * <p>
-     * For more information about Amazon EBS snapshots, see
+     * If you are describing a long list of snapshots, you can paginate the
+     * output to make the list more manageable. The <code>MaxResults</code>
+     * parameter sets the maximum number of results returned in a single
+     * page. If the list of results exceeds your <code>MaxResults</code>
+     * value, then that number of results is returned along with a
+     * <code>NextToken</code> value that can be passed to a subsequent
+     * <code>DescribeSnapshots</code> request to retrieve the remaining
+     * results.
+     * </p>
+     * <p>
+     * For more information about EBS snapshots, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"> Amazon EBS Snapshots </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -14090,9 +16404,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Registers an AMI. When you're creating an AMI, this is the final step
-     * you must complete before you can launch an instance from the AMI. For
-     * more information about creating AMIs, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html"> Creating Your Own AMIs </a>
+     * you must complete before you can launch an instance from the AMI. This
+     * step is required if you're creating an instance store-backed Linux or
+     * Windows AMI. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html"> Creating an Instance Store-Backed Linux AMI </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html"> Creating an Instance Store-Backed Windows AMI </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -14104,8 +16419,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * You can also use <code>RegisterImage</code> to create an Amazon
      * EBS-backed AMI from a snapshot of a root device volume. For more
      * information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html"> Launching an Instance from a Snapshot </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-snapshot.html"> Launching an Instance from a Backup </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> . Note that
+     * although you can create a Windows AMI from a snapshot, you can't
+     * launch an instance from the AMI - use the CreateImage command instead.
      * </p>
      * <p>
      * If needed, you can deregister an AMI at any time. Any modifications
@@ -14145,9 +16462,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     /**
      * <p>
      * Registers an AMI. When you're creating an AMI, this is the final step
-     * you must complete before you can launch an instance from the AMI. For
-     * more information about creating AMIs, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html"> Creating Your Own AMIs </a>
+     * you must complete before you can launch an instance from the AMI. This
+     * step is required if you're creating an instance store-backed Linux or
+     * Windows AMI. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html"> Creating an Instance Store-Backed Linux AMI </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html"> Creating an Instance Store-Backed Windows AMI </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -14159,8 +16477,10 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
      * You can also use <code>RegisterImage</code> to create an Amazon
      * EBS-backed AMI from a snapshot of a root device volume. For more
      * information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html"> Launching an Instance from a Snapshot </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-snapshot.html"> Launching an Instance from a Backup </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> . Note that
+     * although you can create a Windows AMI from a snapshot, you can't
+     * launch an instance from the AMI - use the CreateImage command instead.
      * </p>
      * <p>
      * If needed, you can deregister an AMI at any time. Any modifications
@@ -14291,6 +16611,94 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
     
     /**
      * <p>
+     * Enables a VPC for ClassicLink. You can then link EC2-Classic
+     * instances to your ClassicLink-enabled VPC to allow communication over
+     * private IP addresses. You cannot enable your VPC for ClassicLink if
+     * any of your VPC's route tables have existing routes for address ranges
+     * within the <code>10.0.0.0/8</code> IP address range, excluding local
+     * routes for VPCs in the <code>10.0.0.0/16</code> and
+     * <code>10.1.0.0/16</code> IP address ranges. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"> ClassicLink </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
+     * </p>
+     *
+     * @param enableVpcClassicLinkRequest Container for the necessary
+     *           parameters to execute the EnableVpcClassicLink operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         EnableVpcClassicLink service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<EnableVpcClassicLinkResult> enableVpcClassicLinkAsync(final EnableVpcClassicLinkRequest enableVpcClassicLinkRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<EnableVpcClassicLinkResult>() {
+            public EnableVpcClassicLinkResult call() throws Exception {
+                return enableVpcClassicLink(enableVpcClassicLinkRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Enables a VPC for ClassicLink. You can then link EC2-Classic
+     * instances to your ClassicLink-enabled VPC to allow communication over
+     * private IP addresses. You cannot enable your VPC for ClassicLink if
+     * any of your VPC's route tables have existing routes for address ranges
+     * within the <code>10.0.0.0/8</code> IP address range, excluding local
+     * routes for VPCs in the <code>10.0.0.0/16</code> and
+     * <code>10.1.0.0/16</code> IP address ranges. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"> ClassicLink </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
+     * </p>
+     *
+     * @param enableVpcClassicLinkRequest Container for the necessary
+     *           parameters to execute the EnableVpcClassicLink operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         EnableVpcClassicLink service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<EnableVpcClassicLinkResult> enableVpcClassicLinkAsync(
+            final EnableVpcClassicLinkRequest enableVpcClassicLinkRequest,
+            final AsyncHandler<EnableVpcClassicLinkRequest, EnableVpcClassicLinkResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<EnableVpcClassicLinkResult>() {
+            public EnableVpcClassicLinkResult call() throws Exception {
+              EnableVpcClassicLinkResult result;
+                try {
+                result = enableVpcClassicLink(enableVpcClassicLinkRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(enableVpcClassicLinkRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Creates a static route associated with a VPN connection between an
      * existing virtual private gateway and a VPN customer gateway. The
      * static route allows traffic to be routed from the virtual private
@@ -14375,6 +16783,156 @@ public class AmazonEC2AsyncClient extends AmazonEC2Client
               }
               asyncHandler.onSuccess(createVpnConnectionRouteRequest, null);
                  return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes one or more of your VPC endpoints.
+     * </p>
+     *
+     * @param describeVpcEndpointsRequest Container for the necessary
+     *           parameters to execute the DescribeVpcEndpoints operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeVpcEndpoints service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeVpcEndpointsResult> describeVpcEndpointsAsync(final DescribeVpcEndpointsRequest describeVpcEndpointsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeVpcEndpointsResult>() {
+            public DescribeVpcEndpointsResult call() throws Exception {
+                return describeVpcEndpoints(describeVpcEndpointsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes one or more of your VPC endpoints.
+     * </p>
+     *
+     * @param describeVpcEndpointsRequest Container for the necessary
+     *           parameters to execute the DescribeVpcEndpoints operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeVpcEndpoints service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeVpcEndpointsResult> describeVpcEndpointsAsync(
+            final DescribeVpcEndpointsRequest describeVpcEndpointsRequest,
+            final AsyncHandler<DescribeVpcEndpointsRequest, DescribeVpcEndpointsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeVpcEndpointsResult>() {
+            public DescribeVpcEndpointsResult call() throws Exception {
+              DescribeVpcEndpointsResult result;
+                try {
+                result = describeVpcEndpoints(describeVpcEndpointsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeVpcEndpointsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Unlinks (detaches) a linked EC2-Classic instance from a VPC. After
+     * the instance has been unlinked, the VPC security groups are no longer
+     * associated with it. An instance is automatically unlinked from a VPC
+     * when it's stopped.
+     * </p>
+     *
+     * @param detachClassicLinkVpcRequest Container for the necessary
+     *           parameters to execute the DetachClassicLinkVpc operation on AmazonEC2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DetachClassicLinkVpc service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DetachClassicLinkVpcResult> detachClassicLinkVpcAsync(final DetachClassicLinkVpcRequest detachClassicLinkVpcRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DetachClassicLinkVpcResult>() {
+            public DetachClassicLinkVpcResult call() throws Exception {
+                return detachClassicLinkVpc(detachClassicLinkVpcRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Unlinks (detaches) a linked EC2-Classic instance from a VPC. After
+     * the instance has been unlinked, the VPC security groups are no longer
+     * associated with it. An instance is automatically unlinked from a VPC
+     * when it's stopped.
+     * </p>
+     *
+     * @param detachClassicLinkVpcRequest Container for the necessary
+     *           parameters to execute the DetachClassicLinkVpc operation on AmazonEC2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DetachClassicLinkVpc service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DetachClassicLinkVpcResult> detachClassicLinkVpcAsync(
+            final DetachClassicLinkVpcRequest detachClassicLinkVpcRequest,
+            final AsyncHandler<DetachClassicLinkVpcRequest, DetachClassicLinkVpcResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DetachClassicLinkVpcResult>() {
+            public DetachClassicLinkVpcResult call() throws Exception {
+              DetachClassicLinkVpcResult result;
+                try {
+                result = detachClassicLinkVpc(detachClassicLinkVpcRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(detachClassicLinkVpcRequest, result);
+                 return result;
         }
     });
     }

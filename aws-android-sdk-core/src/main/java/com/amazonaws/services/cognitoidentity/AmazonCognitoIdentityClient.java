@@ -34,7 +34,51 @@ import com.amazonaws.services.cognitoidentity.model.transform.*;
  * using this client are blocking, and will not return until the service call
  * completes.
  * <p>
- * 
+ * Amazon Cognito <p>
+ * Amazon Cognito is a web service that delivers scoped temporary
+ * credentials to mobile devices and other untrusted environments. Amazon
+ * Cognito uniquely identifies a device and supplies the user with a
+ * consistent identity over the lifetime of an application.
+ * </p>
+ * <p>
+ * Using Amazon Cognito, you can enable authentication with one or more
+ * third-party identity providers (Facebook, Google, or Login with
+ * Amazon), and you can also choose to support unauthenticated access
+ * from your app. Cognito delivers a unique identifier for each user and
+ * acts as an OpenID token provider trusted by AWS Security Token Service
+ * (STS) to access temporary, limited-privilege AWS credentials.
+ * </p>
+ * <p>
+ * To provide end-user credentials, first make an unsigned call to GetId.
+ * If the end user is authenticated with one of the supported identity
+ * providers, set the <code>Logins</code> map with the identity provider
+ * token. <code>GetId</code> returns a unique identifier for the user.
+ * </p>
+ * <p>
+ * Next, make an unsigned call to GetCredentialsForIdentity. This call
+ * expects the same <code>Logins</code> map as the <code>GetId</code>
+ * call, as well as the <code>IdentityID</code> originally returned by
+ * <code>GetId</code> . Assuming your identity pool has been configured
+ * via the SetIdentityPoolRoles operation,
+ * <code>GetCredentialsForIdentity</code> will return AWS credentials for
+ * your use. If your pool has not been configured with
+ * <code>SetIdentityPoolRoles</code> , or if you want to follow legacy
+ * flow, make an unsigned call to GetOpenIdToken, which returns the
+ * OpenID token necessary to call STS and retrieve AWS credentials. This
+ * call expects the same <code>Logins</code> map as the
+ * <code>GetId</code> call, as well as the <code>IdentityID</code>
+ * originally returned by <code>GetId</code> . The token returned by
+ * <code>GetOpenIdToken</code> can be passed to the STS operation
+ * <a href="http://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html"> AssumeRoleWithWebIdentity </a>
+ * to retrieve AWS credentials.
+ * </p>
+ * <p>
+ * If you want to use Amazon Cognito in an Android, iOS, or Unity
+ * application, you will probably want to make API calls via the AWS
+ * Mobile SDK. To learn more, see the
+ * <a href="http://docs.aws.amazon.com/mobile/index.html"> AWS Mobile SDK Developer Guide </a>
+ * .
+ * </p>
  */
 public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implements AmazonCognitoIdentity {
 
@@ -221,6 +265,7 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
         jsonErrorUnmarshallers.add(new InternalErrorExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceConflictExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ExternalServiceExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidIdentityPoolConfigurationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new NotAuthorizedExceptionUnmarshaller());
@@ -246,6 +291,17 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
     }
 
     /**
+     * <p>
+     * Generates (or retrieves) a Cognito ID. Supplying multiple logins will
+     * create an implicit linked account.
+     * </p>
+     * <p>
+     * token+";"+tokenSecret.
+     * </p>
+     * <p>
+     * This is a public API. You do not need any credentials to call this
+     * API.
+     * </p>
      *
      * @param getIdRequest Container for the necessary parameters to execute
      *           the GetId service method on AmazonCognitoIdentity.
@@ -260,6 +316,7 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
      * @throws ResourceNotFoundException
+     * @throws ExternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -296,6 +353,16 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
     }
 
     /**
+     * <p>
+     * Returns credentials for the the provided identity ID. Any provided
+     * logins will be validated against supported login providers. If the
+     * token is for cognito-identity.amazonaws.com, it will be passed through
+     * to AWS Security Token Service with the appropriate role for the token.
+     * </p>
+     * <p>
+     * This is a public API. You do not need any credentials to call this
+     * API.
+     * </p>
      *
      * @param getCredentialsForIdentityRequest Container for the necessary
      *           parameters to execute the GetCredentialsForIdentity service method on
@@ -311,6 +378,7 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
      * @throws ResourceNotFoundException
+     * @throws ExternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -347,6 +415,18 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
     }
 
     /**
+     * <p>
+     * Gets an OpenID token, using a known Cognito ID. This known Cognito ID
+     * is returned by GetId. You can optionally add additional logins for the
+     * identity. Supplying multiple logins creates an implicit link.
+     * </p>
+     * <p>
+     * The OpenId token is valid for 15 minutes.
+     * </p>
+     * <p>
+     * This is a public API. You do not need any credentials to call this
+     * API.
+     * </p>
      *
      * @param getOpenIdTokenRequest Container for the necessary parameters to
      *           execute the GetOpenIdToken service method on AmazonCognitoIdentity.
@@ -360,6 +440,7 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
      * @throws ResourceNotFoundException
+     * @throws ExternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while

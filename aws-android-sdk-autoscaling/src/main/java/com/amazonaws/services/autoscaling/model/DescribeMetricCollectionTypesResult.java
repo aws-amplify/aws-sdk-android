@@ -17,41 +17,24 @@ package com.amazonaws.services.autoscaling.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * The output of the DescribeMetricCollectionTypes action.
- * </p>
+ * 
  */
 public class DescribeMetricCollectionTypesResult implements Serializable {
 
     /**
-     * The list of Metrics collected. The following metrics are supported:
-     * <ul> <li><p>GroupMinSize</li> <li><p>GroupMaxSize</li>
-     * <li><p>GroupDesiredCapacity</li> <li><p>GroupInServiceInstances</li>
-     * <li><p>GroupPendingInstances</li>
-     * <li><p>GroupTerminatingInstances</li> <li><p>GroupTotalInstances</li>
-     * </ul>
+     * One or more metrics.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<MetricCollectionType> metrics;
 
     /**
-     * A list of granularities for the listed Metrics.
+     * The granularities for the metrics.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<MetricGranularityType> granularities;
 
     /**
-     * The list of Metrics collected. The following metrics are supported:
-     * <ul> <li><p>GroupMinSize</li> <li><p>GroupMaxSize</li>
-     * <li><p>GroupDesiredCapacity</li> <li><p>GroupInServiceInstances</li>
-     * <li><p>GroupPendingInstances</li>
-     * <li><p>GroupTerminatingInstances</li> <li><p>GroupTotalInstances</li>
-     * </ul>
+     * One or more metrics.
      *
-     * @return The list of Metrics collected. The following metrics are supported:
-     *         <ul> <li><p>GroupMinSize</li> <li><p>GroupMaxSize</li>
-     *         <li><p>GroupDesiredCapacity</li> <li><p>GroupInServiceInstances</li>
-     *         <li><p>GroupPendingInstances</li>
-     *         <li><p>GroupTerminatingInstances</li> <li><p>GroupTotalInstances</li>
-     *         </ul>
+     * @return One or more metrics.
      */
     public java.util.List<MetricCollectionType> getMetrics() {
         if (metrics == null) {
@@ -62,19 +45,9 @@ public class DescribeMetricCollectionTypesResult implements Serializable {
     }
     
     /**
-     * The list of Metrics collected. The following metrics are supported:
-     * <ul> <li><p>GroupMinSize</li> <li><p>GroupMaxSize</li>
-     * <li><p>GroupDesiredCapacity</li> <li><p>GroupInServiceInstances</li>
-     * <li><p>GroupPendingInstances</li>
-     * <li><p>GroupTerminatingInstances</li> <li><p>GroupTotalInstances</li>
-     * </ul>
+     * One or more metrics.
      *
-     * @param metrics The list of Metrics collected. The following metrics are supported:
-     *         <ul> <li><p>GroupMinSize</li> <li><p>GroupMaxSize</li>
-     *         <li><p>GroupDesiredCapacity</li> <li><p>GroupInServiceInstances</li>
-     *         <li><p>GroupPendingInstances</li>
-     *         <li><p>GroupTerminatingInstances</li> <li><p>GroupTotalInstances</li>
-     *         </ul>
+     * @param metrics One or more metrics.
      */
     public void setMetrics(java.util.Collection<MetricCollectionType> metrics) {
         if (metrics == null) {
@@ -87,21 +60,11 @@ public class DescribeMetricCollectionTypesResult implements Serializable {
     }
     
     /**
-     * The list of Metrics collected. The following metrics are supported:
-     * <ul> <li><p>GroupMinSize</li> <li><p>GroupMaxSize</li>
-     * <li><p>GroupDesiredCapacity</li> <li><p>GroupInServiceInstances</li>
-     * <li><p>GroupPendingInstances</li>
-     * <li><p>GroupTerminatingInstances</li> <li><p>GroupTotalInstances</li>
-     * </ul>
+     * One or more metrics.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param metrics The list of Metrics collected. The following metrics are supported:
-     *         <ul> <li><p>GroupMinSize</li> <li><p>GroupMaxSize</li>
-     *         <li><p>GroupDesiredCapacity</li> <li><p>GroupInServiceInstances</li>
-     *         <li><p>GroupPendingInstances</li>
-     *         <li><p>GroupTerminatingInstances</li> <li><p>GroupTotalInstances</li>
-     *         </ul>
+     * @param metrics One or more metrics.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -115,21 +78,11 @@ public class DescribeMetricCollectionTypesResult implements Serializable {
     }
     
     /**
-     * The list of Metrics collected. The following metrics are supported:
-     * <ul> <li><p>GroupMinSize</li> <li><p>GroupMaxSize</li>
-     * <li><p>GroupDesiredCapacity</li> <li><p>GroupInServiceInstances</li>
-     * <li><p>GroupPendingInstances</li>
-     * <li><p>GroupTerminatingInstances</li> <li><p>GroupTotalInstances</li>
-     * </ul>
+     * One or more metrics.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param metrics The list of Metrics collected. The following metrics are supported:
-     *         <ul> <li><p>GroupMinSize</li> <li><p>GroupMaxSize</li>
-     *         <li><p>GroupDesiredCapacity</li> <li><p>GroupInServiceInstances</li>
-     *         <li><p>GroupPendingInstances</li>
-     *         <li><p>GroupTerminatingInstances</li> <li><p>GroupTotalInstances</li>
-     *         </ul>
+     * @param metrics One or more metrics.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -147,9 +100,9 @@ public class DescribeMetricCollectionTypesResult implements Serializable {
     }
 
     /**
-     * A list of granularities for the listed Metrics.
+     * The granularities for the metrics.
      *
-     * @return A list of granularities for the listed Metrics.
+     * @return The granularities for the metrics.
      */
     public java.util.List<MetricGranularityType> getGranularities() {
         if (granularities == null) {
@@ -160,9 +113,9 @@ public class DescribeMetricCollectionTypesResult implements Serializable {
     }
     
     /**
-     * A list of granularities for the listed Metrics.
+     * The granularities for the metrics.
      *
-     * @param granularities A list of granularities for the listed Metrics.
+     * @param granularities The granularities for the metrics.
      */
     public void setGranularities(java.util.Collection<MetricGranularityType> granularities) {
         if (granularities == null) {
@@ -175,11 +128,11 @@ public class DescribeMetricCollectionTypesResult implements Serializable {
     }
     
     /**
-     * A list of granularities for the listed Metrics.
+     * The granularities for the metrics.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param granularities A list of granularities for the listed Metrics.
+     * @param granularities The granularities for the metrics.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -193,11 +146,11 @@ public class DescribeMetricCollectionTypesResult implements Serializable {
     }
     
     /**
-     * A list of granularities for the listed Metrics.
+     * The granularities for the metrics.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param granularities A list of granularities for the listed Metrics.
+     * @param granularities The granularities for the metrics.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -24,19 +24,28 @@ import java.io.Serializable;
 public class BlockDeviceMapping implements Serializable {
 
     /**
-     * The virtual device name.
+     * The virtual device name (<code>ephemeral</code>N). Instance store
+     * volumes are numbered starting from 0. An instance type with 2
+     * available instance store volumes can specify mappings for
+     * <code>ephemeral0</code> and <code>ephemeral1</code>.The number of
+     * available instance store volumes depends on the instance type. After
+     * you connect to the instance, you must mount the volume.
+     * <p>Constraints: For M3 instances, you must specify instance store
+     * volumes in the block device mapping for the instance. When you launch
+     * an M3 instance, we ignore any instance store volumes specified in the
+     * block device mapping for the AMI.
      */
     private String virtualName;
 
     /**
      * The device name exposed to the instance (for example,
-     * <code>/dev/sdh</code>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      */
     private String deviceName;
 
     /**
-     * Parameters used to automatically set up Amazon EBS volumes when the
-     * instance is launched.
+     * Parameters used to automatically set up EBS volumes when the instance
+     * is launched.
      */
     private EbsBlockDevice ebs;
 
@@ -47,29 +56,83 @@ public class BlockDeviceMapping implements Serializable {
     private String noDevice;
 
     /**
-     * The virtual device name.
+     * The virtual device name (<code>ephemeral</code>N). Instance store
+     * volumes are numbered starting from 0. An instance type with 2
+     * available instance store volumes can specify mappings for
+     * <code>ephemeral0</code> and <code>ephemeral1</code>.The number of
+     * available instance store volumes depends on the instance type. After
+     * you connect to the instance, you must mount the volume.
+     * <p>Constraints: For M3 instances, you must specify instance store
+     * volumes in the block device mapping for the instance. When you launch
+     * an M3 instance, we ignore any instance store volumes specified in the
+     * block device mapping for the AMI.
      *
-     * @return The virtual device name.
+     * @return The virtual device name (<code>ephemeral</code>N). Instance store
+     *         volumes are numbered starting from 0. An instance type with 2
+     *         available instance store volumes can specify mappings for
+     *         <code>ephemeral0</code> and <code>ephemeral1</code>.The number of
+     *         available instance store volumes depends on the instance type. After
+     *         you connect to the instance, you must mount the volume.
+     *         <p>Constraints: For M3 instances, you must specify instance store
+     *         volumes in the block device mapping for the instance. When you launch
+     *         an M3 instance, we ignore any instance store volumes specified in the
+     *         block device mapping for the AMI.
      */
     public String getVirtualName() {
         return virtualName;
     }
     
     /**
-     * The virtual device name.
+     * The virtual device name (<code>ephemeral</code>N). Instance store
+     * volumes are numbered starting from 0. An instance type with 2
+     * available instance store volumes can specify mappings for
+     * <code>ephemeral0</code> and <code>ephemeral1</code>.The number of
+     * available instance store volumes depends on the instance type. After
+     * you connect to the instance, you must mount the volume.
+     * <p>Constraints: For M3 instances, you must specify instance store
+     * volumes in the block device mapping for the instance. When you launch
+     * an M3 instance, we ignore any instance store volumes specified in the
+     * block device mapping for the AMI.
      *
-     * @param virtualName The virtual device name.
+     * @param virtualName The virtual device name (<code>ephemeral</code>N). Instance store
+     *         volumes are numbered starting from 0. An instance type with 2
+     *         available instance store volumes can specify mappings for
+     *         <code>ephemeral0</code> and <code>ephemeral1</code>.The number of
+     *         available instance store volumes depends on the instance type. After
+     *         you connect to the instance, you must mount the volume.
+     *         <p>Constraints: For M3 instances, you must specify instance store
+     *         volumes in the block device mapping for the instance. When you launch
+     *         an M3 instance, we ignore any instance store volumes specified in the
+     *         block device mapping for the AMI.
      */
     public void setVirtualName(String virtualName) {
         this.virtualName = virtualName;
     }
     
     /**
-     * The virtual device name.
+     * The virtual device name (<code>ephemeral</code>N). Instance store
+     * volumes are numbered starting from 0. An instance type with 2
+     * available instance store volumes can specify mappings for
+     * <code>ephemeral0</code> and <code>ephemeral1</code>.The number of
+     * available instance store volumes depends on the instance type. After
+     * you connect to the instance, you must mount the volume.
+     * <p>Constraints: For M3 instances, you must specify instance store
+     * volumes in the block device mapping for the instance. When you launch
+     * an M3 instance, we ignore any instance store volumes specified in the
+     * block device mapping for the AMI.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param virtualName The virtual device name.
+     * @param virtualName The virtual device name (<code>ephemeral</code>N). Instance store
+     *         volumes are numbered starting from 0. An instance type with 2
+     *         available instance store volumes can specify mappings for
+     *         <code>ephemeral0</code> and <code>ephemeral1</code>.The number of
+     *         available instance store volumes depends on the instance type. After
+     *         you connect to the instance, you must mount the volume.
+     *         <p>Constraints: For M3 instances, you must specify instance store
+     *         volumes in the block device mapping for the instance. When you launch
+     *         an M3 instance, we ignore any instance store volumes specified in the
+     *         block device mapping for the AMI.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -81,10 +144,10 @@ public class BlockDeviceMapping implements Serializable {
 
     /**
      * The device name exposed to the instance (for example,
-     * <code>/dev/sdh</code>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      *
      * @return The device name exposed to the instance (for example,
-     *         <code>/dev/sdh</code>).
+     *         <code>/dev/sdh</code> or <code>xvdh</code>).
      */
     public String getDeviceName() {
         return deviceName;
@@ -92,10 +155,10 @@ public class BlockDeviceMapping implements Serializable {
     
     /**
      * The device name exposed to the instance (for example,
-     * <code>/dev/sdh</code>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      *
      * @param deviceName The device name exposed to the instance (for example,
-     *         <code>/dev/sdh</code>).
+     *         <code>/dev/sdh</code> or <code>xvdh</code>).
      */
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
@@ -103,12 +166,12 @@ public class BlockDeviceMapping implements Serializable {
     
     /**
      * The device name exposed to the instance (for example,
-     * <code>/dev/sdh</code>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param deviceName The device name exposed to the instance (for example,
-     *         <code>/dev/sdh</code>).
+     *         <code>/dev/sdh</code> or <code>xvdh</code>).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -119,35 +182,35 @@ public class BlockDeviceMapping implements Serializable {
     }
 
     /**
-     * Parameters used to automatically set up Amazon EBS volumes when the
-     * instance is launched.
+     * Parameters used to automatically set up EBS volumes when the instance
+     * is launched.
      *
-     * @return Parameters used to automatically set up Amazon EBS volumes when the
-     *         instance is launched.
+     * @return Parameters used to automatically set up EBS volumes when the instance
+     *         is launched.
      */
     public EbsBlockDevice getEbs() {
         return ebs;
     }
     
     /**
-     * Parameters used to automatically set up Amazon EBS volumes when the
-     * instance is launched.
+     * Parameters used to automatically set up EBS volumes when the instance
+     * is launched.
      *
-     * @param ebs Parameters used to automatically set up Amazon EBS volumes when the
-     *         instance is launched.
+     * @param ebs Parameters used to automatically set up EBS volumes when the instance
+     *         is launched.
      */
     public void setEbs(EbsBlockDevice ebs) {
         this.ebs = ebs;
     }
     
     /**
-     * Parameters used to automatically set up Amazon EBS volumes when the
-     * instance is launched.
+     * Parameters used to automatically set up EBS volumes when the instance
+     * is launched.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ebs Parameters used to automatically set up Amazon EBS volumes when the
-     *         instance is launched.
+     * @param ebs Parameters used to automatically set up EBS volumes when the instance
+     *         is launched.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

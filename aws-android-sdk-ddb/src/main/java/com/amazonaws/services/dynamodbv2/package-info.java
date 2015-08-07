@@ -2,10 +2,13 @@
 /**
  * Synchronous and asynchronous client classes for accessing AmazonDynamoDBv2.
  *
- * Amazon DynamoDB <b>Overview</b> <p>
+ * Amazon DynamoDB <p>
+ * <b>Overview</b>
+ * </p>
+ * <p>
  * This is the Amazon DynamoDB API Reference. This guide provides
  * descriptions and samples of the low-level DynamoDB API. For
- * information about DynamoDB application development, go to the
+ * information about DynamoDB application development, see the
  * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/"> Amazon DynamoDB Developer Guide </a>
  * .
  * </p>
@@ -15,14 +18,14 @@
  * Development Kits (SDKs). The easy-to-use libraries in the AWS SDKs
  * make it unnecessary to call the low-level DynamoDB API directly from
  * your application. The libraries take care of request authentication,
- * serialization, and connection management. For more information, go to
+ * serialization, and connection management. For more information, see
  * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/UsingAWSSDK.html"> Using the AWS SDKs with DynamoDB </a>
  * in the <i>Amazon DynamoDB Developer Guide</i> .
  * </p>
  * <p>
  * If you decide to code against the low-level DynamoDB API directly, you
  * will need to write the necessary code to authenticate your requests.
- * For more information on signing your requests, go to
+ * For more information on signing your requests, see
  * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API.html"> Using the DynamoDB API </a>
  * in the <i>Amazon DynamoDB Developer Guide</i> .
  * </p>
@@ -33,7 +36,6 @@
  * <p>
  * <b>Managing Tables</b>
  * </p>
- * <p>
  * 
  * <ul>
  * <li> <p>
@@ -68,31 +70,28 @@
  * </li>
  * 
  * </ul>
- * 
- * </p>
  * <p>
- * For conceptual information about managing tables, go to
+ * For conceptual information about managing tables, see
  * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html"> Working with Tables </a>
  * in the <i>Amazon DynamoDB Developer Guide</i> .
  * </p>
  * <p>
  * <b>Reading Data</b>
  * </p>
- * <p>
  * 
  * <ul>
  * <li> <p>
  * <i>GetItem</i> - Returns a set of attributes for the item that has a
  * given primary key. By default, <i>GetItem</i> performs an eventually
- * consistent read; however, applications can specify a strongly
+ * consistent read; however, applications can request a strongly
  * consistent read instead.
  * </p>
  * </li>
  * <li> <p>
  * <i>BatchGetItem</i> - Performs multiple <i>GetItem</i> requests for
  * data items using their primary keys, from one table or multiple
- * tables. The response from <i>BatchGetItem</i> has a size limit of 1 MB
- * and returns a maximum of 100 items. Both eventually consistent and
+ * tables. The response from <i>BatchGetItem</i> has a size limit of 16
+ * MB and returns a maximum of 100 items. Both eventually consistent and
  * strongly consistent reads can be used.
  * </p>
  * </li>
@@ -116,17 +115,14 @@
  * </li>
  * 
  * </ul>
- * 
- * </p>
  * <p>
- * For conceptual information about reading data, go to
+ * For conceptual information about reading data, see
  * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"> Working with Items </a> and <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html"> Query and Scan Operations </a>
  * in the <i>Amazon DynamoDB Developer Guide</i> .
  * </p>
  * <p>
  * <b>Modifying Data</b>
  * </p>
- * <p>
  * 
  * <ul>
  * <li> <p>
@@ -156,15 +152,13 @@
  * <i>DeleteItem</i> requests across multiple tables in a single request.
  * A failure of any request(s) in the batch will not cause the entire
  * <i>BatchWriteItem</i> operation to fail. Supports batches of up to 25
- * items to put or delete, with a maximum total request size of 1 MB.
+ * items to put or delete, with a maximum total request size of 16 MB.
  * </p>
  * </li>
  * 
  * </ul>
- * 
- * </p>
  * <p>
- * For conceptual information about modifying data, go to
+ * For conceptual information about modifying data, see
  * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"> Working with Items </a> and <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html"> Query and Scan Operations </a>
  * in the <i>Amazon DynamoDB Developer Guide</i> .
  * </p>

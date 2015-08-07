@@ -25,11 +25,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * returns a structure describing identity notification attributes.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * This action is throttled at one request per second and can only get
+ * notification attributes for up to 100 identities at a time.
  * </p>
  * <p>
- * For more information about feedback notification, see the
- * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/bounce-complaint-notifications.html"> Amazon SES Developer Guide </a>
+ * For more information about using notifications with Amazon SES, see
+ * the
+ * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
  * .
  * </p>
  *
@@ -38,14 +40,23 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetIdentityNotificationAttributesRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * A list of one or more identities.
+     * A list of one or more identities. You can specify an identity by using
+     * its name or by using its Amazon Resource Name (ARN). Examples:
+     * <code>user@example.com</code>, <code>example.com</code>,
+     * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> identities;
 
     /**
-     * A list of one or more identities.
+     * A list of one or more identities. You can specify an identity by using
+     * its name or by using its Amazon Resource Name (ARN). Examples:
+     * <code>user@example.com</code>, <code>example.com</code>,
+     * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      *
-     * @return A list of one or more identities.
+     * @return A list of one or more identities. You can specify an identity by using
+     *         its name or by using its Amazon Resource Name (ARN). Examples:
+     *         <code>user@example.com</code>, <code>example.com</code>,
+     *         <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      */
     public java.util.List<String> getIdentities() {
         if (identities == null) {
@@ -56,9 +67,15 @@ public class GetIdentityNotificationAttributesRequest extends AmazonWebServiceRe
     }
     
     /**
-     * A list of one or more identities.
+     * A list of one or more identities. You can specify an identity by using
+     * its name or by using its Amazon Resource Name (ARN). Examples:
+     * <code>user@example.com</code>, <code>example.com</code>,
+     * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      *
-     * @param identities A list of one or more identities.
+     * @param identities A list of one or more identities. You can specify an identity by using
+     *         its name or by using its Amazon Resource Name (ARN). Examples:
+     *         <code>user@example.com</code>, <code>example.com</code>,
+     *         <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      */
     public void setIdentities(java.util.Collection<String> identities) {
         if (identities == null) {
@@ -71,11 +88,17 @@ public class GetIdentityNotificationAttributesRequest extends AmazonWebServiceRe
     }
     
     /**
-     * A list of one or more identities.
+     * A list of one or more identities. You can specify an identity by using
+     * its name or by using its Amazon Resource Name (ARN). Examples:
+     * <code>user@example.com</code>, <code>example.com</code>,
+     * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param identities A list of one or more identities.
+     * @param identities A list of one or more identities. You can specify an identity by using
+     *         its name or by using its Amazon Resource Name (ARN). Examples:
+     *         <code>user@example.com</code>, <code>example.com</code>,
+     *         <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -89,11 +112,17 @@ public class GetIdentityNotificationAttributesRequest extends AmazonWebServiceRe
     }
     
     /**
-     * A list of one or more identities.
+     * A list of one or more identities. You can specify an identity by using
+     * its name or by using its Amazon Resource Name (ARN). Examples:
+     * <code>user@example.com</code>, <code>example.com</code>,
+     * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param identities A list of one or more identities.
+     * @param identities A list of one or more identities. You can specify an identity by using
+     *         its name or by using its Amazon Resource Name (ARN). Examples:
+     *         <code>user@example.com</code>, <code>example.com</code>,
+     *         <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

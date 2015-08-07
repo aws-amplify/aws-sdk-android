@@ -21,22 +21,37 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.elasticloadbalancing.AmazonElasticLoadBalancing#modifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest) ModifyLoadBalancerAttributes operation}.
  * <p>
- * Modifies the attributes of a specified load balancer.
+ * Modifies the attributes of the specified load balancer.
  * </p>
  * <p>
  * You can modify the load balancer attributes, such as
  * <code>AccessLogs</code> ,
  * <code>ConnectionDraining</code> , and
  * <code>CrossZoneLoadBalancing</code> by either enabling or disabling
- * them.
+ * them. Or, you can modify the load balancer attribute
+ * <code>ConnectionSettings</code> by specifying an idle connection
+ * timeout value for your load balancer.
  * </p>
  * <p>
- * For information on cross-zone load balancing, see <b>Request
- * Routing</b> and for information on connection draining, see
- * <b>Connection Draining</b> in the
- * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html"> Concepts </a> section of the <i>Elastic Load Balancer Developer Guide</i> . For information on access logs, see <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log-collection.html"> Access Logs </a>
- * .
+ * For more information, see the following in the <i>Elastic Load
+ * Balancing Developer Guide</i> :
  * </p>
+ * 
+ * <ul>
+ * <li>
+ * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#request-routing"> Cross-Zone Load Balancing </a>
+ * </li>
+ * <li>
+ * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#conn-drain"> Connection Draining </a>
+ * </li>
+ * <li>
+ * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log-collection.html"> Access Logs </a>
+ * </li>
+ * <li>
+ * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#idle-timeout"> Idle Connection Timeout </a>
+ * </li>
+ * 
+ * </ul>
  *
  * @see com.amazonaws.services.elasticloadbalancing.AmazonElasticLoadBalancing#modifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest)
  */
@@ -48,7 +63,7 @@ public class ModifyLoadBalancerAttributesRequest extends AmazonWebServiceRequest
     private String loadBalancerName;
 
     /**
-     * Attributes of the load balancer.
+     * The attributes of the load balancer.
      */
     private LoadBalancerAttributes loadBalancerAttributes;
 
@@ -86,29 +101,29 @@ public class ModifyLoadBalancerAttributesRequest extends AmazonWebServiceRequest
     }
 
     /**
-     * Attributes of the load balancer.
+     * The attributes of the load balancer.
      *
-     * @return Attributes of the load balancer.
+     * @return The attributes of the load balancer.
      */
     public LoadBalancerAttributes getLoadBalancerAttributes() {
         return loadBalancerAttributes;
     }
     
     /**
-     * Attributes of the load balancer.
+     * The attributes of the load balancer.
      *
-     * @param loadBalancerAttributes Attributes of the load balancer.
+     * @param loadBalancerAttributes The attributes of the load balancer.
      */
     public void setLoadBalancerAttributes(LoadBalancerAttributes loadBalancerAttributes) {
         this.loadBalancerAttributes = loadBalancerAttributes;
     }
     
     /**
-     * Attributes of the load balancer.
+     * The attributes of the load balancer.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param loadBalancerAttributes Attributes of the load balancer.
+     * @param loadBalancerAttributes The attributes of the load balancer.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

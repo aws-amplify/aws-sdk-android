@@ -21,15 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.autoscaling.AmazonAutoScaling#updateAutoScalingGroup(UpdateAutoScalingGroupRequest) UpdateAutoScalingGroup operation}.
  * <p>
- * Updates the configuration for the specified AutoScalingGroup.
+ * Updates the configuration for the specified Auto Scaling group.
  * </p>
  * <p>
- * <b>NOTE:</b> To update an Auto Scaling group with a launch
- * configuration that has the InstanceMonitoring flag set to False, you
- * must first ensure that collection of group metrics is disabled.
- * Otherwise, calls to UpdateAutoScalingGroup will fail. If you have
- * previously enabled group metrics collection, you can disable
- * collection of all group metrics by calling DisableMetricsCollection.
+ * To update an Auto Scaling group with a launch configuration with
+ * <code>InstanceMonitoring</code> set to <code>False</code> ,
+ * you must first disable the collection of group metrics.
+ * Otherwise, you will get an error. If you have previously enabled the
+ * collection of group metrics, you can disable it using
+ * DisableMetricsCollection.
  * </p>
  * <p>
  * The new settings are registered upon the completion of this call. Any
@@ -38,16 +38,34 @@ import com.amazonaws.AmazonWebServiceRequest;
  * affected.
  * </p>
  * <p>
- * <b>NOTE:</b> If a new value is specified for MinSize without
- * specifying the value for DesiredCapacity, and if the new MinSize is
- * larger than the current size of the Auto Scaling Group, there will be
- * an implicit call to SetDesiredCapacity to set the group to the new
- * MinSize. If a new value is specified for MaxSize without specifying
- * the value for DesiredCapacity, and the new MaxSize is smaller than the
- * current size of the Auto Scaling Group, there will be an implicit call
- * to SetDesiredCapacity to set the group to the new MaxSize. All other
- * optional parameters are left unchanged if not passed in the request.
+ * Note the following:
  * </p>
+ * 
+ * <ul>
+ * <li> <p>
+ * If you specify a new value for <code>MinSize</code> without specifying
+ * a value for <code>DesiredCapacity</code> ,
+ * and the new <code>MinSize</code> is larger than
+ * the current size of the group, we implicitly call SetDesiredCapacity
+ * to set the size of the group to the new value of <code>MinSize</code>
+ * .
+ * </p>
+ * </li>
+ * <li> <p>
+ * If you specify a new value for <code>MaxSize</code> without specifying
+ * a value for <code>DesiredCapacity</code> ,
+ * and the new <code>MaxSize</code> is smaller
+ * than the current size of the group, we implicitly call
+ * SetDesiredCapacity to set the size of the group to the new value of
+ * <code>MaxSize</code> .
+ * </p>
+ * </li>
+ * <li> <p>
+ * All other optional parameters are left unchanged if not specified.
+ * </p>
+ * </li>
+ * 
+ * </ul>
  *
  * @see com.amazonaws.services.autoscaling.AmazonAutoScaling#updateAutoScalingGroup(UpdateAutoScalingGroupRequest)
  */
@@ -82,21 +100,23 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     private Integer maxSize;
 
     /**
-     * The desired capacity for the Auto Scaling group.
+     * The number of EC2 instances that should be running in the Auto Scaling
+     * group. This number must be greater than or equal to the minimum size
+     * of the group and less than or equal to the maximum size of the group.
      */
     private Integer desiredCapacity;
 
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before any further scaling activities can start. For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AS_Concepts.html#Cooldown">Cooldown
-     * Period</a>.
+     * before another scaling activity can start. For more information, see
+     * <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
+     * Auto Scaling Cooldowns</a>.
      */
     private Integer defaultCooldown;
 
     /**
-     * Availability Zones for the group.
+     * One or more Availability Zones for the group.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -115,19 +135,18 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     private String healthCheckType;
 
     /**
-     * The length of time that Auto Scaling waits before checking an
-     * instance's health status. The grace period begins when the instance
-     * passes System Status and the Instance Status checks from Amazon EC2.
-     * For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
+     * The amount of time, in seconds, that Auto Scaling waits before
+     * checking the health status of an instance. The grace period begins
+     * when the instance passes the system status and instance status checks
+     * from Amazon EC2. For more information, see <a href=""/>.
      */
     private Integer healthCheckGracePeriod;
 
     /**
-     * The name of the cluster placement group, if applicable. For more
-     * information, go to <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html">
-     * Using Cluster Instances</a> in the Amazon EC2 User Guide.
+     * The name of the placement group into which you'll launch your
+     * instances, if any. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
+     * Groups</a>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -136,15 +155,14 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     private String placementGroup;
 
     /**
-     * The subnet identifier for the Amazon VPC connection, if applicable.
-     * You can specify several subnets in a comma-separated list. <p> When
-     * you specify <code>VPCZoneIdentifier</code> with
-     * <code>AvailabilityZones</code>, ensure that the subnets' Availability
-     * Zones match the values you specify for <code>AvailabilityZones</code>.
-     * <p> For more information on creating your Auto Scaling group in Amazon
-     * VPC by specifying subnets, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Launch
-     * Auto Scaling Instances into Amazon VPC</a> in the the <i>Auto Scaling
+     * The ID of the subnet, if you are launching into a VPC. You can specify
+     * several subnets in a comma-separated list. <p>When you specify
+     * <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
+     * ensure that the subnets' Availability Zones match the values you
+     * specify for <code>AvailabilityZones</code>. <p>For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     * Scaling and Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
      * Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
@@ -156,10 +174,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * A standalone termination policy or a list of termination policies used
      * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p> For more information on creating a
-     * termination policy for your Auto Scaling group, go to <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Instance
-     * Termination Policy for Your Auto Scaling Group</a> in the the <i>Auto
+     * order that they are listed. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Choosing
+     * a Termination Policy for Your Auto Scaling Group</a> in the <i>Auto
      * Scaling Developer Guide</i>.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> terminationPolicies;
@@ -321,29 +338,41 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The desired capacity for the Auto Scaling group.
+     * The number of EC2 instances that should be running in the Auto Scaling
+     * group. This number must be greater than or equal to the minimum size
+     * of the group and less than or equal to the maximum size of the group.
      *
-     * @return The desired capacity for the Auto Scaling group.
+     * @return The number of EC2 instances that should be running in the Auto Scaling
+     *         group. This number must be greater than or equal to the minimum size
+     *         of the group and less than or equal to the maximum size of the group.
      */
     public Integer getDesiredCapacity() {
         return desiredCapacity;
     }
     
     /**
-     * The desired capacity for the Auto Scaling group.
+     * The number of EC2 instances that should be running in the Auto Scaling
+     * group. This number must be greater than or equal to the minimum size
+     * of the group and less than or equal to the maximum size of the group.
      *
-     * @param desiredCapacity The desired capacity for the Auto Scaling group.
+     * @param desiredCapacity The number of EC2 instances that should be running in the Auto Scaling
+     *         group. This number must be greater than or equal to the minimum size
+     *         of the group and less than or equal to the maximum size of the group.
      */
     public void setDesiredCapacity(Integer desiredCapacity) {
         this.desiredCapacity = desiredCapacity;
     }
     
     /**
-     * The desired capacity for the Auto Scaling group.
+     * The number of EC2 instances that should be running in the Auto Scaling
+     * group. This number must be greater than or equal to the minimum size
+     * of the group and less than or equal to the maximum size of the group.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param desiredCapacity The desired capacity for the Auto Scaling group.
+     * @param desiredCapacity The number of EC2 instances that should be running in the Auto Scaling
+     *         group. This number must be greater than or equal to the minimum size
+     *         of the group and less than or equal to the maximum size of the group.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -355,16 +384,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before any further scaling activities can start. For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AS_Concepts.html#Cooldown">Cooldown
-     * Period</a>.
+     * before another scaling activity can start. For more information, see
+     * <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
+     * Auto Scaling Cooldowns</a>.
      *
      * @return The amount of time, in seconds, after a scaling activity completes
-     *         before any further scaling activities can start. For more information,
-     *         see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AS_Concepts.html#Cooldown">Cooldown
-     *         Period</a>.
+     *         before another scaling activity can start. For more information, see
+     *         <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
+     *         Auto Scaling Cooldowns</a>.
      */
     public Integer getDefaultCooldown() {
         return defaultCooldown;
@@ -372,16 +401,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before any further scaling activities can start. For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AS_Concepts.html#Cooldown">Cooldown
-     * Period</a>.
+     * before another scaling activity can start. For more information, see
+     * <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
+     * Auto Scaling Cooldowns</a>.
      *
      * @param defaultCooldown The amount of time, in seconds, after a scaling activity completes
-     *         before any further scaling activities can start. For more information,
-     *         see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AS_Concepts.html#Cooldown">Cooldown
-     *         Period</a>.
+     *         before another scaling activity can start. For more information, see
+     *         <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
+     *         Auto Scaling Cooldowns</a>.
      */
     public void setDefaultCooldown(Integer defaultCooldown) {
         this.defaultCooldown = defaultCooldown;
@@ -389,18 +418,18 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before any further scaling activities can start. For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AS_Concepts.html#Cooldown">Cooldown
-     * Period</a>.
+     * before another scaling activity can start. For more information, see
+     * <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
+     * Auto Scaling Cooldowns</a>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param defaultCooldown The amount of time, in seconds, after a scaling activity completes
-     *         before any further scaling activities can start. For more information,
-     *         see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AS_Concepts.html#Cooldown">Cooldown
-     *         Period</a>.
+     *         before another scaling activity can start. For more information, see
+     *         <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
+     *         Auto Scaling Cooldowns</a>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -411,12 +440,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Availability Zones for the group.
+     * One or more Availability Zones for the group.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @return Availability Zones for the group.
+     * @return One or more Availability Zones for the group.
      */
     public java.util.List<String> getAvailabilityZones() {
         if (availabilityZones == null) {
@@ -427,12 +456,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
     
     /**
-     * Availability Zones for the group.
+     * One or more Availability Zones for the group.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @param availabilityZones Availability Zones for the group.
+     * @param availabilityZones One or more Availability Zones for the group.
      */
     public void setAvailabilityZones(java.util.Collection<String> availabilityZones) {
         if (availabilityZones == null) {
@@ -445,14 +474,14 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
     
     /**
-     * Availability Zones for the group.
+     * One or more Availability Zones for the group.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @param availabilityZones Availability Zones for the group.
+     * @param availabilityZones One or more Availability Zones for the group.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -466,14 +495,14 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
     
     /**
-     * Availability Zones for the group.
+     * One or more Availability Zones for the group.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @param availabilityZones Availability Zones for the group.
+     * @param availabilityZones One or more Availability Zones for the group.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -548,53 +577,47 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The length of time that Auto Scaling waits before checking an
-     * instance's health status. The grace period begins when the instance
-     * passes System Status and the Instance Status checks from Amazon EC2.
-     * For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
+     * The amount of time, in seconds, that Auto Scaling waits before
+     * checking the health status of an instance. The grace period begins
+     * when the instance passes the system status and instance status checks
+     * from Amazon EC2. For more information, see <a href=""/>.
      *
-     * @return The length of time that Auto Scaling waits before checking an
-     *         instance's health status. The grace period begins when the instance
-     *         passes System Status and the Instance Status checks from Amazon EC2.
-     *         For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
+     * @return The amount of time, in seconds, that Auto Scaling waits before
+     *         checking the health status of an instance. The grace period begins
+     *         when the instance passes the system status and instance status checks
+     *         from Amazon EC2. For more information, see <a href=""/>.
      */
     public Integer getHealthCheckGracePeriod() {
         return healthCheckGracePeriod;
     }
     
     /**
-     * The length of time that Auto Scaling waits before checking an
-     * instance's health status. The grace period begins when the instance
-     * passes System Status and the Instance Status checks from Amazon EC2.
-     * For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
+     * The amount of time, in seconds, that Auto Scaling waits before
+     * checking the health status of an instance. The grace period begins
+     * when the instance passes the system status and instance status checks
+     * from Amazon EC2. For more information, see <a href=""/>.
      *
-     * @param healthCheckGracePeriod The length of time that Auto Scaling waits before checking an
-     *         instance's health status. The grace period begins when the instance
-     *         passes System Status and the Instance Status checks from Amazon EC2.
-     *         For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
+     * @param healthCheckGracePeriod The amount of time, in seconds, that Auto Scaling waits before
+     *         checking the health status of an instance. The grace period begins
+     *         when the instance passes the system status and instance status checks
+     *         from Amazon EC2. For more information, see <a href=""/>.
      */
     public void setHealthCheckGracePeriod(Integer healthCheckGracePeriod) {
         this.healthCheckGracePeriod = healthCheckGracePeriod;
     }
     
     /**
-     * The length of time that Auto Scaling waits before checking an
-     * instance's health status. The grace period begins when the instance
-     * passes System Status and the Instance Status checks from Amazon EC2.
-     * For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
+     * The amount of time, in seconds, that Auto Scaling waits before
+     * checking the health status of an instance. The grace period begins
+     * when the instance passes the system status and instance status checks
+     * from Amazon EC2. For more information, see <a href=""/>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param healthCheckGracePeriod The length of time that Auto Scaling waits before checking an
-     *         instance's health status. The grace period begins when the instance
-     *         passes System Status and the Instance Status checks from Amazon EC2.
-     *         For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
+     * @param healthCheckGracePeriod The amount of time, in seconds, that Auto Scaling waits before
+     *         checking the health status of an instance. The grace period begins
+     *         when the instance passes the system status and instance status checks
+     *         from Amazon EC2. For more information, see <a href=""/>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -605,48 +628,48 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The name of the cluster placement group, if applicable. For more
-     * information, go to <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html">
-     * Using Cluster Instances</a> in the Amazon EC2 User Guide.
+     * The name of the placement group into which you'll launch your
+     * instances, if any. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
+     * Groups</a>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The name of the cluster placement group, if applicable. For more
-     *         information, go to <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html">
-     *         Using Cluster Instances</a> in the Amazon EC2 User Guide.
+     * @return The name of the placement group into which you'll launch your
+     *         instances, if any. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
+     *         Groups</a>.
      */
     public String getPlacementGroup() {
         return placementGroup;
     }
     
     /**
-     * The name of the cluster placement group, if applicable. For more
-     * information, go to <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html">
-     * Using Cluster Instances</a> in the Amazon EC2 User Guide.
+     * The name of the placement group into which you'll launch your
+     * instances, if any. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
+     * Groups</a>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param placementGroup The name of the cluster placement group, if applicable. For more
-     *         information, go to <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html">
-     *         Using Cluster Instances</a> in the Amazon EC2 User Guide.
+     * @param placementGroup The name of the placement group into which you'll launch your
+     *         instances, if any. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
+     *         Groups</a>.
      */
     public void setPlacementGroup(String placementGroup) {
         this.placementGroup = placementGroup;
     }
     
     /**
-     * The name of the cluster placement group, if applicable. For more
-     * information, go to <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html">
-     * Using Cluster Instances</a> in the Amazon EC2 User Guide.
+     * The name of the placement group into which you'll launch your
+     * instances, if any. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
+     * Groups</a>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -654,10 +677,10 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param placementGroup The name of the cluster placement group, if applicable. For more
-     *         information, go to <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html">
-     *         Using Cluster Instances</a> in the Amazon EC2 User Guide.
+     * @param placementGroup The name of the placement group into which you'll launch your
+     *         instances, if any. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
+     *         Groups</a>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -668,30 +691,28 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The subnet identifier for the Amazon VPC connection, if applicable.
-     * You can specify several subnets in a comma-separated list. <p> When
-     * you specify <code>VPCZoneIdentifier</code> with
-     * <code>AvailabilityZones</code>, ensure that the subnets' Availability
-     * Zones match the values you specify for <code>AvailabilityZones</code>.
-     * <p> For more information on creating your Auto Scaling group in Amazon
-     * VPC by specifying subnets, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Launch
-     * Auto Scaling Instances into Amazon VPC</a> in the the <i>Auto Scaling
+     * The ID of the subnet, if you are launching into a VPC. You can specify
+     * several subnets in a comma-separated list. <p>When you specify
+     * <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
+     * ensure that the subnets' Availability Zones match the values you
+     * specify for <code>AvailabilityZones</code>. <p>For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     * Scaling and Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
      * Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The subnet identifier for the Amazon VPC connection, if applicable.
-     *         You can specify several subnets in a comma-separated list. <p> When
-     *         you specify <code>VPCZoneIdentifier</code> with
-     *         <code>AvailabilityZones</code>, ensure that the subnets' Availability
-     *         Zones match the values you specify for <code>AvailabilityZones</code>.
-     *         <p> For more information on creating your Auto Scaling group in Amazon
-     *         VPC by specifying subnets, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Launch
-     *         Auto Scaling Instances into Amazon VPC</a> in the the <i>Auto Scaling
+     * @return The ID of the subnet, if you are launching into a VPC. You can specify
+     *         several subnets in a comma-separated list. <p>When you specify
+     *         <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
+     *         ensure that the subnets' Availability Zones match the values you
+     *         specify for <code>AvailabilityZones</code>. <p>For more information,
+     *         see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     *         Scaling and Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
      *         Developer Guide</i>.
      */
     public String getVPCZoneIdentifier() {
@@ -699,30 +720,28 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
     
     /**
-     * The subnet identifier for the Amazon VPC connection, if applicable.
-     * You can specify several subnets in a comma-separated list. <p> When
-     * you specify <code>VPCZoneIdentifier</code> with
-     * <code>AvailabilityZones</code>, ensure that the subnets' Availability
-     * Zones match the values you specify for <code>AvailabilityZones</code>.
-     * <p> For more information on creating your Auto Scaling group in Amazon
-     * VPC by specifying subnets, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Launch
-     * Auto Scaling Instances into Amazon VPC</a> in the the <i>Auto Scaling
+     * The ID of the subnet, if you are launching into a VPC. You can specify
+     * several subnets in a comma-separated list. <p>When you specify
+     * <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
+     * ensure that the subnets' Availability Zones match the values you
+     * specify for <code>AvailabilityZones</code>. <p>For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     * Scaling and Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
      * Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param vPCZoneIdentifier The subnet identifier for the Amazon VPC connection, if applicable.
-     *         You can specify several subnets in a comma-separated list. <p> When
-     *         you specify <code>VPCZoneIdentifier</code> with
-     *         <code>AvailabilityZones</code>, ensure that the subnets' Availability
-     *         Zones match the values you specify for <code>AvailabilityZones</code>.
-     *         <p> For more information on creating your Auto Scaling group in Amazon
-     *         VPC by specifying subnets, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Launch
-     *         Auto Scaling Instances into Amazon VPC</a> in the the <i>Auto Scaling
+     * @param vPCZoneIdentifier The ID of the subnet, if you are launching into a VPC. You can specify
+     *         several subnets in a comma-separated list. <p>When you specify
+     *         <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
+     *         ensure that the subnets' Availability Zones match the values you
+     *         specify for <code>AvailabilityZones</code>. <p>For more information,
+     *         see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     *         Scaling and Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
      *         Developer Guide</i>.
      */
     public void setVPCZoneIdentifier(String vPCZoneIdentifier) {
@@ -730,15 +749,14 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
     
     /**
-     * The subnet identifier for the Amazon VPC connection, if applicable.
-     * You can specify several subnets in a comma-separated list. <p> When
-     * you specify <code>VPCZoneIdentifier</code> with
-     * <code>AvailabilityZones</code>, ensure that the subnets' Availability
-     * Zones match the values you specify for <code>AvailabilityZones</code>.
-     * <p> For more information on creating your Auto Scaling group in Amazon
-     * VPC by specifying subnets, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Launch
-     * Auto Scaling Instances into Amazon VPC</a> in the the <i>Auto Scaling
+     * The ID of the subnet, if you are launching into a VPC. You can specify
+     * several subnets in a comma-separated list. <p>When you specify
+     * <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
+     * ensure that the subnets' Availability Zones match the values you
+     * specify for <code>AvailabilityZones</code>. <p>For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     * Scaling and Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
      * Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
@@ -747,15 +765,14 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param vPCZoneIdentifier The subnet identifier for the Amazon VPC connection, if applicable.
-     *         You can specify several subnets in a comma-separated list. <p> When
-     *         you specify <code>VPCZoneIdentifier</code> with
-     *         <code>AvailabilityZones</code>, ensure that the subnets' Availability
-     *         Zones match the values you specify for <code>AvailabilityZones</code>.
-     *         <p> For more information on creating your Auto Scaling group in Amazon
-     *         VPC by specifying subnets, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Launch
-     *         Auto Scaling Instances into Amazon VPC</a> in the the <i>Auto Scaling
+     * @param vPCZoneIdentifier The ID of the subnet, if you are launching into a VPC. You can specify
+     *         several subnets in a comma-separated list. <p>When you specify
+     *         <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
+     *         ensure that the subnets' Availability Zones match the values you
+     *         specify for <code>AvailabilityZones</code>. <p>For more information,
+     *         see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     *         Scaling and Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
      *         Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
@@ -769,18 +786,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * A standalone termination policy or a list of termination policies used
      * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p> For more information on creating a
-     * termination policy for your Auto Scaling group, go to <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Instance
-     * Termination Policy for Your Auto Scaling Group</a> in the the <i>Auto
+     * order that they are listed. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Choosing
+     * a Termination Policy for Your Auto Scaling Group</a> in the <i>Auto
      * Scaling Developer Guide</i>.
      *
      * @return A standalone termination policy or a list of termination policies used
      *         to select the instance to terminate. The policies are executed in the
-     *         order that they are listed. <p> For more information on creating a
-     *         termination policy for your Auto Scaling group, go to <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Instance
-     *         Termination Policy for Your Auto Scaling Group</a> in the the <i>Auto
+     *         order that they are listed. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Choosing
+     *         a Termination Policy for Your Auto Scaling Group</a> in the <i>Auto
      *         Scaling Developer Guide</i>.
      */
     public java.util.List<String> getTerminationPolicies() {
@@ -794,18 +809,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * A standalone termination policy or a list of termination policies used
      * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p> For more information on creating a
-     * termination policy for your Auto Scaling group, go to <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Instance
-     * Termination Policy for Your Auto Scaling Group</a> in the the <i>Auto
+     * order that they are listed. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Choosing
+     * a Termination Policy for Your Auto Scaling Group</a> in the <i>Auto
      * Scaling Developer Guide</i>.
      *
      * @param terminationPolicies A standalone termination policy or a list of termination policies used
      *         to select the instance to terminate. The policies are executed in the
-     *         order that they are listed. <p> For more information on creating a
-     *         termination policy for your Auto Scaling group, go to <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Instance
-     *         Termination Policy for Your Auto Scaling Group</a> in the the <i>Auto
+     *         order that they are listed. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Choosing
+     *         a Termination Policy for Your Auto Scaling Group</a> in the <i>Auto
      *         Scaling Developer Guide</i>.
      */
     public void setTerminationPolicies(java.util.Collection<String> terminationPolicies) {
@@ -821,20 +834,18 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * A standalone termination policy or a list of termination policies used
      * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p> For more information on creating a
-     * termination policy for your Auto Scaling group, go to <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Instance
-     * Termination Policy for Your Auto Scaling Group</a> in the the <i>Auto
+     * order that they are listed. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Choosing
+     * a Termination Policy for Your Auto Scaling Group</a> in the <i>Auto
      * Scaling Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param terminationPolicies A standalone termination policy or a list of termination policies used
      *         to select the instance to terminate. The policies are executed in the
-     *         order that they are listed. <p> For more information on creating a
-     *         termination policy for your Auto Scaling group, go to <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Instance
-     *         Termination Policy for Your Auto Scaling Group</a> in the the <i>Auto
+     *         order that they are listed. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Choosing
+     *         a Termination Policy for Your Auto Scaling Group</a> in the <i>Auto
      *         Scaling Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
@@ -851,20 +862,18 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * A standalone termination policy or a list of termination policies used
      * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p> For more information on creating a
-     * termination policy for your Auto Scaling group, go to <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Instance
-     * Termination Policy for Your Auto Scaling Group</a> in the the <i>Auto
+     * order that they are listed. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Choosing
+     * a Termination Policy for Your Auto Scaling Group</a> in the <i>Auto
      * Scaling Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param terminationPolicies A standalone termination policy or a list of termination policies used
      *         to select the instance to terminate. The policies are executed in the
-     *         order that they are listed. <p> For more information on creating a
-     *         termination policy for your Auto Scaling group, go to <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Instance
-     *         Termination Policy for Your Auto Scaling Group</a> in the the <i>Auto
+     *         order that they are listed. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-termination-policy.html">Choosing
+     *         a Termination Policy for Your Auto Scaling Group</a> in the <i>Auto
      *         Scaling Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained

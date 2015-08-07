@@ -52,7 +52,7 @@ public class Snapshot implements Serializable {
     private String progress;
 
     /**
-     * The AWS account ID of the Amazon EBS snapshot owner.
+     * The AWS account ID of the EBS snapshot owner.
      */
     private String ownerId;
 
@@ -81,6 +81,13 @@ public class Snapshot implements Serializable {
      * Indicates whether the snapshot is encrypted.
      */
     private Boolean encrypted;
+
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) that was used to protect the volume encryption key
+     * for the parent volume.
+     */
+    private String kmsKeyId;
 
     /**
      * The ID of the snapshot.
@@ -297,29 +304,29 @@ public class Snapshot implements Serializable {
     }
 
     /**
-     * The AWS account ID of the Amazon EBS snapshot owner.
+     * The AWS account ID of the EBS snapshot owner.
      *
-     * @return The AWS account ID of the Amazon EBS snapshot owner.
+     * @return The AWS account ID of the EBS snapshot owner.
      */
     public String getOwnerId() {
         return ownerId;
     }
     
     /**
-     * The AWS account ID of the Amazon EBS snapshot owner.
+     * The AWS account ID of the EBS snapshot owner.
      *
-     * @param ownerId The AWS account ID of the Amazon EBS snapshot owner.
+     * @param ownerId The AWS account ID of the EBS snapshot owner.
      */
     public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
     }
     
     /**
-     * The AWS account ID of the Amazon EBS snapshot owner.
+     * The AWS account ID of the EBS snapshot owner.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ownerId The AWS account ID of the Amazon EBS snapshot owner.
+     * @param ownerId The AWS account ID of the EBS snapshot owner.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -545,6 +552,51 @@ public class Snapshot implements Serializable {
     }
 
     /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) that was used to protect the volume encryption key
+     * for the parent volume.
+     *
+     * @return The full ARN of the AWS Key Management Service (AWS KMS) customer
+     *         master key (CMK) that was used to protect the volume encryption key
+     *         for the parent volume.
+     */
+    public String getKmsKeyId() {
+        return kmsKeyId;
+    }
+    
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) that was used to protect the volume encryption key
+     * for the parent volume.
+     *
+     * @param kmsKeyId The full ARN of the AWS Key Management Service (AWS KMS) customer
+     *         master key (CMK) that was used to protect the volume encryption key
+     *         for the parent volume.
+     */
+    public void setKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+    }
+    
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) that was used to protect the volume encryption key
+     * for the parent volume.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param kmsKeyId The full ARN of the AWS Key Management Service (AWS KMS) customer
+     *         master key (CMK) that was used to protect the volume encryption key
+     *         for the parent volume.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public Snapshot withKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -566,7 +618,8 @@ public class Snapshot implements Serializable {
         if (getVolumeSize() != null) sb.append("VolumeSize: " + getVolumeSize() + ",");
         if (getOwnerAlias() != null) sb.append("OwnerAlias: " + getOwnerAlias() + ",");
         if (getTags() != null) sb.append("Tags: " + getTags() + ",");
-        if (isEncrypted() != null) sb.append("Encrypted: " + isEncrypted() );
+        if (isEncrypted() != null) sb.append("Encrypted: " + isEncrypted() + ",");
+        if (getKmsKeyId() != null) sb.append("KmsKeyId: " + getKmsKeyId() );
         sb.append("}");
         return sb.toString();
     }
@@ -587,6 +640,7 @@ public class Snapshot implements Serializable {
         hashCode = prime * hashCode + ((getOwnerAlias() == null) ? 0 : getOwnerAlias().hashCode()); 
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode()); 
         hashCode = prime * hashCode + ((isEncrypted() == null) ? 0 : isEncrypted().hashCode()); 
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode()); 
         return hashCode;
     }
     
@@ -620,6 +674,8 @@ public class Snapshot implements Serializable {
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false) return false; 
         if (other.isEncrypted() == null ^ this.isEncrypted() == null) return false;
         if (other.isEncrypted() != null && other.isEncrypted().equals(this.isEncrypted()) == false) return false; 
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null) return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false) return false; 
         return true;
     }
     

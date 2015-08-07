@@ -48,6 +48,9 @@ public class GlobalSecondaryIndexDescriptionJsonUnmarshaller implements Unmarsha
             if (name.equals("IndexStatus")) {
                 globalSecondaryIndexDescription.setIndexStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
+            if (name.equals("Backfilling")) {
+                globalSecondaryIndexDescription.setBackfilling(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
             if (name.equals("ProvisionedThroughput")) {
                 globalSecondaryIndexDescription.setProvisionedThroughput(ProvisionedThroughputDescriptionJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
@@ -56,6 +59,9 @@ public class GlobalSecondaryIndexDescriptionJsonUnmarshaller implements Unmarsha
             } else 
             if (name.equals("ItemCount")) {
                 globalSecondaryIndexDescription.setItemCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("IndexArn")) {
+                globalSecondaryIndexDescription.setIndexArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
             {
                 reader.skipValue();

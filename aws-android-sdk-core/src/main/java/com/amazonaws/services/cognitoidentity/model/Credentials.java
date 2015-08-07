@@ -17,42 +17,56 @@ package com.amazonaws.services.cognitoidentity.model;
 import java.io.Serializable;
 
 /**
- * Credentials
+ * <p>
+ * Credentials for the the provided identity ID.
+ * </p>
  */
 public class Credentials implements Serializable {
 
+    /**
+     * The Access Key portion of the credentials.
+     */
     private String accessKeyId;
 
+    /**
+     * The Secret Access Key portion of the credentials
+     */
     private String secretKey;
 
+    /**
+     * The Session Token portion of the credentials
+     */
     private String sessionToken;
 
+    /**
+     * The date at which these credentials will expire.
+     */
     private java.util.Date expiration;
 
     /**
-     * Returns the value of the AccessKeyId property for this object.
+     * The Access Key portion of the credentials.
      *
-     * @return The value of the AccessKeyId property for this object.
+     * @return The Access Key portion of the credentials.
      */
     public String getAccessKeyId() {
         return accessKeyId;
     }
     
     /**
-     * Sets the value of the AccessKeyId property for this object.
+     * The Access Key portion of the credentials.
      *
-     * @param accessKeyId The new value for the AccessKeyId property for this object.
+     * @param accessKeyId The Access Key portion of the credentials.
      */
     public void setAccessKeyId(String accessKeyId) {
         this.accessKeyId = accessKeyId;
     }
     
     /**
-     * Sets the value of the AccessKeyId property for this object.
+     * The Access Key portion of the credentials.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param accessKeyId The new value for the AccessKeyId property for this object.
+     * @param accessKeyId The Access Key portion of the credentials.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -63,29 +77,29 @@ public class Credentials implements Serializable {
     }
 
     /**
-     * Returns the value of the SecretKey property for this object.
+     * The Secret Access Key portion of the credentials
      *
-     * @return The value of the SecretKey property for this object.
+     * @return The Secret Access Key portion of the credentials
      */
     public String getSecretKey() {
         return secretKey;
     }
     
     /**
-     * Sets the value of the SecretKey property for this object.
+     * The Secret Access Key portion of the credentials
      *
-     * @param secretKey The new value for the SecretKey property for this object.
+     * @param secretKey The Secret Access Key portion of the credentials
      */
     public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
     }
     
     /**
-     * Sets the value of the SecretKey property for this object.
+     * The Secret Access Key portion of the credentials
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param secretKey The new value for the SecretKey property for this object.
+     * @param secretKey The Secret Access Key portion of the credentials
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -96,29 +110,29 @@ public class Credentials implements Serializable {
     }
 
     /**
-     * Returns the value of the SessionToken property for this object.
+     * The Session Token portion of the credentials
      *
-     * @return The value of the SessionToken property for this object.
+     * @return The Session Token portion of the credentials
      */
     public String getSessionToken() {
         return sessionToken;
     }
     
     /**
-     * Sets the value of the SessionToken property for this object.
+     * The Session Token portion of the credentials
      *
-     * @param sessionToken The new value for the SessionToken property for this object.
+     * @param sessionToken The Session Token portion of the credentials
      */
     public void setSessionToken(String sessionToken) {
         this.sessionToken = sessionToken;
     }
     
     /**
-     * Sets the value of the SessionToken property for this object.
+     * The Session Token portion of the credentials
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sessionToken The new value for the SessionToken property for this object.
+     * @param sessionToken The Session Token portion of the credentials
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -129,29 +143,29 @@ public class Credentials implements Serializable {
     }
 
     /**
-     * Returns the value of the Expiration property for this object.
+     * The date at which these credentials will expire.
      *
-     * @return The value of the Expiration property for this object.
+     * @return The date at which these credentials will expire.
      */
     public java.util.Date getExpiration() {
         return expiration;
     }
     
     /**
-     * Sets the value of the Expiration property for this object.
+     * The date at which these credentials will expire.
      *
-     * @param expiration The new value for the Expiration property for this object.
+     * @param expiration The date at which these credentials will expire.
      */
     public void setExpiration(java.util.Date expiration) {
         this.expiration = expiration;
     }
     
     /**
-     * Sets the value of the Expiration property for this object.
+     * The date at which these credentials will expire.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param expiration The new value for the Expiration property for this object.
+     * @param expiration The date at which these credentials will expire.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

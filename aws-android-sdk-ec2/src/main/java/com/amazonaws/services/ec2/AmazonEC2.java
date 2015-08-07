@@ -150,6 +150,40 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Creates one or more flow logs to capture IP traffic for a specific
+     * network interface, subnet, or VPC. Flow logs are delivered to a
+     * specified log group in Amazon CloudWatch Logs. If you specify a VPC or
+     * subnet in the request, a log stream is created in CloudWatch Logs for
+     * each network interface in the subnet or VPC. Log streams can include
+     * information about accepted and rejected traffic to a network
+     * interface. You can view the data in your log streams using Amazon
+     * CloudWatch Logs.
+     * </p>
+     * <p>
+     * In your request, you must also specify an IAM role that has
+     * permission to publish logs to CloudWatch Logs.
+     * </p>
+     *
+     * @param createFlowLogsRequest Container for the necessary parameters to
+     *           execute the CreateFlowLogs service method on AmazonEC2.
+     * 
+     * @return The response from the CreateFlowLogs service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CreateFlowLogsResult createFlowLogs(CreateFlowLogsRequest createFlowLogsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes one or more of the Availability Zones that are available to
      * you. The results include zones only for the region you're currently
      * using. If there is an event impacting an Availability Zone, you can
@@ -183,8 +217,36 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Detaches an Amazon EBS volume from an instance. Make sure to unmount
-     * any file systems on the device within your operating system before
+     * Restores an Elastic IP address that was previously moved to the
+     * EC2-VPC platform back to the EC2-Classic platform. You cannot move an
+     * Elastic IP address that was originally allocated for use in EC2-VPC.
+     * The Elastic IP address must not be associated with an instance or
+     * network interface.
+     * </p>
+     *
+     * @param restoreAddressToClassicRequest Container for the necessary
+     *           parameters to execute the RestoreAddressToClassic service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the RestoreAddressToClassic service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public RestoreAddressToClassicResult restoreAddressToClassic(RestoreAddressToClassicRequest restoreAddressToClassicRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Detaches an EBS volume from an instance. Make sure to unmount any
+     * file systems on the device within your operating system before
      * detaching the volume. Failure to do so results in the volume being
      * stuck in a busy state while detaching.
      * </p>
@@ -194,9 +256,9 @@ public interface AmazonEC2 {
      * stop the instance first.
      * </p>
      * <p>
-     * If the root volume is detached from an instance with an AWS
-     * Marketplace product code, then the AWS Marketplace product codes from
-     * that volume are no longer associated with the instance.
+     * When a volume with an AWS Marketplace product code is detached from
+     * an instance, the product code is no longer associated with the
+     * instance.
      * </p>
      * <p>
      * For more information, see
@@ -363,7 +425,7 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Exports a running or stopped instance to an Amazon S3 bucket.
+     * Exports a running or stopped instance to an S3 bucket.
      * </p>
      * <p>
      * For information about the supported operating systems, image formats,
@@ -393,46 +455,10 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Associates a set of DHCP options (that you've previously created)
-     * with the specified VPC, or associates no DHCP options with the VPC.
-     * </p>
-     * <p>
-     * After you associate the options with the VPC, any existing instances
-     * and all new instances that you launch in that VPC use the options. You
-     * don't need to restart or relaunch the instances. They automatically
-     * pick up the changes within a few hours, depending on how frequently
-     * the instance renews its DHCP lease. You can explicitly renew the lease
-     * using the operating system on the instance.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html"> DHCP Options Sets </a>
-     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
-     * </p>
-     *
-     * @param associateDhcpOptionsRequest Container for the necessary
-     *           parameters to execute the AssociateDhcpOptions service method on
-     *           AmazonEC2.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void associateDhcpOptions(AssociateDhcpOptionsRequest associateDhcpOptionsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Adds one or more egress rules to a security group for use with a VPC.
      * Specifically, this action permits instances to send traffic to one or
-     * more CIDR IP address ranges, or to one or more security groups for the
-     * same VPC.
+     * more destination CIDR IP address ranges, or to one or more destination
+     * security groups for the same VPC.
      * </p>
      * <p>
      * <b>IMPORTANT:</b> You can have up to 50 rules per security group
@@ -476,13 +502,52 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Associates a set of DHCP options (that you've previously created)
+     * with the specified VPC, or associates no DHCP options with the VPC.
+     * </p>
+     * <p>
+     * After you associate the options with the VPC, any existing instances
+     * and all new instances that you launch in that VPC use the options. You
+     * don't need to restart or relaunch the instances. They automatically
+     * pick up the changes within a few hours, depending on how frequently
+     * the instance renews its DHCP lease. You can explicitly renew the lease
+     * using the operating system on the instance.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html"> DHCP Options Sets </a>
+     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
+     * </p>
+     *
+     * @param associateDhcpOptionsRequest Container for the necessary
+     *           parameters to execute the AssociateDhcpOptions service method on
+     *           AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void associateDhcpOptions(AssociateDhcpOptionsRequest associateDhcpOptionsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Retrieves the encrypted administrator password for an instance
      * running Windows.
      * </p>
      * <p>
-     * The Windows password is only generated the first time an AMI is
-     * launched. It is not generated for rebundled AMIs or after the password
-     * is changed on an instance.
+     * The Windows password is generated at boot if the
+     * <code>EC2Config</code> service plugin, <code>Ec2SetPassword</code> ,
+     * is enabled. This usually only happens the first time an AMI is
+     * launched, and then <code>Ec2SetPassword</code> is automatically
+     * disabled. The password is not generated for rebundled AMIs unless
+     * <code>Ec2SetPassword</code> is enabled before bundling.
      * </p>
      * <p>
      * The password is encrypted using the key pair that you specified when
@@ -655,6 +720,30 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes the running instances for the specified Spot fleet.
+     * </p>
+     *
+     * @param describeSpotFleetInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeSpotFleetInstances service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeSpotFleetInstances service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeSpotFleetInstancesResult describeSpotFleetInstances(DescribeSpotFleetInstancesRequest describeSpotFleetInstancesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a security group.
      * </p>
      * <p>
@@ -709,23 +798,18 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the Spot Price history. Spot Instances are instances that
-     * Amazon EC2 starts on your behalf when the maximum price that you
-     * specify exceeds the current Spot Price. Amazon EC2 periodically sets
-     * the Spot Price based on available Spot Instance capacity and current
-     * Spot Instance requests. For more information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Describes the Spot Price history. The prices returned are listed in
+     * chronological order, from the oldest to the most recent, for up to the
+     * past 90 days. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html"> Spot Instance Pricing History </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
-     * When you specify an Availability Zone, this operation describes the
-     * price history for the specified Availability Zone with the most recent
-     * set of prices listed first. If you don't specify an Availability Zone,
-     * you get the prices across all Availability Zones, starting with the
-     * most recent set. However, if you're using an API version earlier than
-     * 2011-05-15, you get the lowest price across the region for the
-     * specified time period. The prices returned are listed in chronological
-     * order, from the oldest to the most recent.
+     * When you specify a start and end time, this operation returns the
+     * prices of the instance types within the time range that you specified
+     * and the time when the price changed. The price is valid within the
+     * time period that you specified; the response merely indicates the last
+     * time that the price changed.
      * </p>
      *
      * @param describeSpotPriceHistoryRequest Container for the necessary
@@ -801,9 +885,97 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Creates a set of DHCP options for your VPC. After creating the set,
+     * you must associate it with the VPC, causing all existing and new
+     * instances that you launch in the VPC to use this set of DHCP options.
+     * The following are the individual DHCP options you can specify. For
+     * more information about the options, see
+     * <a href="http://www.ietf.org/rfc/rfc2132.txt"> RFC 2132 </a>
+     * .
+     * </p>
+     * 
+     * <ul>
+     * <li> <code>domain-name-servers</code> - The IP addresses of up to
+     * four domain name servers, or <code>AmazonProvidedDNS</code> . The
+     * default DHCP option set specifies <code>AmazonProvidedDNS</code> . If
+     * specifying more than one domain name server, specify the IP addresses
+     * in a single parameter, separated by commas.</li>
+     * <li> <code>domain-name</code> - If you're using AmazonProvidedDNS in
+     * <code>us-east-1</code> , specify <code>ec2.internal</code> . If you're
+     * using AmazonProvidedDNS in another region, specify
+     * <code>region.compute.internal</code> (for example,
+     * <code>ap-northeast-1.compute.internal</code> ). Otherwise, specify a
+     * domain name (for example, <code>MyCompany.com</code> ).
+     * <b>Important</b> : Some Linux operating systems accept multiple domain
+     * names separated by spaces. However, Windows and other Linux operating
+     * systems treat the value as a single domain, which results in
+     * unexpected behavior. If your DHCP options set is associated with a VPC
+     * that has instances with multiple operating systems, specify only one
+     * domain name.</li>
+     * <li> <code>ntp-servers</code> - The IP addresses of up to four
+     * Network Time Protocol (NTP) servers.</li>
+     * <li> <code>netbios-name-servers</code> - The IP addresses of up to
+     * four NetBIOS name servers.</li>
+     * <li> <code>netbios-node-type</code> - The NetBIOS node type (1, 2, 4,
+     * or 8). We recommend that you specify 2 (broadcast and multicast are
+     * not currently supported). For more information about these node types,
+     * see
+     * <a href="http://www.ietf.org/rfc/rfc2132.txt"> RFC 2132 </a>
+     * . </li>
+     * 
+     * </ul>
+     * <p>
+     * Your VPC automatically starts out with a set of DHCP options that
+     * includes only a DNS server that we provide (AmazonProvidedDNS). If you
+     * create a set of options, and if your VPC has an Internet gateway, make
+     * sure to set the <code>domain-name-servers</code> option either to
+     * <code>AmazonProvidedDNS</code> or to a domain name server of your
+     * choice. For more information about DHCP options, see
+     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html"> DHCP Options Sets </a>
+     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
+     * </p>
+     *
+     * @param createDhcpOptionsRequest Container for the necessary parameters
+     *           to execute the CreateDhcpOptions service method on AmazonEC2.
+     * 
+     * @return The response from the CreateDhcpOptions service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CreateDhcpOptionsResult createDhcpOptions(CreateDhcpOptionsRequest createDhcpOptionsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a listing for Amazon EC2 Reserved Instances to be sold in the
      * Reserved Instance Marketplace. You can submit one Reserved Instance
-     * listing at a time.
+     * listing at a time. To get a list of your Reserved Instances, you can
+     * use the DescribeReservedInstances operation.
+     * </p>
+     * <p>
+     * The Reserved Instance Marketplace matches sellers who want to resell
+     * Reserved Instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved Instances bought and
+     * sold through the Reserved Instance Marketplace work like any other
+     * Reserved Instances.
+     * </p>
+     * <p>
+     * To sell your Reserved Instances, you must first register as a seller
+     * in the Reserved Instance Marketplace. After completing the
+     * registration process, you can create a Reserved Instance Marketplace
+     * listing of some or all of your Reserved Instances, and specify the
+     * upfront price to receive for them. Your Reserved Instance listings
+     * then become available for purchase. To view the details of your
+     * Reserved Instance listing, you can use the
+     * DescribeReservedInstancesListings operation.
      * </p>
      * <p>
      * For more information, see
@@ -832,49 +1004,16 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Creates a set of DHCP options for your VPC. After creating the set,
-     * you must associate it with the VPC, causing all existing and new
-     * instances that you launch in the VPC to use this set of DHCP options.
-     * The following are the individual DHCP options you can specify. For
-     * more information about the options, see
-     * <a href="http://www.ietf.org/rfc/rfc2132.txt"> RFC 2132 </a>
-     * .
-     * </p>
-     * 
-     * <ul>
-     * <li> <code>domain-name-servers</code> - The IP addresses of up to
-     * four domain name servers, or <code>AmazonProvidedDNS</code> . The
-     * default DHCP option set specifies <code>AmazonProvidedDNS</code> . If
-     * specifying more than one domain name server, specify the IP addresses
-     * in a single parameter, separated by commas.</li>
-     * <li> <code>domain-name</code> - If you're using AmazonProvidedDNS in
-     * <code>us-east-1</code> , specify <code>ec2.internal</code> . If you're
-     * using AmazonProvidedDNS in another region, specify
-     * <code>region.compute.internal</code> (for example,
-     * <code>ap-northeast-1.compute.internal</code> ). Otherwise, specify a
-     * domain name (for example, <code>MyCompany.com</code> ).</li>
-     * <li> <code>ntp-servers</code> - The IP addresses of up to four
-     * Network Time Protocol (NTP) servers.</li>
-     * <li> <code>netbios-name-servers</code> - The IP addresses of up to
-     * four NetBIOS name servers.</li>
-     * <li> <code>netbios-node-type</code> - The NetBIOS node type (1, 2, 4,
-     * or 8). We recommend that you specify 2 (broadcast and multicast are
-     * not currently supported). For more information about these node types,
-     * see
-     * <a href="http://www.ietf.org/rfc/rfc2132.txt"> RFC 2132 </a>
-     * . </li>
-     * 
-     * </ul>
-     * <p>
-     * For more information about DHCP options, see
-     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html"> DHCP Options Sets </a>
-     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
+     * Deletes one or more specified VPC endpoints. Deleting the endpoint
+     * also deletes the endpoint routes in the route tables that were
+     * associated with the endpoint.
      * </p>
      *
-     * @param createDhcpOptionsRequest Container for the necessary parameters
-     *           to execute the CreateDhcpOptions service method on AmazonEC2.
+     * @param deleteVpcEndpointsRequest Container for the necessary
+     *           parameters to execute the DeleteVpcEndpoints service method on
+     *           AmazonEC2.
      * 
-     * @return The response from the CreateDhcpOptions service method, as
+     * @return The response from the DeleteVpcEndpoints service method, as
      *         returned by AmazonEC2.
      * 
      *
@@ -886,7 +1025,7 @@ public interface AmazonEC2 {
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public CreateDhcpOptionsResult createDhcpOptions(CreateDhcpOptionsRequest createDhcpOptionsRequest) 
+    public DeleteVpcEndpointsResult deleteVpcEndpoints(DeleteVpcEndpointsRequest deleteVpcEndpointsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -965,8 +1104,8 @@ public interface AmazonEC2 {
      * <p>
      * Creates an import volume task using metadata from the specified disk
      * image. After importing the image, you then upload it using the
-     * ec2-import-volume command in the Amazon EC2 command-line interface
-     * (CLI) tools. For more information, see
+     * <code>ec2-import-volume</code> command in the Amazon EC2 command-line
+     * interface (CLI) tools. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -1023,8 +1162,10 @@ public interface AmazonEC2 {
      * <p>
      * Rejects a VPC peering connection request. The VPC peering connection
      * must be in the <code>pending-acceptance</code> state. Use the
-     * <code>DescribeVpcPeeringConnections</code> request to view your
-     * outstanding VPC peering connection requests.
+     * DescribeVpcPeeringConnections request to view your outstanding VPC
+     * peering connection requests. To delete an active VPC peering
+     * connection, or to delete a VPC peering connection request that you
+     * initiated, use DeleteVpcPeeringConnection.
      * </p>
      *
      * @param rejectVpcPeeringConnectionRequest Container for the necessary
@@ -1044,6 +1185,29 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public RejectVpcPeeringConnectionResult rejectVpcPeeringConnection(RejectVpcPeeringConnectionRequest rejectVpcPeeringConnectionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes one or more flow logs.
+     * </p>
+     *
+     * @param deleteFlowLogsRequest Container for the necessary parameters to
+     *           execute the DeleteFlowLogs service method on AmazonEC2.
+     * 
+     * @return The response from the DeleteFlowLogs service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DeleteFlowLogsResult deleteFlowLogs(DeleteFlowLogsRequest deleteFlowLogsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1103,8 +1267,8 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the datafeed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Describes the data feed for Spot Instances. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -1179,8 +1343,43 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the specified attribute of your AWS account.
+     * Describes attributes of your AWS account. The following are the
+     * supported account attributes:
      * </p>
+     * 
+     * <ul>
+     * <li> <p>
+     * <code>supported-platforms</code> : Indicates whether your account can
+     * launch instances into EC2-Classic and EC2-VPC, or only into EC2-VPC.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>default-vpc</code> : The ID of the default VPC for your
+     * account, or <code>none</code> .
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>max-instances</code> : The maximum number of On-Demand
+     * instances that you can run.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>vpc-max-security-groups-per-interface</code> : The maximum
+     * number of security groups that you can assign to a network interface.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>max-elastic-ips</code> : The maximum number of Elastic IP
+     * addresses that you can allocate for use with EC2-Classic.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>vpc-max-elastic-ips</code> : The maximum number of Elastic IP
+     * addresses that you can allocate for use with EC2-VPC.
+     * </p>
+     * </li>
+     * 
+     * </ul>
      *
      * @param describeAccountAttributesRequest Container for the necessary
      *           parameters to execute the DescribeAccountAttributes service method on
@@ -1199,6 +1398,44 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeAccountAttributesResult describeAccountAttributes(DescribeAccountAttributesRequest describeAccountAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Links an EC2-Classic instance to a ClassicLink-enabled VPC through
+     * one or more of the VPC's security groups. You cannot link an
+     * EC2-Classic instance to more than one VPC at a time. You can only link
+     * an instance that's in the <code>running</code> state. An instance is
+     * automatically unlinked from a VPC when it's stopped - you can link it
+     * to the VPC again when you restart it.
+     * </p>
+     * <p>
+     * After you've linked an instance, you cannot change the VPC security
+     * groups that are associated with it. To change the security groups, you
+     * must first unlink the instance, and then link it again.
+     * </p>
+     * <p>
+     * Linking your instance to a VPC is sometimes referred to as
+     * <i>attaching</i> your instance.
+     * </p>
+     *
+     * @param attachClassicLinkVpcRequest Container for the necessary
+     *           parameters to execute the AttachClassicLinkVpc service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the AttachClassicLinkVpc service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public AttachClassicLinkVpcResult attachClassicLinkVpc(AttachClassicLinkVpcRequest attachClassicLinkVpcRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1255,6 +1492,36 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Moves an Elastic IP address from the EC2-Classic platform to the
+     * EC2-VPC platform. The Elastic IP address must be allocated to your
+     * account, and it must not be associated with an instance. After the
+     * Elastic IP address is moved, it is no longer available for use in the
+     * EC2-Classic platform, unless you move it back using the
+     * RestoreAddressToClassic request. You cannot move an Elastic IP address
+     * that's allocated for use in the EC2-VPC platform to the EC2-Classic
+     * platform.
+     * </p>
+     *
+     * @param moveAddressToVpcRequest Container for the necessary parameters
+     *           to execute the MoveAddressToVpc service method on AmazonEC2.
+     * 
+     * @return The response from the MoveAddressToVpc service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public MoveAddressToVpcResult moveAddressToVpc(MoveAddressToVpcRequest moveAddressToVpcRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Deletes the specified virtual private gateway. We recommend that
      * before you delete a virtual private gateway, you detach it from the
      * VPC and delete the VPN connection. Note that you don't need to delete
@@ -1280,18 +1547,18 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Attaches an Amazon EBS volume to a running or stopped instance and
-     * exposes it to the instance with the specified device name.
+     * Attaches an EBS volume to a running or stopped instance and exposes
+     * it to the instance with the specified device name.
      * </p>
      * <p>
-     * Encrypted Amazon EBS volumes may only be attached to instances that
-     * support Amazon EBS encryption. For more information, see
+     * Encrypted EBS volumes may only be attached to instances that support
+     * Amazon EBS encryption. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"> Amazon EBS Encryption </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
      * For a list of supported device names, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching an Amazon EBS Volume to an Instance </a> . Any device names that aren't reserved for instance store volumes can be used for Amazon EBS volumes. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html"> Amazon EC2 Instance Store </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching an EBS Volume to an Instance </a> . Any device names that aren't reserved for instance store volumes can be used for EBS volumes. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html"> Amazon EC2 Instance Store </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -1299,25 +1566,22 @@ public interface AmazonEC2 {
      * </p>
      * 
      * <ul>
-     * <li>The volume can only be attached as the root device of a stopped
-     * instance.</li>
-     * <li>You must be subscribed to the AWS Marketplace code that is on the
-     * volume.</li>
-     * <li>The configuration (instance type, operating system) of the
-     * instance must support that specific AWS Marketplace code. For example,
-     * you cannot take a volume from a Windows instance and attach it to a
-     * Linux instance.</li>
+     * <li>The volume can be attached only to a stopped instance.</li>
      * <li>AWS Marketplace product codes are copied from the volume to the
      * instance.</li>
+     * <li>You must be subscribed to the product.</li>
+     * <li>The instance type and operating system of the instance must
+     * support the product. For example, you can't detach a volume from a
+     * Windows instance and attach it to a Linux instance.</li>
      * 
      * </ul>
      * <p>
      * For an overview of the AWS Marketplace, see
-     * <a href="https://aws.amazon.com/marketplace/help/200900000"> https://aws.amazon.com/marketplace/help/200900000 </a> . For more information about how to use the AWS Marketplace, see <a href="https://aws.amazon.com/marketplace"> AWS Marketplace </a>
+     * <a href="https://aws.amazon.com/marketplace/help/200900000"> Introducing AWS Marketplace </a>
      * .
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html"> Attaching Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -1413,13 +1677,15 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Resets an attribute of an AMI to its default value.
+     * Describes your import snapshot tasks.
      * </p>
      *
-     * @param resetImageAttributeRequest Container for the necessary
-     *           parameters to execute the ResetImageAttribute service method on
-     *           AmazonEC2.
+     * @param describeImportSnapshotTasksRequest Container for the necessary
+     *           parameters to execute the DescribeImportSnapshotTasks service method
+     *           on AmazonEC2.
      * 
+     * @return The response from the DescribeImportSnapshotTasks service
+     *         method, as returned by AmazonEC2.
      * 
      *
      * @throws AmazonClientException
@@ -1430,7 +1696,7 @@ public interface AmazonEC2 {
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void resetImageAttribute(ResetImageAttributeRequest resetImageAttributeRequest) 
+    public DescribeImportSnapshotTasksResult describeImportSnapshotTasks(DescribeImportSnapshotTasksRequest describeImportSnapshotTasksRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1464,8 +1730,33 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Resets an attribute of an AMI to its default value.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> The productCodes attribute can't be reset.
+     * </p>
+     *
+     * @param resetImageAttributeRequest Container for the necessary
+     *           parameters to execute the ResetImageAttribute service method on
+     *           AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void resetImageAttribute(ResetImageAttributeRequest resetImageAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Enables a virtual private gateway (VGW) to propagate routes to the
-     * routing tables of a VPC.
+     * specified route table of a VPC.
      * </p>
      *
      * @param enableVgwRoutePropagationRequest Container for the necessary
@@ -1487,9 +1778,9 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Creates a snapshot of an Amazon EBS volume and stores it in Amazon
-     * S3. You can use snapshots for backups, to make copies of Amazon EBS
-     * volumes, and to save data before shutting down an instance.
+     * Creates a snapshot of an EBS volume and stores it in Amazon S3. You
+     * can use snapshots for backups, to make copies of EBS volumes, and to
+     * save data before shutting down an instance.
      * </p>
      * <p>
      * When a snapshot is created, any AWS Marketplace product codes that
@@ -1497,20 +1788,20 @@ public interface AmazonEC2 {
      * </p>
      * <p>
      * You can take a snapshot of an attached volume that is in use.
-     * However, snapshots only capture data that has been written to your
-     * Amazon EBS volume at the time the snapshot command is issued; this may
-     * exclude any data that has been cached by any applications or the
-     * operating system. If you can pause any file writes to the volume long
-     * enough to take a snapshot, your snapshot should be complete. However,
-     * if you cannot pause all file writes to the volume, you should unmount
-     * the volume from within the instance, issue the snapshot command, and
-     * then remount the volume to ensure a consistent and complete snapshot.
-     * You may remount and use your volume while the snapshot status is
+     * However, snapshots only capture data that has been written to your EBS
+     * volume at the time the snapshot command is issued; this may exclude
+     * any data that has been cached by any applications or the operating
+     * system. If you can pause any file systems on the volume long enough to
+     * take a snapshot, your snapshot should be complete. However, if you
+     * cannot pause all file writes to the volume, you should unmount the
+     * volume from within the instance, issue the snapshot command, and then
+     * remount the volume to ensure a consistent and complete snapshot. You
+     * may remount and use your volume while the snapshot status is
      * <code>pending</code> .
      * </p>
      * <p>
-     * To create a snapshot for Amazon EBS volumes that serve as root
-     * devices, you should stop the instance before taking the snapshot.
+     * To create a snapshot for EBS volumes that serve as root devices, you
+     * should stop the instance before taking the snapshot.
      * </p>
      * <p>
      * Snapshots that are taken from encrypted volumes are automatically
@@ -1544,7 +1835,7 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Deletes the specified Amazon EBS volume. The volume must be in the
+     * Deletes the specified EBS volume. The volume must be in the
      * <code>available</code> state (not attached to an instance).
      * </p>
      * <p>
@@ -1609,6 +1900,11 @@ public interface AmazonEC2 {
      * The Reserved Instances to be modified must be identical, except for
      * Availability Zone, network platform, and instance type.
      * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html"> Modifying Reserved Instances </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
+     * </p>
      *
      * @param modifyReservedInstancesRequest Container for the necessary
      *           parameters to execute the ModifyReservedInstances service method on
@@ -1627,6 +1923,30 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public ModifyReservedInstancesResult modifyReservedInstances(ModifyReservedInstancesRequest modifyReservedInstancesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Cancels the specified Spot fleet requests.
+     * </p>
+     *
+     * @param cancelSpotFleetRequestsRequest Container for the necessary
+     *           parameters to execute the CancelSpotFleetRequests service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the CancelSpotFleetRequests service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CancelSpotFleetRequestsResult cancelSpotFleetRequests(CancelSpotFleetRequestsRequest cancelSpotFleetRequestsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1718,15 +2038,17 @@ public interface AmazonEC2 {
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
-     * [EC2-Classic, default VPC] If the Elastic IP address is already
-     * associated with a different instance, it is disassociated from that
-     * instance and associated with the specified instance.
+     * [EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP
+     * address is already associated with a different instance, it is
+     * disassociated from that instance and associated with the specified
+     * instance.
      * </p>
      * <p>
-     * [EC2-VPC] If you don't specify a private IP address, the Elastic IP
-     * address is associated with the primary IP address. If the Elastic IP
-     * address is already associated with a different instance or a network
-     * interface, you get an error unless you allow reassociation.
+     * [VPC in an EC2-Classic account] If you don't specify a private IP
+     * address, the Elastic IP address is associated with the primary IP
+     * address. If the Elastic IP address is already associated with a
+     * different instance or a network interface, you get an error unless you
+     * allow reassociation.
      * </p>
      * <p>
      * This is an idempotent operation. If you perform the operation more
@@ -1961,10 +2283,43 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the specified Amazon EBS volumes.
+     * Cancels an in-process import virtual machine or import snapshot task.
+     * </p>
+     *
+     * @param cancelImportTaskRequest Container for the necessary parameters
+     *           to execute the CancelImportTask service method on AmazonEC2.
+     * 
+     * @return The response from the CancelImportTask service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CancelImportTaskResult cancelImportTask(CancelImportTaskRequest cancelImportTaskRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the specified EBS volumes.
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * If you are describing a long list of volumes, you can paginate the
+     * output to make the list more manageable. The <code>MaxResults</code>
+     * parameter sets the maximum number of results returned in a single
+     * page. If the list of results exceeds your <code>MaxResults</code>
+     * value, then that number of results is returned along with a
+     * <code>NextToken</code> value that can be passed to a subsequent
+     * <code>DescribeVolumes</code> request to retrieve the remaining
+     * results.
+     * </p>
+     * <p>
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"> Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -1991,6 +2346,27 @@ public interface AmazonEC2 {
      * <p>
      * Describes your account's Reserved Instance listings in the Reserved
      * Instance Marketplace.
+     * </p>
+     * <p>
+     * The Reserved Instance Marketplace matches sellers who want to resell
+     * Reserved Instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved Instances bought and
+     * sold through the Reserved Instance Marketplace work like any other
+     * Reserved Instances.
+     * </p>
+     * <p>
+     * As a seller, you choose to list some or all of your Reserved
+     * Instances, and you specify the upfront price to receive for them. Your
+     * Reserved Instances are then listed in the Reserved Instance
+     * Marketplace and are available for purchase.
+     * </p>
+     * <p>
+     * As a buyer, you specify the configuration of the Reserved Instance to
+     * purchase, and the Marketplace matches what you're searching for with
+     * what's available. The Marketplace first sells the lowest priced
+     * Reserved Instances to you, and continues to sell available Reserved
+     * Instance listings to you until your demand is met. You are charged
+     * based on the total price of all of the listings that you purchase.
      * </p>
      * <p>
      * For more information, see
@@ -2026,6 +2402,10 @@ public interface AmazonEC2 {
      * experience with the instance. Amazon EC2 collects this information to
      * improve the accuracy of status checks.
      * </p>
+     * <p>
+     * Use of this action does not change the value returned by
+     * DescribeInstanceStatus.
+     * </p>
      *
      * @param reportInstanceStatusRequest Container for the necessary
      *           parameters to execute the ReportInstanceStatus service method on
@@ -2047,6 +2427,12 @@ public interface AmazonEC2 {
     /**
      * <p>
      * Describes one or more of your route tables.
+     * </p>
+     * <p>
+     * Each subnet in your VPC must be associated with a route table. If a
+     * subnet is not explicitly associated with any route table, it is
+     * implicitly associated with the main route table. This command does not
+     * return the subnet ID for implicit associations.
      * </p>
      * <p>
      * For more information about route tables, see
@@ -2130,6 +2516,87 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes available AWS services in a prefix list format, which
+     * includes the prefix list name and prefix list ID of the service and
+     * the IP address range for the service. A prefix list ID is required for
+     * creating an outbound security group rule that allows traffic from a
+     * VPC to access an AWS service through a VPC endpoint.
+     * </p>
+     *
+     * @param describePrefixListsRequest Container for the necessary
+     *           parameters to execute the DescribePrefixLists service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribePrefixLists service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribePrefixListsResult describePrefixLists(DescribePrefixListsRequest describePrefixListsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a Spot fleet request.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html"> Spot Fleets </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param requestSpotFleetRequest Container for the necessary parameters
+     *           to execute the RequestSpotFleet service method on AmazonEC2.
+     * 
+     * @return The response from the RequestSpotFleet service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public RequestSpotFleetResult requestSpotFleet(RequestSpotFleetRequest requestSpotFleetRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Displays details about an import virtual machine or import snapshot
+     * tasks that are already created.
+     * </p>
+     *
+     * @param describeImportImageTasksRequest Container for the necessary
+     *           parameters to execute the DescribeImportImageTasks service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeImportImageTasks service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeImportImageTasksResult describeImportImageTasks(DescribeImportImageTasksRequest describeImportImageTasksRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes one or more of your network ACLs.
      * </p>
      * <p>
@@ -2190,10 +2657,12 @@ public interface AmazonEC2 {
     /**
      * <p>
      * Creates an import instance task using metadata from the specified
-     * disk image. After importing the image, you then upload it using the
-     * ec2-import-volume command in the EC2 command line tools. For more
-     * information, see Using the Command Line Tools to Import Your Virtual
-     * Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User Guide.
+     * disk image. <code>ImportInstance</code> only supports single-volume
+     * VMs. To import multi-volume VMs, use ImportImage. After importing the
+     * image, you then upload it using the <code>ec2-import-volume</code>
+     * command in the EC2 command line tools. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
      * @param importInstanceRequest Container for the necessary parameters to
@@ -2293,15 +2762,15 @@ public interface AmazonEC2 {
      * recent post.
      * </p>
      * <p>
-     * For Linux/Unix instances, the instance console output displays the
-     * exact console output that would normally be displayed on a physical
-     * monitor attached to a machine. This output is buffered because the
-     * instance produces it and then posts it to a store where the instance's
-     * owner can retrieve it.
+     * For Linux instances, the instance console output displays the exact
+     * console output that would normally be displayed on a physical monitor
+     * attached to a computer. This output is buffered because the instance
+     * produces it and then posts it to a store where the instance's owner
+     * can retrieve it.
      * </p>
      * <p>
-     * For Windows instances, the instance console output displays the last
-     * three system event log errors.
+     * For Windows instances, the instance console output includes output
+     * from the EC2Config service.
      * </p>
      *
      * @param getConsoleOutputRequest Container for the necessary parameters
@@ -2452,6 +2921,14 @@ public interface AmazonEC2 {
      * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html"> Adding a Hardware Virtual Private Gateway to Your VPC </a>
      * in the <i>Amazon Virtual Private Cloud User Guide</i> .
      * </p>
+     * <p>
+     * <b>IMPORTANT:</b> You cannot create more than one customer gateway
+     * with the same VPN type, IP address, and BGP ASN parameter values. If
+     * you run an identical request more than one time, the first request
+     * creates the customer gateway, and subsequent requests return
+     * information about the existing customer gateway. The subsequent
+     * requests do not create new customer gateway resources.
+     * </p>
      *
      * @param createCustomerGatewayRequest Container for the necessary
      *           parameters to execute the CreateCustomerGateway service method on
@@ -2474,10 +2951,10 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Creates a datafeed for Spot Instances, enabling you to view Spot
+     * Creates a data feed for Spot Instances, enabling you to view Spot
      * Instance usage logs. You can create one data feed per AWS account. For
      * more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -2533,7 +3010,13 @@ public interface AmazonEC2 {
      * <p>
      * If you're deleting the VPC and its associated components, we
      * recommend that you detach the virtual private gateway from the VPC and
-     * delete the VPC before deleting the VPN connection.
+     * delete the VPC before deleting the VPN connection. If you believe that
+     * the tunnel credentials for your VPN connection have been compromised,
+     * you can delete the VPN connection and create a new one that has new
+     * keys, without needing to delete the VPC or virtual private gateway. If
+     * you create a new VPN connection, you must reconfigure the customer
+     * gateway using the new configuration information returned with the new
+     * VPN connection ID.
      * </p>
      *
      * @param deleteVpnConnectionRequest Container for the necessary
@@ -2551,6 +3034,33 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void deleteVpnConnection(DeleteVpnConnectionRequest deleteVpnConnectionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes your Elastic IP addresses that are being moved to the
+     * EC2-VPC platform, or that are being restored to the EC2-Classic
+     * platform. This request does not return information about any other
+     * Elastic IP addresses in your account.
+     * </p>
+     *
+     * @param describeMovingAddressesRequest Container for the necessary
+     *           parameters to execute the DescribeMovingAddresses service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeMovingAddresses service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeMovingAddressesResult describeMovingAddresses(DescribeMovingAddressesRequest describeMovingAddressesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2627,8 +3137,64 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Import single or multi-volume disk images or EBS snapshots into an
+     * Amazon Machine Image (AMI).
+     * </p>
+     *
+     * @param importImageRequest Container for the necessary parameters to
+     *           execute the ImportImage service method on AmazonEC2.
+     * 
+     * @return The response from the ImportImage service method, as returned
+     *         by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ImportImageResult importImage(ImportImageRequest importImageRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Disables ClassicLink for a VPC. You cannot disable ClassicLink for a
+     * VPC that has EC2-Classic instances linked to it.
+     * </p>
+     *
+     * @param disableVpcClassicLinkRequest Container for the necessary
+     *           parameters to execute the DisableVpcClassicLink service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DisableVpcClassicLink service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DisableVpcClassicLinkResult disableVpcClassicLink(DisableVpcClassicLinkRequest disableVpcClassicLinkRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes the specified attribute of the specified instance. You can
-     * specify only one attribute at a time.
+     * specify only one attribute at a time. Valid attribute values are:
+     * <code>instanceType</code> | <code>kernel</code> | <code>ramdisk</code>
+     * | <code>userData</code> | <code>disableApiTermination</code> |
+     * <code>instanceInitiatedShutdownBehavior</code> |
+     * <code>rootDeviceName</code> | <code>blockDeviceMapping</code> |
+     * <code>productCodes</code> | <code>sourceDestCheck</code> |
+     * <code>groupSet</code> | <code>ebsOptimized</code> |
+     * <code>sriovNetSupport</code>
      * </p>
      *
      * @param describeInstanceAttributeRequest Container for the necessary
@@ -2648,6 +3214,31 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeInstanceAttributeResult describeInstanceAttribute(DescribeInstanceAttributeRequest describeInstanceAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes one or more flow logs. To view the information in your flow
+     * logs (the log streams for the network interfaces), you must use the
+     * CloudWatch Logs console or the CloudWatch Logs API.
+     * </p>
+     *
+     * @param describeFlowLogsRequest Container for the necessary parameters
+     *           to execute the DescribeFlowLogs service method on AmazonEC2.
+     * 
+     * @return The response from the DescribeFlowLogs service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeFlowLogsResult describeFlowLogs(DescribeFlowLogsRequest describeFlowLogsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2672,34 +3263,6 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeVpcPeeringConnectionsResult describeVpcPeeringConnections(DescribeVpcPeeringConnectionsRequest describeVpcPeeringConnectionsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes one or more of your subnets.
-     * </p>
-     * <p>
-     * For more information about subnets, see
-     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html"> Your VPC and Subnets </a>
-     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
-     * </p>
-     *
-     * @param describeSubnetsRequest Container for the necessary parameters
-     *           to execute the DescribeSubnets service method on AmazonEC2.
-     * 
-     * @return The response from the DescribeSubnets service method, as
-     *         returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeSubnetsResult describeSubnets(DescribeSubnetsRequest describeSubnetsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2738,6 +3301,11 @@ public interface AmazonEC2 {
      * has not subscribed, <code>RunInstances</code> fails.
      * </p>
      * <p>
+     * T2 instance types can only be launched into a VPC. If you do not have
+     * a default VPC, or if you do not specify a subnet ID in the request,
+     * <code>RunInstances</code> fails.
+     * </p>
+     * <p>
      * For more information about troubleshooting, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html"> What To Do If An Instance Immediately Terminates </a> , and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html"> Troubleshooting Connecting to Your Instance </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
@@ -2759,6 +3327,34 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public RunInstancesResult runInstances(RunInstancesRequest runInstancesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes one or more of your subnets.
+     * </p>
+     * <p>
+     * For more information about subnets, see
+     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html"> Your VPC and Subnets </a>
+     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
+     * </p>
+     *
+     * @param describeSubnetsRequest Container for the necessary parameters
+     *           to execute the DescribeSubnets service method on AmazonEC2.
+     * 
+     * @return The response from the DescribeSubnets service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeSubnetsResult describeSubnets(DescribeSubnetsRequest describeSubnetsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2859,28 +3455,6 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Deletes the specified network ACL. You can't delete the ACL if it's
-     * associated with any subnets. You can't delete the default network ACL.
-     * </p>
-     *
-     * @param deleteNetworkAclRequest Container for the necessary parameters
-     *           to execute the DeleteNetworkAcl service method on AmazonEC2.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteNetworkAcl(DeleteNetworkAclRequest deleteNetworkAclRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Modifies a volume attribute.
      * </p>
      * <p>
@@ -2911,6 +3485,28 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void modifyVolumeAttribute(ModifyVolumeAttributeRequest modifyVolumeAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified network ACL. You can't delete the ACL if it's
+     * associated with any subnets. You can't delete the default network ACL.
+     * </p>
+     *
+     * @param deleteNetworkAclRequest Container for the necessary parameters
+     *           to execute the DeleteNetworkAcl service method on AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteNetworkAcl(DeleteNetworkAclRequest deleteNetworkAclRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2993,6 +3589,35 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Modifies the specified attribute of the specified instance. You can
+     * specify only one attribute at a time.
+     * </p>
+     * <p>
+     * To modify some attributes, the instance must be stopped. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html"> Modifying Attributes of a Stopped Instance </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param modifyInstanceAttributeRequest Container for the necessary
+     *           parameters to execute the ModifyInstanceAttribute service method on
+     *           AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void modifyInstanceAttribute(ModifyInstanceAttributeRequest modifyInstanceAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Cancels the specified Reserved Instance listing in the Reserved
      * Instance Marketplace.
      * </p>
@@ -3019,35 +3644,6 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public CancelReservedInstancesListingResult cancelReservedInstancesListing(CancelReservedInstancesListingRequest cancelReservedInstancesListingRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Modifies the specified attribute of the specified instance. You can
-     * specify only one attribute at a time.
-     * </p>
-     * <p>
-     * To modify some attributes, the instance must be stopped. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html"> Modifying Attributes of a Stopped Instance </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param modifyInstanceAttributeRequest Container for the necessary
-     *           parameters to execute the ModifyInstanceAttribute service method on
-     *           AmazonEC2.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void modifyInstanceAttribute(ModifyInstanceAttributeRequest modifyInstanceAttributeRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3122,12 +3718,11 @@ public interface AmazonEC2 {
     /**
      * <p>
      * Describes the Spot Instance requests that belong to your account.
-     * Spot Instances are instances that Amazon EC2 starts on your behalf
-     * when the maximum price that you specify exceeds the current Spot
-     * Price. Amazon EC2 periodically sets the Spot Price based on available
-     * Spot Instance capacity and current Spot Instance requests. For more
-     * information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Spot Instances are instances that Amazon EC2 launches when the bid
+     * price that you specify exceeds the current Spot Price. Amazon EC2
+     * periodically sets the Spot Price based on available Spot Instance
+     * capacity and current Spot Instance requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -3253,8 +3848,9 @@ public interface AmazonEC2 {
      * Creates a route in a route table within a VPC.
      * </p>
      * <p>
-     * You must specify one of the following targets: Internet gateway, NAT
-     * instance, VPC peering connection, or network interface.
+     * You must specify one of the following targets: Internet gateway or
+     * virtual private gateway, NAT instance, VPC peering connection, or
+     * network interface.
      * </p>
      * <p>
      * When determining how to route traffic, we use the route with the most
@@ -3289,6 +3885,8 @@ public interface AmazonEC2 {
      * @param createRouteRequest Container for the necessary parameters to
      *           execute the CreateRoute service method on AmazonEC2.
      * 
+     * @return The response from the CreateRoute service method, as returned
+     *         by AmazonEC2.
      * 
      *
      * @throws AmazonClientException
@@ -3299,15 +3897,46 @@ public interface AmazonEC2 {
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void createRoute(CreateRouteRequest createRouteRequest) 
+    public CreateRouteResult createRoute(CreateRouteRequest createRouteRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a VPC endpoint for a specified AWS service. An endpoint
+     * enables you to create a private connection between your VPC and
+     * another AWS service in your account. You can specify an endpoint
+     * policy to attach to the endpoint that will control access to the
+     * service from your VPC. You can also specify the VPC route tables that
+     * use the endpoint.
+     * </p>
+     * <p>
+     * Currently, only endpoints to Amazon S3 are supported.
+     * </p>
+     *
+     * @param createVpcEndpointRequest Container for the necessary parameters
+     *           to execute the CreateVpcEndpoint service method on AmazonEC2.
+     * 
+     * @return The response from the CreateVpcEndpoint service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CreateVpcEndpointResult createVpcEndpoint(CreateVpcEndpointRequest createVpcEndpointRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
      * Initiates the copy of an AMI from the specified source region to the
-     * region in which the request was made. You specify the destination
-     * region by using its endpoint when making the request. AMIs that use
-     * encrypted Amazon EBS snapshots cannot be copied with this method.
+     * current region. You specify the destination region by using its
+     * endpoint when making the request. AMIs that use encrypted EBS
+     * snapshots cannot be copied with this method.
      * </p>
      * <p>
      * For more information, see
@@ -3331,6 +3960,30 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public CopyImageResult copyImage(CopyImageRequest copyImageRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the ClassicLink status of one or more VPCs.
+     * </p>
+     *
+     * @param describeVpcClassicLinkRequest Container for the necessary
+     *           parameters to execute the DescribeVpcClassicLink service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeVpcClassicLink service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeVpcClassicLinkResult describeVpcClassicLink(DescribeVpcClassicLinkRequest describeVpcClassicLinkRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3406,12 +4059,39 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes one or more of your linked EC2-Classic instances. This
+     * request only returns information about EC2-Classic instances linked to
+     * a VPC through ClassicLink; you cannot use this request to return
+     * information about other instances.
+     * </p>
+     *
+     * @param describeClassicLinkInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeClassicLinkInstances service method
+     *           on AmazonEC2.
+     * 
+     * @return The response from the DescribeClassicLinkInstances service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeClassicLinkInstancesResult describeClassicLinkInstances(DescribeClassicLinkInstancesRequest describeClassicLinkInstancesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a Spot Instance request. Spot Instances are instances that
-     * Amazon EC2 starts on your behalf when the maximum price that you
-     * specify exceeds the current Spot Price. Amazon EC2 periodically sets
-     * the Spot Price based on available Spot Instance capacity and current
-     * Spot Instance requests. For more information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Amazon EC2 launches when the bid price that you specify exceeds the
+     * current Spot Price. Amazon EC2 periodically sets the Spot Price based
+     * on available Spot Instance capacity and current Spot Instance
+     * requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -3436,10 +4116,10 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Adds or overwrites one or more tags for the specified EC2 resource or
-     * resources. Each resource can have a maximum of 10 tags. Each tag
-     * consists of a key and optional value. Tag keys must be unique per
-     * resource.
+     * Adds or overwrites one or more tags for the specified Amazon EC2
+     * resource or resources. Each resource can have a maximum of 10 tags.
+     * Each tag consists of a key and optional value. Tag keys must be unique
+     * per resource.
      * </p>
      * <p>
      * For more information about tags, see
@@ -3469,7 +4149,7 @@ public interface AmazonEC2 {
      * specify only one attribute at a time.
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"> Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -3520,8 +4200,8 @@ public interface AmazonEC2 {
     /**
      * <p>
      * Replaces an existing route within a route table in a VPC. You must
-     * provide only one of the following: Internet gateway, NAT instance, VPC
-     * peering connection, or network interface.
+     * provide only one of the following: Internet gateway or virtual private
+     * gateway, NAT instance, VPC peering connection, or network interface.
      * </p>
      * <p>
      * For more information about route tables, see
@@ -3599,8 +4279,8 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Disables a virtual private gateway (VGW) from propagating routes to
-     * the routing tables of a VPC.
+     * Disables a virtual private gateway (VGW) from propagating routes to a
+     * specified route table of a VPC.
      * </p>
      *
      * @param disableVgwRoutePropagationRequest Container for the necessary
@@ -3622,13 +4302,35 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Imports a disk into an EBS snapshot.
+     * </p>
+     *
+     * @param importSnapshotRequest Container for the necessary parameters to
+     *           execute the ImportSnapshot service method on AmazonEC2.
+     * 
+     * @return The response from the ImportSnapshot service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ImportSnapshotResult importSnapshot(ImportSnapshotRequest importSnapshotRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Cancels one or more Spot Instance requests. Spot Instances are
-     * instances that Amazon EC2 starts on your behalf when the maximum price
+     * instances that Amazon EC2 starts on your behalf when the bid price
      * that you specify exceeds the current Spot Price. Amazon EC2
      * periodically sets the Spot Price based on available Spot Instance
-     * capacity and current Spot Instance requests. For more information
-     * about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * capacity and current Spot Instance requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -3657,15 +4359,44 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes your Spot fleet requests.
+     * </p>
+     *
+     * @param describeSpotFleetRequestsRequest Container for the necessary
+     *           parameters to execute the DescribeSpotFleetRequests service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeSpotFleetRequests service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeSpotFleetRequestsResult describeSpotFleetRequests(DescribeSpotFleetRequestsRequest describeSpotFleetRequestsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Purchases a Reserved Instance for use with your account. With Amazon
      * EC2 Reserved Instances, you obtain a capacity reservation for a
-     * certain instance configuration over a specified period of time. You
-     * pay a lower usage rate than with On-Demand instances for the time that
-     * you actually use the capacity reservation.
+     * certain instance configuration over a specified period of time and pay
+     * a lower hourly rate compared to on-Demand Instance pricing.
+     * </p>
+     * <p>
+     * Use DescribeReservedInstancesOfferings to get a list of Reserved
+     * Instance offerings that match your specifications. After you've
+     * purchased a Reserved Instance, you can check for your new Reserved
+     * Instance with DescribeReservedInstances.
      * </p>
      * <p>
      * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html"> Reserved Instances </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -3690,7 +4421,11 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Adds or removes permission settings for the specified snapshot.
+     * Adds or removes permission settings for the specified snapshot. You
+     * may add or remove specified AWS account IDs from a snapshot's list of
+     * create volume permissions, but you cannot do both in a single API
+     * call. If you need to both add and remove account IDs for a snapshot,
+     * you must use multiple API calls.
      * </p>
      * <p>
      * For more information on modifying snapshot permissions, see
@@ -3726,6 +4461,11 @@ public interface AmazonEC2 {
      * modification requests is returned. If a modification ID is specified,
      * only information about the specific modification is returned.
      * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html"> Modifying Reserved Instances </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
+     * </p>
      *
      * @param describeReservedInstancesModificationsRequest Container for the
      *           necessary parameters to execute the
@@ -3756,9 +4496,9 @@ public interface AmazonEC2 {
      * approximately one hour).
      * </p>
      * <p>
-     * By default, Amazon EC2 deletes all Amazon EBS volumes that were
-     * attached when the instance launched. Volumes attached after instance
-     * launch continue running.
+     * By default, Amazon EC2 deletes all EBS volumes that were attached
+     * when the instance launched. Volumes attached after instance launch
+     * continue running.
      * </p>
      * <p>
      * You can stop, start, and terminate EBS-backed instances. You can only
@@ -3799,8 +4539,33 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Deletes the datafeed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Modifies attributes of a specified VPC endpoint. You can modify the
+     * policy associated with the endpoint, and you can add and remove route
+     * tables associated with the endpoint.
+     * </p>
+     *
+     * @param modifyVpcEndpointRequest Container for the necessary parameters
+     *           to execute the ModifyVpcEndpoint service method on AmazonEC2.
+     * 
+     * @return The response from the ModifyVpcEndpoint service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ModifyVpcEndpointResult modifyVpcEndpoint(ModifyVpcEndpointRequest modifyVpcEndpointRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the data feed for Spot Instances. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -3850,7 +4615,7 @@ public interface AmazonEC2 {
      * specify only one attribute at a time.
      * </p>
      * <p>
-     * For more information about Amazon EBS snapshots, see
+     * For more information about EBS snapshots, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"> Amazon EBS Snapshots </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -4131,13 +4896,15 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Creates an Amazon EBS volume that can be attached to an instance in
-     * the same Availability Zone. The volume is created in the specified
-     * region.
+     * Creates an EBS volume that can be attached to an instance in the same
+     * Availability Zone. The volume is created in the regional endpoint that
+     * you send the HTTP request to. For more information see
+     * <a href="http://docs.aws.amazon.com/general/latest/gr/rande.html"> Regions and Endpoints </a>
+     * .
      * </p>
      * <p>
-     * You can create a new empty volume or restore a volume from an Amazon
-     * EBS snapshot. Any AWS Marketplace product codes from the snapshot are
+     * You can create a new empty volume or restore a volume from an EBS
+     * snapshot. Any AWS Marketplace product codes from the snapshot are
      * propagated to the volume.
      * </p>
      * <p>
@@ -4174,96 +4941,39 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the status of one or more instances, including any
-     * scheduled events.
+     * Describes the status of one or more instances.
      * </p>
      * <p>
-     * Instance status has two main components:
+     * Instance status includes the following components:
      * </p>
      * 
      * <ul>
      * <li> <p>
-     * System Status reports impaired functionality that stems from issues
-     * related to the systems that support an instance, such as such as
-     * hardware failures and network connectivity problems. This call reports
-     * such problems as impaired reachability.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Instance Status reports impaired functionality that arises from
-     * problems internal to the instance. This call reports such problems as
-     * impaired reachability.
-     * </p>
-     * </li>
-     * 
-     * </ul>
-     * <p>
-     * Instance status provides information about four types of scheduled
-     * events for an instance that may require your attention:
-     * </p>
-     * 
-     * <ul>
-     * <li> <p>
-     * Scheduled Reboot: When Amazon EC2 determines that an instance must be
-     * rebooted, the instances status returns one of two event codes:
-     * <code>system-reboot</code> or <code>instance-reboot</code> . System
-     * reboot commonly occurs if certain maintenance or upgrade operations
-     * require a reboot of the underlying host that supports an instance.
-     * Instance reboot commonly occurs if the instance must be rebooted,
-     * rather than the underlying host. Rebooting events include a scheduled
-     * start and end time.
-     * </p>
-     * </li>
-     * <li> <p>
-     * System Maintenance: When Amazon EC2 determines that an instance
-     * requires maintenance that requires power or network impact, the
-     * instance status is the event code <code>system-maintenance</code> .
-     * System maintenance is either power maintenance or network maintenance.
-     * For power maintenance, your instance will be unavailable for a brief
-     * period of time and then rebooted. For network maintenance, your
-     * instance will experience a brief loss of network connectivity. System
-     * maintenance events include a scheduled start and end time. You will
-     * also be notified by email if one of your instances is set for system
-     * maintenance. The email message indicates when your instance is
-     * scheduled for maintenance.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Scheduled Retirement: When Amazon EC2 determines that an instance
-     * must be shut down, the instance status is the event code
-     * <code>instance-retirement</code> . Retirement commonly occurs when the
-     * underlying host is degraded and must be replaced. Retirement events
-     * include a scheduled start and end time. You will also be notified by
-     * email if one of your instances is set to retiring. The email message
-     * indicates when your instance will be permanently retired.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Scheduled Stop: When Amazon EC2 determines that an instance must be
-     * shut down, the instances status returns an event code called
-     * <code>instance-stop</code> . Stop events include a scheduled start and
-     * end time. You will also be notified by email if one of your instances
-     * is set to stop. The email message indicates when your instance will be
-     * stopped.
-     * </p>
-     * </li>
-     * 
-     * </ul>
-     * <p>
-     * When your instance is retired, it will either be terminated (if its
-     * root device type is the instance-store) or stopped (if its root device
-     * type is an EBS volume). Instances stopped due to retirement will not
-     * be restarted, but you can do so manually. You can also avoid
-     * retirement of EBS-backed instances by manually restarting your
-     * instance when its event code is <code>instance-retirement</code> .
-     * This ensures that your instance is started on a different underlying
-     * host.
-     * </p>
-     * <p>
-     * For more information about failed status checks, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html"> Troubleshooting Instances with Failed Status Checks </a> in the <i>Amazon Elastic Compute Cloud User Guide</i> . For more information about working with scheduled events, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html#schedevents_actions"> Working with an Instance That Has a Scheduled Event </a>
+     * <b>Status checks</b> - Amazon EC2 performs status checks on running
+     * EC2 instances to identify hardware and software issues. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html"> Status Checks for Your Instances </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html"> Troubleshooting Instances with Failed Status Checks </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
+     * </li>
+     * <li> <p>
+     * <b>Scheduled events</b> - Amazon EC2 can schedule events (such as
+     * reboot, stop, or terminate) for your instances related to hardware
+     * issues, software updates, or system maintenance. For more information,
+     * see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html"> Scheduled Events for Your Instances </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * </li>
+     * <li> <p>
+     * <b>Instance state</b> - You can manage your instances from the moment
+     * you launch them through their termination. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html"> Instance Lifecycle </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * </li>
+     * 
+     * </ul>
      *
      * @param describeInstanceStatusRequest Container for the necessary
      *           parameters to execute the DescribeInstanceStatus service method on
@@ -4334,6 +5044,14 @@ public interface AmazonEC2 {
      * <p>
      * If you add more than one subnet to a VPC, they're set up in a star
      * topology with a logical router in the middle.
+     * </p>
+     * <p>
+     * If you launch an instance in a VPC using an Amazon EBS-backed AMI,
+     * the IP address doesn't change if you stop and restart the instance
+     * (unlike a similar instance launched outside a VPC, which gets a new IP
+     * address when restarted). It's therefore possible to have a subnet with
+     * no running instances (they're all stopped), but no remaining IP
+     * addresses available.
      * </p>
      * <p>
      * For more information about subnets, see
@@ -4427,6 +5145,36 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes the events for the specified Spot fleet request during the
+     * specified time.
+     * </p>
+     * <p>
+     * Spot fleet events are delayed by up to 30 seconds before they can be
+     * described. This ensures that you can query by the last evaluated time
+     * and not miss a recorded event.
+     * </p>
+     *
+     * @param describeSpotFleetRequestHistoryRequest Container for the
+     *           necessary parameters to execute the DescribeSpotFleetRequestHistory
+     *           service method on AmazonEC2.
+     * 
+     * @return The response from the DescribeSpotFleetRequestHistory service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeSpotFleetRequestHistoryResult describeSpotFleetRequestHistory(DescribeSpotFleetRequestHistoryRequest describeSpotFleetRequestHistoryRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Deletes the specified snapshot.
      * </p>
      * <p>
@@ -4439,9 +5187,9 @@ public interface AmazonEC2 {
      * the volume.
      * </p>
      * <p>
-     * You cannot delete a snapshot of the root device of an Amazon EBS
-     * volume used by a registered AMI. You must first de-register the AMI
-     * before you can delete the snapshot.
+     * You cannot delete a snapshot of the root device of an EBS volume used
+     * by a registered AMI. You must first de-register the AMI before you can
+     * delete the snapshot.
      * </p>
      * <p>
      * For more information, see
@@ -4497,6 +5245,12 @@ public interface AmazonEC2 {
      * <p>
      * Disassociates an Elastic IP address from the instance or network
      * interface it's associated with.
+     * </p>
+     * <p>
+     * An Elastic IP address is for use in either the EC2-Classic platform
+     * or in a VPC. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html"> Elastic IP Addresses </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
      * This is an idempotent operation. If you perform the operation more
@@ -4559,8 +5313,8 @@ public interface AmazonEC2 {
      * on other instance store volumes is not preserved.
      * </p>
      * <p>
-     * <b>NOTE:</b> This procedure is not applicable for Linux/Unix
-     * instances or Windows instances that are backed by Amazon EBS.
+     * <b>NOTE:</b> This action is not applicable for Linux/Unix instances
+     * or Windows instances that are backed by Amazon EBS.
      * </p>
      * <p>
      * For more information, see
@@ -4615,6 +5369,28 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Modifies a subnet attribute.
+     * </p>
+     *
+     * @param modifySubnetAttributeRequest Container for the necessary
+     *           parameters to execute the ModifySubnetAttribute service method on
+     *           AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void modifySubnetAttribute(ModifySubnetAttributeRequest modifySubnetAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Deletes the specified VPC. You must detach or delete all gateways and
      * resources that are associated with the VPC before you can delete it.
      * For example, you must terminate all instances running in the VPC,
@@ -4641,15 +5417,20 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Copies a point-in-time snapshot of an Amazon EBS volume and stores it
-     * in Amazon S3. You can copy the snapshot within the same region or from
-     * one region to another. You can use the snapshot to create Amazon EBS
-     * volumes or Amazon Machine Images (AMIs). The snapshot is copied to the
+     * Copies a point-in-time snapshot of an EBS volume and stores it in
+     * Amazon S3. You can copy the snapshot within the same region or from
+     * one region to another. You can use the snapshot to create EBS volumes
+     * or Amazon Machine Images (AMIs). The snapshot is copied to the
      * regional endpoint that you send the HTTP request to.
      * </p>
      * <p>
-     * Copies of encrypted Amazon EBS snapshots remain encrypted. Copies of
-     * unencrypted snapshots remain unencrypted.
+     * Copies of encrypted EBS snapshots remain encrypted. Copies of
+     * unencrypted snapshots remain unencrypted, unless the
+     * <code>Encrypted</code> flag is specified during the snapshot copy
+     * operation. By default, encrypted snapshot copies use the default AWS
+     * Key Management Service (AWS KMS) customer master key (CMK); however,
+     * you can specify a non-default CMK with the <code>KmsKeyId</code>
+     * parameter.
      * </p>
      * <p>
      * For more information, see
@@ -4673,6 +5454,31 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public CopySnapshotResult copySnapshot(CopySnapshotRequest copySnapshotRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes all supported AWS services that can be specified when
+     * creating a VPC endpoint.
+     * </p>
+     *
+     * @param describeVpcEndpointServicesRequest Container for the necessary
+     *           parameters to execute the DescribeVpcEndpointServices service method
+     *           on AmazonEC2.
+     * 
+     * @return The response from the DescribeVpcEndpointServices service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeVpcEndpointServicesResult describeVpcEndpointServices(DescribeVpcEndpointServicesRequest describeVpcEndpointServicesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -4723,9 +5529,9 @@ public interface AmazonEC2 {
      * DisassociateAddress.
      * </p>
      * <p>
-     * [Nondefault VPC] You must use the DisassociateAddress to disassociate
-     * the Elastic IP address before you try to release it. Otherwise, Amazon
-     * EC2 returns an error ( <code>InvalidIPAddress.InUse</code> ).
+     * [Nondefault VPC] You must use DisassociateAddress to disassociate the
+     * Elastic IP address before you try to release it. Otherwise, Amazon EC2
+     * returns an error ( <code>InvalidIPAddress.InUse</code> ).
      * </p>
      *
      * @param releaseAddressRequest Container for the necessary parameters to
@@ -4747,9 +5553,9 @@ public interface AmazonEC2 {
     /**
      * <p>
      * Resets an attribute of an instance to its default value. To reset the
-     * kernel or RAM disk, the instance must be in a stopped state. To reset
-     * the <code>SourceDestCheck</code> , the instance can be either running
-     * or stopped.
+     * <code>kernel</code> or <code>ramdisk</code> , the instance must be in
+     * a stopped state. To reset the <code>SourceDestCheck</code> , the
+     * instance can be either running or stopped.
      * </p>
      * <p>
      * The <code>SourceDestCheck</code> attribute controls whether
@@ -4788,6 +5594,11 @@ public interface AmazonEC2 {
      * </p>
      * <p>
      * You can have up to five thousand key pairs per region.
+     * </p>
+     * <p>
+     * The key pair returned to you is available only in the region in which
+     * you create it. To create a key pair that is available in all regions,
+     * use ImportKeyPair.
      * </p>
      * <p>
      * For more information about key pairs, see
@@ -4840,7 +5651,7 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes one or more of the Amazon EBS snapshots available to you.
+     * Describes one or more of the EBS snapshots available to you.
      * Available snapshots include public snapshots available for any AWS
      * account to launch, private snapshots that you own, and private
      * snapshots owned by another AWS account but for which you've been given
@@ -4887,7 +5698,17 @@ public interface AmazonEC2 {
      * <code>all</code> for public snapshots.
      * </p>
      * <p>
-     * For more information about Amazon EBS snapshots, see
+     * If you are describing a long list of snapshots, you can paginate the
+     * output to make the list more manageable. The <code>MaxResults</code>
+     * parameter sets the maximum number of results returned in a single
+     * page. If the list of results exceeds your <code>MaxResults</code>
+     * value, then that number of results is returned along with a
+     * <code>NextToken</code> value that can be passed to a subsequent
+     * <code>DescribeSnapshots</code> request to retrieve the remaining
+     * results.
+     * </p>
+     * <p>
+     * For more information about EBS snapshots, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"> Amazon EBS Snapshots </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -4943,9 +5764,10 @@ public interface AmazonEC2 {
     /**
      * <p>
      * Registers an AMI. When you're creating an AMI, this is the final step
-     * you must complete before you can launch an instance from the AMI. For
-     * more information about creating AMIs, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html"> Creating Your Own AMIs </a>
+     * you must complete before you can launch an instance from the AMI. This
+     * step is required if you're creating an instance store-backed Linux or
+     * Windows AMI. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html"> Creating an Instance Store-Backed Linux AMI </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html"> Creating an Instance Store-Backed Windows AMI </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -4957,8 +5779,10 @@ public interface AmazonEC2 {
      * You can also use <code>RegisterImage</code> to create an Amazon
      * EBS-backed AMI from a snapshot of a root device volume. For more
      * information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html"> Launching an Instance from a Snapshot </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-snapshot.html"> Launching an Instance from a Backup </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> . Note that
+     * although you can create a Windows AMI from a snapshot, you can't
+     * launch an instance from the AMI - use the CreateImage command instead.
      * </p>
      * <p>
      * If needed, you can deregister an AMI at any time. Any modifications
@@ -5014,6 +5838,38 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Enables a VPC for ClassicLink. You can then link EC2-Classic
+     * instances to your ClassicLink-enabled VPC to allow communication over
+     * private IP addresses. You cannot enable your VPC for ClassicLink if
+     * any of your VPC's route tables have existing routes for address ranges
+     * within the <code>10.0.0.0/8</code> IP address range, excluding local
+     * routes for VPCs in the <code>10.0.0.0/16</code> and
+     * <code>10.1.0.0/16</code> IP address ranges. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"> ClassicLink </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
+     * </p>
+     *
+     * @param enableVpcClassicLinkRequest Container for the necessary
+     *           parameters to execute the EnableVpcClassicLink service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the EnableVpcClassicLink service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public EnableVpcClassicLinkResult enableVpcClassicLink(EnableVpcClassicLinkRequest enableVpcClassicLinkRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a static route associated with a VPN connection between an
      * existing virtual private gateway and a VPN customer gateway. The
      * static route allows traffic to be routed from the virtual private
@@ -5040,6 +5896,57 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void createVpnConnectionRoute(CreateVpnConnectionRouteRequest createVpnConnectionRouteRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes one or more of your VPC endpoints.
+     * </p>
+     *
+     * @param describeVpcEndpointsRequest Container for the necessary
+     *           parameters to execute the DescribeVpcEndpoints service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeVpcEndpoints service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeVpcEndpointsResult describeVpcEndpoints(DescribeVpcEndpointsRequest describeVpcEndpointsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Unlinks (detaches) a linked EC2-Classic instance from a VPC. After
+     * the instance has been unlinked, the VPC security groups are no longer
+     * associated with it. An instance is automatically unlinked from a VPC
+     * when it's stopped.
+     * </p>
+     *
+     * @param detachClassicLinkVpcRequest Container for the necessary
+     *           parameters to execute the DetachClassicLinkVpc service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DetachClassicLinkVpc service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DetachClassicLinkVpcResult detachClassicLinkVpc(DetachClassicLinkVpcRequest detachClassicLinkVpcRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -5096,46 +6003,18 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Deletes a security group.
-     * </p>
-     * <p>
-     * If you attempt to delete a security group that is associated with an
-     * instance, or is referenced by another security group, the operation
-     * fails with <code>InvalidGroup.InUse</code> in EC2-Classic or
-     * <code>DependencyViolation</code> in EC2-VPC.
-     * </p>
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteSecurityGroup() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Describes the Spot Price history. Spot Instances are instances that
-     * Amazon EC2 starts on your behalf when the maximum price that you
-     * specify exceeds the current Spot Price. Amazon EC2 periodically sets
-     * the Spot Price based on available Spot Instance capacity and current
-     * Spot Instance requests. For more information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Describes the Spot Price history. The prices returned are listed in
+     * chronological order, from the oldest to the most recent, for up to the
+     * past 90 days. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html"> Spot Instance Pricing History </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
-     * When you specify an Availability Zone, this operation describes the
-     * price history for the specified Availability Zone with the most recent
-     * set of prices listed first. If you don't specify an Availability Zone,
-     * you get the prices across all Availability Zones, starting with the
-     * most recent set. However, if you're using an API version earlier than
-     * 2011-05-15, you get the lowest price across the region for the
-     * specified time period. The prices returned are listed in chronological
-     * order, from the oldest to the most recent.
+     * When you specify a start and end time, this operation returns the
+     * prices of the instance types within the time range that you specified
+     * and the time when the price changed. The price is valid within the
+     * time period that you specified; the response merely indicates the last
+     * time that the price changed.
      * </p>
      * 
      * @return The response from the DescribeSpotPriceHistory service method,
@@ -5216,30 +6095,6 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Creates an import volume task using metadata from the specified disk
-     * image. After importing the image, you then upload it using the
-     * ec2-import-volume command in the Amazon EC2 command-line interface
-     * (CLI) tools. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * 
-     * @return The response from the ImportVolume service method, as returned
-     *         by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ImportVolumeResult importVolume() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
      * Describes one or more of your security groups.
      * </p>
      * <p>
@@ -5265,30 +6120,8 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Rejects a VPC peering connection request. The VPC peering connection
-     * must be in the <code>pending-acceptance</code> state. Use the
-     * <code>DescribeVpcPeeringConnections</code> request to view your
-     * outstanding VPC peering connection requests.
-     * </p>
-     * 
-     * @return The response from the RejectVpcPeeringConnection service
-     *         method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public RejectVpcPeeringConnectionResult rejectVpcPeeringConnection() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Describes the datafeed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Describes the data feed for Spot Instances. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * 
@@ -5308,8 +6141,43 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes the specified attribute of your AWS account.
+     * Describes attributes of your AWS account. The following are the
+     * supported account attributes:
      * </p>
+     * 
+     * <ul>
+     * <li> <p>
+     * <code>supported-platforms</code> : Indicates whether your account can
+     * launch instances into EC2-Classic and EC2-VPC, or only into EC2-VPC.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>default-vpc</code> : The ID of the default VPC for your
+     * account, or <code>none</code> .
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>max-instances</code> : The maximum number of On-Demand
+     * instances that you can run.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>vpc-max-security-groups-per-interface</code> : The maximum
+     * number of security groups that you can assign to a network interface.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>max-elastic-ips</code> : The maximum number of Elastic IP
+     * addresses that you can allocate for use with EC2-Classic.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>vpc-max-elastic-ips</code> : The maximum number of Elastic IP
+     * addresses that you can allocate for use with EC2-VPC.
+     * </p>
+     * </li>
+     * 
+     * </ul>
      * 
      * @return The response from the DescribeAccountAttributes service
      *         method, as returned by AmazonEC2.
@@ -5390,6 +6258,25 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeVolumeStatusResult describeVolumeStatus() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes your import snapshot tasks.
+     * </p>
+     * 
+     * @return The response from the DescribeImportSnapshotTasks service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeImportSnapshotTasksResult describeImportSnapshotTasks() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -5510,10 +6397,39 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes the specified Amazon EBS volumes.
+     * Cancels an in-process import virtual machine or import snapshot task.
+     * </p>
+     * 
+     * @return The response from the CancelImportTask service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CancelImportTaskResult cancelImportTask() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes the specified EBS volumes.
      * </p>
      * <p>
-     * For more information about Amazon EBS volumes, see
+     * If you are describing a long list of volumes, you can paginate the
+     * output to make the list more manageable. The <code>MaxResults</code>
+     * parameter sets the maximum number of results returned in a single
+     * page. If the list of results exceeds your <code>MaxResults</code>
+     * value, then that number of results is returned along with a
+     * <code>NextToken</code> value that can be passed to a subsequent
+     * <code>DescribeVolumes</code> request to retrieve the remaining
+     * results.
+     * </p>
+     * <p>
+     * For more information about EBS volumes, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"> Amazon EBS Volumes </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -5538,6 +6454,27 @@ public interface AmazonEC2 {
      * Instance Marketplace.
      * </p>
      * <p>
+     * The Reserved Instance Marketplace matches sellers who want to resell
+     * Reserved Instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved Instances bought and
+     * sold through the Reserved Instance Marketplace work like any other
+     * Reserved Instances.
+     * </p>
+     * <p>
+     * As a seller, you choose to list some or all of your Reserved
+     * Instances, and you specify the upfront price to receive for them. Your
+     * Reserved Instances are then listed in the Reserved Instance
+     * Marketplace and are available for purchase.
+     * </p>
+     * <p>
+     * As a buyer, you specify the configuration of the Reserved Instance to
+     * purchase, and the Marketplace matches what you're searching for with
+     * what's available. The Marketplace first sells the lowest priced
+     * Reserved Instances to you, and continues to sell available Reserved
+     * Instance listings to you until your demand is met. You are charged
+     * based on the total price of all of the listings that you purchase.
+     * </p>
+     * <p>
      * For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
@@ -5559,29 +6496,13 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Submits feedback about the status of an instance. The instance must
-     * be in the <code>running</code> state. If your experience with the
-     * instance differs from the instance status returned by
-     * DescribeInstanceStatus, use ReportInstanceStatus to report your
-     * experience with the instance. Amazon EC2 collects this information to
-     * improve the accuracy of status checks.
-     * </p>
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void reportInstanceStatus() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
      * Describes one or more of your route tables.
+     * </p>
+     * <p>
+     * Each subnet in your VPC must be associated with a route table. If a
+     * subnet is not explicitly associated with any route table, it is
+     * implicitly associated with the main route table. This command does not
+     * return the subnet ID for implicit associations.
      * </p>
      * <p>
      * For more information about route tables, see
@@ -5626,6 +6547,49 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeDhcpOptionsResult describeDhcpOptions() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes available AWS services in a prefix list format, which
+     * includes the prefix list name and prefix list ID of the service and
+     * the IP address range for the service. A prefix list ID is required for
+     * creating an outbound security group rule that allows traffic from a
+     * VPC to access an AWS service through a VPC endpoint.
+     * </p>
+     * 
+     * @return The response from the DescribePrefixLists service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribePrefixListsResult describePrefixLists() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Displays details about an import virtual machine or import snapshot
+     * tasks that are already created.
+     * </p>
+     * 
+     * @return The response from the DescribeImportImageTasks service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeImportImageTasksResult describeImportImageTasks() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -5707,29 +6671,6 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Deletes a VPC peering connection. Either the owner of the requester
-     * VPC or the owner of the peer VPC can delete the VPC peering connection
-     * if it's in the <code>active</code> state. The owner of the requester
-     * VPC can delete a VPC peering connection in the
-     * <code>pending-acceptance</code> state.
-     * </p>
-     * 
-     * @return The response from the DeleteVpcPeeringConnection service
-     *         method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DeleteVpcPeeringConnectionResult deleteVpcPeeringConnection() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
      * Creates an Internet gateway for use with a VPC. After creating the
      * Internet gateway, you attach it to a VPC using AttachInternetGateway.
      * </p>
@@ -5755,6 +6696,28 @@ public interface AmazonEC2 {
     
     /**
      * <p>
+     * Describes your Elastic IP addresses that are being moved to the
+     * EC2-VPC platform, or that are being restored to the EC2-Classic
+     * platform. This request does not return information about any other
+     * Elastic IP addresses in your account.
+     * </p>
+     * 
+     * @return The response from the DescribeMovingAddresses service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeMovingAddressesResult describeMovingAddresses() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
      * Describes one or more of your conversion tasks. For more information,
      * see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
@@ -5774,6 +6737,47 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeConversionTasksResult describeConversionTasks() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Import single or multi-volume disk images or EBS snapshots into an
+     * Amazon Machine Image (AMI).
+     * </p>
+     * 
+     * @return The response from the ImportImage service method, as returned
+     *         by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ImportImageResult importImage() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes one or more flow logs. To view the information in your flow
+     * logs (the log streams for the network interfaces), you must use the
+     * CloudWatch Logs console or the CloudWatch Logs API.
+     * </p>
+     * 
+     * @return The response from the DescribeFlowLogs service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeFlowLogsResult describeFlowLogs() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -5899,53 +6903,12 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Adds one or more ingress rules to a security group.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b> EC2-Classic: You can have up to 100 rules per
-     * group. EC2-VPC: You can have up to 50 rules per group (covering both
-     * ingress and egress rules).
-     * </p>
-     * <p>
-     * Rule changes are propagated to instances within the security group as
-     * quickly as possible. However, a small delay might occur.
-     * </p>
-     * <p>
-     * [EC2-Classic] This action gives one or more CIDR IP address ranges
-     * permission to access a security group in your account, or gives one or
-     * more security groups (called the <i>source groups</i> ) permission to
-     * access a security group for your account. A source group can be for
-     * your own AWS account, or another.
-     * </p>
-     * <p>
-     * [EC2-VPC] This action gives one or more CIDR IP address ranges
-     * permission to access a security group in your VPC, or gives one or
-     * more other security groups (called the <i>source groups</i> )
-     * permission to access a security group for your VPC. The security
-     * groups must all be for the same VPC.
-     * </p>
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void authorizeSecurityGroupIngress() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
      * Describes the Spot Instance requests that belong to your account.
-     * Spot Instances are instances that Amazon EC2 starts on your behalf
-     * when the maximum price that you specify exceeds the current Spot
-     * Price. Amazon EC2 periodically sets the Spot Price based on available
-     * Spot Instance capacity and current Spot Instance requests. For more
-     * information about Spot Instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Spot Instances are instances that Amazon EC2 launches when the bid
+     * price that you specify exceeds the current Spot Price. Amazon EC2
+     * periodically sets the Spot Price based on available Spot Instance
+     * capacity and current Spot Instance requests. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -5997,6 +6960,47 @@ public interface AmazonEC2 {
     
     /**
      * <p>
+     * Describes the ClassicLink status of one or more VPCs.
+     * </p>
+     * 
+     * @return The response from the DescribeVpcClassicLink service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeVpcClassicLinkResult describeVpcClassicLink() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes one or more of your linked EC2-Classic instances. This
+     * request only returns information about EC2-Classic instances linked to
+     * a VPC through ClassicLink; you cannot use this request to return
+     * information about other instances.
+     * </p>
+     * 
+     * @return The response from the DescribeClassicLinkInstances service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeClassicLinkInstancesResult describeClassicLinkInstances() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
      * Describes one or more of the tags for your EC2 resources.
      * </p>
      * <p>
@@ -6021,10 +7025,53 @@ public interface AmazonEC2 {
     
     /**
      * <p>
+     * Imports a disk into an EBS snapshot.
+     * </p>
+     * 
+     * @return The response from the ImportSnapshot service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ImportSnapshotResult importSnapshot() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes your Spot fleet requests.
+     * </p>
+     * 
+     * @return The response from the DescribeSpotFleetRequests service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeSpotFleetRequestsResult describeSpotFleetRequests() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
      * Describes the modifications made to your Reserved Instances. If no
      * parameter is specified, information about all your Reserved Instances
      * modification requests is returned. If a modification ID is specified,
      * only information about the specific modification is returned.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html"> Modifying Reserved Instances </a>
+     * in the Amazon Elastic Compute Cloud User Guide.
      * </p>
      * 
      * @return The response from the DescribeReservedInstancesModifications
@@ -6043,8 +7090,8 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Deletes the datafeed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+     * Deletes the data feed for Spot Instances. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * 
@@ -6111,96 +7158,39 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes the status of one or more instances, including any
-     * scheduled events.
+     * Describes the status of one or more instances.
      * </p>
      * <p>
-     * Instance status has two main components:
+     * Instance status includes the following components:
      * </p>
      * 
      * <ul>
      * <li> <p>
-     * System Status reports impaired functionality that stems from issues
-     * related to the systems that support an instance, such as such as
-     * hardware failures and network connectivity problems. This call reports
-     * such problems as impaired reachability.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Instance Status reports impaired functionality that arises from
-     * problems internal to the instance. This call reports such problems as
-     * impaired reachability.
-     * </p>
-     * </li>
-     * 
-     * </ul>
-     * <p>
-     * Instance status provides information about four types of scheduled
-     * events for an instance that may require your attention:
-     * </p>
-     * 
-     * <ul>
-     * <li> <p>
-     * Scheduled Reboot: When Amazon EC2 determines that an instance must be
-     * rebooted, the instances status returns one of two event codes:
-     * <code>system-reboot</code> or <code>instance-reboot</code> . System
-     * reboot commonly occurs if certain maintenance or upgrade operations
-     * require a reboot of the underlying host that supports an instance.
-     * Instance reboot commonly occurs if the instance must be rebooted,
-     * rather than the underlying host. Rebooting events include a scheduled
-     * start and end time.
-     * </p>
-     * </li>
-     * <li> <p>
-     * System Maintenance: When Amazon EC2 determines that an instance
-     * requires maintenance that requires power or network impact, the
-     * instance status is the event code <code>system-maintenance</code> .
-     * System maintenance is either power maintenance or network maintenance.
-     * For power maintenance, your instance will be unavailable for a brief
-     * period of time and then rebooted. For network maintenance, your
-     * instance will experience a brief loss of network connectivity. System
-     * maintenance events include a scheduled start and end time. You will
-     * also be notified by email if one of your instances is set for system
-     * maintenance. The email message indicates when your instance is
-     * scheduled for maintenance.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Scheduled Retirement: When Amazon EC2 determines that an instance
-     * must be shut down, the instance status is the event code
-     * <code>instance-retirement</code> . Retirement commonly occurs when the
-     * underlying host is degraded and must be replaced. Retirement events
-     * include a scheduled start and end time. You will also be notified by
-     * email if one of your instances is set to retiring. The email message
-     * indicates when your instance will be permanently retired.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Scheduled Stop: When Amazon EC2 determines that an instance must be
-     * shut down, the instances status returns an event code called
-     * <code>instance-stop</code> . Stop events include a scheduled start and
-     * end time. You will also be notified by email if one of your instances
-     * is set to stop. The email message indicates when your instance will be
-     * stopped.
-     * </p>
-     * </li>
-     * 
-     * </ul>
-     * <p>
-     * When your instance is retired, it will either be terminated (if its
-     * root device type is the instance-store) or stopped (if its root device
-     * type is an EBS volume). Instances stopped due to retirement will not
-     * be restarted, but you can do so manually. You can also avoid
-     * retirement of EBS-backed instances by manually restarting your
-     * instance when its event code is <code>instance-retirement</code> .
-     * This ensures that your instance is started on a different underlying
-     * host.
-     * </p>
-     * <p>
-     * For more information about failed status checks, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html"> Troubleshooting Instances with Failed Status Checks </a> in the <i>Amazon Elastic Compute Cloud User Guide</i> . For more information about working with scheduled events, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html#schedevents_actions"> Working with an Instance That Has a Scheduled Event </a>
+     * <b>Status checks</b> - Amazon EC2 performs status checks on running
+     * EC2 instances to identify hardware and software issues. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html"> Status Checks for Your Instances </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html"> Troubleshooting Instances with Failed Status Checks </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
+     * </li>
+     * <li> <p>
+     * <b>Scheduled events</b> - Amazon EC2 can schedule events (such as
+     * reboot, stop, or terminate) for your instances related to hardware
+     * issues, software updates, or system maintenance. For more information,
+     * see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html"> Scheduled Events for Your Instances </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * </li>
+     * <li> <p>
+     * <b>Instance state</b> - You can manage your instances from the moment
+     * you launch them through their termination. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html"> Instance Lifecycle </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * </li>
+     * 
+     * </ul>
      * 
      * @return The response from the DescribeInstanceStatus service method,
      *         as returned by AmazonEC2.
@@ -6271,14 +7261,12 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Disassociates an Elastic IP address from the instance or network
-     * interface it's associated with.
-     * </p>
-     * <p>
-     * This is an idempotent operation. If you perform the operation more
-     * than once, Amazon EC2 doesn't return an error.
+     * Describes all supported AWS services that can be specified when
+     * creating a VPC endpoint.
      * </p>
      * 
+     * @return The response from the DescribeVpcEndpointServices service
+     *         method, as returned by AmazonEC2.
      * 
      *
      * @throws AmazonClientException
@@ -6289,7 +7277,7 @@ public interface AmazonEC2 {
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void disassociateAddress() throws AmazonServiceException, AmazonClientException;
+    public DescribeVpcEndpointServicesResult describeVpcEndpointServices() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -6318,43 +7306,7 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Releases the specified Elastic IP address.
-     * </p>
-     * <p>
-     * After releasing an Elastic IP address, it is released to the IP
-     * address pool and might be unavailable to you. Be sure to update your
-     * DNS records and any servers or devices that communicate with the
-     * address. If you attempt to release an Elastic IP address that you
-     * already released, you'll get an <code>AuthFailure</code> error if the
-     * address is already allocated to another AWS account.
-     * </p>
-     * <p>
-     * [EC2-Classic, default VPC] Releasing an Elastic IP address
-     * automatically disassociates it from any instance that it's associated
-     * with. To disassociate an Elastic IP address without releasing it, use
-     * DisassociateAddress.
-     * </p>
-     * <p>
-     * [Nondefault VPC] You must use the DisassociateAddress to disassociate
-     * the Elastic IP address before you try to release it. Otherwise, Amazon
-     * EC2 returns an error ( <code>InvalidIPAddress.InUse</code> ).
-     * </p>
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void releaseAddress() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Describes one or more of the Amazon EBS snapshots available to you.
+     * Describes one or more of the EBS snapshots available to you.
      * Available snapshots include public snapshots available for any AWS
      * account to launch, private snapshots that you own, and private
      * snapshots owned by another AWS account but for which you've been given
@@ -6401,7 +7353,17 @@ public interface AmazonEC2 {
      * <code>all</code> for public snapshots.
      * </p>
      * <p>
-     * For more information about Amazon EBS snapshots, see
+     * If you are describing a long list of snapshots, you can paginate the
+     * output to make the list more manageable. The <code>MaxResults</code>
+     * parameter sets the maximum number of results returned in a single
+     * page. If the list of results exceeds your <code>MaxResults</code>
+     * value, then that number of results is returned along with a
+     * <code>NextToken</code> value that can be passed to a subsequent
+     * <code>DescribeSnapshots</code> request to retrieve the remaining
+     * results.
+     * </p>
+     * <p>
+     * For more information about EBS snapshots, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"> Amazon EBS Snapshots </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -6422,36 +7384,10 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Registers an AMI. When you're creating an AMI, this is the final step
-     * you must complete before you can launch an instance from the AMI. For
-     * more information about creating AMIs, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html"> Creating Your Own AMIs </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * <b>NOTE:</b> For Amazon EBS-backed instances, CreateImage creates and
-     * registers the AMI in a single request, so you don't have to register
-     * the AMI yourself.
-     * </p>
-     * <p>
-     * You can also use <code>RegisterImage</code> to create an Amazon
-     * EBS-backed AMI from a snapshot of a root device volume. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html"> Launching an Instance from a Snapshot </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * If needed, you can deregister an AMI at any time. Any modifications
-     * you make to an AMI backed by an instance store volume invalidates its
-     * registration. If you make changes to an image, deregister the previous
-     * image and register the new image.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> You can't register an image where a secondary (non-root)
-     * snapshot has AWS Marketplace product codes.
+     * Describes one or more of your VPC endpoints.
      * </p>
      * 
-     * @return The response from the RegisterImage service method, as
+     * @return The response from the DescribeVpcEndpoints service method, as
      *         returned by AmazonEC2.
      * 
      *
@@ -6463,7 +7399,7 @@ public interface AmazonEC2 {
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public RegisterImageResult registerImage() throws AmazonServiceException, AmazonClientException;
+    public DescribeVpcEndpointsResult describeVpcEndpoints() throws AmazonServiceException, AmazonClientException;
     
     /**
      * Checks whether you have the required permissions for the provided

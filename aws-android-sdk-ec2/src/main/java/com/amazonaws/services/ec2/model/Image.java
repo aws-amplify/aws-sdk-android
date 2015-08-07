@@ -39,7 +39,7 @@ public class Image implements Serializable {
      * instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>available, deregistered
+     * <b>Allowed Values: </b>pending, available, invalid, deregistered, transient, failed, error
      */
     private String state;
 
@@ -47,6 +47,11 @@ public class Image implements Serializable {
      * The AWS account ID of the image owner.
      */
     private String ownerId;
+
+    /**
+     * The date and time the image was created.
+     */
+    private String creationDate;
 
     /**
      * Indicates whether the image has public launch permissions. The value
@@ -124,8 +129,8 @@ public class Image implements Serializable {
     private String description;
 
     /**
-     * The type of root device used by the AMI. The AMI can use an Amazon EBS
-     * volume or an instance store volume.
+     * The type of root device used by the AMI. The AMI can use an EBS volume
+     * or an instance store volume.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ebs, instance-store
@@ -134,7 +139,7 @@ public class Image implements Serializable {
 
     /**
      * The device name of the root device (for example,
-     * <filename>/dev/sda1</filename> or <filename>xvda</filename>).
+     * <code>/dev/sda1</code> or <code>/dev/xvda</code>).
      */
     private String rootDeviceName;
 
@@ -236,7 +241,7 @@ public class Image implements Serializable {
      * instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>available, deregistered
+     * <b>Allowed Values: </b>pending, available, invalid, deregistered, transient, failed, error
      *
      * @return The current state of the AMI. If the state is <code>available</code>,
      *         the image is successfully registered and can be used to launch an
@@ -254,7 +259,7 @@ public class Image implements Serializable {
      * instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>available, deregistered
+     * <b>Allowed Values: </b>pending, available, invalid, deregistered, transient, failed, error
      *
      * @param state The current state of the AMI. If the state is <code>available</code>,
      *         the image is successfully registered and can be used to launch an
@@ -274,7 +279,7 @@ public class Image implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>available, deregistered
+     * <b>Allowed Values: </b>pending, available, invalid, deregistered, transient, failed, error
      *
      * @param state The current state of the AMI. If the state is <code>available</code>,
      *         the image is successfully registered and can be used to launch an
@@ -296,7 +301,7 @@ public class Image implements Serializable {
      * instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>available, deregistered
+     * <b>Allowed Values: </b>pending, available, invalid, deregistered, transient, failed, error
      *
      * @param state The current state of the AMI. If the state is <code>available</code>,
      *         the image is successfully registered and can be used to launch an
@@ -316,7 +321,7 @@ public class Image implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>available, deregistered
+     * <b>Allowed Values: </b>pending, available, invalid, deregistered, transient, failed, error
      *
      * @param state The current state of the AMI. If the state is <code>available</code>,
      *         the image is successfully registered and can be used to launch an
@@ -362,6 +367,39 @@ public class Image implements Serializable {
      */
     public Image withOwnerId(String ownerId) {
         this.ownerId = ownerId;
+        return this;
+    }
+
+    /**
+     * The date and time the image was created.
+     *
+     * @return The date and time the image was created.
+     */
+    public String getCreationDate() {
+        return creationDate;
+    }
+    
+    /**
+     * The date and time the image was created.
+     *
+     * @param creationDate The date and time the image was created.
+     */
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+    
+    /**
+     * The date and time the image was created.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param creationDate The date and time the image was created.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public Image withCreationDate(String creationDate) {
+        this.creationDate = creationDate;
         return this;
     }
 
@@ -995,14 +1033,14 @@ public class Image implements Serializable {
     }
 
     /**
-     * The type of root device used by the AMI. The AMI can use an Amazon EBS
-     * volume or an instance store volume.
+     * The type of root device used by the AMI. The AMI can use an EBS volume
+     * or an instance store volume.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ebs, instance-store
      *
-     * @return The type of root device used by the AMI. The AMI can use an Amazon EBS
-     *         volume or an instance store volume.
+     * @return The type of root device used by the AMI. The AMI can use an EBS volume
+     *         or an instance store volume.
      *
      * @see DeviceType
      */
@@ -1011,14 +1049,14 @@ public class Image implements Serializable {
     }
     
     /**
-     * The type of root device used by the AMI. The AMI can use an Amazon EBS
-     * volume or an instance store volume.
+     * The type of root device used by the AMI. The AMI can use an EBS volume
+     * or an instance store volume.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ebs, instance-store
      *
-     * @param rootDeviceType The type of root device used by the AMI. The AMI can use an Amazon EBS
-     *         volume or an instance store volume.
+     * @param rootDeviceType The type of root device used by the AMI. The AMI can use an EBS volume
+     *         or an instance store volume.
      *
      * @see DeviceType
      */
@@ -1027,16 +1065,16 @@ public class Image implements Serializable {
     }
     
     /**
-     * The type of root device used by the AMI. The AMI can use an Amazon EBS
-     * volume or an instance store volume.
+     * The type of root device used by the AMI. The AMI can use an EBS volume
+     * or an instance store volume.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ebs, instance-store
      *
-     * @param rootDeviceType The type of root device used by the AMI. The AMI can use an Amazon EBS
-     *         volume or an instance store volume.
+     * @param rootDeviceType The type of root device used by the AMI. The AMI can use an EBS volume
+     *         or an instance store volume.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1049,14 +1087,14 @@ public class Image implements Serializable {
     }
 
     /**
-     * The type of root device used by the AMI. The AMI can use an Amazon EBS
-     * volume or an instance store volume.
+     * The type of root device used by the AMI. The AMI can use an EBS volume
+     * or an instance store volume.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ebs, instance-store
      *
-     * @param rootDeviceType The type of root device used by the AMI. The AMI can use an Amazon EBS
-     *         volume or an instance store volume.
+     * @param rootDeviceType The type of root device used by the AMI. The AMI can use an EBS volume
+     *         or an instance store volume.
      *
      * @see DeviceType
      */
@@ -1065,16 +1103,16 @@ public class Image implements Serializable {
     }
     
     /**
-     * The type of root device used by the AMI. The AMI can use an Amazon EBS
-     * volume or an instance store volume.
+     * The type of root device used by the AMI. The AMI can use an EBS volume
+     * or an instance store volume.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ebs, instance-store
      *
-     * @param rootDeviceType The type of root device used by the AMI. The AMI can use an Amazon EBS
-     *         volume or an instance store volume.
+     * @param rootDeviceType The type of root device used by the AMI. The AMI can use an EBS volume
+     *         or an instance store volume.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1088,10 +1126,10 @@ public class Image implements Serializable {
 
     /**
      * The device name of the root device (for example,
-     * <filename>/dev/sda1</filename> or <filename>xvda</filename>).
+     * <code>/dev/sda1</code> or <code>/dev/xvda</code>).
      *
      * @return The device name of the root device (for example,
-     *         <filename>/dev/sda1</filename> or <filename>xvda</filename>).
+     *         <code>/dev/sda1</code> or <code>/dev/xvda</code>).
      */
     public String getRootDeviceName() {
         return rootDeviceName;
@@ -1099,10 +1137,10 @@ public class Image implements Serializable {
     
     /**
      * The device name of the root device (for example,
-     * <filename>/dev/sda1</filename> or <filename>xvda</filename>).
+     * <code>/dev/sda1</code> or <code>/dev/xvda</code>).
      *
      * @param rootDeviceName The device name of the root device (for example,
-     *         <filename>/dev/sda1</filename> or <filename>xvda</filename>).
+     *         <code>/dev/sda1</code> or <code>/dev/xvda</code>).
      */
     public void setRootDeviceName(String rootDeviceName) {
         this.rootDeviceName = rootDeviceName;
@@ -1110,12 +1148,12 @@ public class Image implements Serializable {
     
     /**
      * The device name of the root device (for example,
-     * <filename>/dev/sda1</filename> or <filename>xvda</filename>).
+     * <code>/dev/sda1</code> or <code>/dev/xvda</code>).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param rootDeviceName The device name of the root device (for example,
-     *         <filename>/dev/sda1</filename> or <filename>xvda</filename>).
+     *         <code>/dev/sda1</code> or <code>/dev/xvda</code>).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1441,6 +1479,7 @@ public class Image implements Serializable {
         if (getImageLocation() != null) sb.append("ImageLocation: " + getImageLocation() + ",");
         if (getState() != null) sb.append("State: " + getState() + ",");
         if (getOwnerId() != null) sb.append("OwnerId: " + getOwnerId() + ",");
+        if (getCreationDate() != null) sb.append("CreationDate: " + getCreationDate() + ",");
         if (isPublic() != null) sb.append("Public: " + isPublic() + ",");
         if (getProductCodes() != null) sb.append("ProductCodes: " + getProductCodes() + ",");
         if (getArchitecture() != null) sb.append("Architecture: " + getArchitecture() + ",");
@@ -1472,6 +1511,7 @@ public class Image implements Serializable {
         hashCode = prime * hashCode + ((getImageLocation() == null) ? 0 : getImageLocation().hashCode()); 
         hashCode = prime * hashCode + ((getState() == null) ? 0 : getState().hashCode()); 
         hashCode = prime * hashCode + ((getOwnerId() == null) ? 0 : getOwnerId().hashCode()); 
+        hashCode = prime * hashCode + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode()); 
         hashCode = prime * hashCode + ((isPublic() == null) ? 0 : isPublic().hashCode()); 
         hashCode = prime * hashCode + ((getProductCodes() == null) ? 0 : getProductCodes().hashCode()); 
         hashCode = prime * hashCode + ((getArchitecture() == null) ? 0 : getArchitecture().hashCode()); 
@@ -1509,6 +1549,8 @@ public class Image implements Serializable {
         if (other.getState() != null && other.getState().equals(this.getState()) == false) return false; 
         if (other.getOwnerId() == null ^ this.getOwnerId() == null) return false;
         if (other.getOwnerId() != null && other.getOwnerId().equals(this.getOwnerId()) == false) return false; 
+        if (other.getCreationDate() == null ^ this.getCreationDate() == null) return false;
+        if (other.getCreationDate() != null && other.getCreationDate().equals(this.getCreationDate()) == false) return false; 
         if (other.isPublic() == null ^ this.isPublic() == null) return false;
         if (other.isPublic() != null && other.isPublic().equals(this.isPublic()) == false) return false; 
         if (other.getProductCodes() == null ^ this.getProductCodes() == null) return false;

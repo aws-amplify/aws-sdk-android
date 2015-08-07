@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Describes the launch specification for VM import.
+ * </p>
  */
 public class ImportInstanceLaunchSpecification implements Serializable {
 
@@ -35,37 +37,44 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> groupNames;
 
     /**
-     * 
+     * One or more security group IDs.
+     */
+    private com.amazonaws.internal.ListWithAutoConstructFlag<String> groupIds;
+
+    /**
+     * Reserved.
      */
     private String additionalInfo;
 
     /**
-     * User data to be made available to the instance.
+     * The Base64-encoded MIME user data to be made available to the
+     * instance.
      */
-    private String userData;
+    private UserData userData;
 
     /**
-     * The instance type. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * The instance type. For more information about the instance types that
+     * you can import, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     * You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      */
     private String instanceType;
 
     /**
-     * 
+     * The placement information for the instance.
      */
     private Placement placement;
 
     /**
-     * 
+     * Indicates whether monitoring is enabled.
      */
     private Boolean monitoring;
 
     /**
-     * [EC2-VPC] The ID of the subnet to launch the instance into.
+     * [EC2-VPC] The ID of the subnet in which to launch the instance.
      */
     private String subnetId;
 
@@ -80,9 +89,8 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     private String instanceInitiatedShutdownBehavior;
 
     /**
-     * [EC2-VPC] Optionally, you can use this parameter to assign the
-     * instance a specific available IP address from the IP address range of
-     * the subnet.
+     * [EC2-VPC] An available IP address from the IP address range of the
+     * subnet.
      */
     private String privateIpAddress;
 
@@ -237,29 +245,97 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
 
     /**
-     * 
+     * One or more security group IDs.
      *
-     * @return 
+     * @return One or more security group IDs.
+     */
+    public java.util.List<String> getGroupIds() {
+        if (groupIds == null) {
+              groupIds = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
+              groupIds.setAutoConstruct(true);
+        }
+        return groupIds;
+    }
+    
+    /**
+     * One or more security group IDs.
+     *
+     * @param groupIds One or more security group IDs.
+     */
+    public void setGroupIds(java.util.Collection<String> groupIds) {
+        if (groupIds == null) {
+            this.groupIds = null;
+            return;
+        }
+        com.amazonaws.internal.ListWithAutoConstructFlag<String> groupIdsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(groupIds.size());
+        groupIdsCopy.addAll(groupIds);
+        this.groupIds = groupIdsCopy;
+    }
+    
+    /**
+     * One or more security group IDs.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param groupIds One or more security group IDs.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public ImportInstanceLaunchSpecification withGroupIds(String... groupIds) {
+        if (getGroupIds() == null) setGroupIds(new java.util.ArrayList<String>(groupIds.length));
+        for (String value : groupIds) {
+            getGroupIds().add(value);
+        }
+        return this;
+    }
+    
+    /**
+     * One or more security group IDs.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param groupIds One or more security group IDs.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public ImportInstanceLaunchSpecification withGroupIds(java.util.Collection<String> groupIds) {
+        if (groupIds == null) {
+            this.groupIds = null;
+        } else {
+            com.amazonaws.internal.ListWithAutoConstructFlag<String> groupIdsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(groupIds.size());
+            groupIdsCopy.addAll(groupIds);
+            this.groupIds = groupIdsCopy;
+        }
+
+        return this;
+    }
+
+    /**
+     * Reserved.
+     *
+     * @return Reserved.
      */
     public String getAdditionalInfo() {
         return additionalInfo;
     }
     
     /**
-     * 
+     * Reserved.
      *
-     * @param additionalInfo 
+     * @param additionalInfo Reserved.
      */
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
     }
     
     /**
-     * 
+     * Reserved.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param additionalInfo 
+     * @param additionalInfo Reserved.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -270,49 +346,57 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
 
     /**
-     * User data to be made available to the instance.
+     * The Base64-encoded MIME user data to be made available to the
+     * instance.
      *
-     * @return User data to be made available to the instance.
+     * @return The Base64-encoded MIME user data to be made available to the
+     *         instance.
      */
-    public String getUserData() {
+    public UserData getUserData() {
         return userData;
     }
     
     /**
-     * User data to be made available to the instance.
+     * The Base64-encoded MIME user data to be made available to the
+     * instance.
      *
-     * @param userData User data to be made available to the instance.
+     * @param userData The Base64-encoded MIME user data to be made available to the
+     *         instance.
      */
-    public void setUserData(String userData) {
+    public void setUserData(UserData userData) {
         this.userData = userData;
     }
     
     /**
-     * User data to be made available to the instance.
+     * The Base64-encoded MIME user data to be made available to the
+     * instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param userData User data to be made available to the instance.
+     * @param userData The Base64-encoded MIME user data to be made available to the
+     *         instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
      */
-    public ImportInstanceLaunchSpecification withUserData(String userData) {
+    public ImportInstanceLaunchSpecification withUserData(UserData userData) {
         this.userData = userData;
         return this;
     }
 
     /**
-     * The instance type. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * The instance type. For more information about the instance types that
+     * you can import, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     * You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
-     * @return The instance type. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     *         Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @return The instance type. For more information about the instance types that
+     *         you can import, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     *         You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      *
      * @see InstanceType
      */
@@ -321,16 +405,18 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
     
     /**
-     * The instance type. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * The instance type. For more information about the instance types that
+     * you can import, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     * You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
-     * @param instanceType The instance type. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     *         Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @param instanceType The instance type. For more information about the instance types that
+     *         you can import, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     *         You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      *
      * @see InstanceType
      */
@@ -339,18 +425,20 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
     
     /**
-     * The instance type. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * The instance type. For more information about the instance types that
+     * you can import, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     * You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
-     * @param instanceType The instance type. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     *         Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @param instanceType The instance type. For more information about the instance types that
+     *         you can import, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     *         You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -363,16 +451,18 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
 
     /**
-     * The instance type. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * The instance type. For more information about the instance types that
+     * you can import, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     * You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
-     * @param instanceType The instance type. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     *         Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @param instanceType The instance type. For more information about the instance types that
+     *         you can import, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     *         You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      *
      * @see InstanceType
      */
@@ -381,18 +471,20 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
     
     /**
-     * The instance type. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * The instance type. For more information about the instance types that
+     * you can import, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     * You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
-     * @param instanceType The instance type. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     *         Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @param instanceType The instance type. For more information about the instance types that
+     *         you can import, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html">Before
+     *         You Get Started</a> in the Amazon Elastic Compute Cloud User Guide.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -405,29 +497,29 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
 
     /**
-     * 
+     * The placement information for the instance.
      *
-     * @return 
+     * @return The placement information for the instance.
      */
     public Placement getPlacement() {
         return placement;
     }
     
     /**
-     * 
+     * The placement information for the instance.
      *
-     * @param placement 
+     * @param placement The placement information for the instance.
      */
     public void setPlacement(Placement placement) {
         this.placement = placement;
     }
     
     /**
-     * 
+     * The placement information for the instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param placement 
+     * @param placement The placement information for the instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -438,29 +530,29 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
 
     /**
-     * 
+     * Indicates whether monitoring is enabled.
      *
-     * @return 
+     * @return Indicates whether monitoring is enabled.
      */
     public Boolean isMonitoring() {
         return monitoring;
     }
     
     /**
-     * 
+     * Indicates whether monitoring is enabled.
      *
-     * @param monitoring 
+     * @param monitoring Indicates whether monitoring is enabled.
      */
     public void setMonitoring(Boolean monitoring) {
         this.monitoring = monitoring;
     }
     
     /**
-     * 
+     * Indicates whether monitoring is enabled.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param monitoring 
+     * @param monitoring Indicates whether monitoring is enabled.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -471,38 +563,38 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
 
     /**
-     * 
+     * Indicates whether monitoring is enabled.
      *
-     * @return 
+     * @return Indicates whether monitoring is enabled.
      */
     public Boolean getMonitoring() {
         return monitoring;
     }
 
     /**
-     * [EC2-VPC] The ID of the subnet to launch the instance into.
+     * [EC2-VPC] The ID of the subnet in which to launch the instance.
      *
-     * @return [EC2-VPC] The ID of the subnet to launch the instance into.
+     * @return [EC2-VPC] The ID of the subnet in which to launch the instance.
      */
     public String getSubnetId() {
         return subnetId;
     }
     
     /**
-     * [EC2-VPC] The ID of the subnet to launch the instance into.
+     * [EC2-VPC] The ID of the subnet in which to launch the instance.
      *
-     * @param subnetId [EC2-VPC] The ID of the subnet to launch the instance into.
+     * @param subnetId [EC2-VPC] The ID of the subnet in which to launch the instance.
      */
     public void setSubnetId(String subnetId) {
         this.subnetId = subnetId;
     }
     
     /**
-     * [EC2-VPC] The ID of the subnet to launch the instance into.
+     * [EC2-VPC] The ID of the subnet in which to launch the instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param subnetId [EC2-VPC] The ID of the subnet to launch the instance into.
+     * @param subnetId [EC2-VPC] The ID of the subnet in which to launch the instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -615,41 +707,35 @@ public class ImportInstanceLaunchSpecification implements Serializable {
     }
 
     /**
-     * [EC2-VPC] Optionally, you can use this parameter to assign the
-     * instance a specific available IP address from the IP address range of
-     * the subnet.
+     * [EC2-VPC] An available IP address from the IP address range of the
+     * subnet.
      *
-     * @return [EC2-VPC] Optionally, you can use this parameter to assign the
-     *         instance a specific available IP address from the IP address range of
-     *         the subnet.
+     * @return [EC2-VPC] An available IP address from the IP address range of the
+     *         subnet.
      */
     public String getPrivateIpAddress() {
         return privateIpAddress;
     }
     
     /**
-     * [EC2-VPC] Optionally, you can use this parameter to assign the
-     * instance a specific available IP address from the IP address range of
-     * the subnet.
+     * [EC2-VPC] An available IP address from the IP address range of the
+     * subnet.
      *
-     * @param privateIpAddress [EC2-VPC] Optionally, you can use this parameter to assign the
-     *         instance a specific available IP address from the IP address range of
-     *         the subnet.
+     * @param privateIpAddress [EC2-VPC] An available IP address from the IP address range of the
+     *         subnet.
      */
     public void setPrivateIpAddress(String privateIpAddress) {
         this.privateIpAddress = privateIpAddress;
     }
     
     /**
-     * [EC2-VPC] Optionally, you can use this parameter to assign the
-     * instance a specific available IP address from the IP address range of
-     * the subnet.
+     * [EC2-VPC] An available IP address from the IP address range of the
+     * subnet.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param privateIpAddress [EC2-VPC] Optionally, you can use this parameter to assign the
-     *         instance a specific available IP address from the IP address range of
-     *         the subnet.
+     * @param privateIpAddress [EC2-VPC] An available IP address from the IP address range of the
+     *         subnet.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -673,6 +759,7 @@ public class ImportInstanceLaunchSpecification implements Serializable {
         sb.append("{");
         if (getArchitecture() != null) sb.append("Architecture: " + getArchitecture() + ",");
         if (getGroupNames() != null) sb.append("GroupNames: " + getGroupNames() + ",");
+        if (getGroupIds() != null) sb.append("GroupIds: " + getGroupIds() + ",");
         if (getAdditionalInfo() != null) sb.append("AdditionalInfo: " + getAdditionalInfo() + ",");
         if (getUserData() != null) sb.append("UserData: " + getUserData() + ",");
         if (getInstanceType() != null) sb.append("InstanceType: " + getInstanceType() + ",");
@@ -692,6 +779,7 @@ public class ImportInstanceLaunchSpecification implements Serializable {
         
         hashCode = prime * hashCode + ((getArchitecture() == null) ? 0 : getArchitecture().hashCode()); 
         hashCode = prime * hashCode + ((getGroupNames() == null) ? 0 : getGroupNames().hashCode()); 
+        hashCode = prime * hashCode + ((getGroupIds() == null) ? 0 : getGroupIds().hashCode()); 
         hashCode = prime * hashCode + ((getAdditionalInfo() == null) ? 0 : getAdditionalInfo().hashCode()); 
         hashCode = prime * hashCode + ((getUserData() == null) ? 0 : getUserData().hashCode()); 
         hashCode = prime * hashCode + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode()); 
@@ -715,6 +803,8 @@ public class ImportInstanceLaunchSpecification implements Serializable {
         if (other.getArchitecture() != null && other.getArchitecture().equals(this.getArchitecture()) == false) return false; 
         if (other.getGroupNames() == null ^ this.getGroupNames() == null) return false;
         if (other.getGroupNames() != null && other.getGroupNames().equals(this.getGroupNames()) == false) return false; 
+        if (other.getGroupIds() == null ^ this.getGroupIds() == null) return false;
+        if (other.getGroupIds() != null && other.getGroupIds().equals(this.getGroupIds()) == false) return false; 
         if (other.getAdditionalInfo() == null ^ this.getAdditionalInfo() == null) return false;
         if (other.getAdditionalInfo() != null && other.getAdditionalInfo().equals(this.getAdditionalInfo()) == false) return false; 
         if (other.getUserData() == null ^ this.getUserData() == null) return false;

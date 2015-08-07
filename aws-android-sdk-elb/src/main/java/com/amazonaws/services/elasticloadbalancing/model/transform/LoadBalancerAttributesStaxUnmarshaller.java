@@ -55,6 +55,14 @@ public class LoadBalancerAttributesStaxUnmarshaller implements Unmarshaller<Load
                     loadBalancerAttributes.setConnectionDraining(ConnectionDrainingStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("ConnectionSettings", targetDepth)) {
+                    loadBalancerAttributes.setConnectionSettings(ConnectionSettingsStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("AdditionalAttributes/member", targetDepth)) {
+                    loadBalancerAttributes.getAdditionalAttributes().add(AdditionalAttributeStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return loadBalancerAttributes;

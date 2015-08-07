@@ -24,12 +24,11 @@ import com.amazonaws.services.ec2.model.transform.DescribeSpotInstanceRequestsRe
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#describeSpotInstanceRequests(DescribeSpotInstanceRequestsRequest) DescribeSpotInstanceRequests operation}.
  * <p>
  * Describes the Spot Instance requests that belong to your account. Spot
- * Instances are instances that Amazon EC2 starts on your behalf when the
- * maximum price that you specify exceeds the current Spot Price. Amazon
- * EC2 periodically sets the Spot Price based on available Spot Instance
- * capacity and current Spot Instance requests. For more information
- * about Spot Instances, see
- * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"> Spot Instances </a>
+ * Instances are instances that Amazon EC2 launches when the bid price
+ * that you specify exceeds the current Spot Price. Amazon EC2
+ * periodically sets the Spot Price based on available Spot Instance
+ * capacity and current Spot Instance requests. For more information, see
+ * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>
  * <p>
@@ -81,24 +80,23 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * <p><code>launch.monitoring-enabled</code> - Whether monitoring is
      * enabled for the Spot Instance. </li> <li>
      * <p><code>launch.ramdisk-id</code> - The RAM disk ID. </li> <li>
-     * <p><code>launch.network-interface.network-interface-id</code> - The ID
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.device-index</code> - The index of
-     * the device for the network interface attachment on the instance. </li>
-     * <li> <p><code>launch.network-interface.subnet-id</code> - The ID of
-     * the subnet for the instance. </li> <li>
-     * <p><code>launch.network-interface.description</code> - A description
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.private-ip-address</code> - The
-     * primary private IP address of the network interface. </li> <li>
-     * <p><code>launch.network-interface.delete-on-termination</code> -
-     * Indicates whether the network interface is deleted when the instance
-     * is terminated. </li> <li>
-     * <p><code>launch.network-interface.group-id</code> - The ID of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.group-name</code> - The name of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.addresses.primary</code> - Indicates
+     * <p><code>network-interface.network-interface-id</code> - The ID of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.device-index</code> - The index of the
+     * device for the network interface attachment on the instance. </li>
+     * <li> <p><code>network-interface.subnet-id</code> - The ID of the
+     * subnet for the instance. </li> <li>
+     * <p><code>network-interface.description</code> - A description of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.private-ip-address</code> - The primary
+     * private IP address of the network interface. </li> <li>
+     * <p><code>network-interface.delete-on-termination</code> - Indicates
+     * whether the network interface is deleted when the instance is
+     * terminated. </li> <li> <p><code>network-interface.group-id</code> -
+     * The ID of the security group associated with the network interface.
+     * </li> <li> <p><code>network-interface.group-name</code> - The name of
+     * the security group associated with the network interface. </li> <li>
+     * <p><code>network-interface.addresses.primary</code> - Indicates
      * whether the IP address is the primary private IP address. </li> <li>
      * <p><code>product-description</code> - The product description
      * associated with the instance (<code>Linux/UNIX</code> |
@@ -108,8 +106,12 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * for any Spot Instance launched to fulfill the request. </li> <li>
      * <p><code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). </li> <li>
-     * <p><code>status-code</code> - The short code describing the most
+     * <code>cancelled</code> | <code>failed</code>). Spot bid status
+     * information can help you track your Amazon EC2 Spot Instance requests.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
+     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide. </li>
+     * <li> <p><code>status-code</code> - The short code describing the most
      * recent evaluation of your Spot Instance request. </li> <li>
      * <p><code>status-message</code> - The message explaining the status of
      * the Spot Instance request. </li> <li>
@@ -233,24 +235,23 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * <p><code>launch.monitoring-enabled</code> - Whether monitoring is
      * enabled for the Spot Instance. </li> <li>
      * <p><code>launch.ramdisk-id</code> - The RAM disk ID. </li> <li>
-     * <p><code>launch.network-interface.network-interface-id</code> - The ID
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.device-index</code> - The index of
-     * the device for the network interface attachment on the instance. </li>
-     * <li> <p><code>launch.network-interface.subnet-id</code> - The ID of
-     * the subnet for the instance. </li> <li>
-     * <p><code>launch.network-interface.description</code> - A description
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.private-ip-address</code> - The
-     * primary private IP address of the network interface. </li> <li>
-     * <p><code>launch.network-interface.delete-on-termination</code> -
-     * Indicates whether the network interface is deleted when the instance
-     * is terminated. </li> <li>
-     * <p><code>launch.network-interface.group-id</code> - The ID of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.group-name</code> - The name of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.addresses.primary</code> - Indicates
+     * <p><code>network-interface.network-interface-id</code> - The ID of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.device-index</code> - The index of the
+     * device for the network interface attachment on the instance. </li>
+     * <li> <p><code>network-interface.subnet-id</code> - The ID of the
+     * subnet for the instance. </li> <li>
+     * <p><code>network-interface.description</code> - A description of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.private-ip-address</code> - The primary
+     * private IP address of the network interface. </li> <li>
+     * <p><code>network-interface.delete-on-termination</code> - Indicates
+     * whether the network interface is deleted when the instance is
+     * terminated. </li> <li> <p><code>network-interface.group-id</code> -
+     * The ID of the security group associated with the network interface.
+     * </li> <li> <p><code>network-interface.group-name</code> - The name of
+     * the security group associated with the network interface. </li> <li>
+     * <p><code>network-interface.addresses.primary</code> - Indicates
      * whether the IP address is the primary private IP address. </li> <li>
      * <p><code>product-description</code> - The product description
      * associated with the instance (<code>Linux/UNIX</code> |
@@ -260,8 +261,12 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * for any Spot Instance launched to fulfill the request. </li> <li>
      * <p><code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). </li> <li>
-     * <p><code>status-code</code> - The short code describing the most
+     * <code>cancelled</code> | <code>failed</code>). Spot bid status
+     * information can help you track your Amazon EC2 Spot Instance requests.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
+     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide. </li>
+     * <li> <p><code>status-code</code> - The short code describing the most
      * recent evaluation of your Spot Instance request. </li> <li>
      * <p><code>status-message</code> - The message explaining the status of
      * the Spot Instance request. </li> <li>
@@ -314,24 +319,23 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         <p><code>launch.monitoring-enabled</code> - Whether monitoring is
      *         enabled for the Spot Instance. </li> <li>
      *         <p><code>launch.ramdisk-id</code> - The RAM disk ID. </li> <li>
-     *         <p><code>launch.network-interface.network-interface-id</code> - The ID
-     *         of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.device-index</code> - The index of
-     *         the device for the network interface attachment on the instance. </li>
-     *         <li> <p><code>launch.network-interface.subnet-id</code> - The ID of
-     *         the subnet for the instance. </li> <li>
-     *         <p><code>launch.network-interface.description</code> - A description
-     *         of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.private-ip-address</code> - The
-     *         primary private IP address of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.delete-on-termination</code> -
-     *         Indicates whether the network interface is deleted when the instance
-     *         is terminated. </li> <li>
-     *         <p><code>launch.network-interface.group-id</code> - The ID of the
-     *         security group associated with the network interface. </li> <li>
-     *         <p><code>launch.network-interface.group-name</code> - The name of the
-     *         security group associated with the network interface. </li> <li>
-     *         <p><code>launch.network-interface.addresses.primary</code> - Indicates
+     *         <p><code>network-interface.network-interface-id</code> - The ID of the
+     *         network interface. </li> <li>
+     *         <p><code>network-interface.device-index</code> - The index of the
+     *         device for the network interface attachment on the instance. </li>
+     *         <li> <p><code>network-interface.subnet-id</code> - The ID of the
+     *         subnet for the instance. </li> <li>
+     *         <p><code>network-interface.description</code> - A description of the
+     *         network interface. </li> <li>
+     *         <p><code>network-interface.private-ip-address</code> - The primary
+     *         private IP address of the network interface. </li> <li>
+     *         <p><code>network-interface.delete-on-termination</code> - Indicates
+     *         whether the network interface is deleted when the instance is
+     *         terminated. </li> <li> <p><code>network-interface.group-id</code> -
+     *         The ID of the security group associated with the network interface.
+     *         </li> <li> <p><code>network-interface.group-name</code> - The name of
+     *         the security group associated with the network interface. </li> <li>
+     *         <p><code>network-interface.addresses.primary</code> - Indicates
      *         whether the IP address is the primary private IP address. </li> <li>
      *         <p><code>product-description</code> - The product description
      *         associated with the instance (<code>Linux/UNIX</code> |
@@ -341,8 +345,12 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         for any Spot Instance launched to fulfill the request. </li> <li>
      *         <p><code>state</code> - The state of the Spot Instance request
      *         (<code>open</code> | <code>active</code> | <code>closed</code> |
-     *         <code>cancelled</code> | <code>failed</code>). </li> <li>
-     *         <p><code>status-code</code> - The short code describing the most
+     *         <code>cancelled</code> | <code>failed</code>). Spot bid status
+     *         information can help you track your Amazon EC2 Spot Instance requests.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
+     *         Bid Status</a> in the Amazon Elastic Compute Cloud User Guide. </li>
+     *         <li> <p><code>status-code</code> - The short code describing the most
      *         recent evaluation of your Spot Instance request. </li> <li>
      *         <p><code>status-message</code> - The message explaining the status of
      *         the Spot Instance request. </li> <li>
@@ -404,24 +412,23 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * <p><code>launch.monitoring-enabled</code> - Whether monitoring is
      * enabled for the Spot Instance. </li> <li>
      * <p><code>launch.ramdisk-id</code> - The RAM disk ID. </li> <li>
-     * <p><code>launch.network-interface.network-interface-id</code> - The ID
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.device-index</code> - The index of
-     * the device for the network interface attachment on the instance. </li>
-     * <li> <p><code>launch.network-interface.subnet-id</code> - The ID of
-     * the subnet for the instance. </li> <li>
-     * <p><code>launch.network-interface.description</code> - A description
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.private-ip-address</code> - The
-     * primary private IP address of the network interface. </li> <li>
-     * <p><code>launch.network-interface.delete-on-termination</code> -
-     * Indicates whether the network interface is deleted when the instance
-     * is terminated. </li> <li>
-     * <p><code>launch.network-interface.group-id</code> - The ID of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.group-name</code> - The name of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.addresses.primary</code> - Indicates
+     * <p><code>network-interface.network-interface-id</code> - The ID of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.device-index</code> - The index of the
+     * device for the network interface attachment on the instance. </li>
+     * <li> <p><code>network-interface.subnet-id</code> - The ID of the
+     * subnet for the instance. </li> <li>
+     * <p><code>network-interface.description</code> - A description of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.private-ip-address</code> - The primary
+     * private IP address of the network interface. </li> <li>
+     * <p><code>network-interface.delete-on-termination</code> - Indicates
+     * whether the network interface is deleted when the instance is
+     * terminated. </li> <li> <p><code>network-interface.group-id</code> -
+     * The ID of the security group associated with the network interface.
+     * </li> <li> <p><code>network-interface.group-name</code> - The name of
+     * the security group associated with the network interface. </li> <li>
+     * <p><code>network-interface.addresses.primary</code> - Indicates
      * whether the IP address is the primary private IP address. </li> <li>
      * <p><code>product-description</code> - The product description
      * associated with the instance (<code>Linux/UNIX</code> |
@@ -431,8 +438,12 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * for any Spot Instance launched to fulfill the request. </li> <li>
      * <p><code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). </li> <li>
-     * <p><code>status-code</code> - The short code describing the most
+     * <code>cancelled</code> | <code>failed</code>). Spot bid status
+     * information can help you track your Amazon EC2 Spot Instance requests.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
+     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide. </li>
+     * <li> <p><code>status-code</code> - The short code describing the most
      * recent evaluation of your Spot Instance request. </li> <li>
      * <p><code>status-message</code> - The message explaining the status of
      * the Spot Instance request. </li> <li>
@@ -485,24 +496,23 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         <p><code>launch.monitoring-enabled</code> - Whether monitoring is
      *         enabled for the Spot Instance. </li> <li>
      *         <p><code>launch.ramdisk-id</code> - The RAM disk ID. </li> <li>
-     *         <p><code>launch.network-interface.network-interface-id</code> - The ID
-     *         of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.device-index</code> - The index of
-     *         the device for the network interface attachment on the instance. </li>
-     *         <li> <p><code>launch.network-interface.subnet-id</code> - The ID of
-     *         the subnet for the instance. </li> <li>
-     *         <p><code>launch.network-interface.description</code> - A description
-     *         of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.private-ip-address</code> - The
-     *         primary private IP address of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.delete-on-termination</code> -
-     *         Indicates whether the network interface is deleted when the instance
-     *         is terminated. </li> <li>
-     *         <p><code>launch.network-interface.group-id</code> - The ID of the
-     *         security group associated with the network interface. </li> <li>
-     *         <p><code>launch.network-interface.group-name</code> - The name of the
-     *         security group associated with the network interface. </li> <li>
-     *         <p><code>launch.network-interface.addresses.primary</code> - Indicates
+     *         <p><code>network-interface.network-interface-id</code> - The ID of the
+     *         network interface. </li> <li>
+     *         <p><code>network-interface.device-index</code> - The index of the
+     *         device for the network interface attachment on the instance. </li>
+     *         <li> <p><code>network-interface.subnet-id</code> - The ID of the
+     *         subnet for the instance. </li> <li>
+     *         <p><code>network-interface.description</code> - A description of the
+     *         network interface. </li> <li>
+     *         <p><code>network-interface.private-ip-address</code> - The primary
+     *         private IP address of the network interface. </li> <li>
+     *         <p><code>network-interface.delete-on-termination</code> - Indicates
+     *         whether the network interface is deleted when the instance is
+     *         terminated. </li> <li> <p><code>network-interface.group-id</code> -
+     *         The ID of the security group associated with the network interface.
+     *         </li> <li> <p><code>network-interface.group-name</code> - The name of
+     *         the security group associated with the network interface. </li> <li>
+     *         <p><code>network-interface.addresses.primary</code> - Indicates
      *         whether the IP address is the primary private IP address. </li> <li>
      *         <p><code>product-description</code> - The product description
      *         associated with the instance (<code>Linux/UNIX</code> |
@@ -512,8 +522,12 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         for any Spot Instance launched to fulfill the request. </li> <li>
      *         <p><code>state</code> - The state of the Spot Instance request
      *         (<code>open</code> | <code>active</code> | <code>closed</code> |
-     *         <code>cancelled</code> | <code>failed</code>). </li> <li>
-     *         <p><code>status-code</code> - The short code describing the most
+     *         <code>cancelled</code> | <code>failed</code>). Spot bid status
+     *         information can help you track your Amazon EC2 Spot Instance requests.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
+     *         Bid Status</a> in the Amazon Elastic Compute Cloud User Guide. </li>
+     *         <li> <p><code>status-code</code> - The short code describing the most
      *         recent evaluation of your Spot Instance request. </li> <li>
      *         <p><code>status-message</code> - The message explaining the status of
      *         the Spot Instance request. </li> <li>
@@ -577,24 +591,23 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * <p><code>launch.monitoring-enabled</code> - Whether monitoring is
      * enabled for the Spot Instance. </li> <li>
      * <p><code>launch.ramdisk-id</code> - The RAM disk ID. </li> <li>
-     * <p><code>launch.network-interface.network-interface-id</code> - The ID
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.device-index</code> - The index of
-     * the device for the network interface attachment on the instance. </li>
-     * <li> <p><code>launch.network-interface.subnet-id</code> - The ID of
-     * the subnet for the instance. </li> <li>
-     * <p><code>launch.network-interface.description</code> - A description
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.private-ip-address</code> - The
-     * primary private IP address of the network interface. </li> <li>
-     * <p><code>launch.network-interface.delete-on-termination</code> -
-     * Indicates whether the network interface is deleted when the instance
-     * is terminated. </li> <li>
-     * <p><code>launch.network-interface.group-id</code> - The ID of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.group-name</code> - The name of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.addresses.primary</code> - Indicates
+     * <p><code>network-interface.network-interface-id</code> - The ID of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.device-index</code> - The index of the
+     * device for the network interface attachment on the instance. </li>
+     * <li> <p><code>network-interface.subnet-id</code> - The ID of the
+     * subnet for the instance. </li> <li>
+     * <p><code>network-interface.description</code> - A description of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.private-ip-address</code> - The primary
+     * private IP address of the network interface. </li> <li>
+     * <p><code>network-interface.delete-on-termination</code> - Indicates
+     * whether the network interface is deleted when the instance is
+     * terminated. </li> <li> <p><code>network-interface.group-id</code> -
+     * The ID of the security group associated with the network interface.
+     * </li> <li> <p><code>network-interface.group-name</code> - The name of
+     * the security group associated with the network interface. </li> <li>
+     * <p><code>network-interface.addresses.primary</code> - Indicates
      * whether the IP address is the primary private IP address. </li> <li>
      * <p><code>product-description</code> - The product description
      * associated with the instance (<code>Linux/UNIX</code> |
@@ -604,8 +617,12 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * for any Spot Instance launched to fulfill the request. </li> <li>
      * <p><code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). </li> <li>
-     * <p><code>status-code</code> - The short code describing the most
+     * <code>cancelled</code> | <code>failed</code>). Spot bid status
+     * information can help you track your Amazon EC2 Spot Instance requests.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
+     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide. </li>
+     * <li> <p><code>status-code</code> - The short code describing the most
      * recent evaluation of your Spot Instance request. </li> <li>
      * <p><code>status-message</code> - The message explaining the status of
      * the Spot Instance request. </li> <li>
@@ -660,24 +677,23 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         <p><code>launch.monitoring-enabled</code> - Whether monitoring is
      *         enabled for the Spot Instance. </li> <li>
      *         <p><code>launch.ramdisk-id</code> - The RAM disk ID. </li> <li>
-     *         <p><code>launch.network-interface.network-interface-id</code> - The ID
-     *         of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.device-index</code> - The index of
-     *         the device for the network interface attachment on the instance. </li>
-     *         <li> <p><code>launch.network-interface.subnet-id</code> - The ID of
-     *         the subnet for the instance. </li> <li>
-     *         <p><code>launch.network-interface.description</code> - A description
-     *         of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.private-ip-address</code> - The
-     *         primary private IP address of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.delete-on-termination</code> -
-     *         Indicates whether the network interface is deleted when the instance
-     *         is terminated. </li> <li>
-     *         <p><code>launch.network-interface.group-id</code> - The ID of the
-     *         security group associated with the network interface. </li> <li>
-     *         <p><code>launch.network-interface.group-name</code> - The name of the
-     *         security group associated with the network interface. </li> <li>
-     *         <p><code>launch.network-interface.addresses.primary</code> - Indicates
+     *         <p><code>network-interface.network-interface-id</code> - The ID of the
+     *         network interface. </li> <li>
+     *         <p><code>network-interface.device-index</code> - The index of the
+     *         device for the network interface attachment on the instance. </li>
+     *         <li> <p><code>network-interface.subnet-id</code> - The ID of the
+     *         subnet for the instance. </li> <li>
+     *         <p><code>network-interface.description</code> - A description of the
+     *         network interface. </li> <li>
+     *         <p><code>network-interface.private-ip-address</code> - The primary
+     *         private IP address of the network interface. </li> <li>
+     *         <p><code>network-interface.delete-on-termination</code> - Indicates
+     *         whether the network interface is deleted when the instance is
+     *         terminated. </li> <li> <p><code>network-interface.group-id</code> -
+     *         The ID of the security group associated with the network interface.
+     *         </li> <li> <p><code>network-interface.group-name</code> - The name of
+     *         the security group associated with the network interface. </li> <li>
+     *         <p><code>network-interface.addresses.primary</code> - Indicates
      *         whether the IP address is the primary private IP address. </li> <li>
      *         <p><code>product-description</code> - The product description
      *         associated with the instance (<code>Linux/UNIX</code> |
@@ -687,8 +703,12 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         for any Spot Instance launched to fulfill the request. </li> <li>
      *         <p><code>state</code> - The state of the Spot Instance request
      *         (<code>open</code> | <code>active</code> | <code>closed</code> |
-     *         <code>cancelled</code> | <code>failed</code>). </li> <li>
-     *         <p><code>status-code</code> - The short code describing the most
+     *         <code>cancelled</code> | <code>failed</code>). Spot bid status
+     *         information can help you track your Amazon EC2 Spot Instance requests.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
+     *         Bid Status</a> in the Amazon Elastic Compute Cloud User Guide. </li>
+     *         <li> <p><code>status-code</code> - The short code describing the most
      *         recent evaluation of your Spot Instance request. </li> <li>
      *         <p><code>status-message</code> - The message explaining the status of
      *         the Spot Instance request. </li> <li>
@@ -753,24 +773,23 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * <p><code>launch.monitoring-enabled</code> - Whether monitoring is
      * enabled for the Spot Instance. </li> <li>
      * <p><code>launch.ramdisk-id</code> - The RAM disk ID. </li> <li>
-     * <p><code>launch.network-interface.network-interface-id</code> - The ID
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.device-index</code> - The index of
-     * the device for the network interface attachment on the instance. </li>
-     * <li> <p><code>launch.network-interface.subnet-id</code> - The ID of
-     * the subnet for the instance. </li> <li>
-     * <p><code>launch.network-interface.description</code> - A description
-     * of the network interface. </li> <li>
-     * <p><code>launch.network-interface.private-ip-address</code> - The
-     * primary private IP address of the network interface. </li> <li>
-     * <p><code>launch.network-interface.delete-on-termination</code> -
-     * Indicates whether the network interface is deleted when the instance
-     * is terminated. </li> <li>
-     * <p><code>launch.network-interface.group-id</code> - The ID of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.group-name</code> - The name of the
-     * security group associated with the network interface. </li> <li>
-     * <p><code>launch.network-interface.addresses.primary</code> - Indicates
+     * <p><code>network-interface.network-interface-id</code> - The ID of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.device-index</code> - The index of the
+     * device for the network interface attachment on the instance. </li>
+     * <li> <p><code>network-interface.subnet-id</code> - The ID of the
+     * subnet for the instance. </li> <li>
+     * <p><code>network-interface.description</code> - A description of the
+     * network interface. </li> <li>
+     * <p><code>network-interface.private-ip-address</code> - The primary
+     * private IP address of the network interface. </li> <li>
+     * <p><code>network-interface.delete-on-termination</code> - Indicates
+     * whether the network interface is deleted when the instance is
+     * terminated. </li> <li> <p><code>network-interface.group-id</code> -
+     * The ID of the security group associated with the network interface.
+     * </li> <li> <p><code>network-interface.group-name</code> - The name of
+     * the security group associated with the network interface. </li> <li>
+     * <p><code>network-interface.addresses.primary</code> - Indicates
      * whether the IP address is the primary private IP address. </li> <li>
      * <p><code>product-description</code> - The product description
      * associated with the instance (<code>Linux/UNIX</code> |
@@ -780,8 +799,12 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * for any Spot Instance launched to fulfill the request. </li> <li>
      * <p><code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). </li> <li>
-     * <p><code>status-code</code> - The short code describing the most
+     * <code>cancelled</code> | <code>failed</code>). Spot bid status
+     * information can help you track your Amazon EC2 Spot Instance requests.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
+     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide. </li>
+     * <li> <p><code>status-code</code> - The short code describing the most
      * recent evaluation of your Spot Instance request. </li> <li>
      * <p><code>status-message</code> - The message explaining the status of
      * the Spot Instance request. </li> <li>
@@ -836,24 +859,23 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         <p><code>launch.monitoring-enabled</code> - Whether monitoring is
      *         enabled for the Spot Instance. </li> <li>
      *         <p><code>launch.ramdisk-id</code> - The RAM disk ID. </li> <li>
-     *         <p><code>launch.network-interface.network-interface-id</code> - The ID
-     *         of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.device-index</code> - The index of
-     *         the device for the network interface attachment on the instance. </li>
-     *         <li> <p><code>launch.network-interface.subnet-id</code> - The ID of
-     *         the subnet for the instance. </li> <li>
-     *         <p><code>launch.network-interface.description</code> - A description
-     *         of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.private-ip-address</code> - The
-     *         primary private IP address of the network interface. </li> <li>
-     *         <p><code>launch.network-interface.delete-on-termination</code> -
-     *         Indicates whether the network interface is deleted when the instance
-     *         is terminated. </li> <li>
-     *         <p><code>launch.network-interface.group-id</code> - The ID of the
-     *         security group associated with the network interface. </li> <li>
-     *         <p><code>launch.network-interface.group-name</code> - The name of the
-     *         security group associated with the network interface. </li> <li>
-     *         <p><code>launch.network-interface.addresses.primary</code> - Indicates
+     *         <p><code>network-interface.network-interface-id</code> - The ID of the
+     *         network interface. </li> <li>
+     *         <p><code>network-interface.device-index</code> - The index of the
+     *         device for the network interface attachment on the instance. </li>
+     *         <li> <p><code>network-interface.subnet-id</code> - The ID of the
+     *         subnet for the instance. </li> <li>
+     *         <p><code>network-interface.description</code> - A description of the
+     *         network interface. </li> <li>
+     *         <p><code>network-interface.private-ip-address</code> - The primary
+     *         private IP address of the network interface. </li> <li>
+     *         <p><code>network-interface.delete-on-termination</code> - Indicates
+     *         whether the network interface is deleted when the instance is
+     *         terminated. </li> <li> <p><code>network-interface.group-id</code> -
+     *         The ID of the security group associated with the network interface.
+     *         </li> <li> <p><code>network-interface.group-name</code> - The name of
+     *         the security group associated with the network interface. </li> <li>
+     *         <p><code>network-interface.addresses.primary</code> - Indicates
      *         whether the IP address is the primary private IP address. </li> <li>
      *         <p><code>product-description</code> - The product description
      *         associated with the instance (<code>Linux/UNIX</code> |
@@ -863,8 +885,12 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         for any Spot Instance launched to fulfill the request. </li> <li>
      *         <p><code>state</code> - The state of the Spot Instance request
      *         (<code>open</code> | <code>active</code> | <code>closed</code> |
-     *         <code>cancelled</code> | <code>failed</code>). </li> <li>
-     *         <p><code>status-code</code> - The short code describing the most
+     *         <code>cancelled</code> | <code>failed</code>). Spot bid status
+     *         information can help you track your Amazon EC2 Spot Instance requests.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
+     *         Bid Status</a> in the Amazon Elastic Compute Cloud User Guide. </li>
+     *         <li> <p><code>status-code</code> - The short code describing the most
      *         recent evaluation of your Spot Instance request. </li> <li>
      *         <p><code>status-message</code> - The message explaining the status of
      *         the Spot Instance request. </li> <li>

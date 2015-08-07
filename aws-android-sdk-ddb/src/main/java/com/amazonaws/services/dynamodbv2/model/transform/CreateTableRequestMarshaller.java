@@ -258,6 +258,20 @@ public class CreateTableRequestMarshaller implements Marshaller<Request<CreateTa
                 }
                 jsonWriter.endObject();
             }
+            StreamSpecification streamSpecification = createTableRequest.getStreamSpecification();
+            if (streamSpecification != null) {
+
+                jsonWriter.name("StreamSpecification");
+                jsonWriter.beginObject();
+
+                if (streamSpecification.isStreamEnabled() != null) {
+                    jsonWriter.name("StreamEnabled").value(streamSpecification.isStreamEnabled());
+                }
+                if (streamSpecification.getStreamViewType() != null) {
+                    jsonWriter.name("StreamViewType").value(streamSpecification.getStreamViewType());
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
 

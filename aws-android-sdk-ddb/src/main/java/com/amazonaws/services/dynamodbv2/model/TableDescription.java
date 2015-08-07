@@ -48,7 +48,7 @@ public class TableDescription implements Serializable {
      * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
      * </li> </ul> <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
-     * Key</a> in the Amazon DynamoDB Developer Guide.
+     * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2<br/>
@@ -57,12 +57,10 @@ public class TableDescription implements Serializable {
 
     /**
      * The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     * table is being created, as the result of a <i>CreateTable</i>
-     * operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     * as the result of an <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The table is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     * is ready for use. </li> </ul>
+     * table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     * being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     * deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     * </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
@@ -97,6 +95,11 @@ public class TableDescription implements Serializable {
     private Long itemCount;
 
     /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the table.
+     */
+    private String tableArn;
+
+    /**
      * Represents one or more local secondary indexes on the table. Each
      * index is scoped to a given hash key value. Tables with one or more
      * local secondary indexes are subject to an item collection size limit,
@@ -118,7 +121,7 @@ public class TableDescription implements Serializable {
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -137,14 +140,20 @@ public class TableDescription implements Serializable {
     /**
      * The global secondary indexes, if any, on the table. Each index is
      * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>IndexName</i> - The name of the global secondary index.
-     * </li> <li> <p><i>IndexSizeBytes</i> - The total size of the global
-     * secondary index, in bytes. DynamoDB updates this value approximately
-     * every six hours. Recent changes might not be reflected in this value.
-     * </li> <li> <p><i>IndexStatus</i> - The current status of the global
-     * secondary index: <ul> <li> <p><i>CREATING</i> - The index is being
-     * created. </li> <li> <p><i>UPDATING</i> - The index is being updated.
-     * </li> <li> <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
+     * the backfilling phase. Backfilling occurs only when a new global
+     * secondary index is added to the table; it is the process by which
+     * DynamoDB populates the new index with data from the table. (This
+     * attribute does not appear for indexes that were created during a
+     * <i>CreateTable</i> operation.) </li> <li> <p><i>IndexName</i> - The
+     * name of the global secondary index. </li> <li>
+     * <p><i>IndexSizeBytes</i> - The total size of the global secondary
+     * index, in bytes. DynamoDB updates this value approximately every six
+     * hours. Recent changes might not be reflected in this value. </li> <li>
+     * <p><i>IndexStatus</i> - The current status of the global secondary
+     * index: <ul> <li> <p><i>CREATING</i> - The index is being created.
+     * </li> <li> <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
      * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul> </li> <li>
      * <p><i>ItemCount</i> - The number of items in the global secondary
      * index. DynamoDB updates this value approximately every six hours.
@@ -165,7 +174,7 @@ public class TableDescription implements Serializable {
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -176,6 +185,31 @@ public class TableDescription implements Serializable {
      * about indexes will be returned.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<GlobalSecondaryIndexDescription> globalSecondaryIndexes;
+
+    /**
+     * The current DynamoDB Streams configuration for the table.
+     */
+    private StreamSpecification streamSpecification;
+
+    /**
+     * A timestamp, in ISO 8601 format, for this stream. <p>Note that
+     * <i>LatestStreamLabel</i> is not a unique identifier for the stream,
+     * because it is possible that a stream from another table might have the
+     * same timestamp. However, the combination of the following three
+     * elements is guaranteed to be unique: <ul> <li><p>the AWS customer
+     * ID.</li> <li><p>the table name.</li> <li><p>the
+     * <i>StreamLabel</i>.</li> </ul>
+     */
+    private String latestStreamLabel;
+
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the latest
+     * stream for this table.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>37 - 1024<br/>
+     */
+    private String latestStreamArn;
 
     /**
      * Default constructor for a new TableDescription object.  Callers should use the
@@ -331,7 +365,7 @@ public class TableDescription implements Serializable {
      * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
      * </li> </ul> <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
-     * Key</a> in the Amazon DynamoDB Developer Guide.
+     * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2<br/>
@@ -342,7 +376,7 @@ public class TableDescription implements Serializable {
      *         attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
      *         </li> </ul> <p>For more information about primary keys, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
-     *         Key</a> in the Amazon DynamoDB Developer Guide.
+     *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public java.util.List<KeySchemaElement> getKeySchema() {
         return keySchema;
@@ -355,7 +389,7 @@ public class TableDescription implements Serializable {
      * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
      * </li> </ul> <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
-     * Key</a> in the Amazon DynamoDB Developer Guide.
+     * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2<br/>
@@ -366,7 +400,7 @@ public class TableDescription implements Serializable {
      *         attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
      *         </li> </ul> <p>For more information about primary keys, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
-     *         Key</a> in the Amazon DynamoDB Developer Guide.
+     *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setKeySchema(java.util.Collection<KeySchemaElement> keySchema) {
         if (keySchema == null) {
@@ -385,7 +419,7 @@ public class TableDescription implements Serializable {
      * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
      * </li> </ul> <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
-     * Key</a> in the Amazon DynamoDB Developer Guide.
+     * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -398,7 +432,7 @@ public class TableDescription implements Serializable {
      *         attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
      *         </li> </ul> <p>For more information about primary keys, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
-     *         Key</a> in the Amazon DynamoDB Developer Guide.
+     *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -418,7 +452,7 @@ public class TableDescription implements Serializable {
      * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
      * </li> </ul> <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
-     * Key</a> in the Amazon DynamoDB Developer Guide.
+     * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -431,7 +465,7 @@ public class TableDescription implements Serializable {
      *         attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
      *         </li> </ul> <p>For more information about primary keys, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
-     *         Key</a> in the Amazon DynamoDB Developer Guide.
+     *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -450,23 +484,19 @@ public class TableDescription implements Serializable {
 
     /**
      * The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     * table is being created, as the result of a <i>CreateTable</i>
-     * operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     * as the result of an <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The table is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     * is ready for use. </li> </ul>
+     * table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     * being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     * deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     * </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @return The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     *         table is being created, as the result of a <i>CreateTable</i>
-     *         operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     *         as the result of an <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The table is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     *         is ready for use. </li> </ul>
+     *         table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     *         being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     *         deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     *         </li> </ul>
      *
      * @see TableStatus
      */
@@ -476,23 +506,19 @@ public class TableDescription implements Serializable {
     
     /**
      * The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     * table is being created, as the result of a <i>CreateTable</i>
-     * operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     * as the result of an <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The table is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     * is ready for use. </li> </ul>
+     * table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     * being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     * deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     * </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @param tableStatus The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     *         table is being created, as the result of a <i>CreateTable</i>
-     *         operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     *         as the result of an <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The table is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     *         is ready for use. </li> </ul>
+     *         table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     *         being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     *         deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     *         </li> </ul>
      *
      * @see TableStatus
      */
@@ -502,12 +528,10 @@ public class TableDescription implements Serializable {
     
     /**
      * The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     * table is being created, as the result of a <i>CreateTable</i>
-     * operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     * as the result of an <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The table is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     * is ready for use. </li> </ul>
+     * table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     * being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     * deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     * </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -515,12 +539,10 @@ public class TableDescription implements Serializable {
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @param tableStatus The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     *         table is being created, as the result of a <i>CreateTable</i>
-     *         operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     *         as the result of an <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The table is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     *         is ready for use. </li> </ul>
+     *         table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     *         being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     *         deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     *         </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -534,23 +556,19 @@ public class TableDescription implements Serializable {
 
     /**
      * The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     * table is being created, as the result of a <i>CreateTable</i>
-     * operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     * as the result of an <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The table is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     * is ready for use. </li> </ul>
+     * table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     * being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     * deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     * </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @param tableStatus The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     *         table is being created, as the result of a <i>CreateTable</i>
-     *         operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     *         as the result of an <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The table is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     *         is ready for use. </li> </ul>
+     *         table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     *         being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     *         deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     *         </li> </ul>
      *
      * @see TableStatus
      */
@@ -560,12 +578,10 @@ public class TableDescription implements Serializable {
     
     /**
      * The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     * table is being created, as the result of a <i>CreateTable</i>
-     * operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     * as the result of an <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The table is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     * is ready for use. </li> </ul>
+     * table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     * being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     * deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     * </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -573,12 +589,10 @@ public class TableDescription implements Serializable {
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @param tableStatus The current state of the table: <ul> <li> <p><i>CREATING</i> - The
-     *         table is being created, as the result of a <i>CreateTable</i>
-     *         operation. </li> <li> <p><i>UPDATING</i> - The table is being updated,
-     *         as the result of an <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The table is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The table
-     *         is ready for use. </li> </ul>
+     *         table is being created. </li> <li> <p><i>UPDATING</i> - The table is
+     *         being updated. </li> <li> <p><i>DELETING</i> - The table is being
+     *         deleted. </li> <li> <p><i>ACTIVE</i> - The table is ready for use.
+     *         </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -765,6 +779,39 @@ public class TableDescription implements Serializable {
     }
 
     /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the table.
+     *
+     * @return The Amazon Resource Name (ARN) that uniquely identifies the table.
+     */
+    public String getTableArn() {
+        return tableArn;
+    }
+    
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the table.
+     *
+     * @param tableArn The Amazon Resource Name (ARN) that uniquely identifies the table.
+     */
+    public void setTableArn(String tableArn) {
+        this.tableArn = tableArn;
+    }
+    
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the table.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param tableArn The Amazon Resource Name (ARN) that uniquely identifies the table.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public TableDescription withTableArn(String tableArn) {
+        this.tableArn = tableArn;
+        return this;
+    }
+
+    /**
      * Represents one or more local secondary indexes on the table. Each
      * index is scoped to a given hash key value. Tables with one or more
      * local secondary indexes are subject to an item collection size limit,
@@ -786,7 +833,7 @@ public class TableDescription implements Serializable {
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -821,7 +868,7 @@ public class TableDescription implements Serializable {
      *         <p><code>ALL</code> - All of the table attributes are projected into
      *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      *         of one or more non-key attribute names that are projected into the
-     *         secondary index. The total count of attributes specified in
+     *         secondary index. The total count of attributes provided in
      *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      *         must not exceed 20. If you project the same attribute into two
      *         different indexes, this counts as two distinct attributes when
@@ -861,7 +908,7 @@ public class TableDescription implements Serializable {
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -896,7 +943,7 @@ public class TableDescription implements Serializable {
      *         <p><code>ALL</code> - All of the table attributes are projected into
      *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      *         of one or more non-key attribute names that are projected into the
-     *         secondary index. The total count of attributes specified in
+     *         secondary index. The total count of attributes provided in
      *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      *         must not exceed 20. If you project the same attribute into two
      *         different indexes, this counts as two distinct attributes when
@@ -942,7 +989,7 @@ public class TableDescription implements Serializable {
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -979,7 +1026,7 @@ public class TableDescription implements Serializable {
      *         <p><code>ALL</code> - All of the table attributes are projected into
      *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      *         of one or more non-key attribute names that are projected into the
-     *         secondary index. The total count of attributes specified in
+     *         secondary index. The total count of attributes provided in
      *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      *         must not exceed 20. If you project the same attribute into two
      *         different indexes, this counts as two distinct attributes when
@@ -1026,7 +1073,7 @@ public class TableDescription implements Serializable {
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -1063,7 +1110,7 @@ public class TableDescription implements Serializable {
      *         <p><code>ALL</code> - All of the table attributes are projected into
      *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      *         of one or more non-key attribute names that are projected into the
-     *         secondary index. The total count of attributes specified in
+     *         secondary index. The total count of attributes provided in
      *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      *         must not exceed 20. If you project the same attribute into two
      *         different indexes, this counts as two distinct attributes when
@@ -1095,14 +1142,20 @@ public class TableDescription implements Serializable {
     /**
      * The global secondary indexes, if any, on the table. Each index is
      * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>IndexName</i> - The name of the global secondary index.
-     * </li> <li> <p><i>IndexSizeBytes</i> - The total size of the global
-     * secondary index, in bytes. DynamoDB updates this value approximately
-     * every six hours. Recent changes might not be reflected in this value.
-     * </li> <li> <p><i>IndexStatus</i> - The current status of the global
-     * secondary index: <ul> <li> <p><i>CREATING</i> - The index is being
-     * created. </li> <li> <p><i>UPDATING</i> - The index is being updated.
-     * </li> <li> <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
+     * the backfilling phase. Backfilling occurs only when a new global
+     * secondary index is added to the table; it is the process by which
+     * DynamoDB populates the new index with data from the table. (This
+     * attribute does not appear for indexes that were created during a
+     * <i>CreateTable</i> operation.) </li> <li> <p><i>IndexName</i> - The
+     * name of the global secondary index. </li> <li>
+     * <p><i>IndexSizeBytes</i> - The total size of the global secondary
+     * index, in bytes. DynamoDB updates this value approximately every six
+     * hours. Recent changes might not be reflected in this value. </li> <li>
+     * <p><i>IndexStatus</i> - The current status of the global secondary
+     * index: <ul> <li> <p><i>CREATING</i> - The index is being created.
+     * </li> <li> <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
      * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul> </li> <li>
      * <p><i>ItemCount</i> - The number of items in the global secondary
      * index. DynamoDB updates this value approximately every six hours.
@@ -1123,7 +1176,7 @@ public class TableDescription implements Serializable {
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -1135,14 +1188,20 @@ public class TableDescription implements Serializable {
      *
      * @return The global secondary indexes, if any, on the table. Each index is
      *         scoped to a given hash key value. Each element is composed of: <ul>
-     *         <li> <p><i>IndexName</i> - The name of the global secondary index.
-     *         </li> <li> <p><i>IndexSizeBytes</i> - The total size of the global
-     *         secondary index, in bytes. DynamoDB updates this value approximately
-     *         every six hours. Recent changes might not be reflected in this value.
-     *         </li> <li> <p><i>IndexStatus</i> - The current status of the global
-     *         secondary index: <ul> <li> <p><i>CREATING</i> - The index is being
-     *         created. </li> <li> <p><i>UPDATING</i> - The index is being updated.
-     *         </li> <li> <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     *         <li> <p><i>Backfilling</i> - If true, then the index is currently in
+     *         the backfilling phase. Backfilling occurs only when a new global
+     *         secondary index is added to the table; it is the process by which
+     *         DynamoDB populates the new index with data from the table. (This
+     *         attribute does not appear for indexes that were created during a
+     *         <i>CreateTable</i> operation.) </li> <li> <p><i>IndexName</i> - The
+     *         name of the global secondary index. </li> <li>
+     *         <p><i>IndexSizeBytes</i> - The total size of the global secondary
+     *         index, in bytes. DynamoDB updates this value approximately every six
+     *         hours. Recent changes might not be reflected in this value. </li> <li>
+     *         <p><i>IndexStatus</i> - The current status of the global secondary
+     *         index: <ul> <li> <p><i>CREATING</i> - The index is being created.
+     *         </li> <li> <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     *         <p><i>DELETING</i> - The index is being deleted. </li> <li>
      *         <p><i>ACTIVE</i> - The index is ready for use. </li> </ul> </li> <li>
      *         <p><i>ItemCount</i> - The number of items in the global secondary
      *         index. DynamoDB updates this value approximately every six hours.
@@ -1163,7 +1222,7 @@ public class TableDescription implements Serializable {
      *         table attributes are projected into the index. </li> </ul> </li> <li>
      *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      *         names that are projected into the secondary index. The total count of
-     *         attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
      *         the secondary indexes, must not exceed 20. If you project the same
      *         attribute into two different indexes, this counts as two distinct
      *         attributes when determining the total. </li> </ul> </li> <li>
@@ -1180,14 +1239,20 @@ public class TableDescription implements Serializable {
     /**
      * The global secondary indexes, if any, on the table. Each index is
      * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>IndexName</i> - The name of the global secondary index.
-     * </li> <li> <p><i>IndexSizeBytes</i> - The total size of the global
-     * secondary index, in bytes. DynamoDB updates this value approximately
-     * every six hours. Recent changes might not be reflected in this value.
-     * </li> <li> <p><i>IndexStatus</i> - The current status of the global
-     * secondary index: <ul> <li> <p><i>CREATING</i> - The index is being
-     * created. </li> <li> <p><i>UPDATING</i> - The index is being updated.
-     * </li> <li> <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
+     * the backfilling phase. Backfilling occurs only when a new global
+     * secondary index is added to the table; it is the process by which
+     * DynamoDB populates the new index with data from the table. (This
+     * attribute does not appear for indexes that were created during a
+     * <i>CreateTable</i> operation.) </li> <li> <p><i>IndexName</i> - The
+     * name of the global secondary index. </li> <li>
+     * <p><i>IndexSizeBytes</i> - The total size of the global secondary
+     * index, in bytes. DynamoDB updates this value approximately every six
+     * hours. Recent changes might not be reflected in this value. </li> <li>
+     * <p><i>IndexStatus</i> - The current status of the global secondary
+     * index: <ul> <li> <p><i>CREATING</i> - The index is being created.
+     * </li> <li> <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
      * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul> </li> <li>
      * <p><i>ItemCount</i> - The number of items in the global secondary
      * index. DynamoDB updates this value approximately every six hours.
@@ -1208,7 +1273,7 @@ public class TableDescription implements Serializable {
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -1220,14 +1285,20 @@ public class TableDescription implements Serializable {
      *
      * @param globalSecondaryIndexes The global secondary indexes, if any, on the table. Each index is
      *         scoped to a given hash key value. Each element is composed of: <ul>
-     *         <li> <p><i>IndexName</i> - The name of the global secondary index.
-     *         </li> <li> <p><i>IndexSizeBytes</i> - The total size of the global
-     *         secondary index, in bytes. DynamoDB updates this value approximately
-     *         every six hours. Recent changes might not be reflected in this value.
-     *         </li> <li> <p><i>IndexStatus</i> - The current status of the global
-     *         secondary index: <ul> <li> <p><i>CREATING</i> - The index is being
-     *         created. </li> <li> <p><i>UPDATING</i> - The index is being updated.
-     *         </li> <li> <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     *         <li> <p><i>Backfilling</i> - If true, then the index is currently in
+     *         the backfilling phase. Backfilling occurs only when a new global
+     *         secondary index is added to the table; it is the process by which
+     *         DynamoDB populates the new index with data from the table. (This
+     *         attribute does not appear for indexes that were created during a
+     *         <i>CreateTable</i> operation.) </li> <li> <p><i>IndexName</i> - The
+     *         name of the global secondary index. </li> <li>
+     *         <p><i>IndexSizeBytes</i> - The total size of the global secondary
+     *         index, in bytes. DynamoDB updates this value approximately every six
+     *         hours. Recent changes might not be reflected in this value. </li> <li>
+     *         <p><i>IndexStatus</i> - The current status of the global secondary
+     *         index: <ul> <li> <p><i>CREATING</i> - The index is being created.
+     *         </li> <li> <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     *         <p><i>DELETING</i> - The index is being deleted. </li> <li>
      *         <p><i>ACTIVE</i> - The index is ready for use. </li> </ul> </li> <li>
      *         <p><i>ItemCount</i> - The number of items in the global secondary
      *         index. DynamoDB updates this value approximately every six hours.
@@ -1248,7 +1319,7 @@ public class TableDescription implements Serializable {
      *         table attributes are projected into the index. </li> </ul> </li> <li>
      *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      *         names that are projected into the secondary index. The total count of
-     *         attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
      *         the secondary indexes, must not exceed 20. If you project the same
      *         attribute into two different indexes, this counts as two distinct
      *         attributes when determining the total. </li> </ul> </li> <li>
@@ -1271,14 +1342,20 @@ public class TableDescription implements Serializable {
     /**
      * The global secondary indexes, if any, on the table. Each index is
      * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>IndexName</i> - The name of the global secondary index.
-     * </li> <li> <p><i>IndexSizeBytes</i> - The total size of the global
-     * secondary index, in bytes. DynamoDB updates this value approximately
-     * every six hours. Recent changes might not be reflected in this value.
-     * </li> <li> <p><i>IndexStatus</i> - The current status of the global
-     * secondary index: <ul> <li> <p><i>CREATING</i> - The index is being
-     * created. </li> <li> <p><i>UPDATING</i> - The index is being updated.
-     * </li> <li> <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
+     * the backfilling phase. Backfilling occurs only when a new global
+     * secondary index is added to the table; it is the process by which
+     * DynamoDB populates the new index with data from the table. (This
+     * attribute does not appear for indexes that were created during a
+     * <i>CreateTable</i> operation.) </li> <li> <p><i>IndexName</i> - The
+     * name of the global secondary index. </li> <li>
+     * <p><i>IndexSizeBytes</i> - The total size of the global secondary
+     * index, in bytes. DynamoDB updates this value approximately every six
+     * hours. Recent changes might not be reflected in this value. </li> <li>
+     * <p><i>IndexStatus</i> - The current status of the global secondary
+     * index: <ul> <li> <p><i>CREATING</i> - The index is being created.
+     * </li> <li> <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
      * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul> </li> <li>
      * <p><i>ItemCount</i> - The number of items in the global secondary
      * index. DynamoDB updates this value approximately every six hours.
@@ -1299,7 +1376,7 @@ public class TableDescription implements Serializable {
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -1313,14 +1390,20 @@ public class TableDescription implements Serializable {
      *
      * @param globalSecondaryIndexes The global secondary indexes, if any, on the table. Each index is
      *         scoped to a given hash key value. Each element is composed of: <ul>
-     *         <li> <p><i>IndexName</i> - The name of the global secondary index.
-     *         </li> <li> <p><i>IndexSizeBytes</i> - The total size of the global
-     *         secondary index, in bytes. DynamoDB updates this value approximately
-     *         every six hours. Recent changes might not be reflected in this value.
-     *         </li> <li> <p><i>IndexStatus</i> - The current status of the global
-     *         secondary index: <ul> <li> <p><i>CREATING</i> - The index is being
-     *         created. </li> <li> <p><i>UPDATING</i> - The index is being updated.
-     *         </li> <li> <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     *         <li> <p><i>Backfilling</i> - If true, then the index is currently in
+     *         the backfilling phase. Backfilling occurs only when a new global
+     *         secondary index is added to the table; it is the process by which
+     *         DynamoDB populates the new index with data from the table. (This
+     *         attribute does not appear for indexes that were created during a
+     *         <i>CreateTable</i> operation.) </li> <li> <p><i>IndexName</i> - The
+     *         name of the global secondary index. </li> <li>
+     *         <p><i>IndexSizeBytes</i> - The total size of the global secondary
+     *         index, in bytes. DynamoDB updates this value approximately every six
+     *         hours. Recent changes might not be reflected in this value. </li> <li>
+     *         <p><i>IndexStatus</i> - The current status of the global secondary
+     *         index: <ul> <li> <p><i>CREATING</i> - The index is being created.
+     *         </li> <li> <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     *         <p><i>DELETING</i> - The index is being deleted. </li> <li>
      *         <p><i>ACTIVE</i> - The index is ready for use. </li> </ul> </li> <li>
      *         <p><i>ItemCount</i> - The number of items in the global secondary
      *         index. DynamoDB updates this value approximately every six hours.
@@ -1341,7 +1424,7 @@ public class TableDescription implements Serializable {
      *         table attributes are projected into the index. </li> </ul> </li> <li>
      *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      *         names that are projected into the secondary index. The total count of
-     *         attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
      *         the secondary indexes, must not exceed 20. If you project the same
      *         attribute into two different indexes, this counts as two distinct
      *         attributes when determining the total. </li> </ul> </li> <li>
@@ -1365,14 +1448,20 @@ public class TableDescription implements Serializable {
     /**
      * The global secondary indexes, if any, on the table. Each index is
      * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>IndexName</i> - The name of the global secondary index.
-     * </li> <li> <p><i>IndexSizeBytes</i> - The total size of the global
-     * secondary index, in bytes. DynamoDB updates this value approximately
-     * every six hours. Recent changes might not be reflected in this value.
-     * </li> <li> <p><i>IndexStatus</i> - The current status of the global
-     * secondary index: <ul> <li> <p><i>CREATING</i> - The index is being
-     * created. </li> <li> <p><i>UPDATING</i> - The index is being updated.
-     * </li> <li> <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
+     * the backfilling phase. Backfilling occurs only when a new global
+     * secondary index is added to the table; it is the process by which
+     * DynamoDB populates the new index with data from the table. (This
+     * attribute does not appear for indexes that were created during a
+     * <i>CreateTable</i> operation.) </li> <li> <p><i>IndexName</i> - The
+     * name of the global secondary index. </li> <li>
+     * <p><i>IndexSizeBytes</i> - The total size of the global secondary
+     * index, in bytes. DynamoDB updates this value approximately every six
+     * hours. Recent changes might not be reflected in this value. </li> <li>
+     * <p><i>IndexStatus</i> - The current status of the global secondary
+     * index: <ul> <li> <p><i>CREATING</i> - The index is being created.
+     * </li> <li> <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
      * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul> </li> <li>
      * <p><i>ItemCount</i> - The number of items in the global secondary
      * index. DynamoDB updates this value approximately every six hours.
@@ -1393,7 +1482,7 @@ public class TableDescription implements Serializable {
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -1407,14 +1496,20 @@ public class TableDescription implements Serializable {
      *
      * @param globalSecondaryIndexes The global secondary indexes, if any, on the table. Each index is
      *         scoped to a given hash key value. Each element is composed of: <ul>
-     *         <li> <p><i>IndexName</i> - The name of the global secondary index.
-     *         </li> <li> <p><i>IndexSizeBytes</i> - The total size of the global
-     *         secondary index, in bytes. DynamoDB updates this value approximately
-     *         every six hours. Recent changes might not be reflected in this value.
-     *         </li> <li> <p><i>IndexStatus</i> - The current status of the global
-     *         secondary index: <ul> <li> <p><i>CREATING</i> - The index is being
-     *         created. </li> <li> <p><i>UPDATING</i> - The index is being updated.
-     *         </li> <li> <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     *         <li> <p><i>Backfilling</i> - If true, then the index is currently in
+     *         the backfilling phase. Backfilling occurs only when a new global
+     *         secondary index is added to the table; it is the process by which
+     *         DynamoDB populates the new index with data from the table. (This
+     *         attribute does not appear for indexes that were created during a
+     *         <i>CreateTable</i> operation.) </li> <li> <p><i>IndexName</i> - The
+     *         name of the global secondary index. </li> <li>
+     *         <p><i>IndexSizeBytes</i> - The total size of the global secondary
+     *         index, in bytes. DynamoDB updates this value approximately every six
+     *         hours. Recent changes might not be reflected in this value. </li> <li>
+     *         <p><i>IndexStatus</i> - The current status of the global secondary
+     *         index: <ul> <li> <p><i>CREATING</i> - The index is being created.
+     *         </li> <li> <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     *         <p><i>DELETING</i> - The index is being deleted. </li> <li>
      *         <p><i>ACTIVE</i> - The index is ready for use. </li> </ul> </li> <li>
      *         <p><i>ItemCount</i> - The number of items in the global secondary
      *         index. DynamoDB updates this value approximately every six hours.
@@ -1435,7 +1530,7 @@ public class TableDescription implements Serializable {
      *         table attributes are projected into the index. </li> </ul> </li> <li>
      *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      *         names that are projected into the secondary index. The total count of
-     *         attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
      *         the secondary indexes, must not exceed 20. If you project the same
      *         attribute into two different indexes, this counts as two distinct
      *         attributes when determining the total. </li> </ul> </li> <li>
@@ -1461,6 +1556,156 @@ public class TableDescription implements Serializable {
     }
 
     /**
+     * The current DynamoDB Streams configuration for the table.
+     *
+     * @return The current DynamoDB Streams configuration for the table.
+     */
+    public StreamSpecification getStreamSpecification() {
+        return streamSpecification;
+    }
+    
+    /**
+     * The current DynamoDB Streams configuration for the table.
+     *
+     * @param streamSpecification The current DynamoDB Streams configuration for the table.
+     */
+    public void setStreamSpecification(StreamSpecification streamSpecification) {
+        this.streamSpecification = streamSpecification;
+    }
+    
+    /**
+     * The current DynamoDB Streams configuration for the table.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param streamSpecification The current DynamoDB Streams configuration for the table.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public TableDescription withStreamSpecification(StreamSpecification streamSpecification) {
+        this.streamSpecification = streamSpecification;
+        return this;
+    }
+
+    /**
+     * A timestamp, in ISO 8601 format, for this stream. <p>Note that
+     * <i>LatestStreamLabel</i> is not a unique identifier for the stream,
+     * because it is possible that a stream from another table might have the
+     * same timestamp. However, the combination of the following three
+     * elements is guaranteed to be unique: <ul> <li><p>the AWS customer
+     * ID.</li> <li><p>the table name.</li> <li><p>the
+     * <i>StreamLabel</i>.</li> </ul>
+     *
+     * @return A timestamp, in ISO 8601 format, for this stream. <p>Note that
+     *         <i>LatestStreamLabel</i> is not a unique identifier for the stream,
+     *         because it is possible that a stream from another table might have the
+     *         same timestamp. However, the combination of the following three
+     *         elements is guaranteed to be unique: <ul> <li><p>the AWS customer
+     *         ID.</li> <li><p>the table name.</li> <li><p>the
+     *         <i>StreamLabel</i>.</li> </ul>
+     */
+    public String getLatestStreamLabel() {
+        return latestStreamLabel;
+    }
+    
+    /**
+     * A timestamp, in ISO 8601 format, for this stream. <p>Note that
+     * <i>LatestStreamLabel</i> is not a unique identifier for the stream,
+     * because it is possible that a stream from another table might have the
+     * same timestamp. However, the combination of the following three
+     * elements is guaranteed to be unique: <ul> <li><p>the AWS customer
+     * ID.</li> <li><p>the table name.</li> <li><p>the
+     * <i>StreamLabel</i>.</li> </ul>
+     *
+     * @param latestStreamLabel A timestamp, in ISO 8601 format, for this stream. <p>Note that
+     *         <i>LatestStreamLabel</i> is not a unique identifier for the stream,
+     *         because it is possible that a stream from another table might have the
+     *         same timestamp. However, the combination of the following three
+     *         elements is guaranteed to be unique: <ul> <li><p>the AWS customer
+     *         ID.</li> <li><p>the table name.</li> <li><p>the
+     *         <i>StreamLabel</i>.</li> </ul>
+     */
+    public void setLatestStreamLabel(String latestStreamLabel) {
+        this.latestStreamLabel = latestStreamLabel;
+    }
+    
+    /**
+     * A timestamp, in ISO 8601 format, for this stream. <p>Note that
+     * <i>LatestStreamLabel</i> is not a unique identifier for the stream,
+     * because it is possible that a stream from another table might have the
+     * same timestamp. However, the combination of the following three
+     * elements is guaranteed to be unique: <ul> <li><p>the AWS customer
+     * ID.</li> <li><p>the table name.</li> <li><p>the
+     * <i>StreamLabel</i>.</li> </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param latestStreamLabel A timestamp, in ISO 8601 format, for this stream. <p>Note that
+     *         <i>LatestStreamLabel</i> is not a unique identifier for the stream,
+     *         because it is possible that a stream from another table might have the
+     *         same timestamp. However, the combination of the following three
+     *         elements is guaranteed to be unique: <ul> <li><p>the AWS customer
+     *         ID.</li> <li><p>the table name.</li> <li><p>the
+     *         <i>StreamLabel</i>.</li> </ul>
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public TableDescription withLatestStreamLabel(String latestStreamLabel) {
+        this.latestStreamLabel = latestStreamLabel;
+        return this;
+    }
+
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the latest
+     * stream for this table.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>37 - 1024<br/>
+     *
+     * @return The Amazon Resource Name (ARN) that uniquely identifies the latest
+     *         stream for this table.
+     */
+    public String getLatestStreamArn() {
+        return latestStreamArn;
+    }
+    
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the latest
+     * stream for this table.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>37 - 1024<br/>
+     *
+     * @param latestStreamArn The Amazon Resource Name (ARN) that uniquely identifies the latest
+     *         stream for this table.
+     */
+    public void setLatestStreamArn(String latestStreamArn) {
+        this.latestStreamArn = latestStreamArn;
+    }
+    
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the latest
+     * stream for this table.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>37 - 1024<br/>
+     *
+     * @param latestStreamArn The Amazon Resource Name (ARN) that uniquely identifies the latest
+     *         stream for this table.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public TableDescription withLatestStreamArn(String latestStreamArn) {
+        this.latestStreamArn = latestStreamArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1480,8 +1725,12 @@ public class TableDescription implements Serializable {
         if (getProvisionedThroughput() != null) sb.append("ProvisionedThroughput: " + getProvisionedThroughput() + ",");
         if (getTableSizeBytes() != null) sb.append("TableSizeBytes: " + getTableSizeBytes() + ",");
         if (getItemCount() != null) sb.append("ItemCount: " + getItemCount() + ",");
+        if (getTableArn() != null) sb.append("TableArn: " + getTableArn() + ",");
         if (getLocalSecondaryIndexes() != null) sb.append("LocalSecondaryIndexes: " + getLocalSecondaryIndexes() + ",");
-        if (getGlobalSecondaryIndexes() != null) sb.append("GlobalSecondaryIndexes: " + getGlobalSecondaryIndexes() );
+        if (getGlobalSecondaryIndexes() != null) sb.append("GlobalSecondaryIndexes: " + getGlobalSecondaryIndexes() + ",");
+        if (getStreamSpecification() != null) sb.append("StreamSpecification: " + getStreamSpecification() + ",");
+        if (getLatestStreamLabel() != null) sb.append("LatestStreamLabel: " + getLatestStreamLabel() + ",");
+        if (getLatestStreamArn() != null) sb.append("LatestStreamArn: " + getLatestStreamArn() );
         sb.append("}");
         return sb.toString();
     }
@@ -1499,8 +1748,12 @@ public class TableDescription implements Serializable {
         hashCode = prime * hashCode + ((getProvisionedThroughput() == null) ? 0 : getProvisionedThroughput().hashCode()); 
         hashCode = prime * hashCode + ((getTableSizeBytes() == null) ? 0 : getTableSizeBytes().hashCode()); 
         hashCode = prime * hashCode + ((getItemCount() == null) ? 0 : getItemCount().hashCode()); 
+        hashCode = prime * hashCode + ((getTableArn() == null) ? 0 : getTableArn().hashCode()); 
         hashCode = prime * hashCode + ((getLocalSecondaryIndexes() == null) ? 0 : getLocalSecondaryIndexes().hashCode()); 
         hashCode = prime * hashCode + ((getGlobalSecondaryIndexes() == null) ? 0 : getGlobalSecondaryIndexes().hashCode()); 
+        hashCode = prime * hashCode + ((getStreamSpecification() == null) ? 0 : getStreamSpecification().hashCode()); 
+        hashCode = prime * hashCode + ((getLatestStreamLabel() == null) ? 0 : getLatestStreamLabel().hashCode()); 
+        hashCode = prime * hashCode + ((getLatestStreamArn() == null) ? 0 : getLatestStreamArn().hashCode()); 
         return hashCode;
     }
     
@@ -1528,10 +1781,18 @@ public class TableDescription implements Serializable {
         if (other.getTableSizeBytes() != null && other.getTableSizeBytes().equals(this.getTableSizeBytes()) == false) return false; 
         if (other.getItemCount() == null ^ this.getItemCount() == null) return false;
         if (other.getItemCount() != null && other.getItemCount().equals(this.getItemCount()) == false) return false; 
+        if (other.getTableArn() == null ^ this.getTableArn() == null) return false;
+        if (other.getTableArn() != null && other.getTableArn().equals(this.getTableArn()) == false) return false; 
         if (other.getLocalSecondaryIndexes() == null ^ this.getLocalSecondaryIndexes() == null) return false;
         if (other.getLocalSecondaryIndexes() != null && other.getLocalSecondaryIndexes().equals(this.getLocalSecondaryIndexes()) == false) return false; 
         if (other.getGlobalSecondaryIndexes() == null ^ this.getGlobalSecondaryIndexes() == null) return false;
         if (other.getGlobalSecondaryIndexes() != null && other.getGlobalSecondaryIndexes().equals(this.getGlobalSecondaryIndexes()) == false) return false; 
+        if (other.getStreamSpecification() == null ^ this.getStreamSpecification() == null) return false;
+        if (other.getStreamSpecification() != null && other.getStreamSpecification().equals(this.getStreamSpecification()) == false) return false; 
+        if (other.getLatestStreamLabel() == null ^ this.getLatestStreamLabel() == null) return false;
+        if (other.getLatestStreamLabel() != null && other.getLatestStreamLabel().equals(this.getLatestStreamLabel()) == false) return false; 
+        if (other.getLatestStreamArn() == null ^ this.getLatestStreamArn() == null) return false;
+        if (other.getLatestStreamArn() != null && other.getLatestStreamArn().equals(this.getLatestStreamArn()) == false) return false; 
         return true;
     }
     

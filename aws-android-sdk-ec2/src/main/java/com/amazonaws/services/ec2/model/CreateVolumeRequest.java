@@ -23,13 +23,15 @@ import com.amazonaws.services.ec2.model.transform.CreateVolumeRequestMarshaller;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#createVolume(CreateVolumeRequest) CreateVolume operation}.
  * <p>
- * Creates an Amazon EBS volume that can be attached to an instance in
- * the same Availability Zone. The volume is created in the specified
- * region.
+ * Creates an EBS volume that can be attached to an instance in the same
+ * Availability Zone. The volume is created in the regional endpoint that
+ * you send the HTTP request to. For more information see
+ * <a href="http://docs.aws.amazon.com/general/latest/gr/rande.html"> Regions and Endpoints </a>
+ * .
  * </p>
  * <p>
- * You can create a new empty volume or restore a volume from an Amazon
- * EBS snapshot. Any AWS Marketplace product codes from the snapshot are
+ * You can create a new empty volume or restore a volume from an EBS
+ * snapshot. Any AWS Marketplace product codes from the snapshot are
  * propagated to the volume.
  * </p>
  * <p>
@@ -51,10 +53,13 @@ import com.amazonaws.services.ec2.model.transform.CreateVolumeRequestMarshaller;
 public class CreateVolumeRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<CreateVolumeRequest> {
 
     /**
-     * The size of the volume, in GiBs. <p>Constraints: If the volume type is
-     * <code>io1</code>, the minimum size of the volume is 10 GiB.
-     * <p>Default: If you're creating the volume from a snapshot and don't
-     * specify a volume size, the default is the snapshot size.
+     * The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
+     * for <code>standard</code> volumes, <code>1-16384</code> for
+     * <code>gp2</code> volumes, and <code>4-16384</code> for
+     * <code>io1</code> volumes. If you specify a snapshot, the volume size
+     * must be equal to or larger than the snapshot size. <p>Default: If
+     * you're creating the volume from a snapshot and don't specify a volume
+     * size, the default is the snapshot size.
      */
     private Integer size;
 
@@ -77,22 +82,45 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      */
     private String volumeType;
 
     /**
-     * The number of I/O operations per second (IOPS) that the volume
-     * supports. This parameter is not used with Magnetic or General Purpose
-     * (SSD) volumes, but is required when the volume type is
-     * <code>io1</code>.
+     * Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * operations per second (IOPS) to provision for the volume, with a
+     * maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
+     * Provisioned IOPS (SSD) volumes
      */
     private Integer iops;
 
     /**
-     * Specifies whether the volume should be encrypted.
+     * Specifies whether the volume should be encrypted. Encrypted Amazon EBS
+     * volumes may only be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or vice versa. If your AMI uses encrypted
+     * volumes, you can only launch it on supported instance types. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      */
     private Boolean encrypted;
+
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) to use when creating the encrypted volume. This
+     * parameter is only required if you want to use a non-default CMK; if
+     * this parameter is not specified, the default CMK for EBS is used. The
+     * ARN contains the <code>arn:aws:kms</code> namespace, followed by the
+     * region of the CMK, the AWS account ID of the CMK owner, the
+     * <code>key</code> namespace, and then the CMK ID. For example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
+     * If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code>
+     * flag must also be set.
+     */
+    private String kmsKeyId;
 
     /**
      * Default constructor for a new CreateVolumeRequest object.  Callers should use the
@@ -105,9 +133,12 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
      * Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      * 
-     * @param size The size of the volume, in GiBs. <p>Constraints: If the
-     * volume type is <code>io1</code>, the minimum size of the volume is 10
-     * GiB. <p>Default: If you're creating the volume from a snapshot and
+     * @param size The size of the volume, in GiBs. <p>Constraints:
+     * <code>1-1024</code> for <code>standard</code> volumes,
+     * <code>1-16384</code> for <code>gp2</code> volumes, and
+     * <code>4-16384</code> for <code>io1</code> volumes. If you specify a
+     * snapshot, the volume size must be equal to or larger than the snapshot
+     * size. <p>Default: If you're creating the volume from a snapshot and
      * don't specify a volume size, the default is the snapshot size.
      * @param availabilityZone The Availability Zone in which to create the
      * volume. Use <a>DescribeAvailabilityZones</a> to list the Availability
@@ -134,47 +165,65 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The size of the volume, in GiBs. <p>Constraints: If the volume type is
-     * <code>io1</code>, the minimum size of the volume is 10 GiB.
-     * <p>Default: If you're creating the volume from a snapshot and don't
-     * specify a volume size, the default is the snapshot size.
+     * The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
+     * for <code>standard</code> volumes, <code>1-16384</code> for
+     * <code>gp2</code> volumes, and <code>4-16384</code> for
+     * <code>io1</code> volumes. If you specify a snapshot, the volume size
+     * must be equal to or larger than the snapshot size. <p>Default: If
+     * you're creating the volume from a snapshot and don't specify a volume
+     * size, the default is the snapshot size.
      *
-     * @return The size of the volume, in GiBs. <p>Constraints: If the volume type is
-     *         <code>io1</code>, the minimum size of the volume is 10 GiB.
-     *         <p>Default: If you're creating the volume from a snapshot and don't
-     *         specify a volume size, the default is the snapshot size.
+     * @return The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
+     *         for <code>standard</code> volumes, <code>1-16384</code> for
+     *         <code>gp2</code> volumes, and <code>4-16384</code> for
+     *         <code>io1</code> volumes. If you specify a snapshot, the volume size
+     *         must be equal to or larger than the snapshot size. <p>Default: If
+     *         you're creating the volume from a snapshot and don't specify a volume
+     *         size, the default is the snapshot size.
      */
     public Integer getSize() {
         return size;
     }
     
     /**
-     * The size of the volume, in GiBs. <p>Constraints: If the volume type is
-     * <code>io1</code>, the minimum size of the volume is 10 GiB.
-     * <p>Default: If you're creating the volume from a snapshot and don't
-     * specify a volume size, the default is the snapshot size.
+     * The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
+     * for <code>standard</code> volumes, <code>1-16384</code> for
+     * <code>gp2</code> volumes, and <code>4-16384</code> for
+     * <code>io1</code> volumes. If you specify a snapshot, the volume size
+     * must be equal to or larger than the snapshot size. <p>Default: If
+     * you're creating the volume from a snapshot and don't specify a volume
+     * size, the default is the snapshot size.
      *
-     * @param size The size of the volume, in GiBs. <p>Constraints: If the volume type is
-     *         <code>io1</code>, the minimum size of the volume is 10 GiB.
-     *         <p>Default: If you're creating the volume from a snapshot and don't
-     *         specify a volume size, the default is the snapshot size.
+     * @param size The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
+     *         for <code>standard</code> volumes, <code>1-16384</code> for
+     *         <code>gp2</code> volumes, and <code>4-16384</code> for
+     *         <code>io1</code> volumes. If you specify a snapshot, the volume size
+     *         must be equal to or larger than the snapshot size. <p>Default: If
+     *         you're creating the volume from a snapshot and don't specify a volume
+     *         size, the default is the snapshot size.
      */
     public void setSize(Integer size) {
         this.size = size;
     }
     
     /**
-     * The size of the volume, in GiBs. <p>Constraints: If the volume type is
-     * <code>io1</code>, the minimum size of the volume is 10 GiB.
-     * <p>Default: If you're creating the volume from a snapshot and don't
-     * specify a volume size, the default is the snapshot size.
+     * The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
+     * for <code>standard</code> volumes, <code>1-16384</code> for
+     * <code>gp2</code> volumes, and <code>4-16384</code> for
+     * <code>io1</code> volumes. If you specify a snapshot, the volume size
+     * must be equal to or larger than the snapshot size. <p>Default: If
+     * you're creating the volume from a snapshot and don't specify a volume
+     * size, the default is the snapshot size.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param size The size of the volume, in GiBs. <p>Constraints: If the volume type is
-     *         <code>io1</code>, the minimum size of the volume is 10 GiB.
-     *         <p>Default: If you're creating the volume from a snapshot and don't
-     *         specify a volume size, the default is the snapshot size.
+     * @param size The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
+     *         for <code>standard</code> volumes, <code>1-16384</code> for
+     *         <code>gp2</code> volumes, and <code>4-16384</code> for
+     *         <code>io1</code> volumes. If you specify a snapshot, the volume size
+     *         must be equal to or larger than the snapshot size. <p>Default: If
+     *         you're creating the volume from a snapshot and don't specify a volume
+     *         size, the default is the snapshot size.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -269,7 +318,7 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @return The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -289,7 +338,7 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -311,7 +360,7 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -335,7 +384,7 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -357,7 +406,7 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1
+     * <b>Allowed Values: </b>standard, io1, gp2
      *
      * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
      *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
@@ -375,47 +424,47 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The number of I/O operations per second (IOPS) that the volume
-     * supports. This parameter is not used with Magnetic or General Purpose
-     * (SSD) volumes, but is required when the volume type is
-     * <code>io1</code>.
+     * Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * operations per second (IOPS) to provision for the volume, with a
+     * maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
+     * Provisioned IOPS (SSD) volumes
      *
-     * @return The number of I/O operations per second (IOPS) that the volume
-     *         supports. This parameter is not used with Magnetic or General Purpose
-     *         (SSD) volumes, but is required when the volume type is
-     *         <code>io1</code>.
+     * @return Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     *         operations per second (IOPS) to provision for the volume, with a
+     *         maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
+     *         Provisioned IOPS (SSD) volumes
      */
     public Integer getIops() {
         return iops;
     }
     
     /**
-     * The number of I/O operations per second (IOPS) that the volume
-     * supports. This parameter is not used with Magnetic or General Purpose
-     * (SSD) volumes, but is required when the volume type is
-     * <code>io1</code>.
+     * Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * operations per second (IOPS) to provision for the volume, with a
+     * maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
+     * Provisioned IOPS (SSD) volumes
      *
-     * @param iops The number of I/O operations per second (IOPS) that the volume
-     *         supports. This parameter is not used with Magnetic or General Purpose
-     *         (SSD) volumes, but is required when the volume type is
-     *         <code>io1</code>.
+     * @param iops Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     *         operations per second (IOPS) to provision for the volume, with a
+     *         maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
+     *         Provisioned IOPS (SSD) volumes
      */
     public void setIops(Integer iops) {
         this.iops = iops;
     }
     
     /**
-     * The number of I/O operations per second (IOPS) that the volume
-     * supports. This parameter is not used with Magnetic or General Purpose
-     * (SSD) volumes, but is required when the volume type is
-     * <code>io1</code>.
+     * Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * operations per second (IOPS) to provision for the volume, with a
+     * maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
+     * Provisioned IOPS (SSD) volumes
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param iops The number of I/O operations per second (IOPS) that the volume
-     *         supports. This parameter is not used with Magnetic or General Purpose
-     *         (SSD) volumes, but is required when the volume type is
-     *         <code>io1</code>.
+     * @param iops Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     *         operations per second (IOPS) to provision for the volume, with a
+     *         maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
+     *         Provisioned IOPS (SSD) volumes
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -426,29 +475,83 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Specifies whether the volume should be encrypted.
+     * Specifies whether the volume should be encrypted. Encrypted Amazon EBS
+     * volumes may only be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or vice versa. If your AMI uses encrypted
+     * volumes, you can only launch it on supported instance types. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      *
-     * @return Specifies whether the volume should be encrypted.
+     * @return Specifies whether the volume should be encrypted. Encrypted Amazon EBS
+     *         volumes may only be attached to instances that support Amazon EBS
+     *         encryption. Volumes that are created from encrypted snapshots are
+     *         automatically encrypted. There is no way to create an encrypted volume
+     *         from an unencrypted snapshot or vice versa. If your AMI uses encrypted
+     *         volumes, you can only launch it on supported instance types. For more
+     *         information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     *         EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
      */
     public Boolean isEncrypted() {
         return encrypted;
     }
     
     /**
-     * Specifies whether the volume should be encrypted.
+     * Specifies whether the volume should be encrypted. Encrypted Amazon EBS
+     * volumes may only be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or vice versa. If your AMI uses encrypted
+     * volumes, you can only launch it on supported instance types. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      *
-     * @param encrypted Specifies whether the volume should be encrypted.
+     * @param encrypted Specifies whether the volume should be encrypted. Encrypted Amazon EBS
+     *         volumes may only be attached to instances that support Amazon EBS
+     *         encryption. Volumes that are created from encrypted snapshots are
+     *         automatically encrypted. There is no way to create an encrypted volume
+     *         from an unencrypted snapshot or vice versa. If your AMI uses encrypted
+     *         volumes, you can only launch it on supported instance types. For more
+     *         information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     *         EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
      */
     public void setEncrypted(Boolean encrypted) {
         this.encrypted = encrypted;
     }
     
     /**
-     * Specifies whether the volume should be encrypted.
+     * Specifies whether the volume should be encrypted. Encrypted Amazon EBS
+     * volumes may only be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or vice versa. If your AMI uses encrypted
+     * volumes, you can only launch it on supported instance types. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param encrypted Specifies whether the volume should be encrypted.
+     * @param encrypted Specifies whether the volume should be encrypted. Encrypted Amazon EBS
+     *         volumes may only be attached to instances that support Amazon EBS
+     *         encryption. Volumes that are created from encrypted snapshots are
+     *         automatically encrypted. There is no way to create an encrypted volume
+     *         from an unencrypted snapshot or vice versa. If your AMI uses encrypted
+     *         volumes, you can only launch it on supported instance types. For more
+     *         information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     *         EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -459,12 +562,117 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Specifies whether the volume should be encrypted.
+     * Specifies whether the volume should be encrypted. Encrypted Amazon EBS
+     * volumes may only be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or vice versa. If your AMI uses encrypted
+     * volumes, you can only launch it on supported instance types. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      *
-     * @return Specifies whether the volume should be encrypted.
+     * @return Specifies whether the volume should be encrypted. Encrypted Amazon EBS
+     *         volumes may only be attached to instances that support Amazon EBS
+     *         encryption. Volumes that are created from encrypted snapshots are
+     *         automatically encrypted. There is no way to create an encrypted volume
+     *         from an unencrypted snapshot or vice versa. If your AMI uses encrypted
+     *         volumes, you can only launch it on supported instance types. For more
+     *         information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     *         EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
      */
     public Boolean getEncrypted() {
         return encrypted;
+    }
+
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) to use when creating the encrypted volume. This
+     * parameter is only required if you want to use a non-default CMK; if
+     * this parameter is not specified, the default CMK for EBS is used. The
+     * ARN contains the <code>arn:aws:kms</code> namespace, followed by the
+     * region of the CMK, the AWS account ID of the CMK owner, the
+     * <code>key</code> namespace, and then the CMK ID. For example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
+     * If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code>
+     * flag must also be set.
+     *
+     * @return The full ARN of the AWS Key Management Service (AWS KMS) customer
+     *         master key (CMK) to use when creating the encrypted volume. This
+     *         parameter is only required if you want to use a non-default CMK; if
+     *         this parameter is not specified, the default CMK for EBS is used. The
+     *         ARN contains the <code>arn:aws:kms</code> namespace, followed by the
+     *         region of the CMK, the AWS account ID of the CMK owner, the
+     *         <code>key</code> namespace, and then the CMK ID. For example,
+     *         arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
+     *         If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code>
+     *         flag must also be set.
+     */
+    public String getKmsKeyId() {
+        return kmsKeyId;
+    }
+    
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) to use when creating the encrypted volume. This
+     * parameter is only required if you want to use a non-default CMK; if
+     * this parameter is not specified, the default CMK for EBS is used. The
+     * ARN contains the <code>arn:aws:kms</code> namespace, followed by the
+     * region of the CMK, the AWS account ID of the CMK owner, the
+     * <code>key</code> namespace, and then the CMK ID. For example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
+     * If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code>
+     * flag must also be set.
+     *
+     * @param kmsKeyId The full ARN of the AWS Key Management Service (AWS KMS) customer
+     *         master key (CMK) to use when creating the encrypted volume. This
+     *         parameter is only required if you want to use a non-default CMK; if
+     *         this parameter is not specified, the default CMK for EBS is used. The
+     *         ARN contains the <code>arn:aws:kms</code> namespace, followed by the
+     *         region of the CMK, the AWS account ID of the CMK owner, the
+     *         <code>key</code> namespace, and then the CMK ID. For example,
+     *         arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
+     *         If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code>
+     *         flag must also be set.
+     */
+    public void setKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+    }
+    
+    /**
+     * The full ARN of the AWS Key Management Service (AWS KMS) customer
+     * master key (CMK) to use when creating the encrypted volume. This
+     * parameter is only required if you want to use a non-default CMK; if
+     * this parameter is not specified, the default CMK for EBS is used. The
+     * ARN contains the <code>arn:aws:kms</code> namespace, followed by the
+     * region of the CMK, the AWS account ID of the CMK owner, the
+     * <code>key</code> namespace, and then the CMK ID. For example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
+     * If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code>
+     * flag must also be set.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param kmsKeyId The full ARN of the AWS Key Management Service (AWS KMS) customer
+     *         master key (CMK) to use when creating the encrypted volume. This
+     *         parameter is only required if you want to use a non-default CMK; if
+     *         this parameter is not specified, the default CMK for EBS is used. The
+     *         ARN contains the <code>arn:aws:kms</code> namespace, followed by the
+     *         region of the CMK, the AWS account ID of the CMK owner, the
+     *         <code>key</code> namespace, and then the CMK ID. For example,
+     *         arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
+     *         If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code>
+     *         flag must also be set.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public CreateVolumeRequest withKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+        return this;
     }
 
     /**
@@ -496,7 +704,8 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
         if (getAvailabilityZone() != null) sb.append("AvailabilityZone: " + getAvailabilityZone() + ",");
         if (getVolumeType() != null) sb.append("VolumeType: " + getVolumeType() + ",");
         if (getIops() != null) sb.append("Iops: " + getIops() + ",");
-        if (isEncrypted() != null) sb.append("Encrypted: " + isEncrypted() );
+        if (isEncrypted() != null) sb.append("Encrypted: " + isEncrypted() + ",");
+        if (getKmsKeyId() != null) sb.append("KmsKeyId: " + getKmsKeyId() );
         sb.append("}");
         return sb.toString();
     }
@@ -512,6 +721,7 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
         hashCode = prime * hashCode + ((getVolumeType() == null) ? 0 : getVolumeType().hashCode()); 
         hashCode = prime * hashCode + ((getIops() == null) ? 0 : getIops().hashCode()); 
         hashCode = prime * hashCode + ((isEncrypted() == null) ? 0 : isEncrypted().hashCode()); 
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode()); 
         return hashCode;
     }
     
@@ -535,6 +745,8 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
         if (other.getIops() != null && other.getIops().equals(this.getIops()) == false) return false; 
         if (other.isEncrypted() == null ^ this.isEncrypted() == null) return false;
         if (other.isEncrypted() != null && other.isEncrypted().equals(this.isEncrypted()) == false) return false; 
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null) return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false) return false; 
         return true;
     }
     

@@ -48,18 +48,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * A map of attribute names to <i>AttributeValue</i> objects,
-     * representing the primary key of the item to retrieve.
+     * representing the primary key of the item to retrieve. <p>For the
+     * primary key, you must provide all of the attributes. For example, with
+     * a hash type primary key, you only need to provide the hash attribute.
+     * For a hash-and-range type primary key, you must provide both the hash
+     * attribute and the range attribute.
      */
     private java.util.Map<String,AttributeValue> key;
 
     /**
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are specified, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the
-     * result. <p>Note that <i>AttributesToGet</i> has no effect on
-     * provisioned throughput consumption. DynamoDB determines capacity units
-     * consumed based on item size, not on the amount of data that is
-     * returned to an application.
+     * <important><p>This is a legacy parameter, for backward compatibility.
+     * New applications should use <i>ProjectionExpression</i> instead. Do
+     * not combine legacy parameters and expression parameters in a single
+     * API call; otherwise, DynamoDB will return a <i>ValidationException</i>
+     * exception. <p>This parameter allows you to retrieve attributes of type
+     * List or Map; however, it cannot retrieve individual elements within a
+     * List or a Map.</important> <p>The names of one or more attributes to
+     * retrieve. If no attribute names are provided, then all attributes will
+     * be returned. If any of the requested attributes are not found, they
+     * will not appear in the result. <p>Note that <i>AttributesToGet</i> has
+     * no effect on provisioned throughput consumption. DynamoDB determines
+     * capacity units consumed based on item size, not on the amount of data
+     * that is returned to an application.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -67,25 +77,72 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> attributesToGet;
 
     /**
-     * If set to <code>true</code>, then the operation uses strongly
-     * consistent reads; otherwise, eventually consistent reads are used.
+     * Determines the read consistency model: If set to <code>true</code>,
+     * then the operation uses strongly consistent reads; otherwise, the
+     * operation uses eventually consistent reads.
      */
     private Boolean consistentRead;
 
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      */
     private String returnConsumedCapacity;
 
+    /**
+     * A string that identifies one or more attributes to retrieve from the
+     * table. These attributes can include scalars, sets, or elements of a
+     * JSON document. The attributes in the expression must be separated by
+     * commas. <p>If no attribute names are specified, then all attributes
+     * will be returned. If any of the requested attributes are not found,
+     * they will not appear in the result. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * <note><p><i>ProjectionExpression</i> replaces the legacy
+     * <i>AttributesToGet</i> parameter.</note>
+     */
     private String projectionExpression;
 
+    /**
+     * One or more substitution tokens for attribute names in an expression.
+     * The following are some use cases for using
+     * <i>ExpressionAttributeNames</i>: <ul> <li> <p>To access an attribute
+     * whose name conflicts with a DynamoDB reserved word. </li> <li> <p>To
+     * create a placeholder for repeating occurrences of an attribute name in
+     * an expression. </li> <li> <p>To prevent special characters in an
+     * attribute name from being misinterpreted in an expression. </li> </ul>
+     * <p>Use the <b>#</b> character in an expression to dereference an
+     * attribute name. For example, consider the following attribute name:
+     * <ul><li><p><code>Percentile</code></li></ul> <p>The name of this
+     * attribute conflicts with a reserved word, so it cannot be used
+     * directly in an expression. (For the complete list of reserved words,
+     * see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+     * Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work
+     * around this, you could specify the following for
+     * <i>ExpressionAttributeNames</i>:
+     * <ul><li><p><code>{"#P":"Percentile"}</code></li></ul> <p>You could
+     * then use this substitution in an expression, as in this example:
+     * <ul><li><p><code>#P = :val</code></li></ul> <note><p>Tokens that begin
+     * with the <b>:</b> character are <i>expression attribute values</i>,
+     * which are placeholders for the actual value at runtime.</note> <p>For
+     * more information on expression attribute names, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     */
     private java.util.Map<String,String> expressionAttributeNames;
 
     /**
@@ -101,7 +158,11 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * 
      * @param tableName The name of the table containing the requested item.
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
-     * representing the primary key of the item to retrieve.
+     * representing the primary key of the item to retrieve. <p>For the
+     * primary key, you must provide all of the attributes. For example, with
+     * a hash type primary key, you only need to provide the hash attribute.
+     * For a hash-and-range type primary key, you must provide both the hash
+     * attribute and the range attribute.
      */
     public GetItemRequest(String tableName, java.util.Map<String,AttributeValue> key) {
         setTableName(tableName);
@@ -115,10 +176,14 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * 
      * @param tableName The name of the table containing the requested item.
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
-     * representing the primary key of the item to retrieve.
-     * @param consistentRead If set to <code>true</code>, then the operation
-     * uses strongly consistent reads; otherwise, eventually consistent reads
-     * are used.
+     * representing the primary key of the item to retrieve. <p>For the
+     * primary key, you must provide all of the attributes. For example, with
+     * a hash type primary key, you only need to provide the hash attribute.
+     * For a hash-and-range type primary key, you must provide both the hash
+     * attribute and the range attribute.
+     * @param consistentRead Determines the read consistency model: If set to
+     * <code>true</code>, then the operation uses strongly consistent reads;
+     * otherwise, the operation uses eventually consistent reads.
      */
     public GetItemRequest(String tableName, java.util.Map<String,AttributeValue> key, Boolean consistentRead) {
         setTableName(tableName);
@@ -173,10 +238,18 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * A map of attribute names to <i>AttributeValue</i> objects,
-     * representing the primary key of the item to retrieve.
+     * representing the primary key of the item to retrieve. <p>For the
+     * primary key, you must provide all of the attributes. For example, with
+     * a hash type primary key, you only need to provide the hash attribute.
+     * For a hash-and-range type primary key, you must provide both the hash
+     * attribute and the range attribute.
      *
      * @return A map of attribute names to <i>AttributeValue</i> objects,
-     *         representing the primary key of the item to retrieve.
+     *         representing the primary key of the item to retrieve. <p>For the
+     *         primary key, you must provide all of the attributes. For example, with
+     *         a hash type primary key, you only need to provide the hash attribute.
+     *         For a hash-and-range type primary key, you must provide both the hash
+     *         attribute and the range attribute.
      */
     public java.util.Map<String,AttributeValue> getKey() {
         
@@ -185,10 +258,18 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     
     /**
      * A map of attribute names to <i>AttributeValue</i> objects,
-     * representing the primary key of the item to retrieve.
+     * representing the primary key of the item to retrieve. <p>For the
+     * primary key, you must provide all of the attributes. For example, with
+     * a hash type primary key, you only need to provide the hash attribute.
+     * For a hash-and-range type primary key, you must provide both the hash
+     * attribute and the range attribute.
      *
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
-     *         representing the primary key of the item to retrieve.
+     *         representing the primary key of the item to retrieve. <p>For the
+     *         primary key, you must provide all of the attributes. For example, with
+     *         a hash type primary key, you only need to provide the hash attribute.
+     *         For a hash-and-range type primary key, you must provide both the hash
+     *         attribute and the range attribute.
      */
     public void setKey(java.util.Map<String,AttributeValue> key) {
         this.key = key;
@@ -196,12 +277,20 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     
     /**
      * A map of attribute names to <i>AttributeValue</i> objects,
-     * representing the primary key of the item to retrieve.
+     * representing the primary key of the item to retrieve. <p>For the
+     * primary key, you must provide all of the attributes. For example, with
+     * a hash type primary key, you only need to provide the hash attribute.
+     * For a hash-and-range type primary key, you must provide both the hash
+     * attribute and the range attribute.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
-     *         representing the primary key of the item to retrieve.
+     *         representing the primary key of the item to retrieve. <p>For the
+     *         primary key, you must provide all of the attributes. For example, with
+     *         a hash type primary key, you only need to provide the hash attribute.
+     *         For a hash-and-range type primary key, you must provide both the hash
+     *         attribute and the range attribute.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -213,7 +302,11 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * A map of attribute names to <i>AttributeValue</i> objects,
-     * representing the primary key of the item to retrieve.
+     * representing the primary key of the item to retrieve. <p>For the
+     * primary key, you must provide all of the attributes. For example, with
+     * a hash type primary key, you only need to provide the hash attribute.
+     * For a hash-and-range type primary key, you must provide both the hash
+     * attribute and the range attribute.
      * <p>
      * This method accepts the hashKey, rangeKey of Key as
      * java.util.Map.Entry<String, AttributeValue> objects.
@@ -236,7 +329,11 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     
     /**
      * A map of attribute names to <i>AttributeValue</i> objects,
-     * representing the primary key of the item to retrieve.
+     * representing the primary key of the item to retrieve. <p>For the
+     * primary key, you must provide all of the attributes. For example, with
+     * a hash type primary key, you only need to provide the hash attribute.
+     * For a hash-and-range type primary key, you must provide both the hash
+     * attribute and the range attribute.
      * <p>
      * This method accepts the hashKey, rangeKey of Key as
      * java.util.Map.Entry<String, AttributeValue> objects.
@@ -253,7 +350,11 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * A map of attribute names to <i>AttributeValue</i> objects,
-     * representing the primary key of the item to retrieve.
+     * representing the primary key of the item to retrieve. <p>For the
+     * primary key, you must provide all of the attributes. For example, with
+     * a hash type primary key, you only need to provide the hash attribute.
+     * For a hash-and-range type primary key, you must provide both the hash
+     * attribute and the range attribute.
      * <p>
      * The method adds a new key-value pair into Key parameter, and returns a
      * reference to this object so that method calls can be chained together.
@@ -282,48 +383,72 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
     
     /**
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are specified, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the
-     * result. <p>Note that <i>AttributesToGet</i> has no effect on
-     * provisioned throughput consumption. DynamoDB determines capacity units
-     * consumed based on item size, not on the amount of data that is
-     * returned to an application.
+     * <important><p>This is a legacy parameter, for backward compatibility.
+     * New applications should use <i>ProjectionExpression</i> instead. Do
+     * not combine legacy parameters and expression parameters in a single
+     * API call; otherwise, DynamoDB will return a <i>ValidationException</i>
+     * exception. <p>This parameter allows you to retrieve attributes of type
+     * List or Map; however, it cannot retrieve individual elements within a
+     * List or a Map.</important> <p>The names of one or more attributes to
+     * retrieve. If no attribute names are provided, then all attributes will
+     * be returned. If any of the requested attributes are not found, they
+     * will not appear in the result. <p>Note that <i>AttributesToGet</i> has
+     * no effect on provisioned throughput consumption. DynamoDB determines
+     * capacity units consumed based on item size, not on the amount of data
+     * that is returned to an application.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @return The names of one or more attributes to retrieve. If no attribute names
-     *         are specified, then all attributes will be returned. If any of the
-     *         requested attributes are not found, they will not appear in the
-     *         result. <p>Note that <i>AttributesToGet</i> has no effect on
-     *         provisioned throughput consumption. DynamoDB determines capacity units
-     *         consumed based on item size, not on the amount of data that is
-     *         returned to an application.
+     * @return <important><p>This is a legacy parameter, for backward compatibility.
+     *         New applications should use <i>ProjectionExpression</i> instead. Do
+     *         not combine legacy parameters and expression parameters in a single
+     *         API call; otherwise, DynamoDB will return a <i>ValidationException</i>
+     *         exception. <p>This parameter allows you to retrieve attributes of type
+     *         List or Map; however, it cannot retrieve individual elements within a
+     *         List or a Map.</important> <p>The names of one or more attributes to
+     *         retrieve. If no attribute names are provided, then all attributes will
+     *         be returned. If any of the requested attributes are not found, they
+     *         will not appear in the result. <p>Note that <i>AttributesToGet</i> has
+     *         no effect on provisioned throughput consumption. DynamoDB determines
+     *         capacity units consumed based on item size, not on the amount of data
+     *         that is returned to an application.
      */
     public java.util.List<String> getAttributesToGet() {
         return attributesToGet;
     }
     
     /**
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are specified, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the
-     * result. <p>Note that <i>AttributesToGet</i> has no effect on
-     * provisioned throughput consumption. DynamoDB determines capacity units
-     * consumed based on item size, not on the amount of data that is
-     * returned to an application.
+     * <important><p>This is a legacy parameter, for backward compatibility.
+     * New applications should use <i>ProjectionExpression</i> instead. Do
+     * not combine legacy parameters and expression parameters in a single
+     * API call; otherwise, DynamoDB will return a <i>ValidationException</i>
+     * exception. <p>This parameter allows you to retrieve attributes of type
+     * List or Map; however, it cannot retrieve individual elements within a
+     * List or a Map.</important> <p>The names of one or more attributes to
+     * retrieve. If no attribute names are provided, then all attributes will
+     * be returned. If any of the requested attributes are not found, they
+     * will not appear in the result. <p>Note that <i>AttributesToGet</i> has
+     * no effect on provisioned throughput consumption. DynamoDB determines
+     * capacity units consumed based on item size, not on the amount of data
+     * that is returned to an application.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @param attributesToGet The names of one or more attributes to retrieve. If no attribute names
-     *         are specified, then all attributes will be returned. If any of the
-     *         requested attributes are not found, they will not appear in the
-     *         result. <p>Note that <i>AttributesToGet</i> has no effect on
-     *         provisioned throughput consumption. DynamoDB determines capacity units
-     *         consumed based on item size, not on the amount of data that is
-     *         returned to an application.
+     * @param attributesToGet <important><p>This is a legacy parameter, for backward compatibility.
+     *         New applications should use <i>ProjectionExpression</i> instead. Do
+     *         not combine legacy parameters and expression parameters in a single
+     *         API call; otherwise, DynamoDB will return a <i>ValidationException</i>
+     *         exception. <p>This parameter allows you to retrieve attributes of type
+     *         List or Map; however, it cannot retrieve individual elements within a
+     *         List or a Map.</important> <p>The names of one or more attributes to
+     *         retrieve. If no attribute names are provided, then all attributes will
+     *         be returned. If any of the requested attributes are not found, they
+     *         will not appear in the result. <p>Note that <i>AttributesToGet</i> has
+     *         no effect on provisioned throughput consumption. DynamoDB determines
+     *         capacity units consumed based on item size, not on the amount of data
+     *         that is returned to an application.
      */
     public void setAttributesToGet(java.util.Collection<String> attributesToGet) {
         if (attributesToGet == null) {
@@ -336,26 +461,38 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
     
     /**
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are specified, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the
-     * result. <p>Note that <i>AttributesToGet</i> has no effect on
-     * provisioned throughput consumption. DynamoDB determines capacity units
-     * consumed based on item size, not on the amount of data that is
-     * returned to an application.
+     * <important><p>This is a legacy parameter, for backward compatibility.
+     * New applications should use <i>ProjectionExpression</i> instead. Do
+     * not combine legacy parameters and expression parameters in a single
+     * API call; otherwise, DynamoDB will return a <i>ValidationException</i>
+     * exception. <p>This parameter allows you to retrieve attributes of type
+     * List or Map; however, it cannot retrieve individual elements within a
+     * List or a Map.</important> <p>The names of one or more attributes to
+     * retrieve. If no attribute names are provided, then all attributes will
+     * be returned. If any of the requested attributes are not found, they
+     * will not appear in the result. <p>Note that <i>AttributesToGet</i> has
+     * no effect on provisioned throughput consumption. DynamoDB determines
+     * capacity units consumed based on item size, not on the amount of data
+     * that is returned to an application.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @param attributesToGet The names of one or more attributes to retrieve. If no attribute names
-     *         are specified, then all attributes will be returned. If any of the
-     *         requested attributes are not found, they will not appear in the
-     *         result. <p>Note that <i>AttributesToGet</i> has no effect on
-     *         provisioned throughput consumption. DynamoDB determines capacity units
-     *         consumed based on item size, not on the amount of data that is
-     *         returned to an application.
+     * @param attributesToGet <important><p>This is a legacy parameter, for backward compatibility.
+     *         New applications should use <i>ProjectionExpression</i> instead. Do
+     *         not combine legacy parameters and expression parameters in a single
+     *         API call; otherwise, DynamoDB will return a <i>ValidationException</i>
+     *         exception. <p>This parameter allows you to retrieve attributes of type
+     *         List or Map; however, it cannot retrieve individual elements within a
+     *         List or a Map.</important> <p>The names of one or more attributes to
+     *         retrieve. If no attribute names are provided, then all attributes will
+     *         be returned. If any of the requested attributes are not found, they
+     *         will not appear in the result. <p>Note that <i>AttributesToGet</i> has
+     *         no effect on provisioned throughput consumption. DynamoDB determines
+     *         capacity units consumed based on item size, not on the amount of data
+     *         that is returned to an application.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -369,26 +506,38 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
     
     /**
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are specified, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the
-     * result. <p>Note that <i>AttributesToGet</i> has no effect on
-     * provisioned throughput consumption. DynamoDB determines capacity units
-     * consumed based on item size, not on the amount of data that is
-     * returned to an application.
+     * <important><p>This is a legacy parameter, for backward compatibility.
+     * New applications should use <i>ProjectionExpression</i> instead. Do
+     * not combine legacy parameters and expression parameters in a single
+     * API call; otherwise, DynamoDB will return a <i>ValidationException</i>
+     * exception. <p>This parameter allows you to retrieve attributes of type
+     * List or Map; however, it cannot retrieve individual elements within a
+     * List or a Map.</important> <p>The names of one or more attributes to
+     * retrieve. If no attribute names are provided, then all attributes will
+     * be returned. If any of the requested attributes are not found, they
+     * will not appear in the result. <p>Note that <i>AttributesToGet</i> has
+     * no effect on provisioned throughput consumption. DynamoDB determines
+     * capacity units consumed based on item size, not on the amount of data
+     * that is returned to an application.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @param attributesToGet The names of one or more attributes to retrieve. If no attribute names
-     *         are specified, then all attributes will be returned. If any of the
-     *         requested attributes are not found, they will not appear in the
-     *         result. <p>Note that <i>AttributesToGet</i> has no effect on
-     *         provisioned throughput consumption. DynamoDB determines capacity units
-     *         consumed based on item size, not on the amount of data that is
-     *         returned to an application.
+     * @param attributesToGet <important><p>This is a legacy parameter, for backward compatibility.
+     *         New applications should use <i>ProjectionExpression</i> instead. Do
+     *         not combine legacy parameters and expression parameters in a single
+     *         API call; otherwise, DynamoDB will return a <i>ValidationException</i>
+     *         exception. <p>This parameter allows you to retrieve attributes of type
+     *         List or Map; however, it cannot retrieve individual elements within a
+     *         List or a Map.</important> <p>The names of one or more attributes to
+     *         retrieve. If no attribute names are provided, then all attributes will
+     *         be returned. If any of the requested attributes are not found, they
+     *         will not appear in the result. <p>Note that <i>AttributesToGet</i> has
+     *         no effect on provisioned throughput consumption. DynamoDB determines
+     *         capacity units consumed based on item size, not on the amount of data
+     *         that is returned to an application.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -406,35 +555,41 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * If set to <code>true</code>, then the operation uses strongly
-     * consistent reads; otherwise, eventually consistent reads are used.
+     * Determines the read consistency model: If set to <code>true</code>,
+     * then the operation uses strongly consistent reads; otherwise, the
+     * operation uses eventually consistent reads.
      *
-     * @return If set to <code>true</code>, then the operation uses strongly
-     *         consistent reads; otherwise, eventually consistent reads are used.
+     * @return Determines the read consistency model: If set to <code>true</code>,
+     *         then the operation uses strongly consistent reads; otherwise, the
+     *         operation uses eventually consistent reads.
      */
     public Boolean isConsistentRead() {
         return consistentRead;
     }
     
     /**
-     * If set to <code>true</code>, then the operation uses strongly
-     * consistent reads; otherwise, eventually consistent reads are used.
+     * Determines the read consistency model: If set to <code>true</code>,
+     * then the operation uses strongly consistent reads; otherwise, the
+     * operation uses eventually consistent reads.
      *
-     * @param consistentRead If set to <code>true</code>, then the operation uses strongly
-     *         consistent reads; otherwise, eventually consistent reads are used.
+     * @param consistentRead Determines the read consistency model: If set to <code>true</code>,
+     *         then the operation uses strongly consistent reads; otherwise, the
+     *         operation uses eventually consistent reads.
      */
     public void setConsistentRead(Boolean consistentRead) {
         this.consistentRead = consistentRead;
     }
     
     /**
-     * If set to <code>true</code>, then the operation uses strongly
-     * consistent reads; otherwise, eventually consistent reads are used.
+     * Determines the read consistency model: If set to <code>true</code>,
+     * then the operation uses strongly consistent reads; otherwise, the
+     * operation uses eventually consistent reads.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param consistentRead If set to <code>true</code>, then the operation uses strongly
-     *         consistent reads; otherwise, eventually consistent reads are used.
+     * @param consistentRead Determines the read consistency model: If set to <code>true</code>,
+     *         then the operation uses strongly consistent reads; otherwise, the
+     *         operation uses eventually consistent reads.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -445,31 +600,47 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * If set to <code>true</code>, then the operation uses strongly
-     * consistent reads; otherwise, eventually consistent reads are used.
+     * Determines the read consistency model: If set to <code>true</code>,
+     * then the operation uses strongly consistent reads; otherwise, the
+     * operation uses eventually consistent reads.
      *
-     * @return If set to <code>true</code>, then the operation uses strongly
-     *         consistent reads; otherwise, eventually consistent reads are used.
+     * @return Determines the read consistency model: If set to <code>true</code>,
+     *         then the operation uses strongly consistent reads; otherwise, the
+     *         operation uses eventually consistent reads.
      */
     public Boolean getConsistentRead() {
         return consistentRead;
     }
 
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @return If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @return Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @see ReturnConsumedCapacity
      */
@@ -478,20 +649,34 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
     
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @param returnConsumedCapacity If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @param returnConsumedCapacity Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @see ReturnConsumedCapacity
      */
@@ -500,22 +685,36 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
     
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @param returnConsumedCapacity If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @param returnConsumedCapacity Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -528,20 +727,34 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @param returnConsumedCapacity If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @param returnConsumedCapacity Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @see ReturnConsumedCapacity
      */
@@ -550,22 +763,36 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
     
     /**
-     * If set to <code>TOTAL</code>, the response includes
-     * <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     * <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     * for indexes. If set to <code>NONE</code> (the default),
-     * <i>ConsumedCapacity</i> is not included in the response.
+     * Determines the level of detail about provisioned throughput
+     * consumption that is returned in the response: <ul>
+     * <li><p><i>INDEXES</i> - The response includes the aggregate
+     * <i>ConsumedCapacity</i> for the operation, together with
+     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     * information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     * includes only the aggregate <i>ConsumedCapacity</i> for the
+     * operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     * details are included in the response.</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INDEXES, TOTAL, NONE
      *
-     * @param returnConsumedCapacity If set to <code>TOTAL</code>, the response includes
-     *         <i>ConsumedCapacity</i> data for tables and indexes. If set to
-     *         <code>INDEXES</code>, the response includes <i>ConsumedCapacity</i>
-     *         for indexes. If set to <code>NONE</code> (the default),
-     *         <i>ConsumedCapacity</i> is not included in the response.
+     * @param returnConsumedCapacity Determines the level of detail about provisioned throughput
+     *         consumption that is returned in the response: <ul>
+     *         <li><p><i>INDEXES</i> - The response includes the aggregate
+     *         <i>ConsumedCapacity</i> for the operation, together with
+     *         <i>ConsumedCapacity</i> for each table and secondary index that was
+     *         accessed. <p>Note that some operations, such as <i>GetItem</i> and
+     *         <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
+     *         specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
+     *         information for table(s).</li> <li><p><i>TOTAL</i> - The response
+     *         includes only the aggregate <i>ConsumedCapacity</i> for the
+     *         operation.</li> <li><p><i>NONE</i> - No <i>ConsumedCapacity</i>
+     *         details are included in the response.</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -578,30 +805,83 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * Returns the value of the ProjectionExpression property for this
-     * object.
+     * A string that identifies one or more attributes to retrieve from the
+     * table. These attributes can include scalars, sets, or elements of a
+     * JSON document. The attributes in the expression must be separated by
+     * commas. <p>If no attribute names are specified, then all attributes
+     * will be returned. If any of the requested attributes are not found,
+     * they will not appear in the result. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * <note><p><i>ProjectionExpression</i> replaces the legacy
+     * <i>AttributesToGet</i> parameter.</note>
      *
-     * @return The value of the ProjectionExpression property for this object.
+     * @return A string that identifies one or more attributes to retrieve from the
+     *         table. These attributes can include scalars, sets, or elements of a
+     *         JSON document. The attributes in the expression must be separated by
+     *         commas. <p>If no attribute names are specified, then all attributes
+     *         will be returned. If any of the requested attributes are not found,
+     *         they will not appear in the result. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     *         Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     *         <note><p><i>ProjectionExpression</i> replaces the legacy
+     *         <i>AttributesToGet</i> parameter.</note>
      */
     public String getProjectionExpression() {
         return projectionExpression;
     }
     
     /**
-     * Sets the value of the ProjectionExpression property for this object.
+     * A string that identifies one or more attributes to retrieve from the
+     * table. These attributes can include scalars, sets, or elements of a
+     * JSON document. The attributes in the expression must be separated by
+     * commas. <p>If no attribute names are specified, then all attributes
+     * will be returned. If any of the requested attributes are not found,
+     * they will not appear in the result. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * <note><p><i>ProjectionExpression</i> replaces the legacy
+     * <i>AttributesToGet</i> parameter.</note>
      *
-     * @param projectionExpression The new value for the ProjectionExpression property for this object.
+     * @param projectionExpression A string that identifies one or more attributes to retrieve from the
+     *         table. These attributes can include scalars, sets, or elements of a
+     *         JSON document. The attributes in the expression must be separated by
+     *         commas. <p>If no attribute names are specified, then all attributes
+     *         will be returned. If any of the requested attributes are not found,
+     *         they will not appear in the result. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     *         Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     *         <note><p><i>ProjectionExpression</i> replaces the legacy
+     *         <i>AttributesToGet</i> parameter.</note>
      */
     public void setProjectionExpression(String projectionExpression) {
         this.projectionExpression = projectionExpression;
     }
     
     /**
-     * Sets the value of the ProjectionExpression property for this object.
+     * A string that identifies one or more attributes to retrieve from the
+     * table. These attributes can include scalars, sets, or elements of a
+     * JSON document. The attributes in the expression must be separated by
+     * commas. <p>If no attribute names are specified, then all attributes
+     * will be returned. If any of the requested attributes are not found,
+     * they will not appear in the result. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * <note><p><i>ProjectionExpression</i> replaces the legacy
+     * <i>AttributesToGet</i> parameter.</note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param projectionExpression The new value for the ProjectionExpression property for this object.
+     * @param projectionExpression A string that identifies one or more attributes to retrieve from the
+     *         table. These attributes can include scalars, sets, or elements of a
+     *         JSON document. The attributes in the expression must be separated by
+     *         commas. <p>If no attribute names are specified, then all attributes
+     *         will be returned. If any of the requested attributes are not found,
+     *         they will not appear in the result. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     *         Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     *         <note><p><i>ProjectionExpression</i> replaces the legacy
+     *         <i>AttributesToGet</i> parameter.</note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -612,10 +892,57 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * Returns the value of the ExpressionAttributeNames property for this
-     * object.
+     * One or more substitution tokens for attribute names in an expression.
+     * The following are some use cases for using
+     * <i>ExpressionAttributeNames</i>: <ul> <li> <p>To access an attribute
+     * whose name conflicts with a DynamoDB reserved word. </li> <li> <p>To
+     * create a placeholder for repeating occurrences of an attribute name in
+     * an expression. </li> <li> <p>To prevent special characters in an
+     * attribute name from being misinterpreted in an expression. </li> </ul>
+     * <p>Use the <b>#</b> character in an expression to dereference an
+     * attribute name. For example, consider the following attribute name:
+     * <ul><li><p><code>Percentile</code></li></ul> <p>The name of this
+     * attribute conflicts with a reserved word, so it cannot be used
+     * directly in an expression. (For the complete list of reserved words,
+     * see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+     * Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work
+     * around this, you could specify the following for
+     * <i>ExpressionAttributeNames</i>:
+     * <ul><li><p><code>{"#P":"Percentile"}</code></li></ul> <p>You could
+     * then use this substitution in an expression, as in this example:
+     * <ul><li><p><code>#P = :val</code></li></ul> <note><p>Tokens that begin
+     * with the <b>:</b> character are <i>expression attribute values</i>,
+     * which are placeholders for the actual value at runtime.</note> <p>For
+     * more information on expression attribute names, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @return The value of the ExpressionAttributeNames property for this object.
+     * @return One or more substitution tokens for attribute names in an expression.
+     *         The following are some use cases for using
+     *         <i>ExpressionAttributeNames</i>: <ul> <li> <p>To access an attribute
+     *         whose name conflicts with a DynamoDB reserved word. </li> <li> <p>To
+     *         create a placeholder for repeating occurrences of an attribute name in
+     *         an expression. </li> <li> <p>To prevent special characters in an
+     *         attribute name from being misinterpreted in an expression. </li> </ul>
+     *         <p>Use the <b>#</b> character in an expression to dereference an
+     *         attribute name. For example, consider the following attribute name:
+     *         <ul><li><p><code>Percentile</code></li></ul> <p>The name of this
+     *         attribute conflicts with a reserved word, so it cannot be used
+     *         directly in an expression. (For the complete list of reserved words,
+     *         see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+     *         Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work
+     *         around this, you could specify the following for
+     *         <i>ExpressionAttributeNames</i>:
+     *         <ul><li><p><code>{"#P":"Percentile"}</code></li></ul> <p>You could
+     *         then use this substitution in an expression, as in this example:
+     *         <ul><li><p><code>#P = :val</code></li></ul> <note><p>Tokens that begin
+     *         with the <b>:</b> character are <i>expression attribute values</i>,
+     *         which are placeholders for the actual value at runtime.</note> <p>For
+     *         more information on expression attribute names, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     *         Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public java.util.Map<String,String> getExpressionAttributeNames() {
         
@@ -623,24 +950,116 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
     
     /**
-     * Sets the value of the ExpressionAttributeNames property for this
-     * object.
+     * One or more substitution tokens for attribute names in an expression.
+     * The following are some use cases for using
+     * <i>ExpressionAttributeNames</i>: <ul> <li> <p>To access an attribute
+     * whose name conflicts with a DynamoDB reserved word. </li> <li> <p>To
+     * create a placeholder for repeating occurrences of an attribute name in
+     * an expression. </li> <li> <p>To prevent special characters in an
+     * attribute name from being misinterpreted in an expression. </li> </ul>
+     * <p>Use the <b>#</b> character in an expression to dereference an
+     * attribute name. For example, consider the following attribute name:
+     * <ul><li><p><code>Percentile</code></li></ul> <p>The name of this
+     * attribute conflicts with a reserved word, so it cannot be used
+     * directly in an expression. (For the complete list of reserved words,
+     * see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+     * Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work
+     * around this, you could specify the following for
+     * <i>ExpressionAttributeNames</i>:
+     * <ul><li><p><code>{"#P":"Percentile"}</code></li></ul> <p>You could
+     * then use this substitution in an expression, as in this example:
+     * <ul><li><p><code>#P = :val</code></li></ul> <note><p>Tokens that begin
+     * with the <b>:</b> character are <i>expression attribute values</i>,
+     * which are placeholders for the actual value at runtime.</note> <p>For
+     * more information on expression attribute names, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
-     *         object.
+     * @param expressionAttributeNames One or more substitution tokens for attribute names in an expression.
+     *         The following are some use cases for using
+     *         <i>ExpressionAttributeNames</i>: <ul> <li> <p>To access an attribute
+     *         whose name conflicts with a DynamoDB reserved word. </li> <li> <p>To
+     *         create a placeholder for repeating occurrences of an attribute name in
+     *         an expression. </li> <li> <p>To prevent special characters in an
+     *         attribute name from being misinterpreted in an expression. </li> </ul>
+     *         <p>Use the <b>#</b> character in an expression to dereference an
+     *         attribute name. For example, consider the following attribute name:
+     *         <ul><li><p><code>Percentile</code></li></ul> <p>The name of this
+     *         attribute conflicts with a reserved word, so it cannot be used
+     *         directly in an expression. (For the complete list of reserved words,
+     *         see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+     *         Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work
+     *         around this, you could specify the following for
+     *         <i>ExpressionAttributeNames</i>:
+     *         <ul><li><p><code>{"#P":"Percentile"}</code></li></ul> <p>You could
+     *         then use this substitution in an expression, as in this example:
+     *         <ul><li><p><code>#P = :val</code></li></ul> <note><p>Tokens that begin
+     *         with the <b>:</b> character are <i>expression attribute values</i>,
+     *         which are placeholders for the actual value at runtime.</note> <p>For
+     *         more information on expression attribute names, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     *         Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setExpressionAttributeNames(java.util.Map<String,String> expressionAttributeNames) {
         this.expressionAttributeNames = expressionAttributeNames;
     }
     
     /**
-     * Sets the value of the ExpressionAttributeNames property for this
-     * object.
+     * One or more substitution tokens for attribute names in an expression.
+     * The following are some use cases for using
+     * <i>ExpressionAttributeNames</i>: <ul> <li> <p>To access an attribute
+     * whose name conflicts with a DynamoDB reserved word. </li> <li> <p>To
+     * create a placeholder for repeating occurrences of an attribute name in
+     * an expression. </li> <li> <p>To prevent special characters in an
+     * attribute name from being misinterpreted in an expression. </li> </ul>
+     * <p>Use the <b>#</b> character in an expression to dereference an
+     * attribute name. For example, consider the following attribute name:
+     * <ul><li><p><code>Percentile</code></li></ul> <p>The name of this
+     * attribute conflicts with a reserved word, so it cannot be used
+     * directly in an expression. (For the complete list of reserved words,
+     * see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+     * Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work
+     * around this, you could specify the following for
+     * <i>ExpressionAttributeNames</i>:
+     * <ul><li><p><code>{"#P":"Percentile"}</code></li></ul> <p>You could
+     * then use this substitution in an expression, as in this example:
+     * <ul><li><p><code>#P = :val</code></li></ul> <note><p>Tokens that begin
+     * with the <b>:</b> character are <i>expression attribute values</i>,
+     * which are placeholders for the actual value at runtime.</note> <p>For
+     * more information on expression attribute names, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param expressionAttributeNames The new value for the ExpressionAttributeNames property for this
-     *         object.
+     * @param expressionAttributeNames One or more substitution tokens for attribute names in an expression.
+     *         The following are some use cases for using
+     *         <i>ExpressionAttributeNames</i>: <ul> <li> <p>To access an attribute
+     *         whose name conflicts with a DynamoDB reserved word. </li> <li> <p>To
+     *         create a placeholder for repeating occurrences of an attribute name in
+     *         an expression. </li> <li> <p>To prevent special characters in an
+     *         attribute name from being misinterpreted in an expression. </li> </ul>
+     *         <p>Use the <b>#</b> character in an expression to dereference an
+     *         attribute name. For example, consider the following attribute name:
+     *         <ul><li><p><code>Percentile</code></li></ul> <p>The name of this
+     *         attribute conflicts with a reserved word, so it cannot be used
+     *         directly in an expression. (For the complete list of reserved words,
+     *         see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+     *         Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work
+     *         around this, you could specify the following for
+     *         <i>ExpressionAttributeNames</i>:
+     *         <ul><li><p><code>{"#P":"Percentile"}</code></li></ul> <p>You could
+     *         then use this substitution in an expression, as in this example:
+     *         <ul><li><p><code>#P = :val</code></li></ul> <note><p>Tokens that begin
+     *         with the <b>:</b> character are <i>expression attribute values</i>,
+     *         which are placeholders for the actual value at runtime.</note> <p>For
+     *         more information on expression attribute names, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     *         Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -651,8 +1070,31 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * Sets the value of the ExpressionAttributeNames property for this
-     * object.
+     * One or more substitution tokens for attribute names in an expression.
+     * The following are some use cases for using
+     * <i>ExpressionAttributeNames</i>: <ul> <li> <p>To access an attribute
+     * whose name conflicts with a DynamoDB reserved word. </li> <li> <p>To
+     * create a placeholder for repeating occurrences of an attribute name in
+     * an expression. </li> <li> <p>To prevent special characters in an
+     * attribute name from being misinterpreted in an expression. </li> </ul>
+     * <p>Use the <b>#</b> character in an expression to dereference an
+     * attribute name. For example, consider the following attribute name:
+     * <ul><li><p><code>Percentile</code></li></ul> <p>The name of this
+     * attribute conflicts with a reserved word, so it cannot be used
+     * directly in an expression. (For the complete list of reserved words,
+     * see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+     * Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work
+     * around this, you could specify the following for
+     * <i>ExpressionAttributeNames</i>:
+     * <ul><li><p><code>{"#P":"Percentile"}</code></li></ul> <p>You could
+     * then use this substitution in an expression, as in this example:
+     * <ul><li><p><code>#P = :val</code></li></ul> <note><p>Tokens that begin
+     * with the <b>:</b> character are <i>expression attribute values</i>,
+     * which are placeholders for the actual value at runtime.</note> <p>For
+     * more information on expression attribute names, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+     * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * The method adds a new key-value pair into ExpressionAttributeNames
      * parameter, and returns a reference to this object so that method calls

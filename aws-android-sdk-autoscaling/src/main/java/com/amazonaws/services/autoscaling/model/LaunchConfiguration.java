@@ -18,13 +18,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The <code>LaunchConfiguration</code> data type.
+ * Describes a launch configuration.
  * </p>
  */
 public class LaunchConfiguration implements Serializable {
 
     /**
-     * Specifies the name of the launch configuration.
+     * The name of the launch configuration.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -33,7 +33,7 @@ public class LaunchConfiguration implements Serializable {
     private String launchConfigurationName;
 
     /**
-     * The launch configuration's Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) of the launch configuration.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
@@ -42,8 +42,7 @@ public class LaunchConfiguration implements Serializable {
     private String launchConfigurationARN;
 
     /**
-     * Provides the unique ID of the <i>Amazon Machine Image</i> (AMI) that
-     * was assigned during registration.
+     * The ID of the Amazon Machine Image (AMI).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -52,7 +51,7 @@ public class LaunchConfiguration implements Serializable {
     private String imageId;
 
     /**
-     * Provides the name of the Amazon EC2 key pair.
+     * The name of the key pair.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -61,13 +60,35 @@ public class LaunchConfiguration implements Serializable {
     private String keyName;
 
     /**
-     * A description of the security groups to associate with the Amazon EC2
-     * instances.
+     * The security groups to associate with the instances.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> securityGroups;
 
     /**
-     * The user data available to the launched Amazon EC2 instances.
+     * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
+     * to. This parameter can only be used if you are launching EC2-Classic
+     * instances. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     */
+    private String classicLinkVPCId;
+
+    /**
+     * The IDs of one or more security groups for the VPC specified in
+     * <code>ClassicLinkVPCId</code>. This parameter is required if
+     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
+     * otherwise. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     */
+    private com.amazonaws.internal.ListWithAutoConstructFlag<String> classicLinkVPCSecurityGroups;
+
+    /**
+     * The user data available to the instances.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 21847<br/>
@@ -76,7 +97,7 @@ public class LaunchConfiguration implements Serializable {
     private String userData;
 
     /**
-     * Specifies the instance type of the Amazon EC2 instance.
+     * The instance type for the instances.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -85,7 +106,7 @@ public class LaunchConfiguration implements Serializable {
     private String instanceType;
 
     /**
-     * Provides the ID of the kernel associated with the Amazon EC2 AMI.
+     * The ID of the kernel associated with the AMI.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -94,7 +115,7 @@ public class LaunchConfiguration implements Serializable {
     private String kernelId;
 
     /**
-     * Provides ID of the RAM disk associated with the Amazon EC2 AMI.
+     * The ID of the RAM disk associated with the AMI.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -103,19 +124,19 @@ public class LaunchConfiguration implements Serializable {
     private String ramdiskId;
 
     /**
-     * Specifies how block devices are exposed to the instance. Each mapping
-     * is made up of a <i>virtualName</i> and a <i>deviceName</i>.
+     * A block device mapping, which specifies the block devices for the
+     * instance.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<BlockDeviceMapping> blockDeviceMappings;
 
     /**
      * Controls whether instances in this group are launched with detailed
-     * monitoring or not.
+     * monitoring.
      */
     private InstanceMonitoring instanceMonitoring;
 
     /**
-     * Specifies the price to bid when launching Spot Instances.
+     * The price to bid when launching Spot Instances.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -123,9 +144,8 @@ public class LaunchConfiguration implements Serializable {
     private String spotPrice;
 
     /**
-     * Provides the name or the Amazon Resource Name (ARN) of the instance
-     * profile associated with the IAM role for the instance. The instance
-     * profile contains the IAM role.
+     * The name or Amazon Resource Name (ARN) of the instance profile
+     * associated with the IAM role for the instance.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
@@ -134,27 +154,27 @@ public class LaunchConfiguration implements Serializable {
     private String iamInstanceProfile;
 
     /**
-     * Provides the creation date and time for this launch configuration.
+     * The creation date and time for the launch configuration.
      */
     private java.util.Date createdTime;
 
     /**
-     * Specifies whether the instance is optimized for EBS I/O (<i>true</i>)
-     * or not (<i>false</i>).
+     * Controls whether the instance is optimized for EBS I/O
+     * (<code>true</code>) or not (<code>false</code>).
      */
     private Boolean ebsOptimized;
 
     /**
-     * Specifies whether the instance is associated with a public IP address
-     * (<code>true</code>) or not (<code>false</code>).
+     * Specifies whether the instances are associated with a public IP
+     * address (<code>true</code>) or not (<code>false</code>).
      */
     private Boolean associatePublicIpAddress;
 
     /**
-     * Specifies the tenancy of the instance. It can be either
-     * <code>default</code> or <code>dedicated</code>. An instance with
-     * <code>dedicated</code> tenancy runs in an isolated, single-tenant
-     * hardware and it can only be launched in a VPC.
+     * The tenancy of the instance, either <code>default</code> or
+     * <code>dedicated</code>. An instance with <code>dedicated</code>
+     * tenancy runs in an isolated, single-tenant hardware and can only be
+     * launched into a VPC.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
@@ -163,33 +183,33 @@ public class LaunchConfiguration implements Serializable {
     private String placementTenancy;
 
     /**
-     * Specifies the name of the launch configuration.
+     * The name of the launch configuration.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Specifies the name of the launch configuration.
+     * @return The name of the launch configuration.
      */
     public String getLaunchConfigurationName() {
         return launchConfigurationName;
     }
     
     /**
-     * Specifies the name of the launch configuration.
+     * The name of the launch configuration.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param launchConfigurationName Specifies the name of the launch configuration.
+     * @param launchConfigurationName The name of the launch configuration.
      */
     public void setLaunchConfigurationName(String launchConfigurationName) {
         this.launchConfigurationName = launchConfigurationName;
     }
     
     /**
-     * Specifies the name of the launch configuration.
+     * The name of the launch configuration.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -197,7 +217,7 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param launchConfigurationName Specifies the name of the launch configuration.
+     * @param launchConfigurationName The name of the launch configuration.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -208,33 +228,33 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * The launch configuration's Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) of the launch configuration.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The launch configuration's Amazon Resource Name (ARN).
+     * @return The Amazon Resource Name (ARN) of the launch configuration.
      */
     public String getLaunchConfigurationARN() {
         return launchConfigurationARN;
     }
     
     /**
-     * The launch configuration's Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) of the launch configuration.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param launchConfigurationARN The launch configuration's Amazon Resource Name (ARN).
+     * @param launchConfigurationARN The Amazon Resource Name (ARN) of the launch configuration.
      */
     public void setLaunchConfigurationARN(String launchConfigurationARN) {
         this.launchConfigurationARN = launchConfigurationARN;
     }
     
     /**
-     * The launch configuration's Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) of the launch configuration.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -242,7 +262,7 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param launchConfigurationARN The launch configuration's Amazon Resource Name (ARN).
+     * @param launchConfigurationARN The Amazon Resource Name (ARN) of the launch configuration.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -253,38 +273,33 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Provides the unique ID of the <i>Amazon Machine Image</i> (AMI) that
-     * was assigned during registration.
+     * The ID of the Amazon Machine Image (AMI).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Provides the unique ID of the <i>Amazon Machine Image</i> (AMI) that
-     *         was assigned during registration.
+     * @return The ID of the Amazon Machine Image (AMI).
      */
     public String getImageId() {
         return imageId;
     }
     
     /**
-     * Provides the unique ID of the <i>Amazon Machine Image</i> (AMI) that
-     * was assigned during registration.
+     * The ID of the Amazon Machine Image (AMI).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param imageId Provides the unique ID of the <i>Amazon Machine Image</i> (AMI) that
-     *         was assigned during registration.
+     * @param imageId The ID of the Amazon Machine Image (AMI).
      */
     public void setImageId(String imageId) {
         this.imageId = imageId;
     }
     
     /**
-     * Provides the unique ID of the <i>Amazon Machine Image</i> (AMI) that
-     * was assigned during registration.
+     * The ID of the Amazon Machine Image (AMI).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -292,8 +307,7 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param imageId Provides the unique ID of the <i>Amazon Machine Image</i> (AMI) that
-     *         was assigned during registration.
+     * @param imageId The ID of the Amazon Machine Image (AMI).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -304,33 +318,33 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Provides the name of the Amazon EC2 key pair.
+     * The name of the key pair.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Provides the name of the Amazon EC2 key pair.
+     * @return The name of the key pair.
      */
     public String getKeyName() {
         return keyName;
     }
     
     /**
-     * Provides the name of the Amazon EC2 key pair.
+     * The name of the key pair.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param keyName Provides the name of the Amazon EC2 key pair.
+     * @param keyName The name of the key pair.
      */
     public void setKeyName(String keyName) {
         this.keyName = keyName;
     }
     
     /**
-     * Provides the name of the Amazon EC2 key pair.
+     * The name of the key pair.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -338,7 +352,7 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param keyName Provides the name of the Amazon EC2 key pair.
+     * @param keyName The name of the key pair.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -349,11 +363,9 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * A description of the security groups to associate with the Amazon EC2
-     * instances.
+     * The security groups to associate with the instances.
      *
-     * @return A description of the security groups to associate with the Amazon EC2
-     *         instances.
+     * @return The security groups to associate with the instances.
      */
     public java.util.List<String> getSecurityGroups() {
         if (securityGroups == null) {
@@ -364,11 +376,9 @@ public class LaunchConfiguration implements Serializable {
     }
     
     /**
-     * A description of the security groups to associate with the Amazon EC2
-     * instances.
+     * The security groups to associate with the instances.
      *
-     * @param securityGroups A description of the security groups to associate with the Amazon EC2
-     *         instances.
+     * @param securityGroups The security groups to associate with the instances.
      */
     public void setSecurityGroups(java.util.Collection<String> securityGroups) {
         if (securityGroups == null) {
@@ -381,13 +391,11 @@ public class LaunchConfiguration implements Serializable {
     }
     
     /**
-     * A description of the security groups to associate with the Amazon EC2
-     * instances.
+     * The security groups to associate with the instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param securityGroups A description of the security groups to associate with the Amazon EC2
-     *         instances.
+     * @param securityGroups The security groups to associate with the instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -401,13 +409,11 @@ public class LaunchConfiguration implements Serializable {
     }
     
     /**
-     * A description of the security groups to associate with the Amazon EC2
-     * instances.
+     * The security groups to associate with the instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param securityGroups A description of the security groups to associate with the Amazon EC2
-     *         instances.
+     * @param securityGroups The security groups to associate with the instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -425,33 +431,210 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * The user data available to the launched Amazon EC2 instances.
+     * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
+     * to. This parameter can only be used if you are launching EC2-Classic
+     * instances. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     *
+     * @return The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
+     *         to. This parameter can only be used if you are launching EC2-Classic
+     *         instances. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     */
+    public String getClassicLinkVPCId() {
+        return classicLinkVPCId;
+    }
+    
+    /**
+     * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
+     * to. This parameter can only be used if you are launching EC2-Classic
+     * instances. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     *
+     * @param classicLinkVPCId The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
+     *         to. This parameter can only be used if you are launching EC2-Classic
+     *         instances. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     */
+    public void setClassicLinkVPCId(String classicLinkVPCId) {
+        this.classicLinkVPCId = classicLinkVPCId;
+    }
+    
+    /**
+     * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
+     * to. This parameter can only be used if you are launching EC2-Classic
+     * instances. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     *
+     * @param classicLinkVPCId The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
+     *         to. This parameter can only be used if you are launching EC2-Classic
+     *         instances. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public LaunchConfiguration withClassicLinkVPCId(String classicLinkVPCId) {
+        this.classicLinkVPCId = classicLinkVPCId;
+        return this;
+    }
+
+    /**
+     * The IDs of one or more security groups for the VPC specified in
+     * <code>ClassicLinkVPCId</code>. This parameter is required if
+     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
+     * otherwise. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *
+     * @return The IDs of one or more security groups for the VPC specified in
+     *         <code>ClassicLinkVPCId</code>. This parameter is required if
+     *         <code>ClassicLinkVPCId</code> is specified, and cannot be used
+     *         otherwise. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     */
+    public java.util.List<String> getClassicLinkVPCSecurityGroups() {
+        if (classicLinkVPCSecurityGroups == null) {
+              classicLinkVPCSecurityGroups = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
+              classicLinkVPCSecurityGroups.setAutoConstruct(true);
+        }
+        return classicLinkVPCSecurityGroups;
+    }
+    
+    /**
+     * The IDs of one or more security groups for the VPC specified in
+     * <code>ClassicLinkVPCId</code>. This parameter is required if
+     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
+     * otherwise. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *
+     * @param classicLinkVPCSecurityGroups The IDs of one or more security groups for the VPC specified in
+     *         <code>ClassicLinkVPCId</code>. This parameter is required if
+     *         <code>ClassicLinkVPCId</code> is specified, and cannot be used
+     *         otherwise. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     */
+    public void setClassicLinkVPCSecurityGroups(java.util.Collection<String> classicLinkVPCSecurityGroups) {
+        if (classicLinkVPCSecurityGroups == null) {
+            this.classicLinkVPCSecurityGroups = null;
+            return;
+        }
+        com.amazonaws.internal.ListWithAutoConstructFlag<String> classicLinkVPCSecurityGroupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(classicLinkVPCSecurityGroups.size());
+        classicLinkVPCSecurityGroupsCopy.addAll(classicLinkVPCSecurityGroups);
+        this.classicLinkVPCSecurityGroups = classicLinkVPCSecurityGroupsCopy;
+    }
+    
+    /**
+     * The IDs of one or more security groups for the VPC specified in
+     * <code>ClassicLinkVPCId</code>. This parameter is required if
+     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
+     * otherwise. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param classicLinkVPCSecurityGroups The IDs of one or more security groups for the VPC specified in
+     *         <code>ClassicLinkVPCId</code>. This parameter is required if
+     *         <code>ClassicLinkVPCId</code> is specified, and cannot be used
+     *         otherwise. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public LaunchConfiguration withClassicLinkVPCSecurityGroups(String... classicLinkVPCSecurityGroups) {
+        if (getClassicLinkVPCSecurityGroups() == null) setClassicLinkVPCSecurityGroups(new java.util.ArrayList<String>(classicLinkVPCSecurityGroups.length));
+        for (String value : classicLinkVPCSecurityGroups) {
+            getClassicLinkVPCSecurityGroups().add(value);
+        }
+        return this;
+    }
+    
+    /**
+     * The IDs of one or more security groups for the VPC specified in
+     * <code>ClassicLinkVPCId</code>. This parameter is required if
+     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
+     * otherwise. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param classicLinkVPCSecurityGroups The IDs of one or more security groups for the VPC specified in
+     *         <code>ClassicLinkVPCId</code>. This parameter is required if
+     *         <code>ClassicLinkVPCId</code> is specified, and cannot be used
+     *         otherwise. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
+     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public LaunchConfiguration withClassicLinkVPCSecurityGroups(java.util.Collection<String> classicLinkVPCSecurityGroups) {
+        if (classicLinkVPCSecurityGroups == null) {
+            this.classicLinkVPCSecurityGroups = null;
+        } else {
+            com.amazonaws.internal.ListWithAutoConstructFlag<String> classicLinkVPCSecurityGroupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(classicLinkVPCSecurityGroups.size());
+            classicLinkVPCSecurityGroupsCopy.addAll(classicLinkVPCSecurityGroups);
+            this.classicLinkVPCSecurityGroups = classicLinkVPCSecurityGroupsCopy;
+        }
+
+        return this;
+    }
+
+    /**
+     * The user data available to the instances.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 21847<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The user data available to the launched Amazon EC2 instances.
+     * @return The user data available to the instances.
      */
     public String getUserData() {
         return userData;
     }
     
     /**
-     * The user data available to the launched Amazon EC2 instances.
+     * The user data available to the instances.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 21847<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param userData The user data available to the launched Amazon EC2 instances.
+     * @param userData The user data available to the instances.
      */
     public void setUserData(String userData) {
         this.userData = userData;
     }
     
     /**
-     * The user data available to the launched Amazon EC2 instances.
+     * The user data available to the instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -459,7 +642,7 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>0 - 21847<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param userData The user data available to the launched Amazon EC2 instances.
+     * @param userData The user data available to the instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -470,33 +653,33 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Specifies the instance type of the Amazon EC2 instance.
+     * The instance type for the instances.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Specifies the instance type of the Amazon EC2 instance.
+     * @return The instance type for the instances.
      */
     public String getInstanceType() {
         return instanceType;
     }
     
     /**
-     * Specifies the instance type of the Amazon EC2 instance.
+     * The instance type for the instances.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param instanceType Specifies the instance type of the Amazon EC2 instance.
+     * @param instanceType The instance type for the instances.
      */
     public void setInstanceType(String instanceType) {
         this.instanceType = instanceType;
     }
     
     /**
-     * Specifies the instance type of the Amazon EC2 instance.
+     * The instance type for the instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -504,7 +687,7 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param instanceType Specifies the instance type of the Amazon EC2 instance.
+     * @param instanceType The instance type for the instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -515,33 +698,33 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Provides the ID of the kernel associated with the Amazon EC2 AMI.
+     * The ID of the kernel associated with the AMI.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Provides the ID of the kernel associated with the Amazon EC2 AMI.
+     * @return The ID of the kernel associated with the AMI.
      */
     public String getKernelId() {
         return kernelId;
     }
     
     /**
-     * Provides the ID of the kernel associated with the Amazon EC2 AMI.
+     * The ID of the kernel associated with the AMI.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param kernelId Provides the ID of the kernel associated with the Amazon EC2 AMI.
+     * @param kernelId The ID of the kernel associated with the AMI.
      */
     public void setKernelId(String kernelId) {
         this.kernelId = kernelId;
     }
     
     /**
-     * Provides the ID of the kernel associated with the Amazon EC2 AMI.
+     * The ID of the kernel associated with the AMI.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -549,7 +732,7 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param kernelId Provides the ID of the kernel associated with the Amazon EC2 AMI.
+     * @param kernelId The ID of the kernel associated with the AMI.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -560,33 +743,33 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Provides ID of the RAM disk associated with the Amazon EC2 AMI.
+     * The ID of the RAM disk associated with the AMI.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Provides ID of the RAM disk associated with the Amazon EC2 AMI.
+     * @return The ID of the RAM disk associated with the AMI.
      */
     public String getRamdiskId() {
         return ramdiskId;
     }
     
     /**
-     * Provides ID of the RAM disk associated with the Amazon EC2 AMI.
+     * The ID of the RAM disk associated with the AMI.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param ramdiskId Provides ID of the RAM disk associated with the Amazon EC2 AMI.
+     * @param ramdiskId The ID of the RAM disk associated with the AMI.
      */
     public void setRamdiskId(String ramdiskId) {
         this.ramdiskId = ramdiskId;
     }
     
     /**
-     * Provides ID of the RAM disk associated with the Amazon EC2 AMI.
+     * The ID of the RAM disk associated with the AMI.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -594,7 +777,7 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param ramdiskId Provides ID of the RAM disk associated with the Amazon EC2 AMI.
+     * @param ramdiskId The ID of the RAM disk associated with the AMI.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -605,11 +788,11 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Specifies how block devices are exposed to the instance. Each mapping
-     * is made up of a <i>virtualName</i> and a <i>deviceName</i>.
+     * A block device mapping, which specifies the block devices for the
+     * instance.
      *
-     * @return Specifies how block devices are exposed to the instance. Each mapping
-     *         is made up of a <i>virtualName</i> and a <i>deviceName</i>.
+     * @return A block device mapping, which specifies the block devices for the
+     *         instance.
      */
     public java.util.List<BlockDeviceMapping> getBlockDeviceMappings() {
         if (blockDeviceMappings == null) {
@@ -620,11 +803,11 @@ public class LaunchConfiguration implements Serializable {
     }
     
     /**
-     * Specifies how block devices are exposed to the instance. Each mapping
-     * is made up of a <i>virtualName</i> and a <i>deviceName</i>.
+     * A block device mapping, which specifies the block devices for the
+     * instance.
      *
-     * @param blockDeviceMappings Specifies how block devices are exposed to the instance. Each mapping
-     *         is made up of a <i>virtualName</i> and a <i>deviceName</i>.
+     * @param blockDeviceMappings A block device mapping, which specifies the block devices for the
+     *         instance.
      */
     public void setBlockDeviceMappings(java.util.Collection<BlockDeviceMapping> blockDeviceMappings) {
         if (blockDeviceMappings == null) {
@@ -637,13 +820,13 @@ public class LaunchConfiguration implements Serializable {
     }
     
     /**
-     * Specifies how block devices are exposed to the instance. Each mapping
-     * is made up of a <i>virtualName</i> and a <i>deviceName</i>.
+     * A block device mapping, which specifies the block devices for the
+     * instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param blockDeviceMappings Specifies how block devices are exposed to the instance. Each mapping
-     *         is made up of a <i>virtualName</i> and a <i>deviceName</i>.
+     * @param blockDeviceMappings A block device mapping, which specifies the block devices for the
+     *         instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -657,13 +840,13 @@ public class LaunchConfiguration implements Serializable {
     }
     
     /**
-     * Specifies how block devices are exposed to the instance. Each mapping
-     * is made up of a <i>virtualName</i> and a <i>deviceName</i>.
+     * A block device mapping, which specifies the block devices for the
+     * instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param blockDeviceMappings Specifies how block devices are exposed to the instance. Each mapping
-     *         is made up of a <i>virtualName</i> and a <i>deviceName</i>.
+     * @param blockDeviceMappings A block device mapping, which specifies the block devices for the
+     *         instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -682,10 +865,10 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * Controls whether instances in this group are launched with detailed
-     * monitoring or not.
+     * monitoring.
      *
      * @return Controls whether instances in this group are launched with detailed
-     *         monitoring or not.
+     *         monitoring.
      */
     public InstanceMonitoring getInstanceMonitoring() {
         return instanceMonitoring;
@@ -693,10 +876,10 @@ public class LaunchConfiguration implements Serializable {
     
     /**
      * Controls whether instances in this group are launched with detailed
-     * monitoring or not.
+     * monitoring.
      *
      * @param instanceMonitoring Controls whether instances in this group are launched with detailed
-     *         monitoring or not.
+     *         monitoring.
      */
     public void setInstanceMonitoring(InstanceMonitoring instanceMonitoring) {
         this.instanceMonitoring = instanceMonitoring;
@@ -704,12 +887,12 @@ public class LaunchConfiguration implements Serializable {
     
     /**
      * Controls whether instances in this group are launched with detailed
-     * monitoring or not.
+     * monitoring.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param instanceMonitoring Controls whether instances in this group are launched with detailed
-     *         monitoring or not.
+     *         monitoring.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -720,38 +903,38 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Specifies the price to bid when launching Spot Instances.
+     * The price to bid when launching Spot Instances.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @return Specifies the price to bid when launching Spot Instances.
+     * @return The price to bid when launching Spot Instances.
      */
     public String getSpotPrice() {
         return spotPrice;
     }
     
     /**
-     * Specifies the price to bid when launching Spot Instances.
+     * The price to bid when launching Spot Instances.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param spotPrice Specifies the price to bid when launching Spot Instances.
+     * @param spotPrice The price to bid when launching Spot Instances.
      */
     public void setSpotPrice(String spotPrice) {
         this.spotPrice = spotPrice;
     }
     
     /**
-     * Specifies the price to bid when launching Spot Instances.
+     * The price to bid when launching Spot Instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param spotPrice Specifies the price to bid when launching Spot Instances.
+     * @param spotPrice The price to bid when launching Spot Instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -762,43 +945,38 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Provides the name or the Amazon Resource Name (ARN) of the instance
-     * profile associated with the IAM role for the instance. The instance
-     * profile contains the IAM role.
+     * The name or Amazon Resource Name (ARN) of the instance profile
+     * associated with the IAM role for the instance.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Provides the name or the Amazon Resource Name (ARN) of the instance
-     *         profile associated with the IAM role for the instance. The instance
-     *         profile contains the IAM role.
+     * @return The name or Amazon Resource Name (ARN) of the instance profile
+     *         associated with the IAM role for the instance.
      */
     public String getIamInstanceProfile() {
         return iamInstanceProfile;
     }
     
     /**
-     * Provides the name or the Amazon Resource Name (ARN) of the instance
-     * profile associated with the IAM role for the instance. The instance
-     * profile contains the IAM role.
+     * The name or Amazon Resource Name (ARN) of the instance profile
+     * associated with the IAM role for the instance.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param iamInstanceProfile Provides the name or the Amazon Resource Name (ARN) of the instance
-     *         profile associated with the IAM role for the instance. The instance
-     *         profile contains the IAM role.
+     * @param iamInstanceProfile The name or Amazon Resource Name (ARN) of the instance profile
+     *         associated with the IAM role for the instance.
      */
     public void setIamInstanceProfile(String iamInstanceProfile) {
         this.iamInstanceProfile = iamInstanceProfile;
     }
     
     /**
-     * Provides the name or the Amazon Resource Name (ARN) of the instance
-     * profile associated with the IAM role for the instance. The instance
-     * profile contains the IAM role.
+     * The name or Amazon Resource Name (ARN) of the instance profile
+     * associated with the IAM role for the instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -806,9 +984,8 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param iamInstanceProfile Provides the name or the Amazon Resource Name (ARN) of the instance
-     *         profile associated with the IAM role for the instance. The instance
-     *         profile contains the IAM role.
+     * @param iamInstanceProfile The name or Amazon Resource Name (ARN) of the instance profile
+     *         associated with the IAM role for the instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -819,29 +996,29 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Provides the creation date and time for this launch configuration.
+     * The creation date and time for the launch configuration.
      *
-     * @return Provides the creation date and time for this launch configuration.
+     * @return The creation date and time for the launch configuration.
      */
     public java.util.Date getCreatedTime() {
         return createdTime;
     }
     
     /**
-     * Provides the creation date and time for this launch configuration.
+     * The creation date and time for the launch configuration.
      *
-     * @param createdTime Provides the creation date and time for this launch configuration.
+     * @param createdTime The creation date and time for the launch configuration.
      */
     public void setCreatedTime(java.util.Date createdTime) {
         this.createdTime = createdTime;
     }
     
     /**
-     * Provides the creation date and time for this launch configuration.
+     * The creation date and time for the launch configuration.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param createdTime Provides the creation date and time for this launch configuration.
+     * @param createdTime The creation date and time for the launch configuration.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -852,35 +1029,35 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Specifies whether the instance is optimized for EBS I/O (<i>true</i>)
-     * or not (<i>false</i>).
+     * Controls whether the instance is optimized for EBS I/O
+     * (<code>true</code>) or not (<code>false</code>).
      *
-     * @return Specifies whether the instance is optimized for EBS I/O (<i>true</i>)
-     *         or not (<i>false</i>).
+     * @return Controls whether the instance is optimized for EBS I/O
+     *         (<code>true</code>) or not (<code>false</code>).
      */
     public Boolean isEbsOptimized() {
         return ebsOptimized;
     }
     
     /**
-     * Specifies whether the instance is optimized for EBS I/O (<i>true</i>)
-     * or not (<i>false</i>).
+     * Controls whether the instance is optimized for EBS I/O
+     * (<code>true</code>) or not (<code>false</code>).
      *
-     * @param ebsOptimized Specifies whether the instance is optimized for EBS I/O (<i>true</i>)
-     *         or not (<i>false</i>).
+     * @param ebsOptimized Controls whether the instance is optimized for EBS I/O
+     *         (<code>true</code>) or not (<code>false</code>).
      */
     public void setEbsOptimized(Boolean ebsOptimized) {
         this.ebsOptimized = ebsOptimized;
     }
     
     /**
-     * Specifies whether the instance is optimized for EBS I/O (<i>true</i>)
-     * or not (<i>false</i>).
+     * Controls whether the instance is optimized for EBS I/O
+     * (<code>true</code>) or not (<code>false</code>).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ebsOptimized Specifies whether the instance is optimized for EBS I/O (<i>true</i>)
-     *         or not (<i>false</i>).
+     * @param ebsOptimized Controls whether the instance is optimized for EBS I/O
+     *         (<code>true</code>) or not (<code>false</code>).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -891,46 +1068,46 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Specifies whether the instance is optimized for EBS I/O (<i>true</i>)
-     * or not (<i>false</i>).
+     * Controls whether the instance is optimized for EBS I/O
+     * (<code>true</code>) or not (<code>false</code>).
      *
-     * @return Specifies whether the instance is optimized for EBS I/O (<i>true</i>)
-     *         or not (<i>false</i>).
+     * @return Controls whether the instance is optimized for EBS I/O
+     *         (<code>true</code>) or not (<code>false</code>).
      */
     public Boolean getEbsOptimized() {
         return ebsOptimized;
     }
 
     /**
-     * Specifies whether the instance is associated with a public IP address
-     * (<code>true</code>) or not (<code>false</code>).
+     * Specifies whether the instances are associated with a public IP
+     * address (<code>true</code>) or not (<code>false</code>).
      *
-     * @return Specifies whether the instance is associated with a public IP address
-     *         (<code>true</code>) or not (<code>false</code>).
+     * @return Specifies whether the instances are associated with a public IP
+     *         address (<code>true</code>) or not (<code>false</code>).
      */
     public Boolean isAssociatePublicIpAddress() {
         return associatePublicIpAddress;
     }
     
     /**
-     * Specifies whether the instance is associated with a public IP address
-     * (<code>true</code>) or not (<code>false</code>).
+     * Specifies whether the instances are associated with a public IP
+     * address (<code>true</code>) or not (<code>false</code>).
      *
-     * @param associatePublicIpAddress Specifies whether the instance is associated with a public IP address
-     *         (<code>true</code>) or not (<code>false</code>).
+     * @param associatePublicIpAddress Specifies whether the instances are associated with a public IP
+     *         address (<code>true</code>) or not (<code>false</code>).
      */
     public void setAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
         this.associatePublicIpAddress = associatePublicIpAddress;
     }
     
     /**
-     * Specifies whether the instance is associated with a public IP address
-     * (<code>true</code>) or not (<code>false</code>).
+     * Specifies whether the instances are associated with a public IP
+     * address (<code>true</code>) or not (<code>false</code>).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param associatePublicIpAddress Specifies whether the instance is associated with a public IP address
-     *         (<code>true</code>) or not (<code>false</code>).
+     * @param associatePublicIpAddress Specifies whether the instances are associated with a public IP
+     *         address (<code>true</code>) or not (<code>false</code>).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -941,59 +1118,59 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Specifies whether the instance is associated with a public IP address
-     * (<code>true</code>) or not (<code>false</code>).
+     * Specifies whether the instances are associated with a public IP
+     * address (<code>true</code>) or not (<code>false</code>).
      *
-     * @return Specifies whether the instance is associated with a public IP address
-     *         (<code>true</code>) or not (<code>false</code>).
+     * @return Specifies whether the instances are associated with a public IP
+     *         address (<code>true</code>) or not (<code>false</code>).
      */
     public Boolean getAssociatePublicIpAddress() {
         return associatePublicIpAddress;
     }
 
     /**
-     * Specifies the tenancy of the instance. It can be either
-     * <code>default</code> or <code>dedicated</code>. An instance with
-     * <code>dedicated</code> tenancy runs in an isolated, single-tenant
-     * hardware and it can only be launched in a VPC.
+     * The tenancy of the instance, either <code>default</code> or
+     * <code>dedicated</code>. An instance with <code>dedicated</code>
+     * tenancy runs in an isolated, single-tenant hardware and can only be
+     * launched into a VPC.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return Specifies the tenancy of the instance. It can be either
-     *         <code>default</code> or <code>dedicated</code>. An instance with
-     *         <code>dedicated</code> tenancy runs in an isolated, single-tenant
-     *         hardware and it can only be launched in a VPC.
+     * @return The tenancy of the instance, either <code>default</code> or
+     *         <code>dedicated</code>. An instance with <code>dedicated</code>
+     *         tenancy runs in an isolated, single-tenant hardware and can only be
+     *         launched into a VPC.
      */
     public String getPlacementTenancy() {
         return placementTenancy;
     }
     
     /**
-     * Specifies the tenancy of the instance. It can be either
-     * <code>default</code> or <code>dedicated</code>. An instance with
-     * <code>dedicated</code> tenancy runs in an isolated, single-tenant
-     * hardware and it can only be launched in a VPC.
+     * The tenancy of the instance, either <code>default</code> or
+     * <code>dedicated</code>. An instance with <code>dedicated</code>
+     * tenancy runs in an isolated, single-tenant hardware and can only be
+     * launched into a VPC.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param placementTenancy Specifies the tenancy of the instance. It can be either
-     *         <code>default</code> or <code>dedicated</code>. An instance with
-     *         <code>dedicated</code> tenancy runs in an isolated, single-tenant
-     *         hardware and it can only be launched in a VPC.
+     * @param placementTenancy The tenancy of the instance, either <code>default</code> or
+     *         <code>dedicated</code>. An instance with <code>dedicated</code>
+     *         tenancy runs in an isolated, single-tenant hardware and can only be
+     *         launched into a VPC.
      */
     public void setPlacementTenancy(String placementTenancy) {
         this.placementTenancy = placementTenancy;
     }
     
     /**
-     * Specifies the tenancy of the instance. It can be either
-     * <code>default</code> or <code>dedicated</code>. An instance with
-     * <code>dedicated</code> tenancy runs in an isolated, single-tenant
-     * hardware and it can only be launched in a VPC.
+     * The tenancy of the instance, either <code>default</code> or
+     * <code>dedicated</code>. An instance with <code>dedicated</code>
+     * tenancy runs in an isolated, single-tenant hardware and can only be
+     * launched into a VPC.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -1001,10 +1178,10 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param placementTenancy Specifies the tenancy of the instance. It can be either
-     *         <code>default</code> or <code>dedicated</code>. An instance with
-     *         <code>dedicated</code> tenancy runs in an isolated, single-tenant
-     *         hardware and it can only be launched in a VPC.
+     * @param placementTenancy The tenancy of the instance, either <code>default</code> or
+     *         <code>dedicated</code>. An instance with <code>dedicated</code>
+     *         tenancy runs in an isolated, single-tenant hardware and can only be
+     *         launched into a VPC.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1031,6 +1208,8 @@ public class LaunchConfiguration implements Serializable {
         if (getImageId() != null) sb.append("ImageId: " + getImageId() + ",");
         if (getKeyName() != null) sb.append("KeyName: " + getKeyName() + ",");
         if (getSecurityGroups() != null) sb.append("SecurityGroups: " + getSecurityGroups() + ",");
+        if (getClassicLinkVPCId() != null) sb.append("ClassicLinkVPCId: " + getClassicLinkVPCId() + ",");
+        if (getClassicLinkVPCSecurityGroups() != null) sb.append("ClassicLinkVPCSecurityGroups: " + getClassicLinkVPCSecurityGroups() + ",");
         if (getUserData() != null) sb.append("UserData: " + getUserData() + ",");
         if (getInstanceType() != null) sb.append("InstanceType: " + getInstanceType() + ",");
         if (getKernelId() != null) sb.append("KernelId: " + getKernelId() + ",");
@@ -1057,6 +1236,8 @@ public class LaunchConfiguration implements Serializable {
         hashCode = prime * hashCode + ((getImageId() == null) ? 0 : getImageId().hashCode()); 
         hashCode = prime * hashCode + ((getKeyName() == null) ? 0 : getKeyName().hashCode()); 
         hashCode = prime * hashCode + ((getSecurityGroups() == null) ? 0 : getSecurityGroups().hashCode()); 
+        hashCode = prime * hashCode + ((getClassicLinkVPCId() == null) ? 0 : getClassicLinkVPCId().hashCode()); 
+        hashCode = prime * hashCode + ((getClassicLinkVPCSecurityGroups() == null) ? 0 : getClassicLinkVPCSecurityGroups().hashCode()); 
         hashCode = prime * hashCode + ((getUserData() == null) ? 0 : getUserData().hashCode()); 
         hashCode = prime * hashCode + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode()); 
         hashCode = prime * hashCode + ((getKernelId() == null) ? 0 : getKernelId().hashCode()); 
@@ -1090,6 +1271,10 @@ public class LaunchConfiguration implements Serializable {
         if (other.getKeyName() != null && other.getKeyName().equals(this.getKeyName()) == false) return false; 
         if (other.getSecurityGroups() == null ^ this.getSecurityGroups() == null) return false;
         if (other.getSecurityGroups() != null && other.getSecurityGroups().equals(this.getSecurityGroups()) == false) return false; 
+        if (other.getClassicLinkVPCId() == null ^ this.getClassicLinkVPCId() == null) return false;
+        if (other.getClassicLinkVPCId() != null && other.getClassicLinkVPCId().equals(this.getClassicLinkVPCId()) == false) return false; 
+        if (other.getClassicLinkVPCSecurityGroups() == null ^ this.getClassicLinkVPCSecurityGroups() == null) return false;
+        if (other.getClassicLinkVPCSecurityGroups() != null && other.getClassicLinkVPCSecurityGroups().equals(this.getClassicLinkVPCSecurityGroups()) == false) return false; 
         if (other.getUserData() == null ^ this.getUserData() == null) return false;
         if (other.getUserData() != null && other.getUserData().equals(this.getUserData()) == false) return false; 
         if (other.getInstanceType() == null ^ this.getInstanceType() == null) return false;

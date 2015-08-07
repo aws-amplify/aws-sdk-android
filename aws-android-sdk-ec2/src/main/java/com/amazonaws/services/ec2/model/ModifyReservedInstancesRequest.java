@@ -26,6 +26,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The Reserved Instances to be modified must be identical, except for
  * Availability Zone, network platform, and instance type.
  * </p>
+ * <p>
+ * For more information, see
+ * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html"> Modifying Reserved Instances </a>
+ * in the Amazon Elastic Compute Cloud User Guide.
+ * </p>
  *
  * @see com.amazonaws.services.ec2.AmazonEC2#modifyReservedInstances(ModifyReservedInstancesRequest)
  */
@@ -33,7 +38,9 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
 
     /**
      * A unique, case-sensitive token you provide to ensure idempotency of
-     * your modification request.
+     * your modification request. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     * Idempotency</a>.
      */
     private String clientToken;
 
@@ -49,10 +56,14 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
 
     /**
      * A unique, case-sensitive token you provide to ensure idempotency of
-     * your modification request.
+     * your modification request. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     * Idempotency</a>.
      *
      * @return A unique, case-sensitive token you provide to ensure idempotency of
-     *         your modification request.
+     *         your modification request. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     *         Idempotency</a>.
      */
     public String getClientToken() {
         return clientToken;
@@ -60,10 +71,14 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     
     /**
      * A unique, case-sensitive token you provide to ensure idempotency of
-     * your modification request.
+     * your modification request. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     * Idempotency</a>.
      *
      * @param clientToken A unique, case-sensitive token you provide to ensure idempotency of
-     *         your modification request.
+     *         your modification request. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     *         Idempotency</a>.
      */
     public void setClientToken(String clientToken) {
         this.clientToken = clientToken;
@@ -71,12 +86,16 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     
     /**
      * A unique, case-sensitive token you provide to ensure idempotency of
-     * your modification request.
+     * your modification request. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     * Idempotency</a>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param clientToken A unique, case-sensitive token you provide to ensure idempotency of
-     *         your modification request.
+     *         your modification request. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     *         Idempotency</a>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

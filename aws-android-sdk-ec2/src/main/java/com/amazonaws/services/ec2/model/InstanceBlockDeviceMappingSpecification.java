@@ -25,13 +25,13 @@ public class InstanceBlockDeviceMappingSpecification implements Serializable {
 
     /**
      * The device name exposed to the instance (for example,
-     * <filename>/dev/sdh</filename>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      */
     private String deviceName;
 
     /**
-     * Parameters used to automatically set up Amazon EBS volumes when the
-     * instance is launched.
+     * Parameters used to automatically set up EBS volumes when the instance
+     * is launched.
      */
     private EbsInstanceBlockDeviceSpecification ebs;
 
@@ -47,10 +47,10 @@ public class InstanceBlockDeviceMappingSpecification implements Serializable {
 
     /**
      * The device name exposed to the instance (for example,
-     * <filename>/dev/sdh</filename>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      *
      * @return The device name exposed to the instance (for example,
-     *         <filename>/dev/sdh</filename>).
+     *         <code>/dev/sdh</code> or <code>xvdh</code>).
      */
     public String getDeviceName() {
         return deviceName;
@@ -58,10 +58,10 @@ public class InstanceBlockDeviceMappingSpecification implements Serializable {
     
     /**
      * The device name exposed to the instance (for example,
-     * <filename>/dev/sdh</filename>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      *
      * @param deviceName The device name exposed to the instance (for example,
-     *         <filename>/dev/sdh</filename>).
+     *         <code>/dev/sdh</code> or <code>xvdh</code>).
      */
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
@@ -69,12 +69,12 @@ public class InstanceBlockDeviceMappingSpecification implements Serializable {
     
     /**
      * The device name exposed to the instance (for example,
-     * <filename>/dev/sdh</filename>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param deviceName The device name exposed to the instance (for example,
-     *         <filename>/dev/sdh</filename>).
+     *         <code>/dev/sdh</code> or <code>xvdh</code>).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -85,35 +85,35 @@ public class InstanceBlockDeviceMappingSpecification implements Serializable {
     }
 
     /**
-     * Parameters used to automatically set up Amazon EBS volumes when the
-     * instance is launched.
+     * Parameters used to automatically set up EBS volumes when the instance
+     * is launched.
      *
-     * @return Parameters used to automatically set up Amazon EBS volumes when the
-     *         instance is launched.
+     * @return Parameters used to automatically set up EBS volumes when the instance
+     *         is launched.
      */
     public EbsInstanceBlockDeviceSpecification getEbs() {
         return ebs;
     }
     
     /**
-     * Parameters used to automatically set up Amazon EBS volumes when the
-     * instance is launched.
+     * Parameters used to automatically set up EBS volumes when the instance
+     * is launched.
      *
-     * @param ebs Parameters used to automatically set up Amazon EBS volumes when the
-     *         instance is launched.
+     * @param ebs Parameters used to automatically set up EBS volumes when the instance
+     *         is launched.
      */
     public void setEbs(EbsInstanceBlockDeviceSpecification ebs) {
         this.ebs = ebs;
     }
     
     /**
-     * Parameters used to automatically set up Amazon EBS volumes when the
-     * instance is launched.
+     * Parameters used to automatically set up EBS volumes when the instance
+     * is launched.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ebs Parameters used to automatically set up Amazon EBS volumes when the
-     *         instance is launched.
+     * @param ebs Parameters used to automatically set up EBS volumes when the instance
+     *         is launched.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

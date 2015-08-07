@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Contains the output of DescribeSpotPriceHistory.
+ * </p>
  */
 public class DescribeSpotPriceHistoryResult implements Serializable {
 
@@ -27,8 +29,8 @@ public class DescribeSpotPriceHistoryResult implements Serializable {
     private com.amazonaws.internal.ListWithAutoConstructFlag<SpotPrice> spotPriceHistory;
 
     /**
-     * The string marking the next set of results. This is empty if there are
-     * no more results.
+     * The token required to retrieve the next set of results. This value is
+     * <code>null</code> when there are no more results to return.
      */
     private String nextToken;
 
@@ -101,35 +103,35 @@ public class DescribeSpotPriceHistoryResult implements Serializable {
     }
 
     /**
-     * The string marking the next set of results. This is empty if there are
-     * no more results.
+     * The token required to retrieve the next set of results. This value is
+     * <code>null</code> when there are no more results to return.
      *
-     * @return The string marking the next set of results. This is empty if there are
-     *         no more results.
+     * @return The token required to retrieve the next set of results. This value is
+     *         <code>null</code> when there are no more results to return.
      */
     public String getNextToken() {
         return nextToken;
     }
     
     /**
-     * The string marking the next set of results. This is empty if there are
-     * no more results.
+     * The token required to retrieve the next set of results. This value is
+     * <code>null</code> when there are no more results to return.
      *
-     * @param nextToken The string marking the next set of results. This is empty if there are
-     *         no more results.
+     * @param nextToken The token required to retrieve the next set of results. This value is
+     *         <code>null</code> when there are no more results to return.
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
     
     /**
-     * The string marking the next set of results. This is empty if there are
-     * no more results.
+     * The token required to retrieve the next set of results. This value is
+     * <code>null</code> when there are no more results to return.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param nextToken The string marking the next set of results. This is empty if there are
-     *         no more results.
+     * @param nextToken The token required to retrieve the next set of results. This value is
+     *         <code>null</code> when there are no more results to return.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

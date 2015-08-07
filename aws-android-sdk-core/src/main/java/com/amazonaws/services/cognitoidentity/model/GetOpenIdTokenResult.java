@@ -17,42 +17,60 @@ package com.amazonaws.services.cognitoidentity.model;
 import java.io.Serializable;
 
 /**
- * Get Open Id Token Result
+ * <p>
+ * Returned in response to a successful GetOpenIdToken request.
+ * </p>
  */
 public class GetOpenIdTokenResult implements Serializable {
 
+    /**
+     * A unique identifier in the format REGION:GUID. Note that the
+     * IdentityId returned may not match the one passed on input.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 50<br/>
+     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     */
     private String identityId;
 
+    /**
+     * An OpenID token, valid for 15 minutes.
+     */
     private String token;
 
     /**
-     * Returns the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID. Note that the
+     * IdentityId returned may not match the one passed on input.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @return The value of the IdentityId property for this object.
+     * @return A unique identifier in the format REGION:GUID. Note that the
+     *         IdentityId returned may not match the one passed on input.
      */
     public String getIdentityId() {
         return identityId;
     }
     
     /**
-     * Sets the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID. Note that the
+     * IdentityId returned may not match the one passed on input.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId The new value for the IdentityId property for this object.
+     * @param identityId A unique identifier in the format REGION:GUID. Note that the
+     *         IdentityId returned may not match the one passed on input.
      */
     public void setIdentityId(String identityId) {
         this.identityId = identityId;
     }
     
     /**
-     * Sets the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID. Note that the
+     * IdentityId returned may not match the one passed on input.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -60,7 +78,8 @@ public class GetOpenIdTokenResult implements Serializable {
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId The new value for the IdentityId property for this object.
+     * @param identityId A unique identifier in the format REGION:GUID. Note that the
+     *         IdentityId returned may not match the one passed on input.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -71,29 +90,29 @@ public class GetOpenIdTokenResult implements Serializable {
     }
 
     /**
-     * Returns the value of the Token property for this object.
+     * An OpenID token, valid for 15 minutes.
      *
-     * @return The value of the Token property for this object.
+     * @return An OpenID token, valid for 15 minutes.
      */
     public String getToken() {
         return token;
     }
     
     /**
-     * Sets the value of the Token property for this object.
+     * An OpenID token, valid for 15 minutes.
      *
-     * @param token The new value for the Token property for this object.
+     * @param token An OpenID token, valid for 15 minutes.
      */
     public void setToken(String token) {
         this.token = token;
     }
     
     /**
-     * Sets the value of the Token property for this object.
+     * An OpenID token, valid for 15 minutes.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param token The new value for the Token property for this object.
+     * @param token An OpenID token, valid for 15 minutes.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

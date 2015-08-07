@@ -27,7 +27,14 @@ public class RawMessage implements Serializable {
      * The raw data of the message. The client must ensure that the message
      * format complies with Internet email standards regarding email header
      * fields, MIME types, MIME encoding, and base64 encoding (if necessary).
-     * <p>For more information, go to the <a
+     * <p>The To:, CC:, and BCC: headers in the raw message can contain a
+     * group list. <p>If you are using <code>SendRawEmail</code> with sending
+     * authorization, you can include X-headers in the raw message to specify
+     * the "Source," "From," and "Return-Path" addresses. For more
+     * information, see the documentation for <code>SendRawEmail</code>.
+     * <important>Do not include these X-headers in the DKIM signature,
+     * because they are removed by Amazon SES before sending the
+     * email.</important> <p>For more information, go to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Amazon
      * SES Developer Guide</a>.
      */
@@ -47,7 +54,15 @@ public class RawMessage implements Serializable {
      * @param data The raw data of the message. The client must ensure that
      * the message format complies with Internet email standards regarding
      * email header fields, MIME types, MIME encoding, and base64 encoding
-     * (if necessary). <p>For more information, go to the <a
+     * (if necessary). <p>The To:, CC:, and BCC: headers in the raw message
+     * can contain a group list. <p>If you are using
+     * <code>SendRawEmail</code> with sending authorization, you can include
+     * X-headers in the raw message to specify the "Source," "From," and
+     * "Return-Path" addresses. For more information, see the documentation
+     * for <code>SendRawEmail</code>. <important>Do not include these
+     * X-headers in the DKIM signature, because they are removed by Amazon
+     * SES before sending the email.</important> <p>For more information, go
+     * to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Amazon
      * SES Developer Guide</a>.
      */
@@ -59,14 +74,28 @@ public class RawMessage implements Serializable {
      * The raw data of the message. The client must ensure that the message
      * format complies with Internet email standards regarding email header
      * fields, MIME types, MIME encoding, and base64 encoding (if necessary).
-     * <p>For more information, go to the <a
+     * <p>The To:, CC:, and BCC: headers in the raw message can contain a
+     * group list. <p>If you are using <code>SendRawEmail</code> with sending
+     * authorization, you can include X-headers in the raw message to specify
+     * the "Source," "From," and "Return-Path" addresses. For more
+     * information, see the documentation for <code>SendRawEmail</code>.
+     * <important>Do not include these X-headers in the DKIM signature,
+     * because they are removed by Amazon SES before sending the
+     * email.</important> <p>For more information, go to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Amazon
      * SES Developer Guide</a>.
      *
      * @return The raw data of the message. The client must ensure that the message
      *         format complies with Internet email standards regarding email header
      *         fields, MIME types, MIME encoding, and base64 encoding (if necessary).
-     *         <p>For more information, go to the <a
+     *         <p>The To:, CC:, and BCC: headers in the raw message can contain a
+     *         group list. <p>If you are using <code>SendRawEmail</code> with sending
+     *         authorization, you can include X-headers in the raw message to specify
+     *         the "Source," "From," and "Return-Path" addresses. For more
+     *         information, see the documentation for <code>SendRawEmail</code>.
+     *         <important>Do not include these X-headers in the DKIM signature,
+     *         because they are removed by Amazon SES before sending the
+     *         email.</important> <p>For more information, go to the <a
      *         href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Amazon
      *         SES Developer Guide</a>.
      */
@@ -78,14 +107,28 @@ public class RawMessage implements Serializable {
      * The raw data of the message. The client must ensure that the message
      * format complies with Internet email standards regarding email header
      * fields, MIME types, MIME encoding, and base64 encoding (if necessary).
-     * <p>For more information, go to the <a
+     * <p>The To:, CC:, and BCC: headers in the raw message can contain a
+     * group list. <p>If you are using <code>SendRawEmail</code> with sending
+     * authorization, you can include X-headers in the raw message to specify
+     * the "Source," "From," and "Return-Path" addresses. For more
+     * information, see the documentation for <code>SendRawEmail</code>.
+     * <important>Do not include these X-headers in the DKIM signature,
+     * because they are removed by Amazon SES before sending the
+     * email.</important> <p>For more information, go to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Amazon
      * SES Developer Guide</a>.
      *
      * @param data The raw data of the message. The client must ensure that the message
      *         format complies with Internet email standards regarding email header
      *         fields, MIME types, MIME encoding, and base64 encoding (if necessary).
-     *         <p>For more information, go to the <a
+     *         <p>The To:, CC:, and BCC: headers in the raw message can contain a
+     *         group list. <p>If you are using <code>SendRawEmail</code> with sending
+     *         authorization, you can include X-headers in the raw message to specify
+     *         the "Source," "From," and "Return-Path" addresses. For more
+     *         information, see the documentation for <code>SendRawEmail</code>.
+     *         <important>Do not include these X-headers in the DKIM signature,
+     *         because they are removed by Amazon SES before sending the
+     *         email.</important> <p>For more information, go to the <a
      *         href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Amazon
      *         SES Developer Guide</a>.
      */
@@ -97,7 +140,14 @@ public class RawMessage implements Serializable {
      * The raw data of the message. The client must ensure that the message
      * format complies with Internet email standards regarding email header
      * fields, MIME types, MIME encoding, and base64 encoding (if necessary).
-     * <p>For more information, go to the <a
+     * <p>The To:, CC:, and BCC: headers in the raw message can contain a
+     * group list. <p>If you are using <code>SendRawEmail</code> with sending
+     * authorization, you can include X-headers in the raw message to specify
+     * the "Source," "From," and "Return-Path" addresses. For more
+     * information, see the documentation for <code>SendRawEmail</code>.
+     * <important>Do not include these X-headers in the DKIM signature,
+     * because they are removed by Amazon SES before sending the
+     * email.</important> <p>For more information, go to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Amazon
      * SES Developer Guide</a>.
      * <p>
@@ -106,7 +156,14 @@ public class RawMessage implements Serializable {
      * @param data The raw data of the message. The client must ensure that the message
      *         format complies with Internet email standards regarding email header
      *         fields, MIME types, MIME encoding, and base64 encoding (if necessary).
-     *         <p>For more information, go to the <a
+     *         <p>The To:, CC:, and BCC: headers in the raw message can contain a
+     *         group list. <p>If you are using <code>SendRawEmail</code> with sending
+     *         authorization, you can include X-headers in the raw message to specify
+     *         the "Source," "From," and "Return-Path" addresses. For more
+     *         information, see the documentation for <code>SendRawEmail</code>.
+     *         <important>Do not include these X-headers in the DKIM signature,
+     *         because they are removed by Amazon SES before sending the
+     *         email.</important> <p>For more information, go to the <a
      *         href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Amazon
      *         SES Developer Guide</a>.
      *

@@ -40,7 +40,7 @@ public class BatchGetItemResult implements Serializable {
      * attribute values that define specific items in the table. </li> <li>
      * <p><i>AttributesToGet</i> - One or more attributes to be retrieved
      * from the table or index. By default, all attributes are returned. If a
-     * specified attribute is not found, it does not appear in the result.
+     * requested attribute is not found, it does not appear in the result.
      * </li> <li> <p><i>ConsistentRead</i> - The consistency of a read
      * operation. If set to <code>true</code>, then a strongly consistent
      * read is used; otherwise, an eventually consistent read is used. </li>
@@ -53,7 +53,7 @@ public class BatchGetItemResult implements Serializable {
     private java.util.Map<String,KeysAndAttributes> unprocessedKeys;
 
     /**
-     * The write capacity units consumed by the operation. <p>Each element
+     * The read capacity units consumed by the operation. <p>Each element
      * consists of: <ul> <li> <p><i>TableName</i> - The table that consumed
      * the provisioned throughput. </li> <li> <p><i>CapacityUnits</i> - The
      * total number of capacity units consumed. </li> </ul>
@@ -148,7 +148,7 @@ public class BatchGetItemResult implements Serializable {
      * attribute values that define specific items in the table. </li> <li>
      * <p><i>AttributesToGet</i> - One or more attributes to be retrieved
      * from the table or index. By default, all attributes are returned. If a
-     * specified attribute is not found, it does not appear in the result.
+     * requested attribute is not found, it does not appear in the result.
      * </li> <li> <p><i>ConsistentRead</i> - The consistency of a read
      * operation. If set to <code>true</code>, then a strongly consistent
      * read is used; otherwise, an eventually consistent read is used. </li>
@@ -167,7 +167,7 @@ public class BatchGetItemResult implements Serializable {
      *         attribute values that define specific items in the table. </li> <li>
      *         <p><i>AttributesToGet</i> - One or more attributes to be retrieved
      *         from the table or index. By default, all attributes are returned. If a
-     *         specified attribute is not found, it does not appear in the result.
+     *         requested attribute is not found, it does not appear in the result.
      *         </li> <li> <p><i>ConsistentRead</i> - The consistency of a read
      *         operation. If set to <code>true</code>, then a strongly consistent
      *         read is used; otherwise, an eventually consistent read is used. </li>
@@ -189,7 +189,7 @@ public class BatchGetItemResult implements Serializable {
      * attribute values that define specific items in the table. </li> <li>
      * <p><i>AttributesToGet</i> - One or more attributes to be retrieved
      * from the table or index. By default, all attributes are returned. If a
-     * specified attribute is not found, it does not appear in the result.
+     * requested attribute is not found, it does not appear in the result.
      * </li> <li> <p><i>ConsistentRead</i> - The consistency of a read
      * operation. If set to <code>true</code>, then a strongly consistent
      * read is used; otherwise, an eventually consistent read is used. </li>
@@ -208,7 +208,7 @@ public class BatchGetItemResult implements Serializable {
      *         attribute values that define specific items in the table. </li> <li>
      *         <p><i>AttributesToGet</i> - One or more attributes to be retrieved
      *         from the table or index. By default, all attributes are returned. If a
-     *         specified attribute is not found, it does not appear in the result.
+     *         requested attribute is not found, it does not appear in the result.
      *         </li> <li> <p><i>ConsistentRead</i> - The consistency of a read
      *         operation. If set to <code>true</code>, then a strongly consistent
      *         read is used; otherwise, an eventually consistent read is used. </li>
@@ -229,7 +229,7 @@ public class BatchGetItemResult implements Serializable {
      * attribute values that define specific items in the table. </li> <li>
      * <p><i>AttributesToGet</i> - One or more attributes to be retrieved
      * from the table or index. By default, all attributes are returned. If a
-     * specified attribute is not found, it does not appear in the result.
+     * requested attribute is not found, it does not appear in the result.
      * </li> <li> <p><i>ConsistentRead</i> - The consistency of a read
      * operation. If set to <code>true</code>, then a strongly consistent
      * read is used; otherwise, an eventually consistent read is used. </li>
@@ -250,7 +250,7 @@ public class BatchGetItemResult implements Serializable {
      *         attribute values that define specific items in the table. </li> <li>
      *         <p><i>AttributesToGet</i> - One or more attributes to be retrieved
      *         from the table or index. By default, all attributes are returned. If a
-     *         specified attribute is not found, it does not appear in the result.
+     *         requested attribute is not found, it does not appear in the result.
      *         </li> <li> <p><i>ConsistentRead</i> - The consistency of a read
      *         operation. If set to <code>true</code>, then a strongly consistent
      *         read is used; otherwise, an eventually consistent read is used. </li>
@@ -275,7 +275,7 @@ public class BatchGetItemResult implements Serializable {
      * attribute values that define specific items in the table. </li> <li>
      * <p><i>AttributesToGet</i> - One or more attributes to be retrieved
      * from the table or index. By default, all attributes are returned. If a
-     * specified attribute is not found, it does not appear in the result.
+     * requested attribute is not found, it does not appear in the result.
      * </li> <li> <p><i>ConsistentRead</i> - The consistency of a read
      * operation. If set to <code>true</code>, then a strongly consistent
      * read is used; otherwise, an eventually consistent read is used. </li>
@@ -313,12 +313,12 @@ public class BatchGetItemResult implements Serializable {
     }
     
     /**
-     * The write capacity units consumed by the operation. <p>Each element
+     * The read capacity units consumed by the operation. <p>Each element
      * consists of: <ul> <li> <p><i>TableName</i> - The table that consumed
      * the provisioned throughput. </li> <li> <p><i>CapacityUnits</i> - The
      * total number of capacity units consumed. </li> </ul>
      *
-     * @return The write capacity units consumed by the operation. <p>Each element
+     * @return The read capacity units consumed by the operation. <p>Each element
      *         consists of: <ul> <li> <p><i>TableName</i> - The table that consumed
      *         the provisioned throughput. </li> <li> <p><i>CapacityUnits</i> - The
      *         total number of capacity units consumed. </li> </ul>
@@ -328,12 +328,12 @@ public class BatchGetItemResult implements Serializable {
     }
     
     /**
-     * The write capacity units consumed by the operation. <p>Each element
+     * The read capacity units consumed by the operation. <p>Each element
      * consists of: <ul> <li> <p><i>TableName</i> - The table that consumed
      * the provisioned throughput. </li> <li> <p><i>CapacityUnits</i> - The
      * total number of capacity units consumed. </li> </ul>
      *
-     * @param consumedCapacity The write capacity units consumed by the operation. <p>Each element
+     * @param consumedCapacity The read capacity units consumed by the operation. <p>Each element
      *         consists of: <ul> <li> <p><i>TableName</i> - The table that consumed
      *         the provisioned throughput. </li> <li> <p><i>CapacityUnits</i> - The
      *         total number of capacity units consumed. </li> </ul>
@@ -349,14 +349,14 @@ public class BatchGetItemResult implements Serializable {
     }
     
     /**
-     * The write capacity units consumed by the operation. <p>Each element
+     * The read capacity units consumed by the operation. <p>Each element
      * consists of: <ul> <li> <p><i>TableName</i> - The table that consumed
      * the provisioned throughput. </li> <li> <p><i>CapacityUnits</i> - The
      * total number of capacity units consumed. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param consumedCapacity The write capacity units consumed by the operation. <p>Each element
+     * @param consumedCapacity The read capacity units consumed by the operation. <p>Each element
      *         consists of: <ul> <li> <p><i>TableName</i> - The table that consumed
      *         the provisioned throughput. </li> <li> <p><i>CapacityUnits</i> - The
      *         total number of capacity units consumed. </li> </ul>
@@ -373,14 +373,14 @@ public class BatchGetItemResult implements Serializable {
     }
     
     /**
-     * The write capacity units consumed by the operation. <p>Each element
+     * The read capacity units consumed by the operation. <p>Each element
      * consists of: <ul> <li> <p><i>TableName</i> - The table that consumed
      * the provisioned throughput. </li> <li> <p><i>CapacityUnits</i> - The
      * total number of capacity units consumed. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param consumedCapacity The write capacity units consumed by the operation. <p>Each element
+     * @param consumedCapacity The read capacity units consumed by the operation. <p>Each element
      *         consists of: <ul> <li> <p><i>TableName</i> - The table that consumed
      *         the provisioned throughput. </li> <li> <p><i>CapacityUnits</i> - The
      *         total number of capacity units consumed. </li> </ul>

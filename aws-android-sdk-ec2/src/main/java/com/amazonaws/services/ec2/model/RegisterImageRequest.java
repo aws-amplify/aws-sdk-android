@@ -24,9 +24,10 @@ import com.amazonaws.services.ec2.model.transform.RegisterImageRequestMarshaller
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#registerImage(RegisterImageRequest) RegisterImage operation}.
  * <p>
  * Registers an AMI. When you're creating an AMI, this is the final step
- * you must complete before you can launch an instance from the AMI. For
- * more information about creating AMIs, see
- * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html"> Creating Your Own AMIs </a>
+ * you must complete before you can launch an instance from the AMI. This
+ * step is required if you're creating an instance store-backed Linux or
+ * Windows AMI. For more information, see
+ * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html"> Creating an Instance Store-Backed Linux AMI </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html"> Creating an Instance Store-Backed Windows AMI </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>
  * <p>
@@ -38,8 +39,10 @@ import com.amazonaws.services.ec2.model.transform.RegisterImageRequestMarshaller
  * You can also use <code>RegisterImage</code> to create an Amazon
  * EBS-backed AMI from a snapshot of a root device volume. For more
  * information, see
- * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html"> Launching an Instance from a Snapshot </a>
- * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+ * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-snapshot.html"> Launching an Instance from a Backup </a>
+ * in the <i>Amazon Elastic Compute Cloud User Guide</i> . Note that
+ * although you can create a Windows AMI from a snapshot, you can't
+ * launch an instance from the AMI - use the CreateImage command instead.
  * </p>
  * <p>
  * If needed, you can deregister an AMI at any time. Any modifications
@@ -63,8 +66,9 @@ public class RegisterImageRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * A name for your AMI. <p>Constraints: 3-128 alphanumeric characters,
-     * parenthesis (()), commas (,), slashes (/), dashes (-), or underscores
-     * (_)
+     * parentheses (()), square brackets ([]), spaces ( ), periods (.),
+     * slashes (/), dashes (-), single quotes ('), at-signs (@), or
+     * underscores(_)
      */
     private String name;
 
@@ -95,7 +99,7 @@ public class RegisterImageRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>xvda</code>).
+     * <code>/dev/xvda</code>).
      */
     private String rootDeviceName;
 
@@ -171,12 +175,14 @@ public class RegisterImageRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * A name for your AMI. <p>Constraints: 3-128 alphanumeric characters,
-     * parenthesis (()), commas (,), slashes (/), dashes (-), or underscores
-     * (_)
+     * parentheses (()), square brackets ([]), spaces ( ), periods (.),
+     * slashes (/), dashes (-), single quotes ('), at-signs (@), or
+     * underscores(_)
      *
      * @return A name for your AMI. <p>Constraints: 3-128 alphanumeric characters,
-     *         parenthesis (()), commas (,), slashes (/), dashes (-), or underscores
-     *         (_)
+     *         parentheses (()), square brackets ([]), spaces ( ), periods (.),
+     *         slashes (/), dashes (-), single quotes ('), at-signs (@), or
+     *         underscores(_)
      */
     public String getName() {
         return name;
@@ -184,12 +190,14 @@ public class RegisterImageRequest extends AmazonWebServiceRequest implements Ser
     
     /**
      * A name for your AMI. <p>Constraints: 3-128 alphanumeric characters,
-     * parenthesis (()), commas (,), slashes (/), dashes (-), or underscores
-     * (_)
+     * parentheses (()), square brackets ([]), spaces ( ), periods (.),
+     * slashes (/), dashes (-), single quotes ('), at-signs (@), or
+     * underscores(_)
      *
      * @param name A name for your AMI. <p>Constraints: 3-128 alphanumeric characters,
-     *         parenthesis (()), commas (,), slashes (/), dashes (-), or underscores
-     *         (_)
+     *         parentheses (()), square brackets ([]), spaces ( ), periods (.),
+     *         slashes (/), dashes (-), single quotes ('), at-signs (@), or
+     *         underscores(_)
      */
     public void setName(String name) {
         this.name = name;
@@ -197,14 +205,16 @@ public class RegisterImageRequest extends AmazonWebServiceRequest implements Ser
     
     /**
      * A name for your AMI. <p>Constraints: 3-128 alphanumeric characters,
-     * parenthesis (()), commas (,), slashes (/), dashes (-), or underscores
-     * (_)
+     * parentheses (()), square brackets ([]), spaces ( ), periods (.),
+     * slashes (/), dashes (-), single quotes ('), at-signs (@), or
+     * underscores(_)
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param name A name for your AMI. <p>Constraints: 3-128 alphanumeric characters,
-     *         parenthesis (()), commas (,), slashes (/), dashes (-), or underscores
-     *         (_)
+     *         parentheses (()), square brackets ([]), spaces ( ), periods (.),
+     *         slashes (/), dashes (-), single quotes ('), at-signs (@), or
+     *         underscores(_)
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -417,10 +427,10 @@ public class RegisterImageRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>xvda</code>).
+     * <code>/dev/xvda</code>).
      *
      * @return The name of the root device (for example, <code>/dev/sda1</code>, or
-     *         <code>xvda</code>).
+     *         <code>/dev/xvda</code>).
      */
     public String getRootDeviceName() {
         return rootDeviceName;
@@ -428,10 +438,10 @@ public class RegisterImageRequest extends AmazonWebServiceRequest implements Ser
     
     /**
      * The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>xvda</code>).
+     * <code>/dev/xvda</code>).
      *
      * @param rootDeviceName The name of the root device (for example, <code>/dev/sda1</code>, or
-     *         <code>xvda</code>).
+     *         <code>/dev/xvda</code>).
      */
     public void setRootDeviceName(String rootDeviceName) {
         this.rootDeviceName = rootDeviceName;
@@ -439,12 +449,12 @@ public class RegisterImageRequest extends AmazonWebServiceRequest implements Ser
     
     /**
      * The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>xvda</code>).
+     * <code>/dev/xvda</code>).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param rootDeviceName The name of the root device (for example, <code>/dev/sda1</code>, or
-     *         <code>xvda</code>).
+     *         <code>/dev/xvda</code>).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

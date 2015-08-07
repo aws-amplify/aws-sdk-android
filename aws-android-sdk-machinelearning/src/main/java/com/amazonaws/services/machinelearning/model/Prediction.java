@@ -18,13 +18,48 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Output from a predict operation.
+ * The output from a <code>Predict</code> operation:
  * </p>
+ * 
+ * <ul>
+ * <li> <p>
+ * <code>Details</code> - Contains the following attributes:
+ * DetailsAttributes.PREDICTIVE_MODEL_TYPE - REGRESSION | BINARY |
+ * MULTICLASS DetailsAttributes.ALGORITHM - SGD
+ * </p>
+ * </li>
+ * <li> <p>
+ * <code>PredictedLabel</code> - Present for either a BINARY or
+ * MULTICLASS <code>MLModel</code> request.
+ * </p>
+ * </li>
+ * <li> <p>
+ * <code>PredictedScores</code> - Contains the raw classification score
+ * corresponding to each label.
+ * </p>
+ * </li>
+ * <li> <p>
+ * <code>PredictedValue</code> - Present for a REGRESSION
+ * <code>MLModel</code> request.
+ * </p>
+ * </li>
+ * 
+ * </ul>
  */
 public class Prediction implements Serializable {
 
+    /**
+     * The prediction label for either a BINARY or MULTICLASS
+     * <code>MLModel</code>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     */
     private String predictedLabel;
 
+    /**
+     * The prediction value for REGRESSION <code>MLModel</code>.
+     */
     private Float predictedValue;
 
     /**
@@ -33,43 +68,49 @@ public class Prediction implements Serializable {
     private java.util.Map<String,Float> predictedScores;
 
     /**
-     * Provides any additional details regarding the prediction
+     * Provides any additional details regarding the prediction.
      */
     private java.util.Map<String,String> details;
 
     /**
-     * Returns the value of the PredictedLabel property for this object.
+     * The prediction label for either a BINARY or MULTICLASS
+     * <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @return The value of the PredictedLabel property for this object.
+     * @return The prediction label for either a BINARY or MULTICLASS
+     *         <code>MLModel</code>.
      */
     public String getPredictedLabel() {
         return predictedLabel;
     }
     
     /**
-     * Sets the value of the PredictedLabel property for this object.
+     * The prediction label for either a BINARY or MULTICLASS
+     * <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @param predictedLabel The new value for the PredictedLabel property for this object.
+     * @param predictedLabel The prediction label for either a BINARY or MULTICLASS
+     *         <code>MLModel</code>.
      */
     public void setPredictedLabel(String predictedLabel) {
         this.predictedLabel = predictedLabel;
     }
     
     /**
-     * Sets the value of the PredictedLabel property for this object.
+     * The prediction label for either a BINARY or MULTICLASS
+     * <code>MLModel</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
-     * @param predictedLabel The new value for the PredictedLabel property for this object.
+     * @param predictedLabel The prediction label for either a BINARY or MULTICLASS
+     *         <code>MLModel</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -80,29 +121,29 @@ public class Prediction implements Serializable {
     }
 
     /**
-     * Returns the value of the PredictedValue property for this object.
+     * The prediction value for REGRESSION <code>MLModel</code>.
      *
-     * @return The value of the PredictedValue property for this object.
+     * @return The prediction value for REGRESSION <code>MLModel</code>.
      */
     public Float getPredictedValue() {
         return predictedValue;
     }
     
     /**
-     * Sets the value of the PredictedValue property for this object.
+     * The prediction value for REGRESSION <code>MLModel</code>.
      *
-     * @param predictedValue The new value for the PredictedValue property for this object.
+     * @param predictedValue The prediction value for REGRESSION <code>MLModel</code>.
      */
     public void setPredictedValue(Float predictedValue) {
         this.predictedValue = predictedValue;
     }
     
     /**
-     * Sets the value of the PredictedValue property for this object.
+     * The prediction value for REGRESSION <code>MLModel</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param predictedValue The new value for the PredictedValue property for this object.
+     * @param predictedValue The prediction value for REGRESSION <code>MLModel</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -180,9 +221,9 @@ public class Prediction implements Serializable {
     }
     
     /**
-     * Provides any additional details regarding the prediction
+     * Provides any additional details regarding the prediction.
      *
-     * @return Provides any additional details regarding the prediction
+     * @return Provides any additional details regarding the prediction.
      */
     public java.util.Map<String,String> getDetails() {
         
@@ -193,20 +234,20 @@ public class Prediction implements Serializable {
     }
     
     /**
-     * Provides any additional details regarding the prediction
+     * Provides any additional details regarding the prediction.
      *
-     * @param details Provides any additional details regarding the prediction
+     * @param details Provides any additional details regarding the prediction.
      */
     public void setDetails(java.util.Map<String,String> details) {
         this.details = details;
     }
     
     /**
-     * Provides any additional details regarding the prediction
+     * Provides any additional details regarding the prediction.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param details Provides any additional details regarding the prediction
+     * @param details Provides any additional details regarding the prediction.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -217,7 +258,7 @@ public class Prediction implements Serializable {
     }
 
     /**
-     * Provides any additional details regarding the prediction
+     * Provides any additional details regarding the prediction.
      * <p>
      * The method adds a new key-value pair into Details parameter, and
      * returns a reference to this object so that method calls can be chained

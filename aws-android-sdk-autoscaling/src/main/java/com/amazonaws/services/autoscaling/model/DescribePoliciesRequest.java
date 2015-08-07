@@ -21,10 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.autoscaling.AmazonAutoScaling#describePolicies(DescribePoliciesRequest) DescribePolicies operation}.
  * <p>
- * Returns descriptions of what each policy does. This action supports
- * pagination. If the response includes a token, there are more records
- * available. To get the additional records, repeat the request with the
- * response token as the <code>NextToken</code> parameter.
+ * Describes the policies for the specified Auto Scaling group.
  * </p>
  *
  * @see com.amazonaws.services.autoscaling.AmazonAutoScaling#describePolicies(DescribePoliciesRequest)
@@ -32,7 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribePoliciesRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The name of the Auto Scaling group.
+     * The name of the group.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
@@ -41,17 +38,23 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
     private String autoScalingGroupName;
 
     /**
-     * A list of policy names or policy ARNs to be described. If this list is
-     * omitted, all policy names are described. If an auto scaling group name
-     * is provided, the results are limited to that group. The list of
-     * requested policy names cannot contain more than 50 items. If unknown
-     * policy names are requested, they are ignored with no error.
+     * One or more policy names or policy ARNs to be described. If you omit
+     * this list, all policy names are described. If an group name is
+     * provided, the results are limited to that group. This list is limited
+     * to 50 items. If you specify an unknown policy name, it is ignored with
+     * no error.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> policyNames;
 
     /**
-     * A string that is used to mark the start of the next batch of returned
-     * results for pagination.
+     * One or more policy types. Valid values are <code>SimpleScaling</code>
+     * and <code>StepScaling</code>.
+     */
+    private com.amazonaws.internal.ListWithAutoConstructFlag<String> policyTypes;
+
+    /**
+     * The token for the next set of items to return. (You received this
+     * token from a previous call.)
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
@@ -59,38 +62,38 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
     private String nextToken;
 
     /**
-     * The maximum number of policies that will be described with each call.
+     * The maximum number of items to be returned with each call.
      */
     private Integer maxRecords;
 
     /**
-     * The name of the Auto Scaling group.
+     * The name of the group.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The name of the Auto Scaling group.
+     * @return The name of the group.
      */
     public String getAutoScalingGroupName() {
         return autoScalingGroupName;
     }
     
     /**
-     * The name of the Auto Scaling group.
+     * The name of the group.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param autoScalingGroupName The name of the Auto Scaling group.
+     * @param autoScalingGroupName The name of the group.
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
         this.autoScalingGroupName = autoScalingGroupName;
     }
     
     /**
-     * The name of the Auto Scaling group.
+     * The name of the group.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -98,7 +101,7 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b>1 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param autoScalingGroupName The name of the Auto Scaling group.
+     * @param autoScalingGroupName The name of the group.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -109,17 +112,17 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * A list of policy names or policy ARNs to be described. If this list is
-     * omitted, all policy names are described. If an auto scaling group name
-     * is provided, the results are limited to that group. The list of
-     * requested policy names cannot contain more than 50 items. If unknown
-     * policy names are requested, they are ignored with no error.
+     * One or more policy names or policy ARNs to be described. If you omit
+     * this list, all policy names are described. If an group name is
+     * provided, the results are limited to that group. This list is limited
+     * to 50 items. If you specify an unknown policy name, it is ignored with
+     * no error.
      *
-     * @return A list of policy names or policy ARNs to be described. If this list is
-     *         omitted, all policy names are described. If an auto scaling group name
-     *         is provided, the results are limited to that group. The list of
-     *         requested policy names cannot contain more than 50 items. If unknown
-     *         policy names are requested, they are ignored with no error.
+     * @return One or more policy names or policy ARNs to be described. If you omit
+     *         this list, all policy names are described. If an group name is
+     *         provided, the results are limited to that group. This list is limited
+     *         to 50 items. If you specify an unknown policy name, it is ignored with
+     *         no error.
      */
     public java.util.List<String> getPolicyNames() {
         if (policyNames == null) {
@@ -130,17 +133,17 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
     }
     
     /**
-     * A list of policy names or policy ARNs to be described. If this list is
-     * omitted, all policy names are described. If an auto scaling group name
-     * is provided, the results are limited to that group. The list of
-     * requested policy names cannot contain more than 50 items. If unknown
-     * policy names are requested, they are ignored with no error.
+     * One or more policy names or policy ARNs to be described. If you omit
+     * this list, all policy names are described. If an group name is
+     * provided, the results are limited to that group. This list is limited
+     * to 50 items. If you specify an unknown policy name, it is ignored with
+     * no error.
      *
-     * @param policyNames A list of policy names or policy ARNs to be described. If this list is
-     *         omitted, all policy names are described. If an auto scaling group name
-     *         is provided, the results are limited to that group. The list of
-     *         requested policy names cannot contain more than 50 items. If unknown
-     *         policy names are requested, they are ignored with no error.
+     * @param policyNames One or more policy names or policy ARNs to be described. If you omit
+     *         this list, all policy names are described. If an group name is
+     *         provided, the results are limited to that group. This list is limited
+     *         to 50 items. If you specify an unknown policy name, it is ignored with
+     *         no error.
      */
     public void setPolicyNames(java.util.Collection<String> policyNames) {
         if (policyNames == null) {
@@ -153,19 +156,19 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
     }
     
     /**
-     * A list of policy names or policy ARNs to be described. If this list is
-     * omitted, all policy names are described. If an auto scaling group name
-     * is provided, the results are limited to that group. The list of
-     * requested policy names cannot contain more than 50 items. If unknown
-     * policy names are requested, they are ignored with no error.
+     * One or more policy names or policy ARNs to be described. If you omit
+     * this list, all policy names are described. If an group name is
+     * provided, the results are limited to that group. This list is limited
+     * to 50 items. If you specify an unknown policy name, it is ignored with
+     * no error.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyNames A list of policy names or policy ARNs to be described. If this list is
-     *         omitted, all policy names are described. If an auto scaling group name
-     *         is provided, the results are limited to that group. The list of
-     *         requested policy names cannot contain more than 50 items. If unknown
-     *         policy names are requested, they are ignored with no error.
+     * @param policyNames One or more policy names or policy ARNs to be described. If you omit
+     *         this list, all policy names are described. If an group name is
+     *         provided, the results are limited to that group. This list is limited
+     *         to 50 items. If you specify an unknown policy name, it is ignored with
+     *         no error.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -179,19 +182,19 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
     }
     
     /**
-     * A list of policy names or policy ARNs to be described. If this list is
-     * omitted, all policy names are described. If an auto scaling group name
-     * is provided, the results are limited to that group. The list of
-     * requested policy names cannot contain more than 50 items. If unknown
-     * policy names are requested, they are ignored with no error.
+     * One or more policy names or policy ARNs to be described. If you omit
+     * this list, all policy names are described. If an group name is
+     * provided, the results are limited to that group. This list is limited
+     * to 50 items. If you specify an unknown policy name, it is ignored with
+     * no error.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyNames A list of policy names or policy ARNs to be described. If this list is
-     *         omitted, all policy names are described. If an auto scaling group name
-     *         is provided, the results are limited to that group. The list of
-     *         requested policy names cannot contain more than 50 items. If unknown
-     *         policy names are requested, they are ignored with no error.
+     * @param policyNames One or more policy names or policy ARNs to be described. If you omit
+     *         this list, all policy names are described. If an group name is
+     *         provided, the results are limited to that group. This list is limited
+     *         to 50 items. If you specify an unknown policy name, it is ignored with
+     *         no error.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -209,44 +212,120 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * A string that is used to mark the start of the next batch of returned
-     * results for pagination.
+     * One or more policy types. Valid values are <code>SimpleScaling</code>
+     * and <code>StepScaling</code>.
+     *
+     * @return One or more policy types. Valid values are <code>SimpleScaling</code>
+     *         and <code>StepScaling</code>.
+     */
+    public java.util.List<String> getPolicyTypes() {
+        if (policyTypes == null) {
+              policyTypes = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
+              policyTypes.setAutoConstruct(true);
+        }
+        return policyTypes;
+    }
+    
+    /**
+     * One or more policy types. Valid values are <code>SimpleScaling</code>
+     * and <code>StepScaling</code>.
+     *
+     * @param policyTypes One or more policy types. Valid values are <code>SimpleScaling</code>
+     *         and <code>StepScaling</code>.
+     */
+    public void setPolicyTypes(java.util.Collection<String> policyTypes) {
+        if (policyTypes == null) {
+            this.policyTypes = null;
+            return;
+        }
+        com.amazonaws.internal.ListWithAutoConstructFlag<String> policyTypesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(policyTypes.size());
+        policyTypesCopy.addAll(policyTypes);
+        this.policyTypes = policyTypesCopy;
+    }
+    
+    /**
+     * One or more policy types. Valid values are <code>SimpleScaling</code>
+     * and <code>StepScaling</code>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param policyTypes One or more policy types. Valid values are <code>SimpleScaling</code>
+     *         and <code>StepScaling</code>.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public DescribePoliciesRequest withPolicyTypes(String... policyTypes) {
+        if (getPolicyTypes() == null) setPolicyTypes(new java.util.ArrayList<String>(policyTypes.length));
+        for (String value : policyTypes) {
+            getPolicyTypes().add(value);
+        }
+        return this;
+    }
+    
+    /**
+     * One or more policy types. Valid values are <code>SimpleScaling</code>
+     * and <code>StepScaling</code>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param policyTypes One or more policy types. Valid values are <code>SimpleScaling</code>
+     *         and <code>StepScaling</code>.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public DescribePoliciesRequest withPolicyTypes(java.util.Collection<String> policyTypes) {
+        if (policyTypes == null) {
+            this.policyTypes = null;
+        } else {
+            com.amazonaws.internal.ListWithAutoConstructFlag<String> policyTypesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(policyTypes.size());
+            policyTypesCopy.addAll(policyTypes);
+            this.policyTypes = policyTypesCopy;
+        }
+
+        return this;
+    }
+
+    /**
+     * The token for the next set of items to return. (You received this
+     * token from a previous call.)
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return A string that is used to mark the start of the next batch of returned
-     *         results for pagination.
+     * @return The token for the next set of items to return. (You received this
+     *         token from a previous call.)
      */
     public String getNextToken() {
         return nextToken;
     }
     
     /**
-     * A string that is used to mark the start of the next batch of returned
-     * results for pagination.
+     * The token for the next set of items to return. (You received this
+     * token from a previous call.)
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param nextToken A string that is used to mark the start of the next batch of returned
-     *         results for pagination.
+     * @param nextToken The token for the next set of items to return. (You received this
+     *         token from a previous call.)
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
     
     /**
-     * A string that is used to mark the start of the next batch of returned
-     * results for pagination.
+     * The token for the next set of items to return. (You received this
+     * token from a previous call.)
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param nextToken A string that is used to mark the start of the next batch of returned
-     *         results for pagination.
+     * @param nextToken The token for the next set of items to return. (You received this
+     *         token from a previous call.)
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -257,29 +336,29 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * The maximum number of policies that will be described with each call.
+     * The maximum number of items to be returned with each call.
      *
-     * @return The maximum number of policies that will be described with each call.
+     * @return The maximum number of items to be returned with each call.
      */
     public Integer getMaxRecords() {
         return maxRecords;
     }
     
     /**
-     * The maximum number of policies that will be described with each call.
+     * The maximum number of items to be returned with each call.
      *
-     * @param maxRecords The maximum number of policies that will be described with each call.
+     * @param maxRecords The maximum number of items to be returned with each call.
      */
     public void setMaxRecords(Integer maxRecords) {
         this.maxRecords = maxRecords;
     }
     
     /**
-     * The maximum number of policies that will be described with each call.
+     * The maximum number of items to be returned with each call.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param maxRecords The maximum number of policies that will be described with each call.
+     * @param maxRecords The maximum number of items to be returned with each call.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -303,6 +382,7 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
         sb.append("{");
         if (getAutoScalingGroupName() != null) sb.append("AutoScalingGroupName: " + getAutoScalingGroupName() + ",");
         if (getPolicyNames() != null) sb.append("PolicyNames: " + getPolicyNames() + ",");
+        if (getPolicyTypes() != null) sb.append("PolicyTypes: " + getPolicyTypes() + ",");
         if (getNextToken() != null) sb.append("NextToken: " + getNextToken() + ",");
         if (getMaxRecords() != null) sb.append("MaxRecords: " + getMaxRecords() );
         sb.append("}");
@@ -316,6 +396,7 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
         
         hashCode = prime * hashCode + ((getAutoScalingGroupName() == null) ? 0 : getAutoScalingGroupName().hashCode()); 
         hashCode = prime * hashCode + ((getPolicyNames() == null) ? 0 : getPolicyNames().hashCode()); 
+        hashCode = prime * hashCode + ((getPolicyTypes() == null) ? 0 : getPolicyTypes().hashCode()); 
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode()); 
         hashCode = prime * hashCode + ((getMaxRecords() == null) ? 0 : getMaxRecords().hashCode()); 
         return hashCode;
@@ -333,6 +414,8 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
         if (other.getAutoScalingGroupName() != null && other.getAutoScalingGroupName().equals(this.getAutoScalingGroupName()) == false) return false; 
         if (other.getPolicyNames() == null ^ this.getPolicyNames() == null) return false;
         if (other.getPolicyNames() != null && other.getPolicyNames().equals(this.getPolicyNames()) == false) return false; 
+        if (other.getPolicyTypes() == null ^ this.getPolicyTypes() == null) return false;
+        if (other.getPolicyTypes() != null && other.getPolicyTypes().equals(this.getPolicyTypes()) == false) return false; 
         if (other.getNextToken() == null ^ this.getNextToken() == null) return false;
         if (other.getNextToken() != null && other.getNextToken().equals(this.getNextToken()) == false) return false; 
         if (other.getMaxRecords() == null ^ this.getMaxRecords() == null) return false;

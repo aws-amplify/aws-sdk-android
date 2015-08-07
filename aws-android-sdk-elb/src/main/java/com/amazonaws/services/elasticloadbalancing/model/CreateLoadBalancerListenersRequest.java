@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.elasticloadbalancing.AmazonElasticLoadBalancing#createLoadBalancerListeners(CreateLoadBalancerListenersRequest) CreateLoadBalancerListeners operation}.
  * <p>
- * Creates one or more listeners on a load balancer for the specified
- * port. If a listener with the given port does not already exist, it
- * will be created; otherwise, the properties of the new listener must
- * match the properties of the existing listener.
+ * Creates one or more listeners for the specified load balancer. If a
+ * listener with the specified port does not already exist, it is
+ * created; otherwise, the properties of the new listener must match the
+ * properties of the existing listener.
  * </p>
  * <p>
  * For more information, see
@@ -42,8 +42,7 @@ public class CreateLoadBalancerListenersRequest extends AmazonWebServiceRequest 
     private String loadBalancerName;
 
     /**
-     * A list of <code>LoadBalancerPort</code>, <code>InstancePort</code>,
-     * <code>Protocol</code>, and <code>SSLCertificateId</code> items.
+     * The listeners.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<Listener> listeners;
 
@@ -59,9 +58,7 @@ public class CreateLoadBalancerListenersRequest extends AmazonWebServiceRequest 
      * initialize any additional object members.
      * 
      * @param loadBalancerName The name of the load balancer.
-     * @param listeners A list of <code>LoadBalancerPort</code>,
-     * <code>InstancePort</code>, <code>Protocol</code>, and
-     * <code>SSLCertificateId</code> items.
+     * @param listeners The listeners.
      */
     public CreateLoadBalancerListenersRequest(String loadBalancerName, java.util.List<Listener> listeners) {
         setLoadBalancerName(loadBalancerName);
@@ -102,11 +99,9 @@ public class CreateLoadBalancerListenersRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * A list of <code>LoadBalancerPort</code>, <code>InstancePort</code>,
-     * <code>Protocol</code>, and <code>SSLCertificateId</code> items.
+     * The listeners.
      *
-     * @return A list of <code>LoadBalancerPort</code>, <code>InstancePort</code>,
-     *         <code>Protocol</code>, and <code>SSLCertificateId</code> items.
+     * @return The listeners.
      */
     public java.util.List<Listener> getListeners() {
         if (listeners == null) {
@@ -117,11 +112,9 @@ public class CreateLoadBalancerListenersRequest extends AmazonWebServiceRequest 
     }
     
     /**
-     * A list of <code>LoadBalancerPort</code>, <code>InstancePort</code>,
-     * <code>Protocol</code>, and <code>SSLCertificateId</code> items.
+     * The listeners.
      *
-     * @param listeners A list of <code>LoadBalancerPort</code>, <code>InstancePort</code>,
-     *         <code>Protocol</code>, and <code>SSLCertificateId</code> items.
+     * @param listeners The listeners.
      */
     public void setListeners(java.util.Collection<Listener> listeners) {
         if (listeners == null) {
@@ -134,13 +127,11 @@ public class CreateLoadBalancerListenersRequest extends AmazonWebServiceRequest 
     }
     
     /**
-     * A list of <code>LoadBalancerPort</code>, <code>InstancePort</code>,
-     * <code>Protocol</code>, and <code>SSLCertificateId</code> items.
+     * The listeners.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param listeners A list of <code>LoadBalancerPort</code>, <code>InstancePort</code>,
-     *         <code>Protocol</code>, and <code>SSLCertificateId</code> items.
+     * @param listeners The listeners.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -154,13 +145,11 @@ public class CreateLoadBalancerListenersRequest extends AmazonWebServiceRequest 
     }
     
     /**
-     * A list of <code>LoadBalancerPort</code>, <code>InstancePort</code>,
-     * <code>Protocol</code>, and <code>SSLCertificateId</code> items.
+     * The listeners.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param listeners A list of <code>LoadBalancerPort</code>, <code>InstancePort</code>,
-     *         <code>Protocol</code>, and <code>SSLCertificateId</code> items.
+     * @param listeners The listeners.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

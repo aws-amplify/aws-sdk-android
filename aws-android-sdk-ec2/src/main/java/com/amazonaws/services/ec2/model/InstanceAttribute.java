@@ -62,7 +62,8 @@ public class InstanceAttribute implements Serializable {
     private String instanceInitiatedShutdownBehavior;
 
     /**
-     * The name of the root device (for example, <code>/dev/sda1</code>).
+     * The name of the root device (for example, <code>/dev/sda1</code> or
+     * <code>/dev/xvda</code>).
      */
     private String rootDeviceName;
 
@@ -82,16 +83,22 @@ public class InstanceAttribute implements Serializable {
     private Boolean ebsOptimized;
 
     /**
-     * 
+     * The value to use for a resource attribute.
      */
     private String sriovNetSupport;
 
     /**
      * Indicates whether source/destination checking is enabled. A value of
-     * true means checking is enabled, and false means checking is disabled.
-     * This value must be false for a NAT instance to perform NAT.
+     * <code>true</code> means checking is enabled, and <code>false</code>
+     * means checking is disabled. This value must be <code>false</code> for
+     * a NAT instance to perform NAT.
      */
     private Boolean sourceDestCheck;
+
+    /**
+     * The security groups associated with the instance.
+     */
+    private com.amazonaws.internal.ListWithAutoConstructFlag<GroupIdentifier> groups;
 
     /**
      * The ID of the instance.
@@ -354,29 +361,35 @@ public class InstanceAttribute implements Serializable {
     }
 
     /**
-     * The name of the root device (for example, <code>/dev/sda1</code>).
+     * The name of the root device (for example, <code>/dev/sda1</code> or
+     * <code>/dev/xvda</code>).
      *
-     * @return The name of the root device (for example, <code>/dev/sda1</code>).
+     * @return The name of the root device (for example, <code>/dev/sda1</code> or
+     *         <code>/dev/xvda</code>).
      */
     public String getRootDeviceName() {
         return rootDeviceName;
     }
     
     /**
-     * The name of the root device (for example, <code>/dev/sda1</code>).
+     * The name of the root device (for example, <code>/dev/sda1</code> or
+     * <code>/dev/xvda</code>).
      *
-     * @param rootDeviceName The name of the root device (for example, <code>/dev/sda1</code>).
+     * @param rootDeviceName The name of the root device (for example, <code>/dev/sda1</code> or
+     *         <code>/dev/xvda</code>).
      */
     public void setRootDeviceName(String rootDeviceName) {
         this.rootDeviceName = rootDeviceName;
     }
     
     /**
-     * The name of the root device (for example, <code>/dev/sda1</code>).
+     * The name of the root device (for example, <code>/dev/sda1</code> or
+     * <code>/dev/xvda</code>).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param rootDeviceName The name of the root device (for example, <code>/dev/sda1</code>).
+     * @param rootDeviceName The name of the root device (for example, <code>/dev/sda1</code> or
+     *         <code>/dev/xvda</code>).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -565,29 +578,29 @@ public class InstanceAttribute implements Serializable {
     }
 
     /**
-     * 
+     * The value to use for a resource attribute.
      *
-     * @return 
+     * @return The value to use for a resource attribute.
      */
     public String getSriovNetSupport() {
         return sriovNetSupport;
     }
     
     /**
-     * 
+     * The value to use for a resource attribute.
      *
-     * @param sriovNetSupport 
+     * @param sriovNetSupport The value to use for a resource attribute.
      */
     public void setSriovNetSupport(String sriovNetSupport) {
         this.sriovNetSupport = sriovNetSupport;
     }
     
     /**
-     * 
+     * The value to use for a resource attribute.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sriovNetSupport 
+     * @param sriovNetSupport The value to use for a resource attribute.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -599,12 +612,14 @@ public class InstanceAttribute implements Serializable {
 
     /**
      * Indicates whether source/destination checking is enabled. A value of
-     * true means checking is enabled, and false means checking is disabled.
-     * This value must be false for a NAT instance to perform NAT.
+     * <code>true</code> means checking is enabled, and <code>false</code>
+     * means checking is disabled. This value must be <code>false</code> for
+     * a NAT instance to perform NAT.
      *
      * @return Indicates whether source/destination checking is enabled. A value of
-     *         true means checking is enabled, and false means checking is disabled.
-     *         This value must be false for a NAT instance to perform NAT.
+     *         <code>true</code> means checking is enabled, and <code>false</code>
+     *         means checking is disabled. This value must be <code>false</code> for
+     *         a NAT instance to perform NAT.
      */
     public Boolean isSourceDestCheck() {
         return sourceDestCheck;
@@ -612,12 +627,14 @@ public class InstanceAttribute implements Serializable {
     
     /**
      * Indicates whether source/destination checking is enabled. A value of
-     * true means checking is enabled, and false means checking is disabled.
-     * This value must be false for a NAT instance to perform NAT.
+     * <code>true</code> means checking is enabled, and <code>false</code>
+     * means checking is disabled. This value must be <code>false</code> for
+     * a NAT instance to perform NAT.
      *
      * @param sourceDestCheck Indicates whether source/destination checking is enabled. A value of
-     *         true means checking is enabled, and false means checking is disabled.
-     *         This value must be false for a NAT instance to perform NAT.
+     *         <code>true</code> means checking is enabled, and <code>false</code>
+     *         means checking is disabled. This value must be <code>false</code> for
+     *         a NAT instance to perform NAT.
      */
     public void setSourceDestCheck(Boolean sourceDestCheck) {
         this.sourceDestCheck = sourceDestCheck;
@@ -625,14 +642,16 @@ public class InstanceAttribute implements Serializable {
     
     /**
      * Indicates whether source/destination checking is enabled. A value of
-     * true means checking is enabled, and false means checking is disabled.
-     * This value must be false for a NAT instance to perform NAT.
+     * <code>true</code> means checking is enabled, and <code>false</code>
+     * means checking is disabled. This value must be <code>false</code> for
+     * a NAT instance to perform NAT.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param sourceDestCheck Indicates whether source/destination checking is enabled. A value of
-     *         true means checking is enabled, and false means checking is disabled.
-     *         This value must be false for a NAT instance to perform NAT.
+     *         <code>true</code> means checking is enabled, and <code>false</code>
+     *         means checking is disabled. This value must be <code>false</code> for
+     *         a NAT instance to perform NAT.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -644,15 +663,85 @@ public class InstanceAttribute implements Serializable {
 
     /**
      * Indicates whether source/destination checking is enabled. A value of
-     * true means checking is enabled, and false means checking is disabled.
-     * This value must be false for a NAT instance to perform NAT.
+     * <code>true</code> means checking is enabled, and <code>false</code>
+     * means checking is disabled. This value must be <code>false</code> for
+     * a NAT instance to perform NAT.
      *
      * @return Indicates whether source/destination checking is enabled. A value of
-     *         true means checking is enabled, and false means checking is disabled.
-     *         This value must be false for a NAT instance to perform NAT.
+     *         <code>true</code> means checking is enabled, and <code>false</code>
+     *         means checking is disabled. This value must be <code>false</code> for
+     *         a NAT instance to perform NAT.
      */
     public Boolean getSourceDestCheck() {
         return sourceDestCheck;
+    }
+
+    /**
+     * The security groups associated with the instance.
+     *
+     * @return The security groups associated with the instance.
+     */
+    public java.util.List<GroupIdentifier> getGroups() {
+        if (groups == null) {
+              groups = new com.amazonaws.internal.ListWithAutoConstructFlag<GroupIdentifier>();
+              groups.setAutoConstruct(true);
+        }
+        return groups;
+    }
+    
+    /**
+     * The security groups associated with the instance.
+     *
+     * @param groups The security groups associated with the instance.
+     */
+    public void setGroups(java.util.Collection<GroupIdentifier> groups) {
+        if (groups == null) {
+            this.groups = null;
+            return;
+        }
+        com.amazonaws.internal.ListWithAutoConstructFlag<GroupIdentifier> groupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<GroupIdentifier>(groups.size());
+        groupsCopy.addAll(groups);
+        this.groups = groupsCopy;
+    }
+    
+    /**
+     * The security groups associated with the instance.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param groups The security groups associated with the instance.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public InstanceAttribute withGroups(GroupIdentifier... groups) {
+        if (getGroups() == null) setGroups(new java.util.ArrayList<GroupIdentifier>(groups.length));
+        for (GroupIdentifier value : groups) {
+            getGroups().add(value);
+        }
+        return this;
+    }
+    
+    /**
+     * The security groups associated with the instance.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param groups The security groups associated with the instance.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public InstanceAttribute withGroups(java.util.Collection<GroupIdentifier> groups) {
+        if (groups == null) {
+            this.groups = null;
+        } else {
+            com.amazonaws.internal.ListWithAutoConstructFlag<GroupIdentifier> groupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<GroupIdentifier>(groups.size());
+            groupsCopy.addAll(groups);
+            this.groups = groupsCopy;
+        }
+
+        return this;
     }
 
     /**
@@ -679,7 +768,8 @@ public class InstanceAttribute implements Serializable {
         if (getProductCodes() != null) sb.append("ProductCodes: " + getProductCodes() + ",");
         if (isEbsOptimized() != null) sb.append("EbsOptimized: " + isEbsOptimized() + ",");
         if (getSriovNetSupport() != null) sb.append("SriovNetSupport: " + getSriovNetSupport() + ",");
-        if (isSourceDestCheck() != null) sb.append("SourceDestCheck: " + isSourceDestCheck() );
+        if (isSourceDestCheck() != null) sb.append("SourceDestCheck: " + isSourceDestCheck() + ",");
+        if (getGroups() != null) sb.append("Groups: " + getGroups() );
         sb.append("}");
         return sb.toString();
     }
@@ -702,6 +792,7 @@ public class InstanceAttribute implements Serializable {
         hashCode = prime * hashCode + ((isEbsOptimized() == null) ? 0 : isEbsOptimized().hashCode()); 
         hashCode = prime * hashCode + ((getSriovNetSupport() == null) ? 0 : getSriovNetSupport().hashCode()); 
         hashCode = prime * hashCode + ((isSourceDestCheck() == null) ? 0 : isSourceDestCheck().hashCode()); 
+        hashCode = prime * hashCode + ((getGroups() == null) ? 0 : getGroups().hashCode()); 
         return hashCode;
     }
     
@@ -739,6 +830,8 @@ public class InstanceAttribute implements Serializable {
         if (other.getSriovNetSupport() != null && other.getSriovNetSupport().equals(this.getSriovNetSupport()) == false) return false; 
         if (other.isSourceDestCheck() == null ^ this.isSourceDestCheck() == null) return false;
         if (other.isSourceDestCheck() != null && other.isSourceDestCheck().equals(this.isSourceDestCheck()) == false) return false; 
+        if (other.getGroups() == null ^ this.getGroups() == null) return false;
+        if (other.getGroups() != null && other.getGroups().equals(this.getGroups()) == false) return false; 
         return true;
     }
     

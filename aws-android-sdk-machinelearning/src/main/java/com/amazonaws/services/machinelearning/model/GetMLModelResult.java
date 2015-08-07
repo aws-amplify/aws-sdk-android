@@ -19,13 +19,14 @@ import java.io.Serializable;
 /**
  * <p>
  * Represents the output of a GetMLModel operation, and provides detailed
- * information about a <i>MLModel</i> .
+ * information about a <code>MLModel</code> .
  * </p>
  */
 public class GetMLModelResult implements Serializable {
 
     /**
-     * The MLModel id which is same as the <b>MLModelId</b> in the request.
+     * The MLModel ID which is same as the <code>MLModelId</code> in the
+     * request.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
@@ -34,7 +35,7 @@ public class GetMLModelResult implements Serializable {
     private String mLModelId;
 
     /**
-     * Id of the training <i>DataSource</i>.
+     * The ID of the training <code>DataSource</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
@@ -43,8 +44,9 @@ public class GetMLModelResult implements Serializable {
     private String trainingDataSourceId;
 
     /**
-     * The AWS user account from which the <i>MLModel</i> was created. The
-     * account type can be either an AWS root account or IAM user account.
+     * The AWS user account from which the <code>MLModel</code> was created.
+     * The account type can be either an AWS root account or an AWS Identity
+     * and Access Management (IAM) user account.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>arn:aws:iam::[0-9]+:((user/.+)|(root))<br/>
@@ -52,20 +54,19 @@ public class GetMLModelResult implements Serializable {
     private String createdByIamUser;
 
     /**
-     * The time that the <i>MLModel</i> was created. The time is expressed in
-     * epoch time.
+     * The time that the <code>MLModel</code> was created. The time is
+     * expressed in epoch time.
      */
     private java.util.Date createdAt;
 
     /**
-     * The time of the most recent edit to the <i>MLModel</i>. The time is
-     * expressed in epoch time.
+     * The time of the most recent edit to the <code>MLModel</code>. The time
+     * is expressed in epoch time.
      */
     private java.util.Date lastUpdatedAt;
 
     /**
-     * A user-supplied name or description of the <i>MLModel</i> for human
-     * recognizition and remembrance.
+     * A user-supplied name or description of the <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
@@ -73,14 +74,15 @@ public class GetMLModelResult implements Serializable {
     private String name;
 
     /**
-     * The current status of the <i>MLModel</i>. This element can have one of
-     * the following values: <ul> <li><code>PENDING</code> - AmazonML
-     * submitted a request to describe a <i>MLModel</i>.</li>
-     * <li><code>INPROGRESS</code> - The request is processing.</li>
-     * <li><code>FAILED</code> - The request did not run to completion. It is
-     * not usable.</li> <li><code>COMPLETED</code> - The request completed
-     * successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     * marked as deleted. It is not usable.</li> </ul>
+     * The current status of the <code>MLModel</code>. This element can have
+     * one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     * Machine Learning (Amazon ML) submitted a request to describe a
+     * <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     * is processing.</li> <li><code>FAILED</code> - The request did not run
+     * to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     * request completed successfully.</li> <li><code>DELETED</code> - The
+     * <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, INPROGRESS, FAILED, COMPLETED, DELETED
@@ -93,41 +95,43 @@ public class GetMLModelResult implements Serializable {
     private Long sizeInBytes;
 
     /**
-     * The current endpoint of the <i>MLModel</i>
+     * The current endpoint of the <code>MLModel</code>
      */
     private RealtimeEndpointInfo endpointInfo;
 
     /**
-     * A list of the training parameters in the <i>MLModel</i>. The list is
-     * implemented as a map of of key/value pairs. <p>The current set of
-     * training parameters follows: <ul>
+     * A list of the training parameters in the <code>MLModel</code>. The
+     * list is implemented as a map of key/value pairs. <p>The following is
+     * the current set of training parameters: <ul>
      * <li><p><code>sgd.l1RegularizationAmount</code> - Coefficient
-     * regularization L1 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to zero, resulting in
-     * sparse feature set. If used, specify a small value, such as 1.0E-04 or
-     * 1.0E-08. <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default
-     * is not to use L1 normalization. Cannot be used when <i>L2</i> is
-     * specified. Use sparingly.</li>
+     * regularization L1 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to zero,
+     * resulting in a sparse feature set. If you use this parameter, specify
+     * a small value, such as 1.0E-04 or 1.0E-08. <p>The value is a double
+     * that ranges from 0 to MAX_DOUBLE. The default is not to use L1
+     * normalization. The parameter cannot be used when <code>L2</code> is
+     * specified. Use this parameter sparingly.</li>
      * <li><p><code>sgd.l2RegularizationAmount</code> - Coefficient
-     * regularization L2 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to small, nonzero
-     * values. If used, specify a small value, such as 1.0E-04 or 1.0E-08.
-     * <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default is not
-     * to use L2 normalization. Cannot be used when <i>L1</i> is specified.
-     * Use sparingly.</li> <li><p><code>sgd.maxPasses</code> - Number of
+     * regularization L2 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to small, nonzero
+     * values. If you use this parameter, specify a small value, such as
+     * 1.0E-04 or 1.0E-08. <p>The value is a double that ranges from 0 to
+     * MAX_DOUBLE. The default is not to use L2 normalization. This parameter
+     * cannot be used when <code>L1</code> is specified. Use this parameter
+     * sparingly.</li> <li><p><code>sgd.maxPasses</code> - The number of
      * times that the training process traverses the observations to build
-     * the <i>MLModel</i>. The value is an integer that ranges from 1 through
-     * 10000 for SGD. The default value is 10. </li>
-     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - Maximum allowed size
-     * of the model. <p> Depending on the input data, the model size might
-     * affect the performance. <p> Implemented as an integer. Range is 100000
-     * through 2147483648. Default value is 33554432. </li> </ul>
+     * the <code>MLModel</code>. The value is an integer that ranges from 1
+     * to 10000. The default value is 10. </li>
+     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - The maximum allowed
+     * size of the model. Depending on the input data, the model size might
+     * affect performance. <p> The value is an integer that ranges from
+     * 100000 to 2147483648. The default value is 33554432. </li> </ul>
      */
     private java.util.Map<String,String> trainingParameters;
 
     /**
-     * A reference to a file or bucket on Amazon Simple Storage Service
-     * (Amazon S3).
+     * The location of the data file or directory in Amazon Simple Storage
+     * Service (Amazon S3).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
@@ -136,12 +140,13 @@ public class GetMLModelResult implements Serializable {
     private String inputDataLocationS3;
 
     /**
-     * Identifies the <i>MLModel</i> category. The available types follow:
-     * <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     * listing price should a house have?"</li> <li>BINARY -- Produces one of
-     * two possible results. For example, "Is this an e-commerce web
-     * site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     * For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * Identifies the <code>MLModel</code> category. The following are the
+     * available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     * example, "What listing price should a house have?"</li> <li>BINARY --
+     * Produces one of two possible results. For example, "Is this an
+     * e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     * possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     * trade?"</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>REGRESSION, BINARY, MULTICLASS
@@ -150,28 +155,30 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * The scoring threshold is used in binary classification
-     * <i>MLModels</i>, and marks the boundary between a positive prediction
-     * and a negative prediction. <p>Output values greater than or equal to
-     * the threshold receive a positive result from the MLModel, such as
-     * <code>true</code>. Output values less than the threshold receive a
-     * negative response from the MLModel, such as <code>false</code>.
+     * <code>MLModel</code>s, and marks the boundary between a positive
+     * prediction and a negative prediction. <p>Output values greater than or
+     * equal to the threshold receive a positive result from the MLModel,
+     * such as <code>true</code>. Output values less than the threshold
+     * receive a negative response from the MLModel, such as
+     * <code>false</code>.
      */
     private Float scoreThreshold;
 
     /**
-     * The time of the most recent edit to the <b>ScoreThreshold</b>. The
-     * time is expressed in epoch time.
+     * The time of the most recent edit to the <code>ScoreThreshold</code>.
+     * The time is expressed in epoch time.
      */
     private java.util.Date scoreThresholdLastUpdatedAt;
 
     /**
-     * Location of the logs from the <i>CreateMLModel</i> operation.
+     * A link to the file that contains logs of the
+     * <code>CreateMLModel</code> operation.
      */
     private String logUri;
 
     /**
      * Description of the most recent details about accessing the
-     * <i>MLModel</i>.
+     * <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10240<br/>
@@ -179,11 +186,12 @@ public class GetMLModelResult implements Serializable {
     private String message;
 
     /**
-     * Recipe to use when training the <i>MLModel</i>. The <b>Recipe</b>
-     * provides detailed information about the observation data to use during
-     * training, as well as manipulations to perform on the observation data
-     * during training. <p><b>Note</b> This parameter is provided as part of
-     * the verbose format.
+     * The recipe to use when training the <code>MLModel</code>. The
+     * <code>Recipe</code> provides detailed information about the
+     * observation data to use during training, as well as manipulations to
+     * perform on the observation data during training.
+     * <note><title>Note</title><p>This parameter is provided as part of the
+     * verbose format.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 131071<br/>
@@ -192,8 +200,8 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * The schema used by all of the data files referenced by the
-     * <i>DataSource</i>. <p><b>Note</b> This parameter is provided as part
-     * of the verbose format.
+     * <code>DataSource</code>. <note><title>Note</title><p>This parameter is
+     * provided as part of the verbose format.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 131071<br/>
@@ -201,33 +209,38 @@ public class GetMLModelResult implements Serializable {
     private String schema;
 
     /**
-     * The MLModel id which is same as the <b>MLModelId</b> in the request.
+     * The MLModel ID which is same as the <code>MLModelId</code> in the
+     * request.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The MLModel id which is same as the <b>MLModelId</b> in the request.
+     * @return The MLModel ID which is same as the <code>MLModelId</code> in the
+     *         request.
      */
     public String getMLModelId() {
         return mLModelId;
     }
     
     /**
-     * The MLModel id which is same as the <b>MLModelId</b> in the request.
+     * The MLModel ID which is same as the <code>MLModelId</code> in the
+     * request.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param mLModelId The MLModel id which is same as the <b>MLModelId</b> in the request.
+     * @param mLModelId The MLModel ID which is same as the <code>MLModelId</code> in the
+     *         request.
      */
     public void setMLModelId(String mLModelId) {
         this.mLModelId = mLModelId;
     }
     
     /**
-     * The MLModel id which is same as the <b>MLModelId</b> in the request.
+     * The MLModel ID which is same as the <code>MLModelId</code> in the
+     * request.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -235,7 +248,8 @@ public class GetMLModelResult implements Serializable {
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param mLModelId The MLModel id which is same as the <b>MLModelId</b> in the request.
+     * @param mLModelId The MLModel ID which is same as the <code>MLModelId</code> in the
+     *         request.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -246,33 +260,33 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * Id of the training <i>DataSource</i>.
+     * The ID of the training <code>DataSource</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return Id of the training <i>DataSource</i>.
+     * @return The ID of the training <code>DataSource</code>.
      */
     public String getTrainingDataSourceId() {
         return trainingDataSourceId;
     }
     
     /**
-     * Id of the training <i>DataSource</i>.
+     * The ID of the training <code>DataSource</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param trainingDataSourceId Id of the training <i>DataSource</i>.
+     * @param trainingDataSourceId The ID of the training <code>DataSource</code>.
      */
     public void setTrainingDataSourceId(String trainingDataSourceId) {
         this.trainingDataSourceId = trainingDataSourceId;
     }
     
     /**
-     * Id of the training <i>DataSource</i>.
+     * The ID of the training <code>DataSource</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -280,7 +294,7 @@ public class GetMLModelResult implements Serializable {
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param trainingDataSourceId Id of the training <i>DataSource</i>.
+     * @param trainingDataSourceId The ID of the training <code>DataSource</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -291,44 +305,50 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * The AWS user account from which the <i>MLModel</i> was created. The
-     * account type can be either an AWS root account or IAM user account.
+     * The AWS user account from which the <code>MLModel</code> was created.
+     * The account type can be either an AWS root account or an AWS Identity
+     * and Access Management (IAM) user account.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>arn:aws:iam::[0-9]+:((user/.+)|(root))<br/>
      *
-     * @return The AWS user account from which the <i>MLModel</i> was created. The
-     *         account type can be either an AWS root account or IAM user account.
+     * @return The AWS user account from which the <code>MLModel</code> was created.
+     *         The account type can be either an AWS root account or an AWS Identity
+     *         and Access Management (IAM) user account.
      */
     public String getCreatedByIamUser() {
         return createdByIamUser;
     }
     
     /**
-     * The AWS user account from which the <i>MLModel</i> was created. The
-     * account type can be either an AWS root account or IAM user account.
+     * The AWS user account from which the <code>MLModel</code> was created.
+     * The account type can be either an AWS root account or an AWS Identity
+     * and Access Management (IAM) user account.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>arn:aws:iam::[0-9]+:((user/.+)|(root))<br/>
      *
-     * @param createdByIamUser The AWS user account from which the <i>MLModel</i> was created. The
-     *         account type can be either an AWS root account or IAM user account.
+     * @param createdByIamUser The AWS user account from which the <code>MLModel</code> was created.
+     *         The account type can be either an AWS root account or an AWS Identity
+     *         and Access Management (IAM) user account.
      */
     public void setCreatedByIamUser(String createdByIamUser) {
         this.createdByIamUser = createdByIamUser;
     }
     
     /**
-     * The AWS user account from which the <i>MLModel</i> was created. The
-     * account type can be either an AWS root account or IAM user account.
+     * The AWS user account from which the <code>MLModel</code> was created.
+     * The account type can be either an AWS root account or an AWS Identity
+     * and Access Management (IAM) user account.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>arn:aws:iam::[0-9]+:((user/.+)|(root))<br/>
      *
-     * @param createdByIamUser The AWS user account from which the <i>MLModel</i> was created. The
-     *         account type can be either an AWS root account or IAM user account.
+     * @param createdByIamUser The AWS user account from which the <code>MLModel</code> was created.
+     *         The account type can be either an AWS root account or an AWS Identity
+     *         and Access Management (IAM) user account.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -339,35 +359,35 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * The time that the <i>MLModel</i> was created. The time is expressed in
-     * epoch time.
+     * The time that the <code>MLModel</code> was created. The time is
+     * expressed in epoch time.
      *
-     * @return The time that the <i>MLModel</i> was created. The time is expressed in
-     *         epoch time.
+     * @return The time that the <code>MLModel</code> was created. The time is
+     *         expressed in epoch time.
      */
     public java.util.Date getCreatedAt() {
         return createdAt;
     }
     
     /**
-     * The time that the <i>MLModel</i> was created. The time is expressed in
-     * epoch time.
+     * The time that the <code>MLModel</code> was created. The time is
+     * expressed in epoch time.
      *
-     * @param createdAt The time that the <i>MLModel</i> was created. The time is expressed in
-     *         epoch time.
+     * @param createdAt The time that the <code>MLModel</code> was created. The time is
+     *         expressed in epoch time.
      */
     public void setCreatedAt(java.util.Date createdAt) {
         this.createdAt = createdAt;
     }
     
     /**
-     * The time that the <i>MLModel</i> was created. The time is expressed in
-     * epoch time.
+     * The time that the <code>MLModel</code> was created. The time is
+     * expressed in epoch time.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param createdAt The time that the <i>MLModel</i> was created. The time is expressed in
-     *         epoch time.
+     * @param createdAt The time that the <code>MLModel</code> was created. The time is
+     *         expressed in epoch time.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -378,35 +398,35 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * The time of the most recent edit to the <i>MLModel</i>. The time is
-     * expressed in epoch time.
+     * The time of the most recent edit to the <code>MLModel</code>. The time
+     * is expressed in epoch time.
      *
-     * @return The time of the most recent edit to the <i>MLModel</i>. The time is
-     *         expressed in epoch time.
+     * @return The time of the most recent edit to the <code>MLModel</code>. The time
+     *         is expressed in epoch time.
      */
     public java.util.Date getLastUpdatedAt() {
         return lastUpdatedAt;
     }
     
     /**
-     * The time of the most recent edit to the <i>MLModel</i>. The time is
-     * expressed in epoch time.
+     * The time of the most recent edit to the <code>MLModel</code>. The time
+     * is expressed in epoch time.
      *
-     * @param lastUpdatedAt The time of the most recent edit to the <i>MLModel</i>. The time is
-     *         expressed in epoch time.
+     * @param lastUpdatedAt The time of the most recent edit to the <code>MLModel</code>. The time
+     *         is expressed in epoch time.
      */
     public void setLastUpdatedAt(java.util.Date lastUpdatedAt) {
         this.lastUpdatedAt = lastUpdatedAt;
     }
     
     /**
-     * The time of the most recent edit to the <i>MLModel</i>. The time is
-     * expressed in epoch time.
+     * The time of the most recent edit to the <code>MLModel</code>. The time
+     * is expressed in epoch time.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param lastUpdatedAt The time of the most recent edit to the <i>MLModel</i>. The time is
-     *         expressed in epoch time.
+     * @param lastUpdatedAt The time of the most recent edit to the <code>MLModel</code>. The time
+     *         is expressed in epoch time.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -417,44 +437,38 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * A user-supplied name or description of the <i>MLModel</i> for human
-     * recognizition and remembrance.
+     * A user-supplied name or description of the <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
      *
-     * @return A user-supplied name or description of the <i>MLModel</i> for human
-     *         recognizition and remembrance.
+     * @return A user-supplied name or description of the <code>MLModel</code>.
      */
     public String getName() {
         return name;
     }
     
     /**
-     * A user-supplied name or description of the <i>MLModel</i> for human
-     * recognizition and remembrance.
+     * A user-supplied name or description of the <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
      *
-     * @param name A user-supplied name or description of the <i>MLModel</i> for human
-     *         recognizition and remembrance.
+     * @param name A user-supplied name or description of the <code>MLModel</code>.
      */
     public void setName(String name) {
         this.name = name;
     }
     
     /**
-     * A user-supplied name or description of the <i>MLModel</i> for human
-     * recognizition and remembrance.
+     * A user-supplied name or description of the <code>MLModel</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
      *
-     * @param name A user-supplied name or description of the <i>MLModel</i> for human
-     *         recognizition and remembrance.
+     * @param name A user-supplied name or description of the <code>MLModel</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -465,26 +479,28 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * The current status of the <i>MLModel</i>. This element can have one of
-     * the following values: <ul> <li><code>PENDING</code> - AmazonML
-     * submitted a request to describe a <i>MLModel</i>.</li>
-     * <li><code>INPROGRESS</code> - The request is processing.</li>
-     * <li><code>FAILED</code> - The request did not run to completion. It is
-     * not usable.</li> <li><code>COMPLETED</code> - The request completed
-     * successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     * marked as deleted. It is not usable.</li> </ul>
+     * The current status of the <code>MLModel</code>. This element can have
+     * one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     * Machine Learning (Amazon ML) submitted a request to describe a
+     * <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     * is processing.</li> <li><code>FAILED</code> - The request did not run
+     * to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     * request completed successfully.</li> <li><code>DELETED</code> - The
+     * <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, INPROGRESS, FAILED, COMPLETED, DELETED
      *
-     * @return The current status of the <i>MLModel</i>. This element can have one of
-     *         the following values: <ul> <li><code>PENDING</code> - AmazonML
-     *         submitted a request to describe a <i>MLModel</i>.</li>
-     *         <li><code>INPROGRESS</code> - The request is processing.</li>
-     *         <li><code>FAILED</code> - The request did not run to completion. It is
-     *         not usable.</li> <li><code>COMPLETED</code> - The request completed
-     *         successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     *         marked as deleted. It is not usable.</li> </ul>
+     * @return The current status of the <code>MLModel</code>. This element can have
+     *         one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     *         Machine Learning (Amazon ML) submitted a request to describe a
+     *         <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     *         is processing.</li> <li><code>FAILED</code> - The request did not run
+     *         to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     *         request completed successfully.</li> <li><code>DELETED</code> - The
+     *         <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     *         </ul>
      *
      * @see EntityStatus
      */
@@ -493,26 +509,28 @@ public class GetMLModelResult implements Serializable {
     }
     
     /**
-     * The current status of the <i>MLModel</i>. This element can have one of
-     * the following values: <ul> <li><code>PENDING</code> - AmazonML
-     * submitted a request to describe a <i>MLModel</i>.</li>
-     * <li><code>INPROGRESS</code> - The request is processing.</li>
-     * <li><code>FAILED</code> - The request did not run to completion. It is
-     * not usable.</li> <li><code>COMPLETED</code> - The request completed
-     * successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     * marked as deleted. It is not usable.</li> </ul>
+     * The current status of the <code>MLModel</code>. This element can have
+     * one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     * Machine Learning (Amazon ML) submitted a request to describe a
+     * <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     * is processing.</li> <li><code>FAILED</code> - The request did not run
+     * to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     * request completed successfully.</li> <li><code>DELETED</code> - The
+     * <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, INPROGRESS, FAILED, COMPLETED, DELETED
      *
-     * @param status The current status of the <i>MLModel</i>. This element can have one of
-     *         the following values: <ul> <li><code>PENDING</code> - AmazonML
-     *         submitted a request to describe a <i>MLModel</i>.</li>
-     *         <li><code>INPROGRESS</code> - The request is processing.</li>
-     *         <li><code>FAILED</code> - The request did not run to completion. It is
-     *         not usable.</li> <li><code>COMPLETED</code> - The request completed
-     *         successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     *         marked as deleted. It is not usable.</li> </ul>
+     * @param status The current status of the <code>MLModel</code>. This element can have
+     *         one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     *         Machine Learning (Amazon ML) submitted a request to describe a
+     *         <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     *         is processing.</li> <li><code>FAILED</code> - The request did not run
+     *         to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     *         request completed successfully.</li> <li><code>DELETED</code> - The
+     *         <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     *         </ul>
      *
      * @see EntityStatus
      */
@@ -521,28 +539,30 @@ public class GetMLModelResult implements Serializable {
     }
     
     /**
-     * The current status of the <i>MLModel</i>. This element can have one of
-     * the following values: <ul> <li><code>PENDING</code> - AmazonML
-     * submitted a request to describe a <i>MLModel</i>.</li>
-     * <li><code>INPROGRESS</code> - The request is processing.</li>
-     * <li><code>FAILED</code> - The request did not run to completion. It is
-     * not usable.</li> <li><code>COMPLETED</code> - The request completed
-     * successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     * marked as deleted. It is not usable.</li> </ul>
+     * The current status of the <code>MLModel</code>. This element can have
+     * one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     * Machine Learning (Amazon ML) submitted a request to describe a
+     * <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     * is processing.</li> <li><code>FAILED</code> - The request did not run
+     * to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     * request completed successfully.</li> <li><code>DELETED</code> - The
+     * <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, INPROGRESS, FAILED, COMPLETED, DELETED
      *
-     * @param status The current status of the <i>MLModel</i>. This element can have one of
-     *         the following values: <ul> <li><code>PENDING</code> - AmazonML
-     *         submitted a request to describe a <i>MLModel</i>.</li>
-     *         <li><code>INPROGRESS</code> - The request is processing.</li>
-     *         <li><code>FAILED</code> - The request did not run to completion. It is
-     *         not usable.</li> <li><code>COMPLETED</code> - The request completed
-     *         successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     *         marked as deleted. It is not usable.</li> </ul>
+     * @param status The current status of the <code>MLModel</code>. This element can have
+     *         one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     *         Machine Learning (Amazon ML) submitted a request to describe a
+     *         <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     *         is processing.</li> <li><code>FAILED</code> - The request did not run
+     *         to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     *         request completed successfully.</li> <li><code>DELETED</code> - The
+     *         <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     *         </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -555,26 +575,28 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * The current status of the <i>MLModel</i>. This element can have one of
-     * the following values: <ul> <li><code>PENDING</code> - AmazonML
-     * submitted a request to describe a <i>MLModel</i>.</li>
-     * <li><code>INPROGRESS</code> - The request is processing.</li>
-     * <li><code>FAILED</code> - The request did not run to completion. It is
-     * not usable.</li> <li><code>COMPLETED</code> - The request completed
-     * successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     * marked as deleted. It is not usable.</li> </ul>
+     * The current status of the <code>MLModel</code>. This element can have
+     * one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     * Machine Learning (Amazon ML) submitted a request to describe a
+     * <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     * is processing.</li> <li><code>FAILED</code> - The request did not run
+     * to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     * request completed successfully.</li> <li><code>DELETED</code> - The
+     * <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, INPROGRESS, FAILED, COMPLETED, DELETED
      *
-     * @param status The current status of the <i>MLModel</i>. This element can have one of
-     *         the following values: <ul> <li><code>PENDING</code> - AmazonML
-     *         submitted a request to describe a <i>MLModel</i>.</li>
-     *         <li><code>INPROGRESS</code> - The request is processing.</li>
-     *         <li><code>FAILED</code> - The request did not run to completion. It is
-     *         not usable.</li> <li><code>COMPLETED</code> - The request completed
-     *         successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     *         marked as deleted. It is not usable.</li> </ul>
+     * @param status The current status of the <code>MLModel</code>. This element can have
+     *         one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     *         Machine Learning (Amazon ML) submitted a request to describe a
+     *         <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     *         is processing.</li> <li><code>FAILED</code> - The request did not run
+     *         to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     *         request completed successfully.</li> <li><code>DELETED</code> - The
+     *         <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     *         </ul>
      *
      * @see EntityStatus
      */
@@ -583,28 +605,30 @@ public class GetMLModelResult implements Serializable {
     }
     
     /**
-     * The current status of the <i>MLModel</i>. This element can have one of
-     * the following values: <ul> <li><code>PENDING</code> - AmazonML
-     * submitted a request to describe a <i>MLModel</i>.</li>
-     * <li><code>INPROGRESS</code> - The request is processing.</li>
-     * <li><code>FAILED</code> - The request did not run to completion. It is
-     * not usable.</li> <li><code>COMPLETED</code> - The request completed
-     * successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     * marked as deleted. It is not usable.</li> </ul>
+     * The current status of the <code>MLModel</code>. This element can have
+     * one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     * Machine Learning (Amazon ML) submitted a request to describe a
+     * <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     * is processing.</li> <li><code>FAILED</code> - The request did not run
+     * to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     * request completed successfully.</li> <li><code>DELETED</code> - The
+     * <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, INPROGRESS, FAILED, COMPLETED, DELETED
      *
-     * @param status The current status of the <i>MLModel</i>. This element can have one of
-     *         the following values: <ul> <li><code>PENDING</code> - AmazonML
-     *         submitted a request to describe a <i>MLModel</i>.</li>
-     *         <li><code>INPROGRESS</code> - The request is processing.</li>
-     *         <li><code>FAILED</code> - The request did not run to completion. It is
-     *         not usable.</li> <li><code>COMPLETED</code> - The request completed
-     *         successufully.</li> <li><code>DELETED</code> - The <i>MLModel</i> is
-     *         marked as deleted. It is not usable.</li> </ul>
+     * @param status The current status of the <code>MLModel</code>. This element can have
+     *         one of the following values: <ul> <li><code>PENDING</code> - Amazon
+     *         Machine Learning (Amazon ML) submitted a request to describe a
+     *         <code>MLModel</code>.</li> <li><code>INPROGRESS</code> - The request
+     *         is processing.</li> <li><code>FAILED</code> - The request did not run
+     *         to completion. It is not usable.</li> <li><code>COMPLETED</code> - The
+     *         request completed successfully.</li> <li><code>DELETED</code> - The
+     *         <code>MLModel</code> is marked as deleted. It is not usable.</li>
+     *         </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -650,29 +674,29 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * The current endpoint of the <i>MLModel</i>
+     * The current endpoint of the <code>MLModel</code>
      *
-     * @return The current endpoint of the <i>MLModel</i>
+     * @return The current endpoint of the <code>MLModel</code>
      */
     public RealtimeEndpointInfo getEndpointInfo() {
         return endpointInfo;
     }
     
     /**
-     * The current endpoint of the <i>MLModel</i>
+     * The current endpoint of the <code>MLModel</code>
      *
-     * @param endpointInfo The current endpoint of the <i>MLModel</i>
+     * @param endpointInfo The current endpoint of the <code>MLModel</code>
      */
     public void setEndpointInfo(RealtimeEndpointInfo endpointInfo) {
         this.endpointInfo = endpointInfo;
     }
     
     /**
-     * The current endpoint of the <i>MLModel</i>
+     * The current endpoint of the <code>MLModel</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param endpointInfo The current endpoint of the <i>MLModel</i>
+     * @param endpointInfo The current endpoint of the <code>MLModel</code>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -683,55 +707,59 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * A list of the training parameters in the <i>MLModel</i>. The list is
-     * implemented as a map of of key/value pairs. <p>The current set of
-     * training parameters follows: <ul>
+     * A list of the training parameters in the <code>MLModel</code>. The
+     * list is implemented as a map of key/value pairs. <p>The following is
+     * the current set of training parameters: <ul>
      * <li><p><code>sgd.l1RegularizationAmount</code> - Coefficient
-     * regularization L1 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to zero, resulting in
-     * sparse feature set. If used, specify a small value, such as 1.0E-04 or
-     * 1.0E-08. <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default
-     * is not to use L1 normalization. Cannot be used when <i>L2</i> is
-     * specified. Use sparingly.</li>
+     * regularization L1 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to zero,
+     * resulting in a sparse feature set. If you use this parameter, specify
+     * a small value, such as 1.0E-04 or 1.0E-08. <p>The value is a double
+     * that ranges from 0 to MAX_DOUBLE. The default is not to use L1
+     * normalization. The parameter cannot be used when <code>L2</code> is
+     * specified. Use this parameter sparingly.</li>
      * <li><p><code>sgd.l2RegularizationAmount</code> - Coefficient
-     * regularization L2 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to small, nonzero
-     * values. If used, specify a small value, such as 1.0E-04 or 1.0E-08.
-     * <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default is not
-     * to use L2 normalization. Cannot be used when <i>L1</i> is specified.
-     * Use sparingly.</li> <li><p><code>sgd.maxPasses</code> - Number of
+     * regularization L2 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to small, nonzero
+     * values. If you use this parameter, specify a small value, such as
+     * 1.0E-04 or 1.0E-08. <p>The value is a double that ranges from 0 to
+     * MAX_DOUBLE. The default is not to use L2 normalization. This parameter
+     * cannot be used when <code>L1</code> is specified. Use this parameter
+     * sparingly.</li> <li><p><code>sgd.maxPasses</code> - The number of
      * times that the training process traverses the observations to build
-     * the <i>MLModel</i>. The value is an integer that ranges from 1 through
-     * 10000 for SGD. The default value is 10. </li>
-     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - Maximum allowed size
-     * of the model. <p> Depending on the input data, the model size might
-     * affect the performance. <p> Implemented as an integer. Range is 100000
-     * through 2147483648. Default value is 33554432. </li> </ul>
+     * the <code>MLModel</code>. The value is an integer that ranges from 1
+     * to 10000. The default value is 10. </li>
+     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - The maximum allowed
+     * size of the model. Depending on the input data, the model size might
+     * affect performance. <p> The value is an integer that ranges from
+     * 100000 to 2147483648. The default value is 33554432. </li> </ul>
      *
-     * @return A list of the training parameters in the <i>MLModel</i>. The list is
-     *         implemented as a map of of key/value pairs. <p>The current set of
-     *         training parameters follows: <ul>
+     * @return A list of the training parameters in the <code>MLModel</code>. The
+     *         list is implemented as a map of key/value pairs. <p>The following is
+     *         the current set of training parameters: <ul>
      *         <li><p><code>sgd.l1RegularizationAmount</code> - Coefficient
-     *         regularization L1 norm. Controls overfitting the data by penalizing
-     *         large coefficients. Tends to drive coefficients to zero, resulting in
-     *         sparse feature set. If used, specify a small value, such as 1.0E-04 or
-     *         1.0E-08. <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default
-     *         is not to use L1 normalization. Cannot be used when <i>L2</i> is
-     *         specified. Use sparingly.</li>
+     *         regularization L1 norm. It controls overfitting the data by penalizing
+     *         large coefficients. This tends to drive coefficients to zero,
+     *         resulting in a sparse feature set. If you use this parameter, specify
+     *         a small value, such as 1.0E-04 or 1.0E-08. <p>The value is a double
+     *         that ranges from 0 to MAX_DOUBLE. The default is not to use L1
+     *         normalization. The parameter cannot be used when <code>L2</code> is
+     *         specified. Use this parameter sparingly.</li>
      *         <li><p><code>sgd.l2RegularizationAmount</code> - Coefficient
-     *         regularization L2 norm. Controls overfitting the data by penalizing
-     *         large coefficients. Tends to drive coefficients to small, nonzero
-     *         values. If used, specify a small value, such as 1.0E-04 or 1.0E-08.
-     *         <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default is not
-     *         to use L2 normalization. Cannot be used when <i>L1</i> is specified.
-     *         Use sparingly.</li> <li><p><code>sgd.maxPasses</code> - Number of
+     *         regularization L2 norm. It controls overfitting the data by penalizing
+     *         large coefficients. This tends to drive coefficients to small, nonzero
+     *         values. If you use this parameter, specify a small value, such as
+     *         1.0E-04 or 1.0E-08. <p>The value is a double that ranges from 0 to
+     *         MAX_DOUBLE. The default is not to use L2 normalization. This parameter
+     *         cannot be used when <code>L1</code> is specified. Use this parameter
+     *         sparingly.</li> <li><p><code>sgd.maxPasses</code> - The number of
      *         times that the training process traverses the observations to build
-     *         the <i>MLModel</i>. The value is an integer that ranges from 1 through
-     *         10000 for SGD. The default value is 10. </li>
-     *         <li><p><code>sgd.maxMLModelSizeInBytes</code> - Maximum allowed size
-     *         of the model. <p> Depending on the input data, the model size might
-     *         affect the performance. <p> Implemented as an integer. Range is 100000
-     *         through 2147483648. Default value is 33554432. </li> </ul>
+     *         the <code>MLModel</code>. The value is an integer that ranges from 1
+     *         to 10000. The default value is 10. </li>
+     *         <li><p><code>sgd.maxMLModelSizeInBytes</code> - The maximum allowed
+     *         size of the model. Depending on the input data, the model size might
+     *         affect performance. <p> The value is an integer that ranges from
+     *         100000 to 2147483648. The default value is 33554432. </li> </ul>
      */
     public java.util.Map<String,String> getTrainingParameters() {
         
@@ -742,112 +770,120 @@ public class GetMLModelResult implements Serializable {
     }
     
     /**
-     * A list of the training parameters in the <i>MLModel</i>. The list is
-     * implemented as a map of of key/value pairs. <p>The current set of
-     * training parameters follows: <ul>
+     * A list of the training parameters in the <code>MLModel</code>. The
+     * list is implemented as a map of key/value pairs. <p>The following is
+     * the current set of training parameters: <ul>
      * <li><p><code>sgd.l1RegularizationAmount</code> - Coefficient
-     * regularization L1 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to zero, resulting in
-     * sparse feature set. If used, specify a small value, such as 1.0E-04 or
-     * 1.0E-08. <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default
-     * is not to use L1 normalization. Cannot be used when <i>L2</i> is
-     * specified. Use sparingly.</li>
+     * regularization L1 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to zero,
+     * resulting in a sparse feature set. If you use this parameter, specify
+     * a small value, such as 1.0E-04 or 1.0E-08. <p>The value is a double
+     * that ranges from 0 to MAX_DOUBLE. The default is not to use L1
+     * normalization. The parameter cannot be used when <code>L2</code> is
+     * specified. Use this parameter sparingly.</li>
      * <li><p><code>sgd.l2RegularizationAmount</code> - Coefficient
-     * regularization L2 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to small, nonzero
-     * values. If used, specify a small value, such as 1.0E-04 or 1.0E-08.
-     * <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default is not
-     * to use L2 normalization. Cannot be used when <i>L1</i> is specified.
-     * Use sparingly.</li> <li><p><code>sgd.maxPasses</code> - Number of
+     * regularization L2 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to small, nonzero
+     * values. If you use this parameter, specify a small value, such as
+     * 1.0E-04 or 1.0E-08. <p>The value is a double that ranges from 0 to
+     * MAX_DOUBLE. The default is not to use L2 normalization. This parameter
+     * cannot be used when <code>L1</code> is specified. Use this parameter
+     * sparingly.</li> <li><p><code>sgd.maxPasses</code> - The number of
      * times that the training process traverses the observations to build
-     * the <i>MLModel</i>. The value is an integer that ranges from 1 through
-     * 10000 for SGD. The default value is 10. </li>
-     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - Maximum allowed size
-     * of the model. <p> Depending on the input data, the model size might
-     * affect the performance. <p> Implemented as an integer. Range is 100000
-     * through 2147483648. Default value is 33554432. </li> </ul>
+     * the <code>MLModel</code>. The value is an integer that ranges from 1
+     * to 10000. The default value is 10. </li>
+     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - The maximum allowed
+     * size of the model. Depending on the input data, the model size might
+     * affect performance. <p> The value is an integer that ranges from
+     * 100000 to 2147483648. The default value is 33554432. </li> </ul>
      *
-     * @param trainingParameters A list of the training parameters in the <i>MLModel</i>. The list is
-     *         implemented as a map of of key/value pairs. <p>The current set of
-     *         training parameters follows: <ul>
+     * @param trainingParameters A list of the training parameters in the <code>MLModel</code>. The
+     *         list is implemented as a map of key/value pairs. <p>The following is
+     *         the current set of training parameters: <ul>
      *         <li><p><code>sgd.l1RegularizationAmount</code> - Coefficient
-     *         regularization L1 norm. Controls overfitting the data by penalizing
-     *         large coefficients. Tends to drive coefficients to zero, resulting in
-     *         sparse feature set. If used, specify a small value, such as 1.0E-04 or
-     *         1.0E-08. <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default
-     *         is not to use L1 normalization. Cannot be used when <i>L2</i> is
-     *         specified. Use sparingly.</li>
+     *         regularization L1 norm. It controls overfitting the data by penalizing
+     *         large coefficients. This tends to drive coefficients to zero,
+     *         resulting in a sparse feature set. If you use this parameter, specify
+     *         a small value, such as 1.0E-04 or 1.0E-08. <p>The value is a double
+     *         that ranges from 0 to MAX_DOUBLE. The default is not to use L1
+     *         normalization. The parameter cannot be used when <code>L2</code> is
+     *         specified. Use this parameter sparingly.</li>
      *         <li><p><code>sgd.l2RegularizationAmount</code> - Coefficient
-     *         regularization L2 norm. Controls overfitting the data by penalizing
-     *         large coefficients. Tends to drive coefficients to small, nonzero
-     *         values. If used, specify a small value, such as 1.0E-04 or 1.0E-08.
-     *         <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default is not
-     *         to use L2 normalization. Cannot be used when <i>L1</i> is specified.
-     *         Use sparingly.</li> <li><p><code>sgd.maxPasses</code> - Number of
+     *         regularization L2 norm. It controls overfitting the data by penalizing
+     *         large coefficients. This tends to drive coefficients to small, nonzero
+     *         values. If you use this parameter, specify a small value, such as
+     *         1.0E-04 or 1.0E-08. <p>The value is a double that ranges from 0 to
+     *         MAX_DOUBLE. The default is not to use L2 normalization. This parameter
+     *         cannot be used when <code>L1</code> is specified. Use this parameter
+     *         sparingly.</li> <li><p><code>sgd.maxPasses</code> - The number of
      *         times that the training process traverses the observations to build
-     *         the <i>MLModel</i>. The value is an integer that ranges from 1 through
-     *         10000 for SGD. The default value is 10. </li>
-     *         <li><p><code>sgd.maxMLModelSizeInBytes</code> - Maximum allowed size
-     *         of the model. <p> Depending on the input data, the model size might
-     *         affect the performance. <p> Implemented as an integer. Range is 100000
-     *         through 2147483648. Default value is 33554432. </li> </ul>
+     *         the <code>MLModel</code>. The value is an integer that ranges from 1
+     *         to 10000. The default value is 10. </li>
+     *         <li><p><code>sgd.maxMLModelSizeInBytes</code> - The maximum allowed
+     *         size of the model. Depending on the input data, the model size might
+     *         affect performance. <p> The value is an integer that ranges from
+     *         100000 to 2147483648. The default value is 33554432. </li> </ul>
      */
     public void setTrainingParameters(java.util.Map<String,String> trainingParameters) {
         this.trainingParameters = trainingParameters;
     }
     
     /**
-     * A list of the training parameters in the <i>MLModel</i>. The list is
-     * implemented as a map of of key/value pairs. <p>The current set of
-     * training parameters follows: <ul>
+     * A list of the training parameters in the <code>MLModel</code>. The
+     * list is implemented as a map of key/value pairs. <p>The following is
+     * the current set of training parameters: <ul>
      * <li><p><code>sgd.l1RegularizationAmount</code> - Coefficient
-     * regularization L1 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to zero, resulting in
-     * sparse feature set. If used, specify a small value, such as 1.0E-04 or
-     * 1.0E-08. <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default
-     * is not to use L1 normalization. Cannot be used when <i>L2</i> is
-     * specified. Use sparingly.</li>
+     * regularization L1 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to zero,
+     * resulting in a sparse feature set. If you use this parameter, specify
+     * a small value, such as 1.0E-04 or 1.0E-08. <p>The value is a double
+     * that ranges from 0 to MAX_DOUBLE. The default is not to use L1
+     * normalization. The parameter cannot be used when <code>L2</code> is
+     * specified. Use this parameter sparingly.</li>
      * <li><p><code>sgd.l2RegularizationAmount</code> - Coefficient
-     * regularization L2 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to small, nonzero
-     * values. If used, specify a small value, such as 1.0E-04 or 1.0E-08.
-     * <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default is not
-     * to use L2 normalization. Cannot be used when <i>L1</i> is specified.
-     * Use sparingly.</li> <li><p><code>sgd.maxPasses</code> - Number of
+     * regularization L2 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to small, nonzero
+     * values. If you use this parameter, specify a small value, such as
+     * 1.0E-04 or 1.0E-08. <p>The value is a double that ranges from 0 to
+     * MAX_DOUBLE. The default is not to use L2 normalization. This parameter
+     * cannot be used when <code>L1</code> is specified. Use this parameter
+     * sparingly.</li> <li><p><code>sgd.maxPasses</code> - The number of
      * times that the training process traverses the observations to build
-     * the <i>MLModel</i>. The value is an integer that ranges from 1 through
-     * 10000 for SGD. The default value is 10. </li>
-     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - Maximum allowed size
-     * of the model. <p> Depending on the input data, the model size might
-     * affect the performance. <p> Implemented as an integer. Range is 100000
-     * through 2147483648. Default value is 33554432. </li> </ul>
+     * the <code>MLModel</code>. The value is an integer that ranges from 1
+     * to 10000. The default value is 10. </li>
+     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - The maximum allowed
+     * size of the model. Depending on the input data, the model size might
+     * affect performance. <p> The value is an integer that ranges from
+     * 100000 to 2147483648. The default value is 33554432. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param trainingParameters A list of the training parameters in the <i>MLModel</i>. The list is
-     *         implemented as a map of of key/value pairs. <p>The current set of
-     *         training parameters follows: <ul>
+     * @param trainingParameters A list of the training parameters in the <code>MLModel</code>. The
+     *         list is implemented as a map of key/value pairs. <p>The following is
+     *         the current set of training parameters: <ul>
      *         <li><p><code>sgd.l1RegularizationAmount</code> - Coefficient
-     *         regularization L1 norm. Controls overfitting the data by penalizing
-     *         large coefficients. Tends to drive coefficients to zero, resulting in
-     *         sparse feature set. If used, specify a small value, such as 1.0E-04 or
-     *         1.0E-08. <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default
-     *         is not to use L1 normalization. Cannot be used when <i>L2</i> is
-     *         specified. Use sparingly.</li>
+     *         regularization L1 norm. It controls overfitting the data by penalizing
+     *         large coefficients. This tends to drive coefficients to zero,
+     *         resulting in a sparse feature set. If you use this parameter, specify
+     *         a small value, such as 1.0E-04 or 1.0E-08. <p>The value is a double
+     *         that ranges from 0 to MAX_DOUBLE. The default is not to use L1
+     *         normalization. The parameter cannot be used when <code>L2</code> is
+     *         specified. Use this parameter sparingly.</li>
      *         <li><p><code>sgd.l2RegularizationAmount</code> - Coefficient
-     *         regularization L2 norm. Controls overfitting the data by penalizing
-     *         large coefficients. Tends to drive coefficients to small, nonzero
-     *         values. If used, specify a small value, such as 1.0E-04 or 1.0E-08.
-     *         <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default is not
-     *         to use L2 normalization. Cannot be used when <i>L1</i> is specified.
-     *         Use sparingly.</li> <li><p><code>sgd.maxPasses</code> - Number of
+     *         regularization L2 norm. It controls overfitting the data by penalizing
+     *         large coefficients. This tends to drive coefficients to small, nonzero
+     *         values. If you use this parameter, specify a small value, such as
+     *         1.0E-04 or 1.0E-08. <p>The value is a double that ranges from 0 to
+     *         MAX_DOUBLE. The default is not to use L2 normalization. This parameter
+     *         cannot be used when <code>L1</code> is specified. Use this parameter
+     *         sparingly.</li> <li><p><code>sgd.maxPasses</code> - The number of
      *         times that the training process traverses the observations to build
-     *         the <i>MLModel</i>. The value is an integer that ranges from 1 through
-     *         10000 for SGD. The default value is 10. </li>
-     *         <li><p><code>sgd.maxMLModelSizeInBytes</code> - Maximum allowed size
-     *         of the model. <p> Depending on the input data, the model size might
-     *         affect the performance. <p> Implemented as an integer. Range is 100000
-     *         through 2147483648. Default value is 33554432. </li> </ul>
+     *         the <code>MLModel</code>. The value is an integer that ranges from 1
+     *         to 10000. The default value is 10. </li>
+     *         <li><p><code>sgd.maxMLModelSizeInBytes</code> - The maximum allowed
+     *         size of the model. Depending on the input data, the model size might
+     *         affect performance. <p> The value is an integer that ranges from
+     *         100000 to 2147483648. The default value is 33554432. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -858,30 +894,32 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * A list of the training parameters in the <i>MLModel</i>. The list is
-     * implemented as a map of of key/value pairs. <p>The current set of
-     * training parameters follows: <ul>
+     * A list of the training parameters in the <code>MLModel</code>. The
+     * list is implemented as a map of key/value pairs. <p>The following is
+     * the current set of training parameters: <ul>
      * <li><p><code>sgd.l1RegularizationAmount</code> - Coefficient
-     * regularization L1 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to zero, resulting in
-     * sparse feature set. If used, specify a small value, such as 1.0E-04 or
-     * 1.0E-08. <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default
-     * is not to use L1 normalization. Cannot be used when <i>L2</i> is
-     * specified. Use sparingly.</li>
+     * regularization L1 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to zero,
+     * resulting in a sparse feature set. If you use this parameter, specify
+     * a small value, such as 1.0E-04 or 1.0E-08. <p>The value is a double
+     * that ranges from 0 to MAX_DOUBLE. The default is not to use L1
+     * normalization. The parameter cannot be used when <code>L2</code> is
+     * specified. Use this parameter sparingly.</li>
      * <li><p><code>sgd.l2RegularizationAmount</code> - Coefficient
-     * regularization L2 norm. Controls overfitting the data by penalizing
-     * large coefficients. Tends to drive coefficients to small, nonzero
-     * values. If used, specify a small value, such as 1.0E-04 or 1.0E-08.
-     * <p>Implemented as a double. Range is 0 to MAX_DOUBLE. Default is not
-     * to use L2 normalization. Cannot be used when <i>L1</i> is specified.
-     * Use sparingly.</li> <li><p><code>sgd.maxPasses</code> - Number of
+     * regularization L2 norm. It controls overfitting the data by penalizing
+     * large coefficients. This tends to drive coefficients to small, nonzero
+     * values. If you use this parameter, specify a small value, such as
+     * 1.0E-04 or 1.0E-08. <p>The value is a double that ranges from 0 to
+     * MAX_DOUBLE. The default is not to use L2 normalization. This parameter
+     * cannot be used when <code>L1</code> is specified. Use this parameter
+     * sparingly.</li> <li><p><code>sgd.maxPasses</code> - The number of
      * times that the training process traverses the observations to build
-     * the <i>MLModel</i>. The value is an integer that ranges from 1 through
-     * 10000 for SGD. The default value is 10. </li>
-     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - Maximum allowed size
-     * of the model. <p> Depending on the input data, the model size might
-     * affect the performance. <p> Implemented as an integer. Range is 100000
-     * through 2147483648. Default value is 33554432. </li> </ul>
+     * the <code>MLModel</code>. The value is an integer that ranges from 1
+     * to 10000. The default value is 10. </li>
+     * <li><p><code>sgd.maxMLModelSizeInBytes</code> - The maximum allowed
+     * size of the model. Depending on the input data, the model size might
+     * affect performance. <p> The value is an integer that ranges from
+     * 100000 to 2147483648. The default value is 33554432. </li> </ul>
      * <p>
      * The method adds a new key-value pair into TrainingParameters
      * parameter, and returns a reference to this object so that method calls
@@ -911,38 +949,38 @@ public class GetMLModelResult implements Serializable {
     }
     
     /**
-     * A reference to a file or bucket on Amazon Simple Storage Service
-     * (Amazon S3).
+     * The location of the data file or directory in Amazon Simple Storage
+     * Service (Amazon S3).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
      * <b>Pattern: </b>s3://([^/]+)(/.*)?<br/>
      *
-     * @return A reference to a file or bucket on Amazon Simple Storage Service
-     *         (Amazon S3).
+     * @return The location of the data file or directory in Amazon Simple Storage
+     *         Service (Amazon S3).
      */
     public String getInputDataLocationS3() {
         return inputDataLocationS3;
     }
     
     /**
-     * A reference to a file or bucket on Amazon Simple Storage Service
-     * (Amazon S3).
+     * The location of the data file or directory in Amazon Simple Storage
+     * Service (Amazon S3).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
      * <b>Pattern: </b>s3://([^/]+)(/.*)?<br/>
      *
-     * @param inputDataLocationS3 A reference to a file or bucket on Amazon Simple Storage Service
-     *         (Amazon S3).
+     * @param inputDataLocationS3 The location of the data file or directory in Amazon Simple Storage
+     *         Service (Amazon S3).
      */
     public void setInputDataLocationS3(String inputDataLocationS3) {
         this.inputDataLocationS3 = inputDataLocationS3;
     }
     
     /**
-     * A reference to a file or bucket on Amazon Simple Storage Service
-     * (Amazon S3).
+     * The location of the data file or directory in Amazon Simple Storage
+     * Service (Amazon S3).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -950,8 +988,8 @@ public class GetMLModelResult implements Serializable {
      * <b>Length: </b>0 - 2048<br/>
      * <b>Pattern: </b>s3://([^/]+)(/.*)?<br/>
      *
-     * @param inputDataLocationS3 A reference to a file or bucket on Amazon Simple Storage Service
-     *         (Amazon S3).
+     * @param inputDataLocationS3 The location of the data file or directory in Amazon Simple Storage
+     *         Service (Amazon S3).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -962,22 +1000,24 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * Identifies the <i>MLModel</i> category. The available types follow:
-     * <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     * listing price should a house have?"</li> <li>BINARY -- Produces one of
-     * two possible results. For example, "Is this an e-commerce web
-     * site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     * For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * Identifies the <code>MLModel</code> category. The following are the
+     * available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     * example, "What listing price should a house have?"</li> <li>BINARY --
+     * Produces one of two possible results. For example, "Is this an
+     * e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     * possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     * trade?"</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>REGRESSION, BINARY, MULTICLASS
      *
-     * @return Identifies the <i>MLModel</i> category. The available types follow:
-     *         <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     *         listing price should a house have?"</li> <li>BINARY -- Produces one of
-     *         two possible results. For example, "Is this an e-commerce web
-     *         site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     *         For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * @return Identifies the <code>MLModel</code> category. The following are the
+     *         available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     *         example, "What listing price should a house have?"</li> <li>BINARY --
+     *         Produces one of two possible results. For example, "Is this an
+     *         e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     *         possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     *         trade?"</li> </ul>
      *
      * @see MLModelType
      */
@@ -986,22 +1026,24 @@ public class GetMLModelResult implements Serializable {
     }
     
     /**
-     * Identifies the <i>MLModel</i> category. The available types follow:
-     * <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     * listing price should a house have?"</li> <li>BINARY -- Produces one of
-     * two possible results. For example, "Is this an e-commerce web
-     * site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     * For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * Identifies the <code>MLModel</code> category. The following are the
+     * available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     * example, "What listing price should a house have?"</li> <li>BINARY --
+     * Produces one of two possible results. For example, "Is this an
+     * e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     * possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     * trade?"</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>REGRESSION, BINARY, MULTICLASS
      *
-     * @param mLModelType Identifies the <i>MLModel</i> category. The available types follow:
-     *         <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     *         listing price should a house have?"</li> <li>BINARY -- Produces one of
-     *         two possible results. For example, "Is this an e-commerce web
-     *         site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     *         For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * @param mLModelType Identifies the <code>MLModel</code> category. The following are the
+     *         available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     *         example, "What listing price should a house have?"</li> <li>BINARY --
+     *         Produces one of two possible results. For example, "Is this an
+     *         e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     *         possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     *         trade?"</li> </ul>
      *
      * @see MLModelType
      */
@@ -1010,24 +1052,26 @@ public class GetMLModelResult implements Serializable {
     }
     
     /**
-     * Identifies the <i>MLModel</i> category. The available types follow:
-     * <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     * listing price should a house have?"</li> <li>BINARY -- Produces one of
-     * two possible results. For example, "Is this an e-commerce web
-     * site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     * For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * Identifies the <code>MLModel</code> category. The following are the
+     * available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     * example, "What listing price should a house have?"</li> <li>BINARY --
+     * Produces one of two possible results. For example, "Is this an
+     * e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     * possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     * trade?"</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>REGRESSION, BINARY, MULTICLASS
      *
-     * @param mLModelType Identifies the <i>MLModel</i> category. The available types follow:
-     *         <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     *         listing price should a house have?"</li> <li>BINARY -- Produces one of
-     *         two possible results. For example, "Is this an e-commerce web
-     *         site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     *         For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * @param mLModelType Identifies the <code>MLModel</code> category. The following are the
+     *         available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     *         example, "What listing price should a house have?"</li> <li>BINARY --
+     *         Produces one of two possible results. For example, "Is this an
+     *         e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     *         possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     *         trade?"</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1040,22 +1084,24 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * Identifies the <i>MLModel</i> category. The available types follow:
-     * <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     * listing price should a house have?"</li> <li>BINARY -- Produces one of
-     * two possible results. For example, "Is this an e-commerce web
-     * site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     * For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * Identifies the <code>MLModel</code> category. The following are the
+     * available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     * example, "What listing price should a house have?"</li> <li>BINARY --
+     * Produces one of two possible results. For example, "Is this an
+     * e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     * possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     * trade?"</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>REGRESSION, BINARY, MULTICLASS
      *
-     * @param mLModelType Identifies the <i>MLModel</i> category. The available types follow:
-     *         <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     *         listing price should a house have?"</li> <li>BINARY -- Produces one of
-     *         two possible results. For example, "Is this an e-commerce web
-     *         site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     *         For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * @param mLModelType Identifies the <code>MLModel</code> category. The following are the
+     *         available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     *         example, "What listing price should a house have?"</li> <li>BINARY --
+     *         Produces one of two possible results. For example, "Is this an
+     *         e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     *         possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     *         trade?"</li> </ul>
      *
      * @see MLModelType
      */
@@ -1064,24 +1110,26 @@ public class GetMLModelResult implements Serializable {
     }
     
     /**
-     * Identifies the <i>MLModel</i> category. The available types follow:
-     * <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     * listing price should a house have?"</li> <li>BINARY -- Produces one of
-     * two possible results. For example, "Is this an e-commerce web
-     * site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     * For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * Identifies the <code>MLModel</code> category. The following are the
+     * available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     * example, "What listing price should a house have?"</li> <li>BINARY --
+     * Produces one of two possible results. For example, "Is this an
+     * e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     * possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     * trade?"</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>REGRESSION, BINARY, MULTICLASS
      *
-     * @param mLModelType Identifies the <i>MLModel</i> category. The available types follow:
-     *         <ul> <li>REGRESSION -- Produces a numeric result. For example, "What
-     *         listing price should a house have?"</li> <li>BINARY -- Produces one of
-     *         two possible results. For example, "Is this an e-commerce web
-     *         site?"</li> <li>MULTICLASS -- Produces more than two possible results.
-     *         For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li> </ul>
+     * @param mLModelType Identifies the <code>MLModel</code> category. The following are the
+     *         available types: <ul> <li>REGRESSION -- Produces a numeric result. For
+     *         example, "What listing price should a house have?"</li> <li>BINARY --
+     *         Produces one of two possible results. For example, "Is this an
+     *         e-commerce website?"</li> <li>MULTICLASS -- Produces more than two
+     *         possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
+     *         trade?"</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1095,18 +1143,20 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * The scoring threshold is used in binary classification
-     * <i>MLModels</i>, and marks the boundary between a positive prediction
-     * and a negative prediction. <p>Output values greater than or equal to
-     * the threshold receive a positive result from the MLModel, such as
-     * <code>true</code>. Output values less than the threshold receive a
-     * negative response from the MLModel, such as <code>false</code>.
+     * <code>MLModel</code>s, and marks the boundary between a positive
+     * prediction and a negative prediction. <p>Output values greater than or
+     * equal to the threshold receive a positive result from the MLModel,
+     * such as <code>true</code>. Output values less than the threshold
+     * receive a negative response from the MLModel, such as
+     * <code>false</code>.
      *
      * @return The scoring threshold is used in binary classification
-     *         <i>MLModels</i>, and marks the boundary between a positive prediction
-     *         and a negative prediction. <p>Output values greater than or equal to
-     *         the threshold receive a positive result from the MLModel, such as
-     *         <code>true</code>. Output values less than the threshold receive a
-     *         negative response from the MLModel, such as <code>false</code>.
+     *         <code>MLModel</code>s, and marks the boundary between a positive
+     *         prediction and a negative prediction. <p>Output values greater than or
+     *         equal to the threshold receive a positive result from the MLModel,
+     *         such as <code>true</code>. Output values less than the threshold
+     *         receive a negative response from the MLModel, such as
+     *         <code>false</code>.
      */
     public Float getScoreThreshold() {
         return scoreThreshold;
@@ -1114,18 +1164,20 @@ public class GetMLModelResult implements Serializable {
     
     /**
      * The scoring threshold is used in binary classification
-     * <i>MLModels</i>, and marks the boundary between a positive prediction
-     * and a negative prediction. <p>Output values greater than or equal to
-     * the threshold receive a positive result from the MLModel, such as
-     * <code>true</code>. Output values less than the threshold receive a
-     * negative response from the MLModel, such as <code>false</code>.
+     * <code>MLModel</code>s, and marks the boundary between a positive
+     * prediction and a negative prediction. <p>Output values greater than or
+     * equal to the threshold receive a positive result from the MLModel,
+     * such as <code>true</code>. Output values less than the threshold
+     * receive a negative response from the MLModel, such as
+     * <code>false</code>.
      *
      * @param scoreThreshold The scoring threshold is used in binary classification
-     *         <i>MLModels</i>, and marks the boundary between a positive prediction
-     *         and a negative prediction. <p>Output values greater than or equal to
-     *         the threshold receive a positive result from the MLModel, such as
-     *         <code>true</code>. Output values less than the threshold receive a
-     *         negative response from the MLModel, such as <code>false</code>.
+     *         <code>MLModel</code>s, and marks the boundary between a positive
+     *         prediction and a negative prediction. <p>Output values greater than or
+     *         equal to the threshold receive a positive result from the MLModel,
+     *         such as <code>true</code>. Output values less than the threshold
+     *         receive a negative response from the MLModel, such as
+     *         <code>false</code>.
      */
     public void setScoreThreshold(Float scoreThreshold) {
         this.scoreThreshold = scoreThreshold;
@@ -1133,20 +1185,22 @@ public class GetMLModelResult implements Serializable {
     
     /**
      * The scoring threshold is used in binary classification
-     * <i>MLModels</i>, and marks the boundary between a positive prediction
-     * and a negative prediction. <p>Output values greater than or equal to
-     * the threshold receive a positive result from the MLModel, such as
-     * <code>true</code>. Output values less than the threshold receive a
-     * negative response from the MLModel, such as <code>false</code>.
+     * <code>MLModel</code>s, and marks the boundary between a positive
+     * prediction and a negative prediction. <p>Output values greater than or
+     * equal to the threshold receive a positive result from the MLModel,
+     * such as <code>true</code>. Output values less than the threshold
+     * receive a negative response from the MLModel, such as
+     * <code>false</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param scoreThreshold The scoring threshold is used in binary classification
-     *         <i>MLModels</i>, and marks the boundary between a positive prediction
-     *         and a negative prediction. <p>Output values greater than or equal to
-     *         the threshold receive a positive result from the MLModel, such as
-     *         <code>true</code>. Output values less than the threshold receive a
-     *         negative response from the MLModel, such as <code>false</code>.
+     *         <code>MLModel</code>s, and marks the boundary between a positive
+     *         prediction and a negative prediction. <p>Output values greater than or
+     *         equal to the threshold receive a positive result from the MLModel,
+     *         such as <code>true</code>. Output values less than the threshold
+     *         receive a negative response from the MLModel, such as
+     *         <code>false</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1157,35 +1211,35 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * The time of the most recent edit to the <b>ScoreThreshold</b>. The
-     * time is expressed in epoch time.
+     * The time of the most recent edit to the <code>ScoreThreshold</code>.
+     * The time is expressed in epoch time.
      *
-     * @return The time of the most recent edit to the <b>ScoreThreshold</b>. The
-     *         time is expressed in epoch time.
+     * @return The time of the most recent edit to the <code>ScoreThreshold</code>.
+     *         The time is expressed in epoch time.
      */
     public java.util.Date getScoreThresholdLastUpdatedAt() {
         return scoreThresholdLastUpdatedAt;
     }
     
     /**
-     * The time of the most recent edit to the <b>ScoreThreshold</b>. The
-     * time is expressed in epoch time.
+     * The time of the most recent edit to the <code>ScoreThreshold</code>.
+     * The time is expressed in epoch time.
      *
-     * @param scoreThresholdLastUpdatedAt The time of the most recent edit to the <b>ScoreThreshold</b>. The
-     *         time is expressed in epoch time.
+     * @param scoreThresholdLastUpdatedAt The time of the most recent edit to the <code>ScoreThreshold</code>.
+     *         The time is expressed in epoch time.
      */
     public void setScoreThresholdLastUpdatedAt(java.util.Date scoreThresholdLastUpdatedAt) {
         this.scoreThresholdLastUpdatedAt = scoreThresholdLastUpdatedAt;
     }
     
     /**
-     * The time of the most recent edit to the <b>ScoreThreshold</b>. The
-     * time is expressed in epoch time.
+     * The time of the most recent edit to the <code>ScoreThreshold</code>.
+     * The time is expressed in epoch time.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param scoreThresholdLastUpdatedAt The time of the most recent edit to the <b>ScoreThreshold</b>. The
-     *         time is expressed in epoch time.
+     * @param scoreThresholdLastUpdatedAt The time of the most recent edit to the <code>ScoreThreshold</code>.
+     *         The time is expressed in epoch time.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1196,29 +1250,35 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * Location of the logs from the <i>CreateMLModel</i> operation.
+     * A link to the file that contains logs of the
+     * <code>CreateMLModel</code> operation.
      *
-     * @return Location of the logs from the <i>CreateMLModel</i> operation.
+     * @return A link to the file that contains logs of the
+     *         <code>CreateMLModel</code> operation.
      */
     public String getLogUri() {
         return logUri;
     }
     
     /**
-     * Location of the logs from the <i>CreateMLModel</i> operation.
+     * A link to the file that contains logs of the
+     * <code>CreateMLModel</code> operation.
      *
-     * @param logUri Location of the logs from the <i>CreateMLModel</i> operation.
+     * @param logUri A link to the file that contains logs of the
+     *         <code>CreateMLModel</code> operation.
      */
     public void setLogUri(String logUri) {
         this.logUri = logUri;
     }
     
     /**
-     * Location of the logs from the <i>CreateMLModel</i> operation.
+     * A link to the file that contains logs of the
+     * <code>CreateMLModel</code> operation.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param logUri Location of the logs from the <i>CreateMLModel</i> operation.
+     * @param logUri A link to the file that contains logs of the
+     *         <code>CreateMLModel</code> operation.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1230,13 +1290,13 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * Description of the most recent details about accessing the
-     * <i>MLModel</i>.
+     * <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10240<br/>
      *
      * @return Description of the most recent details about accessing the
-     *         <i>MLModel</i>.
+     *         <code>MLModel</code>.
      */
     public String getMessage() {
         return message;
@@ -1244,13 +1304,13 @@ public class GetMLModelResult implements Serializable {
     
     /**
      * Description of the most recent details about accessing the
-     * <i>MLModel</i>.
+     * <code>MLModel</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10240<br/>
      *
      * @param message Description of the most recent details about accessing the
-     *         <i>MLModel</i>.
+     *         <code>MLModel</code>.
      */
     public void setMessage(String message) {
         this.message = message;
@@ -1258,7 +1318,7 @@ public class GetMLModelResult implements Serializable {
     
     /**
      * Description of the most recent details about accessing the
-     * <i>MLModel</i>.
+     * <code>MLModel</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -1266,7 +1326,7 @@ public class GetMLModelResult implements Serializable {
      * <b>Length: </b>0 - 10240<br/>
      *
      * @param message Description of the most recent details about accessing the
-     *         <i>MLModel</i>.
+     *         <code>MLModel</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1277,62 +1337,68 @@ public class GetMLModelResult implements Serializable {
     }
 
     /**
-     * Recipe to use when training the <i>MLModel</i>. The <b>Recipe</b>
-     * provides detailed information about the observation data to use during
-     * training, as well as manipulations to perform on the observation data
-     * during training. <p><b>Note</b> This parameter is provided as part of
-     * the verbose format.
+     * The recipe to use when training the <code>MLModel</code>. The
+     * <code>Recipe</code> provides detailed information about the
+     * observation data to use during training, as well as manipulations to
+     * perform on the observation data during training.
+     * <note><title>Note</title><p>This parameter is provided as part of the
+     * verbose format.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 131071<br/>
      *
-     * @return Recipe to use when training the <i>MLModel</i>. The <b>Recipe</b>
-     *         provides detailed information about the observation data to use during
-     *         training, as well as manipulations to perform on the observation data
-     *         during training. <p><b>Note</b> This parameter is provided as part of
-     *         the verbose format.
+     * @return The recipe to use when training the <code>MLModel</code>. The
+     *         <code>Recipe</code> provides detailed information about the
+     *         observation data to use during training, as well as manipulations to
+     *         perform on the observation data during training.
+     *         <note><title>Note</title><p>This parameter is provided as part of the
+     *         verbose format.</note>
      */
     public String getRecipe() {
         return recipe;
     }
     
     /**
-     * Recipe to use when training the <i>MLModel</i>. The <b>Recipe</b>
-     * provides detailed information about the observation data to use during
-     * training, as well as manipulations to perform on the observation data
-     * during training. <p><b>Note</b> This parameter is provided as part of
-     * the verbose format.
+     * The recipe to use when training the <code>MLModel</code>. The
+     * <code>Recipe</code> provides detailed information about the
+     * observation data to use during training, as well as manipulations to
+     * perform on the observation data during training.
+     * <note><title>Note</title><p>This parameter is provided as part of the
+     * verbose format.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 131071<br/>
      *
-     * @param recipe Recipe to use when training the <i>MLModel</i>. The <b>Recipe</b>
-     *         provides detailed information about the observation data to use during
-     *         training, as well as manipulations to perform on the observation data
-     *         during training. <p><b>Note</b> This parameter is provided as part of
-     *         the verbose format.
+     * @param recipe The recipe to use when training the <code>MLModel</code>. The
+     *         <code>Recipe</code> provides detailed information about the
+     *         observation data to use during training, as well as manipulations to
+     *         perform on the observation data during training.
+     *         <note><title>Note</title><p>This parameter is provided as part of the
+     *         verbose format.</note>
      */
     public void setRecipe(String recipe) {
         this.recipe = recipe;
     }
     
     /**
-     * Recipe to use when training the <i>MLModel</i>. The <b>Recipe</b>
-     * provides detailed information about the observation data to use during
-     * training, as well as manipulations to perform on the observation data
-     * during training. <p><b>Note</b> This parameter is provided as part of
-     * the verbose format.
+     * The recipe to use when training the <code>MLModel</code>. The
+     * <code>Recipe</code> provides detailed information about the
+     * observation data to use during training, as well as manipulations to
+     * perform on the observation data during training.
+     * <note><title>Note</title><p>This parameter is provided as part of the
+     * verbose format.</note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 131071<br/>
      *
-     * @param recipe Recipe to use when training the <i>MLModel</i>. The <b>Recipe</b>
-     *         provides detailed information about the observation data to use during
-     *         training, as well as manipulations to perform on the observation data
-     *         during training. <p><b>Note</b> This parameter is provided as part of
-     *         the verbose format.
+     * @param recipe The recipe to use when training the <code>MLModel</code>. The
+     *         <code>Recipe</code> provides detailed information about the
+     *         observation data to use during training, as well as manipulations to
+     *         perform on the observation data during training.
+     *         <note><title>Note</title><p>This parameter is provided as part of the
+     *         verbose format.</note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1344,15 +1410,15 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * The schema used by all of the data files referenced by the
-     * <i>DataSource</i>. <p><b>Note</b> This parameter is provided as part
-     * of the verbose format.
+     * <code>DataSource</code>. <note><title>Note</title><p>This parameter is
+     * provided as part of the verbose format.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 131071<br/>
      *
      * @return The schema used by all of the data files referenced by the
-     *         <i>DataSource</i>. <p><b>Note</b> This parameter is provided as part
-     *         of the verbose format.
+     *         <code>DataSource</code>. <note><title>Note</title><p>This parameter is
+     *         provided as part of the verbose format.</note>
      */
     public String getSchema() {
         return schema;
@@ -1360,15 +1426,15 @@ public class GetMLModelResult implements Serializable {
     
     /**
      * The schema used by all of the data files referenced by the
-     * <i>DataSource</i>. <p><b>Note</b> This parameter is provided as part
-     * of the verbose format.
+     * <code>DataSource</code>. <note><title>Note</title><p>This parameter is
+     * provided as part of the verbose format.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 131071<br/>
      *
      * @param schema The schema used by all of the data files referenced by the
-     *         <i>DataSource</i>. <p><b>Note</b> This parameter is provided as part
-     *         of the verbose format.
+     *         <code>DataSource</code>. <note><title>Note</title><p>This parameter is
+     *         provided as part of the verbose format.</note>
      */
     public void setSchema(String schema) {
         this.schema = schema;
@@ -1376,8 +1442,8 @@ public class GetMLModelResult implements Serializable {
     
     /**
      * The schema used by all of the data files referenced by the
-     * <i>DataSource</i>. <p><b>Note</b> This parameter is provided as part
-     * of the verbose format.
+     * <code>DataSource</code>. <note><title>Note</title><p>This parameter is
+     * provided as part of the verbose format.</note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -1385,8 +1451,8 @@ public class GetMLModelResult implements Serializable {
      * <b>Length: </b>0 - 131071<br/>
      *
      * @param schema The schema used by all of the data files referenced by the
-     *         <i>DataSource</i>. <p><b>Note</b> This parameter is provided as part
-     *         of the verbose format.
+     *         <code>DataSource</code>. <note><title>Note</title><p>This parameter is
+     *         provided as part of the verbose format.</note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

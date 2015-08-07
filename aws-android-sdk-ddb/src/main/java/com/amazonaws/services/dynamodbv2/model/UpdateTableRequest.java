@@ -21,34 +21,54 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.dynamodbv2.AmazonDynamoDB#updateTable(UpdateTableRequest) UpdateTable operation}.
  * <p>
- * Updates the provisioned throughput for the given table. Setting the
- * throughput for a table helps you manage performance and is part of the
- * provisioned throughput feature of DynamoDB.
+ * Modifies the provisioned throughput settings, global secondary
+ * indexes, or DynamoDB Streams settings for a given table.
  * </p>
  * <p>
- * The provisioned throughput values can be upgraded or downgraded based
- * on the maximums and minimums listed in the
- * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"> Limits </a>
- * section in the Amazon DynamoDB Developer Guide.
+ * You can only perform one of the following operations at once:
  * </p>
- * <p>
- * The table must be in the <code>ACTIVE</code> state for this operation
- * to succeed. <i>UpdateTable</i> is an asynchronous operation; while
- * executing the operation, the table is in the <code>UPDATING</code>
- * state. While the table is in the <code>UPDATING</code> state, the
- * table still has the provisioned throughput from before the call. The
- * new provisioned throughput setting is in effect only when the table
- * returns to the <code>ACTIVE</code> state after the <i>UpdateTable</i>
- * operation.
+ * 
+ * <ul>
+ * <li> <p>
+ * Modify the provisioned throughput settings of the table.
  * </p>
+ * </li>
+ * <li> <p>
+ * Enable or disable Streams on the table.
+ * </p>
+ * </li>
+ * <li> <p>
+ * Remove a global secondary index from the table.
+ * </p>
+ * </li>
+ * <li> <p>
+ * Create a new global secondary index on the table. Once the index
+ * begins backfilling, you can use <i>UpdateTable</i> to perform other
+ * operations.
+ * </p>
+ * </li>
+ * 
+ * </ul>
  * <p>
- * You cannot add, modify or delete indexes using <i>UpdateTable</i> .
- * Indexes can only be defined at table creation time.
+ * <i>UpdateTable</i> is an asynchronous operation; while it is
+ * executing, the table status changes from <code>ACTIVE</code> to
+ * <code>UPDATING</code> . While it is <code>UPDATING</code> ,
+ * you cannot issue another <i>UpdateTable</i> request. When the
+ * table returns to the <code>ACTIVE</code> state, the <i>UpdateTable</i>
+ * operation is complete.
  * </p>
  *
  * @see com.amazonaws.services.dynamodbv2.AmazonDynamoDB#updateTable(UpdateTableRequest)
  */
 public class UpdateTableRequest extends AmazonWebServiceRequest implements Serializable {
+
+    /**
+     * An array of attributes that describe the key schema for the table and
+     * indexes. If you are adding a new global secondary index to the table,
+     * <i>AttributeDefinitions</i> must include the key element(s) of the new
+     * index.
+     */
+    private com.amazonaws.internal.ListWithAutoConstructFlag<AttributeDefinition> attributeDefinitions;
 
     /**
      * The name of the table to be updated.
@@ -65,15 +85,32 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     private ProvisionedThroughput provisionedThroughput;
 
     /**
-     * An array of one or more global secondary indexes on the table,
-     * together with provisioned throughput settings for each index.
+     * An array of one or more global secondary indexes for the table. For
+     * each index in the array, you can request one action: <ul>
+     * <li><p><i>Create</i> - add a new global secondary index to the
+     * table.</li> <li><p><i>Update</i> - modify the provisioned throughput
+     * settings of an existing global secondary index.</li>
+     * <li><p><i>Delete</i> - remove a global secondary index from the
+     * table.</li> </ul> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html">Managing
+     * Global Secondary Indexes</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<GlobalSecondaryIndexUpdate> globalSecondaryIndexUpdates;
+
+    /**
+     * Represents the DynamoDB Streams configuration for the table. <note>
+     * <p>You will receive a <i>ResourceInUseException</i> if you attempt to
+     * enable a stream on a table that already has a stream, or if you
+     * attempt to disable a stream on a table which does not have a stream.
+     * </note>
+     */
+    private StreamSpecification streamSpecification;
 
     /**
      * Default constructor for a new UpdateTableRequest object.  Callers should use the
@@ -92,11 +129,99 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
      * using the <i>UpdateTable</i> operation. <p>For current minimum and
      * maximum provisioned throughput values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public UpdateTableRequest(String tableName, ProvisionedThroughput provisionedThroughput) {
         setTableName(tableName);
         setProvisionedThroughput(provisionedThroughput);
+    }
+
+    /**
+     * An array of attributes that describe the key schema for the table and
+     * indexes. If you are adding a new global secondary index to the table,
+     * <i>AttributeDefinitions</i> must include the key element(s) of the new
+     * index.
+     *
+     * @return An array of attributes that describe the key schema for the table and
+     *         indexes. If you are adding a new global secondary index to the table,
+     *         <i>AttributeDefinitions</i> must include the key element(s) of the new
+     *         index.
+     */
+    public java.util.List<AttributeDefinition> getAttributeDefinitions() {
+        return attributeDefinitions;
+    }
+    
+    /**
+     * An array of attributes that describe the key schema for the table and
+     * indexes. If you are adding a new global secondary index to the table,
+     * <i>AttributeDefinitions</i> must include the key element(s) of the new
+     * index.
+     *
+     * @param attributeDefinitions An array of attributes that describe the key schema for the table and
+     *         indexes. If you are adding a new global secondary index to the table,
+     *         <i>AttributeDefinitions</i> must include the key element(s) of the new
+     *         index.
+     */
+    public void setAttributeDefinitions(java.util.Collection<AttributeDefinition> attributeDefinitions) {
+        if (attributeDefinitions == null) {
+            this.attributeDefinitions = null;
+            return;
+        }
+        com.amazonaws.internal.ListWithAutoConstructFlag<AttributeDefinition> attributeDefinitionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<AttributeDefinition>(attributeDefinitions.size());
+        attributeDefinitionsCopy.addAll(attributeDefinitions);
+        this.attributeDefinitions = attributeDefinitionsCopy;
+    }
+    
+    /**
+     * An array of attributes that describe the key schema for the table and
+     * indexes. If you are adding a new global secondary index to the table,
+     * <i>AttributeDefinitions</i> must include the key element(s) of the new
+     * index.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param attributeDefinitions An array of attributes that describe the key schema for the table and
+     *         indexes. If you are adding a new global secondary index to the table,
+     *         <i>AttributeDefinitions</i> must include the key element(s) of the new
+     *         index.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public UpdateTableRequest withAttributeDefinitions(AttributeDefinition... attributeDefinitions) {
+        if (getAttributeDefinitions() == null) setAttributeDefinitions(new java.util.ArrayList<AttributeDefinition>(attributeDefinitions.length));
+        for (AttributeDefinition value : attributeDefinitions) {
+            getAttributeDefinitions().add(value);
+        }
+        return this;
+    }
+    
+    /**
+     * An array of attributes that describe the key schema for the table and
+     * indexes. If you are adding a new global secondary index to the table,
+     * <i>AttributeDefinitions</i> must include the key element(s) of the new
+     * index.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param attributeDefinitions An array of attributes that describe the key schema for the table and
+     *         indexes. If you are adding a new global secondary index to the table,
+     *         <i>AttributeDefinitions</i> must include the key element(s) of the new
+     *         index.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public UpdateTableRequest withAttributeDefinitions(java.util.Collection<AttributeDefinition> attributeDefinitions) {
+        if (attributeDefinitions == null) {
+            this.attributeDefinitions = null;
+        } else {
+            com.amazonaws.internal.ListWithAutoConstructFlag<AttributeDefinition> attributeDefinitionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<AttributeDefinition>(attributeDefinitions.size());
+            attributeDefinitionsCopy.addAll(attributeDefinitions);
+            this.attributeDefinitions = attributeDefinitionsCopy;
+        }
+
+        return this;
     }
 
     /**
@@ -150,14 +275,14 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return Represents the provisioned throughput settings for a specified table
      *         or index. The settings can be modified using the <i>UpdateTable</i>
      *         operation. <p>For current minimum and maximum provisioned throughput
      *         values, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     *         in the Amazon DynamoDB Developer Guide.
+     *         in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public ProvisionedThroughput getProvisionedThroughput() {
         return provisionedThroughput;
@@ -169,14 +294,14 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @param provisionedThroughput Represents the provisioned throughput settings for a specified table
      *         or index. The settings can be modified using the <i>UpdateTable</i>
      *         operation. <p>For current minimum and maximum provisioned throughput
      *         values, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     *         in the Amazon DynamoDB Developer Guide.
+     *         in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setProvisionedThroughput(ProvisionedThroughput provisionedThroughput) {
         this.provisionedThroughput = provisionedThroughput;
@@ -188,7 +313,7 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -197,7 +322,7 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
      *         operation. <p>For current minimum and maximum provisioned throughput
      *         values, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     *         in the Amazon DynamoDB Developer Guide.
+     *         in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -208,22 +333,54 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * An array of one or more global secondary indexes on the table,
-     * together with provisioned throughput settings for each index.
+     * An array of one or more global secondary indexes for the table. For
+     * each index in the array, you can request one action: <ul>
+     * <li><p><i>Create</i> - add a new global secondary index to the
+     * table.</li> <li><p><i>Update</i> - modify the provisioned throughput
+     * settings of an existing global secondary index.</li>
+     * <li><p><i>Delete</i> - remove a global secondary index from the
+     * table.</li> </ul> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html">Managing
+     * Global Secondary Indexes</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      *
-     * @return An array of one or more global secondary indexes on the table,
-     *         together with provisioned throughput settings for each index.
+     * @return An array of one or more global secondary indexes for the table. For
+     *         each index in the array, you can request one action: <ul>
+     *         <li><p><i>Create</i> - add a new global secondary index to the
+     *         table.</li> <li><p><i>Update</i> - modify the provisioned throughput
+     *         settings of an existing global secondary index.</li>
+     *         <li><p><i>Delete</i> - remove a global secondary index from the
+     *         table.</li> </ul> <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html">Managing
+     *         Global Secondary Indexes</a> in the <i>Amazon DynamoDB Developer
+     *         Guide</i>.
      */
     public java.util.List<GlobalSecondaryIndexUpdate> getGlobalSecondaryIndexUpdates() {
         return globalSecondaryIndexUpdates;
     }
     
     /**
-     * An array of one or more global secondary indexes on the table,
-     * together with provisioned throughput settings for each index.
+     * An array of one or more global secondary indexes for the table. For
+     * each index in the array, you can request one action: <ul>
+     * <li><p><i>Create</i> - add a new global secondary index to the
+     * table.</li> <li><p><i>Update</i> - modify the provisioned throughput
+     * settings of an existing global secondary index.</li>
+     * <li><p><i>Delete</i> - remove a global secondary index from the
+     * table.</li> </ul> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html">Managing
+     * Global Secondary Indexes</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      *
-     * @param globalSecondaryIndexUpdates An array of one or more global secondary indexes on the table,
-     *         together with provisioned throughput settings for each index.
+     * @param globalSecondaryIndexUpdates An array of one or more global secondary indexes for the table. For
+     *         each index in the array, you can request one action: <ul>
+     *         <li><p><i>Create</i> - add a new global secondary index to the
+     *         table.</li> <li><p><i>Update</i> - modify the provisioned throughput
+     *         settings of an existing global secondary index.</li>
+     *         <li><p><i>Delete</i> - remove a global secondary index from the
+     *         table.</li> </ul> <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html">Managing
+     *         Global Secondary Indexes</a> in the <i>Amazon DynamoDB Developer
+     *         Guide</i>.
      */
     public void setGlobalSecondaryIndexUpdates(java.util.Collection<GlobalSecondaryIndexUpdate> globalSecondaryIndexUpdates) {
         if (globalSecondaryIndexUpdates == null) {
@@ -236,13 +393,29 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
     }
     
     /**
-     * An array of one or more global secondary indexes on the table,
-     * together with provisioned throughput settings for each index.
+     * An array of one or more global secondary indexes for the table. For
+     * each index in the array, you can request one action: <ul>
+     * <li><p><i>Create</i> - add a new global secondary index to the
+     * table.</li> <li><p><i>Update</i> - modify the provisioned throughput
+     * settings of an existing global secondary index.</li>
+     * <li><p><i>Delete</i> - remove a global secondary index from the
+     * table.</li> </ul> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html">Managing
+     * Global Secondary Indexes</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param globalSecondaryIndexUpdates An array of one or more global secondary indexes on the table,
-     *         together with provisioned throughput settings for each index.
+     * @param globalSecondaryIndexUpdates An array of one or more global secondary indexes for the table. For
+     *         each index in the array, you can request one action: <ul>
+     *         <li><p><i>Create</i> - add a new global secondary index to the
+     *         table.</li> <li><p><i>Update</i> - modify the provisioned throughput
+     *         settings of an existing global secondary index.</li>
+     *         <li><p><i>Delete</i> - remove a global secondary index from the
+     *         table.</li> </ul> <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html">Managing
+     *         Global Secondary Indexes</a> in the <i>Amazon DynamoDB Developer
+     *         Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -256,13 +429,29 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
     }
     
     /**
-     * An array of one or more global secondary indexes on the table,
-     * together with provisioned throughput settings for each index.
+     * An array of one or more global secondary indexes for the table. For
+     * each index in the array, you can request one action: <ul>
+     * <li><p><i>Create</i> - add a new global secondary index to the
+     * table.</li> <li><p><i>Update</i> - modify the provisioned throughput
+     * settings of an existing global secondary index.</li>
+     * <li><p><i>Delete</i> - remove a global secondary index from the
+     * table.</li> </ul> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html">Managing
+     * Global Secondary Indexes</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param globalSecondaryIndexUpdates An array of one or more global secondary indexes on the table,
-     *         together with provisioned throughput settings for each index.
+     * @param globalSecondaryIndexUpdates An array of one or more global secondary indexes for the table. For
+     *         each index in the array, you can request one action: <ul>
+     *         <li><p><i>Create</i> - add a new global secondary index to the
+     *         table.</li> <li><p><i>Update</i> - modify the provisioned throughput
+     *         settings of an existing global secondary index.</li>
+     *         <li><p><i>Delete</i> - remove a global secondary index from the
+     *         table.</li> </ul> <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html">Managing
+     *         Global Secondary Indexes</a> in the <i>Amazon DynamoDB Developer
+     *         Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -280,6 +469,63 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
+     * Represents the DynamoDB Streams configuration for the table. <note>
+     * <p>You will receive a <i>ResourceInUseException</i> if you attempt to
+     * enable a stream on a table that already has a stream, or if you
+     * attempt to disable a stream on a table which does not have a stream.
+     * </note>
+     *
+     * @return Represents the DynamoDB Streams configuration for the table. <note>
+     *         <p>You will receive a <i>ResourceInUseException</i> if you attempt to
+     *         enable a stream on a table that already has a stream, or if you
+     *         attempt to disable a stream on a table which does not have a stream.
+     *         </note>
+     */
+    public StreamSpecification getStreamSpecification() {
+        return streamSpecification;
+    }
+    
+    /**
+     * Represents the DynamoDB Streams configuration for the table. <note>
+     * <p>You will receive a <i>ResourceInUseException</i> if you attempt to
+     * enable a stream on a table that already has a stream, or if you
+     * attempt to disable a stream on a table which does not have a stream.
+     * </note>
+     *
+     * @param streamSpecification Represents the DynamoDB Streams configuration for the table. <note>
+     *         <p>You will receive a <i>ResourceInUseException</i> if you attempt to
+     *         enable a stream on a table that already has a stream, or if you
+     *         attempt to disable a stream on a table which does not have a stream.
+     *         </note>
+     */
+    public void setStreamSpecification(StreamSpecification streamSpecification) {
+        this.streamSpecification = streamSpecification;
+    }
+    
+    /**
+     * Represents the DynamoDB Streams configuration for the table. <note>
+     * <p>You will receive a <i>ResourceInUseException</i> if you attempt to
+     * enable a stream on a table that already has a stream, or if you
+     * attempt to disable a stream on a table which does not have a stream.
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param streamSpecification Represents the DynamoDB Streams configuration for the table. <note>
+     *         <p>You will receive a <i>ResourceInUseException</i> if you attempt to
+     *         enable a stream on a table that already has a stream, or if you
+     *         attempt to disable a stream on a table which does not have a stream.
+     *         </note>
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public UpdateTableRequest withStreamSpecification(StreamSpecification streamSpecification) {
+        this.streamSpecification = streamSpecification;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -291,9 +537,11 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getAttributeDefinitions() != null) sb.append("AttributeDefinitions: " + getAttributeDefinitions() + ",");
         if (getTableName() != null) sb.append("TableName: " + getTableName() + ",");
         if (getProvisionedThroughput() != null) sb.append("ProvisionedThroughput: " + getProvisionedThroughput() + ",");
-        if (getGlobalSecondaryIndexUpdates() != null) sb.append("GlobalSecondaryIndexUpdates: " + getGlobalSecondaryIndexUpdates() );
+        if (getGlobalSecondaryIndexUpdates() != null) sb.append("GlobalSecondaryIndexUpdates: " + getGlobalSecondaryIndexUpdates() + ",");
+        if (getStreamSpecification() != null) sb.append("StreamSpecification: " + getStreamSpecification() );
         sb.append("}");
         return sb.toString();
     }
@@ -303,9 +551,11 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
         final int prime = 31;
         int hashCode = 1;
         
+        hashCode = prime * hashCode + ((getAttributeDefinitions() == null) ? 0 : getAttributeDefinitions().hashCode()); 
         hashCode = prime * hashCode + ((getTableName() == null) ? 0 : getTableName().hashCode()); 
         hashCode = prime * hashCode + ((getProvisionedThroughput() == null) ? 0 : getProvisionedThroughput().hashCode()); 
         hashCode = prime * hashCode + ((getGlobalSecondaryIndexUpdates() == null) ? 0 : getGlobalSecondaryIndexUpdates().hashCode()); 
+        hashCode = prime * hashCode + ((getStreamSpecification() == null) ? 0 : getStreamSpecification().hashCode()); 
         return hashCode;
     }
     
@@ -317,12 +567,16 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
         if (obj instanceof UpdateTableRequest == false) return false;
         UpdateTableRequest other = (UpdateTableRequest)obj;
         
+        if (other.getAttributeDefinitions() == null ^ this.getAttributeDefinitions() == null) return false;
+        if (other.getAttributeDefinitions() != null && other.getAttributeDefinitions().equals(this.getAttributeDefinitions()) == false) return false; 
         if (other.getTableName() == null ^ this.getTableName() == null) return false;
         if (other.getTableName() != null && other.getTableName().equals(this.getTableName()) == false) return false; 
         if (other.getProvisionedThroughput() == null ^ this.getProvisionedThroughput() == null) return false;
         if (other.getProvisionedThroughput() != null && other.getProvisionedThroughput().equals(this.getProvisionedThroughput()) == false) return false; 
         if (other.getGlobalSecondaryIndexUpdates() == null ^ this.getGlobalSecondaryIndexUpdates() == null) return false;
         if (other.getGlobalSecondaryIndexUpdates() != null && other.getGlobalSecondaryIndexUpdates().equals(this.getGlobalSecondaryIndexUpdates()) == false) return false; 
+        if (other.getStreamSpecification() == null ^ this.getStreamSpecification() == null) return false;
+        if (other.getStreamSpecification() != null && other.getStreamSpecification().equals(this.getStreamSpecification()) == false) return false; 
         return true;
     }
     

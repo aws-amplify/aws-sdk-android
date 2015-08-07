@@ -26,7 +26,7 @@ import com.amazonaws.services.securitytoken.model.*;
  * and Access Management (IAM) users or for users that you authenticate
  * (federated users). This guide provides descriptions of the STS API.
  * For more detailed information about using this service, go to
- * <a href="http://docs.aws.amazon.com/IAM/latest/UsingSTS/Welcome.html"> Using Temporary Security Credentials </a>
+ * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/Welcome.html"> Using Temporary Security Credentials </a>
  * .
  * </p>
  * <p>
@@ -42,7 +42,7 @@ import com.amazonaws.services.securitytoken.model.*;
  * <p>
  * For information about setting up signatures and authorization through
  * the API, go to
- * <a href="http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html"> Signing AWS API Requests </a> in the <i>AWS General Reference</i> . For general information about the Query API, go to <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html"> Making Query Requests </a> in <i>Using IAM</i> . For information about using security tokens with other AWS products, go to <a href="http://docs.aws.amazon.com/IAM/latest/UsingSTS/UsingTokens.html"> Using Temporary Security Credentials to Access AWS </a>
+ * <a href="http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html"> Signing AWS API Requests </a> in the <i>AWS General Reference</i> . For general information about the Query API, go to <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html"> Making Query Requests </a> in <i>Using IAM</i> . For information about using security tokens with other AWS products, go to <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/UsingTokens.html"> Using Temporary Security Credentials to Access AWS </a>
  * in <i>Using Temporary Security Credentials</i> .
  * </p>
  * <p>
@@ -54,6 +54,15 @@ import com.amazonaws.services.securitytoken.model.*;
  * </p>
  * <p>
  * <b>Endpoints</b>
+ * </p>
+ * <p>
+ * The AWS Security Token Service (STS) has a default endpoint of
+ * https://sts.amazonaws.com that maps to the US East (N. Virginia)
+ * region. Additional regions are available, but must first be activated
+ * in the AWS Management Console before you can use a different region's
+ * endpoint. For more information about activating a region for STS see
+ * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/sts-enableregions.html"> Activating STS in a New Region </a>
+ * in the <i>Using Temporary Security Credentials</i> guide.
  * </p>
  * <p>
  * For information about STS endpoints, see
@@ -70,7 +79,7 @@ import com.amazonaws.services.securitytoken.model.*;
  * requests were successfully made to STS, who made the request, when it
  * was made, and so on. To learn more about CloudTrail, including how to
  * turn it on and find your log files, see the
- * <a href="http://docs.aws.amazon.com/awscloudtrail/latest/userguide/whatisawscloudtrail.html"> AWS CloudTrail User Guide </a>
+ * <a href="http://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html"> AWS CloudTrail User Guide </a>
  * .
  * </p>
  */
@@ -173,8 +182,8 @@ public interface AWSSecurityTokenService {
      * <p>
      * For more information about using <code>GetSessionToken</code> to
      * create temporary credentials, go to
-     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/CreatingSessionTokens.html"> Creating Temporary Credentials to Enable Access for IAM Users </a>
-     * in <i>Using Temporary Security Credentials</i> .
+     * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingSessionTokens.html"> Creating Temporary Credentials to Enable Access for IAM Users </a>
+     * .
      * </p>
      *
      * @param getSessionTokenRequest Container for the necessary parameters
@@ -200,7 +209,17 @@ public interface AWSSecurityTokenService {
      * <p>
      * Returns a set of temporary security credentials for users who have
      * been authenticated in a mobile or web application with a web identity
-     * provider, such as Login with Amazon, Facebook, or Google.
+     * provider, such as Amazon Cognito, Login with Amazon, Facebook, Google,
+     * or any OpenID Connect-compatible identity provider.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> For mobile applications, we recommend that you use
+     * Amazon Cognito. You can use Amazon Cognito with the AWS SDK for iOS
+     * and the AWS SDK for Android to uniquely identify a user and supply the
+     * user with a consistent identity throughout the lifetime of an
+     * application. To learn more about Amazon Cognito, see Amazon Cognito
+     * Overview in the AWS SDK for Android Developer Guide guide and Amazon
+     * Cognito Overview in the AWS SDK for iOS Developer Guide.
      * </p>
      * <p>
      * Calling <code>AssumeRoleWithWebIdentity</code> does not require the
@@ -234,7 +253,7 @@ public interface AWSSecurityTokenService {
      * that are in excess of those allowed by the access policy of the role
      * that is being assumed. For more information, see
      * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html"> Permissions for AssumeRoleWithWebIdentity </a>
-     * in <i>Using Temporary Security Credentials</i> .
+     * .
      * </p>
      * <p>
      * Before your application can call
@@ -247,13 +266,14 @@ public interface AWSSecurityTokenService {
      * </p>
      * <p>
      * For more information about how to use web identity federation and the
-     * <code>AssumeRoleWithWebIdentity</code> , see the following resources:
+     * <code>AssumeRoleWithWebIdentity</code> API, see the following
+     * resources:
      * </p>
      * 
      * <ul>
      * <li>
      * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/STSUseCases.html#MobileApplication-KnownProvider"> Creating a Mobile Application with Third-Party Sign-In </a> and <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingWIF.html"> Creating Temporary Security Credentials for Mobile Apps Using Third-Party Identity Providers </a>
-     * in <i>Using Temporary Security Credentials</i> . </li>
+     * . </li>
      * <li>
      * <a href="https://web-identity-federation-playground.s3.amazonaws.com/index.html"> Web Identity Federation Playground </a>
      * . This interactive website lets you walk through the process of
@@ -272,24 +292,6 @@ public interface AWSSecurityTokenService {
      * Amazon S3. </li>
      * 
      * </ul>
-     * <p>
-     * 
-     * </p>
-     * <p>
-     * 
-     * </p>
-     * <p>
-     * 
-     * </p>
-     * <p>
-     * 
-     * </p>
-     * <p>
-     * 
-     * </p>
-     * <p>
-     * 
-     * </p>
      *
      * @param assumeRoleWithWebIdentityRequest Container for the necessary
      *           parameters to execute the AssumeRoleWithWebIdentity service method on
@@ -329,10 +331,13 @@ public interface AWSSecurityTokenService {
      * application.
      * </p>
      * <p>
-     * <b>Note:</b> Do not use this call in mobile applications or
-     * client-based web applications that directly get temporary security
-     * credentials. For those types of applications, use
-     * <code>AssumeRoleWithWebIdentity</code> .
+     * <b>NOTE:</b> If you are creating a mobile-based or browser-based app
+     * that can authenticate users using a web identity provider like Login
+     * with Amazon, Facebook, Google, or an OpenID Connect-compatible
+     * identity provider, we recommend that you use Amazon Cognito or
+     * AssumeRoleWithWebIdentity. For more information, see Creating
+     * Temporary Security Credentials for Mobile Apps Using Identity
+     * Providers.
      * </p>
      * <p>
      * The <code>GetFederationToken</code> action must be called by using
@@ -398,8 +403,8 @@ public interface AWSSecurityTokenService {
      * </p>
      * <p>
      * For more information about how permissions work, see
-     * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html"> Permissions for GetFederationToken </a> in <i>Using Temporary Security Credentials</i> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingFedTokens.html"> Creating Temporary Credentials to Enable Access for Federated Users </a>
-     * in <i>Using Temporary Security Credentials</i> .
+     * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingFedTokens.html"> Creating Temporary Credentials to Enable Access for Federated Users </a>
+     * .
      * </p>
      *
      * @param getFederationTokenRequest Container for the necessary
@@ -446,7 +451,7 @@ public interface AWSSecurityTokenService {
      * of long-term credentials in one account and then use temporary
      * security credentials to access all the other accounts by assuming
      * roles in those accounts. For more information about roles, see
-     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html"> Roles </a>
+     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html"> IAM Roles (Delegation and Federation) </a>
      * in <i>Using IAM</i> .
      * </p>
      * <p>
@@ -482,7 +487,7 @@ public interface AWSSecurityTokenService {
      * credentials. You cannot use the passed policy to grant permissions
      * that are in excess of those allowed by the access policy of the role
      * that is being assumed. For more information, see
-     * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html"> Permissions for AssumeRole </a>
+     * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html"> Permissions for AssumeRole, AssumeRoleWithSAML, and AssumeRoleWithWebIdentity </a>
      * in <i>Using Temporary Security Credentials</i> .
      * </p>
      * <p>
@@ -506,12 +511,13 @@ public interface AWSSecurityTokenService {
      * authentication might look like the following example.
      * </p>
      * <p>
-     * <code>"Condition": {"Null": {"aws:MultiFactorAuthAge": false}}</code>
+     * <code>"Condition": {"Bool": {"aws:MultiFactorAuthPresent":
+     * true}}</code>
      * </p>
      * <p>
      * For more information, see
      * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/MFAProtectedAPI.html"> Configuring MFA-Protected API Access </a>
-     * in the <i>Using IAM</i> guide.
+     * in <i>Using IAM</i> guide.
      * </p>
      * <p>
      * To use MFA with <code>AssumeRole</code> , you pass values for the
@@ -596,8 +602,8 @@ public interface AWSSecurityTokenService {
      * <p>
      * For more information about using <code>GetSessionToken</code> to
      * create temporary credentials, go to
-     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/CreatingSessionTokens.html"> Creating Temporary Credentials to Enable Access for IAM Users </a>
-     * in <i>Using Temporary Security Credentials</i> .
+     * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingSessionTokens.html"> Creating Temporary Credentials to Enable Access for IAM Users </a>
+     * .
      * </p>
      * 
      * @return The response from the GetSessionToken service method, as

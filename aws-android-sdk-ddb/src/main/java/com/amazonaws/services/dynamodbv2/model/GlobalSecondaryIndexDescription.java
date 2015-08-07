@@ -51,18 +51,29 @@ public class GlobalSecondaryIndexDescription implements Serializable {
 
     /**
      * The current state of the global secondary index: <ul> <li>
-     * <p><i>CREATING</i> - The index is being created, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>UPDATING</i> - The index is being updated, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The index is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     * is ready for use. </li> </ul>
+     * <p><i>CREATING</i> - The index is being created. </li> <li>
+     * <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      */
     private String indexStatus;
+
+    /**
+     * Indicates whether the index is currently backfilling.
+     * <i>Backfilling</i> is the process of reading items from the table and
+     * determining whether they can be added to the index. (Not all items
+     * will qualify: For example, a hash key attribute cannot have any
+     * duplicates.) If an item can be added to the index, DynamoDB will do
+     * so. After all items have been processed, the backfilling operation is
+     * complete and <i>Backfilling</i> is false. <note><p>For indexes that
+     * were created during a <i>CreateTable</i> operation, the
+     * <i>Backfilling</i> attribute does not appear in the
+     * <i>DescribeTable</i> output.</note>
+     */
+    private Boolean backfilling;
 
     /**
      * Represents the provisioned throughput settings for the table,
@@ -84,6 +95,11 @@ public class GlobalSecondaryIndexDescription implements Serializable {
      * reflected in this value.
      */
     private Long itemCount;
+
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the index.
+     */
+    private String indexArn;
 
     /**
      * The name of the global secondary index.
@@ -269,25 +285,19 @@ public class GlobalSecondaryIndexDescription implements Serializable {
 
     /**
      * The current state of the global secondary index: <ul> <li>
-     * <p><i>CREATING</i> - The index is being created, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>UPDATING</i> - The index is being updated, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The index is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     * is ready for use. </li> </ul>
+     * <p><i>CREATING</i> - The index is being created. </li> <li>
+     * <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @return The current state of the global secondary index: <ul> <li>
-     *         <p><i>CREATING</i> - The index is being created, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>UPDATING</i> - The index is being updated, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The index is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     *         is ready for use. </li> </ul>
+     *         <p><i>CREATING</i> - The index is being created. </li> <li>
+     *         <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     *         <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     *         <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      *
      * @see IndexStatus
      */
@@ -297,25 +307,19 @@ public class GlobalSecondaryIndexDescription implements Serializable {
     
     /**
      * The current state of the global secondary index: <ul> <li>
-     * <p><i>CREATING</i> - The index is being created, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>UPDATING</i> - The index is being updated, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The index is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     * is ready for use. </li> </ul>
+     * <p><i>CREATING</i> - The index is being created. </li> <li>
+     * <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @param indexStatus The current state of the global secondary index: <ul> <li>
-     *         <p><i>CREATING</i> - The index is being created, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>UPDATING</i> - The index is being updated, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The index is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     *         is ready for use. </li> </ul>
+     *         <p><i>CREATING</i> - The index is being created. </li> <li>
+     *         <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     *         <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     *         <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      *
      * @see IndexStatus
      */
@@ -325,13 +329,10 @@ public class GlobalSecondaryIndexDescription implements Serializable {
     
     /**
      * The current state of the global secondary index: <ul> <li>
-     * <p><i>CREATING</i> - The index is being created, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>UPDATING</i> - The index is being updated, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The index is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     * is ready for use. </li> </ul>
+     * <p><i>CREATING</i> - The index is being created. </li> <li>
+     * <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -339,13 +340,10 @@ public class GlobalSecondaryIndexDescription implements Serializable {
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @param indexStatus The current state of the global secondary index: <ul> <li>
-     *         <p><i>CREATING</i> - The index is being created, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>UPDATING</i> - The index is being updated, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The index is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     *         is ready for use. </li> </ul>
+     *         <p><i>CREATING</i> - The index is being created. </li> <li>
+     *         <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     *         <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     *         <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -359,25 +357,19 @@ public class GlobalSecondaryIndexDescription implements Serializable {
 
     /**
      * The current state of the global secondary index: <ul> <li>
-     * <p><i>CREATING</i> - The index is being created, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>UPDATING</i> - The index is being updated, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The index is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     * is ready for use. </li> </ul>
+     * <p><i>CREATING</i> - The index is being created. </li> <li>
+     * <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @param indexStatus The current state of the global secondary index: <ul> <li>
-     *         <p><i>CREATING</i> - The index is being created, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>UPDATING</i> - The index is being updated, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The index is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     *         is ready for use. </li> </ul>
+     *         <p><i>CREATING</i> - The index is being created. </li> <li>
+     *         <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     *         <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     *         <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      *
      * @see IndexStatus
      */
@@ -387,13 +379,10 @@ public class GlobalSecondaryIndexDescription implements Serializable {
     
     /**
      * The current state of the global secondary index: <ul> <li>
-     * <p><i>CREATING</i> - The index is being created, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>UPDATING</i> - The index is being updated, as the result of a
-     * <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     * <p><i>DELETING</i> - The index is being deleted, as the result of a
-     * <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     * is ready for use. </li> </ul>
+     * <p><i>CREATING</i> - The index is being created. </li> <li>
+     * <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     * <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     * <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -401,13 +390,10 @@ public class GlobalSecondaryIndexDescription implements Serializable {
      * <b>Allowed Values: </b>CREATING, UPDATING, DELETING, ACTIVE
      *
      * @param indexStatus The current state of the global secondary index: <ul> <li>
-     *         <p><i>CREATING</i> - The index is being created, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>UPDATING</i> - The index is being updated, as the result of a
-     *         <i>CreateTable</i> or <i>UpdateTable</i> operation. </li> <li>
-     *         <p><i>DELETING</i> - The index is being deleted, as the result of a
-     *         <i>DeleteTable</i> operation. </li> <li> <p><i>ACTIVE</i> - The index
-     *         is ready for use. </li> </ul>
+     *         <p><i>CREATING</i> - The index is being created. </li> <li>
+     *         <p><i>UPDATING</i> - The index is being updated. </li> <li>
+     *         <p><i>DELETING</i> - The index is being deleted. </li> <li>
+     *         <p><i>ACTIVE</i> - The index is ready for use. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -417,6 +403,120 @@ public class GlobalSecondaryIndexDescription implements Serializable {
     public GlobalSecondaryIndexDescription withIndexStatus(IndexStatus indexStatus) {
         this.indexStatus = indexStatus.toString();
         return this;
+    }
+
+    /**
+     * Indicates whether the index is currently backfilling.
+     * <i>Backfilling</i> is the process of reading items from the table and
+     * determining whether they can be added to the index. (Not all items
+     * will qualify: For example, a hash key attribute cannot have any
+     * duplicates.) If an item can be added to the index, DynamoDB will do
+     * so. After all items have been processed, the backfilling operation is
+     * complete and <i>Backfilling</i> is false. <note><p>For indexes that
+     * were created during a <i>CreateTable</i> operation, the
+     * <i>Backfilling</i> attribute does not appear in the
+     * <i>DescribeTable</i> output.</note>
+     *
+     * @return Indicates whether the index is currently backfilling.
+     *         <i>Backfilling</i> is the process of reading items from the table and
+     *         determining whether they can be added to the index. (Not all items
+     *         will qualify: For example, a hash key attribute cannot have any
+     *         duplicates.) If an item can be added to the index, DynamoDB will do
+     *         so. After all items have been processed, the backfilling operation is
+     *         complete and <i>Backfilling</i> is false. <note><p>For indexes that
+     *         were created during a <i>CreateTable</i> operation, the
+     *         <i>Backfilling</i> attribute does not appear in the
+     *         <i>DescribeTable</i> output.</note>
+     */
+    public Boolean isBackfilling() {
+        return backfilling;
+    }
+    
+    /**
+     * Indicates whether the index is currently backfilling.
+     * <i>Backfilling</i> is the process of reading items from the table and
+     * determining whether they can be added to the index. (Not all items
+     * will qualify: For example, a hash key attribute cannot have any
+     * duplicates.) If an item can be added to the index, DynamoDB will do
+     * so. After all items have been processed, the backfilling operation is
+     * complete and <i>Backfilling</i> is false. <note><p>For indexes that
+     * were created during a <i>CreateTable</i> operation, the
+     * <i>Backfilling</i> attribute does not appear in the
+     * <i>DescribeTable</i> output.</note>
+     *
+     * @param backfilling Indicates whether the index is currently backfilling.
+     *         <i>Backfilling</i> is the process of reading items from the table and
+     *         determining whether they can be added to the index. (Not all items
+     *         will qualify: For example, a hash key attribute cannot have any
+     *         duplicates.) If an item can be added to the index, DynamoDB will do
+     *         so. After all items have been processed, the backfilling operation is
+     *         complete and <i>Backfilling</i> is false. <note><p>For indexes that
+     *         were created during a <i>CreateTable</i> operation, the
+     *         <i>Backfilling</i> attribute does not appear in the
+     *         <i>DescribeTable</i> output.</note>
+     */
+    public void setBackfilling(Boolean backfilling) {
+        this.backfilling = backfilling;
+    }
+    
+    /**
+     * Indicates whether the index is currently backfilling.
+     * <i>Backfilling</i> is the process of reading items from the table and
+     * determining whether they can be added to the index. (Not all items
+     * will qualify: For example, a hash key attribute cannot have any
+     * duplicates.) If an item can be added to the index, DynamoDB will do
+     * so. After all items have been processed, the backfilling operation is
+     * complete and <i>Backfilling</i> is false. <note><p>For indexes that
+     * were created during a <i>CreateTable</i> operation, the
+     * <i>Backfilling</i> attribute does not appear in the
+     * <i>DescribeTable</i> output.</note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param backfilling Indicates whether the index is currently backfilling.
+     *         <i>Backfilling</i> is the process of reading items from the table and
+     *         determining whether they can be added to the index. (Not all items
+     *         will qualify: For example, a hash key attribute cannot have any
+     *         duplicates.) If an item can be added to the index, DynamoDB will do
+     *         so. After all items have been processed, the backfilling operation is
+     *         complete and <i>Backfilling</i> is false. <note><p>For indexes that
+     *         were created during a <i>CreateTable</i> operation, the
+     *         <i>Backfilling</i> attribute does not appear in the
+     *         <i>DescribeTable</i> output.</note>
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public GlobalSecondaryIndexDescription withBackfilling(Boolean backfilling) {
+        this.backfilling = backfilling;
+        return this;
+    }
+
+    /**
+     * Indicates whether the index is currently backfilling.
+     * <i>Backfilling</i> is the process of reading items from the table and
+     * determining whether they can be added to the index. (Not all items
+     * will qualify: For example, a hash key attribute cannot have any
+     * duplicates.) If an item can be added to the index, DynamoDB will do
+     * so. After all items have been processed, the backfilling operation is
+     * complete and <i>Backfilling</i> is false. <note><p>For indexes that
+     * were created during a <i>CreateTable</i> operation, the
+     * <i>Backfilling</i> attribute does not appear in the
+     * <i>DescribeTable</i> output.</note>
+     *
+     * @return Indicates whether the index is currently backfilling.
+     *         <i>Backfilling</i> is the process of reading items from the table and
+     *         determining whether they can be added to the index. (Not all items
+     *         will qualify: For example, a hash key attribute cannot have any
+     *         duplicates.) If an item can be added to the index, DynamoDB will do
+     *         so. After all items have been processed, the backfilling operation is
+     *         complete and <i>Backfilling</i> is false. <note><p>For indexes that
+     *         were created during a <i>CreateTable</i> operation, the
+     *         <i>Backfilling</i> attribute does not appear in the
+     *         <i>DescribeTable</i> output.</note>
+     */
+    public Boolean getBackfilling() {
+        return backfilling;
     }
 
     /**
@@ -555,6 +655,39 @@ public class GlobalSecondaryIndexDescription implements Serializable {
     }
 
     /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the index.
+     *
+     * @return The Amazon Resource Name (ARN) that uniquely identifies the index.
+     */
+    public String getIndexArn() {
+        return indexArn;
+    }
+    
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the index.
+     *
+     * @param indexArn The Amazon Resource Name (ARN) that uniquely identifies the index.
+     */
+    public void setIndexArn(String indexArn) {
+        this.indexArn = indexArn;
+    }
+    
+    /**
+     * The Amazon Resource Name (ARN) that uniquely identifies the index.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param indexArn The Amazon Resource Name (ARN) that uniquely identifies the index.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public GlobalSecondaryIndexDescription withIndexArn(String indexArn) {
+        this.indexArn = indexArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -570,9 +703,11 @@ public class GlobalSecondaryIndexDescription implements Serializable {
         if (getKeySchema() != null) sb.append("KeySchema: " + getKeySchema() + ",");
         if (getProjection() != null) sb.append("Projection: " + getProjection() + ",");
         if (getIndexStatus() != null) sb.append("IndexStatus: " + getIndexStatus() + ",");
+        if (isBackfilling() != null) sb.append("Backfilling: " + isBackfilling() + ",");
         if (getProvisionedThroughput() != null) sb.append("ProvisionedThroughput: " + getProvisionedThroughput() + ",");
         if (getIndexSizeBytes() != null) sb.append("IndexSizeBytes: " + getIndexSizeBytes() + ",");
-        if (getItemCount() != null) sb.append("ItemCount: " + getItemCount() );
+        if (getItemCount() != null) sb.append("ItemCount: " + getItemCount() + ",");
+        if (getIndexArn() != null) sb.append("IndexArn: " + getIndexArn() );
         sb.append("}");
         return sb.toString();
     }
@@ -586,9 +721,11 @@ public class GlobalSecondaryIndexDescription implements Serializable {
         hashCode = prime * hashCode + ((getKeySchema() == null) ? 0 : getKeySchema().hashCode()); 
         hashCode = prime * hashCode + ((getProjection() == null) ? 0 : getProjection().hashCode()); 
         hashCode = prime * hashCode + ((getIndexStatus() == null) ? 0 : getIndexStatus().hashCode()); 
+        hashCode = prime * hashCode + ((isBackfilling() == null) ? 0 : isBackfilling().hashCode()); 
         hashCode = prime * hashCode + ((getProvisionedThroughput() == null) ? 0 : getProvisionedThroughput().hashCode()); 
         hashCode = prime * hashCode + ((getIndexSizeBytes() == null) ? 0 : getIndexSizeBytes().hashCode()); 
         hashCode = prime * hashCode + ((getItemCount() == null) ? 0 : getItemCount().hashCode()); 
+        hashCode = prime * hashCode + ((getIndexArn() == null) ? 0 : getIndexArn().hashCode()); 
         return hashCode;
     }
     
@@ -608,12 +745,16 @@ public class GlobalSecondaryIndexDescription implements Serializable {
         if (other.getProjection() != null && other.getProjection().equals(this.getProjection()) == false) return false; 
         if (other.getIndexStatus() == null ^ this.getIndexStatus() == null) return false;
         if (other.getIndexStatus() != null && other.getIndexStatus().equals(this.getIndexStatus()) == false) return false; 
+        if (other.isBackfilling() == null ^ this.isBackfilling() == null) return false;
+        if (other.isBackfilling() != null && other.isBackfilling().equals(this.isBackfilling()) == false) return false; 
         if (other.getProvisionedThroughput() == null ^ this.getProvisionedThroughput() == null) return false;
         if (other.getProvisionedThroughput() != null && other.getProvisionedThroughput().equals(this.getProvisionedThroughput()) == false) return false; 
         if (other.getIndexSizeBytes() == null ^ this.getIndexSizeBytes() == null) return false;
         if (other.getIndexSizeBytes() != null && other.getIndexSizeBytes().equals(this.getIndexSizeBytes()) == false) return false; 
         if (other.getItemCount() == null ^ this.getItemCount() == null) return false;
         if (other.getItemCount() != null && other.getItemCount().equals(this.getItemCount()) == false) return false; 
+        if (other.getIndexArn() == null ^ this.getIndexArn() == null) return false;
+        if (other.getIndexArn() != null && other.getIndexArn().equals(this.getIndexArn()) == false) return false; 
         return true;
     }
     

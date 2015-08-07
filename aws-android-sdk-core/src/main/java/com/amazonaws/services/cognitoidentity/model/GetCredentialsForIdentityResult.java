@@ -17,42 +17,55 @@ package com.amazonaws.services.cognitoidentity.model;
 import java.io.Serializable;
 
 /**
- * Get Credentials For Identity Result
+ * <p>
+ * Returned in response to a successful
+ * <code>GetCredentialsForIdentity</code> operation.
+ * </p>
  */
 public class GetCredentialsForIdentityResult implements Serializable {
 
+    /**
+     * A unique identifier in the format REGION:GUID.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 50<br/>
+     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     */
     private String identityId;
 
+    /**
+     * Credentials for the the provided identity ID.
+     */
     private Credentials credentials;
 
     /**
-     * Returns the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @return The value of the IdentityId property for this object.
+     * @return A unique identifier in the format REGION:GUID.
      */
     public String getIdentityId() {
         return identityId;
     }
     
     /**
-     * Sets the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId The new value for the IdentityId property for this object.
+     * @param identityId A unique identifier in the format REGION:GUID.
      */
     public void setIdentityId(String identityId) {
         this.identityId = identityId;
     }
     
     /**
-     * Sets the value of the IdentityId property for this object.
+     * A unique identifier in the format REGION:GUID.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -60,7 +73,7 @@ public class GetCredentialsForIdentityResult implements Serializable {
      * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId The new value for the IdentityId property for this object.
+     * @param identityId A unique identifier in the format REGION:GUID.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -71,29 +84,29 @@ public class GetCredentialsForIdentityResult implements Serializable {
     }
 
     /**
-     * Returns the value of the Credentials property for this object.
+     * Credentials for the the provided identity ID.
      *
-     * @return The value of the Credentials property for this object.
+     * @return Credentials for the the provided identity ID.
      */
     public Credentials getCredentials() {
         return credentials;
     }
     
     /**
-     * Sets the value of the Credentials property for this object.
+     * Credentials for the the provided identity ID.
      *
-     * @param credentials The new value for the Credentials property for this object.
+     * @param credentials Credentials for the the provided identity ID.
      */
     public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
     }
     
     /**
-     * Sets the value of the Credentials property for this object.
+     * Credentials for the the provided identity ID.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param credentials The new value for the Credentials property for this object.
+     * @param credentials Credentials for the the provided identity ID.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

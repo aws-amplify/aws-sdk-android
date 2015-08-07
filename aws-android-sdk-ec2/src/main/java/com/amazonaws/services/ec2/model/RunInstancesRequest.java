@@ -57,6 +57,11 @@ import com.amazonaws.services.ec2.model.transform.RunInstancesRequestMarshaller;
  * not subscribed, <code>RunInstances</code> fails.
  * </p>
  * <p>
+ * T2 instance types can only be launched into a VPC. If you do not have
+ * a default VPC, or if you do not specify a subnet ID in the request,
+ * <code>RunInstances</code> fails.
+ * </p>
+ * <p>
  * For more information about troubleshooting, see
  * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html"> What To Do If An Instance Immediately Terminates </a> , and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html"> Troubleshooting Connecting to Your Instance </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
@@ -100,9 +105,10 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * The name of the key pair. You can create a key pair using
-     * <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you
-     * launch an instance without specifying a key pair, you can't connect to
-     * the instance. </important>
+     * <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you do
+     * not specify a key pair, you can't connect to the instance unless you
+     * choose an AMI that is configured to allow users another way to log in.
+     * </important>
      */
     private String keyName;
 
@@ -132,7 +138,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * <p>Default: <code>m1.small</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      */
     private String instanceType;
 
@@ -144,14 +150,18 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * The ID of the kernel. <important> <p>We recommend that you use PV-GRUB
      * instead of kernels and RAM disks. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html#pv-grub-a-new-amazon-kernel-image">
-     * PV-GRUB: A New Amazon Kernel Image</a> in the <i>Amazon Elastic
-     * Compute Cloud User Guide</i>. </important>
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     * PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </important>
      */
     private String kernelId;
 
     /**
-     * The ID of the RAM disk.
+     * The ID of the RAM disk. <important> <p>We recommend that you use
+     * PV-GRUB instead of kernels and RAM disks. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     * PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </important>
      */
     private String ramdiskId;
 
@@ -208,14 +218,13 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * Unique, case-sensitive identifier you provide to ensure the
      * idempotency of the request. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
-     * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>Constraints: Maximum 64 ASCII characters
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     * Idempotency</a>. <p>Constraints: Maximum 64 ASCII characters
      */
     private String clientToken;
 
     /**
-     * 
+     * Reserved.
      */
     private String additionalInfo;
 
@@ -232,10 +241,10 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * Indicates whether the instance is optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal Amazon EBS I/O
-     * performance. This optimization isn't available with all instance
-     * types. Additional usage charges apply when using an EBS-optimized
-     * instance. <p>Default: <code>false</code>
+     * optimized configuration stack to provide optimal EBS I/O performance.
+     * This optimization isn't available with all instance types. Additional
+     * usage charges apply when using an EBS-optimized instance. <p>Default:
+     * <code>false</code>
      */
     private Boolean ebsOptimized;
 
@@ -481,14 +490,16 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * The name of the key pair. You can create a key pair using
-     * <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you
-     * launch an instance without specifying a key pair, you can't connect to
-     * the instance. </important>
+     * <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you do
+     * not specify a key pair, you can't connect to the instance unless you
+     * choose an AMI that is configured to allow users another way to log in.
+     * </important>
      *
      * @return The name of the key pair. You can create a key pair using
-     *         <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you
-     *         launch an instance without specifying a key pair, you can't connect to
-     *         the instance. </important>
+     *         <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you do
+     *         not specify a key pair, you can't connect to the instance unless you
+     *         choose an AMI that is configured to allow users another way to log in.
+     *         </important>
      */
     public String getKeyName() {
         return keyName;
@@ -496,14 +507,16 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     
     /**
      * The name of the key pair. You can create a key pair using
-     * <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you
-     * launch an instance without specifying a key pair, you can't connect to
-     * the instance. </important>
+     * <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you do
+     * not specify a key pair, you can't connect to the instance unless you
+     * choose an AMI that is configured to allow users another way to log in.
+     * </important>
      *
      * @param keyName The name of the key pair. You can create a key pair using
-     *         <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you
-     *         launch an instance without specifying a key pair, you can't connect to
-     *         the instance. </important>
+     *         <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you do
+     *         not specify a key pair, you can't connect to the instance unless you
+     *         choose an AMI that is configured to allow users another way to log in.
+     *         </important>
      */
     public void setKeyName(String keyName) {
         this.keyName = keyName;
@@ -511,16 +524,18 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     
     /**
      * The name of the key pair. You can create a key pair using
-     * <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you
-     * launch an instance without specifying a key pair, you can't connect to
-     * the instance. </important>
+     * <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you do
+     * not specify a key pair, you can't connect to the instance unless you
+     * choose an AMI that is configured to allow users another way to log in.
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param keyName The name of the key pair. You can create a key pair using
-     *         <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you
-     *         launch an instance without specifying a key pair, you can't connect to
-     *         the instance. </important>
+     *         <a>CreateKeyPair</a> or <a>ImportKeyPair</a>. <important> <p>If you do
+     *         not specify a key pair, you can't connect to the instance unless you
+     *         choose an AMI that is configured to allow users another way to log in.
+     *         </important>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -738,7 +753,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * <p>Default: <code>m1.small</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
      * @return The instance type. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
@@ -758,7 +773,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * <p>Default: <code>m1.small</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
      * @param instanceType The instance type. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
@@ -780,7 +795,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
      * @param instanceType The instance type. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
@@ -804,7 +819,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * <p>Default: <code>m1.small</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
      * @param instanceType The instance type. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
@@ -826,7 +841,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge
+     * <b>Allowed Values: </b>t1.micro, m1.small, m1.medium, m1.large, m1.xlarge, m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, t2.micro, t2.small, t2.medium, t2.large, m2.xlarge, m2.2xlarge, m2.4xlarge, cr1.8xlarge, i2.xlarge, i2.2xlarge, i2.4xlarge, i2.8xlarge, hi1.4xlarge, hs1.8xlarge, c1.medium, c1.xlarge, c3.large, c3.xlarge, c3.2xlarge, c3.4xlarge, c3.8xlarge, c4.large, c4.xlarge, c4.2xlarge, c4.4xlarge, c4.8xlarge, cc1.4xlarge, cc2.8xlarge, g2.2xlarge, cg1.4xlarge, r3.large, r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge, d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge
      *
      * @param instanceType The instance type. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
@@ -879,15 +894,15 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * The ID of the kernel. <important> <p>We recommend that you use PV-GRUB
      * instead of kernels and RAM disks. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html#pv-grub-a-new-amazon-kernel-image">
-     * PV-GRUB: A New Amazon Kernel Image</a> in the <i>Amazon Elastic
-     * Compute Cloud User Guide</i>. </important>
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     * PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </important>
      *
      * @return The ID of the kernel. <important> <p>We recommend that you use PV-GRUB
      *         instead of kernels and RAM disks. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html#pv-grub-a-new-amazon-kernel-image">
-     *         PV-GRUB: A New Amazon Kernel Image</a> in the <i>Amazon Elastic
-     *         Compute Cloud User Guide</i>. </important>
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     *         PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *         </important>
      */
     public String getKernelId() {
         return kernelId;
@@ -896,15 +911,15 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * The ID of the kernel. <important> <p>We recommend that you use PV-GRUB
      * instead of kernels and RAM disks. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html#pv-grub-a-new-amazon-kernel-image">
-     * PV-GRUB: A New Amazon Kernel Image</a> in the <i>Amazon Elastic
-     * Compute Cloud User Guide</i>. </important>
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     * PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </important>
      *
      * @param kernelId The ID of the kernel. <important> <p>We recommend that you use PV-GRUB
      *         instead of kernels and RAM disks. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html#pv-grub-a-new-amazon-kernel-image">
-     *         PV-GRUB: A New Amazon Kernel Image</a> in the <i>Amazon Elastic
-     *         Compute Cloud User Guide</i>. </important>
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     *         PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *         </important>
      */
     public void setKernelId(String kernelId) {
         this.kernelId = kernelId;
@@ -913,17 +928,17 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * The ID of the kernel. <important> <p>We recommend that you use PV-GRUB
      * instead of kernels and RAM disks. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html#pv-grub-a-new-amazon-kernel-image">
-     * PV-GRUB: A New Amazon Kernel Image</a> in the <i>Amazon Elastic
-     * Compute Cloud User Guide</i>. </important>
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     * PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param kernelId The ID of the kernel. <important> <p>We recommend that you use PV-GRUB
      *         instead of kernels and RAM disks. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html#pv-grub-a-new-amazon-kernel-image">
-     *         PV-GRUB: A New Amazon Kernel Image</a> in the <i>Amazon Elastic
-     *         Compute Cloud User Guide</i>. </important>
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     *         PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *         </important>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -934,29 +949,53 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The ID of the RAM disk.
+     * The ID of the RAM disk. <important> <p>We recommend that you use
+     * PV-GRUB instead of kernels and RAM disks. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     * PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </important>
      *
-     * @return The ID of the RAM disk.
+     * @return The ID of the RAM disk. <important> <p>We recommend that you use
+     *         PV-GRUB instead of kernels and RAM disks. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     *         PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *         </important>
      */
     public String getRamdiskId() {
         return ramdiskId;
     }
     
     /**
-     * The ID of the RAM disk.
+     * The ID of the RAM disk. <important> <p>We recommend that you use
+     * PV-GRUB instead of kernels and RAM disks. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     * PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </important>
      *
-     * @param ramdiskId The ID of the RAM disk.
+     * @param ramdiskId The ID of the RAM disk. <important> <p>We recommend that you use
+     *         PV-GRUB instead of kernels and RAM disks. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     *         PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *         </important>
      */
     public void setRamdiskId(String ramdiskId) {
         this.ramdiskId = ramdiskId;
     }
     
     /**
-     * The ID of the RAM disk.
+     * The ID of the RAM disk. <important> <p>We recommend that you use
+     * PV-GRUB instead of kernels and RAM disks. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     * PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ramdiskId The ID of the RAM disk.
+     * @param ramdiskId The ID of the RAM disk. <important> <p>We recommend that you use
+     *         PV-GRUB instead of kernels and RAM disks. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html">
+     *         PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *         </important>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1397,15 +1436,13 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * Unique, case-sensitive identifier you provide to ensure the
      * idempotency of the request. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
-     * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>Constraints: Maximum 64 ASCII characters
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     * Idempotency</a>. <p>Constraints: Maximum 64 ASCII characters
      *
      * @return Unique, case-sensitive identifier you provide to ensure the
      *         idempotency of the request. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
-     *         to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>Constraints: Maximum 64 ASCII characters
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     *         Idempotency</a>. <p>Constraints: Maximum 64 ASCII characters
      */
     public String getClientToken() {
         return clientToken;
@@ -1414,15 +1451,13 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * Unique, case-sensitive identifier you provide to ensure the
      * idempotency of the request. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
-     * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>Constraints: Maximum 64 ASCII characters
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     * Idempotency</a>. <p>Constraints: Maximum 64 ASCII characters
      *
      * @param clientToken Unique, case-sensitive identifier you provide to ensure the
      *         idempotency of the request. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
-     *         to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>Constraints: Maximum 64 ASCII characters
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     *         Idempotency</a>. <p>Constraints: Maximum 64 ASCII characters
      */
     public void setClientToken(String clientToken) {
         this.clientToken = clientToken;
@@ -1431,17 +1466,15 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * Unique, case-sensitive identifier you provide to ensure the
      * idempotency of the request. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
-     * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>Constraints: Maximum 64 ASCII characters
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     * Idempotency</a>. <p>Constraints: Maximum 64 ASCII characters
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param clientToken Unique, case-sensitive identifier you provide to ensure the
      *         idempotency of the request. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
-     *         to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>Constraints: Maximum 64 ASCII characters
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+     *         Idempotency</a>. <p>Constraints: Maximum 64 ASCII characters
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1452,29 +1485,29 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * 
+     * Reserved.
      *
-     * @return 
+     * @return Reserved.
      */
     public String getAdditionalInfo() {
         return additionalInfo;
     }
     
     /**
-     * 
+     * Reserved.
      *
-     * @param additionalInfo 
+     * @param additionalInfo Reserved.
      */
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
     }
     
     /**
-     * 
+     * Reserved.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param additionalInfo 
+     * @param additionalInfo Reserved.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1588,17 +1621,17 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * Indicates whether the instance is optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal Amazon EBS I/O
-     * performance. This optimization isn't available with all instance
-     * types. Additional usage charges apply when using an EBS-optimized
-     * instance. <p>Default: <code>false</code>
+     * optimized configuration stack to provide optimal EBS I/O performance.
+     * This optimization isn't available with all instance types. Additional
+     * usage charges apply when using an EBS-optimized instance. <p>Default:
+     * <code>false</code>
      *
      * @return Indicates whether the instance is optimized for EBS I/O. This
      *         optimization provides dedicated throughput to Amazon EBS and an
-     *         optimized configuration stack to provide optimal Amazon EBS I/O
-     *         performance. This optimization isn't available with all instance
-     *         types. Additional usage charges apply when using an EBS-optimized
-     *         instance. <p>Default: <code>false</code>
+     *         optimized configuration stack to provide optimal EBS I/O performance.
+     *         This optimization isn't available with all instance types. Additional
+     *         usage charges apply when using an EBS-optimized instance. <p>Default:
+     *         <code>false</code>
      */
     public Boolean isEbsOptimized() {
         return ebsOptimized;
@@ -1607,17 +1640,17 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * Indicates whether the instance is optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal Amazon EBS I/O
-     * performance. This optimization isn't available with all instance
-     * types. Additional usage charges apply when using an EBS-optimized
-     * instance. <p>Default: <code>false</code>
+     * optimized configuration stack to provide optimal EBS I/O performance.
+     * This optimization isn't available with all instance types. Additional
+     * usage charges apply when using an EBS-optimized instance. <p>Default:
+     * <code>false</code>
      *
      * @param ebsOptimized Indicates whether the instance is optimized for EBS I/O. This
      *         optimization provides dedicated throughput to Amazon EBS and an
-     *         optimized configuration stack to provide optimal Amazon EBS I/O
-     *         performance. This optimization isn't available with all instance
-     *         types. Additional usage charges apply when using an EBS-optimized
-     *         instance. <p>Default: <code>false</code>
+     *         optimized configuration stack to provide optimal EBS I/O performance.
+     *         This optimization isn't available with all instance types. Additional
+     *         usage charges apply when using an EBS-optimized instance. <p>Default:
+     *         <code>false</code>
      */
     public void setEbsOptimized(Boolean ebsOptimized) {
         this.ebsOptimized = ebsOptimized;
@@ -1626,19 +1659,19 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * Indicates whether the instance is optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal Amazon EBS I/O
-     * performance. This optimization isn't available with all instance
-     * types. Additional usage charges apply when using an EBS-optimized
-     * instance. <p>Default: <code>false</code>
+     * optimized configuration stack to provide optimal EBS I/O performance.
+     * This optimization isn't available with all instance types. Additional
+     * usage charges apply when using an EBS-optimized instance. <p>Default:
+     * <code>false</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param ebsOptimized Indicates whether the instance is optimized for EBS I/O. This
      *         optimization provides dedicated throughput to Amazon EBS and an
-     *         optimized configuration stack to provide optimal Amazon EBS I/O
-     *         performance. This optimization isn't available with all instance
-     *         types. Additional usage charges apply when using an EBS-optimized
-     *         instance. <p>Default: <code>false</code>
+     *         optimized configuration stack to provide optimal EBS I/O performance.
+     *         This optimization isn't available with all instance types. Additional
+     *         usage charges apply when using an EBS-optimized instance. <p>Default:
+     *         <code>false</code>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1651,17 +1684,17 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
     /**
      * Indicates whether the instance is optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal Amazon EBS I/O
-     * performance. This optimization isn't available with all instance
-     * types. Additional usage charges apply when using an EBS-optimized
-     * instance. <p>Default: <code>false</code>
+     * optimized configuration stack to provide optimal EBS I/O performance.
+     * This optimization isn't available with all instance types. Additional
+     * usage charges apply when using an EBS-optimized instance. <p>Default:
+     * <code>false</code>
      *
      * @return Indicates whether the instance is optimized for EBS I/O. This
      *         optimization provides dedicated throughput to Amazon EBS and an
-     *         optimized configuration stack to provide optimal Amazon EBS I/O
-     *         performance. This optimization isn't available with all instance
-     *         types. Additional usage charges apply when using an EBS-optimized
-     *         instance. <p>Default: <code>false</code>
+     *         optimized configuration stack to provide optimal EBS I/O performance.
+     *         This optimization isn't available with all instance types. Additional
+     *         usage charges apply when using an EBS-optimized instance. <p>Default:
+     *         <code>false</code>
      */
     public Boolean getEbsOptimized() {
         return ebsOptimized;

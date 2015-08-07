@@ -17,7 +17,10 @@ package com.amazonaws.services.lambda.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * AWSLambda exception
+ * <p>
+ * The resource (for example, a Lambda function or access policy
+ * statement) specified in the request does not exist.
+ * </p>
  */        
 public class ResourceNotFoundException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

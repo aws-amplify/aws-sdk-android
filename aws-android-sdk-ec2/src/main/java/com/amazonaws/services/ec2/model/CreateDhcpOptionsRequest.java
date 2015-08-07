@@ -44,7 +44,13 @@ import com.amazonaws.services.ec2.model.transform.CreateDhcpOptionsRequestMarsha
  * AmazonProvidedDNS in another region, specify
  * <code>region.compute.internal</code> (for example,
  * <code>ap-northeast-1.compute.internal</code> ). Otherwise, specify a
- * domain name (for example, <code>MyCompany.com</code> ).</li>
+ * domain name (for example, <code>MyCompany.com</code> ).
+ * <b>Important</b> : Some Linux operating systems accept multiple domain
+ * names separated by spaces. However, Windows and other Linux operating
+ * systems treat the value as a single domain, which results in
+ * unexpected behavior. If your DHCP options set is associated with a VPC
+ * that has instances with multiple operating systems, specify only one
+ * domain name.</li>
  * <li> <code>ntp-servers</code> - The IP addresses of up to four
  * Network Time Protocol (NTP) servers.</li>
  * <li> <code>netbios-name-servers</code> - The IP addresses of up to
@@ -58,7 +64,12 @@ import com.amazonaws.services.ec2.model.transform.CreateDhcpOptionsRequestMarsha
  * 
  * </ul>
  * <p>
- * For more information about DHCP options, see
+ * Your VPC automatically starts out with a set of DHCP options that
+ * includes only a DNS server that we provide (AmazonProvidedDNS). If you
+ * create a set of options, and if your VPC has an Internet gateway, make
+ * sure to set the <code>domain-name-servers</code> option either to
+ * <code>AmazonProvidedDNS</code> or to a domain name server of your
+ * choice. For more information about DHCP options, see
  * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html"> DHCP Options Sets </a>
  * in the <i>Amazon Virtual Private Cloud User Guide</i> .
  * </p>

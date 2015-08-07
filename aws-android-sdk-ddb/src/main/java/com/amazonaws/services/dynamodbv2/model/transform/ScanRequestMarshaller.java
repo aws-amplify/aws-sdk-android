@@ -61,6 +61,9 @@ public class ScanRequestMarshaller implements Marshaller<Request<ScanRequest>, S
             if (scanRequest.getTableName() != null) {
                 jsonWriter.name("TableName").value(scanRequest.getTableName());
             }
+            if (scanRequest.getIndexName() != null) {
+                jsonWriter.name("IndexName").value(scanRequest.getIndexName());
+            }
 
             com.amazonaws.internal.ListWithAutoConstructFlag<String> attributesToGetList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(scanRequest.getAttributesToGet());
             if (attributesToGetList != null && !(attributesToGetList.isAutoConstruct() && attributesToGetList.isEmpty())) {
@@ -164,6 +167,9 @@ public class ScanRequestMarshaller implements Marshaller<Request<ScanRequest>, S
                     }
                 }
                 jsonWriter.endObject();
+            }
+            if (scanRequest.isConsistentRead() != null) {
+                jsonWriter.name("ConsistentRead").value(scanRequest.isConsistentRead());
             }
 
             jsonWriter.endObject();

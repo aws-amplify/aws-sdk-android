@@ -30,13 +30,13 @@ public class GetItemResult implements Serializable {
     private java.util.Map<String,AttributeValue> item;
 
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     private ConsumedCapacity consumedCapacity;
 
@@ -112,65 +112,65 @@ public class GetItemResult implements Serializable {
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @return Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @return The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public ConsumedCapacity getConsumedCapacity() {
         return consumedCapacity;
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @param consumedCapacity Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @param consumedCapacity The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setConsumedCapacity(ConsumedCapacity consumedCapacity) {
         this.consumedCapacity = consumedCapacity;
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param consumedCapacity Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @param consumedCapacity The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

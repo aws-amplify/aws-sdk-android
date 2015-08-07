@@ -18,7 +18,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes the S3 bucket for an instance store-backed AMI.
+ * Describes the storage parameters for S3 and S3 buckets for an instance
+ * store-backed AMI.
  * </p>
  */
 public class S3Storage implements Serializable {

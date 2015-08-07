@@ -21,15 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.elasticloadbalancing.AmazonElasticLoadBalancing#describeLoadBalancers(DescribeLoadBalancersRequest) DescribeLoadBalancers operation}.
  * <p>
- * Returns detailed configuration information for all the load balancers
- * created for the account. If you specify load balancer names, the
- * action returns configuration information of the specified load
- * balancers.
- * </p>
- * <p>
- * <b>NOTE:</b> In order to retrieve this information, you must provide
- * the same account credentials that was used to create the load
- * balancer.
+ * Describes the specified the load balancers. If no load balancers are
+ * specified, the call describes all of your load balancers.
  * </p>
  *
  * @see com.amazonaws.services.elasticloadbalancing.AmazonElasticLoadBalancing#describeLoadBalancers(DescribeLoadBalancersRequest)
@@ -37,14 +30,24 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * A list of load balancer names associated with the account.
+     * The names of the load balancers.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> loadBalancerNames;
 
     /**
-     * An optional parameter reserved for future use.
+     * The marker for the next set of results. (You received this marker from
+     * a previous call.)
      */
     private String marker;
+
+    /**
+     * The maximum number of results to return with this call (a number from
+     * 1 to 400). The default is 400.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 400<br/>
+     */
+    private Integer pageSize;
 
     /**
      * Default constructor for a new DescribeLoadBalancersRequest object.  Callers should use the
@@ -57,17 +60,16 @@ public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implem
      * Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      * 
-     * @param loadBalancerNames A list of load balancer names associated with
-     * the account.
+     * @param loadBalancerNames The names of the load balancers.
      */
     public DescribeLoadBalancersRequest(java.util.List<String> loadBalancerNames) {
         setLoadBalancerNames(loadBalancerNames);
     }
 
     /**
-     * A list of load balancer names associated with the account.
+     * The names of the load balancers.
      *
-     * @return A list of load balancer names associated with the account.
+     * @return The names of the load balancers.
      */
     public java.util.List<String> getLoadBalancerNames() {
         if (loadBalancerNames == null) {
@@ -78,9 +80,9 @@ public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implem
     }
     
     /**
-     * A list of load balancer names associated with the account.
+     * The names of the load balancers.
      *
-     * @param loadBalancerNames A list of load balancer names associated with the account.
+     * @param loadBalancerNames The names of the load balancers.
      */
     public void setLoadBalancerNames(java.util.Collection<String> loadBalancerNames) {
         if (loadBalancerNames == null) {
@@ -93,11 +95,11 @@ public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implem
     }
     
     /**
-     * A list of load balancer names associated with the account.
+     * The names of the load balancers.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param loadBalancerNames A list of load balancer names associated with the account.
+     * @param loadBalancerNames The names of the load balancers.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -111,11 +113,11 @@ public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implem
     }
     
     /**
-     * A list of load balancer names associated with the account.
+     * The names of the load balancers.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param loadBalancerNames A list of load balancer names associated with the account.
+     * @param loadBalancerNames The names of the load balancers.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -133,35 +135,89 @@ public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implem
     }
 
     /**
-     * An optional parameter reserved for future use.
+     * The marker for the next set of results. (You received this marker from
+     * a previous call.)
      *
-     * @return An optional parameter reserved for future use.
+     * @return The marker for the next set of results. (You received this marker from
+     *         a previous call.)
      */
     public String getMarker() {
         return marker;
     }
     
     /**
-     * An optional parameter reserved for future use.
+     * The marker for the next set of results. (You received this marker from
+     * a previous call.)
      *
-     * @param marker An optional parameter reserved for future use.
+     * @param marker The marker for the next set of results. (You received this marker from
+     *         a previous call.)
      */
     public void setMarker(String marker) {
         this.marker = marker;
     }
     
     /**
-     * An optional parameter reserved for future use.
+     * The marker for the next set of results. (You received this marker from
+     * a previous call.)
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param marker An optional parameter reserved for future use.
+     * @param marker The marker for the next set of results. (You received this marker from
+     *         a previous call.)
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
      */
     public DescribeLoadBalancersRequest withMarker(String marker) {
         this.marker = marker;
+        return this;
+    }
+
+    /**
+     * The maximum number of results to return with this call (a number from
+     * 1 to 400). The default is 400.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 400<br/>
+     *
+     * @return The maximum number of results to return with this call (a number from
+     *         1 to 400). The default is 400.
+     */
+    public Integer getPageSize() {
+        return pageSize;
+    }
+    
+    /**
+     * The maximum number of results to return with this call (a number from
+     * 1 to 400). The default is 400.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 400<br/>
+     *
+     * @param pageSize The maximum number of results to return with this call (a number from
+     *         1 to 400). The default is 400.
+     */
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+    
+    /**
+     * The maximum number of results to return with this call (a number from
+     * 1 to 400). The default is 400.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 400<br/>
+     *
+     * @param pageSize The maximum number of results to return with this call (a number from
+     *         1 to 400). The default is 400.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public DescribeLoadBalancersRequest withPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
         return this;
     }
 
@@ -178,7 +234,8 @@ public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implem
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getLoadBalancerNames() != null) sb.append("LoadBalancerNames: " + getLoadBalancerNames() + ",");
-        if (getMarker() != null) sb.append("Marker: " + getMarker() );
+        if (getMarker() != null) sb.append("Marker: " + getMarker() + ",");
+        if (getPageSize() != null) sb.append("PageSize: " + getPageSize() );
         sb.append("}");
         return sb.toString();
     }
@@ -190,6 +247,7 @@ public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implem
         
         hashCode = prime * hashCode + ((getLoadBalancerNames() == null) ? 0 : getLoadBalancerNames().hashCode()); 
         hashCode = prime * hashCode + ((getMarker() == null) ? 0 : getMarker().hashCode()); 
+        hashCode = prime * hashCode + ((getPageSize() == null) ? 0 : getPageSize().hashCode()); 
         return hashCode;
     }
     
@@ -205,6 +263,8 @@ public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implem
         if (other.getLoadBalancerNames() != null && other.getLoadBalancerNames().equals(this.getLoadBalancerNames()) == false) return false; 
         if (other.getMarker() == null ^ this.getMarker() == null) return false;
         if (other.getMarker() != null && other.getMarker().equals(this.getMarker()) == false) return false; 
+        if (other.getPageSize() == null ^ this.getPageSize() == null) return false;
+        if (other.getPageSize() != null && other.getPageSize().equals(this.getPageSize()) == false) return false; 
         return true;
     }
     

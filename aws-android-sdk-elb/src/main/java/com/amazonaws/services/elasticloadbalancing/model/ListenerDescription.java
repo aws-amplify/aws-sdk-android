@@ -18,19 +18,22 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The ListenerDescription data type.
+ * The policies enabled for a listener.
  * </p>
  */
 public class ListenerDescription implements Serializable {
 
     /**
-     * The Listener data type.
+     * Information about a listener. <p>For information about the protocols
+     * and the ports supported by Elastic Load Balancing, see <a
+     * href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html">Listener
+     * Configurations for Elastic Load Balancing</a> in the <i>Elastic Load
+     * Balancing Developer Guide</i>.
      */
     private Listener listener;
 
     /**
-     * A list of policies enabled for this listener. An empty list indicates
-     * that no policies are enabled.
+     * The policies. If there are no policies enabled, the list is empty.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> policyNames;
 
@@ -41,29 +44,53 @@ public class ListenerDescription implements Serializable {
     public ListenerDescription() {}
     
     /**
-     * The Listener data type.
+     * Information about a listener. <p>For information about the protocols
+     * and the ports supported by Elastic Load Balancing, see <a
+     * href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html">Listener
+     * Configurations for Elastic Load Balancing</a> in the <i>Elastic Load
+     * Balancing Developer Guide</i>.
      *
-     * @return The Listener data type.
+     * @return Information about a listener. <p>For information about the protocols
+     *         and the ports supported by Elastic Load Balancing, see <a
+     *         href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html">Listener
+     *         Configurations for Elastic Load Balancing</a> in the <i>Elastic Load
+     *         Balancing Developer Guide</i>.
      */
     public Listener getListener() {
         return listener;
     }
     
     /**
-     * The Listener data type.
+     * Information about a listener. <p>For information about the protocols
+     * and the ports supported by Elastic Load Balancing, see <a
+     * href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html">Listener
+     * Configurations for Elastic Load Balancing</a> in the <i>Elastic Load
+     * Balancing Developer Guide</i>.
      *
-     * @param listener The Listener data type.
+     * @param listener Information about a listener. <p>For information about the protocols
+     *         and the ports supported by Elastic Load Balancing, see <a
+     *         href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html">Listener
+     *         Configurations for Elastic Load Balancing</a> in the <i>Elastic Load
+     *         Balancing Developer Guide</i>.
      */
     public void setListener(Listener listener) {
         this.listener = listener;
     }
     
     /**
-     * The Listener data type.
+     * Information about a listener. <p>For information about the protocols
+     * and the ports supported by Elastic Load Balancing, see <a
+     * href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html">Listener
+     * Configurations for Elastic Load Balancing</a> in the <i>Elastic Load
+     * Balancing Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param listener The Listener data type.
+     * @param listener Information about a listener. <p>For information about the protocols
+     *         and the ports supported by Elastic Load Balancing, see <a
+     *         href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html">Listener
+     *         Configurations for Elastic Load Balancing</a> in the <i>Elastic Load
+     *         Balancing Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -74,11 +101,9 @@ public class ListenerDescription implements Serializable {
     }
 
     /**
-     * A list of policies enabled for this listener. An empty list indicates
-     * that no policies are enabled.
+     * The policies. If there are no policies enabled, the list is empty.
      *
-     * @return A list of policies enabled for this listener. An empty list indicates
-     *         that no policies are enabled.
+     * @return The policies. If there are no policies enabled, the list is empty.
      */
     public java.util.List<String> getPolicyNames() {
         if (policyNames == null) {
@@ -89,11 +114,9 @@ public class ListenerDescription implements Serializable {
     }
     
     /**
-     * A list of policies enabled for this listener. An empty list indicates
-     * that no policies are enabled.
+     * The policies. If there are no policies enabled, the list is empty.
      *
-     * @param policyNames A list of policies enabled for this listener. An empty list indicates
-     *         that no policies are enabled.
+     * @param policyNames The policies. If there are no policies enabled, the list is empty.
      */
     public void setPolicyNames(java.util.Collection<String> policyNames) {
         if (policyNames == null) {
@@ -106,13 +129,11 @@ public class ListenerDescription implements Serializable {
     }
     
     /**
-     * A list of policies enabled for this listener. An empty list indicates
-     * that no policies are enabled.
+     * The policies. If there are no policies enabled, the list is empty.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyNames A list of policies enabled for this listener. An empty list indicates
-     *         that no policies are enabled.
+     * @param policyNames The policies. If there are no policies enabled, the list is empty.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -126,13 +147,11 @@ public class ListenerDescription implements Serializable {
     }
     
     /**
-     * A list of policies enabled for this listener. An empty list indicates
-     * that no policies are enabled.
+     * The policies. If there are no policies enabled, the list is empty.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyNames A list of policies enabled for this listener. An empty list indicates
-     *         that no policies are enabled.
+     * @param policyNames The policies. If there are no policies enabled, the list is empty.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

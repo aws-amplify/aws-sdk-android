@@ -17,26 +17,25 @@ package com.amazonaws.services.elasticloadbalancing.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * The output for the DescribeLoadBalancers action.
- * </p>
+ * 
  */
 public class DescribeLoadBalancersResult implements Serializable {
 
     /**
-     * A list of load balancer description structures.
+     * Information about the load balancers.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<LoadBalancerDescription> loadBalancerDescriptions;
 
     /**
-     * An optional parameter reserved for future use.
+     * The marker to use when requesting the next set of results. If there
+     * are no additional results, the string is empty.
      */
     private String nextMarker;
 
     /**
-     * A list of load balancer description structures.
+     * Information about the load balancers.
      *
-     * @return A list of load balancer description structures.
+     * @return Information about the load balancers.
      */
     public java.util.List<LoadBalancerDescription> getLoadBalancerDescriptions() {
         if (loadBalancerDescriptions == null) {
@@ -47,9 +46,9 @@ public class DescribeLoadBalancersResult implements Serializable {
     }
     
     /**
-     * A list of load balancer description structures.
+     * Information about the load balancers.
      *
-     * @param loadBalancerDescriptions A list of load balancer description structures.
+     * @param loadBalancerDescriptions Information about the load balancers.
      */
     public void setLoadBalancerDescriptions(java.util.Collection<LoadBalancerDescription> loadBalancerDescriptions) {
         if (loadBalancerDescriptions == null) {
@@ -62,11 +61,11 @@ public class DescribeLoadBalancersResult implements Serializable {
     }
     
     /**
-     * A list of load balancer description structures.
+     * Information about the load balancers.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param loadBalancerDescriptions A list of load balancer description structures.
+     * @param loadBalancerDescriptions Information about the load balancers.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -80,11 +79,11 @@ public class DescribeLoadBalancersResult implements Serializable {
     }
     
     /**
-     * A list of load balancer description structures.
+     * Information about the load balancers.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param loadBalancerDescriptions A list of load balancer description structures.
+     * @param loadBalancerDescriptions Information about the load balancers.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -102,29 +101,35 @@ public class DescribeLoadBalancersResult implements Serializable {
     }
 
     /**
-     * An optional parameter reserved for future use.
+     * The marker to use when requesting the next set of results. If there
+     * are no additional results, the string is empty.
      *
-     * @return An optional parameter reserved for future use.
+     * @return The marker to use when requesting the next set of results. If there
+     *         are no additional results, the string is empty.
      */
     public String getNextMarker() {
         return nextMarker;
     }
     
     /**
-     * An optional parameter reserved for future use.
+     * The marker to use when requesting the next set of results. If there
+     * are no additional results, the string is empty.
      *
-     * @param nextMarker An optional parameter reserved for future use.
+     * @param nextMarker The marker to use when requesting the next set of results. If there
+     *         are no additional results, the string is empty.
      */
     public void setNextMarker(String nextMarker) {
         this.nextMarker = nextMarker;
     }
     
     /**
-     * An optional parameter reserved for future use.
+     * The marker to use when requesting the next set of results. If there
+     * are no additional results, the string is empty.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param nextMarker An optional parameter reserved for future use.
+     * @param nextMarker The marker to use when requesting the next set of results. If there
+     *         are no additional results, the string is empty.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

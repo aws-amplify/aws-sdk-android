@@ -17,7 +17,7 @@ package com.amazonaws.services.lambda.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * AWSLambda exception
+ * 
  */        
 public class TooManyRequestsException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

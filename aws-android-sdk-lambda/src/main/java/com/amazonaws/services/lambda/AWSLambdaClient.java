@@ -34,7 +34,16 @@ import com.amazonaws.services.lambda.model.transform.*;
  * using this client are blocking, and will not return until the service call
  * completes.
  * <p>
- * 
+ * AWS Lambda <p>
+ * <b>Overview</b>
+ * </p>
+ * <p>
+ * This is the <i>AWS Lambda API Reference</i> .
+ * The AWS Lambda Developer Guide provides additional information.
+ * For the service overview, go to
+ * <a href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html"> What is AWS Lambda </a> , and for information about how the service works, go to <a href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html"> AWS Lambda: How it Works </a>
+ * in the <i>AWS Lambda Developer Guide</i> .
+ * </p>
  */
 public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda {
 
@@ -244,6 +253,13 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
     }
 
     /**
+     * <p>
+     * Invokes a specified Lambda function.
+     * </p>
+     * <p>
+     * This operation requires permission for the
+     * <code>lambda:InvokeFunction</code> action.
+     * </p>
      *
      * @param invokeRequest Container for the necessary parameters to execute
      *           the Invoke service method on AWSLambda.

@@ -28,6 +28,15 @@ public enum InstanceType {
     M3Large("m3.large"),
     M3Xlarge("m3.xlarge"),
     M32xlarge("m3.2xlarge"),
+    M4Large("m4.large"),
+    M4Xlarge("m4.xlarge"),
+    M42xlarge("m4.2xlarge"),
+    M44xlarge("m4.4xlarge"),
+    M410xlarge("m4.10xlarge"),
+    T2Micro("t2.micro"),
+    T2Small("t2.small"),
+    T2Medium("t2.medium"),
+    T2Large("t2.large"),
     M2Xlarge("m2.xlarge"),
     M22xlarge("m2.2xlarge"),
     M24xlarge("m2.4xlarge"),
@@ -45,6 +54,11 @@ public enum InstanceType {
     C32xlarge("c3.2xlarge"),
     C34xlarge("c3.4xlarge"),
     C38xlarge("c3.8xlarge"),
+    C4Large("c4.large"),
+    C4Xlarge("c4.xlarge"),
+    C42xlarge("c4.2xlarge"),
+    C44xlarge("c4.4xlarge"),
+    C48xlarge("c4.8xlarge"),
     Cc14xlarge("cc1.4xlarge"),
     Cc28xlarge("cc2.8xlarge"),
     G22xlarge("g2.2xlarge"),
@@ -53,7 +67,11 @@ public enum InstanceType {
     R3Xlarge("r3.xlarge"),
     R32xlarge("r3.2xlarge"),
     R34xlarge("r3.4xlarge"),
-    R38xlarge("r3.8xlarge");
+    R38xlarge("r3.8xlarge"),
+    D2Xlarge("d2.xlarge"),
+    D22xlarge("d2.2xlarge"),
+    D24xlarge("d2.4xlarge"),
+    D28xlarge("d2.8xlarge");
 
     private String value;
 
@@ -95,6 +113,24 @@ public enum InstanceType {
             return InstanceType.M3Xlarge;
         } else if ("m3.2xlarge".equals(value)) {
             return InstanceType.M32xlarge;
+        } else if ("m4.large".equals(value)) {
+            return InstanceType.M4Large;
+        } else if ("m4.xlarge".equals(value)) {
+            return InstanceType.M4Xlarge;
+        } else if ("m4.2xlarge".equals(value)) {
+            return InstanceType.M42xlarge;
+        } else if ("m4.4xlarge".equals(value)) {
+            return InstanceType.M44xlarge;
+        } else if ("m4.10xlarge".equals(value)) {
+            return InstanceType.M410xlarge;
+        } else if ("t2.micro".equals(value)) {
+            return InstanceType.T2Micro;
+        } else if ("t2.small".equals(value)) {
+            return InstanceType.T2Small;
+        } else if ("t2.medium".equals(value)) {
+            return InstanceType.T2Medium;
+        } else if ("t2.large".equals(value)) {
+            return InstanceType.T2Large;
         } else if ("m2.xlarge".equals(value)) {
             return InstanceType.M2Xlarge;
         } else if ("m2.2xlarge".equals(value)) {
@@ -129,6 +165,16 @@ public enum InstanceType {
             return InstanceType.C34xlarge;
         } else if ("c3.8xlarge".equals(value)) {
             return InstanceType.C38xlarge;
+        } else if ("c4.large".equals(value)) {
+            return InstanceType.C4Large;
+        } else if ("c4.xlarge".equals(value)) {
+            return InstanceType.C4Xlarge;
+        } else if ("c4.2xlarge".equals(value)) {
+            return InstanceType.C42xlarge;
+        } else if ("c4.4xlarge".equals(value)) {
+            return InstanceType.C44xlarge;
+        } else if ("c4.8xlarge".equals(value)) {
+            return InstanceType.C48xlarge;
         } else if ("cc1.4xlarge".equals(value)) {
             return InstanceType.Cc14xlarge;
         } else if ("cc2.8xlarge".equals(value)) {
@@ -147,6 +193,14 @@ public enum InstanceType {
             return InstanceType.R34xlarge;
         } else if ("r3.8xlarge".equals(value)) {
             return InstanceType.R38xlarge;
+        } else if ("d2.xlarge".equals(value)) {
+            return InstanceType.D2Xlarge;
+        } else if ("d2.2xlarge".equals(value)) {
+            return InstanceType.D22xlarge;
+        } else if ("d2.4xlarge".equals(value)) {
+            return InstanceType.D24xlarge;
+        } else if ("d2.8xlarge".equals(value)) {
+            return InstanceType.D28xlarge;
         } else {
             throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
         }

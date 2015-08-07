@@ -21,45 +21,64 @@ import java.io.Serializable;
  * Represents the data for an attribute. You can set one, and only one,
  * of the elements.
  * </p>
+ * <p>
+ * Each attribute in an item is a name-value pair. An attribute can be
+ * single-valued or multi-valued set. For example, a book item can have
+ * title and authors attributes. Each book has one title but can have
+ * many authors. The multi-valued attribute is a set; duplicate values
+ * are not allowed.
+ * </p>
  */
 public class AttributeValue implements Serializable {
 
     /**
-     * A String data type
+     * A String data type.
      */
     private String s;
 
     /**
-     * A Number data type
+     * A Number data type.
      */
     private String n;
 
     /**
-     * A Binary data type
+     * A Binary data type.
      */
     private java.nio.ByteBuffer b;
 
     /**
-     * A String set data type
+     * A String Set data type.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> sS;
 
     /**
-     * Number set data type
+     * A Number Set data type.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> nS;
 
     /**
-     * A Binary set data type
+     * A Binary Set data type.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<java.nio.ByteBuffer> bS;
 
+    /**
+     * A Map of attribute values.
+     */
     private java.util.Map<String,AttributeValue> m;
 
+    /**
+     * A List of attribute values.
+     */
     private com.amazonaws.internal.ListWithAutoConstructFlag<AttributeValue> l;
 
+    /**
+     * A Null data type.
+     */
     private Boolean nULL;
 
+    /**
+     * A Boolean data type.
+     */
     private Boolean bOOL;
 
     /**
@@ -73,7 +92,7 @@ public class AttributeValue implements Serializable {
      * Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      * 
-     * @param s A String data type
+     * @param s A String data type.
      */
     public AttributeValue(String s) {
         setS(s);
@@ -84,36 +103,36 @@ public class AttributeValue implements Serializable {
      * Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      * 
-     * @param sS A String set data type
+     * @param sS A String Set data type.
      */
     public AttributeValue(java.util.List<String> sS) {
         setSS(sS);
     }
 
     /**
-     * A String data type
+     * A String data type.
      *
-     * @return A String data type
+     * @return A String data type.
      */
     public String getS() {
         return s;
     }
     
     /**
-     * A String data type
+     * A String data type.
      *
-     * @param s A String data type
+     * @param s A String data type.
      */
     public void setS(String s) {
         this.s = s;
     }
     
     /**
-     * A String data type
+     * A String data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param s A String data type
+     * @param s A String data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -124,29 +143,29 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * A Number data type
+     * A Number data type.
      *
-     * @return A Number data type
+     * @return A Number data type.
      */
     public String getN() {
         return n;
     }
     
     /**
-     * A Number data type
+     * A Number data type.
      *
-     * @param n A Number data type
+     * @param n A Number data type.
      */
     public void setN(String n) {
         this.n = n;
     }
     
     /**
-     * A Number data type
+     * A Number data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param n A Number data type
+     * @param n A Number data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -157,29 +176,29 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * A Binary data type
+     * A Binary data type.
      *
-     * @return A Binary data type
+     * @return A Binary data type.
      */
     public java.nio.ByteBuffer getB() {
         return b;
     }
     
     /**
-     * A Binary data type
+     * A Binary data type.
      *
-     * @param b A Binary data type
+     * @param b A Binary data type.
      */
     public void setB(java.nio.ByteBuffer b) {
         this.b = b;
     }
     
     /**
-     * A Binary data type
+     * A Binary data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param b A Binary data type
+     * @param b A Binary data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -190,18 +209,18 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * A String set data type
+     * A String Set data type.
      *
-     * @return A String set data type
+     * @return A String Set data type.
      */
     public java.util.List<String> getSS() {
         return sS;
     }
     
     /**
-     * A String set data type
+     * A String Set data type.
      *
-     * @param sS A String set data type
+     * @param sS A String Set data type.
      */
     public void setSS(java.util.Collection<String> sS) {
         if (sS == null) {
@@ -214,11 +233,11 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * A String set data type
+     * A String Set data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sS A String set data type
+     * @param sS A String Set data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -232,11 +251,11 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * A String set data type
+     * A String Set data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sS A String set data type
+     * @param sS A String Set data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -254,18 +273,18 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * Number set data type
+     * A Number Set data type.
      *
-     * @return Number set data type
+     * @return A Number Set data type.
      */
     public java.util.List<String> getNS() {
         return nS;
     }
     
     /**
-     * Number set data type
+     * A Number Set data type.
      *
-     * @param nS Number set data type
+     * @param nS A Number Set data type.
      */
     public void setNS(java.util.Collection<String> nS) {
         if (nS == null) {
@@ -278,11 +297,11 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * Number set data type
+     * A Number Set data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param nS Number set data type
+     * @param nS A Number Set data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -296,11 +315,11 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * Number set data type
+     * A Number Set data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param nS Number set data type
+     * @param nS A Number Set data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -318,18 +337,18 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * A Binary set data type
+     * A Binary Set data type.
      *
-     * @return A Binary set data type
+     * @return A Binary Set data type.
      */
     public java.util.List<java.nio.ByteBuffer> getBS() {
         return bS;
     }
     
     /**
-     * A Binary set data type
+     * A Binary Set data type.
      *
-     * @param bS A Binary set data type
+     * @param bS A Binary Set data type.
      */
     public void setBS(java.util.Collection<java.nio.ByteBuffer> bS) {
         if (bS == null) {
@@ -342,11 +361,11 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * A Binary set data type
+     * A Binary Set data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param bS A Binary set data type
+     * @param bS A Binary Set data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -360,11 +379,11 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * A Binary set data type
+     * A Binary Set data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param bS A Binary set data type
+     * @param bS A Binary Set data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -382,9 +401,9 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * Returns the value of the M property for this object.
+     * A Map of attribute values.
      *
-     * @return The value of the M property for this object.
+     * @return A Map of attribute values.
      */
     public java.util.Map<String,AttributeValue> getM() {
         
@@ -392,20 +411,20 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * Sets the value of the M property for this object.
+     * A Map of attribute values.
      *
-     * @param m The new value for the M property for this object.
+     * @param m A Map of attribute values.
      */
     public void setM(java.util.Map<String,AttributeValue> m) {
         this.m = m;
     }
     
     /**
-     * Sets the value of the M property for this object.
+     * A Map of attribute values.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param m The new value for the M property for this object.
+     * @param m A Map of attribute values.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -416,7 +435,7 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * Sets the value of the M property for this object.
+     * A Map of attribute values.
      * <p>
      * The method adds a new key-value pair into M parameter, and returns a
      * reference to this object so that method calls can be chained together.
@@ -445,18 +464,18 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * Returns the value of the L property for this object.
+     * A List of attribute values.
      *
-     * @return The value of the L property for this object.
+     * @return A List of attribute values.
      */
     public java.util.List<AttributeValue> getL() {
         return l;
     }
     
     /**
-     * Sets the value of the L property for this object.
+     * A List of attribute values.
      *
-     * @param l The new value for the L property for this object.
+     * @param l A List of attribute values.
      */
     public void setL(java.util.Collection<AttributeValue> l) {
         if (l == null) {
@@ -469,11 +488,11 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * Sets the value of the L property for this object.
+     * A List of attribute values.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param l The new value for the L property for this object.
+     * @param l A List of attribute values.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -487,11 +506,11 @@ public class AttributeValue implements Serializable {
     }
     
     /**
-     * Sets the value of the L property for this object.
+     * A List of attribute values.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param l The new value for the L property for this object.
+     * @param l A List of attribute values.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -509,29 +528,29 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * Returns the value of the NULL property for this object.
+     * A Null data type.
      *
-     * @return The value of the NULL property for this object.
+     * @return A Null data type.
      */
     public Boolean isNULL() {
         return nULL;
     }
     
     /**
-     * Sets the value of the NULL property for this object.
+     * A Null data type.
      *
-     * @param nULL The new value for the NULL property for this object.
+     * @param nULL A Null data type.
      */
     public void setNULL(Boolean nULL) {
         this.nULL = nULL;
     }
     
     /**
-     * Sets the value of the NULL property for this object.
+     * A Null data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param nULL The new value for the NULL property for this object.
+     * @param nULL A Null data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -542,38 +561,38 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * Returns the value of the NULL property for this object.
+     * A Null data type.
      *
-     * @return The value of the NULL property for this object.
+     * @return A Null data type.
      */
     public Boolean getNULL() {
         return nULL;
     }
 
     /**
-     * Returns the value of the BOOL property for this object.
+     * A Boolean data type.
      *
-     * @return The value of the BOOL property for this object.
+     * @return A Boolean data type.
      */
     public Boolean isBOOL() {
         return bOOL;
     }
     
     /**
-     * Sets the value of the BOOL property for this object.
+     * A Boolean data type.
      *
-     * @param bOOL The new value for the BOOL property for this object.
+     * @param bOOL A Boolean data type.
      */
     public void setBOOL(Boolean bOOL) {
         this.bOOL = bOOL;
     }
     
     /**
-     * Sets the value of the BOOL property for this object.
+     * A Boolean data type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param bOOL The new value for the BOOL property for this object.
+     * @param bOOL A Boolean data type.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -584,9 +603,9 @@ public class AttributeValue implements Serializable {
     }
 
     /**
-     * Returns the value of the BOOL property for this object.
+     * A Boolean data type.
      *
-     * @return The value of the BOOL property for this object.
+     * @return A Boolean data type.
      */
     public Boolean getBOOL() {
         return bOOL;

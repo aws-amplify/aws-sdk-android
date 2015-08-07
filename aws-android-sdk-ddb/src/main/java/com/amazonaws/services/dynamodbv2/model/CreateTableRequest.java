@@ -35,9 +35,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * on an <code>ACTIVE</code> table.
  * </p>
  * <p>
- * If you want to create multiple tables with secondary indexes on them,
- * you must create them sequentially. Only one table with secondary
- * indexes can be in the <code>CREATING</code> state at any given time.
+ * You can optionally define secondary indexes on the new table, as part
+ * of the <i>CreateTable</i> operation. If you want to create multiple
+ * tables with secondary indexes on them, you must create the tables
+ * sequentially. Only one table with secondary indexes can be in the
+ * <code>CREATING</code> state at any given time.
  * </p>
  * <p>
  * You can use the <i>DescribeTable</i> API to check the table status.
@@ -67,20 +69,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * an index. The attributes in <i>KeySchema</i> must also be defined in
      * the <i>AttributeDefinitions</i> array. For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     * Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      * <p><i>KeyType</i> - Determines whether the key attribute is
      * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must specify exactly one
+     * key that consists of a hash attribute, you must provide exactly one
      * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must specify
+     * key that consists of hash and range attributes, you must provide
      * exactly two elements, in this order: The first element must have a
      * <i>KeyType</i> of <code>HASH</code>, and the second element must have
      * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      * <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     * the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2<br/>
@@ -109,7 +111,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -136,7 +138,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -152,9 +154,26 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     private ProvisionedThroughput provisionedThroughput;
+
+    /**
+     * The settings for DynamoDB Streams on the table. These settings consist
+     * of: <ul> <li> <p><i>StreamEnabled</i> - Indicates whether Streams is
+     * to be enabled (true) or disabled (false). </li> <li>
+     * <p><i>StreamViewType</i> - When an item in the table is modified,
+     * <i>StreamViewType</i> determines what information is written to the
+     * table's stream. Valid values for <i>StreamViewType</i> are: <ul>
+     * <li><p><i>KEYS_ONLY</i> - Only the key attributes of the modified item
+     * are written to the stream.</li> <li><p><i>NEW_IMAGE</i> - The entire
+     * item, as it appears after it was modified, is written to the
+     * stream.</li> <li><p><i>OLD_IMAGE</i> - The entire item, as it appeared
+     * before it was modified, is written to the stream.</li>
+     * <li><p><i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item
+     * images of the item are written to the stream.</li> </ul> </li> </ul>
+     */
+    private StreamSpecification streamSpecification;
 
     /**
      * Default constructor for a new CreateTableRequest object.  Callers should use the
@@ -173,20 +192,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * be defined in the <i>AttributeDefinitions</i> array. For more
      * information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     * Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      * <p><i>KeyType</i> - Determines whether the key attribute is
      * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must specify exactly one
+     * key that consists of a hash attribute, you must provide exactly one
      * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must specify
+     * key that consists of hash and range attributes, you must provide
      * exactly two elements, in this order: The first element must have a
      * <i>KeyType</i> of <code>HASH</code>, and the second element must have
      * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      * <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     * the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public CreateTableRequest(String tableName, java.util.List<KeySchemaElement> keySchema) {
         setTableName(tableName);
@@ -206,26 +225,26 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * be defined in the <i>AttributeDefinitions</i> array. For more
      * information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     * Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      * <p><i>KeyType</i> - Determines whether the key attribute is
      * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must specify exactly one
+     * key that consists of a hash attribute, you must provide exactly one
      * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must specify
+     * key that consists of hash and range attributes, you must provide
      * exactly two elements, in this order: The first element must have a
      * <i>KeyType</i> of <code>HASH</code>, and the second element must have
      * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      * <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     * the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * @param provisionedThroughput Represents the provisioned throughput
      * settings for a specified table or index. The settings can be modified
      * using the <i>UpdateTable</i> operation. <p>For current minimum and
      * maximum provisioned throughput values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public CreateTableRequest(java.util.List<AttributeDefinition> attributeDefinitions, String tableName, java.util.List<KeySchemaElement> keySchema, ProvisionedThroughput provisionedThroughput) {
         setAttributeDefinitions(attributeDefinitions);
@@ -356,20 +375,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * an index. The attributes in <i>KeySchema</i> must also be defined in
      * the <i>AttributeDefinitions</i> array. For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     * Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      * <p><i>KeyType</i> - Determines whether the key attribute is
      * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must specify exactly one
+     * key that consists of a hash attribute, you must provide exactly one
      * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must specify
+     * key that consists of hash and range attributes, you must provide
      * exactly two elements, in this order: The first element must have a
      * <i>KeyType</i> of <code>HASH</code>, and the second element must have
      * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      * <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     * the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2<br/>
@@ -378,20 +397,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         an index. The attributes in <i>KeySchema</i> must also be defined in
      *         the <i>AttributeDefinitions</i> array. For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     *         Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     *         Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      *         <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      *         <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      *         <p><i>KeyType</i> - Determines whether the key attribute is
      *         <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     *         key that consists of a hash attribute, you must specify exactly one
+     *         key that consists of a hash attribute, you must provide exactly one
      *         element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     *         key that consists of hash and range attributes, you must specify
+     *         key that consists of hash and range attributes, you must provide
      *         exactly two elements, in this order: The first element must have a
      *         <i>KeyType</i> of <code>HASH</code>, and the second element must have
      *         a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      *         <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     *         the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     *         the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public java.util.List<KeySchemaElement> getKeySchema() {
         return keySchema;
@@ -402,20 +421,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * an index. The attributes in <i>KeySchema</i> must also be defined in
      * the <i>AttributeDefinitions</i> array. For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     * Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      * <p><i>KeyType</i> - Determines whether the key attribute is
      * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must specify exactly one
+     * key that consists of a hash attribute, you must provide exactly one
      * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must specify
+     * key that consists of hash and range attributes, you must provide
      * exactly two elements, in this order: The first element must have a
      * <i>KeyType</i> of <code>HASH</code>, and the second element must have
      * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      * <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     * the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2<br/>
@@ -424,20 +443,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         an index. The attributes in <i>KeySchema</i> must also be defined in
      *         the <i>AttributeDefinitions</i> array. For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     *         Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     *         Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      *         <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      *         <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      *         <p><i>KeyType</i> - Determines whether the key attribute is
      *         <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     *         key that consists of a hash attribute, you must specify exactly one
+     *         key that consists of a hash attribute, you must provide exactly one
      *         element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     *         key that consists of hash and range attributes, you must specify
+     *         key that consists of hash and range attributes, you must provide
      *         exactly two elements, in this order: The first element must have a
      *         <i>KeyType</i> of <code>HASH</code>, and the second element must have
      *         a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      *         <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     *         the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     *         the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setKeySchema(java.util.Collection<KeySchemaElement> keySchema) {
         if (keySchema == null) {
@@ -454,20 +473,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * an index. The attributes in <i>KeySchema</i> must also be defined in
      * the <i>AttributeDefinitions</i> array. For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     * Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      * <p><i>KeyType</i> - Determines whether the key attribute is
      * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must specify exactly one
+     * key that consists of a hash attribute, you must provide exactly one
      * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must specify
+     * key that consists of hash and range attributes, you must provide
      * exactly two elements, in this order: The first element must have a
      * <i>KeyType</i> of <code>HASH</code>, and the second element must have
      * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      * <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     * the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -478,20 +497,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         an index. The attributes in <i>KeySchema</i> must also be defined in
      *         the <i>AttributeDefinitions</i> array. For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     *         Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     *         Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      *         <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      *         <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      *         <p><i>KeyType</i> - Determines whether the key attribute is
      *         <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     *         key that consists of a hash attribute, you must specify exactly one
+     *         key that consists of a hash attribute, you must provide exactly one
      *         element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     *         key that consists of hash and range attributes, you must specify
+     *         key that consists of hash and range attributes, you must provide
      *         exactly two elements, in this order: The first element must have a
      *         <i>KeyType</i> of <code>HASH</code>, and the second element must have
      *         a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      *         <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     *         the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     *         the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -509,20 +528,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * an index. The attributes in <i>KeySchema</i> must also be defined in
      * the <i>AttributeDefinitions</i> array. For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     * Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      * <p><i>KeyType</i> - Determines whether the key attribute is
      * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must specify exactly one
+     * key that consists of a hash attribute, you must provide exactly one
      * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must specify
+     * key that consists of hash and range attributes, you must provide
      * exactly two elements, in this order: The first element must have a
      * <i>KeyType</i> of <code>HASH</code>, and the second element must have
      * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      * <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     * the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -533,20 +552,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         an index. The attributes in <i>KeySchema</i> must also be defined in
      *         the <i>AttributeDefinitions</i> array. For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
-     *         Model</a> in the Amazon DynamoDB Developer Guide. <p>Each
+     *         Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      *         <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      *         <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
      *         <p><i>KeyType</i> - Determines whether the key attribute is
      *         <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     *         key that consists of a hash attribute, you must specify exactly one
+     *         key that consists of a hash attribute, you must provide exactly one
      *         element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     *         key that consists of hash and range attributes, you must specify
+     *         key that consists of hash and range attributes, you must provide
      *         exactly two elements, in this order: The first element must have a
      *         <i>KeyType</i> of <code>HASH</code>, and the second element must have
      *         a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
      *         <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
-     *         the Primary Key</a> in the Amazon DynamoDB Developer Guide.
+     *         the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -585,7 +604,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -612,7 +631,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <p><code>ALL</code> - All of the table attributes are projected into
      *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      *         of one or more non-key attribute names that are projected into the
-     *         secondary index. The total count of attributes specified in
+     *         secondary index. The total count of attributes provided in
      *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      *         must not exceed 20. If you project the same attribute into two
      *         different indexes, this counts as two distinct attributes when
@@ -644,7 +663,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -671,7 +690,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <p><code>ALL</code> - All of the table attributes are projected into
      *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      *         of one or more non-key attribute names that are projected into the
-     *         secondary index. The total count of attributes specified in
+     *         secondary index. The total count of attributes provided in
      *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      *         must not exceed 20. If you project the same attribute into two
      *         different indexes, this counts as two distinct attributes when
@@ -709,7 +728,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -738,7 +757,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <p><code>ALL</code> - All of the table attributes are projected into
      *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      *         of one or more non-key attribute names that are projected into the
-     *         secondary index. The total count of attributes specified in
+     *         secondary index. The total count of attributes provided in
      *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      *         must not exceed 20. If you project the same attribute into two
      *         different indexes, this counts as two distinct attributes when
@@ -777,7 +796,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p><code>ALL</code> - All of the table attributes are projected into
      * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      * of one or more non-key attribute names that are projected into the
-     * secondary index. The total count of attributes specified in
+     * secondary index. The total count of attributes provided in
      * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      * must not exceed 20. If you project the same attribute into two
      * different indexes, this counts as two distinct attributes when
@@ -806,7 +825,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <p><code>ALL</code> - All of the table attributes are projected into
      *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
      *         of one or more non-key attribute names that are projected into the
-     *         secondary index. The total count of attributes specified in
+     *         secondary index. The total count of attributes provided in
      *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
      *         must not exceed 20. If you project the same attribute into two
      *         different indexes, this counts as two distinct attributes when
@@ -846,7 +865,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -872,7 +891,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         table attributes are projected into the index. </li> </ul> </li> <li>
      *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      *         names that are projected into the secondary index. The total count of
-     *         attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
      *         the secondary indexes, must not exceed 20. If you project the same
      *         attribute into two different indexes, this counts as two distinct
      *         attributes when determining the total. </li> </ul> </li> <li>
@@ -903,7 +922,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -929,7 +948,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         table attributes are projected into the index. </li> </ul> </li> <li>
      *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      *         names that are projected into the secondary index. The total count of
-     *         attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
      *         the secondary indexes, must not exceed 20. If you project the same
      *         attribute into two different indexes, this counts as two distinct
      *         attributes when determining the total. </li> </ul> </li> <li>
@@ -966,7 +985,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -994,7 +1013,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         table attributes are projected into the index. </li> </ul> </li> <li>
      *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      *         names that are projected into the secondary index. The total count of
-     *         attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
      *         the secondary indexes, must not exceed 20. If you project the same
      *         attribute into two different indexes, this counts as two distinct
      *         attributes when determining the total. </li> </ul> </li> <li>
@@ -1032,7 +1051,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * table attributes are projected into the index. </li> </ul> </li> <li>
      * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      * names that are projected into the secondary index. The total count of
-     * attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
      * the secondary indexes, must not exceed 20. If you project the same
      * attribute into two different indexes, this counts as two distinct
      * attributes when determining the total. </li> </ul> </li> <li>
@@ -1060,7 +1079,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         table attributes are projected into the index. </li> </ul> </li> <li>
      *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
      *         names that are projected into the secondary index. The total count of
-     *         attributes specified in <i>NonKeyAttributes</i>, summed across all of
+     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
      *         the secondary indexes, must not exceed 20. If you project the same
      *         attribute into two different indexes, this counts as two distinct
      *         attributes when determining the total. </li> </ul> </li> <li>
@@ -1089,14 +1108,14 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return Represents the provisioned throughput settings for a specified table
      *         or index. The settings can be modified using the <i>UpdateTable</i>
      *         operation. <p>For current minimum and maximum provisioned throughput
      *         values, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     *         in the Amazon DynamoDB Developer Guide.
+     *         in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public ProvisionedThroughput getProvisionedThroughput() {
         return provisionedThroughput;
@@ -1108,14 +1127,14 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @param provisionedThroughput Represents the provisioned throughput settings for a specified table
      *         or index. The settings can be modified using the <i>UpdateTable</i>
      *         operation. <p>For current minimum and maximum provisioned throughput
      *         values, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     *         in the Amazon DynamoDB Developer Guide.
+     *         in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setProvisionedThroughput(ProvisionedThroughput provisionedThroughput) {
         this.provisionedThroughput = provisionedThroughput;
@@ -1127,7 +1146,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * operation. <p>For current minimum and maximum provisioned throughput
      * values, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     * in the Amazon DynamoDB Developer Guide.
+     * in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -1136,13 +1155,118 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         operation. <p>For current minimum and maximum provisioned throughput
      *         values, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
-     *         in the Amazon DynamoDB Developer Guide.
+     *         in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
      */
     public CreateTableRequest withProvisionedThroughput(ProvisionedThroughput provisionedThroughput) {
         this.provisionedThroughput = provisionedThroughput;
+        return this;
+    }
+
+    /**
+     * The settings for DynamoDB Streams on the table. These settings consist
+     * of: <ul> <li> <p><i>StreamEnabled</i> - Indicates whether Streams is
+     * to be enabled (true) or disabled (false). </li> <li>
+     * <p><i>StreamViewType</i> - When an item in the table is modified,
+     * <i>StreamViewType</i> determines what information is written to the
+     * table's stream. Valid values for <i>StreamViewType</i> are: <ul>
+     * <li><p><i>KEYS_ONLY</i> - Only the key attributes of the modified item
+     * are written to the stream.</li> <li><p><i>NEW_IMAGE</i> - The entire
+     * item, as it appears after it was modified, is written to the
+     * stream.</li> <li><p><i>OLD_IMAGE</i> - The entire item, as it appeared
+     * before it was modified, is written to the stream.</li>
+     * <li><p><i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item
+     * images of the item are written to the stream.</li> </ul> </li> </ul>
+     *
+     * @return The settings for DynamoDB Streams on the table. These settings consist
+     *         of: <ul> <li> <p><i>StreamEnabled</i> - Indicates whether Streams is
+     *         to be enabled (true) or disabled (false). </li> <li>
+     *         <p><i>StreamViewType</i> - When an item in the table is modified,
+     *         <i>StreamViewType</i> determines what information is written to the
+     *         table's stream. Valid values for <i>StreamViewType</i> are: <ul>
+     *         <li><p><i>KEYS_ONLY</i> - Only the key attributes of the modified item
+     *         are written to the stream.</li> <li><p><i>NEW_IMAGE</i> - The entire
+     *         item, as it appears after it was modified, is written to the
+     *         stream.</li> <li><p><i>OLD_IMAGE</i> - The entire item, as it appeared
+     *         before it was modified, is written to the stream.</li>
+     *         <li><p><i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item
+     *         images of the item are written to the stream.</li> </ul> </li> </ul>
+     */
+    public StreamSpecification getStreamSpecification() {
+        return streamSpecification;
+    }
+    
+    /**
+     * The settings for DynamoDB Streams on the table. These settings consist
+     * of: <ul> <li> <p><i>StreamEnabled</i> - Indicates whether Streams is
+     * to be enabled (true) or disabled (false). </li> <li>
+     * <p><i>StreamViewType</i> - When an item in the table is modified,
+     * <i>StreamViewType</i> determines what information is written to the
+     * table's stream. Valid values for <i>StreamViewType</i> are: <ul>
+     * <li><p><i>KEYS_ONLY</i> - Only the key attributes of the modified item
+     * are written to the stream.</li> <li><p><i>NEW_IMAGE</i> - The entire
+     * item, as it appears after it was modified, is written to the
+     * stream.</li> <li><p><i>OLD_IMAGE</i> - The entire item, as it appeared
+     * before it was modified, is written to the stream.</li>
+     * <li><p><i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item
+     * images of the item are written to the stream.</li> </ul> </li> </ul>
+     *
+     * @param streamSpecification The settings for DynamoDB Streams on the table. These settings consist
+     *         of: <ul> <li> <p><i>StreamEnabled</i> - Indicates whether Streams is
+     *         to be enabled (true) or disabled (false). </li> <li>
+     *         <p><i>StreamViewType</i> - When an item in the table is modified,
+     *         <i>StreamViewType</i> determines what information is written to the
+     *         table's stream. Valid values for <i>StreamViewType</i> are: <ul>
+     *         <li><p><i>KEYS_ONLY</i> - Only the key attributes of the modified item
+     *         are written to the stream.</li> <li><p><i>NEW_IMAGE</i> - The entire
+     *         item, as it appears after it was modified, is written to the
+     *         stream.</li> <li><p><i>OLD_IMAGE</i> - The entire item, as it appeared
+     *         before it was modified, is written to the stream.</li>
+     *         <li><p><i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item
+     *         images of the item are written to the stream.</li> </ul> </li> </ul>
+     */
+    public void setStreamSpecification(StreamSpecification streamSpecification) {
+        this.streamSpecification = streamSpecification;
+    }
+    
+    /**
+     * The settings for DynamoDB Streams on the table. These settings consist
+     * of: <ul> <li> <p><i>StreamEnabled</i> - Indicates whether Streams is
+     * to be enabled (true) or disabled (false). </li> <li>
+     * <p><i>StreamViewType</i> - When an item in the table is modified,
+     * <i>StreamViewType</i> determines what information is written to the
+     * table's stream. Valid values for <i>StreamViewType</i> are: <ul>
+     * <li><p><i>KEYS_ONLY</i> - Only the key attributes of the modified item
+     * are written to the stream.</li> <li><p><i>NEW_IMAGE</i> - The entire
+     * item, as it appears after it was modified, is written to the
+     * stream.</li> <li><p><i>OLD_IMAGE</i> - The entire item, as it appeared
+     * before it was modified, is written to the stream.</li>
+     * <li><p><i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item
+     * images of the item are written to the stream.</li> </ul> </li> </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param streamSpecification The settings for DynamoDB Streams on the table. These settings consist
+     *         of: <ul> <li> <p><i>StreamEnabled</i> - Indicates whether Streams is
+     *         to be enabled (true) or disabled (false). </li> <li>
+     *         <p><i>StreamViewType</i> - When an item in the table is modified,
+     *         <i>StreamViewType</i> determines what information is written to the
+     *         table's stream. Valid values for <i>StreamViewType</i> are: <ul>
+     *         <li><p><i>KEYS_ONLY</i> - Only the key attributes of the modified item
+     *         are written to the stream.</li> <li><p><i>NEW_IMAGE</i> - The entire
+     *         item, as it appears after it was modified, is written to the
+     *         stream.</li> <li><p><i>OLD_IMAGE</i> - The entire item, as it appeared
+     *         before it was modified, is written to the stream.</li>
+     *         <li><p><i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item
+     *         images of the item are written to the stream.</li> </ul> </li> </ul>
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public CreateTableRequest withStreamSpecification(StreamSpecification streamSpecification) {
+        this.streamSpecification = streamSpecification;
         return this;
     }
 
@@ -1163,7 +1287,8 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
         if (getKeySchema() != null) sb.append("KeySchema: " + getKeySchema() + ",");
         if (getLocalSecondaryIndexes() != null) sb.append("LocalSecondaryIndexes: " + getLocalSecondaryIndexes() + ",");
         if (getGlobalSecondaryIndexes() != null) sb.append("GlobalSecondaryIndexes: " + getGlobalSecondaryIndexes() + ",");
-        if (getProvisionedThroughput() != null) sb.append("ProvisionedThroughput: " + getProvisionedThroughput() );
+        if (getProvisionedThroughput() != null) sb.append("ProvisionedThroughput: " + getProvisionedThroughput() + ",");
+        if (getStreamSpecification() != null) sb.append("StreamSpecification: " + getStreamSpecification() );
         sb.append("}");
         return sb.toString();
     }
@@ -1179,6 +1304,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
         hashCode = prime * hashCode + ((getLocalSecondaryIndexes() == null) ? 0 : getLocalSecondaryIndexes().hashCode()); 
         hashCode = prime * hashCode + ((getGlobalSecondaryIndexes() == null) ? 0 : getGlobalSecondaryIndexes().hashCode()); 
         hashCode = prime * hashCode + ((getProvisionedThroughput() == null) ? 0 : getProvisionedThroughput().hashCode()); 
+        hashCode = prime * hashCode + ((getStreamSpecification() == null) ? 0 : getStreamSpecification().hashCode()); 
         return hashCode;
     }
     
@@ -1202,6 +1328,8 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
         if (other.getGlobalSecondaryIndexes() != null && other.getGlobalSecondaryIndexes().equals(this.getGlobalSecondaryIndexes()) == false) return false; 
         if (other.getProvisionedThroughput() == null ^ this.getProvisionedThroughput() == null) return false;
         if (other.getProvisionedThroughput() != null && other.getProvisionedThroughput().equals(this.getProvisionedThroughput()) == false) return false; 
+        if (other.getStreamSpecification() == null ^ this.getStreamSpecification() == null) return false;
+        if (other.getStreamSpecification() != null && other.getStreamSpecification().equals(this.getStreamSpecification()) == false) return false; 
         return true;
     }
     

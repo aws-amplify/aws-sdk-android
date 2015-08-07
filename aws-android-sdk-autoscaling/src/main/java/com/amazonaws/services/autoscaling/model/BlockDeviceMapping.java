@@ -18,13 +18,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The <code>BlockDeviceMapping</code> data type.
+ * Describes a block device mapping.
  * </p>
  */
 public class BlockDeviceMapping implements Serializable {
 
     /**
-     * The virtual name associated with the device.
+     * The name of the virtual device, <code>ephemeral0</code> to
+     * <code>ephemeral3</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -33,8 +34,8 @@ public class BlockDeviceMapping implements Serializable {
     private String virtualName;
 
     /**
-     * The name of the device within Amazon EC2 (for example, /dev/sdh or
-     * xvdh).
+     * The device name exposed to the EC2 instance (for example,
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -43,46 +44,51 @@ public class BlockDeviceMapping implements Serializable {
     private String deviceName;
 
     /**
-     * The Elastic Block Storage volume information.
+     * The information about the Amazon EBS volume.
      */
     private Ebs ebs;
 
     /**
-     * Suppresses the device mapping. <note>If <code>NoDevice</code> is set
-     * to <code>true</code> for the root device, the instance might fail the
-     * EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.</note>
+     * Suppresses a device mapping. <p>If this parameter is true for the root
+     * device, the instance might fail the EC2 health check. Auto Scaling
+     * launches a replacement instance if the instance fails the health
+     * check.
      */
     private Boolean noDevice;
 
     /**
-     * The virtual name associated with the device.
+     * The name of the virtual device, <code>ephemeral0</code> to
+     * <code>ephemeral3</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The virtual name associated with the device.
+     * @return The name of the virtual device, <code>ephemeral0</code> to
+     *         <code>ephemeral3</code>.
      */
     public String getVirtualName() {
         return virtualName;
     }
     
     /**
-     * The virtual name associated with the device.
+     * The name of the virtual device, <code>ephemeral0</code> to
+     * <code>ephemeral3</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param virtualName The virtual name associated with the device.
+     * @param virtualName The name of the virtual device, <code>ephemeral0</code> to
+     *         <code>ephemeral3</code>.
      */
     public void setVirtualName(String virtualName) {
         this.virtualName = virtualName;
     }
     
     /**
-     * The virtual name associated with the device.
+     * The name of the virtual device, <code>ephemeral0</code> to
+     * <code>ephemeral3</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -90,7 +96,8 @@ public class BlockDeviceMapping implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param virtualName The virtual name associated with the device.
+     * @param virtualName The name of the virtual device, <code>ephemeral0</code> to
+     *         <code>ephemeral3</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -101,38 +108,38 @@ public class BlockDeviceMapping implements Serializable {
     }
 
     /**
-     * The name of the device within Amazon EC2 (for example, /dev/sdh or
-     * xvdh).
+     * The device name exposed to the EC2 instance (for example,
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The name of the device within Amazon EC2 (for example, /dev/sdh or
-     *         xvdh).
+     * @return The device name exposed to the EC2 instance (for example,
+     *         <code>/dev/sdh</code> or <code>xvdh</code>).
      */
     public String getDeviceName() {
         return deviceName;
     }
     
     /**
-     * The name of the device within Amazon EC2 (for example, /dev/sdh or
-     * xvdh).
+     * The device name exposed to the EC2 instance (for example,
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param deviceName The name of the device within Amazon EC2 (for example, /dev/sdh or
-     *         xvdh).
+     * @param deviceName The device name exposed to the EC2 instance (for example,
+     *         <code>/dev/sdh</code> or <code>xvdh</code>).
      */
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
     }
     
     /**
-     * The name of the device within Amazon EC2 (for example, /dev/sdh or
-     * xvdh).
+     * The device name exposed to the EC2 instance (for example,
+     * <code>/dev/sdh</code> or <code>xvdh</code>).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -140,8 +147,8 @@ public class BlockDeviceMapping implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param deviceName The name of the device within Amazon EC2 (for example, /dev/sdh or
-     *         xvdh).
+     * @param deviceName The device name exposed to the EC2 instance (for example,
+     *         <code>/dev/sdh</code> or <code>xvdh</code>).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -152,29 +159,29 @@ public class BlockDeviceMapping implements Serializable {
     }
 
     /**
-     * The Elastic Block Storage volume information.
+     * The information about the Amazon EBS volume.
      *
-     * @return The Elastic Block Storage volume information.
+     * @return The information about the Amazon EBS volume.
      */
     public Ebs getEbs() {
         return ebs;
     }
     
     /**
-     * The Elastic Block Storage volume information.
+     * The information about the Amazon EBS volume.
      *
-     * @param ebs The Elastic Block Storage volume information.
+     * @param ebs The information about the Amazon EBS volume.
      */
     public void setEbs(Ebs ebs) {
         this.ebs = ebs;
     }
     
     /**
-     * The Elastic Block Storage volume information.
+     * The information about the Amazon EBS volume.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ebs The Elastic Block Storage volume information.
+     * @param ebs The information about the Amazon EBS volume.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -185,47 +192,47 @@ public class BlockDeviceMapping implements Serializable {
     }
 
     /**
-     * Suppresses the device mapping. <note>If <code>NoDevice</code> is set
-     * to <code>true</code> for the root device, the instance might fail the
-     * EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.</note>
+     * Suppresses a device mapping. <p>If this parameter is true for the root
+     * device, the instance might fail the EC2 health check. Auto Scaling
+     * launches a replacement instance if the instance fails the health
+     * check.
      *
-     * @return Suppresses the device mapping. <note>If <code>NoDevice</code> is set
-     *         to <code>true</code> for the root device, the instance might fail the
-     *         EC2 health check. Auto Scaling launches a replacement instance if the
-     *         instance fails the health check.</note>
+     * @return Suppresses a device mapping. <p>If this parameter is true for the root
+     *         device, the instance might fail the EC2 health check. Auto Scaling
+     *         launches a replacement instance if the instance fails the health
+     *         check.
      */
     public Boolean isNoDevice() {
         return noDevice;
     }
     
     /**
-     * Suppresses the device mapping. <note>If <code>NoDevice</code> is set
-     * to <code>true</code> for the root device, the instance might fail the
-     * EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.</note>
+     * Suppresses a device mapping. <p>If this parameter is true for the root
+     * device, the instance might fail the EC2 health check. Auto Scaling
+     * launches a replacement instance if the instance fails the health
+     * check.
      *
-     * @param noDevice Suppresses the device mapping. <note>If <code>NoDevice</code> is set
-     *         to <code>true</code> for the root device, the instance might fail the
-     *         EC2 health check. Auto Scaling launches a replacement instance if the
-     *         instance fails the health check.</note>
+     * @param noDevice Suppresses a device mapping. <p>If this parameter is true for the root
+     *         device, the instance might fail the EC2 health check. Auto Scaling
+     *         launches a replacement instance if the instance fails the health
+     *         check.
      */
     public void setNoDevice(Boolean noDevice) {
         this.noDevice = noDevice;
     }
     
     /**
-     * Suppresses the device mapping. <note>If <code>NoDevice</code> is set
-     * to <code>true</code> for the root device, the instance might fail the
-     * EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.</note>
+     * Suppresses a device mapping. <p>If this parameter is true for the root
+     * device, the instance might fail the EC2 health check. Auto Scaling
+     * launches a replacement instance if the instance fails the health
+     * check.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param noDevice Suppresses the device mapping. <note>If <code>NoDevice</code> is set
-     *         to <code>true</code> for the root device, the instance might fail the
-     *         EC2 health check. Auto Scaling launches a replacement instance if the
-     *         instance fails the health check.</note>
+     * @param noDevice Suppresses a device mapping. <p>If this parameter is true for the root
+     *         device, the instance might fail the EC2 health check. Auto Scaling
+     *         launches a replacement instance if the instance fails the health
+     *         check.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -236,15 +243,15 @@ public class BlockDeviceMapping implements Serializable {
     }
 
     /**
-     * Suppresses the device mapping. <note>If <code>NoDevice</code> is set
-     * to <code>true</code> for the root device, the instance might fail the
-     * EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.</note>
+     * Suppresses a device mapping. <p>If this parameter is true for the root
+     * device, the instance might fail the EC2 health check. Auto Scaling
+     * launches a replacement instance if the instance fails the health
+     * check.
      *
-     * @return Suppresses the device mapping. <note>If <code>NoDevice</code> is set
-     *         to <code>true</code> for the root device, the instance might fail the
-     *         EC2 health check. Auto Scaling launches a replacement instance if the
-     *         instance fails the health check.</note>
+     * @return Suppresses a device mapping. <p>If this parameter is true for the root
+     *         device, the instance might fail the EC2 health check. Auto Scaling
+     *         launches a replacement instance if the instance fails the health
+     *         check.
      */
     public Boolean getNoDevice() {
         return noDevice;

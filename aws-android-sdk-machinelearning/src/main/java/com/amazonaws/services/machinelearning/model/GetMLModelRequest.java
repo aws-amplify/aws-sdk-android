@@ -21,12 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.machinelearning.AmazonMachineLearning#getMLModel(GetMLModelRequest) GetMLModel operation}.
  * <p>
- * Returns the detail metadata, schema, and data file information for a
- * <i>MLModel</i> , as well as current status of the <i>MLModel</i> .
+ * Returns an <code>MLModel</code> that includes detailed metadata, and
+ * data source information as well as the current status of the
+ * <code>MLModel</code> .
  * </p>
  * <p>
- * <i>GetMLModel</i> provides results in <b>normal</b> or <b>verbose</b>
- * format.
+ * <code>GetMLModel</code> provides results in normal or verbose format.
  * </p>
  *
  * @see com.amazonaws.services.machinelearning.AmazonMachineLearning#getMLModel(GetMLModelRequest)
@@ -34,7 +34,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetMLModelRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The ID assigned to the <i>MLModel</i> at creation.
+     * The ID assigned to the <code>MLModel</code> at creation.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
@@ -43,40 +43,40 @@ public class GetMLModelRequest extends AmazonWebServiceRequest implements Serial
     private String mLModelId;
 
     /**
-     * Specifies whether the <i>GetMLModel</i> operation should return
-     * <i>Recipe</i> <p>If true, <i>Recipe</i> is returned. <p>If false,
-     * <i>Recipe</i> is not returned.
+     * Specifies whether the <code>GetMLModel</code> operation should return
+     * <code>Recipe</code>. <p>If true, <code>Recipe</code> is returned.
+     * <p>If false, <code>Recipe</code> is not returned.
      */
     private Boolean verbose;
 
     /**
-     * The ID assigned to the <i>MLModel</i> at creation.
+     * The ID assigned to the <code>MLModel</code> at creation.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The ID assigned to the <i>MLModel</i> at creation.
+     * @return The ID assigned to the <code>MLModel</code> at creation.
      */
     public String getMLModelId() {
         return mLModelId;
     }
     
     /**
-     * The ID assigned to the <i>MLModel</i> at creation.
+     * The ID assigned to the <code>MLModel</code> at creation.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param mLModelId The ID assigned to the <i>MLModel</i> at creation.
+     * @param mLModelId The ID assigned to the <code>MLModel</code> at creation.
      */
     public void setMLModelId(String mLModelId) {
         this.mLModelId = mLModelId;
     }
     
     /**
-     * The ID assigned to the <i>MLModel</i> at creation.
+     * The ID assigned to the <code>MLModel</code> at creation.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -84,7 +84,7 @@ public class GetMLModelRequest extends AmazonWebServiceRequest implements Serial
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param mLModelId The ID assigned to the <i>MLModel</i> at creation.
+     * @param mLModelId The ID assigned to the <code>MLModel</code> at creation.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -95,41 +95,41 @@ public class GetMLModelRequest extends AmazonWebServiceRequest implements Serial
     }
 
     /**
-     * Specifies whether the <i>GetMLModel</i> operation should return
-     * <i>Recipe</i> <p>If true, <i>Recipe</i> is returned. <p>If false,
-     * <i>Recipe</i> is not returned.
+     * Specifies whether the <code>GetMLModel</code> operation should return
+     * <code>Recipe</code>. <p>If true, <code>Recipe</code> is returned.
+     * <p>If false, <code>Recipe</code> is not returned.
      *
-     * @return Specifies whether the <i>GetMLModel</i> operation should return
-     *         <i>Recipe</i> <p>If true, <i>Recipe</i> is returned. <p>If false,
-     *         <i>Recipe</i> is not returned.
+     * @return Specifies whether the <code>GetMLModel</code> operation should return
+     *         <code>Recipe</code>. <p>If true, <code>Recipe</code> is returned.
+     *         <p>If false, <code>Recipe</code> is not returned.
      */
     public Boolean isVerbose() {
         return verbose;
     }
     
     /**
-     * Specifies whether the <i>GetMLModel</i> operation should return
-     * <i>Recipe</i> <p>If true, <i>Recipe</i> is returned. <p>If false,
-     * <i>Recipe</i> is not returned.
+     * Specifies whether the <code>GetMLModel</code> operation should return
+     * <code>Recipe</code>. <p>If true, <code>Recipe</code> is returned.
+     * <p>If false, <code>Recipe</code> is not returned.
      *
-     * @param verbose Specifies whether the <i>GetMLModel</i> operation should return
-     *         <i>Recipe</i> <p>If true, <i>Recipe</i> is returned. <p>If false,
-     *         <i>Recipe</i> is not returned.
+     * @param verbose Specifies whether the <code>GetMLModel</code> operation should return
+     *         <code>Recipe</code>. <p>If true, <code>Recipe</code> is returned.
+     *         <p>If false, <code>Recipe</code> is not returned.
      */
     public void setVerbose(Boolean verbose) {
         this.verbose = verbose;
     }
     
     /**
-     * Specifies whether the <i>GetMLModel</i> operation should return
-     * <i>Recipe</i> <p>If true, <i>Recipe</i> is returned. <p>If false,
-     * <i>Recipe</i> is not returned.
+     * Specifies whether the <code>GetMLModel</code> operation should return
+     * <code>Recipe</code>. <p>If true, <code>Recipe</code> is returned.
+     * <p>If false, <code>Recipe</code> is not returned.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param verbose Specifies whether the <i>GetMLModel</i> operation should return
-     *         <i>Recipe</i> <p>If true, <i>Recipe</i> is returned. <p>If false,
-     *         <i>Recipe</i> is not returned.
+     * @param verbose Specifies whether the <code>GetMLModel</code> operation should return
+     *         <code>Recipe</code>. <p>If true, <code>Recipe</code> is returned.
+     *         <p>If false, <code>Recipe</code> is not returned.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -140,13 +140,13 @@ public class GetMLModelRequest extends AmazonWebServiceRequest implements Serial
     }
 
     /**
-     * Specifies whether the <i>GetMLModel</i> operation should return
-     * <i>Recipe</i> <p>If true, <i>Recipe</i> is returned. <p>If false,
-     * <i>Recipe</i> is not returned.
+     * Specifies whether the <code>GetMLModel</code> operation should return
+     * <code>Recipe</code>. <p>If true, <code>Recipe</code> is returned.
+     * <p>If false, <code>Recipe</code> is not returned.
      *
-     * @return Specifies whether the <i>GetMLModel</i> operation should return
-     *         <i>Recipe</i> <p>If true, <i>Recipe</i> is returned. <p>If false,
-     *         <i>Recipe</i> is not returned.
+     * @return Specifies whether the <code>GetMLModel</code> operation should return
+     *         <code>Recipe</code>. <p>If true, <code>Recipe</code> is returned.
+     *         <p>If false, <code>Recipe</code> is not returned.
      */
     public Boolean getVerbose() {
         return verbose;

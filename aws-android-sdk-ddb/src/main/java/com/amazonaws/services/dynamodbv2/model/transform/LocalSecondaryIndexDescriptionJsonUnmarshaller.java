@@ -51,6 +51,9 @@ public class LocalSecondaryIndexDescriptionJsonUnmarshaller implements Unmarshal
             if (name.equals("ItemCount")) {
                 localSecondaryIndexDescription.setItemCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
+            if (name.equals("IndexArn")) {
+                localSecondaryIndexDescription.setIndexArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
             {
                 reader.skipValue();
             }

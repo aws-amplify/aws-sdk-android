@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * The operation tried to access a nonexistent table or index. The
- * resource may not be specified correctly, or its status may not be
+ * resource might not be specified correctly, or its status might not be
  * <code>ACTIVE</code> .
  * </p>
  */        

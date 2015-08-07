@@ -32,10 +32,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * application.
  * </p>
  * <p>
- * <b>Note:</b> Do not use this call in mobile applications or
- * client-based web applications that directly get temporary security
- * credentials. For those types of applications, use
- * <code>AssumeRoleWithWebIdentity</code> .
+ * <b>NOTE:</b> If you are creating a mobile-based or browser-based app
+ * that can authenticate users using a web identity provider like Login
+ * with Amazon, Facebook, Google, or an OpenID Connect-compatible
+ * identity provider, we recommend that you use Amazon Cognito or
+ * AssumeRoleWithWebIdentity. For more information, see Creating
+ * Temporary Security Credentials for Mobile Apps Using Identity
+ * Providers.
  * </p>
  * <p>
  * The <code>GetFederationToken</code> action must be called by using the
@@ -101,8 +104,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information about how permissions work, see
- * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html"> Permissions for GetFederationToken </a> in <i>Using Temporary Security Credentials</i> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingFedTokens.html"> Creating Temporary Credentials to Enable Access for Federated Users </a>
- * in <i>Using Temporary Security Credentials</i> .
+ * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingFedTokens.html"> Creating Temporary Credentials to Enable Access for Federated Users </a>
+ * .
  * </p>
  *
  * @see com.amazonaws.services.securitytoken.AWSSecurityTokenService#getFederationToken(GetFederationTokenRequest)
@@ -136,10 +139,14 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * permissions. The only exception is when the temporary security
      * credentials are used to access a resource that has a resource-based
      * policy that specifically allows the federated user to access the
-     * resource. <p>For more information about how permissions work, see <a
+     * resource. <note>The policy plain text must be 2048 bytes or shorter.
+     * However, an internal conversion compresses it into a packed binary
+     * format with a separate limit. The PackedPolicySize response element
+     * indicates by percentage how close to the upper size limit the policy
+     * is, with 100% equaling the maximum allowed size. </note> <p>For more
+     * information about how permissions work, see <a
      * href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html">Permissions
-     * for GetFederationToken</a> in <i>Using Temporary Security
-     * Credentials</i>.
+     * for GetFederationToken</a>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -260,10 +267,14 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * permissions. The only exception is when the temporary security
      * credentials are used to access a resource that has a resource-based
      * policy that specifically allows the federated user to access the
-     * resource. <p>For more information about how permissions work, see <a
+     * resource. <note>The policy plain text must be 2048 bytes or shorter.
+     * However, an internal conversion compresses it into a packed binary
+     * format with a separate limit. The PackedPolicySize response element
+     * indicates by percentage how close to the upper size limit the policy
+     * is, with 100% equaling the maximum allowed size. </note> <p>For more
+     * information about how permissions work, see <a
      * href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html">Permissions
-     * for GetFederationToken</a> in <i>Using Temporary Security
-     * Credentials</i>.
+     * for GetFederationToken</a>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -283,10 +294,14 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *         permissions. The only exception is when the temporary security
      *         credentials are used to access a resource that has a resource-based
      *         policy that specifically allows the federated user to access the
-     *         resource. <p>For more information about how permissions work, see <a
+     *         resource. <note>The policy plain text must be 2048 bytes or shorter.
+     *         However, an internal conversion compresses it into a packed binary
+     *         format with a separate limit. The PackedPolicySize response element
+     *         indicates by percentage how close to the upper size limit the policy
+     *         is, with 100% equaling the maximum allowed size. </note> <p>For more
+     *         information about how permissions work, see <a
      *         href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html">Permissions
-     *         for GetFederationToken</a> in <i>Using Temporary Security
-     *         Credentials</i>.
+     *         for GetFederationToken</a>.
      */
     public String getPolicy() {
         return policy;
@@ -307,10 +322,14 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * permissions. The only exception is when the temporary security
      * credentials are used to access a resource that has a resource-based
      * policy that specifically allows the federated user to access the
-     * resource. <p>For more information about how permissions work, see <a
+     * resource. <note>The policy plain text must be 2048 bytes or shorter.
+     * However, an internal conversion compresses it into a packed binary
+     * format with a separate limit. The PackedPolicySize response element
+     * indicates by percentage how close to the upper size limit the policy
+     * is, with 100% equaling the maximum allowed size. </note> <p>For more
+     * information about how permissions work, see <a
      * href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html">Permissions
-     * for GetFederationToken</a> in <i>Using Temporary Security
-     * Credentials</i>.
+     * for GetFederationToken</a>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -330,10 +349,14 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *         permissions. The only exception is when the temporary security
      *         credentials are used to access a resource that has a resource-based
      *         policy that specifically allows the federated user to access the
-     *         resource. <p>For more information about how permissions work, see <a
+     *         resource. <note>The policy plain text must be 2048 bytes or shorter.
+     *         However, an internal conversion compresses it into a packed binary
+     *         format with a separate limit. The PackedPolicySize response element
+     *         indicates by percentage how close to the upper size limit the policy
+     *         is, with 100% equaling the maximum allowed size. </note> <p>For more
+     *         information about how permissions work, see <a
      *         href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html">Permissions
-     *         for GetFederationToken</a> in <i>Using Temporary Security
-     *         Credentials</i>.
+     *         for GetFederationToken</a>.
      */
     public void setPolicy(String policy) {
         this.policy = policy;
@@ -354,10 +377,14 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * permissions. The only exception is when the temporary security
      * credentials are used to access a resource that has a resource-based
      * policy that specifically allows the federated user to access the
-     * resource. <p>For more information about how permissions work, see <a
+     * resource. <note>The policy plain text must be 2048 bytes or shorter.
+     * However, an internal conversion compresses it into a packed binary
+     * format with a separate limit. The PackedPolicySize response element
+     * indicates by percentage how close to the upper size limit the policy
+     * is, with 100% equaling the maximum allowed size. </note> <p>For more
+     * information about how permissions work, see <a
      * href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html">Permissions
-     * for GetFederationToken</a> in <i>Using Temporary Security
-     * Credentials</i>.
+     * for GetFederationToken</a>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -379,10 +406,14 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *         permissions. The only exception is when the temporary security
      *         credentials are used to access a resource that has a resource-based
      *         policy that specifically allows the federated user to access the
-     *         resource. <p>For more information about how permissions work, see <a
+     *         resource. <note>The policy plain text must be 2048 bytes or shorter.
+     *         However, an internal conversion compresses it into a packed binary
+     *         format with a separate limit. The PackedPolicySize response element
+     *         indicates by percentage how close to the upper size limit the policy
+     *         is, with 100% equaling the maximum allowed size. </note> <p>For more
+     *         information about how permissions work, see <a
      *         href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html">Permissions
-     *         for GetFederationToken</a> in <i>Using Temporary Security
-     *         Credentials</i>.
+     *         for GetFederationToken</a>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

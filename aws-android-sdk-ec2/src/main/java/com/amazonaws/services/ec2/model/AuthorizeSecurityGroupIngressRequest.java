@@ -59,19 +59,28 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     private String groupName;
 
     /**
-     * The ID of the security group.
+     * The ID of the security group. Required for a nondefault VPC.
      */
     private String groupId;
 
     /**
      * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the start of the port range,
+     * the IP protocol, and the end of the port range. For EC2-VPC, the
+     * source security group must be in the same VPC.
      */
     private String sourceSecurityGroupName;
 
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * [EC2-Classic, default VPC] The AWS account number for the source
+     * security group. For EC2-VPC, the source security group must be in the
+     * same VPC. You can't specify this parameter in combination with the
+     * following parameters: the CIDR IP address range, the IP protocol, the
+     * start of the port range, and the end of the port range. Creates rules
+     * that grant full ICMP, UDP, and TCP access. To create a rule with a
+     * specific IP protocol and port range, use a set of IP permissions
+     * instead.
      */
     private String sourceSecurityGroupOwnerId;
 
@@ -79,7 +88,7 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
      * The IP protocol name (<code>tcp</code>, <code>udp</code>,
      * <code>icmp</code>) or number (see <a
      * href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
-     * Numbers</a>). Use <code>-1</code> to specify all.
+     * Numbers</a>). (VPC only) Use <code>-1</code> to specify all.
      */
     private String ipProtocol;
 
@@ -104,7 +113,8 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     private String cidrIp;
 
     /**
-     * <p/>
+     * A set of IP permissions. Can be used to specify multiple rules in a
+     * single command.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<IpPermission> ipPermissions;
 
@@ -121,7 +131,8 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
      * 
      * @param groupName [EC2-Classic, default VPC] The name of the security
      * group.
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. Can be used to specify
+     * multiple rules in a single command.
      */
     public AuthorizeSecurityGroupIngressRequest(String groupName, java.util.List<IpPermission> ipPermissions) {
         setGroupName(groupName);
@@ -162,29 +173,29 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     }
 
     /**
-     * The ID of the security group.
+     * The ID of the security group. Required for a nondefault VPC.
      *
-     * @return The ID of the security group.
+     * @return The ID of the security group. Required for a nondefault VPC.
      */
     public String getGroupId() {
         return groupId;
     }
     
     /**
-     * The ID of the security group.
+     * The ID of the security group. Required for a nondefault VPC.
      *
-     * @param groupId The ID of the security group.
+     * @param groupId The ID of the security group. Required for a nondefault VPC.
      */
     public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
     
     /**
-     * The ID of the security group.
+     * The ID of the security group. Required for a nondefault VPC.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param groupId The ID of the security group.
+     * @param groupId The ID of the security group. Required for a nondefault VPC.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -196,10 +207,16 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
 
     /**
      * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the start of the port range,
+     * the IP protocol, and the end of the port range. For EC2-VPC, the
+     * source security group must be in the same VPC.
      *
      * @return [EC2-Classic, default VPC] The name of the source security group. You
-     *         can't specify a source security group and a CIDR IP address range.
+     *         can't specify this parameter in combination with the following
+     *         parameters: the CIDR IP address range, the start of the port range,
+     *         the IP protocol, and the end of the port range. For EC2-VPC, the
+     *         source security group must be in the same VPC.
      */
     public String getSourceSecurityGroupName() {
         return sourceSecurityGroupName;
@@ -207,10 +224,16 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     
     /**
      * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the start of the port range,
+     * the IP protocol, and the end of the port range. For EC2-VPC, the
+     * source security group must be in the same VPC.
      *
      * @param sourceSecurityGroupName [EC2-Classic, default VPC] The name of the source security group. You
-     *         can't specify a source security group and a CIDR IP address range.
+     *         can't specify this parameter in combination with the following
+     *         parameters: the CIDR IP address range, the start of the port range,
+     *         the IP protocol, and the end of the port range. For EC2-VPC, the
+     *         source security group must be in the same VPC.
      */
     public void setSourceSecurityGroupName(String sourceSecurityGroupName) {
         this.sourceSecurityGroupName = sourceSecurityGroupName;
@@ -218,12 +241,18 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     
     /**
      * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the start of the port range,
+     * the IP protocol, and the end of the port range. For EC2-VPC, the
+     * source security group must be in the same VPC.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param sourceSecurityGroupName [EC2-Classic, default VPC] The name of the source security group. You
-     *         can't specify a source security group and a CIDR IP address range.
+     *         can't specify this parameter in combination with the following
+     *         parameters: the CIDR IP address range, the start of the port range,
+     *         the IP protocol, and the end of the port range. For EC2-VPC, the
+     *         source security group must be in the same VPC.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -234,35 +263,71 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     }
 
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * [EC2-Classic, default VPC] The AWS account number for the source
+     * security group. For EC2-VPC, the source security group must be in the
+     * same VPC. You can't specify this parameter in combination with the
+     * following parameters: the CIDR IP address range, the IP protocol, the
+     * start of the port range, and the end of the port range. Creates rules
+     * that grant full ICMP, UDP, and TCP access. To create a rule with a
+     * specific IP protocol and port range, use a set of IP permissions
+     * instead.
      *
-     * @return The ID of the source security group. You can't specify a source
-     *         security group and a CIDR IP address range.
+     * @return [EC2-Classic, default VPC] The AWS account number for the source
+     *         security group. For EC2-VPC, the source security group must be in the
+     *         same VPC. You can't specify this parameter in combination with the
+     *         following parameters: the CIDR IP address range, the IP protocol, the
+     *         start of the port range, and the end of the port range. Creates rules
+     *         that grant full ICMP, UDP, and TCP access. To create a rule with a
+     *         specific IP protocol and port range, use a set of IP permissions
+     *         instead.
      */
     public String getSourceSecurityGroupOwnerId() {
         return sourceSecurityGroupOwnerId;
     }
     
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * [EC2-Classic, default VPC] The AWS account number for the source
+     * security group. For EC2-VPC, the source security group must be in the
+     * same VPC. You can't specify this parameter in combination with the
+     * following parameters: the CIDR IP address range, the IP protocol, the
+     * start of the port range, and the end of the port range. Creates rules
+     * that grant full ICMP, UDP, and TCP access. To create a rule with a
+     * specific IP protocol and port range, use a set of IP permissions
+     * instead.
      *
-     * @param sourceSecurityGroupOwnerId The ID of the source security group. You can't specify a source
-     *         security group and a CIDR IP address range.
+     * @param sourceSecurityGroupOwnerId [EC2-Classic, default VPC] The AWS account number for the source
+     *         security group. For EC2-VPC, the source security group must be in the
+     *         same VPC. You can't specify this parameter in combination with the
+     *         following parameters: the CIDR IP address range, the IP protocol, the
+     *         start of the port range, and the end of the port range. Creates rules
+     *         that grant full ICMP, UDP, and TCP access. To create a rule with a
+     *         specific IP protocol and port range, use a set of IP permissions
+     *         instead.
      */
     public void setSourceSecurityGroupOwnerId(String sourceSecurityGroupOwnerId) {
         this.sourceSecurityGroupOwnerId = sourceSecurityGroupOwnerId;
     }
     
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * [EC2-Classic, default VPC] The AWS account number for the source
+     * security group. For EC2-VPC, the source security group must be in the
+     * same VPC. You can't specify this parameter in combination with the
+     * following parameters: the CIDR IP address range, the IP protocol, the
+     * start of the port range, and the end of the port range. Creates rules
+     * that grant full ICMP, UDP, and TCP access. To create a rule with a
+     * specific IP protocol and port range, use a set of IP permissions
+     * instead.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sourceSecurityGroupOwnerId The ID of the source security group. You can't specify a source
-     *         security group and a CIDR IP address range.
+     * @param sourceSecurityGroupOwnerId [EC2-Classic, default VPC] The AWS account number for the source
+     *         security group. For EC2-VPC, the source security group must be in the
+     *         same VPC. You can't specify this parameter in combination with the
+     *         following parameters: the CIDR IP address range, the IP protocol, the
+     *         start of the port range, and the end of the port range. Creates rules
+     *         that grant full ICMP, UDP, and TCP access. To create a rule with a
+     *         specific IP protocol and port range, use a set of IP permissions
+     *         instead.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -276,12 +341,12 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
      * The IP protocol name (<code>tcp</code>, <code>udp</code>,
      * <code>icmp</code>) or number (see <a
      * href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
-     * Numbers</a>). Use <code>-1</code> to specify all.
+     * Numbers</a>). (VPC only) Use <code>-1</code> to specify all.
      *
      * @return The IP protocol name (<code>tcp</code>, <code>udp</code>,
      *         <code>icmp</code>) or number (see <a
      *         href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
-     *         Numbers</a>). Use <code>-1</code> to specify all.
+     *         Numbers</a>). (VPC only) Use <code>-1</code> to specify all.
      */
     public String getIpProtocol() {
         return ipProtocol;
@@ -291,12 +356,12 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
      * The IP protocol name (<code>tcp</code>, <code>udp</code>,
      * <code>icmp</code>) or number (see <a
      * href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
-     * Numbers</a>). Use <code>-1</code> to specify all.
+     * Numbers</a>). (VPC only) Use <code>-1</code> to specify all.
      *
      * @param ipProtocol The IP protocol name (<code>tcp</code>, <code>udp</code>,
      *         <code>icmp</code>) or number (see <a
      *         href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
-     *         Numbers</a>). Use <code>-1</code> to specify all.
+     *         Numbers</a>). (VPC only) Use <code>-1</code> to specify all.
      */
     public void setIpProtocol(String ipProtocol) {
         this.ipProtocol = ipProtocol;
@@ -306,14 +371,14 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
      * The IP protocol name (<code>tcp</code>, <code>udp</code>,
      * <code>icmp</code>) or number (see <a
      * href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
-     * Numbers</a>). Use <code>-1</code> to specify all.
+     * Numbers</a>). (VPC only) Use <code>-1</code> to specify all.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param ipProtocol The IP protocol name (<code>tcp</code>, <code>udp</code>,
      *         <code>icmp</code>) or number (see <a
      *         href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
-     *         Numbers</a>). Use <code>-1</code> to specify all.
+     *         Numbers</a>). (VPC only) Use <code>-1</code> to specify all.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -453,9 +518,11 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     }
 
     /**
-     * <p/>
+     * A set of IP permissions. Can be used to specify multiple rules in a
+     * single command.
      *
-     * @return <p/>
+     * @return A set of IP permissions. Can be used to specify multiple rules in a
+     *         single command.
      */
     public java.util.List<IpPermission> getIpPermissions() {
         if (ipPermissions == null) {
@@ -466,9 +533,11 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     }
     
     /**
-     * <p/>
+     * A set of IP permissions. Can be used to specify multiple rules in a
+     * single command.
      *
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. Can be used to specify multiple rules in a
+     *         single command.
      */
     public void setIpPermissions(java.util.Collection<IpPermission> ipPermissions) {
         if (ipPermissions == null) {
@@ -481,11 +550,13 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     }
     
     /**
-     * <p/>
+     * A set of IP permissions. Can be used to specify multiple rules in a
+     * single command.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. Can be used to specify multiple rules in a
+     *         single command.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -499,11 +570,13 @@ public class AuthorizeSecurityGroupIngressRequest extends AmazonWebServiceReques
     }
     
     /**
-     * <p/>
+     * A set of IP permissions. Can be used to specify multiple rules in a
+     * single command.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. Can be used to specify multiple rules in a
+     *         single command.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

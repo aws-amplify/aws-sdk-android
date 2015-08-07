@@ -246,12 +246,12 @@ public class AmazonMachineLearningClient extends AmazonWebServiceClient implemen
 
     /**
      * <p>
-     * A realtime operation that generates prediction for the observation
-     * using given ML Model Id
+     * Generates a prediction for the observation using the specified
+     * <code>MLModel</code> .
      * </p>
      * <p>
-     * Note that not all response fields will be populated as this is
-     * dependent on the type of requested model
+     * <b>NOTE:</b> Note Not all response parameters will be populated
+     * because this is dependent on the type of requested model.
      * </p>
      *
      * @param predictRequest Container for the necessary parameters to
@@ -302,12 +302,12 @@ public class AmazonMachineLearningClient extends AmazonWebServiceClient implemen
 
     /**
      * <p>
-     * Returns the detail metadata, schema, and data file information for a
-     * <i>MLModel</i> , as well as current status of the <i>MLModel</i> .
+     * Returns an <code>MLModel</code> that includes detailed metadata, and
+     * data source information as well as the current status of the
+     * <code>MLModel</code> .
      * </p>
      * <p>
-     * <i>GetMLModel</i> provides results in <b>normal</b> or <b>verbose</b>
-     * format.
+     * <code>GetMLModel</code> provides results in normal or verbose format.
      * </p>
      *
      * @param getMLModelRequest Container for the necessary parameters to

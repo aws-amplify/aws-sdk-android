@@ -18,31 +18,30 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes the realtime endpoint information for a <i>MLModel</i> .
- * </p>
- * <p>
- * Provides results to the DescribeMLModel operation in <b>Normal</b>
- * format, and the ListMLModels operation.
+ * Describes the real-time endpoint information for an
+ * <code>MLModel</code> .
  * </p>
  */
 public class RealtimeEndpointInfo implements Serializable {
 
     /**
-     * Maximum processing rate for the realtime endpoint for <i>MLModel</i>,
-     * measured in incoming requests per second.
+     * The maximum processing rate for the real-time endpoint for
+     * <code>MLModel</code>, measured in incoming requests per second.
      */
     private Integer peakRequestsPerSecond;
 
     /**
-     * The time that the request to create the realtime endpoint for the
-     * <i>MLModel</i> was received. The time is expressed in epoch time.
+     * The time that the request to create the real-time endpoint for the
+     * <code>MLModel</code> was received. The time is expressed in epoch
+     * time.
      */
     private java.util.Date createdAt;
 
     /**
-     * URI that specifies where to send realtime prediction requests for the
-     * <code>MLModel</code>. <note> <p>The application must wait until the
-     * realtime endpoint is ready before using this URI. </note>
+     * The URI that specifies where to send real-time prediction requests for
+     * the <code>MLModel</code>. <note><title>Note</title> <p>The application
+     * must wait until the real-time endpoint is ready before using this URI.
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
@@ -51,12 +50,12 @@ public class RealtimeEndpointInfo implements Serializable {
     private String endpointUrl;
 
     /**
-     * The current status of realtime endpoint for <i>MLModel</i>. This
-     * element can have one of the following values: <ul> <li>NONE --
-     * Endpoint does not exist or previously deleted </li> <li>READY --
-     * Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     * -- updating/creating the endpoint for requested rate of incoming
-     * requests per second </li> </ul>
+     * The current status of the real-time endpoint for the
+     * <code>MLModel</code>. This element can have one of the following
+     * values: <ul> <li>NONE - Endpoint does not exist or was previously
+     * deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     * predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, READY, UPDATING, FAILED
@@ -64,35 +63,35 @@ public class RealtimeEndpointInfo implements Serializable {
     private String endpointStatus;
 
     /**
-     * Maximum processing rate for the realtime endpoint for <i>MLModel</i>,
-     * measured in incoming requests per second.
+     * The maximum processing rate for the real-time endpoint for
+     * <code>MLModel</code>, measured in incoming requests per second.
      *
-     * @return Maximum processing rate for the realtime endpoint for <i>MLModel</i>,
-     *         measured in incoming requests per second.
+     * @return The maximum processing rate for the real-time endpoint for
+     *         <code>MLModel</code>, measured in incoming requests per second.
      */
     public Integer getPeakRequestsPerSecond() {
         return peakRequestsPerSecond;
     }
     
     /**
-     * Maximum processing rate for the realtime endpoint for <i>MLModel</i>,
-     * measured in incoming requests per second.
+     * The maximum processing rate for the real-time endpoint for
+     * <code>MLModel</code>, measured in incoming requests per second.
      *
-     * @param peakRequestsPerSecond Maximum processing rate for the realtime endpoint for <i>MLModel</i>,
-     *         measured in incoming requests per second.
+     * @param peakRequestsPerSecond The maximum processing rate for the real-time endpoint for
+     *         <code>MLModel</code>, measured in incoming requests per second.
      */
     public void setPeakRequestsPerSecond(Integer peakRequestsPerSecond) {
         this.peakRequestsPerSecond = peakRequestsPerSecond;
     }
     
     /**
-     * Maximum processing rate for the realtime endpoint for <i>MLModel</i>,
-     * measured in incoming requests per second.
+     * The maximum processing rate for the real-time endpoint for
+     * <code>MLModel</code>, measured in incoming requests per second.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param peakRequestsPerSecond Maximum processing rate for the realtime endpoint for <i>MLModel</i>,
-     *         measured in incoming requests per second.
+     * @param peakRequestsPerSecond The maximum processing rate for the real-time endpoint for
+     *         <code>MLModel</code>, measured in incoming requests per second.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -103,35 +102,41 @@ public class RealtimeEndpointInfo implements Serializable {
     }
 
     /**
-     * The time that the request to create the realtime endpoint for the
-     * <i>MLModel</i> was received. The time is expressed in epoch time.
+     * The time that the request to create the real-time endpoint for the
+     * <code>MLModel</code> was received. The time is expressed in epoch
+     * time.
      *
-     * @return The time that the request to create the realtime endpoint for the
-     *         <i>MLModel</i> was received. The time is expressed in epoch time.
+     * @return The time that the request to create the real-time endpoint for the
+     *         <code>MLModel</code> was received. The time is expressed in epoch
+     *         time.
      */
     public java.util.Date getCreatedAt() {
         return createdAt;
     }
     
     /**
-     * The time that the request to create the realtime endpoint for the
-     * <i>MLModel</i> was received. The time is expressed in epoch time.
+     * The time that the request to create the real-time endpoint for the
+     * <code>MLModel</code> was received. The time is expressed in epoch
+     * time.
      *
-     * @param createdAt The time that the request to create the realtime endpoint for the
-     *         <i>MLModel</i> was received. The time is expressed in epoch time.
+     * @param createdAt The time that the request to create the real-time endpoint for the
+     *         <code>MLModel</code> was received. The time is expressed in epoch
+     *         time.
      */
     public void setCreatedAt(java.util.Date createdAt) {
         this.createdAt = createdAt;
     }
     
     /**
-     * The time that the request to create the realtime endpoint for the
-     * <i>MLModel</i> was received. The time is expressed in epoch time.
+     * The time that the request to create the real-time endpoint for the
+     * <code>MLModel</code> was received. The time is expressed in epoch
+     * time.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param createdAt The time that the request to create the realtime endpoint for the
-     *         <i>MLModel</i> was received. The time is expressed in epoch time.
+     * @param createdAt The time that the request to create the real-time endpoint for the
+     *         <code>MLModel</code> was received. The time is expressed in epoch
+     *         time.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -142,43 +147,48 @@ public class RealtimeEndpointInfo implements Serializable {
     }
 
     /**
-     * URI that specifies where to send realtime prediction requests for the
-     * <code>MLModel</code>. <note> <p>The application must wait until the
-     * realtime endpoint is ready before using this URI. </note>
+     * The URI that specifies where to send real-time prediction requests for
+     * the <code>MLModel</code>. <note><title>Note</title> <p>The application
+     * must wait until the real-time endpoint is ready before using this URI.
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
      * <b>Pattern: </b>https://[a-zA-Z0-9-.]*\.amazon(aws)?\.com[/]?<br/>
      *
-     * @return URI that specifies where to send realtime prediction requests for the
-     *         <code>MLModel</code>. <note> <p>The application must wait until the
-     *         realtime endpoint is ready before using this URI. </note>
+     * @return The URI that specifies where to send real-time prediction requests for
+     *         the <code>MLModel</code>. <note><title>Note</title> <p>The application
+     *         must wait until the real-time endpoint is ready before using this URI.
+     *         </note>
      */
     public String getEndpointUrl() {
         return endpointUrl;
     }
     
     /**
-     * URI that specifies where to send realtime prediction requests for the
-     * <code>MLModel</code>. <note> <p>The application must wait until the
-     * realtime endpoint is ready before using this URI. </note>
+     * The URI that specifies where to send real-time prediction requests for
+     * the <code>MLModel</code>. <note><title>Note</title> <p>The application
+     * must wait until the real-time endpoint is ready before using this URI.
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
      * <b>Pattern: </b>https://[a-zA-Z0-9-.]*\.amazon(aws)?\.com[/]?<br/>
      *
-     * @param endpointUrl URI that specifies where to send realtime prediction requests for the
-     *         <code>MLModel</code>. <note> <p>The application must wait until the
-     *         realtime endpoint is ready before using this URI. </note>
+     * @param endpointUrl The URI that specifies where to send real-time prediction requests for
+     *         the <code>MLModel</code>. <note><title>Note</title> <p>The application
+     *         must wait until the real-time endpoint is ready before using this URI.
+     *         </note>
      */
     public void setEndpointUrl(String endpointUrl) {
         this.endpointUrl = endpointUrl;
     }
     
     /**
-     * URI that specifies where to send realtime prediction requests for the
-     * <code>MLModel</code>. <note> <p>The application must wait until the
-     * realtime endpoint is ready before using this URI. </note>
+     * The URI that specifies where to send real-time prediction requests for
+     * the <code>MLModel</code>. <note><title>Note</title> <p>The application
+     * must wait until the real-time endpoint is ready before using this URI.
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -186,9 +196,10 @@ public class RealtimeEndpointInfo implements Serializable {
      * <b>Length: </b>0 - 2048<br/>
      * <b>Pattern: </b>https://[a-zA-Z0-9-.]*\.amazon(aws)?\.com[/]?<br/>
      *
-     * @param endpointUrl URI that specifies where to send realtime prediction requests for the
-     *         <code>MLModel</code>. <note> <p>The application must wait until the
-     *         realtime endpoint is ready before using this URI. </note>
+     * @param endpointUrl The URI that specifies where to send real-time prediction requests for
+     *         the <code>MLModel</code>. <note><title>Note</title> <p>The application
+     *         must wait until the real-time endpoint is ready before using this URI.
+     *         </note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -199,22 +210,22 @@ public class RealtimeEndpointInfo implements Serializable {
     }
 
     /**
-     * The current status of realtime endpoint for <i>MLModel</i>. This
-     * element can have one of the following values: <ul> <li>NONE --
-     * Endpoint does not exist or previously deleted </li> <li>READY --
-     * Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     * -- updating/creating the endpoint for requested rate of incoming
-     * requests per second </li> </ul>
+     * The current status of the real-time endpoint for the
+     * <code>MLModel</code>. This element can have one of the following
+     * values: <ul> <li>NONE - Endpoint does not exist or was previously
+     * deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     * predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, READY, UPDATING, FAILED
      *
-     * @return The current status of realtime endpoint for <i>MLModel</i>. This
-     *         element can have one of the following values: <ul> <li>NONE --
-     *         Endpoint does not exist or previously deleted </li> <li>READY --
-     *         Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     *         -- updating/creating the endpoint for requested rate of incoming
-     *         requests per second </li> </ul>
+     * @return The current status of the real-time endpoint for the
+     *         <code>MLModel</code>. This element can have one of the following
+     *         values: <ul> <li>NONE - Endpoint does not exist or was previously
+     *         deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     *         predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     *         </ul>
      *
      * @see RealtimeEndpointStatus
      */
@@ -223,22 +234,22 @@ public class RealtimeEndpointInfo implements Serializable {
     }
     
     /**
-     * The current status of realtime endpoint for <i>MLModel</i>. This
-     * element can have one of the following values: <ul> <li>NONE --
-     * Endpoint does not exist or previously deleted </li> <li>READY --
-     * Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     * -- updating/creating the endpoint for requested rate of incoming
-     * requests per second </li> </ul>
+     * The current status of the real-time endpoint for the
+     * <code>MLModel</code>. This element can have one of the following
+     * values: <ul> <li>NONE - Endpoint does not exist or was previously
+     * deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     * predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, READY, UPDATING, FAILED
      *
-     * @param endpointStatus The current status of realtime endpoint for <i>MLModel</i>. This
-     *         element can have one of the following values: <ul> <li>NONE --
-     *         Endpoint does not exist or previously deleted </li> <li>READY --
-     *         Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     *         -- updating/creating the endpoint for requested rate of incoming
-     *         requests per second </li> </ul>
+     * @param endpointStatus The current status of the real-time endpoint for the
+     *         <code>MLModel</code>. This element can have one of the following
+     *         values: <ul> <li>NONE - Endpoint does not exist or was previously
+     *         deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     *         predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     *         </ul>
      *
      * @see RealtimeEndpointStatus
      */
@@ -247,24 +258,24 @@ public class RealtimeEndpointInfo implements Serializable {
     }
     
     /**
-     * The current status of realtime endpoint for <i>MLModel</i>. This
-     * element can have one of the following values: <ul> <li>NONE --
-     * Endpoint does not exist or previously deleted </li> <li>READY --
-     * Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     * -- updating/creating the endpoint for requested rate of incoming
-     * requests per second </li> </ul>
+     * The current status of the real-time endpoint for the
+     * <code>MLModel</code>. This element can have one of the following
+     * values: <ul> <li>NONE - Endpoint does not exist or was previously
+     * deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     * predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, READY, UPDATING, FAILED
      *
-     * @param endpointStatus The current status of realtime endpoint for <i>MLModel</i>. This
-     *         element can have one of the following values: <ul> <li>NONE --
-     *         Endpoint does not exist or previously deleted </li> <li>READY --
-     *         Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     *         -- updating/creating the endpoint for requested rate of incoming
-     *         requests per second </li> </ul>
+     * @param endpointStatus The current status of the real-time endpoint for the
+     *         <code>MLModel</code>. This element can have one of the following
+     *         values: <ul> <li>NONE - Endpoint does not exist or was previously
+     *         deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     *         predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     *         </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -277,22 +288,22 @@ public class RealtimeEndpointInfo implements Serializable {
     }
 
     /**
-     * The current status of realtime endpoint for <i>MLModel</i>. This
-     * element can have one of the following values: <ul> <li>NONE --
-     * Endpoint does not exist or previously deleted </li> <li>READY --
-     * Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     * -- updating/creating the endpoint for requested rate of incoming
-     * requests per second </li> </ul>
+     * The current status of the real-time endpoint for the
+     * <code>MLModel</code>. This element can have one of the following
+     * values: <ul> <li>NONE - Endpoint does not exist or was previously
+     * deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     * predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, READY, UPDATING, FAILED
      *
-     * @param endpointStatus The current status of realtime endpoint for <i>MLModel</i>. This
-     *         element can have one of the following values: <ul> <li>NONE --
-     *         Endpoint does not exist or previously deleted </li> <li>READY --
-     *         Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     *         -- updating/creating the endpoint for requested rate of incoming
-     *         requests per second </li> </ul>
+     * @param endpointStatus The current status of the real-time endpoint for the
+     *         <code>MLModel</code>. This element can have one of the following
+     *         values: <ul> <li>NONE - Endpoint does not exist or was previously
+     *         deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     *         predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     *         </ul>
      *
      * @see RealtimeEndpointStatus
      */
@@ -301,24 +312,24 @@ public class RealtimeEndpointInfo implements Serializable {
     }
     
     /**
-     * The current status of realtime endpoint for <i>MLModel</i>. This
-     * element can have one of the following values: <ul> <li>NONE --
-     * Endpoint does not exist or previously deleted </li> <li>READY --
-     * Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     * -- updating/creating the endpoint for requested rate of incoming
-     * requests per second </li> </ul>
+     * The current status of the real-time endpoint for the
+     * <code>MLModel</code>. This element can have one of the following
+     * values: <ul> <li>NONE - Endpoint does not exist or was previously
+     * deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     * predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, READY, UPDATING, FAILED
      *
-     * @param endpointStatus The current status of realtime endpoint for <i>MLModel</i>. This
-     *         element can have one of the following values: <ul> <li>NONE --
-     *         Endpoint does not exist or previously deleted </li> <li>READY --
-     *         Endpoint ready to be used for realtime predictions</li> <li>UPDATING
-     *         -- updating/creating the endpoint for requested rate of incoming
-     *         requests per second </li> </ul>
+     * @param endpointStatus The current status of the real-time endpoint for the
+     *         <code>MLModel</code>. This element can have one of the following
+     *         values: <ul> <li>NONE - Endpoint does not exist or was previously
+     *         deleted.</li> <li>READY - Endpoint is ready to be used for real-time
+     *         predictions.</li> <li>UPDATING - Updating/creating the endpoint. </li>
+     *         </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

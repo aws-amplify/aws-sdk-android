@@ -33,22 +33,22 @@ public class QueryResult implements Serializable {
     /**
      * The number of items in the response. <p>If you used a
      * <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
-     * items returned <i>after</i> the filter was applied, and
-     * <i>ScannedCount</i> is the number of matching items <i>before</i> the
-     * filter was applied. <p>If you did not use a filter in the request,
-     * then <i>Count</i> and <i>ScannedCount</i> are the same.
+     * items returned after the filter was applied, and <i>ScannedCount</i>
+     * is the number of matching items before> the filter was applied. <p>If
+     * you did not use a filter in the request, then <i>Count</i> and
+     * <i>ScannedCount</i> are the same.
      */
     private Integer count;
 
     /**
-     * The number of items evaluated, <i>before</i> any <i>QueryFilter</i> is
+     * The number of items evaluated, before any <i>QueryFilter</i> is
      * applied. A high <i>ScannedCount</i> value with few, or no,
      * <i>Count</i> results indicates an inefficient <i>Query</i> operation.
      * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
-     * and ScannedCount</a> in the Amazon DynamoDB Developer Guide. <p>If you
-     * did not use a filter in the request, then <i>ScannedCount</i> is the
-     * same as <i>Count</i>.
+     * and ScannedCount</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * <p>If you did not use a filter in the request, then
+     * <i>ScannedCount</i> is the same as <i>Count</i>.
      */
     private Integer scannedCount;
 
@@ -56,23 +56,22 @@ public class QueryResult implements Serializable {
      * The primary key of the item where the operation stopped, inclusive of
      * the previous result set. Use this value to start a new operation,
      * excluding this value in the new request. <p>If <i>LastEvaluatedKey</i>
-     * is null, then the "last page" of results has been processed and there
-     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is
-     * anything other than null, this does not necessarily mean that there is
-     * more data in the result set. The only way to know when you have
-     * reached the end of the result set is when <i>LastEvaluatedKey</i> is
-     * null.
+     * is empty, then the "last page" of results has been processed and there
+     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is not
+     * empty, it does not necessarily mean that there is more data in the
+     * result set. The only way to know when you have reached the end of the
+     * result set is when <i>LastEvaluatedKey</i> is empty.
      */
     private java.util.Map<String,AttributeValue> lastEvaluatedKey;
 
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     private ConsumedCapacity consumedCapacity;
 
@@ -159,17 +158,17 @@ public class QueryResult implements Serializable {
     /**
      * The number of items in the response. <p>If you used a
      * <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
-     * items returned <i>after</i> the filter was applied, and
-     * <i>ScannedCount</i> is the number of matching items <i>before</i> the
-     * filter was applied. <p>If you did not use a filter in the request,
-     * then <i>Count</i> and <i>ScannedCount</i> are the same.
+     * items returned after the filter was applied, and <i>ScannedCount</i>
+     * is the number of matching items before> the filter was applied. <p>If
+     * you did not use a filter in the request, then <i>Count</i> and
+     * <i>ScannedCount</i> are the same.
      *
      * @return The number of items in the response. <p>If you used a
      *         <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
-     *         items returned <i>after</i> the filter was applied, and
-     *         <i>ScannedCount</i> is the number of matching items <i>before</i> the
-     *         filter was applied. <p>If you did not use a filter in the request,
-     *         then <i>Count</i> and <i>ScannedCount</i> are the same.
+     *         items returned after the filter was applied, and <i>ScannedCount</i>
+     *         is the number of matching items before> the filter was applied. <p>If
+     *         you did not use a filter in the request, then <i>Count</i> and
+     *         <i>ScannedCount</i> are the same.
      */
     public Integer getCount() {
         return count;
@@ -178,17 +177,17 @@ public class QueryResult implements Serializable {
     /**
      * The number of items in the response. <p>If you used a
      * <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
-     * items returned <i>after</i> the filter was applied, and
-     * <i>ScannedCount</i> is the number of matching items <i>before</i> the
-     * filter was applied. <p>If you did not use a filter in the request,
-     * then <i>Count</i> and <i>ScannedCount</i> are the same.
+     * items returned after the filter was applied, and <i>ScannedCount</i>
+     * is the number of matching items before> the filter was applied. <p>If
+     * you did not use a filter in the request, then <i>Count</i> and
+     * <i>ScannedCount</i> are the same.
      *
      * @param count The number of items in the response. <p>If you used a
      *         <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
-     *         items returned <i>after</i> the filter was applied, and
-     *         <i>ScannedCount</i> is the number of matching items <i>before</i> the
-     *         filter was applied. <p>If you did not use a filter in the request,
-     *         then <i>Count</i> and <i>ScannedCount</i> are the same.
+     *         items returned after the filter was applied, and <i>ScannedCount</i>
+     *         is the number of matching items before> the filter was applied. <p>If
+     *         you did not use a filter in the request, then <i>Count</i> and
+     *         <i>ScannedCount</i> are the same.
      */
     public void setCount(Integer count) {
         this.count = count;
@@ -197,19 +196,19 @@ public class QueryResult implements Serializable {
     /**
      * The number of items in the response. <p>If you used a
      * <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
-     * items returned <i>after</i> the filter was applied, and
-     * <i>ScannedCount</i> is the number of matching items <i>before</i> the
-     * filter was applied. <p>If you did not use a filter in the request,
-     * then <i>Count</i> and <i>ScannedCount</i> are the same.
+     * items returned after the filter was applied, and <i>ScannedCount</i>
+     * is the number of matching items before> the filter was applied. <p>If
+     * you did not use a filter in the request, then <i>Count</i> and
+     * <i>ScannedCount</i> are the same.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param count The number of items in the response. <p>If you used a
      *         <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
-     *         items returned <i>after</i> the filter was applied, and
-     *         <i>ScannedCount</i> is the number of matching items <i>before</i> the
-     *         filter was applied. <p>If you did not use a filter in the request,
-     *         then <i>Count</i> and <i>ScannedCount</i> are the same.
+     *         items returned after the filter was applied, and <i>ScannedCount</i>
+     *         is the number of matching items before> the filter was applied. <p>If
+     *         you did not use a filter in the request, then <i>Count</i> and
+     *         <i>ScannedCount</i> are the same.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -220,71 +219,71 @@ public class QueryResult implements Serializable {
     }
 
     /**
-     * The number of items evaluated, <i>before</i> any <i>QueryFilter</i> is
+     * The number of items evaluated, before any <i>QueryFilter</i> is
      * applied. A high <i>ScannedCount</i> value with few, or no,
      * <i>Count</i> results indicates an inefficient <i>Query</i> operation.
      * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
-     * and ScannedCount</a> in the Amazon DynamoDB Developer Guide. <p>If you
-     * did not use a filter in the request, then <i>ScannedCount</i> is the
-     * same as <i>Count</i>.
+     * and ScannedCount</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * <p>If you did not use a filter in the request, then
+     * <i>ScannedCount</i> is the same as <i>Count</i>.
      *
-     * @return The number of items evaluated, <i>before</i> any <i>QueryFilter</i> is
+     * @return The number of items evaluated, before any <i>QueryFilter</i> is
      *         applied. A high <i>ScannedCount</i> value with few, or no,
      *         <i>Count</i> results indicates an inefficient <i>Query</i> operation.
      *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
-     *         and ScannedCount</a> in the Amazon DynamoDB Developer Guide. <p>If you
-     *         did not use a filter in the request, then <i>ScannedCount</i> is the
-     *         same as <i>Count</i>.
+     *         and ScannedCount</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     *         <p>If you did not use a filter in the request, then
+     *         <i>ScannedCount</i> is the same as <i>Count</i>.
      */
     public Integer getScannedCount() {
         return scannedCount;
     }
     
     /**
-     * The number of items evaluated, <i>before</i> any <i>QueryFilter</i> is
+     * The number of items evaluated, before any <i>QueryFilter</i> is
      * applied. A high <i>ScannedCount</i> value with few, or no,
      * <i>Count</i> results indicates an inefficient <i>Query</i> operation.
      * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
-     * and ScannedCount</a> in the Amazon DynamoDB Developer Guide. <p>If you
-     * did not use a filter in the request, then <i>ScannedCount</i> is the
-     * same as <i>Count</i>.
+     * and ScannedCount</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * <p>If you did not use a filter in the request, then
+     * <i>ScannedCount</i> is the same as <i>Count</i>.
      *
-     * @param scannedCount The number of items evaluated, <i>before</i> any <i>QueryFilter</i> is
+     * @param scannedCount The number of items evaluated, before any <i>QueryFilter</i> is
      *         applied. A high <i>ScannedCount</i> value with few, or no,
      *         <i>Count</i> results indicates an inefficient <i>Query</i> operation.
      *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
-     *         and ScannedCount</a> in the Amazon DynamoDB Developer Guide. <p>If you
-     *         did not use a filter in the request, then <i>ScannedCount</i> is the
-     *         same as <i>Count</i>.
+     *         and ScannedCount</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     *         <p>If you did not use a filter in the request, then
+     *         <i>ScannedCount</i> is the same as <i>Count</i>.
      */
     public void setScannedCount(Integer scannedCount) {
         this.scannedCount = scannedCount;
     }
     
     /**
-     * The number of items evaluated, <i>before</i> any <i>QueryFilter</i> is
+     * The number of items evaluated, before any <i>QueryFilter</i> is
      * applied. A high <i>ScannedCount</i> value with few, or no,
      * <i>Count</i> results indicates an inefficient <i>Query</i> operation.
      * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
-     * and ScannedCount</a> in the Amazon DynamoDB Developer Guide. <p>If you
-     * did not use a filter in the request, then <i>ScannedCount</i> is the
-     * same as <i>Count</i>.
+     * and ScannedCount</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * <p>If you did not use a filter in the request, then
+     * <i>ScannedCount</i> is the same as <i>Count</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param scannedCount The number of items evaluated, <i>before</i> any <i>QueryFilter</i> is
+     * @param scannedCount The number of items evaluated, before any <i>QueryFilter</i> is
      *         applied. A high <i>ScannedCount</i> value with few, or no,
      *         <i>Count</i> results indicates an inefficient <i>Query</i> operation.
      *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
-     *         and ScannedCount</a> in the Amazon DynamoDB Developer Guide. <p>If you
-     *         did not use a filter in the request, then <i>ScannedCount</i> is the
-     *         same as <i>Count</i>.
+     *         and ScannedCount</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     *         <p>If you did not use a filter in the request, then
+     *         <i>ScannedCount</i> is the same as <i>Count</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -298,22 +297,20 @@ public class QueryResult implements Serializable {
      * The primary key of the item where the operation stopped, inclusive of
      * the previous result set. Use this value to start a new operation,
      * excluding this value in the new request. <p>If <i>LastEvaluatedKey</i>
-     * is null, then the "last page" of results has been processed and there
-     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is
-     * anything other than null, this does not necessarily mean that there is
-     * more data in the result set. The only way to know when you have
-     * reached the end of the result set is when <i>LastEvaluatedKey</i> is
-     * null.
+     * is empty, then the "last page" of results has been processed and there
+     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is not
+     * empty, it does not necessarily mean that there is more data in the
+     * result set. The only way to know when you have reached the end of the
+     * result set is when <i>LastEvaluatedKey</i> is empty.
      *
      * @return The primary key of the item where the operation stopped, inclusive of
      *         the previous result set. Use this value to start a new operation,
      *         excluding this value in the new request. <p>If <i>LastEvaluatedKey</i>
-     *         is null, then the "last page" of results has been processed and there
-     *         is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is
-     *         anything other than null, this does not necessarily mean that there is
-     *         more data in the result set. The only way to know when you have
-     *         reached the end of the result set is when <i>LastEvaluatedKey</i> is
-     *         null.
+     *         is empty, then the "last page" of results has been processed and there
+     *         is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is not
+     *         empty, it does not necessarily mean that there is more data in the
+     *         result set. The only way to know when you have reached the end of the
+     *         result set is when <i>LastEvaluatedKey</i> is empty.
      */
     public java.util.Map<String,AttributeValue> getLastEvaluatedKey() {
         
@@ -324,22 +321,20 @@ public class QueryResult implements Serializable {
      * The primary key of the item where the operation stopped, inclusive of
      * the previous result set. Use this value to start a new operation,
      * excluding this value in the new request. <p>If <i>LastEvaluatedKey</i>
-     * is null, then the "last page" of results has been processed and there
-     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is
-     * anything other than null, this does not necessarily mean that there is
-     * more data in the result set. The only way to know when you have
-     * reached the end of the result set is when <i>LastEvaluatedKey</i> is
-     * null.
+     * is empty, then the "last page" of results has been processed and there
+     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is not
+     * empty, it does not necessarily mean that there is more data in the
+     * result set. The only way to know when you have reached the end of the
+     * result set is when <i>LastEvaluatedKey</i> is empty.
      *
      * @param lastEvaluatedKey The primary key of the item where the operation stopped, inclusive of
      *         the previous result set. Use this value to start a new operation,
      *         excluding this value in the new request. <p>If <i>LastEvaluatedKey</i>
-     *         is null, then the "last page" of results has been processed and there
-     *         is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is
-     *         anything other than null, this does not necessarily mean that there is
-     *         more data in the result set. The only way to know when you have
-     *         reached the end of the result set is when <i>LastEvaluatedKey</i> is
-     *         null.
+     *         is empty, then the "last page" of results has been processed and there
+     *         is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is not
+     *         empty, it does not necessarily mean that there is more data in the
+     *         result set. The only way to know when you have reached the end of the
+     *         result set is when <i>LastEvaluatedKey</i> is empty.
      */
     public void setLastEvaluatedKey(java.util.Map<String,AttributeValue> lastEvaluatedKey) {
         this.lastEvaluatedKey = lastEvaluatedKey;
@@ -349,24 +344,22 @@ public class QueryResult implements Serializable {
      * The primary key of the item where the operation stopped, inclusive of
      * the previous result set. Use this value to start a new operation,
      * excluding this value in the new request. <p>If <i>LastEvaluatedKey</i>
-     * is null, then the "last page" of results has been processed and there
-     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is
-     * anything other than null, this does not necessarily mean that there is
-     * more data in the result set. The only way to know when you have
-     * reached the end of the result set is when <i>LastEvaluatedKey</i> is
-     * null.
+     * is empty, then the "last page" of results has been processed and there
+     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is not
+     * empty, it does not necessarily mean that there is more data in the
+     * result set. The only way to know when you have reached the end of the
+     * result set is when <i>LastEvaluatedKey</i> is empty.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param lastEvaluatedKey The primary key of the item where the operation stopped, inclusive of
      *         the previous result set. Use this value to start a new operation,
      *         excluding this value in the new request. <p>If <i>LastEvaluatedKey</i>
-     *         is null, then the "last page" of results has been processed and there
-     *         is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is
-     *         anything other than null, this does not necessarily mean that there is
-     *         more data in the result set. The only way to know when you have
-     *         reached the end of the result set is when <i>LastEvaluatedKey</i> is
-     *         null.
+     *         is empty, then the "last page" of results has been processed and there
+     *         is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is not
+     *         empty, it does not necessarily mean that there is more data in the
+     *         result set. The only way to know when you have reached the end of the
+     *         result set is when <i>LastEvaluatedKey</i> is empty.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -380,12 +373,11 @@ public class QueryResult implements Serializable {
      * The primary key of the item where the operation stopped, inclusive of
      * the previous result set. Use this value to start a new operation,
      * excluding this value in the new request. <p>If <i>LastEvaluatedKey</i>
-     * is null, then the "last page" of results has been processed and there
-     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is
-     * anything other than null, this does not necessarily mean that there is
-     * more data in the result set. The only way to know when you have
-     * reached the end of the result set is when <i>LastEvaluatedKey</i> is
-     * null.
+     * is empty, then the "last page" of results has been processed and there
+     * is no more data to be retrieved. <p>If <i>LastEvaluatedKey</i> is not
+     * empty, it does not necessarily mean that there is more data in the
+     * result set. The only way to know when you have reached the end of the
+     * result set is when <i>LastEvaluatedKey</i> is empty.
      * <p>
      * The method adds a new key-value pair into LastEvaluatedKey parameter,
      * and returns a reference to this object so that method calls can be
@@ -415,65 +407,65 @@ public class QueryResult implements Serializable {
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @return Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @return The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public ConsumedCapacity getConsumedCapacity() {
         return consumedCapacity;
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
-     * @param consumedCapacity Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @param consumedCapacity The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
     public void setConsumedCapacity(ConsumedCapacity consumedCapacity) {
         this.consumedCapacity = consumedCapacity;
     }
     
     /**
-     * Represents the capacity units consumed by an operation. The data
-     * returned includes the total provisioned throughput consumed, along
-     * with statistics for the table and any indexes involved in the
-     * operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     * for in the request. For more information, see <a
+     * The capacity units consumed by an operation. The data returned
+     * includes the total provisioned throughput consumed, along with
+     * statistics for the table and any indexes involved in the operation.
+     * <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     * For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     * Throughput</a> in the Amazon DynamoDB Developer Guide.
+     * Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param consumedCapacity Represents the capacity units consumed by an operation. The data
-     *         returned includes the total provisioned throughput consumed, along
-     *         with statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if it was asked
-     *         for in the request. For more information, see <a
+     * @param consumedCapacity The capacity units consumed by an operation. The data returned
+     *         includes the total provisioned throughput consumed, along with
+     *         statistics for the table and any indexes involved in the operation.
+     *         <i>ConsumedCapacity</i> is only returned if the request asked for it.
+     *         For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned
-     *         Throughput</a> in the Amazon DynamoDB Developer Guide.
+     *         Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

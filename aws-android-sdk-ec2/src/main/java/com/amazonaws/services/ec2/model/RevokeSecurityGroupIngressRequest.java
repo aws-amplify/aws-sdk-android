@@ -48,19 +48,28 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     private String groupName;
 
     /**
-     * The ID of the security group.
+     * The ID of the security group. Required for a security group in a
+     * nondefault VPC.
      */
     private String groupId;
 
     /**
      * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the start of the port range,
+     * the IP protocol, and the end of the port range. For EC2-VPC, the
+     * source security group must be in the same VPC.
      */
     private String sourceSecurityGroupName;
 
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * [EC2-Classic, default VPC] The AWS account ID of the source security
+     * group. For EC2-VPC, the source security group must be in the same VPC.
+     * You can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the IP protocol, the start of
+     * the port range, and the end of the port range. To revoke a specific
+     * rule for an IP protocol and port range, use a set of IP permissions
+     * instead.
      */
     private String sourceSecurityGroupOwnerId;
 
@@ -93,7 +102,8 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     private String cidrIp;
 
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a source security group and
+     * a CIDR IP address range.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<IpPermission> ipPermissions;
 
@@ -110,7 +120,8 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
      * 
      * @param groupName [EC2-Classic, default VPC] The name of the security
      * group.
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. You can't specify a
+     * source security group and a CIDR IP address range.
      */
     public RevokeSecurityGroupIngressRequest(String groupName, java.util.List<IpPermission> ipPermissions) {
         setGroupName(groupName);
@@ -151,29 +162,35 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     }
 
     /**
-     * The ID of the security group.
+     * The ID of the security group. Required for a security group in a
+     * nondefault VPC.
      *
-     * @return The ID of the security group.
+     * @return The ID of the security group. Required for a security group in a
+     *         nondefault VPC.
      */
     public String getGroupId() {
         return groupId;
     }
     
     /**
-     * The ID of the security group.
+     * The ID of the security group. Required for a security group in a
+     * nondefault VPC.
      *
-     * @param groupId The ID of the security group.
+     * @param groupId The ID of the security group. Required for a security group in a
+     *         nondefault VPC.
      */
     public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
     
     /**
-     * The ID of the security group.
+     * The ID of the security group. Required for a security group in a
+     * nondefault VPC.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param groupId The ID of the security group.
+     * @param groupId The ID of the security group. Required for a security group in a
+     *         nondefault VPC.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -185,10 +202,16 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
 
     /**
      * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the start of the port range,
+     * the IP protocol, and the end of the port range. For EC2-VPC, the
+     * source security group must be in the same VPC.
      *
      * @return [EC2-Classic, default VPC] The name of the source security group. You
-     *         can't specify a source security group and a CIDR IP address range.
+     *         can't specify this parameter in combination with the following
+     *         parameters: the CIDR IP address range, the start of the port range,
+     *         the IP protocol, and the end of the port range. For EC2-VPC, the
+     *         source security group must be in the same VPC.
      */
     public String getSourceSecurityGroupName() {
         return sourceSecurityGroupName;
@@ -196,10 +219,16 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     
     /**
      * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the start of the port range,
+     * the IP protocol, and the end of the port range. For EC2-VPC, the
+     * source security group must be in the same VPC.
      *
      * @param sourceSecurityGroupName [EC2-Classic, default VPC] The name of the source security group. You
-     *         can't specify a source security group and a CIDR IP address range.
+     *         can't specify this parameter in combination with the following
+     *         parameters: the CIDR IP address range, the start of the port range,
+     *         the IP protocol, and the end of the port range. For EC2-VPC, the
+     *         source security group must be in the same VPC.
      */
     public void setSourceSecurityGroupName(String sourceSecurityGroupName) {
         this.sourceSecurityGroupName = sourceSecurityGroupName;
@@ -207,12 +236,18 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     
     /**
      * [EC2-Classic, default VPC] The name of the source security group. You
-     * can't specify a source security group and a CIDR IP address range.
+     * can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the start of the port range,
+     * the IP protocol, and the end of the port range. For EC2-VPC, the
+     * source security group must be in the same VPC.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param sourceSecurityGroupName [EC2-Classic, default VPC] The name of the source security group. You
-     *         can't specify a source security group and a CIDR IP address range.
+     *         can't specify this parameter in combination with the following
+     *         parameters: the CIDR IP address range, the start of the port range,
+     *         the IP protocol, and the end of the port range. For EC2-VPC, the
+     *         source security group must be in the same VPC.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -223,35 +258,65 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     }
 
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * [EC2-Classic, default VPC] The AWS account ID of the source security
+     * group. For EC2-VPC, the source security group must be in the same VPC.
+     * You can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the IP protocol, the start of
+     * the port range, and the end of the port range. To revoke a specific
+     * rule for an IP protocol and port range, use a set of IP permissions
+     * instead.
      *
-     * @return The ID of the source security group. You can't specify a source
-     *         security group and a CIDR IP address range.
+     * @return [EC2-Classic, default VPC] The AWS account ID of the source security
+     *         group. For EC2-VPC, the source security group must be in the same VPC.
+     *         You can't specify this parameter in combination with the following
+     *         parameters: the CIDR IP address range, the IP protocol, the start of
+     *         the port range, and the end of the port range. To revoke a specific
+     *         rule for an IP protocol and port range, use a set of IP permissions
+     *         instead.
      */
     public String getSourceSecurityGroupOwnerId() {
         return sourceSecurityGroupOwnerId;
     }
     
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * [EC2-Classic, default VPC] The AWS account ID of the source security
+     * group. For EC2-VPC, the source security group must be in the same VPC.
+     * You can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the IP protocol, the start of
+     * the port range, and the end of the port range. To revoke a specific
+     * rule for an IP protocol and port range, use a set of IP permissions
+     * instead.
      *
-     * @param sourceSecurityGroupOwnerId The ID of the source security group. You can't specify a source
-     *         security group and a CIDR IP address range.
+     * @param sourceSecurityGroupOwnerId [EC2-Classic, default VPC] The AWS account ID of the source security
+     *         group. For EC2-VPC, the source security group must be in the same VPC.
+     *         You can't specify this parameter in combination with the following
+     *         parameters: the CIDR IP address range, the IP protocol, the start of
+     *         the port range, and the end of the port range. To revoke a specific
+     *         rule for an IP protocol and port range, use a set of IP permissions
+     *         instead.
      */
     public void setSourceSecurityGroupOwnerId(String sourceSecurityGroupOwnerId) {
         this.sourceSecurityGroupOwnerId = sourceSecurityGroupOwnerId;
     }
     
     /**
-     * The ID of the source security group. You can't specify a source
-     * security group and a CIDR IP address range.
+     * [EC2-Classic, default VPC] The AWS account ID of the source security
+     * group. For EC2-VPC, the source security group must be in the same VPC.
+     * You can't specify this parameter in combination with the following
+     * parameters: the CIDR IP address range, the IP protocol, the start of
+     * the port range, and the end of the port range. To revoke a specific
+     * rule for an IP protocol and port range, use a set of IP permissions
+     * instead.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sourceSecurityGroupOwnerId The ID of the source security group. You can't specify a source
-     *         security group and a CIDR IP address range.
+     * @param sourceSecurityGroupOwnerId [EC2-Classic, default VPC] The AWS account ID of the source security
+     *         group. For EC2-VPC, the source security group must be in the same VPC.
+     *         You can't specify this parameter in combination with the following
+     *         parameters: the CIDR IP address range, the IP protocol, the start of
+     *         the port range, and the end of the port range. To revoke a specific
+     *         rule for an IP protocol and port range, use a set of IP permissions
+     *         instead.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -442,9 +507,11 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     }
 
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a source security group and
+     * a CIDR IP address range.
      *
-     * @return <p/>
+     * @return A set of IP permissions. You can't specify a source security group and
+     *         a CIDR IP address range.
      */
     public java.util.List<IpPermission> getIpPermissions() {
         if (ipPermissions == null) {
@@ -455,9 +522,11 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     }
     
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a source security group and
+     * a CIDR IP address range.
      *
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. You can't specify a source security group and
+     *         a CIDR IP address range.
      */
     public void setIpPermissions(java.util.Collection<IpPermission> ipPermissions) {
         if (ipPermissions == null) {
@@ -470,11 +539,13 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     }
     
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a source security group and
+     * a CIDR IP address range.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. You can't specify a source security group and
+     *         a CIDR IP address range.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -488,11 +559,13 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     }
     
     /**
-     * <p/>
+     * A set of IP permissions. You can't specify a source security group and
+     * a CIDR IP address range.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ipPermissions <p/>
+     * @param ipPermissions A set of IP permissions. You can't specify a source security group and
+     *         a CIDR IP address range.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

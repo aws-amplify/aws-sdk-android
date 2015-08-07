@@ -22,34 +22,97 @@ import java.io.Serializable;
 public class PredictResult implements Serializable {
 
     /**
-     * Output from a predict operation.
+     * The output from a <code>Predict</code> operation: <ul> <li> <p>
+     * <code>Details</code> - Contains the following attributes:
+     * DetailsAttributes.PREDICTIVE_MODEL_TYPE - REGRESSION | BINARY |
+     * MULTICLASS DetailsAttributes.ALGORITHM - SGD </li> <li> <p>
+     * <code>PredictedLabel</code> - Present for either a BINARY or
+     * MULTICLASS <code>MLModel</code> request. </li> <li> <p>
+     * <code>PredictedScores</code> - Contains the raw classification score
+     * corresponding to each label. </li> <li> <p>
+     * <code>PredictedValue</code> - Present for a REGRESSION
+     * <code>MLModel</code> request. </li> </ul>
      */
     private Prediction prediction;
 
     /**
-     * Output from a predict operation.
+     * The output from a <code>Predict</code> operation: <ul> <li> <p>
+     * <code>Details</code> - Contains the following attributes:
+     * DetailsAttributes.PREDICTIVE_MODEL_TYPE - REGRESSION | BINARY |
+     * MULTICLASS DetailsAttributes.ALGORITHM - SGD </li> <li> <p>
+     * <code>PredictedLabel</code> - Present for either a BINARY or
+     * MULTICLASS <code>MLModel</code> request. </li> <li> <p>
+     * <code>PredictedScores</code> - Contains the raw classification score
+     * corresponding to each label. </li> <li> <p>
+     * <code>PredictedValue</code> - Present for a REGRESSION
+     * <code>MLModel</code> request. </li> </ul>
      *
-     * @return Output from a predict operation.
+     * @return The output from a <code>Predict</code> operation: <ul> <li> <p>
+     *         <code>Details</code> - Contains the following attributes:
+     *         DetailsAttributes.PREDICTIVE_MODEL_TYPE - REGRESSION | BINARY |
+     *         MULTICLASS DetailsAttributes.ALGORITHM - SGD </li> <li> <p>
+     *         <code>PredictedLabel</code> - Present for either a BINARY or
+     *         MULTICLASS <code>MLModel</code> request. </li> <li> <p>
+     *         <code>PredictedScores</code> - Contains the raw classification score
+     *         corresponding to each label. </li> <li> <p>
+     *         <code>PredictedValue</code> - Present for a REGRESSION
+     *         <code>MLModel</code> request. </li> </ul>
      */
     public Prediction getPrediction() {
         return prediction;
     }
     
     /**
-     * Output from a predict operation.
+     * The output from a <code>Predict</code> operation: <ul> <li> <p>
+     * <code>Details</code> - Contains the following attributes:
+     * DetailsAttributes.PREDICTIVE_MODEL_TYPE - REGRESSION | BINARY |
+     * MULTICLASS DetailsAttributes.ALGORITHM - SGD </li> <li> <p>
+     * <code>PredictedLabel</code> - Present for either a BINARY or
+     * MULTICLASS <code>MLModel</code> request. </li> <li> <p>
+     * <code>PredictedScores</code> - Contains the raw classification score
+     * corresponding to each label. </li> <li> <p>
+     * <code>PredictedValue</code> - Present for a REGRESSION
+     * <code>MLModel</code> request. </li> </ul>
      *
-     * @param prediction Output from a predict operation.
+     * @param prediction The output from a <code>Predict</code> operation: <ul> <li> <p>
+     *         <code>Details</code> - Contains the following attributes:
+     *         DetailsAttributes.PREDICTIVE_MODEL_TYPE - REGRESSION | BINARY |
+     *         MULTICLASS DetailsAttributes.ALGORITHM - SGD </li> <li> <p>
+     *         <code>PredictedLabel</code> - Present for either a BINARY or
+     *         MULTICLASS <code>MLModel</code> request. </li> <li> <p>
+     *         <code>PredictedScores</code> - Contains the raw classification score
+     *         corresponding to each label. </li> <li> <p>
+     *         <code>PredictedValue</code> - Present for a REGRESSION
+     *         <code>MLModel</code> request. </li> </ul>
      */
     public void setPrediction(Prediction prediction) {
         this.prediction = prediction;
     }
     
     /**
-     * Output from a predict operation.
+     * The output from a <code>Predict</code> operation: <ul> <li> <p>
+     * <code>Details</code> - Contains the following attributes:
+     * DetailsAttributes.PREDICTIVE_MODEL_TYPE - REGRESSION | BINARY |
+     * MULTICLASS DetailsAttributes.ALGORITHM - SGD </li> <li> <p>
+     * <code>PredictedLabel</code> - Present for either a BINARY or
+     * MULTICLASS <code>MLModel</code> request. </li> <li> <p>
+     * <code>PredictedScores</code> - Contains the raw classification score
+     * corresponding to each label. </li> <li> <p>
+     * <code>PredictedValue</code> - Present for a REGRESSION
+     * <code>MLModel</code> request. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param prediction Output from a predict operation.
+     * @param prediction The output from a <code>Predict</code> operation: <ul> <li> <p>
+     *         <code>Details</code> - Contains the following attributes:
+     *         DetailsAttributes.PREDICTIVE_MODEL_TYPE - REGRESSION | BINARY |
+     *         MULTICLASS DetailsAttributes.ALGORITHM - SGD </li> <li> <p>
+     *         <code>PredictedLabel</code> - Present for either a BINARY or
+     *         MULTICLASS <code>MLModel</code> request. </li> <li> <p>
+     *         <code>PredictedScores</code> - Contains the raw classification score
+     *         corresponding to each label. </li> <li> <p>
+     *         <code>PredictedValue</code> - Present for a REGRESSION
+     *         <code>MLModel</code> request. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

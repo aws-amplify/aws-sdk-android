@@ -57,7 +57,27 @@ public class UpdateTableRequestMarshaller implements Marshaller<Request<UpdateTa
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
 
             jsonWriter.beginObject();
-            
+
+            com.amazonaws.internal.ListWithAutoConstructFlag<AttributeDefinition> attributeDefinitionsList = (com.amazonaws.internal.ListWithAutoConstructFlag<AttributeDefinition>)(updateTableRequest.getAttributeDefinitions());
+            if (attributeDefinitionsList != null && !(attributeDefinitionsList.isAutoConstruct() && attributeDefinitionsList.isEmpty())) {
+
+                jsonWriter.name("AttributeDefinitions");
+                jsonWriter.beginArray();
+
+                for (AttributeDefinition attributeDefinitionsListValue : attributeDefinitionsList) {
+                    if (attributeDefinitionsListValue != null) {
+                        jsonWriter.beginObject();
+                        if (attributeDefinitionsListValue.getAttributeName() != null) {
+                            jsonWriter.name("AttributeName").value(attributeDefinitionsListValue.getAttributeName());
+                        }
+                        if (attributeDefinitionsListValue.getAttributeType() != null) {
+                            jsonWriter.name("AttributeType").value(attributeDefinitionsListValue.getAttributeType());
+                        }
+                        jsonWriter.endObject();
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (updateTableRequest.getTableName() != null) {
                 jsonWriter.name("TableName").value(updateTableRequest.getTableName());
             }
@@ -110,10 +130,106 @@ public class UpdateTableRequestMarshaller implements Marshaller<Request<UpdateTa
                             }
                             jsonWriter.endObject();
                         }
+                        CreateGlobalSecondaryIndexAction create = globalSecondaryIndexUpdatesListValue.getCreate();
+                        if (create != null) {
+
+                            jsonWriter.name("Create");
+                            jsonWriter.beginObject();
+
+                            if (create.getIndexName() != null) {
+                                jsonWriter.name("IndexName").value(create.getIndexName());
+                            }
+
+                            com.amazonaws.internal.ListWithAutoConstructFlag<KeySchemaElement> keySchemaList = (com.amazonaws.internal.ListWithAutoConstructFlag<KeySchemaElement>)(create.getKeySchema());
+                            if (keySchemaList != null && !(keySchemaList.isAutoConstruct() && keySchemaList.isEmpty())) {
+
+                                jsonWriter.name("KeySchema");
+                                jsonWriter.beginArray();
+
+                                for (KeySchemaElement keySchemaListValue : keySchemaList) {
+                                    if (keySchemaListValue != null) {
+                                        jsonWriter.beginObject();
+                                        if (keySchemaListValue.getAttributeName() != null) {
+                                            jsonWriter.name("AttributeName").value(keySchemaListValue.getAttributeName());
+                                        }
+                                        if (keySchemaListValue.getKeyType() != null) {
+                                            jsonWriter.name("KeyType").value(keySchemaListValue.getKeyType());
+                                        }
+                                        jsonWriter.endObject();
+                                    }
+                                }
+                                jsonWriter.endArray();
+                            }
+                            Projection projection = create.getProjection();
+                            if (projection != null) {
+
+                                jsonWriter.name("Projection");
+                                jsonWriter.beginObject();
+
+                                if (projection.getProjectionType() != null) {
+                                    jsonWriter.name("ProjectionType").value(projection.getProjectionType());
+                                }
+
+                                com.amazonaws.internal.ListWithAutoConstructFlag<String> nonKeyAttributesList = (com.amazonaws.internal.ListWithAutoConstructFlag<String>)(projection.getNonKeyAttributes());
+                                if (nonKeyAttributesList != null && !(nonKeyAttributesList.isAutoConstruct() && nonKeyAttributesList.isEmpty())) {
+
+                                    jsonWriter.name("NonKeyAttributes");
+                                    jsonWriter.beginArray();
+
+                                    for (String nonKeyAttributesListValue : nonKeyAttributesList) {
+                                        if (nonKeyAttributesListValue != null) {
+                                            jsonWriter.value(nonKeyAttributesListValue);
+                                        }
+                                    }
+                                    jsonWriter.endArray();
+                                }
+                                jsonWriter.endObject();
+                            }
+                            ProvisionedThroughput provisionedThroughput3 = create.getProvisionedThroughput();
+                            if (provisionedThroughput3 != null) {
+
+                                jsonWriter.name("ProvisionedThroughput");
+                                jsonWriter.beginObject();
+
+                                if (provisionedThroughput3.getReadCapacityUnits() != null) {
+                                    jsonWriter.name("ReadCapacityUnits").value(provisionedThroughput3.getReadCapacityUnits());
+                                }
+                                if (provisionedThroughput3.getWriteCapacityUnits() != null) {
+                                    jsonWriter.name("WriteCapacityUnits").value(provisionedThroughput3.getWriteCapacityUnits());
+                                }
+                                jsonWriter.endObject();
+                            }
+                            jsonWriter.endObject();
+                        }
+                        DeleteGlobalSecondaryIndexAction delete = globalSecondaryIndexUpdatesListValue.getDelete();
+                        if (delete != null) {
+
+                            jsonWriter.name("Delete");
+                            jsonWriter.beginObject();
+
+                            if (delete.getIndexName() != null) {
+                                jsonWriter.name("IndexName").value(delete.getIndexName());
+                            }
+                            jsonWriter.endObject();
+                        }
                         jsonWriter.endObject();
                     }
                 }
                 jsonWriter.endArray();
+            }
+            StreamSpecification streamSpecification = updateTableRequest.getStreamSpecification();
+            if (streamSpecification != null) {
+
+                jsonWriter.name("StreamSpecification");
+                jsonWriter.beginObject();
+
+                if (streamSpecification.isStreamEnabled() != null) {
+                    jsonWriter.name("StreamEnabled").value(streamSpecification.isStreamEnabled());
+                }
+                if (streamSpecification.getStreamViewType() != null) {
+                    jsonWriter.name("StreamViewType").value(streamSpecification.getStreamViewType());
+                }
+                jsonWriter.endObject();
             }
 
             jsonWriter.endObject();

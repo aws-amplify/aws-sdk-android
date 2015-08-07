@@ -23,7 +23,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Returns a set of temporary security credentials for users who have
  * been authenticated in a mobile or web application with a web identity
- * provider, such as Login with Amazon, Facebook, or Google.
+ * provider, such as Amazon Cognito, Login with Amazon, Facebook, Google,
+ * or any OpenID Connect-compatible identity provider.
+ * </p>
+ * <p>
+ * <b>NOTE:</b> For mobile applications, we recommend that you use Amazon
+ * Cognito. You can use Amazon Cognito with the AWS SDK for iOS and the
+ * AWS SDK for Android to uniquely identify a user and supply the user
+ * with a consistent identity throughout the lifetime of an application.
+ * To learn more about Amazon Cognito, see Amazon Cognito Overview in the
+ * AWS SDK for Android Developer Guide guide and Amazon Cognito Overview
+ * in the AWS SDK for iOS Developer Guide.
  * </p>
  * <p>
  * Calling <code>AssumeRoleWithWebIdentity</code> does not require the
@@ -57,7 +67,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * that are in excess of those allowed by the access policy of the role
  * that is being assumed. For more information, see
  * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html"> Permissions for AssumeRoleWithWebIdentity </a>
- * in <i>Using Temporary Security Credentials</i> .
+ * .
  * </p>
  * <p>
  * Before your application can call
@@ -70,13 +80,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information about how to use web identity federation and the
- * <code>AssumeRoleWithWebIdentity</code> , see the following resources:
+ * <code>AssumeRoleWithWebIdentity</code> API, see the following
+ * resources:
  * </p>
  * 
  * <ul>
  * <li>
  * <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/STSUseCases.html#MobileApplication-KnownProvider"> Creating a Mobile Application with Third-Party Sign-In </a> and <a href="http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingWIF.html"> Creating Temporary Security Credentials for Mobile Apps Using Third-Party Identity Providers </a>
- * in <i>Using Temporary Security Credentials</i> . </li>
+ * . </li>
  * <li>
  * <a href="https://web-identity-federation-playground.s3.amazonaws.com/index.html"> Web Identity Federation Playground </a>
  * . This interactive website lets you walk through the process of
@@ -95,18 +106,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Amazon S3. </li>
  * 
  * </ul>
- * <p>
- * </p>
- * <p>
- * </p>
- * <p>
- * </p>
- * <p>
- * </p>
- * <p>
- * </p>
- * <p>
- * </p>
  *
  * @see com.amazonaws.services.securitytoken.AWSSecurityTokenService#assumeRoleWithWebIdentity(AssumeRoleWithWebIdentityRequest)
  */
@@ -148,12 +147,13 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
     private String webIdentityToken;
 
     /**
-     * The fully-qualified host component of the domain name of the identity
-     * provider. Specify this value only for OAuth access tokens. Do not
-     * specify this value for OpenID Connect ID tokens, such as
-     * <code>accounts.google.com</code>. Do not include URL schemes and port
-     * numbers. Currently, <code>www.amazon.com</code> and
-     * <code>graph.facebook.com</code> are supported.
+     * The fully qualified host component of the domain name of the identity
+     * provider. <p>Specify this value only for OAuth 2.0 access tokens.
+     * Currently <code>www.amazon.com</code> and
+     * <code>graph.facebook.com</code> are the only supported identity
+     * providers for OAuth 2.0 access tokens. Do not include URL schemes and
+     * port numbers. <p>Do not specify this value for OpenID Connect ID
+     * tokens.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>4 - 2048<br/>
@@ -171,8 +171,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * that are in excess of those allowed by the access policy of the role
      * that is being assumed. For more information, see <a
      * href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html">Permissions
-     * for AssumeRoleWithWebIdentity</a> in <i>Using Temporary Security
-     * Credentials</i>.
+     * for AssumeRoleWithWebIdentity</a>. <note>The policy plain text must be
+     * 2048 bytes or shorter. However, an internal conversion compresses it
+     * into a packed binary format with a separate limit. The
+     * PackedPolicySize response element indicates by percentage how close to
+     * the upper size limit the policy is, with 100% equaling the maximum
+     * allowed size. </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -380,68 +384,74 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * The fully-qualified host component of the domain name of the identity
-     * provider. Specify this value only for OAuth access tokens. Do not
-     * specify this value for OpenID Connect ID tokens, such as
-     * <code>accounts.google.com</code>. Do not include URL schemes and port
-     * numbers. Currently, <code>www.amazon.com</code> and
-     * <code>graph.facebook.com</code> are supported.
+     * The fully qualified host component of the domain name of the identity
+     * provider. <p>Specify this value only for OAuth 2.0 access tokens.
+     * Currently <code>www.amazon.com</code> and
+     * <code>graph.facebook.com</code> are the only supported identity
+     * providers for OAuth 2.0 access tokens. Do not include URL schemes and
+     * port numbers. <p>Do not specify this value for OpenID Connect ID
+     * tokens.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>4 - 2048<br/>
      *
-     * @return The fully-qualified host component of the domain name of the identity
-     *         provider. Specify this value only for OAuth access tokens. Do not
-     *         specify this value for OpenID Connect ID tokens, such as
-     *         <code>accounts.google.com</code>. Do not include URL schemes and port
-     *         numbers. Currently, <code>www.amazon.com</code> and
-     *         <code>graph.facebook.com</code> are supported.
+     * @return The fully qualified host component of the domain name of the identity
+     *         provider. <p>Specify this value only for OAuth 2.0 access tokens.
+     *         Currently <code>www.amazon.com</code> and
+     *         <code>graph.facebook.com</code> are the only supported identity
+     *         providers for OAuth 2.0 access tokens. Do not include URL schemes and
+     *         port numbers. <p>Do not specify this value for OpenID Connect ID
+     *         tokens.
      */
     public String getProviderId() {
         return providerId;
     }
     
     /**
-     * The fully-qualified host component of the domain name of the identity
-     * provider. Specify this value only for OAuth access tokens. Do not
-     * specify this value for OpenID Connect ID tokens, such as
-     * <code>accounts.google.com</code>. Do not include URL schemes and port
-     * numbers. Currently, <code>www.amazon.com</code> and
-     * <code>graph.facebook.com</code> are supported.
+     * The fully qualified host component of the domain name of the identity
+     * provider. <p>Specify this value only for OAuth 2.0 access tokens.
+     * Currently <code>www.amazon.com</code> and
+     * <code>graph.facebook.com</code> are the only supported identity
+     * providers for OAuth 2.0 access tokens. Do not include URL schemes and
+     * port numbers. <p>Do not specify this value for OpenID Connect ID
+     * tokens.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>4 - 2048<br/>
      *
-     * @param providerId The fully-qualified host component of the domain name of the identity
-     *         provider. Specify this value only for OAuth access tokens. Do not
-     *         specify this value for OpenID Connect ID tokens, such as
-     *         <code>accounts.google.com</code>. Do not include URL schemes and port
-     *         numbers. Currently, <code>www.amazon.com</code> and
-     *         <code>graph.facebook.com</code> are supported.
+     * @param providerId The fully qualified host component of the domain name of the identity
+     *         provider. <p>Specify this value only for OAuth 2.0 access tokens.
+     *         Currently <code>www.amazon.com</code> and
+     *         <code>graph.facebook.com</code> are the only supported identity
+     *         providers for OAuth 2.0 access tokens. Do not include URL schemes and
+     *         port numbers. <p>Do not specify this value for OpenID Connect ID
+     *         tokens.
      */
     public void setProviderId(String providerId) {
         this.providerId = providerId;
     }
     
     /**
-     * The fully-qualified host component of the domain name of the identity
-     * provider. Specify this value only for OAuth access tokens. Do not
-     * specify this value for OpenID Connect ID tokens, such as
-     * <code>accounts.google.com</code>. Do not include URL schemes and port
-     * numbers. Currently, <code>www.amazon.com</code> and
-     * <code>graph.facebook.com</code> are supported.
+     * The fully qualified host component of the domain name of the identity
+     * provider. <p>Specify this value only for OAuth 2.0 access tokens.
+     * Currently <code>www.amazon.com</code> and
+     * <code>graph.facebook.com</code> are the only supported identity
+     * providers for OAuth 2.0 access tokens. Do not include URL schemes and
+     * port numbers. <p>Do not specify this value for OpenID Connect ID
+     * tokens.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>4 - 2048<br/>
      *
-     * @param providerId The fully-qualified host component of the domain name of the identity
-     *         provider. Specify this value only for OAuth access tokens. Do not
-     *         specify this value for OpenID Connect ID tokens, such as
-     *         <code>accounts.google.com</code>. Do not include URL schemes and port
-     *         numbers. Currently, <code>www.amazon.com</code> and
-     *         <code>graph.facebook.com</code> are supported.
+     * @param providerId The fully qualified host component of the domain name of the identity
+     *         provider. <p>Specify this value only for OAuth 2.0 access tokens.
+     *         Currently <code>www.amazon.com</code> and
+     *         <code>graph.facebook.com</code> are the only supported identity
+     *         providers for OAuth 2.0 access tokens. Do not include URL schemes and
+     *         port numbers. <p>Do not specify this value for OpenID Connect ID
+     *         tokens.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -462,8 +472,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * that are in excess of those allowed by the access policy of the role
      * that is being assumed. For more information, see <a
      * href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html">Permissions
-     * for AssumeRoleWithWebIdentity</a> in <i>Using Temporary Security
-     * Credentials</i>.
+     * for AssumeRoleWithWebIdentity</a>. <note>The policy plain text must be
+     * 2048 bytes or shorter. However, an internal conversion compresses it
+     * into a packed binary format with a separate limit. The
+     * PackedPolicySize response element indicates by percentage how close to
+     * the upper size limit the policy is, with 100% equaling the maximum
+     * allowed size. </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -479,8 +493,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *         that are in excess of those allowed by the access policy of the role
      *         that is being assumed. For more information, see <a
      *         href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html">Permissions
-     *         for AssumeRoleWithWebIdentity</a> in <i>Using Temporary Security
-     *         Credentials</i>.
+     *         for AssumeRoleWithWebIdentity</a>. <note>The policy plain text must be
+     *         2048 bytes or shorter. However, an internal conversion compresses it
+     *         into a packed binary format with a separate limit. The
+     *         PackedPolicySize response element indicates by percentage how close to
+     *         the upper size limit the policy is, with 100% equaling the maximum
+     *         allowed size. </note>
      */
     public String getPolicy() {
         return policy;
@@ -497,8 +515,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * that are in excess of those allowed by the access policy of the role
      * that is being assumed. For more information, see <a
      * href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html">Permissions
-     * for AssumeRoleWithWebIdentity</a> in <i>Using Temporary Security
-     * Credentials</i>.
+     * for AssumeRoleWithWebIdentity</a>. <note>The policy plain text must be
+     * 2048 bytes or shorter. However, an internal conversion compresses it
+     * into a packed binary format with a separate limit. The
+     * PackedPolicySize response element indicates by percentage how close to
+     * the upper size limit the policy is, with 100% equaling the maximum
+     * allowed size. </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -514,8 +536,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *         that are in excess of those allowed by the access policy of the role
      *         that is being assumed. For more information, see <a
      *         href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html">Permissions
-     *         for AssumeRoleWithWebIdentity</a> in <i>Using Temporary Security
-     *         Credentials</i>.
+     *         for AssumeRoleWithWebIdentity</a>. <note>The policy plain text must be
+     *         2048 bytes or shorter. However, an internal conversion compresses it
+     *         into a packed binary format with a separate limit. The
+     *         PackedPolicySize response element indicates by percentage how close to
+     *         the upper size limit the policy is, with 100% equaling the maximum
+     *         allowed size. </note>
      */
     public void setPolicy(String policy) {
         this.policy = policy;
@@ -532,8 +558,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * that are in excess of those allowed by the access policy of the role
      * that is being assumed. For more information, see <a
      * href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html">Permissions
-     * for AssumeRoleWithWebIdentity</a> in <i>Using Temporary Security
-     * Credentials</i>.
+     * for AssumeRoleWithWebIdentity</a>. <note>The policy plain text must be
+     * 2048 bytes or shorter. However, an internal conversion compresses it
+     * into a packed binary format with a separate limit. The
+     * PackedPolicySize response element indicates by percentage how close to
+     * the upper size limit the policy is, with 100% equaling the maximum
+     * allowed size. </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -551,8 +581,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *         that are in excess of those allowed by the access policy of the role
      *         that is being assumed. For more information, see <a
      *         href="http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html">Permissions
-     *         for AssumeRoleWithWebIdentity</a> in <i>Using Temporary Security
-     *         Credentials</i>.
+     *         for AssumeRoleWithWebIdentity</a>. <note>The policy plain text must be
+     *         2048 bytes or shorter. However, an internal conversion compresses it
+     *         into a packed binary format with a separate limit. The
+     *         PackedPolicySize response element indicates by percentage how close to
+     *         the upper size limit the policy is, with 100% equaling the maximum
+     *         allowed size. </note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -42,6 +42,9 @@ public class GetRecordsResultJsonUnmarshaller implements Unmarshaller<GetRecords
             if (name.equals("NextShardIterator")) {
                 getRecordsResult.setNextShardIterator(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
+            if (name.equals("MillisBehindLatest")) {
+                getRecordsResult.setMillisBehindLatest(LongJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
             {
                 reader.skipValue();
             }

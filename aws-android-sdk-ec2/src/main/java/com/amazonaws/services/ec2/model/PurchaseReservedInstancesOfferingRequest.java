@@ -25,13 +25,18 @@ import com.amazonaws.services.ec2.model.transform.PurchaseReservedInstancesOffer
  * <p>
  * Purchases a Reserved Instance for use with your account. With Amazon
  * EC2 Reserved Instances, you obtain a capacity reservation for a
- * certain instance configuration over a specified period of time. You
- * pay a lower usage rate than with On-Demand instances for the time that
- * you actually use the capacity reservation.
+ * certain instance configuration over a specified period of time and pay
+ * a lower hourly rate compared to on-Demand Instance pricing.
+ * </p>
+ * <p>
+ * Use DescribeReservedInstancesOfferings to get a list of Reserved
+ * Instance offerings that match your specifications. After you've
+ * purchased a Reserved Instance, you can check for your new Reserved
+ * Instance with DescribeReservedInstances.
  * </p>
  * <p>
  * For more information, see
- * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
+ * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html"> Reserved Instances </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html"> Reserved Instance Marketplace </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>
  *

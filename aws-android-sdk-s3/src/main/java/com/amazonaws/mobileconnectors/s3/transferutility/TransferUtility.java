@@ -111,7 +111,7 @@ public class TransferUtility {
         this.s3WeakReferenceMapKey = UUID.randomUUID().toString();
         S3ClientWeakReference.put(s3WeakReferenceMapKey, s3);
         this.appContext = context.getApplicationContext();
-        this.dbUtil = new TransferDBUtil(context);
+        this.dbUtil = new TransferDBUtil(appContext);
     }
 
     /**

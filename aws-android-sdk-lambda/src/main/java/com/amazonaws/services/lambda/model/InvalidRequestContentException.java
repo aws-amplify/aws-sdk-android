@@ -17,7 +17,9 @@ package com.amazonaws.services.lambda.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * AWSLambda exception
+ * <p>
+ * The request body could not be parsed as JSON.
+ * </p>
  */        
 public class InvalidRequestContentException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

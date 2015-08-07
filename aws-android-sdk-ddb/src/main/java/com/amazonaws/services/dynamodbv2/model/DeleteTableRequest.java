@@ -41,6 +41,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * When you delete a table, any indexes on that table are also deleted.
  * </p>
  * <p>
+ * If you have DynamoDB Streams enabled on the table, then the
+ * corresponding stream on that table goes into the <code>DISABLED</code>
+ * state, and the stream is automatically deleted after 24 hours.
+ * </p>
+ * <p>
  * Use the <i>DescribeTable</i> API to check the status of the table.
  * </p>
  *

@@ -19,7 +19,8 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * The subscriber exceeded the maximum number of operations. This
- * exception can occur when listing objects such as <i>DataSources</i> .
+ * exception can occur when listing objects such as
+ * <code>DataSource</code> .
  * </p>
  */        
 public class LimitExceededException extends AmazonServiceException {

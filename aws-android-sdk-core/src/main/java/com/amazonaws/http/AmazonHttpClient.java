@@ -444,8 +444,8 @@ public class AmazonHttpClient {
                  */
                 if (!leaveHttpConnectionOpen && httpResponse != null) {
                     try {
-                        if (httpResponse.getContent() != null) {
-                            httpResponse.getContent().close();
+                        if (httpResponse.getRawContent() != null) {
+                            httpResponse.getRawContent().close();
                         }
                     } catch (IOException e) {
                         log.warn("Cannot close the response content.", e);

@@ -174,6 +174,9 @@ public class QueryRequestMarshaller implements Marshaller<Request<QueryRequest>,
             if (queryRequest.getFilterExpression() != null) {
                 jsonWriter.name("FilterExpression").value(queryRequest.getFilterExpression());
             }
+            if (queryRequest.getKeyConditionExpression() != null) {
+                jsonWriter.name("KeyConditionExpression").value(queryRequest.getKeyConditionExpression());
+            }
             if (queryRequest.getExpressionAttributeNames() != null) {
                 jsonWriter.name("ExpressionAttributeNames");
                 jsonWriter.beginObject();
