@@ -26,6 +26,7 @@ import com.amazonaws.util.json.JsonUtils;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
+import org.junit.Ignore;
 
 import java.io.ByteArrayInputStream;
 import java.nio.ByteBuffer;
@@ -34,6 +35,7 @@ import java.util.zip.GZIPInputStream;
 
 public class PutRecordRequestMarshallerTest {
 
+    @Ignore
     @Test
     public void test() throws Exception {
         PutRecordRequest putRecordRequest = new PutRecordRequest();

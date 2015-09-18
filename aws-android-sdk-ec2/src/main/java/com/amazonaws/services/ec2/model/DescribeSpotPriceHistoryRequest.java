@@ -23,7 +23,7 @@ import com.amazonaws.services.ec2.model.transform.DescribeSpotPriceHistoryReques
 /**
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#describeSpotPriceHistory(DescribeSpotPriceHistoryRequest) DescribeSpotPriceHistory operation}.
  * <p>
- * Describes the Spot Price history. The prices returned are listed in
+ * Describes the Spot price history. The prices returned are listed in
  * chronological order, from the oldest to the most recent, for up to the
  * past 90 days. For more information, see
  * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html"> Spot Instance Pricing History </a>
@@ -70,14 +70,14 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
      * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot Price (<code>Linux/UNIX</code>
+     * - The product description for the Spot price (<code>Linux/UNIX</code>
      * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
      * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
      * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot Price. The value must match
+     * <p><code>spot-price</code> - The Spot price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history, in UTC format (for example,
+     * the Spot price history, in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -356,14 +356,14 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
      * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot Price (<code>Linux/UNIX</code>
+     * - The product description for the Spot price (<code>Linux/UNIX</code>
      * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
      * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
      * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot Price. The value must match
+     * <p><code>spot-price</code> - The Spot price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history, in UTC format (for example,
+     * the Spot price history, in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -372,14 +372,14 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      *         Availability Zone for which prices should be returned. </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
      *         <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     *         - The product description for the Spot Price (<code>Linux/UNIX</code>
+     *         - The product description for the Spot price (<code>Linux/UNIX</code>
      *         | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
      *         (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
      *         <code>Windows (Amazon VPC)</code>). </li> <li>
-     *         <p><code>spot-price</code> - The Spot Price. The value must match
+     *         <p><code>spot-price</code> - The Spot price. The value must match
      *         exactly (or use wildcards; greater than or less than comparison is not
      *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot Price history, in UTC format (for example,
+     *         the Spot price history, in UTC format (for example,
      *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
@@ -397,14 +397,14 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
      * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot Price (<code>Linux/UNIX</code>
+     * - The product description for the Spot price (<code>Linux/UNIX</code>
      * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
      * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
      * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot Price. The value must match
+     * <p><code>spot-price</code> - The Spot price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history, in UTC format (for example,
+     * the Spot price history, in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -413,14 +413,14 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      *         Availability Zone for which prices should be returned. </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
      *         <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     *         - The product description for the Spot Price (<code>Linux/UNIX</code>
+     *         - The product description for the Spot price (<code>Linux/UNIX</code>
      *         | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
      *         (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
      *         <code>Windows (Amazon VPC)</code>). </li> <li>
-     *         <p><code>spot-price</code> - The Spot Price. The value must match
+     *         <p><code>spot-price</code> - The Spot price. The value must match
      *         exactly (or use wildcards; greater than or less than comparison is not
      *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot Price history, in UTC format (for example,
+     *         the Spot price history, in UTC format (for example,
      *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
@@ -440,14 +440,14 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
      * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot Price (<code>Linux/UNIX</code>
+     * - The product description for the Spot price (<code>Linux/UNIX</code>
      * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
      * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
      * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot Price. The value must match
+     * <p><code>spot-price</code> - The Spot price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history, in UTC format (for example,
+     * the Spot price history, in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -458,14 +458,14 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      *         Availability Zone for which prices should be returned. </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
      *         <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     *         - The product description for the Spot Price (<code>Linux/UNIX</code>
+     *         - The product description for the Spot price (<code>Linux/UNIX</code>
      *         | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
      *         (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
      *         <code>Windows (Amazon VPC)</code>). </li> <li>
-     *         <p><code>spot-price</code> - The Spot Price. The value must match
+     *         <p><code>spot-price</code> - The Spot price. The value must match
      *         exactly (or use wildcards; greater than or less than comparison is not
      *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot Price history, in UTC format (for example,
+     *         the Spot price history, in UTC format (for example,
      *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
@@ -486,14 +486,14 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
      * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot Price (<code>Linux/UNIX</code>
+     * - The product description for the Spot price (<code>Linux/UNIX</code>
      * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
      * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
      * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot Price. The value must match
+     * <p><code>spot-price</code> - The Spot price. The value must match
      * exactly (or use wildcards; greater than or less than comparison is not
      * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot Price history, in UTC format (for example,
+     * the Spot price history, in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -504,14 +504,14 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      *         Availability Zone for which prices should be returned. </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
      *         <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     *         - The product description for the Spot Price (<code>Linux/UNIX</code>
+     *         - The product description for the Spot price (<code>Linux/UNIX</code>
      *         | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
      *         (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
      *         <code>Windows (Amazon VPC)</code>). </li> <li>
-     *         <p><code>spot-price</code> - The Spot Price. The value must match
+     *         <p><code>spot-price</code> - The Spot price. The value must match
      *         exactly (or use wildcards; greater than or less than comparison is not
      *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot Price history, in UTC format (for example,
+     *         the Spot price history, in UTC format (for example,
      *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>

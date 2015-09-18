@@ -3430,7 +3430,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     /**
      * (non-Javadoc)
      *
-     * @see 
+     * @see
      *      com.amazonaws.services.s3.AmazonS3#copyGlacierObject((java.lang.String
      *      , java.lang.String, int)
      */
@@ -4210,10 +4210,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
         Response<X> response = null;
         try {
-            for (Entry<String, String> entry : request.getOriginalRequest()
-                    .copyPrivateRequestParameters().entrySet()) {
-                request.addParameter(entry.getKey(), entry.getValue());
-            }
             request.setTimeOffset(timeOffset);
             /*
              * The string we sign needs to include the exact headers that we

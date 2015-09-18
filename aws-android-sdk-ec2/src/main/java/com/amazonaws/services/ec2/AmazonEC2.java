@@ -798,7 +798,7 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the Spot Price history. The prices returned are listed in
+     * Describes the Spot price history. The prices returned are listed in
      * chronological order, from the oldest to the most recent, for up to the
      * past 90 days. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html"> Spot Instance Pricing History </a>
@@ -1267,7 +1267,7 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the data feed for Spot Instances. For more information, see
+     * Describes the data feed for Spot instances. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -2547,8 +2547,26 @@ public interface AmazonEC2 {
      * Creates a Spot fleet request.
      * </p>
      * <p>
+     * You can submit a single request that includes multiple launch
+     * specifications that vary by instance type, AMI, Availability Zone, or
+     * subnet.
+     * </p>
+     * <p>
+     * By default, the Spot fleet requests Spot instances in the Spot pool
+     * where the price per unit is the lowest. Each launch specification can
+     * include its own instance weighting that reflects the value of the
+     * instance type to your application workload.
+     * </p>
+     * <p>
+     * Alternatively, you can specify that the Spot fleet distribute the
+     * target capacity across the Spot pools included in its launch
+     * specifications. By ensuring that the Spot instances in your Spot fleet
+     * are in different Spot pools, you can improve the availability of your
+     * fleet.
+     * </p>
+     * <p>
      * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html"> Spot Fleets </a>
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-requests.html"> Spot Fleet Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
@@ -2951,8 +2969,8 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Creates a data feed for Spot Instances, enabling you to view Spot
-     * Instance usage logs. You can create one data feed per AWS account. For
+     * Creates a data feed for Spot instances, enabling you to view Spot
+     * instance usage logs. You can create one data feed per AWS account. For
      * more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
@@ -3281,6 +3299,14 @@ public interface AmazonEC2 {
      * Amazon EC2 uses the default security group. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"> Security Groups </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * [EC2-VPC only accounts] If you don't specify a subnet in the request,
+     * we choose a default subnet from your default VPC for you.
+     * </p>
+     * <p>
+     * [EC2-Classic accounts] If you're launching into EC2-Classic and you
+     * don't specify an Availability Zone, we choose one for you.
      * </p>
      * <p>
      * Linux instances have access to the public key of the key pair at
@@ -3717,18 +3743,18 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the Spot Instance requests that belong to your account.
-     * Spot Instances are instances that Amazon EC2 launches when the bid
-     * price that you specify exceeds the current Spot Price. Amazon EC2
-     * periodically sets the Spot Price based on available Spot Instance
-     * capacity and current Spot Instance requests. For more information, see
+     * Describes the Spot instance requests that belong to your account.
+     * Spot instances are instances that Amazon EC2 launches when the bid
+     * price that you specify exceeds the current Spot price. Amazon EC2
+     * periodically sets the Spot price based on available Spot instance
+     * capacity and current Spot instance requests. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
      * You can use <code>DescribeSpotInstanceRequests</code> to find a
-     * running Spot Instance by examining the response. If the status of the
-     * Spot Instance is <code>fulfilled</code> , the instance ID appears in
+     * running Spot instance by examining the response. If the status of the
+     * Spot instance is <code>fulfilled</code> , the instance ID appears in
      * the response and contains the identifier of the instance.
      * Alternatively, you can use DescribeInstances with a filter to look for
      * instances where the instance lifecycle is <code>spot</code> .
@@ -4086,10 +4112,10 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Creates a Spot Instance request. Spot Instances are instances that
+     * Creates a Spot instance request. Spot instances are instances that
      * Amazon EC2 launches when the bid price that you specify exceeds the
-     * current Spot Price. Amazon EC2 periodically sets the Spot Price based
-     * on available Spot Instance capacity and current Spot Instance
+     * current Spot price. Amazon EC2 periodically sets the Spot price based
+     * on available Spot Instance capacity and current Spot instance
      * requests. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
@@ -4325,17 +4351,17 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Cancels one or more Spot Instance requests. Spot Instances are
+     * Cancels one or more Spot instance requests. Spot instances are
      * instances that Amazon EC2 starts on your behalf when the bid price
-     * that you specify exceeds the current Spot Price. Amazon EC2
-     * periodically sets the Spot Price based on available Spot Instance
-     * capacity and current Spot Instance requests. For more information, see
+     * that you specify exceeds the current Spot price. Amazon EC2
+     * periodically sets the Spot price based on available Spot instance
+     * capacity and current Spot instance requests. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
-     * <b>IMPORTANT:</b> Canceling a Spot Instance request does not
-     * terminate running Spot Instances associated with the request.
+     * <b>IMPORTANT:</b> Canceling a Spot instance request does not
+     * terminate running Spot instances associated with the request.
      * </p>
      *
      * @param cancelSpotInstanceRequestsRequest Container for the necessary
@@ -4505,10 +4531,11 @@ public interface AmazonEC2 {
      * terminate instance store-backed instances. What happens to an instance
      * differs if you stop it or terminate it. For example, when you stop an
      * instance, the root device and any other devices attached to the
-     * instance persist. When you terminate an instance, the root device and
-     * any other devices attached during the instance launch are
-     * automatically deleted. For more information about the differences
-     * between stopping and terminating instances, see
+     * instance persist. When you terminate an instance, any attached EBS
+     * volumes with the <code>DeleteOnTermination</code> block device mapping
+     * parameter set to <code>true</code> are automatically deleted. For more
+     * information about the differences between stopping and terminating
+     * instances, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html"> Instance Lifecycle </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -4564,9 +4591,7 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Deletes the data feed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * Deletes the data feed for Spot instances.
      * </p>
      *
      * @param deleteSpotDatafeedSubscriptionRequest Container for the
@@ -5764,10 +5789,9 @@ public interface AmazonEC2 {
     /**
      * <p>
      * Registers an AMI. When you're creating an AMI, this is the final step
-     * you must complete before you can launch an instance from the AMI. This
-     * step is required if you're creating an instance store-backed Linux or
-     * Windows AMI. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html"> Creating an Instance Store-Backed Linux AMI </a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html"> Creating an Instance Store-Backed Windows AMI </a>
+     * you must complete before you can launch an instance from the AMI. For
+     * more information about creating AMIs, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html"> Creating Your Own AMIs </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
@@ -5777,12 +5801,23 @@ public interface AmazonEC2 {
      * </p>
      * <p>
      * You can also use <code>RegisterImage</code> to create an Amazon
-     * EBS-backed AMI from a snapshot of a root device volume. For more
+     * EBS-backed Linux AMI from a snapshot of a root device volume. For more
      * information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-snapshot.html"> Launching an Instance from a Backup </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> . Note that
-     * although you can create a Windows AMI from a snapshot, you can't
-     * launch an instance from the AMI - use the CreateImage command instead.
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html"> Launching an Instance from a Snapshot </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b> Some Linux distributions, such as Red Hat
+     * Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES), use
+     * the EC2 billingProduct code associated with an AMI to verify
+     * subscription status for package updates. Creating an AMI from an EBS
+     * snapshot does not maintain this billing code, and subsequent instances
+     * launched from such an AMI will not be able to connect to package
+     * update infrastructure. Similarly, although you can create a Windows
+     * AMI from a snapshot, you can't successfully launch an instance from
+     * the AMI. To create Windows AMIs or to create AMIs for Linux operating
+     * systems that must retain AMI billing codes to work properly, see
+     * CreateImage.
      * </p>
      * <p>
      * If needed, you can deregister an AMI at any time. Any modifications
@@ -6003,7 +6038,7 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes the Spot Price history. The prices returned are listed in
+     * Describes the Spot price history. The prices returned are listed in
      * chronological order, from the oldest to the most recent, for up to the
      * past 90 days. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html"> Spot Instance Pricing History </a>
@@ -6120,7 +6155,7 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes the data feed for Spot Instances. For more information, see
+     * Describes the data feed for Spot instances. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -6903,18 +6938,18 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes the Spot Instance requests that belong to your account.
-     * Spot Instances are instances that Amazon EC2 launches when the bid
-     * price that you specify exceeds the current Spot Price. Amazon EC2
-     * periodically sets the Spot Price based on available Spot Instance
-     * capacity and current Spot Instance requests. For more information, see
+     * Describes the Spot instance requests that belong to your account.
+     * Spot instances are instances that Amazon EC2 launches when the bid
+     * price that you specify exceeds the current Spot price. Amazon EC2
+     * periodically sets the Spot price based on available Spot instance
+     * capacity and current Spot instance requests. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html"> Spot Instance Requests </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
      * You can use <code>DescribeSpotInstanceRequests</code> to find a
-     * running Spot Instance by examining the response. If the status of the
-     * Spot Instance is <code>fulfilled</code> , the instance ID appears in
+     * running Spot instance by examining the response. If the status of the
+     * Spot instance is <code>fulfilled</code> , the instance ID appears in
      * the response and contains the identifier of the instance.
      * Alternatively, you can use DescribeInstances with a filter to look for
      * instances where the instance lifecycle is <code>spot</code> .
@@ -7090,9 +7125,7 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Deletes the data feed for Spot Instances. For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html"> Spot Instance Data Feed </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * Deletes the data feed for Spot instances.
      * </p>
      * 
      * 

@@ -19,7 +19,9 @@ import android.database.Cursor;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
+import com.amazonaws.util.json.JsonUtils;
 
+import java.util.Map;
 import java.util.concurrent.Future;
 
 /**
@@ -54,6 +56,16 @@ class TransferRecord {
     public String headerContentEncoding;
     public String headerCacheControl;
     public String headerExpire;
+
+    /**
+     * The following were added in 2.2.6 to support object metdata
+     */
+    public Map<String, String> userMetadata;
+    public String expirationTimeRuleId;
+    // This is a long representing a date, however it may be null
+    public String httpExpires;
+    public String sseAlgorithm;
+    public String md5;
 
     private final AmazonS3 s3;
     private Future<?> submittedTask;
@@ -113,6 +125,15 @@ class TransferRecord {
                 .getColumnIndexOrThrow(TransferTable.COLUMN_HEADER_CACHE_CONTROL));
         this.headerExpire = c.getString(c
                 .getColumnIndexOrThrow(TransferTable.COLUMN_HEADER_EXPIRE));
+        this.userMetadata = JsonUtils.jsonToMap(c.getString(c
+                .getColumnIndexOrThrow(TransferTable.COLUMN_USER_METADATA)));
+        this.expirationTimeRuleId = c.getString(c
+                .getColumnIndexOrThrow(TransferTable.COLUMN_EXPIRATION_TIME_RULE_ID));
+        this.httpExpires = c.getString(c
+                .getColumnIndexOrThrow(TransferTable.COLUMN_HTTP_EXPIRES_DATE));
+        this.sseAlgorithm = c
+                .getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_SSE_ALGORITHM));
+        this.md5 = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_CONTENT_MD5));
     }
 
     /**

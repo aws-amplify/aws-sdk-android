@@ -19,11 +19,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.SDKGlobalConfiguration;
 
-import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -85,9 +85,9 @@ public class UrlHttpClientTest {
 
         assertEquals(conn.getConnectTimeout(), conf.getConnectionTimeout());
         assertEquals(conn.getReadTimeout(), conf.getSocketTimeout());
-        assertEquals(conn.getHostnameVerifier(),
-                SSLSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+        assertSame(conn.getHostnameVerifier(), HttpsURLConnection.getDefaultHostnameVerifier());
         assertFalse(conn.getInstanceFollowRedirects());
+        assertFalse("disable cache", conn.getUseCaches());
     }
 
     @Test
@@ -98,9 +98,11 @@ public class UrlHttpClientTest {
 
         assertEquals(conn.getConnectTimeout(), conf.getConnectionTimeout());
         assertEquals(conn.getReadTimeout(), conf.getSocketTimeout());
-        assertEquals(conn.getHostnameVerifier(),
-                SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
         assertFalse(conn.getInstanceFollowRedirects());
+        assertFalse("disable cache", conn.getUseCaches());
+        assertTrue(conn.getHostnameVerifier().verify("https://some.bogus.com", null));
+        assertTrue(conn.getHostnameVerifier()
+                .verify("https://bucket.withdot.s3.amazonaws.com", null));
         System.clearProperty(SDKGlobalConfiguration.DISABLE_CERT_CHECKING_SYSTEM_PROPERTY);
     }
 

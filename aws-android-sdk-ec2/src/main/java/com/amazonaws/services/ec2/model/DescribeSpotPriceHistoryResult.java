@@ -24,7 +24,7 @@ import java.io.Serializable;
 public class DescribeSpotPriceHistoryResult implements Serializable {
 
     /**
-     * The historical Spot Prices.
+     * The historical Spot prices.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<SpotPrice> spotPriceHistory;
 
@@ -35,9 +35,9 @@ public class DescribeSpotPriceHistoryResult implements Serializable {
     private String nextToken;
 
     /**
-     * The historical Spot Prices.
+     * The historical Spot prices.
      *
-     * @return The historical Spot Prices.
+     * @return The historical Spot prices.
      */
     public java.util.List<SpotPrice> getSpotPriceHistory() {
         if (spotPriceHistory == null) {
@@ -48,9 +48,9 @@ public class DescribeSpotPriceHistoryResult implements Serializable {
     }
     
     /**
-     * The historical Spot Prices.
+     * The historical Spot prices.
      *
-     * @param spotPriceHistory The historical Spot Prices.
+     * @param spotPriceHistory The historical Spot prices.
      */
     public void setSpotPriceHistory(java.util.Collection<SpotPrice> spotPriceHistory) {
         if (spotPriceHistory == null) {
@@ -63,11 +63,11 @@ public class DescribeSpotPriceHistoryResult implements Serializable {
     }
     
     /**
-     * The historical Spot Prices.
+     * The historical Spot prices.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param spotPriceHistory The historical Spot Prices.
+     * @param spotPriceHistory The historical Spot prices.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -81,11 +81,11 @@ public class DescribeSpotPriceHistoryResult implements Serializable {
     }
     
     /**
-     * The historical Spot Prices.
+     * The historical Spot prices.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param spotPriceHistory The historical Spot Prices.
+     * @param spotPriceHistory The historical Spot prices.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

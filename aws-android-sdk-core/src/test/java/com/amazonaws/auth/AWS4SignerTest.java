@@ -39,53 +39,6 @@ import java.util.TimeZone;
  * Unit tests for the
  */
 public class AWS4SignerTest {
-
-    public static final String PRIVATE_KEY_STRING =
-            "-----BEGIN PRIVATE KEY-----\n"
-                    +
-                    "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAILTGAZ/twm6FLNX/WDfMRtNGfiQ\n"
-                    +
-                    "3mUg4f8ACerU83pdJShkVxKSL1aKjAFZtagpOTbPbiHATyTAAUEjWhkIcLIP7+Xecx0zW3pu11yO\n"
-                    +
-                    "qjHU++oc8TL4+zTsPXrNU2+ohvw73g5aauVKgzW5qXO0r/wMsV/Y+T9BuBNvzcxt6xNNAgMBAAEC\n"
-                    +
-                    "gYACoxCj6OUenBKYvthLoJQT0c0JNppU/YGwqyaIBjzWJZR/KO6cYDf2DZre2BkSR6pwkWPN6Ftw\n"
-                    +
-                    "CTK9RmIliQcEeG6azpK0Rtv64ur5MIWRr1R+EPmDqVaIKm1m8C+tPbgMqZwYV0QPT4n2aD2Rgshd\n"
-                    +
-                    "MD3gw0MGvRDU46aHp2pHoQJBALs1BjkiNl8IA+aThZuDOqQvwAcePgu/IvQnv55js1Vv0h+HN/jI\n"
-                    +
-                    "nM8cLWl+RJzhOSmixTV6xuYPnzk35UUYCakCQQCy5gsFVoz+heX7mUgHWnlwU74NYOIoTc0uPJzW\n"
-                    +
-                    "cqgX7WzXZWGl9w1z/ENha8Pbj/pjVbmeTXDIQ+JjRTnrZ6sFAkEAq8mlk0ok0KG/Spg285TBfCbh\n"
-                    +
-                    "NOb4krjrr1bGTOc6in0ZOZtQrngRBTDbL0ISXk+CsAVQqJmo6TaOqufy+KttOQJASFlQS7BdBPIR\n"
-                    +
-                    "uFadEpw8UHkNe0ubKsGMIQ7SPsfPwx15zwJpIz1ua2GxvkxewQTRNisNDkAzREpv28W7TsB2IQJA\n"
-                    +
-                    "TJbwFpJd8KVG759unGT9kRFRfATQTwtbCM5Xi956Qiuknj0ErO2l/nOyTktdXZgp9KhWSAKKVUzp\n"
-                    +
-                    "7OSTTuwJ8A==\n" +
-                    "-----END PRIVATE KEY-----";
-
-    public static final String CERT_STRING =
-            "-----BEGIN CERTIFICATE-----\n" +
-                    "MIICeDCCAeGgAwIBAgIGANyqR9onMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYT\n" +
-                    "AlVTMRMwEQYDVQQKEwpBbWF6b24uY29tMQwwCgYDVQQLEwNBV1MxITAfBgNVBAMT\n" +
-                    "GEFXUyBMaW1pdGVkLUFzc3VyYW5jZSBDQTAeFw0wOTExMDMwMjQzMjlaFw0xMDEx\n" +
-                    "MDMwMjQzMjlaMFMxCzAJBgNVBAYTAlVTMRMwEQYDVQQKEwpBbWF6b24uY29tMRcw\n" +
-                    "FQYDVQQLEw5BV1MtRGV2ZWxvcGVyczEWMBQGA1UEAxMNMWtwdXp2YzN0YXNmdDCB\n" +
-                    "nzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAgtMYBn+3CboUs1f9YN8xG00Z+JDe\n" +
-                    "ZSDh/wAJ6tTzel0lKGRXEpIvVoqMAVm1qCk5Ns9uIcBPJMABQSNaGQhwsg/v5d5z\n" +
-                    "HTNbem7XXI6qMdT76hzxMvj7NOw9es1Tb6iG/DveDlpq5UqDNbmpc7Sv/AyxX9j5\n" +
-                    "P0G4E2/NzG3rE00CAwEAAaNXMFUwDgYDVR0PAQH/BAQDAgWgMBYGA1UdJQEB/wQM\n" +
-                    "MAoGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFLySbsuneGFATo5c\n" +
-                    "jKjkvEgs8cMOMA0GCSqGSIb3DQEBBQUAA4GBAHq2LLs3Av+HNjeD5Vd70vzMJGXx\n" +
-                    "tuWNvmrz98CznN+MvCB7meuygDSBuaVFA5Rkz3B5ucMsO2rT/ra5l5+XeVkdCyze\n" +
-                    "k+UrezIvY39xtrlrr5qxjuhXpgDmOPumdTb1vfGIb0mWTdnc86f92QFSmojgzY11\n" +
-                    "++q4zoqVhgiJOUh9\n" +
-                    "-----END CERTIFICATE-----";
-
     private AWS4Signer signer = new AWS4Signer();
 
     @Test

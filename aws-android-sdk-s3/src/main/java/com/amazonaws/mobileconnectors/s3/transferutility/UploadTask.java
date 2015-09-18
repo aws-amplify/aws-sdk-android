@@ -31,6 +31,7 @@ import com.amazonaws.services.s3.model.UploadPartRequest;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -82,9 +83,7 @@ class UploadTask implements Callable<Boolean> {
          * it's a resumed upload, upload.mMultipartId would not be null.
          */
         if (upload.multipartId == null || upload.multipartId.equals("")) {
-            PutObjectRequest putObjectRequest = new PutObjectRequest(upload.bucketName,
-                    upload.key, new File(upload.file));
-            putObjectRequest.setMetadata(new ObjectMetadata());
+            PutObjectRequest putObjectRequest = createPutObjectRequest(upload);
             TransferUtility.appendMultipartTransferServiceUserAgentString(putObjectRequest);
             try {
                 upload.multipartId = initiateMultipartUpload(putObjectRequest);
@@ -104,8 +103,6 @@ class UploadTask implements Callable<Boolean> {
             dbUtil.updateBytesTransferred(upload.id, bytesAlreadyTransferrd, true);
             transferProgress.updateProgress(bytesAlreadyTransferrd);
         }
-
-        // TODO: if isUsingEcrypted, then uploadPartsInSeries.
 
         List<UploadPartRequest> requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
                 upload.multipartId);
@@ -153,18 +150,12 @@ class UploadTask implements Callable<Boolean> {
 
     private Boolean uploadSinglePartAndWaitForCompletion() {
         dbUtil.updateBytesTransferred(upload.id, 0, true);
-        File file = new File(upload.file);
-        PutObjectRequest putObjectRequest = new PutObjectRequest(upload.bucketName,
-                upload.key, file);
+
+        PutObjectRequest putObjectRequest = createPutObjectRequest(upload);
+
         TransferUtility
                 .appendTransferServiceUserAgentString(putObjectRequest);
-        if (putObjectRequest.getMetadata() == null) {
-            ObjectMetadata metadata = new ObjectMetadata();
-            metadata.setContentLength(file.length());
-            metadata.setContentType(Mimetypes.getInstance().getMimetype(file));
-            putObjectRequest.setMetadata(metadata);
-        }
-        transferProgress.setTotalBytesToTransfer(file.length());
+        transferProgress.setTotalBytesToTransfer(putObjectRequest.getFile().length());
 
         putObjectRequest.setGeneralProgressListener(new TransferProgressUpdatingListener(
                 transferProgress) {
@@ -223,8 +214,57 @@ class UploadTask implements Callable<Boolean> {
                 .withObjectMetadata(putObjectRequest.getMetadata());
         TransferUtility
                 .appendMultipartTransferServiceUserAgentString(initiateMultipartUploadRequest);
-
         String uploadId = s3.initiateMultipartUpload(initiateMultipartUploadRequest).getUploadId();
         return uploadId;
+    }
+
+    /**
+     * Creates a PutObjectRequest from the data in the TransferRecord
+     * 
+     * @param por The request to fill
+     * @param upload The data for the Object Metadata
+     * @return Returns a PutObjectRequest with filled in metadata and parameters
+     */
+    private PutObjectRequest createPutObjectRequest(TransferRecord upload) {
+        File file = new File(upload.file);
+        PutObjectRequest putObjectRequest = new PutObjectRequest(upload.bucketName,
+                upload.key, new File(upload.file));
+
+        ObjectMetadata om = new ObjectMetadata();
+        om.setContentLength(file.length());
+
+        if (upload.headerCacheControl != null) {
+            om.setCacheControl(upload.headerCacheControl);
+        }
+        if (upload.headerContentDisposition != null) {
+            om.setContentDisposition(upload.headerContentDisposition);
+        }
+        if (upload.headerContentEncoding != null) {
+            om.setContentEncoding(upload.headerContentEncoding);
+        }
+        if (upload.headerContentType != null) {
+            om.setContentType(upload.headerContentType);
+        } else {
+            om.setContentType(Mimetypes.getInstance().getMimetype(file));
+        }
+        if (upload.expirationTimeRuleId != null) {
+            om.setExpirationTimeRuleId(upload.expirationTimeRuleId);
+        }
+        if (upload.httpExpires != null) {
+            om.setHttpExpiresDate(new Date(Long.valueOf(upload.httpExpires)));
+        }
+        if (upload.sseAlgorithm != null) {
+            om.setSSEAlgorithm(upload.sseAlgorithm);
+        }
+        if (upload.userMetadata != null) {
+            om.setUserMetadata(upload.userMetadata);
+        }
+        if (upload.md5 != null) {
+            om.setContentMD5(upload.md5);
+        }
+
+        putObjectRequest.setMetadata(om);
+
+        return putObjectRequest;
     }
 }

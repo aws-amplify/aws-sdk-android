@@ -28,13 +28,13 @@ public class GetCredentialsForIdentityResult implements Serializable {
      * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      */
     private String identityId;
 
     /**
-     * Credentials for the the provided identity ID.
+     * Credentials for the provided identity ID.
      */
     private Credentials credentials;
 
@@ -42,7 +42,7 @@ public class GetCredentialsForIdentityResult implements Serializable {
      * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
      * @return A unique identifier in the format REGION:GUID.
@@ -55,7 +55,7 @@ public class GetCredentialsForIdentityResult implements Serializable {
      * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
      * @param identityId A unique identifier in the format REGION:GUID.
@@ -70,7 +70,7 @@ public class GetCredentialsForIdentityResult implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
      * @param identityId A unique identifier in the format REGION:GUID.
@@ -84,29 +84,29 @@ public class GetCredentialsForIdentityResult implements Serializable {
     }
 
     /**
-     * Credentials for the the provided identity ID.
+     * Credentials for the provided identity ID.
      *
-     * @return Credentials for the the provided identity ID.
+     * @return Credentials for the provided identity ID.
      */
     public Credentials getCredentials() {
         return credentials;
     }
     
     /**
-     * Credentials for the the provided identity ID.
+     * Credentials for the provided identity ID.
      *
-     * @param credentials Credentials for the the provided identity ID.
+     * @param credentials Credentials for the provided identity ID.
      */
     public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
     }
     
     /**
-     * Credentials for the the provided identity ID.
+     * Credentials for the provided identity ID.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param credentials Credentials for the the provided identity ID.
+     * @param credentials Credentials for the provided identity ID.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

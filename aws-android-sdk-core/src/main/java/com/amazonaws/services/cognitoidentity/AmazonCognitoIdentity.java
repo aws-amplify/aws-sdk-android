@@ -131,9 +131,6 @@ public interface AmazonCognitoIdentity {
      * create an implicit linked account.
      * </p>
      * <p>
-     * token+";"+tokenSecret.
-     * </p>
-     * <p>
      * This is a public API. You do not need any credentials to call this
      * API.
      * </p>
@@ -166,10 +163,10 @@ public interface AmazonCognitoIdentity {
 
     /**
      * <p>
-     * Returns credentials for the the provided identity ID. Any provided
-     * logins will be validated against supported login providers. If the
-     * token is for cognito-identity.amazonaws.com, it will be passed through
-     * to AWS Security Token Service with the appropriate role for the token.
+     * Returns credentials for the provided identity ID. Any provided logins
+     * will be validated against supported login providers. If the token is
+     * for cognito-identity.amazonaws.com, it will be passed through to AWS
+     * Security Token Service with the appropriate role for the token.
      * </p>
      * <p>
      * This is a public API. You do not need any credentials to call this

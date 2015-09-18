@@ -18,9 +18,6 @@ package com.amazonaws;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.metrics.RequestMetricCollector;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Base class for all user facing web service requests.
  */
@@ -40,43 +37,11 @@ public abstract class AmazonWebServiceRequest {
     @Deprecated
     private RequestMetricCollector requestMetricCollector;
 
-    /** The optional STS security token associated with this request */
-    private String delegationToken;
-
     /**
      * The optional credentials to use for this request - overrides the default
      * credentials set at the client level.
      */
     private AWSCredentials credentials;
-
-    /**
-     * Returns the optional STS security token associated with the request. This
-     * method is not available in the external release of the SDK.
-     *
-     * @return the optional STS security token associated with the request.
-     * @deprecated Pass a {@link com.amazonaws.auth.AWSSessionCredentials} to
-     *             your client constructor instead. Note the delegationToken
-     *             methods do not work for services other than s3.
-     */
-    @Deprecated
-    public String getDelegationToken() {
-        return delegationToken;
-    }
-
-    /**
-     * Sets the optional STS security token associated with the request. This
-     * method is not available in the external release of the SDK.
-     *
-     * @param delegationToken The optional STS security token associated with
-     *            the request.
-     * @deprecated Pass a {@link com.amazonaws.auth.AWSSessionCredentials} to
-     *             your client constructor instead. Note the delegationToken
-     *             methods do not work for services other than s3.
-     */
-    @Deprecated
-    public void setDelegationToken(String delegationToken) {
-        this.delegationToken = delegationToken;
-    }
 
     /**
      * Sets the optional credentials to use for this request, overriding the
@@ -102,22 +67,6 @@ public abstract class AmazonWebServiceRequest {
     }
 
     /**
-     * Internal only method for accessing private, internal request parameters.
-     * Not intended for direct use by callers.
-     *
-     * @return private, internal request parameter information.
-     * @deprecated only passes back the deprecated delegationToken
-     */
-    @Deprecated
-    public Map<String, String> copyPrivateRequestParameters() {
-        HashMap<String, String> map = new HashMap<String, String>();
-        if (delegationToken != null)
-            map.put("SecurityToken", delegationToken);
-
-        return map;
-    }
-
-    /**
      * Gets the options stored with this request object. Intended for internal
      * use only.
      */
@@ -127,7 +76,7 @@ public abstract class AmazonWebServiceRequest {
 
     /**
      * Returns a request level metric collector; or null if not specified.
-     * 
+     *
      * @deprecated metrics is deprecated
      */
     @Deprecated
@@ -138,7 +87,7 @@ public abstract class AmazonWebServiceRequest {
     /**
      * Sets a request level request metric collector which takes precedence over
      * the ones at the http client level and AWS SDK level.
-     * 
+     *
      * @deprecated metrics is deprecated
      */
     @Deprecated
@@ -149,7 +98,7 @@ public abstract class AmazonWebServiceRequest {
     /**
      * Specifies a request level metric collector which takes precedence over
      * the ones at the http client level and AWS SDK level.
-     * 
+     *
      * @deprecated metrics is deprecated
      */
     @Deprecated

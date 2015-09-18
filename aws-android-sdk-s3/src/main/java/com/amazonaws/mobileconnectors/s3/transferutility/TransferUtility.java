@@ -26,7 +26,7 @@ import android.net.Uri;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3EncryptionClient;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.util.VersionInfoUtils;
 
 import java.io.File;
@@ -103,7 +103,7 @@ public class TransferUtility {
      * reference.
      *
      * @param s3 The client to use when making requests to Amazon S3
-     * @param context The application context
+     * @param context The current context
      * @param configuration Configuration parameters for this TransferUtility
      */
     public TransferUtility(AmazonS3 s3, Context context) {
@@ -115,7 +115,8 @@ public class TransferUtility {
     }
 
     /**
-     * Starts downloading the file specified by the bucket and the key.
+     * Starts downloading the S3 object specified by the bucket and the key to
+     * the file.
      *
      * @param bucket The name of the bucket containing the object to download.
      * @param key The key under which the object to download is stored.
@@ -126,16 +127,14 @@ public class TransferUtility {
         Intent intent = new Intent(appContext, TransferService.class);
         intent.putExtra(KEY_FOR_S3_WEAK_REFERENCE, s3WeakReferenceMapKey);
         appContext.startService(intent);
-        boolean isUsingEncryption = s3 instanceof AmazonS3EncryptionClient;
         Uri uri = dbUtil.insertSingleTransferRecord(TransferType.DOWNLOAD,
-                bucket, key, file, isUsingEncryption ? 1 : 0);
+                bucket, key, file);
         int recordId = Integer.parseInt(uri.getLastPathSegment());
         return new TransferObserver(recordId, appContext, 0);
     }
 
     /**
-     * Starts uploading the file to the position specified by the given bucket
-     * and key.
+     * Starts uploading the file to the given bucket, using the given key
      *
      * @param bucket The name of the bucket to upload the new object to.
      * @param key The key in the specified bucket by which to store the new
@@ -145,17 +144,30 @@ public class TransferUtility {
      */
     public TransferObserver upload(String bucket, String key, File file) {
 
+        return upload(bucket, key, file, new ObjectMetadata());
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param metadata The S3 metadata to associate with this object
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata) {
         Intent intent = new Intent(appContext, TransferService.class);
         intent.putExtra(KEY_FOR_S3_WEAK_REFERENCE, s3WeakReferenceMapKey);
         appContext.startService(intent);
         int recordId = 0;
-        boolean isUsingEncryption = false;
         if (shouldUploadInMultipart(file)) {
-            recordId = createMultipartUploadRecords(bucket, key, file, isUsingEncryption);
+            recordId = createMultipartUploadRecords(bucket, key, file, metadata);
         } else {
 
             Uri uri = dbUtil.insertSingleTransferRecord(TransferType.UPLOAD,
-                    bucket, key, file, isUsingEncryption ? 1 : 0);
+                    bucket, key, file, metadata);
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
         return new TransferObserver(recordId, appContext, file.length());
@@ -236,18 +248,11 @@ public class TransferUtility {
      * @return Number of records created in database
      */
     private int createMultipartUploadRecords(String bucket, String key, File file,
-            boolean isUsingEncryption) {
+            ObjectMetadata metadata) {
         long remainingLenth = file.length();
         double partSize = (double) remainingLenth / (double) MAXIMUM_UPLOAD_PARTS;
         partSize = Math.ceil(partSize);
         long optimalPartSize = (long) Math.max(partSize, MINIMUM_UPLOAD_PART_SIZE);
-        if (isUsingEncryption && optimalPartSize % 32 > 0) {
-            /*
-             * When using encryption, parts must line up correctly along cipher
-             * block boundaries
-             */
-            optimalPartSize = optimalPartSize - (optimalPartSize % 32) + 32;
-        }
         long fileOffset = 0;
         int partNumber = 1;
 
@@ -260,12 +265,12 @@ public class TransferUtility {
          */
         ContentValues[] valuesArray = new ContentValues[partCount + 1];
         valuesArray[0] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
-                file, fileOffset, 0, "", file.length(), 0, isUsingEncryption ? 1 : 0);
+                file, fileOffset, 0, "", file.length(), 0, metadata);
         for (int i = 1; i < partCount + 1; i++) {
             long bytesForPart = Math.min(optimalPartSize, remainingLenth);
             valuesArray[i] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
                     file, fileOffset, partNumber, "", bytesForPart, remainingLenth
-                            - optimalPartSize <= 0 ? 1 : 0, isUsingEncryption ? 1 : 0);
+                            - optimalPartSize <= 0 ? 1 : 0, metadata);
             fileOffset += optimalPartSize;
             remainingLenth -= optimalPartSize;
             partNumber++;
@@ -335,10 +340,12 @@ public class TransferUtility {
     }
 
     /**
-     * Cancels the transfer task with the given id.
+     * Sets a transfer to be canceled. Note the TransferState must be
+     * TransferState.CANCELED before the transfer is guaranteed to have stopped,
+     * and can be safely deleted
      *
      * @param id A transfer id specifying the transfer to be canceled
-     * @return Whether successfully canceled
+     * @return Whether the transfer was set to be canceled.
      */
     public boolean cancel(int id) {
         Cursor c = dbUtil.queryTransferById(id);
@@ -361,7 +368,9 @@ public class TransferUtility {
     }
 
     /**
-     * Cancels all transfers which have the given type.
+     * Sets all transfers which have the given type to be canceled. Note the
+     * TransferState must be TransferState.CANCELED before the transfer is
+     * guaranteed to have stopped, and can be safely deleted
      *
      * @param type The type of transfers
      */

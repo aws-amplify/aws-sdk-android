@@ -39,6 +39,9 @@ public class RecordJsonUnmarshaller implements Unmarshaller<Record, JsonUnmarsha
             if (name.equals("SequenceNumber")) {
                 record.setSequenceNumber(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
+            if (name.equals("ApproximateArrivalTimestamp")) {
+                record.setApproximateArrivalTimestamp(DateJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
             if (name.equals("Data")) {
                 record.setData(ByteBufferJsonUnmarshaller.getInstance().unmarshall(context));
             } else 

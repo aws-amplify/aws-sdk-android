@@ -20,8 +20,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
+import com.amazonaws.util.json.JsonUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -85,14 +87,12 @@ class TransferDBUtil {
      * @param uploadId The multipart upload id of the upload.
      * @param bytesTotal The Total bytes of the file.
      * @param isLastPart Whether this part is the last part of the upload.
-     * @param isEncrypted Whether the upload is encrypted.
      * @return An Uri of the record inserted.
      */
     public Uri insertMultipartUploadRecord(String bucket, String key, File file,
-            long fileOffset, int partNumber, String uploadId, long bytesTotal, int isLastPart,
-            int isEncrypted) {
+            long fileOffset, int partNumber, String uploadId, long bytesTotal, int isLastPart) {
         ContentValues values = generateContentValuesForMultiPartUpload(bucket, key, file,
-                fileOffset, partNumber, uploadId, bytesTotal, isLastPart, isEncrypted);
+                fileOffset, partNumber, uploadId, bytesTotal, isLastPart, new ObjectMetadata());
         return transferDBBase.insert(transferDBBase.getContentUri(), values);
     }
 
@@ -104,14 +104,29 @@ class TransferDBUtil {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
-     * @param isEncrypted Whether the transfer is encrypted.
+     * @param metadata The S3 Object metadata associated with this object
      * @return An Uri of the record inserted.
      */
     public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file,
-            int isEncrypted) {
+            ObjectMetadata metadata) {
         ContentValues values = generateContentValuesForSinglePartTransfer(type, bucket, key, file,
-                isEncrypted);
+                metadata);
         return transferDBBase.insert(transferDBBase.getContentUri(), values);
+    }
+
+    /**
+     * Inserts a transfer record into database with the given values.
+     *
+     * @param type The type of the transfer, can be "upload" or "download".
+     * @param bucket The name of the bucket to upload to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @return An Uri of the record inserted.
+     */
+    public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file) {
+        return insertSingleTransferRecord(type, bucket, key, file,
+                new ObjectMetadata());
     }
 
     /**
@@ -520,12 +535,11 @@ class TransferDBUtil {
      * @param uploadId The multipart upload id of the upload.
      * @param bytesTotal The Total bytes of the file.
      * @param isLastPart Whether this part is the last part of the upload.
-     * @param isEncrypted Whether the upload is encrypted.
      * @return The ContentValues object generated.
      */
     public ContentValues generateContentValuesForMultiPartUpload(String bucket,
             String key, File file, long fileOffset, int partNumber, String uploadId,
-            long bytesTotal, int isLastPart, int isEncrypted) {
+            long bytesTotal, int isLastPart, ObjectMetadata metadata) {
         ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_TYPE, TransferType.UPLOAD.toString());
         values.put(TransferTable.COLUMN_STATE, TransferState.WAITING.toString());
@@ -539,7 +553,36 @@ class TransferDBUtil {
         values.put(TransferTable.COLUMN_FILE_OFFSET, fileOffset);
         values.put(TransferTable.COLUMN_MULTIPART_ID, uploadId);
         values.put(TransferTable.COLUMN_IS_LAST_PART, isLastPart);
-        values.put(TransferTable.COLUMN_IS_ENCRYPTED, isEncrypted);
+        values.put(TransferTable.COLUMN_IS_ENCRYPTED, 0);
+        values.putAll(generateContentValuesForObjectMetadata(metadata));
+        return values;
+    }
+
+    /**
+     * Adds mappings to a ContentValues object for the data in the passed in
+     * ObjectMetadata
+     * 
+     * @param metadata The ObjectMetadata the content values should be filled
+     *            with
+     * @return the ContentValues
+     */
+    private ContentValues generateContentValuesForObjectMetadata(ObjectMetadata metadata) {
+        ContentValues values = new ContentValues();
+        values.put(TransferTable.COLUMN_USER_METADATA,
+                JsonUtils.mapToString(metadata.getUserMetadata()));
+        values.put(TransferTable.COLUMN_HEADER_CONTENT_TYPE, metadata.getContentType());
+        values.put(TransferTable.COLUMN_HEADER_CONTENT_ENCODING, metadata.getContentEncoding());
+        values.put(TransferTable.COLUMN_HEADER_CACHE_CONTROL, metadata.getCacheControl());
+        values.put(TransferTable.COLUMN_CONTENT_MD5, metadata.getContentMD5());
+        values.put(TransferTable.COLUMN_HEADER_CONTENT_DISPOSITION,
+                metadata.getContentDisposition());
+        values.put(TransferTable.COLUMN_SSE_ALGORITHM, metadata.getSSEAlgorithm());
+        values.put(TransferTable.COLUMN_EXPIRATION_TIME_RULE_ID, metadata.getExpirationTimeRuleId());
+        if (metadata.getHttpExpiresDate() != null) {
+            values.put(TransferTable.COLUMN_HTTP_EXPIRES_DATE,
+                    String.valueOf(metadata.getHttpExpiresDate().getTime()));
+        }
+
         return values;
     }
 
@@ -552,11 +595,11 @@ class TransferDBUtil {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
-     * @param isEncrypted Whether the transfer is encrypted.
+     * @param metadata The S3 ObjectMetadata to send along with the object
      * @return The ContentValues object generated.
      */
     private ContentValues generateContentValuesForSinglePartTransfer(TransferType type,
-            String bucket, String key, File file, int isEncrypted) {
+            String bucket, String key, File file, ObjectMetadata metadata) {
         ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_TYPE, type.toString());
         values.put(TransferTable.COLUMN_STATE, TransferState.WAITING.toString());
@@ -568,7 +611,8 @@ class TransferDBUtil {
             values.put(TransferTable.COLUMN_BYTES_TOTAL, file == null ? 0l : file.length());
         values.put(TransferTable.COLUMN_IS_MULTIPART, 0);
         values.put(TransferTable.COLUMN_PART_NUM, 0);
-        values.put(TransferTable.COLUMN_IS_ENCRYPTED, isEncrypted);
+        values.put(TransferTable.COLUMN_IS_ENCRYPTED, 0);
+        values.putAll(generateContentValuesForObjectMetadata(metadata));
         return values;
     }
 

@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity#getCredentialsForIdentity(GetCredentialsForIdentityRequest) GetCredentialsForIdentity operation}.
  * <p>
- * Returns credentials for the the provided identity ID. Any provided
- * logins will be validated against supported login providers. If the
- * token is for cognito-identity.amazonaws.com, it will be passed through
- * to AWS Security Token Service with the appropriate role for the token.
+ * Returns credentials for the provided identity ID. Any provided logins
+ * will be validated against supported login providers. If the token is
+ * for cognito-identity.amazonaws.com, it will be passed through to AWS
+ * Security Token Service with the appropriate role for the token.
  * </p>
  * <p>
  * This is a public API. You do not need any credentials to call this
@@ -39,7 +39,7 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
      * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      */
     private String identityId;
@@ -57,7 +57,7 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
      * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
      * @return A unique identifier in the format REGION:GUID.
@@ -70,7 +70,7 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
      * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
      * @param identityId A unique identifier in the format REGION:GUID.
@@ -85,7 +85,7 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
      * @param identityId A unique identifier in the format REGION:GUID.

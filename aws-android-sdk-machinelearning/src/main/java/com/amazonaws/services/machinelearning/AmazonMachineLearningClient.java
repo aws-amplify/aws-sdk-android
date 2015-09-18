@@ -247,11 +247,12 @@ public class AmazonMachineLearningClient extends AmazonWebServiceClient implemen
     /**
      * <p>
      * Generates a prediction for the observation using the specified
-     * <code>MLModel</code> .
+     * <code>ML Model</code> .
      * </p>
      * <p>
-     * <b>NOTE:</b> Note Not all response parameters will be populated
-     * because this is dependent on the type of requested model.
+     * <b>NOTE:</b> Note Not all response parameters will be populated.
+     * Whether a response parameter is populated depends on the type of model
+     * requested.
      * </p>
      *
      * @param predictRequest Container for the necessary parameters to

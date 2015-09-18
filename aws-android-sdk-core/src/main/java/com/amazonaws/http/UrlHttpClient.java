@@ -19,8 +19,6 @@ import static com.amazonaws.SDKGlobalConfiguration.DISABLE_CERT_CHECKING_SYSTEM_
 
 import com.amazonaws.ClientConfiguration;
 
-import org.apache.http.conn.ssl.SSLSocketFactory;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -32,8 +30,10 @@ import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
@@ -179,11 +179,10 @@ public class UrlHttpClient implements HttpClient {
         connection.setReadTimeout(config.getSocketTimeout());
         // disable redirect and cache
         connection.setInstanceFollowRedirects(false);
-        // connection.setUseCaches(false);
+        connection.setUseCaches(false);
         // configure https connection
         if (connection instanceof HttpsURLConnection) {
             HttpsURLConnection https = (HttpsURLConnection) connection;
-            https.setHostnameVerifier(SSLSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 
             // disable cert check
             if (System.getProperty(DISABLE_CERT_CHECKING_SYSTEM_PROPERTY) != null) {
@@ -209,7 +208,18 @@ public class UrlHttpClient implements HttpClient {
         }
 
         connection.setSSLSocketFactory(sc.getSocketFactory());
-        connection.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        connection.setHostnameVerifier(new AllowAllHostnameVerifier());
+    }
+
+    /**
+     * An allow all hostname verifier, only used internally for testing purpose.
+     */
+    static class AllowAllHostnameVerifier implements HostnameVerifier {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+            // Always return true to bypass host name verification
+            return true;
+        }
     }
 
     /**

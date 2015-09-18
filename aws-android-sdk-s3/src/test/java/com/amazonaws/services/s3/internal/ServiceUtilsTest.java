@@ -37,25 +37,25 @@ public class ServiceUtilsTest {
         /**
          * Request which generates this presigned URL Request: GET
          * https://test-bucket1234.s3.amazonaws.com /TestFile.txt Parameters:
-         * (AWSAccessKeyId: AKIAJDND73Z2EOXMGOZQ, Expires: 1430878121,
+         * (AWSAccessKeyId: TESTJDND73Z2EOXMTEST, Expires: 1430878121,
          * Signature: SxXP9iKzsnIeCjYBKFS8iW/9Bus=, ) 05-05 18:08:41.265:
          * I/System.out(28304): URL:
          * https://test-bucket1234.s3.amazonaws.com/TestFile
-         * .txt?AWSAccessKeyId=AKIAJDND73Z2EOXMGOZQ
+         * .txt?AWSAccessKeyId=TESTJDND73Z2EOXMTEST
          * &Expires=1430878121&Signature=SxXP9iKzsnIeCjYBKFS8iW%2F9Bus%3D
          */
         Request<String> req = new DefaultRequest<String>("s3");
         req.setHttpMethod(HttpMethodName.GET);
         req.setEndpoint(new URI("https://test-bucket1234.s3.amazonaws.com"));
         req.setResourcePath("/TestFile.txt");
-        req.withParameter("AWSAccessKeyId", "AKIAJDND73Z2EOXMGOZQ");
+        req.withParameter("AWSAccessKeyId", "TESTJDND73Z2EOXMTEST");
         req.withParameter("Expires", "1430878121");
         req.withParameter("Signature", "SxXP9iKzsnIeCjYBKFS8iW/9Bus=");
 
         URL craftedURL = ServiceUtils.convertRequestToUrl(req, true);
         assertEquals(
                 new URL(
-                        "https://test-bucket1234.s3.amazonaws.com/TestFile.txt?AWSAccessKeyId=AKIAJDND73Z2EOXMGOZQ&Expires=1430878121&Signature=SxXP9iKzsnIeCjYBKFS8iW%2F9Bus%3D"),
+                        "https://test-bucket1234.s3.amazonaws.com/TestFile.txt?AWSAccessKeyId=TESTJDND73Z2EOXMTEST&Expires=1430878121&Signature=SxXP9iKzsnIeCjYBKFS8iW%2F9Bus%3D"),
                 craftedURL);
     }
 

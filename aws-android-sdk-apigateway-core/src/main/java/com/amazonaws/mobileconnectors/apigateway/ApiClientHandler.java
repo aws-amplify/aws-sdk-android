@@ -144,7 +144,7 @@ class ApiClientHandler implements InvocationHandler {
             request.addHeader("x-api-key", apiKey);
         }
 
-        if (provider != null) {
+        if (provider != null && signer != null) {
             signer.sign(request, provider.getCredentials());
         }
         return request;

@@ -27,7 +27,7 @@ public class GetIdResult implements Serializable {
      * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      */
     private String identityId;
@@ -36,7 +36,7 @@ public class GetIdResult implements Serializable {
      * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
      * @return A unique identifier in the format REGION:GUID.
@@ -49,7 +49,7 @@ public class GetIdResult implements Serializable {
      * A unique identifier in the format REGION:GUID.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
      * @param identityId A unique identifier in the format REGION:GUID.
@@ -64,7 +64,7 @@ public class GetIdResult implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
      * @param identityId A unique identifier in the format REGION:GUID.

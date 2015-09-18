@@ -18,7 +18,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes the launch specification for an instance.
+ * Describes the launch specification for one or more Spot instances.
  * </p>
  */
 public class SpotFleetLaunchSpecification implements Serializable {
@@ -60,7 +60,7 @@ public class SpotFleetLaunchSpecification implements Serializable {
     private String instanceType;
 
     /**
-     * Describes Spot Instance placement.
+     * The placement information.
      */
     private SpotPlacement placement;
 
@@ -80,12 +80,12 @@ public class SpotFleetLaunchSpecification implements Serializable {
     private com.amazonaws.internal.ListWithAutoConstructFlag<BlockDeviceMapping> blockDeviceMappings;
 
     /**
-     * Enable or disable monitoring for the instance.
+     * Enable or disable monitoring for the instances.
      */
     private SpotFleetMonitoring monitoring;
 
     /**
-     * The ID of the subnet in which to launch the instance.
+     * The ID of the subnet in which to launch the instances.
      */
     private String subnetId;
 
@@ -95,12 +95,12 @@ public class SpotFleetLaunchSpecification implements Serializable {
     private com.amazonaws.internal.ListWithAutoConstructFlag<InstanceNetworkInterfaceSpecification> networkInterfaces;
 
     /**
-     * Describes an IAM instance profile.
+     * The IAM instance profile.
      */
     private IamInstanceProfileSpecification iamInstanceProfile;
 
     /**
-     * Indicates whether the instance is optimized for EBS I/O. This
+     * Indicates whether the instances are optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
      * optimized configuration stack to provide optimal EBS I/O performance.
      * This optimization isn't available with all instance types. Additional
@@ -108,6 +108,24 @@ public class SpotFleetLaunchSpecification implements Serializable {
      * <code>false</code>
      */
     private Boolean ebsOptimized;
+
+    /**
+     * The number of units provided by the specified instance type. These are
+     * the same units that you chose to set the target capacity in terms
+     * (instances or a performance characteristic such as vCPUs, memory, or
+     * I/O). <p>If the target capacity divided by this value is not a whole
+     * number, we round the number of instances to the next whole number. If
+     * this value is not specified, the default is 1.
+     */
+    private Double weightedCapacity;
+
+    /**
+     * The bid price per unit hour for the specified instance type. If this
+     * value is not specified, the default is the Spot bid price specified
+     * for the fleet. To determine the bid price per unit hour, divide the
+     * Spot bid price by the value of <code>WeightedCapacity</code>.
+     */
+    private String spotPrice;
 
     /**
      * The ID of the AMI.
@@ -416,29 +434,29 @@ public class SpotFleetLaunchSpecification implements Serializable {
     }
 
     /**
-     * Describes Spot Instance placement.
+     * The placement information.
      *
-     * @return Describes Spot Instance placement.
+     * @return The placement information.
      */
     public SpotPlacement getPlacement() {
         return placement;
     }
     
     /**
-     * Describes Spot Instance placement.
+     * The placement information.
      *
-     * @param placement Describes Spot Instance placement.
+     * @param placement The placement information.
      */
     public void setPlacement(SpotPlacement placement) {
         this.placement = placement;
     }
     
     /**
-     * Describes Spot Instance placement.
+     * The placement information.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param placement Describes Spot Instance placement.
+     * @param placement The placement information.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -583,29 +601,29 @@ public class SpotFleetLaunchSpecification implements Serializable {
     }
 
     /**
-     * Enable or disable monitoring for the instance.
+     * Enable or disable monitoring for the instances.
      *
-     * @return Enable or disable monitoring for the instance.
+     * @return Enable or disable monitoring for the instances.
      */
     public SpotFleetMonitoring getMonitoring() {
         return monitoring;
     }
     
     /**
-     * Enable or disable monitoring for the instance.
+     * Enable or disable monitoring for the instances.
      *
-     * @param monitoring Enable or disable monitoring for the instance.
+     * @param monitoring Enable or disable monitoring for the instances.
      */
     public void setMonitoring(SpotFleetMonitoring monitoring) {
         this.monitoring = monitoring;
     }
     
     /**
-     * Enable or disable monitoring for the instance.
+     * Enable or disable monitoring for the instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param monitoring Enable or disable monitoring for the instance.
+     * @param monitoring Enable or disable monitoring for the instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -616,29 +634,29 @@ public class SpotFleetLaunchSpecification implements Serializable {
     }
 
     /**
-     * The ID of the subnet in which to launch the instance.
+     * The ID of the subnet in which to launch the instances.
      *
-     * @return The ID of the subnet in which to launch the instance.
+     * @return The ID of the subnet in which to launch the instances.
      */
     public String getSubnetId() {
         return subnetId;
     }
     
     /**
-     * The ID of the subnet in which to launch the instance.
+     * The ID of the subnet in which to launch the instances.
      *
-     * @param subnetId The ID of the subnet in which to launch the instance.
+     * @param subnetId The ID of the subnet in which to launch the instances.
      */
     public void setSubnetId(String subnetId) {
         this.subnetId = subnetId;
     }
     
     /**
-     * The ID of the subnet in which to launch the instance.
+     * The ID of the subnet in which to launch the instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param subnetId The ID of the subnet in which to launch the instance.
+     * @param subnetId The ID of the subnet in which to launch the instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -717,29 +735,29 @@ public class SpotFleetLaunchSpecification implements Serializable {
     }
 
     /**
-     * Describes an IAM instance profile.
+     * The IAM instance profile.
      *
-     * @return Describes an IAM instance profile.
+     * @return The IAM instance profile.
      */
     public IamInstanceProfileSpecification getIamInstanceProfile() {
         return iamInstanceProfile;
     }
     
     /**
-     * Describes an IAM instance profile.
+     * The IAM instance profile.
      *
-     * @param iamInstanceProfile Describes an IAM instance profile.
+     * @param iamInstanceProfile The IAM instance profile.
      */
     public void setIamInstanceProfile(IamInstanceProfileSpecification iamInstanceProfile) {
         this.iamInstanceProfile = iamInstanceProfile;
     }
     
     /**
-     * Describes an IAM instance profile.
+     * The IAM instance profile.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param iamInstanceProfile Describes an IAM instance profile.
+     * @param iamInstanceProfile The IAM instance profile.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -750,14 +768,14 @@ public class SpotFleetLaunchSpecification implements Serializable {
     }
 
     /**
-     * Indicates whether the instance is optimized for EBS I/O. This
+     * Indicates whether the instances are optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
      * optimized configuration stack to provide optimal EBS I/O performance.
      * This optimization isn't available with all instance types. Additional
      * usage charges apply when using an EBS Optimized instance. <p>Default:
      * <code>false</code>
      *
-     * @return Indicates whether the instance is optimized for EBS I/O. This
+     * @return Indicates whether the instances are optimized for EBS I/O. This
      *         optimization provides dedicated throughput to Amazon EBS and an
      *         optimized configuration stack to provide optimal EBS I/O performance.
      *         This optimization isn't available with all instance types. Additional
@@ -769,14 +787,14 @@ public class SpotFleetLaunchSpecification implements Serializable {
     }
     
     /**
-     * Indicates whether the instance is optimized for EBS I/O. This
+     * Indicates whether the instances are optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
      * optimized configuration stack to provide optimal EBS I/O performance.
      * This optimization isn't available with all instance types. Additional
      * usage charges apply when using an EBS Optimized instance. <p>Default:
      * <code>false</code>
      *
-     * @param ebsOptimized Indicates whether the instance is optimized for EBS I/O. This
+     * @param ebsOptimized Indicates whether the instances are optimized for EBS I/O. This
      *         optimization provides dedicated throughput to Amazon EBS and an
      *         optimized configuration stack to provide optimal EBS I/O performance.
      *         This optimization isn't available with all instance types. Additional
@@ -788,7 +806,7 @@ public class SpotFleetLaunchSpecification implements Serializable {
     }
     
     /**
-     * Indicates whether the instance is optimized for EBS I/O. This
+     * Indicates whether the instances are optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
      * optimized configuration stack to provide optimal EBS I/O performance.
      * This optimization isn't available with all instance types. Additional
@@ -797,7 +815,7 @@ public class SpotFleetLaunchSpecification implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param ebsOptimized Indicates whether the instance is optimized for EBS I/O. This
+     * @param ebsOptimized Indicates whether the instances are optimized for EBS I/O. This
      *         optimization provides dedicated throughput to Amazon EBS and an
      *         optimized configuration stack to provide optimal EBS I/O performance.
      *         This optimization isn't available with all instance types. Additional
@@ -813,14 +831,14 @@ public class SpotFleetLaunchSpecification implements Serializable {
     }
 
     /**
-     * Indicates whether the instance is optimized for EBS I/O. This
+     * Indicates whether the instances are optimized for EBS I/O. This
      * optimization provides dedicated throughput to Amazon EBS and an
      * optimized configuration stack to provide optimal EBS I/O performance.
      * This optimization isn't available with all instance types. Additional
      * usage charges apply when using an EBS Optimized instance. <p>Default:
      * <code>false</code>
      *
-     * @return Indicates whether the instance is optimized for EBS I/O. This
+     * @return Indicates whether the instances are optimized for EBS I/O. This
      *         optimization provides dedicated throughput to Amazon EBS and an
      *         optimized configuration stack to provide optimal EBS I/O performance.
      *         This optimization isn't available with all instance types. Additional
@@ -829,6 +847,120 @@ public class SpotFleetLaunchSpecification implements Serializable {
      */
     public Boolean getEbsOptimized() {
         return ebsOptimized;
+    }
+
+    /**
+     * The number of units provided by the specified instance type. These are
+     * the same units that you chose to set the target capacity in terms
+     * (instances or a performance characteristic such as vCPUs, memory, or
+     * I/O). <p>If the target capacity divided by this value is not a whole
+     * number, we round the number of instances to the next whole number. If
+     * this value is not specified, the default is 1.
+     *
+     * @return The number of units provided by the specified instance type. These are
+     *         the same units that you chose to set the target capacity in terms
+     *         (instances or a performance characteristic such as vCPUs, memory, or
+     *         I/O). <p>If the target capacity divided by this value is not a whole
+     *         number, we round the number of instances to the next whole number. If
+     *         this value is not specified, the default is 1.
+     */
+    public Double getWeightedCapacity() {
+        return weightedCapacity;
+    }
+    
+    /**
+     * The number of units provided by the specified instance type. These are
+     * the same units that you chose to set the target capacity in terms
+     * (instances or a performance characteristic such as vCPUs, memory, or
+     * I/O). <p>If the target capacity divided by this value is not a whole
+     * number, we round the number of instances to the next whole number. If
+     * this value is not specified, the default is 1.
+     *
+     * @param weightedCapacity The number of units provided by the specified instance type. These are
+     *         the same units that you chose to set the target capacity in terms
+     *         (instances or a performance characteristic such as vCPUs, memory, or
+     *         I/O). <p>If the target capacity divided by this value is not a whole
+     *         number, we round the number of instances to the next whole number. If
+     *         this value is not specified, the default is 1.
+     */
+    public void setWeightedCapacity(Double weightedCapacity) {
+        this.weightedCapacity = weightedCapacity;
+    }
+    
+    /**
+     * The number of units provided by the specified instance type. These are
+     * the same units that you chose to set the target capacity in terms
+     * (instances or a performance characteristic such as vCPUs, memory, or
+     * I/O). <p>If the target capacity divided by this value is not a whole
+     * number, we round the number of instances to the next whole number. If
+     * this value is not specified, the default is 1.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param weightedCapacity The number of units provided by the specified instance type. These are
+     *         the same units that you chose to set the target capacity in terms
+     *         (instances or a performance characteristic such as vCPUs, memory, or
+     *         I/O). <p>If the target capacity divided by this value is not a whole
+     *         number, we round the number of instances to the next whole number. If
+     *         this value is not specified, the default is 1.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public SpotFleetLaunchSpecification withWeightedCapacity(Double weightedCapacity) {
+        this.weightedCapacity = weightedCapacity;
+        return this;
+    }
+
+    /**
+     * The bid price per unit hour for the specified instance type. If this
+     * value is not specified, the default is the Spot bid price specified
+     * for the fleet. To determine the bid price per unit hour, divide the
+     * Spot bid price by the value of <code>WeightedCapacity</code>.
+     *
+     * @return The bid price per unit hour for the specified instance type. If this
+     *         value is not specified, the default is the Spot bid price specified
+     *         for the fleet. To determine the bid price per unit hour, divide the
+     *         Spot bid price by the value of <code>WeightedCapacity</code>.
+     */
+    public String getSpotPrice() {
+        return spotPrice;
+    }
+    
+    /**
+     * The bid price per unit hour for the specified instance type. If this
+     * value is not specified, the default is the Spot bid price specified
+     * for the fleet. To determine the bid price per unit hour, divide the
+     * Spot bid price by the value of <code>WeightedCapacity</code>.
+     *
+     * @param spotPrice The bid price per unit hour for the specified instance type. If this
+     *         value is not specified, the default is the Spot bid price specified
+     *         for the fleet. To determine the bid price per unit hour, divide the
+     *         Spot bid price by the value of <code>WeightedCapacity</code>.
+     */
+    public void setSpotPrice(String spotPrice) {
+        this.spotPrice = spotPrice;
+    }
+    
+    /**
+     * The bid price per unit hour for the specified instance type. If this
+     * value is not specified, the default is the Spot bid price specified
+     * for the fleet. To determine the bid price per unit hour, divide the
+     * Spot bid price by the value of <code>WeightedCapacity</code>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param spotPrice The bid price per unit hour for the specified instance type. If this
+     *         value is not specified, the default is the Spot bid price specified
+     *         for the fleet. To determine the bid price per unit hour, divide the
+     *         Spot bid price by the value of <code>WeightedCapacity</code>.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public SpotFleetLaunchSpecification withSpotPrice(String spotPrice) {
+        this.spotPrice = spotPrice;
+        return this;
     }
 
     /**
@@ -857,7 +989,9 @@ public class SpotFleetLaunchSpecification implements Serializable {
         if (getSubnetId() != null) sb.append("SubnetId: " + getSubnetId() + ",");
         if (getNetworkInterfaces() != null) sb.append("NetworkInterfaces: " + getNetworkInterfaces() + ",");
         if (getIamInstanceProfile() != null) sb.append("IamInstanceProfile: " + getIamInstanceProfile() + ",");
-        if (isEbsOptimized() != null) sb.append("EbsOptimized: " + isEbsOptimized() );
+        if (isEbsOptimized() != null) sb.append("EbsOptimized: " + isEbsOptimized() + ",");
+        if (getWeightedCapacity() != null) sb.append("WeightedCapacity: " + getWeightedCapacity() + ",");
+        if (getSpotPrice() != null) sb.append("SpotPrice: " + getSpotPrice() );
         sb.append("}");
         return sb.toString();
     }
@@ -882,6 +1016,8 @@ public class SpotFleetLaunchSpecification implements Serializable {
         hashCode = prime * hashCode + ((getNetworkInterfaces() == null) ? 0 : getNetworkInterfaces().hashCode()); 
         hashCode = prime * hashCode + ((getIamInstanceProfile() == null) ? 0 : getIamInstanceProfile().hashCode()); 
         hashCode = prime * hashCode + ((isEbsOptimized() == null) ? 0 : isEbsOptimized().hashCode()); 
+        hashCode = prime * hashCode + ((getWeightedCapacity() == null) ? 0 : getWeightedCapacity().hashCode()); 
+        hashCode = prime * hashCode + ((getSpotPrice() == null) ? 0 : getSpotPrice().hashCode()); 
         return hashCode;
     }
     
@@ -923,6 +1059,10 @@ public class SpotFleetLaunchSpecification implements Serializable {
         if (other.getIamInstanceProfile() != null && other.getIamInstanceProfile().equals(this.getIamInstanceProfile()) == false) return false; 
         if (other.isEbsOptimized() == null ^ this.isEbsOptimized() == null) return false;
         if (other.isEbsOptimized() != null && other.isEbsOptimized().equals(this.isEbsOptimized()) == false) return false; 
+        if (other.getWeightedCapacity() == null ^ this.getWeightedCapacity() == null) return false;
+        if (other.getWeightedCapacity() != null && other.getWeightedCapacity().equals(this.getWeightedCapacity()) == false) return false; 
+        if (other.getSpotPrice() == null ^ this.getSpotPrice() == null) return false;
+        if (other.getSpotPrice() != null && other.getSpotPrice().equals(this.getSpotPrice()) == false) return false; 
         return true;
     }
     

@@ -121,13 +121,66 @@ class TransferTable {
      */
     public static final String COLUMN_SPEED = "speed";
     public static final String COLUMN_VERSION_ID = "version_id";
-    public static final String COLUMN_IS_REQUESTER_PAYS = "is_requester_pays";
-    public static final String COLUMN_HEADER_CONTENT_TYPE = "header_content_type";
-    public static final String COLUMN_HEADER_CONTENT_LANGUAGE = "header_content_language";
-    public static final String COLUMN_HEADER_CONTENT_DISPOSITION = "header_content_disposition";
-    public static final String COLUMN_HEADER_CONTENT_ENCODING = "header_content_encoding";
-    public static final String COLUMN_HEADER_CACHE_CONTROL = "header_cache_control";
     public static final String COLUMN_HEADER_EXPIRE = "header_expire";
+
+    /**
+     * If the object requires the requester to pay
+     */
+    public static final String COLUMN_IS_REQUESTER_PAYS = "is_requester_pays";
+
+    /**
+     * User specified content Type
+     */
+    public static final String COLUMN_HEADER_CONTENT_TYPE = "header_content_type";
+
+    /**
+     * User specified content language
+     */
+    public static final String COLUMN_HEADER_CONTENT_LANGUAGE = "header_content_language";
+
+    /**
+     * User specified content disposition
+     */
+    public static final String COLUMN_HEADER_CONTENT_DISPOSITION = "header_content_disposition";
+
+    /**
+     * User specified content encoding
+     */
+    public static final String COLUMN_HEADER_CONTENT_ENCODING = "header_content_encoding";
+
+    /**
+     * User specified cache control
+     */
+    public static final String COLUMN_HEADER_CACHE_CONTROL = "header_cache_control";
+
+    /**
+     * ============ Below added in 2.5.6 for support for metadata ============
+     */
+
+    /**
+     * User specified lifecycle configuration expiration time rule id
+     */
+    public static final String COLUMN_EXPIRATION_TIME_RULE_ID = "expiration_time_rule_id";
+
+    /**
+     * User specified lifecycle configuration expiration time rule id
+     */
+    public static final String COLUMN_HTTP_EXPIRES_DATE = "http_expires_date";
+
+    /**
+     * User specified server side encryption algorithm
+     */
+    public static final String COLUMN_SSE_ALGORITHM = "sse_algorithm";
+
+    /**
+     * User specified content MD5
+     */
+    public static final String COLUMN_CONTENT_MD5 = "content_md5";
+
+    /**
+     * Json serialization of user metadata to store with the Object
+     */
+    public static final String COLUMN_USER_METADATA = "user_metadata";
 
     /*
      * Database creation SQL statement
@@ -161,7 +214,12 @@ class TransferTable {
             + COLUMN_HEADER_CONTENT_DISPOSITION + " text, "
             + COLUMN_HEADER_CONTENT_ENCODING + " text, "
             + COLUMN_HEADER_CACHE_CONTROL + " text, "
-            + COLUMN_HEADER_EXPIRE + " text"
+            + COLUMN_HEADER_EXPIRE + " text , "
+            + COLUMN_EXPIRATION_TIME_RULE_ID + " text, "
+            + COLUMN_HTTP_EXPIRES_DATE + " integer, "
+            + COLUMN_SSE_ALGORITHM + " text, "
+            + COLUMN_CONTENT_MD5 + " text, "
+            + COLUMN_USER_METADATA + " text"
             + ");";
 
     /**
@@ -182,7 +240,29 @@ class TransferTable {
      */
     public static void onUpgrade(SQLiteDatabase database, int oldVersion,
             int newVersion) {
-        database.execSQL("drop table if exists " + TABLE_TRANSFER);
-        onCreate(database);
+        if (oldVersion < 2) {
+            addVersion2Columns(database);
+        }
+    }
+
+    /**
+     * Adds columns that were introduced in version 2 to the database
+     */
+    private static void addVersion2Columns(SQLiteDatabase database) {
+        String addUserMetadata = "ALTER TABLE " + TABLE_TRANSFER +
+                " ADD COLUMN " + COLUMN_USER_METADATA + " text;";
+        String addExpirationTimeRuleId = "ALTER TABLE " + TABLE_TRANSFER +
+                " ADD COLUMN " + COLUMN_EXPIRATION_TIME_RULE_ID + " text;";
+        String addHttpExpires = "ALTER TABLE " + TABLE_TRANSFER +
+                " ADD COLUMN " + COLUMN_HTTP_EXPIRES_DATE + " text;";
+        String addSSEAlgorithm = "ALTER TABLE " + TABLE_TRANSFER +
+                " ADD COLUMN " + COLUMN_SSE_ALGORITHM + " text;";
+        String addContentMD5 = "ALTER TABLE " + TABLE_TRANSFER +
+                " ADD COLUMN " + COLUMN_CONTENT_MD5 + " text;";
+        database.execSQL(addUserMetadata);
+        database.execSQL(addExpirationTimeRuleId);
+        database.execSQL(addHttpExpires);
+        database.execSQL(addSSEAlgorithm);
+        database.execSQL(addContentMD5);
     }
 }
