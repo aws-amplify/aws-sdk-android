@@ -135,8 +135,10 @@ class ApiClientHandler implements InvocationHandler {
         setHttpMethod(request, op.method(), hasContent);
 
         if (hasContent) {
-            request.setContent(new ByteArrayInputStream(content.getBytes(StringUtils.UTF8)));
-            request.addHeader("Content-Length", String.valueOf(content.length()));
+            byte[] contentBytes = content.getBytes(StringUtils.UTF8);
+            request.setContent(new ByteArrayInputStream(contentBytes));
+            request.addHeader("Content-Length",
+                    String.valueOf(contentBytes.length));
         }
         request.addHeader("Content-Type", "application/json");
         request.addHeader("Accept", "application/json");

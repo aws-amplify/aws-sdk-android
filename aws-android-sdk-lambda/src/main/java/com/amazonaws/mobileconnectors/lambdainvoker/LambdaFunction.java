@@ -56,4 +56,15 @@ public @interface LambdaFunction {
      * 'RequestResponse' regardless of any explicit setting.
      */
     String logType() default "None";
+
+    /**
+     * The version or alias name of the function to invoke for this annotated
+     * method. If you specify function version, the API uses qualified function
+     * ARN to invoke a specific Lambda function. If you specify alias name, the
+     * API uses the alias ARN to invoke the Lambda function version to which the
+     * alias points. If the qualifier isn't specified, then the API invokes the
+     * Lambda function with unqualified function ARN which results in invocation
+     * of the $LATEST version.
+     */
+    String qualifier() default "";
 }

@@ -21,9 +21,13 @@ package com.amazonaws.services.s3.internal;
 import static com.amazonaws.util.StringUtils.UTF8;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.Request;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.HttpUtils;
@@ -365,5 +369,32 @@ public class ServiceUtils {
             }
         } while (needRetry);
         return s3Object;
+    }
+
+    /**
+     * Returns whether the specified request should skip MD5 check on the
+     * requested object content.
+     */
+    public static boolean skipContentMd5IntegrityCheck(AmazonWebServiceRequest request) {
+        if (System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") != null)
+            return true;
+
+        if (request instanceof GetObjectRequest) {
+            GetObjectRequest getObjectRequest = (GetObjectRequest) request;
+            // Skip MD5 check for range get
+            if (getObjectRequest.getRange() != null)
+                return true;
+
+            if (getObjectRequest.getSSECustomerKey() != null)
+                return true;
+        } else if (request instanceof PutObjectRequest) {
+            PutObjectRequest putObjectRequest = (PutObjectRequest) request;
+            return putObjectRequest.getSSECustomerKey() != null;
+        } else if (request instanceof UploadPartRequest) {
+            UploadPartRequest uploadPartRequest = (UploadPartRequest) request;
+            return uploadPartRequest.getSSECustomerKey() != null;
+        }
+
+        return false;
     }
 }

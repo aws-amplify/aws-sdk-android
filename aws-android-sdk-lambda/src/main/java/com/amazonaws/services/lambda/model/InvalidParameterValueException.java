@@ -18,24 +18,25 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request payload exceeded the <code>Invoke</code> request body JSON
- * input limit. For more information, see
- * <a href="http://docs.aws.amazon.com/lambda/latest/dg/limits.html"> Limits </a>
- * 
+ * One of the parameters in the request is invalid. For example, if you
+ * provided an IAM role for AWS Lambda to assume in the
+ * <code>CreateFunction</code> or the
+ * <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is
+ * unable to assume you will get this exception.
  * </p>
  */        
-public class RequestTooLargeException extends AmazonServiceException {
+public class InvalidParameterValueException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
     
     private String type;
     
     /**
-     * Constructs a new RequestTooLargeException with the specified error
+     * Constructs a new InvalidParameterValueException with the specified error
      * message.
      * 
      * @param message Describes the error encountered.
      */
-    public RequestTooLargeException(String message) {
+    public InvalidParameterValueException(String message) {
         super(message);
     }
     

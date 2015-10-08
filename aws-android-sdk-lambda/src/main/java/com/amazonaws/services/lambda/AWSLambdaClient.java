@@ -232,6 +232,7 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
         jsonErrorUnmarshallers.add(new UnsupportedMediaTypeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidRequestContentExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
@@ -254,7 +255,24 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
 
     /**
      * <p>
-     * Invokes a specified Lambda function.
+     * Invokes a specific Lambda function version.
+     * </p>
+     * <p>
+     * If you don't provide the <code>Qualifier</code> parameter, it uses
+     * the unqualified function ARN which results in invocation of the
+     * $LATEST version of the Lambda function (when you create a Lambda
+     * function, the $LATEST is the version). The AWS Lambda versioning and
+     * aliases feature allows you to publish multiple versions of a Lambda
+     * function and also create aliases for each function version. So each
+     * your Lambda function version can be invoked using multiple ARNs. For
+     * more information, see
+     * <a href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases-v2.html"> AWS Lambda Function Versioning and Aliases </a>
+     * . Using the <code>Qualifier</code> parameter, you can specify a
+     * function version or alias name to invoke specific function version. If
+     * you specify function version, the API uses the qualified function ARN
+     * to invoke a specific function version. If you specify alias name, the
+     * API uses the alias ARN to invoke the function version to which the
+     * alias points.
      * </p>
      * <p>
      * This operation requires permission for the
@@ -268,6 +286,7 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      *         AWSLambda.
      * 
      * @throws InvalidRequestContentException
+     * @throws InvalidParameterValueException
      * @throws ServiceException
      * @throws RequestTooLargeException
      * @throws ResourceNotFoundException

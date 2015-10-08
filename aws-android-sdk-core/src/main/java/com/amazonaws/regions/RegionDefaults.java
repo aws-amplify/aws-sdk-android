@@ -95,9 +95,13 @@ class RegionDefaults {
         updateRegion(region, "dynamodb", "dynamodb.ap-northeast-1.amazonaws.com", true, true);
         updateRegion(region, "ec2", "ec2.ap-northeast-1.amazonaws.com", true, true);
         updateRegion(region, "kinesis", "kinesis.ap-northeast-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.ap-northeast-1.amazonaws.com", true, true);
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.ap-northeast-1.amazonaws.com", true, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.ap-northeast-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.ap-northeast-1.amazonaws.com", false,
+                true);
 
         region = new Region("ap-southeast-1", "");
         ret.add(region);
@@ -165,6 +169,8 @@ class RegionDefaults {
         updateRegion(region, "email", "email.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-sync", "cognito-sync.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.eu-west-1.amazonaws.com", false,
+                true);
+        updateRegion(region, "machinelearning", "machinelearning.eu-west-1.amazonaws.com", false,
                 true);
 
         region = new Region("eu-central-1", "");

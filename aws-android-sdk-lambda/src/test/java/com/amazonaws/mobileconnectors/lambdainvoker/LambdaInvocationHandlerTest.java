@@ -65,6 +65,9 @@ public class LambdaInvocationHandlerTest {
 
         @LambdaFunction(functionName = "echo", invocationType = "Event")
         String echoAlias(String a);
+
+        @LambdaFunction(qualifier = "version")
+        String echoVersion(String a);
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -104,6 +107,7 @@ public class LambdaInvocationHandlerTest {
         InvokeRequest request = handler.buildInvokeRequest(echo, input);
         assertEquals("function name", "echo", request.getFunctionName());
         assertEquals("invocation type", "RequestResponse", request.getInvocationType());
+        assertNull("default qualifier", request.getQualifier());
         // Json encoding puts double quotes around a string
         String json = "\"" + input + "\"";
         ByteBuffer payload = stringToByteBuffer(json);
@@ -118,6 +122,14 @@ public class LambdaInvocationHandlerTest {
         // invocation type is forced as RequestResponse because log type is
         // empty/None
         assertEquals("invocation type", "RequestResponse", request.getInvocationType());
+    }
+
+    @Test
+    public void testBuildInvokeRequestVersion() throws Exception {
+        Method echoVersion = getMethod("echoVersion", String.class);
+        InvokeRequest request = handler.buildInvokeRequest(echoVersion, "hello world");
+        assertEquals("function name", "echoVersion", request.getFunctionName());
+        assertEquals("qualifier", "version", request.getQualifier());
     }
 
     @Test

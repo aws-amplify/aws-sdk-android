@@ -1303,7 +1303,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             // we're downloading the whole object, by default we wrap the
             // stream in a validator that calculates an MD5 of the downloaded
             // bytes and complains if what we received doesn't match the Etag.
-            if (!skipContentMd5IntegrityCheck(getObjectRequest)) {
+            if (!ServiceUtils.skipContentMd5IntegrityCheck(getObjectRequest)) {
                 byte[] serverSideHash = null;
                 String etag = s3Object.getObjectMetadata().getETag();
                 if (etag != null && ServiceUtils.isMultipartUploadETag(etag) == false) {
@@ -1380,7 +1380,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
                     @Override
                     public boolean needIntegrityCheck() {
-                        return !skipContentMd5IntegrityCheck(getObjectRequest);
+                        return !ServiceUtils.skipContentMd5IntegrityCheck(getObjectRequest);
                     }
 
                 }, mode);
@@ -1389,33 +1389,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             return null;
 
         return s3Object.getObjectMetadata();
-    }
-
-    /**
-     * Returns whether the specified request should skip MD5 check on the
-     * requested object content.
-     */
-    private static boolean skipContentMd5IntegrityCheck(AmazonWebServiceRequest request) {
-        if (System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") != null)
-            return true;
-
-        if (request instanceof GetObjectRequest) {
-            GetObjectRequest getObjectRequest = (GetObjectRequest) request;
-            // Skip MD5 check for range get
-            if (getObjectRequest.getRange() != null)
-                return true;
-
-            if (getObjectRequest.getSSECustomerKey() != null)
-                return true;
-        } else if (request instanceof PutObjectRequest) {
-            PutObjectRequest putObjectRequest = (PutObjectRequest) request;
-            return putObjectRequest.getSSECustomerKey() != null;
-        } else if (request instanceof UploadPartRequest) {
-            UploadPartRequest uploadPartRequest = (UploadPartRequest) request;
-            return uploadPartRequest.getSSECustomerKey() != null;
-        }
-
-        return false;
     }
 
     /*
@@ -1507,7 +1480,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 "The bucket name parameter must be specified when uploading an object");
         assertParameterNotNull(key, "The key parameter must be specified when uploading an object");
 
-        final boolean skipContentMd5Check = skipContentMd5IntegrityCheck(putObjectRequest);
+        final boolean skipContentMd5Check = ServiceUtils
+                .skipContentMd5IntegrityCheck(putObjectRequest);
 
         // If a file is specified for upload, we need to pull some additional
         // information from it to auto-configure a few options
@@ -3295,7 +3269,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         MD5DigestCalculatingInputStream md5DigestStream = null;
         if (uploadPartRequest.getMd5Digest() == null
-                && !skipContentMd5IntegrityCheck(uploadPartRequest)) {
+                && !ServiceUtils.skipContentMd5IntegrityCheck(uploadPartRequest)) {
             /*
              * If the user hasn't set the content MD5, then we don't want to
              * buffer the whole stream in memory just to calculate it. Instead,

@@ -29,4 +29,10 @@ public interface MyInterface {
 
     @LambdaFunction(functionName = "echo", invocationType = "RequestResponse")
     void syncSilence();
+
+    @LambdaFunction(functionName = "echoFirst", qualifier = "1")
+    String echoFirstVersion(NameInfo nameInfo);
+
+    @LambdaFunction(functionName = "echoFirst", qualifier = "alias")
+    String echoFirstAlias(NameInfo nameInfo);
 }

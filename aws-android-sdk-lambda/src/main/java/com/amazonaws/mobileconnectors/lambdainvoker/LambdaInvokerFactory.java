@@ -17,6 +17,7 @@ package com.amazonaws.mobileconnectors.lambdainvoker;
 
 import android.content.Context;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobileconnectors.util.ClientContext;
 import com.amazonaws.regions.Region;
@@ -47,6 +48,29 @@ public class LambdaInvokerFactory {
      * @param provider a AWS credentials provider
      */
     public LambdaInvokerFactory(Context context, Regions region, AWSCredentialsProvider provider) {
+        this(context, region, provider, new ClientConfiguration());
+    }
+
+    /**
+     * Constructs a Lambda invoker factory object. If your Lambda function takes
+     * a long time to finish (longer than the default socket timeout of 15
+     * seconds), you can increase the timeout via {@link ClientConfiguration} .
+     *
+     * <pre>
+     * ClientConfiguration config = new ClientConfiguration();
+     * config.setSocketTimeout(5 * 60 * 1000); // 5 minutes
+     * LambdaInvokerFactory factory = new LambdaInvokerFactory(context, region,
+     *         provider, config);
+     * </pre>
+     *
+     * @param context context of the app. A client context will be created from
+     *            the given context.
+     * @param region region of Lambda service
+     * @param provider a AWS credentials provider
+     * @param clientConfiguration client configuration for the factory
+     */
+    public LambdaInvokerFactory(Context context, Regions region, AWSCredentialsProvider provider,
+            ClientConfiguration clientConfiguration) {
         if (context == null) {
             throw new IllegalArgumentException("context can't be null");
         }
@@ -55,7 +79,7 @@ public class LambdaInvokerFactory {
         }
 
         // constructs a lambda client
-        lambda = new AWSLambdaClient(provider);
+        lambda = new AWSLambdaClient(provider, clientConfiguration);
         lambda.setRegion(Region.getRegion(region));
         clientContext = new ClientContext(context);
     }

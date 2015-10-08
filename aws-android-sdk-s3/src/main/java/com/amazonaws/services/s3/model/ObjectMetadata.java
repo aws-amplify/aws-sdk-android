@@ -466,8 +466,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      * S3.
      * </p>
      * <p>
-     * The AWS S3 Java client will attempt to calculate this field automatically
-     * when uploading files to Amazon S3.
+     * The AWS S3 Android client will attempt to calculate this field
+     * automatically when uploading files to Amazon S3.
      * </p>
      *
      * @param md5Base64 The base64 encoded MD5 hash of the content for the

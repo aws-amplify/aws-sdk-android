@@ -26,11 +26,12 @@ public class BucketNameUtilsTest {
         assertFalse(BucketNameUtils.isValidV2BucketName(null));
         assertFalse(BucketNameUtils.isValidV2BucketName("sm"));
         assertFalse(BucketNameUtils.isValidV2BucketName("UPPERCASE"));
+        assertFalse(BucketNameUtils.isValidV2BucketName("contains.dot"));
         assertFalse(BucketNameUtils.isValidV2BucketName("white space"));
         assertFalse(BucketNameUtils.isValidV2BucketName("adjacent..periods"));
         assertFalse(BucketNameUtils.isValidV2BucketName("dash.-nexttoperiod"));
         char invalid[] = {
-            '9'
+                '9'
         };
         invalid[0]++;
         assertFalse(BucketNameUtils.isValidV2BucketName(

@@ -95,6 +95,10 @@ class LambdaInvocationHandler implements InvocationHandler {
             invokeRequest.setInvocationType(lambdaFunction.invocationType());
         }
 
+        if (!lambdaFunction.qualifier().isEmpty()) {
+            invokeRequest.setQualifier(lambdaFunction.qualifier());
+        }
+
         // set base64 encoded client context string
         if (clientContext != null) {
             invokeRequest.setClientContext(clientContext.toBase64String());

@@ -59,8 +59,9 @@ public class InvokeRequestMarshaller implements Marshaller<Request<InvokeRequest
         if (invokeRequest.getClientContext() != null)
           request.addHeader("X-Amz-Client-Context", StringUtils.fromString(invokeRequest.getClientContext()));
         
-        String uriResourcePath = "/2015-03-31/functions/{FunctionName}/invocations"; 
+        String uriResourcePath = "/2015-03-31/functions/{FunctionName}/invocations?Qualifier={Qualifier}"; 
         uriResourcePath = uriResourcePath.replace("{FunctionName}", (invokeRequest.getFunctionName() == null) ? "" : StringUtils.fromString(invokeRequest.getFunctionName())); 
+        uriResourcePath = uriResourcePath.replace("{Qualifier}", (invokeRequest.getQualifier() == null) ? "" : StringUtils.fromString(invokeRequest.getQualifier())); 
 
         uriResourcePath = uriResourcePath.replaceAll("//", "/");
 

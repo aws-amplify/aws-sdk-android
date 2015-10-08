@@ -714,9 +714,8 @@ public class TransferManager {
                                     // the data, since otherwise the checksum
                                     // won't match up.
                                     boolean performIntegrityCheck = true;
-                                    if (getObjectRequest.getRange() != null)
-                                        performIntegrityCheck = false;
-                                    if (s3 instanceof AmazonS3EncryptionClient)
+                                    if (ServiceUtils.skipContentMd5IntegrityCheck(getObjectRequest)
+                                            || s3 instanceof AmazonS3EncryptionClient)
                                         performIntegrityCheck = false;
                                     return performIntegrityCheck;
                                 }

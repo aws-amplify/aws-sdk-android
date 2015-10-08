@@ -116,6 +116,12 @@ public enum BucketNameUtils {
                             throwOnError,
                             "Bucket name should not contain dashes next to periods");
                 }
+                /**
+                 * . in bucket name may cause host name verification failure
+                 * when using virtual host style addressing. return false to
+                 * fall back to path style addressing.
+                 */
+                return false;
             } else if (next == '-') {
                 if (previous == '.') {
                     return exception(
