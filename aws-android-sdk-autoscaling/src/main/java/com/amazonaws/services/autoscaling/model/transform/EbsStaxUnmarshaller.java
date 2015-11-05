@@ -63,6 +63,10 @@ public class EbsStaxUnmarshaller implements Unmarshaller<Ebs, StaxUnmarshallerCo
                     ebs.setIops(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("Encrypted", targetDepth)) {
+                    ebs.setEncrypted(BooleanStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return ebs;

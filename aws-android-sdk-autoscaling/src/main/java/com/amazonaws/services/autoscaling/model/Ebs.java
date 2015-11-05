@@ -64,13 +64,25 @@ public class Ebs implements Serializable {
 
     /**
      * For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     * per second (IOPS) to provision for the volume. <p>Valid values: Range
-     * is 100 to 4000. <p>Default: None
+     * per second (IOPS) to provision for the volume. <p>Default: None
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>100 - 20000<br/>
      */
     private Integer iops;
+
+    /**
+     * Indicates whether the volume should be encrypted. Encrypted EBS
+     * volumes must be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or an unencrypted volume from an
+     * encrypted snapshot. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     */
+    private Boolean encrypted;
 
     /**
      * The ID of the snapshot.
@@ -301,15 +313,13 @@ public class Ebs implements Serializable {
 
     /**
      * For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     * per second (IOPS) to provision for the volume. <p>Valid values: Range
-     * is 100 to 4000. <p>Default: None
+     * per second (IOPS) to provision for the volume. <p>Default: None
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>100 - 20000<br/>
      *
      * @return For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     *         per second (IOPS) to provision for the volume. <p>Valid values: Range
-     *         is 100 to 4000. <p>Default: None
+     *         per second (IOPS) to provision for the volume. <p>Default: None
      */
     public Integer getIops() {
         return iops;
@@ -317,15 +327,13 @@ public class Ebs implements Serializable {
     
     /**
      * For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     * per second (IOPS) to provision for the volume. <p>Valid values: Range
-     * is 100 to 4000. <p>Default: None
+     * per second (IOPS) to provision for the volume. <p>Default: None
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>100 - 20000<br/>
      *
      * @param iops For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     *         per second (IOPS) to provision for the volume. <p>Valid values: Range
-     *         is 100 to 4000. <p>Default: None
+     *         per second (IOPS) to provision for the volume. <p>Default: None
      */
     public void setIops(Integer iops) {
         this.iops = iops;
@@ -333,8 +341,7 @@ public class Ebs implements Serializable {
     
     /**
      * For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     * per second (IOPS) to provision for the volume. <p>Valid values: Range
-     * is 100 to 4000. <p>Default: None
+     * per second (IOPS) to provision for the volume. <p>Default: None
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -342,8 +349,7 @@ public class Ebs implements Serializable {
      * <b>Range: </b>100 - 20000<br/>
      *
      * @param iops For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     *         per second (IOPS) to provision for the volume. <p>Valid values: Range
-     *         is 100 to 4000. <p>Default: None
+     *         per second (IOPS) to provision for the volume. <p>Default: None
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -351,6 +357,112 @@ public class Ebs implements Serializable {
     public Ebs withIops(Integer iops) {
         this.iops = iops;
         return this;
+    }
+
+    /**
+     * Indicates whether the volume should be encrypted. Encrypted EBS
+     * volumes must be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or an unencrypted volume from an
+     * encrypted snapshot. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     *
+     * @return Indicates whether the volume should be encrypted. Encrypted EBS
+     *         volumes must be attached to instances that support Amazon EBS
+     *         encryption. Volumes that are created from encrypted snapshots are
+     *         automatically encrypted. There is no way to create an encrypted volume
+     *         from an unencrypted snapshot or an unencrypted volume from an
+     *         encrypted snapshot. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     *         EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
+     */
+    public Boolean isEncrypted() {
+        return encrypted;
+    }
+    
+    /**
+     * Indicates whether the volume should be encrypted. Encrypted EBS
+     * volumes must be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or an unencrypted volume from an
+     * encrypted snapshot. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     *
+     * @param encrypted Indicates whether the volume should be encrypted. Encrypted EBS
+     *         volumes must be attached to instances that support Amazon EBS
+     *         encryption. Volumes that are created from encrypted snapshots are
+     *         automatically encrypted. There is no way to create an encrypted volume
+     *         from an unencrypted snapshot or an unencrypted volume from an
+     *         encrypted snapshot. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     *         EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
+     */
+    public void setEncrypted(Boolean encrypted) {
+        this.encrypted = encrypted;
+    }
+    
+    /**
+     * Indicates whether the volume should be encrypted. Encrypted EBS
+     * volumes must be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or an unencrypted volume from an
+     * encrypted snapshot. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param encrypted Indicates whether the volume should be encrypted. Encrypted EBS
+     *         volumes must be attached to instances that support Amazon EBS
+     *         encryption. Volumes that are created from encrypted snapshots are
+     *         automatically encrypted. There is no way to create an encrypted volume
+     *         from an unencrypted snapshot or an unencrypted volume from an
+     *         encrypted snapshot. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     *         EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public Ebs withEncrypted(Boolean encrypted) {
+        this.encrypted = encrypted;
+        return this;
+    }
+
+    /**
+     * Indicates whether the volume should be encrypted. Encrypted EBS
+     * volumes must be attached to instances that support Amazon EBS
+     * encryption. Volumes that are created from encrypted snapshots are
+     * automatically encrypted. There is no way to create an encrypted volume
+     * from an unencrypted snapshot or an unencrypted volume from an
+     * encrypted snapshot. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     * EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     *
+     * @return Indicates whether the volume should be encrypted. Encrypted EBS
+     *         volumes must be attached to instances that support Amazon EBS
+     *         encryption. Volumes that are created from encrypted snapshots are
+     *         automatically encrypted. There is no way to create an encrypted volume
+     *         from an unencrypted snapshot or an unencrypted volume from an
+     *         encrypted snapshot. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
+     *         EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
+     */
+    public Boolean getEncrypted() {
+        return encrypted;
     }
 
     /**
@@ -369,7 +481,8 @@ public class Ebs implements Serializable {
         if (getVolumeSize() != null) sb.append("VolumeSize: " + getVolumeSize() + ",");
         if (getVolumeType() != null) sb.append("VolumeType: " + getVolumeType() + ",");
         if (isDeleteOnTermination() != null) sb.append("DeleteOnTermination: " + isDeleteOnTermination() + ",");
-        if (getIops() != null) sb.append("Iops: " + getIops() );
+        if (getIops() != null) sb.append("Iops: " + getIops() + ",");
+        if (isEncrypted() != null) sb.append("Encrypted: " + isEncrypted() );
         sb.append("}");
         return sb.toString();
     }
@@ -384,6 +497,7 @@ public class Ebs implements Serializable {
         hashCode = prime * hashCode + ((getVolumeType() == null) ? 0 : getVolumeType().hashCode()); 
         hashCode = prime * hashCode + ((isDeleteOnTermination() == null) ? 0 : isDeleteOnTermination().hashCode()); 
         hashCode = prime * hashCode + ((getIops() == null) ? 0 : getIops().hashCode()); 
+        hashCode = prime * hashCode + ((isEncrypted() == null) ? 0 : isEncrypted().hashCode()); 
         return hashCode;
     }
     
@@ -405,6 +519,8 @@ public class Ebs implements Serializable {
         if (other.isDeleteOnTermination() != null && other.isDeleteOnTermination().equals(this.isDeleteOnTermination()) == false) return false; 
         if (other.getIops() == null ^ this.getIops() == null) return false;
         if (other.getIops() != null && other.getIops().equals(this.getIops()) == false) return false; 
+        if (other.isEncrypted() == null ^ this.isEncrypted() == null) return false;
+        if (other.isEncrypted() != null && other.isEncrypted().equals(this.isEncrypted()) == false) return false; 
         return true;
     }
     

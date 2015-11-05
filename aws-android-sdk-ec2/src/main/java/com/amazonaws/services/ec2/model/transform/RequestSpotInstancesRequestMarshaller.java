@@ -39,7 +39,7 @@ public class RequestSpotInstancesRequestMarshaller implements Marshaller<Request
 
         Request<RequestSpotInstancesRequest> request = new DefaultRequest<RequestSpotInstancesRequest>(requestSpotInstancesRequest, "AmazonEC2");
         request.addParameter("Action", "RequestSpotInstances");
-        request.addParameter("Version", "2015-04-15");
+        request.addParameter("Version", "2015-10-01");
 
         if (requestSpotInstancesRequest.getSpotPrice() != null) {
             request.addParameter("SpotPrice", StringUtils.fromString(requestSpotInstancesRequest.getSpotPrice()));
@@ -64,6 +64,9 @@ public class RequestSpotInstancesRequestMarshaller implements Marshaller<Request
         }
         if (requestSpotInstancesRequest.getAvailabilityZoneGroup() != null) {
             request.addParameter("AvailabilityZoneGroup", StringUtils.fromString(requestSpotInstancesRequest.getAvailabilityZoneGroup()));
+        }
+        if (requestSpotInstancesRequest.getBlockDurationMinutes() != null) {
+            request.addParameter("BlockDurationMinutes", StringUtils.fromInteger(requestSpotInstancesRequest.getBlockDurationMinutes()));
         }
         LaunchSpecification launchSpecificationLaunchSpecification = requestSpotInstancesRequest.getLaunchSpecification();
         if (launchSpecificationLaunchSpecification != null) {

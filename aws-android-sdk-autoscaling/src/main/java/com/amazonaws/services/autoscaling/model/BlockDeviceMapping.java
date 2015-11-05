@@ -24,8 +24,7 @@ import java.io.Serializable;
 public class BlockDeviceMapping implements Serializable {
 
     /**
-     * The name of the virtual device, <code>ephemeral0</code> to
-     * <code>ephemeral3</code>.
+     * The name of the virtual device (for example, <code>ephemeral0</code>).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -57,38 +56,33 @@ public class BlockDeviceMapping implements Serializable {
     private Boolean noDevice;
 
     /**
-     * The name of the virtual device, <code>ephemeral0</code> to
-     * <code>ephemeral3</code>.
+     * The name of the virtual device (for example, <code>ephemeral0</code>).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The name of the virtual device, <code>ephemeral0</code> to
-     *         <code>ephemeral3</code>.
+     * @return The name of the virtual device (for example, <code>ephemeral0</code>).
      */
     public String getVirtualName() {
         return virtualName;
     }
     
     /**
-     * The name of the virtual device, <code>ephemeral0</code> to
-     * <code>ephemeral3</code>.
+     * The name of the virtual device (for example, <code>ephemeral0</code>).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param virtualName The name of the virtual device, <code>ephemeral0</code> to
-     *         <code>ephemeral3</code>.
+     * @param virtualName The name of the virtual device (for example, <code>ephemeral0</code>).
      */
     public void setVirtualName(String virtualName) {
         this.virtualName = virtualName;
     }
     
     /**
-     * The name of the virtual device, <code>ephemeral0</code> to
-     * <code>ephemeral3</code>.
+     * The name of the virtual device (for example, <code>ephemeral0</code>).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -96,8 +90,7 @@ public class BlockDeviceMapping implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param virtualName The name of the virtual device, <code>ephemeral0</code> to
-     *         <code>ephemeral3</code>.
+     * @param virtualName The name of the virtual device (for example, <code>ephemeral0</code>).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

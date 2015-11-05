@@ -33,10 +33,10 @@ public class LoadBalancerState implements Serializable {
     private String loadBalancerName;
 
     /**
-     * The state of the load balancer. <ul> <li><p><code>Adding</code> - The
-     * instances in the group are being registered with the load
-     * balancer.</li> <li><p><code>Added</code> - All instances in the group
-     * are registered with the load balancer.</li>
+     * One of the following load balancer states: <ul>
+     * <li><p><code>Adding</code> - The instances in the group are being
+     * registered with the load balancer.</li> <li><p><code>Added</code> -
+     * All instances in the group are registered with the load balancer.</li>
      * <li><p><code>InService</code> - At least one instance in the group
      * passed an ELB health check.</li> <li><p><code>Removing</code> - The
      * instances are being deregistered from the load balancer. If connection
@@ -95,10 +95,10 @@ public class LoadBalancerState implements Serializable {
     }
 
     /**
-     * The state of the load balancer. <ul> <li><p><code>Adding</code> - The
-     * instances in the group are being registered with the load
-     * balancer.</li> <li><p><code>Added</code> - All instances in the group
-     * are registered with the load balancer.</li>
+     * One of the following load balancer states: <ul>
+     * <li><p><code>Adding</code> - The instances in the group are being
+     * registered with the load balancer.</li> <li><p><code>Added</code> -
+     * All instances in the group are registered with the load balancer.</li>
      * <li><p><code>InService</code> - At least one instance in the group
      * passed an ELB health check.</li> <li><p><code>Removing</code> - The
      * instances are being deregistered from the load balancer. If connection
@@ -109,10 +109,10 @@ public class LoadBalancerState implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The state of the load balancer. <ul> <li><p><code>Adding</code> - The
-     *         instances in the group are being registered with the load
-     *         balancer.</li> <li><p><code>Added</code> - All instances in the group
-     *         are registered with the load balancer.</li>
+     * @return One of the following load balancer states: <ul>
+     *         <li><p><code>Adding</code> - The instances in the group are being
+     *         registered with the load balancer.</li> <li><p><code>Added</code> -
+     *         All instances in the group are registered with the load balancer.</li>
      *         <li><p><code>InService</code> - At least one instance in the group
      *         passed an ELB health check.</li> <li><p><code>Removing</code> - The
      *         instances are being deregistered from the load balancer. If connection
@@ -124,10 +124,10 @@ public class LoadBalancerState implements Serializable {
     }
     
     /**
-     * The state of the load balancer. <ul> <li><p><code>Adding</code> - The
-     * instances in the group are being registered with the load
-     * balancer.</li> <li><p><code>Added</code> - All instances in the group
-     * are registered with the load balancer.</li>
+     * One of the following load balancer states: <ul>
+     * <li><p><code>Adding</code> - The instances in the group are being
+     * registered with the load balancer.</li> <li><p><code>Added</code> -
+     * All instances in the group are registered with the load balancer.</li>
      * <li><p><code>InService</code> - At least one instance in the group
      * passed an ELB health check.</li> <li><p><code>Removing</code> - The
      * instances are being deregistered from the load balancer. If connection
@@ -138,10 +138,10 @@ public class LoadBalancerState implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param state The state of the load balancer. <ul> <li><p><code>Adding</code> - The
-     *         instances in the group are being registered with the load
-     *         balancer.</li> <li><p><code>Added</code> - All instances in the group
-     *         are registered with the load balancer.</li>
+     * @param state One of the following load balancer states: <ul>
+     *         <li><p><code>Adding</code> - The instances in the group are being
+     *         registered with the load balancer.</li> <li><p><code>Added</code> -
+     *         All instances in the group are registered with the load balancer.</li>
      *         <li><p><code>InService</code> - At least one instance in the group
      *         passed an ELB health check.</li> <li><p><code>Removing</code> - The
      *         instances are being deregistered from the load balancer. If connection
@@ -153,10 +153,10 @@ public class LoadBalancerState implements Serializable {
     }
     
     /**
-     * The state of the load balancer. <ul> <li><p><code>Adding</code> - The
-     * instances in the group are being registered with the load
-     * balancer.</li> <li><p><code>Added</code> - All instances in the group
-     * are registered with the load balancer.</li>
+     * One of the following load balancer states: <ul>
+     * <li><p><code>Adding</code> - The instances in the group are being
+     * registered with the load balancer.</li> <li><p><code>Added</code> -
+     * All instances in the group are registered with the load balancer.</li>
      * <li><p><code>InService</code> - At least one instance in the group
      * passed an ELB health check.</li> <li><p><code>Removing</code> - The
      * instances are being deregistered from the load balancer. If connection
@@ -169,10 +169,10 @@ public class LoadBalancerState implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param state The state of the load balancer. <ul> <li><p><code>Adding</code> - The
-     *         instances in the group are being registered with the load
-     *         balancer.</li> <li><p><code>Added</code> - All instances in the group
-     *         are registered with the load balancer.</li>
+     * @param state One of the following load balancer states: <ul>
+     *         <li><p><code>Adding</code> - The instances in the group are being
+     *         registered with the load balancer.</li> <li><p><code>Added</code> -
+     *         All instances in the group are registered with the load balancer.</li>
      *         <li><p><code>InService</code> - At least one instance in the group
      *         passed an ELB health check.</li> <li><p><code>Removing</code> - The
      *         instances are being deregistered from the load balancer. If connection

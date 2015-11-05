@@ -165,8 +165,8 @@ public class LaunchConfiguration implements Serializable {
     private Boolean ebsOptimized;
 
     /**
-     * Specifies whether the instances are associated with a public IP
-     * address (<code>true</code>) or not (<code>false</code>).
+     * [EC2-VPC] Indicates whether to assign a public IP address to each
+     * instance.
      */
     private Boolean associatePublicIpAddress;
 
@@ -1079,35 +1079,35 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Specifies whether the instances are associated with a public IP
-     * address (<code>true</code>) or not (<code>false</code>).
+     * [EC2-VPC] Indicates whether to assign a public IP address to each
+     * instance.
      *
-     * @return Specifies whether the instances are associated with a public IP
-     *         address (<code>true</code>) or not (<code>false</code>).
+     * @return [EC2-VPC] Indicates whether to assign a public IP address to each
+     *         instance.
      */
     public Boolean isAssociatePublicIpAddress() {
         return associatePublicIpAddress;
     }
     
     /**
-     * Specifies whether the instances are associated with a public IP
-     * address (<code>true</code>) or not (<code>false</code>).
+     * [EC2-VPC] Indicates whether to assign a public IP address to each
+     * instance.
      *
-     * @param associatePublicIpAddress Specifies whether the instances are associated with a public IP
-     *         address (<code>true</code>) or not (<code>false</code>).
+     * @param associatePublicIpAddress [EC2-VPC] Indicates whether to assign a public IP address to each
+     *         instance.
      */
     public void setAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
         this.associatePublicIpAddress = associatePublicIpAddress;
     }
     
     /**
-     * Specifies whether the instances are associated with a public IP
-     * address (<code>true</code>) or not (<code>false</code>).
+     * [EC2-VPC] Indicates whether to assign a public IP address to each
+     * instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param associatePublicIpAddress Specifies whether the instances are associated with a public IP
-     *         address (<code>true</code>) or not (<code>false</code>).
+     * @param associatePublicIpAddress [EC2-VPC] Indicates whether to assign a public IP address to each
+     *         instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1118,11 +1118,11 @@ public class LaunchConfiguration implements Serializable {
     }
 
     /**
-     * Specifies whether the instances are associated with a public IP
-     * address (<code>true</code>) or not (<code>false</code>).
+     * [EC2-VPC] Indicates whether to assign a public IP address to each
+     * instance.
      *
-     * @return Specifies whether the instances are associated with a public IP
-     *         address (<code>true</code>) or not (<code>false</code>).
+     * @return [EC2-VPC] Indicates whether to assign a public IP address to each
+     *         instance.
      */
     public Boolean getAssociatePublicIpAddress() {
         return associatePublicIpAddress;

@@ -34,18 +34,18 @@ public class LaunchSpecification implements Serializable {
     private String keyName;
 
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<GroupIdentifier> allSecurityGroups;
 
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> securityGroups;
 
@@ -184,15 +184,15 @@ public class LaunchSpecification implements Serializable {
     }
 
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      *
-     * @return One or more security groups. To request an instance in a nondefault
-     *         VPC, you must specify the ID of the security group. To request an
-     *         instance in EC2-Classic or a default VPC, you can specify the name or
-     *         the ID of the security group.
+     * @return One or more security groups. When requesting instances in a VPC, you
+     *         must specify the IDs of the security groups. When requesting instances
+     *         in EC2-Classic, you can specify the names or the IDs of the security
+     *         groups.
      */
     public java.util.List<GroupIdentifier> getAllSecurityGroups() {
         if (allSecurityGroups == null) {
@@ -203,15 +203,15 @@ public class LaunchSpecification implements Serializable {
     }
     
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      *
-     * @param allSecurityGroups One or more security groups. To request an instance in a nondefault
-     *         VPC, you must specify the ID of the security group. To request an
-     *         instance in EC2-Classic or a default VPC, you can specify the name or
-     *         the ID of the security group.
+     * @param allSecurityGroups One or more security groups. When requesting instances in a VPC, you
+     *         must specify the IDs of the security groups. When requesting instances
+     *         in EC2-Classic, you can specify the names or the IDs of the security
+     *         groups.
      */
     public void setAllSecurityGroups(java.util.Collection<GroupIdentifier> allSecurityGroups) {
         if (allSecurityGroups == null) {
@@ -224,17 +224,17 @@ public class LaunchSpecification implements Serializable {
     }
     
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param allSecurityGroups One or more security groups. To request an instance in a nondefault
-     *         VPC, you must specify the ID of the security group. To request an
-     *         instance in EC2-Classic or a default VPC, you can specify the name or
-     *         the ID of the security group.
+     * @param allSecurityGroups One or more security groups. When requesting instances in a VPC, you
+     *         must specify the IDs of the security groups. When requesting instances
+     *         in EC2-Classic, you can specify the names or the IDs of the security
+     *         groups.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -248,17 +248,17 @@ public class LaunchSpecification implements Serializable {
     }
     
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param allSecurityGroups One or more security groups. To request an instance in a nondefault
-     *         VPC, you must specify the ID of the security group. To request an
-     *         instance in EC2-Classic or a default VPC, you can specify the name or
-     *         the ID of the security group.
+     * @param allSecurityGroups One or more security groups. When requesting instances in a VPC, you
+     *         must specify the IDs of the security groups. When requesting instances
+     *         in EC2-Classic, you can specify the names or the IDs of the security
+     *         groups.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -276,15 +276,15 @@ public class LaunchSpecification implements Serializable {
     }
 
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      *
-     * @return One or more security groups. To request an instance in a nondefault
-     *         VPC, you must specify the ID of the security group. To request an
-     *         instance in EC2-Classic or a default VPC, you can specify the name or
-     *         the ID of the security group.
+     * @return One or more security groups. When requesting instances in a VPC, you
+     *         must specify the IDs of the security groups. When requesting instances
+     *         in EC2-Classic, you can specify the names or the IDs of the security
+     *         groups.
      */
     public java.util.List<String> getSecurityGroups() {
         if (securityGroups == null) {
@@ -295,15 +295,15 @@ public class LaunchSpecification implements Serializable {
     }
     
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      *
-     * @param securityGroups One or more security groups. To request an instance in a nondefault
-     *         VPC, you must specify the ID of the security group. To request an
-     *         instance in EC2-Classic or a default VPC, you can specify the name or
-     *         the ID of the security group.
+     * @param securityGroups One or more security groups. When requesting instances in a VPC, you
+     *         must specify the IDs of the security groups. When requesting instances
+     *         in EC2-Classic, you can specify the names or the IDs of the security
+     *         groups.
      */
     public void setSecurityGroups(java.util.Collection<String> securityGroups) {
         if (securityGroups == null) {
@@ -316,17 +316,17 @@ public class LaunchSpecification implements Serializable {
     }
     
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param securityGroups One or more security groups. To request an instance in a nondefault
-     *         VPC, you must specify the ID of the security group. To request an
-     *         instance in EC2-Classic or a default VPC, you can specify the name or
-     *         the ID of the security group.
+     * @param securityGroups One or more security groups. When requesting instances in a VPC, you
+     *         must specify the IDs of the security groups. When requesting instances
+     *         in EC2-Classic, you can specify the names or the IDs of the security
+     *         groups.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -340,17 +340,17 @@ public class LaunchSpecification implements Serializable {
     }
     
     /**
-     * One or more security groups. To request an instance in a nondefault
-     * VPC, you must specify the ID of the security group. To request an
-     * instance in EC2-Classic or a default VPC, you can specify the name or
-     * the ID of the security group.
+     * One or more security groups. When requesting instances in a VPC, you
+     * must specify the IDs of the security groups. When requesting instances
+     * in EC2-Classic, you can specify the names or the IDs of the security
+     * groups.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param securityGroups One or more security groups. To request an instance in a nondefault
-     *         VPC, you must specify the ID of the security group. To request an
-     *         instance in EC2-Classic or a default VPC, you can specify the name or
-     *         the ID of the security group.
+     * @param securityGroups One or more security groups. When requesting instances in a VPC, you
+     *         must specify the IDs of the security groups. When requesting instances
+     *         in EC2-Classic, you can specify the names or the IDs of the security
+     *         groups.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

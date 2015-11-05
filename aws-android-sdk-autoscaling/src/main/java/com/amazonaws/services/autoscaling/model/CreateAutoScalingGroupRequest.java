@@ -97,8 +97,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. <p>If this parameter is not
-     * specified, the default value is 300. For more information, see <a
+     * before another scaling activity can start. <p>The default is 300. For
+     * more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
@@ -128,7 +128,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * use Amazon EC2 instance status checks to determine the health of an
      * instance. For more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     * Checks</a>.
+     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
@@ -526,14 +526,14 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. <p>If this parameter is not
-     * specified, the default value is 300. For more information, see <a
+     * before another scaling activity can start. <p>The default is 300. For
+     * more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return The amount of time, in seconds, after a scaling activity completes
-     *         before another scaling activity can start. <p>If this parameter is not
-     *         specified, the default value is 300. For more information, see <a
+     *         before another scaling activity can start. <p>The default is 300. For
+     *         more information, see <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
@@ -543,14 +543,14 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. <p>If this parameter is not
-     * specified, the default value is 300. For more information, see <a
+     * before another scaling activity can start. <p>The default is 300. For
+     * more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @param defaultCooldown The amount of time, in seconds, after a scaling activity completes
-     *         before another scaling activity can start. <p>If this parameter is not
-     *         specified, the default value is 300. For more information, see <a
+     *         before another scaling activity can start. <p>The default is 300. For
+     *         more information, see <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
@@ -560,16 +560,16 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. <p>If this parameter is not
-     * specified, the default value is 300. For more information, see <a
+     * before another scaling activity can start. <p>The default is 300. For
+     * more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param defaultCooldown The amount of time, in seconds, after a scaling activity completes
-     *         before another scaling activity can start. <p>If this parameter is not
-     *         specified, the default value is 300. For more information, see <a
+     *         before another scaling activity can start. <p>The default is 300. For
+     *         more information, see <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
@@ -775,7 +775,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * use Amazon EC2 instance status checks to determine the health of an
      * instance. For more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     * Checks</a>.
+     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
@@ -786,7 +786,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         use Amazon EC2 instance status checks to determine the health of an
      *         instance. For more information, see <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     *         Checks</a>.
+     *         Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public String getHealthCheckType() {
         return healthCheckType;
@@ -798,7 +798,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * use Amazon EC2 instance status checks to determine the health of an
      * instance. For more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     * Checks</a>.
+     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
@@ -809,7 +809,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         use Amazon EC2 instance status checks to determine the health of an
      *         instance. For more information, see <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     *         Checks</a>.
+     *         Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public void setHealthCheckType(String healthCheckType) {
         this.healthCheckType = healthCheckType;
@@ -821,7 +821,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * use Amazon EC2 instance status checks to determine the health of an
      * instance. For more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     * Checks</a>.
+     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -834,7 +834,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         use Amazon EC2 instance status checks to determine the health of an
      *         instance. For more information, see <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     *         Checks</a>.
+     *         Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

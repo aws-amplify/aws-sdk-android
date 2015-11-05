@@ -1,5 +1,14 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.2.8](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.8) (11/05/2015)
+
+### New Features
+- **Amazon Web Services**: General service updates and documentation improvements.
+
+### Bug Fixes
+- **AWS Core Runtime Library**: Improved retry logic so that aborting a request will not cause a retry.
+
+
 ## [Release 2.2.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.7) (10/08/2015)
 
 ### New Features
@@ -9,6 +18,7 @@
 - **Amazon S3**: Resolved a hostname verification issue when there is a . in the bucket name. [#59](https://github.com/aws/aws-sdk-android/issues/59) 
 - **Amazon S3**: Resolved an issue when using  SSE-C with Transfer Manager 
 - **Amazon API Gateway**: Fixed an issue where the incorrect content length was sent to the service when the body contained UTF-8 characters that were multiple bytes in length. [#62](https://github.com/aws/aws-sdk-android/issues/62)
+
 
 ## [Release 2.2.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.6) (09/17/2015)
 

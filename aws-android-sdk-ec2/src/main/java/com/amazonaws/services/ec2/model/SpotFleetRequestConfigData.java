@@ -83,7 +83,17 @@ public class SpotFleetRequestConfigData implements Serializable {
     private com.amazonaws.internal.ListWithAutoConstructFlag<SpotFleetLaunchSpecification> launchSpecifications;
 
     /**
-     * Determines how to allocate the target capacity across the Spot pools
+     * Indicates whether running Spot instances should be terminated if the
+     * target capacity of the Spot fleet request is decreased below the
+     * current size of the Spot fleet.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>noTermination, default
+     */
+    private String excessCapacityTerminationPolicy;
+
+    /**
+     * Indicates how to allocate the target capacity across the Spot pools
      * specified by the Spot fleet request. The default is
      * <code>lowestPrice</code>.
      * <p>
@@ -513,14 +523,116 @@ public class SpotFleetRequestConfigData implements Serializable {
     }
 
     /**
-     * Determines how to allocate the target capacity across the Spot pools
+     * Indicates whether running Spot instances should be terminated if the
+     * target capacity of the Spot fleet request is decreased below the
+     * current size of the Spot fleet.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>noTermination, default
+     *
+     * @return Indicates whether running Spot instances should be terminated if the
+     *         target capacity of the Spot fleet request is decreased below the
+     *         current size of the Spot fleet.
+     *
+     * @see ExcessCapacityTerminationPolicy
+     */
+    public String getExcessCapacityTerminationPolicy() {
+        return excessCapacityTerminationPolicy;
+    }
+    
+    /**
+     * Indicates whether running Spot instances should be terminated if the
+     * target capacity of the Spot fleet request is decreased below the
+     * current size of the Spot fleet.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>noTermination, default
+     *
+     * @param excessCapacityTerminationPolicy Indicates whether running Spot instances should be terminated if the
+     *         target capacity of the Spot fleet request is decreased below the
+     *         current size of the Spot fleet.
+     *
+     * @see ExcessCapacityTerminationPolicy
+     */
+    public void setExcessCapacityTerminationPolicy(String excessCapacityTerminationPolicy) {
+        this.excessCapacityTerminationPolicy = excessCapacityTerminationPolicy;
+    }
+    
+    /**
+     * Indicates whether running Spot instances should be terminated if the
+     * target capacity of the Spot fleet request is decreased below the
+     * current size of the Spot fleet.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>noTermination, default
+     *
+     * @param excessCapacityTerminationPolicy Indicates whether running Spot instances should be terminated if the
+     *         target capacity of the Spot fleet request is decreased below the
+     *         current size of the Spot fleet.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     *
+     * @see ExcessCapacityTerminationPolicy
+     */
+    public SpotFleetRequestConfigData withExcessCapacityTerminationPolicy(String excessCapacityTerminationPolicy) {
+        this.excessCapacityTerminationPolicy = excessCapacityTerminationPolicy;
+        return this;
+    }
+
+    /**
+     * Indicates whether running Spot instances should be terminated if the
+     * target capacity of the Spot fleet request is decreased below the
+     * current size of the Spot fleet.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>noTermination, default
+     *
+     * @param excessCapacityTerminationPolicy Indicates whether running Spot instances should be terminated if the
+     *         target capacity of the Spot fleet request is decreased below the
+     *         current size of the Spot fleet.
+     *
+     * @see ExcessCapacityTerminationPolicy
+     */
+    public void setExcessCapacityTerminationPolicy(ExcessCapacityTerminationPolicy excessCapacityTerminationPolicy) {
+        this.excessCapacityTerminationPolicy = excessCapacityTerminationPolicy.toString();
+    }
+    
+    /**
+     * Indicates whether running Spot instances should be terminated if the
+     * target capacity of the Spot fleet request is decreased below the
+     * current size of the Spot fleet.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>noTermination, default
+     *
+     * @param excessCapacityTerminationPolicy Indicates whether running Spot instances should be terminated if the
+     *         target capacity of the Spot fleet request is decreased below the
+     *         current size of the Spot fleet.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     *
+     * @see ExcessCapacityTerminationPolicy
+     */
+    public SpotFleetRequestConfigData withExcessCapacityTerminationPolicy(ExcessCapacityTerminationPolicy excessCapacityTerminationPolicy) {
+        this.excessCapacityTerminationPolicy = excessCapacityTerminationPolicy.toString();
+        return this;
+    }
+
+    /**
+     * Indicates how to allocate the target capacity across the Spot pools
      * specified by the Spot fleet request. The default is
      * <code>lowestPrice</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>lowestPrice, diversified
      *
-     * @return Determines how to allocate the target capacity across the Spot pools
+     * @return Indicates how to allocate the target capacity across the Spot pools
      *         specified by the Spot fleet request. The default is
      *         <code>lowestPrice</code>.
      *
@@ -531,14 +643,14 @@ public class SpotFleetRequestConfigData implements Serializable {
     }
     
     /**
-     * Determines how to allocate the target capacity across the Spot pools
+     * Indicates how to allocate the target capacity across the Spot pools
      * specified by the Spot fleet request. The default is
      * <code>lowestPrice</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>lowestPrice, diversified
      *
-     * @param allocationStrategy Determines how to allocate the target capacity across the Spot pools
+     * @param allocationStrategy Indicates how to allocate the target capacity across the Spot pools
      *         specified by the Spot fleet request. The default is
      *         <code>lowestPrice</code>.
      *
@@ -549,7 +661,7 @@ public class SpotFleetRequestConfigData implements Serializable {
     }
     
     /**
-     * Determines how to allocate the target capacity across the Spot pools
+     * Indicates how to allocate the target capacity across the Spot pools
      * specified by the Spot fleet request. The default is
      * <code>lowestPrice</code>.
      * <p>
@@ -558,7 +670,7 @@ public class SpotFleetRequestConfigData implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>lowestPrice, diversified
      *
-     * @param allocationStrategy Determines how to allocate the target capacity across the Spot pools
+     * @param allocationStrategy Indicates how to allocate the target capacity across the Spot pools
      *         specified by the Spot fleet request. The default is
      *         <code>lowestPrice</code>.
      *
@@ -573,14 +685,14 @@ public class SpotFleetRequestConfigData implements Serializable {
     }
 
     /**
-     * Determines how to allocate the target capacity across the Spot pools
+     * Indicates how to allocate the target capacity across the Spot pools
      * specified by the Spot fleet request. The default is
      * <code>lowestPrice</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>lowestPrice, diversified
      *
-     * @param allocationStrategy Determines how to allocate the target capacity across the Spot pools
+     * @param allocationStrategy Indicates how to allocate the target capacity across the Spot pools
      *         specified by the Spot fleet request. The default is
      *         <code>lowestPrice</code>.
      *
@@ -591,7 +703,7 @@ public class SpotFleetRequestConfigData implements Serializable {
     }
     
     /**
-     * Determines how to allocate the target capacity across the Spot pools
+     * Indicates how to allocate the target capacity across the Spot pools
      * specified by the Spot fleet request. The default is
      * <code>lowestPrice</code>.
      * <p>
@@ -600,7 +712,7 @@ public class SpotFleetRequestConfigData implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>lowestPrice, diversified
      *
-     * @param allocationStrategy Determines how to allocate the target capacity across the Spot pools
+     * @param allocationStrategy Indicates how to allocate the target capacity across the Spot pools
      *         specified by the Spot fleet request. The default is
      *         <code>lowestPrice</code>.
      *
@@ -634,6 +746,7 @@ public class SpotFleetRequestConfigData implements Serializable {
         if (isTerminateInstancesWithExpiration() != null) sb.append("TerminateInstancesWithExpiration: " + isTerminateInstancesWithExpiration() + ",");
         if (getIamFleetRole() != null) sb.append("IamFleetRole: " + getIamFleetRole() + ",");
         if (getLaunchSpecifications() != null) sb.append("LaunchSpecifications: " + getLaunchSpecifications() + ",");
+        if (getExcessCapacityTerminationPolicy() != null) sb.append("ExcessCapacityTerminationPolicy: " + getExcessCapacityTerminationPolicy() + ",");
         if (getAllocationStrategy() != null) sb.append("AllocationStrategy: " + getAllocationStrategy() );
         sb.append("}");
         return sb.toString();
@@ -652,6 +765,7 @@ public class SpotFleetRequestConfigData implements Serializable {
         hashCode = prime * hashCode + ((isTerminateInstancesWithExpiration() == null) ? 0 : isTerminateInstancesWithExpiration().hashCode()); 
         hashCode = prime * hashCode + ((getIamFleetRole() == null) ? 0 : getIamFleetRole().hashCode()); 
         hashCode = prime * hashCode + ((getLaunchSpecifications() == null) ? 0 : getLaunchSpecifications().hashCode()); 
+        hashCode = prime * hashCode + ((getExcessCapacityTerminationPolicy() == null) ? 0 : getExcessCapacityTerminationPolicy().hashCode()); 
         hashCode = prime * hashCode + ((getAllocationStrategy() == null) ? 0 : getAllocationStrategy().hashCode()); 
         return hashCode;
     }
@@ -680,6 +794,8 @@ public class SpotFleetRequestConfigData implements Serializable {
         if (other.getIamFleetRole() != null && other.getIamFleetRole().equals(this.getIamFleetRole()) == false) return false; 
         if (other.getLaunchSpecifications() == null ^ this.getLaunchSpecifications() == null) return false;
         if (other.getLaunchSpecifications() != null && other.getLaunchSpecifications().equals(this.getLaunchSpecifications()) == false) return false; 
+        if (other.getExcessCapacityTerminationPolicy() == null ^ this.getExcessCapacityTerminationPolicy() == null) return false;
+        if (other.getExcessCapacityTerminationPolicy() != null && other.getExcessCapacityTerminationPolicy().equals(this.getExcessCapacityTerminationPolicy()) == false) return false; 
         if (other.getAllocationStrategy() == null ^ this.getAllocationStrategy() == null) return false;
         if (other.getAllocationStrategy() != null && other.getAllocationStrategy().equals(this.getAllocationStrategy()) == false) return false; 
         return true;

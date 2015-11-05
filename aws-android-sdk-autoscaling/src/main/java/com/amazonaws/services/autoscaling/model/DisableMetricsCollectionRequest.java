@@ -39,8 +39,8 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
     private String autoScalingGroupName;
 
     /**
-     * One or more metrics. If you omit this parameter, all metrics are
-     * disabled. <ul> <li><p><code>GroupMinSize</code></li>
+     * One or more of the following metrics. If you omit this parameter, all
+     * metrics are disabled. <ul> <li><p><code>GroupMinSize</code></li>
      * <li><p><code>GroupMaxSize</code></li>
      * <li><p><code>GroupDesiredCapacity</code></li>
      * <li><p><code>GroupInServiceInstances</code></li>
@@ -97,8 +97,8 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
     }
 
     /**
-     * One or more metrics. If you omit this parameter, all metrics are
-     * disabled. <ul> <li><p><code>GroupMinSize</code></li>
+     * One or more of the following metrics. If you omit this parameter, all
+     * metrics are disabled. <ul> <li><p><code>GroupMinSize</code></li>
      * <li><p><code>GroupMaxSize</code></li>
      * <li><p><code>GroupDesiredCapacity</code></li>
      * <li><p><code>GroupInServiceInstances</code></li>
@@ -107,8 +107,8 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
      * <li><p><code>GroupTerminatingInstances</code></li>
      * <li><p><code>GroupTotalInstances</code></li> </ul>
      *
-     * @return One or more metrics. If you omit this parameter, all metrics are
-     *         disabled. <ul> <li><p><code>GroupMinSize</code></li>
+     * @return One or more of the following metrics. If you omit this parameter, all
+     *         metrics are disabled. <ul> <li><p><code>GroupMinSize</code></li>
      *         <li><p><code>GroupMaxSize</code></li>
      *         <li><p><code>GroupDesiredCapacity</code></li>
      *         <li><p><code>GroupInServiceInstances</code></li>
@@ -126,8 +126,8 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * One or more metrics. If you omit this parameter, all metrics are
-     * disabled. <ul> <li><p><code>GroupMinSize</code></li>
+     * One or more of the following metrics. If you omit this parameter, all
+     * metrics are disabled. <ul> <li><p><code>GroupMinSize</code></li>
      * <li><p><code>GroupMaxSize</code></li>
      * <li><p><code>GroupDesiredCapacity</code></li>
      * <li><p><code>GroupInServiceInstances</code></li>
@@ -136,8 +136,8 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
      * <li><p><code>GroupTerminatingInstances</code></li>
      * <li><p><code>GroupTotalInstances</code></li> </ul>
      *
-     * @param metrics One or more metrics. If you omit this parameter, all metrics are
-     *         disabled. <ul> <li><p><code>GroupMinSize</code></li>
+     * @param metrics One or more of the following metrics. If you omit this parameter, all
+     *         metrics are disabled. <ul> <li><p><code>GroupMinSize</code></li>
      *         <li><p><code>GroupMaxSize</code></li>
      *         <li><p><code>GroupDesiredCapacity</code></li>
      *         <li><p><code>GroupInServiceInstances</code></li>
@@ -157,8 +157,8 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * One or more metrics. If you omit this parameter, all metrics are
-     * disabled. <ul> <li><p><code>GroupMinSize</code></li>
+     * One or more of the following metrics. If you omit this parameter, all
+     * metrics are disabled. <ul> <li><p><code>GroupMinSize</code></li>
      * <li><p><code>GroupMaxSize</code></li>
      * <li><p><code>GroupDesiredCapacity</code></li>
      * <li><p><code>GroupInServiceInstances</code></li>
@@ -169,8 +169,8 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param metrics One or more metrics. If you omit this parameter, all metrics are
-     *         disabled. <ul> <li><p><code>GroupMinSize</code></li>
+     * @param metrics One or more of the following metrics. If you omit this parameter, all
+     *         metrics are disabled. <ul> <li><p><code>GroupMinSize</code></li>
      *         <li><p><code>GroupMaxSize</code></li>
      *         <li><p><code>GroupDesiredCapacity</code></li>
      *         <li><p><code>GroupInServiceInstances</code></li>
@@ -191,8 +191,8 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * One or more metrics. If you omit this parameter, all metrics are
-     * disabled. <ul> <li><p><code>GroupMinSize</code></li>
+     * One or more of the following metrics. If you omit this parameter, all
+     * metrics are disabled. <ul> <li><p><code>GroupMinSize</code></li>
      * <li><p><code>GroupMaxSize</code></li>
      * <li><p><code>GroupDesiredCapacity</code></li>
      * <li><p><code>GroupInServiceInstances</code></li>
@@ -203,8 +203,8 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param metrics One or more metrics. If you omit this parameter, all metrics are
-     *         disabled. <ul> <li><p><code>GroupMinSize</code></li>
+     * @param metrics One or more of the following metrics. If you omit this parameter, all
+     *         metrics are disabled. <ul> <li><p><code>GroupMinSize</code></li>
      *         <li><p><code>GroupMaxSize</code></li>
      *         <li><p><code>GroupDesiredCapacity</code></li>
      *         <li><p><code>GroupInServiceInstances</code></li>

@@ -51,6 +51,9 @@ public class StreamDescriptionJsonUnmarshaller implements Unmarshaller<StreamDes
             if (name.equals("HasMoreShards")) {
                 streamDescription.setHasMoreShards(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
+            if (name.equals("RetentionPeriodHours")) {
+                streamDescription.setRetentionPeriodHours(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
             {
                 reader.skipValue();
             }

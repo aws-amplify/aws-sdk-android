@@ -27,6 +27,7 @@ import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.DefaultRequest;
 import com.amazonaws.Request;
+import com.amazonaws.RequestClientOptions;
 import com.amazonaws.Response;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AnonymousAWSCredentials;
@@ -694,4 +695,36 @@ public class AmazonHttpClientTest {
         assertEquals(ua, (existingUA));
     }
 
+    @Test
+    public void testSetUserAgentDefault() {
+        ClientConfiguration config = new ClientConfiguration();
+        client = new AmazonHttpClient(config);
+
+        final Request<?> request = new DefaultRequest<String>("ServiceName");
+        client.setUserAgent(request);
+        String userAgent = request.getHeaders().get("User-Agent");
+        assertEquals("same user agent", ClientConfiguration.DEFAULT_USER_AGENT, userAgent);
+    }
+
+    @Test
+    public void testSetUserAgentCustom() {
+        String versionInfoUserAgent = ClientConfiguration.DEFAULT_USER_AGENT;
+        String customUserAgent = "custom_user_agent";
+        String requestUserAgent = "request_user_agent";
+        String targetUserAgent = versionInfoUserAgent + " " + requestUserAgent + " "
+                + customUserAgent;
+
+        AmazonWebServiceRequest originalRequest = new AmazonWebServiceRequest() {
+        };
+        RequestClientOptions opts = originalRequest.getRequestClientOptions();
+        opts.appendUserAgent("request_user_agent");
+        ClientConfiguration config = new ClientConfiguration();
+        config.setUserAgent("custom_user_agent");
+        client = new AmazonHttpClient(config);
+
+        final Request<?> request = new DefaultRequest<String>(originalRequest, "ServiceName");
+        client.setUserAgent(request);
+        String userAgent = request.getHeaders().get("User-Agent");
+        assertEquals("same user agent", targetUserAgent, userAgent);
+    }
 }

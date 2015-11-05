@@ -120,6 +120,9 @@ public class CreateLaunchConfigurationRequestMarshaller implements Marshaller<Re
                     if (ebsEbs.getIops() != null) {
                         request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".Ebs.Iops", StringUtils.fromInteger(ebsEbs.getIops()));
                     }
+                    if (ebsEbs.isEncrypted() != null) {
+                        request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".Ebs.Encrypted", StringUtils.fromBoolean(ebsEbs.isEncrypted()));
+                    }
                 }
                 if (blockDeviceMappingMember.isNoDevice() != null) {
                     request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".NoDevice", StringUtils.fromBoolean(blockDeviceMappingMember.isNoDevice()));

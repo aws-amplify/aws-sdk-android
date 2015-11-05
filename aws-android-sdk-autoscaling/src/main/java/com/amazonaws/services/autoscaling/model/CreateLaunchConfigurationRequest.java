@@ -145,7 +145,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * The instance type of the EC2 instance. For information about available
      * instance types, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     * Available Instance Types</a> in the <i>Amazon Elastic Cloud Compute
+     * Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide.</i>
      * <p>
      * <b>Constraints:</b><br/>
@@ -950,7 +950,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * The instance type of the EC2 instance. For information about available
      * instance types, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     * Available Instance Types</a> in the <i>Amazon Elastic Cloud Compute
+     * Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide.</i>
      * <p>
      * <b>Constraints:</b><br/>
@@ -960,7 +960,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * @return The instance type of the EC2 instance. For information about available
      *         instance types, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     *         Available Instance Types</a> in the <i>Amazon Elastic Cloud Compute
+     *         Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      *         User Guide.</i>
      */
     public String getInstanceType() {
@@ -971,7 +971,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * The instance type of the EC2 instance. For information about available
      * instance types, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     * Available Instance Types</a> in the <i>Amazon Elastic Cloud Compute
+     * Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide.</i>
      * <p>
      * <b>Constraints:</b><br/>
@@ -981,7 +981,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * @param instanceType The instance type of the EC2 instance. For information about available
      *         instance types, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     *         Available Instance Types</a> in the <i>Amazon Elastic Cloud Compute
+     *         Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      *         User Guide.</i>
      */
     public void setInstanceType(String instanceType) {
@@ -992,7 +992,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * The instance type of the EC2 instance. For information about available
      * instance types, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     * Available Instance Types</a> in the <i>Amazon Elastic Cloud Compute
+     * Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide.</i>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
@@ -1004,7 +1004,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * @param instanceType The instance type of the EC2 instance. For information about available
      *         instance types, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     *         Available Instance Types</a> in the <i>Amazon Elastic Cloud Compute
+     *         Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      *         User Guide.</i>
      *
      * @return A reference to this updated object so that method calls can be chained

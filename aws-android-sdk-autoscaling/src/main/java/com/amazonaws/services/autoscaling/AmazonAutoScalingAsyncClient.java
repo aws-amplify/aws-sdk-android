@@ -4405,7 +4405,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      * group size.
      * </p>
      * <p>
-     * This call simply makes a termination request. The instances is not
+     * This call simply makes a termination request. The instance is not
      * terminated immediately.
      * </p>
      *
@@ -4441,7 +4441,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      * group size.
      * </p>
      * <p>
-     * This call simply makes a termination request. The instances is not
+     * This call simply makes a termination request. The instance is not
      * terminated immediately.
      * </p>
      *

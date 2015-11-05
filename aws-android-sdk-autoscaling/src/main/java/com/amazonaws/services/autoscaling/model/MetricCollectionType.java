@@ -24,7 +24,8 @@ import java.io.Serializable;
 public class MetricCollectionType implements Serializable {
 
     /**
-     * The metric. <ul> <li><p><code>GroupMinSize</code></li>
+     * One of the following metrics: <ul>
+     * <li><p><code>GroupMinSize</code></li>
      * <li><p><code>GroupMaxSize</code></li>
      * <li><p><code>GroupDesiredCapacity</code></li>
      * <li><p><code>GroupInServiceInstances</code></li>
@@ -40,7 +41,8 @@ public class MetricCollectionType implements Serializable {
     private String metric;
 
     /**
-     * The metric. <ul> <li><p><code>GroupMinSize</code></li>
+     * One of the following metrics: <ul>
+     * <li><p><code>GroupMinSize</code></li>
      * <li><p><code>GroupMaxSize</code></li>
      * <li><p><code>GroupDesiredCapacity</code></li>
      * <li><p><code>GroupInServiceInstances</code></li>
@@ -53,7 +55,8 @@ public class MetricCollectionType implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The metric. <ul> <li><p><code>GroupMinSize</code></li>
+     * @return One of the following metrics: <ul>
+     *         <li><p><code>GroupMinSize</code></li>
      *         <li><p><code>GroupMaxSize</code></li>
      *         <li><p><code>GroupDesiredCapacity</code></li>
      *         <li><p><code>GroupInServiceInstances</code></li>
@@ -67,7 +70,8 @@ public class MetricCollectionType implements Serializable {
     }
     
     /**
-     * The metric. <ul> <li><p><code>GroupMinSize</code></li>
+     * One of the following metrics: <ul>
+     * <li><p><code>GroupMinSize</code></li>
      * <li><p><code>GroupMaxSize</code></li>
      * <li><p><code>GroupDesiredCapacity</code></li>
      * <li><p><code>GroupInServiceInstances</code></li>
@@ -80,7 +84,8 @@ public class MetricCollectionType implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param metric The metric. <ul> <li><p><code>GroupMinSize</code></li>
+     * @param metric One of the following metrics: <ul>
+     *         <li><p><code>GroupMinSize</code></li>
      *         <li><p><code>GroupMaxSize</code></li>
      *         <li><p><code>GroupDesiredCapacity</code></li>
      *         <li><p><code>GroupInServiceInstances</code></li>
@@ -94,7 +99,8 @@ public class MetricCollectionType implements Serializable {
     }
     
     /**
-     * The metric. <ul> <li><p><code>GroupMinSize</code></li>
+     * One of the following metrics: <ul>
+     * <li><p><code>GroupMinSize</code></li>
      * <li><p><code>GroupMaxSize</code></li>
      * <li><p><code>GroupDesiredCapacity</code></li>
      * <li><p><code>GroupInServiceInstances</code></li>
@@ -109,7 +115,8 @@ public class MetricCollectionType implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param metric The metric. <ul> <li><p><code>GroupMinSize</code></li>
+     * @param metric One of the following metrics: <ul>
+     *         <li><p><code>GroupMinSize</code></li>
      *         <li><p><code>GroupMaxSize</code></li>
      *         <li><p><code>GroupDesiredCapacity</code></li>
      *         <li><p><code>GroupInServiceInstances</code></li>

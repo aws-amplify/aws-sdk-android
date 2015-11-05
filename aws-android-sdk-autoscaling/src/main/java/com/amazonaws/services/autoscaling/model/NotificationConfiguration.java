@@ -43,7 +43,7 @@ public class NotificationConfiguration implements Serializable {
     private String topicARN;
 
     /**
-     * The types of events for an action to start. <ul>
+     * One of the following event notification types: <ul>
      * <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH</code></li>
      * <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code></li>
      * <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE</code></li>
@@ -153,7 +153,7 @@ public class NotificationConfiguration implements Serializable {
     }
 
     /**
-     * The types of events for an action to start. <ul>
+     * One of the following event notification types: <ul>
      * <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH</code></li>
      * <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code></li>
      * <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE</code></li>
@@ -164,7 +164,7 @@ public class NotificationConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The types of events for an action to start. <ul>
+     * @return One of the following event notification types: <ul>
      *         <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH</code></li>
      *         <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code></li>
      *         <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE</code></li>
@@ -176,7 +176,7 @@ public class NotificationConfiguration implements Serializable {
     }
     
     /**
-     * The types of events for an action to start. <ul>
+     * One of the following event notification types: <ul>
      * <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH</code></li>
      * <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code></li>
      * <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE</code></li>
@@ -187,7 +187,7 @@ public class NotificationConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param notificationType The types of events for an action to start. <ul>
+     * @param notificationType One of the following event notification types: <ul>
      *         <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH</code></li>
      *         <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code></li>
      *         <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE</code></li>
@@ -199,7 +199,7 @@ public class NotificationConfiguration implements Serializable {
     }
     
     /**
-     * The types of events for an action to start. <ul>
+     * One of the following event notification types: <ul>
      * <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH</code></li>
      * <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code></li>
      * <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE</code></li>
@@ -212,7 +212,7 @@ public class NotificationConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param notificationType The types of events for an action to start. <ul>
+     * @param notificationType One of the following event notification types: <ul>
      *         <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH</code></li>
      *         <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code></li>
      *         <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE</code></li>

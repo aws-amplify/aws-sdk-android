@@ -29,7 +29,7 @@ import java.io.Serializable;
 public class ProcessType implements Serializable {
 
     /**
-     * The name of the process. <ul> <li><p><code>Launch</code></li>
+     * One of the following processes: <ul> <li><p><code>Launch</code></li>
      * <li><p><code>Terminate</code></li>
      * <li><p><code>AddToLoadBalancer</code></li>
      * <li><p><code>AlarmNotification</code></li>
@@ -45,7 +45,7 @@ public class ProcessType implements Serializable {
     private String processName;
 
     /**
-     * The name of the process. <ul> <li><p><code>Launch</code></li>
+     * One of the following processes: <ul> <li><p><code>Launch</code></li>
      * <li><p><code>Terminate</code></li>
      * <li><p><code>AddToLoadBalancer</code></li>
      * <li><p><code>AlarmNotification</code></li>
@@ -58,7 +58,7 @@ public class ProcessType implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The name of the process. <ul> <li><p><code>Launch</code></li>
+     * @return One of the following processes: <ul> <li><p><code>Launch</code></li>
      *         <li><p><code>Terminate</code></li>
      *         <li><p><code>AddToLoadBalancer</code></li>
      *         <li><p><code>AlarmNotification</code></li>
@@ -72,7 +72,7 @@ public class ProcessType implements Serializable {
     }
     
     /**
-     * The name of the process. <ul> <li><p><code>Launch</code></li>
+     * One of the following processes: <ul> <li><p><code>Launch</code></li>
      * <li><p><code>Terminate</code></li>
      * <li><p><code>AddToLoadBalancer</code></li>
      * <li><p><code>AlarmNotification</code></li>
@@ -85,7 +85,7 @@ public class ProcessType implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param processName The name of the process. <ul> <li><p><code>Launch</code></li>
+     * @param processName One of the following processes: <ul> <li><p><code>Launch</code></li>
      *         <li><p><code>Terminate</code></li>
      *         <li><p><code>AddToLoadBalancer</code></li>
      *         <li><p><code>AlarmNotification</code></li>
@@ -99,7 +99,7 @@ public class ProcessType implements Serializable {
     }
     
     /**
-     * The name of the process. <ul> <li><p><code>Launch</code></li>
+     * One of the following processes: <ul> <li><p><code>Launch</code></li>
      * <li><p><code>Terminate</code></li>
      * <li><p><code>AddToLoadBalancer</code></li>
      * <li><p><code>AlarmNotification</code></li>
@@ -114,7 +114,7 @@ public class ProcessType implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param processName The name of the process. <ul> <li><p><code>Launch</code></li>
+     * @param processName One of the following processes: <ul> <li><p><code>Launch</code></li>
      *         <li><p><code>Terminate</code></li>
      *         <li><p><code>AddToLoadBalancer</code></li>
      *         <li><p><code>AlarmNotification</code></li>

@@ -100,18 +100,19 @@ public class LifecycleHook implements Serializable {
     private String notificationMetadata;
 
     /**
-     * The amount of time that can elapse before the lifecycle hook times
-     * out. When the lifecycle hook times out, Auto Scaling performs the
-     * action defined in the <code>DefaultResult</code> parameter. You can
-     * prevent the lifecycle hook from timing out by calling
+     * The maximum time, in seconds, that can elapse before the lifecycle
+     * hook times out. The default is 3600 seconds (1 hour). When the
+     * lifecycle hook times out, Auto Scaling performs the action defined in
+     * the <code>DefaultResult</code> parameter. You can prevent the
+     * lifecycle hook from timing out by calling
      * <a>RecordLifecycleActionHeartbeat</a>.
      */
     private Integer heartbeatTimeout;
 
     /**
-     * The maximum length of time an instance can remain in a
-     * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state.
-     * Currently, the maximum is set to 48 hours.
+     * The maximum time, in seconds, that an instance can remain in a
+     * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
+     * default is 172800 seconds (48 hours).
      */
     private Integer globalTimeout;
 
@@ -448,16 +449,18 @@ public class LifecycleHook implements Serializable {
     }
 
     /**
-     * The amount of time that can elapse before the lifecycle hook times
-     * out. When the lifecycle hook times out, Auto Scaling performs the
-     * action defined in the <code>DefaultResult</code> parameter. You can
-     * prevent the lifecycle hook from timing out by calling
+     * The maximum time, in seconds, that can elapse before the lifecycle
+     * hook times out. The default is 3600 seconds (1 hour). When the
+     * lifecycle hook times out, Auto Scaling performs the action defined in
+     * the <code>DefaultResult</code> parameter. You can prevent the
+     * lifecycle hook from timing out by calling
      * <a>RecordLifecycleActionHeartbeat</a>.
      *
-     * @return The amount of time that can elapse before the lifecycle hook times
-     *         out. When the lifecycle hook times out, Auto Scaling performs the
-     *         action defined in the <code>DefaultResult</code> parameter. You can
-     *         prevent the lifecycle hook from timing out by calling
+     * @return The maximum time, in seconds, that can elapse before the lifecycle
+     *         hook times out. The default is 3600 seconds (1 hour). When the
+     *         lifecycle hook times out, Auto Scaling performs the action defined in
+     *         the <code>DefaultResult</code> parameter. You can prevent the
+     *         lifecycle hook from timing out by calling
      *         <a>RecordLifecycleActionHeartbeat</a>.
      */
     public Integer getHeartbeatTimeout() {
@@ -465,16 +468,18 @@ public class LifecycleHook implements Serializable {
     }
     
     /**
-     * The amount of time that can elapse before the lifecycle hook times
-     * out. When the lifecycle hook times out, Auto Scaling performs the
-     * action defined in the <code>DefaultResult</code> parameter. You can
-     * prevent the lifecycle hook from timing out by calling
+     * The maximum time, in seconds, that can elapse before the lifecycle
+     * hook times out. The default is 3600 seconds (1 hour). When the
+     * lifecycle hook times out, Auto Scaling performs the action defined in
+     * the <code>DefaultResult</code> parameter. You can prevent the
+     * lifecycle hook from timing out by calling
      * <a>RecordLifecycleActionHeartbeat</a>.
      *
-     * @param heartbeatTimeout The amount of time that can elapse before the lifecycle hook times
-     *         out. When the lifecycle hook times out, Auto Scaling performs the
-     *         action defined in the <code>DefaultResult</code> parameter. You can
-     *         prevent the lifecycle hook from timing out by calling
+     * @param heartbeatTimeout The maximum time, in seconds, that can elapse before the lifecycle
+     *         hook times out. The default is 3600 seconds (1 hour). When the
+     *         lifecycle hook times out, Auto Scaling performs the action defined in
+     *         the <code>DefaultResult</code> parameter. You can prevent the
+     *         lifecycle hook from timing out by calling
      *         <a>RecordLifecycleActionHeartbeat</a>.
      */
     public void setHeartbeatTimeout(Integer heartbeatTimeout) {
@@ -482,18 +487,20 @@ public class LifecycleHook implements Serializable {
     }
     
     /**
-     * The amount of time that can elapse before the lifecycle hook times
-     * out. When the lifecycle hook times out, Auto Scaling performs the
-     * action defined in the <code>DefaultResult</code> parameter. You can
-     * prevent the lifecycle hook from timing out by calling
+     * The maximum time, in seconds, that can elapse before the lifecycle
+     * hook times out. The default is 3600 seconds (1 hour). When the
+     * lifecycle hook times out, Auto Scaling performs the action defined in
+     * the <code>DefaultResult</code> parameter. You can prevent the
+     * lifecycle hook from timing out by calling
      * <a>RecordLifecycleActionHeartbeat</a>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param heartbeatTimeout The amount of time that can elapse before the lifecycle hook times
-     *         out. When the lifecycle hook times out, Auto Scaling performs the
-     *         action defined in the <code>DefaultResult</code> parameter. You can
-     *         prevent the lifecycle hook from timing out by calling
+     * @param heartbeatTimeout The maximum time, in seconds, that can elapse before the lifecycle
+     *         hook times out. The default is 3600 seconds (1 hour). When the
+     *         lifecycle hook times out, Auto Scaling performs the action defined in
+     *         the <code>DefaultResult</code> parameter. You can prevent the
+     *         lifecycle hook from timing out by calling
      *         <a>RecordLifecycleActionHeartbeat</a>.
      *
      * @return A reference to this updated object so that method calls can be chained
@@ -505,41 +512,41 @@ public class LifecycleHook implements Serializable {
     }
 
     /**
-     * The maximum length of time an instance can remain in a
-     * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state.
-     * Currently, the maximum is set to 48 hours.
+     * The maximum time, in seconds, that an instance can remain in a
+     * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
+     * default is 172800 seconds (48 hours).
      *
-     * @return The maximum length of time an instance can remain in a
-     *         <code>Pending:Wait</code> or <code>Terminating:Wait</code> state.
-     *         Currently, the maximum is set to 48 hours.
+     * @return The maximum time, in seconds, that an instance can remain in a
+     *         <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
+     *         default is 172800 seconds (48 hours).
      */
     public Integer getGlobalTimeout() {
         return globalTimeout;
     }
     
     /**
-     * The maximum length of time an instance can remain in a
-     * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state.
-     * Currently, the maximum is set to 48 hours.
+     * The maximum time, in seconds, that an instance can remain in a
+     * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
+     * default is 172800 seconds (48 hours).
      *
-     * @param globalTimeout The maximum length of time an instance can remain in a
-     *         <code>Pending:Wait</code> or <code>Terminating:Wait</code> state.
-     *         Currently, the maximum is set to 48 hours.
+     * @param globalTimeout The maximum time, in seconds, that an instance can remain in a
+     *         <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
+     *         default is 172800 seconds (48 hours).
      */
     public void setGlobalTimeout(Integer globalTimeout) {
         this.globalTimeout = globalTimeout;
     }
     
     /**
-     * The maximum length of time an instance can remain in a
-     * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state.
-     * Currently, the maximum is set to 48 hours.
+     * The maximum time, in seconds, that an instance can remain in a
+     * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
+     * default is 172800 seconds (48 hours).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param globalTimeout The maximum length of time an instance can remain in a
-     *         <code>Pending:Wait</code> or <code>Terminating:Wait</code> state.
-     *         Currently, the maximum is set to 48 hours.
+     * @param globalTimeout The maximum time, in seconds, that an instance can remain in a
+     *         <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
+     *         default is 172800 seconds (48 hours).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

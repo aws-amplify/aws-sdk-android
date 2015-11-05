@@ -23,6 +23,7 @@ import com.amazonaws.ClientConfiguration;
 import org.apache.http.HttpStatus;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.util.Random;
 
 /**
@@ -145,8 +146,11 @@ public class PredefinedRetryPolicies {
         public boolean shouldRetry(AmazonWebServiceRequest originalRequest,
                 AmazonClientException exception,
                 int retriesAttempted) {
-            // Always retry on client exceptions caused by IOException
-            if (exception.getCause() instanceof IOException)
+
+            // Always retry on client exceptions caused by IOException, unless
+            // it's caused by a thread interruption
+            if ((exception.getCause() instanceof IOException)
+                    && !(exception.getCause() instanceof InterruptedIOException))
                 return true;
 
             // Only retry on a subset of service exceptions

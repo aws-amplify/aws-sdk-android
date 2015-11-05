@@ -111,7 +111,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * before another scaling activity can start. For more information, see
      * <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a>.
+     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     private Integer defaultCooldown;
 
@@ -138,7 +138,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The amount of time, in seconds, that Auto Scaling waits before
      * checking the health status of an instance. The grace period begins
      * when the instance passes the system status and instance status checks
-     * from Amazon EC2. For more information, see <a href=""/>.
+     * from Amazon EC2. For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     private Integer healthCheckGracePeriod;
 
@@ -146,7 +148,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The name of the placement group into which you'll launch your
      * instances, if any. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a>.
+     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -387,13 +389,13 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * before another scaling activity can start. For more information, see
      * <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a>.
+     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return The amount of time, in seconds, after a scaling activity completes
      *         before another scaling activity can start. For more information, see
      *         <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a>.
+     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public Integer getDefaultCooldown() {
         return defaultCooldown;
@@ -404,13 +406,13 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * before another scaling activity can start. For more information, see
      * <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a>.
+     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @param defaultCooldown The amount of time, in seconds, after a scaling activity completes
      *         before another scaling activity can start. For more information, see
      *         <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a>.
+     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public void setDefaultCooldown(Integer defaultCooldown) {
         this.defaultCooldown = defaultCooldown;
@@ -421,7 +423,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * before another scaling activity can start. For more information, see
      * <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a>.
+     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -429,7 +431,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         before another scaling activity can start. For more information, see
      *         <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a>.
+     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -580,12 +582,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The amount of time, in seconds, that Auto Scaling waits before
      * checking the health status of an instance. The grace period begins
      * when the instance passes the system status and instance status checks
-     * from Amazon EC2. For more information, see <a href=""/>.
+     * from Amazon EC2. For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return The amount of time, in seconds, that Auto Scaling waits before
      *         checking the health status of an instance. The grace period begins
      *         when the instance passes the system status and instance status checks
-     *         from Amazon EC2. For more information, see <a href=""/>.
+     *         from Amazon EC2. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     *         Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public Integer getHealthCheckGracePeriod() {
         return healthCheckGracePeriod;
@@ -595,12 +601,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The amount of time, in seconds, that Auto Scaling waits before
      * checking the health status of an instance. The grace period begins
      * when the instance passes the system status and instance status checks
-     * from Amazon EC2. For more information, see <a href=""/>.
+     * from Amazon EC2. For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @param healthCheckGracePeriod The amount of time, in seconds, that Auto Scaling waits before
      *         checking the health status of an instance. The grace period begins
      *         when the instance passes the system status and instance status checks
-     *         from Amazon EC2. For more information, see <a href=""/>.
+     *         from Amazon EC2. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     *         Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public void setHealthCheckGracePeriod(Integer healthCheckGracePeriod) {
         this.healthCheckGracePeriod = healthCheckGracePeriod;
@@ -610,14 +620,18 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The amount of time, in seconds, that Auto Scaling waits before
      * checking the health status of an instance. The grace period begins
      * when the instance passes the system status and instance status checks
-     * from Amazon EC2. For more information, see <a href=""/>.
+     * from Amazon EC2. For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param healthCheckGracePeriod The amount of time, in seconds, that Auto Scaling waits before
      *         checking the health status of an instance. The grace period begins
      *         when the instance passes the system status and instance status checks
-     *         from Amazon EC2. For more information, see <a href=""/>.
+     *         from Amazon EC2. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     *         Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -631,7 +645,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The name of the placement group into which you'll launch your
      * instances, if any. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a>.
+     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -640,7 +654,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * @return The name of the placement group into which you'll launch your
      *         instances, if any. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     *         Groups</a>.
+     *         Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      */
     public String getPlacementGroup() {
         return placementGroup;
@@ -650,7 +664,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The name of the placement group into which you'll launch your
      * instances, if any. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a>.
+     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -659,7 +673,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * @param placementGroup The name of the placement group into which you'll launch your
      *         instances, if any. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     *         Groups</a>.
+     *         Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      */
     public void setPlacementGroup(String placementGroup) {
         this.placementGroup = placementGroup;
@@ -669,7 +683,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The name of the placement group into which you'll launch your
      * instances, if any. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a>.
+     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -680,7 +694,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * @param placementGroup The name of the placement group into which you'll launch your
      *         instances, if any. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     *         Groups</a>.
+     *         Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

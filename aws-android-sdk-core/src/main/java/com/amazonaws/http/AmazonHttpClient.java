@@ -498,25 +498,24 @@ public class AmazonHttpClient {
      * Sets a User-Agent for the specified request, taking into account any
      * custom data.
      */
-    private void setUserAgent(Request<?> request) {
-        String userAgent = config.getUserAgent();
-        if (!userAgent.equals(ClientConfiguration.DEFAULT_USER_AGENT)) {
-            userAgent += ", " + ClientConfiguration.DEFAULT_USER_AGENT;
-        }
-        if (userAgent != null) {
-            request.addHeader(HEADER_USER_AGENT, userAgent);
-        }
+    void setUserAgent(Request<?> request) {
+        String userAgent = ClientConfiguration.DEFAULT_USER_AGENT;
+        // append request specific user agent marker
         AmazonWebServiceRequest awsreq = request.getOriginalRequest();
         if (awsreq != null) {
             RequestClientOptions opts = awsreq.getRequestClientOptions();
             if (opts != null) {
                 String userAgentMarker = opts.getClientMarker(Marker.USER_AGENT);
                 if (userAgentMarker != null) {
-                    request.addHeader(HEADER_USER_AGENT,
-                            createUserAgentString(userAgent, userAgentMarker));
+                    userAgent = createUserAgentString(userAgent, userAgentMarker);
                 }
             }
         }
+        // if custom user agent is set via ClientConfiguration, append it to the end
+        if (!ClientConfiguration.DEFAULT_USER_AGENT.equals(config.getUserAgent())) {
+            userAgent = createUserAgentString(userAgent, config.getUserAgent());
+        }
+        request.addHeader(HEADER_USER_AGENT, userAgent);
     }
 
     /**

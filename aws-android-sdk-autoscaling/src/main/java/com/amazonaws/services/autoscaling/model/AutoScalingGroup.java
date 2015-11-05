@@ -121,7 +121,7 @@ public class AutoScalingGroup implements Serializable {
      * The name of the placement group into which you'll launch your
      * instances, if any. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a>.
+     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -862,7 +862,7 @@ public class AutoScalingGroup implements Serializable {
      * The name of the placement group into which you'll launch your
      * instances, if any. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a>.
+     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -871,7 +871,7 @@ public class AutoScalingGroup implements Serializable {
      * @return The name of the placement group into which you'll launch your
      *         instances, if any. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     *         Groups</a>.
+     *         Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      */
     public String getPlacementGroup() {
         return placementGroup;
@@ -881,7 +881,7 @@ public class AutoScalingGroup implements Serializable {
      * The name of the placement group into which you'll launch your
      * instances, if any. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a>.
+     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -890,7 +890,7 @@ public class AutoScalingGroup implements Serializable {
      * @param placementGroup The name of the placement group into which you'll launch your
      *         instances, if any. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     *         Groups</a>.
+     *         Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      */
     public void setPlacementGroup(String placementGroup) {
         this.placementGroup = placementGroup;
@@ -900,7 +900,7 @@ public class AutoScalingGroup implements Serializable {
      * The name of the placement group into which you'll launch your
      * instances, if any. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a>.
+     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -911,7 +911,7 @@ public class AutoScalingGroup implements Serializable {
      * @param placementGroup The name of the placement group into which you'll launch your
      *         instances, if any. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     *         Groups</a>.
+     *         Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

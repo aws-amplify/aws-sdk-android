@@ -134,12 +134,12 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
     private String notificationMetadata;
 
     /**
-     * Defines the amount of time, in seconds, that can elapse before the
-     * lifecycle hook times out. When the lifecycle hook times out, Auto
-     * Scaling performs the action defined in the <code>DefaultResult</code>
+     * The amount of time, in seconds, that can elapse before the lifecycle
+     * hook times out. When the lifecycle hook times out, Auto Scaling
+     * performs the action defined in the <code>DefaultResult</code>
      * parameter. You can prevent the lifecycle hook from timing out by
-     * calling <a>RecordLifecycleActionHeartbeat</a>. The default value for
-     * this parameter is 3600 seconds (1 hour).
+     * calling <a>RecordLifecycleActionHeartbeat</a>. The default is 3600
+     * seconds (1 hour).
      */
     private Integer heartbeatTimeout;
 
@@ -555,59 +555,59 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * Defines the amount of time, in seconds, that can elapse before the
-     * lifecycle hook times out. When the lifecycle hook times out, Auto
-     * Scaling performs the action defined in the <code>DefaultResult</code>
+     * The amount of time, in seconds, that can elapse before the lifecycle
+     * hook times out. When the lifecycle hook times out, Auto Scaling
+     * performs the action defined in the <code>DefaultResult</code>
      * parameter. You can prevent the lifecycle hook from timing out by
-     * calling <a>RecordLifecycleActionHeartbeat</a>. The default value for
-     * this parameter is 3600 seconds (1 hour).
+     * calling <a>RecordLifecycleActionHeartbeat</a>. The default is 3600
+     * seconds (1 hour).
      *
-     * @return Defines the amount of time, in seconds, that can elapse before the
-     *         lifecycle hook times out. When the lifecycle hook times out, Auto
-     *         Scaling performs the action defined in the <code>DefaultResult</code>
+     * @return The amount of time, in seconds, that can elapse before the lifecycle
+     *         hook times out. When the lifecycle hook times out, Auto Scaling
+     *         performs the action defined in the <code>DefaultResult</code>
      *         parameter. You can prevent the lifecycle hook from timing out by
-     *         calling <a>RecordLifecycleActionHeartbeat</a>. The default value for
-     *         this parameter is 3600 seconds (1 hour).
+     *         calling <a>RecordLifecycleActionHeartbeat</a>. The default is 3600
+     *         seconds (1 hour).
      */
     public Integer getHeartbeatTimeout() {
         return heartbeatTimeout;
     }
     
     /**
-     * Defines the amount of time, in seconds, that can elapse before the
-     * lifecycle hook times out. When the lifecycle hook times out, Auto
-     * Scaling performs the action defined in the <code>DefaultResult</code>
+     * The amount of time, in seconds, that can elapse before the lifecycle
+     * hook times out. When the lifecycle hook times out, Auto Scaling
+     * performs the action defined in the <code>DefaultResult</code>
      * parameter. You can prevent the lifecycle hook from timing out by
-     * calling <a>RecordLifecycleActionHeartbeat</a>. The default value for
-     * this parameter is 3600 seconds (1 hour).
+     * calling <a>RecordLifecycleActionHeartbeat</a>. The default is 3600
+     * seconds (1 hour).
      *
-     * @param heartbeatTimeout Defines the amount of time, in seconds, that can elapse before the
-     *         lifecycle hook times out. When the lifecycle hook times out, Auto
-     *         Scaling performs the action defined in the <code>DefaultResult</code>
+     * @param heartbeatTimeout The amount of time, in seconds, that can elapse before the lifecycle
+     *         hook times out. When the lifecycle hook times out, Auto Scaling
+     *         performs the action defined in the <code>DefaultResult</code>
      *         parameter. You can prevent the lifecycle hook from timing out by
-     *         calling <a>RecordLifecycleActionHeartbeat</a>. The default value for
-     *         this parameter is 3600 seconds (1 hour).
+     *         calling <a>RecordLifecycleActionHeartbeat</a>. The default is 3600
+     *         seconds (1 hour).
      */
     public void setHeartbeatTimeout(Integer heartbeatTimeout) {
         this.heartbeatTimeout = heartbeatTimeout;
     }
     
     /**
-     * Defines the amount of time, in seconds, that can elapse before the
-     * lifecycle hook times out. When the lifecycle hook times out, Auto
-     * Scaling performs the action defined in the <code>DefaultResult</code>
+     * The amount of time, in seconds, that can elapse before the lifecycle
+     * hook times out. When the lifecycle hook times out, Auto Scaling
+     * performs the action defined in the <code>DefaultResult</code>
      * parameter. You can prevent the lifecycle hook from timing out by
-     * calling <a>RecordLifecycleActionHeartbeat</a>. The default value for
-     * this parameter is 3600 seconds (1 hour).
+     * calling <a>RecordLifecycleActionHeartbeat</a>. The default is 3600
+     * seconds (1 hour).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param heartbeatTimeout Defines the amount of time, in seconds, that can elapse before the
-     *         lifecycle hook times out. When the lifecycle hook times out, Auto
-     *         Scaling performs the action defined in the <code>DefaultResult</code>
+     * @param heartbeatTimeout The amount of time, in seconds, that can elapse before the lifecycle
+     *         hook times out. When the lifecycle hook times out, Auto Scaling
+     *         performs the action defined in the <code>DefaultResult</code>
      *         parameter. You can prevent the lifecycle hook from timing out by
-     *         calling <a>RecordLifecycleActionHeartbeat</a>. The default value for
-     *         this parameter is 3600 seconds (1 hour).
+     *         calling <a>RecordLifecycleActionHeartbeat</a>. The default is 3600
+     *         seconds (1 hour).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
