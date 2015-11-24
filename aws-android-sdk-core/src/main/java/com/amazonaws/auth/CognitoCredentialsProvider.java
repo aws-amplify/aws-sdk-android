@@ -301,7 +301,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     public CognitoCredentialsProvider(AWSCognitoIdentityProvider provider,
             Regions region, ClientConfiguration clientConfiguration) {
         this(provider, new AmazonCognitoIdentityClient(
-                new AnonymousAWSCredentials(), new ClientConfiguration()));
+                new AnonymousAWSCredentials(), clientConfiguration));
         this.cib.setRegion(Region.getRegion(region));
     }
     

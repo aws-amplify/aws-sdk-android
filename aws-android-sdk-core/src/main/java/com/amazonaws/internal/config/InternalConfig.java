@@ -20,7 +20,10 @@ import com.amazonaws.regions.Regions;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,20 +38,15 @@ public class InternalConfig {
     private final Map<String, SignerConfig> regionSigners;
     private final Map<String, SignerConfig> serviceSigners;
     private final Map<String, HttpClientConfig> httpClients;
+    private final List<HostRegexToRegionMapping> hostRegexToRegionMappings;
 
     InternalConfig() {
         defaultSignerConfig = getDefaultSigner();
         regionSigners = getDefaultRegionSigners();
-        regionSigners.putAll(getOverrideRegionSigners());
-
         serviceSigners = getDefaultServiceSigners();
-        serviceSigners.putAll(getOverrideServiceSigners());
-
         serviceRegionSigners = getDefaultServiceRegionSigners();
-        serviceRegionSigners.putAll(getOverrideServiceRegionSigners());
-
         httpClients = getDefaultHttpClients();
-        httpClients.putAll(getOverrideHttpClients());
+        hostRegexToRegionMappings = getDefaultHostRegexToRegionMappings();
     }
 
     /**
@@ -98,13 +96,17 @@ public class InternalConfig {
         return signerConfig == null ? defaultSignerConfig : signerConfig;
     }
 
+    /**
+     * @return all the host-name-regex to region-name mappings.
+     */
+    public List<HostRegexToRegionMapping> getHostRegexToRegionMappings() {
+        return Collections.unmodifiableList(hostRegexToRegionMappings);
+    }
+
     private static Map<String, HttpClientConfig> getDefaultHttpClients() {
         // map from service client name to sigv4 service name
         Map<String, HttpClientConfig> ret = new HashMap<String, HttpClientConfig>();
-        ret.put("AmazonSimpleWorkflowClient", new HttpClientConfig("swf"));
         ret.put("AmazonCloudWatchClient", new HttpClientConfig("monitoring"));
-        ret.put("DataPipelineClient", new HttpClientConfig("datapipeline"));
-        ret.put("AmazonIdentityManagementClient", new HttpClientConfig("iam"));
         ret.put("AmazonSimpleDBClient", new HttpClientConfig("sdb"));
         ret.put("AmazonSimpleEmailServiceClient", new HttpClientConfig("email"));
         ret.put("AWSSecurityTokenServiceClient", new HttpClientConfig("sts"));
@@ -134,11 +136,8 @@ public class InternalConfig {
         Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         ret.put("ec2", new SignerConfig("QueryStringSignerType"));
         ret.put("email", new SignerConfig("AWS3SignerType"));
-        ret.put("importexport", new SignerConfig("QueryStringSignerType"));
-        ret.put("route53", new SignerConfig("AWS3SignerType"));
         ret.put("s3", new SignerConfig("S3SignerType"));
         ret.put("sdb", new SignerConfig("QueryStringSignerType"));
-        ret.put("cloudsearchdomain", new SignerConfig("NoOpSignerType"));
         return ret;
     }
 
@@ -146,27 +145,12 @@ public class InternalConfig {
         return new SignerConfig("AWS4SignerType");
     }
 
-    private static Map<String, HttpClientConfig> getOverrideHttpClients() {
-        // map from service client name to sigv4 service name
-        Map<String, HttpClientConfig> ret = new HashMap<String, HttpClientConfig>();
-        return ret;
-    }
-
-    private static Map<String, SignerConfig> getOverrideRegionSigners() {
-        // map from region name to signer type
-        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
-        return ret;
-    }
-
-    private static Map<String, SignerConfig> getOverrideServiceRegionSigners() {
-        // map from "<service>/<region>" to signer type
-        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
-        return ret;
-    }
-
-    private static Map<String, SignerConfig> getOverrideServiceSigners() {
-        // map from abbreviated service name to signer type
-        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+    private static List<HostRegexToRegionMapping> getDefaultHostRegexToRegionMappings() {
+        List<HostRegexToRegionMapping> ret = new ArrayList<HostRegexToRegionMapping>();
+        ret.add(new HostRegexToRegionMapping("(.+\\.)?s3\\.amazonaws\\.com", "us-east-1"));
+        ret.add(new HostRegexToRegionMapping("(.+\\.)?s3-external-1\\.amazonaws\\.com", "us-east-1"));
+        ret.add(new HostRegexToRegionMapping("(.+\\.)?s3-fips-us-gov-west-1\\.amazonaws\\.com",
+                "us-gov-west-1"));
         return ret;
     }
 
@@ -176,7 +160,9 @@ public class InternalConfig {
                 .append(defaultSignerConfig).append("\n")
                 .append("serviceRegionSigners: ").append(serviceRegionSigners)
                 .append("\n").append("regionSigners: ").append(regionSigners)
-                .append("\n").append("serviceSigners: ").append(serviceSigners);
+                .append("\n").append("serviceSigners: ").append(serviceSigners)
+                .append("\n").append("hostRegexToRegionMappings: ")
+                .append(hostRegexToRegionMappings);
         log.debug(sb.toString());
     }
 

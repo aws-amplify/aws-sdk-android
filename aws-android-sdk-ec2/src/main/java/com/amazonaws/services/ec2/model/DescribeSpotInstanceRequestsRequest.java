@@ -73,7 +73,7 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * security group for the instance. </li> <li>
      * <p><code>launch.image-id</code> - The ID of the AMI. </li> <li>
      * <p><code>launch.instance-type</code> - The type of instance (for
-     * example, <code>m1.small</code>). </li> <li>
+     * example, <code>m3.medium</code>). </li> <li>
      * <p><code>launch.kernel-id</code> - The kernel ID. </li> <li>
      * <p><code>launch.key-name</code> - The name of the key pair the
      * instance launched with. </li> <li>
@@ -228,7 +228,7 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * security group for the instance. </li> <li>
      * <p><code>launch.image-id</code> - The ID of the AMI. </li> <li>
      * <p><code>launch.instance-type</code> - The type of instance (for
-     * example, <code>m1.small</code>). </li> <li>
+     * example, <code>m3.medium</code>). </li> <li>
      * <p><code>launch.kernel-id</code> - The kernel ID. </li> <li>
      * <p><code>launch.key-name</code> - The name of the key pair the
      * instance launched with. </li> <li>
@@ -312,7 +312,7 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         security group for the instance. </li> <li>
      *         <p><code>launch.image-id</code> - The ID of the AMI. </li> <li>
      *         <p><code>launch.instance-type</code> - The type of instance (for
-     *         example, <code>m1.small</code>). </li> <li>
+     *         example, <code>m3.medium</code>). </li> <li>
      *         <p><code>launch.kernel-id</code> - The kernel ID. </li> <li>
      *         <p><code>launch.key-name</code> - The name of the key pair the
      *         instance launched with. </li> <li>
@@ -405,7 +405,7 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * security group for the instance. </li> <li>
      * <p><code>launch.image-id</code> - The ID of the AMI. </li> <li>
      * <p><code>launch.instance-type</code> - The type of instance (for
-     * example, <code>m1.small</code>). </li> <li>
+     * example, <code>m3.medium</code>). </li> <li>
      * <p><code>launch.kernel-id</code> - The kernel ID. </li> <li>
      * <p><code>launch.key-name</code> - The name of the key pair the
      * instance launched with. </li> <li>
@@ -489,7 +489,7 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         security group for the instance. </li> <li>
      *         <p><code>launch.image-id</code> - The ID of the AMI. </li> <li>
      *         <p><code>launch.instance-type</code> - The type of instance (for
-     *         example, <code>m1.small</code>). </li> <li>
+     *         example, <code>m3.medium</code>). </li> <li>
      *         <p><code>launch.kernel-id</code> - The kernel ID. </li> <li>
      *         <p><code>launch.key-name</code> - The name of the key pair the
      *         instance launched with. </li> <li>
@@ -584,7 +584,7 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * security group for the instance. </li> <li>
      * <p><code>launch.image-id</code> - The ID of the AMI. </li> <li>
      * <p><code>launch.instance-type</code> - The type of instance (for
-     * example, <code>m1.small</code>). </li> <li>
+     * example, <code>m3.medium</code>). </li> <li>
      * <p><code>launch.kernel-id</code> - The kernel ID. </li> <li>
      * <p><code>launch.key-name</code> - The name of the key pair the
      * instance launched with. </li> <li>
@@ -670,7 +670,7 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         security group for the instance. </li> <li>
      *         <p><code>launch.image-id</code> - The ID of the AMI. </li> <li>
      *         <p><code>launch.instance-type</code> - The type of instance (for
-     *         example, <code>m1.small</code>). </li> <li>
+     *         example, <code>m3.medium</code>). </li> <li>
      *         <p><code>launch.kernel-id</code> - The kernel ID. </li> <li>
      *         <p><code>launch.key-name</code> - The name of the key pair the
      *         instance launched with. </li> <li>
@@ -766,7 +766,7 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      * security group for the instance. </li> <li>
      * <p><code>launch.image-id</code> - The ID of the AMI. </li> <li>
      * <p><code>launch.instance-type</code> - The type of instance (for
-     * example, <code>m1.small</code>). </li> <li>
+     * example, <code>m3.medium</code>). </li> <li>
      * <p><code>launch.kernel-id</code> - The kernel ID. </li> <li>
      * <p><code>launch.key-name</code> - The name of the key pair the
      * instance launched with. </li> <li>
@@ -852,7 +852,7 @@ public class DescribeSpotInstanceRequestsRequest extends AmazonWebServiceRequest
      *         security group for the instance. </li> <li>
      *         <p><code>launch.image-id</code> - The ID of the AMI. </li> <li>
      *         <p><code>launch.instance-type</code> - The type of instance (for
-     *         example, <code>m1.small</code>). </li> <li>
+     *         example, <code>m3.medium</code>). </li> <li>
      *         <p><code>launch.kernel-id</code> - The kernel ID. </li> <li>
      *         <p><code>launch.key-name</code> - The name of the key pair the
      *         instance launched with. </li> <li>

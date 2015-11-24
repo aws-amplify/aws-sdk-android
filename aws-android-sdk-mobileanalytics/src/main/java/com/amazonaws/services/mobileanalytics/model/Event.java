@@ -17,10 +17,7 @@ package com.amazonaws.services.mobileanalytics.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Represents a single event that happened on a client device.
- * Attributes and metrics are optional.
- * </p>
+ * Event
  */
 public class Event implements Serializable {
 

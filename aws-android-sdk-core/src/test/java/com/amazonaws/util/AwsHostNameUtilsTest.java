@@ -48,6 +48,7 @@ public class AwsHostNameUtilsTest {
         assertEquals("s3", AwsHostNameUtils.parseServiceName(S3_BUCKET_REGION_ENDPOINT));
     }
 
+    @Test
     public void testStandardNoHint() {
         // Verify that standard endpoints parse correctly without a service hint
         assertEquals("us-east-1", AwsHostNameUtils.parseRegionName("iam.amazonaws.com", null));
@@ -108,16 +109,16 @@ public class AwsHostNameUtilsTest {
     }
 
     @Test
-    public void testMVP() {
-        // Verify that MVP endpoints parse correctly even though they're
-        // non-standard.
-        assertEquals("us-iso-east-1",
-                AwsHostNameUtils.parseRegionName("iam.us-iso-east-1.c2s.ic.gov", "iam"));
-        assertEquals("us-iso-east-1",
-                AwsHostNameUtils.parseRegionName("ec2.us-iso-east-1.c2s.ic.gov", "ec2"));
-        assertEquals("us-iso-east-1",
-                AwsHostNameUtils.parseRegionName("s3.us-iso-east-1.c2s.ic.gov", "s3"));
-        assertEquals("us-iso-east-1", AwsHostNameUtils.parseRegionName(
-                "bucket.name.with.periods.s3.us-iso-east-1.c2s.ic.gov", "s3"));
+    public void testS3SpecialRegions() {
+        assertEquals("us-east-1",
+                AwsHostNameUtils.parseRegionName("s3-external-1.amazonaws.com", null));
+        assertEquals("us-east-1", AwsHostNameUtils.parseRegionName(
+                "bucket.name.with.periods.s3-external-1.amazonaws.com", null));
+
+        assertEquals("us-gov-west-1",
+                AwsHostNameUtils.parseRegionName("s3-fips-us-gov-west-1.amazonaws.com", null));
+        assertEquals("us-gov-west-1", AwsHostNameUtils.parseRegionName(
+                "bucket.name.with.periods.s3-fips-us-gov-west-1.amazonaws.com", null));
     }
+
 }

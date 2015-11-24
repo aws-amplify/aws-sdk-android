@@ -34,9 +34,7 @@ import com.amazonaws.services.mobileanalytics.model.transform.*;
  * using this client are blocking, and will not return until the service call
  * completes.
  * <p>
- * <p>
- * A service which is used to record Amazon Mobile Analytics events
- * </p>
+ * 
  */
 public class AmazonMobileAnalyticsClient extends AmazonWebServiceClient implements AmazonMobileAnalytics {
 
@@ -241,9 +239,6 @@ public class AmazonMobileAnalyticsClient extends AmazonWebServiceClient implemen
     }
 
     /**
-     * <p>
-     * Record a batch of events
-     * </p>
      *
      * @param putEventsRequest Container for the necessary parameters to
      *           execute the PutEvents service method on AmazonMobileAnalytics.

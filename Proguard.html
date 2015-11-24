@@ -33,7 +33,7 @@
             versions 17 and later, a default config ships with the toolkit and can be included in
             your Android app. A project customization file <i>proguard-project.txt</i> will also be
             created where additional options can be supplied as needed. </p>
-<p> If you are adding Progaard to an existing app, you can place your <i>proguard-project.txt</i> anywhere
+<p> If you are adding Proguard to an existing app, you can place your <i>proguard-project.txt</i> anywhere
 in the project folder, but typically it is placed at the root of your project, alongside
 the <i>AndroidManifest.xml</i> and
 <i>project.properties</i> files.
@@ -82,28 +82,20 @@ the following lines to the end of your <i>proguard-project.txt</i> file:
 </p>
 
 <table class="sample"><tr><td align="left" >
-<pre>-keep class org.apache.commons.logging.**               { *; }
--keep class com.amazonaws.services.sqs.QueueUrlHandler  { *; }
--keep class com.amazonaws.javax.xml.transform.sax.*     { public *; }
--keep class com.amazonaws.javax.xml.stream.**           { *; }
--keep class com.amazonaws.services.**.model.*Exception* { *; }
--keep class com.amazonaws.internal.** 					{ *; }
--keep class org.codehaus.**                             { *; }
--keep class org.joda.convert.*							{ *; }
--keepattributes Signature,*Annotation*,EnclosingMethod
--keepnames class com.fasterxml.jackson.** { *; }
--keepnames class com.amazonaws.** { *; }
-
--dontwarn com.amazonaws.auth.policy.conditions.S3ConditionFactory
--dontwarn org.joda.time.**
--dontwarn com.fasterxml.jackson.databind.**
--dontwarn javax.xml.stream.events.**
--dontwarn org.codehaus.jackson.**
--dontwarn org.apache.commons.logging.impl.**
--dontwarn org.apache.http.conn.scheme.**
--dontwarn org.apache.http.annotation.**
--dontwarn org.ietf.jgss.**
--dontwarn org.w3c.dom.bootstrap.**</pre></td></tr>
+<pre>
+# Class names are needed in reflection
+-keepnames class com.amazonaws.**
+# Request handlers defined in request.handlers
+-keep class com.amazonaws.services.**.*Handler
+# The following are referenced but aren't required to run
+-dontwarn com.fasterxml.jackson.**
+-dontwarn org.apache.commons.logging.**
+# Android 6.0 release removes support for the Apache HTTP client
+-dontwarn org.apache.http.**
+# The SDK has several references of Apache HTTP client
+-dontwarn com.amazonaws.http.**
+-dontwarn com.amazonaws.metrics.**
+</pre></td></tr>
 </table>
 
 <p>

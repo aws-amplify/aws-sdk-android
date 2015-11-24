@@ -20,9 +20,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.mobileanalytics.AmazonMobileAnalytics#putEvents(PutEventsRequest) PutEvents operation}.
- * <p>
- * Record a batch of events
- * </p>
+ * 
  *
  * @see com.amazonaws.services.mobileanalytics.AmazonMobileAnalytics#putEvents(PutEventsRequest)
  */

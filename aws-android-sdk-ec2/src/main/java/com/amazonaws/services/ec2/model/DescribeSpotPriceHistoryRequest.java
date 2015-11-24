@@ -69,15 +69,16 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot price (<code>Linux/UNIX</code>
-     * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
-     * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
-     * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot price. The value must match
-     * exactly (or use wildcards; greater than or less than comparison is not
-     * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot price history, in UTC format (for example,
+     * <code>m3.medium</code>). </li> <li>
+     * <p><code>product-description</code> - The product description for the
+     * Spot price (<code>Linux/UNIX</code> | <code>SUSE Linux</code> |
+     * <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> |
+     * <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon
+     * VPC)</code>). </li> <li> <p><code>spot-price</code> - The Spot price.
+     * The value must match exactly (or use wildcards; greater than or less
+     * than comparison is not supported). </li> <li>
+     * <p><code>timestamp</code> - The timestamp of the Spot price history,
+     * in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -355,15 +356,16 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot price (<code>Linux/UNIX</code>
-     * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
-     * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
-     * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot price. The value must match
-     * exactly (or use wildcards; greater than or less than comparison is not
-     * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot price history, in UTC format (for example,
+     * <code>m3.medium</code>). </li> <li>
+     * <p><code>product-description</code> - The product description for the
+     * Spot price (<code>Linux/UNIX</code> | <code>SUSE Linux</code> |
+     * <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> |
+     * <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon
+     * VPC)</code>). </li> <li> <p><code>spot-price</code> - The Spot price.
+     * The value must match exactly (or use wildcards; greater than or less
+     * than comparison is not supported). </li> <li>
+     * <p><code>timestamp</code> - The timestamp of the Spot price history,
+     * in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -371,15 +373,16 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * @return One or more filters. <ul> <li> <p><code>availability-zone</code> - The
      *         Availability Zone for which prices should be returned. </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
-     *         <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     *         - The product description for the Spot price (<code>Linux/UNIX</code>
-     *         | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
-     *         (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
-     *         <code>Windows (Amazon VPC)</code>). </li> <li>
-     *         <p><code>spot-price</code> - The Spot price. The value must match
-     *         exactly (or use wildcards; greater than or less than comparison is not
-     *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot price history, in UTC format (for example,
+     *         <code>m3.medium</code>). </li> <li>
+     *         <p><code>product-description</code> - The product description for the
+     *         Spot price (<code>Linux/UNIX</code> | <code>SUSE Linux</code> |
+     *         <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> |
+     *         <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon
+     *         VPC)</code>). </li> <li> <p><code>spot-price</code> - The Spot price.
+     *         The value must match exactly (or use wildcards; greater than or less
+     *         than comparison is not supported). </li> <li>
+     *         <p><code>timestamp</code> - The timestamp of the Spot price history,
+     *         in UTC format (for example,
      *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
@@ -396,15 +399,16 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot price (<code>Linux/UNIX</code>
-     * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
-     * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
-     * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot price. The value must match
-     * exactly (or use wildcards; greater than or less than comparison is not
-     * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot price history, in UTC format (for example,
+     * <code>m3.medium</code>). </li> <li>
+     * <p><code>product-description</code> - The product description for the
+     * Spot price (<code>Linux/UNIX</code> | <code>SUSE Linux</code> |
+     * <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> |
+     * <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon
+     * VPC)</code>). </li> <li> <p><code>spot-price</code> - The Spot price.
+     * The value must match exactly (or use wildcards; greater than or less
+     * than comparison is not supported). </li> <li>
+     * <p><code>timestamp</code> - The timestamp of the Spot price history,
+     * in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -412,15 +416,16 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * @param filters One or more filters. <ul> <li> <p><code>availability-zone</code> - The
      *         Availability Zone for which prices should be returned. </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
-     *         <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     *         - The product description for the Spot price (<code>Linux/UNIX</code>
-     *         | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
-     *         (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
-     *         <code>Windows (Amazon VPC)</code>). </li> <li>
-     *         <p><code>spot-price</code> - The Spot price. The value must match
-     *         exactly (or use wildcards; greater than or less than comparison is not
-     *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot price history, in UTC format (for example,
+     *         <code>m3.medium</code>). </li> <li>
+     *         <p><code>product-description</code> - The product description for the
+     *         Spot price (<code>Linux/UNIX</code> | <code>SUSE Linux</code> |
+     *         <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> |
+     *         <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon
+     *         VPC)</code>). </li> <li> <p><code>spot-price</code> - The Spot price.
+     *         The value must match exactly (or use wildcards; greater than or less
+     *         than comparison is not supported). </li> <li>
+     *         <p><code>timestamp</code> - The timestamp of the Spot price history,
+     *         in UTC format (for example,
      *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
@@ -439,15 +444,16 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot price (<code>Linux/UNIX</code>
-     * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
-     * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
-     * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot price. The value must match
-     * exactly (or use wildcards; greater than or less than comparison is not
-     * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot price history, in UTC format (for example,
+     * <code>m3.medium</code>). </li> <li>
+     * <p><code>product-description</code> - The product description for the
+     * Spot price (<code>Linux/UNIX</code> | <code>SUSE Linux</code> |
+     * <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> |
+     * <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon
+     * VPC)</code>). </li> <li> <p><code>spot-price</code> - The Spot price.
+     * The value must match exactly (or use wildcards; greater than or less
+     * than comparison is not supported). </li> <li>
+     * <p><code>timestamp</code> - The timestamp of the Spot price history,
+     * in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -457,15 +463,16 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * @param filters One or more filters. <ul> <li> <p><code>availability-zone</code> - The
      *         Availability Zone for which prices should be returned. </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
-     *         <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     *         - The product description for the Spot price (<code>Linux/UNIX</code>
-     *         | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
-     *         (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
-     *         <code>Windows (Amazon VPC)</code>). </li> <li>
-     *         <p><code>spot-price</code> - The Spot price. The value must match
-     *         exactly (or use wildcards; greater than or less than comparison is not
-     *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot price history, in UTC format (for example,
+     *         <code>m3.medium</code>). </li> <li>
+     *         <p><code>product-description</code> - The product description for the
+     *         Spot price (<code>Linux/UNIX</code> | <code>SUSE Linux</code> |
+     *         <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> |
+     *         <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon
+     *         VPC)</code>). </li> <li> <p><code>spot-price</code> - The Spot price.
+     *         The value must match exactly (or use wildcards; greater than or less
+     *         than comparison is not supported). </li> <li>
+     *         <p><code>timestamp</code> - The timestamp of the Spot price history,
+     *         in UTC format (for example,
      *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>
@@ -485,15 +492,16 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
      * Availability Zone for which prices should be returned. </li> <li>
      * <p><code>instance-type</code> - The type of instance (for example,
-     * <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     * - The product description for the Spot price (<code>Linux/UNIX</code>
-     * | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
-     * (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
-     * <code>Windows (Amazon VPC)</code>). </li> <li>
-     * <p><code>spot-price</code> - The Spot price. The value must match
-     * exactly (or use wildcards; greater than or less than comparison is not
-     * supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     * the Spot price history, in UTC format (for example,
+     * <code>m3.medium</code>). </li> <li>
+     * <p><code>product-description</code> - The product description for the
+     * Spot price (<code>Linux/UNIX</code> | <code>SUSE Linux</code> |
+     * <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> |
+     * <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon
+     * VPC)</code>). </li> <li> <p><code>spot-price</code> - The Spot price.
+     * The value must match exactly (or use wildcards; greater than or less
+     * than comparison is not supported). </li> <li>
+     * <p><code>timestamp</code> - The timestamp of the Spot price history,
+     * in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      * can use wildcards (* and ?). Greater than or less than comparison is
      * not supported. </li> </ul>
@@ -503,15 +511,16 @@ public class DescribeSpotPriceHistoryRequest extends AmazonWebServiceRequest imp
      * @param filters One or more filters. <ul> <li> <p><code>availability-zone</code> - The
      *         Availability Zone for which prices should be returned. </li> <li>
      *         <p><code>instance-type</code> - The type of instance (for example,
-     *         <code>m1.small</code>). </li> <li> <p><code>product-description</code>
-     *         - The product description for the Spot price (<code>Linux/UNIX</code>
-     *         | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX
-     *         (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> |
-     *         <code>Windows (Amazon VPC)</code>). </li> <li>
-     *         <p><code>spot-price</code> - The Spot price. The value must match
-     *         exactly (or use wildcards; greater than or less than comparison is not
-     *         supported). </li> <li> <p><code>timestamp</code> - The timestamp of
-     *         the Spot price history, in UTC format (for example,
+     *         <code>m3.medium</code>). </li> <li>
+     *         <p><code>product-description</code> - The product description for the
+     *         Spot price (<code>Linux/UNIX</code> | <code>SUSE Linux</code> |
+     *         <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> |
+     *         <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon
+     *         VPC)</code>). </li> <li> <p><code>spot-price</code> - The Spot price.
+     *         The value must match exactly (or use wildcards; greater than or less
+     *         than comparison is not supported). </li> <li>
+     *         <p><code>timestamp</code> - The timestamp of the Spot price history,
+     *         in UTC format (for example,
      *         <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You
      *         can use wildcards (* and ?). Greater than or less than comparison is
      *         not supported. </li> </ul>

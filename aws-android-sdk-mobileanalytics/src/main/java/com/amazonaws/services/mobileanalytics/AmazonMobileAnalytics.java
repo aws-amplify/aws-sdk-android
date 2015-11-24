@@ -20,9 +20,7 @@ import com.amazonaws.services.mobileanalytics.model.*;
 
 /**
  * Interface for accessing AmazonMobileAnalytics.
- * <p>
- * A service which is used to record Amazon Mobile Analytics events
- * </p>
+ * 
  */
 public interface AmazonMobileAnalytics {
 
@@ -84,9 +82,6 @@ public interface AmazonMobileAnalytics {
     public void setRegion(Region region) throws java.lang.IllegalArgumentException;
     
     /**
-     * <p>
-     * Record a batch of events
-     * </p>
      *
      * @param putEventsRequest Container for the necessary parameters to
      *           execute the PutEvents service method on AmazonMobileAnalytics.

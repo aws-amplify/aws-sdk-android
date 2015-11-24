@@ -1,5 +1,14 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.2.9](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.9) (11/18/2015)
+
+### New Features
+- **Amazon Web Services**: General service updates and documentation improvements.
+
+### Bug Fixes
+- **Amazon S3**: Fixed slow initialization of Amazon S3 client. [#69](https://github.com/aws/aws-sdk-android/issues/69)
+- **General**: Updated instruction for proguard.
+
 ## [Release 2.2.8](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.8) (11/05/2015)
 
 ### New Features

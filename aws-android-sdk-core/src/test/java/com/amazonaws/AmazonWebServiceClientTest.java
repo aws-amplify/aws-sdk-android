@@ -76,8 +76,8 @@ public class AmazonWebServiceClientTest {
 
     @Test
     public void testGetServiceNameWithExplicitInternalConfiguration() {
-        DataPipelineClient testClient = new DataPipelineClient();
-        assertEquals(testClient.getServiceName(), "datapipeline");
+        AmazonSimpleDBClient testClient = new AmazonSimpleDBClient();
+        assertEquals(testClient.getServiceName(), "sdb");
     }
 
     @Test
@@ -109,12 +109,12 @@ public class AmazonWebServiceClientTest {
     }
 
     // Has an explicitly set name in InternalConfig
-    private static class DataPipelineClient extends AmazonWebServiceClient {
-        public DataPipelineClient() {
+    private static class AmazonSimpleDBClient extends AmazonWebServiceClient {
+        public AmazonSimpleDBClient() {
             this(new ClientConfiguration());
         }
 
-        public DataPipelineClient(final ClientConfiguration config) {
+        public AmazonSimpleDBClient(final ClientConfiguration config) {
             super(config);
             super.setEndpoint("test.us-west-2.amazonaws.com");
         }
