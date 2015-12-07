@@ -237,8 +237,7 @@ class ApiClientHandler implements InvocationHandler {
             }
         } else {
             String error = content == null ? "NONE" : IOUtils.toString(content);
-            ApiClientException ase = new ApiClientException("Service returned code: "
-                    + code + ", error: " + error);
+            ApiClientException ase = new ApiClientException(error);
             ase.setStatusCode(response.getStatusCode());
             ase.setServiceName(apiName);
             String requestId = response.getHeaders().get("x-amzn-RequestId");
