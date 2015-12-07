@@ -54,7 +54,8 @@ class LambdaInvocationHandler implements InvocationHandler {
             throws Throwable {
         validateInterfaceMethod(method, args);
 
-        InvokeRequest invokeRequest = buildInvokeRequest(method, args == null ? null : args[0]);
+        final Object buildArg = (args == null || args.length == 0) ? null : args[0];
+        InvokeRequest invokeRequest = buildInvokeRequest(method, buildArg);
         InvokeResult invokeResult = lambda.invoke(invokeRequest);
 
         return processInvokeResult(method, invokeResult);
