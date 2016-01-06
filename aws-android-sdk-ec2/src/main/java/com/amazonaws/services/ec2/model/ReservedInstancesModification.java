@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,24 +18,24 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes a Reserved Instance modification.
+ * Describes a Reserved instance modification.
  * </p>
  */
 public class ReservedInstancesModification implements Serializable {
 
     /**
-     * A unique ID for the Reserved Instance modification.
+     * A unique ID for the Reserved instance modification.
      */
     private String reservedInstancesModificationId;
 
     /**
-     * The IDs of one or more Reserved Instances.
+     * The IDs of one or more Reserved instances.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<ReservedInstancesId> reservedInstancesIds;
 
     /**
      * Contains target configurations along with their corresponding new
-     * Reserved Instance IDs.
+     * Reserved instance IDs.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<ReservedInstancesModificationResult> modificationResults;
 
@@ -55,7 +55,7 @@ public class ReservedInstancesModification implements Serializable {
     private java.util.Date effectiveDate;
 
     /**
-     * The status of the Reserved Instances modification request.
+     * The status of the Reserved instances modification request.
      */
     private String status;
 
@@ -73,29 +73,29 @@ public class ReservedInstancesModification implements Serializable {
     private String clientToken;
 
     /**
-     * A unique ID for the Reserved Instance modification.
+     * A unique ID for the Reserved instance modification.
      *
-     * @return A unique ID for the Reserved Instance modification.
+     * @return A unique ID for the Reserved instance modification.
      */
     public String getReservedInstancesModificationId() {
         return reservedInstancesModificationId;
     }
     
     /**
-     * A unique ID for the Reserved Instance modification.
+     * A unique ID for the Reserved instance modification.
      *
-     * @param reservedInstancesModificationId A unique ID for the Reserved Instance modification.
+     * @param reservedInstancesModificationId A unique ID for the Reserved instance modification.
      */
     public void setReservedInstancesModificationId(String reservedInstancesModificationId) {
         this.reservedInstancesModificationId = reservedInstancesModificationId;
     }
     
     /**
-     * A unique ID for the Reserved Instance modification.
+     * A unique ID for the Reserved instance modification.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesModificationId A unique ID for the Reserved Instance modification.
+     * @param reservedInstancesModificationId A unique ID for the Reserved instance modification.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -106,9 +106,9 @@ public class ReservedInstancesModification implements Serializable {
     }
 
     /**
-     * The IDs of one or more Reserved Instances.
+     * The IDs of one or more Reserved instances.
      *
-     * @return The IDs of one or more Reserved Instances.
+     * @return The IDs of one or more Reserved instances.
      */
     public java.util.List<ReservedInstancesId> getReservedInstancesIds() {
         if (reservedInstancesIds == null) {
@@ -119,9 +119,9 @@ public class ReservedInstancesModification implements Serializable {
     }
     
     /**
-     * The IDs of one or more Reserved Instances.
+     * The IDs of one or more Reserved instances.
      *
-     * @param reservedInstancesIds The IDs of one or more Reserved Instances.
+     * @param reservedInstancesIds The IDs of one or more Reserved instances.
      */
     public void setReservedInstancesIds(java.util.Collection<ReservedInstancesId> reservedInstancesIds) {
         if (reservedInstancesIds == null) {
@@ -134,11 +134,11 @@ public class ReservedInstancesModification implements Serializable {
     }
     
     /**
-     * The IDs of one or more Reserved Instances.
+     * The IDs of one or more Reserved instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesIds The IDs of one or more Reserved Instances.
+     * @param reservedInstancesIds The IDs of one or more Reserved instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -152,11 +152,11 @@ public class ReservedInstancesModification implements Serializable {
     }
     
     /**
-     * The IDs of one or more Reserved Instances.
+     * The IDs of one or more Reserved instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesIds The IDs of one or more Reserved Instances.
+     * @param reservedInstancesIds The IDs of one or more Reserved instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -175,10 +175,10 @@ public class ReservedInstancesModification implements Serializable {
 
     /**
      * Contains target configurations along with their corresponding new
-     * Reserved Instance IDs.
+     * Reserved instance IDs.
      *
      * @return Contains target configurations along with their corresponding new
-     *         Reserved Instance IDs.
+     *         Reserved instance IDs.
      */
     public java.util.List<ReservedInstancesModificationResult> getModificationResults() {
         if (modificationResults == null) {
@@ -190,10 +190,10 @@ public class ReservedInstancesModification implements Serializable {
     
     /**
      * Contains target configurations along with their corresponding new
-     * Reserved Instance IDs.
+     * Reserved instance IDs.
      *
      * @param modificationResults Contains target configurations along with their corresponding new
-     *         Reserved Instance IDs.
+     *         Reserved instance IDs.
      */
     public void setModificationResults(java.util.Collection<ReservedInstancesModificationResult> modificationResults) {
         if (modificationResults == null) {
@@ -207,12 +207,12 @@ public class ReservedInstancesModification implements Serializable {
     
     /**
      * Contains target configurations along with their corresponding new
-     * Reserved Instance IDs.
+     * Reserved instance IDs.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param modificationResults Contains target configurations along with their corresponding new
-     *         Reserved Instance IDs.
+     *         Reserved instance IDs.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -227,12 +227,12 @@ public class ReservedInstancesModification implements Serializable {
     
     /**
      * Contains target configurations along with their corresponding new
-     * Reserved Instance IDs.
+     * Reserved instance IDs.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param modificationResults Contains target configurations along with their corresponding new
-     *         Reserved Instance IDs.
+     *         Reserved instance IDs.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -349,29 +349,29 @@ public class ReservedInstancesModification implements Serializable {
     }
 
     /**
-     * The status of the Reserved Instances modification request.
+     * The status of the Reserved instances modification request.
      *
-     * @return The status of the Reserved Instances modification request.
+     * @return The status of the Reserved instances modification request.
      */
     public String getStatus() {
         return status;
     }
     
     /**
-     * The status of the Reserved Instances modification request.
+     * The status of the Reserved instances modification request.
      *
-     * @param status The status of the Reserved Instances modification request.
+     * @param status The status of the Reserved instances modification request.
      */
     public void setStatus(String status) {
         this.status = status;
     }
     
     /**
-     * The status of the Reserved Instances modification request.
+     * The status of the Reserved instances modification request.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param status The status of the Reserved Instances modification request.
+     * @param status The status of the Reserved instances modification request.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

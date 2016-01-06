@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class DescribeInstancesResult implements Serializable {
 
     /**
-     * One or more reservations.
+     * Zero or more reservations.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<Reservation> reservations;
 
@@ -33,9 +33,9 @@ public class DescribeInstancesResult implements Serializable {
     private String nextToken;
 
     /**
-     * One or more reservations.
+     * Zero or more reservations.
      *
-     * @return One or more reservations.
+     * @return Zero or more reservations.
      */
     public java.util.List<Reservation> getReservations() {
         if (reservations == null) {
@@ -46,9 +46,9 @@ public class DescribeInstancesResult implements Serializable {
     }
     
     /**
-     * One or more reservations.
+     * Zero or more reservations.
      *
-     * @param reservations One or more reservations.
+     * @param reservations Zero or more reservations.
      */
     public void setReservations(java.util.Collection<Reservation> reservations) {
         if (reservations == null) {
@@ -61,11 +61,11 @@ public class DescribeInstancesResult implements Serializable {
     }
     
     /**
-     * One or more reservations.
+     * Zero or more reservations.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservations One or more reservations.
+     * @param reservations Zero or more reservations.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -79,11 +79,11 @@ public class DescribeInstancesResult implements Serializable {
     }
     
     /**
-     * One or more reservations.
+     * Zero or more reservations.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservations One or more reservations.
+     * @param reservations Zero or more reservations.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

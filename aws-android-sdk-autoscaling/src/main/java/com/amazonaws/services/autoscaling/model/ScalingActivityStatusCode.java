@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package com.amazonaws.services.autoscaling.model;
  */
 public enum ScalingActivityStatusCode {
     
+    PendingSpotBidPlacement("PendingSpotBidPlacement"),
     WaitingForSpotInstanceRequestId("WaitingForSpotInstanceRequestId"),
     WaitingForSpotInstanceId("WaitingForSpotInstanceId"),
     WaitingForInstanceId("WaitingForInstanceId"),
@@ -53,6 +54,8 @@ public enum ScalingActivityStatusCode {
         if (value == null || "".equals(value)) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         
+        } else if ("PendingSpotBidPlacement".equals(value)) {
+            return ScalingActivityStatusCode.PendingSpotBidPlacement;
         } else if ("WaitingForSpotInstanceRequestId".equals(value)) {
             return ScalingActivityStatusCode.WaitingForSpotInstanceRequestId;
         } else if ("WaitingForSpotInstanceId".equals(value)) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -65,10 +65,11 @@ public class FlowLog implements Serializable {
     /**
      * Information about the error that occurred. <code>Rate limited</code>
      * indicates that CloudWatch logs throttling has been applied for one or
-     * more network interfaces. <code>Access error</code> indicates that the
-     * IAM role associated with the flow log does not have sufficient
-     * permissions to publish to CloudWatch Logs. <code>Unknown error</code>
-     * indicates an internal error.
+     * more network interfaces, or that you've reached the limit on the
+     * number of CloudWatch Logs log groups that you can create. <code>Access
+     * error</code> indicates that the IAM role associated with the flow log
+     * does not have sufficient permissions to publish to CloudWatch Logs.
+     * <code>Unknown error</code> indicates an internal error.
      */
     private String deliverLogsErrorMessage;
 
@@ -366,17 +367,19 @@ public class FlowLog implements Serializable {
     /**
      * Information about the error that occurred. <code>Rate limited</code>
      * indicates that CloudWatch logs throttling has been applied for one or
-     * more network interfaces. <code>Access error</code> indicates that the
-     * IAM role associated with the flow log does not have sufficient
-     * permissions to publish to CloudWatch Logs. <code>Unknown error</code>
-     * indicates an internal error.
+     * more network interfaces, or that you've reached the limit on the
+     * number of CloudWatch Logs log groups that you can create. <code>Access
+     * error</code> indicates that the IAM role associated with the flow log
+     * does not have sufficient permissions to publish to CloudWatch Logs.
+     * <code>Unknown error</code> indicates an internal error.
      *
      * @return Information about the error that occurred. <code>Rate limited</code>
      *         indicates that CloudWatch logs throttling has been applied for one or
-     *         more network interfaces. <code>Access error</code> indicates that the
-     *         IAM role associated with the flow log does not have sufficient
-     *         permissions to publish to CloudWatch Logs. <code>Unknown error</code>
-     *         indicates an internal error.
+     *         more network interfaces, or that you've reached the limit on the
+     *         number of CloudWatch Logs log groups that you can create. <code>Access
+     *         error</code> indicates that the IAM role associated with the flow log
+     *         does not have sufficient permissions to publish to CloudWatch Logs.
+     *         <code>Unknown error</code> indicates an internal error.
      */
     public String getDeliverLogsErrorMessage() {
         return deliverLogsErrorMessage;
@@ -385,17 +388,19 @@ public class FlowLog implements Serializable {
     /**
      * Information about the error that occurred. <code>Rate limited</code>
      * indicates that CloudWatch logs throttling has been applied for one or
-     * more network interfaces. <code>Access error</code> indicates that the
-     * IAM role associated with the flow log does not have sufficient
-     * permissions to publish to CloudWatch Logs. <code>Unknown error</code>
-     * indicates an internal error.
+     * more network interfaces, or that you've reached the limit on the
+     * number of CloudWatch Logs log groups that you can create. <code>Access
+     * error</code> indicates that the IAM role associated with the flow log
+     * does not have sufficient permissions to publish to CloudWatch Logs.
+     * <code>Unknown error</code> indicates an internal error.
      *
      * @param deliverLogsErrorMessage Information about the error that occurred. <code>Rate limited</code>
      *         indicates that CloudWatch logs throttling has been applied for one or
-     *         more network interfaces. <code>Access error</code> indicates that the
-     *         IAM role associated with the flow log does not have sufficient
-     *         permissions to publish to CloudWatch Logs. <code>Unknown error</code>
-     *         indicates an internal error.
+     *         more network interfaces, or that you've reached the limit on the
+     *         number of CloudWatch Logs log groups that you can create. <code>Access
+     *         error</code> indicates that the IAM role associated with the flow log
+     *         does not have sufficient permissions to publish to CloudWatch Logs.
+     *         <code>Unknown error</code> indicates an internal error.
      */
     public void setDeliverLogsErrorMessage(String deliverLogsErrorMessage) {
         this.deliverLogsErrorMessage = deliverLogsErrorMessage;
@@ -404,19 +409,21 @@ public class FlowLog implements Serializable {
     /**
      * Information about the error that occurred. <code>Rate limited</code>
      * indicates that CloudWatch logs throttling has been applied for one or
-     * more network interfaces. <code>Access error</code> indicates that the
-     * IAM role associated with the flow log does not have sufficient
-     * permissions to publish to CloudWatch Logs. <code>Unknown error</code>
-     * indicates an internal error.
+     * more network interfaces, or that you've reached the limit on the
+     * number of CloudWatch Logs log groups that you can create. <code>Access
+     * error</code> indicates that the IAM role associated with the flow log
+     * does not have sufficient permissions to publish to CloudWatch Logs.
+     * <code>Unknown error</code> indicates an internal error.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param deliverLogsErrorMessage Information about the error that occurred. <code>Rate limited</code>
      *         indicates that CloudWatch logs throttling has been applied for one or
-     *         more network interfaces. <code>Access error</code> indicates that the
-     *         IAM role associated with the flow log does not have sufficient
-     *         permissions to publish to CloudWatch Logs. <code>Unknown error</code>
-     *         indicates an internal error.
+     *         more network interfaces, or that you've reached the limit on the
+     *         number of CloudWatch Logs log groups that you can create. <code>Access
+     *         error</code> indicates that the IAM role associated with the flow log
+     *         does not have sufficient permissions to publish to CloudWatch Logs.
+     *         <code>Unknown error</code> indicates an internal error.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

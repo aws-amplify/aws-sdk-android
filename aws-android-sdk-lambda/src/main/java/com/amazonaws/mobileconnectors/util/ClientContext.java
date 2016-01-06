@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -86,13 +86,18 @@ public class ClientContext {
     }
 
     /**
-     * Gets the installation_id id from shared preferences. A new one is
-     * generated via {@link UUID#randomUUID()} if not found.
+     * Gets the installation id from shared preferences. A new one will be
+     * assigned if not found. The installation id is unique per app
+     * installation. This value appears as installation_id in client context
+     * object in AWS Lambda.
      *
      * @param context context of the app
-     * @return client id
+     * @return the unique installation id per app installation
+     * @see <a
+     *      href="http://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html">The
+     *      Context Object (Node.js)</a>
      */
-    static String getInstallationId(Context context) {
+    public static String getInstallationId(Context context) {
         SharedPreferences sp = context.getSharedPreferences(SHARED_PREFERENCES,
                 Context.MODE_PRIVATE);
         String installationId = sp.getString("installation_id", null);

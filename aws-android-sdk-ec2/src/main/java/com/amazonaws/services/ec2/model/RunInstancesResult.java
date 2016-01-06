@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,34 +24,34 @@ import java.io.Serializable;
 public class RunInstancesResult implements Serializable {
 
     /**
-     * One or more reservations.
+     * Zero or more reservations.
      */
     private Reservation reservation;
 
     /**
-     * One or more reservations.
+     * Zero or more reservations.
      *
-     * @return One or more reservations.
+     * @return Zero or more reservations.
      */
     public Reservation getReservation() {
         return reservation;
     }
     
     /**
-     * One or more reservations.
+     * Zero or more reservations.
      *
-     * @param reservation One or more reservations.
+     * @param reservation Zero or more reservations.
      */
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
     }
     
     /**
-     * One or more reservations.
+     * Zero or more reservations.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservation One or more reservations.
+     * @param reservation Zero or more reservations.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

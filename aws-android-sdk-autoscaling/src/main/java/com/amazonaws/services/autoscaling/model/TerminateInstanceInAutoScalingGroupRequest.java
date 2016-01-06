@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ public class TerminateInstanceInAutoScalingGroupRequest extends AmazonWebService
      * The ID of the EC2 instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String instanceId;
@@ -52,7 +52,7 @@ public class TerminateInstanceInAutoScalingGroupRequest extends AmazonWebService
      * The ID of the EC2 instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The ID of the EC2 instance.
@@ -65,7 +65,7 @@ public class TerminateInstanceInAutoScalingGroupRequest extends AmazonWebService
      * The ID of the EC2 instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceId The ID of the EC2 instance.
@@ -80,7 +80,7 @@ public class TerminateInstanceInAutoScalingGroupRequest extends AmazonWebService
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceId The ID of the EC2 instance.

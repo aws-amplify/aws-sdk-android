@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes a Reserved Instance offering.
+ * Describes a Reserved instance offering.
  * </p>
  */
 public class PricingDetail implements Serializable {
@@ -29,7 +29,7 @@ public class PricingDetail implements Serializable {
     private Double price;
 
     /**
-     * The number of instances available for the price.
+     * The number of reservations available for the price.
      */
     private Integer count;
 
@@ -67,29 +67,29 @@ public class PricingDetail implements Serializable {
     }
 
     /**
-     * The number of instances available for the price.
+     * The number of reservations available for the price.
      *
-     * @return The number of instances available for the price.
+     * @return The number of reservations available for the price.
      */
     public Integer getCount() {
         return count;
     }
     
     /**
-     * The number of instances available for the price.
+     * The number of reservations available for the price.
      *
-     * @param count The number of instances available for the price.
+     * @param count The number of reservations available for the price.
      */
     public void setCount(Integer count) {
         this.count = count;
     }
     
     /**
-     * The number of instances available for the price.
+     * The number of reservations available for the price.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param count The number of instances available for the price.
+     * @param count The number of reservations available for the price.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

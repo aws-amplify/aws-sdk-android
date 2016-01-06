@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,40 +18,40 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes the ID of a Reserved Instance.
+ * Describes the ID of a Reserved instance.
  * </p>
  */
 public class ReservedInstancesId implements Serializable {
 
     /**
-     * The ID of the Reserved Instance.
+     * The ID of the Reserved instance.
      */
     private String reservedInstancesId;
 
     /**
-     * The ID of the Reserved Instance.
+     * The ID of the Reserved instance.
      *
-     * @return The ID of the Reserved Instance.
+     * @return The ID of the Reserved instance.
      */
     public String getReservedInstancesId() {
         return reservedInstancesId;
     }
     
     /**
-     * The ID of the Reserved Instance.
+     * The ID of the Reserved instance.
      *
-     * @param reservedInstancesId The ID of the Reserved Instance.
+     * @param reservedInstancesId The ID of the Reserved instance.
      */
     public void setReservedInstancesId(String reservedInstancesId) {
         this.reservedInstancesId = reservedInstancesId;
     }
     
     /**
-     * The ID of the Reserved Instance.
+     * The ID of the Reserved instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesId The ID of the Reserved Instance.
+     * @param reservedInstancesId The ID of the Reserved instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

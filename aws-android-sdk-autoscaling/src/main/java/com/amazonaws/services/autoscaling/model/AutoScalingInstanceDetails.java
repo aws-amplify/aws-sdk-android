@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ public class AutoScalingInstanceDetails implements Serializable {
      * The ID of the instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String instanceId;
@@ -84,10 +84,16 @@ public class AutoScalingInstanceDetails implements Serializable {
     private String launchConfigurationName;
 
     /**
+     * Indicates whether the instance is protected from termination by Auto
+     * Scaling when scaling in.
+     */
+    private Boolean protectedFromScaleIn;
+
+    /**
      * The ID of the instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The ID of the instance.
@@ -100,7 +106,7 @@ public class AutoScalingInstanceDetails implements Serializable {
      * The ID of the instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceId The ID of the instance.
@@ -115,7 +121,7 @@ public class AutoScalingInstanceDetails implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceId The ID of the instance.
@@ -390,6 +396,56 @@ public class AutoScalingInstanceDetails implements Serializable {
     }
 
     /**
+     * Indicates whether the instance is protected from termination by Auto
+     * Scaling when scaling in.
+     *
+     * @return Indicates whether the instance is protected from termination by Auto
+     *         Scaling when scaling in.
+     */
+    public Boolean isProtectedFromScaleIn() {
+        return protectedFromScaleIn;
+    }
+    
+    /**
+     * Indicates whether the instance is protected from termination by Auto
+     * Scaling when scaling in.
+     *
+     * @param protectedFromScaleIn Indicates whether the instance is protected from termination by Auto
+     *         Scaling when scaling in.
+     */
+    public void setProtectedFromScaleIn(Boolean protectedFromScaleIn) {
+        this.protectedFromScaleIn = protectedFromScaleIn;
+    }
+    
+    /**
+     * Indicates whether the instance is protected from termination by Auto
+     * Scaling when scaling in.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param protectedFromScaleIn Indicates whether the instance is protected from termination by Auto
+     *         Scaling when scaling in.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public AutoScalingInstanceDetails withProtectedFromScaleIn(Boolean protectedFromScaleIn) {
+        this.protectedFromScaleIn = protectedFromScaleIn;
+        return this;
+    }
+
+    /**
+     * Indicates whether the instance is protected from termination by Auto
+     * Scaling when scaling in.
+     *
+     * @return Indicates whether the instance is protected from termination by Auto
+     *         Scaling when scaling in.
+     */
+    public Boolean getProtectedFromScaleIn() {
+        return protectedFromScaleIn;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -406,7 +462,8 @@ public class AutoScalingInstanceDetails implements Serializable {
         if (getAvailabilityZone() != null) sb.append("AvailabilityZone: " + getAvailabilityZone() + ",");
         if (getLifecycleState() != null) sb.append("LifecycleState: " + getLifecycleState() + ",");
         if (getHealthStatus() != null) sb.append("HealthStatus: " + getHealthStatus() + ",");
-        if (getLaunchConfigurationName() != null) sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() );
+        if (getLaunchConfigurationName() != null) sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() + ",");
+        if (isProtectedFromScaleIn() != null) sb.append("ProtectedFromScaleIn: " + isProtectedFromScaleIn() );
         sb.append("}");
         return sb.toString();
     }
@@ -422,6 +479,7 @@ public class AutoScalingInstanceDetails implements Serializable {
         hashCode = prime * hashCode + ((getLifecycleState() == null) ? 0 : getLifecycleState().hashCode()); 
         hashCode = prime * hashCode + ((getHealthStatus() == null) ? 0 : getHealthStatus().hashCode()); 
         hashCode = prime * hashCode + ((getLaunchConfigurationName() == null) ? 0 : getLaunchConfigurationName().hashCode()); 
+        hashCode = prime * hashCode + ((isProtectedFromScaleIn() == null) ? 0 : isProtectedFromScaleIn().hashCode()); 
         return hashCode;
     }
     
@@ -445,6 +503,8 @@ public class AutoScalingInstanceDetails implements Serializable {
         if (other.getHealthStatus() != null && other.getHealthStatus().equals(this.getHealthStatus()) == false) return false; 
         if (other.getLaunchConfigurationName() == null ^ this.getLaunchConfigurationName() == null) return false;
         if (other.getLaunchConfigurationName() != null && other.getLaunchConfigurationName().equals(this.getLaunchConfigurationName()) == false) return false; 
+        if (other.isProtectedFromScaleIn() == null ^ this.isProtectedFromScaleIn() == null) return false;
+        if (other.isProtectedFromScaleIn() != null && other.isProtectedFromScaleIn().equals(this.isProtectedFromScaleIn()) == false) return false; 
         return true;
     }
     

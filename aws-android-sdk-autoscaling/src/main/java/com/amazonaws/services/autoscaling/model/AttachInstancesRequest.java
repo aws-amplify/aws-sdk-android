@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,6 +23,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Attaches one or more EC2 instances to the specified Auto Scaling
  * group.
+ * </p>
+ * <p>
+ * When you attach instances, Auto Scaling increases the desired capacity
+ * of the group by the number of instances being attached. If the number
+ * of instances being attached plus the desired capacity of the group
+ * exceeds the maximum size of the group, the operation fails.
  * </p>
  * <p>
  * For more information, see

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -94,16 +94,18 @@ public class TransferObserver {
      */
     public void refresh() {
         Cursor c = dbUtil.queryTransferById(id);
-        if (c != null) {
-            c.moveToFirst();
-            bytesTotal = c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
-            bytesTransferred = c.getLong(c
-                    .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_CURRENT));
-            transferState = TransferState.getState(c.getString(c
-                    .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
-            filePath = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE));
+        if (!c.moveToFirst()) {
             c.close();
+            return;
         }
+
+        bytesTotal = c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
+        bytesTransferred = c.getLong(c
+                .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_CURRENT));
+        transferState = TransferState.getState(c.getString(c
+                .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
+        filePath = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE));
+        c.close();
     }
 
     /**
@@ -192,13 +194,9 @@ public class TransferObserver {
                 return;
             }
             Cursor c = dbUtil.queryTransferById(id);
-
-            if (c == null) {
-                transferListener.onError(id,
-                        new IllegalStateException("Transfer record not found."));
-                return;
-            } else if (!c.moveToFirst()) {
+            if (!c.moveToFirst()) {
                 // Transfer was deleted
+                c.close();
                 return;
             }
 

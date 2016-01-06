@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String instanceId;
@@ -97,7 +97,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. <p>The default is 300. For
+     * before another scaling activity can start. The default is 300. <p>For
      * more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
@@ -137,17 +137,15 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     private String healthCheckType;
 
     /**
-     * The amount of time, in seconds, after an EC2 instance comes into
-     * service that Auto Scaling starts checking its health. During this
-     * time, any health check failures for the instance are ignored. <p>This
-     * parameter is required if you are adding an <code>ELB</code> health
-     * check. Frequently, new instances need to warm up, briefly, before they
-     * can pass a health check. To provide ample warm-up time, set the health
-     * check grace period of the group to match the expected startup period
-     * of your application. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-add-elb-healthcheck.html">Add
-     * an Elastic Load Balancing Health Check to Your Auto Scaling Group</a>
-     * in the <i>Auto Scaling Developer Guide</i>.
+     * The amount of time, in seconds, that Auto Scaling waits before
+     * checking the health status of an EC2 instance that has come into
+     * service. During this time, any health check failures for the instance
+     * are ignored. The default is 300. <p>This parameter is required if you
+     * are adding an <code>ELB</code> health check. <p>For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     * Checks for Auto Scaling Instances</a> in the <i>Auto Scaling Developer
+     * Guide</i>.
      */
     private Integer healthCheckGracePeriod;
 
@@ -187,6 +185,12 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Scaling Developer Guide</i>.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> terminationPolicies;
+
+    /**
+     * Indicates whether newly launched instances are protected from
+     * termination by Auto Scaling when scaling in.
+     */
+    private Boolean newInstancesProtectedFromScaleIn;
 
     /**
      * The tag to be created or updated. Each tag should be defined by its
@@ -322,7 +326,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The ID of the EC2 instance used to create a launch configuration for
@@ -355,7 +359,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceId The ID of the EC2 instance used to create a launch configuration for
@@ -390,7 +394,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 16<br/>
+     * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceId The ID of the EC2 instance used to create a launch configuration for
@@ -526,13 +530,13 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. <p>The default is 300. For
+     * before another scaling activity can start. The default is 300. <p>For
      * more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return The amount of time, in seconds, after a scaling activity completes
-     *         before another scaling activity can start. <p>The default is 300. For
+     *         before another scaling activity can start. The default is 300. <p>For
      *         more information, see <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
@@ -543,13 +547,13 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. <p>The default is 300. For
+     * before another scaling activity can start. The default is 300. <p>For
      * more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @param defaultCooldown The amount of time, in seconds, after a scaling activity completes
-     *         before another scaling activity can start. <p>The default is 300. For
+     *         before another scaling activity can start. The default is 300. <p>For
      *         more information, see <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
@@ -560,7 +564,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     
     /**
      * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. <p>The default is 300. For
+     * before another scaling activity can start. The default is 300. <p>For
      * more information, see <a
      * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
@@ -568,7 +572,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param defaultCooldown The amount of time, in seconds, after a scaling activity completes
-     *         before another scaling activity can start. <p>The default is 300. For
+     *         before another scaling activity can start. The default is 300. <p>For
      *         more information, see <a
      *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
      *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
@@ -845,89 +849,77 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The amount of time, in seconds, after an EC2 instance comes into
-     * service that Auto Scaling starts checking its health. During this
-     * time, any health check failures for the instance are ignored. <p>This
-     * parameter is required if you are adding an <code>ELB</code> health
-     * check. Frequently, new instances need to warm up, briefly, before they
-     * can pass a health check. To provide ample warm-up time, set the health
-     * check grace period of the group to match the expected startup period
-     * of your application. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-add-elb-healthcheck.html">Add
-     * an Elastic Load Balancing Health Check to Your Auto Scaling Group</a>
-     * in the <i>Auto Scaling Developer Guide</i>.
+     * The amount of time, in seconds, that Auto Scaling waits before
+     * checking the health status of an EC2 instance that has come into
+     * service. During this time, any health check failures for the instance
+     * are ignored. The default is 300. <p>This parameter is required if you
+     * are adding an <code>ELB</code> health check. <p>For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     * Checks for Auto Scaling Instances</a> in the <i>Auto Scaling Developer
+     * Guide</i>.
      *
-     * @return The amount of time, in seconds, after an EC2 instance comes into
-     *         service that Auto Scaling starts checking its health. During this
-     *         time, any health check failures for the instance are ignored. <p>This
-     *         parameter is required if you are adding an <code>ELB</code> health
-     *         check. Frequently, new instances need to warm up, briefly, before they
-     *         can pass a health check. To provide ample warm-up time, set the health
-     *         check grace period of the group to match the expected startup period
-     *         of your application. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-add-elb-healthcheck.html">Add
-     *         an Elastic Load Balancing Health Check to Your Auto Scaling Group</a>
-     *         in the <i>Auto Scaling Developer Guide</i>.
+     * @return The amount of time, in seconds, that Auto Scaling waits before
+     *         checking the health status of an EC2 instance that has come into
+     *         service. During this time, any health check failures for the instance
+     *         are ignored. The default is 300. <p>This parameter is required if you
+     *         are adding an <code>ELB</code> health check. <p>For more information,
+     *         see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     *         Checks for Auto Scaling Instances</a> in the <i>Auto Scaling Developer
+     *         Guide</i>.
      */
     public Integer getHealthCheckGracePeriod() {
         return healthCheckGracePeriod;
     }
     
     /**
-     * The amount of time, in seconds, after an EC2 instance comes into
-     * service that Auto Scaling starts checking its health. During this
-     * time, any health check failures for the instance are ignored. <p>This
-     * parameter is required if you are adding an <code>ELB</code> health
-     * check. Frequently, new instances need to warm up, briefly, before they
-     * can pass a health check. To provide ample warm-up time, set the health
-     * check grace period of the group to match the expected startup period
-     * of your application. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-add-elb-healthcheck.html">Add
-     * an Elastic Load Balancing Health Check to Your Auto Scaling Group</a>
-     * in the <i>Auto Scaling Developer Guide</i>.
+     * The amount of time, in seconds, that Auto Scaling waits before
+     * checking the health status of an EC2 instance that has come into
+     * service. During this time, any health check failures for the instance
+     * are ignored. The default is 300. <p>This parameter is required if you
+     * are adding an <code>ELB</code> health check. <p>For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     * Checks for Auto Scaling Instances</a> in the <i>Auto Scaling Developer
+     * Guide</i>.
      *
-     * @param healthCheckGracePeriod The amount of time, in seconds, after an EC2 instance comes into
-     *         service that Auto Scaling starts checking its health. During this
-     *         time, any health check failures for the instance are ignored. <p>This
-     *         parameter is required if you are adding an <code>ELB</code> health
-     *         check. Frequently, new instances need to warm up, briefly, before they
-     *         can pass a health check. To provide ample warm-up time, set the health
-     *         check grace period of the group to match the expected startup period
-     *         of your application. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-add-elb-healthcheck.html">Add
-     *         an Elastic Load Balancing Health Check to Your Auto Scaling Group</a>
-     *         in the <i>Auto Scaling Developer Guide</i>.
+     * @param healthCheckGracePeriod The amount of time, in seconds, that Auto Scaling waits before
+     *         checking the health status of an EC2 instance that has come into
+     *         service. During this time, any health check failures for the instance
+     *         are ignored. The default is 300. <p>This parameter is required if you
+     *         are adding an <code>ELB</code> health check. <p>For more information,
+     *         see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     *         Checks for Auto Scaling Instances</a> in the <i>Auto Scaling Developer
+     *         Guide</i>.
      */
     public void setHealthCheckGracePeriod(Integer healthCheckGracePeriod) {
         this.healthCheckGracePeriod = healthCheckGracePeriod;
     }
     
     /**
-     * The amount of time, in seconds, after an EC2 instance comes into
-     * service that Auto Scaling starts checking its health. During this
-     * time, any health check failures for the instance are ignored. <p>This
-     * parameter is required if you are adding an <code>ELB</code> health
-     * check. Frequently, new instances need to warm up, briefly, before they
-     * can pass a health check. To provide ample warm-up time, set the health
-     * check grace period of the group to match the expected startup period
-     * of your application. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-add-elb-healthcheck.html">Add
-     * an Elastic Load Balancing Health Check to Your Auto Scaling Group</a>
-     * in the <i>Auto Scaling Developer Guide</i>.
+     * The amount of time, in seconds, that Auto Scaling waits before
+     * checking the health status of an EC2 instance that has come into
+     * service. During this time, any health check failures for the instance
+     * are ignored. The default is 300. <p>This parameter is required if you
+     * are adding an <code>ELB</code> health check. <p>For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     * Checks for Auto Scaling Instances</a> in the <i>Auto Scaling Developer
+     * Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param healthCheckGracePeriod The amount of time, in seconds, after an EC2 instance comes into
-     *         service that Auto Scaling starts checking its health. During this
-     *         time, any health check failures for the instance are ignored. <p>This
-     *         parameter is required if you are adding an <code>ELB</code> health
-     *         check. Frequently, new instances need to warm up, briefly, before they
-     *         can pass a health check. To provide ample warm-up time, set the health
-     *         check grace period of the group to match the expected startup period
-     *         of your application. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-add-elb-healthcheck.html">Add
-     *         an Elastic Load Balancing Health Check to Your Auto Scaling Group</a>
-     *         in the <i>Auto Scaling Developer Guide</i>.
+     * @param healthCheckGracePeriod The amount of time, in seconds, that Auto Scaling waits before
+     *         checking the health status of an EC2 instance that has come into
+     *         service. During this time, any health check failures for the instance
+     *         are ignored. The default is 300. <p>This parameter is required if you
+     *         are adding an <code>ELB</code> health check. <p>For more information,
+     *         see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
+     *         Checks for Auto Scaling Instances</a> in the <i>Auto Scaling Developer
+     *         Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1190,6 +1182,56 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * Indicates whether newly launched instances are protected from
+     * termination by Auto Scaling when scaling in.
+     *
+     * @return Indicates whether newly launched instances are protected from
+     *         termination by Auto Scaling when scaling in.
+     */
+    public Boolean isNewInstancesProtectedFromScaleIn() {
+        return newInstancesProtectedFromScaleIn;
+    }
+    
+    /**
+     * Indicates whether newly launched instances are protected from
+     * termination by Auto Scaling when scaling in.
+     *
+     * @param newInstancesProtectedFromScaleIn Indicates whether newly launched instances are protected from
+     *         termination by Auto Scaling when scaling in.
+     */
+    public void setNewInstancesProtectedFromScaleIn(Boolean newInstancesProtectedFromScaleIn) {
+        this.newInstancesProtectedFromScaleIn = newInstancesProtectedFromScaleIn;
+    }
+    
+    /**
+     * Indicates whether newly launched instances are protected from
+     * termination by Auto Scaling when scaling in.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param newInstancesProtectedFromScaleIn Indicates whether newly launched instances are protected from
+     *         termination by Auto Scaling when scaling in.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public CreateAutoScalingGroupRequest withNewInstancesProtectedFromScaleIn(Boolean newInstancesProtectedFromScaleIn) {
+        this.newInstancesProtectedFromScaleIn = newInstancesProtectedFromScaleIn;
+        return this;
+    }
+
+    /**
+     * Indicates whether newly launched instances are protected from
+     * termination by Auto Scaling when scaling in.
+     *
+     * @return Indicates whether newly launched instances are protected from
+     *         termination by Auto Scaling when scaling in.
+     */
+    public Boolean getNewInstancesProtectedFromScaleIn() {
+        return newInstancesProtectedFromScaleIn;
+    }
+
+    /**
      * The tag to be created or updated. Each tag should be defined by its
      * resource type, resource ID, key, value, and a propagate flag. Valid
      * values: key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
@@ -1339,6 +1381,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
         if (getPlacementGroup() != null) sb.append("PlacementGroup: " + getPlacementGroup() + ",");
         if (getVPCZoneIdentifier() != null) sb.append("VPCZoneIdentifier: " + getVPCZoneIdentifier() + ",");
         if (getTerminationPolicies() != null) sb.append("TerminationPolicies: " + getTerminationPolicies() + ",");
+        if (isNewInstancesProtectedFromScaleIn() != null) sb.append("NewInstancesProtectedFromScaleIn: " + isNewInstancesProtectedFromScaleIn() + ",");
         if (getTags() != null) sb.append("Tags: " + getTags() );
         sb.append("}");
         return sb.toString();
@@ -1363,6 +1406,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
         hashCode = prime * hashCode + ((getPlacementGroup() == null) ? 0 : getPlacementGroup().hashCode()); 
         hashCode = prime * hashCode + ((getVPCZoneIdentifier() == null) ? 0 : getVPCZoneIdentifier().hashCode()); 
         hashCode = prime * hashCode + ((getTerminationPolicies() == null) ? 0 : getTerminationPolicies().hashCode()); 
+        hashCode = prime * hashCode + ((isNewInstancesProtectedFromScaleIn() == null) ? 0 : isNewInstancesProtectedFromScaleIn().hashCode()); 
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode()); 
         return hashCode;
     }
@@ -1403,6 +1447,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
         if (other.getVPCZoneIdentifier() != null && other.getVPCZoneIdentifier().equals(this.getVPCZoneIdentifier()) == false) return false; 
         if (other.getTerminationPolicies() == null ^ this.getTerminationPolicies() == null) return false;
         if (other.getTerminationPolicies() != null && other.getTerminationPolicies().equals(this.getTerminationPolicies()) == false) return false; 
+        if (other.isNewInstancesProtectedFromScaleIn() == null ^ this.isNewInstancesProtectedFromScaleIn() == null) return false;
+        if (other.isNewInstancesProtectedFromScaleIn() != null && other.isNewInstancesProtectedFromScaleIn().equals(this.isNewInstancesProtectedFromScaleIn()) == false) return false; 
         if (other.getTags() == null ^ this.getTags() == null) return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false) return false; 
         return true;

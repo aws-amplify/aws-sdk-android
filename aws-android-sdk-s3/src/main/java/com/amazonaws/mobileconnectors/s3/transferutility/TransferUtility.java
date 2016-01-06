@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,11 +48,11 @@ import java.util.UUID;
  *     public void onStateChanged(int id, String newState) {
  *         // Do something in the callback.
  *     }
- * 
+ *
  *     public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
  *         // Do something in the callback.
  *     }
- * 
+ *
  *     public void onError(int id, Exception e) {
  *         // Do something in the callback.
  *     }
@@ -64,10 +64,10 @@ import java.util.UUID;
  * <pre>
  * // Gets id of the transfer.
  * int id = observer.getId();
- * 
+ *
  * // Pauses the transfer.
  * transferManager.pause(id);
- * 
+ *
  * // Resumes the transfer.
  * transferManager.resume(id);
  * </pre>
@@ -77,7 +77,7 @@ import java.util.UUID;
  * <pre>
  * // Cancels the transfer.
  * transferManager.cancel(id);
- * 
+ *
  * // Deletes the transfer.
  * transferManager.delete(id);
  * </pre>
@@ -86,7 +86,6 @@ public class TransferUtility {
 
     static final String KEY_FOR_S3_WEAK_REFERENCE = "keyForS3WeakReference";
 
-    private final AmazonS3 s3;
     private final Context appContext;
     private final String s3WeakReferenceMapKey;
     private final TransferDBUtil dbUtil;
@@ -107,7 +106,6 @@ public class TransferUtility {
      * @param configuration Configuration parameters for this TransferUtility
      */
     public TransferUtility(AmazonS3 s3, Context context) {
-        this.s3 = s3;
         this.s3WeakReferenceMapKey = UUID.randomUUID().toString();
         S3ClientWeakReference.put(s3WeakReferenceMapKey, s3);
         this.appContext = context.getApplicationContext();
@@ -181,9 +179,11 @@ public class TransferUtility {
      */
     public TransferObserver getTransferById(int id) {
         Cursor c = dbUtil.queryTransferById(id);
-        if (c == null)
+        if (!c.moveToFirst()) {
+            c.close();
             return null;
-        c.moveToFirst();
+        }
+
         long totalBytesOfFile = c
                 .getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
         c.close();
@@ -200,9 +200,6 @@ public class TransferUtility {
     public List<TransferObserver> getTransfersWithType(TransferType type) {
         List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
         Cursor c = dbUtil.queryAllTransfersWithType(type);
-        if (c == null) {
-            return transferObservers;
-        }
         while (c.moveToNext()) {
             transferObservers.add(new TransferObserver((int) c.getLong(c
                     .getColumnIndexOrThrow(TransferTable.COLUMN_ID)), appContext, c.getLong(c
@@ -225,9 +222,6 @@ public class TransferUtility {
             TransferState state) {
         List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
         Cursor c = dbUtil.queryTransfersWithTypeAndState(type, state);
-        if (c == null) {
-            return transferObservers;
-        }
         while (c.moveToNext()) {
             transferObservers.add(new TransferObserver((int) c.getLong(c
                     .getColumnIndexOrThrow(TransferTable.COLUMN_ID)), appContext, c.getLong(c
@@ -286,10 +280,11 @@ public class TransferUtility {
      */
     public boolean pause(int id) {
         Cursor c = dbUtil.queryTransferById(id);
-        if (c == null) {
+        if (!c.moveToFirst()) {
+            c.close();
             return false;
         }
-        c.moveToFirst();
+
         TransferState state = TransferState.getState(c.getString(c
                 .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
         c.close();
@@ -323,10 +318,10 @@ public class TransferUtility {
         intent.putExtra(KEY_FOR_S3_WEAK_REFERENCE, s3WeakReferenceMapKey);
         appContext.startService(intent);
         Cursor c = dbUtil.queryTransferById(id);
-        if (c == null) {
+        if (!c.moveToFirst()) {
+            c.close();
             return null;
         }
-        c.moveToFirst();
         TransferState state = TransferState.getState(c.getString(c
                 .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
         c.close();
@@ -349,10 +344,11 @@ public class TransferUtility {
      */
     public boolean cancel(int id) {
         Cursor c = dbUtil.queryTransferById(id);
-        if (c == null) {
+        if (!c.moveToFirst()) {
+            c.close();
             return false;
         }
-        c.moveToFirst();
+
         TransferState state = TransferState.getState(c.getString(c
                 .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
         c.close();

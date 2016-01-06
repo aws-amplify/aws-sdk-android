@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2015 Amazon Technologies, Inc.
+ * Copyright 2013-2016 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,7 @@ class RegionDefaults {
         updateRegion(region, "dynamodb", "dynamodb.us-east-1.amazonaws.com", true, true);
         updateRegion(region, "ec2", "ec2.us-east-1.amazonaws.com", true, true);
         updateRegion(region, "kinesis", "kinesis.us-east-1.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "lambda", "lambda.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.us-east-1.amazonaws.com", true, true);
         updateRegion(region, "elasticloadbalancing",
@@ -45,7 +46,7 @@ class RegionDefaults {
         updateRegion(region, "cognito-sync", "cognito-sync.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.us-east-1.amazonaws.com", false,
                 true);
-        updateRegion(region, "ers", "mobileanalytics.us-east-1.amazonaws.com", false, true);
+        updateRegion(region, "mobileanalytics", "mobileanalytics.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "machinelearning", "machinelearning.us-east-1.amazonaws.com", false,
                 true);
 
@@ -77,6 +78,7 @@ class RegionDefaults {
         updateRegion(region, "dynamodb", "dynamodb.us-west-2.amazonaws.com", true, true);
         updateRegion(region, "ec2", "ec2.us-west-2.amazonaws.com", true, true);
         updateRegion(region, "kinesis", "kinesis.us-west-2.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "lambda", "lambda.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.us-west-2.amazonaws.com", true, true);
         updateRegion(region, "elasticloadbalancing",
@@ -102,6 +104,21 @@ class RegionDefaults {
         updateRegion(region, "cognito-sync", "cognito-sync.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.ap-northeast-1.amazonaws.com", false,
                 true);
+
+        region = new Region("ap-northeast-2", "");
+        ret.add(region);
+
+        updateRegion(region, "s3", "s3-ap-northeast-2.amazonaws.com", true, true);
+        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "monitoring", "monitoring.ap-northeast-2.amazonaws.com", true, true);
+        updateRegion(region, "sns", "sns.ap-northeast-2.amazonaws.com", true, true);
+        updateRegion(region, "autoscaling", "autoscaling.ap-northeast-2.amazonaws.com", true, true);
+        updateRegion(region, "dynamodb", "dynamodb.ap-northeast-2.amazonaws.com", true, true);
+        updateRegion(region, "ec2", "ec2.ap-northeast-2.amazonaws.com", true, true);
+        updateRegion(region, "kinesis", "kinesis.ap-northeast-2.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.ap-northeast-2.amazonaws.com", true, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.ap-northeast-2.amazonaws.com", true, true);
 
         region = new Region("ap-southeast-1", "");
         ret.add(region);
@@ -162,6 +179,7 @@ class RegionDefaults {
         updateRegion(region, "dynamodb", "dynamodb.eu-west-1.amazonaws.com", true, true);
         updateRegion(region, "ec2", "ec2.eu-west-1.amazonaws.com", true, true);
         updateRegion(region, "kinesis", "kinesis.eu-west-1.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "lambda", "lambda.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.eu-west-1.amazonaws.com", true, true);
         updateRegion(region, "elasticloadbalancing",

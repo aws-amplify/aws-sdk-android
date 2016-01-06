@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,14 +22,14 @@ import java.io.Serializable;
 public class DescribeReservedInstancesResult implements Serializable {
 
     /**
-     * A list of Reserved Instances.
+     * A list of Reserved instances.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<ReservedInstances> reservedInstances;
 
     /**
-     * A list of Reserved Instances.
+     * A list of Reserved instances.
      *
-     * @return A list of Reserved Instances.
+     * @return A list of Reserved instances.
      */
     public java.util.List<ReservedInstances> getReservedInstances() {
         if (reservedInstances == null) {
@@ -40,9 +40,9 @@ public class DescribeReservedInstancesResult implements Serializable {
     }
     
     /**
-     * A list of Reserved Instances.
+     * A list of Reserved instances.
      *
-     * @param reservedInstances A list of Reserved Instances.
+     * @param reservedInstances A list of Reserved instances.
      */
     public void setReservedInstances(java.util.Collection<ReservedInstances> reservedInstances) {
         if (reservedInstances == null) {
@@ -55,11 +55,11 @@ public class DescribeReservedInstancesResult implements Serializable {
     }
     
     /**
-     * A list of Reserved Instances.
+     * A list of Reserved instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstances A list of Reserved Instances.
+     * @param reservedInstances A list of Reserved instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -73,11 +73,11 @@ public class DescribeReservedInstancesResult implements Serializable {
     }
     
     /**
-     * A list of Reserved Instances.
+     * A list of Reserved instances.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstances A list of Reserved Instances.
+     * @param reservedInstances A list of Reserved instances.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

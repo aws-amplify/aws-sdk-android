@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Container for the parameters to the {@link com.amazonaws.services.autoscaling.AmazonAutoScaling#detachInstances(DetachInstancesRequest) DetachInstances operation}.
  * <p>
  * Removes one or more instances from the specified Auto Scaling group.
+ * </p>
+ * <p>
  * After the instances are detached, you can manage them independently
  * from the rest of the Auto Scaling group.
+ * </p>
+ * <p>
+ * If you do not specify the option to decrement the desired capacity,
+ * Auto Scaling launches instances to replace the ones that are detached.
  * </p>
  * <p>
  * For more information, see

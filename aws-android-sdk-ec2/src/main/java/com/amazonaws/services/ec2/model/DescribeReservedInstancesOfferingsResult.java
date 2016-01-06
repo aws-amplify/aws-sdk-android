@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class DescribeReservedInstancesOfferingsResult implements Serializable {
 
     /**
-     * A list of Reserved Instances offerings.
+     * A list of Reserved instances offerings.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<ReservedInstancesOffering> reservedInstancesOfferings;
 
@@ -33,9 +33,9 @@ public class DescribeReservedInstancesOfferingsResult implements Serializable {
     private String nextToken;
 
     /**
-     * A list of Reserved Instances offerings.
+     * A list of Reserved instances offerings.
      *
-     * @return A list of Reserved Instances offerings.
+     * @return A list of Reserved instances offerings.
      */
     public java.util.List<ReservedInstancesOffering> getReservedInstancesOfferings() {
         if (reservedInstancesOfferings == null) {
@@ -46,9 +46,9 @@ public class DescribeReservedInstancesOfferingsResult implements Serializable {
     }
     
     /**
-     * A list of Reserved Instances offerings.
+     * A list of Reserved instances offerings.
      *
-     * @param reservedInstancesOfferings A list of Reserved Instances offerings.
+     * @param reservedInstancesOfferings A list of Reserved instances offerings.
      */
     public void setReservedInstancesOfferings(java.util.Collection<ReservedInstancesOffering> reservedInstancesOfferings) {
         if (reservedInstancesOfferings == null) {
@@ -61,11 +61,11 @@ public class DescribeReservedInstancesOfferingsResult implements Serializable {
     }
     
     /**
-     * A list of Reserved Instances offerings.
+     * A list of Reserved instances offerings.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesOfferings A list of Reserved Instances offerings.
+     * @param reservedInstancesOfferings A list of Reserved instances offerings.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -79,11 +79,11 @@ public class DescribeReservedInstancesOfferingsResult implements Serializable {
     }
     
     /**
-     * A list of Reserved Instances offerings.
+     * A list of Reserved instances offerings.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesOfferings A list of Reserved Instances offerings.
+     * @param reservedInstancesOfferings A list of Reserved instances offerings.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

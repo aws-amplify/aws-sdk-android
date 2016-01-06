@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -121,10 +121,10 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes one or more of the Reserved Instances that you purchased.
+     * Describes one or more of the Reserved instances that you purchased.
      * </p>
      * <p>
-     * For more information about Reserved Instances, see
+     * For more information about Reserved instances, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html"> Reserved Instances </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -184,6 +184,36 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Restores an Elastic IP address that was previously moved to the
+     * EC2-VPC platform back to the EC2-Classic platform. You cannot move an
+     * Elastic IP address that was originally allocated for use in EC2-VPC.
+     * The Elastic IP address must not be associated with an instance or
+     * network interface. You cannot restore an Elastic IP address that's
+     * associated with a reverse DNS record. Contact AWS account and billing
+     * support to remove the reverse DNS record.
+     * </p>
+     *
+     * @param restoreAddressToClassicRequest Container for the necessary
+     *           parameters to execute the RestoreAddressToClassic service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the RestoreAddressToClassic service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public RestoreAddressToClassicResult restoreAddressToClassic(RestoreAddressToClassicRequest restoreAddressToClassicRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes one or more of the Availability Zones that are available to
      * you. The results include zones only for the region you're currently
      * using. If there is an event impacting an Availability Zone, you can
@@ -213,34 +243,6 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeAvailabilityZonesResult describeAvailabilityZones(DescribeAvailabilityZonesRequest describeAvailabilityZonesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Restores an Elastic IP address that was previously moved to the
-     * EC2-VPC platform back to the EC2-Classic platform. You cannot move an
-     * Elastic IP address that was originally allocated for use in EC2-VPC.
-     * The Elastic IP address must not be associated with an instance or
-     * network interface.
-     * </p>
-     *
-     * @param restoreAddressToClassicRequest Container for the necessary
-     *           parameters to execute the RestoreAddressToClassic service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the RestoreAddressToClassic service method,
-     *         as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public RestoreAddressToClassicResult restoreAddressToClassic(RestoreAddressToClassicRequest restoreAddressToClassicRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -361,6 +363,34 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Deletes a security group.
+     * </p>
+     * <p>
+     * If you attempt to delete a security group that is associated with an
+     * instance, or is referenced by another security group, the operation
+     * fails with <code>InvalidGroup.InUse</code> in EC2-Classic or
+     * <code>DependencyViolation</code> in EC2-VPC.
+     * </p>
+     *
+     * @param deleteSecurityGroupRequest Container for the necessary
+     *           parameters to execute the DeleteSecurityGroup service method on
+     *           AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteSecurityGroup(DeleteSecurityGroupRequest deleteSecurityGroupRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates an Amazon EBS-backed AMI from an Amazon EBS-backed instance
      * that is either running or stopped.
      * </p>
@@ -397,19 +427,38 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Deletes a security group.
+     * Set the instance affinity value for a specific stopped instance and
+     * modify the instance tenancy setting.
      * </p>
      * <p>
-     * If you attempt to delete a security group that is associated with an
-     * instance, or is referenced by another security group, the operation
-     * fails with <code>InvalidGroup.InUse</code> in EC2-Classic or
-     * <code>DependencyViolation</code> in EC2-VPC.
+     * Instance affinity is disabled by default. When instance affinity is
+     * <code>host</code> and it is not associated with a specific Dedicated
+     * host, the next time it is launched it will automatically be associated
+     * with the host it lands on. This relationship will persist if the
+     * instance is stopped/started, or rebooted.
+     * </p>
+     * <p>
+     * You can modify the host ID associated with a stopped instance. If a
+     * stopped instance has a new host ID association, the instance will
+     * target that host when restarted.
+     * </p>
+     * <p>
+     * You can modify the tenancy of a stopped instance with a tenancy of
+     * <code>host</code> or <code>dedicated</code> .
+     * </p>
+     * <p>
+     * Affinity, hostID, and tenancy are not required parameters, but at
+     * least one of them must be specified in the request. Affinity and
+     * tenancy can be modified in the same request, but tenancy can only be
+     * modified on instances that are stopped.
      * </p>
      *
-     * @param deleteSecurityGroupRequest Container for the necessary
-     *           parameters to execute the DeleteSecurityGroup service method on
+     * @param modifyInstancePlacementRequest Container for the necessary
+     *           parameters to execute the ModifyInstancePlacement service method on
      *           AmazonEC2.
      * 
+     * @return The response from the ModifyInstancePlacement service method,
+     *         as returned by AmazonEC2.
      * 
      *
      * @throws AmazonClientException
@@ -420,7 +469,7 @@ public interface AmazonEC2 {
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void deleteSecurityGroup(DeleteSecurityGroupRequest deleteSecurityGroupRequest) 
+    public ModifyInstancePlacementResult modifyInstancePlacement(ModifyInstancePlacementRequest modifyInstancePlacementRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -455,38 +504,20 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Adds one or more egress rules to a security group for use with a VPC.
-     * Specifically, this action permits instances to send traffic to one or
-     * more destination CIDR IP address ranges, or to one or more destination
-     * security groups for the same VPC.
+     * Describes one or more of your Dedicated hosts.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b> You can have up to 50 rules per security group
-     * (covering both ingress and egress rules).
-     * </p>
-     * <p>
-     * A security group is for use with instances either in the EC2-Classic
-     * platform or in a specific VPC. This action doesn't apply to security
-     * groups for use in EC2-Classic. For more information, see
-     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"> Security Groups for Your VPC </a>
-     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
-     * </p>
-     * <p>
-     * Each rule consists of the protocol (for example, TCP), plus either a
-     * CIDR range or a source group. For the TCP and UDP protocols, you must
-     * also specify the destination port or port range. For the ICMP
-     * protocol, you must also specify the ICMP type and code. You can use -1
-     * for the type or code to mean all types or all codes.
-     * </p>
-     * <p>
-     * Rule changes are propagated to affected instances as quickly as
-     * possible. However, a small delay might occur.
+     * The results describe only the Dedicated hosts in the region you're
+     * currently using. All listed instances consume capacity on your
+     * Dedicated host. Dedicated hosts that have recently been released will
+     * be listed with the state <code>released</code> .
      * </p>
      *
-     * @param authorizeSecurityGroupEgressRequest Container for the necessary
-     *           parameters to execute the AuthorizeSecurityGroupEgress service method
-     *           on AmazonEC2.
+     * @param describeHostsRequest Container for the necessary parameters to
+     *           execute the DescribeHosts service method on AmazonEC2.
      * 
+     * @return The response from the DescribeHosts service method, as
+     *         returned by AmazonEC2.
      * 
      *
      * @throws AmazonClientException
@@ -497,7 +528,7 @@ public interface AmazonEC2 {
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void authorizeSecurityGroupEgress(AuthorizeSecurityGroupEgressRequest authorizeSecurityGroupEgressRequest) 
+    public DescribeHostsResult describeHosts(DescribeHostsRequest describeHostsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -580,12 +611,56 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * [EC2-VPC only] Adds one or more egress rules to a security group for
+     * use with a VPC. Specifically, this action permits instances to send
+     * traffic to one or more destination CIDR IP address ranges, or to one
+     * or more destination security groups for the same VPC. This action
+     * doesn't apply to security groups for use in EC2-Classic. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"> Security Groups for Your VPC </a>
+     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b> You can have up to 50 rules per security group
+     * (covering both ingress and egress rules).
+     * </p>
+     * <p>
+     * Each rule consists of the protocol (for example, TCP), plus either a
+     * CIDR range or a source group. For the TCP and UDP protocols, you must
+     * also specify the destination port or port range. For the ICMP
+     * protocol, you must also specify the ICMP type and code. You can use -1
+     * for the type or code to mean all types or all codes.
+     * </p>
+     * <p>
+     * Rule changes are propagated to affected instances as quickly as
+     * possible. However, a small delay might occur.
+     * </p>
+     *
+     * @param authorizeSecurityGroupEgressRequest Container for the necessary
+     *           parameters to execute the AuthorizeSecurityGroupEgress service method
+     *           on AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void authorizeSecurityGroupEgress(AuthorizeSecurityGroupEgressRequest authorizeSecurityGroupEgressRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Stops an Amazon EBS-backed instance. Each time you transition an
      * instance from stopped to started, Amazon EC2 charges a full instance
      * hour, even if transitions happen multiple times within a single hour.
      * </p>
      * <p>
-     * You can't start or stop Spot Instances.
+     * You can't start or stop Spot instances.
      * </p>
      * <p>
      * Instances that use Amazon EBS volumes as their root devices can be
@@ -720,30 +795,6 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the running instances for the specified Spot fleet.
-     * </p>
-     *
-     * @param describeSpotFleetInstancesRequest Container for the necessary
-     *           parameters to execute the DescribeSpotFleetInstances service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the DescribeSpotFleetInstances service
-     *         method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeSpotFleetInstancesResult describeSpotFleetInstances(DescribeSpotFleetInstancesRequest describeSpotFleetInstancesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Creates a security group.
      * </p>
      * <p>
@@ -754,7 +805,7 @@ public interface AmazonEC2 {
      * </p>
      * <p>
      * <b>IMPORTANT:</b> EC2-Classic: You can have up to 500 security
-     * groups. EC2-VPC: You can create up to 100 security groups per VPC.
+     * groups. EC2-VPC: You can create up to 500 security groups per VPC.
      * </p>
      * <p>
      * When you create a security group, you specify a friendly name of your
@@ -833,6 +884,30 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes the running instances for the specified Spot fleet.
+     * </p>
+     *
+     * @param describeSpotFleetInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeSpotFleetInstances service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeSpotFleetInstances service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeSpotFleetInstancesResult describeSpotFleetInstances(DescribeSpotFleetInstancesRequest describeSpotFleetInstancesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes one or more of your network interfaces.
      * </p>
      *
@@ -881,6 +956,32 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeRegionsResult describeRegions(DescribeRegionsRequest describeRegionsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes one or more specified VPC endpoints. Deleting the endpoint
+     * also deletes the endpoint routes in the route tables that were
+     * associated with the endpoint.
+     * </p>
+     *
+     * @param deleteVpcEndpointsRequest Container for the necessary
+     *           parameters to execute the DeleteVpcEndpoints service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DeleteVpcEndpoints service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DeleteVpcEndpointsResult deleteVpcEndpoints(DeleteVpcEndpointsRequest deleteVpcEndpointsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -955,26 +1056,26 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Creates a listing for Amazon EC2 Reserved Instances to be sold in the
-     * Reserved Instance Marketplace. You can submit one Reserved Instance
-     * listing at a time. To get a list of your Reserved Instances, you can
+     * Creates a listing for Amazon EC2 Reserved instances to be sold in the
+     * Reserved Instance Marketplace. You can submit one Reserved instance
+     * listing at a time. To get a list of your Reserved instances, you can
      * use the DescribeReservedInstances operation.
      * </p>
      * <p>
      * The Reserved Instance Marketplace matches sellers who want to resell
-     * Reserved Instance capacity that they no longer need with buyers who
-     * want to purchase additional capacity. Reserved Instances bought and
+     * Reserved instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved instances bought and
      * sold through the Reserved Instance Marketplace work like any other
-     * Reserved Instances.
+     * Reserved instances.
      * </p>
      * <p>
-     * To sell your Reserved Instances, you must first register as a seller
+     * To sell your Reserved instances, you must first register as a seller
      * in the Reserved Instance Marketplace. After completing the
      * registration process, you can create a Reserved Instance Marketplace
-     * listing of some or all of your Reserved Instances, and specify the
-     * upfront price to receive for them. Your Reserved Instance listings
+     * listing of some or all of your Reserved instances, and specify the
+     * upfront price to receive for them. Your Reserved instance listings
      * then become available for purchase. To view the details of your
-     * Reserved Instance listing, you can use the
+     * Reserved instance listing, you can use the
      * DescribeReservedInstancesListings operation.
      * </p>
      * <p>
@@ -1000,32 +1101,6 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public CreateReservedInstancesListingResult createReservedInstancesListing(CreateReservedInstancesListingRequest createReservedInstancesListingRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes one or more specified VPC endpoints. Deleting the endpoint
-     * also deletes the endpoint routes in the route tables that were
-     * associated with the endpoint.
-     * </p>
-     *
-     * @param deleteVpcEndpointsRequest Container for the necessary
-     *           parameters to execute the DeleteVpcEndpoints service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the DeleteVpcEndpoints service method, as
-     *         returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DeleteVpcEndpointsResult deleteVpcEndpoints(DeleteVpcEndpointsRequest deleteVpcEndpointsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1293,6 +1368,43 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * When you no longer want to use a Dedicated host it can be released.
+     * On-Demand billing is stopped and the host goes into
+     * <code>released</code> state. The host ID of Dedicated hosts that have
+     * been released can no longer be specified in another request, e.g.,
+     * ModifyHosts. You must stop or terminate all instances on a host before
+     * it can be released.
+     * </p>
+     * <p>
+     * When Dedicated hosts are released, it make take some time for them to
+     * stop counting toward your limit and you may receive capacity errors
+     * when trying to allocate new Dedicated hosts. Try waiting a few
+     * minutes, and then try again.
+     * </p>
+     * <p>
+     * Released hosts will still appear in a DescribeHosts response.
+     * </p>
+     *
+     * @param releaseHostsRequest Container for the necessary parameters to
+     *           execute the ReleaseHosts service method on AmazonEC2.
+     * 
+     * @return The response from the ReleaseHosts service method, as returned
+     *         by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ReleaseHostsResult releaseHosts(ReleaseHostsRequest releaseHostsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Deletes the specified set of tags from the specified set of
      * resources. This call is designed to follow a <code>DescribeTags</code>
      * request.
@@ -1494,12 +1606,14 @@ public interface AmazonEC2 {
      * <p>
      * Moves an Elastic IP address from the EC2-Classic platform to the
      * EC2-VPC platform. The Elastic IP address must be allocated to your
-     * account, and it must not be associated with an instance. After the
-     * Elastic IP address is moved, it is no longer available for use in the
-     * EC2-Classic platform, unless you move it back using the
-     * RestoreAddressToClassic request. You cannot move an Elastic IP address
-     * that's allocated for use in the EC2-VPC platform to the EC2-Classic
-     * platform.
+     * account for more than 24 hours, and it must not be associated with an
+     * instance. After the Elastic IP address is moved, it is no longer
+     * available for use in the EC2-Classic platform, unless you move it back
+     * using the RestoreAddressToClassic request. You cannot move an Elastic
+     * IP address that's allocated for use in the EC2-VPC platform to the
+     * EC2-Classic platform. You cannot migrate an Elastic IP address that's
+     * associated with a reverse DNS record. Contact AWS account and billing
+     * support to remove the reverse DNS record.
      * </p>
      *
      * @param moveAddressToVpcRequest Container for the necessary parameters
@@ -1701,6 +1815,31 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Resets an attribute of an AMI to its default value.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> The productCodes attribute can't be reset.
+     * </p>
+     *
+     * @param resetImageAttributeRequest Container for the necessary
+     *           parameters to execute the ResetImageAttribute service method on
+     *           AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void resetImageAttribute(ResetImageAttributeRequest resetImageAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes one or more of your VPN connections.
      * </p>
      * <p>
@@ -1726,31 +1865,6 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeVpnConnectionsResult describeVpnConnections(DescribeVpnConnectionsRequest describeVpnConnectionsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Resets an attribute of an AMI to its default value.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> The productCodes attribute can't be reset.
-     * </p>
-     *
-     * @param resetImageAttributeRequest Container for the necessary
-     *           parameters to execute the ResetImageAttribute service method on
-     *           AmazonEC2.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void resetImageAttribute(ResetImageAttributeRequest resetImageAttributeRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1896,8 +2010,8 @@ public interface AmazonEC2 {
     /**
      * <p>
      * Modifies the Availability Zone, instance count, instance type, or
-     * network platform (EC2-Classic or EC2-VPC) of your Reserved Instances.
-     * The Reserved Instances to be modified must be identical, except for
+     * network platform (EC2-Classic or EC2-VPC) of your Reserved instances.
+     * The Reserved instances to be modified must be identical, except for
      * Availability Zone, network platform, and instance type.
      * </p>
      * <p>
@@ -2178,30 +2292,6 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes one or more of your export tasks.
-     * </p>
-     *
-     * @param describeExportTasksRequest Container for the necessary
-     *           parameters to execute the DescribeExportTasks service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the DescribeExportTasks service method, as
-     *         returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeExportTasksResult describeExportTasks(DescribeExportTasksRequest describeExportTasksRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Detaches an Internet gateway from a VPC, disabling connectivity
      * between the Internet and the VPC. The VPC must not contain any running
      * instances with Elastic IP addresses.
@@ -2222,6 +2312,30 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void detachInternetGateway(DetachInternetGatewayRequest detachInternetGatewayRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes one or more of your export tasks.
+     * </p>
+     *
+     * @param describeExportTasksRequest Container for the necessary
+     *           parameters to execute the DescribeExportTasks service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeExportTasks service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeExportTasksResult describeExportTasks(DescribeExportTasksRequest describeExportTasksRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2353,27 +2467,27 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes your account's Reserved Instance listings in the Reserved
+     * Describes your account's Reserved instance listings in the Reserved
      * Instance Marketplace.
      * </p>
      * <p>
      * The Reserved Instance Marketplace matches sellers who want to resell
-     * Reserved Instance capacity that they no longer need with buyers who
-     * want to purchase additional capacity. Reserved Instances bought and
+     * Reserved instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved instances bought and
      * sold through the Reserved Instance Marketplace work like any other
      * Reserved Instances.
      * </p>
      * <p>
      * As a seller, you choose to list some or all of your Reserved
-     * Instances, and you specify the upfront price to receive for them. Your
-     * Reserved Instances are then listed in the Reserved Instance
+     * instances, and you specify the upfront price to receive for them. Your
+     * Reserved instances are then listed in the Reserved Instance
      * Marketplace and are available for purchase.
      * </p>
      * <p>
-     * As a buyer, you specify the configuration of the Reserved Instance to
+     * As a buyer, you specify the configuration of the Reserved instance to
      * purchase, and the Marketplace matches what you're searching for with
      * what's available. The Marketplace first sells the lowest priced
-     * Reserved Instances to you, and continues to sell available Reserved
+     * Reserved instances to you, and continues to sell available Reserved
      * Instance listings to you until your demand is met. You are charged
      * based on the total price of all of the listings that you purchase.
      * </p>
@@ -2553,6 +2667,31 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Displays details about an import virtual machine or import snapshot
+     * tasks that are already created.
+     * </p>
+     *
+     * @param describeImportImageTasksRequest Container for the necessary
+     *           parameters to execute the DescribeImportImageTasks service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeImportImageTasks service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeImportImageTasksResult describeImportImageTasks(DescribeImportImageTasksRequest describeImportImageTasksRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a Spot fleet request.
      * </p>
      * <p>
@@ -2595,31 +2734,6 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public RequestSpotFleetResult requestSpotFleet(RequestSpotFleetRequest requestSpotFleetRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Displays details about an import virtual machine or import snapshot
-     * tasks that are already created.
-     * </p>
-     *
-     * @param describeImportImageTasksRequest Container for the necessary
-     *           parameters to execute the DescribeImportImageTasks service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the DescribeImportImageTasks service method,
-     *         as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeImportImageTasksResult describeImportImageTasks(DescribeImportImageTasksRequest describeImportImageTasksRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2978,6 +3092,31 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Allocates a Dedicated host to your account. At minimum you need to
+     * specify the instance size type, Availability Zone, and quantity of
+     * hosts you want to allocate.
+     * </p>
+     *
+     * @param allocateHostsRequest Container for the necessary parameters to
+     *           execute the AllocateHosts service method on AmazonEC2.
+     * 
+     * @return The response from the AllocateHosts service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public AllocateHostsResult allocateHosts(AllocateHostsRequest allocateHostsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a data feed for Spot instances, enabling you to view Spot
      * instance usage logs. You can create one data feed per AWS account. For
      * more information, see
@@ -3065,33 +3204,6 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes your Elastic IP addresses that are being moved to the
-     * EC2-VPC platform, or that are being restored to the EC2-Classic
-     * platform. This request does not return information about any other
-     * Elastic IP addresses in your account.
-     * </p>
-     *
-     * @param describeMovingAddressesRequest Container for the necessary
-     *           parameters to execute the DescribeMovingAddresses service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the DescribeMovingAddresses service method,
-     *         as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeMovingAddressesResult describeMovingAddresses(DescribeMovingAddressesRequest describeMovingAddressesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Describes one or more of your conversion tasks. For more information,
      * see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
@@ -3164,6 +3276,33 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes your Elastic IP addresses that are being moved to the
+     * EC2-VPC platform, or that are being restored to the EC2-Classic
+     * platform. This request does not return information about any other
+     * Elastic IP addresses in your account.
+     * </p>
+     *
+     * @param describeMovingAddressesRequest Container for the necessary
+     *           parameters to execute the DescribeMovingAddresses service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeMovingAddresses service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeMovingAddressesResult describeMovingAddresses(DescribeMovingAddressesRequest describeMovingAddressesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Import single or multi-volume disk images or EBS snapshots into an
      * Amazon Machine Image (AMI).
      * </p>
@@ -3213,6 +3352,31 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes one or more flow logs. To view the information in your flow
+     * logs (the log streams for the network interfaces), you must use the
+     * CloudWatch Logs console or the CloudWatch Logs API.
+     * </p>
+     *
+     * @param describeFlowLogsRequest Container for the necessary parameters
+     *           to execute the DescribeFlowLogs service method on AmazonEC2.
+     * 
+     * @return The response from the DescribeFlowLogs service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeFlowLogsResult describeFlowLogs(DescribeFlowLogsRequest describeFlowLogsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes the specified attribute of the specified instance. You can
      * specify only one attribute at a time. Valid attribute values are:
      * <code>instanceType</code> | <code>kernel</code> | <code>ramdisk</code>
@@ -3245,31 +3409,6 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes one or more flow logs. To view the information in your flow
-     * logs (the log streams for the network interfaces), you must use the
-     * CloudWatch Logs console or the CloudWatch Logs API.
-     * </p>
-     *
-     * @param describeFlowLogsRequest Container for the necessary parameters
-     *           to execute the DescribeFlowLogs service method on AmazonEC2.
-     * 
-     * @return The response from the DescribeFlowLogs service method, as
-     *         returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeFlowLogsResult describeFlowLogs(DescribeFlowLogsRequest describeFlowLogsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Describes one or more of your VPC peering connections.
      * </p>
      *
@@ -3290,6 +3429,33 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeVpcPeeringConnectionsResult describeVpcPeeringConnections(DescribeVpcPeeringConnectionsRequest describeVpcPeeringConnectionsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes one or more of your placement groups. For more information
+     * about placement groups and cluster instances, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html"> Cluster Instances </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param describePlacementGroupsRequest Container for the necessary
+     *           parameters to execute the DescribePlacementGroups service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribePlacementGroups service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribePlacementGroupsResult describePlacementGroups(DescribePlacementGroupsRequest describePlacementGroupsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3394,33 +3560,6 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes one or more of your placement groups. For more information
-     * about placement groups and cluster instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html"> Cluster Instances </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param describePlacementGroupsRequest Container for the necessary
-     *           parameters to execute the DescribePlacementGroups service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the DescribePlacementGroups service method,
-     *         as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribePlacementGroupsResult describePlacementGroups(DescribePlacementGroupsRequest describePlacementGroupsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Associates a subnet with a route table. The subnet and route table
      * must be in the same VPC. This association causes traffic originating
      * from the subnet to be routed according to the routes in the route
@@ -3490,6 +3629,28 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Deletes the specified network ACL. You can't delete the ACL if it's
+     * associated with any subnets. You can't delete the default network ACL.
+     * </p>
+     *
+     * @param deleteNetworkAclRequest Container for the necessary parameters
+     *           to execute the DeleteNetworkAcl service method on AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteNetworkAcl(DeleteNetworkAclRequest deleteNetworkAclRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Modifies a volume attribute.
      * </p>
      * <p>
@@ -3520,28 +3681,6 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void modifyVolumeAttribute(ModifyVolumeAttributeRequest modifyVolumeAttributeRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified network ACL. You can't delete the ACL if it's
-     * associated with any subnets. You can't delete the default network ACL.
-     * </p>
-     *
-     * @param deleteNetworkAclRequest Container for the necessary parameters
-     *           to execute the DeleteNetworkAcl service method on AmazonEC2.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteNetworkAcl(DeleteNetworkAclRequest deleteNetworkAclRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3624,36 +3763,7 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Modifies the specified attribute of the specified instance. You can
-     * specify only one attribute at a time.
-     * </p>
-     * <p>
-     * To modify some attributes, the instance must be stopped. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html"> Modifying Attributes of a Stopped Instance </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param modifyInstanceAttributeRequest Container for the necessary
-     *           parameters to execute the ModifyInstanceAttribute service method on
-     *           AmazonEC2.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void modifyInstanceAttribute(ModifyInstanceAttributeRequest modifyInstanceAttributeRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Cancels the specified Reserved Instance listing in the Reserved
+     * Cancels the specified Reserved instance listing in the Reserved
      * Instance Marketplace.
      * </p>
      * <p>
@@ -3679,6 +3789,35 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public CancelReservedInstancesListingResult cancelReservedInstancesListing(CancelReservedInstancesListingRequest cancelReservedInstancesListingRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Modifies the specified attribute of the specified instance. You can
+     * specify only one attribute at a time.
+     * </p>
+     * <p>
+     * To modify some attributes, the instance must be stopped. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html"> Modifying Attributes of a Stopped Instance </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param modifyInstanceAttributeRequest Container for the necessary
+     *           parameters to execute the ModifyInstanceAttribute service method on
+     *           AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void modifyInstanceAttribute(ModifyInstanceAttributeRequest modifyInstanceAttributeRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3884,8 +4023,8 @@ public interface AmazonEC2 {
      * </p>
      * <p>
      * You must specify one of the following targets: Internet gateway or
-     * virtual private gateway, NAT instance, VPC peering connection, or
-     * network interface.
+     * virtual private gateway, NAT instance, NAT gateway, VPC peering
+     * connection, or network interface.
      * </p>
      * <p>
      * When determining how to route traffic, we use the route with the most
@@ -3970,8 +4109,7 @@ public interface AmazonEC2 {
      * <p>
      * Initiates the copy of an AMI from the specified source region to the
      * current region. You specify the destination region by using its
-     * endpoint when making the request. AMIs that use encrypted EBS
-     * snapshots cannot be copied with this method.
+     * endpoint when making the request.
      * </p>
      * <p>
      * For more information, see
@@ -4065,6 +4203,30 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void deleteRouteTable(DeleteRouteTableRequest deleteRouteTableRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes one or more of the your NAT gateways.
+     * </p>
+     *
+     * @param describeNatGatewaysRequest Container for the necessary
+     *           parameters to execute the DescribeNatGateways service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeNatGateways service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeNatGatewaysResult describeNatGateways(DescribeNatGatewaysRequest describeNatGatewaysRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -4180,6 +4342,30 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Attaches a network interface to an instance.
+     * </p>
+     *
+     * @param attachNetworkInterfaceRequest Container for the necessary
+     *           parameters to execute the AttachNetworkInterface service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the AttachNetworkInterface service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public AttachNetworkInterfaceResult attachNetworkInterface(AttachNetworkInterfaceRequest attachNetworkInterfaceRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes the specified attribute of the specified volume. You can
      * specify only one attribute at a time.
      * </p>
@@ -4210,33 +4396,10 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Attaches a network interface to an instance.
-     * </p>
-     *
-     * @param attachNetworkInterfaceRequest Container for the necessary
-     *           parameters to execute the AttachNetworkInterface service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the AttachNetworkInterface service method,
-     *         as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public AttachNetworkInterfaceResult attachNetworkInterface(AttachNetworkInterfaceRequest attachNetworkInterfaceRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Replaces an existing route within a route table in a VPC. You must
      * provide only one of the following: Internet gateway or virtual private
-     * gateway, NAT instance, VPC peering connection, or network interface.
+     * gateway, NAT instance, NAT gateway, VPC peering connection, or network
+     * interface.
      * </p>
      * <p>
      * For more information about route tables, see
@@ -4258,6 +4421,69 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void replaceRoute(ReplaceRouteRequest replaceRouteRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified NAT gateway. Deleting a NAT gateway
+     * disassociates its Elastic IP address, but does not release the address
+     * from your account. Deleting a NAT gateway does not delete any NAT
+     * gateway routes in your route tables.
+     * </p>
+     *
+     * @param deleteNatGatewayRequest Container for the necessary parameters
+     *           to execute the DeleteNatGateway service method on AmazonEC2.
+     * 
+     * @return The response from the DeleteNatGateway service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DeleteNatGatewayResult deleteNatGateway(DeleteNatGatewayRequest deleteNatGatewayRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * <b>Important: This command is reserved for future use, and is
+     * currently not available for you to use.</b>
+     * </p>
+     * <p>
+     * Modifies the ID format for the specified resource on a per-region
+     * basis. You can specify that resources should receive longer IDs
+     * (17-character IDs) when they are created. The following resource types
+     * support longer IDs: <code>instance</code> | <code>reservation</code> .
+     * </p>
+     * <p>
+     * This setting applies to the IAM user who makes the request; it does
+     * not apply to the entire AWS account. By default, an IAM user defaults
+     * to the same settings as the root user, unless they explicitly override
+     * the settings by running this request. Resources created with longer
+     * IDs are visible to all IAM users, regardless of these settings and
+     * provided that they have permission to use the relevant
+     * <code>Describe</code> command for the resource type.
+     * </p>
+     *
+     * @param modifyIdFormatRequest Container for the necessary parameters to
+     *           execute the ModifyIdFormat service method on AmazonEC2.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void modifyIdFormat(ModifyIdFormatRequest modifyIdFormatRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -4410,6 +4636,30 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes your Spot fleet requests.
+     * </p>
+     *
+     * @param describeSpotFleetRequestsRequest Container for the necessary
+     *           parameters to execute the DescribeSpotFleetRequests service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeSpotFleetRequests service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeSpotFleetRequestsResult describeSpotFleetRequests(DescribeSpotFleetRequestsRequest describeSpotFleetRequestsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Cancels one or more Spot instance requests. Spot instances are
      * instances that Amazon EC2 starts on your behalf when the bid price
      * that you specify exceeds the current Spot price. Amazon EC2
@@ -4444,40 +4694,16 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes your Spot fleet requests.
-     * </p>
-     *
-     * @param describeSpotFleetRequestsRequest Container for the necessary
-     *           parameters to execute the DescribeSpotFleetRequests service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the DescribeSpotFleetRequests service
-     *         method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeSpotFleetRequestsResult describeSpotFleetRequests(DescribeSpotFleetRequestsRequest describeSpotFleetRequestsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Purchases a Reserved Instance for use with your account. With Amazon
-     * EC2 Reserved Instances, you obtain a capacity reservation for a
+     * Purchases a Reserved instance for use with your account. With Amazon
+     * EC2 Reserved instances, you obtain a capacity reservation for a
      * certain instance configuration over a specified period of time and pay
-     * a lower hourly rate compared to on-Demand Instance pricing.
+     * a lower hourly rate compared to On-Demand Instance pricing.
      * </p>
      * <p>
      * Use DescribeReservedInstancesOfferings to get a list of Reserved
-     * Instance offerings that match your specifications. After you've
-     * purchased a Reserved Instance, you can check for your new Reserved
-     * Instance with DescribeReservedInstances.
+     * instance offerings that match your specifications. After you've
+     * purchased a Reserved instance, you can check for your new Reserved
+     * instance with DescribeReservedInstances.
      * </p>
      * <p>
      * For more information, see
@@ -4502,6 +4728,65 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public PurchaseReservedInstancesOfferingResult purchaseReservedInstancesOffering(PurchaseReservedInstancesOfferingRequest purchaseReservedInstancesOfferingRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a NAT gateway in the specified subnet. A NAT gateway can be
+     * used to enable instances in a private subnet to connect to the
+     * Internet. This action creates a network interface in the specified
+     * subnet with a private IP address from the IP address range of the
+     * subnet. For more information, see
+     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html"> NAT Gateways </a>
+     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
+     * </p>
+     *
+     * @param createNatGatewayRequest Container for the necessary parameters
+     *           to execute the CreateNatGateway service method on AmazonEC2.
+     * 
+     * @return The response from the CreateNatGateway service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CreateNatGatewayResult createNatGateway(CreateNatGatewayRequest createNatGatewayRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Modify the auto-placement setting of a Dedicated host. When
+     * auto-placement is enabled, AWS will place instances that you launch
+     * with a tenancy of <code>host</code> , but without targeting a specific
+     * host ID, onto any available Dedicated host in your account which has
+     * auto-placement enabled. When auto-placement is disabled, you need to
+     * provide a host ID if you want the instance to launch onto a specific
+     * host. If no host ID is provided, the instance will be launched onto a
+     * suitable host which has auto-placement enabled.
+     * </p>
+     *
+     * @param modifyHostsRequest Container for the necessary parameters to
+     *           execute the ModifyHosts service method on AmazonEC2.
+     * 
+     * @return The response from the ModifyHosts service method, as returned
+     *         by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ModifyHostsResult modifyHosts(ModifyHostsRequest modifyHostsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -4541,8 +4826,8 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the modifications made to your Reserved Instances. If no
-     * parameter is specified, information about all your Reserved Instances
+     * Describes the modifications made to your Reserved instances. If no
+     * parameter is specified, information about all your Reserved instances
      * modification requests is returned. If a modification ID is specified,
      * only information about the specific modification is returned.
      * </p>
@@ -4695,36 +4980,6 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the specified attribute of the specified snapshot. You can
-     * specify only one attribute at a time.
-     * </p>
-     * <p>
-     * For more information about EBS snapshots, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"> Amazon EBS Snapshots </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     *
-     * @param describeSnapshotAttributeRequest Container for the necessary
-     *           parameters to execute the DescribeSnapshotAttribute service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the DescribeSnapshotAttribute service
-     *         method, as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeSnapshotAttributeResult describeSnapshotAttribute(DescribeSnapshotAttributeRequest describeSnapshotAttributeRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Changes the route table associated with a given subnet in a VPC.
      * After the operation completes, the subnet uses the routes in the new
      * route table it's associated with. For more information about route
@@ -4760,6 +5015,36 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * Describes the specified attribute of the specified snapshot. You can
+     * specify only one attribute at a time.
+     * </p>
+     * <p>
+     * For more information about EBS snapshots, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"> Amazon EBS Snapshots </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     *
+     * @param describeSnapshotAttributeRequest Container for the necessary
+     *           parameters to execute the DescribeSnapshotAttribute service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeSnapshotAttribute service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeSnapshotAttributeResult describeSnapshotAttribute(DescribeSnapshotAttributeRequest describeSnapshotAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes one or more of your Elastic IP addresses.
      * </p>
      * <p>
@@ -4785,31 +5070,6 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeAddressesResult describeAddresses(DescribeAddressesRequest describeAddressesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes the specified attribute of the specified AMI. You can
-     * specify only one attribute at a time.
-     * </p>
-     *
-     * @param describeImageAttributeRequest Container for the necessary
-     *           parameters to execute the DescribeImageAttribute service method on
-     *           AmazonEC2.
-     * 
-     * @return The response from the DescribeImageAttribute service method,
-     *         as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeImageAttributeResult describeImageAttribute(DescribeImageAttributeRequest describeImageAttributeRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -4842,17 +5102,15 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Determines whether a product code is associated with an instance.
-     * This action can only be used by the owner of the product code. It is
-     * useful when a product code owner needs to verify whether another
-     * user's instance is eligible for support.
+     * Describes the specified attribute of the specified AMI. You can
+     * specify only one attribute at a time.
      * </p>
      *
-     * @param confirmProductInstanceRequest Container for the necessary
-     *           parameters to execute the ConfirmProductInstance service method on
+     * @param describeImageAttributeRequest Container for the necessary
+     *           parameters to execute the DescribeImageAttribute service method on
      *           AmazonEC2.
      * 
-     * @return The response from the ConfirmProductInstance service method,
+     * @return The response from the DescribeImageAttribute service method,
      *         as returned by AmazonEC2.
      * 
      *
@@ -4864,7 +5122,7 @@ public interface AmazonEC2 {
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ConfirmProductInstanceResult confirmProductInstance(ConfirmProductInstanceRequest confirmProductInstanceRequest) 
+    public DescribeImageAttributeResult describeImageAttribute(DescribeImageAttributeRequest describeImageAttributeRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -4898,16 +5156,18 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes the specified attribute of the specified VPC. You can
-     * specify only one attribute at a time.
+     * Determines whether a product code is associated with an instance.
+     * This action can only be used by the owner of the product code. It is
+     * useful when a product code owner needs to verify whether another
+     * user's instance is eligible for support.
      * </p>
      *
-     * @param describeVpcAttributeRequest Container for the necessary
-     *           parameters to execute the DescribeVpcAttribute service method on
+     * @param confirmProductInstanceRequest Container for the necessary
+     *           parameters to execute the ConfirmProductInstance service method on
      *           AmazonEC2.
      * 
-     * @return The response from the DescribeVpcAttribute service method, as
-     *         returned by AmazonEC2.
+     * @return The response from the ConfirmProductInstance service method,
+     *         as returned by AmazonEC2.
      * 
      *
      * @throws AmazonClientException
@@ -4918,14 +5178,16 @@ public interface AmazonEC2 {
      *             If an error response is returned by AmazonEC2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DescribeVpcAttributeResult describeVpcAttribute(DescribeVpcAttributeRequest describeVpcAttributeRequest) 
+    public ConfirmProductInstanceResult confirmProductInstance(ConfirmProductInstanceRequest confirmProductInstanceRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Removes one or more egress rules from a security group for EC2-VPC.
-     * The values that you specify in the revoke request (for example, ports)
-     * must match the existing rule's values for the rule to be revoked.
+     * [EC2-VPC only] Removes one or more egress rules from a security group
+     * for EC2-VPC. This action doesn't apply to security groups for use in
+     * EC2-Classic. The values that you specify in the revoke request (for
+     * example, ports) must match the existing rule's values for the rule to
+     * be revoked.
      * </p>
      * <p>
      * Each rule consists of the protocol and the CIDR range or source
@@ -4953,6 +5215,31 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void revokeSecurityGroupEgress(RevokeSecurityGroupEgressRequest revokeSecurityGroupEgressRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the specified attribute of the specified VPC. You can
+     * specify only one attribute at a time.
+     * </p>
+     *
+     * @param describeVpcAttributeRequest Container for the necessary
+     *           parameters to execute the DescribeVpcAttribute service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the DescribeVpcAttribute service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeVpcAttributeResult describeVpcAttribute(DescribeVpcAttributeRequest describeVpcAttributeRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -5163,12 +5450,18 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes Reserved Instance offerings that are available for
-     * purchase. With Reserved Instances, you purchase the right to launch
+     * Describes Reserved instance offerings that are available for
+     * purchase. With Reserved instances, you purchase the right to launch
      * instances for a period of time. During that time period, you do not
      * receive insufficient capacity errors, and you pay a lower usage rate
      * than the rate charged for On-Demand instances for the actual time
      * used.
+     * </p>
+     * <p>
+     * If you have listed your own Reserved instances for sale in the
+     * Reserved Instance Marketplace, they will be excluded from these
+     * results. This is to ensure that you do not purchase your own Reserved
+     * instances.
      * </p>
      * <p>
      * For more information, see
@@ -5670,6 +5963,50 @@ public interface AmazonEC2 {
 
     /**
      * <p>
+     * <b>Important: This command is reserved for future use, and is
+     * currently not available for you to use.</b>
+     * </p>
+     * <p>
+     * Describes the ID format settings for your resources on a per-region
+     * basis, for example, to view which resource types are enabled for
+     * longer IDs. This request only returns information about resource types
+     * whose ID formats can be modified; it does not return information about
+     * other resource types.
+     * </p>
+     * <p>
+     * The following resource types support longer IDs:
+     * <code>instance</code> | <code>reservation</code> .
+     * </p>
+     * <p>
+     * These settings apply to the IAM user who makes the request; they do
+     * not apply to the entire AWS account. By default, an IAM user defaults
+     * to the same settings as the root user, unless they explicitly override
+     * the settings by running the ModifyIdFormat command. Resources created
+     * with longer IDs are visible to all IAM users, regardless of these
+     * settings and provided that they have permission to use the relevant
+     * <code>Describe</code> command for the resource type.
+     * </p>
+     *
+     * @param describeIdFormatRequest Container for the necessary parameters
+     *           to execute the DescribeIdFormat service method on AmazonEC2.
+     * 
+     * @return The response from the DescribeIdFormat service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeIdFormatResult describeIdFormat(DescribeIdFormatRequest describeIdFormatRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a 2048-bit RSA key pair with the specified name. Amazon EC2
      * stores the public key and displays the private key for you to save to
      * a file. The private key is returned as an unencrypted PEM encoded
@@ -6045,10 +6382,10 @@ public interface AmazonEC2 {
 
     /**
      * <p>
-     * Describes one or more of the Reserved Instances that you purchased.
+     * Describes one or more of the Reserved instances that you purchased.
      * </p>
      * <p>
-     * For more information about Reserved Instances, see
+     * For more information about Reserved instances, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html"> Reserved Instances </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -6094,6 +6431,31 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeAvailabilityZonesResult describeAvailabilityZones() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes one or more of your Dedicated hosts.
+     * </p>
+     * <p>
+     * The results describe only the Dedicated hosts in the region you're
+     * currently using. All listed instances consume capacity on your
+     * Dedicated host. Dedicated hosts that have recently been released will
+     * be listed with the state <code>released</code> .
+     * </p>
+     * 
+     * @return The response from the DescribeHosts service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeHostsResult describeHosts() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -6544,27 +6906,27 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes your account's Reserved Instance listings in the Reserved
+     * Describes your account's Reserved instance listings in the Reserved
      * Instance Marketplace.
      * </p>
      * <p>
      * The Reserved Instance Marketplace matches sellers who want to resell
-     * Reserved Instance capacity that they no longer need with buyers who
-     * want to purchase additional capacity. Reserved Instances bought and
+     * Reserved instance capacity that they no longer need with buyers who
+     * want to purchase additional capacity. Reserved instances bought and
      * sold through the Reserved Instance Marketplace work like any other
      * Reserved Instances.
      * </p>
      * <p>
      * As a seller, you choose to list some or all of your Reserved
-     * Instances, and you specify the upfront price to receive for them. Your
-     * Reserved Instances are then listed in the Reserved Instance
+     * instances, and you specify the upfront price to receive for them. Your
+     * Reserved instances are then listed in the Reserved Instance
      * Marketplace and are available for purchase.
      * </p>
      * <p>
-     * As a buyer, you specify the configuration of the Reserved Instance to
+     * As a buyer, you specify the configuration of the Reserved instance to
      * purchase, and the Marketplace matches what you're searching for with
      * what's available. The Marketplace first sells the lowest priced
-     * Reserved Instances to you, and continues to sell available Reserved
+     * Reserved instances to you, and continues to sell available Reserved
      * Instance listings to you until your demand is met. You are charged
      * based on the total price of all of the listings that you purchase.
      * </p>
@@ -6790,28 +7152,6 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes your Elastic IP addresses that are being moved to the
-     * EC2-VPC platform, or that are being restored to the EC2-Classic
-     * platform. This request does not return information about any other
-     * Elastic IP addresses in your account.
-     * </p>
-     * 
-     * @return The response from the DescribeMovingAddresses service method,
-     *         as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeMovingAddressesResult describeMovingAddresses() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
      * Describes one or more of your conversion tasks. For more information,
      * see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
@@ -6831,6 +7171,28 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeConversionTasksResult describeConversionTasks() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes your Elastic IP addresses that are being moved to the
+     * EC2-VPC platform, or that are being restored to the EC2-Classic
+     * platform. This request does not return information about any other
+     * Elastic IP addresses in your account.
+     * </p>
+     * 
+     * @return The response from the DescribeMovingAddresses service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeMovingAddressesResult describeMovingAddresses() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -6894,6 +7256,28 @@ public interface AmazonEC2 {
     
     /**
      * <p>
+     * Describes one or more of your placement groups. For more information
+     * about placement groups and cluster instances, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html"> Cluster Instances </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+     * </p>
+     * 
+     * @return The response from the DescribePlacementGroups service method,
+     *         as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribePlacementGroupsResult describePlacementGroups() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
      * Describes one or more of your subnets.
      * </p>
      * <p>
@@ -6915,28 +7299,6 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeSubnetsResult describeSubnets() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Describes one or more of your placement groups. For more information
-     * about placement groups and cluster instances, see
-     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html"> Cluster Instances </a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
-     * </p>
-     * 
-     * @return The response from the DescribePlacementGroups service method,
-     *         as returned by AmazonEC2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonEC2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribePlacementGroupsResult describePlacementGroups() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -7073,6 +7435,25 @@ public interface AmazonEC2 {
     
     /**
      * <p>
+     * Describes one or more of the your NAT gateways.
+     * </p>
+     * 
+     * @return The response from the DescribeNatGateways service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeNatGatewaysResult describeNatGateways() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
      * Describes one or more of your linked EC2-Classic instances. This
      * request only returns information about EC2-Classic instances linked to
      * a VPC through ClassicLink; you cannot use this request to return
@@ -7157,8 +7538,8 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes the modifications made to your Reserved Instances. If no
-     * parameter is specified, information about all your Reserved Instances
+     * Describes the modifications made to your Reserved instances. If no
+     * parameter is specified, information about all your Reserved instances
      * modification requests is returned. If a modification ID is specified,
      * only information about the specific modification is returned.
      * </p>
@@ -7324,12 +7705,18 @@ public interface AmazonEC2 {
     
     /**
      * <p>
-     * Describes Reserved Instance offerings that are available for
-     * purchase. With Reserved Instances, you purchase the right to launch
+     * Describes Reserved instance offerings that are available for
+     * purchase. With Reserved instances, you purchase the right to launch
      * instances for a period of time. During that time period, you do not
      * receive insufficient capacity errors, and you pay a lower usage rate
      * than the rate charged for On-Demand instances for the actual time
      * used.
+     * </p>
+     * <p>
+     * If you have listed your own Reserved instances for sale in the
+     * Reserved Instance Marketplace, they will be excluded from these
+     * results. This is to ensure that you do not purchase your own Reserved
+     * instances.
      * </p>
      * <p>
      * For more information, see
@@ -7395,6 +7782,46 @@ public interface AmazonEC2 {
      *             either a problem with the data in the request, or a server side issue.
      */
     public AllocateAddressResult allocateAddress() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * <b>Important: This command is reserved for future use, and is
+     * currently not available for you to use.</b>
+     * </p>
+     * <p>
+     * Describes the ID format settings for your resources on a per-region
+     * basis, for example, to view which resource types are enabled for
+     * longer IDs. This request only returns information about resource types
+     * whose ID formats can be modified; it does not return information about
+     * other resource types.
+     * </p>
+     * <p>
+     * The following resource types support longer IDs:
+     * <code>instance</code> | <code>reservation</code> .
+     * </p>
+     * <p>
+     * These settings apply to the IAM user who makes the request; they do
+     * not apply to the entire AWS account. By default, an IAM user defaults
+     * to the same settings as the root user, unless they explicitly override
+     * the settings by running the ModifyIdFormat command. Resources created
+     * with longer IDs are visible to all IAM users, regardless of these
+     * settings and provided that they have permission to use the relevant
+     * <code>Describe</code> command for the resource type.
+     * </p>
+     * 
+     * @return The response from the DescribeIdFormat service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeIdFormatResult describeIdFormat() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>

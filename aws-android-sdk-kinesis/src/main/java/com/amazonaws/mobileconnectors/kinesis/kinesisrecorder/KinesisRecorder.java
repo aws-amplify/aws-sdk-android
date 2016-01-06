@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,25 +15,12 @@
 
 package com.amazonaws.mobileconnectors.kinesis.kinesisrecorder;
 
-import static com.amazonaws.mobileconnectors.kinesis.kinesisrecorder.internal.Constants.PUT_RECORDS_MAX_RECORDS;
-
-import android.util.Log;
-
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.mobileconnectors.kinesis.kinesisrecorder.internal.FileRecordStore;
-import com.amazonaws.mobileconnectors.kinesis.kinesisrecorder.internal.FileRecordStore.RecordIterator;
-import com.amazonaws.mobileconnectors.kinesis.kinesisrecorder.internal.JSONRecordAdapter;
+import com.amazonaws.mobileconnectors.kinesis.kinesisrecorder.FileRecordStore.RecordIterator;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.retry.PredefinedRetryPolicies;
+import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.AmazonKinesisClient;
-import com.amazonaws.services.kinesis.model.PutRecordRequest;
-import com.amazonaws.services.kinesis.model.PutRecordsRequest;
-import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
-import com.amazonaws.services.kinesis.model.PutRecordsResult;
-import com.amazonaws.services.kinesis.model.PutRecordsResultEntry;
 import com.amazonaws.util.VersionInfoUtils;
 
 import org.json.JSONException;
@@ -41,18 +28,13 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
+import java.util.regex.Pattern;
 
 /**
- * The KinesisRecorder is a high level client meant for storing
- * PutRecordRequests on the users Android device. This allows developers to
- * retain requests when the device is offline. It can also increase performance
- * and battery efficiency since the wi-fi or cell network does not need to be
- * woken up as frequently.
+ * The KinesisRecorder is a high level client meant for storing records on the
+ * users Android device. This allows developers to retain requests when the
+ * device is offline. It can also increase performance and battery efficiency
+ * since the wi-fi or cell network does not need to be woken up as frequently.
  * <p/>
  * Note: KinesisRecorder uses all synchronous calls regardless of the
  * AmazonKinesisClient passed in. Therefore you should not call KinesisRecorder
@@ -73,44 +55,57 @@ import java.util.UUID;
  * default. Therefore it is recommended you pass a directory that is only
  * visible to your application, and additionally do not store highly sensitive
  * information using Kinesis Recorder.
+ * <p/>
+ * KinesisRecorder requires an IAM policy that allows PutRecords action on the
+ * target stream. Here is an example:
+ * 
+ * <pre>
+ * {
+ *   "Version": "2012-10-17",
+ *   "Statement": [{
+ *     "Effect": "Allow",
+ *     "Action": [ "kinesis:PutRecords" ],
+ *     "Resource": [
+ *       "arn:aws:kinesis:us-east-1:123456789012:stream/my_stream"
+ *     ]
+ *   }]
+ * }
+ * </pre>
  */
-public class KinesisRecorder {
-    private static final String TAG = "KinesisRecorder";
-
-    /** TheRecordStore is responsible for saving requests to be sent later **/
-    FileRecordStore recordStore;
+public class KinesisRecorder extends AbstractKinesisRecorder {
 
     /**
-     * The RecordAdapter is responsible for converting PutRecordRequests to and
-     * from JSON
-     **/
-    private JSONRecordAdapter adapter;
-
+     * Name of local file record store.
+     */
+    private static final String RECORD_FILE_NAME = "kinesis_stream_records";
     /**
-     * The low-level AmazonKinesisClient used to send requests to Amazon Kinesis
-     **/
-    AmazonKinesisClient client;
-
-    /**
-     * The configurable options for Kinesis Recorder, includes the
-     * ClientConfiguration of the low level client
-     **/
-    private KinesisRecorderConfig config;
-
-    /** The directory that all requests are being saved to **/
-    private File directory;
-
+     * User agent string to identify {@link KinesisRecorder}
+     */
     private static final String USER_AGENT = KinesisRecorder.class.getName() + "/"
             + VersionInfoUtils.getVersion();
 
     /**
+     * The maximum size of a data blob (the data payload before Base64-encoding)
+     * is up to 1 MB.
+     */
+    private static final int MAX_RECORD_SIZE_BYTES = 1024 * 1024;
+    /**
+     * Valid stream name pattern.
+     */
+    private static final Pattern STREAM_NAME_PATTERN = Pattern.compile("[a-zA-Z0-9_.-]{1,128}");
+
+    private KinesisStreamRecordSender sender;
+
+    /**
      * Constructs a new Kinesis Recorder specifying a directory that Kinesis
-     * Recorder has exclusive access to for storing requests. Note: Kinesis
-     * Recorder is synchronous, and it's methods should not be called on the
-     * main thread. Note: Kinesis Recorder stores requests in plain-text, we
-     * recommend using a directory that is only readable by your application and
-     * not storing highly sensitive information in requests stored by Kinesis
-     * Recorder.
+     * Recorder has exclusive access to for storing requests.
+     * <p>
+     * Note: Kinesis Recorder is synchronous, and it's methods should not be
+     * called on the main thread.
+     * <p>
+     * Note: Kinesis Recorder stores requests in plain-text, we recommend using
+     * a directory that is only readable by your application and not storing
+     * highly sensitive information in requests stored by Kinesis Recorder.
      *
      * @param credentialsProvider The credentials provider to use when making
      *            requests to AWS
@@ -144,280 +139,100 @@ public class KinesisRecorder {
      */
     public KinesisRecorder(File directory, Regions region,
             AWSCredentialsProvider credentialsProvider, KinesisRecorderConfig config) {
+        super(new FileRecordStore(directory, RECORD_FILE_NAME,
+                config.getMaxStorageSize()), config);
+
         if (directory == null || credentialsProvider == null || region == null || config == null) {
             throw new IllegalArgumentException(
                     "You must pass a non-null credentialsProvider, region, directory, and config to KinesisRecordStore");
         }
 
-        this.directory = directory;
-        this.config = new KinesisRecorderConfig(config);
-        this.adapter = new JSONRecordAdapter();
-        this.client = new AmazonKinesisClient(credentialsProvider,
-                this.config.getClientConfiguration());
+        AmazonKinesis client = new AmazonKinesisClient(credentialsProvider,
+                config.getClientConfiguration());
         client.setRegion(Region.getRegion(region));
+        sender = new KinesisStreamRecordSender(client, USER_AGENT);
 
-        try {
-            this.recordStore = new FileRecordStore(directory, this.config);
-        } catch (IOException e) {
-            throw new AmazonClientException("Unable to initialize KinesisRecorder", e);
-        }
-
+        checkUpgrade(directory);
     }
 
     /**
-     * Saves a record to local storage to be sent later. The record will be
-     * submitted to the streamName provided with a randomly generated partition
-     * key to ensure equal distribution across shards. Note: Since operation
-     * involves file I/O it is recommended not to call this method on the main
-     * thread to ensure responsive applications.
-     *
-     * @param data The data to submit to the stream
-     * @param streamName The stream to submit the data to.
+     * Constructs a {@link KinesisRecorder}. It allows you to inject
+     * dependencies.
+     * 
+     * @param sender a {@link KinesisStreamRecordSender}
+     * @param recordStore record store
+     * @param config configuration
      */
-    public void saveRecord(byte[] data, String streamName) {
-        if (streamName == null || streamName.isEmpty() || data == null || data.length < 1) {
-            throw new IllegalArgumentException(
-                    "You must pass a non-null, non-empty stream name and non-empty data");
-        }
-        PutRecordRequest putRequest = new PutRecordRequest().withData(ByteBuffer.wrap(data))
-                .withStreamName(streamName)
-                .withPartitionKey(UUID.randomUUID().toString());
-        try {
-            recordStore.put(adapter.translateFromRecord(putRequest).toString());
-        } catch (IOException e) {
-            throw new AmazonClientException("Error saving record", e);
+    KinesisRecorder(KinesisStreamRecordSender sender, FileRecordStore recordStore,
+            KinesisRecorderConfig config) {
+        super(recordStore, config);
+        this.sender = sender;
+    }
+
+    private void checkUpgrade(final File directory) {
+        File recordsDir = new File(directory, Constants.RECORDS_DIRECTORY);
+        File oldRecordsFile = new File(recordsDir, Constants.RECORDS_FILE_NAME);
+        // if the records file exists, run upgrade in a background thread
+        if (oldRecordsFile.isFile()) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    upgrade(directory);
+                }
+            }).start();
         }
     }
 
     /**
-     * Submits all requests saved to Amazon Kinesis. Requests that are
-     * successfully sent will be deleted from the device. Requests that fail due
-     * to the device being offline will stop the submission process and be kept.
-     * Requests that fail due to other reasons (such as the request being
-     * invalid) will be deleted. Note: Since KinesisRecorder uses synchronous
-     * methods to make calls to Amazon Kinesis, do not call submitAll() on the
-     * main thread of your application.
-     *
-     * @throws AmazonClientException Thrown if there was an unrecoverable error
-     *             during submission. Note: If the request appears to be
-     *             invalid, the record will be deleted. If the request appears
-     *             to be valid, it will be kept.
+     * Ports Kinesis records in old records file into the new place and in new
+     * format.
+     * 
+     * @param directory working directory
      */
-    public synchronized void submitAllRecords() {
-        RecordIterator iterator = recordStore.iterator();
-        LinkedList<PutRecordsRequestEntry> entries =
-                new LinkedList<PutRecordsRequestEntry>();
-        String stream = null;
-        JSONObject json = null;
-        while (iterator.hasNext()) {
-            // first fill up list
-            try {
-                if (json == null) {
-                    json = new JSONObject(iterator.peek());
-                }
-                if (entries.size() == 0) {
-                    stream = JSONRecordAdapter.getStreamName(json);
-                }
-                if (belongsInBatch(json, stream, entries)) {
-                    entries.add(new PutRecordsRequestEntry()
-                            .withData(JSONRecordAdapter.getData(json))
-                            .withPartitionKey(
-                                    JSONRecordAdapter.getPartitionKey(json))
-                            );
-                    // set to null so we know we have to get the next one
-                    json = null;
-                    iterator.next();
-                } else {
-                    // note this modifies entries and iterator
-                    try {
-                        submitAndUpdate(stream, entries, iterator);
-                    } catch (IOException e) {
-                        throw new AmazonClientException("Error submitting events", e);
-                    }
-                }
-            } catch (JSONException e) {
-                Log.e(TAG,
-                        "Record in record store was improperly formatted JSON, record will be dropped",
-                        e);
-                json = null;
-                iterator.next();
+    void upgrade(File directory) {
+        synchronized (KinesisRecorder.this) {
+            File recordsDir = new File(directory, Constants.RECORDS_DIRECTORY);
+            File oldRecordsFile = new File(recordsDir, Constants.RECORDS_FILE_NAME);
+            if (!oldRecordsFile.isFile()) {
+                return;
             }
-        }
-        if (entries.size() > 0) {
-            // note this modifies entries and iterator
+
+            // iterate through all records in the old records file
+            FileRecordStore frs = new FileRecordStore(directory, Constants.RECORDS_FILE_NAME,
+                    Long.MAX_VALUE);
+            RecordIterator iterator = frs.iterator();
+            while (iterator.hasNext()) {
+                try {
+                    JSONObject json = new JSONObject(iterator.next());
+                    saveRecord(JSONRecordAdapter.getData(json).array(),
+                            JSONRecordAdapter.getStreamName(json));
+                } catch (JSONException e) {
+                    // skip invalid json
+                    continue;
+                }
+            }
             try {
-                submitAndUpdate(stream, entries, iterator);
+                iterator.close();
             } catch (IOException e) {
-                throw new AmazonClientException("Error submitting events", e);
+                // ignore
             }
+            oldRecordsFile.delete();
         }
     }
 
-    /**
-     * Removes all requests saved to disk in the directory provided this
-     * KinesisRecorder
-     */
-    public synchronized void deleteAllRecords() {
-        try {
-            recordStore.iterator().removeAllRecords();
-        } catch (IOException e) {
-            throw new AmazonClientException("Error deleting events", e);
+    @Override
+    protected RecordSender getRecordSender() {
+        return sender;
+    }
+
+    @Override
+    public void saveRecord(byte[] data, String streamName) {
+        if (streamName == null || !STREAM_NAME_PATTERN.matcher(streamName).matches()) {
+            throw new IllegalArgumentException("Invalid stream name: " + streamName);
         }
-    }
-
-    /**
-     * Returns the number of bytes KinesisRecorder currently has stored in the
-     * directory passed in the constructor
-     *
-     * @return long The number of bytes used
-     */
-    public long getDiskBytesUsed() {
-        return getRecursiveSizeOfDirectory(directory);
-    }
-
-    /**
-     * Returns the size of a directory including all sub-directories
-     *
-     * @param directory
-     * @return
-     */
-    long getRecursiveSizeOfDirectory(File file) {
-        if (!file.isDirectory()) {
-            return directory.length();
+        if (data == null || data.length == 0 || data.length > MAX_RECORD_SIZE_BYTES) {
+            throw new IllegalArgumentException("Invalid data size.");
         }
-
-        long totalBytes = 0;
-        for (File subFile : file.listFiles()) {
-            if (subFile.isFile()) {
-                totalBytes += subFile.length();
-            } else if (subFile.isDirectory()) {
-                totalBytes += getRecursiveSizeOfDirectory(subFile);
-            }
-        }
-        return totalBytes;
-    }
-
-    /**
-     * Returns the max number of bytes that this Kinesis Recorder will store on
-     * disk. This is the same as specified in getMaxStorageSize() in the
-     * KinesisRecorderConfig, either the one passed into the constructor or the
-     * default one that was constructed.
-     *
-     * @return The number of bytes allowed
-     */
-    public long getDiskByteLimit() {
-        return config.getMaxStorageSize();
-    }
-
-    /**
-     * Returns the KinesisRecorderConfig this Kinesis Recorder is using. This is
-     * either the config passed into the constructor or the default one if one
-     * was not specified
-     *
-     * @return The KinesisRecorderConfig
-     */
-    public KinesisRecorderConfig getKinesisRecorderConfig() {
-        return config;
-    }
-
-    /*
-     * returns true if the entry can be included in batch
-     */
-    boolean belongsInBatch(JSONObject entry, String stream,
-            Collection<PutRecordsRequestEntry> entries) throws JSONException {
-        boolean fromSameStream = JSONRecordAdapter.getStreamName(entry).equals(stream);
-        boolean hasSpace =
-                entries.size() + 1 <= PUT_RECORDS_MAX_RECORDS;
-        return fromSameStream && hasSpace;
-    }
-
-    /*
-     * Returns true iff the exception is recoverable and thus should be retried
-     */
-    boolean isRecoverable(String errorCode) {
-        return !(errorCode.equalsIgnoreCase("ValidationError")
-                || errorCode.equalsIgnoreCase("MissingParameter")
-                || errorCode.equalsIgnoreCase("MissingAction")
-                || errorCode.equalsIgnoreCase("MalformedQueryString")
-                || errorCode.equalsIgnoreCase("InvalidQueryParameter")
-                || errorCode.equalsIgnoreCase("InvalidParameterValue")
-                || errorCode.equalsIgnoreCase("InvalidParameterCombination")
-                || errorCode.equalsIgnoreCase("InvalidAction")
-                || errorCode.equalsIgnoreCase("InvalidArgumentException"));
-    }
-
-    private void saveEntries(String stream,
-            Collection<PutRecordsRequestEntry> entries) throws IOException {
-        for (PutRecordsRequestEntry entry : entries) {
-            saveEntry(stream, entry);
-        }
-    }
-
-    private void saveEntry(String stream, PutRecordsRequestEntry entry) throws IOException {
-        saveRecord(entry.getData().array(), stream);
-    }
-
-    /*
-     * Makes and submits PutRecordsRequest using the given entries and stream
-     */
-    void submit(String stream,
-            List<PutRecordsRequestEntry> entries) throws IOException {
-        PutRecordsRequest request = new PutRecordsRequest()
-                .withStreamName(stream)
-                .withRecords(entries);
-        request.getRequestClientOptions().appendUserAgent(USER_AGENT);
-        try {
-            PutRecordsResult result = client.putRecords(request);
-            for (int i = 0; i < result.getRecords().size(); i++) {
-                PutRecordsResultEntry entry =
-                        result.getRecords().get(i);
-                // save the ones that can be retried
-                if (entry.getErrorCode() != null
-                        && isRecoverable(entry.getErrorCode())) {
-                    saveEntry(stream, entries.get(i));
-                }
-            }
-        } catch (AmazonClientException e) {
-            if (PredefinedRetryPolicies.DEFAULT_RETRY_CONDITION.shouldRetry(request, e, 1)) {
-                Log.w(TAG,
-                        "Error occured while sending request, request appears to be valid stopping submission but retaining records",
-                        e);
-                saveEntries(stream, entries);
-            } else {
-                if (e instanceof AmazonServiceException) {
-                    if (!isRecoverable(((AmazonServiceException) e).getErrorCode()))
-                    {
-                        // We have reason to believe the values in the request
-                        // is invalid and cannot be sent or recovered.
-                        Log.e(TAG,
-                                "ServiceException in submit all, the last request is presumed to be the cause and will be dropped",
-                                e);
-                    } else {
-                        // There is no reason to believe the values are bad,
-                        // otherissues such as invalid credentials may be the
-                        // cause
-                        // We should keep the records
-                        saveEntries(stream, entries);
-                        Log.e(TAG,
-                                "ServiceException in submit all, the values of the data inside the requests appears valid.  The request will be kept",
-                                e);
-                    }
-                }
-            }
-            throw e;
-        }
-    }
-
-    /*
-     * Submits and updates variables. Note that this modifies entries and
-     * iterator
-     */
-    private void submitAndUpdate(String stream,
-            List<PutRecordsRequestEntry> entries,
-            RecordIterator iterator) throws IOException {
-        iterator.removeReadRecords();
-        // if we can't add it, we should submit request
-        submit(stream, entries);
-        entries.clear();
+        super.saveRecord(data, streamName);
     }
 }

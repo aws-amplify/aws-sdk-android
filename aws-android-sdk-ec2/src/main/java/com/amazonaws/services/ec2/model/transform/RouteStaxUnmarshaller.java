@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -69,6 +69,10 @@ public class RouteStaxUnmarshaller implements Unmarshaller<Route, StaxUnmarshall
                 }
                 if (context.testExpression("vpcPeeringConnectionId", targetDepth)) {
                     route.setVpcPeeringConnectionId(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("natGatewayId", targetDepth)) {
+                    route.setNatGatewayId(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("state", targetDepth)) {

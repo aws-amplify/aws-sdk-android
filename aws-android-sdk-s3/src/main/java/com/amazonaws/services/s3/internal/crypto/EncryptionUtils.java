@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import static com.amazonaws.util.LengthCheckInputStream.EXCLUDE_SKIPPED_BYTES;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.internal.InputSubstream;
-import com.amazonaws.services.s3.internal.Mimetypes;
 import com.amazonaws.services.s3.internal.RepeatableCipherInputStream;
 import com.amazonaws.services.s3.internal.RepeatableFileInputStream;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
@@ -35,6 +34,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.services.s3.model.StaticEncryptionMaterialsProvider;
 import com.amazonaws.services.s3.model.UploadPartRequest;
+import com.amazonaws.services.s3.util.Mimetypes;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.LengthCheckInputStream;
 import com.amazonaws.util.json.JsonUtils;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,6 +57,11 @@ public class Route implements Serializable {
      * The ID of the VPC peering connection.
      */
     private String vpcPeeringConnectionId;
+
+    /**
+     * The ID of a NAT gateway.
+     */
+    private String natGatewayId;
 
     /**
      * The state of the route. The <code>blackhole</code> state indicates
@@ -311,6 +316,39 @@ public class Route implements Serializable {
      */
     public Route withVpcPeeringConnectionId(String vpcPeeringConnectionId) {
         this.vpcPeeringConnectionId = vpcPeeringConnectionId;
+        return this;
+    }
+
+    /**
+     * The ID of a NAT gateway.
+     *
+     * @return The ID of a NAT gateway.
+     */
+    public String getNatGatewayId() {
+        return natGatewayId;
+    }
+    
+    /**
+     * The ID of a NAT gateway.
+     *
+     * @param natGatewayId The ID of a NAT gateway.
+     */
+    public void setNatGatewayId(String natGatewayId) {
+        this.natGatewayId = natGatewayId;
+    }
+    
+    /**
+     * The ID of a NAT gateway.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param natGatewayId The ID of a NAT gateway.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public Route withNatGatewayId(String natGatewayId) {
+        this.natGatewayId = natGatewayId;
         return this;
     }
 
@@ -587,6 +625,7 @@ public class Route implements Serializable {
         if (getInstanceOwnerId() != null) sb.append("InstanceOwnerId: " + getInstanceOwnerId() + ",");
         if (getNetworkInterfaceId() != null) sb.append("NetworkInterfaceId: " + getNetworkInterfaceId() + ",");
         if (getVpcPeeringConnectionId() != null) sb.append("VpcPeeringConnectionId: " + getVpcPeeringConnectionId() + ",");
+        if (getNatGatewayId() != null) sb.append("NatGatewayId: " + getNatGatewayId() + ",");
         if (getState() != null) sb.append("State: " + getState() + ",");
         if (getOrigin() != null) sb.append("Origin: " + getOrigin() );
         sb.append("}");
@@ -605,6 +644,7 @@ public class Route implements Serializable {
         hashCode = prime * hashCode + ((getInstanceOwnerId() == null) ? 0 : getInstanceOwnerId().hashCode()); 
         hashCode = prime * hashCode + ((getNetworkInterfaceId() == null) ? 0 : getNetworkInterfaceId().hashCode()); 
         hashCode = prime * hashCode + ((getVpcPeeringConnectionId() == null) ? 0 : getVpcPeeringConnectionId().hashCode()); 
+        hashCode = prime * hashCode + ((getNatGatewayId() == null) ? 0 : getNatGatewayId().hashCode()); 
         hashCode = prime * hashCode + ((getState() == null) ? 0 : getState().hashCode()); 
         hashCode = prime * hashCode + ((getOrigin() == null) ? 0 : getOrigin().hashCode()); 
         return hashCode;
@@ -632,6 +672,8 @@ public class Route implements Serializable {
         if (other.getNetworkInterfaceId() != null && other.getNetworkInterfaceId().equals(this.getNetworkInterfaceId()) == false) return false; 
         if (other.getVpcPeeringConnectionId() == null ^ this.getVpcPeeringConnectionId() == null) return false;
         if (other.getVpcPeeringConnectionId() != null && other.getVpcPeeringConnectionId().equals(this.getVpcPeeringConnectionId()) == false) return false; 
+        if (other.getNatGatewayId() == null ^ this.getNatGatewayId() == null) return false;
+        if (other.getNatGatewayId() != null && other.getNatGatewayId().equals(this.getNatGatewayId()) == false) return false; 
         if (other.getState() == null ^ this.getState() == null) return false;
         if (other.getState() != null && other.getState().equals(this.getState()) == false) return false; 
         if (other.getOrigin() == null ^ this.getOrigin() == null) return false;

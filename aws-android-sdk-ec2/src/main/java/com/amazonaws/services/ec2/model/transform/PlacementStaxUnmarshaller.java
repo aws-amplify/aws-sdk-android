@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,6 +53,14 @@ public class PlacementStaxUnmarshaller implements Unmarshaller<Placement, StaxUn
                 }
                 if (context.testExpression("tenancy", targetDepth)) {
                     placement.setTenancy(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("hostId", targetDepth)) {
+                    placement.setHostId(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("affinity", targetDepth)) {
+                    placement.setAffinity(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

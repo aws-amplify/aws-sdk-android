@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -236,7 +236,7 @@ class ApiClientHandler implements InvocationHandler {
                 return null;
             }
         } else {
-            String error = content == null ? "NONE" : IOUtils.toString(content);
+            String error = content == null ? "" : IOUtils.toString(content);
             ApiClientException ase = new ApiClientException(error);
             ase.setStatusCode(response.getStatusCode());
             ase.setServiceName(apiName);

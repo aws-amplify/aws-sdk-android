@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,10 +57,12 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * instances launched into the VPC are launched as dedicated tenancy
      * instances regardless of the tenancy assigned to the instance at
      * launch. Dedicated tenancy instances run on single-tenant hardware.
-     * <p>Default: <code>default</code>
+     * <p><b>Important:</b> The <code>host</code> value cannot be used with
+     * this parameter. Use the <code>default</code> or <code>dedicated</code>
+     * values only. <p>Default: <code>default</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>default, dedicated
+     * <b>Allowed Values: </b>default, dedicated, host
      */
     private String instanceTenancy;
 
@@ -128,10 +130,12 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * instances launched into the VPC are launched as dedicated tenancy
      * instances regardless of the tenancy assigned to the instance at
      * launch. Dedicated tenancy instances run on single-tenant hardware.
-     * <p>Default: <code>default</code>
+     * <p><b>Important:</b> The <code>host</code> value cannot be used with
+     * this parameter. Use the <code>default</code> or <code>dedicated</code>
+     * values only. <p>Default: <code>default</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>default, dedicated
+     * <b>Allowed Values: </b>default, dedicated, host
      *
      * @return The supported tenancy options for instances launched into the VPC. A
      *         value of <code>default</code> means that instances can be launched
@@ -139,7 +143,9 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      *         instances launched into the VPC are launched as dedicated tenancy
      *         instances regardless of the tenancy assigned to the instance at
      *         launch. Dedicated tenancy instances run on single-tenant hardware.
-     *         <p>Default: <code>default</code>
+     *         <p><b>Important:</b> The <code>host</code> value cannot be used with
+     *         this parameter. Use the <code>default</code> or <code>dedicated</code>
+     *         values only. <p>Default: <code>default</code>
      *
      * @see Tenancy
      */
@@ -154,10 +160,12 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * instances launched into the VPC are launched as dedicated tenancy
      * instances regardless of the tenancy assigned to the instance at
      * launch. Dedicated tenancy instances run on single-tenant hardware.
-     * <p>Default: <code>default</code>
+     * <p><b>Important:</b> The <code>host</code> value cannot be used with
+     * this parameter. Use the <code>default</code> or <code>dedicated</code>
+     * values only. <p>Default: <code>default</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>default, dedicated
+     * <b>Allowed Values: </b>default, dedicated, host
      *
      * @param instanceTenancy The supported tenancy options for instances launched into the VPC. A
      *         value of <code>default</code> means that instances can be launched
@@ -165,7 +173,9 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      *         instances launched into the VPC are launched as dedicated tenancy
      *         instances regardless of the tenancy assigned to the instance at
      *         launch. Dedicated tenancy instances run on single-tenant hardware.
-     *         <p>Default: <code>default</code>
+     *         <p><b>Important:</b> The <code>host</code> value cannot be used with
+     *         this parameter. Use the <code>default</code> or <code>dedicated</code>
+     *         values only. <p>Default: <code>default</code>
      *
      * @see Tenancy
      */
@@ -180,12 +190,14 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * instances launched into the VPC are launched as dedicated tenancy
      * instances regardless of the tenancy assigned to the instance at
      * launch. Dedicated tenancy instances run on single-tenant hardware.
-     * <p>Default: <code>default</code>
+     * <p><b>Important:</b> The <code>host</code> value cannot be used with
+     * this parameter. Use the <code>default</code> or <code>dedicated</code>
+     * values only. <p>Default: <code>default</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>default, dedicated
+     * <b>Allowed Values: </b>default, dedicated, host
      *
      * @param instanceTenancy The supported tenancy options for instances launched into the VPC. A
      *         value of <code>default</code> means that instances can be launched
@@ -193,7 +205,9 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      *         instances launched into the VPC are launched as dedicated tenancy
      *         instances regardless of the tenancy assigned to the instance at
      *         launch. Dedicated tenancy instances run on single-tenant hardware.
-     *         <p>Default: <code>default</code>
+     *         <p><b>Important:</b> The <code>host</code> value cannot be used with
+     *         this parameter. Use the <code>default</code> or <code>dedicated</code>
+     *         values only. <p>Default: <code>default</code>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -212,10 +226,12 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * instances launched into the VPC are launched as dedicated tenancy
      * instances regardless of the tenancy assigned to the instance at
      * launch. Dedicated tenancy instances run on single-tenant hardware.
-     * <p>Default: <code>default</code>
+     * <p><b>Important:</b> The <code>host</code> value cannot be used with
+     * this parameter. Use the <code>default</code> or <code>dedicated</code>
+     * values only. <p>Default: <code>default</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>default, dedicated
+     * <b>Allowed Values: </b>default, dedicated, host
      *
      * @param instanceTenancy The supported tenancy options for instances launched into the VPC. A
      *         value of <code>default</code> means that instances can be launched
@@ -223,7 +239,9 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      *         instances launched into the VPC are launched as dedicated tenancy
      *         instances regardless of the tenancy assigned to the instance at
      *         launch. Dedicated tenancy instances run on single-tenant hardware.
-     *         <p>Default: <code>default</code>
+     *         <p><b>Important:</b> The <code>host</code> value cannot be used with
+     *         this parameter. Use the <code>default</code> or <code>dedicated</code>
+     *         values only. <p>Default: <code>default</code>
      *
      * @see Tenancy
      */
@@ -238,12 +256,14 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * instances launched into the VPC are launched as dedicated tenancy
      * instances regardless of the tenancy assigned to the instance at
      * launch. Dedicated tenancy instances run on single-tenant hardware.
-     * <p>Default: <code>default</code>
+     * <p><b>Important:</b> The <code>host</code> value cannot be used with
+     * this parameter. Use the <code>default</code> or <code>dedicated</code>
+     * values only. <p>Default: <code>default</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>default, dedicated
+     * <b>Allowed Values: </b>default, dedicated, host
      *
      * @param instanceTenancy The supported tenancy options for instances launched into the VPC. A
      *         value of <code>default</code> means that instances can be launched
@@ -251,7 +271,9 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      *         instances launched into the VPC are launched as dedicated tenancy
      *         instances regardless of the tenancy assigned to the instance at
      *         launch. Dedicated tenancy instances run on single-tenant hardware.
-     *         <p>Default: <code>default</code>
+     *         <p><b>Important:</b> The <code>host</code> value cannot be used with
+     *         this parameter. Use the <code>default</code> or <code>dedicated</code>
+     *         values only. <p>Default: <code>default</code>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

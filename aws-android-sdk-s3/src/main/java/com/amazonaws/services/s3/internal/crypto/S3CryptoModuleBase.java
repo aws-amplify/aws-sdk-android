@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.services.s3.Headers;
-import com.amazonaws.services.s3.internal.Mimetypes;
 import com.amazonaws.services.s3.internal.RepeatableFileInputStream;
 import com.amazonaws.services.s3.internal.S3Direct;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
@@ -34,6 +33,7 @@ import com.amazonaws.services.s3.model.EncryptionMaterialsProvider;
 import com.amazonaws.services.s3.model.MaterialsDescriptionProvider;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.util.Mimetypes;
 import com.amazonaws.util.LengthCheckInputStream;
 
 import org.apache.commons.logging.Log;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ import java.io.Serializable;
 public class SpotPlacement implements Serializable {
 
     /**
-     * The Availability Zone.
+     * The Availability Zones. To specify multiple Availability Zones,
+     * separate them using commas; for example, "us-west-2a, us-west-2b".
      */
     private String availabilityZone;
 
@@ -44,36 +45,44 @@ public class SpotPlacement implements Serializable {
      * Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      * 
-     * @param availabilityZone The Availability Zone.
+     * @param availabilityZone The Availability Zones. To specify multiple
+     * Availability Zones, separate them using commas; for example,
+     * "us-west-2a, us-west-2b".
      */
     public SpotPlacement(String availabilityZone) {
         setAvailabilityZone(availabilityZone);
     }
 
     /**
-     * The Availability Zone.
+     * The Availability Zones. To specify multiple Availability Zones,
+     * separate them using commas; for example, "us-west-2a, us-west-2b".
      *
-     * @return The Availability Zone.
+     * @return The Availability Zones. To specify multiple Availability Zones,
+     *         separate them using commas; for example, "us-west-2a, us-west-2b".
      */
     public String getAvailabilityZone() {
         return availabilityZone;
     }
     
     /**
-     * The Availability Zone.
+     * The Availability Zones. To specify multiple Availability Zones,
+     * separate them using commas; for example, "us-west-2a, us-west-2b".
      *
-     * @param availabilityZone The Availability Zone.
+     * @param availabilityZone The Availability Zones. To specify multiple Availability Zones,
+     *         separate them using commas; for example, "us-west-2a, us-west-2b".
      */
     public void setAvailabilityZone(String availabilityZone) {
         this.availabilityZone = availabilityZone;
     }
     
     /**
-     * The Availability Zone.
+     * The Availability Zones. To specify multiple Availability Zones,
+     * separate them using commas; for example, "us-west-2a, us-west-2b".
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param availabilityZone The Availability Zone.
+     * @param availabilityZone The Availability Zones. To specify multiple Availability Zones,
+     *         separate them using commas; for example, "us-west-2a, us-west-2b".
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

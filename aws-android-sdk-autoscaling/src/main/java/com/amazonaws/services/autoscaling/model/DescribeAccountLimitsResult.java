@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,6 +32,16 @@ public class DescribeAccountLimitsResult implements Serializable {
      * account. The default limit is 100 per region.
      */
     private Integer maxNumberOfLaunchConfigurations;
+
+    /**
+     * The current number of groups for your AWS account.
+     */
+    private Integer numberOfAutoScalingGroups;
+
+    /**
+     * The current number of launch configurations for your AWS account.
+     */
+    private Integer numberOfLaunchConfigurations;
 
     /**
      * The maximum number of groups allowed for your AWS account. The default
@@ -112,6 +122,72 @@ public class DescribeAccountLimitsResult implements Serializable {
     }
 
     /**
+     * The current number of groups for your AWS account.
+     *
+     * @return The current number of groups for your AWS account.
+     */
+    public Integer getNumberOfAutoScalingGroups() {
+        return numberOfAutoScalingGroups;
+    }
+    
+    /**
+     * The current number of groups for your AWS account.
+     *
+     * @param numberOfAutoScalingGroups The current number of groups for your AWS account.
+     */
+    public void setNumberOfAutoScalingGroups(Integer numberOfAutoScalingGroups) {
+        this.numberOfAutoScalingGroups = numberOfAutoScalingGroups;
+    }
+    
+    /**
+     * The current number of groups for your AWS account.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param numberOfAutoScalingGroups The current number of groups for your AWS account.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public DescribeAccountLimitsResult withNumberOfAutoScalingGroups(Integer numberOfAutoScalingGroups) {
+        this.numberOfAutoScalingGroups = numberOfAutoScalingGroups;
+        return this;
+    }
+
+    /**
+     * The current number of launch configurations for your AWS account.
+     *
+     * @return The current number of launch configurations for your AWS account.
+     */
+    public Integer getNumberOfLaunchConfigurations() {
+        return numberOfLaunchConfigurations;
+    }
+    
+    /**
+     * The current number of launch configurations for your AWS account.
+     *
+     * @param numberOfLaunchConfigurations The current number of launch configurations for your AWS account.
+     */
+    public void setNumberOfLaunchConfigurations(Integer numberOfLaunchConfigurations) {
+        this.numberOfLaunchConfigurations = numberOfLaunchConfigurations;
+    }
+    
+    /**
+     * The current number of launch configurations for your AWS account.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param numberOfLaunchConfigurations The current number of launch configurations for your AWS account.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public DescribeAccountLimitsResult withNumberOfLaunchConfigurations(Integer numberOfLaunchConfigurations) {
+        this.numberOfLaunchConfigurations = numberOfLaunchConfigurations;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -124,7 +200,9 @@ public class DescribeAccountLimitsResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getMaxNumberOfAutoScalingGroups() != null) sb.append("MaxNumberOfAutoScalingGroups: " + getMaxNumberOfAutoScalingGroups() + ",");
-        if (getMaxNumberOfLaunchConfigurations() != null) sb.append("MaxNumberOfLaunchConfigurations: " + getMaxNumberOfLaunchConfigurations() );
+        if (getMaxNumberOfLaunchConfigurations() != null) sb.append("MaxNumberOfLaunchConfigurations: " + getMaxNumberOfLaunchConfigurations() + ",");
+        if (getNumberOfAutoScalingGroups() != null) sb.append("NumberOfAutoScalingGroups: " + getNumberOfAutoScalingGroups() + ",");
+        if (getNumberOfLaunchConfigurations() != null) sb.append("NumberOfLaunchConfigurations: " + getNumberOfLaunchConfigurations() );
         sb.append("}");
         return sb.toString();
     }
@@ -136,6 +214,8 @@ public class DescribeAccountLimitsResult implements Serializable {
         
         hashCode = prime * hashCode + ((getMaxNumberOfAutoScalingGroups() == null) ? 0 : getMaxNumberOfAutoScalingGroups().hashCode()); 
         hashCode = prime * hashCode + ((getMaxNumberOfLaunchConfigurations() == null) ? 0 : getMaxNumberOfLaunchConfigurations().hashCode()); 
+        hashCode = prime * hashCode + ((getNumberOfAutoScalingGroups() == null) ? 0 : getNumberOfAutoScalingGroups().hashCode()); 
+        hashCode = prime * hashCode + ((getNumberOfLaunchConfigurations() == null) ? 0 : getNumberOfLaunchConfigurations().hashCode()); 
         return hashCode;
     }
     
@@ -151,6 +231,10 @@ public class DescribeAccountLimitsResult implements Serializable {
         if (other.getMaxNumberOfAutoScalingGroups() != null && other.getMaxNumberOfAutoScalingGroups().equals(this.getMaxNumberOfAutoScalingGroups()) == false) return false; 
         if (other.getMaxNumberOfLaunchConfigurations() == null ^ this.getMaxNumberOfLaunchConfigurations() == null) return false;
         if (other.getMaxNumberOfLaunchConfigurations() != null && other.getMaxNumberOfLaunchConfigurations().equals(this.getMaxNumberOfLaunchConfigurations()) == false) return false; 
+        if (other.getNumberOfAutoScalingGroups() == null ^ this.getNumberOfAutoScalingGroups() == null) return false;
+        if (other.getNumberOfAutoScalingGroups() != null && other.getNumberOfAutoScalingGroups().equals(this.getNumberOfAutoScalingGroups()) == false) return false; 
+        if (other.getNumberOfLaunchConfigurations() == null ^ this.getNumberOfLaunchConfigurations() == null) return false;
+        if (other.getNumberOfLaunchConfigurations() != null && other.getNumberOfLaunchConfigurations().equals(this.getNumberOfLaunchConfigurations()) == false) return false; 
         return true;
     }
     

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -49,6 +49,14 @@ public class DescribeAccountLimitsResultStaxUnmarshaller implements Unmarshaller
                 }
                 if (context.testExpression("MaxNumberOfLaunchConfigurations", targetDepth)) {
                     describeAccountLimitsResult.setMaxNumberOfLaunchConfigurations(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("NumberOfAutoScalingGroups", targetDepth)) {
+                    describeAccountLimitsResult.setNumberOfAutoScalingGroups(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("NumberOfLaunchConfigurations", targetDepth)) {
+                    describeAccountLimitsResult.setNumberOfLaunchConfigurations(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

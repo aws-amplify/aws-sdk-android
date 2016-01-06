@@ -68,6 +68,9 @@ public class LambdaInvocationHandlerTest {
 
         @LambdaFunction(qualifier = "version")
         String echoVersion(String a);
+
+        @LambdaFunction
+        String echoNoArgument();
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -173,6 +176,15 @@ public class LambdaInvocationHandlerTest {
         Mockito.when(lambda.invoke(Matchers.any(InvokeRequest.class))).thenReturn(invokeResult);
         String result = invoker.echo(input);
         assertEquals("echo", input, result);
+    }
+
+    @Test
+    public void testInvokeNoArgument() throws Exception {
+        String echoResult = "No argument";
+        InvokeResult invokeResult = createInvokeResult(200, null, "\"" + echoResult + "\"");
+        Mockito.when(lambda.invoke(Matchers.any(InvokeRequest.class))).thenReturn(invokeResult);
+        String result = invoker.echoNoArgument();
+        assertEquals("echoNoArgument", echoResult, result);
     }
 
     @Test(expected = LambdaFunctionException.class)

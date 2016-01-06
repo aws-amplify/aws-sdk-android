@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,14 +24,24 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Deletes the specified Auto Scaling group.
  * </p>
  * <p>
- * The group must have no instances and no scaling activities in
- * progress.
+ * If the group has instances or scaling activities in progress, you must
+ * specify the option to force the deletion in order for it to succeed.
  * </p>
  * <p>
- * To remove all instances before calling
- * <code>DeleteAutoScalingGroup</code> ,
- * call UpdateAutoScalingGroup to set the minimum and maximum
- * size of the Auto Scaling group to zero.
+ * If the group has policies, deleting the group deletes the policies,
+ * the underlying alarm actions, and any alarm that no longer has an
+ * associated action.
+ * </p>
+ * <p>
+ * To remove instances from the Auto Scaling group before deleting it,
+ * call DetachInstances with the list of instances and the option to
+ * decrement the desired capacity so that Auto Scaling does not launch
+ * replacement instances.
+ * </p>
+ * <p>
+ * To terminate all instances before deleting the Auto Scaling group,
+ * call UpdateAutoScalingGroup and set the minimum size and desired
+ * capacity of the Auto Scaling group to zero.
  * </p>
  *
  * @see com.amazonaws.services.autoscaling.AmazonAutoScaling#deleteAutoScalingGroup(DeleteAutoScalingGroupRequest)

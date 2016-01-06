@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -59,7 +59,6 @@ import com.amazonaws.services.s3.internal.DeleteObjectsResponse;
 import com.amazonaws.services.s3.internal.DigestValidationInputStream;
 import com.amazonaws.services.s3.internal.InputSubstream;
 import com.amazonaws.services.s3.internal.MD5DigestCalculatingInputStream;
-import com.amazonaws.services.s3.internal.Mimetypes;
 import com.amazonaws.services.s3.internal.ObjectExpirationHeaderHandler;
 import com.amazonaws.services.s3.internal.RepeatableFileInputStream;
 import com.amazonaws.services.s3.internal.ResponseHeaderHandlerChain;
@@ -166,6 +165,7 @@ import com.amazonaws.services.s3.model.transform.RequestXmlFactory;
 import com.amazonaws.services.s3.model.transform.Unmarshallers;
 import com.amazonaws.services.s3.model.transform.XmlResponsesSaxParser.CompleteMultipartUploadHandler;
 import com.amazonaws.services.s3.model.transform.XmlResponsesSaxParser.CopyObjectResultHandler;
+import com.amazonaws.services.s3.util.Mimetypes;
 import com.amazonaws.transform.Unmarshaller;
 import com.amazonaws.util.AWSRequestMetrics;
 import com.amazonaws.util.AWSRequestMetrics.Field;

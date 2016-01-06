@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import android.util.Log;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.internal.Mimetypes;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadResult;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
@@ -28,6 +27,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.UploadPartRequest;
+import com.amazonaws.services.s3.util.Mimetypes;
 
 import java.io.File;
 import java.util.ArrayList;

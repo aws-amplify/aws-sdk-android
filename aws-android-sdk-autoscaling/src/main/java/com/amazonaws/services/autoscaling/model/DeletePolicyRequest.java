@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,6 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Container for the parameters to the {@link com.amazonaws.services.autoscaling.AmazonAutoScaling#deletePolicy(DeletePolicyRequest) DeletePolicy operation}.
  * <p>
  * Deletes the specified Auto Scaling policy.
+ * </p>
+ * <p>
+ * Deleting a policy deletes the underlying alarm action, but does not
+ * delete the alarm, even if it no longer has an associated action.
  * </p>
  *
  * @see com.amazonaws.services.autoscaling.AmazonAutoScaling#deletePolicy(DeletePolicyRequest)

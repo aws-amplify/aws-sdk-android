@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -61,6 +61,10 @@ public class InstanceStaxUnmarshaller implements Unmarshaller<Instance, StaxUnma
                 }
                 if (context.testExpression("LaunchConfigurationName", targetDepth)) {
                     instance.setLaunchConfigurationName(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("ProtectedFromScaleIn", targetDepth)) {
+                    instance.setProtectedFromScaleIn(BooleanStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

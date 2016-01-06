@@ -54,6 +54,8 @@ class LambdaInvocationHandler implements InvocationHandler {
             throws Throwable {
         validateInterfaceMethod(method, args);
 
+        // With Android version before Lollipop (API level 22), args can be an
+        // empty array when the method takes no arguments.
         final Object buildArg = (args == null || args.length == 0) ? null : args[0];
         InvokeRequest invokeRequest = buildInvokeRequest(method, buildArg);
         InvokeResult invokeResult = lambda.invoke(invokeRequest);
