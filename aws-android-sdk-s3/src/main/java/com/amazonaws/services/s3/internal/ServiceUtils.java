@@ -25,6 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.Request;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.UploadPartRequest;
@@ -372,10 +373,30 @@ public class ServiceUtils {
     }
 
     /**
+     * Based on the given metadata of an S3 response, Returns whether the
+     * specified request should skip MD5 check on the requested object content.
+     * Specifically, MD5 check should be skipped if either SSE-KMS or SSE-C is
+     * involved.
+     * <p>
+     * The reason is that when SSE-KMS or SSE-C is involved, the MD5 returned
+     * from the server side is the MD5 of the ciphertext, which will by
+     * definition mismatch the MD5 on the client side which is computed based on
+     * the plaintext.
+     */
+    public static boolean skipMd5CheckPerResponse(ObjectMetadata metadata) {
+        if (metadata == null)
+            return false;
+        boolean sseKMS = (ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION.equals(metadata
+                .getSSEAlgorithm()));
+        return (metadata.getSSECustomerAlgorithm() != null)
+                || sseKMS;
+    }
+
+    /**
      * Returns whether the specified request should skip MD5 check on the
      * requested object content.
      */
-    public static boolean skipContentMd5IntegrityCheck(AmazonWebServiceRequest request) {
+    public static boolean skipMd5CheckPerRequest(AmazonWebServiceRequest request) {
         if (System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") != null)
             return true;
 
@@ -384,11 +405,14 @@ public class ServiceUtils {
             // Skip MD5 check for range get
             if (getObjectRequest.getRange() != null)
                 return true;
-
             if (getObjectRequest.getSSECustomerKey() != null)
                 return true;
         } else if (request instanceof PutObjectRequest) {
             PutObjectRequest putObjectRequest = (PutObjectRequest) request;
+            ObjectMetadata om = putObjectRequest.getMetadata();
+            if (om != null && om.getSSEAlgorithm() != null) {
+                return true;
+            }
             return putObjectRequest.getSSECustomerKey() != null;
         } else if (request instanceof UploadPartRequest) {
             UploadPartRequest uploadPartRequest = (UploadPartRequest) request;

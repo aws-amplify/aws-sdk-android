@@ -21,21 +21,31 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A holder of S3 clients for {@link TransferUtility} to pass a reference of
+ * AmazonS3 to {@link TransferService}. Usually objects are passed to a service
+ * via intent in a parcelable form. A S3 client has too many elements to
+ * capture. Instead, this serves as an alternative approach, not ideal though.
+ */
 class S3ClientWeakReference {
 
     private static Map<String, WeakReference<AmazonS3>> map = new HashMap<String, WeakReference<AmazonS3>>();
 
     public static void put(String key, AmazonS3 s3) {
-        WeakReference<AmazonS3> s3WeakReference = new WeakReference<AmazonS3>(s3);
-        map.put(key, s3WeakReference);
+        map.put(key, new WeakReference<AmazonS3>(s3));
     }
 
+    /**
+     * Retrieves the AmazonS3 client on the given key.
+     *
+     * @param key key of the client
+     * @return an AmazonS3 instance, or null if the key doesn't exist
+     */
     public static AmazonS3 get(String key) {
-        WeakReference<AmazonS3> s3WeakReference = map.get(key);
-        if (s3WeakReference == null) {
-            return null;
+        if (map.containsKey(key)) {
+            return map.get(key).get();
         } else {
-            return s3WeakReference.get();
+            return null;
         }
     }
 }

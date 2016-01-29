@@ -1303,7 +1303,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             // we're downloading the whole object, by default we wrap the
             // stream in a validator that calculates an MD5 of the downloaded
             // bytes and complains if what we received doesn't match the Etag.
-            if (!ServiceUtils.skipContentMd5IntegrityCheck(getObjectRequest)) {
+            if (!ServiceUtils.skipMd5CheckPerRequest(getObjectRequest)
+                    && !ServiceUtils.skipMd5CheckPerResponse(s3Object.getObjectMetadata())) {
                 byte[] serverSideHash = null;
                 String etag = s3Object.getObjectMetadata().getETag();
                 if (etag != null && ServiceUtils.isMultipartUploadETag(etag) == false) {
@@ -1380,7 +1381,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
                     @Override
                     public boolean needIntegrityCheck() {
-                        return !ServiceUtils.skipContentMd5IntegrityCheck(getObjectRequest);
+                        return !ServiceUtils.skipMd5CheckPerRequest(getObjectRequest);
                     }
 
                 }, mode);
@@ -1481,7 +1482,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(key, "The key parameter must be specified when uploading an object");
 
         final boolean skipContentMd5Check = ServiceUtils
-                .skipContentMd5IntegrityCheck(putObjectRequest);
+                .skipMd5CheckPerRequest(putObjectRequest);
 
         // If a file is specified for upload, we need to pull some additional
         // information from it to auto-configure a few options
@@ -1655,6 +1656,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         result.setETag(returnedMetadata.getETag());
         result.setVersionId(returnedMetadata.getVersionId());
         result.setSSEAlgorithm(returnedMetadata.getSSEAlgorithm());
+        result.setSSEKMSKeyId(returnedMetadata.getSSEKMSKeyId());
         result.setSSECustomerAlgorithm(returnedMetadata.getSSECustomerAlgorithm());
         result.setSSECustomerKeyMd5(returnedMetadata.getSSECustomerKeyMd5());
         result.setExpirationTime(returnedMetadata.getExpirationTime());
@@ -1822,6 +1824,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         copyObjectResult.setLastModifiedDate(copyObjectResultHandler.getLastModified());
         copyObjectResult.setVersionId(copyObjectResultHandler.getVersionId());
         copyObjectResult.setSSEAlgorithm(copyObjectResultHandler.getSSEAlgorithm());
+        copyObjectResult.setSSEKMSKeyId(copyObjectResultHandler.getSSEKMSKeyId());
         copyObjectResult.setSSECustomerAlgorithm(copyObjectResultHandler.getSSECustomerAlgorithm());
         copyObjectResult.setSSECustomerKeyMd5(copyObjectResultHandler.getSSECustomerKeyMd5());
         copyObjectResult.setExpirationTime(copyObjectResultHandler.getExpirationTime());
@@ -3269,7 +3272,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         MD5DigestCalculatingInputStream md5DigestStream = null;
         if (uploadPartRequest.getMd5Digest() == null
-                && !ServiceUtils.skipContentMd5IntegrityCheck(uploadPartRequest)) {
+                && !ServiceUtils.skipMd5CheckPerRequest(uploadPartRequest)) {
             /*
              * If the user hasn't set the content MD5, then we don't want to
              * buffer the whole stream in memory just to calculate it. Instead,
@@ -3300,7 +3303,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             ObjectMetadata metadata = invoke(request, new S3MetadataResponseHandler(), bucketName,
                     key);
 
-            if (metadata != null && md5DigestStream != null) {
+            if (metadata != null && md5DigestStream != null
+                    && !ServiceUtils.skipMd5CheckPerResponse(metadata)) {
                 byte[] clientSideHash = md5DigestStream.getMd5Digest();
                 byte[] serverSideHash = BinaryUtils.fromHex(metadata.getETag());
 
@@ -3321,6 +3325,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             result.setETag(metadata.getETag());
             result.setPartNumber(partNumber);
             result.setSSEAlgorithm(metadata.getSSEAlgorithm());
+            result.setSSEKMSKeyId(metadata.getSSEKMSKeyId());
             result.setSSECustomerAlgorithm(metadata.getSSECustomerAlgorithm());
             result.setSSECustomerKeyMd5(metadata.getSSECustomerKeyMd5());
             return result;
@@ -3404,7 +3409,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     /**
      * (non-Javadoc)
      *
-     * @see
+     * @see 
      *      com.amazonaws.services.s3.AmazonS3#copyGlacierObject((java.lang.String
      *      , java.lang.String, int)
      */
@@ -3555,7 +3560,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         Signer signer = getSigner();
 
-        if (upgradeToSigV4() && !(signer instanceof AWSS3V4Signer)) {
+        if (upgradeToSigV4(request) && !(signer instanceof AWSS3V4Signer)) {
 
             AWSS3V4Signer v4Signer = new AWSS3V4Signer();
 
@@ -3607,7 +3612,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         return signer;
     }
 
-    private boolean upgradeToSigV4() {
+    private boolean upgradeToSigV4(Request<?> request) {
 
         // User has said to always use SigV4 - this will fail if the user
         // attempts to read from or write to a non-US-Standard bucket without
@@ -3619,15 +3624,10 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             return true;
         }
 
-        // User has said to enable SigV4 if it's safe - this will fall back
-        // to SigV2 if the endpoint has not been set to one of the explicit
-        // regional endpoints because we can't be sure it will work otherwise.
-
-        if (System.getProperty(SDKGlobalConfiguration
-                .ENABLE_S3_SIGV4_SYSTEM_PROPERTY) != null
-                && !endpoint.getHost().endsWith(Constants.S3_HOSTNAME)) {
-
+        // Upgrade to Sigv4 if using non-default region.
+        if (!endpoint.getHost().endsWith(Constants.S3_HOSTNAME)) {
             return true;
+
         }
 
         // Go with the default (SigV4 only if we know we're talking to an
@@ -3730,6 +3730,14 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     protected static void populateRequestMetadata(Request<?> request, ObjectMetadata metadata) {
         Map<String, Object> rawMetadata = metadata.getRawMetadata();
+
+        if (rawMetadata.get(Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID) != null
+                && !ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION.equals(rawMetadata
+                        .get(Headers.SERVER_SIDE_ENCRYPTION))) {
+            throw new IllegalArgumentException(
+                    "If you specify a KMS key id for server side encryption, you must also set the SSEAlgorithm to ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION");
+        }
+
         if (rawMetadata != null) {
             for (Entry<String, Object> entry : rawMetadata.entrySet()) {
                 request.addHeader(entry.getKey(), entry.getValue().toString());

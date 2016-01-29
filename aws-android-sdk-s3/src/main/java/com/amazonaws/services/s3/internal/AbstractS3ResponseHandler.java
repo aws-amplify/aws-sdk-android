@@ -76,8 +76,8 @@ public abstract class AbstractS3ResponseHandler<T>
      *
      * @param response The response containing the response metadata to pull
      *            out.
-     * @return A new, populated AmazonWebServiceResponse<T> object, ready for the
-     *         result to be plugged in.
+     * @return A new, populated AmazonWebServiceResponse<T> object, ready for
+     *         the result to be plugged in.
      */
     protected AmazonWebServiceResponse<T> parseResponseMetadata(HttpResponse response) {
         AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();
@@ -138,5 +138,4 @@ public abstract class AbstractS3ResponseHandler<T>
             }
         }
     }
-
 }

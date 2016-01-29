@@ -15,13 +15,9 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import android.content.Context;
-import android.database.ContentObserver;
 import android.database.Cursor;
-import android.os.Handler;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.io.File;
 
 /**
  * TransferObserver is used to track state and progress of a transfer.
@@ -52,40 +48,45 @@ import java.util.HashSet;
  */
 public class TransferObserver {
 
-    /**
-     * Some temporary states that should not be notified.
-     */
-    private static HashSet<TransferState> STATES_NOT_TO_NOTIFY = new HashSet<TransferState>(
-            Arrays.asList(TransferState.PART_COMPLETED,
-                    TransferState.PENDING_CANCEL, TransferState.PENDING_PAUSE,
-                    TransferState.PENDING_NETWORK_DISCONNECT));
-
-    private final Context context;
-    private final TransferContentObserver observer;
     private final int id;
+    private final TransferDBUtil dbUtil;
+
     private long bytesTotal;
     private long bytesTransferred;
     private TransferState transferState;
     private String filePath;
+
     private TransferListener transferListener;
-    private final TransferDBUtil dbUtil;
+    private TransferStatusListener statusListener;
 
     /**
      * Constructs a TransferObserver and initializes fields with the given
      * arguments.
      *
      * @param id The transfer id of the transfer to be observed.
-     * @param context A Context instance.
-     * @param bytesTotal Total bytes to be transferred.
+     * @param dbUtil an instance of database utility
+     * @param file a file associated with this transfer
      */
-    public TransferObserver(int id, Context context, long bytesTotal) {
+    TransferObserver(int id, TransferDBUtil dbUtil, File file) {
         this.id = id;
-        this.context = context;
-        this.bytesTotal = bytesTotal;
+        this.dbUtil = dbUtil;
+        filePath = file.getAbsolutePath();
+        bytesTotal = file.length();
         transferState = TransferState.WAITING;
-        dbUtil = new TransferDBUtil(this.context);
-        refresh();
-        observer = new TransferContentObserver(new Handler(context.getMainLooper()));
+    }
+
+    /**
+     * Constructs a TransferObserver and initializes fields with the given
+     * arguments.
+     *
+     * @param id The transfer id of the transfer to be observed.
+     * @param dbUtil an instance of database utility
+     * @param c a cursor to read the state of the transfer from
+     */
+    TransferObserver(int id, TransferDBUtil dbUtil, Cursor c) {
+        this.id = id;
+        this.dbUtil = dbUtil;
+        updateFromDB(c);
     }
 
     /**
@@ -94,18 +95,27 @@ public class TransferObserver {
      */
     public void refresh() {
         Cursor c = dbUtil.queryTransferById(id);
-        if (!c.moveToFirst()) {
+        try {
+            if (c.moveToFirst()) {
+                updateFromDB(c);
+            }
+        } finally {
             c.close();
-            return;
         }
+    }
 
+    /**
+     * Update transfer state from the given cursor.
+     *
+     * @param c a cursor to read the state of the transfer from
+     */
+    private void updateFromDB(Cursor c) {
         bytesTotal = c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
         bytesTransferred = c.getLong(c
                 .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_CURRENT));
         transferState = TransferState.getState(c.getString(c
                 .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
         filePath = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE));
-        c.close();
     }
 
     /**
@@ -118,13 +128,17 @@ public class TransferObserver {
      * @param listener A TransferListener used to receive notification.
      */
     public void setTransferListener(TransferListener listener) {
-        if (listener == null) {
+        synchronized (this) {
+            // Remove previous listener.
             cleanTransferListener();
-            return;
+
+            // One additional listener is attached so that the basic transfer
+            // info gets updated along side.
+            statusListener = new TransferStatusListener();
+            TransferStatusUpdater.registerListener(id, statusListener);
+            transferListener = listener;
+            TransferStatusUpdater.registerListener(id, transferListener);
         }
-        transferListener = listener;
-        context.getContentResolver().registerContentObserver(dbUtil.getRecordUri(id),
-                true, observer);
     }
 
     /**
@@ -176,64 +190,36 @@ public class TransferObserver {
      * Cleans the transfer listener.
      */
     public void cleanTransferListener() {
-        context.getContentResolver().unregisterContentObserver(observer);
+        synchronized (this) {
+            if (transferListener != null) {
+                TransferStatusUpdater.unregisterListener(id, transferListener);
+                transferListener = null;
+            }
+            if (statusListener != null) {
+                TransferStatusUpdater.unregisterListener(id, statusListener);
+                statusListener = null;
+            }
+        }
     }
 
     /**
-     * An inner class extending ContentObserver, used to listen to changes of a
-     * specific transfer record in the database.
+     * A listener that can update the {@link TransferObserver}.
      */
-    private class TransferContentObserver extends ContentObserver {
-        public TransferContentObserver(Handler handler) {
-            super(handler);
+    private class TransferStatusListener implements TransferListener {
+        @Override
+        public void onStateChanged(int id, TransferState state) {
+            transferState = state;
         }
 
         @Override
-        public void onChange(boolean selfChange) {
-            if (transferListener == null) {
-                return;
-            }
-            Cursor c = dbUtil.queryTransferById(id);
-            if (!c.moveToFirst()) {
-                // Transfer was deleted
-                c.close();
-                return;
-            }
+        public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+            bytesTransferred = bytesCurrent;
+            TransferObserver.this.bytesTotal = bytesTotal;
+        }
 
-            // Check state
-            String stateString = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_STATE));
-            TransferState state = null;
-            if (stateString != null && !stateString.equalsIgnoreCase("")) {
-                state = TransferState.getState(stateString);
-            }
-
-            if (state != null && !state.equals(transferState)) {
-                transferState = state;
-                if (!STATES_NOT_TO_NOTIFY.contains(state)) {
-                    transferListener.onStateChanged(id, transferState);
-                }
-                if (TransferState.FAILED.equals(transferState)) {
-                    // TODO: get error message from database.
-                    transferListener.onError(id, new IllegalStateException("Transfer failed."));
-                }
-            }
-            // Check bytes transferred and total bytes
-            if (TransferState.IN_PROGRESS.equals(state)
-                    || TransferState.COMPLETED.equals(state)) {
-                long bytesCurrent = c.getLong(c
-                        .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_CURRENT));
-                long bytesTotal = c.getLong(c
-                        .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
-                if (TransferObserver.this.bytesTotal != bytesTotal) {
-                    TransferObserver.this.bytesTotal = bytesTotal;
-                }
-                if (bytesTransferred != bytesCurrent) {
-                    bytesTransferred = bytesCurrent;
-                    transferListener.onProgressChanged(id, bytesTransferred,
-                            TransferObserver.this.bytesTotal);
-                }
-            }
-            c.close();
+        @Override
+        public void onError(int id, Exception ex) {
+            // do nothing
         }
     }
 }

@@ -16,7 +16,8 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 /**
- * Listener interface for transfer state and progress changes.
+ * Listener interface for transfer state and progress changes. All callbacks
+ * will be invoked on the main thread.
  */
 public interface TransferListener {
     /**

@@ -54,6 +54,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
 
     public static final String AES_256_SERVER_SIDE_ENCRYPTION = "AES256";
 
+    public static final String KMS_SERVER_SIDE_ENCRYPTION = "aws:kms";
+
     /**
      * The date when the object is no longer cacheable.
      */
@@ -595,6 +597,14 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
     }
 
     /**
+     * Returns the KMS Key Id used for server-side encryption if set, or null
+     * otherwise.
+     */
+    public String getSSEKMSKeyId() {
+        return (String) metadata.get(Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID);
+    }
+
+    /**
      * @deprecated Replaced by {@link #getSSEAlgorithm()}
      */
     @Deprecated
@@ -612,6 +622,16 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
     @Override
     public void setSSEAlgorithm(String algorithm) {
         metadata.put(Headers.SERVER_SIDE_ENCRYPTION, algorithm);
+    }
+
+    /**
+     * Optionally set the Id of the KMS key to use when encrypting data server
+     * side using KMS. You must call also
+     * setSSEAlgorithm(ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION) when using
+     * this method
+     */
+    public void setSSEKMSKeyId(String kmsKeyId) {
+        metadata.put(Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID, kmsKeyId);
     }
 
     /**

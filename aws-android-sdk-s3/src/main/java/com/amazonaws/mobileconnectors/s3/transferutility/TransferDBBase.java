@@ -108,7 +108,6 @@ class TransferDBBase {
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
-        context.getContentResolver().notifyChange(uri, null);
         return Uri.parse(BASE_PATH + "/" + id);
     }
 
@@ -188,9 +187,6 @@ class TransferDBBase {
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
-        if (rowsUpdated > 0) {
-            context.getContentResolver().notifyChange(uri, null);
-        }
         return rowsUpdated;
     }
 
@@ -224,7 +220,6 @@ class TransferDBBase {
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
-        context.getContentResolver().notifyChange(uri, null);
         return rowsDeleted;
     }
 
@@ -258,7 +253,6 @@ class TransferDBBase {
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
-        context.getContentResolver().notifyChange(uri, null);
         return mainUploadId;
     }
 }

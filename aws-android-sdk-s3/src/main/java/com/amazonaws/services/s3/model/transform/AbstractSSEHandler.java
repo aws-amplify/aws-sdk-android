@@ -42,6 +42,20 @@ abstract class AbstractSSEHandler extends AbstractHandler implements ServerSideE
     }
 
     @Override
+    public void setSSEKMSKeyId(String kmsKeyId) {
+        ServerSideEncryptionResult result = sseResult();
+        if (result != null)
+            result.setSSEKMSKeyId(kmsKeyId);
+
+    }
+
+    @Override
+    public String getSSEKMSKeyId() {
+        ServerSideEncryptionResult result = sseResult();
+        return result == null ? null : result.getSSEKMSKeyId();
+    }
+
+    @Override
     public final String getSSECustomerAlgorithm() {
         ServerSideEncryptionResult result = sseResult();
         return result == null ? null : result.getSSECustomerAlgorithm();

@@ -147,21 +147,21 @@ public class DefaultSigningMethodTest {
      */
     @Test
     public void testOtherRegionDefaultSigning() {
-        testNonSigV4OnlyRegionDefaultSigning("s3-external-1.amazonaws.com", "us-east-1");
-        testNonSigV4OnlyRegionDefaultSigning("s3-us-west-2.amazonaws.com", "us-west-2");
-        testNonSigV4OnlyRegionDefaultSigning("s3-us-west-1.amazonaws.com", "us-west-1");
-        testNonSigV4OnlyRegionDefaultSigning("s3-eu-west-1.amazonaws.com", "eu-west-1");
-        testNonSigV4OnlyRegionDefaultSigning("s3-ap-southeast-1.amazonaws.com", "ap-southeast-1");
-        testNonSigV4OnlyRegionDefaultSigning("s3-ap-southeast-2.amazonaws.com", "ap-southeast-2");
-        testNonSigV4OnlyRegionDefaultSigning("s3-ap-northeast-1.amazonaws.com", "ap-northeast-1");
-        testNonSigV4OnlyRegionDefaultSigning("s3-sa-east-1.amazonaws.com", "sa-east-1");
+        testSigV4WithRegionDefaultSigning("s3-external-1.amazonaws.com", "us-east-1");
+        testSigV4WithRegionDefaultSigning("s3-us-west-2.amazonaws.com", "us-west-2");
+        testSigV4WithRegionDefaultSigning("s3-us-west-1.amazonaws.com", "us-west-1");
+        testSigV4WithRegionDefaultSigning("s3-eu-west-1.amazonaws.com", "eu-west-1");
+        testSigV4WithRegionDefaultSigning("s3-ap-southeast-1.amazonaws.com", "ap-southeast-1");
+        testSigV4WithRegionDefaultSigning("s3-ap-southeast-2.amazonaws.com", "ap-southeast-2");
+        testSigV4WithRegionDefaultSigning("s3-ap-northeast-1.amazonaws.com", "ap-northeast-1");
+        testSigV4WithRegionDefaultSigning("s3-sa-east-1.amazonaws.com", "sa-east-1");
     }
 
-    private void testNonSigV4OnlyRegionDefaultSigning(String endpoint, String expectedRegionName) {
+    private void testSigV4WithRegionDefaultSigning(String endpoint, String expectedRegionName) {
         clearFlags();
         AmazonS3Client s3 = new AmazonS3Client();
         s3.setEndpoint(endpoint);
-        assertSigV2(s3);
+        assertSigV4WithRegion(s3, expectedRegionName);
 
         // Enforce SigV4 should change the default
         System.setProperty("com.amazonaws.services.s3.enforceV4", "true");

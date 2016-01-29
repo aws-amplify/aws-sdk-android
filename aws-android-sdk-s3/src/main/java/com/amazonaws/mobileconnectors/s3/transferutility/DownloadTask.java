@@ -15,14 +15,16 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.event.ProgressEvent;
+import android.util.Log;
+
+import com.amazonaws.AbortedException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.GetObjectMetadataRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 
 import java.io.File;
+import java.io.InterruptedIOException;
 import java.util.concurrent.Callable;
 
 /**
@@ -31,130 +33,82 @@ import java.util.concurrent.Callable;
  */
 class DownloadTask implements Callable<Boolean> {
 
+    private static final String TAG = "DownloadTask";
+
     private final AmazonS3 s3;
     private final TransferRecord download;
-    private final TransferProgress transferProgress;
-    TransferDBUtil dbUtil;
+    private final TransferStatusUpdater updater;
 
     /**
      * Constructs a DownloadTask with the given download info and S3 client.
      *
-     * @param DownloadInfo A TransferRecord object storing all the information
-     *            of the download
+     * @param download A TransferRecord object storing all the information of
+     *            the download
      * @param s3 Low-level S3 client
      */
-    public DownloadTask(TransferRecord DownloadInfo, AmazonS3 s3, TransferDBUtil dbUtil) {
-        this.download = DownloadInfo;
+    public DownloadTask(TransferRecord download, AmazonS3 s3, TransferStatusUpdater updater) {
+        this.download = download;
         this.s3 = s3;
-        this.transferProgress = new TransferProgress();
-        this.dbUtil = dbUtil;
+        this.updater = updater;
     }
 
-    /*
+    /**
      * Runs download task and returns whether successfully downloaded.
      */
     @Override
-    public Boolean call() {
-        return downloadAndWaitForCompletion();
-    }
+    public Boolean call() throws Exception {
+        updater.updateState(download.id, TransferState.IN_PROGRESS);
 
-    /**
-     * Starts downloading, blocks the current thread and wait for completion.
-     *
-     * @return Whether the file has been downloaded successfully.
-     */
-    private Boolean downloadAndWaitForCompletion() {
-        dbUtil.updateState(download.id, TransferState.IN_PROGRESS);
-        final GetObjectRequest getObjectRequest = new GetObjectRequest(download.bucketName,
-                download.key);
         File file = new File(download.file);
-        TransferUtility.appendTransferServiceUserAgentString(getObjectRequest);
-
-        // Constructs a request and fetch total bytes.
-        GetObjectMetadataRequest getObjectMetadataRequest = new GetObjectMetadataRequest(
-                getObjectRequest.getBucketName(), getObjectRequest.getKey());
-        if (getObjectRequest.getSSECustomerKey() != null) {
-            getObjectMetadataRequest.setSSECustomerKey(getObjectRequest.getSSECustomerKey());
-        }
-        ObjectMetadata objectMetadata = null;
-
         try {
+            // Constructs a request and fetch total bytes.
+            GetObjectMetadataRequest getObjectMetadataRequest = new GetObjectMetadataRequest(
+                    download.bucketName, download.key);
             TransferUtility.appendTransferServiceUserAgentString(getObjectMetadataRequest);
-            objectMetadata = s3.getObjectMetadata(getObjectMetadataRequest);
-        } catch (AmazonClientException ase) {
-            writeFailureInfo();
-            return false;
-        }
+            ObjectMetadata objectMetadata = s3.getObjectMetadata(getObjectMetadataRequest);
+            final long bytesTotal = objectMetadata.getContentLength();
 
-        long startingByte = 0;
-        long lastByte = objectMetadata.getContentLength() - 1;
-        long totalBytesOfFile = lastByte - startingByte + 1;
-        long totalBytesToDownload = totalBytesOfFile;
-        transferProgress.setTotalBytesToTransfer(totalBytesOfFile);
-        dbUtil.updateBytesTotalForDownload(download.id, totalBytesOfFile);
-
-        // Checks if it's a resumed download.
-        if (download.bytesCurrent > 0) {
-            if (file.exists()) {
-                long numberOfBytesRead = file.length();
-                if (numberOfBytesRead != download.bytesCurrent) {
-                    dbUtil.updateBytesTransferred(download.id, numberOfBytesRead, true);
-                }
-                startingByte = startingByte + numberOfBytesRead;
-                getObjectRequest.setRange(startingByte, lastByte);
-                transferProgress.updateProgress(Math.min(numberOfBytesRead,
-                        totalBytesOfFile));
-                totalBytesToDownload = lastByte - startingByte + 1;
+            long bytesCurrent = file.length();
+            if (bytesCurrent > bytesTotal) {
+                throw new IllegalStateException(
+                        "Unable to determine the range for download operation.");
             }
-        }
 
-        if (totalBytesToDownload < 0) {
-            throw new IllegalArgumentException(
-                    "Unable to determine the range for download operation.");
-        }
-
-        getObjectRequest.setGeneralProgressListener(new TransferProgressUpdatingListener(
-                transferProgress) {
-            @Override
-            public void progressChanged(ProgressEvent progressEvent) {
-                super.progressChanged(progressEvent);
-                if (download.bytesCurrent != transferProgress.getBytesTransferred()) {
-                    dbUtil.updateBytesTransferred(download.id,
-                            transferProgress.getBytesTransferred(),
-                            false);
-                }
+            final GetObjectRequest getObjectRequest = new GetObjectRequest(download.bucketName,
+                    download.key);
+            TransferUtility.appendTransferServiceUserAgentString(getObjectRequest);
+            if (bytesCurrent > 0) {
+                Log.d(TAG, String.format("Resume transfer %d from %d bytes", download.id, bytesCurrent));
+                getObjectRequest.setRange(bytesCurrent, bytesTotal - 1);
             }
-        });
 
-        try {
+            updater.updateProgress(download.id, bytesCurrent, bytesTotal);
+            getObjectRequest.setGeneralProgressListener(updater.newProgressListener(download.id,
+                    bytesCurrent, bytesTotal));
             ObjectMetadata metadata = s3.getObject(getObjectRequest, file);
             if (metadata == null) {
-                writeFailureInfo();
-                return false;
+                updater.throwError(download.id, new IllegalStateException(
+                        "AmazonS3.getObject returns null"));
+                updater.updateState(download.id, TransferState.FAILED);
             } else {
-                writeSuccessInfo(totalBytesOfFile);
+                updater.updateProgress(download.id, bytesTotal, bytesTotal);
+                updater.updateState(download.id, TransferState.COMPLETED);
                 return true;
             }
         } catch (Exception e) {
-            writeFailureInfo();
-            return false;
+            if (e instanceof AbortedException
+                    || e.getCause() != null && (e.getCause() instanceof InterruptedIOException
+                    || e.getCause() instanceof InterruptedException)) {
+                // thread interrupted by user
+                Log.d(TAG, "Transfer " + download.id + " is interrupted by user");
+                // don't update the state as it's set by caller who interrupted
+                // the transfer
+            } else {
+                Log.e(TAG, "Failed to download: " + download.id + " due to " + e.getMessage());
+                updater.throwError(download.id, e);
+                updater.updateState(download.id, TransferState.FAILED);
+            }
         }
-    }
-
-    /**
-     * Updates the download record with success state and total bytes.
-     *
-     * @param totalBytesOfFile The total bytes of the downloaded file.
-     */
-    private void writeSuccessInfo(long totalBytesOfFile) {
-        dbUtil.updateBytesTransferred(download.id, totalBytesOfFile, true);
-        dbUtil.updateState(download.id, TransferState.COMPLETED);
-    }
-
-    /**
-     * Updates the download record with failure state.
-     */
-    private void writeFailureInfo() {
-        dbUtil.updateState(download.id, TransferState.FAILED);
+        return false;
     }
 }

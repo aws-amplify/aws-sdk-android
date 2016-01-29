@@ -24,6 +24,7 @@ import com.amazonaws.services.s3.Headers;
  * @see Headers#SERVER_SIDE_ENCRYPTION
  * @see Headers#SERVER_SIDE_ENCRYPTION_CUSTOMER_ALGORITHM
  * @see Headers#SERVER_SIDE_ENCRYPTION_CUSTOMER_KEY_MD5
+ * @see Headers#SERVER_SIDE_ENCRYPTION_KMS_KEY_ID
  */
 public interface ServerSideEncryptionResult {
 
@@ -39,6 +40,21 @@ public interface ServerSideEncryptionResult {
      * @param algorithm The server-side encryption algorithm for the response.
      */
     public void setSSEAlgorithm(String algorithm);
+
+    /**
+     * Sets the KMS Key to use when encrypting objects server-side using KMS. In
+     * order to use this field you must also call
+     * setSSEAlgorithm(ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION)
+     * 
+     * @param kmsKeyId The Id of the KMS key to encrypt the data with.
+     */
+    public void setSSEKMSKeyId(String kmsKeyId);
+
+    /**
+     * Returns the KMS Key Id used for server-side encryption if set, or null
+     * otherwise.
+     */
+    public String getSSEKMSKeyId();
 
     /**
      * Returns the server-side encryption algorithm if the object is encrypted

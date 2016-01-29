@@ -154,7 +154,7 @@ class TransferTable {
     public static final String COLUMN_HEADER_CACHE_CONTROL = "header_cache_control";
 
     /**
-     * ============ Below added in 2.5.6 for support for metadata ============
+     * ============ Below added in 2.2.6 for support for metadata ============
      */
 
     /**
@@ -181,6 +181,15 @@ class TransferTable {
      * Json serialization of user metadata to store with the Object
      */
     public static final String COLUMN_USER_METADATA = "user_metadata";
+
+    /**
+     * ============ Below added in 2.2.11 for support for KMS ============
+     */
+
+    /**
+     * User specified KMS key for server side encryption
+     */
+    public static final String COLUMN_SSE_KMS_KEY = "kms_key";
 
     /*
      * Database creation SQL statement
@@ -214,12 +223,7 @@ class TransferTable {
             + COLUMN_HEADER_CONTENT_DISPOSITION + " text, "
             + COLUMN_HEADER_CONTENT_ENCODING + " text, "
             + COLUMN_HEADER_CACHE_CONTROL + " text, "
-            + COLUMN_HEADER_EXPIRE + " text , "
-            + COLUMN_EXPIRATION_TIME_RULE_ID + " text, "
-            + COLUMN_HTTP_EXPIRES_DATE + " integer, "
-            + COLUMN_SSE_ALGORITHM + " text, "
-            + COLUMN_CONTENT_MD5 + " text, "
-            + COLUMN_USER_METADATA + " text"
+            + COLUMN_HEADER_EXPIRE + " text"
             + ");";
 
     /**
@@ -227,8 +231,9 @@ class TransferTable {
      *
      * @param database An SQLiteDatabase instance.
      */
-    public static void onCreate(SQLiteDatabase database) {
+    public static void onCreate(SQLiteDatabase database, int version) {
         database.execSQL(DATABASE_CREATE);
+        onUpgrade(database, 1, version);
     }
 
     /**
@@ -240,8 +245,12 @@ class TransferTable {
      */
     public static void onUpgrade(SQLiteDatabase database, int oldVersion,
             int newVersion) {
-        if (oldVersion < 2) {
+
+        if (oldVersion < 2 && newVersion >= 2) {
             addVersion2Columns(database);
+        }
+        if (oldVersion < 3 && newVersion >= 3) {
+            addVersion3Columns(database);
         }
     }
 
@@ -264,5 +273,14 @@ class TransferTable {
         database.execSQL(addHttpExpires);
         database.execSQL(addSSEAlgorithm);
         database.execSQL(addContentMD5);
+    }
+
+    /**
+     * Adds columns that were introduced in version 3 to the database
+     */
+    private static void addVersion3Columns(SQLiteDatabase database) {
+        String addKMSKey = "ALTER TABLE " + TABLE_TRANSFER +
+                " ADD COLUMN " + COLUMN_SSE_KMS_KEY + " text;";
+        database.execSQL(addKMSKey);
     }
 }

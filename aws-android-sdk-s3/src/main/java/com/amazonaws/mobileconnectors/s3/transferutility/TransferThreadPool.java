@@ -38,7 +38,7 @@ class TransferThreadPool {
         }
     }
 
-    public static Future<Boolean> submitTask(Callable<Boolean> c) {
+    public static <T> Future<T> submitTask(Callable<T> c) {
         init();
         if (c instanceof UploadPartTask) {
             return executorPartTask.submit(c);
@@ -48,13 +48,27 @@ class TransferThreadPool {
     }
 
     public static void closeThreadPool() {
-        if (executorMainTask != null) {
-            executorMainTask.shutdown();
-            executorMainTask = null;
+        shutdown(executorPartTask);
+        executorPartTask = null;
+        shutdown(executorMainTask);
+        executorMainTask = null;
+    }
+
+    private static void shutdown(ExecutorService executor) {
+        if (executor == null) {
+            return;
         }
-        if (executorPartTask != null) {
-            executorPartTask.shutdown();
-            executorPartTask = null;
+        // Attempt to shutdown executor
+        executor.shutdown();
+        try {
+            // Wait for existing tasks
+            if (!executor.awaitTermination(250, TimeUnit.MILLISECONDS)) {
+                // Cancel tasks in execution
+                executor.shutdownNow();
+            }
+        } catch (InterruptedException ie) {
+            executor.shutdownNow();
+            Thread.currentThread().interrupt();
         }
     }
 

@@ -80,6 +80,12 @@ public interface Headers {
     public static final String SERVER_SIDE_ENCRYPTION = "x-amz-server-side-encryption";
 
     /**
+     * Header for optional server-side KMS Key Id to use in conjunction with
+     * SERVER_SIDE_ENCRYPTION
+     */
+    public static final String SERVER_SIDE_ENCRYPTION_KMS_KEY_ID = "x-amz-server-side-encryption-aws-kms-key-id";
+
+    /**
      * Header for the encryption algorithm used when encrypting the object with
      * customer-provided keys
      */

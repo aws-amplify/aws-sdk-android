@@ -16,19 +16,27 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.database.Cursor;
+import android.util.Log;
 
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.util.json.JsonUtils;
 
+import java.io.File;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * TransferRecord is used to store all the information of a transfer and
  * start/stop the a thread for the transfer task.
  */
 class TransferRecord {
+    private static final String TAG = "TransferRecord";
+
     public int id;
     public int mainUploadId;
     public int isRequesterPays;
@@ -65,9 +73,9 @@ class TransferRecord {
     // This is a long representing a date, however it may be null
     public String httpExpires;
     public String sseAlgorithm;
+    public String sseKMSKey;
     public String md5;
 
-    private final AmazonS3 s3;
     private Future<?> submittedTask;
 
     /**
@@ -75,11 +83,9 @@ class TransferRecord {
      * client.
      *
      * @param id The id of a transfer.
-     * @param s3 A low-level S3 client.
      */
-    public TransferRecord(int id, AmazonS3 s3) {
+    public TransferRecord(int id) {
         this.id = id;
-        this.s3 = s3;
     }
 
     /**
@@ -133,6 +139,7 @@ class TransferRecord {
                 .getColumnIndexOrThrow(TransferTable.COLUMN_HTTP_EXPIRES_DATE));
         this.sseAlgorithm = c
                 .getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_SSE_ALGORITHM));
+        this.sseKMSKey = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_SSE_KMS_KEY));
         this.md5 = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_CONTENT_MD5));
     }
 
@@ -140,72 +147,124 @@ class TransferRecord {
      * Checks the state of the transfer and starts a thread to run the transfer
      * task if possible.
      *
+     * @param s3 s3 instance
+     * @param dbUtil database util
+     * @param updater status updater
      * @return Whether the task is running.
      */
-    public boolean startIfReady(TransferDBUtil dbUtil) {
-        boolean isReady = checkIsReadyToRun();
-        boolean isActive = submittedTask != null && !submittedTask.isDone();
-        if (isReady && !isActive) {
+    public boolean start(AmazonS3 s3, TransferDBUtil dbUtil, TransferStatusUpdater updater) {
+        if (!isRunning() && checkIsReadyToRun()) {
             if (type.equals(TransferType.DOWNLOAD)) {
-                submittedTask = TransferThreadPool.submitTask(new DownloadTask(this, s3, dbUtil));
+                submittedTask = TransferThreadPool.submitTask(new DownloadTask(this, s3, updater));
             } else {
-                submittedTask = TransferThreadPool.submitTask(new UploadTask(this, s3, dbUtil));
-            }
-        }
-        return isReady || isActive;
-    }
-
-    /**
-     * Checks the state of the transfer and stops the running thread if needed.
-     *
-     * @return Whether the transfer task is stopped.
-     */
-    public boolean pauseOrCancelIfRequested(TransferDBUtil dbUtil) {
-        if (state.equals(TransferState.PENDING_PAUSE)) {
-            dbUtil.updateState(id, TransferState.PAUSED);
-            cancelTask();
-            return true;
-        } else if (state.equals(TransferState.PENDING_NETWORK_DISCONNECT)) {
-            dbUtil.updateState(id, TransferState.WAITING_FOR_NETWORK);
-            cancelTask();
-            return true;
-        } else if (state.equals(TransferState.PENDING_CANCEL)) {
-            cancelTask();
-            if (isMultipart == 1) {
-                try {
-                    s3.abortMultipartUpload(new AbortMultipartUploadRequest(bucketName, key,
-                            multipartId));
-                } catch (Exception e) {
-                    return false;
-                }
-                // Make sure the abortMultipartUpload doesn't throw an exception
-                // before we mark it as fully canceled
-                dbUtil.updateState(id, TransferState.CANCELED);
-
-            } else {
-                dbUtil.updateState(id, TransferState.CANCELED);
+                submittedTask = TransferThreadPool.submitTask(new UploadTask(this, s3, dbUtil,
+                        updater));
             }
             return true;
         }
         return false;
     }
 
-    private void cancelTask() {
-        if (submittedTask != null && !submittedTask.isDone()) {
+    /**
+     * Pauses a running transfer.
+     *
+     * @param s3 s3 instance
+     * @param updater status updater
+     * @return true if the transfer is running and is paused successfully, false
+     *         otherwise
+     */
+    public boolean pause(AmazonS3 s3, TransferStatusUpdater updater) {
+        if (isRunning()) {
+            updater.updateState(id, TransferState.PAUSED);
             submittedTask.cancel(true);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Cancels a running transfer.
+     *
+     * @param s3 s3 instance
+     * @param updater status updater
+     * @return true if the transfer is running and is canceled successfully,
+     *         false otherwise
+     */
+    public boolean cancel(final AmazonS3 s3, final TransferStatusUpdater updater) {
+        if (isRunning() && !TransferState.COMPLETED.equals(state)) {
+            // only cancel incomplete transfers
+            updater.updateState(id, TransferState.CANCELED);
+            submittedTask.cancel(true);
+            if (isMultipart == 1) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            s3.abortMultipartUpload(new AbortMultipartUploadRequest(bucketName,
+                                    key, multipartId));
+                            Log.d(TAG, "Successfully clean up multipart upload: " + id);
+                        } catch (AmazonClientException e) {
+                            Log.d(TAG, "Failed to abort multiplart upload: " + id, e);
+                        }
+                    }
+                }).start();
+            } else if (TransferType.DOWNLOAD.equals(type)) {
+                // remove partially download file
+                new File(file).delete();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks whether the transfer is actively running
+     *
+     * @return true if the transfer is running
+     */
+    boolean isRunning() {
+        return submittedTask != null && !submittedTask.isDone();
+    }
+
+    /**
+     * Wait till transfer finishes.
+     *
+     * @param timeout the maximum time to wait in milliseconds
+     * @throws InterruptedException
+     * @throws ExecutionException
+     * @throws TimeoutException
+     */
+    void waitTillFinish(long timeout) throws InterruptedException, ExecutionException,
+            TimeoutException {
+        if (isRunning()) {
+            submittedTask.get(timeout, TimeUnit.MILLISECONDS);
         }
     }
 
     private boolean checkIsReadyToRun() {
-        if (partNumber > 0) {
-            return false;
-        }
-        if (state.equals(TransferState.WAITING)) {
-            return true;
-        } else if (state.equals(TransferState.RESUMED_WAITING)) {
-            return true;
-        } else {
-            return false;
-        }
+        return partNumber == 0 && !TransferState.COMPLETED.equals(state);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[")
+                .append("id:").append(id).append(",")
+                .append("mainUploadId:").append(mainUploadId).append(",")
+                .append("isMultipart:").append(isMultipart).append(",")
+                .append("isLastPart:").append(isLastPart).append(",")
+                .append("partNumber:").append(partNumber).append(",")
+                .append("bytesTotal:").append(bytesTotal).append(",")
+                .append("bytesCurrent:").append(bytesCurrent).append(",")
+                .append("fileOffset:").append(fileOffset).append(",")
+                .append("type:").append(type).append(",")
+                .append("state:").append(state).append(",")
+                .append("bucketName:").append(bucketName).append(",")
+                .append("key:").append(key).append(",")
+                .append("file:").append(file).append(",")
+                .append("multipartId:").append(multipartId).append(",")
+                .append("eTag:").append(eTag)
+                .append("]");
+        return sb.toString();
     }
 }

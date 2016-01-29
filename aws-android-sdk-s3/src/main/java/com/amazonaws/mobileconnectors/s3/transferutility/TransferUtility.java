@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
@@ -35,15 +36,15 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * The transfer manager is a high-level class for applications to upload and
+ * The transfer utility is a high-level class for applications to upload and
  * download files. It inserts upload and download records into the database and
  * starts a Service to execute the tasks in the background. Here is the usage:
  *
  * <pre>
  * // Initializes TransferUtility
- * TransferUtility transferManager = new TransferUtility(s3, getApplicationContext());
+ * TransferUtility transferUtility = new TransferUtility(s3, getApplicationContext());
  * // Starts a download
- * TransferObserver observer = transferManager.download(&quot;bucket_name&quot;, &quot;key&quot;, file);
+ * TransferObserver observer = transferUtility.download(&quot;bucket_name&quot;, &quot;key&quot;, file);
  * observer.setTransferListener(new TransferListener() {
  *     public void onStateChanged(int id, String newState) {
  *         // Do something in the callback.
@@ -66,35 +67,41 @@ import java.util.UUID;
  * int id = observer.getId();
  *
  * // Pauses the transfer.
- * transferManager.pause(id);
+ * transferUtility.pause(id);
  *
  * // Resumes the transfer.
- * transferManager.resume(id);
+ * transferUtility.resume(id);
  * </pre>
  *
  * For cancelling and deleting tasks:
  *
  * <pre>
  * // Cancels the transfer.
- * transferManager.cancel(id);
+ * transferUtility.cancel(id);
  *
  * // Deletes the transfer.
- * transferManager.delete(id);
+ * transferUtility.delete(id);
  * </pre>
+ *
+ * Note that the Activity or Service that instantiates and uses the
+ * TransferUtility should keep a reference to the Amazon S3 client as a class
+ * attribute. Failing to keep a reference may cause the TransferService to fail
+ * since {@link TransferService} receives a weak reference to the AmazonS3
+ * client allowing it to be garbage collected.
  */
 public class TransferUtility {
 
-    static final String KEY_FOR_S3_WEAK_REFERENCE = "keyForS3WeakReference";
-
-    private final Context appContext;
-    private final String s3WeakReferenceMapKey;
-    private final TransferDBUtil dbUtil;
+    private static final String TAG = "TransferUtility";
 
     /**
      * Default minimum part size for upload parts. Anything below this will use
      * a single upload
      */
     static final int MINIMUM_UPLOAD_PART_SIZE = 5 * MB;
+
+    private final Context appContext;
+    private final String s3WeakReferenceMapKey;
+    private final TransferDBUtil dbUtil;
 
     /**
      * Constructs a new TransferUtility specifying the client to use and
@@ -114,7 +121,8 @@ public class TransferUtility {
 
     /**
      * Starts downloading the S3 object specified by the bucket and the key to
-     * the file.
+     * the given file. The file must be a valid file. Directory isn't supported.
+     * Note that if the given file exists, it'll be overwritten.
      *
      * @param bucket The name of the bucket containing the object to download.
      * @param key The key under which the object to download is stored.
@@ -122,17 +130,24 @@ public class TransferUtility {
      * @return A TransferObserver used to track download progress and state
      */
     public TransferObserver download(String bucket, String key, File file) {
-        Intent intent = new Intent(appContext, TransferService.class);
-        intent.putExtra(KEY_FOR_S3_WEAK_REFERENCE, s3WeakReferenceMapKey);
-        appContext.startService(intent);
+        if (file == null || file.isDirectory()) {
+            throw new IllegalArgumentException("Invalid file: " + file);
+        }
         Uri uri = dbUtil.insertSingleTransferRecord(TransferType.DOWNLOAD,
                 bucket, key, file);
         int recordId = Integer.parseInt(uri.getLastPathSegment());
-        return new TransferObserver(recordId, appContext, 0);
+        if (file.isFile()) {
+            Log.w(TAG, "Overwrite existing file: " + file);
+            file.delete();
+        }
+
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
+        return new TransferObserver(recordId, dbUtil, file);
     }
 
     /**
-     * Starts uploading the file to the given bucket, using the given key
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
      *
      * @param bucket The name of the bucket to upload the new object to.
      * @param key The key in the specified bucket by which to store the new
@@ -146,7 +161,8 @@ public class TransferUtility {
     }
 
     /**
-     * Starts uploading the file to the given bucket, using the given key
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
      *
      * @param bucket The name of the bucket to upload the new object to.
      * @param key The key in the specified bucket by which to store the new
@@ -156,9 +172,9 @@ public class TransferUtility {
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata) {
-        Intent intent = new Intent(appContext, TransferService.class);
-        intent.putExtra(KEY_FOR_S3_WEAK_REFERENCE, s3WeakReferenceMapKey);
-        appContext.startService(intent);
+        if (file == null || file.isDirectory()) {
+            throw new IllegalArgumentException("Invalid file: " + file);
+        }
         int recordId = 0;
         if (shouldUploadInMultipart(file)) {
             recordId = createMultipartUploadRecords(bucket, key, file, metadata);
@@ -168,7 +184,9 @@ public class TransferUtility {
                     bucket, key, file, metadata);
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
-        return new TransferObserver(recordId, appContext, file.length());
+
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
+        return new TransferObserver(recordId, dbUtil, file);
     }
 
     /**
@@ -179,15 +197,15 @@ public class TransferUtility {
      */
     public TransferObserver getTransferById(int id) {
         Cursor c = dbUtil.queryTransferById(id);
-        if (!c.moveToFirst()) {
+        try {
+            if (c.moveToFirst()) {
+                return new TransferObserver(id, dbUtil, c);
+            } else {
+                return null;
+            }
+        } finally {
             c.close();
-            return null;
         }
-
-        long totalBytesOfFile = c
-                .getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
-        c.close();
-        return new TransferObserver(id, appContext, totalBytesOfFile);
     }
 
     /**
@@ -200,12 +218,14 @@ public class TransferUtility {
     public List<TransferObserver> getTransfersWithType(TransferType type) {
         List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
         Cursor c = dbUtil.queryAllTransfersWithType(type);
-        while (c.moveToNext()) {
-            transferObservers.add(new TransferObserver((int) c.getLong(c
-                    .getColumnIndexOrThrow(TransferTable.COLUMN_ID)), appContext, c.getLong(c
-                    .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL))));
+        try {
+            while (c.moveToNext()) {
+                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                transferObservers.add(new TransferObserver(id, dbUtil, c));
+            }
+        } finally {
+            c.close();
         }
-        c.close();
         return transferObservers;
     }
 
@@ -222,12 +242,19 @@ public class TransferUtility {
             TransferState state) {
         List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
         Cursor c = dbUtil.queryTransfersWithTypeAndState(type, state);
-        while (c.moveToNext()) {
-            transferObservers.add(new TransferObserver((int) c.getLong(c
-                    .getColumnIndexOrThrow(TransferTable.COLUMN_ID)), appContext, c.getLong(c
-                    .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL))));
+        try {
+            while (c.moveToNext()) {
+                int partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
+                if (partNum != 0) {
+                    // skip parts of a multipart upload
+                    continue;
+                }
+                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                transferObservers.add(new TransferObserver(id, dbUtil, c));
+            }
+        } finally {
+            c.close();
         }
-        c.close();
         return transferObservers;
     }
 
@@ -279,22 +306,8 @@ public class TransferUtility {
      * @return Whether successfully paused
      */
     public boolean pause(int id) {
-        Cursor c = dbUtil.queryTransferById(id);
-        if (!c.moveToFirst()) {
-            c.close();
-            return false;
-        }
-
-        TransferState state = TransferState.getState(c.getString(c
-                .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
-        c.close();
-        if (TransferState.IN_PROGRESS.equals(state)
-                || TransferState.RESUMED_WAITING.equals(state)
-                || TransferState.WAITING.equals(state)) {
-            return dbUtil.updateStateAndNotifyUpdate(id,
-                    TransferState.PENDING_PAUSE) > 0;
-        }
-        return false;
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_PAUSE, id);
+        return true;
     }
 
     /**
@@ -303,35 +316,30 @@ public class TransferUtility {
      * @param type The type of transfers
      */
     public void pauseAllWithType(TransferType type) {
-        dbUtil.pauseAllWithType(type);
+        Cursor c = dbUtil.queryAllTransfersWithType(type);
+        try {
+            while (c.moveToNext()) {
+                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                pause(id);
+            }
+        } finally {
+            c.close();
+        }
     }
 
     /**
-     * Resumes the transfer task with the given id.
+     * Resumes the transfer task with the given id. You can resume a transfer in
+     * paused, canceled or failed state. If a transfer is in waiting or in
+     * progress state but it isn't actually running, this operation will force
+     * it to run.
      *
      * @param id A transfer id specifying the transfer to be resumed
      * @return A TransferObserver of the resumed upload/download or null if the
      *         ID does not represent a paused transfer
      */
     public TransferObserver resume(int id) {
-        Intent intent = new Intent(appContext, TransferService.class);
-        intent.putExtra(KEY_FOR_S3_WEAK_REFERENCE, s3WeakReferenceMapKey);
-        appContext.startService(intent);
-        Cursor c = dbUtil.queryTransferById(id);
-        if (!c.moveToFirst()) {
-            c.close();
-            return null;
-        }
-        TransferState state = TransferState.getState(c.getString(c
-                .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
-        c.close();
-        if (TransferState.PAUSED.equals(state)) {
-            if (dbUtil.updateStateAndNotifyUpdate(id,
-                    TransferState.RESUMED_WAITING) > 0) {
-                return getTransferById(id);
-            }
-        }
-        return null;
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_RESUME, id);
+        return getTransferById(id);
     }
 
     /**
@@ -343,24 +351,8 @@ public class TransferUtility {
      * @return Whether the transfer was set to be canceled.
      */
     public boolean cancel(int id) {
-        Cursor c = dbUtil.queryTransferById(id);
-        if (!c.moveToFirst()) {
-            c.close();
-            return false;
-        }
-
-        TransferState state = TransferState.getState(c.getString(c
-                .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
-        c.close();
-        if (TransferState.IN_PROGRESS.equals(state)
-                || TransferState.RESUMED_WAITING.equals(state)
-                || TransferState.WAITING.equals(state)
-                || TransferState.PAUSED.equals(state)
-                || TransferState.WAITING_FOR_NETWORK.equals(state)) {
-            return dbUtil.updateStateAndNotifyUpdate(id,
-                    TransferState.PENDING_CANCEL) > 0;
-        }
-        return false;
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_CANCEL, id);
+        return true;
     }
 
     /**
@@ -371,7 +363,15 @@ public class TransferUtility {
      * @param type The type of transfers
      */
     public void cancelAllWithType(TransferType type) {
-        dbUtil.cancelAllWithType(type);
+        Cursor c = dbUtil.queryAllTransfersWithType(type);
+        try {
+            while (c.moveToNext()) {
+                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                cancel(id);
+            }
+        } finally {
+            c.close();
+        }
     }
 
     /**
@@ -383,7 +383,22 @@ public class TransferUtility {
      * @return true if at least one record was deleted
      */
     public boolean deleteTransferRecord(int id) {
+        cancel(id);
         return dbUtil.deleteTransferRecords(id) > 0;
+    }
+
+    /**
+     * Send an intent to {@link TransferService}
+     *
+     * @param action action to perform
+     * @param id id of the transfer
+     */
+    private void sendIntent(String action, int id) {
+        Intent intent = new Intent(appContext, TransferService.class);
+        intent.setAction(action);
+        intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
+        intent.putExtra(TransferService.INTENT_BUNDLE_S3_WEAK_REFERENCE_KEY, s3WeakReferenceMapKey);
+        appContext.startService(intent);
     }
 
     private boolean shouldUploadInMultipart(File file) {

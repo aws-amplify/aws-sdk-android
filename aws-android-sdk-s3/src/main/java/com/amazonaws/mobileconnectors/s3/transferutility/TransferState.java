@@ -17,8 +17,16 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.util.Log;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * The current state of a transfer.
+ * The current state of a transfer. A transfer is initially in WAITING state
+ * when added. It will turn into IN_PROGRESS once it starts. Customers can pause
+ * or cancel the transfer when needed and turns it into PAUSED or CANCELED state
+ * respectively. Finally the transfer will either succeed as COMPLETED or fail
+ * as FAILED. WAITING_FOR_NETWORK state may kick in for an active transfer when
+ * network is lost. The other enum values are internal use only.
  */
 public enum TransferState {
 
@@ -92,31 +100,18 @@ public enum TransferState {
      */
     UNKNOWN;
 
+    private static final Map<String, TransferState> map;
+    static {
+        map = new HashMap<String, TransferState>();
+        for (TransferState state : TransferState.values()) {
+            map.put(state.toString(), state);
+        }
+    }
+
     public static TransferState getState(String stateAsString) {
-        if (stateAsString.equalsIgnoreCase(TransferState.CANCELED.toString()))
-            return TransferState.CANCELED;
-        if (stateAsString.equalsIgnoreCase(TransferState.COMPLETED.toString()))
-            return TransferState.COMPLETED;
-        if (stateAsString.equalsIgnoreCase(TransferState.FAILED.toString()))
-            return TransferState.FAILED;
-        if (stateAsString.equalsIgnoreCase(TransferState.IN_PROGRESS.toString()))
-            return TransferState.IN_PROGRESS;
-        if (stateAsString.equalsIgnoreCase(TransferState.PART_COMPLETED.toString()))
-            return TransferState.PART_COMPLETED;
-        if (stateAsString.equalsIgnoreCase(TransferState.PAUSED.toString()))
-            return TransferState.PAUSED;
-        if (stateAsString.equalsIgnoreCase(TransferState.PENDING_CANCEL.toString()))
-            return TransferState.PENDING_CANCEL;
-        if (stateAsString.equalsIgnoreCase(TransferState.PENDING_NETWORK_DISCONNECT.toString()))
-            return TransferState.PENDING_NETWORK_DISCONNECT;
-        if (stateAsString.equalsIgnoreCase(TransferState.PENDING_PAUSE.toString()))
-            return TransferState.PENDING_PAUSE;
-        if (stateAsString.equalsIgnoreCase(TransferState.RESUMED_WAITING.toString()))
-            return TransferState.RESUMED_WAITING;
-        if (stateAsString.equalsIgnoreCase(TransferState.WAITING.toString()))
-            return TransferState.WAITING;
-        if (stateAsString.equalsIgnoreCase(TransferState.WAITING_FOR_NETWORK.toString()))
-            return TransferState.WAITING_FOR_NETWORK;
+        if (map.containsKey(stateAsString)) {
+            return map.get(stateAsString);
+        }
 
         Log.e("TransferState", "Unknown state " + stateAsString
                 + " transfer will be have state set to UNKNOWN.");

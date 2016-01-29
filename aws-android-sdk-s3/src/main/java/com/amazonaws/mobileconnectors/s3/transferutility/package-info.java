@@ -1,15 +1,15 @@
 /**
  * This package contains helper classes for managing upload and download tasks and a public
- * class {@link com.amazonaws.mobileconnectors.s3.transferservice.transferManager}
+ * class {@link com.amazonaws.mobileconnectors.s3.transferservice.transferUtility}
  * which is a high level client that provides methods to control users' upload and download tasks.
  *
  * For starting transfer tasks, here is a sample usage.
  *
  * <pre>
  * // Initializes TransferUtility
- * TransferUtility transferManager = new TransferUtility(s3, getApplicationContext());
+ * TransferUtility transferUtility = new TransferUtility(s3, getApplicationContext());
  * // Starts a download
- * TransferObserver observer = transferManager.download("bucket_name", "key", file);
+ * TransferObserver observer = transferUtility.download("bucket_name", "key", file);
  * observer.setTransferListener(new TransferListener() {
  *     public void onStateChanged(int id, String newState) {
  *         // Do something in the callback.
@@ -32,24 +32,27 @@
  * int id = observer.getId();
  *
  * // Pauses the transfer.
- * transferManager.pause(id);
+ * transferUtility.pause(id);
  *
  * // Resumes the transfer.
- * transferManager.resume(id);
+ * transferUtility.resume(id);
  * </pre>
  *
  * For cancelling and deleting tasks:
  *
  * <pre>
  * // Cancels the transfer.
- * transferManager.cancel(id);
+ * transferUtility.cancel(id);
  *
  * // Deletes the transfer.
- * transferManager.delete(id);
+ * transferUtility.delete(id);
  * </pre>
  *
- *
- * Please refer to {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility} for more details.
+ * Note that the Activity or Service that instantiates and uses the
+ * TransferUtility should keep a reference to the Amazon S3 client as a class
+ * attribute. Failing to keep a reference may cause the TransferService to fail
+ * since {@link TransferService} receives a weak reference to the AmazonS3
+ * client allowing it to be garbage collected.
  */
 
 package com.amazonaws.mobileconnectors.s3.transferutility;

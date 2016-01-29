@@ -26,8 +26,10 @@ import com.amazonaws.services.cognitoidentity.model.GetIdResult;
 import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenRequest;
 import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenResult;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -50,7 +52,7 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     private final String identityPoolId;
     protected String token;
 
-    protected Set<IdentityChangedListener> listeners;
+    protected List<IdentityChangedListener> listeners;
     protected Map<String, String> loginsMap;
 
     /**
@@ -68,7 +70,7 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
         this.accountId = accountId;
         this.identityPoolId = identityPoolId;
         this.loginsMap = new HashMap<String, String>();
-        this.listeners = new HashSet<IdentityChangedListener>();
+        this.listeners = new ArrayList<IdentityChangedListener>();
         this.cib = cibClient;
     }
 

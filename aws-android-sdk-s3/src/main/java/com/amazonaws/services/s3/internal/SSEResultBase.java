@@ -23,6 +23,7 @@ public abstract class SSEResultBase implements ServerSideEncryptionResult {
     private String sseAlgorithm;
     private String sseCustomerAlgorithm;
     private String sseCustomerKeyMD5;
+    private String sseKMSKeyId;
 
     @Override
     public final String getSSEAlgorithm() {
@@ -52,6 +53,17 @@ public abstract class SSEResultBase implements ServerSideEncryptionResult {
     @Override
     public final void setSSECustomerKeyMd5(String md5) {
         this.sseCustomerKeyMD5 = md5;
+    }
+
+    @Override
+    public void setSSEKMSKeyId(String kmsKeyId) {
+        this.sseKMSKeyId = kmsKeyId;
+
+    }
+
+    @Override
+    public String getSSEKMSKeyId() {
+        return sseKMSKeyId;
     }
 
     /**

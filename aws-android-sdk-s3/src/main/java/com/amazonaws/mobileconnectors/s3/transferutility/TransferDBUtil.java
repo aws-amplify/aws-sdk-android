@@ -27,9 +27,7 @@ import com.amazonaws.util.json.JsonUtils;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Provides methods to conveniently perform database operations.
@@ -42,18 +40,6 @@ class TransferDBUtil {
     private static TransferDBBase transferDBBase;
 
     /**
-     * mapLastBytes is used to store the last updated bytes of each transfer
-     * record
-     */
-    private final Map<Integer, Long> mapLastBytes;
-
-    /**
-     * mapLastUploadTime is used to store the last updated time of each transfer
-     * record
-     */
-    private final Map<Integer, Long> mapLastUploadTime;
-
-    /**
      * Constructs a TransferDBUtil with the given Context.
      *
      * @param context An instance of Context.
@@ -62,8 +48,6 @@ class TransferDBUtil {
         if (transferDBBase == null) {
             transferDBBase = new TransferDBBase(context);
         }
-        mapLastBytes = new HashMap<Integer, Long>();
-        mapLastUploadTime = new HashMap<Integer, Long>();
     }
 
     /**
@@ -140,31 +124,32 @@ class TransferDBUtil {
     }
 
     /**
-     * Updates the current bytes of a transfer record, but calling this method
-     * may not cause the actual update. If last updated time is less than 1
-     * second from now, or change of bytes is less than 10*1024, the update
-     * request will be discarded. If forceUpdate is set to true, then it will
-     * update the DB despite the limitation above.
+     * Writes transfer status including transfer state, current transferred
+     * bytes and total bytes into database.
+     *
+     * @param transfer a TransferRecord object
+     * @return Number of rows updated.
+     */
+    public int updateTransferRecord(TransferRecord transfer) {
+        ContentValues cv = new ContentValues();
+        cv.put(TransferTable.COLUMN_ID, transfer.id);
+        cv.put(TransferTable.COLUMN_STATE, transfer.state.toString());
+        cv.put(TransferTable.COLUMN_BYTES_TOTAL, transfer.bytesTotal);
+        cv.put(TransferTable.COLUMN_BYTES_CURRENT, transfer.bytesCurrent);
+        return transferDBBase.update(getRecordUri(transfer.id), cv, null, null);
+    }
+
+    /**
+     * Updates the current bytes of a transfer record.
      *
      * @param id The id of the transfer
      * @param bytes The bytes currently transferred
-     * @param forceUpdate Whether to update now
      * @return Number of rows updated.
      */
-    public int updateBytesTransferred(int id, long bytes, boolean forceUpdate) {
-        long timeInMillis = System.currentTimeMillis();
-        if (forceUpdate
-                || !mapLastBytes.containsKey(id)
-                || !mapLastUploadTime.containsKey(id)
-                || (bytes - mapLastBytes.get(id) > 10 * 1024 && timeInMillis
-                        - mapLastUploadTime.get(id) > 1000)) {
-            ContentValues values = new ContentValues();
-            values.put(TransferTable.COLUMN_BYTES_CURRENT, bytes);
-            mapLastBytes.put(id, bytes);
-            mapLastUploadTime.put(id, timeInMillis);
-            return transferDBBase.update(getRecordUri(id), values, null, null);
-        }
-        return 0;
+    public int updateBytesTransferred(int id, long bytes) {
+        ContentValues values = new ContentValues();
+        values.put(TransferTable.COLUMN_BYTES_CURRENT, bytes);
+        return transferDBBase.update(getRecordUri(id), values, null, null);
     }
 
     /**
@@ -436,14 +421,17 @@ class TransferDBUtil {
     public long queryBytesTransferredByMainUploadId(int mainUploadId) {
         Cursor c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
         long bytesTotal = 0;
-        while (c.moveToNext()) {
-            String state = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_STATE));
-            if (TransferState.PART_COMPLETED.equals(TransferState.getState(state))) {
-                bytesTotal += c.getLong(c
-                        .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
+        try {
+            while (c.moveToNext()) {
+                String state = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_STATE));
+                if (TransferState.PART_COMPLETED.equals(TransferState.getState(state))) {
+                    bytesTotal += c.getLong(c
+                            .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
+                }
             }
+        } finally {
+            c.close();
         }
-        c.close();
         return bytesTotal;
     }
 
@@ -471,12 +459,15 @@ class TransferDBUtil {
         Cursor c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
         int partNum = 0;
         String eTag = null;
-        while (c.moveToNext()) {
-            partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
-            eTag = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_ETAG));
-            partETags.add(new PartETag(partNum, eTag));
+        try {
+            while (c.moveToNext()) {
+                partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
+                eTag = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_ETAG));
+                partETags.add(new PartETag(partNum, eTag));
+            }
+        } finally {
+            c.close();
         }
-        c.close();
         return partETags;
     }
 
@@ -493,32 +484,37 @@ class TransferDBUtil {
             String multipartId) {
         ArrayList<UploadPartRequest> list = new ArrayList<UploadPartRequest>();
         Cursor c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
-        while (c.moveToNext()) {
-            if (TransferState.PART_COMPLETED.equals(TransferState.getState(c.getString(c
-                    .getColumnIndexOrThrow(TransferTable.COLUMN_STATE))))) {
-                continue;
+        try {
+            while (c.moveToNext()) {
+                if (TransferState.PART_COMPLETED.equals(TransferState.getState(c.getString(c
+                        .getColumnIndexOrThrow(TransferTable.COLUMN_STATE))))) {
+                    continue;
+                }
+                UploadPartRequest putPartRequest = new UploadPartRequest()
+                        .withId(c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID)))
+                        .withMainUploadId(
+                                c.getInt(c
+                                        .getColumnIndexOrThrow(TransferTable.COLUMN_MAIN_UPLOAD_ID)))
+                        .withBucketName(
+                                c.getString(c
+                                        .getColumnIndexOrThrow(TransferTable.COLUMN_BUCKET_NAME)))
+                        .withKey(c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_KEY)))
+                        .withUploadId(multipartId)
+                        .withFile(new File(
+                                c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE))))
+                        .withFileOffset(
+                                c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE_OFFSET)))
+                        .withPartNumber(
+                                c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM)))
+                        .withPartSize(
+                                c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL)))
+                        .withLastPart(1 == c.getInt(c
+                                .getColumnIndexOrThrow(TransferTable.COLUMN_IS_LAST_PART)));
+                list.add(putPartRequest);
             }
-            UploadPartRequest putPartRequest = new UploadPartRequest()
-                    .withId(c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID)))
-                    .withMainUploadId(
-                            c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_MAIN_UPLOAD_ID)))
-                    .withBucketName(
-                            c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_BUCKET_NAME)))
-                    .withKey(c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_KEY)))
-                    .withUploadId(multipartId)
-                    .withFile(new File(
-                            c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE))))
-                    .withFileOffset(
-                            c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE_OFFSET)))
-                    .withPartNumber(
-                            c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM)))
-                    .withPartSize(
-                            c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL)))
-                    .withLastPart(1 == c.getInt(c
-                            .getColumnIndexOrThrow(TransferTable.COLUMN_IS_LAST_PART)));
-            list.add(putPartRequest);
+        } finally {
+            c.close();
         }
-        c.close();
         return list;
     }
 
@@ -561,7 +557,7 @@ class TransferDBUtil {
     /**
      * Adds mappings to a ContentValues object for the data in the passed in
      * ObjectMetadata
-     * 
+     *
      * @param metadata The ObjectMetadata the content values should be filled
      *            with
      * @return the ContentValues
@@ -577,6 +573,7 @@ class TransferDBUtil {
         values.put(TransferTable.COLUMN_HEADER_CONTENT_DISPOSITION,
                 metadata.getContentDisposition());
         values.put(TransferTable.COLUMN_SSE_ALGORITHM, metadata.getSSEAlgorithm());
+        values.put(TransferTable.COLUMN_SSE_KMS_KEY, metadata.getSSEKMSKeyId());
         values.put(TransferTable.COLUMN_EXPIRATION_TIME_RULE_ID, metadata.getExpirationTimeRuleId());
         if (metadata.getHttpExpiresDate() != null) {
             values.put(TransferTable.COLUMN_HTTP_EXPIRES_DATE,
@@ -655,5 +652,25 @@ class TransferDBUtil {
      */
     public Uri getStateUri(TransferState state) {
         return Uri.parse(transferDBBase.getContentUri() + "/state/" + state.toString());
+    }
+
+    /**
+     * Gets the TransferRecord by id.
+     *
+     * @param id transfer id
+     * @return a TransferRecord if exists, null otherwise
+     */
+    TransferRecord getTransferById(int id) {
+        TransferRecord transfer = null;
+        Cursor c = queryTransferById(id);
+        try {
+            if (c.moveToFirst()) {
+                transfer = new TransferRecord(0);
+                transfer.updateFromDB(c);
+            }
+        } finally {
+            c.close();
+        }
+        return transfer;
     }
 }
