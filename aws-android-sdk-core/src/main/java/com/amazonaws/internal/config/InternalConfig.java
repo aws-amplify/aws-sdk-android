@@ -113,6 +113,7 @@ public class InternalConfig {
         ret.put("AmazonCognitoIdentityClient", new HttpClientConfig("cognito-identity"));
         ret.put("AmazonCognitoSyncClient", new HttpClientConfig("cognito-sync"));
         ret.put("AmazonKinesisFirehoseClient", new HttpClientConfig("firehose"));
+        ret.put("AWSIotClient", new HttpClientConfig("execute-api"));
         return ret;
     }
 

@@ -103,7 +103,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information about how permissions work, see
- * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getfederationtoken"> GetFederationToken???Federation Through a Custom Identity Broker </a>
+ * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getfederationtoken"> GetFederationToken—Federation Through a Custom Identity Broker </a>
  * .
  * </p>
  *

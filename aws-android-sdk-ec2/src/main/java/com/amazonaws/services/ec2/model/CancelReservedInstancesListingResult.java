@@ -22,14 +22,14 @@ import java.io.Serializable;
 public class CancelReservedInstancesListingResult implements Serializable {
 
     /**
-     * The Reserved instance listing.
+     * The Reserved Instance listing.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<ReservedInstancesListing> reservedInstancesListings;
 
     /**
-     * The Reserved instance listing.
+     * The Reserved Instance listing.
      *
-     * @return The Reserved instance listing.
+     * @return The Reserved Instance listing.
      */
     public java.util.List<ReservedInstancesListing> getReservedInstancesListings() {
         if (reservedInstancesListings == null) {
@@ -40,9 +40,9 @@ public class CancelReservedInstancesListingResult implements Serializable {
     }
     
     /**
-     * The Reserved instance listing.
+     * The Reserved Instance listing.
      *
-     * @param reservedInstancesListings The Reserved instance listing.
+     * @param reservedInstancesListings The Reserved Instance listing.
      */
     public void setReservedInstancesListings(java.util.Collection<ReservedInstancesListing> reservedInstancesListings) {
         if (reservedInstancesListings == null) {
@@ -55,11 +55,11 @@ public class CancelReservedInstancesListingResult implements Serializable {
     }
     
     /**
-     * The Reserved instance listing.
+     * The Reserved Instance listing.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesListings The Reserved instance listing.
+     * @param reservedInstancesListings The Reserved Instance listing.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -73,11 +73,11 @@ public class CancelReservedInstancesListingResult implements Serializable {
     }
     
     /**
-     * The Reserved instance listing.
+     * The Reserved Instance listing.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesListings The Reserved instance listing.
+     * @param reservedInstancesListings The Reserved Instance listing.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

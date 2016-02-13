@@ -285,6 +285,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
         exceptionUnmarshallers.add(new PackedPolicyTooLargeExceptionUnmarshaller());
         exceptionUnmarshallers.add(new IDPRejectedClaimExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidIdentityTokenExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new RegionDisabledExceptionUnmarshaller());
         
         exceptionUnmarshallers.add(new StandardErrorUnmarshaller());
         
@@ -350,6 +351,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * @return The response from the GetSessionToken service method, as
      *         returned by AWSSecurityTokenService.
      * 
+     * @throws RegionDisabledException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -476,6 +478,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * @throws MalformedPolicyDocumentException
      * @throws InvalidIdentityTokenException
      * @throws ExpiredTokenException
+     * @throws RegionDisabledException
      * @throws IDPCommunicationErrorException
      *
      * @throws AmazonClientException
@@ -587,7 +590,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * </p>
      * <p>
      * For more information about how permissions work, see
-     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getfederationtoken"> GetFederationToken???Federation Through a Custom Identity Broker </a>
+     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getfederationtoken"> GetFederationToken—Federation Through a Custom Identity Broker </a>
      * .
      * </p>
      *
@@ -600,6 +603,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * 
      * @throws PackedPolicyTooLargeException
      * @throws MalformedPolicyDocumentException
+     * @throws RegionDisabledException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -748,6 +752,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * 
      * @throws PackedPolicyTooLargeException
      * @throws MalformedPolicyDocumentException
+     * @throws RegionDisabledException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -822,6 +827,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * @return The response from the GetSessionToken service method, as
      *         returned by AWSSecurityTokenService.
      * 
+     * @throws RegionDisabledException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while

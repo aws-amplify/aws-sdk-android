@@ -23,7 +23,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class VersionInfoUtils {
     /** SDK version info */
-    private static volatile String version = "2.2.11";
+    private static volatile String version = "2.2.12";
                                                                 // changed build
                                                                 // logic
 

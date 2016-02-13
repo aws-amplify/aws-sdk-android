@@ -1,4 +1,4 @@
-# AWS SDK for Android
+# AWS SDK for Android [![Build Status](https://travis-ci.org/aws/aws-sdk-android.png?branch=master)](https://travis-ci.org/aws/aws-sdk-android)
 
 The [AWS SDK for Android](http://aws.amazon.com/sdkforandroid) provides a library and documentation for developers to build connected mobile applications using AWS.
 
@@ -24,19 +24,24 @@ This section explains how to understand and work with the various components of 
 
 The AWS SDK for Android supports the following AWS services:
 
-* [AWS Lambda](http://aws.amazon.com/lambda/)
-* [Amazon Cognito](http://aws.amazon.com/cognito/)
-* [Amazon Mobile Analytics](http://aws.amazon.com/mobileanalytics/)
-* [Amazon SNS](http://aws.amazon.com/sns/)
-* [Amazon S3](http://aws.amazon.com/s3/)
-* [Amazon DynamoDB](http://aws.amazon.com/dynamodb/)
-* [Amazon Kinesis](http://aws.amazon.com/kinesis/)
-* [Amazon EC2](http://aws.amazon.com/ec2/)
-* [Amazon SQS](http://aws.amazon.com/sqs/)
-* [Amazon SES](http://aws.amazon.com/ses/)
-* [Amazon STS](http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html)
 * [Amazon CloudWatch](http://aws.amazon.com/cloudwatch/)
+* [Amazon Cognito](http://aws.amazon.com/cognito/)
+* [Amazon DynamoDB](http://aws.amazon.com/dynamodb/)
+* [Amazon Elastic Compute Cloud (EC2)](http://aws.amazon.com/ec2/)
+* [Amazon Kinesis Firehose](http://aws.amazon.com/kinesis/firehose/)
+* [Amazon Kinesis Streams](http://aws.amazon.com/kinesis/streams/)
+* [Amazon Machine Learning](http://aws.amazon.com/machine-learning/)
+* [Amazon Mobile Analytics](http://aws.amazon.com/mobileanalytics/)
+* [Amazon S3](http://aws.amazon.com/s3/)
+* [Amazon Security Token Service (STS)](http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html)
+* [Amazon Simple Email Service (SES)](http://aws.amazon.com/ses/)
+* [Amazon Simple Notification Service (SNS)](http://aws.amazon.com/sns/)
+* [Amazon Simple Queue Service (SQS)](http://aws.amazon.com/sqs/)
 * [Amazon SimpleDB](http://aws.amazon.com/simpledb/)
+* [Auto Scaling](https://aws.amazon.com/autoscaling/)
+* [AWS Key Management Service (KMS)](https://aws.amazon.com/kms/)
+* [AWS Lambda](http://aws.amazon.com/lambda/)
+* [Elastic Load Balancing](http://aws.amazon.com/elasticloadbalancing/)
 
 
 

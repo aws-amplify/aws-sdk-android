@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class DescribeReservedInstancesOfferingsResult implements Serializable {
 
     /**
-     * A list of Reserved instances offerings.
+     * A list of Reserved Instances offerings.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<ReservedInstancesOffering> reservedInstancesOfferings;
 
@@ -33,9 +33,9 @@ public class DescribeReservedInstancesOfferingsResult implements Serializable {
     private String nextToken;
 
     /**
-     * A list of Reserved instances offerings.
+     * A list of Reserved Instances offerings.
      *
-     * @return A list of Reserved instances offerings.
+     * @return A list of Reserved Instances offerings.
      */
     public java.util.List<ReservedInstancesOffering> getReservedInstancesOfferings() {
         if (reservedInstancesOfferings == null) {
@@ -46,9 +46,9 @@ public class DescribeReservedInstancesOfferingsResult implements Serializable {
     }
     
     /**
-     * A list of Reserved instances offerings.
+     * A list of Reserved Instances offerings.
      *
-     * @param reservedInstancesOfferings A list of Reserved instances offerings.
+     * @param reservedInstancesOfferings A list of Reserved Instances offerings.
      */
     public void setReservedInstancesOfferings(java.util.Collection<ReservedInstancesOffering> reservedInstancesOfferings) {
         if (reservedInstancesOfferings == null) {
@@ -61,11 +61,11 @@ public class DescribeReservedInstancesOfferingsResult implements Serializable {
     }
     
     /**
-     * A list of Reserved instances offerings.
+     * A list of Reserved Instances offerings.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesOfferings A list of Reserved instances offerings.
+     * @param reservedInstancesOfferings A list of Reserved Instances offerings.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -79,11 +79,11 @@ public class DescribeReservedInstancesOfferingsResult implements Serializable {
     }
     
     /**
-     * A list of Reserved instances offerings.
+     * A list of Reserved Instances offerings.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesOfferings A list of Reserved instances offerings.
+     * @param reservedInstancesOfferings A list of Reserved Instances offerings.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

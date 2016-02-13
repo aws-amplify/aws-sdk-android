@@ -187,7 +187,7 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * interface (<code>available</code>) | <code>in-use</code>). </li> <li>
      * <p><code>network-interface.mac-address</code> - The MAC address of the
      * network interface. </li> <li>
-     * <p><code>network-interface-private-dns-name</code> - The private DNS
+     * <p><code>network-interface.private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
      * <p><code>network-interface.source-dest-check</code> - Whether the
      * network interface performs source/destination checking. A value of
@@ -461,7 +461,7 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * interface (<code>available</code>) | <code>in-use</code>). </li> <li>
      * <p><code>network-interface.mac-address</code> - The MAC address of the
      * network interface. </li> <li>
-     * <p><code>network-interface-private-dns-name</code> - The private DNS
+     * <p><code>network-interface.private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
      * <p><code>network-interface.source-dest-check</code> - Whether the
      * network interface performs source/destination checking. A value of
@@ -648,7 +648,7 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         interface (<code>available</code>) | <code>in-use</code>). </li> <li>
      *         <p><code>network-interface.mac-address</code> - The MAC address of the
      *         network interface. </li> <li>
-     *         <p><code>network-interface-private-dns-name</code> - The private DNS
+     *         <p><code>network-interface.private-dns-name</code> - The private DNS
      *         name of the network interface. </li> <li>
      *         <p><code>network-interface.source-dest-check</code> - Whether the
      *         network interface performs source/destination checking. A value of
@@ -844,7 +844,7 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * interface (<code>available</code>) | <code>in-use</code>). </li> <li>
      * <p><code>network-interface.mac-address</code> - The MAC address of the
      * network interface. </li> <li>
-     * <p><code>network-interface-private-dns-name</code> - The private DNS
+     * <p><code>network-interface.private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
      * <p><code>network-interface.source-dest-check</code> - Whether the
      * network interface performs source/destination checking. A value of
@@ -1031,7 +1031,7 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         interface (<code>available</code>) | <code>in-use</code>). </li> <li>
      *         <p><code>network-interface.mac-address</code> - The MAC address of the
      *         network interface. </li> <li>
-     *         <p><code>network-interface-private-dns-name</code> - The private DNS
+     *         <p><code>network-interface.private-dns-name</code> - The private DNS
      *         name of the network interface. </li> <li>
      *         <p><code>network-interface.source-dest-check</code> - Whether the
      *         network interface performs source/destination checking. A value of
@@ -1229,7 +1229,7 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * interface (<code>available</code>) | <code>in-use</code>). </li> <li>
      * <p><code>network-interface.mac-address</code> - The MAC address of the
      * network interface. </li> <li>
-     * <p><code>network-interface-private-dns-name</code> - The private DNS
+     * <p><code>network-interface.private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
      * <p><code>network-interface.source-dest-check</code> - Whether the
      * network interface performs source/destination checking. A value of
@@ -1418,7 +1418,7 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         interface (<code>available</code>) | <code>in-use</code>). </li> <li>
      *         <p><code>network-interface.mac-address</code> - The MAC address of the
      *         network interface. </li> <li>
-     *         <p><code>network-interface-private-dns-name</code> - The private DNS
+     *         <p><code>network-interface.private-dns-name</code> - The private DNS
      *         name of the network interface. </li> <li>
      *         <p><code>network-interface.source-dest-check</code> - Whether the
      *         network interface performs source/destination checking. A value of
@@ -1617,7 +1617,7 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * interface (<code>available</code>) | <code>in-use</code>). </li> <li>
      * <p><code>network-interface.mac-address</code> - The MAC address of the
      * network interface. </li> <li>
-     * <p><code>network-interface-private-dns-name</code> - The private DNS
+     * <p><code>network-interface.private-dns-name</code> - The private DNS
      * name of the network interface. </li> <li>
      * <p><code>network-interface.source-dest-check</code> - Whether the
      * network interface performs source/destination checking. A value of
@@ -1806,7 +1806,7 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         interface (<code>available</code>) | <code>in-use</code>). </li> <li>
      *         <p><code>network-interface.mac-address</code> - The MAC address of the
      *         network interface. </li> <li>
-     *         <p><code>network-interface-private-dns-name</code> - The private DNS
+     *         <p><code>network-interface.private-dns-name</code> - The private DNS
      *         name of the network interface. </li> <li>
      *         <p><code>network-interface.source-dest-check</code> - Whether the
      *         network interface performs source/destination checking. A value of

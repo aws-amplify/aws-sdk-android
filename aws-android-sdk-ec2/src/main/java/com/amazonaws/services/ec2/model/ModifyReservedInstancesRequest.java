@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#modifyReservedInstances(ModifyReservedInstancesRequest) ModifyReservedInstances operation}.
  * <p>
  * Modifies the Availability Zone, instance count, instance type, or
- * network platform (EC2-Classic or EC2-VPC) of your Reserved instances.
- * The Reserved instances to be modified must be identical, except for
+ * network platform (EC2-Classic or EC2-VPC) of your Reserved Instances.
+ * The Reserved Instances to be modified must be identical, except for
  * Availability Zone, network platform, and instance type.
  * </p>
  * <p>
@@ -45,12 +45,12 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     private String clientToken;
 
     /**
-     * The IDs of the Reserved instances to modify.
+     * The IDs of the Reserved Instances to modify.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> reservedInstancesIds;
 
     /**
-     * The configuration settings for the Reserved instances to modify.
+     * The configuration settings for the Reserved Instances to modify.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<ReservedInstancesConfiguration> targetConfigurations;
 
@@ -106,9 +106,9 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * The IDs of the Reserved instances to modify.
+     * The IDs of the Reserved Instances to modify.
      *
-     * @return The IDs of the Reserved instances to modify.
+     * @return The IDs of the Reserved Instances to modify.
      */
     public java.util.List<String> getReservedInstancesIds() {
         if (reservedInstancesIds == null) {
@@ -119,9 +119,9 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     }
     
     /**
-     * The IDs of the Reserved instances to modify.
+     * The IDs of the Reserved Instances to modify.
      *
-     * @param reservedInstancesIds The IDs of the Reserved instances to modify.
+     * @param reservedInstancesIds The IDs of the Reserved Instances to modify.
      */
     public void setReservedInstancesIds(java.util.Collection<String> reservedInstancesIds) {
         if (reservedInstancesIds == null) {
@@ -134,11 +134,11 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     }
     
     /**
-     * The IDs of the Reserved instances to modify.
+     * The IDs of the Reserved Instances to modify.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesIds The IDs of the Reserved instances to modify.
+     * @param reservedInstancesIds The IDs of the Reserved Instances to modify.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -152,11 +152,11 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     }
     
     /**
-     * The IDs of the Reserved instances to modify.
+     * The IDs of the Reserved Instances to modify.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesIds The IDs of the Reserved instances to modify.
+     * @param reservedInstancesIds The IDs of the Reserved Instances to modify.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -174,9 +174,9 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * The configuration settings for the Reserved instances to modify.
+     * The configuration settings for the Reserved Instances to modify.
      *
-     * @return The configuration settings for the Reserved instances to modify.
+     * @return The configuration settings for the Reserved Instances to modify.
      */
     public java.util.List<ReservedInstancesConfiguration> getTargetConfigurations() {
         if (targetConfigurations == null) {
@@ -187,9 +187,9 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     }
     
     /**
-     * The configuration settings for the Reserved instances to modify.
+     * The configuration settings for the Reserved Instances to modify.
      *
-     * @param targetConfigurations The configuration settings for the Reserved instances to modify.
+     * @param targetConfigurations The configuration settings for the Reserved Instances to modify.
      */
     public void setTargetConfigurations(java.util.Collection<ReservedInstancesConfiguration> targetConfigurations) {
         if (targetConfigurations == null) {
@@ -202,11 +202,11 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     }
     
     /**
-     * The configuration settings for the Reserved instances to modify.
+     * The configuration settings for the Reserved Instances to modify.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param targetConfigurations The configuration settings for the Reserved instances to modify.
+     * @param targetConfigurations The configuration settings for the Reserved Instances to modify.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -220,11 +220,11 @@ public class ModifyReservedInstancesRequest extends AmazonWebServiceRequest impl
     }
     
     /**
-     * The configuration settings for the Reserved instances to modify.
+     * The configuration settings for the Reserved Instances to modify.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param targetConfigurations The configuration settings for the Reserved instances to modify.
+     * @param targetConfigurations The configuration settings for the Reserved Instances to modify.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

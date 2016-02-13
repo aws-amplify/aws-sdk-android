@@ -194,6 +194,7 @@ public interface AWSSecurityTokenService {
      * @return The response from the GetSessionToken service method, as
      *         returned by AWSSecurityTokenService.
      * 
+     * @throws RegionDisabledException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -306,6 +307,7 @@ public interface AWSSecurityTokenService {
      * @throws MalformedPolicyDocumentException
      * @throws InvalidIdentityTokenException
      * @throws ExpiredTokenException
+     * @throws RegionDisabledException
      * @throws IDPCommunicationErrorException
      *
      * @throws AmazonClientException
@@ -403,7 +405,7 @@ public interface AWSSecurityTokenService {
      * </p>
      * <p>
      * For more information about how permissions work, see
-     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getfederationtoken"> GetFederationToken???Federation Through a Custom Identity Broker </a>
+     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getfederationtoken"> GetFederationToken—Federation Through a Custom Identity Broker </a>
      * .
      * </p>
      *
@@ -416,6 +418,7 @@ public interface AWSSecurityTokenService {
      * 
      * @throws PackedPolicyTooLargeException
      * @throws MalformedPolicyDocumentException
+     * @throws RegionDisabledException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -550,6 +553,7 @@ public interface AWSSecurityTokenService {
      * 
      * @throws PackedPolicyTooLargeException
      * @throws MalformedPolicyDocumentException
+     * @throws RegionDisabledException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -610,6 +614,7 @@ public interface AWSSecurityTokenService {
      * @return The response from the GetSessionToken service method, as
      *         returned by AWSSecurityTokenService.
      * 
+     * @throws RegionDisabledException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while

@@ -49,6 +49,8 @@ class RegionDefaults {
         updateRegion(region, "mobileanalytics", "mobileanalytics.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "machinelearning", "machinelearning.us-east-1.amazonaws.com", false,
                 true);
+        updateRegion(region, "kms", "kms.us-east-1.amazonaws.com", false, true);
+        updateRegion(region, "execute-api", "iot.us-east-1.amazonaws.com", false, true);
 
         region = new Region("us-west-1", "");
         ret.add(region);
@@ -65,6 +67,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.us-west-1.amazonaws.com", true, true);
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.us-west-1.amazonaws.com", true, true);
+        updateRegion(region, "kms", "kms.us-west-1.amazonaws.com", false, true);
 
         region = new Region("us-west-2", "");
         ret.add(region);
@@ -84,6 +87,8 @@ class RegionDefaults {
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.us-west-2.amazonaws.com", true, true);
         updateRegion(region, "email", "email.us-west-2.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.us-west-2.amazonaws.com", false, true);
+        updateRegion(region, "execute-api", "iot.us-west-2.amazonaws.com", false, true);
 
         region = new Region("ap-northeast-1", "");
         ret.add(region);
@@ -104,6 +109,8 @@ class RegionDefaults {
         updateRegion(region, "cognito-sync", "cognito-sync.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.ap-northeast-1.amazonaws.com", false,
                 true);
+        updateRegion(region, "kms", "kms.ap-northeast-1.amazonaws.com", false, true);
+        updateRegion(region, "execute-api", "iot.ap-northeast-1.amazonaws.com", false, true);
 
         region = new Region("ap-northeast-2", "");
         ret.add(region);
@@ -119,6 +126,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-northeast-2.amazonaws.com", true, true);
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.ap-northeast-2.amazonaws.com", true, true);
+        updateRegion(region, "kms", "kms.ap-northeast-2.amazonaws.com", false, true);
 
         region = new Region("ap-southeast-1", "");
         ret.add(region);
@@ -135,6 +143,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-southeast-1.amazonaws.com", true, true);
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.ap-southeast-1.amazonaws.com", true, true);
+        updateRegion(region, "kms", "kms.ap-southeast-1.amazonaws.com", false, true);
 
         region = new Region("ap-southeast-2", "");
         ret.add(region);
@@ -151,6 +160,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-southeast-2.amazonaws.com", true, true);
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.ap-southeast-2.amazonaws.com", true, true);
+        updateRegion(region, "kms", "kms.ap-southeast-2.amazonaws.com", false, true);
 
         region = new Region("sa-east-1", "");
         ret.add(region);
@@ -166,6 +176,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.sa-east-1.amazonaws.com", true, true);
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.sa-east-1.amazonaws.com", true, true);
+        updateRegion(region, "kms", "kms.sa-east-1.amazonaws.com", false, true);
 
         region = new Region("eu-west-1", "");
         ret.add(region);
@@ -190,6 +201,8 @@ class RegionDefaults {
                 true);
         updateRegion(region, "machinelearning", "machinelearning.eu-west-1.amazonaws.com", false,
                 true);
+        updateRegion(region, "kms", "kms.eu-west-1.amazonaws.com", false, true);
+        updateRegion(region, "execute-api", "iot.eu-west-1.amazonaws.com", false, true);
 
         region = new Region("eu-central-1", "");
         ret.add(region);
@@ -205,6 +218,7 @@ class RegionDefaults {
         updateRegion(region, "kinesis", "kinesis.eu-central-1.amazonaws.com", false, true);
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.eu-central-1.amazonaws.com", true, true);
+        updateRegion(region, "kms", "kms.eu-central-1.amazonaws.com", false, true);
 
         region = new Region("cn-north-1", "amazonaws.com.cn");
         ret.add(region);

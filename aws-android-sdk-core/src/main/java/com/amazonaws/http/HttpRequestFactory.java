@@ -56,6 +56,7 @@ public class HttpRequestFactory {
          */
         String uri = HttpUtils.appendUri(endpoint.toString(), request.getResourcePath(), true);
         String encodedParams = HttpUtils.encodeParameters(request);
+        HttpMethodName method = request.getHttpMethod();
 
         /*
          * For all non-POST requests, and any POST requests that already have a
@@ -63,16 +64,27 @@ public class HttpRequestFactory {
          * we'll put them in the POST request's payload.
          */
         boolean requestHasNoPayload = request.getContent() != null;
-        boolean requestIsPost = request.getHttpMethod() == HttpMethodName.POST;
+        boolean requestIsPost = method == HttpMethodName.POST;
         boolean putParamsInUri = !requestIsPost || requestHasNoPayload;
         if (encodedParams != null && putParamsInUri) {
             uri += "?" + encodedParams;
         }
 
+        // Configure headers from request. Additional headers will be added
+        // later if necessary.
+        Map<String, String> headers = new HashMap<String, String>();
+        configureHeaders(headers, request, context, clientConfiguration);
+
         InputStream is = request.getContent();
 
-        String method = request.getHttpMethod().toString();
-        if (method.equals("POST")) {
+        // Some HTTP client, e.g. HttpURLConnection, doesn't support PATCH.
+        // Tunnel it through another method by setting the intended method in
+        // the X-HTTP-Method-Override header.
+        if (method == HttpMethodName.PATCH) {
+            method = HttpMethodName.POST;
+            headers.put("X-HTTP-Method-Override", HttpMethodName.PATCH.toString());
+        }
+        if (method == HttpMethodName.POST) {
             /*
              * If there isn't any payload content to include in this request,
              * then try to include the POST parameters in the query body,
@@ -81,32 +93,30 @@ public class HttpRequestFactory {
              * POST requests, but we can't do that for S3.
              */
             if (request.getContent() == null && encodedParams != null) {
-                is = new ByteArrayInputStream(encodedParams.getBytes(StringUtils.UTF8));
-                request.addHeader("Content-Length", String.valueOf(encodedParams.length()));
+                byte[] contentBytes = encodedParams.getBytes(StringUtils.UTF8);
+                is = new ByteArrayInputStream(contentBytes);
+                headers.put("Content-Length", String.valueOf(contentBytes.length));
             }
         }
 
-        if (method.equals("POST") || method.equals("PUT")) {
-            String len = request.getHeaders().get("Content-Length");
+        if (method == HttpMethodName.POST || method == HttpMethodName.PUT) {
+            String len = headers.get("Content-Length");
             if (len == null || len.isEmpty()) {
                 if (is != null) {
                     throw new AmazonClientException("Unknown content-length");
                 } else {
-                    request.addHeader("Content-Length", "0");
+                    headers.put("Content-Length", "0");
                 }
             }
         }
 
         // Enables gzip compression. Also signals the implementation of
         // HttpClient to disable transparent gzip.
-        if (request.getHeaders().get("Accept-Encoding") == null) {
-            request.addHeader("Accept-Encoding", "gzip");
+        if (headers.get("Accept-Encoding") == null) {
+            headers.put("Accept-Encoding", "gzip");
         }
 
-        Map<String, String> headers = new HashMap<String, String>();
-        configureHeaders(headers, request, context, clientConfiguration);
-
-        return new HttpRequest(method, URI.create(uri), headers, is);
+        return new HttpRequest(method.toString(), URI.create(uri), headers, is);
     }
 
     /** Configures the headers in the specified Apache HTTP request. */

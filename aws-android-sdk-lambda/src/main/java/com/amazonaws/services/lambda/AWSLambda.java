@@ -92,24 +92,18 @@ public interface AWSLambda {
     
     /**
      * <p>
-     * Invokes a specific Lambda function version.
+     * Invokes a specific Lambda function.
      * </p>
      * <p>
-     * If you don't provide the <code>Qualifier</code> parameter, it uses
-     * the unqualified function ARN which results in invocation of the
-     * $LATEST version of the Lambda function (when you create a Lambda
-     * function, the $LATEST is the version). The AWS Lambda versioning and
-     * aliases feature allows you to publish multiple versions of a Lambda
-     * function and also create aliases for each function version. So each
-     * your Lambda function version can be invoked using multiple ARNs. For
-     * more information, see
-     * <a href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases-v2.html"> AWS Lambda Function Versioning and Aliases </a>
-     * . Using the <code>Qualifier</code> parameter, you can specify a
-     * function version or alias name to invoke specific function version. If
-     * you specify function version, the API uses the qualified function ARN
-     * to invoke a specific function version. If you specify alias name, the
-     * API uses the alias ARN to invoke the function version to which the
-     * alias points.
+     * If you are using the versioning feature, you can invoke the specific
+     * function version by providing function version or alias name that is
+     * pointing to the function version using the <code>Qualifier</code>
+     * parameter in the request. If you don't provide the
+     * <code>Qualifier</code> parameter, the <code>$LATEST</code> version of
+     * the Lambda function is invoked. For information about the versioning
+     * feature, see
+     * <a href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html"> AWS Lambda Function Versioning and Aliases </a>
+     * .
      * </p>
      * <p>
      * This operation requires permission for the
@@ -123,12 +117,19 @@ public interface AWSLambda {
      *         AWSLambda.
      * 
      * @throws InvalidRequestContentException
+     * @throws InvalidSubnetIDException
      * @throws InvalidParameterValueException
+     * @throws InvalidSecurityGroupIDException
      * @throws ServiceException
      * @throws RequestTooLargeException
+     * @throws SubnetIPAddressLimitReachedException
+     * @throws EC2ThrottledException
      * @throws ResourceNotFoundException
+     * @throws EC2AccessDeniedException
      * @throws UnsupportedMediaTypeException
+     * @throws EC2UnexpectedException
      * @throws TooManyRequestsException
+     * @throws ENILimitReachedException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while

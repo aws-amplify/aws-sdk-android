@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Decreases the stream's retention period, which is the length of time
  * data records are accessible after they are added to the stream. The
- * minimum value of a stream???s retention period is 24 hours.
+ * minimum value of a stream’s retention period is 24 hours.
  * </p>
  * <p>
  * This operation may result in lost data. For example, if the stream's

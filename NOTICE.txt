@@ -27,5 +27,6 @@ This software includes third party software subject to the following copyrights:
 - Apache HttpComponents Client - Copyright ©  2002-2014 The Apache Software Foundation. All Rights Reserved. (Apache License Version 2.0, January 2004)
 - jackson-core - Copyright © 2009-2011 FasterXML, LLC. All rights reserved unless otherwise indicated.(Apache License Version 2.0, January 2004)
 - gson - Copyright © 2008 Google Inc. All Rights Reserved. (Apache License Version 2.0, January 2004)
+- Eclipse Paho Java Client - Copyright (c) 2007, Eclipse Foundation, Inc. and its licensors. (Eclipse Distribution License - v1.0)
 
 The licenses for these third party components are included in License file.

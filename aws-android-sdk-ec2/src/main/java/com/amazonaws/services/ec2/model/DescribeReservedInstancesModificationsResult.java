@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class DescribeReservedInstancesModificationsResult implements Serializable {
 
     /**
-     * The Reserved instance modification information.
+     * The Reserved Instance modification information.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<ReservedInstancesModification> reservedInstancesModifications;
 
@@ -33,9 +33,9 @@ public class DescribeReservedInstancesModificationsResult implements Serializabl
     private String nextToken;
 
     /**
-     * The Reserved instance modification information.
+     * The Reserved Instance modification information.
      *
-     * @return The Reserved instance modification information.
+     * @return The Reserved Instance modification information.
      */
     public java.util.List<ReservedInstancesModification> getReservedInstancesModifications() {
         if (reservedInstancesModifications == null) {
@@ -46,9 +46,9 @@ public class DescribeReservedInstancesModificationsResult implements Serializabl
     }
     
     /**
-     * The Reserved instance modification information.
+     * The Reserved Instance modification information.
      *
-     * @param reservedInstancesModifications The Reserved instance modification information.
+     * @param reservedInstancesModifications The Reserved Instance modification information.
      */
     public void setReservedInstancesModifications(java.util.Collection<ReservedInstancesModification> reservedInstancesModifications) {
         if (reservedInstancesModifications == null) {
@@ -61,11 +61,11 @@ public class DescribeReservedInstancesModificationsResult implements Serializabl
     }
     
     /**
-     * The Reserved instance modification information.
+     * The Reserved Instance modification information.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesModifications The Reserved instance modification information.
+     * @param reservedInstancesModifications The Reserved Instance modification information.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -79,11 +79,11 @@ public class DescribeReservedInstancesModificationsResult implements Serializabl
     }
     
     /**
-     * The Reserved instance modification information.
+     * The Reserved Instance modification information.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedInstancesModifications The Reserved instance modification information.
+     * @param reservedInstancesModifications The Reserved Instance modification information.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
