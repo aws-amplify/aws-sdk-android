@@ -47,7 +47,7 @@ import java.util.Map;
  */
 public class TransferService extends Service {
 
-    private static final String TAG = "TransferSerivce";
+    private static final String TAG = "TransferService";
 
     /*
      * Constants of message sent to update handler.
@@ -102,7 +102,7 @@ public class TransferService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        throw new UnsupportedOperationException("Can't bind to TransferSerivce");
+        throw new UnsupportedOperationException("Can't bind to TransferService");
     }
 
     /**
