@@ -19,6 +19,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.util.Md5Utils;
+import com.amazonaws.util.StringUtils;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class MD5DigestCalculatingInputStreamTest {
     @Test
     public void test() throws Exception {
         byte[] data = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-="
-                .getBytes();
+                .getBytes(StringUtils.UTF8);
         byte[] md5Expected = Md5Utils.computeMD5Hash(data);
         byte[] baExpected;
         {

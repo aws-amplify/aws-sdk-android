@@ -22,6 +22,7 @@ import com.amazonaws.services.s3.model.EncryptionMaterialsAccessor;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.util.Base64;
+import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.json.JsonUtils;
 
 import java.io.BufferedReader;
@@ -365,7 +366,8 @@ final class ContentCryptoMaterial {
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,
+                        StringUtils.UTF8));
                 while ((line = reader.readLine()) != null) {
                     stringBuilder.append(line);
                 }

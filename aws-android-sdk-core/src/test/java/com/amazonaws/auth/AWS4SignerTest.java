@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.DefaultRequest;
 import com.amazonaws.Request;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -39,7 +40,7 @@ import java.util.TimeZone;
  * Unit tests for the
  */
 public class AWS4SignerTest {
-    private AWS4Signer signer = new AWS4Signer();
+    private final AWS4Signer signer = new AWS4Signer();
 
     @Test
     public void testDoubleURLEncode() {
@@ -121,7 +122,8 @@ public class AWS4SignerTest {
 
     private Request<?> generateBasicRequest() {
         Request<?> request = new DefaultRequest<Void>("Foo");
-        request.setContent(new ByteArrayInputStream("{\"TableName\": \"foo\"}".getBytes()));
+        request.setContent(new ByteArrayInputStream("{\"TableName\": \"foo\"}"
+                .getBytes(StringUtils.UTF8)));
         request.addHeader("Host", "demo.us-east-1.amazonaws.com");
         // HTTP header containing multiple spaces in a row.
         request.addHeader("x-amz-archive-description", "test  test");

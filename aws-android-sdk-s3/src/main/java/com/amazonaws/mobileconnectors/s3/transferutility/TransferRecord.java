@@ -174,9 +174,11 @@ class TransferRecord {
      *         otherwise
      */
     public boolean pause(AmazonS3 s3, TransferStatusUpdater updater) {
-        if (isRunning()) {
+        if (!isFinalState(state)) {
             updater.updateState(id, TransferState.PAUSED);
-            submittedTask.cancel(true);
+            if (isRunning()) {
+                submittedTask.cancel(true);
+            }
             return true;
         }
         return false;
@@ -191,10 +193,12 @@ class TransferRecord {
      *         false otherwise
      */
     public boolean cancel(final AmazonS3 s3, final TransferStatusUpdater updater) {
-        if (isRunning() && !TransferState.COMPLETED.equals(state)) {
-            // only cancel incomplete transfers
+        if (!isFinalState(state)) {
             updater.updateState(id, TransferState.CANCELED);
-            submittedTask.cancel(true);
+            if (isRunning()) {
+                submittedTask.cancel(true);
+            }
+            // additional cleanups
             if (isMultipart == 1) {
                 new Thread(new Runnable() {
                     @Override
@@ -239,6 +243,15 @@ class TransferRecord {
         if (isRunning()) {
             submittedTask.get(timeout, TimeUnit.MILLISECONDS);
         }
+    }
+
+    /**
+     * Determines whether a transfer state is a final state.
+     */
+    private boolean isFinalState(TransferState state) {
+        return TransferState.COMPLETED.equals(state)
+                || TransferState.FAILED.equals(state)
+                || TransferState.CANCELED.equals(state);
     }
 
     private boolean checkIsReadyToRun() {

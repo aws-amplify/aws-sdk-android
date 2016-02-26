@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -29,7 +30,7 @@ public class DecodedStreamBufferTest {
 
     @Test
     public void testDecodedStreamBufferTest() {
-        byte[] toBuff = "0123456789".getBytes();
+        byte[] toBuff = "0123456789".getBytes(StringUtils.UTF8);
         assertEquals(toBuff.length, 10);
 
         DecodedStreamBuffer buff = new DecodedStreamBuffer(10);
@@ -49,7 +50,7 @@ public class DecodedStreamBufferTest {
 
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testMustStartReadBuffer() {
-        byte[] toBuff = "0123456789".getBytes();
+        byte[] toBuff = "0123456789".getBytes(StringUtils.UTF8);
         assertEquals(toBuff.length, 10);
 
         DecodedStreamBuffer buff = new DecodedStreamBuffer(10);
@@ -61,7 +62,7 @@ public class DecodedStreamBufferTest {
 
     @Test(expected = AmazonClientException.class)
     public void testBufferTooMuch() {
-        byte[] toBuff = "0123456789".getBytes();
+        byte[] toBuff = "0123456789".getBytes(StringUtils.UTF8);
         assertEquals(toBuff.length, 10);
 
         DecodedStreamBuffer buff = new DecodedStreamBuffer(5);
@@ -72,7 +73,7 @@ public class DecodedStreamBufferTest {
 
     @Test
     public void testReadOnlyBufferedAmount() {
-        byte[] toBuff = "0123456789".getBytes();
+        byte[] toBuff = "0123456789".getBytes(StringUtils.UTF8);
         assertEquals(toBuff.length, 10);
 
         DecodedStreamBuffer buff = new DecodedStreamBuffer(20);

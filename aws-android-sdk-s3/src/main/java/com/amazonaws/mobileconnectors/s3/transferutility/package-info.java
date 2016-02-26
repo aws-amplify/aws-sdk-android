@@ -47,12 +47,6 @@
  * // Deletes the transfer.
  * transferUtility.delete(id);
  * </pre>
- *
- * Note that the Activity or Service that instantiates and uses the
- * TransferUtility should keep a reference to the Amazon S3 client as a class
- * attribute. Failing to keep a reference may cause the TransferService to fail
- * since {@link TransferService} receives a weak reference to the AmazonS3
- * client allowing it to be garbage collected.
  */
 
 package com.amazonaws.mobileconnectors.s3.transferutility;

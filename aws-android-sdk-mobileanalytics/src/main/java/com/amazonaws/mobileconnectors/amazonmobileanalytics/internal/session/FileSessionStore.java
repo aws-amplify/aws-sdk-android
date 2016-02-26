@@ -20,6 +20,7 @@ import android.util.Log;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.AnalyticsContext;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.FileManager;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.delivery.EventStoreException;
+import com.amazonaws.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -94,7 +95,7 @@ public class FileSessionStore implements SessionStore {
         try {
             OutputStream stream = context.getSystem().getFileManager()
                     .newOutputStream(sessionFile, false);
-            writer = new OutputStreamWriter(stream);
+            writer = new OutputStreamWriter(stream, StringUtils.UTF8);
         } catch (FileNotFoundException e) {
             Log.e(TAG, "Session file not found to persist session to", e);
             throw new EventStoreException("Unable to open session file writer", e);
@@ -122,7 +123,7 @@ public class FileSessionStore implements SessionStore {
         InputStreamReader streamReader = null;
         try {
             streamReader = new InputStreamReader(context.getSystem()
-                    .getFileManager().newInputStream(sessionFile));
+                    .getFileManager().newInputStream(sessionFile), StringUtils.UTF8);
         } catch (FileNotFoundException e) {
             Log.e(TAG, "Could not open the session file", e);
         }

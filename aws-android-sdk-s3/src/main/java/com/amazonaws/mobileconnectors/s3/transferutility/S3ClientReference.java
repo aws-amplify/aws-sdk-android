@@ -17,7 +17,6 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import com.amazonaws.services.s3.AmazonS3;
 
-import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,12 +26,12 @@ import java.util.Map;
  * via intent in a parcelable form. A S3 client has too many elements to
  * capture. Instead, this serves as an alternative approach, not ideal though.
  */
-class S3ClientWeakReference {
+class S3ClientReference {
 
-    private static Map<String, WeakReference<AmazonS3>> map = new HashMap<String, WeakReference<AmazonS3>>();
+    private static Map<String, AmazonS3> map = new HashMap<String, AmazonS3>();
 
     public static void put(String key, AmazonS3 s3) {
-        map.put(key, new WeakReference<AmazonS3>(s3));
+        map.put(key, s3);
     }
 
     /**
@@ -42,10 +41,13 @@ class S3ClientWeakReference {
      * @return an AmazonS3 instance, or null if the key doesn't exist
      */
     public static AmazonS3 get(String key) {
-        if (map.containsKey(key)) {
-            return map.get(key).get();
-        } else {
-            return null;
-        }
+        return map.remove(key);
+    }
+
+    /**
+     * Clears all references.
+     */
+    public static void clear() {
+        map.clear();
     }
 }

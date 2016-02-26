@@ -25,6 +25,7 @@ import com.amazonaws.services.mobileanalytics.model.PutEventsRequest;
 import com.amazonaws.services.mobileanalytics.model.Session;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.DateUtils;
+import com.amazonaws.util.StringUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,7 +88,8 @@ public class ERSRequestBuilder {
 
         if (clientContext != null && eventList.size() > 0) {
             putRequest.withEvents(eventList).withClientContext(
-                    Base64.encodeAsString(clientContext.toJSONObject().toString().getBytes()));
+                    Base64.encodeAsString(clientContext.toJSONObject().toString()
+                            .getBytes(StringUtils.UTF8)));
         } else {
             Log.e(TAG, "ClientContext is null or event list is empty");
         }

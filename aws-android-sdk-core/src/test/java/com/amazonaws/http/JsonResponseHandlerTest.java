@@ -23,6 +23,7 @@ import static org.junit.Assert.assertTrue;
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.transform.JsonUnmarshallerContext;
 import com.amazonaws.transform.Unmarshaller;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -36,10 +37,11 @@ public class JsonResponseHandlerTest {
 
     @Test
     public void testHandleWithCRC32() throws Exception {
-        ByteArrayInputStream bais = new ByteArrayInputStream("{\"key\" :\"Content\"}".getBytes());
+        ByteArrayInputStream bais = new ByteArrayInputStream(
+                "{\"key\" :\"Content\"}".getBytes(StringUtils.UTF8));
 
         CRC32 crc32 = new CRC32();
-        crc32.update("{\"key\" :\"Content\"}".getBytes());
+        crc32.update("{\"key\" :\"Content\"}".getBytes(StringUtils.UTF8));
         HttpResponse response = new HttpResponse.Builder().statusText("testResponse")
                 .statusCode(200).header("testKey", "testValue")
                 .header("x-amz-crc32", String.valueOf(crc32.getValue())).content(bais).build();
@@ -66,7 +68,8 @@ public class JsonResponseHandlerTest {
 
     @Test
     public void testHandleWithNoCRC32() throws Exception {
-        ByteArrayInputStream bais = new ByteArrayInputStream("{\"key\" :\"Content\"}".getBytes());
+        ByteArrayInputStream bais = new ByteArrayInputStream(
+                "{\"key\" :\"Content\"}".getBytes(StringUtils.UTF8));
 
         HttpResponse response = new HttpResponse.Builder().statusText("testResponse")
                 .statusCode(200).header("testKey", "testValue").content(bais).build();
@@ -113,9 +116,10 @@ public class JsonResponseHandlerTest {
 
     @Test
     public void testHandleNeedsConnectionLeftOpen() throws Exception {
-        ByteArrayInputStream bais = new ByteArrayInputStream("{\"key\" :\"Content\"}".getBytes());
+        ByteArrayInputStream bais = new ByteArrayInputStream(
+                "{\"key\" :\"Content\"}".getBytes(StringUtils.UTF8));
         CRC32 crc32 = new CRC32();
-        crc32.update("{\"key\" :\"Content\"}".getBytes());
+        crc32.update("{\"key\" :\"Content\"}".getBytes(StringUtils.UTF8));
         HttpResponse response = new HttpResponse.Builder().statusText("testResponse")
                 .statusCode(200).header("testKey", "testValue").content(bais).build();
 

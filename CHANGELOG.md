@@ -1,5 +1,18 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.2.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.13) (02/25/2016)
+
+### Improvements
+- **Amazon S3**: Tweaked the usage of TransferListener in S3 TransferUtility.
+ - Now listeners are kept as strong references. They will be removed when transfers are completed. However user are still encouraged to clean up listeners themselves to prevent memory leak. [#93](https://github.com/aws/aws-sdk-android/issues/93) and [#101](https://github.com/aws/aws-sdk-android/issues/101)
+ - Transfers in WAITING_FOR_NETWORK state can now be paused or canceled. [#102](https://github.com/aws/aws-sdk-android/issues/102)
+ - Improved the experience to delete a transfer. [#104](https://github.com/aws/aws-sdk-android/issues/104)
+
+### Bug Fixes
+- **AWS Core Runtime Library**: Addressed potential internalization bugs. [#96](https://github.com/aws/aws-sdk-android/issues/96)
+- **Amazon S3**: Fixed a ConcurrentModificationException bug caused by listeners being removed in their callbacks. [#103](https://github.com/aws/aws-sdk-android/issues/103)
+
+
 ## [Release 2.2.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.12) (02/12/2016)
 
 ### New Features

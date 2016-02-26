@@ -18,13 +18,14 @@ package com.amazonaws.mobileconnectors.kinesis.kinesisrecorder;
 import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -45,10 +46,10 @@ class FileRecordStore {
     private File recordFile;
 
     /** The FileManager used for interacting with the FS **/
-    private FileManager fileManager;
+    private final FileManager fileManager;
 
-    private String recordFileName;
-    private long maxStorageSize;
+    private final String recordFileName;
+    private final long maxStorageSize;
 
     /**
      * Creates the FileRecordStore
@@ -75,7 +76,7 @@ class FileRecordStore {
         accessLock.lock();
         try {
             writer = tryInitializeWriter();
-            if (recordFile.length() + record.getBytes().length <= maxStorageSize) {
+            if (recordFile.length() + record.getBytes(StringUtils.UTF8).length <= maxStorageSize) {
                 writer.write(record);
                 writer.newLine();
                 writer.flush();
@@ -116,7 +117,7 @@ class FileRecordStore {
         BufferedWriter writer = null;
         tryCreateRecordsFile();
         OutputStream stream = fileManager.newOutputStream(recordFile, true);
-        writer = new BufferedWriter(new OutputStreamWriter(stream));
+        writer = new BufferedWriter(new OutputStreamWriter(stream, StringUtils.UTF8));
 
         return writer;
     }
@@ -151,8 +152,10 @@ class FileRecordStore {
             BufferedReader reader = null;
             PrintWriter writer = null;
             try {
-                reader = new BufferedReader(new FileReader(recordFile));
-                writer = new PrintWriter(new FileWriter(tempRecordsFile, true));
+                reader = new BufferedReader(new InputStreamReader(new FileInputStream(recordFile),
+                        StringUtils.UTF8));
+                writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(
+                        tempRecordsFile, true), StringUtils.UTF8));
 
                 String line = null;
                 int currentLineNumber = 0;
@@ -208,7 +211,8 @@ class FileRecordStore {
 
             if (!isEndOfFile) {
                 InputStreamReader streamReader = null;
-                streamReader = new InputStreamReader(fileManager.newInputStream(recordFile));
+                streamReader = new InputStreamReader(fileManager.newInputStream(recordFile),
+                        StringUtils.UTF8);
 
                 if (streamReader != null) {
                     reader = new BufferedReader(streamReader);

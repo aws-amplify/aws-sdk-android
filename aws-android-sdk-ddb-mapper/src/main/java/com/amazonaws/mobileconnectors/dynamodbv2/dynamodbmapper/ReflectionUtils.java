@@ -15,6 +15,8 @@
 
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
+import com.amazonaws.util.StringUtils;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -74,7 +76,7 @@ class ReflectionUtils {
 
         if (forceCamelCase) {
             // Lowercase the first letter of the name
-            return fieldNameWithUpperCamelCase.substring(0, 1).toLowerCase()
+            return StringUtils.lowerCase(fieldNameWithUpperCamelCase.substring(0, 1))
                     + fieldNameWithUpperCamelCase.substring(1);
         } else {
             return fieldNameWithUpperCamelCase;

@@ -110,7 +110,7 @@ public class HttpUtils {
      *         false.
      */
     public static boolean isUsingNonDefaultPort(URI uri) {
-        String scheme = uri.getScheme().toLowerCase();
+        String scheme = StringUtils.lowerCase(uri.getScheme());
         int port = uri.getPort();
 
         if (port <= 0)

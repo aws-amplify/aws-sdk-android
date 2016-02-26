@@ -22,6 +22,7 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.mobileconnectors.kinesis.kinesisrecorder.FileRecordStore.RecordIterator;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.After;
 import org.junit.Before;
@@ -342,7 +343,7 @@ public class FileRecordStoreTest {
         try {
             streamReader = new InputStreamReader(
                     fileManager.newInputStream(Constants.RECORDS_DIRECTORY + File.separator
-                            + Constants.RECORDS_FILE_NAME));
+                            + Constants.RECORDS_FILE_NAME), StringUtils.UTF8);
         } catch (FileNotFoundException e) {
         }
 

@@ -224,7 +224,7 @@ class ApiClientHandler implements InvocationHandler {
         if (code >= 200 && code < 300) {
             Type t = method.getReturnType();
             if (t != void.class && content != null) {
-                Reader reader = new InputStreamReader(response.getContent());
+                Reader reader = new InputStreamReader(response.getContent(), StringUtils.UTF8);
                 Object obj = gson.fromJson(reader, t);
                 reader.close();
                 return obj;

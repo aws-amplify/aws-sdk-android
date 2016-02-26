@@ -17,6 +17,7 @@ package com.amazonaws.handlers;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.util.ClassLoaderHelper;
+import com.amazonaws.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,7 +68,7 @@ public class HandlerChainFactory {
             if (input == null)
                 return handlers;
 
-            reader = new BufferedReader(new InputStreamReader(input));
+            reader = new BufferedReader(new InputStreamReader(input, StringUtils.UTF8));
             while (true) {
                 String requestHandlerClassName = reader.readLine();
                 if (requestHandlerClassName == null)

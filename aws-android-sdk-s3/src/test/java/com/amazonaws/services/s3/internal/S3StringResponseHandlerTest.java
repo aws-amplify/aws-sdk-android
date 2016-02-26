@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.http.HttpResponse;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -30,7 +31,7 @@ public class S3StringResponseHandlerTest {
     public void testHandle() throws Exception {
 
         S3StringResponseHandler handler = new S3StringResponseHandler();
-        ByteArrayInputStream bais = new ByteArrayInputStream("content".getBytes());
+        ByteArrayInputStream bais = new ByteArrayInputStream("content".getBytes(StringUtils.UTF8));
         HttpResponse response = new HttpResponse.Builder().content(bais).build();
         AmazonWebServiceResponse<String> awsr = handler.handle(response);
         assertEquals(awsr.getResult(), "content");

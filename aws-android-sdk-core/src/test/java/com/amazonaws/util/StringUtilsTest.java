@@ -17,10 +17,12 @@ package com.amazonaws.util;
 
 import static com.amazonaws.util.StringUtils.UTF8;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
 import java.nio.ByteBuffer;
+import java.util.Locale;
 
 /**
  * Unit tests for the StringUtils class.
@@ -37,7 +39,7 @@ public class StringUtilsTest {
         String expectedData = "hello world";
         String expectedEncodedData = "aGVsbG8gd29ybGQ=";
 
-        ByteBuffer byteBuffer = ByteBuffer.wrap(expectedData.getBytes());
+        ByteBuffer byteBuffer = ByteBuffer.wrap(expectedData.getBytes(UTF8));
         String encodedData = StringUtils.fromByteBuffer(byteBuffer);
 
         assertEquals(expectedEncodedData, encodedData);
@@ -74,4 +76,31 @@ public class StringUtilsTest {
         assertEquals(StringUtils.join("=", join1, part4), "one+two+one=four");
     }
 
+    @Test
+    public void testLowerCase() {
+        assertNull("null", StringUtils.lowerCase(null));
+        assertEquals("empty string", "", StringUtils.lowerCase(""));
+        assertEquals("aBc -> abc", "abc", StringUtils.lowerCase("aBc"));
+
+        // https://github.com/aws/aws-sdk-android/issues/96
+        Locale defaultLocale = Locale.getDefault();
+        Locale.setDefault(new Locale("tr", "TR"));
+        assertEquals("turkish locale", "x-amz-invocation-type",
+                StringUtils.lowerCase("X-Amz-Invocation-Type"));
+        Locale.setDefault(defaultLocale);
+    }
+
+    @Test
+    public void testUpperCase() {
+        assertNull("null", StringUtils.upperCase(null));
+        assertEquals("empty string", "", StringUtils.upperCase(""));
+        assertEquals("aBc -> ABC", "ABC", StringUtils.upperCase("aBc"));
+
+        // https://github.com/aws/aws-sdk-android/issues/96
+        Locale defaultLocale = Locale.getDefault();
+        Locale.setDefault(new Locale("tr", "TR"));
+        assertEquals("turkish locale", "X-AMZ-INVOCATION-TYPE",
+                StringUtils.upperCase("X-Amz-Invocation-Type"));
+        Locale.setDefault(defaultLocale);
+    }
 }

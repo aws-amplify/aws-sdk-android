@@ -24,6 +24,7 @@ import com.amazonaws.http.HttpResponse;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public class S3ObjectResponseHandlerTest {
 
     @Test
     public void testHandle() throws Exception {
-        ByteArrayInputStream bais = new ByteArrayInputStream("content".getBytes());
+        ByteArrayInputStream bais = new ByteArrayInputStream("content".getBytes(StringUtils.UTF8));
         HttpResponse response = new HttpResponse.Builder().content(bais)
                 .header(Headers.REDIRECT_LOCATION, "redirect")
                 .header(Headers.REQUESTER_CHARGED_HEADER, "true").build();
@@ -55,7 +56,7 @@ public class S3ObjectResponseHandlerTest {
         while ((curr = is.read()) != -1) {
             baos.write(curr);
         }
-        assertArrayEquals(baos.toByteArray(), "content".getBytes());
+        assertArrayEquals(baos.toByteArray(), "content".getBytes(StringUtils.UTF8));
     }
 
 }

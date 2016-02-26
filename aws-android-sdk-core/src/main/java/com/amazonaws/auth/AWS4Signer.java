@@ -21,6 +21,7 @@ import com.amazonaws.util.AwsHostNameUtils;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.HttpUtils;
+import com.amazonaws.util.StringUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -210,7 +211,7 @@ public class AWS4Signer extends AbstractAWSSigner
         StringBuilder buffer = new StringBuilder();
         for (String header : sortedHeaders) {
             if (needsSign(header)) {
-                String key = header.toLowerCase().replaceAll("\\s+", " ");
+                String key = StringUtils.lowerCase(header).replaceAll("\\s+", " ");
                 String value = request.getHeaders().get(header);
 
                 buffer.append(key).append(":");
@@ -235,7 +236,7 @@ public class AWS4Signer extends AbstractAWSSigner
             if (needsSign(header)) {
                 if (buffer.length() > 0)
                     buffer.append(";");
-                buffer.append(header.toLowerCase());
+                buffer.append(StringUtils.lowerCase(header));
             }
         }
 
@@ -290,13 +291,15 @@ public class AWS4Signer extends AbstractAWSSigner
 
         // AWS4 uses a series of derived keys, formed by hashing different
         // pieces of data
-        byte[] kSecret = ("AWS4" + sanitizedCredentials.getAWSSecretKey()).getBytes();
+        byte[] kSecret = ("AWS4" + sanitizedCredentials.getAWSSecretKey())
+                .getBytes(StringUtils.UTF8);
         byte[] kDate = sign(dateStamp, kSecret, SigningAlgorithm.HmacSHA256);
         byte[] kRegion = sign(regionName, kDate, SigningAlgorithm.HmacSHA256);
         byte[] kService = sign(serviceName, kRegion, SigningAlgorithm.HmacSHA256);
         byte[] kSigning = sign(TERMINATOR, kService, SigningAlgorithm.HmacSHA256);
 
-        byte[] signature = sign(stringToSign.getBytes(), kSigning, SigningAlgorithm.HmacSHA256);
+        byte[] signature = sign(stringToSign.getBytes(StringUtils.UTF8), kSigning,
+                SigningAlgorithm.HmacSHA256);
         return new HeaderSigningResult(timeStamp, scope, kSigning, signature);
     }
 
@@ -365,10 +368,10 @@ public class AWS4Signer extends AbstractAWSSigner
 
     protected static class HeaderSigningResult {
 
-        private String dateTime;
-        private String scope;
-        private byte[] kSigning;
-        private byte[] signature;
+        private final String dateTime;
+        private final String scope;
+        private final byte[] kSigning;
+        private final byte[] signature;
 
         public HeaderSigningResult(String dateTime, String scope, byte[] kSigning, byte[] signature) {
             this.dateTime = dateTime;

@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.DefaultRequest;
 import com.amazonaws.Request;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -44,7 +45,7 @@ public class AWS3SignerTest {
                     "Signature=ceuBBi+ulAGez7YKUWkrZRLga+L8hE1vi4M95aZVwCw=";
 
     /** Shared signer for tests to use. */
-    private AWS3Signer signer = new AWS3Signer();
+    private final AWS3Signer signer = new AWS3Signer();
 
     /**
      * Tests that we can calculate an AWS3 HTTP signature and compares it to a
@@ -54,7 +55,8 @@ public class AWS3SignerTest {
     public void testHttpSigning() throws Exception {
         AWSCredentials credentials = new BasicAWSCredentials("access", "secret");
         Request<?> request = new DefaultRequest<Void>("Foo");
-        request.setContent(new ByteArrayInputStream("{\"TableName\": \"foo\"}".getBytes()));
+        request.setContent(new ByteArrayInputStream("{\"TableName\": \"foo\"}"
+                .getBytes(StringUtils.UTF8)));
         request.setResourcePath("/");
         request.addHeader("X-Amz-Target",
                 "com.amazon.bigbird.sharedtypes.BigBirdRequestRouterService.DescribeTable");
@@ -91,7 +93,8 @@ public class AWS3SignerTest {
     public void testAnonymous() throws Exception {
         AWSCredentials credentials = new AnonymousAWSCredentials();
         Request<?> request = new DefaultRequest<Void>("Foo");
-        request.setContent(new ByteArrayInputStream("{\"TableName\": \"foo\"}".getBytes()));
+        request.setContent(new ByteArrayInputStream("{\"TableName\": \"foo\"}"
+                .getBytes(StringUtils.UTF8)));
         request.setResourcePath("/");
         request.addHeader("X-Amz-Target",
                 "com.amazon.bigbird.sharedtypes.BigBirdRequestRouterService.DescribeTable");

@@ -18,6 +18,7 @@ package com.amazonaws.mobileconnectors.s3.transfermanager;
 import static com.amazonaws.util.StringUtils.UTF8;
 
 import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
+import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.json.AwsJsonReader;
 import com.amazonaws.util.json.JsonUtils;
 
@@ -32,7 +33,7 @@ import java.io.OutputStream;
  * Abstract base class for the information of a pausible upload or download;
  * such information can be used to resume the upload or download later on, and
  * can be serialized/deserialized for persistence purposes.
- * 
+ *
  * @deprecated The Transfer Manager is now deprecated in favor of the
  *             {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  */
@@ -80,7 +81,7 @@ public abstract class PersistableTransfer {
         boolean isRequesterPays = false;
 
         AwsJsonReader reader = JsonUtils
-                .getJsonReader(new BufferedReader(new InputStreamReader(in)));
+                .getJsonReader(new BufferedReader(new InputStreamReader(in, StringUtils.UTF8)));
         try {
 
             reader.beginObject();

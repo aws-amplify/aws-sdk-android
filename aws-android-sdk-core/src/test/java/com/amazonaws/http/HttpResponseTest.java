@@ -115,7 +115,7 @@ public class HttpResponseTest {
     private InputStream getGzippedInputStream(String str) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         GZIPOutputStream gos = new GZIPOutputStream(baos);
-        gos.write(str.getBytes());
+        gos.write(str.getBytes(StringUtils.UTF8));
         gos.finish();
         byte[] content = baos.toByteArray();
         gos.close();

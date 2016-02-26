@@ -42,7 +42,8 @@ public class LambdaJsonBinder implements LambdaDataBinder {
         if (content == null) {
             return null;
         }
-        Reader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content)));
+        Reader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content),
+                StringUtils.UTF8));
         return gson.fromJson(reader, clazz);
     }
 

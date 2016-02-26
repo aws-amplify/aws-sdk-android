@@ -21,6 +21,7 @@ import com.amazonaws.ResponseMetadata;
 import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.Unmarshaller;
 import com.amazonaws.transform.VoidStaxUnmarshaller;
+import com.amazonaws.util.StringUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -87,7 +88,7 @@ public class StaxResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
         log.trace("Parsing service response XML");
         InputStream content = response.getContent();
         if (content == null)
-            content = new ByteArrayInputStream("<eof/>".getBytes());
+            content = new ByteArrayInputStream("<eof/>".getBytes(StringUtils.UTF8));
 
         XmlPullParser xpp = xmlPullParserFactory.newPullParser();
         xpp.setInput(content, null);

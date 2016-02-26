@@ -33,10 +33,10 @@ public class CRC32ChecksumInputStreamTest {
     @Test
     public void testCRC32Checksum() throws IOException {
         CRC32 crc32 = new CRC32();
-        crc32.update(TEST_DARA.getBytes());
+        crc32.update(TEST_DARA.getBytes(StringUtils.UTF8));
         long expectedCRC32Checksum = crc32.getValue();
         CRC32ChecksumCalculatingInputStream crc32InputStream = new CRC32ChecksumCalculatingInputStream(
-                new ByteArrayInputStream(TEST_DARA.getBytes()));
+                new ByteArrayInputStream(TEST_DARA.getBytes(StringUtils.UTF8)));
         while (crc32InputStream.read() != -1)
             ;
         assertEquals(expectedCRC32Checksum, crc32InputStream.getCRC32Checksum());

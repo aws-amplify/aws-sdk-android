@@ -41,6 +41,7 @@ import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.amazonaws.services.dynamodbv2.model.KeysAndAttributes;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.WriteRequest;
+import com.amazonaws.util.StringUtils;
 
 import org.easymock.Capture;
 import org.easymock.CaptureType;
@@ -57,7 +58,7 @@ public class DynamoDBMapperTest {
 
     private AmazonDynamoDB mockClient;
     private DynamoDBMapper mapper;
-    private PaginationLoadingStrategy strategy = PaginationLoadingStrategy.LAZY_LOADING;
+    private final PaginationLoadingStrategy strategy = PaginationLoadingStrategy.LAZY_LOADING;
     private DynamoDBMapperConfig config;
 
     @Before
@@ -99,7 +100,7 @@ public class DynamoDBMapperTest {
                 for (Map.Entry<String, AttributeValue> curr : parameters.getAttributeValues()
                         .entrySet()) {
                     upperCased.put(curr.getKey(),
-                            new AttributeValue().withS(curr.getValue().getS().toUpperCase()));
+                            new AttributeValue().withS(StringUtils.upperCase(curr.getValue().getS())));
                 }
                 return upperCased;
             }

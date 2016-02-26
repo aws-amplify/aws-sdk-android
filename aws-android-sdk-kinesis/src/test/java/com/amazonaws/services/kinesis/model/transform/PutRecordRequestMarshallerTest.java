@@ -55,7 +55,7 @@ public class PutRecordRequestMarshallerTest {
         String str = IOUtils.toString(gis);
         Map<String, String> map = JsonUtils.jsonToMap(str);
         assertEquals("StreamName", "stream name", map.get("StreamName"));
-        String data = new String(BinaryUtils.fromBase64(map.get("Data")));
+        String data = new String(BinaryUtils.fromBase64(map.get("Data")), StringUtils.UTF8);
         assertEquals("same data", randomStr, data);
     }
 }

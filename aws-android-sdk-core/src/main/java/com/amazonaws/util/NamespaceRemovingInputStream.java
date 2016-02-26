@@ -28,7 +28,7 @@ import java.io.InputStream;
 class NamespaceRemovingInputStream extends SdkFilterInputStream {
 
     /** look ahead buffer */
-    private byte[] lookAheadData = new byte[200];
+    private final byte[] lookAheadData = new byte[200];
 
     /** Set to true once the namespace has been removed */
     private boolean hasRemovedNamespace = false;
@@ -60,7 +60,7 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
             int bytesRead = in.read(lookAheadData, 1, lookAheadData.length - 1);
             in.reset();
 
-            String string = new String(lookAheadData, 0, bytesRead + 1);
+            String string = new String(lookAheadData, 0, bytesRead + 1, StringUtils.UTF8);
 
             int numberCharsMatched = matchXmlNamespaceAttribute(string);
             if (numberCharsMatched > 0) {

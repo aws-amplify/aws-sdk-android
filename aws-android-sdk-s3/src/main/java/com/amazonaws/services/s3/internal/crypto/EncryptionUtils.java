@@ -37,6 +37,7 @@ import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.util.Mimetypes;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.LengthCheckInputStream;
+import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.json.JsonUtils;
 
 import java.io.BufferedReader;
@@ -414,7 +415,7 @@ public class EncryptionUtils {
     public static PutObjectRequest createInstructionPutRequest(PutObjectRequest request,
             EncryptionInstruction instruction) {
         Map<String, String> instructionJSON = convertInstructionToJSONObject(instruction);
-        byte[] instructionBytes = JsonUtils.mapToString(instructionJSON).getBytes();
+        byte[] instructionBytes = JsonUtils.mapToString(instructionJSON).getBytes(StringUtils.UTF8);
         InputStream instructionInputStream = new ByteArrayInputStream(instructionBytes);
 
         ObjectMetadata metadata = request.getMetadata();
@@ -436,7 +437,7 @@ public class EncryptionUtils {
     public static PutObjectRequest createInstructionPutRequest(String bucketName, String key,
             EncryptionInstruction instruction) {
         Map<String, String> instructionJSON = convertInstructionToJSONObject(instruction);
-        byte[] instructionBytes = JsonUtils.mapToString(instructionJSON).getBytes();
+        byte[] instructionBytes = JsonUtils.mapToString(instructionJSON).getBytes(StringUtils.UTF8);
         InputStream instructionInputStream = new ByteArrayInputStream(instructionBytes);
 
         ObjectMetadata metadata = new ObjectMetadata();
@@ -943,7 +944,8 @@ public class EncryptionUtils {
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,
+                        StringUtils.UTF8));
                 while ((line = reader.readLine()) != null) {
                     stringBuilder.append(line);
                 }

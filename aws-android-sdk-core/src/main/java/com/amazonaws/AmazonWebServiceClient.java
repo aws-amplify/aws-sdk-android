@@ -33,6 +33,7 @@ import com.amazonaws.util.AWSRequestMetrics;
 import com.amazonaws.util.AWSRequestMetrics.Field;
 import com.amazonaws.util.AwsHostNameUtils;
 import com.amazonaws.util.Classes;
+import com.amazonaws.util.StringUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -533,7 +534,7 @@ public abstract class AmazonWebServiceClient {
     /**
      * Returns true if request metric collection is enabled at the service
      * client or AWS SDK level request; false otherwise.
-     * 
+     *
      * @deprecated metrics is deprecated
      */
     @Deprecated
@@ -585,7 +586,7 @@ public abstract class AmazonWebServiceClient {
     /**
      * Returns the client specific {@link RequestMetricCollector}; or null if
      * there is none.
-     * 
+     *
      * @deprecated metrics is deprecated
      */
     @Deprecated
@@ -608,7 +609,7 @@ public abstract class AmazonWebServiceClient {
     /**
      * Returns the most specific request metric collector, starting from the
      * request level, then client level, then finally the AWS SDK level.
-     * 
+     *
      * @deprecated metrics is deprecated
      */
     @Deprecated
@@ -625,7 +626,7 @@ public abstract class AmazonWebServiceClient {
     /**
      * Convenient method to end the client execution without logging the
      * awsRequestMetrics.
-     * 
+     *
      * @deprecated metrics is deprecated
      */
     @Deprecated
@@ -745,7 +746,7 @@ public abstract class AmazonWebServiceClient {
                     "Unrecognized AWS http client class name " + httpClientName);
         }
         String serviceName = httpClientName.substring(i + len, j);
-        return serviceName.toLowerCase();
+        return StringUtils.lowerCase(serviceName);
     }
 
     /**

@@ -18,6 +18,8 @@
 
 package com.amazonaws.services.s3.util;
 
+import com.amazonaws.util.StringUtils;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -286,7 +288,7 @@ public final class Mimetypes {
      * @throws IOException
      */
     public void loadAndReplaceMimetypes(InputStream is) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, StringUtils.UTF8));
         String line = null;
 
         while ((line = br.readLine()) != null) {
@@ -300,9 +302,10 @@ public final class Mimetypes {
                     String mimetype = st.nextToken();
                     while (st.hasMoreTokens()) {
                         String extension = st.nextToken();
-                        extensionToMimetypeMap.put(extension.toLowerCase(Locale.US), mimetype);
+                        extensionToMimetypeMap.put(StringUtils.lowerCase(extension), mimetype);
                         if (log.isDebugEnabled()) {
-                            log.debug("Setting mime type for extension '" + extension.toLowerCase()
+                            log.debug("Setting mime type for extension '"
+                                    + StringUtils.lowerCase(extension)
                                     + "' to '" + mimetype + "'");
                         }
                     }
@@ -336,7 +339,7 @@ public final class Mimetypes {
     public String getMimetype(String fileName) {
         int lastPeriodIndex = fileName.lastIndexOf(".");
         if (lastPeriodIndex > 0 && lastPeriodIndex + 1 < fileName.length()) {
-            String ext = fileName.substring(lastPeriodIndex + 1).toLowerCase();
+            String ext = StringUtils.lowerCase(fileName.substring(lastPeriodIndex + 1));
             if (extensionToMimetypeMap.containsKey(ext)) {
                 String mimetype = extensionToMimetypeMap.get(ext);
                 if (log.isDebugEnabled()) {
@@ -387,6 +390,6 @@ public final class Mimetypes {
      * @param mimetype mime type string
      */
     public void registerMimetype(String extension, String mimetype) {
-        extensionToMimetypeMap.put(extension.toLowerCase(Locale.US), mimetype);
+        extensionToMimetypeMap.put(StringUtils.lowerCase(extension), mimetype);
     }
 }

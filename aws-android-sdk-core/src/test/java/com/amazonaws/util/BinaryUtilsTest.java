@@ -44,7 +44,7 @@ public class BinaryUtilsTest {
 
     @Test
     public void testByteBufferToStream() throws IOException {
-        byte[] content = "content".getBytes();
+        byte[] content = "content".getBytes(StringUtils.UTF8);
         ByteBuffer bb = ByteBuffer.wrap(content);
         InputStream is = BinaryUtils.toStream(bb);
         int curr = -1;

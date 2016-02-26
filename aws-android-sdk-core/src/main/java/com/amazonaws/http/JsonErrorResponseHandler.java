@@ -19,6 +19,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonServiceException.ErrorType;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
+import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.json.JsonUtils;
 
 import java.io.BufferedReader;
@@ -156,10 +157,10 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
             String firstLetterUppercaseKey;
             String firstLetterLowercaseKey;
 
-            firstLetterLowercaseKey = key.substring(0, 1).toLowerCase()
+            firstLetterLowercaseKey = StringUtils.lowerCase(key.substring(0, 1))
                     + key.substring(1);
 
-            firstLetterUppercaseKey = key.substring(0, 1).toUpperCase()
+            firstLetterUppercaseKey = StringUtils.upperCase(key.substring(0, 1))
                     + key.substring(1);
 
             String value = "";
@@ -177,7 +178,7 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
 
             // parse error body
             Map<String, String> map = JsonUtils.jsonToMap(new BufferedReader(new InputStreamReader(
-                    response.getContent())));
+                    response.getContent(), StringUtils.UTF8)));
 
             /*
              * Services using AWS JSON 1.1 protocol with HTTP binding send the

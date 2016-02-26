@@ -21,6 +21,7 @@ import com.amazonaws.AmazonServiceException.ErrorType;
 import com.amazonaws.http.HttpResponse;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -59,7 +60,7 @@ public class S3ErrorResponseHandlerTest {
                 + "<HostId>testHost</HostId>"
                 + "</Error>";
 
-        ByteArrayInputStream content = new ByteArrayInputStream(response.getBytes());
+        ByteArrayInputStream content = new ByteArrayInputStream(response.getBytes(StringUtils.UTF8));
 
         HttpResponse errorResponse = new HttpResponse.Builder()
                 .statusCode(200)
@@ -83,7 +84,7 @@ public class S3ErrorResponseHandlerTest {
         String response = "<Error>"
                 + "<Message>testError";
 
-        ByteArrayInputStream content = new ByteArrayInputStream(response.getBytes());
+        ByteArrayInputStream content = new ByteArrayInputStream(response.getBytes(StringUtils.UTF8));
 
         HttpResponse errorResponse = new HttpResponse.Builder()
                 .statusCode(200)

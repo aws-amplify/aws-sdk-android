@@ -42,10 +42,10 @@ public class LengthCheckInputStreamTest {
      */
     @Test
     public void testContentLength() throws Exception {
-        InputStream in = new ByteArrayInputStream(sampleData.getBytes());
+        InputStream in = new ByteArrayInputStream(sampleData.getBytes(StringUtils.UTF8));
 
         LengthCheckInputStream rvis = new LengthCheckInputStream(in,
-                sampleData.getBytes().length, INCLUDE_SKIPPED_BYTES);
+                sampleData.getBytes(StringUtils.UTF8).length, INCLUDE_SKIPPED_BYTES);
         try {
             StreamUtils.consumeInputStream(rvis);
         } catch (Exception e) {
@@ -62,13 +62,13 @@ public class LengthCheckInputStreamTest {
      */
     @Test
     public void testMarkInitiallyAndReset() throws Exception {
-        InputStream in = new ByteArrayInputStream(sampleData.getBytes());
+        InputStream in = new ByteArrayInputStream(sampleData.getBytes(StringUtils.UTF8));
         LengthCheckInputStream rvis = new LengthCheckInputStream(in,
-                sampleData.getBytes().length, INCLUDE_SKIPPED_BYTES);
+                sampleData.getBytes(StringUtils.UTF8).length, INCLUDE_SKIPPED_BYTES);
         rvis.mark(100);
         rvis.read(new byte[100]);
         rvis.reset();
-        rvis.read(new byte[sampleData.getBytes().length]);
+        rvis.read(new byte[sampleData.getBytes(StringUtils.UTF8).length]);
         try {
             rvis.read();
         } catch (Exception e) {
@@ -88,15 +88,15 @@ public class LengthCheckInputStreamTest {
      */
     @Test
     public void testMarkAndResetWithWrongExpectedLength() throws Exception {
-        InputStream in = new ByteArrayInputStream(sampleData.getBytes());
+        InputStream in = new ByteArrayInputStream(sampleData.getBytes(StringUtils.UTF8));
         LengthCheckInputStream rvis = new LengthCheckInputStream(in,
-                sampleData.getBytes().length + 1, INCLUDE_SKIPPED_BYTES);
+                sampleData.getBytes(StringUtils.UTF8).length + 1, INCLUDE_SKIPPED_BYTES);
 
         rvis.read(new byte[100]);
         rvis.mark(100);
         rvis.read(new byte[100]);
         rvis.reset();
-        rvis.read(new byte[sampleData.getBytes().length - 100]);
+        rvis.read(new byte[sampleData.getBytes(StringUtils.UTF8).length - 100]);
         try {
             rvis.read();
             fail();
@@ -115,9 +115,9 @@ public class LengthCheckInputStreamTest {
      */
     @Test
     public void testMarkAndResetAtEnd() throws Exception {
-        InputStream in = new ByteArrayInputStream(sampleData.getBytes());
+        InputStream in = new ByteArrayInputStream(sampleData.getBytes(StringUtils.UTF8));
         LengthCheckInputStream rvis = new LengthCheckInputStream(in,
-                sampleData.getBytes().length, INCLUDE_SKIPPED_BYTES);
+                sampleData.getBytes(StringUtils.UTF8).length, INCLUDE_SKIPPED_BYTES);
 
         rvis.mark(100);
         StreamUtils.consumeInputStream(rvis);

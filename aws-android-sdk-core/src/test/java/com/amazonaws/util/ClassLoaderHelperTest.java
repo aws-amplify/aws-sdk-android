@@ -48,13 +48,13 @@ public class ClassLoaderHelperTest {
     public void testGetResourceAsStream() throws IOException {
         InputStream is = ClassLoaderHelper.getResourceAsStream("ClassLoaderHelperTestFile",
                 this.getClass());
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, StringUtils.UTF8));
         assertEquals(br.readLine(), "TestFile");
         assertNull(br.readLine());
         br.close();
 
         is = ClassLoaderHelper.getResourceAsStream("ClassLoaderHelperTestFile", true, String.class);
-        br = new BufferedReader(new InputStreamReader(is));
+        br = new BufferedReader(new InputStreamReader(is, StringUtils.UTF8));
         assertEquals(br.readLine(), "TestFile");
         assertNull(br.readLine());
         br.close();

@@ -146,7 +146,7 @@ public class HttpRequestFactory {
         if (headers.get("Content-Type") == null || headers.get("Content-Type").isEmpty()) {
             headers.put("Content-Type",
                     "application/x-www-form-urlencoded; " +
-                            "charset=" + DEFAULT_ENCODING.toLowerCase());
+                            "charset=" + StringUtils.lowerCase(DEFAULT_ENCODING));
         }
 
         // Override the user agent string specified in the client params if the

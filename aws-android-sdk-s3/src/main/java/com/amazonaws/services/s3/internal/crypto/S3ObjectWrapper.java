@@ -20,6 +20,7 @@ import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -131,7 +132,7 @@ class S3ObjectWrapper implements Closeable {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(is));
+                    new InputStreamReader(is, StringUtils.UTF8));
             String line;
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line);

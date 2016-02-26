@@ -16,6 +16,7 @@
 package com.amazonaws.services.sns.util;
 
 import com.amazonaws.util.Base64;
+import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.json.AwsJsonReader;
 import com.amazonaws.util.json.JsonUtils;
 
@@ -123,11 +124,11 @@ public class SignatureChecker {
         boolean result = false;
         byte[] sigbytes = null;
         try {
-            sigbytes = Base64.decode(signature.getBytes());
+            sigbytes = Base64.decode(signature.getBytes(StringUtils.UTF8));
             sigChecker = Signature.getInstance("SHA1withRSA"); // check the
                                                                // signature
             sigChecker.initVerify(publicKey);
-            sigChecker.update(message.getBytes());
+            sigChecker.update(message.getBytes(StringUtils.UTF8));
             result = sigChecker.verify(sigbytes);
         } catch (NoSuchAlgorithmException e) {
             // Rare exception: JVM does not support SHA1 with RSA

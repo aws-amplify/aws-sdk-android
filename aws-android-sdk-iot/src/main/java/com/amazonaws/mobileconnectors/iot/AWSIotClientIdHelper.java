@@ -1,6 +1,8 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
+import com.amazonaws.util.StringUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -64,7 +66,7 @@ final class AWSIotClientIdHelper {
 
     /**
      * Reads client ID from persisted file.
-     * 
+     *
      * @param file file where client ID is persisted.
      * @return client ID retrieved from file.
      * @throws IOException when error occurs reading filesystem.
@@ -74,19 +76,19 @@ final class AWSIotClientIdHelper {
         byte[] bytes = new byte[(int) f.length()];
         f.readFully(bytes);
         f.close();
-        return new String(bytes);
+        return new String(bytes, StringUtils.UTF8);
     }
 
     /**
      * Persist the client ID on the filesystem.
-     * 
+     *
      * @param file file for persistence.
      * @param id client ID to be persisted.
      * @throws IOException when error occurs writing to the filesystem.
      */
     private static void persistId(File file, String id) throws IOException {
         FileOutputStream out = new FileOutputStream(file);
-        out.write(id.getBytes());
+        out.write(id.getBytes(StringUtils.UTF8));
         out.close();
     }
 

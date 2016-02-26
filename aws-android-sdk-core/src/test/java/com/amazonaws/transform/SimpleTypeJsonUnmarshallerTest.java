@@ -18,9 +18,8 @@ package com.amazonaws.transform;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.amazonaws.transform.JsonUnmarshallerContext;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers;
 import com.amazonaws.util.Base64;
+import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.json.AwsJsonReader;
 import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
@@ -115,7 +114,7 @@ public class SimpleTypeJsonUnmarshallerTest {
         AwsJsonWriter jw = JsonUtils.getJsonWriter(sw);
         jw.beginObject();
         jw.name("bb");
-        jw.value(Base64.encodeAsString("byte".getBytes()));
+        jw.value(Base64.encodeAsString("byte".getBytes(StringUtils.UTF8)));
         jw.endObject();
         String json = sw.toString();
 
@@ -128,7 +127,7 @@ public class SimpleTypeJsonUnmarshallerTest {
         SimpleTypeJsonUnmarshallers.ByteBufferJsonUnmarshaller bbUnmarshaller = SimpleTypeJsonUnmarshallers.ByteBufferJsonUnmarshaller
                 .getInstance();
         ByteBuffer unmarshalledBb = bbUnmarshaller.unmarshall(context);
-        ByteBuffer expected = ByteBuffer.wrap("byte".getBytes());
+        ByteBuffer expected = ByteBuffer.wrap("byte".getBytes(StringUtils.UTF8));
         assertTrue(unmarshalledBb.equals(expected));
     }
 

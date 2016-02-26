@@ -15,8 +15,9 @@
 
 package com.amazonaws.services.simpledb.util;
 
+import com.amazonaws.util.DateUtils;
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
@@ -30,7 +31,7 @@ public class SimpleDBUtils {
      * static value hardcoding date format used for conversation of Date into
      * String
      */
-    private static String dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    private static String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
     /**
      * Encodes positive integer value into a string by zero-padding number up to
@@ -275,9 +276,8 @@ public class SimpleDBUtils {
      * @return string representation of the date value
      */
     public static String encodeDate(Date date) {
-        SimpleDateFormat dateFormatter = new SimpleDateFormat(dateFormat);
         /* Java doesn't handle ISO8601 nicely: need to add ':' manually */
-        String result = dateFormatter.format(date);
+        String result = DateUtils.format(DATE_FORMAT, date);
         return result.substring(0, result.length() - 2) + ":"
                 + result.substring(result.length() - 2);
     }
@@ -292,8 +292,7 @@ public class SimpleDBUtils {
     public static Date decodeDate(String value) throws ParseException {
         String javaValue = value.substring(0, value.length() - 3)
                 + value.substring(value.length() - 2);
-        SimpleDateFormat dateFormatter = new SimpleDateFormat(dateFormat);
-        return dateFormatter.parse(javaValue);
+        return DateUtils.parse(DATE_FORMAT, javaValue);
     }
 
     /**

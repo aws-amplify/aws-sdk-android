@@ -18,13 +18,12 @@ package com.amazonaws.services.ec2.util;
 import static com.amazonaws.util.StringUtils.UTF8;
 
 import com.amazonaws.util.Base64;
+import com.amazonaws.util.DateUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.SimpleTimeZone;
+import java.util.Date;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -58,14 +57,11 @@ public class S3UploadPolicy {
             String bucketName,
             String prefix,
             int expireInMinutes) {
-        Calendar expirationDate = Calendar.getInstance();
-        expirationDate.add(Calendar.MINUTE, expireInMinutes);
-        SimpleDateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        ISO8601.setTimeZone(new SimpleTimeZone(0, "GMT"));
+        Date expirationDate = new Date(System.currentTimeMillis() + 60L * 1000 * expireInMinutes);
         StringBuilder builder = new StringBuilder();
         builder.append("{")
                 .append("\"expiration\": \"")
-                .append(ISO8601.format(expirationDate.getTime()))
+                .append(DateUtils.format(DateUtils.ALTERNATE_ISO8601_DATE_PATTERN, expirationDate))
                 .append("\",")
                 .append("\"conditions\": [")
                 .append("{\"bucket\": \"")

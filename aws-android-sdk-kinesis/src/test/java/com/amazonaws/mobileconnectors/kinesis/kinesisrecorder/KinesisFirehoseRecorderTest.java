@@ -19,6 +19,7 @@ import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.internal.StaticCredentialsProvider;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -53,12 +54,12 @@ public class KinesisFirehoseRecorderTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testEmptyStream() throws IOException {
-        recorder.saveRecord("valid".getBytes(), "");
+        recorder.saveRecord("valid".getBytes(StringUtils.UTF8), "");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNullStream() throws IOException {
-        recorder.saveRecord("valid".getBytes(), null);
+        recorder.saveRecord("valid".getBytes(StringUtils.UTF8), null);
     }
 
 }

@@ -22,6 +22,7 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonServiceException.ErrorType;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -44,7 +45,7 @@ public class JsonErrorResponseHandlerTest {
     @Test
     public void testRestJsonErrorResponse() throws Exception {
         String body = "{\"message\":\"Clock is skewed\"}";
-        ByteArrayInputStream content = new ByteArrayInputStream(body.getBytes());
+        ByteArrayInputStream content = new ByteArrayInputStream(body.getBytes(StringUtils.UTF8));
         response = HttpResponse.builder()
                 .content(content)
                 .statusCode(403)
@@ -57,7 +58,7 @@ public class JsonErrorResponseHandlerTest {
     @Test
     public void testJsonErrorResponse() throws Exception {
         String body = "{\"__type\":\"InvalidSignatureException\",\"message\":\"Clock is skewed\"}";
-        ByteArrayInputStream content = new ByteArrayInputStream(body.getBytes());
+        ByteArrayInputStream content = new ByteArrayInputStream(body.getBytes(StringUtils.UTF8));
         response = HttpResponse.builder()
                 .content(content)
                 .statusCode(403)
@@ -80,7 +81,7 @@ public class JsonErrorResponseHandlerTest {
         handler = new JsonErrorResponseHandler(exceptionUnmarshallers);
         response = HttpResponse.builder()
                 .statusCode(403)
-                .content(new ByteArrayInputStream("{}".getBytes()))
+                .content(new ByteArrayInputStream("{}".getBytes(StringUtils.UTF8)))
                 .build();
         assertNull(handler.handle(response));
     }
@@ -99,7 +100,7 @@ public class JsonErrorResponseHandlerTest {
         handler = new JsonErrorResponseHandler(exceptionUnmarshallers);
         response = HttpResponse.builder()
                 .statusCode(500)
-                .content(new ByteArrayInputStream("{}".getBytes()))
+                .content(new ByteArrayInputStream("{}".getBytes(StringUtils.UTF8)))
                 .build();
         AmazonServiceException returnedException = handler.handle(response);
         assertEquals(returnedException.getErrorType(), ErrorType.Service);
@@ -120,7 +121,7 @@ public class JsonErrorResponseHandlerTest {
         response = HttpResponse.builder()
                 .statusCode(500)
                 .header("X-Amzn-RequestId", "55")
-                .content(new ByteArrayInputStream("{}".getBytes()))
+                .content(new ByteArrayInputStream("{}".getBytes(StringUtils.UTF8)))
                 .build();
         AmazonServiceException returnedException = handler.handle(response);
         assertEquals(returnedException.getRequestId(), "55");

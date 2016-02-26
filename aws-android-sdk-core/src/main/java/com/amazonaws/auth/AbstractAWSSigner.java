@@ -24,6 +24,7 @@ import com.amazonaws.internal.SdkDigestInputStream;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.HttpUtils;
 import com.amazonaws.util.StringInputStream;
+import com.amazonaws.util.StringUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -324,7 +325,7 @@ public abstract class AbstractAWSSigner implements Signer {
     }
 
     protected String getCanonicalizedEndpoint(URI endpoint) {
-        String endpointForStringToSign = endpoint.getHost().toLowerCase();
+        String endpointForStringToSign = StringUtils.lowerCase(endpoint.getHost());
         /*
          * Apache HttpClient will omit the port in the Host header for default
          * port values (i.e. 80 for HTTP and 443 for HTTPS) even if we

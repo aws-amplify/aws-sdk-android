@@ -20,6 +20,7 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Utilities for converting objects to strings.
@@ -152,5 +153,37 @@ public class StringUtils {
             }
         }
         return builder.toString();
+    }
+
+    /**
+     * Converts a string to lower case with Locale.ENGLISH.
+     *
+     * @param str the string to lower case
+     * @return the lower case of the string, or null if the string is null
+     */
+    public static String lowerCase(String str) {
+        if (str == null) {
+            return null;
+        } else if (str.isEmpty()) {
+            return "";
+        } else {
+            return str.toLowerCase(Locale.ENGLISH);
+        }
+    }
+
+    /**
+     * Converts a string to upper case with Locale.ENGLISH.
+     *
+     * @param str the string to upper case
+     * @return the upper case of the string, or null if the string is null
+     */
+    public static String upperCase(String str) {
+        if (str == null) {
+            return null;
+        } else if (str.isEmpty()) {
+            return "";
+        } else {
+            return str.toUpperCase(Locale.ENGLISH);
+        }
     }
 }

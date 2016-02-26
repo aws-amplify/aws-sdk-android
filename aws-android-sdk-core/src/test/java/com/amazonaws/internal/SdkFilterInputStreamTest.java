@@ -18,6 +18,7 @@ package com.amazonaws.internal;
 import static org.junit.Assert.assertEquals;
 
 import com.amazonaws.AbortedException;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -38,7 +39,8 @@ public class SdkFilterInputStreamTest {
             @Override
             public void run() {
 
-                ByteArrayInputStream bais = new ByteArrayInputStream("Content".getBytes());
+                ByteArrayInputStream bais = new ByteArrayInputStream(
+                        "Content".getBytes(StringUtils.UTF8));
                 TestInputStream tis = new TestInputStream(bais);
 
                 long counter = 0;

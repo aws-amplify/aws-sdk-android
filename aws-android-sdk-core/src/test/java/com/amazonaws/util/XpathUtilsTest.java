@@ -201,7 +201,7 @@ public class XpathUtilsTest {
         ByteBuffer byteBuffer = XpathUtils.asByteBuffer("Foo/Blob", document);
         assertEquals(expectedData.length(), byteBuffer.limit());
 
-        String data = new String(byteBuffer.array());
+        String data = new String(byteBuffer.array(), StringUtils.UTF8);
         assertEquals(expectedData, data);
 
         assertEquals(null, XpathUtils.asByteBuffer("Foo/Empty", document));

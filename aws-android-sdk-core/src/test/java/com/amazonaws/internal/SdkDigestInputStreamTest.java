@@ -17,6 +17,8 @@ package com.amazonaws.internal;
 
 import static org.junit.Assert.assertArrayEquals;
 
+import com.amazonaws.util.StringUtils;
+
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -29,7 +31,7 @@ public class SdkDigestInputStreamTest {
 
     @Test
     public void testSkip() throws NoSuchAlgorithmException, IOException {
-        byte[] bytes = "Content".getBytes();
+        byte[] bytes = "Content".getBytes(StringUtils.UTF8);
         ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -48,7 +50,7 @@ public class SdkDigestInputStreamTest {
 
         MessageDigest inputStreamMD = sdis.getMessageDigest();
         assertArrayEquals(expected, inputStreamMD.digest());
-        assertArrayEquals("ntent".getBytes(), baos.toByteArray());
+        assertArrayEquals("ntent".getBytes(StringUtils.UTF8), baos.toByteArray());
     }
 
 }

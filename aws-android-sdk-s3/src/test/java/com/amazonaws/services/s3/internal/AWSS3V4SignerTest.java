@@ -34,6 +34,7 @@ import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.transform.RequestXmlFactory;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.After;
 import org.junit.Before;
@@ -69,9 +70,9 @@ public class AWSS3V4SignerTest {
                 "AKIAJd4scjDDmxXZTESTGOZQ", "LYd/ad4scjDDmxXZTESTtRz7xdOM1SiD6");
 
         ByteArrayInputStream bais = new
-                ByteArrayInputStream("content".getBytes());
+                ByteArrayInputStream("content".getBytes(StringUtils.UTF8));
         ObjectMetadata om = new ObjectMetadata();
-        om.setContentLength("content".getBytes().length);
+        om.setContentLength("content".getBytes(StringUtils.UTF8).length);
         PutObjectRequest por = new PutObjectRequest("test-bucket123456",
                 "key", bais, om);
         Request<?> pr = new DefaultRequest(por, Constants.S3_SERVICE_NAME);
@@ -131,16 +132,17 @@ public class AWSS3V4SignerTest {
 
         // Simulates uploadPart
         ByteArrayInputStream multipartContent = new ByteArrayInputStream(
-                "multipartContent".getBytes());
+                "multipartContent".getBytes(StringUtils.UTF8));
         UploadPartRequest upr = new UploadPartRequest();
         String uploadId = "6E1pXqay7WGHDsWKZ2vuGlba548bNcLNnwTyTnoxiOFQ6S9hejT_dhBpvA0jLAD04oSLOy6R7hrsFFy00O15MoLYD0heUeOn6SglTE6SKWA-";
         upr.withUploadId(uploadId).withPartNumber(1)
-                .withPartSize("multipartContent".getBytes().length)
+                .withPartSize("multipartContent".getBytes(StringUtils.UTF8).length)
                 .withBucketName("test-bucket123456")
                 .withKey("multi-key")
                 .withInputStream(multipartContent);
         Request<?> ur = new DefaultRequest(upr, Constants.S3_SERVICE_NAME);
-        ur.addHeader(Headers.CONTENT_LENGTH, String.valueOf("multipartContent".getBytes().length));
+        ur.addHeader(Headers.CONTENT_LENGTH,
+                String.valueOf("multipartContent".getBytes(StringUtils.UTF8).length));
         ur.setEndpoint(new URI("https://test-bucket123456.s3-us-west-2.amazonaws.com"));
         ur.addHeader("Host", "test-bucket123456.s3-us-west-2.amazonaws.com");
         ur.setResourcePath("multi-key");

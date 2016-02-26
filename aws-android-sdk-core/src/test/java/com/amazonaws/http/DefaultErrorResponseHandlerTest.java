@@ -23,6 +23,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonServiceException.ErrorType;
 import com.amazonaws.transform.Unmarshaller;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 import org.w3c.dom.Node;
@@ -42,7 +43,7 @@ public class DefaultErrorResponseHandlerTest {
         HttpResponse errorResponse = new HttpResponse.Builder()
                 .statusCode(400)
                 .statusText("Error")
-                .content(new ByteArrayInputStream(xmlResponse.getBytes()))
+                .content(new ByteArrayInputStream(xmlResponse.getBytes(StringUtils.UTF8)))
                 .build();
 
         final List<Boolean> called = new ArrayList<Boolean>();
@@ -87,7 +88,7 @@ public class DefaultErrorResponseHandlerTest {
         HttpResponse errorResponse = new HttpResponse.Builder()
                 .statusCode(400)
                 .statusText("Error")
-                .content(new ByteArrayInputStream(xmlResponse.getBytes()))
+                .content(new ByteArrayInputStream(xmlResponse.getBytes(StringUtils.UTF8)))
                 .build();
 
         final List<Boolean> called = new ArrayList<Boolean>();

@@ -10,6 +10,7 @@ import com.amazonaws.services.lambda.model.InvokeRequest;
 import com.amazonaws.services.lambda.model.InvokeResult;
 import com.amazonaws.services.lambda.model.LogType;
 import com.amazonaws.util.Base64;
+import com.amazonaws.util.StringUtils;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -116,12 +117,12 @@ class LambdaInvocationHandler implements InvocationHandler {
             throws IOException {
         if (invokeResult.getLogResult() != null) {
             Log.d(TAG, method.getName() + " log: "
-                    + new String(Base64.decode(invokeResult.getLogResult())));
+                    + new String(Base64.decode(invokeResult.getLogResult()), StringUtils.UTF8));
         }
 
         if (invokeResult.getFunctionError() != null) {
             throw new LambdaFunctionException(invokeResult.getFunctionError(),
-                    new String(invokeResult.getPayload().array()));
+                    new String(invokeResult.getPayload().array(), StringUtils.UTF8));
         }
 
         // deserialize payload

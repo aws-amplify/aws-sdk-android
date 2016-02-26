@@ -46,7 +46,7 @@ public class BinaryUtils {
             }
             sb.append(hex);
         }
-        return sb.toString().toLowerCase(Locale.getDefault());
+        return StringUtils.lowerCase(sb.toString());
     }
 
     /**

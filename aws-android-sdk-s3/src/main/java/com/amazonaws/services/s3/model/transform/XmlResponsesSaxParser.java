@@ -70,6 +70,7 @@ import com.amazonaws.services.s3.model.StorageClass;
 import com.amazonaws.services.s3.model.TagSet;
 import com.amazonaws.services.s3.model.VersionListing;
 import com.amazonaws.util.DateUtils;
+import com.amazonaws.util.StringUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -102,7 +103,7 @@ public class XmlResponsesSaxParser {
 
     private XMLReader xr = null;
 
-    private boolean sanitizeXmlDocument = true;
+    private final boolean sanitizeXmlDocument = true;
 
     /**
      * Constructs the XML SAX parser.
@@ -575,7 +576,7 @@ public class XmlResponsesSaxParser {
 
                 } else if (name.equals("IsTruncated")) {
                     String isTruncatedStr =
-                            getText().toLowerCase(Locale.getDefault());
+                            StringUtils.lowerCase(getText());
 
                     if (isTruncatedStr.startsWith("false")) {
                         objectListing.setTruncated(false);

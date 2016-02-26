@@ -21,6 +21,7 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.internal.TransferManage
 import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -38,7 +39,7 @@ public class TransferManagerUtilsTest {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(120 * Constants.GB);
         PutObjectRequest request = new PutObjectRequest("bucketName", "key",
-                new ByteArrayInputStream("foo".getBytes()), metadata);
+                new ByteArrayInputStream("foo".getBytes(StringUtils.UTF8)), metadata);
 
         long partSize = TransferManagerUtils.calculateOptimalPartSize(request,
                 new TransferManagerConfiguration());

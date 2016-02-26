@@ -16,6 +16,7 @@
 package com.amazonaws.http;
 
 import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.util.StringUtils;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -54,7 +55,7 @@ public class HttpRequest {
      */
     @SuppressWarnings("unchecked")
     public HttpRequest(String method, URI uri, Map<String, String> headers, InputStream content) {
-        this.method = method.toUpperCase();
+        this.method = StringUtils.upperCase(method);
         this.uri = uri;
         this.headers = headers == null ? Collections.EMPTY_MAP
                 : Collections.unmodifiableMap(headers);

@@ -176,6 +176,7 @@ import com.amazonaws.util.HttpUtils;
 import com.amazonaws.util.LengthCheckInputStream;
 import com.amazonaws.util.Md5Utils;
 import com.amazonaws.util.ServiceClientHolderInputStream;
+import com.amazonaws.util.StringUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -845,7 +846,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
          * We can only send the CreateBucketConfiguration if we're *not*
          * creating a bucket in the US region.
          */
-        if (region != null && !region.toUpperCase().equals(Region.US_Standard.toString())) {
+        if (region != null && !StringUtils.upperCase(region).equals(Region.US_Standard.toString())) {
             XmlWriter xml = new XmlWriter();
             xml.start("CreateBucketConfiguration", "xmlns", Constants.XML_NAMESPACE);
             xml.start("LocationConstraint").value(region).end();
@@ -3409,7 +3410,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     /**
      * (non-Javadoc)
      *
-     * @see 
+     * @see
      *      com.amazonaws.services.s3.AmazonS3#copyGlacierObject((java.lang.String
      *      , java.lang.String, int)
      */

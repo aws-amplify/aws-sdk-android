@@ -19,6 +19,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import com.amazonaws.util.StringUtils;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -69,7 +71,7 @@ public class StringUtilTest {
     @Test
     public void convertStreamToString_test() throws IOException {
         String text = "soijweoirj2k3kllsfl";
-        ByteArrayInputStream stream = new ByteArrayInputStream(text.getBytes());
+        ByteArrayInputStream stream = new ByteArrayInputStream(text.getBytes(StringUtils.UTF8));
 
         assertEquals(text + "\n", StringUtil.convertStreamToUTF8String(stream));
     }
@@ -77,7 +79,7 @@ public class StringUtilTest {
     @Test
     public void convertStreamToString_multiple_lines_test() throws IOException {
         String text = "soijweoirj2k3kllsfl\n2932kljldfjoi2\n";
-        ByteArrayInputStream stream = new ByteArrayInputStream(text.getBytes());
+        ByteArrayInputStream stream = new ByteArrayInputStream(text.getBytes(StringUtils.UTF8));
 
         assertEquals(text, StringUtil.convertStreamToUTF8String(stream));
     }

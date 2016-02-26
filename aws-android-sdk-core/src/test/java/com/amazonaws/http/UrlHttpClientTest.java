@@ -23,6 +23,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.SDKGlobalConfiguration;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -127,7 +128,7 @@ public class UrlHttpClientTest {
         conn.setHeaderFields(headerFields);
         conn.setResponseCode(200);
         conn.setErrorStream(null);
-        ByteArrayInputStream bais = new ByteArrayInputStream("test".getBytes());
+        ByteArrayInputStream bais = new ByteArrayInputStream("test".getBytes(StringUtils.UTF8));
         conn.setInputStream(bais);
         conn.setResponseMessage("TestMessage");
 
@@ -142,9 +143,10 @@ public class UrlHttpClientTest {
 
     @Test
     public void testWriteContentToConnection() throws URISyntaxException, IOException {
-        ByteArrayInputStream bais = new ByteArrayInputStream("Content".getBytes());
+        ByteArrayInputStream bais = new ByteArrayInputStream("Content".getBytes(StringUtils.UTF8));
         Map<String, String> headers = new HashMap<String, String>();
-        headers.put(HttpHeader.CONTENT_LENGTH, String.valueOf("Content".getBytes().length));
+        headers.put(HttpHeader.CONTENT_LENGTH,
+                String.valueOf("Content".getBytes(StringUtils.UTF8).length));
         HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"), headers,
                 bais);
 
@@ -156,7 +158,7 @@ public class UrlHttpClientTest {
 
         client.writeContentToConnection(request, connection);
         ByteArrayOutputStream connOs = (ByteArrayOutputStream) connection.getOutputStream();
-        assertEquals(new String(connOs.toByteArray()), "Content");
+        assertEquals(new String(connOs.toByteArray(), StringUtils.UTF8), "Content");
     }
 }
 

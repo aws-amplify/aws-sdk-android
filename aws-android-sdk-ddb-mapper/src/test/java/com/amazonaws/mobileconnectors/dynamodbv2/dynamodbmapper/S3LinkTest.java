@@ -37,6 +37,7 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.util.StringUtils;
 
 import org.easymock.Capture;
 import org.easymock.EasyMock;
@@ -157,7 +158,7 @@ public class S3LinkTest
 
         EasyMock.expect(mockS3.getRegion()).andReturn(Region.US_Standard);
 
-        byte[] mockResponseBytes = "MyData".getBytes();
+        byte[] mockResponseBytes = "MyData".getBytes(StringUtils.UTF8);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
         S3Object mockObj = EasyMock.createMock(S3Object.class);
@@ -218,7 +219,7 @@ public class S3LinkTest
 
         mapper.getS3ClientCache().useClient(mockS3);
         S3Link link = mapper.createS3Link(bucket, key);
-        link.uploadFrom("Test".getBytes());
+        link.uploadFrom("Test".getBytes(StringUtils.UTF8));
 
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         InputStream is = por.getValue().getInputStream();
@@ -227,7 +228,7 @@ public class S3LinkTest
             bos.write(currByte);
         }
 
-        assertArrayEquals(bos.toByteArray(), "Test".getBytes());
+        assertArrayEquals(bos.toByteArray(), "Test".getBytes(StringUtils.UTF8));
 
         EasyMock.verify();
     }
@@ -252,7 +253,7 @@ public class S3LinkTest
 
         temp.createNewFile();
         FileOutputStream fos = new FileOutputStream(temp);
-        fos.write("Test".getBytes());
+        fos.write("Test".getBytes(StringUtils.UTF8));
         fos.close();
 
         link.uploadFrom(temp);

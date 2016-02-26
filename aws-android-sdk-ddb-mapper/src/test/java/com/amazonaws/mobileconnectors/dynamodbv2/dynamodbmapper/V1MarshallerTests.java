@@ -18,6 +18,7 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 import static org.junit.Assert.assertEquals;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -108,8 +109,9 @@ public class V1MarshallerTests {
 
     @Test
     public void testBinary() {
-        ByteBuffer value = ByteBuffer.wrap("value".getBytes());
-        assertEquals(value.slice(), convert("getByteArray", "value".getBytes()).getB());
+        ByteBuffer value = ByteBuffer.wrap("value".getBytes(StringUtils.UTF8));
+        assertEquals(value.slice(), convert("getByteArray", "value".getBytes(StringUtils.UTF8))
+                .getB());
         assertEquals(value.slice(), convert("getByteBuffer", value.slice()).getB());
     }
 
@@ -194,11 +196,12 @@ public class V1MarshallerTests {
 
     @Test
     public void testBinarySet() {
-        final ByteBuffer test = ByteBuffer.wrap("test".getBytes());
-        final ByteBuffer test2 = ByteBuffer.wrap("test2".getBytes());
+        final ByteBuffer test = ByteBuffer.wrap("test".getBytes(StringUtils.UTF8));
+        final ByteBuffer test2 = ByteBuffer.wrap("test2".getBytes(StringUtils.UTF8));
 
-        assertEquals(Collections.singletonList(test.slice()),
-                convert("getByteArraySet", Collections.singleton("test".getBytes()))
+        assertEquals(
+                Collections.singletonList(test.slice()),
+                convert("getByteArraySet", Collections.singleton("test".getBytes(StringUtils.UTF8)))
                         .getBS());
 
         assertEquals(Collections.singletonList(test.slice()),

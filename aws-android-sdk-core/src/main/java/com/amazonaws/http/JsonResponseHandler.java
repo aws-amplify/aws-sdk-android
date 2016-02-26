@@ -102,7 +102,8 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
             content = new GZIPInputStream(content);
         }
 
-        AwsJsonReader jsonReader = JsonUtils.getJsonReader(new InputStreamReader(content));
+        AwsJsonReader jsonReader = JsonUtils.getJsonReader(new InputStreamReader(content,
+                StringUtils.UTF8));
 
         try {
             AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();

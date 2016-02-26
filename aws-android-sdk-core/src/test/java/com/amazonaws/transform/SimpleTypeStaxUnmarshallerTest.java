@@ -19,10 +19,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.transform.SimpleTypeStaxUnmarshallers;
-import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.DateUtils;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 import org.xmlpull.v1.XmlPullParser;
@@ -83,8 +82,8 @@ public class SimpleTypeStaxUnmarshallerTest {
         SimpleTypeStaxUnmarshallers.ByteBufferStaxUnmarshaller unmarshaller = SimpleTypeStaxUnmarshallers.ByteBufferStaxUnmarshaller
                 .getInstance();
         ByteBuffer unmarshalled = unmarshaller.unmarshall(getContext(Base64.encodeAsString("byte"
-                .getBytes())));
-        assertEquals(unmarshalled, ByteBuffer.wrap("byte".getBytes()));
+                .getBytes(StringUtils.UTF8))));
+        assertEquals(unmarshalled, ByteBuffer.wrap("byte".getBytes(StringUtils.UTF8)));
     }
 
     @Test

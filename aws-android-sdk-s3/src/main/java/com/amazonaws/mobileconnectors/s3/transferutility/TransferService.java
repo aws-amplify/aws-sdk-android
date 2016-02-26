@@ -47,7 +47,7 @@ import java.util.Map;
  */
 public class TransferService extends Service {
 
-    private static final String TAG = "TransferService";
+    private static final String TAG = "TransferSerivce";
 
     /*
      * Constants of message sent to update handler.
@@ -65,7 +65,7 @@ public class TransferService extends Service {
     static final String INTENT_ACTION_TRANSFER_RESUME = "resume_transfer";
     static final String INTENT_ACTION_TRANSFER_CANCEL = "cancel_transfer";
     static final String INTENT_BUNDLE_TRANSFER_ID = "id";
-    static final String INTENT_BUNDLE_S3_WEAK_REFERENCE_KEY = "s3_weak_reference_key";
+    static final String INTENT_BUNDLE_S3_REFERENCE_KEY = "s3_reference_key";
 
     private AmazonS3 s3;
 
@@ -102,7 +102,7 @@ public class TransferService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        throw new UnsupportedOperationException("Can't bind to TransferService");
+        throw new UnsupportedOperationException("Can't bind to TransferSerivce");
     }
 
     /**
@@ -177,8 +177,8 @@ public class TransferService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         this.startId = startId;
 
-        String keyForS3Client = intent.getStringExtra(INTENT_BUNDLE_S3_WEAK_REFERENCE_KEY);
-        s3 = S3ClientWeakReference.get(keyForS3Client);
+        String keyForS3Client = intent.getStringExtra(INTENT_BUNDLE_S3_REFERENCE_KEY);
+        s3 = S3ClientReference.get(keyForS3Client);
         if (s3 == null) {
             Log.w(TAG, "TransferService can't get s3 client, and it will stop.");
             stopSelf(startId);
@@ -201,6 +201,7 @@ public class TransferService extends Service {
         unregisterReceiver(networkInfoReceiver);
         handlerThread.quit();
         TransferThreadPool.closeThreadPool();
+        S3ClientReference.clear();
         super.onDestroy();
     }
 
@@ -290,6 +291,9 @@ public class TransferService extends Service {
             }
         } else if (INTENT_ACTION_TRANSFER_PAUSE.equals(action)) {
             TransferRecord transfer = updater.getTransfer(id);
+            if (transfer == null) {
+                transfer = dbUtil.getTransferById(id);
+            }
             if (transfer != null) {
                 transfer.pause(s3, updater);
             }
@@ -310,6 +314,9 @@ public class TransferService extends Service {
             }
         } else if (INTENT_ACTION_TRANSFER_CANCEL.equals(action)) {
             TransferRecord transfer = updater.getTransfer(id);
+            if (transfer == null) {
+                transfer = dbUtil.getTransferById(id);
+            }
             if (transfer != null) {
                 transfer.cancel(s3, updater);
             }

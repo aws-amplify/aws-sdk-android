@@ -15,6 +15,8 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
+import com.amazonaws.util.StringUtils;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,7 +52,8 @@ class PrivateKeyReader {
      */
     public PrivateKey getPrivateKey() throws IOException, InvalidKeySpecException {
 
-        InputStream keyInputStream = new ByteArrayInputStream(keyPemString.getBytes());
+        InputStream keyInputStream = new ByteArrayInputStream(
+                keyPemString.getBytes(StringUtils.UTF8));
         return PEM.readPrivateKey(keyInputStream);
     }
 }

@@ -22,6 +22,7 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.delivery.DeliveryClient;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.InternalEvent;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event.adapter.JSONEventAdapter;
+import com.amazonaws.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,7 +44,7 @@ public class MockDeliveryClient implements DeliveryClient {
     private final File eventDirectory;
     private File eventsFile;
     private String lastSubmittedBatch;
-    private JSONEventAdapter adapter;
+    private final JSONEventAdapter adapter;
 
     public MockDeliveryClient(final Configuration configuration, final FileManager fileManager) {
         this.fileManager = fileManager;
@@ -126,7 +127,7 @@ public class MockDeliveryClient implements DeliveryClient {
         String currentBatch = null;
         try {
             InputStream input = fileManager.newInputStream(eventsFile);
-            final InputStreamReader inReader = new InputStreamReader(input);
+            final InputStreamReader inReader = new InputStreamReader(input, StringUtils.UTF8);
             final BufferedReader reader = new BufferedReader(inReader);
             try {
                 String in = "";

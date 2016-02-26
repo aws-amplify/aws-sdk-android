@@ -21,6 +21,7 @@ import com.amazonaws.services.s3.internal.InputSubstream;
 import com.amazonaws.services.s3.internal.RepeatableFileInputStream;
 import com.amazonaws.services.s3.internal.crypto.ByteRangeCapturingInputStream;
 import com.amazonaws.util.CountingInputStream;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -48,33 +49,36 @@ public class InputStreamsTest {
     public void testByteRangeCapturingInputStream() throws Exception {
         int sampleDataLength = sampleData.length();
         ByteRangeCapturingInputStream in = new ByteRangeCapturingInputStream(
-                new ByteArrayInputStream(sampleData.getBytes()), sampleDataLength - 10,
+                new ByteArrayInputStream(sampleData.getBytes(StringUtils.UTF8)),
+                sampleDataLength - 10,
                 sampleDataLength);
         in.mark(100);
         in.read(new byte[sampleDataLength - 10]);
         in.reset();
         in.read(new byte[sampleDataLength]);
-        assertEquals("9876543210", new String(in.getBlock()));
+        assertEquals("9876543210", new String(in.getBlock(), StringUtils.UTF8));
 
-        in = new ByteRangeCapturingInputStream(new ByteArrayInputStream(sampleData.getBytes()), 10,
+        in = new ByteRangeCapturingInputStream(new ByteArrayInputStream(
+                sampleData.getBytes(StringUtils.UTF8)), 10,
                 20);
         in.read(new byte[sampleDataLength]);
-        assertEquals("1234567890", new String(in.getBlock()));
+        assertEquals("1234567890", new String(in.getBlock(), StringUtils.UTF8));
     }
 
     /** Tests the simple use case for InputSubstream */
     @Test
     public void testSimple() throws Exception {
-        InputSubstream in = new InputSubstream(new ByteArrayInputStream(sampleData.getBytes()), 10,
+        InputSubstream in = new InputSubstream(new ByteArrayInputStream(
+                sampleData.getBytes(StringUtils.UTF8)), 10,
                 10, true);
         assertEquals(10, in.available());
         byte[] buffer = new byte[10];
         assertEquals(10, in.read(buffer));
-        assertEquals("1234567890", new String(buffer));
+        assertEquals("1234567890", new String(buffer, StringUtils.UTF8));
         assertEquals(0, in.available());
 
         CountingInputStream countingStream = new CountingInputStream(new InputSubstream(
-                new ByteArrayInputStream(sampleData.getBytes()), 10, 10, true));
+                new ByteArrayInputStream(sampleData.getBytes(StringUtils.UTF8)), 10, 10, true));
         int c;
         System.out.print("Data: ");
         while ((c = countingStream.read()) > -1) {
@@ -84,7 +88,7 @@ public class InputStreamsTest {
         assertEquals(10, countingStream.getByteCount());
 
         countingStream = new CountingInputStream(new InputSubstream(new ByteArrayInputStream(
-                sampleData.getBytes()), 10, 10, true));
+                sampleData.getBytes(StringUtils.UTF8)), 10, 10, true));
         byte[] bytes = new byte[1];
         System.out.print("Data: ");
         while ((c = countingStream.read(bytes)) > -1) {
@@ -102,7 +106,7 @@ public class InputStreamsTest {
     public void testMarkReset() throws Exception {
         File tempFile = File.createTempFile("aws-java-sdk-inputsubstream-test", ".dat");
         FileOutputStream outputStream = new FileOutputStream(tempFile);
-        outputStream.write(sampleData.getBytes());
+        outputStream.write(sampleData.getBytes(StringUtils.UTF8));
         outputStream.close();
 
         RepeatableFileInputStream repeatableFileInputStream = new RepeatableFileInputStream(
@@ -113,17 +117,17 @@ public class InputStreamsTest {
 
         in.mark(1024);
         assertEquals(5, in.read(buffer));
-        assertEquals("12345", new String(buffer));
+        assertEquals("12345", new String(buffer, StringUtils.UTF8));
         assertEquals(5, in.available());
 
         in.reset();
         assertEquals(10, in.available());
         assertEquals(5, in.read(buffer));
-        assertEquals("12345", new String(buffer));
+        assertEquals("12345", new String(buffer, StringUtils.UTF8));
         assertEquals(5, in.available());
 
         assertEquals(5, in.read(buffer));
-        assertEquals("67890", new String(buffer));
+        assertEquals("67890", new String(buffer, StringUtils.UTF8));
         assertEquals(0, in.available());
     }
 }

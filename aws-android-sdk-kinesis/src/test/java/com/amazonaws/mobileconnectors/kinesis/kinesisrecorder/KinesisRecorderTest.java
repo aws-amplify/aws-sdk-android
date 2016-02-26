@@ -23,6 +23,7 @@ import com.amazonaws.internal.StaticCredentialsProvider;
 import com.amazonaws.mobileconnectors.kinesis.kinesisrecorder.FileRecordStore.RecordIterator;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.kinesis.model.PutRecordRequest;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -70,12 +71,12 @@ public class KinesisRecorderTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testEmptyStream() throws IOException {
-        recorder.saveRecord("valid".getBytes(), "");
+        recorder.saveRecord("valid".getBytes(StringUtils.UTF8), "");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNullStream() throws IOException {
-        recorder.saveRecord("valid".getBytes(), null);
+        recorder.saveRecord("valid".getBytes(StringUtils.UTF8), null);
     }
 
     @SuppressWarnings("deprecation")
@@ -102,7 +103,7 @@ public class KinesisRecorderTest {
         FileRecordParser frp = new FileRecordParser();
         int count = 0;
         while (iterator.hasNext()) {
-            count ++;
+            count++;
             frp.parse(iterator.next());
             assertEquals("same stream", streamName, frp.streamName);
             assertEquals("same data length", length, frp.bytes.length);

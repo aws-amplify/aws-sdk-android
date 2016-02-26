@@ -70,8 +70,10 @@ class DownloadTask implements Callable<Boolean> {
 
             long bytesCurrent = file.length();
             if (bytesCurrent > bytesTotal) {
-                throw new IllegalStateException(
-                        "Unable to determine the range for download operation.");
+                updater.throwError(download.id, new IllegalStateException(
+                        "Unable to determine the range for download operation."));
+                updater.updateState(download.id, TransferState.FAILED);
+                return false;
             }
 
             final GetObjectRequest getObjectRequest = new GetObjectRequest(download.bucketName,

@@ -16,6 +16,7 @@
 package com.amazonaws.mobileconnectors.iot;
 
 import com.amazonaws.util.Base64;
+import com.amazonaws.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,11 +39,11 @@ import java.util.List;
  * load PEM key encoded in PKCS#8 encoding.</li>
  * <li>On the other hand, one can use openssl to convert a PEM file from PKCS#1
  * to PKCS#8. Example:
- * 
+ *
  * <pre>
  * openssl pkcs8 -topk8 -in pk-APKAJM22QV32R3I2XVIQ.pem -inform pem -out pk-APKAJM22QV32R3I2XVIQ_pk8.pem  -outform pem -nocrypt
  * </pre>
- * 
+ *
  * </li>
  * </ul>
  */
@@ -58,7 +59,7 @@ final class PEM {
     /**
      * Returns the first private key that is found from the input stream of a
      * PEM file.
-     * 
+     *
      * @param is input stream of PEM data.
      * @return PrivateKey found in PEM.
      * @throws InvalidKeySpecException if failed to convert the DER bytes into a
@@ -100,7 +101,7 @@ final class PEM {
         String endMarker = null;
         StringBuffer sb = null;
         String line;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, StringUtils.UTF8));
         try {
             while ((line = reader.readLine()) != null) {
                 if (readingContent) {

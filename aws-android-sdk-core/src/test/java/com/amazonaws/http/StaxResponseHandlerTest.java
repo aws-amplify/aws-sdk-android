@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.Unmarshaller;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
 
@@ -30,7 +31,7 @@ public class StaxResponseHandlerTest {
     @Test
     public void testHandleWithContent() throws Exception {
         final ByteArrayInputStream bais = new ByteArrayInputStream(
-                ("<data>Content</data>").getBytes());
+                ("<data>Content</data>").getBytes(StringUtils.UTF8));
         final HttpResponse response = new HttpResponse.Builder().header("testKey", "testValue")
                 .header("x-amzn-RequestId", "99")
                 .content(bais).build();

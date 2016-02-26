@@ -21,6 +21,7 @@ package com.amazonaws.services.s3.internal;
 import com.amazonaws.Request;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
+import com.amazonaws.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -74,7 +75,7 @@ public class RestUtils {
 
                 if (key == null)
                     continue;
-                String lk = key.toString().toLowerCase(Locale.getDefault());
+                String lk = StringUtils.lowerCase(key.toString());
 
                 // Ignore any headers that are not particularly interesting.
                 if (lk.equals("content-type") || lk.equals("content-md5") || lk.equals("date") ||

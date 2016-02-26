@@ -79,7 +79,7 @@ public class Base16CodecTest
                 Assert.assertTrue(Arrays.equals(decoded, digest));
             }
             { // test decoding case insensitivity
-                decoded = Base16.decode(b16Encoded.toLowerCase());
+                decoded = Base16.decode(StringUtils.lowerCase(b16Encoded));
                 Assert.assertTrue(Arrays.equals(decoded, digest));
             }
         }

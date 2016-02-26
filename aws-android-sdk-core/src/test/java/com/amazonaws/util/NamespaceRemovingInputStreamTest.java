@@ -77,10 +77,10 @@ public class NamespaceRemovingInputStreamTest {
 
     private String removeNamespace(String xml) throws Exception {
         NamespaceRemovingInputStream inputStream = new NamespaceRemovingInputStream(
-                new ByteArrayInputStream(xml.getBytes()));
+                new ByteArrayInputStream(xml.getBytes(StringUtils.UTF8)));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         IOUtils.copy(inputStream, outputStream);
 
-        return new String(outputStream.toByteArray());
+        return new String(outputStream.toByteArray(), StringUtils.UTF8);
     }
 }

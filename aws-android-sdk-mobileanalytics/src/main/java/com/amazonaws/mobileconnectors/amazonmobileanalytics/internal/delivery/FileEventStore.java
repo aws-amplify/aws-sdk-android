@@ -19,6 +19,7 @@ import android.util.Log;
 
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.AnalyticsContext;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.FileManager;
+import com.amazonaws.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -113,7 +114,7 @@ public class FileEventStore implements EventStore {
             if (tryCreateEventsFile()) {
                 OutputStream stream = context.getSystem().getFileManager()
                         .newOutputStream(eventsFile, true);
-                writer = new BufferedWriter(new OutputStreamWriter(stream));
+                writer = new BufferedWriter(new OutputStreamWriter(stream, StringUtils.UTF8));
             } else {
                 throw new EventStoreException("Unable to create eventsFile");
             }
@@ -241,7 +242,7 @@ public class FileEventStore implements EventStore {
                     InputStreamReader streamReader = null;
                     try {
                         streamReader = new InputStreamReader(context.getSystem().getFileManager()
-                                .newInputStream(eventsFile));
+                                .newInputStream(eventsFile), StringUtils.UTF8);
                     } catch (FileNotFoundException e) {
                         Log.e(TAG, "Could not open the events file", e);
                     }

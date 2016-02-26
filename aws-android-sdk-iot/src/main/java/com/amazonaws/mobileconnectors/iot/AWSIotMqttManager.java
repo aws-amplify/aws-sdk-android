@@ -22,6 +22,7 @@ import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.regions.Region;
+import com.amazonaws.util.StringUtils;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -78,7 +79,7 @@ public class AWSIotMqttManager {
     /** The underlying Paho Java MQTT client. */
     private MqttAsyncClient mqttClient;
     /** Customer specific prefix for data endpoint. */
-    private String accountEndpointPrefix;
+    private final String accountEndpointPrefix;
     /**
      * Connection callback for the user. This client receives the connection
      * lost callback and then calls this one on behalf of the user.
@@ -88,12 +89,12 @@ public class AWSIotMqttManager {
      * MQTT subscriptions. Used when resubscribing after a reconnect. Also used
      * to proved per-topic message arrived callbacks.
      */
-    private Map<String, AWSIotMqttTopic> topicListeners;
+    private final Map<String, AWSIotMqttTopic> topicListeners;
     /**
      * Queue for messages attempted to publish while MQTT client was offline.
      * Republished upon reconnect.
      */
-    private List<AWSIotMqttQueueMessage> mqttMessageQueue;
+    private final List<AWSIotMqttQueueMessage> mqttMessageQueue;
     /** KeepAlive interval specified by the user. */
     private int userKeepAlive;
     /** Are we automatically reconnecting upon (non-user) disconnect? */
@@ -120,7 +121,7 @@ public class AWSIotMqttManager {
 
     /**
      * Return the customer specific endpoint prefix.
-     * 
+     *
      * @return customer specific endpoint prefix.
      */
     public String getAccountEndpointPrefix() {
@@ -129,7 +130,7 @@ public class AWSIotMqttManager {
 
     /**
      * Is auto-reconnect enabled?
-     * 
+     *
      * @return true if enabled, false if disabled.
      */
     public boolean isAutoReconnect() {
@@ -138,7 +139,7 @@ public class AWSIotMqttManager {
 
     /**
      * Enable / disable the auto-reconnect feature.
-     * 
+     *
      * @param enabled true if enabled, false if disabled.
      */
     public void setAutoReconnect(boolean enabled) {
@@ -147,7 +148,7 @@ public class AWSIotMqttManager {
 
     /**
      * Return the timeout value between reconnect attempts.
-     * 
+     *
      * @return the auto reconnect timeout value in seconds.
      */
     public int getReconnectTimeout() {
@@ -156,7 +157,7 @@ public class AWSIotMqttManager {
 
     /**
      * Sets the timeout value for reconnect attempts.
-     * 
+     *
      * @param timeout timeout value in seconds.
      */
     public void setReconnectTimeout(int timeout) {
@@ -166,7 +167,7 @@ public class AWSIotMqttManager {
     /**
      * Get the current setting of maxium reconnects attempted automatically
      * before quitting.
-     * 
+     *
      * @return number of reconnects to automatically attempt. Retry forever =
      *         -1.
      */
@@ -176,7 +177,7 @@ public class AWSIotMqttManager {
 
     /**
      * Set the maxium reconnects attempted automatically before quitting.
-     * 
+     *
      * @param attempts number of reconnects attempted automatically. Retry
      *            forever = -1.
      */
@@ -189,7 +190,7 @@ public class AWSIotMqttManager {
 
     /**
      * Is the publish queue while offline feature enabled?
-     * 
+     *
      * @return boolean if offline queueing is enabled.
      */
     public boolean isOfflinePublishQueueEnabled() {
@@ -198,7 +199,7 @@ public class AWSIotMqttManager {
 
     /**
      * Enable or disable offline publish queueing.
-     * 
+     *
      * @param enabled boolean queueing feature is enabled.
      */
     public void setOfflinePublishQueueEnabled(boolean enabled) {
@@ -207,7 +208,7 @@ public class AWSIotMqttManager {
 
     /**
      * Get the current value of the offline message queue bound.
-     * 
+     *
      * @return max number of messages stored in the message queue.
      */
     public Integer getOfflinePublishQueueBound() {
@@ -217,7 +218,7 @@ public class AWSIotMqttManager {
     /**
      * Set the bound for the number of messages queued while offline. Note: When
      * full queue will act as FIFO and shed oldest messages.
-     * 
+     *
      * @param bound max number of messages to queue while offline. Negative or 0
      *            values ignored.
      */
@@ -230,7 +231,7 @@ public class AWSIotMqttManager {
 
     /**
      * Get the MQTT keep alive time.
-     * 
+     *
      * @return The MQTT keep alive time set by the user (in seconds).
      */
     public int getKeepAlive() {
@@ -240,7 +241,7 @@ public class AWSIotMqttManager {
     /**
      * Sets the MQTT keep alive time used by the underlying MQTT client to
      * determine connection status.
-     * 
+     *
      * @param keepAlive the MQTT keep alive time set by the user (in seconds). A
      *            value of 0 disables keep alive.
      */
@@ -253,7 +254,7 @@ public class AWSIotMqttManager {
 
     /**
      * Sets the MQTT client. Used for unit tests.
-     * 
+     *
      * @param client - desired MQTT client.
      */
     void setMqttClient(MqttAsyncClient client) {
@@ -262,7 +263,7 @@ public class AWSIotMqttManager {
 
     /**
      * Gets offline message queue. Used for unit tests.
-     * 
+     *
      * @return offline message queue.
      */
     List<AWSIotMqttQueueMessage> getMqttMessageQueue() {
@@ -656,7 +657,7 @@ public class AWSIotMqttManager {
             throw new IllegalArgumentException("QoS cannot be null");
         }
 
-        publishData(str.getBytes(), topic, qos);
+        publishData(str.getBytes(StringUtils.UTF8), topic, qos);
     }
 
     /**
@@ -696,7 +697,7 @@ public class AWSIotMqttManager {
     /**
      * Add a message to the publishing queue. A publish call adds to the queue
      * if the client is unable to publish (offline).
-     * 
+     *
      * @param data byte array of message payload.
      * @param topic message topic.
      * @param qos The quality of service requested for this message.
@@ -796,7 +797,7 @@ public class AWSIotMqttManager {
 
     /**
      * Is the MQTT client ready to publish messages? (Created and connected).
-     * 
+     *
      * @return true equals ready to publish, false equals offline.
      */
     boolean isReadyToPublish() {
@@ -805,7 +806,7 @@ public class AWSIotMqttManager {
 
     /**
      * Does the topic match the topic filter?
-     * 
+     *
      * @param topicFilter MQTT topic filter (subscriptions, including
      *            wildcards).
      * @param topic - the aboslute topic (no wildcards) on which a message was

@@ -23,7 +23,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class VersionInfoUtils {
     /** SDK version info */
-    private static volatile String version = "2.2.12";
+    private static volatile String version = "2.2.13";
                                                                 // changed build
                                                                 // logic
 
@@ -93,7 +93,7 @@ public class VersionInfoUtils {
         StringBuilder buffer = new StringBuilder(128);
 
         buffer.append("aws-sdk-");
-        buffer.append(VersionInfoUtils.getPlatform().toLowerCase());
+        buffer.append(StringUtils.lowerCase(VersionInfoUtils.getPlatform()));
         buffer.append("/");
 
         buffer.append(VersionInfoUtils.getVersion());

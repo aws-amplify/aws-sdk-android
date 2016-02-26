@@ -24,6 +24,7 @@ import android.util.Base64;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.kinesis.model.PutRecordRequest;
+import com.amazonaws.util.StringUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,11 +39,11 @@ import java.nio.ByteBuffer;
 @Config(manifest = Config.NONE)
 public class JSONRecordAdapterTest {
 
-    private String stream = "TestStream";
-    private String partitionKey = "TestPartitionKey";
-    private String explicitHashKey = "TestHashKey";
-    private String sequenceNumberForOrdering = "1";
-    private ByteBuffer data = ByteBuffer.wrap("TestData".getBytes());
+    private final String stream = "TestStream";
+    private final String partitionKey = "TestPartitionKey";
+    private final String explicitHashKey = "TestHashKey";
+    private final String sequenceNumberForOrdering = "1";
+    private final ByteBuffer data = ByteBuffer.wrap("TestData".getBytes(StringUtils.UTF8));
 
     @Test
     public void convertRequestToJSONAllElementsIntact() {
@@ -58,7 +59,7 @@ public class JSONRecordAdapterTest {
         try {
             assertTrue(json.getString(JSONRecordAdapter.STREAM_NAME_FIELD).equalsIgnoreCase(stream));
             assertTrue(json.getString(JSONRecordAdapter.DATA_FIELD_KEY).equalsIgnoreCase(
-                    Base64.encodeToString("TestData".getBytes(), Base64.DEFAULT)));
+                    Base64.encodeToString("TestData".getBytes(StringUtils.UTF8), Base64.DEFAULT)));
             assertTrue(json.getString(JSONRecordAdapter.PARTITION_KEY_FIELD).equalsIgnoreCase(
                     partitionKey));
             assertTrue(json.getString(JSONRecordAdapter.SEQUENCE_NUMBER_FIELD).equalsIgnoreCase(

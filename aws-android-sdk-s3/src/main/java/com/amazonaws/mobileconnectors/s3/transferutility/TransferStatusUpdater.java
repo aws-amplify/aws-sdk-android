@@ -22,15 +22,13 @@ import android.util.Log;
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListener;
 
-import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A class that tracks active transfers. It has a static map that holds weak
@@ -54,7 +52,7 @@ class TransferStatusUpdater {
     /**
      * A map of listeners.
      */
-    static final Map<Integer, List<WeakReference<TransferListener>>> listeners = new HashMap<Integer, List<WeakReference<TransferListener>>>();
+    static final Map<Integer, List<TransferListener>> listeners = new HashMap<Integer, List<TransferListener>>();
 
     /**
      * A map of active transfers.
@@ -130,6 +128,11 @@ class TransferStatusUpdater {
      * database. It then triggers
      * {@link TransferListener#onStateChanged(int, TransferState)} event of
      * associated listeners if new state is different.
+     * <p>
+     * Note that when the newState is CANCELED, COMPLETED, or FAILED, associated
+     * listeners will be removed after being invoked. Make sure you call
+     * throwError before changing the state to one of these, or else listeners
+     * won't be invoked.
      *
      * @param id id of the transfer to update
      * @param newState new state
@@ -156,7 +159,7 @@ class TransferStatusUpdater {
         }
 
         // invoke listeners
-        final List<WeakReference<TransferListener>> list = listeners.get(id);
+        final List<TransferListener> list = listeners.get(id);
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -165,14 +168,15 @@ class TransferStatusUpdater {
         mainHandler.post(new Runnable() {
             @Override
             public void run() {
-                Iterator<WeakReference<TransferListener>> it = list.iterator();
-                while (it.hasNext()) {
-                    TransferListener l = it.next().get();
-                    if (l == null) {
-                        it.remove();
-                        continue;
-                    }
+                for (TransferListener l : list) {
                     l.onStateChanged(id, newState);
+                }
+                // remove all listeners when the transfer is in a final state so
+                // as to release resources asap.
+                if (TransferState.COMPLETED.equals(newState)
+                        || TransferState.FAILED.equals(newState)
+                        || TransferState.CANCELED.equals(newState)) {
+                    list.clear();
                 }
             }
         });
@@ -195,7 +199,7 @@ class TransferStatusUpdater {
         }
 
         // invoke listeners
-        final List<WeakReference<TransferListener>> list = listeners.get(id);
+        final List<TransferListener> list = listeners.get(id);
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -212,13 +216,7 @@ class TransferStatusUpdater {
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    Iterator<WeakReference<TransferListener>> it = list.iterator();
-                    while (it.hasNext()) {
-                        TransferListener l = it.next().get();
-                        if (l == null) {
-                            it.remove();
-                            continue;
-                        }
+                    for (TransferListener l : list) {
                         l.onProgressChanged(id, bytesCurrent, bytesTotal);
                     }
                 }
@@ -235,7 +233,7 @@ class TransferStatusUpdater {
      */
     void throwError(final int id, final Exception e) {
         // invoke listeners
-        final List<WeakReference<TransferListener>> list = listeners.get(id);
+        final List<TransferListener> list = listeners.get(id);
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -243,13 +241,7 @@ class TransferStatusUpdater {
         mainHandler.post(new Runnable() {
             @Override
             public void run() {
-                Iterator<WeakReference<TransferListener>> it = list.iterator();
-                while (it.hasNext()) {
-                    TransferListener l = it.next().get();
-                    if (l == null) {
-                        it.remove();
-                        continue;
-                    }
+                for (TransferListener l : list) {
                     l.onError(id, e);
                 }
             }
@@ -275,23 +267,19 @@ class TransferStatusUpdater {
         if (listener == null) {
             throw new IllegalArgumentException("Listener can't be null");
         }
-        List<WeakReference<TransferListener>> list = listeners.get(id);
-        if (list == null) {
-            list = new LinkedList<WeakReference<TransferListener>>();
-            listeners.put(id, list);
-        }
-
-        Iterator<WeakReference<TransferListener>> it = list.iterator();
-        while (it.hasNext()) {
-            TransferListener l = it.next().get();
-            if (l == null) {
-                it.remove();
-            } else if (l == listener) {
+        synchronized (listeners) {
+            List<TransferListener> list = listeners.get(id);
+            if (list == null) {
+                list = new CopyOnWriteArrayList<TransferListener>();
+                list.add(listener);
+                listeners.put(id, list);
+            } else {
                 // don't add the same listener more than once
-                return;
+                if (!list.contains(listener)) {
+                    list.add(listener);
+                }
             }
         }
-        list.add(new WeakReference<TransferListener>(listener));
     }
 
     /**
@@ -304,18 +292,11 @@ class TransferStatusUpdater {
         if (listener == null) {
             throw new IllegalArgumentException("Listener can't be null");
         }
-        List<WeakReference<TransferListener>> list = listeners.get(id);
+        List<TransferListener> list = listeners.get(id);
         if (list == null || list.isEmpty()) {
             return;
         }
-
-        Iterator<WeakReference<TransferListener>> it = list.iterator();
-        while (it.hasNext()) {
-            TransferListener l = it.next().get();
-            if (l == null || l == listener) {
-                it.remove();
-            }
-        }
+        list.remove(listener);
     }
 
     /**

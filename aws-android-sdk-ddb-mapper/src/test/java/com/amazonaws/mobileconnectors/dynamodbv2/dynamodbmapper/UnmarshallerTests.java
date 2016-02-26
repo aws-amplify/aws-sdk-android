@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.s3.model.Region;
+import com.amazonaws.util.StringUtils;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -133,8 +134,8 @@ public class UnmarshallerTests {
 
     @Test
     public void testBinary() {
-        ByteBuffer test = ByteBuffer.wrap("test".getBytes());
-        Assert.assertTrue(Arrays.equals("test".getBytes(), (byte[]) unconvert(
+        ByteBuffer test = ByteBuffer.wrap("test".getBytes(StringUtils.UTF8));
+        Assert.assertTrue(Arrays.equals("test".getBytes(StringUtils.UTF8), (byte[]) unconvert(
                 "getByteArray", "setByteArray",
                 new AttributeValue().withB(test.slice()))));
 
@@ -291,7 +292,7 @@ public class UnmarshallerTests {
         Assert.assertNull(unconvert("getByteBufferSet", "setByteBufferSet",
                 new AttributeValue().withNULL(true)));
 
-        ByteBuffer test = ByteBuffer.wrap("test".getBytes());
+        ByteBuffer test = ByteBuffer.wrap("test".getBytes(StringUtils.UTF8));
 
         Set<byte[]> result = (Set<byte[]>) unconvert(
                 "getByteArraySet", "setByteArraySet",
@@ -299,7 +300,7 @@ public class UnmarshallerTests {
 
         assertEquals(1, result.size());
         Assert.assertTrue(Arrays.equals(
-                "test".getBytes(),
+                "test".getBytes(StringUtils.UTF8),
                 result.iterator().next()));
 
         Assert.assertEquals(Collections.singleton(test.slice()),

@@ -82,12 +82,6 @@ import java.util.UUID;
  * // Deletes the transfer.
  * transferUtility.delete(id);
  * </pre>
- *
- * Note that the Activity or Service that instantiates and uses the
- * TransferUtility should keep a reference to the Amazon S3 client as a class
- * attribute. Failing to keep a reference may cause the TransferService to fail
- * since {@link TransferService} receives a weak reference to the AmazonS3
- * client allowing it to be garbage collected.
  */
 public class TransferUtility {
 
@@ -99,8 +93,8 @@ public class TransferUtility {
      */
     static final int MINIMUM_UPLOAD_PART_SIZE = 5 * MB;
 
+    private final AmazonS3 s3;
     private final Context appContext;
-    private final String s3WeakReferenceMapKey;
     private final TransferDBUtil dbUtil;
 
     /**
@@ -113,8 +107,7 @@ public class TransferUtility {
      * @param configuration Configuration parameters for this TransferUtility
      */
     public TransferUtility(AmazonS3 s3, Context context) {
-        this.s3WeakReferenceMapKey = UUID.randomUUID().toString();
-        S3ClientWeakReference.put(s3WeakReferenceMapKey, s3);
+        this.s3 = s3;
         this.appContext = context.getApplicationContext();
         this.dbUtil = new TransferDBUtil(appContext);
     }
@@ -394,10 +387,12 @@ public class TransferUtility {
      * @param id id of the transfer
      */
     private void sendIntent(String action, int id) {
+        String s3Key = UUID.randomUUID().toString();
+        S3ClientReference.put(s3Key, s3);
         Intent intent = new Intent(appContext, TransferService.class);
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
-        intent.putExtra(TransferService.INTENT_BUNDLE_S3_WEAK_REFERENCE_KEY, s3WeakReferenceMapKey);
+        intent.putExtra(TransferService.INTENT_BUNDLE_S3_REFERENCE_KEY, s3Key);
         appContext.startService(intent);
     }
 
