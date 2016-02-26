@@ -142,7 +142,7 @@ public class TransferUtility {
         }
 
         sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
-        return new TransferObserver(recordId, dbUtil, file);
+        return new TransferObserver(recordId, dbUtil, bucket, key, file);
     }
 
     /**
@@ -186,7 +186,7 @@ public class TransferUtility {
         }
 
         sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
-        return new TransferObserver(recordId, dbUtil, file);
+        return new TransferObserver(recordId, dbUtil, bucket, key, file);
     }
 
     /**

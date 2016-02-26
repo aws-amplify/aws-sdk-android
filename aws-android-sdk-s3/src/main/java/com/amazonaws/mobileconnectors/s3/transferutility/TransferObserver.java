@@ -51,6 +51,8 @@ public class TransferObserver {
     private final int id;
     private final TransferDBUtil dbUtil;
 
+    private String bucket;
+    private String key;
     private long bytesTotal;
     private long bytesTransferred;
     private TransferState transferState;
@@ -67,9 +69,11 @@ public class TransferObserver {
      * @param dbUtil an instance of database utility
      * @param file a file associated with this transfer
      */
-    TransferObserver(int id, TransferDBUtil dbUtil, File file) {
+    TransferObserver(int id, TransferDBUtil dbUtil, String bucket, String key, File file) {
         this.id = id;
         this.dbUtil = dbUtil;
+        this.bucket = bucket;
+        this.key = key;
         filePath = file.getAbsolutePath();
         bytesTotal = file.length();
         transferState = TransferState.WAITING;
@@ -110,6 +114,8 @@ public class TransferObserver {
      * @param c a cursor to read the state of the transfer from
      */
     private void updateFromDB(Cursor c) {
+        bucket = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_BUCKET_NAME));
+        key = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_KEY));
         bytesTotal = c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
         bytesTransferred = c.getLong(c
                 .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_CURRENT));
@@ -148,6 +154,24 @@ public class TransferObserver {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * Gets the transfer bucket name of the record.
+     *
+     * @return The transfer bucket name.
+     */
+    public int getBucket() {
+        return bucket;
+    }
+
+    /**
+     * Gets the transfer key of the record.
+     *
+     * @return The transfer key.
+     */
+    public int getKey() {
+        return key;
     }
 
     /**
