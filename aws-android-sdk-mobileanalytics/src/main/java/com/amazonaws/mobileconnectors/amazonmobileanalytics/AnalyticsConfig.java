@@ -30,6 +30,7 @@ public class AnalyticsConfig {
 
     private boolean allowEventCollection = true;
     private boolean allowWANDelivery = true;
+    private boolean allowResumePauseEvents = true;
     private ClientConfiguration clientConfiguration;
 
     /**
@@ -116,5 +117,26 @@ public class AnalyticsConfig {
      */
     public boolean getAllowWANDelivery() {
         return this.allowWANDelivery;
+    }
+
+    /**
+     * Sets whether or not resume and pause events will be sent to the Amazon Mobile Analytics
+     *
+     * @param allowResumePauseEvents
+     * @return AnalyticsConfig the current instance
+     */
+    public AnalyticsConfig withAllowReportingResumePauseEvents(boolean allowResumePauseEvents) {
+        this.allowResumePauseEvents = allowResumePauseEvents;
+        return this;
+    }
+
+    /**
+     * Indicates whether or not resume and pause events will be sent to the Amazon Mobile Analytics
+     *
+     * @return true indicates events will be delivered.
+     *         false indicates events will not be delivered.
+     */
+    public boolean getAllowResumePauseEvents() {
+        return this.allowResumePauseEvents;
     }
 }

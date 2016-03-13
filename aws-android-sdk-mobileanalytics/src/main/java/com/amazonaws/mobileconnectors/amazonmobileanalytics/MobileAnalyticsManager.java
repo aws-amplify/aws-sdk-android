@@ -119,7 +119,7 @@ public class MobileAnalyticsManager {
             eventClient = new DefaultEventClient(context, options.getAllowEventCollection());
 
             sessionClient = new DefaultSessionClient(context, eventClient, new FileSessionStore(
-                    context));
+                    context), options.getAllowResumePauseEvents());
             context.getERSClient().addRequestHandler(
                     new RequestTimingHandler(context.getSystem().getConnectivity(), eventClient));
 
