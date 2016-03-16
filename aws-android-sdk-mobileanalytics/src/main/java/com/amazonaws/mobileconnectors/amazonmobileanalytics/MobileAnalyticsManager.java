@@ -119,7 +119,7 @@ public class MobileAnalyticsManager {
             eventClient = new DefaultEventClient(context, options.getAllowEventCollection());
 
             sessionClient = new DefaultSessionClient(context, eventClient, new FileSessionStore(
-                    context), options.getAllowResumePauseEvents());
+                    context), options.getAllowResumePauseEvents(), options.getResumeDelay(), options.getRestartDelay());
             context.getERSClient().addRequestHandler(
                     new RequestTimingHandler(context.getSystem().getConnectivity(), eventClient));
 
@@ -228,7 +228,7 @@ public class MobileAnalyticsManager {
         }
     }
 
-    /*
+/*
      * Same as getOrCreateInstance(Context, String, Regions, AWSCredentialsProvider)
      * without the Regions and AWSCredentialsProvider parameters. This method defaults
      * to use Regions.US_EAST_1 and create a CognitoCachingCredentialsProvider with the

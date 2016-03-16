@@ -124,7 +124,7 @@ public class DefaultSessionClient implements InternalSessionClient {
      */
     public DefaultSessionClient(final AnalyticsContext context,
                                 final InternalEventClient eventClient, final SessionStore sessionStore) {
-        this(context, eventClient, sessionStore, true);
+    this(context, eventClient, sessionStore, true, DEFAULT_RESUME_DELAY, DEFAULT_RESTART_DELAY);
     }
 
     /**
@@ -135,7 +135,7 @@ public class DefaultSessionClient implements InternalSessionClient {
      */
     public DefaultSessionClient(final AnalyticsContext context,
             final InternalEventClient eventClient, final SessionStore sessionStore,
-            final boolean allowReportResumePauseEvents) {
+            final boolean allowReportResumePauseEvents, final long resumeDelayInMilliseconds, final long restartDelayInMilliseconds) {
         checkNotNull(context, "A valid InsightsContext must be provided!");
         checkNotNull(eventClient, "A valid EventClient must be provided!");
         checkNotNull(sessionStore, "A valid SessionStore must be provided!");
@@ -151,11 +151,9 @@ public class DefaultSessionClient implements InternalSessionClient {
 
         this.state = (this.session == null) ? INACTIVE_STATE : PAUSED_STATE;
 
-        this.restartDelay = context.getConfiguration().optLong(RESTART_DELAY_CONFIG_KEY,
-                DEFAULT_RESTART_DELAY);
-        this.resumeDelay = context.getConfiguration().optLong(RESUME_DELAY_CONFIG_KEY,
-                DEFAULT_RESUME_DELAY);
-        this.allowReportResumePauseEvents = allowReportResumePauseEvents;
+		this.allowReportResumePauseEvents = allowReportResumePauseEvents;
+        this.resumeDelay = resumeDelayInMilliseconds;
+        this.restartDelay = restartDelayInMilliseconds;
     }
 
     /**
@@ -165,16 +163,16 @@ public class DefaultSessionClient implements InternalSessionClient {
         return this.session;
     }
 
+	public boolean getAllowReportResumePauseEvents() {
+        return this.allowReportResumePauseEvents;
+    }
+
     public long getRestartDelay() {
         return this.restartDelay;
     }
 
     public long getResumeDelay() {
         return this.resumeDelay;
-    }
-
-    public boolean getAllowReportResumePauseEvents() {
-        return this.allowReportResumePauseEvents;
     }
 
     /**
