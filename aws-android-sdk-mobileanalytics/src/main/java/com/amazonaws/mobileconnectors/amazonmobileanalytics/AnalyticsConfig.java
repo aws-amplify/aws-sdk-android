@@ -27,9 +27,10 @@ import com.amazonaws.ClientConfiguration;
  * AWS client can change through a ClientConfiguration object.
  */
 public class AnalyticsConfig {
-
     private boolean allowEventCollection = true;
     private boolean allowWANDelivery = true;
+    private long resumeDelayInMilliseconds = (long) 5e3;
+    private long restartDelayInMilliseconds = (long) 30e3;
     private ClientConfiguration clientConfiguration;
 
     /**
@@ -117,4 +118,45 @@ public class AnalyticsConfig {
     public boolean getAllowWANDelivery() {
         return this.allowWANDelivery;
     }
+	
+	/**
+     * Sets the amount of time in milliseconds between consecutive session starts, after which a session new session will be created
+     *
+     * @param resumeDelayInMilliseconds
+     * @return AnalyticsConfig the current instance
+     */
+    public AnalyticsConfig withResumeDelay(long resumeDelayInMilliseconds) {
+        this.resumeDelayInMilliseconds = resumeDelayInMilliseconds;
+        return this;
+    }
+
+    /**
+     * Indicates the amount of time in milliseconds between session pause and resume, after which a session new session will be created.
+     *
+     * @return the amount of time in milliseconds between session pause and resume, after which a session new session will be created.
+     */
+    public long getResumeDelay() {
+        return this.resumeDelayInMilliseconds;
+    }
+
+    /**
+     * Sets the amount of time in milliseconds between consecutive session starts, after which a session new session will be created
+     *
+     * @param restartDelayInMilliseconds
+     * @return AnalyticsConfig the current instance
+     */
+    public AnalyticsConfig withRestartDelay(long restartDelayInMilliseconds) {
+        this.restartDelayInMilliseconds = restartDelayInMilliseconds;
+        return this;
+    }
+
+    /**
+     * Indicates the amount of time in milliseconds between consecutive session starts, after which a session new session will be created.
+     *
+     * @return the amount of time in milliseconds between consecutive session starts, after which a session new session will be created.
+     */
+    public long getRestartDelay() {
+        return this.restartDelayInMilliseconds;
+    }
+
 }
