@@ -1,6 +1,3 @@
-aws-android-sdk-s3/target/surefire-reports
-aws-android-sdk-mobileanalytics/target/surefire-reports
-aws-android-sdk-lambda/target/surefire-reports
 .idea
 aws-android-sdk-mobileanalytics/target
 aws-android-sdk-s3/target
