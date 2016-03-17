@@ -243,10 +243,10 @@ public class DefaultSessionClientTest extends MobileAnalyticsTestBase {
 
         target.startSession();
 
-//        verify(mockEventClient, times(1)).createInternalEvent(
-//                eq(DefaultSessionClient.SESSION_PAUSE_EVENT_TYPE), any(Long.class),
-//                any(Long.class),
-//                any(Long.class));
+        verify(mockEventClient, times(1)).createInternalEvent(
+                eq(DefaultSessionClient.SESSION_PAUSE_EVENT_TYPE), any(Long.class),
+                any(Long.class),
+                any(Long.class));
         verify(mockEventClient, times(1)).createInternalEvent(
                 eq(DefaultSessionClient.SESSION_STOP_EVENT_TYPE), any(Long.class), any(Long.class),
                 any(Long.class));
@@ -423,7 +423,6 @@ public class DefaultSessionClientTest extends MobileAnalyticsTestBase {
     // =========================================================================
     // ~\\
     // //
-    /*
     @Test
     public void pauseSession_sessionIsActive_firesPauseEvent() {
         target.startSession();
@@ -433,7 +432,6 @@ public class DefaultSessionClientTest extends MobileAnalyticsTestBase {
                 any(Long.class),
                 any(Long.class));
     }
-    */
 
     @Test
     public void pauseSession_sessionIsActive_stateChangedToPaused() {
@@ -463,7 +461,7 @@ public class DefaultSessionClientTest extends MobileAnalyticsTestBase {
         assertEquals(target.getSessionState(),
                 DefaultSessionClient.SessionState.INACTIVE);
     }
-/*
+
     @Test
     public void pauseSession_sessionIsPaused_doesNotFirePauseEvent() {
         target.startSession();
@@ -475,7 +473,6 @@ public class DefaultSessionClientTest extends MobileAnalyticsTestBase {
                 any(Long.class),
                 any(Long.class));
     }
-    */
 
     // //
     // //~
@@ -516,7 +513,7 @@ public class DefaultSessionClientTest extends MobileAnalyticsTestBase {
         assertEquals(target.getSessionState(),
                 DefaultSessionClient.SessionState.INACTIVE);
     }
-/*
+
     @Test
     public void
             resumeSession_sessionIsPaused_firesResumeEvent_ifWithinTimeInterval() {
@@ -530,7 +527,6 @@ public class DefaultSessionClientTest extends MobileAnalyticsTestBase {
         verify(mockEventClient, times(1)).createEvent(
                 DefaultSessionClient.SESSION_RESUME_EVENT_TYPE);
     }
-    */
 
     @Test
     public void
