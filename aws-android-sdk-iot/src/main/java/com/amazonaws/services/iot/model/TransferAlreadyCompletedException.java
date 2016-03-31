@@ -18,8 +18,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * You can't revert the certificate transfer because it has already
- * completed.
+ * You can't revert the certificate transfer because the transfer is
+ * already complete.
  * </p>
  */        
 public class TransferAlreadyCompletedException extends AmazonServiceException {

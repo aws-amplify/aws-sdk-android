@@ -34,11 +34,7 @@ import com.amazonaws.services.iotdata.model.transform.*;
  * using this client are blocking, and will not return until the service call
  * completes.
  * <p>
- * AWS IoT (Beta) <p>
- * <b>AWS IoT is considered a beta service as defined in the Service
- * Terms</b>
- * </p>
- * <p>
+ * AWS IoT <p>
  * AWS IoT-Data enables secure, bi-directional communication between
  * Internet-connected things (such as sensors, actuators, embedded
  * devices, or smart appliances) and the AWS cloud. It implements a

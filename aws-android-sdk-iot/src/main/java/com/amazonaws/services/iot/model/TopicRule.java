@@ -34,7 +34,7 @@ public class TopicRule implements Serializable {
 
     /**
      * The SQL statement used to query the topic. When using a SQL query with
-     * multiple lines, be sure to escape the newline characters properly.
+     * multiple lines, be sure to escape the newline characters.
      */
     private String sql;
 
@@ -108,10 +108,10 @@ public class TopicRule implements Serializable {
 
     /**
      * The SQL statement used to query the topic. When using a SQL query with
-     * multiple lines, be sure to escape the newline characters properly.
+     * multiple lines, be sure to escape the newline characters.
      *
      * @return The SQL statement used to query the topic. When using a SQL query with
-     *         multiple lines, be sure to escape the newline characters properly.
+     *         multiple lines, be sure to escape the newline characters.
      */
     public String getSql() {
         return sql;
@@ -119,10 +119,10 @@ public class TopicRule implements Serializable {
     
     /**
      * The SQL statement used to query the topic. When using a SQL query with
-     * multiple lines, be sure to escape the newline characters properly.
+     * multiple lines, be sure to escape the newline characters.
      *
      * @param sql The SQL statement used to query the topic. When using a SQL query with
-     *         multiple lines, be sure to escape the newline characters properly.
+     *         multiple lines, be sure to escape the newline characters.
      */
     public void setSql(String sql) {
         this.sql = sql;
@@ -130,12 +130,12 @@ public class TopicRule implements Serializable {
     
     /**
      * The SQL statement used to query the topic. When using a SQL query with
-     * multiple lines, be sure to escape the newline characters properly.
+     * multiple lines, be sure to escape the newline characters.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param sql The SQL statement used to query the topic. When using a SQL query with
-     *         multiple lines, be sure to escape the newline characters properly.
+     *         multiple lines, be sure to escape the newline characters.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

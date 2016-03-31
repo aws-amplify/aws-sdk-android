@@ -1,5 +1,21 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.2.14](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.14) (03/31/2016)
+
+### New Features
+- **AWS Iot**: Added support for LWT (last will and testimony).
+- **Amazon SES**: Added support for custom MAIL FROM domains.
+
+### Improvements
+- **Amazon S3**: Improved performance of S3 TransferUtility.
+ - Now the number of parallel transfers is set to the number of processors (cores) + 1. [#111](https://github.com/aws/aws-sdk-android/issues/111)
+ - Removed unnecessary network requests in download task.
+
+### Bug Fixes
+- **AWS Core Runtime Library**: Addressed a potential bug in Cognito credentials provider.
+- **Amazon S3**: Fixed RejectedExecutionException in TransferUtility which may occur when the service is shutting down. [#113](https://github.com/aws/aws-sdk-android/issues/113)
+
+
 ## [Release 2.2.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.13) (02/25/2016)
 
 ### Improvements

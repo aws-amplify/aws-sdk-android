@@ -35,15 +35,38 @@ import com.amazonaws.services.dynamodbv2.model.transform.*;
  * completes.
  * <p>
  * Amazon DynamoDB <p>
- * <b>Overview</b>
+ * This is the Amazon DynamoDB API Reference. This guide provides
+ * descriptions of the low-level DynamoDB API.
  * </p>
  * <p>
- * This is the Amazon DynamoDB API Reference. This guide provides
- * descriptions and samples of the low-level DynamoDB API. For
- * information about DynamoDB application development, see the
- * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/"> Amazon DynamoDB Developer Guide </a>
- * .
+ * This guide is intended for use with the following DynamoDB
+ * documentation:
  * </p>
+ * 
+ * <ul>
+ * <li> <p>
+ * 
+ * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/"> Amazon DynamoDB Getting Started Guide </a>
+ * - provides hands-on exercises that help you learn the basics of
+ * working with DynamoDB. <i>If you are new to DynamoDB, we recommend
+ * that you begin with the Getting Started Guide.</i>
+ * </p>
+ * </li>
+ * <li> <p>
+ * 
+ * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/"> Amazon DynamoDB Developer Guide </a>
+ * - contains detailed information about DynamoDB concepts, usage, and
+ * best practices.
+ * </p>
+ * </li>
+ * <li> <p>
+ * 
+ * <a href="http://docs.aws.amazon.com/dynamodbstreams/latest/APIReference/"> Amazon DynamoDB Streams API Reference </a> - provides descriptions and samples of the DynamoDB Streams API. (For more information, see <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"> Capturing Table Activity with DynamoDB Streams </a>
+ * in the Amazon DynamoDB Developer Guide.)
+ * </p>
+ * </li>
+ * 
+ * </ul>
  * <p>
  * Instead of making the requests to the low-level DynamoDB API directly
  * from your application, we recommend that you use the AWS Software
@@ -52,7 +75,7 @@ import com.amazonaws.services.dynamodbv2.model.transform.*;
  * your application. The libraries take care of request authentication,
  * serialization, and connection management. For more information, see
  * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/UsingAWSSDK.html"> Using the AWS SDKs with DynamoDB </a>
- * in the <i>Amazon DynamoDB Developer Guide</i> .
+ * in the Amazon DynamoDB Developer Guide.
  * </p>
  * <p>
  * If you decide to code against the low-level DynamoDB API directly, you
@@ -72,10 +95,9 @@ import com.amazonaws.services.dynamodbv2.model.transform.*;
  * <ul>
  * <li> <p>
  * <i>CreateTable</i> - Creates a table with user-specified provisioned
- * throughput settings. You must designate one attribute as the hash
- * primary key for the table; you can optionally designate a second
- * attribute as the range primary key. DynamoDB creates indexes on these
- * key attributes for fast data access. Optionally, you can create one or
+ * throughput settings. You must define a primary key for the table -
+ * either a simple primary key (partition key), or a composite primary
+ * key (partition key and sort key). Optionally, you can create one or
  * more secondary indexes, which provide fast data access using non-key
  * attributes.
  * </p>
@@ -129,10 +151,11 @@ import com.amazonaws.services.dynamodbv2.model.transform.*;
  * </li>
  * <li> <p>
  * <i>Query</i> - Returns one or more items from a table or a secondary
- * index. You must provide a specific hash key value. You can narrow the
- * scope of the query using comparison operators against a range key
- * value, or on the index key. <i>Query</i> supports either eventual or
- * strong consistency. A single response has a size limit of 1 MB.
+ * index. You must provide a specific value for the partition key. You
+ * can narrow the scope of the query using comparison operators against a
+ * sort key value, or on the index key. <i>Query</i> supports either
+ * eventual or strong consistency. A single response has a size limit of
+ * 1 MB.
  * </p>
  * </li>
  * <li> <p>
@@ -438,9 +461,11 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * By default, <i>Scan</i> uses eventually consistent reads when
-     * acessing the data in the table or local secondary index. However, you
-     * can use strongly consistent reads instead by setting the
-     * <i>ConsistentRead</i> parameter to <i>true</i> .
+     * accessing the data in a table; therefore, the result set might not
+     * include the changes to data in the table immediately before the
+     * operation began. If you need a consistent copy of the data, as of the
+     * time that the Scan begins, you can set the <i>ConsistentRead</i>
+     * parameter to <i>true</i> .
      * </p>
      *
      * @param scanRequest Container for the necessary parameters to execute
@@ -916,8 +941,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * values. You can also perform a conditional update on an existing item
      * (insert a new attribute name-value pair if it doesn't exist, or
      * replace an existing name-value pair if it has certain expected
-     * attribute values). If conditions are specified and the item does not
-     * exist, then the operation fails and a new item is not created.
+     * attribute values).
      * </p>
      * <p>
      * You can also return the item's attribute values in the same
@@ -1029,6 +1053,124 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<DeleteItemResult, JsonUnmarshallerContext> unmarshaller = new DeleteItemResultJsonUnmarshaller();
             JsonResponseHandler<DeleteItemResult> responseHandler = new JsonResponseHandler<DeleteItemResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns the current provisioned-capacity limits for your AWS account
+     * in a region, both for the region as a whole and for any one DynamoDB
+     * table that you create there.
+     * </p>
+     * <p>
+     * When you establish an AWS account, the account has initial limits on
+     * the maximum read capacity units and write capacity units that you can
+     * provision across all of your DynamoDB tables in a given region. Also,
+     * there are per-table limits that apply when you create a table there.
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"> Limits </a>
+     * page in the <i>Amazon DynamoDB Developer Guide</i> .
+     * </p>
+     * <p>
+     * Although you can increase these limits by filing a case at
+     * <a href="https://console.aws.amazon.com/support/home#/"> AWS Support Center </a>
+     * , obtaining the increase is not instantaneous. The
+     * <i>DescribeLimits</i> API lets you write code to compare the capacity
+     * you are currently using to those limits imposed by your account so
+     * that you have enough time to apply for an increase before you hit a
+     * limit.
+     * </p>
+     * <p>
+     * For example, you could use one of the AWS SDKs to do the following:
+     * </p>
+     * <ol> <li>Call <i>DescribeLimits</i> for a particular region to obtain
+     * your current account limits on provisioned capacity there.</li>
+     * <li>Create a variable to hold the aggregate read capacity units
+     * provisioned for all your tables in that region, and one to hold the
+     * aggregate write capacity units. Zero them both.</li>
+     * <li>Call <i>ListTables</i> to obtain a list of all your DynamoDB
+     * tables.</li>
+     * <li> <p>
+     * For each table name listed by <i>ListTables</i> , do the following:
+     * </p>
+     * 
+     * <ul>
+     * <li>Call <i>DescribeTable</i> with the table name.</li>
+     * <li>Use the data returned by <i>DescribeTable</i> to add the read
+     * capacity units and write capacity units provisioned for the table
+     * itself to your variables.</li>
+     * <li>If the table has one or more global secondary indexes (GSIs),
+     * loop over these GSIs and add their provisioned capacity values to your
+     * variables as well.</li>
+     * 
+     * </ul>
+     * </li>
+     * <li>Report the account limits for that region returned by
+     * <i>DescribeLimits</i> , along with the total current provisioned
+     * capacity levels you have calculated.</li>
+     * </ol> <p>
+     * This will let you see whether you are getting close to your
+     * account-level limits.
+     * </p>
+     * <p>
+     * The per-table limits apply only when you are creating a new table.
+     * They restrict the sum of the provisioned capacity of the new table
+     * itself and all its global secondary indexes.
+     * </p>
+     * <p>
+     * For existing tables and their GSIs, DynamoDB will not let you
+     * increase provisioned capacity extremely rapidly, but the only upper
+     * limit that applies is that the aggregate provisioned capacity over all
+     * your tables and GSIs cannot exceed either of the per-account limits.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> DescribeLimits should only be called periodically. You
+     * can expect throttling errors if you call it more than once in a
+     * minute.
+     * </p>
+     * <p>
+     * The <i>DescribeLimits</i> Request element has no content.
+     * </p>
+     *
+     * @param describeLimitsRequest Container for the necessary parameters to
+     *           execute the DescribeLimits service method on AmazonDynamoDBv2.
+     * 
+     * @return The response from the DescribeLimits service method, as
+     *         returned by AmazonDynamoDBv2.
+     * 
+     * @throws InternalServerErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeLimitsResult describeLimits(DescribeLimitsRequest describeLimitsRequest) {
+        ExecutionContext executionContext = createExecutionContext(describeLimitsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeLimitsRequest> request = null;
+        Response<DescribeLimitsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeLimitsRequestMarshaller().marshall(describeLimitsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeLimitsResult, JsonUnmarshallerContext> unmarshaller = new DescribeLimitsResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeLimitsResult> responseHandler = new JsonResponseHandler<DescribeLimitsResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             
@@ -1231,13 +1373,13 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * Use the <i>KeyConditionExpression</i> parameter to provide a specific
-     * hash key value. The <i>Query</i> operation will return all of the
-     * items from the table or index with that hash key value. You can
-     * optionally narrow the scope of the <i>Query</i> operation by
-     * specifying a range key value and a comparison operator in
+     * value for the partition key. The <i>Query</i> operation will return
+     * all of the items from the table or index with that partition key
+     * value. You can optionally narrow the scope of the <i>Query</i>
+     * operation by specifying a sort key value and a comparison operator in
      * <i>KeyConditionExpression</i> . You can use the
      * <i>ScanIndexForward</i> parameter to get results in forward or reverse
-     * order, by range key or by index key.
+     * order, by sort key.
      * </p>
      * <p>
      * Queries that do not return results consume the minimum number of read
@@ -1335,8 +1477,11 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * <b>NOTE:</b> To prevent a new item from replacing an existing item,
-     * use a conditional put operation with ComparisonOperator set to NULL
-     * for the primary key attribute, or attributes.
+     * use a conditional expression that contains the attribute_not_exists
+     * function with the name of the attribute being used as the partition
+     * key for the table. Since every record must contain that attribute,
+     * the attribute_not_exists function will only succeed if no matching
+     * item exists.
      * </p>
      * <p>
      * For more information about using this API, see
@@ -1441,6 +1586,99 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * Returns the current provisioned-capacity limits for your AWS account
+     * in a region, both for the region as a whole and for any one DynamoDB
+     * table that you create there.
+     * </p>
+     * <p>
+     * When you establish an AWS account, the account has initial limits on
+     * the maximum read capacity units and write capacity units that you can
+     * provision across all of your DynamoDB tables in a given region. Also,
+     * there are per-table limits that apply when you create a table there.
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"> Limits </a>
+     * page in the <i>Amazon DynamoDB Developer Guide</i> .
+     * </p>
+     * <p>
+     * Although you can increase these limits by filing a case at
+     * <a href="https://console.aws.amazon.com/support/home#/"> AWS Support Center </a>
+     * , obtaining the increase is not instantaneous. The
+     * <i>DescribeLimits</i> API lets you write code to compare the capacity
+     * you are currently using to those limits imposed by your account so
+     * that you have enough time to apply for an increase before you hit a
+     * limit.
+     * </p>
+     * <p>
+     * For example, you could use one of the AWS SDKs to do the following:
+     * </p>
+     * <ol> <li>Call <i>DescribeLimits</i> for a particular region to obtain
+     * your current account limits on provisioned capacity there.</li>
+     * <li>Create a variable to hold the aggregate read capacity units
+     * provisioned for all your tables in that region, and one to hold the
+     * aggregate write capacity units. Zero them both.</li>
+     * <li>Call <i>ListTables</i> to obtain a list of all your DynamoDB
+     * tables.</li>
+     * <li> <p>
+     * For each table name listed by <i>ListTables</i> , do the following:
+     * </p>
+     * 
+     * <ul>
+     * <li>Call <i>DescribeTable</i> with the table name.</li>
+     * <li>Use the data returned by <i>DescribeTable</i> to add the read
+     * capacity units and write capacity units provisioned for the table
+     * itself to your variables.</li>
+     * <li>If the table has one or more global secondary indexes (GSIs),
+     * loop over these GSIs and add their provisioned capacity values to your
+     * variables as well.</li>
+     * 
+     * </ul>
+     * </li>
+     * <li>Report the account limits for that region returned by
+     * <i>DescribeLimits</i> , along with the total current provisioned
+     * capacity levels you have calculated.</li>
+     * </ol> <p>
+     * This will let you see whether you are getting close to your
+     * account-level limits.
+     * </p>
+     * <p>
+     * The per-table limits apply only when you are creating a new table.
+     * They restrict the sum of the provisioned capacity of the new table
+     * itself and all its global secondary indexes.
+     * </p>
+     * <p>
+     * For existing tables and their GSIs, DynamoDB will not let you
+     * increase provisioned capacity extremely rapidly, but the only upper
+     * limit that applies is that the aggregate provisioned capacity over all
+     * your tables and GSIs cannot exceed either of the per-account limits.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> DescribeLimits should only be called periodically. You
+     * can expect throttling errors if you call it more than once in a
+     * minute.
+     * </p>
+     * <p>
+     * The <i>DescribeLimits</i> Request element has no content.
+     * </p>
+     * 
+     * @return The response from the DescribeLimits service method, as
+     *         returned by AmazonDynamoDBv2.
+     * 
+     * @throws InternalServerErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeLimitsResult describeLimits() throws AmazonServiceException, AmazonClientException {
+        return describeLimits(new DescribeLimitsRequest());
+    }
+    
+    /**
+     * <p>
      * Returns an array of table names associated with the current account
      * and endpoint. The output from <i>ListTables</i> is paginated, with
      * each page returning a maximum of 100 table names.
@@ -1489,9 +1727,11 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * By default, <i>Scan</i> uses eventually consistent reads when
-     * acessing the data in the table or local secondary index. However, you
-     * can use strongly consistent reads instead by setting the
-     * <i>ConsistentRead</i> parameter to <i>true</i> .
+     * accessing the data in a table; therefore, the result set might not
+     * include the changes to data in the table immediately before the
+     * operation began. If you need a consistent copy of the data, as of the
+     * time that the Scan begins, you can set the <i>ConsistentRead</i>
+     * parameter to <i>true</i> .
      * </p>
      * 
      * @param tableName The name of the table containing the requested items;
@@ -1561,9 +1801,11 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * By default, <i>Scan</i> uses eventually consistent reads when
-     * acessing the data in the table or local secondary index. However, you
-     * can use strongly consistent reads instead by setting the
-     * <i>ConsistentRead</i> parameter to <i>true</i> .
+     * accessing the data in a table; therefore, the result set might not
+     * include the changes to data in the table immediately before the
+     * operation began. If you need a consistent copy of the data, as of the
+     * time that the Scan begins, you can set the <i>ConsistentRead</i>
+     * parameter to <i>true</i> .
      * </p>
      * 
      * @param tableName The name of the table containing the requested items;
@@ -1655,9 +1897,11 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * By default, <i>Scan</i> uses eventually consistent reads when
-     * acessing the data in the table or local secondary index. However, you
-     * can use strongly consistent reads instead by setting the
-     * <i>ConsistentRead</i> parameter to <i>true</i> .
+     * accessing the data in a table; therefore, the result set might not
+     * include the changes to data in the table immediately before the
+     * operation began. If you need a consistent copy of the data, as of the
+     * time that the Scan begins, you can set the <i>ConsistentRead</i>
+     * parameter to <i>true</i> .
      * </p>
      * 
      * @param tableName The name of the table containing the requested items;
@@ -1975,10 +2219,10 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * key attribute values that uniquely identify the ! item. Each entry in
      * this map consists of an attribute name and an attribute value. For
      * each primary key, you must provide <i>all</i> of the key attributes.
-     * For example, with a hash type primary key, you only need to provide
-     * the hash attribute. For a hash-and-range type primary key, you must
-     * provide <i>both</i> the hash attribute and the range attribute. </li>
-     * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     * For example, with a simple primary key, you only need to provide a
+     * value for the partition key. For a composite primary key, you must
+     * provide values for <i>both</i> the partition key and the sort key.
+     * </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      * attributes and their values. Each entry in this map consists of an
@@ -2069,9 +2313,9 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * 
      * @return The response from the GetItem service method, as returned by
      *         AmazonDynamoDBv2.
@@ -2114,9 +2358,9 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * @param consistentRead Determines the read consistency model: If set to
      * <code>true</code>, then the operation uses strongly consistent reads;
      * otherwise, the operation uses eventually consistent reads.
@@ -2152,8 +2396,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * values. You can also perform a conditional update on an existing item
      * (insert a new attribute name-value pair if it doesn't exist, or
      * replace an existing name-value pair if it has certain expected
-     * attribute values). If conditions are specified and the item does not
-     * exist, then the operation fails and a new item is not created.
+     * attribute values).
      * </p>
      * <p>
      * You can also return the item's attribute values in the same
@@ -2164,9 +2407,9 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * @param key The primary key of the item to be updated. Each element
      * consists of an attribute name and a value for that attribute. <p>For
      * the primary key, you must provide all of the attributes. For example,
-     * with a hash type primary key, you only need to provide the hash
-     * attribute. For a hash-and-range type primary key, you must provide
-     * both the hash attribute and the range attribute.
+     * with a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * @param attributeUpdates <important> <p>This is a legacy parameter, for
      * backward compatibility. New applications should use
      * <i>UpdateExpression</i> instead. Do not combine legacy parameters and
@@ -2178,7 +2421,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * value for each. If you are updating an attribute that is an index key
      * attribute for any indexes on that table, the attribute type must match
      * the index key type defined in the <i>AttributesDefinition</i> of the
-     * table description. You can use <i>UpdateItem</i> to update any nonkey
+     * table description. You can use <i>UpdateItem</i> to update any non-key
      * attributes. <p>Attribute values cannot be null. String and Binary type
      * attributes must have lengths greater than zero. Set type attributes
      * must not be empty. Requests with empty values will be rejected with a
@@ -2275,8 +2518,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * values. You can also perform a conditional update on an existing item
      * (insert a new attribute name-value pair if it doesn't exist, or
      * replace an existing name-value pair if it has certain expected
-     * attribute values). If conditions are specified and the item does not
-     * exist, then the operation fails and a new item is not created.
+     * attribute values).
      * </p>
      * <p>
      * You can also return the item's attribute values in the same
@@ -2287,9 +2529,9 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * @param key The primary key of the item to be updated. Each element
      * consists of an attribute name and a value for that attribute. <p>For
      * the primary key, you must provide all of the attributes. For example,
-     * with a hash type primary key, you only need to provide the hash
-     * attribute. For a hash-and-range type primary key, you must provide
-     * both the hash attribute and the range attribute.
+     * with a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * @param attributeUpdates <important> <p>This is a legacy parameter, for
      * backward compatibility. New applications should use
      * <i>UpdateExpression</i> instead. Do not combine legacy parameters and
@@ -2301,7 +2543,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * value for each. If you are updating an attribute that is an index key
      * attribute for any indexes on that table, the attribute type must match
      * the index key type defined in the <i>AttributesDefinition</i> of the
-     * table description. You can use <i>UpdateItem</i> to update any nonkey
+     * table description. You can use <i>UpdateItem</i> to update any non-key
      * attributes. <p>Attribute values cannot be null. String and Binary type
      * attributes must have lengths greater than zero. Set type attributes
      * must not be empty. Requests with empty values will be rejected with a
@@ -2376,7 +2618,11 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      * All of the attributes of the new version of the item are returned.
      * </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     * updated attributes are returned. </li> </ul>
+     * updated attributes are returned. </li> </ul> <p>There is no additional
+     * cost associated with requesting a return value aside from the small
+     * network and processing overhead of receiving a larger response. No
+     * Read Capacity Units are consumed. <p>Values returned are strongly
+     * consistent
      * 
      * @return The response from the UpdateItem service method, as returned
      *         by AmazonDynamoDBv2.
@@ -2430,10 +2676,10 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * @param tableName The name of the table from which to delete the item.
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to delete. <p>For the primary
-     * key, you must provide all of the attributes. For example, with a hash
-     * type primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * key, you must provide all of the attributes. For example, with a
+     * simple primary key, you only need to provide a value for the partition
+     * key. For a composite primary key, you must provide values for both the
+     * partition key and the sort key.
      * 
      * @return The response from the DeleteItem service method, as returned
      *         by AmazonDynamoDBv2.
@@ -2485,10 +2731,10 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * @param tableName The name of the table from which to delete the item.
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to delete. <p>For the primary
-     * key, you must provide all of the attributes. For example, with a hash
-     * type primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * key, you must provide all of the attributes. For example, with a
+     * simple primary key, you only need to provide a value for the partition
+     * key. For a composite primary key, you must provide values for both the
+     * partition key and the sort key.
      * @param returnValues Use <i>ReturnValues</i> if you want to get the
      * item attributes as they appeared before they were deleted. For
      * <i>DeleteItem</i>, the valid values are: <ul> <li>
@@ -2561,15 +2807,23 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     * <p><i>KeyType</i> - Determines whether the key attribute is
-     * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must provide
-     * exactly two elements, in this order: The first element must have a
-     * <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     * <a
+     * <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     * <p>The partition key of an item is also known as its <i>hash
+     * attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     * of an internal hash function to evenly distribute data items across
+     * partitions, based on their partition key values. <p>The sort key of an
+     * item is also known as its <i>range attribute</i>. The term "range
+     * attribute" derives from the way DynamoDB stores items with the same
+     * partition key physically close together, in sorted order by the sort
+     * key value.</note> <p>For a simple primary key (partition key), you
+     * must provide exactly one element with a <i>KeyType</i> of
+     * <code>HASH</code>. <p>For a composite primary key (partition key and
+     * sort key), you must provide exactly two elements, in this order: The
+     * first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     * second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     * <p>For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * @param provisionedThroughput Represents the provisioned throughput
@@ -2712,9 +2966,9 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the
@@ -2882,9 +3136,9 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the
@@ -2960,8 +3214,11 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * <b>NOTE:</b> To prevent a new item from replacing an existing item,
-     * use a conditional put operation with ComparisonOperator set to NULL
-     * for the primary key attribute, or attributes.
+     * use a conditional expression that contains the attribute_not_exists
+     * function with the name of the attribute being used as the partition
+     * key for the table. Since every record must contain that attribute,
+     * the attribute_not_exists function will only succeed if no matching
+     * item exists.
      * </p>
      * <p>
      * For more information about using this API, see
@@ -2974,9 +3231,9 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * attribute. Only the primary key attributes are required; you can
      * optionally provide other attribute name-value pairs for the item.
      * <p>You must provide all of the attributes for the primary key. For
-     * example, with a hash type primary key, you only need to provide the
-     * hash attribute. For a hash-and-range type primary key, you must
-     * provide both the hash attribute and the range attribute. <p>If you
+     * example, with a simple primary key, you only need to provide a value
+     * for the partition key. For a composite primary key, you must provide
+     * both values for both the partition key and the sort key. <p>If you
      * specify any attributes that are part of an index key, then the data
      * types for those attributes must match those of the schema in the
      * table's attribute definition. <p>For more information about primary
@@ -3039,8 +3296,11 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * <b>NOTE:</b> To prevent a new item from replacing an existing item,
-     * use a conditional put operation with ComparisonOperator set to NULL
-     * for the primary key attribute, or attributes.
+     * use a conditional expression that contains the attribute_not_exists
+     * function with the name of the attribute being used as the partition
+     * key for the table. Since every record must contain that attribute,
+     * the attribute_not_exists function will only succeed if no matching
+     * item exists.
      * </p>
      * <p>
      * For more information about using this API, see
@@ -3053,9 +3313,9 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * attribute. Only the primary key attributes are required; you can
      * optionally provide other attribute name-value pairs for the item.
      * <p>You must provide all of the attributes for the primary key. For
-     * example, with a hash type primary key, you only need to provide the
-     * hash attribute. For a hash-and-range type primary key, you must
-     * provide both the hash attribute and the range attribute. <p>If you
+     * example, with a simple primary key, you only need to provide a value
+     * for the partition key. For a composite primary key, you must provide
+     * both values for both the partition key and the sort key. <p>If you
      * specify any attributes that are part of an index key, then the data
      * types for those attributes must match those of the schema in the
      * table's attribute definition. <p>For more information about primary
@@ -3071,8 +3331,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * setting is the default for <i>ReturnValues</i>.) </li> <li>
      * <p><code>ALL_OLD</code> - If <i>PutItem</i> overwrote an attribute
      * name-value pair, then the content of the old item is returned. </li>
-     * </ul> <note><p>Other "Valid Values" are not relevant to
-     * PutItem.</note>
+     * </ul>
      * 
      * @return The response from the PutItem service method, as returned by
      *         AmazonDynamoDBv2.

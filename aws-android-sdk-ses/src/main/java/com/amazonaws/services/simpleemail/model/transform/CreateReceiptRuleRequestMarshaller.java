@@ -153,6 +153,9 @@ public class CreateReceiptRuleRequestMarshaller implements Marshaller<Request<Cr
                         if (sNSActionSNSAction.getTopicArn() != null) {
                             request.addParameter("Rule.Actions.member." + actionsListIndex + ".SNSAction.TopicArn", StringUtils.fromString(sNSActionSNSAction.getTopicArn()));
                         }
+                        if (sNSActionSNSAction.getEncoding() != null) {
+                            request.addParameter("Rule.Actions.member." + actionsListIndex + ".SNSAction.Encoding", StringUtils.fromString(sNSActionSNSAction.getEncoding()));
+                        }
                     }
                 }
 

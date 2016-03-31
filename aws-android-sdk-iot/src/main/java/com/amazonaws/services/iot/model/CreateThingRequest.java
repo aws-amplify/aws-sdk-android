@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.iot.AWSIot#createThing(CreateThingRequest) CreateThing operation}.
  * <p>
- * Creates a thing in the thing registry.
+ * Creates a thing in the Thing Registry.
  * </p>
  *
  * @see com.amazonaws.services.iot.AWSIot#createThing(CreateThingRequest)
@@ -38,8 +38,9 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
     private String thingName;
 
     /**
-     * The attribute payload. Which consists of up to 3 name/value pairs in a
-     * JSON document. For example: {\"attributes\":{\"string1\":\"string2\"}}
+     * The attribute payload, which consists of up to 3 name/value pairs in a
+     * JSON document (for example,
+     * {\"attributes\":{\"string1\":\"string2\"}}).
      */
     private AttributePayload attributePayload;
 
@@ -89,35 +90,41 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * The attribute payload. Which consists of up to 3 name/value pairs in a
-     * JSON document. For example: {\"attributes\":{\"string1\":\"string2\"}}
+     * The attribute payload, which consists of up to 3 name/value pairs in a
+     * JSON document (for example,
+     * {\"attributes\":{\"string1\":\"string2\"}}).
      *
-     * @return The attribute payload. Which consists of up to 3 name/value pairs in a
-     *         JSON document. For example: {\"attributes\":{\"string1\":\"string2\"}}
+     * @return The attribute payload, which consists of up to 3 name/value pairs in a
+     *         JSON document (for example,
+     *         {\"attributes\":{\"string1\":\"string2\"}}).
      */
     public AttributePayload getAttributePayload() {
         return attributePayload;
     }
     
     /**
-     * The attribute payload. Which consists of up to 3 name/value pairs in a
-     * JSON document. For example: {\"attributes\":{\"string1\":\"string2\"}}
+     * The attribute payload, which consists of up to 3 name/value pairs in a
+     * JSON document (for example,
+     * {\"attributes\":{\"string1\":\"string2\"}}).
      *
-     * @param attributePayload The attribute payload. Which consists of up to 3 name/value pairs in a
-     *         JSON document. For example: {\"attributes\":{\"string1\":\"string2\"}}
+     * @param attributePayload The attribute payload, which consists of up to 3 name/value pairs in a
+     *         JSON document (for example,
+     *         {\"attributes\":{\"string1\":\"string2\"}}).
      */
     public void setAttributePayload(AttributePayload attributePayload) {
         this.attributePayload = attributePayload;
     }
     
     /**
-     * The attribute payload. Which consists of up to 3 name/value pairs in a
-     * JSON document. For example: {\"attributes\":{\"string1\":\"string2\"}}
+     * The attribute payload, which consists of up to 3 name/value pairs in a
+     * JSON document (for example,
+     * {\"attributes\":{\"string1\":\"string2\"}}).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param attributePayload The attribute payload. Which consists of up to 3 name/value pairs in a
-     *         JSON document. For example: {\"attributes\":{\"string1\":\"string2\"}}
+     * @param attributePayload The attribute payload, which consists of up to 3 name/value pairs in a
+     *         JSON document (for example,
+     *         {\"attributes\":{\"string1\":\"string2\"}}).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

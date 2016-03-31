@@ -32,10 +32,9 @@ import java.io.Serializable;
  * runtime. The syntax is as follows: ${ <i>sql-expression</i> }.
  * </p>
  * <p>
- * You can specify any expression that's valid in a WHERE or SELECT
- * clause, including JSON properties, comparisons, calculations, and
- * functions. For example, the following field uses the third level of
- * the topic:
+ * You can specify any valid expression in a WHERE or SELECT clause,
+ * including JSON properties, comparisons, calculations, and functions.
+ * For example, the following field uses the third level of the topic:
  * </p>
  * <p>
  * <code>"hashKeyValue": "${topic(3)}"</code>
@@ -80,7 +79,7 @@ public class DynamoDBAction implements Serializable {
     private String rangeKeyValue;
 
     /**
-     * The action payload, this name can be customized.
+     * The action payload. This name can be customized.
      */
     private String payloadField;
 
@@ -283,29 +282,29 @@ public class DynamoDBAction implements Serializable {
     }
 
     /**
-     * The action payload, this name can be customized.
+     * The action payload. This name can be customized.
      *
-     * @return The action payload, this name can be customized.
+     * @return The action payload. This name can be customized.
      */
     public String getPayloadField() {
         return payloadField;
     }
     
     /**
-     * The action payload, this name can be customized.
+     * The action payload. This name can be customized.
      *
-     * @param payloadField The action payload, this name can be customized.
+     * @param payloadField The action payload. This name can be customized.
      */
     public void setPayloadField(String payloadField) {
         this.payloadField = payloadField;
     }
     
     /**
-     * The action payload, this name can be customized.
+     * The action payload. This name can be customized.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param payloadField The action payload, this name can be customized.
+     * @param payloadField The action payload. This name can be customized.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -72,8 +72,9 @@ public class DescribeScheduledInstanceAvailabilityRequest extends AmazonWebServi
     private String nextToken;
 
     /**
-     * The maximum number of results to return in a single call. To retrieve
-     * the remaining results, make another call with the returned
+     * The maximum number of results to return in a single call. This value
+     * can be between 5 and 300. The default value is 300. To retrieve the
+     * remaining results, make another call with the returned
      * <code>NextToken</code> value.
      */
     private Integer maxResults;
@@ -280,12 +281,14 @@ public class DescribeScheduledInstanceAvailabilityRequest extends AmazonWebServi
     }
 
     /**
-     * The maximum number of results to return in a single call. To retrieve
-     * the remaining results, make another call with the returned
+     * The maximum number of results to return in a single call. This value
+     * can be between 5 and 300. The default value is 300. To retrieve the
+     * remaining results, make another call with the returned
      * <code>NextToken</code> value.
      *
-     * @return The maximum number of results to return in a single call. To retrieve
-     *         the remaining results, make another call with the returned
+     * @return The maximum number of results to return in a single call. This value
+     *         can be between 5 and 300. The default value is 300. To retrieve the
+     *         remaining results, make another call with the returned
      *         <code>NextToken</code> value.
      */
     public Integer getMaxResults() {
@@ -293,12 +296,14 @@ public class DescribeScheduledInstanceAvailabilityRequest extends AmazonWebServi
     }
     
     /**
-     * The maximum number of results to return in a single call. To retrieve
-     * the remaining results, make another call with the returned
+     * The maximum number of results to return in a single call. This value
+     * can be between 5 and 300. The default value is 300. To retrieve the
+     * remaining results, make another call with the returned
      * <code>NextToken</code> value.
      *
-     * @param maxResults The maximum number of results to return in a single call. To retrieve
-     *         the remaining results, make another call with the returned
+     * @param maxResults The maximum number of results to return in a single call. This value
+     *         can be between 5 and 300. The default value is 300. To retrieve the
+     *         remaining results, make another call with the returned
      *         <code>NextToken</code> value.
      */
     public void setMaxResults(Integer maxResults) {
@@ -306,14 +311,16 @@ public class DescribeScheduledInstanceAvailabilityRequest extends AmazonWebServi
     }
     
     /**
-     * The maximum number of results to return in a single call. To retrieve
-     * the remaining results, make another call with the returned
+     * The maximum number of results to return in a single call. This value
+     * can be between 5 and 300. The default value is 300. To retrieve the
+     * remaining results, make another call with the returned
      * <code>NextToken</code> value.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param maxResults The maximum number of results to return in a single call. To retrieve
-     *         the remaining results, make another call with the returned
+     * @param maxResults The maximum number of results to return in a single call. This value
+     *         can be between 5 and 300. The default value is 300. To retrieve the
+     *         remaining results, make another call with the returned
      *         <code>NextToken</code> value.
      *
      * @return A reference to this updated object so that method calls can be chained

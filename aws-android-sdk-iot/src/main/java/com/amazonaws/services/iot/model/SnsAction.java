@@ -34,6 +34,20 @@ public class SnsAction implements Serializable {
     private String roleArn;
 
     /**
+     * The message format of the message to publish. Optional. Accepted
+     * values are "JSON" and "RAW". The default value of the attribute is
+     * "RAW". SNS uses this setting to determine if the payload should be
+     * parsed and relevant platform-specific bits of the payload should be
+     * extracted. To read more about SNS message formats, see <a
+     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     * refer to their official documentation.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RAW, JSON
+     */
+    private String messageFormat;
+
+    /**
      * The ARN of the SNS topic.
      *
      * @return The ARN of the SNS topic.
@@ -100,6 +114,148 @@ public class SnsAction implements Serializable {
     }
 
     /**
+     * The message format of the message to publish. Optional. Accepted
+     * values are "JSON" and "RAW". The default value of the attribute is
+     * "RAW". SNS uses this setting to determine if the payload should be
+     * parsed and relevant platform-specific bits of the payload should be
+     * extracted. To read more about SNS message formats, see <a
+     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     * refer to their official documentation.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RAW, JSON
+     *
+     * @return The message format of the message to publish. Optional. Accepted
+     *         values are "JSON" and "RAW". The default value of the attribute is
+     *         "RAW". SNS uses this setting to determine if the payload should be
+     *         parsed and relevant platform-specific bits of the payload should be
+     *         extracted. To read more about SNS message formats, see <a
+     *         href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     *         refer to their official documentation.
+     *
+     * @see MessageFormat
+     */
+    public String getMessageFormat() {
+        return messageFormat;
+    }
+    
+    /**
+     * The message format of the message to publish. Optional. Accepted
+     * values are "JSON" and "RAW". The default value of the attribute is
+     * "RAW". SNS uses this setting to determine if the payload should be
+     * parsed and relevant platform-specific bits of the payload should be
+     * extracted. To read more about SNS message formats, see <a
+     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     * refer to their official documentation.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RAW, JSON
+     *
+     * @param messageFormat The message format of the message to publish. Optional. Accepted
+     *         values are "JSON" and "RAW". The default value of the attribute is
+     *         "RAW". SNS uses this setting to determine if the payload should be
+     *         parsed and relevant platform-specific bits of the payload should be
+     *         extracted. To read more about SNS message formats, see <a
+     *         href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     *         refer to their official documentation.
+     *
+     * @see MessageFormat
+     */
+    public void setMessageFormat(String messageFormat) {
+        this.messageFormat = messageFormat;
+    }
+    
+    /**
+     * The message format of the message to publish. Optional. Accepted
+     * values are "JSON" and "RAW". The default value of the attribute is
+     * "RAW". SNS uses this setting to determine if the payload should be
+     * parsed and relevant platform-specific bits of the payload should be
+     * extracted. To read more about SNS message formats, see <a
+     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     * refer to their official documentation.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RAW, JSON
+     *
+     * @param messageFormat The message format of the message to publish. Optional. Accepted
+     *         values are "JSON" and "RAW". The default value of the attribute is
+     *         "RAW". SNS uses this setting to determine if the payload should be
+     *         parsed and relevant platform-specific bits of the payload should be
+     *         extracted. To read more about SNS message formats, see <a
+     *         href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     *         refer to their official documentation.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     *
+     * @see MessageFormat
+     */
+    public SnsAction withMessageFormat(String messageFormat) {
+        this.messageFormat = messageFormat;
+        return this;
+    }
+
+    /**
+     * The message format of the message to publish. Optional. Accepted
+     * values are "JSON" and "RAW". The default value of the attribute is
+     * "RAW". SNS uses this setting to determine if the payload should be
+     * parsed and relevant platform-specific bits of the payload should be
+     * extracted. To read more about SNS message formats, see <a
+     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     * refer to their official documentation.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RAW, JSON
+     *
+     * @param messageFormat The message format of the message to publish. Optional. Accepted
+     *         values are "JSON" and "RAW". The default value of the attribute is
+     *         "RAW". SNS uses this setting to determine if the payload should be
+     *         parsed and relevant platform-specific bits of the payload should be
+     *         extracted. To read more about SNS message formats, see <a
+     *         href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     *         refer to their official documentation.
+     *
+     * @see MessageFormat
+     */
+    public void setMessageFormat(MessageFormat messageFormat) {
+        this.messageFormat = messageFormat.toString();
+    }
+    
+    /**
+     * The message format of the message to publish. Optional. Accepted
+     * values are "JSON" and "RAW". The default value of the attribute is
+     * "RAW". SNS uses this setting to determine if the payload should be
+     * parsed and relevant platform-specific bits of the payload should be
+     * extracted. To read more about SNS message formats, see <a
+     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     * refer to their official documentation.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RAW, JSON
+     *
+     * @param messageFormat The message format of the message to publish. Optional. Accepted
+     *         values are "JSON" and "RAW". The default value of the attribute is
+     *         "RAW". SNS uses this setting to determine if the payload should be
+     *         parsed and relevant platform-specific bits of the payload should be
+     *         extracted. To read more about SNS message formats, see <a
+     *         href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"/>
+     *         refer to their official documentation.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     *
+     * @see MessageFormat
+     */
+    public SnsAction withMessageFormat(MessageFormat messageFormat) {
+        this.messageFormat = messageFormat.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -112,7 +268,8 @@ public class SnsAction implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getTargetArn() != null) sb.append("TargetArn: " + getTargetArn() + ",");
-        if (getRoleArn() != null) sb.append("RoleArn: " + getRoleArn() );
+        if (getRoleArn() != null) sb.append("RoleArn: " + getRoleArn() + ",");
+        if (getMessageFormat() != null) sb.append("MessageFormat: " + getMessageFormat() );
         sb.append("}");
         return sb.toString();
     }
@@ -124,6 +281,7 @@ public class SnsAction implements Serializable {
         
         hashCode = prime * hashCode + ((getTargetArn() == null) ? 0 : getTargetArn().hashCode()); 
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode()); 
+        hashCode = prime * hashCode + ((getMessageFormat() == null) ? 0 : getMessageFormat().hashCode()); 
         return hashCode;
     }
     
@@ -139,6 +297,8 @@ public class SnsAction implements Serializable {
         if (other.getTargetArn() != null && other.getTargetArn().equals(this.getTargetArn()) == false) return false; 
         if (other.getRoleArn() == null ^ this.getRoleArn() == null) return false;
         if (other.getRoleArn() != null && other.getRoleArn().equals(this.getRoleArn()) == false) return false; 
+        if (other.getMessageFormat() == null ^ this.getMessageFormat() == null) return false;
+        if (other.getMessageFormat() != null && other.getMessageFormat().equals(this.getMessageFormat()) == false) return false; 
         return true;
     }
     

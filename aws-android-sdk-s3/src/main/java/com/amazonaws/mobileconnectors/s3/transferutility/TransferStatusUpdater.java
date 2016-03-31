@@ -325,16 +325,13 @@ class TransferStatusUpdater {
      * transferred bytes and total bytes.
      *
      * @param id id of the transfer
-     * @param bytesCurrent current transferred data in bytes
-     * @param bytesTotal total data to transfer in bytes
      * @return a progress listener
      */
-    ProgressListener newProgressListener(int id, long bytesCurrent, long bytesTotal) {
+    ProgressListener newProgressListener(int id) {
         TransferRecord transfer = getTransfer(id);
         if (transfer == null) {
             throw new IllegalArgumentException("transfer " + id + " doesn't exist");
         }
-        updateProgress(id, bytesCurrent, bytesTotal);
         return new TransferProgressListener(transfer);
     }
 }

@@ -100,7 +100,37 @@ public class ConnectivityPolicyTest {
 
     @Test
     public void isAllowed_hasAllConnectivity_policyIsTrue() {
-        setupConnectivity(true, true, true);
+        setupConnectivity(true, true, true, true);
+        ConnectivityPolicy target = new ConnectivityPolicy(mockContext, true);
+        assertThat(target.isAllowed(), is(true));
+
+        target = new ConnectivityPolicy(mockContext, false);
+        assertThat(target.isAllowed(), is(true));
+    }
+
+    @Test
+    public void isAllowed_hasOnlyWired_policyIsTrue() {
+        setupConnectivity(true, false, false, true);
+        ConnectivityPolicy target = new ConnectivityPolicy(mockContext, true);
+        assertThat(target.isAllowed(), is(true));
+
+        target = new ConnectivityPolicy(mockContext, false);
+        assertThat(target.isAllowed(), is(true));
+    }
+
+    @Test
+    public void isAllowed_hasWifiAndWired_policyIsTrue() {
+        setupConnectivity(true, true, false, true);
+        ConnectivityPolicy target = new ConnectivityPolicy(mockContext, true);
+        assertThat(target.isAllowed(), is(true));
+
+        target = new ConnectivityPolicy(mockContext, false);
+        assertThat(target.isAllowed(), is(true));
+    }
+
+    @Test
+    public void isAllowed_hasWANAndWired_policyIsTrue() {
+        setupConnectivity(true, false, true, true);
         ConnectivityPolicy target = new ConnectivityPolicy(mockContext, true);
         assertThat(target.isAllowed(), is(true));
 
@@ -129,9 +159,14 @@ public class ConnectivityPolicyTest {
     }
 
     private void setupConnectivity(boolean isConnected, boolean hasWifi, boolean hasWan) {
+        setupConnectivity(isConnected, hasWifi, hasWan, false);
+    }
+
+    private void setupConnectivity(boolean isConnected, boolean hasWifi, boolean hasWan, boolean hasWired) {
         when(mockConnectivity.isConnected()).thenReturn(isConnected);
         when(mockConnectivity.hasWifi()).thenReturn(hasWifi);
         when(mockConnectivity.hasWAN()).thenReturn(hasWan);
+        when(mockConnectivity.hasWired()).thenReturn(hasWired);
     }
 
 }

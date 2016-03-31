@@ -61,16 +61,17 @@ public class BatchWriteItemResult implements Serializable {
      * each table, information about any item collections that were affected
      * by individual <i>DeleteItem</i> or <i>PutItem</i> operations. <p>Each
      * entry consists of the following subelements: <ul> <li>
-     * <p><i>ItemCollectionKey</i> - The hash key value of the item
-     * collection. This is the same as the hash key of the item. </li> <li>
-     * <p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * expressed in GB. This is a two-element array containing a lower bound
-     * and an upper bound for the estimate. The estimate includes the size of
-     * all the items in the table, plus the size of all attributes projected
-     * into all of the local secondary indexes on the table. Use this
-     * estimate to measure whether a local secondary index is approaching its
-     * size limit. <p>The estimate is subject to change over time; therefore,
-     * do not rely on the precision or accuracy of the estimate. </li> </ul>
+     * <p><i>ItemCollectionKey</i> - The partition key value of the item
+     * collection. This is the same as the partition key value of the item.
+     * </li> <li> <p><i>SizeEstimateRange</i> - An estimate of item
+     * collection size, expressed in GB. This is a two-element array
+     * containing a lower bound and an upper bound for the estimate. The
+     * estimate includes the size of all the items in the table, plus the
+     * size of all attributes projected into all of the local secondary
+     * indexes on the table. Use this estimate to measure whether a local
+     * secondary index is approaching its size limit. <p>The estimate is
+     * subject to change over time; therefore, do not rely on the precision
+     * or accuracy of the estimate. </li> </ul>
      */
     private java.util.Map<String,java.util.List<ItemCollectionMetrics>> itemCollectionMetrics;
 
@@ -338,31 +339,33 @@ public class BatchWriteItemResult implements Serializable {
      * each table, information about any item collections that were affected
      * by individual <i>DeleteItem</i> or <i>PutItem</i> operations. <p>Each
      * entry consists of the following subelements: <ul> <li>
-     * <p><i>ItemCollectionKey</i> - The hash key value of the item
-     * collection. This is the same as the hash key of the item. </li> <li>
-     * <p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * expressed in GB. This is a two-element array containing a lower bound
-     * and an upper bound for the estimate. The estimate includes the size of
-     * all the items in the table, plus the size of all attributes projected
-     * into all of the local secondary indexes on the table. Use this
-     * estimate to measure whether a local secondary index is approaching its
-     * size limit. <p>The estimate is subject to change over time; therefore,
-     * do not rely on the precision or accuracy of the estimate. </li> </ul>
+     * <p><i>ItemCollectionKey</i> - The partition key value of the item
+     * collection. This is the same as the partition key value of the item.
+     * </li> <li> <p><i>SizeEstimateRange</i> - An estimate of item
+     * collection size, expressed in GB. This is a two-element array
+     * containing a lower bound and an upper bound for the estimate. The
+     * estimate includes the size of all the items in the table, plus the
+     * size of all attributes projected into all of the local secondary
+     * indexes on the table. Use this estimate to measure whether a local
+     * secondary index is approaching its size limit. <p>The estimate is
+     * subject to change over time; therefore, do not rely on the precision
+     * or accuracy of the estimate. </li> </ul>
      *
      * @return A list of tables that were processed by <i>BatchWriteItem</i> and, for
      *         each table, information about any item collections that were affected
      *         by individual <i>DeleteItem</i> or <i>PutItem</i> operations. <p>Each
      *         entry consists of the following subelements: <ul> <li>
-     *         <p><i>ItemCollectionKey</i> - The hash key value of the item
-     *         collection. This is the same as the hash key of the item. </li> <li>
-     *         <p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         expressed in GB. This is a two-element array containing a lower bound
-     *         and an upper bound for the estimate. The estimate includes the size of
-     *         all the items in the table, plus the size of all attributes projected
-     *         into all of the local secondary indexes on the table. Use this
-     *         estimate to measure whether a local secondary index is approaching its
-     *         size limit. <p>The estimate is subject to change over time; therefore,
-     *         do not rely on the precision or accuracy of the estimate. </li> </ul>
+     *         <p><i>ItemCollectionKey</i> - The partition key value of the item
+     *         collection. This is the same as the partition key value of the item.
+     *         </li> <li> <p><i>SizeEstimateRange</i> - An estimate of item
+     *         collection size, expressed in GB. This is a two-element array
+     *         containing a lower bound and an upper bound for the estimate. The
+     *         estimate includes the size of all the items in the table, plus the
+     *         size of all attributes projected into all of the local secondary
+     *         indexes on the table. Use this estimate to measure whether a local
+     *         secondary index is approaching its size limit. <p>The estimate is
+     *         subject to change over time; therefore, do not rely on the precision
+     *         or accuracy of the estimate. </li> </ul>
      */
     public java.util.Map<String,java.util.List<ItemCollectionMetrics>> getItemCollectionMetrics() {
         
@@ -374,31 +377,33 @@ public class BatchWriteItemResult implements Serializable {
      * each table, information about any item collections that were affected
      * by individual <i>DeleteItem</i> or <i>PutItem</i> operations. <p>Each
      * entry consists of the following subelements: <ul> <li>
-     * <p><i>ItemCollectionKey</i> - The hash key value of the item
-     * collection. This is the same as the hash key of the item. </li> <li>
-     * <p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * expressed in GB. This is a two-element array containing a lower bound
-     * and an upper bound for the estimate. The estimate includes the size of
-     * all the items in the table, plus the size of all attributes projected
-     * into all of the local secondary indexes on the table. Use this
-     * estimate to measure whether a local secondary index is approaching its
-     * size limit. <p>The estimate is subject to change over time; therefore,
-     * do not rely on the precision or accuracy of the estimate. </li> </ul>
+     * <p><i>ItemCollectionKey</i> - The partition key value of the item
+     * collection. This is the same as the partition key value of the item.
+     * </li> <li> <p><i>SizeEstimateRange</i> - An estimate of item
+     * collection size, expressed in GB. This is a two-element array
+     * containing a lower bound and an upper bound for the estimate. The
+     * estimate includes the size of all the items in the table, plus the
+     * size of all attributes projected into all of the local secondary
+     * indexes on the table. Use this estimate to measure whether a local
+     * secondary index is approaching its size limit. <p>The estimate is
+     * subject to change over time; therefore, do not rely on the precision
+     * or accuracy of the estimate. </li> </ul>
      *
      * @param itemCollectionMetrics A list of tables that were processed by <i>BatchWriteItem</i> and, for
      *         each table, information about any item collections that were affected
      *         by individual <i>DeleteItem</i> or <i>PutItem</i> operations. <p>Each
      *         entry consists of the following subelements: <ul> <li>
-     *         <p><i>ItemCollectionKey</i> - The hash key value of the item
-     *         collection. This is the same as the hash key of the item. </li> <li>
-     *         <p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         expressed in GB. This is a two-element array containing a lower bound
-     *         and an upper bound for the estimate. The estimate includes the size of
-     *         all the items in the table, plus the size of all attributes projected
-     *         into all of the local secondary indexes on the table. Use this
-     *         estimate to measure whether a local secondary index is approaching its
-     *         size limit. <p>The estimate is subject to change over time; therefore,
-     *         do not rely on the precision or accuracy of the estimate. </li> </ul>
+     *         <p><i>ItemCollectionKey</i> - The partition key value of the item
+     *         collection. This is the same as the partition key value of the item.
+     *         </li> <li> <p><i>SizeEstimateRange</i> - An estimate of item
+     *         collection size, expressed in GB. This is a two-element array
+     *         containing a lower bound and an upper bound for the estimate. The
+     *         estimate includes the size of all the items in the table, plus the
+     *         size of all attributes projected into all of the local secondary
+     *         indexes on the table. Use this estimate to measure whether a local
+     *         secondary index is approaching its size limit. <p>The estimate is
+     *         subject to change over time; therefore, do not rely on the precision
+     *         or accuracy of the estimate. </li> </ul>
      */
     public void setItemCollectionMetrics(java.util.Map<String,java.util.List<ItemCollectionMetrics>> itemCollectionMetrics) {
         this.itemCollectionMetrics = itemCollectionMetrics;
@@ -409,16 +414,17 @@ public class BatchWriteItemResult implements Serializable {
      * each table, information about any item collections that were affected
      * by individual <i>DeleteItem</i> or <i>PutItem</i> operations. <p>Each
      * entry consists of the following subelements: <ul> <li>
-     * <p><i>ItemCollectionKey</i> - The hash key value of the item
-     * collection. This is the same as the hash key of the item. </li> <li>
-     * <p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * expressed in GB. This is a two-element array containing a lower bound
-     * and an upper bound for the estimate. The estimate includes the size of
-     * all the items in the table, plus the size of all attributes projected
-     * into all of the local secondary indexes on the table. Use this
-     * estimate to measure whether a local secondary index is approaching its
-     * size limit. <p>The estimate is subject to change over time; therefore,
-     * do not rely on the precision or accuracy of the estimate. </li> </ul>
+     * <p><i>ItemCollectionKey</i> - The partition key value of the item
+     * collection. This is the same as the partition key value of the item.
+     * </li> <li> <p><i>SizeEstimateRange</i> - An estimate of item
+     * collection size, expressed in GB. This is a two-element array
+     * containing a lower bound and an upper bound for the estimate. The
+     * estimate includes the size of all the items in the table, plus the
+     * size of all attributes projected into all of the local secondary
+     * indexes on the table. Use this estimate to measure whether a local
+     * secondary index is approaching its size limit. <p>The estimate is
+     * subject to change over time; therefore, do not rely on the precision
+     * or accuracy of the estimate. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -426,16 +432,17 @@ public class BatchWriteItemResult implements Serializable {
      *         each table, information about any item collections that were affected
      *         by individual <i>DeleteItem</i> or <i>PutItem</i> operations. <p>Each
      *         entry consists of the following subelements: <ul> <li>
-     *         <p><i>ItemCollectionKey</i> - The hash key value of the item
-     *         collection. This is the same as the hash key of the item. </li> <li>
-     *         <p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         expressed in GB. This is a two-element array containing a lower bound
-     *         and an upper bound for the estimate. The estimate includes the size of
-     *         all the items in the table, plus the size of all attributes projected
-     *         into all of the local secondary indexes on the table. Use this
-     *         estimate to measure whether a local secondary index is approaching its
-     *         size limit. <p>The estimate is subject to change over time; therefore,
-     *         do not rely on the precision or accuracy of the estimate. </li> </ul>
+     *         <p><i>ItemCollectionKey</i> - The partition key value of the item
+     *         collection. This is the same as the partition key value of the item.
+     *         </li> <li> <p><i>SizeEstimateRange</i> - An estimate of item
+     *         collection size, expressed in GB. This is a two-element array
+     *         containing a lower bound and an upper bound for the estimate. The
+     *         estimate includes the size of all the items in the table, plus the
+     *         size of all attributes projected into all of the local secondary
+     *         indexes on the table. Use this estimate to measure whether a local
+     *         secondary index is approaching its size limit. <p>The estimate is
+     *         subject to change over time; therefore, do not rely on the precision
+     *         or accuracy of the estimate. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -450,16 +457,17 @@ public class BatchWriteItemResult implements Serializable {
      * each table, information about any item collections that were affected
      * by individual <i>DeleteItem</i> or <i>PutItem</i> operations. <p>Each
      * entry consists of the following subelements: <ul> <li>
-     * <p><i>ItemCollectionKey</i> - The hash key value of the item
-     * collection. This is the same as the hash key of the item. </li> <li>
-     * <p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * expressed in GB. This is a two-element array containing a lower bound
-     * and an upper bound for the estimate. The estimate includes the size of
-     * all the items in the table, plus the size of all attributes projected
-     * into all of the local secondary indexes on the table. Use this
-     * estimate to measure whether a local secondary index is approaching its
-     * size limit. <p>The estimate is subject to change over time; therefore,
-     * do not rely on the precision or accuracy of the estimate. </li> </ul>
+     * <p><i>ItemCollectionKey</i> - The partition key value of the item
+     * collection. This is the same as the partition key value of the item.
+     * </li> <li> <p><i>SizeEstimateRange</i> - An estimate of item
+     * collection size, expressed in GB. This is a two-element array
+     * containing a lower bound and an upper bound for the estimate. The
+     * estimate includes the size of all the items in the table, plus the
+     * size of all attributes projected into all of the local secondary
+     * indexes on the table. Use this estimate to measure whether a local
+     * secondary index is approaching its size limit. <p>The estimate is
+     * subject to change over time; therefore, do not rely on the precision
+     * or accuracy of the estimate. </li> </ul>
      * <p>
      * The method adds a new key-value pair into ItemCollectionMetrics
      * parameter, and returns a reference to this object so that method calls

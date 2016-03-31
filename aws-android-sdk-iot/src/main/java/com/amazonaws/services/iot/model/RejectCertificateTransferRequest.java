@@ -30,9 +30,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * enumerate your certificates.
  * </p>
  * <p>
- * This operation can only be called by the transfer destination. Once
- * called, the certificate will be returned to the source's account in
- * the INACTIVE state.
+ * This operation can only be called by the transfer destination. After
+ * it is called, the certificate will be returned to the source's account
+ * in the INACTIVE state.
  * </p>
  *
  * @see com.amazonaws.services.iot.AWSIot#rejectCertificateTransfer(RejectCertificateTransferRequest)

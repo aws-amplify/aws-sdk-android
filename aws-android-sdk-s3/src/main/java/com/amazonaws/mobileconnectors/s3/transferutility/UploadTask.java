@@ -110,8 +110,7 @@ class UploadTask implements Callable<Boolean> {
         }
         updater.updateProgress(upload.id, bytesAlreadyTransferrd, upload.bytesTotal);
 
-        ProgressListener transferProgress = updater.newProgressListener(upload.id,
-                bytesAlreadyTransferrd, upload.bytesTotal);
+        ProgressListener transferProgress = updater.newProgressListener(upload.id);
         List<UploadPartRequest> requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
                 upload.multipartId);
         Log.d(TAG, "multipart upload " + upload.id + " in " + requestList.size() + " parts.");
@@ -187,8 +186,7 @@ class UploadTask implements Callable<Boolean> {
         long length = putObjectRequest.getFile().length();
         TransferUtility.appendTransferServiceUserAgentString(putObjectRequest);
         updater.updateProgress(upload.id, 0, length);
-        putObjectRequest.setGeneralProgressListener(updater.newProgressListener(upload.id, 0,
-                length));
+        putObjectRequest.setGeneralProgressListener(updater.newProgressListener(upload.id));
 
         try {
             s3.putObject(putObjectRequest);

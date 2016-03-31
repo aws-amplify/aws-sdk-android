@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * idempotent.
  * </p>
  * <p>
- * Moving a cert from the ACTIVE state (including REVOKED) will NOT
- * disconnect currently-connected devices, although these devices will be
+ * Moving a certificate from the ACTIVE state (including REVOKED) will
+ * not disconnect currently connected devices, but these devices will be
  * unable to reconnect.
  * </p>
  * <p>
@@ -48,9 +48,9 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
     private String certificateId;
 
     /**
-     * The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     * result in an exception being thrown. PENDING_TRANSFER is a status used
-     * internally by AWS IoT and is not meant to be used by developers.
+     * The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     * will result in an exception being thrown. PENDING_TRANSFER is a status
+     * used internally by AWS IoT. It is not intended for developer use.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER
@@ -103,16 +103,16 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     * result in an exception being thrown. PENDING_TRANSFER is a status used
-     * internally by AWS IoT and is not meant to be used by developers.
+     * The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     * will result in an exception being thrown. PENDING_TRANSFER is a status
+     * used internally by AWS IoT. It is not intended for developer use.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER
      *
-     * @return The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     *         result in an exception being thrown. PENDING_TRANSFER is a status used
-     *         internally by AWS IoT and is not meant to be used by developers.
+     * @return The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     *         will result in an exception being thrown. PENDING_TRANSFER is a status
+     *         used internally by AWS IoT. It is not intended for developer use.
      *
      * @see CertificateStatus
      */
@@ -121,16 +121,16 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
     }
     
     /**
-     * The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     * result in an exception being thrown. PENDING_TRANSFER is a status used
-     * internally by AWS IoT and is not meant to be used by developers.
+     * The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     * will result in an exception being thrown. PENDING_TRANSFER is a status
+     * used internally by AWS IoT. It is not intended for developer use.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER
      *
-     * @param newStatus The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     *         result in an exception being thrown. PENDING_TRANSFER is a status used
-     *         internally by AWS IoT and is not meant to be used by developers.
+     * @param newStatus The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     *         will result in an exception being thrown. PENDING_TRANSFER is a status
+     *         used internally by AWS IoT. It is not intended for developer use.
      *
      * @see CertificateStatus
      */
@@ -139,18 +139,18 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
     }
     
     /**
-     * The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     * result in an exception being thrown. PENDING_TRANSFER is a status used
-     * internally by AWS IoT and is not meant to be used by developers.
+     * The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     * will result in an exception being thrown. PENDING_TRANSFER is a status
+     * used internally by AWS IoT. It is not intended for developer use.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER
      *
-     * @param newStatus The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     *         result in an exception being thrown. PENDING_TRANSFER is a status used
-     *         internally by AWS IoT and is not meant to be used by developers.
+     * @param newStatus The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     *         will result in an exception being thrown. PENDING_TRANSFER is a status
+     *         used internally by AWS IoT. It is not intended for developer use.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -163,16 +163,16 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     * result in an exception being thrown. PENDING_TRANSFER is a status used
-     * internally by AWS IoT and is not meant to be used by developers.
+     * The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     * will result in an exception being thrown. PENDING_TRANSFER is a status
+     * used internally by AWS IoT. It is not intended for developer use.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER
      *
-     * @param newStatus The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     *         result in an exception being thrown. PENDING_TRANSFER is a status used
-     *         internally by AWS IoT and is not meant to be used by developers.
+     * @param newStatus The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     *         will result in an exception being thrown. PENDING_TRANSFER is a status
+     *         used internally by AWS IoT. It is not intended for developer use.
      *
      * @see CertificateStatus
      */
@@ -181,18 +181,18 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
     }
     
     /**
-     * The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     * result in an exception being thrown. PENDING_TRANSFER is a status used
-     * internally by AWS IoT and is not meant to be used by developers.
+     * The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     * will result in an exception being thrown. PENDING_TRANSFER is a status
+     * used internally by AWS IoT. It is not intended for developer use.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER
      *
-     * @param newStatus The new status. <p>Note: setting the status to PENDING_TRANSFER will
-     *         result in an exception being thrown. PENDING_TRANSFER is a status used
-     *         internally by AWS IoT and is not meant to be used by developers.
+     * @param newStatus The new status. <p><b>Note:</b> Setting the status to PENDING_TRANSFER
+     *         will result in an exception being thrown. PENDING_TRANSFER is a status
+     *         used internally by AWS IoT. It is not intended for developer use.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

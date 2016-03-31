@@ -59,6 +59,17 @@ public class SNSAction implements Serializable {
     private String topicArn;
 
     /**
+     * The encoding to use for the email within the Amazon SNS notification.
+     * UTF-8 is easier to use, but may not preserve all special characters
+     * when a message was encoded with a different encoding format. Base64
+     * preserves all special characters. The default value is UTF-8.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>UTF-8, Base64
+     */
+    private String encoding;
+
+    /**
      * The Amazon Resource Name (ARN) of the Amazon SNS topic to notify. An
      * example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
@@ -122,6 +133,118 @@ public class SNSAction implements Serializable {
     }
 
     /**
+     * The encoding to use for the email within the Amazon SNS notification.
+     * UTF-8 is easier to use, but may not preserve all special characters
+     * when a message was encoded with a different encoding format. Base64
+     * preserves all special characters. The default value is UTF-8.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>UTF-8, Base64
+     *
+     * @return The encoding to use for the email within the Amazon SNS notification.
+     *         UTF-8 is easier to use, but may not preserve all special characters
+     *         when a message was encoded with a different encoding format. Base64
+     *         preserves all special characters. The default value is UTF-8.
+     *
+     * @see SNSActionEncoding
+     */
+    public String getEncoding() {
+        return encoding;
+    }
+    
+    /**
+     * The encoding to use for the email within the Amazon SNS notification.
+     * UTF-8 is easier to use, but may not preserve all special characters
+     * when a message was encoded with a different encoding format. Base64
+     * preserves all special characters. The default value is UTF-8.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>UTF-8, Base64
+     *
+     * @param encoding The encoding to use for the email within the Amazon SNS notification.
+     *         UTF-8 is easier to use, but may not preserve all special characters
+     *         when a message was encoded with a different encoding format. Base64
+     *         preserves all special characters. The default value is UTF-8.
+     *
+     * @see SNSActionEncoding
+     */
+    public void setEncoding(String encoding) {
+        this.encoding = encoding;
+    }
+    
+    /**
+     * The encoding to use for the email within the Amazon SNS notification.
+     * UTF-8 is easier to use, but may not preserve all special characters
+     * when a message was encoded with a different encoding format. Base64
+     * preserves all special characters. The default value is UTF-8.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>UTF-8, Base64
+     *
+     * @param encoding The encoding to use for the email within the Amazon SNS notification.
+     *         UTF-8 is easier to use, but may not preserve all special characters
+     *         when a message was encoded with a different encoding format. Base64
+     *         preserves all special characters. The default value is UTF-8.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     *
+     * @see SNSActionEncoding
+     */
+    public SNSAction withEncoding(String encoding) {
+        this.encoding = encoding;
+        return this;
+    }
+
+    /**
+     * The encoding to use for the email within the Amazon SNS notification.
+     * UTF-8 is easier to use, but may not preserve all special characters
+     * when a message was encoded with a different encoding format. Base64
+     * preserves all special characters. The default value is UTF-8.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>UTF-8, Base64
+     *
+     * @param encoding The encoding to use for the email within the Amazon SNS notification.
+     *         UTF-8 is easier to use, but may not preserve all special characters
+     *         when a message was encoded with a different encoding format. Base64
+     *         preserves all special characters. The default value is UTF-8.
+     *
+     * @see SNSActionEncoding
+     */
+    public void setEncoding(SNSActionEncoding encoding) {
+        this.encoding = encoding.toString();
+    }
+    
+    /**
+     * The encoding to use for the email within the Amazon SNS notification.
+     * UTF-8 is easier to use, but may not preserve all special characters
+     * when a message was encoded with a different encoding format. Base64
+     * preserves all special characters. The default value is UTF-8.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>UTF-8, Base64
+     *
+     * @param encoding The encoding to use for the email within the Amazon SNS notification.
+     *         UTF-8 is easier to use, but may not preserve all special characters
+     *         when a message was encoded with a different encoding format. Base64
+     *         preserves all special characters. The default value is UTF-8.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     *
+     * @see SNSActionEncoding
+     */
+    public SNSAction withEncoding(SNSActionEncoding encoding) {
+        this.encoding = encoding.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -133,7 +256,8 @@ public class SNSAction implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getTopicArn() != null) sb.append("TopicArn: " + getTopicArn() );
+        if (getTopicArn() != null) sb.append("TopicArn: " + getTopicArn() + ",");
+        if (getEncoding() != null) sb.append("Encoding: " + getEncoding() );
         sb.append("}");
         return sb.toString();
     }
@@ -144,6 +268,7 @@ public class SNSAction implements Serializable {
         int hashCode = 1;
         
         hashCode = prime * hashCode + ((getTopicArn() == null) ? 0 : getTopicArn().hashCode()); 
+        hashCode = prime * hashCode + ((getEncoding() == null) ? 0 : getEncoding().hashCode()); 
         return hashCode;
     }
     
@@ -157,6 +282,8 @@ public class SNSAction implements Serializable {
         
         if (other.getTopicArn() == null ^ this.getTopicArn() == null) return false;
         if (other.getTopicArn() != null && other.getTopicArn().equals(this.getTopicArn()) == false) return false; 
+        if (other.getEncoding() == null ^ this.getEncoding() == null) return false;
+        if (other.getEncoding() != null && other.getEncoding().equals(this.getEncoding()) == false) return false; 
         return true;
     }
     

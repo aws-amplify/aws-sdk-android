@@ -146,6 +146,9 @@ public class CreateTopicRuleRequestMarshaller implements Marshaller<Request<Crea
                                 if (sns.getRoleArn() != null) {
                                     jsonWriter.name("roleArn").value(sns.getRoleArn());
                                 }
+                                if (sns.getMessageFormat() != null) {
+                                    jsonWriter.name("messageFormat").value(sns.getMessageFormat());
+                                }
                                 jsonWriter.endObject();
                             }
                             SqsAction sqs = actionsListValue.getSqs();
@@ -224,6 +227,75 @@ public class CreateTopicRuleRequestMarshaller implements Marshaller<Request<Crea
                                 }
                                 if (firehose.getDeliveryStreamName() != null) {
                                     jsonWriter.name("deliveryStreamName").value(firehose.getDeliveryStreamName());
+                                }
+                                jsonWriter.endObject();
+                            }
+                            CloudwatchMetricAction cloudwatchMetric = actionsListValue.getCloudwatchMetric();
+                            if (cloudwatchMetric != null) {
+
+                                jsonWriter.name("cloudwatchMetric");
+                                jsonWriter.beginObject();
+
+                                if (cloudwatchMetric.getRoleArn() != null) {
+                                    jsonWriter.name("roleArn").value(cloudwatchMetric.getRoleArn());
+                                }
+                                if (cloudwatchMetric.getMetricNamespace() != null) {
+                                    jsonWriter.name("metricNamespace").value(cloudwatchMetric.getMetricNamespace());
+                                }
+                                if (cloudwatchMetric.getMetricName() != null) {
+                                    jsonWriter.name("metricName").value(cloudwatchMetric.getMetricName());
+                                }
+                                if (cloudwatchMetric.getMetricValue() != null) {
+                                    jsonWriter.name("metricValue").value(cloudwatchMetric.getMetricValue());
+                                }
+                                if (cloudwatchMetric.getMetricUnit() != null) {
+                                    jsonWriter.name("metricUnit").value(cloudwatchMetric.getMetricUnit());
+                                }
+                                if (cloudwatchMetric.getMetricTimestamp() != null) {
+                                    jsonWriter.name("metricTimestamp").value(cloudwatchMetric.getMetricTimestamp());
+                                }
+                                jsonWriter.endObject();
+                            }
+                            CloudwatchAlarmAction cloudwatchAlarm = actionsListValue.getCloudwatchAlarm();
+                            if (cloudwatchAlarm != null) {
+
+                                jsonWriter.name("cloudwatchAlarm");
+                                jsonWriter.beginObject();
+
+                                if (cloudwatchAlarm.getRoleArn() != null) {
+                                    jsonWriter.name("roleArn").value(cloudwatchAlarm.getRoleArn());
+                                }
+                                if (cloudwatchAlarm.getAlarmName() != null) {
+                                    jsonWriter.name("alarmName").value(cloudwatchAlarm.getAlarmName());
+                                }
+                                if (cloudwatchAlarm.getStateReason() != null) {
+                                    jsonWriter.name("stateReason").value(cloudwatchAlarm.getStateReason());
+                                }
+                                if (cloudwatchAlarm.getStateValue() != null) {
+                                    jsonWriter.name("stateValue").value(cloudwatchAlarm.getStateValue());
+                                }
+                                jsonWriter.endObject();
+                            }
+                            ElasticsearchAction elasticsearch = actionsListValue.getElasticsearch();
+                            if (elasticsearch != null) {
+
+                                jsonWriter.name("elasticsearch");
+                                jsonWriter.beginObject();
+
+                                if (elasticsearch.getRoleArn() != null) {
+                                    jsonWriter.name("roleArn").value(elasticsearch.getRoleArn());
+                                }
+                                if (elasticsearch.getEndpoint() != null) {
+                                    jsonWriter.name("endpoint").value(elasticsearch.getEndpoint());
+                                }
+                                if (elasticsearch.getIndex() != null) {
+                                    jsonWriter.name("index").value(elasticsearch.getIndex());
+                                }
+                                if (elasticsearch.getType() != null) {
+                                    jsonWriter.name("type").value(elasticsearch.getType());
+                                }
+                                if (elasticsearch.getId() != null) {
+                                    jsonWriter.name("id").value(elasticsearch.getId());
                                 }
                                 jsonWriter.endObject();
                             }

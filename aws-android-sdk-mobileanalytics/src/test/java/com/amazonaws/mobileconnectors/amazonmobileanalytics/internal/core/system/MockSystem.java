@@ -24,6 +24,7 @@ public class MockSystem implements
     private boolean isConnected = true;
     private boolean hasWifi = true;
     private boolean hasWAN = true;
+    private boolean hasWired = false;
     private final FileManager fileManager;
     private final Preferences preferences = new MockPreferences();
     private final File rootTestDirectory;
@@ -66,6 +67,10 @@ public class MockSystem implements
                 return hasWAN;
             }
 
+            @Override
+            public boolean hasWired() {
+                return hasWired;
+            }
         };
     }
 
@@ -91,6 +96,9 @@ public class MockSystem implements
         this.hasWAN = hasWAN;
     }
 
+    public void setWired(final boolean hasWired) {
+        this.hasWired = hasWired;
+    }
     public void setLocale(Locale locale) {
         this.deviceDetails.setLocale(locale);
     }

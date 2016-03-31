@@ -53,6 +53,9 @@ public class CompleteLifecycleActionRequestMarshaller implements Marshaller<Requ
         if (completeLifecycleActionRequest.getLifecycleActionResult() != null) {
             request.addParameter("LifecycleActionResult", StringUtils.fromString(completeLifecycleActionRequest.getLifecycleActionResult()));
         }
+        if (completeLifecycleActionRequest.getInstanceId() != null) {
+            request.addParameter("InstanceId", StringUtils.fromString(completeLifecycleActionRequest.getInstanceId()));
+        }
 
         return request;
     }

@@ -17,10 +17,7 @@ package com.amazonaws.services.simpleemail.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Represents a list of all the email addresses verified for the current
- * user.
- * </p>
+ * List Verified Email Addresses Result
  */
 public class ListVerifiedEmailAddressesResult implements Serializable {
 

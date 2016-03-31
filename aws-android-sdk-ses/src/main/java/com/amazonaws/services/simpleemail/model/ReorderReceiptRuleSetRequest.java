@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <b>NOTE:</b>All of the rules in the rule set must be represented in
  * this request. That is, this API will return an error if the reorder
- * request doesn’t explicitly position all of the rules.
+ * request doesn't explicitly position all of the rules.
  * </p>
  * <p>
  * For information about managing receipt rule sets, see the

@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.iot.AWSIot#disableTopicRule(DisableTopicRuleRequest) DisableTopicRule operation}.
  * <p>
- * Disables the specified rule
+ * Disables the specified rule.
  * </p>
  *
  * @see com.amazonaws.services.iot.AWSIot#disableTopicRule(DisableTopicRuleRequest)

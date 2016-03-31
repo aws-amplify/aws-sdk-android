@@ -38,9 +38,9 @@ public class DescribeThingResult implements Serializable {
     private String thingName;
 
     /**
-     * The attributes which are name/value pairs in JSON format. For example:
-     * <p>{\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}}
+     * The attributes, which are name/value pairs in JSON format (for
+     * example: {\"attributes\":{\"some-name1\":\"some-value1\"},
+     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
      */
     private java.util.Map<String,String> attributes;
 
@@ -123,13 +123,13 @@ public class DescribeThingResult implements Serializable {
     }
 
     /**
-     * The attributes which are name/value pairs in JSON format. For example:
-     * <p>{\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}}
+     * The attributes, which are name/value pairs in JSON format (for
+     * example: {\"attributes\":{\"some-name1\":\"some-value1\"},
+     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
      *
-     * @return The attributes which are name/value pairs in JSON format. For example:
-     *         <p>{\"attributes\":{\"some-name1\":\"some-value1\"},
-     *         {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}}
+     * @return The attributes, which are name/value pairs in JSON format (for
+     *         example: {\"attributes\":{\"some-name1\":\"some-value1\"},
+     *         {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
      */
     public java.util.Map<String,String> getAttributes() {
         
@@ -140,28 +140,28 @@ public class DescribeThingResult implements Serializable {
     }
     
     /**
-     * The attributes which are name/value pairs in JSON format. For example:
-     * <p>{\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}}
+     * The attributes, which are name/value pairs in JSON format (for
+     * example: {\"attributes\":{\"some-name1\":\"some-value1\"},
+     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
      *
-     * @param attributes The attributes which are name/value pairs in JSON format. For example:
-     *         <p>{\"attributes\":{\"some-name1\":\"some-value1\"},
-     *         {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}}
+     * @param attributes The attributes, which are name/value pairs in JSON format (for
+     *         example: {\"attributes\":{\"some-name1\":\"some-value1\"},
+     *         {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
      */
     public void setAttributes(java.util.Map<String,String> attributes) {
         this.attributes = attributes;
     }
     
     /**
-     * The attributes which are name/value pairs in JSON format. For example:
-     * <p>{\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}}
+     * The attributes, which are name/value pairs in JSON format (for
+     * example: {\"attributes\":{\"some-name1\":\"some-value1\"},
+     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param attributes The attributes which are name/value pairs in JSON format. For example:
-     *         <p>{\"attributes\":{\"some-name1\":\"some-value1\"},
-     *         {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}}
+     * @param attributes The attributes, which are name/value pairs in JSON format (for
+     *         example: {\"attributes\":{\"some-name1\":\"some-value1\"},
+     *         {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -172,9 +172,9 @@ public class DescribeThingResult implements Serializable {
     }
 
     /**
-     * The attributes which are name/value pairs in JSON format. For example:
-     * <p>{\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}}
+     * The attributes, which are name/value pairs in JSON format (for
+     * example: {\"attributes\":{\"some-name1\":\"some-value1\"},
+     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and
      * returns a reference to this object so that method calls can be chained

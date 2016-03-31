@@ -87,7 +87,7 @@ public final class AWSIotKeystoreHelper {
      * @param privKey The private key.
      * @param keystorePath The path to keystore.
      * @param keystoreName The name of the keystore.
-     * @param keystorePassword The password for the private key in the keystore.
+     * @param keystorePassword The password for the keystore.
      */
     public static void saveCertificateAndPrivateKey(String certId, String certPem,
             PrivateKey privKey, String keystorePath, String keystoreName, String keystorePassword) {
@@ -172,7 +172,7 @@ public final class AWSIotKeystoreHelper {
      *            BEGIN RSA/END RSA strings.
      * @param keystorePath The path to keystore.
      * @param keystoreName The name of the keystore.
-     * @param keystorePassword The password for keystore.
+     * @param keystorePassword The password for the keystore.
      */
     public static void saveCertificateAndPrivateKey(String certId, String certPem, String keyPem,
             String keystorePath, String keystoreName, String keystorePassword) {
@@ -201,7 +201,7 @@ public final class AWSIotKeystoreHelper {
      * @param certId The certificate Id or alias.
      * @param keystorePath The path to keystore.
      * @param keystoreName The keystore filename.
-     * @param keyStorePassword The password for keystore.
+     * @param keyStorePassword The password for the keystore.
      * @return KeyStore with private and public keys and certificate.
      */
     public static KeyStore getIotKeystore(String certId, String keystorePath, String keystoreName,
@@ -256,7 +256,7 @@ public final class AWSIotKeystoreHelper {
      *
      * @param certId The certificate Id or alias.
      * @param keyStoreInputStream an InputStream of a Keystore.
-     * @param keyStorePassword The password for the private key in the keystore.
+     * @param keyStorePassword The password for the keystore.
      * @return KeyStore with with private key and certificate.
      */
     public static KeyStore getIotKeystore(String certId, InputStream keyStoreInputStream,
@@ -281,8 +281,7 @@ public final class AWSIotKeystoreHelper {
      *
      * @param customerKeystore the keystore provided by the customer.
      * @param certId the certificate / key aliases in the keystore.
-     * @param customerKeystorePassword the password for the private key in the
-     *            keystore.
+     * @param customerKeystorePassword the password for the keystore.
      * @return a temporary keystore with the certificate and key aliases and
      *         password normalized for IoTSslHelper.
      */
@@ -333,7 +332,7 @@ public final class AWSIotKeystoreHelper {
      * @param certId The certificate Id or alias.
      * @param keystorePath The path to keystore.
      * @param keystoreName The keystore filename.
-     * @param keystorePassword The Password for private key in the keystore.
+     * @param keystorePassword The Password for the keystore.
      * @return presence of cert/key alias in keystore.
      */
     public static Boolean keystoreContainsAlias(String certId, String keystorePath,
@@ -351,6 +350,38 @@ public final class AWSIotKeystoreHelper {
             fis.close();
 
             return containsAlias;
+
+        } catch (CertificateException e) {
+            throw new AWSIotCertificateException("Error retrieving certificate and key.", e);
+        } catch (KeyStoreException e) {
+            throw new AWSIotCertificateException("Error retrieving certificate and key.", e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new AWSIotCertificateException("Error retrieving certificate and key.", e);
+        } catch (IOException e) {
+            throw new AmazonClientException("Error retrieving certificate and key.", e);
+        }
+    }
+
+    /**
+     * Delete an certificate/private key entry from a keystore.
+     *
+     * @param certId The certificate Id or alias.
+     * @param keystorePath The path to keystore.
+     * @param keystoreName The keystore filename.
+     * @param keystorePassword The Password for the keystore.
+     */
+    public static void deleteKeystoreAlias(String certId, String keystorePath, String keystoreName,
+            String keystorePassword) {
+
+        try {
+            KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+            FileInputStream fis = new FileInputStream(keystorePath + "/" + keystoreName);
+            keystore.load(fis, keystorePassword.toCharArray());
+            fis.close();
+
+            keystore.deleteEntry(certId);
+            FileOutputStream fos = new FileOutputStream(keystorePath + "/" + keystoreName);
+            keystore.store(fos, keystorePassword.toCharArray());
 
         } catch (CertificateException e) {
             throw new AWSIotCertificateException("Error retrieving certificate and key.", e);
@@ -395,7 +426,7 @@ public final class AWSIotKeystoreHelper {
      *
      * @param keystorePath path to keystore.
      * @param keystoreName name of keystore.
-     * @param keystorePassword password for private key in keystore.
+     * @param keystorePassword password for the keystore.
      * @throws KeyStoreException if keystore cannot be created.
      * @throws CertificateException if certificate cannot be stored.
      * @throws NoSuchAlgorithmException if key algorithm is not present.

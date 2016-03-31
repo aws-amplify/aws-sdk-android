@@ -26,15 +26,38 @@ import com.amazonaws.services.dynamodbv2.model.*;
  * Each asynchronous method will return a Java Future object, and users are also allowed
  * to provide a callback handler.
  * Amazon DynamoDB <p>
- * <b>Overview</b>
+ * This is the Amazon DynamoDB API Reference. This guide provides
+ * descriptions of the low-level DynamoDB API.
  * </p>
  * <p>
- * This is the Amazon DynamoDB API Reference. This guide provides
- * descriptions and samples of the low-level DynamoDB API. For
- * information about DynamoDB application development, see the
- * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/"> Amazon DynamoDB Developer Guide </a>
- * .
+ * This guide is intended for use with the following DynamoDB
+ * documentation:
  * </p>
+ * 
+ * <ul>
+ * <li> <p>
+ * 
+ * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/"> Amazon DynamoDB Getting Started Guide </a>
+ * - provides hands-on exercises that help you learn the basics of
+ * working with DynamoDB. <i>If you are new to DynamoDB, we recommend
+ * that you begin with the Getting Started Guide.</i>
+ * </p>
+ * </li>
+ * <li> <p>
+ * 
+ * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/"> Amazon DynamoDB Developer Guide </a>
+ * - contains detailed information about DynamoDB concepts, usage, and
+ * best practices.
+ * </p>
+ * </li>
+ * <li> <p>
+ * 
+ * <a href="http://docs.aws.amazon.com/dynamodbstreams/latest/APIReference/"> Amazon DynamoDB Streams API Reference </a> - provides descriptions and samples of the DynamoDB Streams API. (For more information, see <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"> Capturing Table Activity with DynamoDB Streams </a>
+ * in the Amazon DynamoDB Developer Guide.)
+ * </p>
+ * </li>
+ * 
+ * </ul>
  * <p>
  * Instead of making the requests to the low-level DynamoDB API directly
  * from your application, we recommend that you use the AWS Software
@@ -43,7 +66,7 @@ import com.amazonaws.services.dynamodbv2.model.*;
  * your application. The libraries take care of request authentication,
  * serialization, and connection management. For more information, see
  * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/UsingAWSSDK.html"> Using the AWS SDKs with DynamoDB </a>
- * in the <i>Amazon DynamoDB Developer Guide</i> .
+ * in the Amazon DynamoDB Developer Guide.
  * </p>
  * <p>
  * If you decide to code against the low-level DynamoDB API directly, you
@@ -63,10 +86,9 @@ import com.amazonaws.services.dynamodbv2.model.*;
  * <ul>
  * <li> <p>
  * <i>CreateTable</i> - Creates a table with user-specified provisioned
- * throughput settings. You must designate one attribute as the hash
- * primary key for the table; you can optionally designate a second
- * attribute as the range primary key. DynamoDB creates indexes on these
- * key attributes for fast data access. Optionally, you can create one or
+ * throughput settings. You must define a primary key for the table -
+ * either a simple primary key (partition key), or a composite primary
+ * key (partition key and sort key). Optionally, you can create one or
  * more secondary indexes, which provide fast data access using non-key
  * attributes.
  * </p>
@@ -120,10 +142,11 @@ import com.amazonaws.services.dynamodbv2.model.*;
  * </li>
  * <li> <p>
  * <i>Query</i> - Returns one or more items from a table or a secondary
- * index. You must provide a specific hash key value. You can narrow the
- * scope of the query using comparison operators against a range key
- * value, or on the index key. <i>Query</i> supports either eventual or
- * strong consistency. A single response has a size limit of 1 MB.
+ * index. You must provide a specific value for the partition key. You
+ * can narrow the scope of the query using comparison operators against a
+ * sort key value, or on the index key. <i>Query</i> supports either
+ * eventual or strong consistency. A single response has a size limit of
+ * 1 MB.
  * </p>
  * </li>
  * <li> <p>
@@ -213,9 +236,11 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
      * </p>
      * <p>
      * By default, <i>Scan</i> uses eventually consistent reads when
-     * acessing the data in the table or local secondary index. However, you
-     * can use strongly consistent reads instead by setting the
-     * <i>ConsistentRead</i> parameter to <i>true</i> .
+     * accessing the data in a table; therefore, the result set might not
+     * include the changes to data in the table immediately before the
+     * operation began. If you need a consistent copy of the data, as of the
+     * time that the Scan begins, you can set the <i>ConsistentRead</i>
+     * parameter to <i>true</i> .
      * </p>
      *
      * @param scanRequest Container for the necessary parameters to execute
@@ -262,9 +287,11 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
      * </p>
      * <p>
      * By default, <i>Scan</i> uses eventually consistent reads when
-     * acessing the data in the table or local secondary index. However, you
-     * can use strongly consistent reads instead by setting the
-     * <i>ConsistentRead</i> parameter to <i>true</i> .
+     * accessing the data in a table; therefore, the result set might not
+     * include the changes to data in the table immediately before the
+     * operation began. If you need a consistent copy of the data, as of the
+     * time that the Scan begins, you can set the <i>ConsistentRead</i>
+     * parameter to <i>true</i> .
      * </p>
      *
      * @param scanRequest Container for the necessary parameters to execute
@@ -902,8 +929,7 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
      * values. You can also perform a conditional update on an existing item
      * (insert a new attribute name-value pair if it doesn't exist, or
      * replace an existing name-value pair if it has certain expected
-     * attribute values). If conditions are specified and the item does not
-     * exist, then the operation fails and a new item is not created.
+     * attribute values).
      * </p>
      * <p>
      * You can also return the item's attribute values in the same
@@ -935,8 +961,7 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
      * values. You can also perform a conditional update on an existing item
      * (insert a new attribute name-value pair if it doesn't exist, or
      * replace an existing name-value pair if it has certain expected
-     * attribute values). If conditions are specified and the item does not
-     * exist, then the operation fails and a new item is not created.
+     * attribute values).
      * </p>
      * <p>
      * You can also return the item's attribute values in the same
@@ -1049,6 +1074,199 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
      */
     public Future<DeleteItemResult> deleteItemAsync(DeleteItemRequest deleteItemRequest,
             AsyncHandler<DeleteItemRequest, DeleteItemResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the current provisioned-capacity limits for your AWS account
+     * in a region, both for the region as a whole and for any one DynamoDB
+     * table that you create there.
+     * </p>
+     * <p>
+     * When you establish an AWS account, the account has initial limits on
+     * the maximum read capacity units and write capacity units that you can
+     * provision across all of your DynamoDB tables in a given region. Also,
+     * there are per-table limits that apply when you create a table there.
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"> Limits </a>
+     * page in the <i>Amazon DynamoDB Developer Guide</i> .
+     * </p>
+     * <p>
+     * Although you can increase these limits by filing a case at
+     * <a href="https://console.aws.amazon.com/support/home#/"> AWS Support Center </a>
+     * , obtaining the increase is not instantaneous. The
+     * <i>DescribeLimits</i> API lets you write code to compare the capacity
+     * you are currently using to those limits imposed by your account so
+     * that you have enough time to apply for an increase before you hit a
+     * limit.
+     * </p>
+     * <p>
+     * For example, you could use one of the AWS SDKs to do the following:
+     * </p>
+     * <ol> <li>Call <i>DescribeLimits</i> for a particular region to obtain
+     * your current account limits on provisioned capacity there.</li>
+     * <li>Create a variable to hold the aggregate read capacity units
+     * provisioned for all your tables in that region, and one to hold the
+     * aggregate write capacity units. Zero them both.</li>
+     * <li>Call <i>ListTables</i> to obtain a list of all your DynamoDB
+     * tables.</li>
+     * <li> <p>
+     * For each table name listed by <i>ListTables</i> , do the following:
+     * </p>
+     * 
+     * <ul>
+     * <li>Call <i>DescribeTable</i> with the table name.</li>
+     * <li>Use the data returned by <i>DescribeTable</i> to add the read
+     * capacity units and write capacity units provisioned for the table
+     * itself to your variables.</li>
+     * <li>If the table has one or more global secondary indexes (GSIs),
+     * loop over these GSIs and add their provisioned capacity values to your
+     * variables as well.</li>
+     * 
+     * </ul>
+     * </li>
+     * <li>Report the account limits for that region returned by
+     * <i>DescribeLimits</i> , along with the total current provisioned
+     * capacity levels you have calculated.</li>
+     * </ol> <p>
+     * This will let you see whether you are getting close to your
+     * account-level limits.
+     * </p>
+     * <p>
+     * The per-table limits apply only when you are creating a new table.
+     * They restrict the sum of the provisioned capacity of the new table
+     * itself and all its global secondary indexes.
+     * </p>
+     * <p>
+     * For existing tables and their GSIs, DynamoDB will not let you
+     * increase provisioned capacity extremely rapidly, but the only upper
+     * limit that applies is that the aggregate provisioned capacity over all
+     * your tables and GSIs cannot exceed either of the per-account limits.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> DescribeLimits should only be called periodically. You
+     * can expect throttling errors if you call it more than once in a
+     * minute.
+     * </p>
+     * <p>
+     * The <i>DescribeLimits</i> Request element has no content.
+     * </p>
+     *
+     * @param describeLimitsRequest Container for the necessary parameters to
+     *           execute the DescribeLimits operation on AmazonDynamoDBv2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLimits service method, as returned by AmazonDynamoDBv2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLimitsResult> describeLimitsAsync(DescribeLimitsRequest describeLimitsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the current provisioned-capacity limits for your AWS account
+     * in a region, both for the region as a whole and for any one DynamoDB
+     * table that you create there.
+     * </p>
+     * <p>
+     * When you establish an AWS account, the account has initial limits on
+     * the maximum read capacity units and write capacity units that you can
+     * provision across all of your DynamoDB tables in a given region. Also,
+     * there are per-table limits that apply when you create a table there.
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"> Limits </a>
+     * page in the <i>Amazon DynamoDB Developer Guide</i> .
+     * </p>
+     * <p>
+     * Although you can increase these limits by filing a case at
+     * <a href="https://console.aws.amazon.com/support/home#/"> AWS Support Center </a>
+     * , obtaining the increase is not instantaneous. The
+     * <i>DescribeLimits</i> API lets you write code to compare the capacity
+     * you are currently using to those limits imposed by your account so
+     * that you have enough time to apply for an increase before you hit a
+     * limit.
+     * </p>
+     * <p>
+     * For example, you could use one of the AWS SDKs to do the following:
+     * </p>
+     * <ol> <li>Call <i>DescribeLimits</i> for a particular region to obtain
+     * your current account limits on provisioned capacity there.</li>
+     * <li>Create a variable to hold the aggregate read capacity units
+     * provisioned for all your tables in that region, and one to hold the
+     * aggregate write capacity units. Zero them both.</li>
+     * <li>Call <i>ListTables</i> to obtain a list of all your DynamoDB
+     * tables.</li>
+     * <li> <p>
+     * For each table name listed by <i>ListTables</i> , do the following:
+     * </p>
+     * 
+     * <ul>
+     * <li>Call <i>DescribeTable</i> with the table name.</li>
+     * <li>Use the data returned by <i>DescribeTable</i> to add the read
+     * capacity units and write capacity units provisioned for the table
+     * itself to your variables.</li>
+     * <li>If the table has one or more global secondary indexes (GSIs),
+     * loop over these GSIs and add their provisioned capacity values to your
+     * variables as well.</li>
+     * 
+     * </ul>
+     * </li>
+     * <li>Report the account limits for that region returned by
+     * <i>DescribeLimits</i> , along with the total current provisioned
+     * capacity levels you have calculated.</li>
+     * </ol> <p>
+     * This will let you see whether you are getting close to your
+     * account-level limits.
+     * </p>
+     * <p>
+     * The per-table limits apply only when you are creating a new table.
+     * They restrict the sum of the provisioned capacity of the new table
+     * itself and all its global secondary indexes.
+     * </p>
+     * <p>
+     * For existing tables and their GSIs, DynamoDB will not let you
+     * increase provisioned capacity extremely rapidly, but the only upper
+     * limit that applies is that the aggregate provisioned capacity over all
+     * your tables and GSIs cannot exceed either of the per-account limits.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> DescribeLimits should only be called periodically. You
+     * can expect throttling errors if you call it more than once in a
+     * minute.
+     * </p>
+     * <p>
+     * The <i>DescribeLimits</i> Request element has no content.
+     * </p>
+     *
+     * @param describeLimitsRequest Container for the necessary parameters to
+     *           execute the DescribeLimits operation on AmazonDynamoDBv2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLimits service method, as returned by AmazonDynamoDBv2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLimitsResult> describeLimitsAsync(DescribeLimitsRequest describeLimitsRequest,
+            AsyncHandler<DescribeLimitsRequest, DescribeLimitsResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1336,13 +1554,13 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
      * </p>
      * <p>
      * Use the <i>KeyConditionExpression</i> parameter to provide a specific
-     * hash key value. The <i>Query</i> operation will return all of the
-     * items from the table or index with that hash key value. You can
-     * optionally narrow the scope of the <i>Query</i> operation by
-     * specifying a range key value and a comparison operator in
+     * value for the partition key. The <i>Query</i> operation will return
+     * all of the items from the table or index with that partition key
+     * value. You can optionally narrow the scope of the <i>Query</i>
+     * operation by specifying a sort key value and a comparison operator in
      * <i>KeyConditionExpression</i> . You can use the
      * <i>ScanIndexForward</i> parameter to get results in forward or reverse
-     * order, by range key or by index key.
+     * order, by sort key.
      * </p>
      * <p>
      * Queries that do not return results consume the minimum number of read
@@ -1392,13 +1610,13 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
      * </p>
      * <p>
      * Use the <i>KeyConditionExpression</i> parameter to provide a specific
-     * hash key value. The <i>Query</i> operation will return all of the
-     * items from the table or index with that hash key value. You can
-     * optionally narrow the scope of the <i>Query</i> operation by
-     * specifying a range key value and a comparison operator in
+     * value for the partition key. The <i>Query</i> operation will return
+     * all of the items from the table or index with that partition key
+     * value. You can optionally narrow the scope of the <i>Query</i>
+     * operation by specifying a sort key value and a comparison operator in
      * <i>KeyConditionExpression</i> . You can use the
      * <i>ScanIndexForward</i> parameter to get results in forward or reverse
-     * order, by range key or by index key.
+     * order, by sort key.
      * </p>
      * <p>
      * Queries that do not return results consume the minimum number of read
@@ -1475,8 +1693,11 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
      * </p>
      * <p>
      * <b>NOTE:</b> To prevent a new item from replacing an existing item,
-     * use a conditional put operation with ComparisonOperator set to NULL
-     * for the primary key attribute, or attributes.
+     * use a conditional expression that contains the attribute_not_exists
+     * function with the name of the attribute being used as the partition
+     * key for the table. Since every record must contain that attribute,
+     * the attribute_not_exists function will only succeed if no matching
+     * item exists.
      * </p>
      * <p>
      * For more information about using this API, see
@@ -1531,8 +1752,11 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
      * </p>
      * <p>
      * <b>NOTE:</b> To prevent a new item from replacing an existing item,
-     * use a conditional put operation with ComparisonOperator set to NULL
-     * for the primary key attribute, or attributes.
+     * use a conditional expression that contains the attribute_not_exists
+     * function with the name of the attribute being used as the partition
+     * key for the table. Since every record must contain that attribute,
+     * the attribute_not_exists function will only succeed if no matching
+     * item exists.
      * </p>
      * <p>
      * For more information about using this API, see

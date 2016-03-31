@@ -24,12 +24,13 @@ import java.io.Serializable;
 public class KinesisAction implements Serializable {
 
     /**
-     * The ARN of the IAM role that grants access to the Kinesis stream.
+     * The ARN of the IAM role that grants access to the Amazon Kinesis
+     * stream.
      */
     private String roleArn;
 
     /**
-     * The name of the Kinesis stream.
+     * The name of the Amazon Kinesis stream.
      */
     private String streamName;
 
@@ -39,29 +40,35 @@ public class KinesisAction implements Serializable {
     private String partitionKey;
 
     /**
-     * The ARN of the IAM role that grants access to the Kinesis stream.
+     * The ARN of the IAM role that grants access to the Amazon Kinesis
+     * stream.
      *
-     * @return The ARN of the IAM role that grants access to the Kinesis stream.
+     * @return The ARN of the IAM role that grants access to the Amazon Kinesis
+     *         stream.
      */
     public String getRoleArn() {
         return roleArn;
     }
     
     /**
-     * The ARN of the IAM role that grants access to the Kinesis stream.
+     * The ARN of the IAM role that grants access to the Amazon Kinesis
+     * stream.
      *
-     * @param roleArn The ARN of the IAM role that grants access to the Kinesis stream.
+     * @param roleArn The ARN of the IAM role that grants access to the Amazon Kinesis
+     *         stream.
      */
     public void setRoleArn(String roleArn) {
         this.roleArn = roleArn;
     }
     
     /**
-     * The ARN of the IAM role that grants access to the Kinesis stream.
+     * The ARN of the IAM role that grants access to the Amazon Kinesis
+     * stream.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param roleArn The ARN of the IAM role that grants access to the Kinesis stream.
+     * @param roleArn The ARN of the IAM role that grants access to the Amazon Kinesis
+     *         stream.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -72,29 +79,29 @@ public class KinesisAction implements Serializable {
     }
 
     /**
-     * The name of the Kinesis stream.
+     * The name of the Amazon Kinesis stream.
      *
-     * @return The name of the Kinesis stream.
+     * @return The name of the Amazon Kinesis stream.
      */
     public String getStreamName() {
         return streamName;
     }
     
     /**
-     * The name of the Kinesis stream.
+     * The name of the Amazon Kinesis stream.
      *
-     * @param streamName The name of the Kinesis stream.
+     * @param streamName The name of the Amazon Kinesis stream.
      */
     public void setStreamName(String streamName) {
         this.streamName = streamName;
     }
     
     /**
-     * The name of the Kinesis stream.
+     * The name of the Amazon Kinesis stream.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param streamName The name of the Kinesis stream.
+     * @param streamName The name of the Amazon Kinesis stream.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -97,6 +97,7 @@ public class CognitoCachingCredentialsProvider
         public void identityChanged(String oldIdentityId, String newIdentityId) {
             Log.d(TAG, "Identity id is changed");
             saveIdentityId(newIdentityId);
+            clearCredentials();
         }
     };
 

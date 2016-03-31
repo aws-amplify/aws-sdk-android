@@ -26,8 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * values. You can also perform a conditional update on an existing item
  * (insert a new attribute name-value pair if it doesn't exist, or
  * replace an existing name-value pair if it has certain expected
- * attribute values). If conditions are specified and the item does not
- * exist, then the operation fails and a new item is not created.
+ * attribute values).
  * </p>
  * <p>
  * You can also return the item's attribute values in the same
@@ -50,10 +49,10 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
     /**
      * The primary key of the item to be updated. Each element consists of an
      * attribute name and a value for that attribute. <p>For the primary key,
-     * you must provide all of the attributes. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * you must provide all of the attributes. For example, with a simple
+     * primary key, you only need to provide a value for the partition key.
+     * For a composite primary key, you must provide values for both the
+     * partition key and the sort key.
      */
     private java.util.Map<String,AttributeValue> key;
 
@@ -69,7 +68,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updating an attribute that is an index key attribute for any indexes
      * on that table, the attribute type must match the index key type
      * defined in the <i>AttributesDefinition</i> of the table description.
-     * You can use <i>UpdateItem</i> to update any nonkey attributes.
+     * You can use <i>UpdateItem</i> to update any non-key attributes.
      * <p>Attribute values cannot be null. String and Binary type attributes
      * must have lengths greater than zero. Set type attributes must not be
      * empty. Requests with empty values will be rejected with a
@@ -344,7 +343,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      * All of the attributes of the new version of the item are returned.
      * </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     * updated attributes are returned. </li> </ul>
+     * updated attributes are returned. </li> </ul> <p>There is no additional
+     * cost associated with requesting a return value aside from the small
+     * network and processing overhead of receiving a larger response. No
+     * Read Capacity Units are consumed. <p>Values returned are strongly
+     * consistent
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
@@ -529,9 +532,9 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * @param key The primary key of the item to be updated. Each element
      * consists of an attribute name and a value for that attribute. <p>For
      * the primary key, you must provide all of the attributes. For example,
-     * with a hash type primary key, you only need to provide the hash
-     * attribute. For a hash-and-range type primary key, you must provide
-     * both the hash attribute and the range attribute.
+     * with a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * @param attributeUpdates <important> <p>This is a legacy parameter, for
      * backward compatibility. New applications should use
      * <i>UpdateExpression</i> instead. Do not combine legacy parameters and
@@ -543,7 +546,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * value for each. If you are updating an attribute that is an index key
      * attribute for any indexes on that table, the attribute type must match
      * the index key type defined in the <i>AttributesDefinition</i> of the
-     * table description. You can use <i>UpdateItem</i> to update any nonkey
+     * table description. You can use <i>UpdateItem</i> to update any non-key
      * attributes. <p>Attribute values cannot be null. String and Binary type
      * attributes must have lengths greater than zero. Set type attributes
      * must not be empty. Requests with empty values will be rejected with a
@@ -622,9 +625,9 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * @param key The primary key of the item to be updated. Each element
      * consists of an attribute name and a value for that attribute. <p>For
      * the primary key, you must provide all of the attributes. For example,
-     * with a hash type primary key, you only need to provide the hash
-     * attribute. For a hash-and-range type primary key, you must provide
-     * both the hash attribute and the range attribute.
+     * with a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * @param attributeUpdates <important> <p>This is a legacy parameter, for
      * backward compatibility. New applications should use
      * <i>UpdateExpression</i> instead. Do not combine legacy parameters and
@@ -636,7 +639,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * value for each. If you are updating an attribute that is an index key
      * attribute for any indexes on that table, the attribute type must match
      * the index key type defined in the <i>AttributesDefinition</i> of the
-     * table description. You can use <i>UpdateItem</i> to update any nonkey
+     * table description. You can use <i>UpdateItem</i> to update any non-key
      * attributes. <p>Attribute values cannot be null. String and Binary type
      * attributes must have lengths greater than zero. Set type attributes
      * must not be empty. Requests with empty values will be rejected with a
@@ -711,7 +714,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      * All of the attributes of the new version of the item are returned.
      * </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     * updated attributes are returned. </li> </ul>
+     * updated attributes are returned. </li> </ul> <p>There is no additional
+     * cost associated with requesting a return value aside from the small
+     * network and processing overhead of receiving a larger response. No
+     * Read Capacity Units are consumed. <p>Values returned are strongly
+     * consistent
      */
     public UpdateItemRequest(String tableName, java.util.Map<String,AttributeValue> key, java.util.Map<String,AttributeValueUpdate> attributeUpdates, String returnValues) {
         setTableName(tableName);
@@ -729,9 +736,9 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * @param key The primary key of the item to be updated. Each element
      * consists of an attribute name and a value for that attribute. <p>For
      * the primary key, you must provide all of the attributes. For example,
-     * with a hash type primary key, you only need to provide the hash
-     * attribute. For a hash-and-range type primary key, you must provide
-     * both the hash attribute and the range attribute.
+     * with a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * @param attributeUpdates <important> <p>This is a legacy parameter, for
      * backward compatibility. New applications should use
      * <i>UpdateExpression</i> instead. Do not combine legacy parameters and
@@ -743,7 +750,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * value for each. If you are updating an attribute that is an index key
      * attribute for any indexes on that table, the attribute type must match
      * the index key type defined in the <i>AttributesDefinition</i> of the
-     * table description. You can use <i>UpdateItem</i> to update any nonkey
+     * table description. You can use <i>UpdateItem</i> to update any non-key
      * attributes. <p>Attribute values cannot be null. String and Binary type
      * attributes must have lengths greater than zero. Set type attributes
      * must not be empty. Requests with empty values will be rejected with a
@@ -818,7 +825,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      * All of the attributes of the new version of the item are returned.
      * </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     * updated attributes are returned. </li> </ul>
+     * updated attributes are returned. </li> </ul> <p>There is no additional
+     * cost associated with requesting a return value aside from the small
+     * network and processing overhead of receiving a larger response. No
+     * Read Capacity Units are consumed. <p>Values returned are strongly
+     * consistent
      */
     public UpdateItemRequest(String tableName, java.util.Map<String,AttributeValue> key, java.util.Map<String,AttributeValueUpdate> attributeUpdates, ReturnValue returnValues) {
         this.tableName = tableName;
@@ -875,17 +886,17 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
     /**
      * The primary key of the item to be updated. Each element consists of an
      * attribute name and a value for that attribute. <p>For the primary key,
-     * you must provide all of the attributes. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * you must provide all of the attributes. For example, with a simple
+     * primary key, you only need to provide a value for the partition key.
+     * For a composite primary key, you must provide values for both the
+     * partition key and the sort key.
      *
      * @return The primary key of the item to be updated. Each element consists of an
      *         attribute name and a value for that attribute. <p>For the primary key,
-     *         you must provide all of the attributes. For example, with a hash type
-     *         primary key, you only need to provide the hash attribute. For a
-     *         hash-and-range type primary key, you must provide both the hash
-     *         attribute and the range attribute.
+     *         you must provide all of the attributes. For example, with a simple
+     *         primary key, you only need to provide a value for the partition key.
+     *         For a composite primary key, you must provide values for both the
+     *         partition key and the sort key.
      */
     public java.util.Map<String,AttributeValue> getKey() {
         
@@ -895,17 +906,17 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
     /**
      * The primary key of the item to be updated. Each element consists of an
      * attribute name and a value for that attribute. <p>For the primary key,
-     * you must provide all of the attributes. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * you must provide all of the attributes. For example, with a simple
+     * primary key, you only need to provide a value for the partition key.
+     * For a composite primary key, you must provide values for both the
+     * partition key and the sort key.
      *
      * @param key The primary key of the item to be updated. Each element consists of an
      *         attribute name and a value for that attribute. <p>For the primary key,
-     *         you must provide all of the attributes. For example, with a hash type
-     *         primary key, you only need to provide the hash attribute. For a
-     *         hash-and-range type primary key, you must provide both the hash
-     *         attribute and the range attribute.
+     *         you must provide all of the attributes. For example, with a simple
+     *         primary key, you only need to provide a value for the partition key.
+     *         For a composite primary key, you must provide values for both the
+     *         partition key and the sort key.
      */
     public void setKey(java.util.Map<String,AttributeValue> key) {
         this.key = key;
@@ -914,19 +925,19 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
     /**
      * The primary key of the item to be updated. Each element consists of an
      * attribute name and a value for that attribute. <p>For the primary key,
-     * you must provide all of the attributes. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * you must provide all of the attributes. For example, with a simple
+     * primary key, you only need to provide a value for the partition key.
+     * For a composite primary key, you must provide values for both the
+     * partition key and the sort key.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param key The primary key of the item to be updated. Each element consists of an
      *         attribute name and a value for that attribute. <p>For the primary key,
-     *         you must provide all of the attributes. For example, with a hash type
-     *         primary key, you only need to provide the hash attribute. For a
-     *         hash-and-range type primary key, you must provide both the hash
-     *         attribute and the range attribute.
+     *         you must provide all of the attributes. For example, with a simple
+     *         primary key, you only need to provide a value for the partition key.
+     *         For a composite primary key, you must provide values for both the
+     *         partition key and the sort key.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -939,10 +950,10 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
     /**
      * The primary key of the item to be updated. Each element consists of an
      * attribute name and a value for that attribute. <p>For the primary key,
-     * you must provide all of the attributes. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * you must provide all of the attributes. For example, with a simple
+     * primary key, you only need to provide a value for the partition key.
+     * For a composite primary key, you must provide values for both the
+     * partition key and the sort key.
      * <p>
      * This method accepts the hashKey, rangeKey of Key as
      * java.util.Map.Entry<String, AttributeValue> objects.
@@ -966,10 +977,10 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
     /**
      * The primary key of the item to be updated. Each element consists of an
      * attribute name and a value for that attribute. <p>For the primary key,
-     * you must provide all of the attributes. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * you must provide all of the attributes. For example, with a simple
+     * primary key, you only need to provide a value for the partition key.
+     * For a composite primary key, you must provide values for both the
+     * partition key and the sort key.
      * <p>
      * This method accepts the hashKey, rangeKey of Key as
      * java.util.Map.Entry<String, AttributeValue> objects.
@@ -987,10 +998,10 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
     /**
      * The primary key of the item to be updated. Each element consists of an
      * attribute name and a value for that attribute. <p>For the primary key,
-     * you must provide all of the attributes. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * you must provide all of the attributes. For example, with a simple
+     * primary key, you only need to provide a value for the partition key.
+     * For a composite primary key, you must provide values for both the
+     * partition key and the sort key.
      * <p>
      * The method adds a new key-value pair into Key parameter, and returns a
      * reference to this object so that method calls can be chained together.
@@ -1030,7 +1041,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updating an attribute that is an index key attribute for any indexes
      * on that table, the attribute type must match the index key type
      * defined in the <i>AttributesDefinition</i> of the table description.
-     * You can use <i>UpdateItem</i> to update any nonkey attributes.
+     * You can use <i>UpdateItem</i> to update any non-key attributes.
      * <p>Attribute values cannot be null. String and Binary type attributes
      * must have lengths greater than zero. Set type attributes must not be
      * empty. Requests with empty values will be rejected with a
@@ -1105,7 +1116,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      *         updating an attribute that is an index key attribute for any indexes
      *         on that table, the attribute type must match the index key type
      *         defined in the <i>AttributesDefinition</i> of the table description.
-     *         You can use <i>UpdateItem</i> to update any nonkey attributes.
+     *         You can use <i>UpdateItem</i> to update any non-key attributes.
      *         <p>Attribute values cannot be null. String and Binary type attributes
      *         must have lengths greater than zero. Set type attributes must not be
      *         empty. Requests with empty values will be rejected with a
@@ -1186,7 +1197,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updating an attribute that is an index key attribute for any indexes
      * on that table, the attribute type must match the index key type
      * defined in the <i>AttributesDefinition</i> of the table description.
-     * You can use <i>UpdateItem</i> to update any nonkey attributes.
+     * You can use <i>UpdateItem</i> to update any non-key attributes.
      * <p>Attribute values cannot be null. String and Binary type attributes
      * must have lengths greater than zero. Set type attributes must not be
      * empty. Requests with empty values will be rejected with a
@@ -1261,7 +1272,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      *         updating an attribute that is an index key attribute for any indexes
      *         on that table, the attribute type must match the index key type
      *         defined in the <i>AttributesDefinition</i> of the table description.
-     *         You can use <i>UpdateItem</i> to update any nonkey attributes.
+     *         You can use <i>UpdateItem</i> to update any non-key attributes.
      *         <p>Attribute values cannot be null. String and Binary type attributes
      *         must have lengths greater than zero. Set type attributes must not be
      *         empty. Requests with empty values will be rejected with a
@@ -1341,7 +1352,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updating an attribute that is an index key attribute for any indexes
      * on that table, the attribute type must match the index key type
      * defined in the <i>AttributesDefinition</i> of the table description.
-     * You can use <i>UpdateItem</i> to update any nonkey attributes.
+     * You can use <i>UpdateItem</i> to update any non-key attributes.
      * <p>Attribute values cannot be null. String and Binary type attributes
      * must have lengths greater than zero. Set type attributes must not be
      * empty. Requests with empty values will be rejected with a
@@ -1418,7 +1429,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      *         updating an attribute that is an index key attribute for any indexes
      *         on that table, the attribute type must match the index key type
      *         defined in the <i>AttributesDefinition</i> of the table description.
-     *         You can use <i>UpdateItem</i> to update any nonkey attributes.
+     *         You can use <i>UpdateItem</i> to update any non-key attributes.
      *         <p>Attribute values cannot be null. String and Binary type attributes
      *         must have lengths greater than zero. Set type attributes must not be
      *         empty. Requests with empty values will be rejected with a
@@ -1502,7 +1513,7 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updating an attribute that is an index key attribute for any indexes
      * on that table, the attribute type must match the index key type
      * defined in the <i>AttributesDefinition</i> of the table description.
-     * You can use <i>UpdateItem</i> to update any nonkey attributes.
+     * You can use <i>UpdateItem</i> to update any non-key attributes.
      * <p>Attribute values cannot be null. String and Binary type attributes
      * must have lengths greater than zero. Set type attributes must not be
      * empty. Requests with empty values will be rejected with a
@@ -3069,7 +3080,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      * All of the attributes of the new version of the item are returned.
      * </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     * updated attributes are returned. </li> </ul>
+     * updated attributes are returned. </li> </ul> <p>There is no additional
+     * cost associated with requesting a return value aside from the small
+     * network and processing overhead of receiving a larger response. No
+     * Read Capacity Units are consumed. <p>Values returned are strongly
+     * consistent
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
@@ -3086,7 +3101,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      *         updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      *         All of the attributes of the new version of the item are returned.
      *         </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     *         updated attributes are returned. </li> </ul>
+     *         updated attributes are returned. </li> </ul> <p>There is no additional
+     *         cost associated with requesting a return value aside from the small
+     *         network and processing overhead of receiving a larger response. No
+     *         Read Capacity Units are consumed. <p>Values returned are strongly
+     *         consistent
      *
      * @see ReturnValue
      */
@@ -3107,7 +3126,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      * All of the attributes of the new version of the item are returned.
      * </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     * updated attributes are returned. </li> </ul>
+     * updated attributes are returned. </li> </ul> <p>There is no additional
+     * cost associated with requesting a return value aside from the small
+     * network and processing overhead of receiving a larger response. No
+     * Read Capacity Units are consumed. <p>Values returned are strongly
+     * consistent
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
@@ -3124,7 +3147,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      *         updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      *         All of the attributes of the new version of the item are returned.
      *         </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     *         updated attributes are returned. </li> </ul>
+     *         updated attributes are returned. </li> </ul> <p>There is no additional
+     *         cost associated with requesting a return value aside from the small
+     *         network and processing overhead of receiving a larger response. No
+     *         Read Capacity Units are consumed. <p>Values returned are strongly
+     *         consistent
      *
      * @see ReturnValue
      */
@@ -3145,7 +3172,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      * All of the attributes of the new version of the item are returned.
      * </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     * updated attributes are returned. </li> </ul>
+     * updated attributes are returned. </li> </ul> <p>There is no additional
+     * cost associated with requesting a return value aside from the small
+     * network and processing overhead of receiving a larger response. No
+     * Read Capacity Units are consumed. <p>Values returned are strongly
+     * consistent
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -3164,7 +3195,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      *         updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      *         All of the attributes of the new version of the item are returned.
      *         </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     *         updated attributes are returned. </li> </ul>
+     *         updated attributes are returned. </li> </ul> <p>There is no additional
+     *         cost associated with requesting a return value aside from the small
+     *         network and processing overhead of receiving a larger response. No
+     *         Read Capacity Units are consumed. <p>Values returned are strongly
+     *         consistent
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -3189,7 +3224,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      * All of the attributes of the new version of the item are returned.
      * </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     * updated attributes are returned. </li> </ul>
+     * updated attributes are returned. </li> </ul> <p>There is no additional
+     * cost associated with requesting a return value aside from the small
+     * network and processing overhead of receiving a larger response. No
+     * Read Capacity Units are consumed. <p>Values returned are strongly
+     * consistent
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
@@ -3206,7 +3245,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      *         updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      *         All of the attributes of the new version of the item are returned.
      *         </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     *         updated attributes are returned. </li> </ul>
+     *         updated attributes are returned. </li> </ul> <p>There is no additional
+     *         cost associated with requesting a return value aside from the small
+     *         network and processing overhead of receiving a larger response. No
+     *         Read Capacity Units are consumed. <p>Values returned are strongly
+     *         consistent
      *
      * @see ReturnValue
      */
@@ -3227,7 +3270,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      * updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      * All of the attributes of the new version of the item are returned.
      * </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     * updated attributes are returned. </li> </ul>
+     * updated attributes are returned. </li> </ul> <p>There is no additional
+     * cost associated with requesting a return value aside from the small
+     * network and processing overhead of receiving a larger response. No
+     * Read Capacity Units are consumed. <p>Values returned are strongly
+     * consistent
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -3246,7 +3293,11 @@ public class UpdateItemRequest extends AmazonWebServiceRequest implements Serial
      *         updated attributes are returned. </li> <li> <p><code>ALL_NEW</code> -
      *         All of the attributes of the new version of the item are returned.
      *         </li> <li> <p><code>UPDATED_NEW</code> - The new versions of only the
-     *         updated attributes are returned. </li> </ul>
+     *         updated attributes are returned. </li> </ul> <p>There is no additional
+     *         cost associated with requesting a return value aside from the small
+     *         network and processing overhead of receiving a larger response. No
+     *         Read Capacity Units are consumed. <p>Values returned are strongly
+     *         consistent
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

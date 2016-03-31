@@ -36,7 +36,8 @@ public class IdFormat implements Serializable {
 
     /**
      * The date in UTC at which you are permanently switched over to using
-     * longer IDs.
+     * longer IDs. If a deadline is not yet available for this resource type,
+     * this field is not returned.
      */
     private java.util.Date deadline;
 
@@ -125,10 +126,12 @@ public class IdFormat implements Serializable {
 
     /**
      * The date in UTC at which you are permanently switched over to using
-     * longer IDs.
+     * longer IDs. If a deadline is not yet available for this resource type,
+     * this field is not returned.
      *
      * @return The date in UTC at which you are permanently switched over to using
-     *         longer IDs.
+     *         longer IDs. If a deadline is not yet available for this resource type,
+     *         this field is not returned.
      */
     public java.util.Date getDeadline() {
         return deadline;
@@ -136,10 +139,12 @@ public class IdFormat implements Serializable {
     
     /**
      * The date in UTC at which you are permanently switched over to using
-     * longer IDs.
+     * longer IDs. If a deadline is not yet available for this resource type,
+     * this field is not returned.
      *
      * @param deadline The date in UTC at which you are permanently switched over to using
-     *         longer IDs.
+     *         longer IDs. If a deadline is not yet available for this resource type,
+     *         this field is not returned.
      */
     public void setDeadline(java.util.Date deadline) {
         this.deadline = deadline;
@@ -147,12 +152,14 @@ public class IdFormat implements Serializable {
     
     /**
      * The date in UTC at which you are permanently switched over to using
-     * longer IDs.
+     * longer IDs. If a deadline is not yet available for this resource type,
+     * this field is not returned.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param deadline The date in UTC at which you are permanently switched over to using
-     *         longer IDs.
+     *         longer IDs. If a deadline is not yet available for this resource type,
+     *         this field is not returned.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

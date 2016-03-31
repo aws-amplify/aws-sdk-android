@@ -53,10 +53,13 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class AmazonHttpClient {
 
     private static final String HEADER_USER_AGENT = "User-Agent";
+    private static final String HEADER_SDK_TRANSACTION_ID = "aws-sdk-invocation-id";
+    private static final String HEADER_SDK_RETRY_INFO = "aws-sdk-retry";
 
     /**
      * Logger providing detailed information on requests/responses. Users can
@@ -273,7 +276,9 @@ public class AmazonHttpClient {
         // Apply whatever request options we know how to handle, such as
         // user-agent.
         setUserAgent(request);
+        request.addHeader(HEADER_SDK_TRANSACTION_ID, UUID.randomUUID().toString());
         int requestCount = 0;
+        long lastBackoffDelay = 0;
         URI redirectedURI = null;
         AmazonClientException retriedException = null;
 
@@ -298,6 +303,20 @@ public class AmazonHttpClient {
             }
 
             try {
+                if (requestCount > 1) { // retry
+                    awsRequestMetrics.startEvent(Field.RetryPauseTime);
+                    try {
+                        lastBackoffDelay = pauseBeforeNextRetry(request.getOriginalRequest(),
+                                retriedException,
+                                requestCount,
+                                config.getRetryPolicy());
+                    } finally {
+                        awsRequestMetrics.endEvent(Field.RetryPauseTime);
+                    }
+                }
+                request.addHeader(HEADER_SDK_RETRY_INFO,
+                        (requestCount - 1) + "/" + lastBackoffDelay);
+
                 // Sign the request if a signer was provided
                 if (signer == null)
                     signer = executionContext.getSignerByURI(request.getEndpoint());
@@ -318,18 +337,6 @@ public class AmazonHttpClient {
                         executionContext);
                 if (redirectedURI != null) {
                     httpRequest.setUri(redirectedURI);
-                }
-
-                if (requestCount > 1) { // retry
-                    awsRequestMetrics.startEvent(Field.RetryPauseTime);
-                    try {
-                        pauseBeforeNextRetry(request.getOriginalRequest(),
-                                retriedException,
-                                requestCount,
-                                config.getRetryPolicy());
-                    } finally {
-                        awsRequestMetrics.endEvent(Field.RetryPauseTime);
-                    }
                 }
 
                 // mark input stream if supported
@@ -722,7 +729,7 @@ public class AmazonHttpClient {
      *            after the delay)
      * @param retryPolicy The retry policy configured in this http client.
      */
-    private void pauseBeforeNextRetry(AmazonWebServiceRequest originalRequest,
+    private long pauseBeforeNextRetry(AmazonWebServiceRequest originalRequest,
             AmazonClientException previousException,
             int requestCount,
             RetryPolicy retryPolicy) {
@@ -740,6 +747,7 @@ public class AmazonHttpClient {
 
         try {
             Thread.sleep(delay);
+            return delay;
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new AmazonClientException(e.getMessage(), e);

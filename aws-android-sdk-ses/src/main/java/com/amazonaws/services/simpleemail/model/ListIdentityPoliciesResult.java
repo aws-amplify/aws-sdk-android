@@ -17,10 +17,7 @@ package com.amazonaws.services.simpleemail.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Represents a list of policy names returned from a successful
- * <code>ListIdentityPolicies</code> request.
- * </p>
+ * List Identity Policies Result
  */
 public class ListIdentityPoliciesResult implements Serializable {
 

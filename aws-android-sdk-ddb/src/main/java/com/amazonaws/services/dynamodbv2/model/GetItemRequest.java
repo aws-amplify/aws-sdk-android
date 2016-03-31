@@ -50,9 +50,9 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      */
     private java.util.Map<String,AttributeValue> key;
 
@@ -160,9 +160,9 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      */
     public GetItemRequest(String tableName, java.util.Map<String,AttributeValue> key) {
         setTableName(tableName);
@@ -178,9 +178,9 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * @param consistentRead Determines the read consistency model: If set to
      * <code>true</code>, then the operation uses strongly consistent reads;
      * otherwise, the operation uses eventually consistent reads.
@@ -240,16 +240,16 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      *
      * @return A map of attribute names to <i>AttributeValue</i> objects,
      *         representing the primary key of the item to retrieve. <p>For the
      *         primary key, you must provide all of the attributes. For example, with
-     *         a hash type primary key, you only need to provide the hash attribute.
-     *         For a hash-and-range type primary key, you must provide both the hash
-     *         attribute and the range attribute.
+     *         a simple primary key, you only need to provide a value for the
+     *         partition key. For a composite primary key, you must provide values
+     *         for both the partition key and the sort key.
      */
     public java.util.Map<String,AttributeValue> getKey() {
         
@@ -260,16 +260,16 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      *
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
      *         representing the primary key of the item to retrieve. <p>For the
      *         primary key, you must provide all of the attributes. For example, with
-     *         a hash type primary key, you only need to provide the hash attribute.
-     *         For a hash-and-range type primary key, you must provide both the hash
-     *         attribute and the range attribute.
+     *         a simple primary key, you only need to provide a value for the
+     *         partition key. For a composite primary key, you must provide values
+     *         for both the partition key and the sort key.
      */
     public void setKey(java.util.Map<String,AttributeValue> key) {
         this.key = key;
@@ -279,18 +279,18 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param key A map of attribute names to <i>AttributeValue</i> objects,
      *         representing the primary key of the item to retrieve. <p>For the
      *         primary key, you must provide all of the attributes. For example, with
-     *         a hash type primary key, you only need to provide the hash attribute.
-     *         For a hash-and-range type primary key, you must provide both the hash
-     *         attribute and the range attribute.
+     *         a simple primary key, you only need to provide a value for the
+     *         partition key. For a composite primary key, you must provide values
+     *         for both the partition key and the sort key.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -304,9 +304,9 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * <p>
      * This method accepts the hashKey, rangeKey of Key as
      * java.util.Map.Entry<String, AttributeValue> objects.
@@ -331,9 +331,9 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * <p>
      * This method accepts the hashKey, rangeKey of Key as
      * java.util.Map.Entry<String, AttributeValue> objects.
@@ -352,9 +352,9 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute names to <i>AttributeValue</i> objects,
      * representing the primary key of the item to retrieve. <p>For the
      * primary key, you must provide all of the attributes. For example, with
-     * a hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute.
+     * a simple primary key, you only need to provide a value for the
+     * partition key. For a composite primary key, you must provide values
+     * for both the partition key and the sort key.
      * <p>
      * The method adds a new key-value pair into Key parameter, and returns a
      * reference to this object so that method calls can be chained together.

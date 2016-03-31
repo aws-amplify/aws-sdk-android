@@ -21,9 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.iot.AWSIot#listThings(ListThingsRequest) ListThings operation}.
  * <p>
- * Lists your things. You can pass an AttributeName and/or AttributeValue
- * to filter your things. For example: "ListThings where
- * AttributeName=Color and AttributeValue=Red"
+ * Lists your things. You can pass an AttributeName or AttributeValue to
+ * filter your things (for example, "ListThings where AttributeName=Color
+ * and AttributeValue=Red").
  * </p>
  *
  * @see com.amazonaws.services.iot.AWSIot#listThings(ListThingsRequest)

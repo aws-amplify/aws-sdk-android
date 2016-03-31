@@ -55,6 +55,18 @@ public class UserIdGroupPairStaxUnmarshaller implements Unmarshaller<UserIdGroup
                     userIdGroupPair.setGroupId(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("vpcId", targetDepth)) {
+                    userIdGroupPair.setVpcId(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("vpcPeeringConnectionId", targetDepth)) {
+                    userIdGroupPair.setVpcPeeringConnectionId(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("peeringStatus", targetDepth)) {
+                    userIdGroupPair.setPeeringStatus(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return userIdGroupPair;

@@ -112,14 +112,15 @@ public class RequestSpotInstancesRequest extends AmazonWebServiceRequest impleme
     private String availabilityZoneGroup;
 
     /**
-     * The required duration for the Spot instances, in minutes. This value
-     * must be a multiple of 60 (60, 120, 180, 240, 300, or 360). <p>The
-     * duration period starts as soon as your Spot instance receives its
-     * instance ID. At the end of the duration period, Amazon EC2 marks the
-     * Spot instance for termination and provides a Spot instance termination
-     * notice, which gives the instance a two-minute warning before it
-     * terminates. <p>Note that you can't specify an Availability Zone group
-     * or a launch group if you specify a duration.
+     * The required duration for the Spot instances (also known as Spot
+     * blocks), in minutes. This value must be a multiple of 60 (60, 120,
+     * 180, 240, 300, or 360). <p>The duration period starts as soon as your
+     * Spot instance receives its instance ID. At the end of the duration
+     * period, Amazon EC2 marks the Spot instance for termination and
+     * provides a Spot instance termination notice, which gives the instance
+     * a two-minute warning before it terminates. <p>Note that you can't
+     * specify an Availability Zone group or a launch group if you specify a
+     * duration.
      */
     private Integer blockDurationMinutes;
 
@@ -652,71 +653,77 @@ public class RequestSpotInstancesRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * The required duration for the Spot instances, in minutes. This value
-     * must be a multiple of 60 (60, 120, 180, 240, 300, or 360). <p>The
-     * duration period starts as soon as your Spot instance receives its
-     * instance ID. At the end of the duration period, Amazon EC2 marks the
-     * Spot instance for termination and provides a Spot instance termination
-     * notice, which gives the instance a two-minute warning before it
-     * terminates. <p>Note that you can't specify an Availability Zone group
-     * or a launch group if you specify a duration.
+     * The required duration for the Spot instances (also known as Spot
+     * blocks), in minutes. This value must be a multiple of 60 (60, 120,
+     * 180, 240, 300, or 360). <p>The duration period starts as soon as your
+     * Spot instance receives its instance ID. At the end of the duration
+     * period, Amazon EC2 marks the Spot instance for termination and
+     * provides a Spot instance termination notice, which gives the instance
+     * a two-minute warning before it terminates. <p>Note that you can't
+     * specify an Availability Zone group or a launch group if you specify a
+     * duration.
      *
-     * @return The required duration for the Spot instances, in minutes. This value
-     *         must be a multiple of 60 (60, 120, 180, 240, 300, or 360). <p>The
-     *         duration period starts as soon as your Spot instance receives its
-     *         instance ID. At the end of the duration period, Amazon EC2 marks the
-     *         Spot instance for termination and provides a Spot instance termination
-     *         notice, which gives the instance a two-minute warning before it
-     *         terminates. <p>Note that you can't specify an Availability Zone group
-     *         or a launch group if you specify a duration.
+     * @return The required duration for the Spot instances (also known as Spot
+     *         blocks), in minutes. This value must be a multiple of 60 (60, 120,
+     *         180, 240, 300, or 360). <p>The duration period starts as soon as your
+     *         Spot instance receives its instance ID. At the end of the duration
+     *         period, Amazon EC2 marks the Spot instance for termination and
+     *         provides a Spot instance termination notice, which gives the instance
+     *         a two-minute warning before it terminates. <p>Note that you can't
+     *         specify an Availability Zone group or a launch group if you specify a
+     *         duration.
      */
     public Integer getBlockDurationMinutes() {
         return blockDurationMinutes;
     }
     
     /**
-     * The required duration for the Spot instances, in minutes. This value
-     * must be a multiple of 60 (60, 120, 180, 240, 300, or 360). <p>The
-     * duration period starts as soon as your Spot instance receives its
-     * instance ID. At the end of the duration period, Amazon EC2 marks the
-     * Spot instance for termination and provides a Spot instance termination
-     * notice, which gives the instance a two-minute warning before it
-     * terminates. <p>Note that you can't specify an Availability Zone group
-     * or a launch group if you specify a duration.
+     * The required duration for the Spot instances (also known as Spot
+     * blocks), in minutes. This value must be a multiple of 60 (60, 120,
+     * 180, 240, 300, or 360). <p>The duration period starts as soon as your
+     * Spot instance receives its instance ID. At the end of the duration
+     * period, Amazon EC2 marks the Spot instance for termination and
+     * provides a Spot instance termination notice, which gives the instance
+     * a two-minute warning before it terminates. <p>Note that you can't
+     * specify an Availability Zone group or a launch group if you specify a
+     * duration.
      *
-     * @param blockDurationMinutes The required duration for the Spot instances, in minutes. This value
-     *         must be a multiple of 60 (60, 120, 180, 240, 300, or 360). <p>The
-     *         duration period starts as soon as your Spot instance receives its
-     *         instance ID. At the end of the duration period, Amazon EC2 marks the
-     *         Spot instance for termination and provides a Spot instance termination
-     *         notice, which gives the instance a two-minute warning before it
-     *         terminates. <p>Note that you can't specify an Availability Zone group
-     *         or a launch group if you specify a duration.
+     * @param blockDurationMinutes The required duration for the Spot instances (also known as Spot
+     *         blocks), in minutes. This value must be a multiple of 60 (60, 120,
+     *         180, 240, 300, or 360). <p>The duration period starts as soon as your
+     *         Spot instance receives its instance ID. At the end of the duration
+     *         period, Amazon EC2 marks the Spot instance for termination and
+     *         provides a Spot instance termination notice, which gives the instance
+     *         a two-minute warning before it terminates. <p>Note that you can't
+     *         specify an Availability Zone group or a launch group if you specify a
+     *         duration.
      */
     public void setBlockDurationMinutes(Integer blockDurationMinutes) {
         this.blockDurationMinutes = blockDurationMinutes;
     }
     
     /**
-     * The required duration for the Spot instances, in minutes. This value
-     * must be a multiple of 60 (60, 120, 180, 240, 300, or 360). <p>The
-     * duration period starts as soon as your Spot instance receives its
-     * instance ID. At the end of the duration period, Amazon EC2 marks the
-     * Spot instance for termination and provides a Spot instance termination
-     * notice, which gives the instance a two-minute warning before it
-     * terminates. <p>Note that you can't specify an Availability Zone group
-     * or a launch group if you specify a duration.
+     * The required duration for the Spot instances (also known as Spot
+     * blocks), in minutes. This value must be a multiple of 60 (60, 120,
+     * 180, 240, 300, or 360). <p>The duration period starts as soon as your
+     * Spot instance receives its instance ID. At the end of the duration
+     * period, Amazon EC2 marks the Spot instance for termination and
+     * provides a Spot instance termination notice, which gives the instance
+     * a two-minute warning before it terminates. <p>Note that you can't
+     * specify an Availability Zone group or a launch group if you specify a
+     * duration.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param blockDurationMinutes The required duration for the Spot instances, in minutes. This value
-     *         must be a multiple of 60 (60, 120, 180, 240, 300, or 360). <p>The
-     *         duration period starts as soon as your Spot instance receives its
-     *         instance ID. At the end of the duration period, Amazon EC2 marks the
-     *         Spot instance for termination and provides a Spot instance termination
-     *         notice, which gives the instance a two-minute warning before it
-     *         terminates. <p>Note that you can't specify an Availability Zone group
-     *         or a launch group if you specify a duration.
+     * @param blockDurationMinutes The required duration for the Spot instances (also known as Spot
+     *         blocks), in minutes. This value must be a multiple of 60 (60, 120,
+     *         180, 240, 300, or 360). <p>The duration period starts as soon as your
+     *         Spot instance receives its instance ID. At the end of the duration
+     *         period, Amazon EC2 marks the Spot instance for termination and
+     *         provides a Spot instance termination notice, which gives the instance
+     *         a two-minute warning before it terminates. <p>Note that you can't
+     *         specify an Availability Zone group or a launch group if you specify a
+     *         duration.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

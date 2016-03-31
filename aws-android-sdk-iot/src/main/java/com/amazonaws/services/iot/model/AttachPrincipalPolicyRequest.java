@@ -39,8 +39,8 @@ public class AttachPrincipalPolicyRequest extends AmazonWebServiceRequest implem
     private String policyName;
 
     /**
-     * The principal which can be a certificate ARN (as returned from the
-     * CreateCertificate operation) or a Cognito ID.
+     * The principal, which can be a certificate ARN (as returned from the
+     * CreateCertificate operation) or an Amazon Cognito ID.
      */
     private String principal;
 
@@ -90,35 +90,35 @@ public class AttachPrincipalPolicyRequest extends AmazonWebServiceRequest implem
     }
 
     /**
-     * The principal which can be a certificate ARN (as returned from the
-     * CreateCertificate operation) or a Cognito ID.
+     * The principal, which can be a certificate ARN (as returned from the
+     * CreateCertificate operation) or an Amazon Cognito ID.
      *
-     * @return The principal which can be a certificate ARN (as returned from the
-     *         CreateCertificate operation) or a Cognito ID.
+     * @return The principal, which can be a certificate ARN (as returned from the
+     *         CreateCertificate operation) or an Amazon Cognito ID.
      */
     public String getPrincipal() {
         return principal;
     }
     
     /**
-     * The principal which can be a certificate ARN (as returned from the
-     * CreateCertificate operation) or a Cognito ID.
+     * The principal, which can be a certificate ARN (as returned from the
+     * CreateCertificate operation) or an Amazon Cognito ID.
      *
-     * @param principal The principal which can be a certificate ARN (as returned from the
-     *         CreateCertificate operation) or a Cognito ID.
+     * @param principal The principal, which can be a certificate ARN (as returned from the
+     *         CreateCertificate operation) or an Amazon Cognito ID.
      */
     public void setPrincipal(String principal) {
         this.principal = principal;
     }
     
     /**
-     * The principal which can be a certificate ARN (as returned from the
-     * CreateCertificate operation) or a Cognito ID.
+     * The principal, which can be a certificate ARN (as returned from the
+     * CreateCertificate operation) or an Amazon Cognito ID.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param principal The principal which can be a certificate ARN (as returned from the
-     *         CreateCertificate operation) or a Cognito ID.
+     * @param principal The principal, which can be a certificate ARN (as returned from the
+     *         CreateCertificate operation) or an Amazon Cognito ID.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

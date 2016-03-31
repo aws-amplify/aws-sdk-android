@@ -132,9 +132,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the
@@ -230,9 +230,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the
@@ -302,9 +302,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the
@@ -387,9 +387,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the
@@ -468,9 +468,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the
@@ -534,9 +534,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      *         </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      *         that define specific items in the table. For each primary key, you
      *         must provide <i>all</i> of the key attributes. For example, with a
-     *         hash type primary key, you only need to provide the hash attribute.
-     *         For a hash-and-range type primary key, you must provide <i>both</i>
-     *         the hash attribute and the range attribute. </li> <li>
+     *         simple primary key, you only need to provide the partition key value.
+     *         For a composite key, you must provide <i>both</i> the partition key
+     *         value and the sort key value. </li> <li>
      *         <p><i>ProjectionExpression</i> - A string that identifies one or more
      *         attributes to retrieve from the table. These attributes can include
      *         scalars, sets, or elements of a JSON document. The attributes in the
@@ -603,9 +603,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the
@@ -669,9 +669,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      *         </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      *         that define specific items in the table. For each primary key, you
      *         must provide <i>all</i> of the key attributes. For example, with a
-     *         hash type primary key, you only need to provide the hash attribute.
-     *         For a hash-and-range type primary key, you must provide <i>both</i>
-     *         the hash attribute and the range attribute. </li> <li>
+     *         simple primary key, you only need to provide the partition key value.
+     *         For a composite key, you must provide <i>both</i> the partition key
+     *         value and the sort key value. </li> <li>
      *         <p><i>ProjectionExpression</i> - A string that identifies one or more
      *         attributes to retrieve from the table. These attributes can include
      *         scalars, sets, or elements of a JSON document. The attributes in the
@@ -737,9 +737,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the
@@ -805,9 +805,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      *         </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      *         that define specific items in the table. For each primary key, you
      *         must provide <i>all</i> of the key attributes. For example, with a
-     *         hash type primary key, you only need to provide the hash attribute.
-     *         For a hash-and-range type primary key, you must provide <i>both</i>
-     *         the hash attribute and the range attribute. </li> <li>
+     *         simple primary key, you only need to provide the partition key value.
+     *         For a composite key, you must provide <i>both</i> the partition key
+     *         value and the sort key value. </li> <li>
      *         <p><i>ProjectionExpression</i> - A string that identifies one or more
      *         attributes to retrieve from the table. These attributes can include
      *         scalars, sets, or elements of a JSON document. The attributes in the
@@ -877,9 +877,9 @@ public class BatchGetItemRequest extends AmazonWebServiceRequest implements Seri
      * </li> <li> <p><i>Keys</i> - An array of primary key attribute values
      * that define specific items in the table. For each primary key, you
      * must provide <i>all</i> of the key attributes. For example, with a
-     * hash type primary key, you only need to provide the hash attribute.
-     * For a hash-and-range type primary key, you must provide <i>both</i>
-     * the hash attribute and the range attribute. </li> <li>
+     * simple primary key, you only need to provide the partition key value.
+     * For a composite key, you must provide <i>both</i> the partition key
+     * value and the sort key value. </li> <li>
      * <p><i>ProjectionExpression</i> - A string that identifies one or more
      * attributes to retrieve from the table. These attributes can include
      * scalars, sets, or elements of a JSON document. The attributes in the

@@ -35,8 +35,17 @@ public class GlobalSecondaryIndex implements Serializable {
 
     /**
      * The complete key schema for a global secondary index, which consists
-     * of one or more pairs of attribute names and key types
-     * (<code>HASH</code> or <code>RANGE</code>).
+     * of one or more pairs of attribute names and key types: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2<br/>
@@ -113,15 +122,33 @@ public class GlobalSecondaryIndex implements Serializable {
 
     /**
      * The complete key schema for a global secondary index, which consists
-     * of one or more pairs of attribute names and key types
-     * (<code>HASH</code> or <code>RANGE</code>).
+     * of one or more pairs of attribute names and key types: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2<br/>
      *
      * @return The complete key schema for a global secondary index, which consists
-     *         of one or more pairs of attribute names and key types
-     *         (<code>HASH</code> or <code>RANGE</code>).
+     *         of one or more pairs of attribute names and key types: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note>
      */
     public java.util.List<KeySchemaElement> getKeySchema() {
         return keySchema;
@@ -129,15 +156,33 @@ public class GlobalSecondaryIndex implements Serializable {
     
     /**
      * The complete key schema for a global secondary index, which consists
-     * of one or more pairs of attribute names and key types
-     * (<code>HASH</code> or <code>RANGE</code>).
+     * of one or more pairs of attribute names and key types: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2<br/>
      *
      * @param keySchema The complete key schema for a global secondary index, which consists
-     *         of one or more pairs of attribute names and key types
-     *         (<code>HASH</code> or <code>RANGE</code>).
+     *         of one or more pairs of attribute names and key types: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note>
      */
     public void setKeySchema(java.util.Collection<KeySchemaElement> keySchema) {
         if (keySchema == null) {
@@ -151,8 +196,17 @@ public class GlobalSecondaryIndex implements Serializable {
     
     /**
      * The complete key schema for a global secondary index, which consists
-     * of one or more pairs of attribute names and key types
-     * (<code>HASH</code> or <code>RANGE</code>).
+     * of one or more pairs of attribute names and key types: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -160,8 +214,17 @@ public class GlobalSecondaryIndex implements Serializable {
      * <b>Length: </b>1 - 2<br/>
      *
      * @param keySchema The complete key schema for a global secondary index, which consists
-     *         of one or more pairs of attribute names and key types
-     *         (<code>HASH</code> or <code>RANGE</code>).
+     *         of one or more pairs of attribute names and key types: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -176,8 +239,17 @@ public class GlobalSecondaryIndex implements Serializable {
     
     /**
      * The complete key schema for a global secondary index, which consists
-     * of one or more pairs of attribute names and key types
-     * (<code>HASH</code> or <code>RANGE</code>).
+     * of one or more pairs of attribute names and key types: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -185,8 +257,17 @@ public class GlobalSecondaryIndex implements Serializable {
      * <b>Length: </b>1 - 2<br/>
      *
      * @param keySchema The complete key schema for a global secondary index, which consists
-     *         of one or more pairs of attribute names and key types
-     *         (<code>HASH</code> or <code>RANGE</code>).
+     *         of one or more pairs of attribute names and key types: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

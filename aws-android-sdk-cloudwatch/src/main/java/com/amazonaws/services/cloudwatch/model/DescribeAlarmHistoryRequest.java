@@ -71,6 +71,9 @@ public class DescribeAlarmHistoryRequest extends AmazonWebServiceRequest impleme
     /**
      * The token returned by a previous call to indicate that there is more
      * data available.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1024<br/>
      */
     private String nextToken;
 
@@ -309,6 +312,9 @@ public class DescribeAlarmHistoryRequest extends AmazonWebServiceRequest impleme
     /**
      * The token returned by a previous call to indicate that there is more
      * data available.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1024<br/>
      *
      * @return The token returned by a previous call to indicate that there is more
      *         data available.
@@ -320,6 +326,9 @@ public class DescribeAlarmHistoryRequest extends AmazonWebServiceRequest impleme
     /**
      * The token returned by a previous call to indicate that there is more
      * data available.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1024<br/>
      *
      * @param nextToken The token returned by a previous call to indicate that there is more
      *         data available.
@@ -333,6 +342,9 @@ public class DescribeAlarmHistoryRequest extends AmazonWebServiceRequest impleme
      * data available.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1024<br/>
      *
      * @param nextToken The token returned by a previous call to indicate that there is more
      *         data available.

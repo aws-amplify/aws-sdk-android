@@ -21,4 +21,6 @@ public interface Connectivity {
     public boolean hasWifi();
 
     public boolean hasWAN();
+
+    public boolean hasWired();
 }

@@ -30,6 +30,9 @@ public class ListMetricsResult implements Serializable {
 
     /**
      * A string that marks the start of the next batch of returned results.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1024<br/>
      */
     private String nextToken;
 
@@ -103,6 +106,9 @@ public class ListMetricsResult implements Serializable {
 
     /**
      * A string that marks the start of the next batch of returned results.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1024<br/>
      *
      * @return A string that marks the start of the next batch of returned results.
      */
@@ -112,6 +118,9 @@ public class ListMetricsResult implements Serializable {
     
     /**
      * A string that marks the start of the next batch of returned results.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1024<br/>
      *
      * @param nextToken A string that marks the start of the next batch of returned results.
      */
@@ -123,6 +132,9 @@ public class ListMetricsResult implements Serializable {
      * A string that marks the start of the next batch of returned results.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1024<br/>
      *
      * @param nextToken A string that marks the start of the next batch of returned results.
      *

@@ -136,10 +136,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * key attribute values that uniquely identify the ! item. Each entry in
      * this map consists of an attribute name and an attribute value. For
      * each primary key, you must provide <i>all</i> of the key attributes.
-     * For example, with a hash type primary key, you only need to provide
-     * the hash attribute. For a hash-and-range type primary key, you must
-     * provide <i>both</i> the hash attribute and the range attribute. </li>
-     * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     * For example, with a simple primary key, you only need to provide a
+     * value for the partition key. For a composite primary key, you must
+     * provide values for <i>both</i> the partition key and the sort key.
+     * </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      * attributes and their values. Each entry in this map consists of an
@@ -207,10 +207,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * key attribute values that uniquely identify the ! item. Each entry in
      * this map consists of an attribute name and an attribute value. For
      * each primary key, you must provide <i>all</i> of the key attributes.
-     * For example, with a hash type primary key, you only need to provide
-     * the hash attribute. For a hash-and-range type primary key, you must
-     * provide <i>both</i> the hash attribute and the range attribute. </li>
-     * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     * For example, with a simple primary key, you only need to provide a
+     * value for the partition key. For a composite primary key, you must
+     * provide values for <i>both</i> the partition key and the sort key.
+     * </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      * attributes and their values. Each entry in this map consists of an
@@ -236,10 +236,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * key attribute values that uniquely identify the ! item. Each entry in
      * this map consists of an attribute name and an attribute value. For
      * each primary key, you must provide <i>all</i> of the key attributes.
-     * For example, with a hash type primary key, you only need to provide
-     * the hash attribute. For a hash-and-range type primary key, you must
-     * provide <i>both</i> the hash attribute and the range attribute. </li>
-     * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     * For example, with a simple primary key, you only need to provide a
+     * value for the partition key. For a composite primary key, you must
+     * provide values for <i>both</i> the partition key and the sort key.
+     * </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      * attributes and their values. Each entry in this map consists of an
@@ -263,10 +263,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      *         key attribute values that uniquely identify the ! item. Each entry in
      *         this map consists of an attribute name and an attribute value. For
      *         each primary key, you must provide <i>all</i> of the key attributes.
-     *         For example, with a hash type primary key, you only need to provide
-     *         the hash attribute. For a hash-and-range type primary key, you must
-     *         provide <i>both</i> the hash attribute and the range attribute. </li>
-     *         </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     *         For example, with a simple primary key, you only need to provide a
+     *         value for the partition key. For a composite primary key, you must
+     *         provide values for <i>both</i> the partition key and the sort key.
+     *         </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      *         operation on the specified item. The item to be put is identified by
      *         an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      *         attributes and their values. Each entry in this map consists of an
@@ -293,10 +293,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * key attribute values that uniquely identify the ! item. Each entry in
      * this map consists of an attribute name and an attribute value. For
      * each primary key, you must provide <i>all</i> of the key attributes.
-     * For example, with a hash type primary key, you only need to provide
-     * the hash attribute. For a hash-and-range type primary key, you must
-     * provide <i>both</i> the hash attribute and the range attribute. </li>
-     * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     * For example, with a simple primary key, you only need to provide a
+     * value for the partition key. For a composite primary key, you must
+     * provide values for <i>both</i> the partition key and the sort key.
+     * </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      * attributes and their values. Each entry in this map consists of an
@@ -320,10 +320,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      *         key attribute values that uniquely identify the ! item. Each entry in
      *         this map consists of an attribute name and an attribute value. For
      *         each primary key, you must provide <i>all</i> of the key attributes.
-     *         For example, with a hash type primary key, you only need to provide
-     *         the hash attribute. For a hash-and-range type primary key, you must
-     *         provide <i>both</i> the hash attribute and the range attribute. </li>
-     *         </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     *         For example, with a simple primary key, you only need to provide a
+     *         value for the partition key. For a composite primary key, you must
+     *         provide values for <i>both</i> the partition key and the sort key.
+     *         </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      *         operation on the specified item. The item to be put is identified by
      *         an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      *         attributes and their values. Each entry in this map consists of an
@@ -349,10 +349,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * key attribute values that uniquely identify the ! item. Each entry in
      * this map consists of an attribute name and an attribute value. For
      * each primary key, you must provide <i>all</i> of the key attributes.
-     * For example, with a hash type primary key, you only need to provide
-     * the hash attribute. For a hash-and-range type primary key, you must
-     * provide <i>both</i> the hash attribute and the range attribute. </li>
-     * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     * For example, with a simple primary key, you only need to provide a
+     * value for the partition key. For a composite primary key, you must
+     * provide values for <i>both</i> the partition key and the sort key.
+     * </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      * attributes and their values. Each entry in this map consists of an
@@ -378,10 +378,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      *         key attribute values that uniquely identify the ! item. Each entry in
      *         this map consists of an attribute name and an attribute value. For
      *         each primary key, you must provide <i>all</i> of the key attributes.
-     *         For example, with a hash type primary key, you only need to provide
-     *         the hash attribute. For a hash-and-range type primary key, you must
-     *         provide <i>both</i> the hash attribute and the range attribute. </li>
-     *         </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     *         For example, with a simple primary key, you only need to provide a
+     *         value for the partition key. For a composite primary key, you must
+     *         provide values for <i>both</i> the partition key and the sort key.
+     *         </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      *         operation on the specified item. The item to be put is identified by
      *         an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      *         attributes and their values. Each entry in this map consists of an
@@ -411,10 +411,10 @@ public class BatchWriteItemRequest extends AmazonWebServiceRequest implements Se
      * key attribute values that uniquely identify the ! item. Each entry in
      * this map consists of an attribute name and an attribute value. For
      * each primary key, you must provide <i>all</i> of the key attributes.
-     * For example, with a hash type primary key, you only need to provide
-     * the hash attribute. For a hash-and-range type primary key, you must
-     * provide <i>both</i> the hash attribute and the range attribute. </li>
-     * </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
+     * For example, with a simple primary key, you only need to provide a
+     * value for the partition key. For a composite primary key, you must
+     * provide values for <i>both</i> the partition key and the sort key.
+     * </li> </ul> </li> <li> <p><i>PutRequest</i> - Perform a <i>PutItem</i>
      * operation on the specified item. The item to be put is identified by
      * an <i>Item</i> subelement: <ul> <li> <p><i>Item</i> - A map of
      * attributes and their values. Each entry in this map consists of an

@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Container for the parameters to the {@link com.amazonaws.services.iot.AWSIot#listPrincipalPolicies(ListPrincipalPoliciesRequest) ListPrincipalPolicies operation}.
  * <p>
  * Lists the policies attached to the specified principal. If you use an
- * Amazon Cognito identity, the ID needs to be in
- * <a href="http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax"> Amazon Cognito Identity format </a>
+ * Cognito identity, the ID must be in
+ * <a href="http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax"> AmazonCognito Identity format </a>
  * .
  * </p>
  *

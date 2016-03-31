@@ -42,6 +42,9 @@ public class SnsActionJsonUnmarshaller implements Unmarshaller<SnsAction, JsonUn
             if (name.equals("roleArn")) {
                 snsAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
+            if (name.equals("messageFormat")) {
+                snsAction.setMessageFormat(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
             {
                 reader.skipValue();
             }

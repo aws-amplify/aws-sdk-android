@@ -24,13 +24,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Deletes the specified policy.
  * </p>
  * <p>
- * A policy cannot be deleted if it has non-default versions and/or it is
+ * A policy cannot be deleted if it has non-default versions or it is
  * attached to any certificate.
  * </p>
  * <p>
- * To delete a policy, delete all non-default versions of the policy
- * using the DeletePolicyVersion API, detach the policy from any
- * certificate using the DetachPrincipalPolicy API, and then use the
+ * To delete a policy, use the DeletePolicyVersion API to delete all
+ * non-default versions of the policy; use the DetachPrincipalPolicy API
+ * to detach the policy from any certificate; and then use the
  * DeletePolicy API to delete the policy.
  * </p>
  * <p>

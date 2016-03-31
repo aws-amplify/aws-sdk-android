@@ -34,7 +34,7 @@ public class QueryResult implements Serializable {
      * The number of items in the response. <p>If you used a
      * <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
      * items returned after the filter was applied, and <i>ScannedCount</i>
-     * is the number of matching items before> the filter was applied. <p>If
+     * is the number of matching items before the filter was applied. <p>If
      * you did not use a filter in the request, then <i>Count</i> and
      * <i>ScannedCount</i> are the same.
      */
@@ -159,14 +159,14 @@ public class QueryResult implements Serializable {
      * The number of items in the response. <p>If you used a
      * <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
      * items returned after the filter was applied, and <i>ScannedCount</i>
-     * is the number of matching items before> the filter was applied. <p>If
+     * is the number of matching items before the filter was applied. <p>If
      * you did not use a filter in the request, then <i>Count</i> and
      * <i>ScannedCount</i> are the same.
      *
      * @return The number of items in the response. <p>If you used a
      *         <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
      *         items returned after the filter was applied, and <i>ScannedCount</i>
-     *         is the number of matching items before> the filter was applied. <p>If
+     *         is the number of matching items before the filter was applied. <p>If
      *         you did not use a filter in the request, then <i>Count</i> and
      *         <i>ScannedCount</i> are the same.
      */
@@ -178,14 +178,14 @@ public class QueryResult implements Serializable {
      * The number of items in the response. <p>If you used a
      * <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
      * items returned after the filter was applied, and <i>ScannedCount</i>
-     * is the number of matching items before> the filter was applied. <p>If
+     * is the number of matching items before the filter was applied. <p>If
      * you did not use a filter in the request, then <i>Count</i> and
      * <i>ScannedCount</i> are the same.
      *
      * @param count The number of items in the response. <p>If you used a
      *         <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
      *         items returned after the filter was applied, and <i>ScannedCount</i>
-     *         is the number of matching items before> the filter was applied. <p>If
+     *         is the number of matching items before the filter was applied. <p>If
      *         you did not use a filter in the request, then <i>Count</i> and
      *         <i>ScannedCount</i> are the same.
      */
@@ -197,7 +197,7 @@ public class QueryResult implements Serializable {
      * The number of items in the response. <p>If you used a
      * <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
      * items returned after the filter was applied, and <i>ScannedCount</i>
-     * is the number of matching items before> the filter was applied. <p>If
+     * is the number of matching items before the filter was applied. <p>If
      * you did not use a filter in the request, then <i>Count</i> and
      * <i>ScannedCount</i> are the same.
      * <p>
@@ -206,7 +206,7 @@ public class QueryResult implements Serializable {
      * @param count The number of items in the response. <p>If you used a
      *         <i>QueryFilter</i> in the request, then <i>Count</i> is the number of
      *         items returned after the filter was applied, and <i>ScannedCount</i>
-     *         is the number of matching items before> the filter was applied. <p>If
+     *         is the number of matching items before the filter was applied. <p>If
      *         you did not use a filter in the request, then <i>Count</i> and
      *         <i>ScannedCount</i> are the same.
      *

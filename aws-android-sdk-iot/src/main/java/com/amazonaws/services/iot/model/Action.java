@@ -34,17 +34,17 @@ public class Action implements Serializable {
     private LambdaAction lambda;
 
     /**
-     * Publish to an SNS topic.
+     * Publish to an Amazon SNS topic.
      */
     private SnsAction sns;
 
     /**
-     * Publish to an SQS queue.
+     * Publish to an Amazon SQS queue.
      */
     private SqsAction sqs;
 
     /**
-     * Write data to a Kinesis stream.
+     * Write data to an Amazon Kinesis stream.
      */
     private KinesisAction kinesis;
 
@@ -54,14 +54,29 @@ public class Action implements Serializable {
     private RepublishAction republish;
 
     /**
-     * Write to an S3 bucket.
+     * Write to an Amazon S3 bucket.
      */
     private S3Action s3;
 
     /**
-     * Write to a Kinesis Firehose stream.
+     * Write to an Amazon Kinesis Firehose stream.
      */
     private FirehoseAction firehose;
+
+    /**
+     * Capture a CloudWatch metric.
+     */
+    private CloudwatchMetricAction cloudwatchMetric;
+
+    /**
+     * Change the state of a CloudWatch alarm.
+     */
+    private CloudwatchAlarmAction cloudwatchAlarm;
+
+    /**
+     * Write data to an Amazon Elasticsearch Service; domain.
+     */
+    private ElasticsearchAction elasticsearch;
 
     /**
      * Write to a DynamoDB table.
@@ -130,29 +145,29 @@ public class Action implements Serializable {
     }
 
     /**
-     * Publish to an SNS topic.
+     * Publish to an Amazon SNS topic.
      *
-     * @return Publish to an SNS topic.
+     * @return Publish to an Amazon SNS topic.
      */
     public SnsAction getSns() {
         return sns;
     }
     
     /**
-     * Publish to an SNS topic.
+     * Publish to an Amazon SNS topic.
      *
-     * @param sns Publish to an SNS topic.
+     * @param sns Publish to an Amazon SNS topic.
      */
     public void setSns(SnsAction sns) {
         this.sns = sns;
     }
     
     /**
-     * Publish to an SNS topic.
+     * Publish to an Amazon SNS topic.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sns Publish to an SNS topic.
+     * @param sns Publish to an Amazon SNS topic.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -163,29 +178,29 @@ public class Action implements Serializable {
     }
 
     /**
-     * Publish to an SQS queue.
+     * Publish to an Amazon SQS queue.
      *
-     * @return Publish to an SQS queue.
+     * @return Publish to an Amazon SQS queue.
      */
     public SqsAction getSqs() {
         return sqs;
     }
     
     /**
-     * Publish to an SQS queue.
+     * Publish to an Amazon SQS queue.
      *
-     * @param sqs Publish to an SQS queue.
+     * @param sqs Publish to an Amazon SQS queue.
      */
     public void setSqs(SqsAction sqs) {
         this.sqs = sqs;
     }
     
     /**
-     * Publish to an SQS queue.
+     * Publish to an Amazon SQS queue.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sqs Publish to an SQS queue.
+     * @param sqs Publish to an Amazon SQS queue.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -196,29 +211,29 @@ public class Action implements Serializable {
     }
 
     /**
-     * Write data to a Kinesis stream.
+     * Write data to an Amazon Kinesis stream.
      *
-     * @return Write data to a Kinesis stream.
+     * @return Write data to an Amazon Kinesis stream.
      */
     public KinesisAction getKinesis() {
         return kinesis;
     }
     
     /**
-     * Write data to a Kinesis stream.
+     * Write data to an Amazon Kinesis stream.
      *
-     * @param kinesis Write data to a Kinesis stream.
+     * @param kinesis Write data to an Amazon Kinesis stream.
      */
     public void setKinesis(KinesisAction kinesis) {
         this.kinesis = kinesis;
     }
     
     /**
-     * Write data to a Kinesis stream.
+     * Write data to an Amazon Kinesis stream.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param kinesis Write data to a Kinesis stream.
+     * @param kinesis Write data to an Amazon Kinesis stream.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -262,29 +277,29 @@ public class Action implements Serializable {
     }
 
     /**
-     * Write to an S3 bucket.
+     * Write to an Amazon S3 bucket.
      *
-     * @return Write to an S3 bucket.
+     * @return Write to an Amazon S3 bucket.
      */
     public S3Action getS3() {
         return s3;
     }
     
     /**
-     * Write to an S3 bucket.
+     * Write to an Amazon S3 bucket.
      *
-     * @param s3 Write to an S3 bucket.
+     * @param s3 Write to an Amazon S3 bucket.
      */
     public void setS3(S3Action s3) {
         this.s3 = s3;
     }
     
     /**
-     * Write to an S3 bucket.
+     * Write to an Amazon S3 bucket.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param s3 Write to an S3 bucket.
+     * @param s3 Write to an Amazon S3 bucket.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -295,35 +310,134 @@ public class Action implements Serializable {
     }
 
     /**
-     * Write to a Kinesis Firehose stream.
+     * Write to an Amazon Kinesis Firehose stream.
      *
-     * @return Write to a Kinesis Firehose stream.
+     * @return Write to an Amazon Kinesis Firehose stream.
      */
     public FirehoseAction getFirehose() {
         return firehose;
     }
     
     /**
-     * Write to a Kinesis Firehose stream.
+     * Write to an Amazon Kinesis Firehose stream.
      *
-     * @param firehose Write to a Kinesis Firehose stream.
+     * @param firehose Write to an Amazon Kinesis Firehose stream.
      */
     public void setFirehose(FirehoseAction firehose) {
         this.firehose = firehose;
     }
     
     /**
-     * Write to a Kinesis Firehose stream.
+     * Write to an Amazon Kinesis Firehose stream.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param firehose Write to a Kinesis Firehose stream.
+     * @param firehose Write to an Amazon Kinesis Firehose stream.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
      */
     public Action withFirehose(FirehoseAction firehose) {
         this.firehose = firehose;
+        return this;
+    }
+
+    /**
+     * Capture a CloudWatch metric.
+     *
+     * @return Capture a CloudWatch metric.
+     */
+    public CloudwatchMetricAction getCloudwatchMetric() {
+        return cloudwatchMetric;
+    }
+    
+    /**
+     * Capture a CloudWatch metric.
+     *
+     * @param cloudwatchMetric Capture a CloudWatch metric.
+     */
+    public void setCloudwatchMetric(CloudwatchMetricAction cloudwatchMetric) {
+        this.cloudwatchMetric = cloudwatchMetric;
+    }
+    
+    /**
+     * Capture a CloudWatch metric.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param cloudwatchMetric Capture a CloudWatch metric.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public Action withCloudwatchMetric(CloudwatchMetricAction cloudwatchMetric) {
+        this.cloudwatchMetric = cloudwatchMetric;
+        return this;
+    }
+
+    /**
+     * Change the state of a CloudWatch alarm.
+     *
+     * @return Change the state of a CloudWatch alarm.
+     */
+    public CloudwatchAlarmAction getCloudwatchAlarm() {
+        return cloudwatchAlarm;
+    }
+    
+    /**
+     * Change the state of a CloudWatch alarm.
+     *
+     * @param cloudwatchAlarm Change the state of a CloudWatch alarm.
+     */
+    public void setCloudwatchAlarm(CloudwatchAlarmAction cloudwatchAlarm) {
+        this.cloudwatchAlarm = cloudwatchAlarm;
+    }
+    
+    /**
+     * Change the state of a CloudWatch alarm.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param cloudwatchAlarm Change the state of a CloudWatch alarm.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public Action withCloudwatchAlarm(CloudwatchAlarmAction cloudwatchAlarm) {
+        this.cloudwatchAlarm = cloudwatchAlarm;
+        return this;
+    }
+
+    /**
+     * Write data to an Amazon Elasticsearch Service; domain.
+     *
+     * @return Write data to an Amazon Elasticsearch Service; domain.
+     */
+    public ElasticsearchAction getElasticsearch() {
+        return elasticsearch;
+    }
+    
+    /**
+     * Write data to an Amazon Elasticsearch Service; domain.
+     *
+     * @param elasticsearch Write data to an Amazon Elasticsearch Service; domain.
+     */
+    public void setElasticsearch(ElasticsearchAction elasticsearch) {
+        this.elasticsearch = elasticsearch;
+    }
+    
+    /**
+     * Write data to an Amazon Elasticsearch Service; domain.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param elasticsearch Write data to an Amazon Elasticsearch Service; domain.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public Action withElasticsearch(ElasticsearchAction elasticsearch) {
+        this.elasticsearch = elasticsearch;
         return this;
     }
 
@@ -346,7 +460,10 @@ public class Action implements Serializable {
         if (getKinesis() != null) sb.append("Kinesis: " + getKinesis() + ",");
         if (getRepublish() != null) sb.append("Republish: " + getRepublish() + ",");
         if (getS3() != null) sb.append("S3: " + getS3() + ",");
-        if (getFirehose() != null) sb.append("Firehose: " + getFirehose() );
+        if (getFirehose() != null) sb.append("Firehose: " + getFirehose() + ",");
+        if (getCloudwatchMetric() != null) sb.append("CloudwatchMetric: " + getCloudwatchMetric() + ",");
+        if (getCloudwatchAlarm() != null) sb.append("CloudwatchAlarm: " + getCloudwatchAlarm() + ",");
+        if (getElasticsearch() != null) sb.append("Elasticsearch: " + getElasticsearch() );
         sb.append("}");
         return sb.toString();
     }
@@ -364,6 +481,9 @@ public class Action implements Serializable {
         hashCode = prime * hashCode + ((getRepublish() == null) ? 0 : getRepublish().hashCode()); 
         hashCode = prime * hashCode + ((getS3() == null) ? 0 : getS3().hashCode()); 
         hashCode = prime * hashCode + ((getFirehose() == null) ? 0 : getFirehose().hashCode()); 
+        hashCode = prime * hashCode + ((getCloudwatchMetric() == null) ? 0 : getCloudwatchMetric().hashCode()); 
+        hashCode = prime * hashCode + ((getCloudwatchAlarm() == null) ? 0 : getCloudwatchAlarm().hashCode()); 
+        hashCode = prime * hashCode + ((getElasticsearch() == null) ? 0 : getElasticsearch().hashCode()); 
         return hashCode;
     }
     
@@ -391,6 +511,12 @@ public class Action implements Serializable {
         if (other.getS3() != null && other.getS3().equals(this.getS3()) == false) return false; 
         if (other.getFirehose() == null ^ this.getFirehose() == null) return false;
         if (other.getFirehose() != null && other.getFirehose().equals(this.getFirehose()) == false) return false; 
+        if (other.getCloudwatchMetric() == null ^ this.getCloudwatchMetric() == null) return false;
+        if (other.getCloudwatchMetric() != null && other.getCloudwatchMetric().equals(this.getCloudwatchMetric()) == false) return false; 
+        if (other.getCloudwatchAlarm() == null ^ this.getCloudwatchAlarm() == null) return false;
+        if (other.getCloudwatchAlarm() != null && other.getCloudwatchAlarm().equals(this.getCloudwatchAlarm()) == false) return false; 
+        if (other.getElasticsearch() == null ^ this.getElasticsearch() == null) return false;
+        if (other.getElasticsearch() != null && other.getElasticsearch().equals(this.getElasticsearch()) == false) return false; 
         return true;
     }
     

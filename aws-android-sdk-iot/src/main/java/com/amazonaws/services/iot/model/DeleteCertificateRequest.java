@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * A certificate cannot be deleted if it has a policy attached to it or
- * if its status is set to ACTIVE. To delete a certificate, first detach
- * all policies using the DetachPrincipalPolicy API. Next use the
+ * if its status is set to ACTIVE. To delete a certificate, first use the
+ * DetachPrincipalPolicy API to detach all policies. Next, use the
  * UpdateCertificate API to set the certificate to the INACTIVE status.
  * </p>
  *

@@ -44,9 +44,18 @@ public class TableDescription implements Serializable {
     /**
      * The primary key structure for the table. Each <i>KeySchemaElement</i>
      * consists of: <ul> <li> <p><i>AttributeName</i> - The name of the
-     * attribute. </li> <li> <p><i>KeyType</i> - The key type for the
-     * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
-     * </li> </ul> <p>For more information about primary keys, see <a
+     * attribute. </li> <li> <p><i>KeyType</i> - The role of the attribute: .
+     * <ul> <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note> </li> </ul> <p>For more information about primary keys,
+     * see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -101,19 +110,20 @@ public class TableDescription implements Serializable {
 
     /**
      * Represents one or more local secondary indexes on the table. Each
-     * index is scoped to a given hash key value. Tables with one or more
-     * local secondary indexes are subject to an item collection size limit,
-     * where the amount of data within a given item collection cannot exceed
-     * 10 GB. Each element is composed of: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. </li> <li> <p><i>KeySchema</i>
-     * - Specifies the complete index key schema. The attribute names in the
-     * key schema must be between 1 and 255 characters (inclusive). The key
-     * schema must begin with the same hash key attribute as the table. </li>
-     * <li> <p><i>Projection</i> - Specifies attributes that are copied
-     * (projected) from the table into the index. These are in addition to
-     * the primary key attributes and index key attributes, which are
-     * automatically projected. Each attribute specification is composed of:
-     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * index is scoped to a given partition key value. Tables with one or
+     * more local secondary indexes are subject to an item collection size
+     * limit, where the amount of data within a given item collection cannot
+     * exceed 10 GB. Each element is composed of: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. </li>
+     * <li> <p><i>KeySchema</i> - Specifies the complete index key schema.
+     * The attribute names in the key schema must be between 1 and 255
+     * characters (inclusive). The key schema must begin with the same
+     * partition key as the table. </li> <li> <p><i>Projection</i> -
+     * Specifies attributes that are copied (projected) from the table into
+     * the index. These are in addition to the primary key attributes and
+     * index key attributes, which are automatically projected. Each
+     * attribute specification is composed of: <ul> <li>
+     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -139,9 +149,9 @@ public class TableDescription implements Serializable {
 
     /**
      * The global secondary indexes, if any, on the table. Each index is
-     * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
-     * the backfilling phase. Backfilling occurs only when a new global
+     * scoped to a given partition key value. Each element is composed of:
+     * <ul> <li> <p><i>Backfilling</i> - If true, then the index is currently
+     * in the backfilling phase. Backfilling occurs only when a new global
      * secondary index is added to the table; it is the process by which
      * DynamoDB populates the new index with data from the table. (This
      * attribute does not appear for indexes that were created during a
@@ -160,24 +170,24 @@ public class TableDescription implements Serializable {
      * Recent changes might not be reflected in this value. </li> <li>
      * <p><i>KeySchema</i> - Specifies the complete index key schema. The
      * attribute names in the key schema must be between 1 and 255 characters
-     * (inclusive). The key schema must begin with the same hash key
-     * attribute as the table. </li> <li> <p><i>Projection</i> - Specifies
-     * attributes that are copied (projected) from the table into the index.
-     * These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected. Each attribute
-     * specification is composed of: <ul> <li> <p><i>ProjectionType</i> - One
-     * of the following: <ul> <li> <p><code>KEYS_ONLY</code> - Only the index
-     * and primary keys are projected into the index. </li> <li>
-     * <p><code>INCLUDE</code> - Only the specified table attributes are
-     * projected into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>. </li> <li> <p><code>ALL</code> - All of the
-     * table attributes are projected into the index. </li> </ul> </li> <li>
-     * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     * names that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
-     * the secondary indexes, must not exceed 20. If you project the same
-     * attribute into two different indexes, this counts as two distinct
-     * attributes when determining the total. </li> </ul> </li> <li>
+     * (inclusive). The key schema must begin with the same partition key as
+     * the table. </li> <li> <p><i>Projection</i> - Specifies attributes that
+     * are copied (projected) from the table into the index. These are in
+     * addition to the primary key attributes and index key attributes, which
+     * are automatically projected. Each attribute specification is composed
+     * of: <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul>
+     * <li> <p><code>KEYS_ONLY</code> - Only the index and primary keys are
+     * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
+     * the specified table attributes are projected into the index. The list
+     * of projected attributes are in <i>NonKeyAttributes</i>. </li> <li>
+     * <p><code>ALL</code> - All of the table attributes are projected into
+     * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
+     * of one or more non-key attribute names that are projected into the
+     * secondary index. The total count of attributes provided in
+     * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
+     * must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total. </li> </ul> </li> <li>
      * <p><i>ProvisionedThroughput</i> - The provisioned throughput settings
      * for the global secondary index, consisting of read and write capacity
      * units, along with data about increases and decreases. </li> </ul>
@@ -361,9 +371,18 @@ public class TableDescription implements Serializable {
     /**
      * The primary key structure for the table. Each <i>KeySchemaElement</i>
      * consists of: <ul> <li> <p><i>AttributeName</i> - The name of the
-     * attribute. </li> <li> <p><i>KeyType</i> - The key type for the
-     * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
-     * </li> </ul> <p>For more information about primary keys, see <a
+     * attribute. </li> <li> <p><i>KeyType</i> - The role of the attribute: .
+     * <ul> <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note> </li> </ul> <p>For more information about primary keys,
+     * see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -372,9 +391,18 @@ public class TableDescription implements Serializable {
      *
      * @return The primary key structure for the table. Each <i>KeySchemaElement</i>
      *         consists of: <ul> <li> <p><i>AttributeName</i> - The name of the
-     *         attribute. </li> <li> <p><i>KeyType</i> - The key type for the
-     *         attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
-     *         </li> </ul> <p>For more information about primary keys, see <a
+     *         attribute. </li> <li> <p><i>KeyType</i> - The role of the attribute: .
+     *         <ul> <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note> </li> </ul> <p>For more information about primary keys,
+     *         see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
@@ -385,9 +413,18 @@ public class TableDescription implements Serializable {
     /**
      * The primary key structure for the table. Each <i>KeySchemaElement</i>
      * consists of: <ul> <li> <p><i>AttributeName</i> - The name of the
-     * attribute. </li> <li> <p><i>KeyType</i> - The key type for the
-     * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
-     * </li> </ul> <p>For more information about primary keys, see <a
+     * attribute. </li> <li> <p><i>KeyType</i> - The role of the attribute: .
+     * <ul> <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note> </li> </ul> <p>For more information about primary keys,
+     * see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -396,9 +433,18 @@ public class TableDescription implements Serializable {
      *
      * @param keySchema The primary key structure for the table. Each <i>KeySchemaElement</i>
      *         consists of: <ul> <li> <p><i>AttributeName</i> - The name of the
-     *         attribute. </li> <li> <p><i>KeyType</i> - The key type for the
-     *         attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
-     *         </li> </ul> <p>For more information about primary keys, see <a
+     *         attribute. </li> <li> <p><i>KeyType</i> - The role of the attribute: .
+     *         <ul> <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note> </li> </ul> <p>For more information about primary keys,
+     *         see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
@@ -415,9 +461,18 @@ public class TableDescription implements Serializable {
     /**
      * The primary key structure for the table. Each <i>KeySchemaElement</i>
      * consists of: <ul> <li> <p><i>AttributeName</i> - The name of the
-     * attribute. </li> <li> <p><i>KeyType</i> - The key type for the
-     * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
-     * </li> </ul> <p>For more information about primary keys, see <a
+     * attribute. </li> <li> <p><i>KeyType</i> - The role of the attribute: .
+     * <ul> <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note> </li> </ul> <p>For more information about primary keys,
+     * see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -428,9 +483,18 @@ public class TableDescription implements Serializable {
      *
      * @param keySchema The primary key structure for the table. Each <i>KeySchemaElement</i>
      *         consists of: <ul> <li> <p><i>AttributeName</i> - The name of the
-     *         attribute. </li> <li> <p><i>KeyType</i> - The key type for the
-     *         attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
-     *         </li> </ul> <p>For more information about primary keys, see <a
+     *         attribute. </li> <li> <p><i>KeyType</i> - The role of the attribute: .
+     *         <ul> <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note> </li> </ul> <p>For more information about primary keys,
+     *         see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
@@ -448,9 +512,18 @@ public class TableDescription implements Serializable {
     /**
      * The primary key structure for the table. Each <i>KeySchemaElement</i>
      * consists of: <ul> <li> <p><i>AttributeName</i> - The name of the
-     * attribute. </li> <li> <p><i>KeyType</i> - The key type for the
-     * attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
-     * </li> </ul> <p>For more information about primary keys, see <a
+     * attribute. </li> <li> <p><i>KeyType</i> - The role of the attribute: .
+     * <ul> <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note> </li> </ul> <p>For more information about primary keys,
+     * see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -461,9 +534,18 @@ public class TableDescription implements Serializable {
      *
      * @param keySchema The primary key structure for the table. Each <i>KeySchemaElement</i>
      *         consists of: <ul> <li> <p><i>AttributeName</i> - The name of the
-     *         attribute. </li> <li> <p><i>KeyType</i> - The key type for the
-     *         attribute. Can be either <code>HASH</code> or <code>RANGE</code>.
-     *         </li> </ul> <p>For more information about primary keys, see <a
+     *         attribute. </li> <li> <p><i>KeyType</i> - The role of the attribute: .
+     *         <ul> <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note> </li> </ul> <p>For more information about primary keys,
+     *         see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
@@ -813,19 +895,20 @@ public class TableDescription implements Serializable {
 
     /**
      * Represents one or more local secondary indexes on the table. Each
-     * index is scoped to a given hash key value. Tables with one or more
-     * local secondary indexes are subject to an item collection size limit,
-     * where the amount of data within a given item collection cannot exceed
-     * 10 GB. Each element is composed of: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. </li> <li> <p><i>KeySchema</i>
-     * - Specifies the complete index key schema. The attribute names in the
-     * key schema must be between 1 and 255 characters (inclusive). The key
-     * schema must begin with the same hash key attribute as the table. </li>
-     * <li> <p><i>Projection</i> - Specifies attributes that are copied
-     * (projected) from the table into the index. These are in addition to
-     * the primary key attributes and index key attributes, which are
-     * automatically projected. Each attribute specification is composed of:
-     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * index is scoped to a given partition key value. Tables with one or
+     * more local secondary indexes are subject to an item collection size
+     * limit, where the amount of data within a given item collection cannot
+     * exceed 10 GB. Each element is composed of: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. </li>
+     * <li> <p><i>KeySchema</i> - Specifies the complete index key schema.
+     * The attribute names in the key schema must be between 1 and 255
+     * characters (inclusive). The key schema must begin with the same
+     * partition key as the table. </li> <li> <p><i>Projection</i> -
+     * Specifies attributes that are copied (projected) from the table into
+     * the index. These are in addition to the primary key attributes and
+     * index key attributes, which are automatically projected. Each
+     * attribute specification is composed of: <ul> <li>
+     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -848,19 +931,20 @@ public class TableDescription implements Serializable {
      * returned.
      *
      * @return Represents one or more local secondary indexes on the table. Each
-     *         index is scoped to a given hash key value. Tables with one or more
-     *         local secondary indexes are subject to an item collection size limit,
-     *         where the amount of data within a given item collection cannot exceed
-     *         10 GB. Each element is composed of: <ul> <li> <p><i>IndexName</i> -
-     *         The name of the local secondary index. </li> <li> <p><i>KeySchema</i>
-     *         - Specifies the complete index key schema. The attribute names in the
-     *         key schema must be between 1 and 255 characters (inclusive). The key
-     *         schema must begin with the same hash key attribute as the table. </li>
-     *         <li> <p><i>Projection</i> - Specifies attributes that are copied
-     *         (projected) from the table into the index. These are in addition to
-     *         the primary key attributes and index key attributes, which are
-     *         automatically projected. Each attribute specification is composed of:
-     *         <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     *         index is scoped to a given partition key value. Tables with one or
+     *         more local secondary indexes are subject to an item collection size
+     *         limit, where the amount of data within a given item collection cannot
+     *         exceed 10 GB. Each element is composed of: <ul> <li>
+     *         <p><i>IndexName</i> - The name of the local secondary index. </li>
+     *         <li> <p><i>KeySchema</i> - Specifies the complete index key schema.
+     *         The attribute names in the key schema must be between 1 and 255
+     *         characters (inclusive). The key schema must begin with the same
+     *         partition key as the table. </li> <li> <p><i>Projection</i> -
+     *         Specifies attributes that are copied (projected) from the table into
+     *         the index. These are in addition to the primary key attributes and
+     *         index key attributes, which are automatically projected. Each
+     *         attribute specification is composed of: <ul> <li>
+     *         <p><i>ProjectionType</i> - One of the following: <ul> <li>
      *         <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      *         the specified table attributes are projected into the index. The list
@@ -888,19 +972,20 @@ public class TableDescription implements Serializable {
     
     /**
      * Represents one or more local secondary indexes on the table. Each
-     * index is scoped to a given hash key value. Tables with one or more
-     * local secondary indexes are subject to an item collection size limit,
-     * where the amount of data within a given item collection cannot exceed
-     * 10 GB. Each element is composed of: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. </li> <li> <p><i>KeySchema</i>
-     * - Specifies the complete index key schema. The attribute names in the
-     * key schema must be between 1 and 255 characters (inclusive). The key
-     * schema must begin with the same hash key attribute as the table. </li>
-     * <li> <p><i>Projection</i> - Specifies attributes that are copied
-     * (projected) from the table into the index. These are in addition to
-     * the primary key attributes and index key attributes, which are
-     * automatically projected. Each attribute specification is composed of:
-     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * index is scoped to a given partition key value. Tables with one or
+     * more local secondary indexes are subject to an item collection size
+     * limit, where the amount of data within a given item collection cannot
+     * exceed 10 GB. Each element is composed of: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. </li>
+     * <li> <p><i>KeySchema</i> - Specifies the complete index key schema.
+     * The attribute names in the key schema must be between 1 and 255
+     * characters (inclusive). The key schema must begin with the same
+     * partition key as the table. </li> <li> <p><i>Projection</i> -
+     * Specifies attributes that are copied (projected) from the table into
+     * the index. These are in addition to the primary key attributes and
+     * index key attributes, which are automatically projected. Each
+     * attribute specification is composed of: <ul> <li>
+     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -923,19 +1008,20 @@ public class TableDescription implements Serializable {
      * returned.
      *
      * @param localSecondaryIndexes Represents one or more local secondary indexes on the table. Each
-     *         index is scoped to a given hash key value. Tables with one or more
-     *         local secondary indexes are subject to an item collection size limit,
-     *         where the amount of data within a given item collection cannot exceed
-     *         10 GB. Each element is composed of: <ul> <li> <p><i>IndexName</i> -
-     *         The name of the local secondary index. </li> <li> <p><i>KeySchema</i>
-     *         - Specifies the complete index key schema. The attribute names in the
-     *         key schema must be between 1 and 255 characters (inclusive). The key
-     *         schema must begin with the same hash key attribute as the table. </li>
-     *         <li> <p><i>Projection</i> - Specifies attributes that are copied
-     *         (projected) from the table into the index. These are in addition to
-     *         the primary key attributes and index key attributes, which are
-     *         automatically projected. Each attribute specification is composed of:
-     *         <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     *         index is scoped to a given partition key value. Tables with one or
+     *         more local secondary indexes are subject to an item collection size
+     *         limit, where the amount of data within a given item collection cannot
+     *         exceed 10 GB. Each element is composed of: <ul> <li>
+     *         <p><i>IndexName</i> - The name of the local secondary index. </li>
+     *         <li> <p><i>KeySchema</i> - Specifies the complete index key schema.
+     *         The attribute names in the key schema must be between 1 and 255
+     *         characters (inclusive). The key schema must begin with the same
+     *         partition key as the table. </li> <li> <p><i>Projection</i> -
+     *         Specifies attributes that are copied (projected) from the table into
+     *         the index. These are in addition to the primary key attributes and
+     *         index key attributes, which are automatically projected. Each
+     *         attribute specification is composed of: <ul> <li>
+     *         <p><i>ProjectionType</i> - One of the following: <ul> <li>
      *         <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      *         the specified table attributes are projected into the index. The list
@@ -969,19 +1055,20 @@ public class TableDescription implements Serializable {
     
     /**
      * Represents one or more local secondary indexes on the table. Each
-     * index is scoped to a given hash key value. Tables with one or more
-     * local secondary indexes are subject to an item collection size limit,
-     * where the amount of data within a given item collection cannot exceed
-     * 10 GB. Each element is composed of: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. </li> <li> <p><i>KeySchema</i>
-     * - Specifies the complete index key schema. The attribute names in the
-     * key schema must be between 1 and 255 characters (inclusive). The key
-     * schema must begin with the same hash key attribute as the table. </li>
-     * <li> <p><i>Projection</i> - Specifies attributes that are copied
-     * (projected) from the table into the index. These are in addition to
-     * the primary key attributes and index key attributes, which are
-     * automatically projected. Each attribute specification is composed of:
-     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * index is scoped to a given partition key value. Tables with one or
+     * more local secondary indexes are subject to an item collection size
+     * limit, where the amount of data within a given item collection cannot
+     * exceed 10 GB. Each element is composed of: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. </li>
+     * <li> <p><i>KeySchema</i> - Specifies the complete index key schema.
+     * The attribute names in the key schema must be between 1 and 255
+     * characters (inclusive). The key schema must begin with the same
+     * partition key as the table. </li> <li> <p><i>Projection</i> -
+     * Specifies attributes that are copied (projected) from the table into
+     * the index. These are in addition to the primary key attributes and
+     * index key attributes, which are automatically projected. Each
+     * attribute specification is composed of: <ul> <li>
+     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -1006,19 +1093,20 @@ public class TableDescription implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param localSecondaryIndexes Represents one or more local secondary indexes on the table. Each
-     *         index is scoped to a given hash key value. Tables with one or more
-     *         local secondary indexes are subject to an item collection size limit,
-     *         where the amount of data within a given item collection cannot exceed
-     *         10 GB. Each element is composed of: <ul> <li> <p><i>IndexName</i> -
-     *         The name of the local secondary index. </li> <li> <p><i>KeySchema</i>
-     *         - Specifies the complete index key schema. The attribute names in the
-     *         key schema must be between 1 and 255 characters (inclusive). The key
-     *         schema must begin with the same hash key attribute as the table. </li>
-     *         <li> <p><i>Projection</i> - Specifies attributes that are copied
-     *         (projected) from the table into the index. These are in addition to
-     *         the primary key attributes and index key attributes, which are
-     *         automatically projected. Each attribute specification is composed of:
-     *         <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     *         index is scoped to a given partition key value. Tables with one or
+     *         more local secondary indexes are subject to an item collection size
+     *         limit, where the amount of data within a given item collection cannot
+     *         exceed 10 GB. Each element is composed of: <ul> <li>
+     *         <p><i>IndexName</i> - The name of the local secondary index. </li>
+     *         <li> <p><i>KeySchema</i> - Specifies the complete index key schema.
+     *         The attribute names in the key schema must be between 1 and 255
+     *         characters (inclusive). The key schema must begin with the same
+     *         partition key as the table. </li> <li> <p><i>Projection</i> -
+     *         Specifies attributes that are copied (projected) from the table into
+     *         the index. These are in addition to the primary key attributes and
+     *         index key attributes, which are automatically projected. Each
+     *         attribute specification is composed of: <ul> <li>
+     *         <p><i>ProjectionType</i> - One of the following: <ul> <li>
      *         <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      *         the specified table attributes are projected into the index. The list
@@ -1053,19 +1141,20 @@ public class TableDescription implements Serializable {
     
     /**
      * Represents one or more local secondary indexes on the table. Each
-     * index is scoped to a given hash key value. Tables with one or more
-     * local secondary indexes are subject to an item collection size limit,
-     * where the amount of data within a given item collection cannot exceed
-     * 10 GB. Each element is composed of: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. </li> <li> <p><i>KeySchema</i>
-     * - Specifies the complete index key schema. The attribute names in the
-     * key schema must be between 1 and 255 characters (inclusive). The key
-     * schema must begin with the same hash key attribute as the table. </li>
-     * <li> <p><i>Projection</i> - Specifies attributes that are copied
-     * (projected) from the table into the index. These are in addition to
-     * the primary key attributes and index key attributes, which are
-     * automatically projected. Each attribute specification is composed of:
-     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * index is scoped to a given partition key value. Tables with one or
+     * more local secondary indexes are subject to an item collection size
+     * limit, where the amount of data within a given item collection cannot
+     * exceed 10 GB. Each element is composed of: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. </li>
+     * <li> <p><i>KeySchema</i> - Specifies the complete index key schema.
+     * The attribute names in the key schema must be between 1 and 255
+     * characters (inclusive). The key schema must begin with the same
+     * partition key as the table. </li> <li> <p><i>Projection</i> -
+     * Specifies attributes that are copied (projected) from the table into
+     * the index. These are in addition to the primary key attributes and
+     * index key attributes, which are automatically projected. Each
+     * attribute specification is composed of: <ul> <li>
+     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -1090,19 +1179,20 @@ public class TableDescription implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param localSecondaryIndexes Represents one or more local secondary indexes on the table. Each
-     *         index is scoped to a given hash key value. Tables with one or more
-     *         local secondary indexes are subject to an item collection size limit,
-     *         where the amount of data within a given item collection cannot exceed
-     *         10 GB. Each element is composed of: <ul> <li> <p><i>IndexName</i> -
-     *         The name of the local secondary index. </li> <li> <p><i>KeySchema</i>
-     *         - Specifies the complete index key schema. The attribute names in the
-     *         key schema must be between 1 and 255 characters (inclusive). The key
-     *         schema must begin with the same hash key attribute as the table. </li>
-     *         <li> <p><i>Projection</i> - Specifies attributes that are copied
-     *         (projected) from the table into the index. These are in addition to
-     *         the primary key attributes and index key attributes, which are
-     *         automatically projected. Each attribute specification is composed of:
-     *         <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     *         index is scoped to a given partition key value. Tables with one or
+     *         more local secondary indexes are subject to an item collection size
+     *         limit, where the amount of data within a given item collection cannot
+     *         exceed 10 GB. Each element is composed of: <ul> <li>
+     *         <p><i>IndexName</i> - The name of the local secondary index. </li>
+     *         <li> <p><i>KeySchema</i> - Specifies the complete index key schema.
+     *         The attribute names in the key schema must be between 1 and 255
+     *         characters (inclusive). The key schema must begin with the same
+     *         partition key as the table. </li> <li> <p><i>Projection</i> -
+     *         Specifies attributes that are copied (projected) from the table into
+     *         the index. These are in addition to the primary key attributes and
+     *         index key attributes, which are automatically projected. Each
+     *         attribute specification is composed of: <ul> <li>
+     *         <p><i>ProjectionType</i> - One of the following: <ul> <li>
      *         <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      *         the specified table attributes are projected into the index. The list
@@ -1141,9 +1231,9 @@ public class TableDescription implements Serializable {
 
     /**
      * The global secondary indexes, if any, on the table. Each index is
-     * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
-     * the backfilling phase. Backfilling occurs only when a new global
+     * scoped to a given partition key value. Each element is composed of:
+     * <ul> <li> <p><i>Backfilling</i> - If true, then the index is currently
+     * in the backfilling phase. Backfilling occurs only when a new global
      * secondary index is added to the table; it is the process by which
      * DynamoDB populates the new index with data from the table. (This
      * attribute does not appear for indexes that were created during a
@@ -1162,24 +1252,24 @@ public class TableDescription implements Serializable {
      * Recent changes might not be reflected in this value. </li> <li>
      * <p><i>KeySchema</i> - Specifies the complete index key schema. The
      * attribute names in the key schema must be between 1 and 255 characters
-     * (inclusive). The key schema must begin with the same hash key
-     * attribute as the table. </li> <li> <p><i>Projection</i> - Specifies
-     * attributes that are copied (projected) from the table into the index.
-     * These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected. Each attribute
-     * specification is composed of: <ul> <li> <p><i>ProjectionType</i> - One
-     * of the following: <ul> <li> <p><code>KEYS_ONLY</code> - Only the index
-     * and primary keys are projected into the index. </li> <li>
-     * <p><code>INCLUDE</code> - Only the specified table attributes are
-     * projected into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>. </li> <li> <p><code>ALL</code> - All of the
-     * table attributes are projected into the index. </li> </ul> </li> <li>
-     * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     * names that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
-     * the secondary indexes, must not exceed 20. If you project the same
-     * attribute into two different indexes, this counts as two distinct
-     * attributes when determining the total. </li> </ul> </li> <li>
+     * (inclusive). The key schema must begin with the same partition key as
+     * the table. </li> <li> <p><i>Projection</i> - Specifies attributes that
+     * are copied (projected) from the table into the index. These are in
+     * addition to the primary key attributes and index key attributes, which
+     * are automatically projected. Each attribute specification is composed
+     * of: <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul>
+     * <li> <p><code>KEYS_ONLY</code> - Only the index and primary keys are
+     * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
+     * the specified table attributes are projected into the index. The list
+     * of projected attributes are in <i>NonKeyAttributes</i>. </li> <li>
+     * <p><code>ALL</code> - All of the table attributes are projected into
+     * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
+     * of one or more non-key attribute names that are projected into the
+     * secondary index. The total count of attributes provided in
+     * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
+     * must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total. </li> </ul> </li> <li>
      * <p><i>ProvisionedThroughput</i> - The provisioned throughput settings
      * for the global secondary index, consisting of read and write capacity
      * units, along with data about increases and decreases. </li> </ul>
@@ -1187,9 +1277,9 @@ public class TableDescription implements Serializable {
      * about indexes will be returned.
      *
      * @return The global secondary indexes, if any, on the table. Each index is
-     *         scoped to a given hash key value. Each element is composed of: <ul>
-     *         <li> <p><i>Backfilling</i> - If true, then the index is currently in
-     *         the backfilling phase. Backfilling occurs only when a new global
+     *         scoped to a given partition key value. Each element is composed of:
+     *         <ul> <li> <p><i>Backfilling</i> - If true, then the index is currently
+     *         in the backfilling phase. Backfilling occurs only when a new global
      *         secondary index is added to the table; it is the process by which
      *         DynamoDB populates the new index with data from the table. (This
      *         attribute does not appear for indexes that were created during a
@@ -1208,24 +1298,24 @@ public class TableDescription implements Serializable {
      *         Recent changes might not be reflected in this value. </li> <li>
      *         <p><i>KeySchema</i> - Specifies the complete index key schema. The
      *         attribute names in the key schema must be between 1 and 255 characters
-     *         (inclusive). The key schema must begin with the same hash key
-     *         attribute as the table. </li> <li> <p><i>Projection</i> - Specifies
-     *         attributes that are copied (projected) from the table into the index.
-     *         These are in addition to the primary key attributes and index key
-     *         attributes, which are automatically projected. Each attribute
-     *         specification is composed of: <ul> <li> <p><i>ProjectionType</i> - One
-     *         of the following: <ul> <li> <p><code>KEYS_ONLY</code> - Only the index
-     *         and primary keys are projected into the index. </li> <li>
-     *         <p><code>INCLUDE</code> - Only the specified table attributes are
-     *         projected into the index. The list of projected attributes are in
-     *         <i>NonKeyAttributes</i>. </li> <li> <p><code>ALL</code> - All of the
-     *         table attributes are projected into the index. </li> </ul> </li> <li>
-     *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     *         names that are projected into the secondary index. The total count of
-     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
-     *         the secondary indexes, must not exceed 20. If you project the same
-     *         attribute into two different indexes, this counts as two distinct
-     *         attributes when determining the total. </li> </ul> </li> <li>
+     *         (inclusive). The key schema must begin with the same partition key as
+     *         the table. </li> <li> <p><i>Projection</i> - Specifies attributes that
+     *         are copied (projected) from the table into the index. These are in
+     *         addition to the primary key attributes and index key attributes, which
+     *         are automatically projected. Each attribute specification is composed
+     *         of: <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul>
+     *         <li> <p><code>KEYS_ONLY</code> - Only the index and primary keys are
+     *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
+     *         the specified table attributes are projected into the index. The list
+     *         of projected attributes are in <i>NonKeyAttributes</i>. </li> <li>
+     *         <p><code>ALL</code> - All of the table attributes are projected into
+     *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
+     *         of one or more non-key attribute names that are projected into the
+     *         secondary index. The total count of attributes provided in
+     *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
+     *         must not exceed 20. If you project the same attribute into two
+     *         different indexes, this counts as two distinct attributes when
+     *         determining the total. </li> </ul> </li> <li>
      *         <p><i>ProvisionedThroughput</i> - The provisioned throughput settings
      *         for the global secondary index, consisting of read and write capacity
      *         units, along with data about increases and decreases. </li> </ul>
@@ -1238,9 +1328,9 @@ public class TableDescription implements Serializable {
     
     /**
      * The global secondary indexes, if any, on the table. Each index is
-     * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
-     * the backfilling phase. Backfilling occurs only when a new global
+     * scoped to a given partition key value. Each element is composed of:
+     * <ul> <li> <p><i>Backfilling</i> - If true, then the index is currently
+     * in the backfilling phase. Backfilling occurs only when a new global
      * secondary index is added to the table; it is the process by which
      * DynamoDB populates the new index with data from the table. (This
      * attribute does not appear for indexes that were created during a
@@ -1259,24 +1349,24 @@ public class TableDescription implements Serializable {
      * Recent changes might not be reflected in this value. </li> <li>
      * <p><i>KeySchema</i> - Specifies the complete index key schema. The
      * attribute names in the key schema must be between 1 and 255 characters
-     * (inclusive). The key schema must begin with the same hash key
-     * attribute as the table. </li> <li> <p><i>Projection</i> - Specifies
-     * attributes that are copied (projected) from the table into the index.
-     * These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected. Each attribute
-     * specification is composed of: <ul> <li> <p><i>ProjectionType</i> - One
-     * of the following: <ul> <li> <p><code>KEYS_ONLY</code> - Only the index
-     * and primary keys are projected into the index. </li> <li>
-     * <p><code>INCLUDE</code> - Only the specified table attributes are
-     * projected into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>. </li> <li> <p><code>ALL</code> - All of the
-     * table attributes are projected into the index. </li> </ul> </li> <li>
-     * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     * names that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
-     * the secondary indexes, must not exceed 20. If you project the same
-     * attribute into two different indexes, this counts as two distinct
-     * attributes when determining the total. </li> </ul> </li> <li>
+     * (inclusive). The key schema must begin with the same partition key as
+     * the table. </li> <li> <p><i>Projection</i> - Specifies attributes that
+     * are copied (projected) from the table into the index. These are in
+     * addition to the primary key attributes and index key attributes, which
+     * are automatically projected. Each attribute specification is composed
+     * of: <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul>
+     * <li> <p><code>KEYS_ONLY</code> - Only the index and primary keys are
+     * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
+     * the specified table attributes are projected into the index. The list
+     * of projected attributes are in <i>NonKeyAttributes</i>. </li> <li>
+     * <p><code>ALL</code> - All of the table attributes are projected into
+     * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
+     * of one or more non-key attribute names that are projected into the
+     * secondary index. The total count of attributes provided in
+     * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
+     * must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total. </li> </ul> </li> <li>
      * <p><i>ProvisionedThroughput</i> - The provisioned throughput settings
      * for the global secondary index, consisting of read and write capacity
      * units, along with data about increases and decreases. </li> </ul>
@@ -1284,9 +1374,9 @@ public class TableDescription implements Serializable {
      * about indexes will be returned.
      *
      * @param globalSecondaryIndexes The global secondary indexes, if any, on the table. Each index is
-     *         scoped to a given hash key value. Each element is composed of: <ul>
-     *         <li> <p><i>Backfilling</i> - If true, then the index is currently in
-     *         the backfilling phase. Backfilling occurs only when a new global
+     *         scoped to a given partition key value. Each element is composed of:
+     *         <ul> <li> <p><i>Backfilling</i> - If true, then the index is currently
+     *         in the backfilling phase. Backfilling occurs only when a new global
      *         secondary index is added to the table; it is the process by which
      *         DynamoDB populates the new index with data from the table. (This
      *         attribute does not appear for indexes that were created during a
@@ -1305,24 +1395,24 @@ public class TableDescription implements Serializable {
      *         Recent changes might not be reflected in this value. </li> <li>
      *         <p><i>KeySchema</i> - Specifies the complete index key schema. The
      *         attribute names in the key schema must be between 1 and 255 characters
-     *         (inclusive). The key schema must begin with the same hash key
-     *         attribute as the table. </li> <li> <p><i>Projection</i> - Specifies
-     *         attributes that are copied (projected) from the table into the index.
-     *         These are in addition to the primary key attributes and index key
-     *         attributes, which are automatically projected. Each attribute
-     *         specification is composed of: <ul> <li> <p><i>ProjectionType</i> - One
-     *         of the following: <ul> <li> <p><code>KEYS_ONLY</code> - Only the index
-     *         and primary keys are projected into the index. </li> <li>
-     *         <p><code>INCLUDE</code> - Only the specified table attributes are
-     *         projected into the index. The list of projected attributes are in
-     *         <i>NonKeyAttributes</i>. </li> <li> <p><code>ALL</code> - All of the
-     *         table attributes are projected into the index. </li> </ul> </li> <li>
-     *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     *         names that are projected into the secondary index. The total count of
-     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
-     *         the secondary indexes, must not exceed 20. If you project the same
-     *         attribute into two different indexes, this counts as two distinct
-     *         attributes when determining the total. </li> </ul> </li> <li>
+     *         (inclusive). The key schema must begin with the same partition key as
+     *         the table. </li> <li> <p><i>Projection</i> - Specifies attributes that
+     *         are copied (projected) from the table into the index. These are in
+     *         addition to the primary key attributes and index key attributes, which
+     *         are automatically projected. Each attribute specification is composed
+     *         of: <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul>
+     *         <li> <p><code>KEYS_ONLY</code> - Only the index and primary keys are
+     *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
+     *         the specified table attributes are projected into the index. The list
+     *         of projected attributes are in <i>NonKeyAttributes</i>. </li> <li>
+     *         <p><code>ALL</code> - All of the table attributes are projected into
+     *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
+     *         of one or more non-key attribute names that are projected into the
+     *         secondary index. The total count of attributes provided in
+     *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
+     *         must not exceed 20. If you project the same attribute into two
+     *         different indexes, this counts as two distinct attributes when
+     *         determining the total. </li> </ul> </li> <li>
      *         <p><i>ProvisionedThroughput</i> - The provisioned throughput settings
      *         for the global secondary index, consisting of read and write capacity
      *         units, along with data about increases and decreases. </li> </ul>
@@ -1341,9 +1431,9 @@ public class TableDescription implements Serializable {
     
     /**
      * The global secondary indexes, if any, on the table. Each index is
-     * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
-     * the backfilling phase. Backfilling occurs only when a new global
+     * scoped to a given partition key value. Each element is composed of:
+     * <ul> <li> <p><i>Backfilling</i> - If true, then the index is currently
+     * in the backfilling phase. Backfilling occurs only when a new global
      * secondary index is added to the table; it is the process by which
      * DynamoDB populates the new index with data from the table. (This
      * attribute does not appear for indexes that were created during a
@@ -1362,24 +1452,24 @@ public class TableDescription implements Serializable {
      * Recent changes might not be reflected in this value. </li> <li>
      * <p><i>KeySchema</i> - Specifies the complete index key schema. The
      * attribute names in the key schema must be between 1 and 255 characters
-     * (inclusive). The key schema must begin with the same hash key
-     * attribute as the table. </li> <li> <p><i>Projection</i> - Specifies
-     * attributes that are copied (projected) from the table into the index.
-     * These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected. Each attribute
-     * specification is composed of: <ul> <li> <p><i>ProjectionType</i> - One
-     * of the following: <ul> <li> <p><code>KEYS_ONLY</code> - Only the index
-     * and primary keys are projected into the index. </li> <li>
-     * <p><code>INCLUDE</code> - Only the specified table attributes are
-     * projected into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>. </li> <li> <p><code>ALL</code> - All of the
-     * table attributes are projected into the index. </li> </ul> </li> <li>
-     * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     * names that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
-     * the secondary indexes, must not exceed 20. If you project the same
-     * attribute into two different indexes, this counts as two distinct
-     * attributes when determining the total. </li> </ul> </li> <li>
+     * (inclusive). The key schema must begin with the same partition key as
+     * the table. </li> <li> <p><i>Projection</i> - Specifies attributes that
+     * are copied (projected) from the table into the index. These are in
+     * addition to the primary key attributes and index key attributes, which
+     * are automatically projected. Each attribute specification is composed
+     * of: <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul>
+     * <li> <p><code>KEYS_ONLY</code> - Only the index and primary keys are
+     * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
+     * the specified table attributes are projected into the index. The list
+     * of projected attributes are in <i>NonKeyAttributes</i>. </li> <li>
+     * <p><code>ALL</code> - All of the table attributes are projected into
+     * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
+     * of one or more non-key attribute names that are projected into the
+     * secondary index. The total count of attributes provided in
+     * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
+     * must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total. </li> </ul> </li> <li>
      * <p><i>ProvisionedThroughput</i> - The provisioned throughput settings
      * for the global secondary index, consisting of read and write capacity
      * units, along with data about increases and decreases. </li> </ul>
@@ -1389,9 +1479,9 @@ public class TableDescription implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param globalSecondaryIndexes The global secondary indexes, if any, on the table. Each index is
-     *         scoped to a given hash key value. Each element is composed of: <ul>
-     *         <li> <p><i>Backfilling</i> - If true, then the index is currently in
-     *         the backfilling phase. Backfilling occurs only when a new global
+     *         scoped to a given partition key value. Each element is composed of:
+     *         <ul> <li> <p><i>Backfilling</i> - If true, then the index is currently
+     *         in the backfilling phase. Backfilling occurs only when a new global
      *         secondary index is added to the table; it is the process by which
      *         DynamoDB populates the new index with data from the table. (This
      *         attribute does not appear for indexes that were created during a
@@ -1410,24 +1500,24 @@ public class TableDescription implements Serializable {
      *         Recent changes might not be reflected in this value. </li> <li>
      *         <p><i>KeySchema</i> - Specifies the complete index key schema. The
      *         attribute names in the key schema must be between 1 and 255 characters
-     *         (inclusive). The key schema must begin with the same hash key
-     *         attribute as the table. </li> <li> <p><i>Projection</i> - Specifies
-     *         attributes that are copied (projected) from the table into the index.
-     *         These are in addition to the primary key attributes and index key
-     *         attributes, which are automatically projected. Each attribute
-     *         specification is composed of: <ul> <li> <p><i>ProjectionType</i> - One
-     *         of the following: <ul> <li> <p><code>KEYS_ONLY</code> - Only the index
-     *         and primary keys are projected into the index. </li> <li>
-     *         <p><code>INCLUDE</code> - Only the specified table attributes are
-     *         projected into the index. The list of projected attributes are in
-     *         <i>NonKeyAttributes</i>. </li> <li> <p><code>ALL</code> - All of the
-     *         table attributes are projected into the index. </li> </ul> </li> <li>
-     *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     *         names that are projected into the secondary index. The total count of
-     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
-     *         the secondary indexes, must not exceed 20. If you project the same
-     *         attribute into two different indexes, this counts as two distinct
-     *         attributes when determining the total. </li> </ul> </li> <li>
+     *         (inclusive). The key schema must begin with the same partition key as
+     *         the table. </li> <li> <p><i>Projection</i> - Specifies attributes that
+     *         are copied (projected) from the table into the index. These are in
+     *         addition to the primary key attributes and index key attributes, which
+     *         are automatically projected. Each attribute specification is composed
+     *         of: <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul>
+     *         <li> <p><code>KEYS_ONLY</code> - Only the index and primary keys are
+     *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
+     *         the specified table attributes are projected into the index. The list
+     *         of projected attributes are in <i>NonKeyAttributes</i>. </li> <li>
+     *         <p><code>ALL</code> - All of the table attributes are projected into
+     *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
+     *         of one or more non-key attribute names that are projected into the
+     *         secondary index. The total count of attributes provided in
+     *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
+     *         must not exceed 20. If you project the same attribute into two
+     *         different indexes, this counts as two distinct attributes when
+     *         determining the total. </li> </ul> </li> <li>
      *         <p><i>ProvisionedThroughput</i> - The provisioned throughput settings
      *         for the global secondary index, consisting of read and write capacity
      *         units, along with data about increases and decreases. </li> </ul>
@@ -1447,9 +1537,9 @@ public class TableDescription implements Serializable {
     
     /**
      * The global secondary indexes, if any, on the table. Each index is
-     * scoped to a given hash key value. Each element is composed of: <ul>
-     * <li> <p><i>Backfilling</i> - If true, then the index is currently in
-     * the backfilling phase. Backfilling occurs only when a new global
+     * scoped to a given partition key value. Each element is composed of:
+     * <ul> <li> <p><i>Backfilling</i> - If true, then the index is currently
+     * in the backfilling phase. Backfilling occurs only when a new global
      * secondary index is added to the table; it is the process by which
      * DynamoDB populates the new index with data from the table. (This
      * attribute does not appear for indexes that were created during a
@@ -1468,24 +1558,24 @@ public class TableDescription implements Serializable {
      * Recent changes might not be reflected in this value. </li> <li>
      * <p><i>KeySchema</i> - Specifies the complete index key schema. The
      * attribute names in the key schema must be between 1 and 255 characters
-     * (inclusive). The key schema must begin with the same hash key
-     * attribute as the table. </li> <li> <p><i>Projection</i> - Specifies
-     * attributes that are copied (projected) from the table into the index.
-     * These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected. Each attribute
-     * specification is composed of: <ul> <li> <p><i>ProjectionType</i> - One
-     * of the following: <ul> <li> <p><code>KEYS_ONLY</code> - Only the index
-     * and primary keys are projected into the index. </li> <li>
-     * <p><code>INCLUDE</code> - Only the specified table attributes are
-     * projected into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>. </li> <li> <p><code>ALL</code> - All of the
-     * table attributes are projected into the index. </li> </ul> </li> <li>
-     * <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     * names that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of
-     * the secondary indexes, must not exceed 20. If you project the same
-     * attribute into two different indexes, this counts as two distinct
-     * attributes when determining the total. </li> </ul> </li> <li>
+     * (inclusive). The key schema must begin with the same partition key as
+     * the table. </li> <li> <p><i>Projection</i> - Specifies attributes that
+     * are copied (projected) from the table into the index. These are in
+     * addition to the primary key attributes and index key attributes, which
+     * are automatically projected. Each attribute specification is composed
+     * of: <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul>
+     * <li> <p><code>KEYS_ONLY</code> - Only the index and primary keys are
+     * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
+     * the specified table attributes are projected into the index. The list
+     * of projected attributes are in <i>NonKeyAttributes</i>. </li> <li>
+     * <p><code>ALL</code> - All of the table attributes are projected into
+     * the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
+     * of one or more non-key attribute names that are projected into the
+     * secondary index. The total count of attributes provided in
+     * <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
+     * must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total. </li> </ul> </li> <li>
      * <p><i>ProvisionedThroughput</i> - The provisioned throughput settings
      * for the global secondary index, consisting of read and write capacity
      * units, along with data about increases and decreases. </li> </ul>
@@ -1495,9 +1585,9 @@ public class TableDescription implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param globalSecondaryIndexes The global secondary indexes, if any, on the table. Each index is
-     *         scoped to a given hash key value. Each element is composed of: <ul>
-     *         <li> <p><i>Backfilling</i> - If true, then the index is currently in
-     *         the backfilling phase. Backfilling occurs only when a new global
+     *         scoped to a given partition key value. Each element is composed of:
+     *         <ul> <li> <p><i>Backfilling</i> - If true, then the index is currently
+     *         in the backfilling phase. Backfilling occurs only when a new global
      *         secondary index is added to the table; it is the process by which
      *         DynamoDB populates the new index with data from the table. (This
      *         attribute does not appear for indexes that were created during a
@@ -1516,24 +1606,24 @@ public class TableDescription implements Serializable {
      *         Recent changes might not be reflected in this value. </li> <li>
      *         <p><i>KeySchema</i> - Specifies the complete index key schema. The
      *         attribute names in the key schema must be between 1 and 255 characters
-     *         (inclusive). The key schema must begin with the same hash key
-     *         attribute as the table. </li> <li> <p><i>Projection</i> - Specifies
-     *         attributes that are copied (projected) from the table into the index.
-     *         These are in addition to the primary key attributes and index key
-     *         attributes, which are automatically projected. Each attribute
-     *         specification is composed of: <ul> <li> <p><i>ProjectionType</i> - One
-     *         of the following: <ul> <li> <p><code>KEYS_ONLY</code> - Only the index
-     *         and primary keys are projected into the index. </li> <li>
-     *         <p><code>INCLUDE</code> - Only the specified table attributes are
-     *         projected into the index. The list of projected attributes are in
-     *         <i>NonKeyAttributes</i>. </li> <li> <p><code>ALL</code> - All of the
-     *         table attributes are projected into the index. </li> </ul> </li> <li>
-     *         <p><i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     *         names that are projected into the secondary index. The total count of
-     *         attributes provided in <i>NonKeyAttributes</i>, summed across all of
-     *         the secondary indexes, must not exceed 20. If you project the same
-     *         attribute into two different indexes, this counts as two distinct
-     *         attributes when determining the total. </li> </ul> </li> <li>
+     *         (inclusive). The key schema must begin with the same partition key as
+     *         the table. </li> <li> <p><i>Projection</i> - Specifies attributes that
+     *         are copied (projected) from the table into the index. These are in
+     *         addition to the primary key attributes and index key attributes, which
+     *         are automatically projected. Each attribute specification is composed
+     *         of: <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul>
+     *         <li> <p><code>KEYS_ONLY</code> - Only the index and primary keys are
+     *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
+     *         the specified table attributes are projected into the index. The list
+     *         of projected attributes are in <i>NonKeyAttributes</i>. </li> <li>
+     *         <p><code>ALL</code> - All of the table attributes are projected into
+     *         the index. </li> </ul> </li> <li> <p><i>NonKeyAttributes</i> - A list
+     *         of one or more non-key attribute names that are projected into the
+     *         secondary index. The total count of attributes provided in
+     *         <i>NonKeyAttributes</i>, summed across all of the secondary indexes,
+     *         must not exceed 20. If you project the same attribute into two
+     *         different indexes, this counts as two distinct attributes when
+     *         determining the total. </li> </ul> </li> <li>
      *         <p><i>ProvisionedThroughput</i> - The provisioned throughput settings
      *         for the global secondary index, consisting of read and write capacity
      *         units, along with data about increases and decreases. </li> </ul>

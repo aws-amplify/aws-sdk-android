@@ -18,7 +18,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes an action to publish data to an SQS queue.
+ * Describes an action to publish data to an Amazon SQS queue.
  * </p>
  */
 public class SqsAction implements Serializable {

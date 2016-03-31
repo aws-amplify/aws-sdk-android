@@ -30,7 +30,7 @@ public class CreateKeysAndCertificateResult implements Serializable {
 
     /**
      * The ID of the certificate. AWS IoT issues a default subject name for
-     * the certificate (e.g., AWS IoT Certificate).
+     * the certificate (for example, AWS IoT Certificate).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>64 - 64<br/>
@@ -86,14 +86,14 @@ public class CreateKeysAndCertificateResult implements Serializable {
 
     /**
      * The ID of the certificate. AWS IoT issues a default subject name for
-     * the certificate (e.g., AWS IoT Certificate).
+     * the certificate (for example, AWS IoT Certificate).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>64 - 64<br/>
      * <b>Pattern: </b>(0x)?[a-fA-F0-9]+<br/>
      *
      * @return The ID of the certificate. AWS IoT issues a default subject name for
-     *         the certificate (e.g., AWS IoT Certificate).
+     *         the certificate (for example, AWS IoT Certificate).
      */
     public String getCertificateId() {
         return certificateId;
@@ -101,14 +101,14 @@ public class CreateKeysAndCertificateResult implements Serializable {
     
     /**
      * The ID of the certificate. AWS IoT issues a default subject name for
-     * the certificate (e.g., AWS IoT Certificate).
+     * the certificate (for example, AWS IoT Certificate).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>64 - 64<br/>
      * <b>Pattern: </b>(0x)?[a-fA-F0-9]+<br/>
      *
      * @param certificateId The ID of the certificate. AWS IoT issues a default subject name for
-     *         the certificate (e.g., AWS IoT Certificate).
+     *         the certificate (for example, AWS IoT Certificate).
      */
     public void setCertificateId(String certificateId) {
         this.certificateId = certificateId;
@@ -116,7 +116,7 @@ public class CreateKeysAndCertificateResult implements Serializable {
     
     /**
      * The ID of the certificate. AWS IoT issues a default subject name for
-     * the certificate (e.g., AWS IoT Certificate).
+     * the certificate (for example, AWS IoT Certificate).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -125,7 +125,7 @@ public class CreateKeysAndCertificateResult implements Serializable {
      * <b>Pattern: </b>(0x)?[a-fA-F0-9]+<br/>
      *
      * @param certificateId The ID of the certificate. AWS IoT issues a default subject name for
-     *         the certificate (e.g., AWS IoT Certificate).
+     *         the certificate (for example, AWS IoT Certificate).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -24,17 +24,16 @@ import java.util.concurrent.TimeUnit;
 
 class TransferThreadPool {
 
-    private static final int MAX_CONCURRENT_MAIN_THREADS_ALLOWED = 2;
-    private static final int MAX_CONCURRENT_PART_THREADS_ALLOWED = 5;
     private static ExecutorService executorMainTask;
     private static ExecutorService executorPartTask;
 
     private synchronized static void init() {
+        int processors = Runtime.getRuntime().availableProcessors();
         if (executorMainTask == null) {
-            executorMainTask = buildExecutor(MAX_CONCURRENT_MAIN_THREADS_ALLOWED);
+            executorMainTask = buildExecutor(processors + 1);
         }
         if (executorPartTask == null) {
-            executorPartTask = buildExecutor(MAX_CONCURRENT_PART_THREADS_ALLOWED);
+            executorPartTask = buildExecutor(processors + 1);
         }
     }
 
@@ -80,6 +79,11 @@ class TransferThreadPool {
         final ThreadPoolExecutor executor = new ThreadPoolExecutor(maxThreadsAllowed,
                 maxThreadsAllowed, 10, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>());
+        /*
+         * It's safe to discard tasks, as they are saved in database and will be
+         * recovered on next database scan.
+         */
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
         executor.allowCoreThreadTimeOut(true);
         return executor;
     }

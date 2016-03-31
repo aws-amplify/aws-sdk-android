@@ -3,15 +3,38 @@
  * Synchronous and asynchronous client classes for accessing AmazonDynamoDBv2.
  *
  * Amazon DynamoDB <p>
- * <b>Overview</b>
+ * This is the Amazon DynamoDB API Reference. This guide provides
+ * descriptions of the low-level DynamoDB API.
  * </p>
  * <p>
- * This is the Amazon DynamoDB API Reference. This guide provides
- * descriptions and samples of the low-level DynamoDB API. For
- * information about DynamoDB application development, see the
- * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/"> Amazon DynamoDB Developer Guide </a>
- * .
+ * This guide is intended for use with the following DynamoDB
+ * documentation:
  * </p>
+ * 
+ * <ul>
+ * <li> <p>
+ * 
+ * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/"> Amazon DynamoDB Getting Started Guide </a>
+ * - provides hands-on exercises that help you learn the basics of
+ * working with DynamoDB. <i>If you are new to DynamoDB, we recommend
+ * that you begin with the Getting Started Guide.</i>
+ * </p>
+ * </li>
+ * <li> <p>
+ * 
+ * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/"> Amazon DynamoDB Developer Guide </a>
+ * - contains detailed information about DynamoDB concepts, usage, and
+ * best practices.
+ * </p>
+ * </li>
+ * <li> <p>
+ * 
+ * <a href="http://docs.aws.amazon.com/dynamodbstreams/latest/APIReference/"> Amazon DynamoDB Streams API Reference </a> - provides descriptions and samples of the DynamoDB Streams API. (For more information, see <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"> Capturing Table Activity with DynamoDB Streams </a>
+ * in the Amazon DynamoDB Developer Guide.)
+ * </p>
+ * </li>
+ * 
+ * </ul>
  * <p>
  * Instead of making the requests to the low-level DynamoDB API directly
  * from your application, we recommend that you use the AWS Software
@@ -20,7 +43,7 @@
  * your application. The libraries take care of request authentication,
  * serialization, and connection management. For more information, see
  * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/UsingAWSSDK.html"> Using the AWS SDKs with DynamoDB </a>
- * in the <i>Amazon DynamoDB Developer Guide</i> .
+ * in the Amazon DynamoDB Developer Guide.
  * </p>
  * <p>
  * If you decide to code against the low-level DynamoDB API directly, you
@@ -40,10 +63,9 @@
  * <ul>
  * <li> <p>
  * <i>CreateTable</i> - Creates a table with user-specified provisioned
- * throughput settings. You must designate one attribute as the hash
- * primary key for the table; you can optionally designate a second
- * attribute as the range primary key. DynamoDB creates indexes on these
- * key attributes for fast data access. Optionally, you can create one or
+ * throughput settings. You must define a primary key for the table -
+ * either a simple primary key (partition key), or a composite primary
+ * key (partition key and sort key). Optionally, you can create one or
  * more secondary indexes, which provide fast data access using non-key
  * attributes.
  * </p>
@@ -97,10 +119,11 @@
  * </li>
  * <li> <p>
  * <i>Query</i> - Returns one or more items from a table or a secondary
- * index. You must provide a specific hash key value. You can narrow the
- * scope of the query using comparison operators against a range key
- * value, or on the index key. <i>Query</i> supports either eventual or
- * strong consistency. A single response has a size limit of 1 MB.
+ * index. You must provide a specific value for the partition key. You
+ * can narrow the scope of the query using comparison operators against a
+ * sort key value, or on the index key. <i>Query</i> supports either
+ * eventual or strong consistency. A single response has a size limit of
+ * 1 MB.
  * </p>
  * </li>
  * <li> <p>

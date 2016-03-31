@@ -43,9 +43,9 @@ public class CreatePolicyRequest extends AmazonWebServiceRequest implements Seri
     private String policyName;
 
     /**
-     * The JSON document that describes the policy. The length of the
-     * <b>policyDocument</b> must be a minimum length of 1, with a maximum
-     * length of 2048, excluding whitespace.
+     * The JSON document that describes the policy. <b>policyDocument</b>
+     * must have a minimum length of 1, with a maximum length of 2048,
+     * excluding whitespace.
      */
     private String policyDocument;
 
@@ -95,41 +95,41 @@ public class CreatePolicyRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The JSON document that describes the policy. The length of the
-     * <b>policyDocument</b> must be a minimum length of 1, with a maximum
-     * length of 2048, excluding whitespace.
+     * The JSON document that describes the policy. <b>policyDocument</b>
+     * must have a minimum length of 1, with a maximum length of 2048,
+     * excluding whitespace.
      *
-     * @return The JSON document that describes the policy. The length of the
-     *         <b>policyDocument</b> must be a minimum length of 1, with a maximum
-     *         length of 2048, excluding whitespace.
+     * @return The JSON document that describes the policy. <b>policyDocument</b>
+     *         must have a minimum length of 1, with a maximum length of 2048,
+     *         excluding whitespace.
      */
     public String getPolicyDocument() {
         return policyDocument;
     }
     
     /**
-     * The JSON document that describes the policy. The length of the
-     * <b>policyDocument</b> must be a minimum length of 1, with a maximum
-     * length of 2048, excluding whitespace.
+     * The JSON document that describes the policy. <b>policyDocument</b>
+     * must have a minimum length of 1, with a maximum length of 2048,
+     * excluding whitespace.
      *
-     * @param policyDocument The JSON document that describes the policy. The length of the
-     *         <b>policyDocument</b> must be a minimum length of 1, with a maximum
-     *         length of 2048, excluding whitespace.
+     * @param policyDocument The JSON document that describes the policy. <b>policyDocument</b>
+     *         must have a minimum length of 1, with a maximum length of 2048,
+     *         excluding whitespace.
      */
     public void setPolicyDocument(String policyDocument) {
         this.policyDocument = policyDocument;
     }
     
     /**
-     * The JSON document that describes the policy. The length of the
-     * <b>policyDocument</b> must be a minimum length of 1, with a maximum
-     * length of 2048, excluding whitespace.
+     * The JSON document that describes the policy. <b>policyDocument</b>
+     * must have a minimum length of 1, with a maximum length of 2048,
+     * excluding whitespace.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param policyDocument The JSON document that describes the policy. The length of the
-     *         <b>policyDocument</b> must be a minimum length of 1, with a maximum
-     *         length of 2048, excluding whitespace.
+     * @param policyDocument The JSON document that describes the policy. <b>policyDocument</b>
+     *         must have a minimum length of 1, with a maximum length of 2048,
+     *         excluding whitespace.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

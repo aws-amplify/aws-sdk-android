@@ -18,13 +18,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes an action that writes data to a Kinesis Firehose stream.
+ * Describes an action that writes data to an Amazon Kinesis Firehose
+ * stream.
  * </p>
  */
 public class FirehoseAction implements Serializable {
 
     /**
-     * The IAM role that grants access to the firehose stream.
+     * The IAM role that grants access to the Amazon Kinesis Firehost stream.
      */
     private String roleArn;
 
@@ -34,29 +35,29 @@ public class FirehoseAction implements Serializable {
     private String deliveryStreamName;
 
     /**
-     * The IAM role that grants access to the firehose stream.
+     * The IAM role that grants access to the Amazon Kinesis Firehost stream.
      *
-     * @return The IAM role that grants access to the firehose stream.
+     * @return The IAM role that grants access to the Amazon Kinesis Firehost stream.
      */
     public String getRoleArn() {
         return roleArn;
     }
     
     /**
-     * The IAM role that grants access to the firehose stream.
+     * The IAM role that grants access to the Amazon Kinesis Firehost stream.
      *
-     * @param roleArn The IAM role that grants access to the firehose stream.
+     * @param roleArn The IAM role that grants access to the Amazon Kinesis Firehost stream.
      */
     public void setRoleArn(String roleArn) {
         this.roleArn = roleArn;
     }
     
     /**
-     * The IAM role that grants access to the firehose stream.
+     * The IAM role that grants access to the Amazon Kinesis Firehost stream.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param roleArn The IAM role that grants access to the firehose stream.
+     * @param roleArn The IAM role that grants access to the Amazon Kinesis Firehost stream.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

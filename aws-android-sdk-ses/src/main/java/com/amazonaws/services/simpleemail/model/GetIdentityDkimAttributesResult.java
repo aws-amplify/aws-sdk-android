@@ -17,10 +17,7 @@ package com.amazonaws.services.simpleemail.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Represents a list of all the DKIM attributes for the specified
- * identity.
- * </p>
+ * Get Identity Dkim Attributes Result
  */
 public class GetIdentityDkimAttributesResult implements Serializable {
 

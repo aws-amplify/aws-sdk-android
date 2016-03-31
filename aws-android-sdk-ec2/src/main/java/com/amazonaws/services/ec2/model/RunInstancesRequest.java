@@ -33,6 +33,11 @@ import com.amazonaws.services.ec2.model.transform.RunInstancesRequestMarshaller;
  * DescribeInstances.
  * </p>
  * <p>
+ * To ensure faster instance launches, break up large requests into
+ * smaller batches. For example, create five separate launch requests for
+ * 100 instances each instead of one launch request for 500 instances.
+ * </p>
+ * <p>
  * If you don't specify a security group when launching an instance,
  * Amazon EC2 uses the default security group. For more information, see
  * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"> Security Groups </a>
@@ -65,9 +70,11 @@ import com.amazonaws.services.ec2.model.transform.RunInstancesRequestMarshaller;
  * not subscribed, <code>RunInstances</code> fails.
  * </p>
  * <p>
- * T2 instance types can only be launched into a VPC. If you do not have
- * a default VPC, or if you do not specify a subnet ID in the request,
- * <code>RunInstances</code> fails.
+ * Some instance types can only be launched into a VPC. If you do not
+ * have a default VPC, or if you do not specify a subnet ID in the
+ * request, <code>RunInstances</code> fails. For more information, see
+ * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html#vpc-only-instance-types"> Instance Types Available Only in a VPC </a>
+ * .
  * </p>
  * <p>
  * For more information about troubleshooting, see
@@ -106,8 +113,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * information about the default limits, and how to request an increase,
      * see <a
      * href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-     * many instances can I run in Amazon EC2</a> in the Amazon EC2 General
-     * FAQ.
+     * many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.
      */
     private Integer maxCount;
 
@@ -141,7 +147,8 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * Commands on Your Linux Instance at Launch</a> (Linux) and <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data">Adding
      * User Data</a> (Windows). For API calls, the text must be
-     * base64-encoded. Command line tools perform encoding for you.
+     * base64-encoded. For command line tools, the encoding is performed for
+     * you, and you can load the text from a file.
      */
     private String userData;
 
@@ -292,8 +299,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * more information about the default limits, and how to request an
      * increase, see <a
      * href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-     * many instances can I run in Amazon EC2</a> in the Amazon EC2 General
-     * FAQ.
+     * many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.
      */
     public RunInstancesRequest(String imageId, Integer minCount, Integer maxCount) {
         setImageId(imageId);
@@ -424,8 +430,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * information about the default limits, and how to request an increase,
      * see <a
      * href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-     * many instances can I run in Amazon EC2</a> in the Amazon EC2 General
-     * FAQ.
+     * many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.
      *
      * @return The maximum number of instances to launch. If you specify more
      *         instances than Amazon EC2 can launch in the target Availability Zone,
@@ -435,8 +440,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      *         information about the default limits, and how to request an increase,
      *         see <a
      *         href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-     *         many instances can I run in Amazon EC2</a> in the Amazon EC2 General
-     *         FAQ.
+     *         many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.
      */
     public Integer getMaxCount() {
         return maxCount;
@@ -451,8 +455,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * information about the default limits, and how to request an increase,
      * see <a
      * href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-     * many instances can I run in Amazon EC2</a> in the Amazon EC2 General
-     * FAQ.
+     * many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.
      *
      * @param maxCount The maximum number of instances to launch. If you specify more
      *         instances than Amazon EC2 can launch in the target Availability Zone,
@@ -462,8 +465,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      *         information about the default limits, and how to request an increase,
      *         see <a
      *         href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-     *         many instances can I run in Amazon EC2</a> in the Amazon EC2 General
-     *         FAQ.
+     *         many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.
      */
     public void setMaxCount(Integer maxCount) {
         this.maxCount = maxCount;
@@ -478,8 +480,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * information about the default limits, and how to request an increase,
      * see <a
      * href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-     * many instances can I run in Amazon EC2</a> in the Amazon EC2 General
-     * FAQ.
+     * many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -491,8 +492,7 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      *         information about the default limits, and how to request an increase,
      *         see <a
      *         href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How
-     *         many instances can I run in Amazon EC2</a> in the Amazon EC2 General
-     *         FAQ.
+     *         many instances can I run in Amazon EC2</a> in the Amazon EC2 FAQ.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -734,7 +734,8 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * Commands on Your Linux Instance at Launch</a> (Linux) and <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data">Adding
      * User Data</a> (Windows). For API calls, the text must be
-     * base64-encoded. Command line tools perform encoding for you.
+     * base64-encoded. For command line tools, the encoding is performed for
+     * you, and you can load the text from a file.
      *
      * @return Data to configure the instance, or a script to run during instance
      *         launch. For more information, see <a
@@ -742,7 +743,8 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      *         Commands on Your Linux Instance at Launch</a> (Linux) and <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data">Adding
      *         User Data</a> (Windows). For API calls, the text must be
-     *         base64-encoded. Command line tools perform encoding for you.
+     *         base64-encoded. For command line tools, the encoding is performed for
+     *         you, and you can load the text from a file.
      */
     public String getUserData() {
         return userData;
@@ -755,7 +757,8 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * Commands on Your Linux Instance at Launch</a> (Linux) and <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data">Adding
      * User Data</a> (Windows). For API calls, the text must be
-     * base64-encoded. Command line tools perform encoding for you.
+     * base64-encoded. For command line tools, the encoding is performed for
+     * you, and you can load the text from a file.
      *
      * @param userData Data to configure the instance, or a script to run during instance
      *         launch. For more information, see <a
@@ -763,7 +766,8 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      *         Commands on Your Linux Instance at Launch</a> (Linux) and <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data">Adding
      *         User Data</a> (Windows). For API calls, the text must be
-     *         base64-encoded. Command line tools perform encoding for you.
+     *         base64-encoded. For command line tools, the encoding is performed for
+     *         you, and you can load the text from a file.
      */
     public void setUserData(String userData) {
         this.userData = userData;
@@ -776,7 +780,8 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      * Commands on Your Linux Instance at Launch</a> (Linux) and <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data">Adding
      * User Data</a> (Windows). For API calls, the text must be
-     * base64-encoded. Command line tools perform encoding for you.
+     * base64-encoded. For command line tools, the encoding is performed for
+     * you, and you can load the text from a file.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -786,7 +791,8 @@ public class RunInstancesRequest extends AmazonWebServiceRequest implements Seri
      *         Commands on Your Linux Instance at Launch</a> (Linux) and <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data">Adding
      *         User Data</a> (Windows). For API calls, the text must be
-     *         base64-encoded. Command line tools perform encoding for you.
+     *         base64-encoded. For command line tools, the encoding is performed for
+     *         you, and you can load the text from a file.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

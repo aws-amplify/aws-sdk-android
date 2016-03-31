@@ -28,6 +28,12 @@ import com.amazonaws.services.ec2.model.transform.DescribeConversionTasksRequest
  * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html"> Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2 </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>
+ * <p>
+ * For information about the import manifest referenced by this API
+ * action, see
+ * <a href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html"> VM Import Manifest </a>
+ * .
+ * </p>
  *
  * @see com.amazonaws.services.ec2.AmazonEC2#describeConversionTasks(DescribeConversionTasksRequest)
  */

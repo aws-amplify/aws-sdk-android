@@ -30,7 +30,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * You can create multiple certificates in a batch by creating a
- * directory and copying multiple .csr files into that directory and
+ * directory, copying multiple .csr files into that directory, and then
  * specifying that directory on the command line. The following commands
  * show how to create a batch of certificates given a batch of CSRs.
  * </p>
@@ -42,7 +42,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >
  * </p>
  * <p>
- * On Linux and OSX, the command is:
+ * On Linux and OS X, the command is:
  * </p>
  * <p>
  * $ ls my-csr-directory/ | xargs -I {} aws iot
@@ -51,7 +51,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * This command lists all of the CSRs in my-csr-directory and pipes each
- * CSR filename to the aws iot create-certificate-from-csr AWS CLI
+ * CSR file name to the aws iot create-certificate-from-csr AWS CLI
  * command to create a certificate for the corresponding CSR.
  * </p>
  * <p>
@@ -72,8 +72,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * --certificate-signing-request file://my-csr-directory/$_}
  * </p>
  * <p>
- * On Windows Command Prompt, the command to create certificates for all
- * CSRs in my-csr-directory is:
+ * On a Windows command prompt, the command to create certificates for
+ * all CSRs in my-csr-directory is:
  * </p>
  * <p>
  * > forfiles /p my-csr-directory /c "cmd /c aws iot

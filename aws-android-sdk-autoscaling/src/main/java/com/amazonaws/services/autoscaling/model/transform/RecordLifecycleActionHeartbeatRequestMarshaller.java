@@ -50,6 +50,9 @@ public class RecordLifecycleActionHeartbeatRequestMarshaller implements Marshall
         if (recordLifecycleActionHeartbeatRequest.getLifecycleActionToken() != null) {
             request.addParameter("LifecycleActionToken", StringUtils.fromString(recordLifecycleActionHeartbeatRequest.getLifecycleActionToken()));
         }
+        if (recordLifecycleActionHeartbeatRequest.getInstanceId() != null) {
+            request.addParameter("InstanceId", StringUtils.fromString(recordLifecycleActionHeartbeatRequest.getInstanceId()));
+        }
 
         return request;
     }

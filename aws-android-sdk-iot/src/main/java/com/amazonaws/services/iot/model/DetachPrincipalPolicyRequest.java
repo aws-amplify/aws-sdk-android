@@ -38,9 +38,9 @@ public class DetachPrincipalPolicyRequest extends AmazonWebServiceRequest implem
     private String policyName;
 
     /**
-     * The principal <p>If the principal is a certificate, specify the
-     * certificate ARN. If the principal is a Cognito identity specify the
-     * identity ID.
+     * The principal. <p>If the principal is a certificate, specify the
+     * certificate ARN. If the principal is an Amazon Cognito identity,
+     * specify the identity ID.
      */
     private String principal;
 
@@ -90,41 +90,41 @@ public class DetachPrincipalPolicyRequest extends AmazonWebServiceRequest implem
     }
 
     /**
-     * The principal <p>If the principal is a certificate, specify the
-     * certificate ARN. If the principal is a Cognito identity specify the
-     * identity ID.
+     * The principal. <p>If the principal is a certificate, specify the
+     * certificate ARN. If the principal is an Amazon Cognito identity,
+     * specify the identity ID.
      *
-     * @return The principal <p>If the principal is a certificate, specify the
-     *         certificate ARN. If the principal is a Cognito identity specify the
-     *         identity ID.
+     * @return The principal. <p>If the principal is a certificate, specify the
+     *         certificate ARN. If the principal is an Amazon Cognito identity,
+     *         specify the identity ID.
      */
     public String getPrincipal() {
         return principal;
     }
     
     /**
-     * The principal <p>If the principal is a certificate, specify the
-     * certificate ARN. If the principal is a Cognito identity specify the
-     * identity ID.
+     * The principal. <p>If the principal is a certificate, specify the
+     * certificate ARN. If the principal is an Amazon Cognito identity,
+     * specify the identity ID.
      *
-     * @param principal The principal <p>If the principal is a certificate, specify the
-     *         certificate ARN. If the principal is a Cognito identity specify the
-     *         identity ID.
+     * @param principal The principal. <p>If the principal is a certificate, specify the
+     *         certificate ARN. If the principal is an Amazon Cognito identity,
+     *         specify the identity ID.
      */
     public void setPrincipal(String principal) {
         this.principal = principal;
     }
     
     /**
-     * The principal <p>If the principal is a certificate, specify the
-     * certificate ARN. If the principal is a Cognito identity specify the
-     * identity ID.
+     * The principal. <p>If the principal is a certificate, specify the
+     * certificate ARN. If the principal is an Amazon Cognito identity,
+     * specify the identity ID.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param principal The principal <p>If the principal is a certificate, specify the
-     *         certificate ARN. If the principal is a Cognito identity specify the
-     *         identity ID.
+     * @param principal The principal. <p>If the principal is a certificate, specify the
+     *         certificate ARN. If the principal is an Amazon Cognito identity,
+     *         specify the identity ID.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

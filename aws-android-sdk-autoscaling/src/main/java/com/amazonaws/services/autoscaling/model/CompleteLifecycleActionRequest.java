@@ -82,6 +82,8 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
      */
     private String lifecycleActionResult;
 
+    private String instanceId;
+
     /**
      * The name of the lifecycle hook.
      * <p>
@@ -272,6 +274,51 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
     }
 
     /**
+     * Returns the value of the InstanceId property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 19<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     *
+     * @return The value of the InstanceId property for this object.
+     */
+    public String getInstanceId() {
+        return instanceId;
+    }
+    
+    /**
+     * Sets the value of the InstanceId property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 19<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     *
+     * @param instanceId The new value for the InstanceId property for this object.
+     */
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+    
+    /**
+     * Sets the value of the InstanceId property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 19<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     *
+     * @param instanceId The new value for the InstanceId property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public CompleteLifecycleActionRequest withInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -286,7 +333,8 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
         if (getLifecycleHookName() != null) sb.append("LifecycleHookName: " + getLifecycleHookName() + ",");
         if (getAutoScalingGroupName() != null) sb.append("AutoScalingGroupName: " + getAutoScalingGroupName() + ",");
         if (getLifecycleActionToken() != null) sb.append("LifecycleActionToken: " + getLifecycleActionToken() + ",");
-        if (getLifecycleActionResult() != null) sb.append("LifecycleActionResult: " + getLifecycleActionResult() );
+        if (getLifecycleActionResult() != null) sb.append("LifecycleActionResult: " + getLifecycleActionResult() + ",");
+        if (getInstanceId() != null) sb.append("InstanceId: " + getInstanceId() );
         sb.append("}");
         return sb.toString();
     }
@@ -300,6 +348,7 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
         hashCode = prime * hashCode + ((getAutoScalingGroupName() == null) ? 0 : getAutoScalingGroupName().hashCode()); 
         hashCode = prime * hashCode + ((getLifecycleActionToken() == null) ? 0 : getLifecycleActionToken().hashCode()); 
         hashCode = prime * hashCode + ((getLifecycleActionResult() == null) ? 0 : getLifecycleActionResult().hashCode()); 
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode()); 
         return hashCode;
     }
     
@@ -319,6 +368,8 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
         if (other.getLifecycleActionToken() != null && other.getLifecycleActionToken().equals(this.getLifecycleActionToken()) == false) return false; 
         if (other.getLifecycleActionResult() == null ^ this.getLifecycleActionResult() == null) return false;
         if (other.getLifecycleActionResult() != null && other.getLifecycleActionResult().equals(this.getLifecycleActionResult()) == false) return false; 
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null) return false;
+        if (other.getInstanceId() != null && other.getInstanceId().equals(this.getInstanceId()) == false) return false; 
         return true;
     }
     

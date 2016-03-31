@@ -21,12 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.iot.AWSIot#createKeysAndCertificate(CreateKeysAndCertificateRequest) CreateKeysAndCertificate operation}.
  * <p>
- * Creates a 2048 bit RSA key pair and issues an X.509 certificate using
+ * Creates a 2048-bit RSA key pair and issues an X.509 certificate using
  * the issued public key.
  * </p>
  * <p>
  * <b>Note</b> This is the only time AWS IoT issues the private key for
- * this certificate. It is important to keep track of the private key.
+ * this certificate, so it is important to keep it in a secure location.
  * </p>
  *
  * @see com.amazonaws.services.iot.AWSIot#createKeysAndCertificate(CreateKeysAndCertificateRequest)

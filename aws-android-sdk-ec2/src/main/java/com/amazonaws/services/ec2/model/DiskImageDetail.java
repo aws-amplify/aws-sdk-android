@@ -43,7 +43,10 @@ public class DiskImageDetail implements Serializable {
      * String Request Authentication Alternative" section of the <a
      * href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html">Authenticating
      * REST Requests</a> topic in the <i>Amazon Simple Storage Service
-     * Developer Guide</i>.
+     * Developer Guide</i>. <p>For information about the import manifest
+     * referenced by this API action, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html">VM
+     * Import Manifest</a>.
      */
     private String importManifestUrl;
 
@@ -169,7 +172,10 @@ public class DiskImageDetail implements Serializable {
      * String Request Authentication Alternative" section of the <a
      * href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html">Authenticating
      * REST Requests</a> topic in the <i>Amazon Simple Storage Service
-     * Developer Guide</i>.
+     * Developer Guide</i>. <p>For information about the import manifest
+     * referenced by this API action, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html">VM
+     * Import Manifest</a>.
      *
      * @return A presigned URL for the import manifest stored in Amazon S3 and
      *         presented here as an Amazon S3 presigned URL. For information about
@@ -177,7 +183,10 @@ public class DiskImageDetail implements Serializable {
      *         String Request Authentication Alternative" section of the <a
      *         href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html">Authenticating
      *         REST Requests</a> topic in the <i>Amazon Simple Storage Service
-     *         Developer Guide</i>.
+     *         Developer Guide</i>. <p>For information about the import manifest
+     *         referenced by this API action, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html">VM
+     *         Import Manifest</a>.
      */
     public String getImportManifestUrl() {
         return importManifestUrl;
@@ -190,7 +199,10 @@ public class DiskImageDetail implements Serializable {
      * String Request Authentication Alternative" section of the <a
      * href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html">Authenticating
      * REST Requests</a> topic in the <i>Amazon Simple Storage Service
-     * Developer Guide</i>.
+     * Developer Guide</i>. <p>For information about the import manifest
+     * referenced by this API action, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html">VM
+     * Import Manifest</a>.
      *
      * @param importManifestUrl A presigned URL for the import manifest stored in Amazon S3 and
      *         presented here as an Amazon S3 presigned URL. For information about
@@ -198,7 +210,10 @@ public class DiskImageDetail implements Serializable {
      *         String Request Authentication Alternative" section of the <a
      *         href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html">Authenticating
      *         REST Requests</a> topic in the <i>Amazon Simple Storage Service
-     *         Developer Guide</i>.
+     *         Developer Guide</i>. <p>For information about the import manifest
+     *         referenced by this API action, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html">VM
+     *         Import Manifest</a>.
      */
     public void setImportManifestUrl(String importManifestUrl) {
         this.importManifestUrl = importManifestUrl;
@@ -211,7 +226,10 @@ public class DiskImageDetail implements Serializable {
      * String Request Authentication Alternative" section of the <a
      * href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html">Authenticating
      * REST Requests</a> topic in the <i>Amazon Simple Storage Service
-     * Developer Guide</i>.
+     * Developer Guide</i>. <p>For information about the import manifest
+     * referenced by this API action, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html">VM
+     * Import Manifest</a>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -221,7 +239,10 @@ public class DiskImageDetail implements Serializable {
      *         String Request Authentication Alternative" section of the <a
      *         href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html">Authenticating
      *         REST Requests</a> topic in the <i>Amazon Simple Storage Service
-     *         Developer Guide</i>.
+     *         Developer Guide</i>. <p>For information about the import manifest
+     *         referenced by this API action, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html">VM
+     *         Import Manifest</a>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

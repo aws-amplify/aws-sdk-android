@@ -48,8 +48,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * <b>NOTE:</b> To prevent a new item from replacing an existing item,
- * use a conditional put operation with ComparisonOperator set to NULL
- * for the primary key attribute, or attributes.
+ * use a conditional expression that contains the attribute_not_exists
+ * function with the name of the attribute being used as the partition
+ * key for the table. Since every record must contain that attribute,
+ * the attribute_not_exists function will only succeed if no matching
+ * item exists.
  * </p>
  * <p>
  * For more information about using this API, see
@@ -74,13 +77,13 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute name/value pairs, one for each attribute. Only the
      * primary key attributes are required; you can optionally provide other
      * attribute name-value pairs for the item. <p>You must provide all of
-     * the attributes for the primary key. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute. <p>If you specify any attributes
-     * that are part of an index key, then the data types for those
-     * attributes must match those of the schema in the table's attribute
-     * definition. <p>For more information about primary keys, see <a
+     * the attributes for the primary key. For example, with a simple primary
+     * key, you only need to provide a value for the partition key. For a
+     * composite primary key, you must provide both values for both the
+     * partition key and the sort key. <p>If you specify any attributes that
+     * are part of an index key, then the data types for those attributes
+     * must match those of the schema in the table's attribute definition.
+     * <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each element
      * in the <i>Item</i> map is an <i>AttributeValue</i> object.
@@ -271,8 +274,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * <code>NONE</code>, then nothing is returned. (This setting is the
      * default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      * If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     * content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     * Values" are not relevant to PutItem.</note>
+     * content of the old item is returned. </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
@@ -409,9 +411,9 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * attribute. Only the primary key attributes are required; you can
      * optionally provide other attribute name-value pairs for the item.
      * <p>You must provide all of the attributes for the primary key. For
-     * example, with a hash type primary key, you only need to provide the
-     * hash attribute. For a hash-and-range type primary key, you must
-     * provide both the hash attribute and the range attribute. <p>If you
+     * example, with a simple primary key, you only need to provide a value
+     * for the partition key. For a composite primary key, you must provide
+     * both values for both the partition key and the sort key. <p>If you
      * specify any attributes that are part of an index key, then the data
      * types for those attributes must match those of the schema in the
      * table's attribute definition. <p>For more information about primary
@@ -435,9 +437,9 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * attribute. Only the primary key attributes are required; you can
      * optionally provide other attribute name-value pairs for the item.
      * <p>You must provide all of the attributes for the primary key. For
-     * example, with a hash type primary key, you only need to provide the
-     * hash attribute. For a hash-and-range type primary key, you must
-     * provide both the hash attribute and the range attribute. <p>If you
+     * example, with a simple primary key, you only need to provide a value
+     * for the partition key. For a composite primary key, you must provide
+     * both values for both the partition key and the sort key. <p>If you
      * specify any attributes that are part of an index key, then the data
      * types for those attributes must match those of the schema in the
      * table's attribute definition. <p>For more information about primary
@@ -453,8 +455,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * setting is the default for <i>ReturnValues</i>.) </li> <li>
      * <p><code>ALL_OLD</code> - If <i>PutItem</i> overwrote an attribute
      * name-value pair, then the content of the old item is returned. </li>
-     * </ul> <note><p>Other "Valid Values" are not relevant to
-     * PutItem.</note>
+     * </ul>
      */
     public PutItemRequest(String tableName, java.util.Map<String,AttributeValue> item, String returnValues) {
         setTableName(tableName);
@@ -472,9 +473,9 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * attribute. Only the primary key attributes are required; you can
      * optionally provide other attribute name-value pairs for the item.
      * <p>You must provide all of the attributes for the primary key. For
-     * example, with a hash type primary key, you only need to provide the
-     * hash attribute. For a hash-and-range type primary key, you must
-     * provide both the hash attribute and the range attribute. <p>If you
+     * example, with a simple primary key, you only need to provide a value
+     * for the partition key. For a composite primary key, you must provide
+     * both values for both the partition key and the sort key. <p>If you
      * specify any attributes that are part of an index key, then the data
      * types for those attributes must match those of the schema in the
      * table's attribute definition. <p>For more information about primary
@@ -490,8 +491,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * setting is the default for <i>ReturnValues</i>.) </li> <li>
      * <p><code>ALL_OLD</code> - If <i>PutItem</i> overwrote an attribute
      * name-value pair, then the content of the old item is returned. </li>
-     * </ul> <note><p>Other "Valid Values" are not relevant to
-     * PutItem.</note>
+     * </ul>
      */
     public PutItemRequest(String tableName, java.util.Map<String,AttributeValue> item, ReturnValue returnValues) {
         this.tableName = tableName;
@@ -548,13 +548,13 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute name/value pairs, one for each attribute. Only the
      * primary key attributes are required; you can optionally provide other
      * attribute name-value pairs for the item. <p>You must provide all of
-     * the attributes for the primary key. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute. <p>If you specify any attributes
-     * that are part of an index key, then the data types for those
-     * attributes must match those of the schema in the table's attribute
-     * definition. <p>For more information about primary keys, see <a
+     * the attributes for the primary key. For example, with a simple primary
+     * key, you only need to provide a value for the partition key. For a
+     * composite primary key, you must provide both values for both the
+     * partition key and the sort key. <p>If you specify any attributes that
+     * are part of an index key, then the data types for those attributes
+     * must match those of the schema in the table's attribute definition.
+     * <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each element
      * in the <i>Item</i> map is an <i>AttributeValue</i> object.
@@ -562,13 +562,13 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * @return A map of attribute name/value pairs, one for each attribute. Only the
      *         primary key attributes are required; you can optionally provide other
      *         attribute name-value pairs for the item. <p>You must provide all of
-     *         the attributes for the primary key. For example, with a hash type
-     *         primary key, you only need to provide the hash attribute. For a
-     *         hash-and-range type primary key, you must provide both the hash
-     *         attribute and the range attribute. <p>If you specify any attributes
-     *         that are part of an index key, then the data types for those
-     *         attributes must match those of the schema in the table's attribute
-     *         definition. <p>For more information about primary keys, see <a
+     *         the attributes for the primary key. For example, with a simple primary
+     *         key, you only need to provide a value for the partition key. For a
+     *         composite primary key, you must provide both values for both the
+     *         partition key and the sort key. <p>If you specify any attributes that
+     *         are part of an index key, then the data types for those attributes
+     *         must match those of the schema in the table's attribute definition.
+     *         <p>For more information about primary keys, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each element
      *         in the <i>Item</i> map is an <i>AttributeValue</i> object.
@@ -582,13 +582,13 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute name/value pairs, one for each attribute. Only the
      * primary key attributes are required; you can optionally provide other
      * attribute name-value pairs for the item. <p>You must provide all of
-     * the attributes for the primary key. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute. <p>If you specify any attributes
-     * that are part of an index key, then the data types for those
-     * attributes must match those of the schema in the table's attribute
-     * definition. <p>For more information about primary keys, see <a
+     * the attributes for the primary key. For example, with a simple primary
+     * key, you only need to provide a value for the partition key. For a
+     * composite primary key, you must provide both values for both the
+     * partition key and the sort key. <p>If you specify any attributes that
+     * are part of an index key, then the data types for those attributes
+     * must match those of the schema in the table's attribute definition.
+     * <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each element
      * in the <i>Item</i> map is an <i>AttributeValue</i> object.
@@ -596,13 +596,13 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * @param item A map of attribute name/value pairs, one for each attribute. Only the
      *         primary key attributes are required; you can optionally provide other
      *         attribute name-value pairs for the item. <p>You must provide all of
-     *         the attributes for the primary key. For example, with a hash type
-     *         primary key, you only need to provide the hash attribute. For a
-     *         hash-and-range type primary key, you must provide both the hash
-     *         attribute and the range attribute. <p>If you specify any attributes
-     *         that are part of an index key, then the data types for those
-     *         attributes must match those of the schema in the table's attribute
-     *         definition. <p>For more information about primary keys, see <a
+     *         the attributes for the primary key. For example, with a simple primary
+     *         key, you only need to provide a value for the partition key. For a
+     *         composite primary key, you must provide both values for both the
+     *         partition key and the sort key. <p>If you specify any attributes that
+     *         are part of an index key, then the data types for those attributes
+     *         must match those of the schema in the table's attribute definition.
+     *         <p>For more information about primary keys, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each element
      *         in the <i>Item</i> map is an <i>AttributeValue</i> object.
@@ -615,13 +615,13 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute name/value pairs, one for each attribute. Only the
      * primary key attributes are required; you can optionally provide other
      * attribute name-value pairs for the item. <p>You must provide all of
-     * the attributes for the primary key. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute. <p>If you specify any attributes
-     * that are part of an index key, then the data types for those
-     * attributes must match those of the schema in the table's attribute
-     * definition. <p>For more information about primary keys, see <a
+     * the attributes for the primary key. For example, with a simple primary
+     * key, you only need to provide a value for the partition key. For a
+     * composite primary key, you must provide both values for both the
+     * partition key and the sort key. <p>If you specify any attributes that
+     * are part of an index key, then the data types for those attributes
+     * must match those of the schema in the table's attribute definition.
+     * <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each element
      * in the <i>Item</i> map is an <i>AttributeValue</i> object.
@@ -631,13 +631,13 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * @param item A map of attribute name/value pairs, one for each attribute. Only the
      *         primary key attributes are required; you can optionally provide other
      *         attribute name-value pairs for the item. <p>You must provide all of
-     *         the attributes for the primary key. For example, with a hash type
-     *         primary key, you only need to provide the hash attribute. For a
-     *         hash-and-range type primary key, you must provide both the hash
-     *         attribute and the range attribute. <p>If you specify any attributes
-     *         that are part of an index key, then the data types for those
-     *         attributes must match those of the schema in the table's attribute
-     *         definition. <p>For more information about primary keys, see <a
+     *         the attributes for the primary key. For example, with a simple primary
+     *         key, you only need to provide a value for the partition key. For a
+     *         composite primary key, you must provide both values for both the
+     *         partition key and the sort key. <p>If you specify any attributes that
+     *         are part of an index key, then the data types for those attributes
+     *         must match those of the schema in the table's attribute definition.
+     *         <p>For more information about primary keys, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      *         Key</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each element
      *         in the <i>Item</i> map is an <i>AttributeValue</i> object.
@@ -654,13 +654,13 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * A map of attribute name/value pairs, one for each attribute. Only the
      * primary key attributes are required; you can optionally provide other
      * attribute name-value pairs for the item. <p>You must provide all of
-     * the attributes for the primary key. For example, with a hash type
-     * primary key, you only need to provide the hash attribute. For a
-     * hash-and-range type primary key, you must provide both the hash
-     * attribute and the range attribute. <p>If you specify any attributes
-     * that are part of an index key, then the data types for those
-     * attributes must match those of the schema in the table's attribute
-     * definition. <p>For more information about primary keys, see <a
+     * the attributes for the primary key. For example, with a simple primary
+     * key, you only need to provide a value for the partition key. For a
+     * composite primary key, you must provide both values for both the
+     * partition key and the sort key. <p>If you specify any attributes that
+     * are part of an index key, then the data types for those attributes
+     * must match those of the schema in the table's attribute definition.
+     * <p>For more information about primary keys, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each element
      * in the <i>Item</i> map is an <i>AttributeValue</i> object.
@@ -1961,8 +1961,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * <code>NONE</code>, then nothing is returned. (This setting is the
      * default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      * If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     * content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     * Values" are not relevant to PutItem.</note>
+     * content of the old item is returned. </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
@@ -1974,8 +1973,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      *         <code>NONE</code>, then nothing is returned. (This setting is the
      *         default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      *         If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     *         content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     *         Values" are not relevant to PutItem.</note>
+     *         content of the old item is returned. </li> </ul>
      *
      * @see ReturnValue
      */
@@ -1991,8 +1989,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * <code>NONE</code>, then nothing is returned. (This setting is the
      * default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      * If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     * content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     * Values" are not relevant to PutItem.</note>
+     * content of the old item is returned. </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
@@ -2004,8 +2001,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      *         <code>NONE</code>, then nothing is returned. (This setting is the
      *         default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      *         If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     *         content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     *         Values" are not relevant to PutItem.</note>
+     *         content of the old item is returned. </li> </ul>
      *
      * @see ReturnValue
      */
@@ -2021,8 +2017,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * <code>NONE</code>, then nothing is returned. (This setting is the
      * default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      * If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     * content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     * Values" are not relevant to PutItem.</note>
+     * content of the old item is returned. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -2036,8 +2031,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      *         <code>NONE</code>, then nothing is returned. (This setting is the
      *         default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      *         If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     *         content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     *         Values" are not relevant to PutItem.</note>
+     *         content of the old item is returned. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -2057,8 +2051,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * <code>NONE</code>, then nothing is returned. (This setting is the
      * default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      * If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     * content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     * Values" are not relevant to PutItem.</note>
+     * content of the old item is returned. </li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
@@ -2070,8 +2063,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      *         <code>NONE</code>, then nothing is returned. (This setting is the
      *         default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      *         If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     *         content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     *         Values" are not relevant to PutItem.</note>
+     *         content of the old item is returned. </li> </ul>
      *
      * @see ReturnValue
      */
@@ -2087,8 +2079,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      * <code>NONE</code>, then nothing is returned. (This setting is the
      * default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      * If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     * content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     * Values" are not relevant to PutItem.</note>
+     * content of the old item is returned. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -2102,8 +2093,7 @@ public class PutItemRequest extends AmazonWebServiceRequest implements Serializa
      *         <code>NONE</code>, then nothing is returned. (This setting is the
      *         default for <i>ReturnValues</i>.) </li> <li> <p><code>ALL_OLD</code> -
      *         If <i>PutItem</i> overwrote an attribute name-value pair, then the
-     *         content of the old item is returned. </li> </ul> <note><p>Other "Valid
-     *         Values" are not relevant to PutItem.</note>
+     *         content of the old item is returned. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

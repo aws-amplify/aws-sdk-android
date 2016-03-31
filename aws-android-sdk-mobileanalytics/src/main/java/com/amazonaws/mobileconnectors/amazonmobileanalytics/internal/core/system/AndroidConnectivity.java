@@ -20,12 +20,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
 import android.util.Log;
+import android.os.Build;
 
 public class AndroidConnectivity implements Connectivity {
     private static final String TAG = "AndroidConnectivity";
 
     protected boolean hasWifi;
     protected boolean hasMobile;
+    protected boolean hasWired;
     protected boolean inAirplaneMode;
     private Context context;
 
@@ -43,7 +45,7 @@ public class AndroidConnectivity implements Connectivity {
     @Override
     public boolean isConnected() {
         determineAvailability();
-        return hasWifi() || hasWAN();
+        return hasWifi() || hasWAN() || hasWired();
     }
 
     @Override
@@ -54,6 +56,11 @@ public class AndroidConnectivity implements Connectivity {
     @Override
     public boolean hasWAN() {
         return this.hasMobile && !inAirplaneMode;
+    }
+
+    @Override
+    public boolean hasWired() {
+        return this.hasWired;
     }
 
     // this method access constants that were added in the HONEYCOMB_MR2 release
@@ -68,6 +75,7 @@ public class AndroidConnectivity implements Connectivity {
         int networkType = 0;
         // default state
         hasWifi = false;
+        hasWired = false;
         // when we have connectivity manager, we assume we have some sort of
         // connectivity
         hasMobile = cm != null;
@@ -75,6 +83,9 @@ public class AndroidConnectivity implements Connectivity {
         if (networkInfo != null) {
             if (networkInfo.isConnectedOrConnecting()) {
                 networkType = networkInfo.getType();
+
+                // Make sure we're running on Honeycomb (SDK 13) or higher to check for Ethernet
+                hasWired = networkType == 9; //ConnectivityManager.TYPE_ETHERNET
 
                 hasWifi = networkType == ConnectivityManager.TYPE_WIFI ||
                         networkType == ConnectivityManager.TYPE_WIMAX;

@@ -72,15 +72,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     * <p><i>KeyType</i> - Determines whether the key attribute is
-     * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must provide
-     * exactly two elements, in this order: The first element must have a
-     * <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     * <a
+     * <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     * <p>The partition key of an item is also known as its <i>hash
+     * attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     * of an internal hash function to evenly distribute data items across
+     * partitions, based on their partition key values. <p>The sort key of an
+     * item is also known as its <i>range attribute</i>. The term "range
+     * attribute" derives from the way DynamoDB stores items with the same
+     * partition key physically close together, in sorted order by the sort
+     * key value.</note> <p>For a simple primary key (partition key), you
+     * must provide exactly one element with a <i>KeyType</i> of
+     * <code>HASH</code>. <p>For a composite primary key (partition key and
+     * sort key), you must provide exactly two elements, in this order: The
+     * first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     * second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     * <p>For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -91,19 +99,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * One or more local secondary indexes (the maximum is five) to be
-     * created on the table. Each index is scoped to a given hash key value.
-     * There is a 10 GB size limit per hash key; otherwise, the size of a
-     * local secondary index is unconstrained. <p>Each local secondary index
-     * in the array includes the following: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. Must be unique only for this
-     * table. <p/> </li> <li> <p><i>KeySchema</i> - Specifies the key schema
-     * for the local secondary index. The key schema must begin with the same
-     * hash key attribute as the table. </li> <li> <p><i>Projection</i> -
-     * Specifies attributes that are copied (projected) from the table into
-     * the index. These are in addition to the primary key attributes and
-     * index key attributes, which are automatically projected. Each
-     * attribute specification is composed of: <ul> <li>
-     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * created on the table. Each index is scoped to a given partition key
+     * value. There is a 10 GB size limit per partition key value; otherwise,
+     * the size of a local secondary index is unconstrained. <p>Each local
+     * secondary index in the array includes the following: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. Must be
+     * unique only for this table. <p/> </li> <li> <p><i>KeySchema</i> -
+     * Specifies the key schema for the local secondary index. The key schema
+     * must begin with the same partition key as the table. </li> <li>
+     * <p><i>Projection</i> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to
+     * the primary key attributes and index key attributes, which are
+     * automatically projected. Each attribute specification is composed of:
+     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -195,15 +203,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     * <p><i>KeyType</i> - Determines whether the key attribute is
-     * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must provide
-     * exactly two elements, in this order: The first element must have a
-     * <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     * <a
+     * <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     * <p>The partition key of an item is also known as its <i>hash
+     * attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     * of an internal hash function to evenly distribute data items across
+     * partitions, based on their partition key values. <p>The sort key of an
+     * item is also known as its <i>range attribute</i>. The term "range
+     * attribute" derives from the way DynamoDB stores items with the same
+     * partition key physically close together, in sorted order by the sort
+     * key value.</note> <p>For a simple primary key (partition key), you
+     * must provide exactly one element with a <i>KeyType</i> of
+     * <code>HASH</code>. <p>For a composite primary key (partition key and
+     * sort key), you must provide exactly two elements, in this order: The
+     * first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     * second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     * <p>For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
@@ -228,15 +244,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     * <p><i>KeyType</i> - Determines whether the key attribute is
-     * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must provide
-     * exactly two elements, in this order: The first element must have a
-     * <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     * <a
+     * <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     * <p>The partition key of an item is also known as its <i>hash
+     * attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     * of an internal hash function to evenly distribute data items across
+     * partitions, based on their partition key values. <p>The sort key of an
+     * item is also known as its <i>range attribute</i>. The term "range
+     * attribute" derives from the way DynamoDB stores items with the same
+     * partition key physically close together, in sorted order by the sort
+     * key value.</note> <p>For a simple primary key (partition key), you
+     * must provide exactly one element with a <i>KeyType</i> of
+     * <code>HASH</code>. <p>For a composite primary key (partition key and
+     * sort key), you must provide exactly two elements, in this order: The
+     * first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     * second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     * <p>For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * @param provisionedThroughput Represents the provisioned throughput
@@ -378,15 +402,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     * <p><i>KeyType</i> - Determines whether the key attribute is
-     * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must provide
-     * exactly two elements, in this order: The first element must have a
-     * <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     * <a
+     * <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     * <p>The partition key of an item is also known as its <i>hash
+     * attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     * of an internal hash function to evenly distribute data items across
+     * partitions, based on their partition key values. <p>The sort key of an
+     * item is also known as its <i>range attribute</i>. The term "range
+     * attribute" derives from the way DynamoDB stores items with the same
+     * partition key physically close together, in sorted order by the sort
+     * key value.</note> <p>For a simple primary key (partition key), you
+     * must provide exactly one element with a <i>KeyType</i> of
+     * <code>HASH</code>. <p>For a composite primary key (partition key and
+     * sort key), you must provide exactly two elements, in this order: The
+     * first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     * second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     * <p>For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -400,15 +432,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      *         <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      *         <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     *         <p><i>KeyType</i> - Determines whether the key attribute is
-     *         <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     *         key that consists of a hash attribute, you must provide exactly one
-     *         element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     *         key that consists of hash and range attributes, you must provide
-     *         exactly two elements, in this order: The first element must have a
-     *         <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     *         a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     *         <a
+     *         <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     *         <p>The partition key of an item is also known as its <i>hash
+     *         attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     *         of an internal hash function to evenly distribute data items across
+     *         partitions, based on their partition key values. <p>The sort key of an
+     *         item is also known as its <i>range attribute</i>. The term "range
+     *         attribute" derives from the way DynamoDB stores items with the same
+     *         partition key physically close together, in sorted order by the sort
+     *         key value.</note> <p>For a simple primary key (partition key), you
+     *         must provide exactly one element with a <i>KeyType</i> of
+     *         <code>HASH</code>. <p>For a composite primary key (partition key and
+     *         sort key), you must provide exactly two elements, in this order: The
+     *         first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     *         second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     *         <p>For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      *         the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
@@ -424,15 +464,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     * <p><i>KeyType</i> - Determines whether the key attribute is
-     * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must provide
-     * exactly two elements, in this order: The first element must have a
-     * <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     * <a
+     * <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     * <p>The partition key of an item is also known as its <i>hash
+     * attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     * of an internal hash function to evenly distribute data items across
+     * partitions, based on their partition key values. <p>The sort key of an
+     * item is also known as its <i>range attribute</i>. The term "range
+     * attribute" derives from the way DynamoDB stores items with the same
+     * partition key physically close together, in sorted order by the sort
+     * key value.</note> <p>For a simple primary key (partition key), you
+     * must provide exactly one element with a <i>KeyType</i> of
+     * <code>HASH</code>. <p>For a composite primary key (partition key and
+     * sort key), you must provide exactly two elements, in this order: The
+     * first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     * second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     * <p>For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -446,15 +494,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      *         <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      *         <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     *         <p><i>KeyType</i> - Determines whether the key attribute is
-     *         <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     *         key that consists of a hash attribute, you must provide exactly one
-     *         element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     *         key that consists of hash and range attributes, you must provide
-     *         exactly two elements, in this order: The first element must have a
-     *         <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     *         a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     *         <a
+     *         <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     *         <p>The partition key of an item is also known as its <i>hash
+     *         attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     *         of an internal hash function to evenly distribute data items across
+     *         partitions, based on their partition key values. <p>The sort key of an
+     *         item is also known as its <i>range attribute</i>. The term "range
+     *         attribute" derives from the way DynamoDB stores items with the same
+     *         partition key physically close together, in sorted order by the sort
+     *         key value.</note> <p>For a simple primary key (partition key), you
+     *         must provide exactly one element with a <i>KeyType</i> of
+     *         <code>HASH</code>. <p>For a composite primary key (partition key and
+     *         sort key), you must provide exactly two elements, in this order: The
+     *         first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     *         second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     *         <p>For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      *         the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      */
@@ -476,15 +532,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     * <p><i>KeyType</i> - Determines whether the key attribute is
-     * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must provide
-     * exactly two elements, in this order: The first element must have a
-     * <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     * <a
+     * <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     * <p>The partition key of an item is also known as its <i>hash
+     * attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     * of an internal hash function to evenly distribute data items across
+     * partitions, based on their partition key values. <p>The sort key of an
+     * item is also known as its <i>range attribute</i>. The term "range
+     * attribute" derives from the way DynamoDB stores items with the same
+     * partition key physically close together, in sorted order by the sort
+     * key value.</note> <p>For a simple primary key (partition key), you
+     * must provide exactly one element with a <i>KeyType</i> of
+     * <code>HASH</code>. <p>For a composite primary key (partition key and
+     * sort key), you must provide exactly two elements, in this order: The
+     * first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     * second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     * <p>For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -500,15 +564,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      *         <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      *         <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     *         <p><i>KeyType</i> - Determines whether the key attribute is
-     *         <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     *         key that consists of a hash attribute, you must provide exactly one
-     *         element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     *         key that consists of hash and range attributes, you must provide
-     *         exactly two elements, in this order: The first element must have a
-     *         <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     *         a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     *         <a
+     *         <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     *         <p>The partition key of an item is also known as its <i>hash
+     *         attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     *         of an internal hash function to evenly distribute data items across
+     *         partitions, based on their partition key values. <p>The sort key of an
+     *         item is also known as its <i>range attribute</i>. The term "range
+     *         attribute" derives from the way DynamoDB stores items with the same
+     *         partition key physically close together, in sorted order by the sort
+     *         key value.</note> <p>For a simple primary key (partition key), you
+     *         must provide exactly one element with a <i>KeyType</i> of
+     *         <code>HASH</code>. <p>For a composite primary key (partition key and
+     *         sort key), you must provide exactly two elements, in this order: The
+     *         first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     *         second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     *         <p>For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      *         the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
@@ -531,15 +603,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      * <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      * <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     * <p><i>KeyType</i> - Determines whether the key attribute is
-     * <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     * key that consists of a hash attribute, you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     * key that consists of hash and range attributes, you must provide
-     * exactly two elements, in this order: The first element must have a
-     * <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     * a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     * <a
+     * <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     * <p>The partition key of an item is also known as its <i>hash
+     * attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     * of an internal hash function to evenly distribute data items across
+     * partitions, based on their partition key values. <p>The sort key of an
+     * item is also known as its <i>range attribute</i>. The term "range
+     * attribute" derives from the way DynamoDB stores items with the same
+     * partition key physically close together, in sorted order by the sort
+     * key value.</note> <p>For a simple primary key (partition key), you
+     * must provide exactly one element with a <i>KeyType</i> of
+     * <code>HASH</code>. <p>For a composite primary key (partition key and
+     * sort key), you must provide exactly two elements, in this order: The
+     * first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     * second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     * <p>For more information, see <a
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      * the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * <p>
@@ -555,15 +635,23 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         Model</a> in the <i>Amazon DynamoDB Developer Guide</i>. <p>Each
      *         <i>KeySchemaElement</i> in the array is composed of: <ul> <li>
      *         <p><i>AttributeName</i> - The name of this key attribute. </li> <li>
-     *         <p><i>KeyType</i> - Determines whether the key attribute is
-     *         <code>HASH</code> or <code>RANGE</code>. </li> </ul> <p>For a primary
-     *         key that consists of a hash attribute, you must provide exactly one
-     *         element with a <i>KeyType</i> of <code>HASH</code>. <p>For a primary
-     *         key that consists of hash and range attributes, you must provide
-     *         exactly two elements, in this order: The first element must have a
-     *         <i>KeyType</i> of <code>HASH</code>, and the second element must have
-     *         a <i>KeyType</i> of <code>RANGE</code>. <p>For more information, see
-     *         <a
+     *         <p><i>KeyType</i> - The role that the key attribute will assume: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> </li> </ul> <note>
+     *         <p>The partition key of an item is also known as its <i>hash
+     *         attribute</i>. The term "hash attribute" derives from DynamoDB' usage
+     *         of an internal hash function to evenly distribute data items across
+     *         partitions, based on their partition key values. <p>The sort key of an
+     *         item is also known as its <i>range attribute</i>. The term "range
+     *         attribute" derives from the way DynamoDB stores items with the same
+     *         partition key physically close together, in sorted order by the sort
+     *         key value.</note> <p>For a simple primary key (partition key), you
+     *         must provide exactly one element with a <i>KeyType</i> of
+     *         <code>HASH</code>. <p>For a composite primary key (partition key and
+     *         sort key), you must provide exactly two elements, in this order: The
+     *         first element must have a <i>KeyType</i> of <code>HASH</code>, and the
+     *         second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     *         <p>For more information, see <a
      *         href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Specifying
      *         the Primary Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *
@@ -584,19 +672,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * One or more local secondary indexes (the maximum is five) to be
-     * created on the table. Each index is scoped to a given hash key value.
-     * There is a 10 GB size limit per hash key; otherwise, the size of a
-     * local secondary index is unconstrained. <p>Each local secondary index
-     * in the array includes the following: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. Must be unique only for this
-     * table. <p/> </li> <li> <p><i>KeySchema</i> - Specifies the key schema
-     * for the local secondary index. The key schema must begin with the same
-     * hash key attribute as the table. </li> <li> <p><i>Projection</i> -
-     * Specifies attributes that are copied (projected) from the table into
-     * the index. These are in addition to the primary key attributes and
-     * index key attributes, which are automatically projected. Each
-     * attribute specification is composed of: <ul> <li>
-     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * created on the table. Each index is scoped to a given partition key
+     * value. There is a 10 GB size limit per partition key value; otherwise,
+     * the size of a local secondary index is unconstrained. <p>Each local
+     * secondary index in the array includes the following: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. Must be
+     * unique only for this table. <p/> </li> <li> <p><i>KeySchema</i> -
+     * Specifies the key schema for the local secondary index. The key schema
+     * must begin with the same partition key as the table. </li> <li>
+     * <p><i>Projection</i> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to
+     * the primary key attributes and index key attributes, which are
+     * automatically projected. Each attribute specification is composed of:
+     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -611,19 +699,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * determining the total. </li> </ul> </li> </ul>
      *
      * @return One or more local secondary indexes (the maximum is five) to be
-     *         created on the table. Each index is scoped to a given hash key value.
-     *         There is a 10 GB size limit per hash key; otherwise, the size of a
-     *         local secondary index is unconstrained. <p>Each local secondary index
-     *         in the array includes the following: <ul> <li> <p><i>IndexName</i> -
-     *         The name of the local secondary index. Must be unique only for this
-     *         table. <p/> </li> <li> <p><i>KeySchema</i> - Specifies the key schema
-     *         for the local secondary index. The key schema must begin with the same
-     *         hash key attribute as the table. </li> <li> <p><i>Projection</i> -
-     *         Specifies attributes that are copied (projected) from the table into
-     *         the index. These are in addition to the primary key attributes and
-     *         index key attributes, which are automatically projected. Each
-     *         attribute specification is composed of: <ul> <li>
-     *         <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     *         created on the table. Each index is scoped to a given partition key
+     *         value. There is a 10 GB size limit per partition key value; otherwise,
+     *         the size of a local secondary index is unconstrained. <p>Each local
+     *         secondary index in the array includes the following: <ul> <li>
+     *         <p><i>IndexName</i> - The name of the local secondary index. Must be
+     *         unique only for this table. <p/> </li> <li> <p><i>KeySchema</i> -
+     *         Specifies the key schema for the local secondary index. The key schema
+     *         must begin with the same partition key as the table. </li> <li>
+     *         <p><i>Projection</i> - Specifies attributes that are copied
+     *         (projected) from the table into the index. These are in addition to
+     *         the primary key attributes and index key attributes, which are
+     *         automatically projected. Each attribute specification is composed of:
+     *         <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
      *         <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      *         the specified table attributes are projected into the index. The list
@@ -643,19 +731,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     
     /**
      * One or more local secondary indexes (the maximum is five) to be
-     * created on the table. Each index is scoped to a given hash key value.
-     * There is a 10 GB size limit per hash key; otherwise, the size of a
-     * local secondary index is unconstrained. <p>Each local secondary index
-     * in the array includes the following: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. Must be unique only for this
-     * table. <p/> </li> <li> <p><i>KeySchema</i> - Specifies the key schema
-     * for the local secondary index. The key schema must begin with the same
-     * hash key attribute as the table. </li> <li> <p><i>Projection</i> -
-     * Specifies attributes that are copied (projected) from the table into
-     * the index. These are in addition to the primary key attributes and
-     * index key attributes, which are automatically projected. Each
-     * attribute specification is composed of: <ul> <li>
-     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * created on the table. Each index is scoped to a given partition key
+     * value. There is a 10 GB size limit per partition key value; otherwise,
+     * the size of a local secondary index is unconstrained. <p>Each local
+     * secondary index in the array includes the following: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. Must be
+     * unique only for this table. <p/> </li> <li> <p><i>KeySchema</i> -
+     * Specifies the key schema for the local secondary index. The key schema
+     * must begin with the same partition key as the table. </li> <li>
+     * <p><i>Projection</i> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to
+     * the primary key attributes and index key attributes, which are
+     * automatically projected. Each attribute specification is composed of:
+     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -670,19 +758,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * determining the total. </li> </ul> </li> </ul>
      *
      * @param localSecondaryIndexes One or more local secondary indexes (the maximum is five) to be
-     *         created on the table. Each index is scoped to a given hash key value.
-     *         There is a 10 GB size limit per hash key; otherwise, the size of a
-     *         local secondary index is unconstrained. <p>Each local secondary index
-     *         in the array includes the following: <ul> <li> <p><i>IndexName</i> -
-     *         The name of the local secondary index. Must be unique only for this
-     *         table. <p/> </li> <li> <p><i>KeySchema</i> - Specifies the key schema
-     *         for the local secondary index. The key schema must begin with the same
-     *         hash key attribute as the table. </li> <li> <p><i>Projection</i> -
-     *         Specifies attributes that are copied (projected) from the table into
-     *         the index. These are in addition to the primary key attributes and
-     *         index key attributes, which are automatically projected. Each
-     *         attribute specification is composed of: <ul> <li>
-     *         <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     *         created on the table. Each index is scoped to a given partition key
+     *         value. There is a 10 GB size limit per partition key value; otherwise,
+     *         the size of a local secondary index is unconstrained. <p>Each local
+     *         secondary index in the array includes the following: <ul> <li>
+     *         <p><i>IndexName</i> - The name of the local secondary index. Must be
+     *         unique only for this table. <p/> </li> <li> <p><i>KeySchema</i> -
+     *         Specifies the key schema for the local secondary index. The key schema
+     *         must begin with the same partition key as the table. </li> <li>
+     *         <p><i>Projection</i> - Specifies attributes that are copied
+     *         (projected) from the table into the index. These are in addition to
+     *         the primary key attributes and index key attributes, which are
+     *         automatically projected. Each attribute specification is composed of:
+     *         <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
      *         <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      *         the specified table attributes are projected into the index. The list
@@ -708,19 +796,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     
     /**
      * One or more local secondary indexes (the maximum is five) to be
-     * created on the table. Each index is scoped to a given hash key value.
-     * There is a 10 GB size limit per hash key; otherwise, the size of a
-     * local secondary index is unconstrained. <p>Each local secondary index
-     * in the array includes the following: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. Must be unique only for this
-     * table. <p/> </li> <li> <p><i>KeySchema</i> - Specifies the key schema
-     * for the local secondary index. The key schema must begin with the same
-     * hash key attribute as the table. </li> <li> <p><i>Projection</i> -
-     * Specifies attributes that are copied (projected) from the table into
-     * the index. These are in addition to the primary key attributes and
-     * index key attributes, which are automatically projected. Each
-     * attribute specification is composed of: <ul> <li>
-     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * created on the table. Each index is scoped to a given partition key
+     * value. There is a 10 GB size limit per partition key value; otherwise,
+     * the size of a local secondary index is unconstrained. <p>Each local
+     * secondary index in the array includes the following: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. Must be
+     * unique only for this table. <p/> </li> <li> <p><i>KeySchema</i> -
+     * Specifies the key schema for the local secondary index. The key schema
+     * must begin with the same partition key as the table. </li> <li>
+     * <p><i>Projection</i> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to
+     * the primary key attributes and index key attributes, which are
+     * automatically projected. Each attribute specification is composed of:
+     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -737,19 +825,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param localSecondaryIndexes One or more local secondary indexes (the maximum is five) to be
-     *         created on the table. Each index is scoped to a given hash key value.
-     *         There is a 10 GB size limit per hash key; otherwise, the size of a
-     *         local secondary index is unconstrained. <p>Each local secondary index
-     *         in the array includes the following: <ul> <li> <p><i>IndexName</i> -
-     *         The name of the local secondary index. Must be unique only for this
-     *         table. <p/> </li> <li> <p><i>KeySchema</i> - Specifies the key schema
-     *         for the local secondary index. The key schema must begin with the same
-     *         hash key attribute as the table. </li> <li> <p><i>Projection</i> -
-     *         Specifies attributes that are copied (projected) from the table into
-     *         the index. These are in addition to the primary key attributes and
-     *         index key attributes, which are automatically projected. Each
-     *         attribute specification is composed of: <ul> <li>
-     *         <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     *         created on the table. Each index is scoped to a given partition key
+     *         value. There is a 10 GB size limit per partition key value; otherwise,
+     *         the size of a local secondary index is unconstrained. <p>Each local
+     *         secondary index in the array includes the following: <ul> <li>
+     *         <p><i>IndexName</i> - The name of the local secondary index. Must be
+     *         unique only for this table. <p/> </li> <li> <p><i>KeySchema</i> -
+     *         Specifies the key schema for the local secondary index. The key schema
+     *         must begin with the same partition key as the table. </li> <li>
+     *         <p><i>Projection</i> - Specifies attributes that are copied
+     *         (projected) from the table into the index. These are in addition to
+     *         the primary key attributes and index key attributes, which are
+     *         automatically projected. Each attribute specification is composed of:
+     *         <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
      *         <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      *         the specified table attributes are projected into the index. The list
@@ -776,19 +864,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     
     /**
      * One or more local secondary indexes (the maximum is five) to be
-     * created on the table. Each index is scoped to a given hash key value.
-     * There is a 10 GB size limit per hash key; otherwise, the size of a
-     * local secondary index is unconstrained. <p>Each local secondary index
-     * in the array includes the following: <ul> <li> <p><i>IndexName</i> -
-     * The name of the local secondary index. Must be unique only for this
-     * table. <p/> </li> <li> <p><i>KeySchema</i> - Specifies the key schema
-     * for the local secondary index. The key schema must begin with the same
-     * hash key attribute as the table. </li> <li> <p><i>Projection</i> -
-     * Specifies attributes that are copied (projected) from the table into
-     * the index. These are in addition to the primary key attributes and
-     * index key attributes, which are automatically projected. Each
-     * attribute specification is composed of: <ul> <li>
-     * <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     * created on the table. Each index is scoped to a given partition key
+     * value. There is a 10 GB size limit per partition key value; otherwise,
+     * the size of a local secondary index is unconstrained. <p>Each local
+     * secondary index in the array includes the following: <ul> <li>
+     * <p><i>IndexName</i> - The name of the local secondary index. Must be
+     * unique only for this table. <p/> </li> <li> <p><i>KeySchema</i> -
+     * Specifies the key schema for the local secondary index. The key schema
+     * must begin with the same partition key as the table. </li> <li>
+     * <p><i>Projection</i> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to
+     * the primary key attributes and index key attributes, which are
+     * automatically projected. Each attribute specification is composed of:
+     * <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
      * <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      * projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      * the specified table attributes are projected into the index. The list
@@ -805,19 +893,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param localSecondaryIndexes One or more local secondary indexes (the maximum is five) to be
-     *         created on the table. Each index is scoped to a given hash key value.
-     *         There is a 10 GB size limit per hash key; otherwise, the size of a
-     *         local secondary index is unconstrained. <p>Each local secondary index
-     *         in the array includes the following: <ul> <li> <p><i>IndexName</i> -
-     *         The name of the local secondary index. Must be unique only for this
-     *         table. <p/> </li> <li> <p><i>KeySchema</i> - Specifies the key schema
-     *         for the local secondary index. The key schema must begin with the same
-     *         hash key attribute as the table. </li> <li> <p><i>Projection</i> -
-     *         Specifies attributes that are copied (projected) from the table into
-     *         the index. These are in addition to the primary key attributes and
-     *         index key attributes, which are automatically projected. Each
-     *         attribute specification is composed of: <ul> <li>
-     *         <p><i>ProjectionType</i> - One of the following: <ul> <li>
+     *         created on the table. Each index is scoped to a given partition key
+     *         value. There is a 10 GB size limit per partition key value; otherwise,
+     *         the size of a local secondary index is unconstrained. <p>Each local
+     *         secondary index in the array includes the following: <ul> <li>
+     *         <p><i>IndexName</i> - The name of the local secondary index. Must be
+     *         unique only for this table. <p/> </li> <li> <p><i>KeySchema</i> -
+     *         Specifies the key schema for the local secondary index. The key schema
+     *         must begin with the same partition key as the table. </li> <li>
+     *         <p><i>Projection</i> - Specifies attributes that are copied
+     *         (projected) from the table into the index. These are in addition to
+     *         the primary key attributes and index key attributes, which are
+     *         automatically projected. Each attribute specification is composed of:
+     *         <ul> <li> <p><i>ProjectionType</i> - One of the following: <ul> <li>
      *         <p><code>KEYS_ONLY</code> - Only the index and primary keys are
      *         projected into the index. </li> <li> <p><code>INCLUDE</code> - Only
      *         the specified table attributes are projected into the index. The list

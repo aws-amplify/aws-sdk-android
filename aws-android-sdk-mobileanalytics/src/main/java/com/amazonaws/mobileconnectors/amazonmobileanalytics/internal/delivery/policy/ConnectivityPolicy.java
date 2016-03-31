@@ -44,7 +44,7 @@ public class ConnectivityPolicy implements DeliveryPolicy {
                 && isWanAllowed;
 
         if (connectivity.isConnected()) {
-            allowed = connectivity.hasWifi() || (connectivity.hasWAN() && canTrasmitOnWAN);
+            allowed = connectivity.hasWifi() || connectivity.hasWired() || (connectivity.hasWAN() && canTrasmitOnWAN);
         }
         return allowed;
     }

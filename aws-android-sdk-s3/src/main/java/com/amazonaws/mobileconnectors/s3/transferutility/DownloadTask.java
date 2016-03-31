@@ -18,13 +18,18 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 import android.util.Log;
 
 import com.amazonaws.AbortedException;
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.GetObjectMetadataRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.S3Object;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InterruptedIOException;
+import java.io.OutputStream;
 import java.util.concurrent.Callable;
 
 /**
@@ -59,44 +64,37 @@ class DownloadTask implements Callable<Boolean> {
     public Boolean call() throws Exception {
         updater.updateState(download.id, TransferState.IN_PROGRESS);
 
+        final GetObjectRequest getObjectRequest = new GetObjectRequest(download.bucketName,
+                download.key);
+        TransferUtility.appendTransferServiceUserAgentString(getObjectRequest);
         File file = new File(download.file);
-        try {
-            // Constructs a request and fetch total bytes.
-            GetObjectMetadataRequest getObjectMetadataRequest = new GetObjectMetadataRequest(
-                    download.bucketName, download.key);
-            TransferUtility.appendTransferServiceUserAgentString(getObjectMetadataRequest);
-            ObjectMetadata objectMetadata = s3.getObjectMetadata(getObjectMetadataRequest);
-            final long bytesTotal = objectMetadata.getContentLength();
+        long bytesCurrent = file.length();
+        if (bytesCurrent > 0) {
+            Log.d(TAG, String.format("Resume transfer %d from %d bytes", download.id,
+                    bytesCurrent));
+            /*
+             * Setting the last byte position to －1 means downloading the object
+             * from bytesCurrent to the end.
+             */
+            getObjectRequest.setRange(bytesCurrent, -1);
+        }
+        getObjectRequest.setGeneralProgressListener(updater.newProgressListener(download.id));
 
-            long bytesCurrent = file.length();
-            if (bytesCurrent > bytesTotal) {
+        try {
+            S3Object object = s3.getObject(getObjectRequest);
+            if (object == null) {
                 updater.throwError(download.id, new IllegalStateException(
-                        "Unable to determine the range for download operation."));
+                        "AmazonS3.getObject returns null"));
                 updater.updateState(download.id, TransferState.FAILED);
                 return false;
             }
 
-            final GetObjectRequest getObjectRequest = new GetObjectRequest(download.bucketName,
-                    download.key);
-            TransferUtility.appendTransferServiceUserAgentString(getObjectRequest);
-            if (bytesCurrent > 0) {
-                Log.d(TAG, String.format("Resume transfer %d from %d bytes", download.id, bytesCurrent));
-                getObjectRequest.setRange(bytesCurrent, bytesTotal - 1);
-            }
-
+            long bytesTotal = object.getObjectMetadata().getInstanceLength();
             updater.updateProgress(download.id, bytesCurrent, bytesTotal);
-            getObjectRequest.setGeneralProgressListener(updater.newProgressListener(download.id,
-                    bytesCurrent, bytesTotal));
-            ObjectMetadata metadata = s3.getObject(getObjectRequest, file);
-            if (metadata == null) {
-                updater.throwError(download.id, new IllegalStateException(
-                        "AmazonS3.getObject returns null"));
-                updater.updateState(download.id, TransferState.FAILED);
-            } else {
-                updater.updateProgress(download.id, bytesTotal, bytesTotal);
-                updater.updateState(download.id, TransferState.COMPLETED);
-                return true;
-            }
+            saveToFile(object.getObjectContent(), file);
+            updater.updateProgress(download.id, bytesTotal, bytesTotal);
+            updater.updateState(download.id, TransferState.COMPLETED);
+            return true;
         } catch (Exception e) {
             if (e instanceof AbortedException
                     || e.getCause() != null && (e.getCause() instanceof InterruptedIOException
@@ -112,5 +110,47 @@ class DownloadTask implements Callable<Boolean> {
             }
         }
         return false;
+    }
+
+    /**
+     * Writes stream data into a file.
+     *
+     * @param is input stream
+     * @param file file to be written
+     */
+    private void saveToFile(InputStream is, File file) {
+        // attempt to create the parent if it doesn't exist
+        File parentDirectory = file.getParentFile();
+        if (parentDirectory != null && !parentDirectory.exists()) {
+            parentDirectory.mkdirs();
+        }
+
+        boolean append = file.length() > 0;
+        OutputStream os = null;
+        try {
+            os = new BufferedOutputStream(new FileOutputStream(file, append));
+            byte[] buffer = new byte[1024 * 16];
+            int bytesRead;
+            while ((bytesRead = is.read(buffer)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            throw new AmazonClientException(
+                    "Unable to store object contents to disk: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (os != null) {
+                    os.close();
+                }
+                is.close();
+            } catch (IOException ioe) {
+                // ignore
+            }
+            try {
+                is.close();
+            } catch (IOException ioe) {
+                // ignore
+            }
+        }
     }
 }

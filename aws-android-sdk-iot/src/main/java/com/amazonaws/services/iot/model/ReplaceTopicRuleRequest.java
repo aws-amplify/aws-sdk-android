@@ -22,7 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Container for the parameters to the {@link com.amazonaws.services.iot.AWSIot#replaceTopicRule(ReplaceTopicRuleRequest) ReplaceTopicRule operation}.
  * <p>
  * Replaces the specified rule. You must specify all parameters for the
- * new rule.
+ * new rule. Creating rules is an administrator-level action. Any user
+ * who has permission to create rules will be able to access data
+ * processed by the rule.
  * </p>
  *
  * @see com.amazonaws.services.iot.AWSIot#replaceTopicRule(ReplaceTopicRuleRequest)

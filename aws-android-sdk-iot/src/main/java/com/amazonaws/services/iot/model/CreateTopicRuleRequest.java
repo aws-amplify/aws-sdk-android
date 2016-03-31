@@ -21,7 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.iot.AWSIot#createTopicRule(CreateTopicRuleRequest) CreateTopicRule operation}.
  * <p>
- * Creates a rule.
+ * Creates a rule. Creating rules is an administrator-level action. Any
+ * user who has permission to create rules will be able to access data
+ * processed by the rule.
  * </p>
  *
  * @see com.amazonaws.services.iot.AWSIot#createTopicRule(CreateTopicRuleRequest)

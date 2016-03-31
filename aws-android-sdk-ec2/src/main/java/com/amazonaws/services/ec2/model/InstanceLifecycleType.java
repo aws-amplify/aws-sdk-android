@@ -19,7 +19,8 @@ package com.amazonaws.services.ec2.model;
  */
 public enum InstanceLifecycleType {
     
-    Spot("spot");
+    Spot("spot"),
+    Scheduled("scheduled");
 
     private String value;
 
@@ -45,6 +46,8 @@ public enum InstanceLifecycleType {
         
         } else if ("spot".equals(value)) {
             return InstanceLifecycleType.Spot;
+        } else if ("scheduled".equals(value)) {
+            return InstanceLifecycleType.Scheduled;
         } else {
             throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
         }

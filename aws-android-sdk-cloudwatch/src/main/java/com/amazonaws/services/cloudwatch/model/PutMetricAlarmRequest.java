@@ -53,7 +53,7 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
      * The description for the alarm.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 255<br/>
+     * <b>Length: </b>0 - 1024<br/>
      */
     private String alarmDescription;
 
@@ -224,7 +224,7 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
      * The description for the alarm.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 255<br/>
+     * <b>Length: </b>0 - 1024<br/>
      *
      * @return The description for the alarm.
      */
@@ -236,7 +236,7 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
      * The description for the alarm.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 255<br/>
+     * <b>Length: </b>0 - 1024<br/>
      *
      * @param alarmDescription The description for the alarm.
      */
@@ -250,7 +250,7 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 255<br/>
+     * <b>Length: </b>0 - 1024<br/>
      *
      * @param alarmDescription The description for the alarm.
      *

@@ -27,16 +27,16 @@ import com.amazonaws.AmazonWebServiceRequest;
  * You can cancel the transfer until it is acknowledged by the recipient.
  * </p>
  * <p>
- * No notification is sent to the transfer destination's account, it is
+ * No notification is sent to the transfer destination's account. It is
  * up to the caller to notify the transfer target.
  * </p>
  * <p>
- * The certificate being transferred must not be in the ACTIVE state. It
- * can be deactivated using the UpdateCertificate API.
+ * The certificate being transferred must not be in the ACTIVE state. You
+ * can use the UpdateCertificate API to deactivate it.
  * </p>
  * <p>
- * The certificate must not have any policies attached to it. These can
- * be detached using the DetachPrincipalPolicy API.
+ * The certificate must not have any policies attached to it. You can use
+ * the DetachPrincipalPolicy API to detach them.
  * </p>
  *
  * @see com.amazonaws.services.iot.AWSIot#transferCertificate(TransferCertificateRequest)

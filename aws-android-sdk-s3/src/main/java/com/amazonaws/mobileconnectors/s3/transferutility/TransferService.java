@@ -125,9 +125,6 @@ public class TransferService extends Service {
         handlerThread = new HandlerThread(TAG + "-AWSTransferUpdateHandlerThread");
         handlerThread.start();
         updateHandler = new UpdateHandler(handlerThread.getLooper());
-        networkInfoReceiver = new NetworkInfoReceiver(getApplicationContext(), updateHandler);
-        registerReceiver(networkInfoReceiver, new IntentFilter(
-                ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     /**
@@ -185,11 +182,16 @@ public class TransferService extends Service {
             return START_NOT_STICKY;
         }
 
+        updateHandler.sendMessage(updateHandler.obtainMessage(MSG_EXEC, intent));
         if (isFirst) {
-            updateHandler.sendEmptyMessage(MSG_CHECK);
+            if (networkInfoReceiver == null) {
+                networkInfoReceiver = new NetworkInfoReceiver(getApplicationContext(),
+                        updateHandler);
+                registerReceiver(networkInfoReceiver, new IntentFilter(
+                        ConnectivityManager.CONNECTIVITY_ACTION));
+            }
             isFirst = false;
         }
-        updateHandler.sendMessage(updateHandler.obtainMessage(MSG_EXEC, intent));
         /*
          * The service will not restart if it's killed by system.
          */
@@ -198,7 +200,9 @@ public class TransferService extends Service {
 
     @Override
     public void onDestroy() {
-        unregisterReceiver(networkInfoReceiver);
+        if (networkInfoReceiver != null) {
+            unregisterReceiver(networkInfoReceiver);
+        }
         handlerThread.quit();
         TransferThreadPool.closeThreadPool();
         S3ClientReference.clear();
@@ -424,7 +428,10 @@ public class TransferService extends Service {
      * @param looper new looper
      */
     void setHandlerLooper(Looper looper) {
-        unregisterReceiver(networkInfoReceiver);
+        if (networkInfoReceiver != null) {
+            // unregister previous receiver
+            unregisterReceiver(networkInfoReceiver);
+        }
         updateHandler = new UpdateHandler(looper);
         networkInfoReceiver = new NetworkInfoReceiver(getApplicationContext(), updateHandler);
         registerReceiver(networkInfoReceiver, new IntentFilter(

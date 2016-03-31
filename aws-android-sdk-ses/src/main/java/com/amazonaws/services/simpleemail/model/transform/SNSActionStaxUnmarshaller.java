@@ -47,6 +47,10 @@ public class SNSActionStaxUnmarshaller implements Unmarshaller<SNSAction, StaxUn
                     sNSAction.setTopicArn(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("Encoding", targetDepth)) {
+                    sNSAction.setEncoding(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     return sNSAction;

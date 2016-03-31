@@ -82,7 +82,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <p><code>image-id</code> - The ID of the image used to launch the
      * instance. </li> <li> <p><code>instance-id</code> - The ID of the
      * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
-     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
+     * whether this is a Spot Instance or a Scheduled Instance
+     * (<code>spot</code> | <code>scheduled</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -356,7 +357,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <p><code>image-id</code> - The ID of the image used to launch the
      * instance. </li> <li> <p><code>instance-id</code> - The ID of the
      * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
-     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
+     * whether this is a Spot Instance or a Scheduled Instance
+     * (<code>spot</code> | <code>scheduled</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -543,7 +545,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <p><code>image-id</code> - The ID of the image used to launch the
      *         instance. </li> <li> <p><code>instance-id</code> - The ID of the
      *         instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
-     *         whether this is a Spot Instance (<code>spot</code>). </li> <li>
+     *         whether this is a Spot Instance or a Scheduled Instance
+     *         (<code>spot</code> | <code>scheduled</code>). </li> <li>
      *         <p><code>instance-state-code</code> - The state of the instance, as a
      *         16-bit unsigned integer. The high byte is an opaque internal value and
      *         should be ignored. The low byte is set based on the state represented.
@@ -739,7 +742,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <p><code>image-id</code> - The ID of the image used to launch the
      * instance. </li> <li> <p><code>instance-id</code> - The ID of the
      * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
-     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
+     * whether this is a Spot Instance or a Scheduled Instance
+     * (<code>spot</code> | <code>scheduled</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -926,7 +930,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <p><code>image-id</code> - The ID of the image used to launch the
      *         instance. </li> <li> <p><code>instance-id</code> - The ID of the
      *         instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
-     *         whether this is a Spot Instance (<code>spot</code>). </li> <li>
+     *         whether this is a Spot Instance or a Scheduled Instance
+     *         (<code>spot</code> | <code>scheduled</code>). </li> <li>
      *         <p><code>instance-state-code</code> - The state of the instance, as a
      *         16-bit unsigned integer. The high byte is an opaque internal value and
      *         should be ignored. The low byte is set based on the state represented.
@@ -1124,7 +1129,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <p><code>image-id</code> - The ID of the image used to launch the
      * instance. </li> <li> <p><code>instance-id</code> - The ID of the
      * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
-     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
+     * whether this is a Spot Instance or a Scheduled Instance
+     * (<code>spot</code> | <code>scheduled</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -1313,7 +1319,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <p><code>image-id</code> - The ID of the image used to launch the
      *         instance. </li> <li> <p><code>instance-id</code> - The ID of the
      *         instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
-     *         whether this is a Spot Instance (<code>spot</code>). </li> <li>
+     *         whether this is a Spot Instance or a Scheduled Instance
+     *         (<code>spot</code> | <code>scheduled</code>). </li> <li>
      *         <p><code>instance-state-code</code> - The state of the instance, as a
      *         16-bit unsigned integer. The high byte is an opaque internal value and
      *         should be ignored. The low byte is set based on the state represented.
@@ -1512,7 +1519,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      * <p><code>image-id</code> - The ID of the image used to launch the
      * instance. </li> <li> <p><code>instance-id</code> - The ID of the
      * instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
-     * whether this is a Spot Instance (<code>spot</code>). </li> <li>
+     * whether this is a Spot Instance or a Scheduled Instance
+     * (<code>spot</code> | <code>scheduled</code>). </li> <li>
      * <p><code>instance-state-code</code> - The state of the instance, as a
      * 16-bit unsigned integer. The high byte is an opaque internal value and
      * should be ignored. The low byte is set based on the state represented.
@@ -1701,7 +1709,8 @@ public class DescribeInstancesRequest extends AmazonWebServiceRequest implements
      *         <p><code>image-id</code> - The ID of the image used to launch the
      *         instance. </li> <li> <p><code>instance-id</code> - The ID of the
      *         instance. </li> <li> <p><code>instance-lifecycle</code> - Indicates
-     *         whether this is a Spot Instance (<code>spot</code>). </li> <li>
+     *         whether this is a Spot Instance or a Scheduled Instance
+     *         (<code>spot</code> | <code>scheduled</code>). </li> <li>
      *         <p><code>instance-state-code</code> - The state of the instance, as a
      *         16-bit unsigned integer. The high byte is an opaque internal value and
      *         should be ignored. The low byte is set based on the state represented.

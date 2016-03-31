@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at:
  *
- *    http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
  * OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -20,17 +20,27 @@ package com.amazonaws.mobileconnectors.iot;
  * related to the client occur.
  */
 public interface AWSIotMqttClientStatusCallback {
+
     /**
      * Possible connection statuses.
      */
+
     enum AWSIotMqttClientStatus {
-        /** Client is attepting to connect. */
+        /**
+         * Client is attepting to connect.
+         */
         Connecting,
-        /** Client succssfully connected. */
+        /**
+         * Client succssfully connected.
+         */
         Connected,
-        /** Connection was lost. Can be user initiated disconnect or network. */
+        /**
+         * Connection was lost. Can be user initiated disconnect or network.
+         */
         ConnectionLost,
-        /** Automatically reconnecting after connection loss. */
+        /**
+         * Automatically reconnecting after connection loss.
+         */
         Reconnecting
     }
 

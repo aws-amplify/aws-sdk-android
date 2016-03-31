@@ -48,17 +48,17 @@ public class PutItemResult implements Serializable {
      * request asked for it. If the table does not have any local secondary
      * indexes, this information is not returned in the response. <p>Each
      * <i>ItemCollectionMetrics</i> element consists of: <ul>
-     * <li><p><i>ItemCollectionKey</i> - The hash key value of the item
-     * collection. This is the same as the hash key of the item.</li>
-     * <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * in gigabytes. This value is a two-element array containing a lower
-     * bound and an upper bound for the estimate. The estimate includes the
-     * size of all the items in the table, plus the size of all attributes
-     * projected into all of the local secondary indexes on that table. Use
-     * this estimate to measure whether a local secondary index is
-     * approaching its size limit. <p>The estimate is subject to change over
-     * time; therefore, do not rely on the precision or accuracy of the
-     * estimate. </li> </ul>
+     * <li><p><i>ItemCollectionKey</i> - The partition key value of the item
+     * collection. This is the same as the partition key value of the item
+     * itself.</li> <li><p><i>SizeEstimateRange</i> - An estimate of item
+     * collection size, in gigabytes. This value is a two-element array
+     * containing a lower bound and an upper bound for the estimate. The
+     * estimate includes the size of all the items in the table, plus the
+     * size of all attributes projected into all of the local secondary
+     * indexes on that table. Use this estimate to measure whether a local
+     * secondary index is approaching its size limit. <p>The estimate is
+     * subject to change over time; therefore, do not rely on the precision
+     * or accuracy of the estimate. </li> </ul>
      */
     private ItemCollectionMetrics itemCollectionMetrics;
 
@@ -222,34 +222,34 @@ public class PutItemResult implements Serializable {
      * request asked for it. If the table does not have any local secondary
      * indexes, this information is not returned in the response. <p>Each
      * <i>ItemCollectionMetrics</i> element consists of: <ul>
-     * <li><p><i>ItemCollectionKey</i> - The hash key value of the item
-     * collection. This is the same as the hash key of the item.</li>
-     * <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * in gigabytes. This value is a two-element array containing a lower
-     * bound and an upper bound for the estimate. The estimate includes the
-     * size of all the items in the table, plus the size of all attributes
-     * projected into all of the local secondary indexes on that table. Use
-     * this estimate to measure whether a local secondary index is
-     * approaching its size limit. <p>The estimate is subject to change over
-     * time; therefore, do not rely on the precision or accuracy of the
-     * estimate. </li> </ul>
+     * <li><p><i>ItemCollectionKey</i> - The partition key value of the item
+     * collection. This is the same as the partition key value of the item
+     * itself.</li> <li><p><i>SizeEstimateRange</i> - An estimate of item
+     * collection size, in gigabytes. This value is a two-element array
+     * containing a lower bound and an upper bound for the estimate. The
+     * estimate includes the size of all the items in the table, plus the
+     * size of all attributes projected into all of the local secondary
+     * indexes on that table. Use this estimate to measure whether a local
+     * secondary index is approaching its size limit. <p>The estimate is
+     * subject to change over time; therefore, do not rely on the precision
+     * or accuracy of the estimate. </li> </ul>
      *
      * @return Information about item collections, if any, that were affected by the
      *         operation. <i>ItemCollectionMetrics</i> is only returned if the
      *         request asked for it. If the table does not have any local secondary
      *         indexes, this information is not returned in the response. <p>Each
      *         <i>ItemCollectionMetrics</i> element consists of: <ul>
-     *         <li><p><i>ItemCollectionKey</i> - The hash key value of the item
-     *         collection. This is the same as the hash key of the item.</li>
-     *         <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         in gigabytes. This value is a two-element array containing a lower
-     *         bound and an upper bound for the estimate. The estimate includes the
-     *         size of all the items in the table, plus the size of all attributes
-     *         projected into all of the local secondary indexes on that table. Use
-     *         this estimate to measure whether a local secondary index is
-     *         approaching its size limit. <p>The estimate is subject to change over
-     *         time; therefore, do not rely on the precision or accuracy of the
-     *         estimate. </li> </ul>
+     *         <li><p><i>ItemCollectionKey</i> - The partition key value of the item
+     *         collection. This is the same as the partition key value of the item
+     *         itself.</li> <li><p><i>SizeEstimateRange</i> - An estimate of item
+     *         collection size, in gigabytes. This value is a two-element array
+     *         containing a lower bound and an upper bound for the estimate. The
+     *         estimate includes the size of all the items in the table, plus the
+     *         size of all attributes projected into all of the local secondary
+     *         indexes on that table. Use this estimate to measure whether a local
+     *         secondary index is approaching its size limit. <p>The estimate is
+     *         subject to change over time; therefore, do not rely on the precision
+     *         or accuracy of the estimate. </li> </ul>
      */
     public ItemCollectionMetrics getItemCollectionMetrics() {
         return itemCollectionMetrics;
@@ -261,34 +261,34 @@ public class PutItemResult implements Serializable {
      * request asked for it. If the table does not have any local secondary
      * indexes, this information is not returned in the response. <p>Each
      * <i>ItemCollectionMetrics</i> element consists of: <ul>
-     * <li><p><i>ItemCollectionKey</i> - The hash key value of the item
-     * collection. This is the same as the hash key of the item.</li>
-     * <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * in gigabytes. This value is a two-element array containing a lower
-     * bound and an upper bound for the estimate. The estimate includes the
-     * size of all the items in the table, plus the size of all attributes
-     * projected into all of the local secondary indexes on that table. Use
-     * this estimate to measure whether a local secondary index is
-     * approaching its size limit. <p>The estimate is subject to change over
-     * time; therefore, do not rely on the precision or accuracy of the
-     * estimate. </li> </ul>
+     * <li><p><i>ItemCollectionKey</i> - The partition key value of the item
+     * collection. This is the same as the partition key value of the item
+     * itself.</li> <li><p><i>SizeEstimateRange</i> - An estimate of item
+     * collection size, in gigabytes. This value is a two-element array
+     * containing a lower bound and an upper bound for the estimate. The
+     * estimate includes the size of all the items in the table, plus the
+     * size of all attributes projected into all of the local secondary
+     * indexes on that table. Use this estimate to measure whether a local
+     * secondary index is approaching its size limit. <p>The estimate is
+     * subject to change over time; therefore, do not rely on the precision
+     * or accuracy of the estimate. </li> </ul>
      *
      * @param itemCollectionMetrics Information about item collections, if any, that were affected by the
      *         operation. <i>ItemCollectionMetrics</i> is only returned if the
      *         request asked for it. If the table does not have any local secondary
      *         indexes, this information is not returned in the response. <p>Each
      *         <i>ItemCollectionMetrics</i> element consists of: <ul>
-     *         <li><p><i>ItemCollectionKey</i> - The hash key value of the item
-     *         collection. This is the same as the hash key of the item.</li>
-     *         <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         in gigabytes. This value is a two-element array containing a lower
-     *         bound and an upper bound for the estimate. The estimate includes the
-     *         size of all the items in the table, plus the size of all attributes
-     *         projected into all of the local secondary indexes on that table. Use
-     *         this estimate to measure whether a local secondary index is
-     *         approaching its size limit. <p>The estimate is subject to change over
-     *         time; therefore, do not rely on the precision or accuracy of the
-     *         estimate. </li> </ul>
+     *         <li><p><i>ItemCollectionKey</i> - The partition key value of the item
+     *         collection. This is the same as the partition key value of the item
+     *         itself.</li> <li><p><i>SizeEstimateRange</i> - An estimate of item
+     *         collection size, in gigabytes. This value is a two-element array
+     *         containing a lower bound and an upper bound for the estimate. The
+     *         estimate includes the size of all the items in the table, plus the
+     *         size of all attributes projected into all of the local secondary
+     *         indexes on that table. Use this estimate to measure whether a local
+     *         secondary index is approaching its size limit. <p>The estimate is
+     *         subject to change over time; therefore, do not rely on the precision
+     *         or accuracy of the estimate. </li> </ul>
      */
     public void setItemCollectionMetrics(ItemCollectionMetrics itemCollectionMetrics) {
         this.itemCollectionMetrics = itemCollectionMetrics;
@@ -300,17 +300,17 @@ public class PutItemResult implements Serializable {
      * request asked for it. If the table does not have any local secondary
      * indexes, this information is not returned in the response. <p>Each
      * <i>ItemCollectionMetrics</i> element consists of: <ul>
-     * <li><p><i>ItemCollectionKey</i> - The hash key value of the item
-     * collection. This is the same as the hash key of the item.</li>
-     * <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     * in gigabytes. This value is a two-element array containing a lower
-     * bound and an upper bound for the estimate. The estimate includes the
-     * size of all the items in the table, plus the size of all attributes
-     * projected into all of the local secondary indexes on that table. Use
-     * this estimate to measure whether a local secondary index is
-     * approaching its size limit. <p>The estimate is subject to change over
-     * time; therefore, do not rely on the precision or accuracy of the
-     * estimate. </li> </ul>
+     * <li><p><i>ItemCollectionKey</i> - The partition key value of the item
+     * collection. This is the same as the partition key value of the item
+     * itself.</li> <li><p><i>SizeEstimateRange</i> - An estimate of item
+     * collection size, in gigabytes. This value is a two-element array
+     * containing a lower bound and an upper bound for the estimate. The
+     * estimate includes the size of all the items in the table, plus the
+     * size of all attributes projected into all of the local secondary
+     * indexes on that table. Use this estimate to measure whether a local
+     * secondary index is approaching its size limit. <p>The estimate is
+     * subject to change over time; therefore, do not rely on the precision
+     * or accuracy of the estimate. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -319,17 +319,17 @@ public class PutItemResult implements Serializable {
      *         request asked for it. If the table does not have any local secondary
      *         indexes, this information is not returned in the response. <p>Each
      *         <i>ItemCollectionMetrics</i> element consists of: <ul>
-     *         <li><p><i>ItemCollectionKey</i> - The hash key value of the item
-     *         collection. This is the same as the hash key of the item.</li>
-     *         <li><p><i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         in gigabytes. This value is a two-element array containing a lower
-     *         bound and an upper bound for the estimate. The estimate includes the
-     *         size of all the items in the table, plus the size of all attributes
-     *         projected into all of the local secondary indexes on that table. Use
-     *         this estimate to measure whether a local secondary index is
-     *         approaching its size limit. <p>The estimate is subject to change over
-     *         time; therefore, do not rely on the precision or accuracy of the
-     *         estimate. </li> </ul>
+     *         <li><p><i>ItemCollectionKey</i> - The partition key value of the item
+     *         collection. This is the same as the partition key value of the item
+     *         itself.</li> <li><p><i>SizeEstimateRange</i> - An estimate of item
+     *         collection size, in gigabytes. This value is a two-element array
+     *         containing a lower bound and an upper bound for the estimate. The
+     *         estimate includes the size of all the items in the table, plus the
+     *         size of all attributes projected into all of the local secondary
+     *         indexes on that table. Use this estimate to measure whether a local
+     *         secondary index is approaching its size limit. <p>The estimate is
+     *         subject to change over time; therefore, do not rely on the precision
+     *         or accuracy of the estimate. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

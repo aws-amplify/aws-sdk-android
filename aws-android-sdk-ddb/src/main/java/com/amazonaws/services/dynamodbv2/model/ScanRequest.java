@@ -43,9 +43,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * in the <i>Amazon DynamoDB Developer Guide</i> .
  * </p>
  * <p>
- * By default, <i>Scan</i> uses eventually consistent reads when acessing
- * the data in the table or local secondary index. However, you can use
- * strongly consistent reads instead by setting the <i>ConsistentRead</i>
+ * By default, <i>Scan</i> uses eventually consistent reads when
+ * accessing the data in a table; therefore, the result set might not
+ * include the changes to data in the table immediately before the
+ * operation began. If you need a consistent copy of the data, as of the
+ * time that the Scan begins, you can set the <i>ConsistentRead</i>
  * parameter to <i>true</i> .
  * </p>
  *
@@ -345,19 +347,17 @@ public class ScanRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * A Boolean value that determines the read consistency model during the
      * scan: <ul> <li> <p>If <i>ConsistentRead</i> is <code>false</code>,
-     * then <i>Scan</i> will use eventually consistent reads. The data
-     * returned from <i>Scan</i> might not contain the results of other
-     * recently completed write operations (PutItem, UpdateItem or
-     * DeleteItem). The <i>Scan</i> response might include some stale data.
-     * </li> <li> <p>If <i>ConsistentRead</i> is <code>true</code>, then
-     * <i>Scan</i> will use strongly consistent reads. All of the write
-     * operations that completed before the <i>Scan</i> began are guaranteed
-     * to be contained in the <i>Scan</i> response. </li> </ul> <p>The
-     * default setting for <i>ConsistentRead</i> is <code>false</code>,
-     * meaning that eventually consistent reads will be used. <p>Strongly
-     * consistent reads are not supported on global secondary indexes. If you
-     * scan a global secondary index with <i>ConsistentRead</i> set to true,
-     * you will receive a <i>ValidationException</i>.
+     * then the data returned from <i>Scan</i> might not contain the results
+     * from other recently completed write operations (PutItem, UpdateItem or
+     * DeleteItem). </li> <li> <p>If <i>ConsistentRead</i> is
+     * <code>true</code>, then all of the write operations that completed
+     * before the <i>Scan</i> began are guaranteed to be contained in the
+     * <i>Scan</i> response. </li> </ul> <p>The default setting for
+     * <i>ConsistentRead</i> is <code>false</code>. <p>The
+     * <i>ConsistentRead</i> parameter is not supported on global secondary
+     * indexes. If you scan a global secondary index with
+     * <i>ConsistentRead</i> set to true, you will receive a
+     * <i>ValidationException</i>.
      */
     private Boolean consistentRead;
 
@@ -2659,35 +2659,31 @@ public class ScanRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * A Boolean value that determines the read consistency model during the
      * scan: <ul> <li> <p>If <i>ConsistentRead</i> is <code>false</code>,
-     * then <i>Scan</i> will use eventually consistent reads. The data
-     * returned from <i>Scan</i> might not contain the results of other
-     * recently completed write operations (PutItem, UpdateItem or
-     * DeleteItem). The <i>Scan</i> response might include some stale data.
-     * </li> <li> <p>If <i>ConsistentRead</i> is <code>true</code>, then
-     * <i>Scan</i> will use strongly consistent reads. All of the write
-     * operations that completed before the <i>Scan</i> began are guaranteed
-     * to be contained in the <i>Scan</i> response. </li> </ul> <p>The
-     * default setting for <i>ConsistentRead</i> is <code>false</code>,
-     * meaning that eventually consistent reads will be used. <p>Strongly
-     * consistent reads are not supported on global secondary indexes. If you
-     * scan a global secondary index with <i>ConsistentRead</i> set to true,
-     * you will receive a <i>ValidationException</i>.
+     * then the data returned from <i>Scan</i> might not contain the results
+     * from other recently completed write operations (PutItem, UpdateItem or
+     * DeleteItem). </li> <li> <p>If <i>ConsistentRead</i> is
+     * <code>true</code>, then all of the write operations that completed
+     * before the <i>Scan</i> began are guaranteed to be contained in the
+     * <i>Scan</i> response. </li> </ul> <p>The default setting for
+     * <i>ConsistentRead</i> is <code>false</code>. <p>The
+     * <i>ConsistentRead</i> parameter is not supported on global secondary
+     * indexes. If you scan a global secondary index with
+     * <i>ConsistentRead</i> set to true, you will receive a
+     * <i>ValidationException</i>.
      *
      * @return A Boolean value that determines the read consistency model during the
      *         scan: <ul> <li> <p>If <i>ConsistentRead</i> is <code>false</code>,
-     *         then <i>Scan</i> will use eventually consistent reads. The data
-     *         returned from <i>Scan</i> might not contain the results of other
-     *         recently completed write operations (PutItem, UpdateItem or
-     *         DeleteItem). The <i>Scan</i> response might include some stale data.
-     *         </li> <li> <p>If <i>ConsistentRead</i> is <code>true</code>, then
-     *         <i>Scan</i> will use strongly consistent reads. All of the write
-     *         operations that completed before the <i>Scan</i> began are guaranteed
-     *         to be contained in the <i>Scan</i> response. </li> </ul> <p>The
-     *         default setting for <i>ConsistentRead</i> is <code>false</code>,
-     *         meaning that eventually consistent reads will be used. <p>Strongly
-     *         consistent reads are not supported on global secondary indexes. If you
-     *         scan a global secondary index with <i>ConsistentRead</i> set to true,
-     *         you will receive a <i>ValidationException</i>.
+     *         then the data returned from <i>Scan</i> might not contain the results
+     *         from other recently completed write operations (PutItem, UpdateItem or
+     *         DeleteItem). </li> <li> <p>If <i>ConsistentRead</i> is
+     *         <code>true</code>, then all of the write operations that completed
+     *         before the <i>Scan</i> began are guaranteed to be contained in the
+     *         <i>Scan</i> response. </li> </ul> <p>The default setting for
+     *         <i>ConsistentRead</i> is <code>false</code>. <p>The
+     *         <i>ConsistentRead</i> parameter is not supported on global secondary
+     *         indexes. If you scan a global secondary index with
+     *         <i>ConsistentRead</i> set to true, you will receive a
+     *         <i>ValidationException</i>.
      */
     public Boolean isConsistentRead() {
         return consistentRead;
@@ -2696,35 +2692,31 @@ public class ScanRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * A Boolean value that determines the read consistency model during the
      * scan: <ul> <li> <p>If <i>ConsistentRead</i> is <code>false</code>,
-     * then <i>Scan</i> will use eventually consistent reads. The data
-     * returned from <i>Scan</i> might not contain the results of other
-     * recently completed write operations (PutItem, UpdateItem or
-     * DeleteItem). The <i>Scan</i> response might include some stale data.
-     * </li> <li> <p>If <i>ConsistentRead</i> is <code>true</code>, then
-     * <i>Scan</i> will use strongly consistent reads. All of the write
-     * operations that completed before the <i>Scan</i> began are guaranteed
-     * to be contained in the <i>Scan</i> response. </li> </ul> <p>The
-     * default setting for <i>ConsistentRead</i> is <code>false</code>,
-     * meaning that eventually consistent reads will be used. <p>Strongly
-     * consistent reads are not supported on global secondary indexes. If you
-     * scan a global secondary index with <i>ConsistentRead</i> set to true,
-     * you will receive a <i>ValidationException</i>.
+     * then the data returned from <i>Scan</i> might not contain the results
+     * from other recently completed write operations (PutItem, UpdateItem or
+     * DeleteItem). </li> <li> <p>If <i>ConsistentRead</i> is
+     * <code>true</code>, then all of the write operations that completed
+     * before the <i>Scan</i> began are guaranteed to be contained in the
+     * <i>Scan</i> response. </li> </ul> <p>The default setting for
+     * <i>ConsistentRead</i> is <code>false</code>. <p>The
+     * <i>ConsistentRead</i> parameter is not supported on global secondary
+     * indexes. If you scan a global secondary index with
+     * <i>ConsistentRead</i> set to true, you will receive a
+     * <i>ValidationException</i>.
      *
      * @param consistentRead A Boolean value that determines the read consistency model during the
      *         scan: <ul> <li> <p>If <i>ConsistentRead</i> is <code>false</code>,
-     *         then <i>Scan</i> will use eventually consistent reads. The data
-     *         returned from <i>Scan</i> might not contain the results of other
-     *         recently completed write operations (PutItem, UpdateItem or
-     *         DeleteItem). The <i>Scan</i> response might include some stale data.
-     *         </li> <li> <p>If <i>ConsistentRead</i> is <code>true</code>, then
-     *         <i>Scan</i> will use strongly consistent reads. All of the write
-     *         operations that completed before the <i>Scan</i> began are guaranteed
-     *         to be contained in the <i>Scan</i> response. </li> </ul> <p>The
-     *         default setting for <i>ConsistentRead</i> is <code>false</code>,
-     *         meaning that eventually consistent reads will be used. <p>Strongly
-     *         consistent reads are not supported on global secondary indexes. If you
-     *         scan a global secondary index with <i>ConsistentRead</i> set to true,
-     *         you will receive a <i>ValidationException</i>.
+     *         then the data returned from <i>Scan</i> might not contain the results
+     *         from other recently completed write operations (PutItem, UpdateItem or
+     *         DeleteItem). </li> <li> <p>If <i>ConsistentRead</i> is
+     *         <code>true</code>, then all of the write operations that completed
+     *         before the <i>Scan</i> began are guaranteed to be contained in the
+     *         <i>Scan</i> response. </li> </ul> <p>The default setting for
+     *         <i>ConsistentRead</i> is <code>false</code>. <p>The
+     *         <i>ConsistentRead</i> parameter is not supported on global secondary
+     *         indexes. If you scan a global secondary index with
+     *         <i>ConsistentRead</i> set to true, you will receive a
+     *         <i>ValidationException</i>.
      */
     public void setConsistentRead(Boolean consistentRead) {
         this.consistentRead = consistentRead;
@@ -2733,37 +2725,33 @@ public class ScanRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * A Boolean value that determines the read consistency model during the
      * scan: <ul> <li> <p>If <i>ConsistentRead</i> is <code>false</code>,
-     * then <i>Scan</i> will use eventually consistent reads. The data
-     * returned from <i>Scan</i> might not contain the results of other
-     * recently completed write operations (PutItem, UpdateItem or
-     * DeleteItem). The <i>Scan</i> response might include some stale data.
-     * </li> <li> <p>If <i>ConsistentRead</i> is <code>true</code>, then
-     * <i>Scan</i> will use strongly consistent reads. All of the write
-     * operations that completed before the <i>Scan</i> began are guaranteed
-     * to be contained in the <i>Scan</i> response. </li> </ul> <p>The
-     * default setting for <i>ConsistentRead</i> is <code>false</code>,
-     * meaning that eventually consistent reads will be used. <p>Strongly
-     * consistent reads are not supported on global secondary indexes. If you
-     * scan a global secondary index with <i>ConsistentRead</i> set to true,
-     * you will receive a <i>ValidationException</i>.
+     * then the data returned from <i>Scan</i> might not contain the results
+     * from other recently completed write operations (PutItem, UpdateItem or
+     * DeleteItem). </li> <li> <p>If <i>ConsistentRead</i> is
+     * <code>true</code>, then all of the write operations that completed
+     * before the <i>Scan</i> began are guaranteed to be contained in the
+     * <i>Scan</i> response. </li> </ul> <p>The default setting for
+     * <i>ConsistentRead</i> is <code>false</code>. <p>The
+     * <i>ConsistentRead</i> parameter is not supported on global secondary
+     * indexes. If you scan a global secondary index with
+     * <i>ConsistentRead</i> set to true, you will receive a
+     * <i>ValidationException</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param consistentRead A Boolean value that determines the read consistency model during the
      *         scan: <ul> <li> <p>If <i>ConsistentRead</i> is <code>false</code>,
-     *         then <i>Scan</i> will use eventually consistent reads. The data
-     *         returned from <i>Scan</i> might not contain the results of other
-     *         recently completed write operations (PutItem, UpdateItem or
-     *         DeleteItem). The <i>Scan</i> response might include some stale data.
-     *         </li> <li> <p>If <i>ConsistentRead</i> is <code>true</code>, then
-     *         <i>Scan</i> will use strongly consistent reads. All of the write
-     *         operations that completed before the <i>Scan</i> began are guaranteed
-     *         to be contained in the <i>Scan</i> response. </li> </ul> <p>The
-     *         default setting for <i>ConsistentRead</i> is <code>false</code>,
-     *         meaning that eventually consistent reads will be used. <p>Strongly
-     *         consistent reads are not supported on global secondary indexes. If you
-     *         scan a global secondary index with <i>ConsistentRead</i> set to true,
-     *         you will receive a <i>ValidationException</i>.
+     *         then the data returned from <i>Scan</i> might not contain the results
+     *         from other recently completed write operations (PutItem, UpdateItem or
+     *         DeleteItem). </li> <li> <p>If <i>ConsistentRead</i> is
+     *         <code>true</code>, then all of the write operations that completed
+     *         before the <i>Scan</i> began are guaranteed to be contained in the
+     *         <i>Scan</i> response. </li> </ul> <p>The default setting for
+     *         <i>ConsistentRead</i> is <code>false</code>. <p>The
+     *         <i>ConsistentRead</i> parameter is not supported on global secondary
+     *         indexes. If you scan a global secondary index with
+     *         <i>ConsistentRead</i> set to true, you will receive a
+     *         <i>ValidationException</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -2776,35 +2764,31 @@ public class ScanRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * A Boolean value that determines the read consistency model during the
      * scan: <ul> <li> <p>If <i>ConsistentRead</i> is <code>false</code>,
-     * then <i>Scan</i> will use eventually consistent reads. The data
-     * returned from <i>Scan</i> might not contain the results of other
-     * recently completed write operations (PutItem, UpdateItem or
-     * DeleteItem). The <i>Scan</i> response might include some stale data.
-     * </li> <li> <p>If <i>ConsistentRead</i> is <code>true</code>, then
-     * <i>Scan</i> will use strongly consistent reads. All of the write
-     * operations that completed before the <i>Scan</i> began are guaranteed
-     * to be contained in the <i>Scan</i> response. </li> </ul> <p>The
-     * default setting for <i>ConsistentRead</i> is <code>false</code>,
-     * meaning that eventually consistent reads will be used. <p>Strongly
-     * consistent reads are not supported on global secondary indexes. If you
-     * scan a global secondary index with <i>ConsistentRead</i> set to true,
-     * you will receive a <i>ValidationException</i>.
+     * then the data returned from <i>Scan</i> might not contain the results
+     * from other recently completed write operations (PutItem, UpdateItem or
+     * DeleteItem). </li> <li> <p>If <i>ConsistentRead</i> is
+     * <code>true</code>, then all of the write operations that completed
+     * before the <i>Scan</i> began are guaranteed to be contained in the
+     * <i>Scan</i> response. </li> </ul> <p>The default setting for
+     * <i>ConsistentRead</i> is <code>false</code>. <p>The
+     * <i>ConsistentRead</i> parameter is not supported on global secondary
+     * indexes. If you scan a global secondary index with
+     * <i>ConsistentRead</i> set to true, you will receive a
+     * <i>ValidationException</i>.
      *
      * @return A Boolean value that determines the read consistency model during the
      *         scan: <ul> <li> <p>If <i>ConsistentRead</i> is <code>false</code>,
-     *         then <i>Scan</i> will use eventually consistent reads. The data
-     *         returned from <i>Scan</i> might not contain the results of other
-     *         recently completed write operations (PutItem, UpdateItem or
-     *         DeleteItem). The <i>Scan</i> response might include some stale data.
-     *         </li> <li> <p>If <i>ConsistentRead</i> is <code>true</code>, then
-     *         <i>Scan</i> will use strongly consistent reads. All of the write
-     *         operations that completed before the <i>Scan</i> began are guaranteed
-     *         to be contained in the <i>Scan</i> response. </li> </ul> <p>The
-     *         default setting for <i>ConsistentRead</i> is <code>false</code>,
-     *         meaning that eventually consistent reads will be used. <p>Strongly
-     *         consistent reads are not supported on global secondary indexes. If you
-     *         scan a global secondary index with <i>ConsistentRead</i> set to true,
-     *         you will receive a <i>ValidationException</i>.
+     *         then the data returned from <i>Scan</i> might not contain the results
+     *         from other recently completed write operations (PutItem, UpdateItem or
+     *         DeleteItem). </li> <li> <p>If <i>ConsistentRead</i> is
+     *         <code>true</code>, then all of the write operations that completed
+     *         before the <i>Scan</i> began are guaranteed to be contained in the
+     *         <i>Scan</i> response. </li> </ul> <p>The default setting for
+     *         <i>ConsistentRead</i> is <code>false</code>. <p>The
+     *         <i>ConsistentRead</i> parameter is not supported on global secondary
+     *         indexes. If you scan a global secondary index with
+     *         <i>ConsistentRead</i> set to true, you will receive a
+     *         <i>ValidationException</i>.
      */
     public Boolean getConsistentRead() {
         return consistentRead;

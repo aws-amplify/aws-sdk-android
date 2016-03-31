@@ -360,6 +360,10 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * bytes of an object can be downloaded by specifying a range of 0 to 9.
      * </p>
      * <p>
+     * If end is negative, that's equivalent to downloading the object from
+     * start of range to the end of the object, i.e. Range:bytes=start- .
+     * </p>
+     * <p>
      * If no byte range is specified, this request downloads the entire object
      * from Amazon S3.
      * </p>

@@ -118,7 +118,7 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * <code>Event:autoscaling:TEST_NOTIFICATION</code>.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1600<br/>
+     * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String notificationTargetARN;
@@ -377,7 +377,7 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * <code>Event:autoscaling:TEST_NOTIFICATION</code>.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1600<br/>
+     * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The ARN of the notification target that Auto Scaling will use to
@@ -424,7 +424,7 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * <code>Event:autoscaling:TEST_NOTIFICATION</code>.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1600<br/>
+     * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param notificationTargetARN The ARN of the notification target that Auto Scaling will use to
@@ -473,7 +473,7 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1600<br/>
+     * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param notificationTargetARN The ARN of the notification target that Auto Scaling will use to

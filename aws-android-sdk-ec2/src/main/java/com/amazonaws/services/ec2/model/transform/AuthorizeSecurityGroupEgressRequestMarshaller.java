@@ -94,6 +94,15 @@ public class AuthorizeSecurityGroupEgressRequestMarshaller implements Marshaller
                         if (userIdGroupPairMember.getGroupId() != null) {
                             request.addParameter("IpPermissions." + ipPermissionsListIndex + ".Groups." + userIdGroupPairsListIndex + ".GroupId", StringUtils.fromString(userIdGroupPairMember.getGroupId()));
                         }
+                        if (userIdGroupPairMember.getVpcId() != null) {
+                            request.addParameter("IpPermissions." + ipPermissionsListIndex + ".Groups." + userIdGroupPairsListIndex + ".VpcId", StringUtils.fromString(userIdGroupPairMember.getVpcId()));
+                        }
+                        if (userIdGroupPairMember.getVpcPeeringConnectionId() != null) {
+                            request.addParameter("IpPermissions." + ipPermissionsListIndex + ".Groups." + userIdGroupPairsListIndex + ".VpcPeeringConnectionId", StringUtils.fromString(userIdGroupPairMember.getVpcPeeringConnectionId()));
+                        }
+                        if (userIdGroupPairMember.getPeeringStatus() != null) {
+                            request.addParameter("IpPermissions." + ipPermissionsListIndex + ".Groups." + userIdGroupPairsListIndex + ".PeeringStatus", StringUtils.fromString(userIdGroupPairMember.getPeeringStatus()));
+                        }
                     }
 
                     userIdGroupPairsListIndex++;

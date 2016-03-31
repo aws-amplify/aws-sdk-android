@@ -1237,8 +1237,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // Range
         long[] range = getObjectRequest.getRange();
         if (range != null) {
-            request.addHeader(Headers.RANGE,
-                    "bytes=" + Long.toString(range[0]) + "-" + Long.toString(range[1]));
+            String rangeHeader = "bytes=" + Long.toString(range[0]) + "-";
+            if (range[1] >= 0) {
+                /*
+                 * Negative value is invalid per S3 range get and will result in
+                 * downloading the entire object. Leaving last byte empty so as
+                 * to resume download from range[0].
+                 */
+                rangeHeader += Long.toString(range[1]);
+            }
+            request.addHeader(Headers.RANGE, rangeHeader);
         }
 
         if (getObjectRequest.isRequesterPays()) {

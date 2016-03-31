@@ -468,7 +468,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      */
     public void setLogins(Map<String, String> logins) {
         identityProvider.setLogins(logins);
-        this.sessionCredentials = null;
+        clearCredentials();
     }
 
     /**

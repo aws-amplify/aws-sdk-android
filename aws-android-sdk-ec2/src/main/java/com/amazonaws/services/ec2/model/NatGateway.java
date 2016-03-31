@@ -67,7 +67,8 @@ public class NatGateway implements Serializable {
      * the failure. (<code>InsufficientFreeAddressesInSubnet</code> |
      * <code>Gateway.NotAttached</code> |
      * <code>InvalidAllocationID.NotFound</code> |
-     * <code>Resource.AlreadyAssociated</code> | <code>InternalError</code>)
+     * <code>Resource.AlreadyAssociated</code> | <code>InternalError</code> |
+     * <code>InvalidSubnetID.NotFound</code>)
      */
     private String failureCode;
 
@@ -83,7 +84,9 @@ public class NatGateway implements Serializable {
      * <code>Elastic IP address eipalloc-xxxxxxxx is already
      * associated</code></li> <li>For InternalError: <code>Network interface
      * eni-xxxxxxxx, created and used internally by this NAT gateway is in an
-     * invalid state. Please try again.</code></li> </ul>
+     * invalid state. Please try again.</code></li> <li>For
+     * InvalidSubnetID.NotFound: <code>The specified subnet subnet-xxxxxxxx
+     * does not exist or could not be found.</code></li> </ul>
      */
     private String failureMessage;
 
@@ -415,13 +418,15 @@ public class NatGateway implements Serializable {
      * the failure. (<code>InsufficientFreeAddressesInSubnet</code> |
      * <code>Gateway.NotAttached</code> |
      * <code>InvalidAllocationID.NotFound</code> |
-     * <code>Resource.AlreadyAssociated</code> | <code>InternalError</code>)
+     * <code>Resource.AlreadyAssociated</code> | <code>InternalError</code> |
+     * <code>InvalidSubnetID.NotFound</code>)
      *
      * @return If the NAT gateway could not be created, specifies the error code for
      *         the failure. (<code>InsufficientFreeAddressesInSubnet</code> |
      *         <code>Gateway.NotAttached</code> |
      *         <code>InvalidAllocationID.NotFound</code> |
-     *         <code>Resource.AlreadyAssociated</code> | <code>InternalError</code>)
+     *         <code>Resource.AlreadyAssociated</code> | <code>InternalError</code> |
+     *         <code>InvalidSubnetID.NotFound</code>)
      */
     public String getFailureCode() {
         return failureCode;
@@ -432,13 +437,15 @@ public class NatGateway implements Serializable {
      * the failure. (<code>InsufficientFreeAddressesInSubnet</code> |
      * <code>Gateway.NotAttached</code> |
      * <code>InvalidAllocationID.NotFound</code> |
-     * <code>Resource.AlreadyAssociated</code> | <code>InternalError</code>)
+     * <code>Resource.AlreadyAssociated</code> | <code>InternalError</code> |
+     * <code>InvalidSubnetID.NotFound</code>)
      *
      * @param failureCode If the NAT gateway could not be created, specifies the error code for
      *         the failure. (<code>InsufficientFreeAddressesInSubnet</code> |
      *         <code>Gateway.NotAttached</code> |
      *         <code>InvalidAllocationID.NotFound</code> |
-     *         <code>Resource.AlreadyAssociated</code> | <code>InternalError</code>)
+     *         <code>Resource.AlreadyAssociated</code> | <code>InternalError</code> |
+     *         <code>InvalidSubnetID.NotFound</code>)
      */
     public void setFailureCode(String failureCode) {
         this.failureCode = failureCode;
@@ -449,7 +456,8 @@ public class NatGateway implements Serializable {
      * the failure. (<code>InsufficientFreeAddressesInSubnet</code> |
      * <code>Gateway.NotAttached</code> |
      * <code>InvalidAllocationID.NotFound</code> |
-     * <code>Resource.AlreadyAssociated</code> | <code>InternalError</code>)
+     * <code>Resource.AlreadyAssociated</code> | <code>InternalError</code> |
+     * <code>InvalidSubnetID.NotFound</code>)
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -457,7 +465,8 @@ public class NatGateway implements Serializable {
      *         the failure. (<code>InsufficientFreeAddressesInSubnet</code> |
      *         <code>Gateway.NotAttached</code> |
      *         <code>InvalidAllocationID.NotFound</code> |
-     *         <code>Resource.AlreadyAssociated</code> | <code>InternalError</code>)
+     *         <code>Resource.AlreadyAssociated</code> | <code>InternalError</code> |
+     *         <code>InvalidSubnetID.NotFound</code>)
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -479,7 +488,9 @@ public class NatGateway implements Serializable {
      * <code>Elastic IP address eipalloc-xxxxxxxx is already
      * associated</code></li> <li>For InternalError: <code>Network interface
      * eni-xxxxxxxx, created and used internally by this NAT gateway is in an
-     * invalid state. Please try again.</code></li> </ul>
+     * invalid state. Please try again.</code></li> <li>For
+     * InvalidSubnetID.NotFound: <code>The specified subnet subnet-xxxxxxxx
+     * does not exist or could not be found.</code></li> </ul>
      *
      * @return If the NAT gateway could not be created, specifies the error message
      *         for the failure, that corresponds to the error code. <ul> <li>For
@@ -492,7 +503,9 @@ public class NatGateway implements Serializable {
      *         <code>Elastic IP address eipalloc-xxxxxxxx is already
      *         associated</code></li> <li>For InternalError: <code>Network interface
      *         eni-xxxxxxxx, created and used internally by this NAT gateway is in an
-     *         invalid state. Please try again.</code></li> </ul>
+     *         invalid state. Please try again.</code></li> <li>For
+     *         InvalidSubnetID.NotFound: <code>The specified subnet subnet-xxxxxxxx
+     *         does not exist or could not be found.</code></li> </ul>
      */
     public String getFailureMessage() {
         return failureMessage;
@@ -510,7 +523,9 @@ public class NatGateway implements Serializable {
      * <code>Elastic IP address eipalloc-xxxxxxxx is already
      * associated</code></li> <li>For InternalError: <code>Network interface
      * eni-xxxxxxxx, created and used internally by this NAT gateway is in an
-     * invalid state. Please try again.</code></li> </ul>
+     * invalid state. Please try again.</code></li> <li>For
+     * InvalidSubnetID.NotFound: <code>The specified subnet subnet-xxxxxxxx
+     * does not exist or could not be found.</code></li> </ul>
      *
      * @param failureMessage If the NAT gateway could not be created, specifies the error message
      *         for the failure, that corresponds to the error code. <ul> <li>For
@@ -523,7 +538,9 @@ public class NatGateway implements Serializable {
      *         <code>Elastic IP address eipalloc-xxxxxxxx is already
      *         associated</code></li> <li>For InternalError: <code>Network interface
      *         eni-xxxxxxxx, created and used internally by this NAT gateway is in an
-     *         invalid state. Please try again.</code></li> </ul>
+     *         invalid state. Please try again.</code></li> <li>For
+     *         InvalidSubnetID.NotFound: <code>The specified subnet subnet-xxxxxxxx
+     *         does not exist or could not be found.</code></li> </ul>
      */
     public void setFailureMessage(String failureMessage) {
         this.failureMessage = failureMessage;
@@ -541,7 +558,9 @@ public class NatGateway implements Serializable {
      * <code>Elastic IP address eipalloc-xxxxxxxx is already
      * associated</code></li> <li>For InternalError: <code>Network interface
      * eni-xxxxxxxx, created and used internally by this NAT gateway is in an
-     * invalid state. Please try again.</code></li> </ul>
+     * invalid state. Please try again.</code></li> <li>For
+     * InvalidSubnetID.NotFound: <code>The specified subnet subnet-xxxxxxxx
+     * does not exist or could not be found.</code></li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -556,7 +575,9 @@ public class NatGateway implements Serializable {
      *         <code>Elastic IP address eipalloc-xxxxxxxx is already
      *         associated</code></li> <li>For InternalError: <code>Network interface
      *         eni-xxxxxxxx, created and used internally by this NAT gateway is in an
-     *         invalid state. Please try again.</code></li> </ul>
+     *         invalid state. Please try again.</code></li> <li>For
+     *         InvalidSubnetID.NotFound: <code>The specified subnet subnet-xxxxxxxx
+     *         does not exist or could not be found.</code></li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

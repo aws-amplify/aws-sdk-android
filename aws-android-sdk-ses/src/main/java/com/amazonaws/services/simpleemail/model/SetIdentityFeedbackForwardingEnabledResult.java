@@ -17,10 +17,7 @@ package com.amazonaws.services.simpleemail.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * An empty element. Receiving this element indicates that the request
- * completed successfully.
- * </p>
+ * Set Identity Feedback Forwarding Enabled Result
  */
 public class SetIdentityFeedbackForwardingEnabledResult implements Serializable {
 

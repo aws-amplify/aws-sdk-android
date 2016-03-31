@@ -46,6 +46,9 @@ public class PurchaseScheduledInstancesRequest extends AmazonWebServiceRequest i
 
     /**
      * One or more purchase requests.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<PurchaseRequest> purchaseRequests;
 
@@ -102,6 +105,9 @@ public class PurchaseScheduledInstancesRequest extends AmazonWebServiceRequest i
 
     /**
      * One or more purchase requests.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @return One or more purchase requests.
      */
@@ -115,6 +121,9 @@ public class PurchaseScheduledInstancesRequest extends AmazonWebServiceRequest i
     
     /**
      * One or more purchase requests.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param purchaseRequests One or more purchase requests.
      */
@@ -132,6 +141,9 @@ public class PurchaseScheduledInstancesRequest extends AmazonWebServiceRequest i
      * One or more purchase requests.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param purchaseRequests One or more purchase requests.
      *
@@ -150,6 +162,9 @@ public class PurchaseScheduledInstancesRequest extends AmazonWebServiceRequest i
      * One or more purchase requests.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param purchaseRequests One or more purchase requests.
      *

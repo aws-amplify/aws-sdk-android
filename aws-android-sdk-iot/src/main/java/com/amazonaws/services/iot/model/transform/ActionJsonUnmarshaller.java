@@ -60,6 +60,15 @@ public class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarsha
             if (name.equals("firehose")) {
                 action.setFirehose(FirehoseActionJsonUnmarshaller.getInstance().unmarshall(context));
             } else 
+            if (name.equals("cloudwatchMetric")) {
+                action.setCloudwatchMetric(CloudwatchMetricActionJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("cloudwatchAlarm")) {
+                action.setCloudwatchAlarm(CloudwatchAlarmActionJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
+            if (name.equals("elasticsearch")) {
+                action.setElasticsearch(ElasticsearchActionJsonUnmarshaller.getInstance().unmarshall(context));
+            } else 
             {
                 reader.skipValue();
             }

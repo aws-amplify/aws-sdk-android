@@ -29,7 +29,7 @@ public class S3Action implements Serializable {
     private String roleArn;
 
     /**
-     * The S3 bucket.
+     * The Amazon S3 bucket.
      */
     private String bucketName;
 
@@ -72,29 +72,29 @@ public class S3Action implements Serializable {
     }
 
     /**
-     * The S3 bucket.
+     * The Amazon S3 bucket.
      *
-     * @return The S3 bucket.
+     * @return The Amazon S3 bucket.
      */
     public String getBucketName() {
         return bucketName;
     }
     
     /**
-     * The S3 bucket.
+     * The Amazon S3 bucket.
      *
-     * @param bucketName The S3 bucket.
+     * @param bucketName The Amazon S3 bucket.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
     }
     
     /**
-     * The S3 bucket.
+     * The Amazon S3 bucket.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param bucketName The S3 bucket.
+     * @param bucketName The Amazon S3 bucket.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

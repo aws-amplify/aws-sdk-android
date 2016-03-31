@@ -29,7 +29,7 @@ public class UserBucket implements Serializable {
     private String s3Bucket;
 
     /**
-     * The key for the disk image.
+     * The file name of the disk image.
      */
     private String s3Key;
 
@@ -67,29 +67,29 @@ public class UserBucket implements Serializable {
     }
 
     /**
-     * The key for the disk image.
+     * The file name of the disk image.
      *
-     * @return The key for the disk image.
+     * @return The file name of the disk image.
      */
     public String getS3Key() {
         return s3Key;
     }
     
     /**
-     * The key for the disk image.
+     * The file name of the disk image.
      *
-     * @param s3Key The key for the disk image.
+     * @param s3Key The file name of the disk image.
      */
     public void setS3Key(String s3Key) {
         this.s3Key = s3Key;
     }
     
     /**
-     * The key for the disk image.
+     * The file name of the disk image.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param s3Key The key for the disk image.
+     * @param s3Key The file name of the disk image.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

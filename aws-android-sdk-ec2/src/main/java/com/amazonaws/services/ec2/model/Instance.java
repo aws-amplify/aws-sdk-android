@@ -182,10 +182,10 @@ public class Instance implements Serializable {
     private String virtualizationType;
 
     /**
-     * Indicates whether this is a Spot instance.
+     * Indicates whether this is a Spot instance or a Scheduled Instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>spot
+     * <b>Allowed Values: </b>spot, scheduled
      */
     private String instanceLifecycle;
 
@@ -1514,12 +1514,12 @@ public class Instance implements Serializable {
     }
 
     /**
-     * Indicates whether this is a Spot instance.
+     * Indicates whether this is a Spot instance or a Scheduled Instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>spot
+     * <b>Allowed Values: </b>spot, scheduled
      *
-     * @return Indicates whether this is a Spot instance.
+     * @return Indicates whether this is a Spot instance or a Scheduled Instance.
      *
      * @see InstanceLifecycleType
      */
@@ -1528,12 +1528,12 @@ public class Instance implements Serializable {
     }
     
     /**
-     * Indicates whether this is a Spot instance.
+     * Indicates whether this is a Spot instance or a Scheduled Instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>spot
+     * <b>Allowed Values: </b>spot, scheduled
      *
-     * @param instanceLifecycle Indicates whether this is a Spot instance.
+     * @param instanceLifecycle Indicates whether this is a Spot instance or a Scheduled Instance.
      *
      * @see InstanceLifecycleType
      */
@@ -1542,14 +1542,14 @@ public class Instance implements Serializable {
     }
     
     /**
-     * Indicates whether this is a Spot instance.
+     * Indicates whether this is a Spot instance or a Scheduled Instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>spot
+     * <b>Allowed Values: </b>spot, scheduled
      *
-     * @param instanceLifecycle Indicates whether this is a Spot instance.
+     * @param instanceLifecycle Indicates whether this is a Spot instance or a Scheduled Instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -1562,12 +1562,12 @@ public class Instance implements Serializable {
     }
 
     /**
-     * Indicates whether this is a Spot instance.
+     * Indicates whether this is a Spot instance or a Scheduled Instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>spot
+     * <b>Allowed Values: </b>spot, scheduled
      *
-     * @param instanceLifecycle Indicates whether this is a Spot instance.
+     * @param instanceLifecycle Indicates whether this is a Spot instance or a Scheduled Instance.
      *
      * @see InstanceLifecycleType
      */
@@ -1576,14 +1576,14 @@ public class Instance implements Serializable {
     }
     
     /**
-     * Indicates whether this is a Spot instance.
+     * Indicates whether this is a Spot instance or a Scheduled Instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>spot
+     * <b>Allowed Values: </b>spot, scheduled
      *
-     * @param instanceLifecycle Indicates whether this is a Spot instance.
+     * @param instanceLifecycle Indicates whether this is a Spot instance or a Scheduled Instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

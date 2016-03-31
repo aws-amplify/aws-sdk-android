@@ -33,7 +33,10 @@ public class AttributeDefinition implements Serializable {
     private String attributeName;
 
     /**
-     * The data type for the attribute.
+     * The data type for the attribute, where: <ul> <li><code>S</code> - the
+     * attribute is of type String</li> <li><code>N</code> - the attribute is
+     * of type Number</li> <li><code>B</code> - the attribute is of type
+     * Binary</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>S, N, B
@@ -52,7 +55,10 @@ public class AttributeDefinition implements Serializable {
      * initialize any additional object members.
      * 
      * @param attributeName A name for the attribute.
-     * @param attributeType The data type for the attribute.
+     * @param attributeType The data type for the attribute, where: <ul>
+     * <li><code>S</code> - the attribute is of type String</li>
+     * <li><code>N</code> - the attribute is of type Number</li>
+     * <li><code>B</code> - the attribute is of type Binary</li> </ul>
      */
     public AttributeDefinition(String attributeName, String attributeType) {
         setAttributeName(attributeName);
@@ -65,7 +71,10 @@ public class AttributeDefinition implements Serializable {
      * initialize any additional object members.
      * 
      * @param attributeName A name for the attribute.
-     * @param attributeType The data type for the attribute.
+     * @param attributeType The data type for the attribute, where: <ul>
+     * <li><code>S</code> - the attribute is of type String</li>
+     * <li><code>N</code> - the attribute is of type Number</li>
+     * <li><code>B</code> - the attribute is of type Binary</li> </ul>
      */
     public AttributeDefinition(String attributeName, ScalarAttributeType attributeType) {
         this.attributeName = attributeName;
@@ -115,12 +124,18 @@ public class AttributeDefinition implements Serializable {
     }
 
     /**
-     * The data type for the attribute.
+     * The data type for the attribute, where: <ul> <li><code>S</code> - the
+     * attribute is of type String</li> <li><code>N</code> - the attribute is
+     * of type Number</li> <li><code>B</code> - the attribute is of type
+     * Binary</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>S, N, B
      *
-     * @return The data type for the attribute.
+     * @return The data type for the attribute, where: <ul> <li><code>S</code> - the
+     *         attribute is of type String</li> <li><code>N</code> - the attribute is
+     *         of type Number</li> <li><code>B</code> - the attribute is of type
+     *         Binary</li> </ul>
      *
      * @see ScalarAttributeType
      */
@@ -129,12 +144,18 @@ public class AttributeDefinition implements Serializable {
     }
     
     /**
-     * The data type for the attribute.
+     * The data type for the attribute, where: <ul> <li><code>S</code> - the
+     * attribute is of type String</li> <li><code>N</code> - the attribute is
+     * of type Number</li> <li><code>B</code> - the attribute is of type
+     * Binary</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>S, N, B
      *
-     * @param attributeType The data type for the attribute.
+     * @param attributeType The data type for the attribute, where: <ul> <li><code>S</code> - the
+     *         attribute is of type String</li> <li><code>N</code> - the attribute is
+     *         of type Number</li> <li><code>B</code> - the attribute is of type
+     *         Binary</li> </ul>
      *
      * @see ScalarAttributeType
      */
@@ -143,14 +164,20 @@ public class AttributeDefinition implements Serializable {
     }
     
     /**
-     * The data type for the attribute.
+     * The data type for the attribute, where: <ul> <li><code>S</code> - the
+     * attribute is of type String</li> <li><code>N</code> - the attribute is
+     * of type Number</li> <li><code>B</code> - the attribute is of type
+     * Binary</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>S, N, B
      *
-     * @param attributeType The data type for the attribute.
+     * @param attributeType The data type for the attribute, where: <ul> <li><code>S</code> - the
+     *         attribute is of type String</li> <li><code>N</code> - the attribute is
+     *         of type Number</li> <li><code>B</code> - the attribute is of type
+     *         Binary</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -163,12 +190,18 @@ public class AttributeDefinition implements Serializable {
     }
 
     /**
-     * The data type for the attribute.
+     * The data type for the attribute, where: <ul> <li><code>S</code> - the
+     * attribute is of type String</li> <li><code>N</code> - the attribute is
+     * of type Number</li> <li><code>B</code> - the attribute is of type
+     * Binary</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>S, N, B
      *
-     * @param attributeType The data type for the attribute.
+     * @param attributeType The data type for the attribute, where: <ul> <li><code>S</code> - the
+     *         attribute is of type String</li> <li><code>N</code> - the attribute is
+     *         of type Number</li> <li><code>B</code> - the attribute is of type
+     *         Binary</li> </ul>
      *
      * @see ScalarAttributeType
      */
@@ -177,14 +210,20 @@ public class AttributeDefinition implements Serializable {
     }
     
     /**
-     * The data type for the attribute.
+     * The data type for the attribute, where: <ul> <li><code>S</code> - the
+     * attribute is of type String</li> <li><code>N</code> - the attribute is
+     * of type Number</li> <li><code>B</code> - the attribute is of type
+     * Binary</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>S, N, B
      *
-     * @param attributeType The data type for the attribute.
+     * @param attributeType The data type for the attribute, where: <ul> <li><code>S</code> - the
+     *         attribute is of type String</li> <li><code>N</code> - the attribute is
+     *         of type Number</li> <li><code>B</code> - the attribute is of type
+     *         Binary</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

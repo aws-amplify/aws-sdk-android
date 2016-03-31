@@ -24,10 +24,15 @@ import java.io.Serializable;
  * </p>
  * <p>
  * A <i>KeySchemaElement</i> represents exactly one attribute of the
- * primary key. For example, a hash type primary key would be represented
- * by one <i>KeySchemaElement</i> . A hash-and-range type primary key
- * would require one <i>KeySchemaElement</i> for the hash attribute, and
- * another <i>KeySchemaElement</i> for the range attribute.
+ * primary key. For example, a simple primary key would be represented by
+ * one <i>KeySchemaElement</i> (for the partition key). A composite
+ * primary key would require one <i>KeySchemaElement</i> for the
+ * partition key, and another <i>KeySchemaElement</i> for the sort key.
+ * </p>
+ * <p>
+ * A <i>KeySchemaElement</i> must be a scalar, top-level attribute (not a
+ * nested attribute). The data type must be one of String, Number, or
+ * Binary. The attribute cannot be nested within a List or a Map.
  * </p>
  */
 public class KeySchemaElement implements Serializable {
@@ -41,8 +46,17 @@ public class KeySchemaElement implements Serializable {
     private String attributeName;
 
     /**
-     * The attribute data, consisting of the data type and the attribute
-     * value itself.
+     * The role that this key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HASH, RANGE
@@ -61,8 +75,17 @@ public class KeySchemaElement implements Serializable {
      * initialize any additional object members.
      * 
      * @param attributeName The name of a key attribute.
-     * @param keyType The attribute data, consisting of the data type and the
-     * attribute value itself.
+     * @param keyType The role that this key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      */
     public KeySchemaElement(String attributeName, String keyType) {
         setAttributeName(attributeName);
@@ -75,8 +98,17 @@ public class KeySchemaElement implements Serializable {
      * initialize any additional object members.
      * 
      * @param attributeName The name of a key attribute.
-     * @param keyType The attribute data, consisting of the data type and the
-     * attribute value itself.
+     * @param keyType The role that this key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      */
     public KeySchemaElement(String attributeName, KeyType keyType) {
         this.attributeName = attributeName;
@@ -126,14 +158,32 @@ public class KeySchemaElement implements Serializable {
     }
 
     /**
-     * The attribute data, consisting of the data type and the attribute
-     * value itself.
+     * The role that this key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HASH, RANGE
      *
-     * @return The attribute data, consisting of the data type and the attribute
-     *         value itself.
+     * @return The role that this key attribute will assume: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note>
      *
      * @see KeyType
      */
@@ -142,14 +192,32 @@ public class KeySchemaElement implements Serializable {
     }
     
     /**
-     * The attribute data, consisting of the data type and the attribute
-     * value itself.
+     * The role that this key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HASH, RANGE
      *
-     * @param keyType The attribute data, consisting of the data type and the attribute
-     *         value itself.
+     * @param keyType The role that this key attribute will assume: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note>
      *
      * @see KeyType
      */
@@ -158,16 +226,34 @@ public class KeySchemaElement implements Serializable {
     }
     
     /**
-     * The attribute data, consisting of the data type and the attribute
-     * value itself.
+     * The role that this key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HASH, RANGE
      *
-     * @param keyType The attribute data, consisting of the data type and the attribute
-     *         value itself.
+     * @param keyType The role that this key attribute will assume: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -180,14 +266,32 @@ public class KeySchemaElement implements Serializable {
     }
 
     /**
-     * The attribute data, consisting of the data type and the attribute
-     * value itself.
+     * The role that this key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HASH, RANGE
      *
-     * @param keyType The attribute data, consisting of the data type and the attribute
-     *         value itself.
+     * @param keyType The role that this key attribute will assume: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note>
      *
      * @see KeyType
      */
@@ -196,16 +300,34 @@ public class KeySchemaElement implements Serializable {
     }
     
     /**
-     * The attribute data, consisting of the data type and the attribute
-     * value itself.
+     * The role that this key attribute will assume: <ul>
+     * <li><p><code>HASH</code> - partition key </li>
+     * <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     * partition key of an item is also known as its <i>hash attribute</i>.
+     * The term "hash attribute" derives from DynamoDB' usage of an internal
+     * hash function to evenly distribute data items across partitions, based
+     * on their partition key values. <p>The sort key of an item is also
+     * known as its <i>range attribute</i>. The term "range attribute"
+     * derives from the way DynamoDB stores items with the same partition key
+     * physically close together, in sorted order by the sort key
+     * value.</note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HASH, RANGE
      *
-     * @param keyType The attribute data, consisting of the data type and the attribute
-     *         value itself.
+     * @param keyType The role that this key attribute will assume: <ul>
+     *         <li><p><code>HASH</code> - partition key </li>
+     *         <li><p><code>RANGE</code> - sort key</li> </ul> <note> <p>The
+     *         partition key of an item is also known as its <i>hash attribute</i>.
+     *         The term "hash attribute" derives from DynamoDB' usage of an internal
+     *         hash function to evenly distribute data items across partitions, based
+     *         on their partition key values. <p>The sort key of an item is also
+     *         known as its <i>range attribute</i>. The term "range attribute"
+     *         derives from the way DynamoDB stores items with the same partition key
+     *         physically close together, in sorted order by the sort key
+     *         value.</note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
