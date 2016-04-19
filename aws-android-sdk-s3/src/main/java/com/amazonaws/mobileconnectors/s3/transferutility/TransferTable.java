@@ -191,6 +191,11 @@ class TransferTable {
      */
     public static final String COLUMN_SSE_KMS_KEY = "kms_key";
 
+    /**
+     * Canned ACL of this upload.
+     */
+    public static final String COLUMN_CANNED_ACL = "canned_acl";
+
     /*
      * Database creation SQL statement
      */
@@ -252,6 +257,9 @@ class TransferTable {
         if (oldVersion < 3 && newVersion >= 3) {
             addVersion3Columns(database);
         }
+        if (oldVersion < 4 && newVersion >= 4) {
+            addVersion4Columns(database);
+        }
     }
 
     /**
@@ -282,5 +290,14 @@ class TransferTable {
         String addKMSKey = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_SSE_KMS_KEY + " text;";
         database.execSQL(addKMSKey);
+    }
+
+    /**
+     * Adds columns that were introduced in version 3 to the database
+     */
+    private static void addVersion4Columns(SQLiteDatabase database) {
+        String addCannedAcl = "ALTER TABLE " + TABLE_TRANSFER +
+                " ADD COLUMN " + COLUMN_CANNED_ACL + " text;";
+        database.execSQL(addCannedAcl);
     }
 }

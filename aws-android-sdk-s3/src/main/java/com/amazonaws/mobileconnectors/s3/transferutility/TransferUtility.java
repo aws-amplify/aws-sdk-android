@@ -27,6 +27,7 @@ import android.util.Log;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.util.VersionInfoUtils;
 
@@ -161,20 +162,54 @@ public class TransferUtility {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
+     * @param cannedAcl The canned ACL to associate with this object
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file,
+            CannedAccessControlList cannedAcl) {
+
+        return upload(bucket, key, file, new ObjectMetadata(), cannedAcl);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
      * @param metadata The S3 metadata to associate with this object
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata) {
+        return upload(bucket, key, file, metadata, null);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param metadata The S3 metadata to associate with this object
+     * @param cannedAcl The canned ACL to associate with this object
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
+            CannedAccessControlList cannedAcl) {
         if (file == null || file.isDirectory()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
         int recordId = 0;
         if (shouldUploadInMultipart(file)) {
-            recordId = createMultipartUploadRecords(bucket, key, file, metadata);
+            recordId = createMultipartUploadRecords(bucket, key, file, metadata, cannedAcl);
         } else {
 
             Uri uri = dbUtil.insertSingleTransferRecord(TransferType.UPLOAD,
-                    bucket, key, file, metadata);
+                    bucket, key, file, metadata, cannedAcl);
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
 
@@ -262,7 +297,7 @@ public class TransferUtility {
      * @return Number of records created in database
      */
     private int createMultipartUploadRecords(String bucket, String key, File file,
-            ObjectMetadata metadata) {
+            ObjectMetadata metadata, CannedAccessControlList cannedAcl) {
         long remainingLenth = file.length();
         double partSize = (double) remainingLenth / (double) MAXIMUM_UPLOAD_PARTS;
         partSize = Math.ceil(partSize);
@@ -279,12 +314,13 @@ public class TransferUtility {
          */
         ContentValues[] valuesArray = new ContentValues[partCount + 1];
         valuesArray[0] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
-                file, fileOffset, 0, "", file.length(), 0, metadata);
+                file, fileOffset, 0, "", file.length(), 0, metadata, cannedAcl);
         for (int i = 1; i < partCount + 1; i++) {
             long bytesForPart = Math.min(optimalPartSize, remainingLenth);
             valuesArray[i] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
                     file, fileOffset, partNumber, "", bytesForPart, remainingLenth
-                            - optimalPartSize <= 0 ? 1 : 0, metadata);
+                            - optimalPartSize <= 0 ? 1 : 0,
+                    metadata, cannedAcl);
             fileOffset += optimalPartSize;
             remainingLenth -= optimalPartSize;
             partNumber++;

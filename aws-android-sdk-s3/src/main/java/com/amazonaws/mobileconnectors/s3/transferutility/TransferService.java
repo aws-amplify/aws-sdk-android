@@ -124,7 +124,7 @@ public class TransferService extends Service {
 
         handlerThread = new HandlerThread(TAG + "-AWSTransferUpdateHandlerThread");
         handlerThread.start();
-        updateHandler = new UpdateHandler(handlerThread.getLooper());
+        setHandlerLooper(handlerThread.getLooper());
     }
 
     /**
@@ -184,12 +184,8 @@ public class TransferService extends Service {
 
         updateHandler.sendMessage(updateHandler.obtainMessage(MSG_EXEC, intent));
         if (isFirst) {
-            if (networkInfoReceiver == null) {
-                networkInfoReceiver = new NetworkInfoReceiver(getApplicationContext(),
-                        updateHandler);
-                registerReceiver(networkInfoReceiver, new IntentFilter(
-                        ConnectivityManager.CONNECTIVITY_ACTION));
-            }
+            registerReceiver(networkInfoReceiver, new IntentFilter(
+                    ConnectivityManager.CONNECTIVITY_ACTION));
             isFirst = false;
         }
         /*
@@ -200,8 +196,13 @@ public class TransferService extends Service {
 
     @Override
     public void onDestroy() {
-        if (networkInfoReceiver != null) {
+        try {
             unregisterReceiver(networkInfoReceiver);
+        } catch (IllegalArgumentException iae) {
+            /*
+             * Ignore on purpose, just in case the service stops before
+             * onStartCommand where the receiver is registered.
+             */
         }
         handlerThread.quit();
         TransferThreadPool.closeThreadPool();
@@ -428,14 +429,8 @@ public class TransferService extends Service {
      * @param looper new looper
      */
     void setHandlerLooper(Looper looper) {
-        if (networkInfoReceiver != null) {
-            // unregister previous receiver
-            unregisterReceiver(networkInfoReceiver);
-        }
         updateHandler = new UpdateHandler(looper);
         networkInfoReceiver = new NetworkInfoReceiver(getApplicationContext(), updateHandler);
-        registerReceiver(networkInfoReceiver, new IntentFilter(
-                ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override

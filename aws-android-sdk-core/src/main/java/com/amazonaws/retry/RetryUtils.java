@@ -15,7 +15,11 @@
 
 package com.amazonaws.retry;
 
+import com.amazonaws.AbortedException;
 import com.amazonaws.AmazonServiceException;
+
+import java.io.InterruptedIOException;
+import java.net.SocketTimeoutException;
 
 public class RetryUtils {
 
@@ -66,5 +70,32 @@ public class RetryUtils {
                 || "RequestExpired".equals(errorCode)
                 || "InvalidSignatureException".equals(errorCode)
                 || "SignatureDoesNotMatch".equals(errorCode);
+    }
+
+    /**
+     * Return true if the error is caused by interruption.
+     * 
+     * @param error throwable
+     * @return true if the exception is caused by interruption.
+     */
+    public static boolean isInterrupted(Throwable error) {
+        if (error instanceof AbortedException) {
+            return true;
+        }
+        if (error.getCause() != null) {
+            Throwable cause = error.getCause();
+            /*
+             * InterruptedIOException is thrown by OkHttp when connection is
+             * interrupted. SocketTimeoutException is a subclass of
+             * InterruptedIOException. It's caused by timeout and should be
+             * excluded.
+             */
+            if (cause instanceof InterruptedException
+                    || cause instanceof InterruptedIOException
+                    && !(cause instanceof SocketTimeoutException)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

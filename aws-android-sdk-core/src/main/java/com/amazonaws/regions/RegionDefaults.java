@@ -46,6 +46,7 @@ class RegionDefaults {
         updateRegion(region, "cognito-sync", "cognito-sync.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.us-east-1.amazonaws.com", false,
                 true);
+        updateRegion(region, "cognito-idp", "cognito-idp.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "mobileanalytics", "mobileanalytics.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "machinelearning", "machinelearning.us-east-1.amazonaws.com", false,
                 true);

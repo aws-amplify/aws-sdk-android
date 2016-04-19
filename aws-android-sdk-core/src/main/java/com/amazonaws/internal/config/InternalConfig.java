@@ -111,6 +111,7 @@ public class InternalConfig {
         ret.put("AmazonSimpleEmailServiceClient", new HttpClientConfig("email"));
         ret.put("AWSSecurityTokenServiceClient", new HttpClientConfig("sts"));
         ret.put("AmazonCognitoIdentityClient", new HttpClientConfig("cognito-identity"));
+        ret.put("AmazonCognitoIdentityProviderClient", new HttpClientConfig("cognito-idp"));
         ret.put("AmazonCognitoSyncClient", new HttpClientConfig("cognito-sync"));
         ret.put("AmazonKinesisFirehoseClient", new HttpClientConfig("firehose"));
         ret.put("AWSIotClient", new HttpClientConfig("execute-api"));

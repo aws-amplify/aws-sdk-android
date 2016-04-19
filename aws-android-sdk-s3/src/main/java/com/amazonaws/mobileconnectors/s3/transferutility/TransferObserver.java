@@ -67,6 +67,8 @@ public class TransferObserver {
      *
      * @param id The transfer id of the transfer to be observed.
      * @param dbUtil an instance of database utility
+     * @param bucket bucket of the S3 object
+     * @param key key of the S3 object
      * @param file a file associated with this transfer
      */
     TransferObserver(int id, TransferDBUtil dbUtil, String bucket, String key, File file) {
@@ -157,20 +159,20 @@ public class TransferObserver {
     }
 
     /**
-     * Gets the transfer bucket name of the record.
+     * Gets the bucket name of the record.
      *
-     * @return The transfer bucket name.
+     * @return The bucket name of the record.
      */
-    public int getBucket() {
+    public String getBucket() {
         return bucket;
     }
 
     /**
-     * Gets the transfer key of the record.
+     * Gets the key of the record.
      *
-     * @return The transfer key.
+     * @return The key of the record.
      */
-    public int getKey() {
+    public String getKey() {
         return key;
     }
 

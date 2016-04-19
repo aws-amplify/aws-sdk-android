@@ -75,6 +75,7 @@ class TransferRecord {
     public String sseAlgorithm;
     public String sseKMSKey;
     public String md5;
+    public String cannedAcl;
 
     private Future<?> submittedTask;
 
@@ -141,6 +142,7 @@ class TransferRecord {
                 .getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_SSE_ALGORITHM));
         this.sseKMSKey = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_SSE_KMS_KEY));
         this.md5 = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_CONTENT_MD5));
+        this.cannedAcl = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_CANNED_ACL));
     }
 
     /**
@@ -263,18 +265,19 @@ class TransferRecord {
         StringBuilder sb = new StringBuilder();
         sb.append("[")
                 .append("id:").append(id).append(",")
+                .append("bucketName:").append(bucketName).append(",")
+                .append("key:").append(key).append(",")
+                .append("file:").append(file).append(",")
+                .append("type:").append(type).append(",")
+                .append("bytesTotal:").append(bytesTotal).append(",")
+                .append("bytesCurrent:").append(bytesCurrent).append(",")
+                .append("fileOffset:").append(fileOffset).append(",")
+                .append("state:").append(state).append(",")
+                .append("cannedAcl:").append(cannedAcl).append(",")
                 .append("mainUploadId:").append(mainUploadId).append(",")
                 .append("isMultipart:").append(isMultipart).append(",")
                 .append("isLastPart:").append(isLastPart).append(",")
                 .append("partNumber:").append(partNumber).append(",")
-                .append("bytesTotal:").append(bytesTotal).append(",")
-                .append("bytesCurrent:").append(bytesCurrent).append(",")
-                .append("fileOffset:").append(fileOffset).append(",")
-                .append("type:").append(type).append(",")
-                .append("state:").append(state).append(",")
-                .append("bucketName:").append(bucketName).append(",")
-                .append("key:").append(key).append(",")
-                .append("file:").append(file).append(",")
                 .append("multipartId:").append(multipartId).append(",")
                 .append("eTag:").append(eTag)
                 .append("]");

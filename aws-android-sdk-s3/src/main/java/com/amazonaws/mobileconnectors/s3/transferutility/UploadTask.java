@@ -21,6 +21,7 @@ import com.amazonaws.AbortedException;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.event.ProgressListener;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -33,7 +34,9 @@ import java.io.File;
 import java.io.InterruptedIOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -285,7 +288,20 @@ class UploadTask implements Callable<Boolean> {
         }
 
         putObjectRequest.setMetadata(om);
+        putObjectRequest.setCannedAcl(getCannedAclFromString(upload.cannedAcl));
 
         return putObjectRequest;
+    }
+
+    private static final Map<String, CannedAccessControlList> cannedAclMap;
+    static {
+        cannedAclMap = new HashMap<String, CannedAccessControlList>();
+        for (CannedAccessControlList cannedAcl : CannedAccessControlList.values()) {
+            cannedAclMap.put(cannedAcl.toString(), cannedAcl);
+        }
+    }
+
+    private static CannedAccessControlList getCannedAclFromString(String cannedAcl) {
+        return cannedAcl == null ? null : cannedAclMap.get(cannedAcl);
     }
 }
