@@ -77,7 +77,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.VerifyUserAttributeR
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -101,6 +101,8 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class CognitoUser {
     private final String TAG = "CognitoUser";
+
+    private static final Charset CHARSET = Charset.forName("UTF-8");
 
     /**
      * Application context.
@@ -1815,14 +1817,14 @@ public class CognitoUser {
             Mac mac = Mac.getInstance("HmacSHA256");
             SecretKeySpec keySpec = new SecretKeySpec(key, "HmacSHA256");
             mac.init(keySpec);
-            mac.update(pool.getUserPoolId().split("_", 2)[1].getBytes(StandardCharsets.UTF_8));
-            mac.update(usernameInternal.getBytes(StandardCharsets.UTF_8));
+            mac.update(pool.getUserPoolId().split("_", 2)[1].getBytes(CHARSET));
+            mac.update(usernameInternal.getBytes(CHARSET));
             mac.update(authDetails.getSecretBlock().array());
 
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy");
             simpleDateFormat.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
             String dateString = simpleDateFormat.format(timestamp);
-            byte[] dateBytes = dateString.getBytes(StandardCharsets.UTF_8);
+            byte[] dateBytes = dateString.getBytes(CHARSET);
 
             hmac = mac.doFinal(dateBytes);
         } catch (NoSuchAlgorithmException e) {
@@ -1939,10 +1941,10 @@ public class CognitoUser {
 
             // x = H(salt | H(poolName | userId | ":" | password))
             messageDigest.reset();
-            messageDigest.update(poolName.getBytes(StandardCharsets.UTF_8));
-            messageDigest.update(userId.getBytes(StandardCharsets.UTF_8));
-            messageDigest.update(":".getBytes(StandardCharsets.UTF_8));
-            byte [] userIdHash = messageDigest.digest(userPassword.getBytes(StandardCharsets.UTF_8));
+            messageDigest.update(poolName.getBytes(CHARSET));
+            messageDigest.update(userId.getBytes(CHARSET));
+            messageDigest.update(":".getBytes(CHARSET));
+            byte [] userIdHash = messageDigest.digest(userPassword.getBytes(CHARSET));
 
             messageDigest.reset();
             messageDigest.update(salt.toByteArray());

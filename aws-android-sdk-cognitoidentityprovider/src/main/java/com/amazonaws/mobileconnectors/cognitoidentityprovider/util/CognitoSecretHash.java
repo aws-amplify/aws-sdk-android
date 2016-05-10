@@ -21,7 +21,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.Cognito
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
 import com.amazonaws.util.Base64;
 
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -31,6 +31,8 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public final class CognitoSecretHash {
     private final static String HMAC_SHA_256 = "HmacSHA256";
+
+    private static final Charset CHARSET = Charset.forName("UTF-8");
 
     /**
      * Generates secret hash. Uses HMAC SHA256.
@@ -55,14 +57,14 @@ public final class CognitoSecretHash {
             return null;
         }
 
-        SecretKeySpec signingKey = new SecretKeySpec(clientSecret.getBytes(StandardCharsets.UTF_8),
+        SecretKeySpec signingKey = new SecretKeySpec(clientSecret.getBytes(CHARSET),
                 HMAC_SHA_256);
 
         try {
             Mac mac = Mac.getInstance(HMAC_SHA_256);
             mac.init(signingKey);
-            mac.update(userId.getBytes(StandardCharsets.UTF_8));
-            byte[] rawHmac = mac.doFinal(clientId.getBytes(StandardCharsets.UTF_8));
+            mac.update(userId.getBytes(CHARSET));
+            byte[] rawHmac = mac.doFinal(clientId.getBytes(CHARSET));
             return  new String(Base64.encode(rawHmac));
         } catch (Exception e) {
             throw new CognitoInternalErrorException("errors in HMAC calculation");
