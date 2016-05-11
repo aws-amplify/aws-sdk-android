@@ -240,23 +240,23 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
     }
 
     private void init() {
-        exceptionUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new NumberDomainBytesExceededExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new NoSuchDomainExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new NumberDomainsExceededExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new NumberSubmittedItemsExceededExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new RequestTimeoutExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new InvalidQueryExpressionExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new NumberSubmittedAttributesExceededExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new DuplicateItemNameExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new NumberDomainAttributesExceededExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new InvalidNumberPredicatesExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidNextTokenExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new TooManyRequestedAttributesExceptionUnmarshaller());
         exceptionUnmarshallers.add(new NumberItemAttributesExceededExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new NumberDomainAttributesExceededExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new DuplicateItemNameExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new TooManyRequestedAttributesExceptionUnmarshaller());
         exceptionUnmarshallers.add(new AttributeDoesNotExistExceptionUnmarshaller());
         exceptionUnmarshallers.add(new MissingParameterExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new NumberSubmittedItemsExceededExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidQueryExpressionExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new NoSuchDomainExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new NumberDomainsExceededExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidNumberValueTestsExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new NumberSubmittedAttributesExceededExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new RequestTimeoutExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new NumberDomainBytesExceededExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidNumberPredicatesExceptionUnmarshaller());
         
         exceptionUnmarshallers.add(new LegacyErrorUnmarshaller());
         
@@ -272,38 +272,40 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <code>Select</code> operation returns a set of attributes for
-     * <code>ItemNames</code> that match the select expression.
-     * <code>Select</code> is similar to the standard SQL SELECT statement.
+     * Performs multiple DeleteAttributes operations in a single call, which
+     * reduces round trips and latencies. This enables Amazon SimpleDB to
+     * optimize requests, which generally yields better throughput.
      * </p>
      * <p>
-     * The total size of the response cannot exceed 1 MB in total size.
-     * Amazon SimpleDB automatically adjusts the number of items returned per
-     * page to enforce this limit. For example, if the client asks to
-     * retrieve 2500 items, but each individual item is 10 kB in size, the
-     * system returns 100 items and an appropriate <code>NextToken</code> so
-     * the client can access the next page of results.
+     * <b>NOTE:</b> If you specify BatchDeleteAttributes without attributes
+     * or values, all the attributes for the item are deleted.
+     * BatchDeleteAttributes is an idempotent operation; running it multiple
+     * times on the same item or attribute doesn't result in an error. The
+     * BatchDeleteAttributes operation succeeds or fails in its entirety.
+     * There are no partial deletes. You can execute multiple
+     * BatchDeleteAttributes operations and other operations in parallel.
+     * However, large numbers of concurrent BatchDeleteAttributes calls can
+     * result in Service Unavailable (503) responses. This operation is
+     * vulnerable to exceeding the maximum URL size when making a REST
+     * request using the HTTP GET method. This operation does not support
+     * conditions using Expected.X.Name, Expected.X.Value, or
+     * Expected.X.Exists.
      * </p>
      * <p>
-     * For information on how to construct select expressions, see Using
-     * Select to Create Amazon SimpleDB Queries in the Developer Guide.
+     * The following limitations are enforced for this operation:
+     * <ul>
+     * <li>1 MB request size</li>
+     * <li>25 item limit per BatchDeleteAttributes operation</li>
+     * 
+     * </ul>
+     * 
      * </p>
      *
-     * @param selectRequest Container for the necessary parameters to execute
-     *           the Select service method on AmazonSimpleDB.
+     * @param batchDeleteAttributesRequest Container for the necessary
+     *           parameters to execute the BatchDeleteAttributes service method on
+     *           AmazonSimpleDB.
      * 
-     * @return The response from the Select service method, as returned by
-     *         AmazonSimpleDB.
      * 
-     * @throws InvalidParameterValueException
-     * @throws InvalidQueryExpressionException
-     * @throws RequestTimeoutException
-     * @throws InvalidNumberPredicatesException
-     * @throws NoSuchDomainException
-     * @throws InvalidNextTokenException
-     * @throws TooManyRequestedAttributesException
-     * @throws MissingParameterException
-     * @throws InvalidNumberValueTestsException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -313,20 +315,73 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
      *             If an error response is returned by AmazonSimpleDB indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public SelectResult select(SelectRequest selectRequest) {
-        ExecutionContext executionContext = createExecutionContext(selectRequest);
+    public void batchDeleteAttributes(BatchDeleteAttributesRequest batchDeleteAttributesRequest) {
+        ExecutionContext executionContext = createExecutionContext(batchDeleteAttributesRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<SelectRequest> request = null;
-        Response<SelectResult> response = null;
+        Request<BatchDeleteAttributesRequest> request = null;
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
         try {
-            request = new SelectRequestMarshaller().marshall(selectRequest);
+            request = new BatchDeleteAttributesRequestMarshaller().marshall(batchDeleteAttributesRequest);
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
-            response = invoke(request, new SelectResultStaxUnmarshaller(), executionContext);
-            return response.getAwsResponse();
+            invoke(request, null, executionContext);
         } finally {
-            endClientExecution(awsRequestMetrics, request, response);
+            endClientExecution(awsRequestMetrics, request, null);
+        }
+    }
+    
+    /**
+     * <p>
+     * Deletes one or more attributes associated with an item. If all
+     * attributes of the item are deleted, the item is deleted.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> If DeleteAttributes is called without being passed any
+     * attributes or values specified, all the attributes for the item are
+     * deleted.
+     * </p>
+     * <p>
+     * <code>DeleteAttributes</code> is an idempotent operation; running it
+     * multiple times on the same item or attribute does not result in an
+     * error response.
+     * </p>
+     * <p>
+     * Because Amazon SimpleDB makes multiple copies of item data and uses
+     * an eventual consistency update model, performing a GetAttributes or
+     * Select operation (read) immediately after a
+     * <code>DeleteAttributes</code> or PutAttributes operation (write) might
+     * not return updated item data.
+     * </p>
+     *
+     * @param deleteAttributesRequest Container for the necessary parameters
+     *           to execute the DeleteAttributes service method on AmazonSimpleDB.
+     * 
+     * 
+     * @throws NoSuchDomainException
+     * @throws InvalidParameterValueException
+     * @throws AttributeDoesNotExistException
+     * @throws MissingParameterException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteAttributes(DeleteAttributesRequest deleteAttributesRequest) {
+        ExecutionContext executionContext = createExecutionContext(deleteAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DeleteAttributesRequest> request = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new DeleteAttributesRequestMarshaller().marshall(deleteAttributesRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, null);
         }
     }
     
@@ -389,13 +444,13 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
      *           execute the PutAttributes service method on AmazonSimpleDB.
      * 
      * 
-     * @throws InvalidParameterValueException
-     * @throws NumberDomainBytesExceededException
-     * @throws NumberDomainAttributesExceededException
      * @throws NoSuchDomainException
+     * @throws InvalidParameterValueException
      * @throws NumberItemAttributesExceededException
      * @throws AttributeDoesNotExistException
      * @throws MissingParameterException
+     * @throws NumberDomainAttributesExceededException
+     * @throws NumberDomainBytesExceededException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -422,40 +477,19 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
     
     /**
      * <p>
-     * Performs multiple DeleteAttributes operations in a single call, which
-     * reduces round trips and latencies. This enables Amazon SimpleDB to
-     * optimize requests, which generally yields better throughput.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If you specify BatchDeleteAttributes without attributes
-     * or values, all the attributes for the item are deleted.
-     * BatchDeleteAttributes is an idempotent operation; running it multiple
-     * times on the same item or attribute doesn't result in an error. The
-     * BatchDeleteAttributes operation succeeds or fails in its entirety.
-     * There are no partial deletes. You can execute multiple
-     * BatchDeleteAttributes operations and other operations in parallel.
-     * However, large numbers of concurrent BatchDeleteAttributes calls can
-     * result in Service Unavailable (503) responses. This operation is
-     * vulnerable to exceeding the maximum URL size when making a REST
-     * request using the HTTP GET method. This operation does not support
-     * conditions using Expected.X.Name, Expected.X.Value, or
-     * Expected.X.Exists.
-     * </p>
-     * <p>
-     * The following limitations are enforced for this operation:
-     * <ul>
-     * <li>1 MB request size</li>
-     * <li>25 item limit per BatchDeleteAttributes operation</li>
-     * 
-     * </ul>
-     * 
+     * Returns information about the domain, including when the domain was
+     * created, the number of items and attributes in the domain, and the
+     * size of the attribute names and values.
      * </p>
      *
-     * @param batchDeleteAttributesRequest Container for the necessary
-     *           parameters to execute the BatchDeleteAttributes service method on
-     *           AmazonSimpleDB.
+     * @param domainMetadataRequest Container for the necessary parameters to
+     *           execute the DomainMetadata service method on AmazonSimpleDB.
      * 
+     * @return The response from the DomainMetadata service method, as
+     *         returned by AmazonSimpleDB.
      * 
+     * @throws NoSuchDomainException
+     * @throws MissingParameterException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -465,18 +499,178 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
      *             If an error response is returned by AmazonSimpleDB indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void batchDeleteAttributes(BatchDeleteAttributesRequest batchDeleteAttributesRequest) {
-        ExecutionContext executionContext = createExecutionContext(batchDeleteAttributesRequest);
+    public DomainMetadataResult domainMetadata(DomainMetadataRequest domainMetadataRequest) {
+        ExecutionContext executionContext = createExecutionContext(domainMetadataRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<BatchDeleteAttributesRequest> request = null;
+        Request<DomainMetadataRequest> request = null;
+        Response<DomainMetadataResult> response = null;
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
         try {
-            request = new BatchDeleteAttributesRequestMarshaller().marshall(batchDeleteAttributesRequest);
+            request = new DomainMetadataRequestMarshaller().marshall(domainMetadataRequest);
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
-            invoke(request, null, executionContext);
+            response = invoke(request, new DomainMetadataResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
         } finally {
-            endClientExecution(awsRequestMetrics, request, null);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
+     * Returns all of the attributes associated with the specified item.
+     * Optionally, the attributes returned can be limited to one or more
+     * attributes by specifying an attribute name parameter.
+     * </p>
+     * <p>
+     * If the item does not exist on the replica that was accessed for this
+     * operation, an empty set is returned. The system does not return an
+     * error as it cannot guarantee the item does not exist on other
+     * replicas.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> If GetAttributes is called without being passed any
+     * attribute names, all the attributes for the item are returned.
+     * </p>
+     *
+     * @param getAttributesRequest Container for the necessary parameters to
+     *           execute the GetAttributes service method on AmazonSimpleDB.
+     * 
+     * @return The response from the GetAttributes service method, as
+     *         returned by AmazonSimpleDB.
+     * 
+     * @throws NoSuchDomainException
+     * @throws InvalidParameterValueException
+     * @throws MissingParameterException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetAttributesResult getAttributes(GetAttributesRequest getAttributesRequest) {
+        ExecutionContext executionContext = createExecutionContext(getAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<GetAttributesRequest> request = null;
+        Response<GetAttributesResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new GetAttributesRequestMarshaller().marshall(getAttributesRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new GetAttributesResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
+     * The <code>ListDomains</code> operation lists all domains associated
+     * with the Access Key ID. It returns domain names up to the limit set by
+     * MaxNumberOfDomains. A NextToken is returned if there are more than
+     * <code>MaxNumberOfDomains</code> domains. Calling
+     * <code>ListDomains</code> successive times with the
+     * <code>NextToken</code> provided by the operation returns up to
+     * <code>MaxNumberOfDomains</code> more domain names with each successive
+     * operation call.
+     * </p>
+     *
+     * @param listDomainsRequest Container for the necessary parameters to
+     *           execute the ListDomains service method on AmazonSimpleDB.
+     * 
+     * @return The response from the ListDomains service method, as returned
+     *         by AmazonSimpleDB.
+     * 
+     * @throws InvalidNextTokenException
+     * @throws InvalidParameterValueException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListDomainsResult listDomains(ListDomainsRequest listDomainsRequest) {
+        ExecutionContext executionContext = createExecutionContext(listDomainsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<ListDomainsRequest> request = null;
+        Response<ListDomainsResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new ListDomainsRequestMarshaller().marshall(listDomainsRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ListDomainsResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
+     * The <code>Select</code> operation returns a set of attributes for
+     * <code>ItemNames</code> that match the select expression.
+     * <code>Select</code> is similar to the standard SQL SELECT statement.
+     * </p>
+     * <p>
+     * The total size of the response cannot exceed 1 MB in total size.
+     * Amazon SimpleDB automatically adjusts the number of items returned per
+     * page to enforce this limit. For example, if the client asks to
+     * retrieve 2500 items, but each individual item is 10 kB in size, the
+     * system returns 100 items and an appropriate <code>NextToken</code> so
+     * the client can access the next page of results.
+     * </p>
+     * <p>
+     * For information on how to construct select expressions, see Using
+     * Select to Create Amazon SimpleDB Queries in the Developer Guide.
+     * </p>
+     *
+     * @param selectRequest Container for the necessary parameters to execute
+     *           the Select service method on AmazonSimpleDB.
+     * 
+     * @return The response from the Select service method, as returned by
+     *         AmazonSimpleDB.
+     * 
+     * @throws InvalidNextTokenException
+     * @throws NoSuchDomainException
+     * @throws TooManyRequestedAttributesException
+     * @throws InvalidParameterValueException
+     * @throws InvalidNumberValueTestsException
+     * @throws RequestTimeoutException
+     * @throws MissingParameterException
+     * @throws InvalidQueryExpressionException
+     * @throws InvalidNumberPredicatesException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SelectResult select(SelectRequest selectRequest) {
+        ExecutionContext executionContext = createExecutionContext(selectRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<SelectRequest> request = null;
+        Response<SelectResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new SelectRequestMarshaller().marshall(selectRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new SelectResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
         }
     }
     
@@ -547,8 +741,8 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
      *           execute the CreateDomain service method on AmazonSimpleDB.
      * 
      * 
-     * @throws InvalidParameterValueException
      * @throws NumberDomainsExceededException
+     * @throws InvalidParameterValueException
      * @throws MissingParameterException
      *
      * @throws AmazonClientException
@@ -571,159 +765,6 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
             invoke(request, null, executionContext);
         } finally {
             endClientExecution(awsRequestMetrics, request, null);
-        }
-    }
-    
-    /**
-     * <p>
-     * Deletes one or more attributes associated with an item. If all
-     * attributes of the item are deleted, the item is deleted.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If DeleteAttributes is called without being passed any
-     * attributes or values specified, all the attributes for the item are
-     * deleted.
-     * </p>
-     * <p>
-     * <code>DeleteAttributes</code> is an idempotent operation; running it
-     * multiple times on the same item or attribute does not result in an
-     * error response.
-     * </p>
-     * <p>
-     * Because Amazon SimpleDB makes multiple copies of item data and uses
-     * an eventual consistency update model, performing a GetAttributes or
-     * Select operation (read) immediately after a
-     * <code>DeleteAttributes</code> or PutAttributes operation (write) might
-     * not return updated item data.
-     * </p>
-     *
-     * @param deleteAttributesRequest Container for the necessary parameters
-     *           to execute the DeleteAttributes service method on AmazonSimpleDB.
-     * 
-     * 
-     * @throws InvalidParameterValueException
-     * @throws NoSuchDomainException
-     * @throws AttributeDoesNotExistException
-     * @throws MissingParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteAttributes(DeleteAttributesRequest deleteAttributesRequest) {
-        ExecutionContext executionContext = createExecutionContext(deleteAttributesRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<DeleteAttributesRequest> request = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new DeleteAttributesRequestMarshaller().marshall(deleteAttributesRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            invoke(request, null, executionContext);
-        } finally {
-            endClientExecution(awsRequestMetrics, request, null);
-        }
-    }
-    
-    /**
-     * <p>
-     * The <code>ListDomains</code> operation lists all domains associated
-     * with the Access Key ID. It returns domain names up to the limit set by
-     * MaxNumberOfDomains. A NextToken is returned if there are more than
-     * <code>MaxNumberOfDomains</code> domains. Calling
-     * <code>ListDomains</code> successive times with the
-     * <code>NextToken</code> provided by the operation returns up to
-     * <code>MaxNumberOfDomains</code> more domain names with each successive
-     * operation call.
-     * </p>
-     *
-     * @param listDomainsRequest Container for the necessary parameters to
-     *           execute the ListDomains service method on AmazonSimpleDB.
-     * 
-     * @return The response from the ListDomains service method, as returned
-     *         by AmazonSimpleDB.
-     * 
-     * @throws InvalidParameterValueException
-     * @throws InvalidNextTokenException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListDomainsResult listDomains(ListDomainsRequest listDomainsRequest) {
-        ExecutionContext executionContext = createExecutionContext(listDomainsRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<ListDomainsRequest> request = null;
-        Response<ListDomainsResult> response = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new ListDomainsRequestMarshaller().marshall(listDomainsRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            response = invoke(request, new ListDomainsResultStaxUnmarshaller(), executionContext);
-            return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response);
-        }
-    }
-    
-    /**
-     * <p>
-     * Returns all of the attributes associated with the specified item.
-     * Optionally, the attributes returned can be limited to one or more
-     * attributes by specifying an attribute name parameter.
-     * </p>
-     * <p>
-     * If the item does not exist on the replica that was accessed for this
-     * operation, an empty set is returned. The system does not return an
-     * error as it cannot guarantee the item does not exist on other
-     * replicas.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If GetAttributes is called without being passed any
-     * attribute names, all the attributes for the item are returned.
-     * </p>
-     *
-     * @param getAttributesRequest Container for the necessary parameters to
-     *           execute the GetAttributes service method on AmazonSimpleDB.
-     * 
-     * @return The response from the GetAttributes service method, as
-     *         returned by AmazonSimpleDB.
-     * 
-     * @throws InvalidParameterValueException
-     * @throws NoSuchDomainException
-     * @throws MissingParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetAttributesResult getAttributes(GetAttributesRequest getAttributesRequest) {
-        ExecutionContext executionContext = createExecutionContext(getAttributesRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<GetAttributesRequest> request = null;
-        Response<GetAttributesResult> response = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new GetAttributesRequestMarshaller().marshall(getAttributesRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            response = invoke(request, new GetAttributesResultStaxUnmarshaller(), executionContext);
-            return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response);
         }
     }
     
@@ -804,15 +845,15 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
      *           AmazonSimpleDB.
      * 
      * 
+     * @throws NoSuchDomainException
      * @throws DuplicateItemNameException
      * @throws InvalidParameterValueException
-     * @throws NumberDomainBytesExceededException
-     * @throws NumberSubmittedItemsExceededException
-     * @throws NumberSubmittedAttributesExceededException
-     * @throws NumberDomainAttributesExceededException
-     * @throws NoSuchDomainException
      * @throws NumberItemAttributesExceededException
+     * @throws NumberSubmittedAttributesExceededException
      * @throws MissingParameterException
+     * @throws NumberSubmittedItemsExceededException
+     * @throws NumberDomainAttributesExceededException
+     * @throws NumberDomainBytesExceededException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -839,47 +880,6 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
     
     /**
      * <p>
-     * Returns information about the domain, including when the domain was
-     * created, the number of items and attributes in the domain, and the
-     * size of the attribute names and values.
-     * </p>
-     *
-     * @param domainMetadataRequest Container for the necessary parameters to
-     *           execute the DomainMetadata service method on AmazonSimpleDB.
-     * 
-     * @return The response from the DomainMetadata service method, as
-     *         returned by AmazonSimpleDB.
-     * 
-     * @throws NoSuchDomainException
-     * @throws MissingParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DomainMetadataResult domainMetadata(DomainMetadataRequest domainMetadataRequest) {
-        ExecutionContext executionContext = createExecutionContext(domainMetadataRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<DomainMetadataRequest> request = null;
-        Response<DomainMetadataResult> response = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new DomainMetadataRequestMarshaller().marshall(domainMetadataRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            response = invoke(request, new DomainMetadataResultStaxUnmarshaller(), executionContext);
-            return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response);
-        }
-    }
-    
-    /**
-     * <p>
      * The <code>ListDomains</code> operation lists all domains associated
      * with the Access Key ID. It returns domain names up to the limit set by
      * MaxNumberOfDomains. A NextToken is returned if there are more than
@@ -893,8 +893,8 @@ public class AmazonSimpleDBClient extends AmazonWebServiceClient implements Amaz
      * @return The response from the ListDomains service method, as returned
      *         by AmazonSimpleDB.
      * 
-     * @throws InvalidParameterValueException
      * @throws InvalidNextTokenException
+     * @throws InvalidParameterValueException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while

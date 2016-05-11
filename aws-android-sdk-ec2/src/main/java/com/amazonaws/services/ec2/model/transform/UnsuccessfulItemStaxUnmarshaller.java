@@ -43,12 +43,12 @@ public class UnsuccessfulItemStaxUnmarshaller implements Unmarshaller<Unsuccessf
             if (xmlEvent == XmlPullParser.END_DOCUMENT) return unsuccessfulItem;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
-                if (context.testExpression("resourceId", targetDepth)) {
-                    unsuccessfulItem.setResourceId(StringStaxUnmarshaller.getInstance().unmarshall(context));
-                    continue;
-                }
                 if (context.testExpression("error", targetDepth)) {
                     unsuccessfulItem.setError(UnsuccessfulItemErrorStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("resourceId", targetDepth)) {
+                    unsuccessfulItem.setResourceId(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

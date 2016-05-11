@@ -262,15 +262,15 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
 
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
-        jsonErrorUnmarshallers.add(new InternalErrorExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new ResourceConflictExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new ExternalServiceExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidIdentityPoolConfigurationExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new NotAuthorizedExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InternalErrorExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ExternalServiceExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceConflictExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidIdentityPoolConfigurationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
         
@@ -292,6 +292,68 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
 
     /**
      * <p>
+     * Gets an OpenID token, using a known Cognito ID. This known Cognito ID
+     * is returned by GetId. You can optionally add additional logins for the
+     * identity. Supplying multiple logins creates an implicit link.
+     * </p>
+     * <p>
+     * The OpenId token is valid for 15 minutes.
+     * </p>
+     * <p>
+     * This is a public API. You do not need any credentials to call this
+     * API.
+     * </p>
+     *
+     * @param getOpenIdTokenRequest Container for the necessary parameters to
+     *           execute the GetOpenIdToken service method on AmazonCognitoIdentity.
+     * 
+     * @return The response from the GetOpenIdToken service method, as
+     *         returned by AmazonCognitoIdentity.
+     * 
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws ResourceConflictException
+     * @throws ResourceNotFoundException
+     * @throws InternalErrorException
+     * @throws ExternalServiceException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentity indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetOpenIdTokenResult getOpenIdToken(GetOpenIdTokenRequest getOpenIdTokenRequest) {
+        ExecutionContext executionContext = createExecutionContext(getOpenIdTokenRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetOpenIdTokenRequest> request = null;
+        Response<GetOpenIdTokenResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetOpenIdTokenRequestMarshaller().marshall(getOpenIdTokenRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetOpenIdTokenResult, JsonUnmarshallerContext> unmarshaller = new GetOpenIdTokenResultJsonUnmarshaller();
+            JsonResponseHandler<GetOpenIdTokenResult> responseHandler = new JsonResponseHandler<GetOpenIdTokenResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Generates (or retrieves) a Cognito ID. Supplying multiple logins will
      * create an implicit linked account.
      * </p>
@@ -306,13 +368,13 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
      * @return The response from the GetId service method, as returned by
      *         AmazonCognitoIdentity.
      * 
-     * @throws ResourceConflictException
-     * @throws InternalErrorException
-     * @throws LimitExceededException
      * @throws NotAuthorizedException
-     * @throws InvalidParameterException
+     * @throws LimitExceededException
      * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws ResourceConflictException
      * @throws ResourceNotFoundException
+     * @throws InternalErrorException
      * @throws ExternalServiceException
      *
      * @throws AmazonClientException
@@ -368,13 +430,13 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
      * @return The response from the GetCredentialsForIdentity service
      *         method, as returned by AmazonCognitoIdentity.
      * 
-     * @throws ResourceConflictException
-     * @throws InternalErrorException
-     * @throws InvalidIdentityPoolConfigurationException
      * @throws NotAuthorizedException
-     * @throws InvalidParameterException
+     * @throws InvalidIdentityPoolConfigurationException
      * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws ResourceConflictException
      * @throws ResourceNotFoundException
+     * @throws InternalErrorException
      * @throws ExternalServiceException
      *
      * @throws AmazonClientException
@@ -402,68 +464,6 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
             }
             Unmarshaller<GetCredentialsForIdentityResult, JsonUnmarshallerContext> unmarshaller = new GetCredentialsForIdentityResultJsonUnmarshaller();
             JsonResponseHandler<GetCredentialsForIdentityResult> responseHandler = new JsonResponseHandler<GetCredentialsForIdentityResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
-     * Gets an OpenID token, using a known Cognito ID. This known Cognito ID
-     * is returned by GetId. You can optionally add additional logins for the
-     * identity. Supplying multiple logins creates an implicit link.
-     * </p>
-     * <p>
-     * The OpenId token is valid for 15 minutes.
-     * </p>
-     * <p>
-     * This is a public API. You do not need any credentials to call this
-     * API.
-     * </p>
-     *
-     * @param getOpenIdTokenRequest Container for the necessary parameters to
-     *           execute the GetOpenIdToken service method on AmazonCognitoIdentity.
-     * 
-     * @return The response from the GetOpenIdToken service method, as
-     *         returned by AmazonCognitoIdentity.
-     * 
-     * @throws ResourceConflictException
-     * @throws InternalErrorException
-     * @throws NotAuthorizedException
-     * @throws InvalidParameterException
-     * @throws TooManyRequestsException
-     * @throws ResourceNotFoundException
-     * @throws ExternalServiceException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentity indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetOpenIdTokenResult getOpenIdToken(GetOpenIdTokenRequest getOpenIdTokenRequest) {
-        ExecutionContext executionContext = createExecutionContext(getOpenIdTokenRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<GetOpenIdTokenRequest> request = null;
-        Response<GetOpenIdTokenResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new GetOpenIdTokenRequestMarshaller().marshall(getOpenIdTokenRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<GetOpenIdTokenResult, JsonUnmarshallerContext> unmarshaller = new GetOpenIdTokenResultJsonUnmarshaller();
-            JsonResponseHandler<GetOpenIdTokenResult> responseHandler = new JsonResponseHandler<GetOpenIdTokenResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             

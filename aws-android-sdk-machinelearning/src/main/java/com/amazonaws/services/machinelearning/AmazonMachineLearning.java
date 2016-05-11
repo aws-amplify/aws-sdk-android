@@ -85,6 +85,37 @@ public interface AmazonMachineLearning {
     
     /**
      * <p>
+     * Returns an <code>MLModel</code> that includes detailed metadata, and
+     * data source information as well as the current status of the
+     * <code>MLModel</code> .
+     * </p>
+     * <p>
+     * <code>GetMLModel</code> provides results in normal or verbose format.
+     * </p>
+     *
+     * @param getMLModelRequest Container for the necessary parameters to
+     *           execute the GetMLModel service method on AmazonMachineLearning.
+     * 
+     * @return The response from the GetMLModel service method, as returned
+     *         by AmazonMachineLearning.
+     * 
+     * @throws InvalidInputException
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonMachineLearning indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetMLModelResult getMLModel(GetMLModelRequest getMLModelRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Generates a prediction for the observation using the specified
      * <code>ML Model</code> .
      * </p>
@@ -100,11 +131,11 @@ public interface AmazonMachineLearning {
      * @return The response from the Predict service method, as returned by
      *         AmazonMachineLearning.
      * 
-     * @throws ResourceNotFoundException
      * @throws InvalidInputException
-     * @throws PredictorNotMountedException
-     * @throws LimitExceededException
      * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws PredictorNotMountedException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -115,37 +146,6 @@ public interface AmazonMachineLearning {
      *             either a problem with the data in the request, or a server side issue.
      */
     public PredictResult predict(PredictRequest predictRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns an <code>MLModel</code> that includes detailed metadata, and
-     * data source information as well as the current status of the
-     * <code>MLModel</code> .
-     * </p>
-     * <p>
-     * <code>GetMLModel</code> provides results in normal or verbose format.
-     * </p>
-     *
-     * @param getMLModelRequest Container for the necessary parameters to
-     *           execute the GetMLModel service method on AmazonMachineLearning.
-     * 
-     * @return The response from the GetMLModel service method, as returned
-     *         by AmazonMachineLearning.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws InvalidInputException
-     * @throws InternalServerException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonMachineLearning indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetMLModelResult getMLModel(GetMLModelRequest getMLModelRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**

@@ -294,28 +294,41 @@ public class AmazonSimpleDBAsyncClient extends AmazonSimpleDBClient
             
     /**
      * <p>
-     * The <code>Select</code> operation returns a set of attributes for
-     * <code>ItemNames</code> that match the select expression.
-     * <code>Select</code> is similar to the standard SQL SELECT statement.
+     * Performs multiple DeleteAttributes operations in a single call, which
+     * reduces round trips and latencies. This enables Amazon SimpleDB to
+     * optimize requests, which generally yields better throughput.
      * </p>
      * <p>
-     * The total size of the response cannot exceed 1 MB in total size.
-     * Amazon SimpleDB automatically adjusts the number of items returned per
-     * page to enforce this limit. For example, if the client asks to
-     * retrieve 2500 items, but each individual item is 10 kB in size, the
-     * system returns 100 items and an appropriate <code>NextToken</code> so
-     * the client can access the next page of results.
+     * <b>NOTE:</b> If you specify BatchDeleteAttributes without attributes
+     * or values, all the attributes for the item are deleted.
+     * BatchDeleteAttributes is an idempotent operation; running it multiple
+     * times on the same item or attribute doesn't result in an error. The
+     * BatchDeleteAttributes operation succeeds or fails in its entirety.
+     * There are no partial deletes. You can execute multiple
+     * BatchDeleteAttributes operations and other operations in parallel.
+     * However, large numbers of concurrent BatchDeleteAttributes calls can
+     * result in Service Unavailable (503) responses. This operation is
+     * vulnerable to exceeding the maximum URL size when making a REST
+     * request using the HTTP GET method. This operation does not support
+     * conditions using Expected.X.Name, Expected.X.Value, or
+     * Expected.X.Exists.
      * </p>
      * <p>
-     * For information on how to construct select expressions, see Using
-     * Select to Create Amazon SimpleDB Queries in the Developer Guide.
+     * The following limitations are enforced for this operation:
+     * <ul>
+     * <li>1 MB request size</li>
+     * <li>25 item limit per BatchDeleteAttributes operation</li>
+     * 
+     * </ul>
+     * 
      * </p>
      *
-     * @param selectRequest Container for the necessary parameters to execute
-     *           the Select operation on AmazonSimpleDB.
+     * @param batchDeleteAttributesRequest Container for the necessary
+     *           parameters to execute the BatchDeleteAttributes operation on
+     *           AmazonSimpleDB.
      * 
-     * @return A Java Future object containing the response from the Select
-     *         service method, as returned by AmazonSimpleDB.
+     * @return A Java Future object containing the response from the
+     *         BatchDeleteAttributes service method, as returned by AmazonSimpleDB.
      * 
      *
      * @throws AmazonClientException
@@ -326,43 +339,57 @@ public class AmazonSimpleDBAsyncClient extends AmazonSimpleDBClient
      *             If an error response is returned by AmazonSimpleDB indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<SelectResult> selectAsync(final SelectRequest selectRequest) 
+    public Future<Void> batchDeleteAttributesAsync(final BatchDeleteAttributesRequest batchDeleteAttributesRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SelectResult>() {
-            public SelectResult call() throws Exception {
-                return select(selectRequest);
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                batchDeleteAttributes(batchDeleteAttributesRequest);
+                return null;
         }
     });
     }
 
     /**
      * <p>
-     * The <code>Select</code> operation returns a set of attributes for
-     * <code>ItemNames</code> that match the select expression.
-     * <code>Select</code> is similar to the standard SQL SELECT statement.
+     * Performs multiple DeleteAttributes operations in a single call, which
+     * reduces round trips and latencies. This enables Amazon SimpleDB to
+     * optimize requests, which generally yields better throughput.
      * </p>
      * <p>
-     * The total size of the response cannot exceed 1 MB in total size.
-     * Amazon SimpleDB automatically adjusts the number of items returned per
-     * page to enforce this limit. For example, if the client asks to
-     * retrieve 2500 items, but each individual item is 10 kB in size, the
-     * system returns 100 items and an appropriate <code>NextToken</code> so
-     * the client can access the next page of results.
+     * <b>NOTE:</b> If you specify BatchDeleteAttributes without attributes
+     * or values, all the attributes for the item are deleted.
+     * BatchDeleteAttributes is an idempotent operation; running it multiple
+     * times on the same item or attribute doesn't result in an error. The
+     * BatchDeleteAttributes operation succeeds or fails in its entirety.
+     * There are no partial deletes. You can execute multiple
+     * BatchDeleteAttributes operations and other operations in parallel.
+     * However, large numbers of concurrent BatchDeleteAttributes calls can
+     * result in Service Unavailable (503) responses. This operation is
+     * vulnerable to exceeding the maximum URL size when making a REST
+     * request using the HTTP GET method. This operation does not support
+     * conditions using Expected.X.Name, Expected.X.Value, or
+     * Expected.X.Exists.
      * </p>
      * <p>
-     * For information on how to construct select expressions, see Using
-     * Select to Create Amazon SimpleDB Queries in the Developer Guide.
+     * The following limitations are enforced for this operation:
+     * <ul>
+     * <li>1 MB request size</li>
+     * <li>25 item limit per BatchDeleteAttributes operation</li>
+     * 
+     * </ul>
+     * 
      * </p>
      *
-     * @param selectRequest Container for the necessary parameters to execute
-     *           the Select operation on AmazonSimpleDB.
+     * @param batchDeleteAttributesRequest Container for the necessary
+     *           parameters to execute the BatchDeleteAttributes operation on
+     *           AmazonSimpleDB.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
-     * @return A Java Future object containing the response from the Select
-     *         service method, as returned by AmazonSimpleDB.
+     * @return A Java Future object containing the response from the
+     *         BatchDeleteAttributes service method, as returned by AmazonSimpleDB.
      * 
      *
      * @throws AmazonClientException
@@ -373,21 +400,128 @@ public class AmazonSimpleDBAsyncClient extends AmazonSimpleDBClient
      *             If an error response is returned by AmazonSimpleDB indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<SelectResult> selectAsync(
-            final SelectRequest selectRequest,
-            final AsyncHandler<SelectRequest, SelectResult> asyncHandler)
+    public Future<Void> batchDeleteAttributesAsync(
+            final BatchDeleteAttributesRequest batchDeleteAttributesRequest,
+            final AsyncHandler<BatchDeleteAttributesRequest, Void> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SelectResult>() {
-            public SelectResult call() throws Exception {
-              SelectResult result;
-                try {
-                result = select(selectRequest);
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                batchDeleteAttributes(batchDeleteAttributesRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(selectRequest, result);
-                 return result;
+              asyncHandler.onSuccess(batchDeleteAttributesRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes one or more attributes associated with an item. If all
+     * attributes of the item are deleted, the item is deleted.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> If DeleteAttributes is called without being passed any
+     * attributes or values specified, all the attributes for the item are
+     * deleted.
+     * </p>
+     * <p>
+     * <code>DeleteAttributes</code> is an idempotent operation; running it
+     * multiple times on the same item or attribute does not result in an
+     * error response.
+     * </p>
+     * <p>
+     * Because Amazon SimpleDB makes multiple copies of item data and uses
+     * an eventual consistency update model, performing a GetAttributes or
+     * Select operation (read) immediately after a
+     * <code>DeleteAttributes</code> or PutAttributes operation (write) might
+     * not return updated item data.
+     * </p>
+     *
+     * @param deleteAttributesRequest Container for the necessary parameters
+     *           to execute the DeleteAttributes operation on AmazonSimpleDB.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteAttributes service method, as returned by AmazonSimpleDB.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteAttributesAsync(final DeleteAttributesRequest deleteAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteAttributes(deleteAttributesRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes one or more attributes associated with an item. If all
+     * attributes of the item are deleted, the item is deleted.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> If DeleteAttributes is called without being passed any
+     * attributes or values specified, all the attributes for the item are
+     * deleted.
+     * </p>
+     * <p>
+     * <code>DeleteAttributes</code> is an idempotent operation; running it
+     * multiple times on the same item or attribute does not result in an
+     * error response.
+     * </p>
+     * <p>
+     * Because Amazon SimpleDB makes multiple copies of item data and uses
+     * an eventual consistency update model, performing a GetAttributes or
+     * Select operation (read) immediately after a
+     * <code>DeleteAttributes</code> or PutAttributes operation (write) might
+     * not return updated item data.
+     * </p>
+     *
+     * @param deleteAttributesRequest Container for the necessary parameters
+     *           to execute the DeleteAttributes operation on AmazonSimpleDB.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteAttributes service method, as returned by AmazonSimpleDB.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteAttributesAsync(
+            final DeleteAttributesRequest deleteAttributesRequest,
+            final AsyncHandler<DeleteAttributesRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                deleteAttributes(deleteAttributesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteAttributesRequest, null);
+                 return null;
         }
     });
     }
@@ -566,41 +700,16 @@ public class AmazonSimpleDBAsyncClient extends AmazonSimpleDBClient
     
     /**
      * <p>
-     * Performs multiple DeleteAttributes operations in a single call, which
-     * reduces round trips and latencies. This enables Amazon SimpleDB to
-     * optimize requests, which generally yields better throughput.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If you specify BatchDeleteAttributes without attributes
-     * or values, all the attributes for the item are deleted.
-     * BatchDeleteAttributes is an idempotent operation; running it multiple
-     * times on the same item or attribute doesn't result in an error. The
-     * BatchDeleteAttributes operation succeeds or fails in its entirety.
-     * There are no partial deletes. You can execute multiple
-     * BatchDeleteAttributes operations and other operations in parallel.
-     * However, large numbers of concurrent BatchDeleteAttributes calls can
-     * result in Service Unavailable (503) responses. This operation is
-     * vulnerable to exceeding the maximum URL size when making a REST
-     * request using the HTTP GET method. This operation does not support
-     * conditions using Expected.X.Name, Expected.X.Value, or
-     * Expected.X.Exists.
-     * </p>
-     * <p>
-     * The following limitations are enforced for this operation:
-     * <ul>
-     * <li>1 MB request size</li>
-     * <li>25 item limit per BatchDeleteAttributes operation</li>
-     * 
-     * </ul>
-     * 
+     * Returns information about the domain, including when the domain was
+     * created, the number of items and attributes in the domain, and the
+     * size of the attribute names and values.
      * </p>
      *
-     * @param batchDeleteAttributesRequest Container for the necessary
-     *           parameters to execute the BatchDeleteAttributes operation on
-     *           AmazonSimpleDB.
+     * @param domainMetadataRequest Container for the necessary parameters to
+     *           execute the DomainMetadata operation on AmazonSimpleDB.
      * 
      * @return A Java Future object containing the response from the
-     *         BatchDeleteAttributes service method, as returned by AmazonSimpleDB.
+     *         DomainMetadata service method, as returned by AmazonSimpleDB.
      * 
      *
      * @throws AmazonClientException
@@ -611,57 +720,31 @@ public class AmazonSimpleDBAsyncClient extends AmazonSimpleDBClient
      *             If an error response is returned by AmazonSimpleDB indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> batchDeleteAttributesAsync(final BatchDeleteAttributesRequest batchDeleteAttributesRequest) 
+    public Future<DomainMetadataResult> domainMetadataAsync(final DomainMetadataRequest domainMetadataRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                batchDeleteAttributes(batchDeleteAttributesRequest);
-                return null;
+        return executorService.submit(new Callable<DomainMetadataResult>() {
+            public DomainMetadataResult call() throws Exception {
+                return domainMetadata(domainMetadataRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Performs multiple DeleteAttributes operations in a single call, which
-     * reduces round trips and latencies. This enables Amazon SimpleDB to
-     * optimize requests, which generally yields better throughput.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If you specify BatchDeleteAttributes without attributes
-     * or values, all the attributes for the item are deleted.
-     * BatchDeleteAttributes is an idempotent operation; running it multiple
-     * times on the same item or attribute doesn't result in an error. The
-     * BatchDeleteAttributes operation succeeds or fails in its entirety.
-     * There are no partial deletes. You can execute multiple
-     * BatchDeleteAttributes operations and other operations in parallel.
-     * However, large numbers of concurrent BatchDeleteAttributes calls can
-     * result in Service Unavailable (503) responses. This operation is
-     * vulnerable to exceeding the maximum URL size when making a REST
-     * request using the HTTP GET method. This operation does not support
-     * conditions using Expected.X.Name, Expected.X.Value, or
-     * Expected.X.Exists.
-     * </p>
-     * <p>
-     * The following limitations are enforced for this operation:
-     * <ul>
-     * <li>1 MB request size</li>
-     * <li>25 item limit per BatchDeleteAttributes operation</li>
-     * 
-     * </ul>
-     * 
+     * Returns information about the domain, including when the domain was
+     * created, the number of items and attributes in the domain, and the
+     * size of the attribute names and values.
      * </p>
      *
-     * @param batchDeleteAttributesRequest Container for the necessary
-     *           parameters to execute the BatchDeleteAttributes operation on
-     *           AmazonSimpleDB.
+     * @param domainMetadataRequest Container for the necessary parameters to
+     *           execute the DomainMetadata operation on AmazonSimpleDB.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         BatchDeleteAttributes service method, as returned by AmazonSimpleDB.
+     *         DomainMetadata service method, as returned by AmazonSimpleDB.
      * 
      *
      * @throws AmazonClientException
@@ -672,20 +755,303 @@ public class AmazonSimpleDBAsyncClient extends AmazonSimpleDBClient
      *             If an error response is returned by AmazonSimpleDB indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> batchDeleteAttributesAsync(
-            final BatchDeleteAttributesRequest batchDeleteAttributesRequest,
-            final AsyncHandler<BatchDeleteAttributesRequest, Void> asyncHandler)
+    public Future<DomainMetadataResult> domainMetadataAsync(
+            final DomainMetadataRequest domainMetadataRequest,
+            final AsyncHandler<DomainMetadataRequest, DomainMetadataResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                batchDeleteAttributes(batchDeleteAttributesRequest);
+        return executorService.submit(new Callable<DomainMetadataResult>() {
+            public DomainMetadataResult call() throws Exception {
+              DomainMetadataResult result;
+                try {
+                result = domainMetadata(domainMetadataRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(batchDeleteAttributesRequest, null);
-                 return null;
+              asyncHandler.onSuccess(domainMetadataRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns all of the attributes associated with the specified item.
+     * Optionally, the attributes returned can be limited to one or more
+     * attributes by specifying an attribute name parameter.
+     * </p>
+     * <p>
+     * If the item does not exist on the replica that was accessed for this
+     * operation, an empty set is returned. The system does not return an
+     * error as it cannot guarantee the item does not exist on other
+     * replicas.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> If GetAttributes is called without being passed any
+     * attribute names, all the attributes for the item are returned.
+     * </p>
+     *
+     * @param getAttributesRequest Container for the necessary parameters to
+     *           execute the GetAttributes operation on AmazonSimpleDB.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetAttributes service method, as returned by AmazonSimpleDB.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetAttributesResult> getAttributesAsync(final GetAttributesRequest getAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetAttributesResult>() {
+            public GetAttributesResult call() throws Exception {
+                return getAttributes(getAttributesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns all of the attributes associated with the specified item.
+     * Optionally, the attributes returned can be limited to one or more
+     * attributes by specifying an attribute name parameter.
+     * </p>
+     * <p>
+     * If the item does not exist on the replica that was accessed for this
+     * operation, an empty set is returned. The system does not return an
+     * error as it cannot guarantee the item does not exist on other
+     * replicas.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> If GetAttributes is called without being passed any
+     * attribute names, all the attributes for the item are returned.
+     * </p>
+     *
+     * @param getAttributesRequest Container for the necessary parameters to
+     *           execute the GetAttributes operation on AmazonSimpleDB.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetAttributes service method, as returned by AmazonSimpleDB.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetAttributesResult> getAttributesAsync(
+            final GetAttributesRequest getAttributesRequest,
+            final AsyncHandler<GetAttributesRequest, GetAttributesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetAttributesResult>() {
+            public GetAttributesResult call() throws Exception {
+              GetAttributesResult result;
+                try {
+                result = getAttributes(getAttributesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(getAttributesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * The <code>ListDomains</code> operation lists all domains associated
+     * with the Access Key ID. It returns domain names up to the limit set by
+     * MaxNumberOfDomains. A NextToken is returned if there are more than
+     * <code>MaxNumberOfDomains</code> domains. Calling
+     * <code>ListDomains</code> successive times with the
+     * <code>NextToken</code> provided by the operation returns up to
+     * <code>MaxNumberOfDomains</code> more domain names with each successive
+     * operation call.
+     * </p>
+     *
+     * @param listDomainsRequest Container for the necessary parameters to
+     *           execute the ListDomains operation on AmazonSimpleDB.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ListDomains service method, as returned by AmazonSimpleDB.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ListDomainsResult> listDomainsAsync(final ListDomainsRequest listDomainsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListDomainsResult>() {
+            public ListDomainsResult call() throws Exception {
+                return listDomains(listDomainsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * The <code>ListDomains</code> operation lists all domains associated
+     * with the Access Key ID. It returns domain names up to the limit set by
+     * MaxNumberOfDomains. A NextToken is returned if there are more than
+     * <code>MaxNumberOfDomains</code> domains. Calling
+     * <code>ListDomains</code> successive times with the
+     * <code>NextToken</code> provided by the operation returns up to
+     * <code>MaxNumberOfDomains</code> more domain names with each successive
+     * operation call.
+     * </p>
+     *
+     * @param listDomainsRequest Container for the necessary parameters to
+     *           execute the ListDomains operation on AmazonSimpleDB.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ListDomains service method, as returned by AmazonSimpleDB.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ListDomainsResult> listDomainsAsync(
+            final ListDomainsRequest listDomainsRequest,
+            final AsyncHandler<ListDomainsRequest, ListDomainsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListDomainsResult>() {
+            public ListDomainsResult call() throws Exception {
+              ListDomainsResult result;
+                try {
+                result = listDomains(listDomainsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(listDomainsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * The <code>Select</code> operation returns a set of attributes for
+     * <code>ItemNames</code> that match the select expression.
+     * <code>Select</code> is similar to the standard SQL SELECT statement.
+     * </p>
+     * <p>
+     * The total size of the response cannot exceed 1 MB in total size.
+     * Amazon SimpleDB automatically adjusts the number of items returned per
+     * page to enforce this limit. For example, if the client asks to
+     * retrieve 2500 items, but each individual item is 10 kB in size, the
+     * system returns 100 items and an appropriate <code>NextToken</code> so
+     * the client can access the next page of results.
+     * </p>
+     * <p>
+     * For information on how to construct select expressions, see Using
+     * Select to Create Amazon SimpleDB Queries in the Developer Guide.
+     * </p>
+     *
+     * @param selectRequest Container for the necessary parameters to execute
+     *           the Select operation on AmazonSimpleDB.
+     * 
+     * @return A Java Future object containing the response from the Select
+     *         service method, as returned by AmazonSimpleDB.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SelectResult> selectAsync(final SelectRequest selectRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SelectResult>() {
+            public SelectResult call() throws Exception {
+                return select(selectRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * The <code>Select</code> operation returns a set of attributes for
+     * <code>ItemNames</code> that match the select expression.
+     * <code>Select</code> is similar to the standard SQL SELECT statement.
+     * </p>
+     * <p>
+     * The total size of the response cannot exceed 1 MB in total size.
+     * Amazon SimpleDB automatically adjusts the number of items returned per
+     * page to enforce this limit. For example, if the client asks to
+     * retrieve 2500 items, but each individual item is 10 kB in size, the
+     * system returns 100 items and an appropriate <code>NextToken</code> so
+     * the client can access the next page of results.
+     * </p>
+     * <p>
+     * For information on how to construct select expressions, see Using
+     * Select to Create Amazon SimpleDB Queries in the Developer Guide.
+     * </p>
+     *
+     * @param selectRequest Container for the necessary parameters to execute
+     *           the Select operation on AmazonSimpleDB.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the Select
+     *         service method, as returned by AmazonSimpleDB.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleDB indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SelectResult> selectAsync(
+            final SelectRequest selectRequest,
+            final AsyncHandler<SelectRequest, SelectResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SelectResult>() {
+            public SelectResult call() throws Exception {
+              SelectResult result;
+                try {
+                result = select(selectRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(selectRequest, result);
+                 return result;
         }
     });
     }
@@ -878,296 +1244,6 @@ public class AmazonSimpleDBAsyncClient extends AmazonSimpleDBClient
               }
               asyncHandler.onSuccess(createDomainRequest, null);
                  return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes one or more attributes associated with an item. If all
-     * attributes of the item are deleted, the item is deleted.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If DeleteAttributes is called without being passed any
-     * attributes or values specified, all the attributes for the item are
-     * deleted.
-     * </p>
-     * <p>
-     * <code>DeleteAttributes</code> is an idempotent operation; running it
-     * multiple times on the same item or attribute does not result in an
-     * error response.
-     * </p>
-     * <p>
-     * Because Amazon SimpleDB makes multiple copies of item data and uses
-     * an eventual consistency update model, performing a GetAttributes or
-     * Select operation (read) immediately after a
-     * <code>DeleteAttributes</code> or PutAttributes operation (write) might
-     * not return updated item data.
-     * </p>
-     *
-     * @param deleteAttributesRequest Container for the necessary parameters
-     *           to execute the DeleteAttributes operation on AmazonSimpleDB.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteAttributes service method, as returned by AmazonSimpleDB.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteAttributesAsync(final DeleteAttributesRequest deleteAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                deleteAttributes(deleteAttributesRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes one or more attributes associated with an item. If all
-     * attributes of the item are deleted, the item is deleted.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If DeleteAttributes is called without being passed any
-     * attributes or values specified, all the attributes for the item are
-     * deleted.
-     * </p>
-     * <p>
-     * <code>DeleteAttributes</code> is an idempotent operation; running it
-     * multiple times on the same item or attribute does not result in an
-     * error response.
-     * </p>
-     * <p>
-     * Because Amazon SimpleDB makes multiple copies of item data and uses
-     * an eventual consistency update model, performing a GetAttributes or
-     * Select operation (read) immediately after a
-     * <code>DeleteAttributes</code> or PutAttributes operation (write) might
-     * not return updated item data.
-     * </p>
-     *
-     * @param deleteAttributesRequest Container for the necessary parameters
-     *           to execute the DeleteAttributes operation on AmazonSimpleDB.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteAttributes service method, as returned by AmazonSimpleDB.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteAttributesAsync(
-            final DeleteAttributesRequest deleteAttributesRequest,
-            final AsyncHandler<DeleteAttributesRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                deleteAttributes(deleteAttributesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteAttributesRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * The <code>ListDomains</code> operation lists all domains associated
-     * with the Access Key ID. It returns domain names up to the limit set by
-     * MaxNumberOfDomains. A NextToken is returned if there are more than
-     * <code>MaxNumberOfDomains</code> domains. Calling
-     * <code>ListDomains</code> successive times with the
-     * <code>NextToken</code> provided by the operation returns up to
-     * <code>MaxNumberOfDomains</code> more domain names with each successive
-     * operation call.
-     * </p>
-     *
-     * @param listDomainsRequest Container for the necessary parameters to
-     *           execute the ListDomains operation on AmazonSimpleDB.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ListDomains service method, as returned by AmazonSimpleDB.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<ListDomainsResult> listDomainsAsync(final ListDomainsRequest listDomainsRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListDomainsResult>() {
-            public ListDomainsResult call() throws Exception {
-                return listDomains(listDomainsRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * The <code>ListDomains</code> operation lists all domains associated
-     * with the Access Key ID. It returns domain names up to the limit set by
-     * MaxNumberOfDomains. A NextToken is returned if there are more than
-     * <code>MaxNumberOfDomains</code> domains. Calling
-     * <code>ListDomains</code> successive times with the
-     * <code>NextToken</code> provided by the operation returns up to
-     * <code>MaxNumberOfDomains</code> more domain names with each successive
-     * operation call.
-     * </p>
-     *
-     * @param listDomainsRequest Container for the necessary parameters to
-     *           execute the ListDomains operation on AmazonSimpleDB.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ListDomains service method, as returned by AmazonSimpleDB.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<ListDomainsResult> listDomainsAsync(
-            final ListDomainsRequest listDomainsRequest,
-            final AsyncHandler<ListDomainsRequest, ListDomainsResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListDomainsResult>() {
-            public ListDomainsResult call() throws Exception {
-              ListDomainsResult result;
-                try {
-                result = listDomains(listDomainsRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(listDomainsRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Returns all of the attributes associated with the specified item.
-     * Optionally, the attributes returned can be limited to one or more
-     * attributes by specifying an attribute name parameter.
-     * </p>
-     * <p>
-     * If the item does not exist on the replica that was accessed for this
-     * operation, an empty set is returned. The system does not return an
-     * error as it cannot guarantee the item does not exist on other
-     * replicas.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If GetAttributes is called without being passed any
-     * attribute names, all the attributes for the item are returned.
-     * </p>
-     *
-     * @param getAttributesRequest Container for the necessary parameters to
-     *           execute the GetAttributes operation on AmazonSimpleDB.
-     * 
-     * @return A Java Future object containing the response from the
-     *         GetAttributes service method, as returned by AmazonSimpleDB.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetAttributesResult> getAttributesAsync(final GetAttributesRequest getAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetAttributesResult>() {
-            public GetAttributesResult call() throws Exception {
-                return getAttributes(getAttributesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Returns all of the attributes associated with the specified item.
-     * Optionally, the attributes returned can be limited to one or more
-     * attributes by specifying an attribute name parameter.
-     * </p>
-     * <p>
-     * If the item does not exist on the replica that was accessed for this
-     * operation, an empty set is returned. The system does not return an
-     * error as it cannot guarantee the item does not exist on other
-     * replicas.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If GetAttributes is called without being passed any
-     * attribute names, all the attributes for the item are returned.
-     * </p>
-     *
-     * @param getAttributesRequest Container for the necessary parameters to
-     *           execute the GetAttributes operation on AmazonSimpleDB.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         GetAttributes service method, as returned by AmazonSimpleDB.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetAttributesResult> getAttributesAsync(
-            final GetAttributesRequest getAttributesRequest,
-            final AsyncHandler<GetAttributesRequest, GetAttributesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetAttributesResult>() {
-            public GetAttributesResult call() throws Exception {
-              GetAttributesResult result;
-                try {
-                result = getAttributes(getAttributesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(getAttributesRequest, result);
-                 return result;
         }
     });
     }
@@ -1376,82 +1452,6 @@ public class AmazonSimpleDBAsyncClient extends AmazonSimpleDBClient
               }
               asyncHandler.onSuccess(batchPutAttributesRequest, null);
                  return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Returns information about the domain, including when the domain was
-     * created, the number of items and attributes in the domain, and the
-     * size of the attribute names and values.
-     * </p>
-     *
-     * @param domainMetadataRequest Container for the necessary parameters to
-     *           execute the DomainMetadata operation on AmazonSimpleDB.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DomainMetadata service method, as returned by AmazonSimpleDB.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DomainMetadataResult> domainMetadataAsync(final DomainMetadataRequest domainMetadataRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DomainMetadataResult>() {
-            public DomainMetadataResult call() throws Exception {
-                return domainMetadata(domainMetadataRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Returns information about the domain, including when the domain was
-     * created, the number of items and attributes in the domain, and the
-     * size of the attribute names and values.
-     * </p>
-     *
-     * @param domainMetadataRequest Container for the necessary parameters to
-     *           execute the DomainMetadata operation on AmazonSimpleDB.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DomainMetadata service method, as returned by AmazonSimpleDB.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleDB indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DomainMetadataResult> domainMetadataAsync(
-            final DomainMetadataRequest domainMetadataRequest,
-            final AsyncHandler<DomainMetadataRequest, DomainMetadataResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DomainMetadataResult>() {
-            public DomainMetadataResult call() throws Exception {
-              DomainMetadataResult result;
-                try {
-                result = domainMetadata(domainMetadataRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(domainMetadataRequest, result);
-                 return result;
         }
     });
     }

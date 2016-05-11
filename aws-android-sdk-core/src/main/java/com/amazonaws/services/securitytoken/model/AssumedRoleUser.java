@@ -44,6 +44,7 @@ public class AssumedRoleUser implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>[&#92;u0009&#92;u000A&#92;u000D&#92;u0020-&#92;u007E&#92;u0085&#92;u00A0-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;u10000-&#92;u10FFFF]+<br/>
      */
     private String arn;
 
@@ -113,6 +114,7 @@ public class AssumedRoleUser implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>[&#92;u0009&#92;u000A&#92;u000D&#92;u0020-&#92;u007E&#92;u0085&#92;u00A0-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;u10000-&#92;u10FFFF]+<br/>
      *
      * @return The ARN of the temporary security credentials that are returned from
      *         the <a>AssumeRole</a> action. For more information about ARNs and how
@@ -133,6 +135,7 @@ public class AssumedRoleUser implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>[&#92;u0009&#92;u000A&#92;u000D&#92;u0020-&#92;u007E&#92;u0085&#92;u00A0-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;u10000-&#92;u10FFFF]+<br/>
      *
      * @param arn The ARN of the temporary security credentials that are returned from
      *         the <a>AssumeRole</a> action. For more information about ARNs and how
@@ -155,6 +158,7 @@ public class AssumedRoleUser implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>[&#92;u0009&#92;u000A&#92;u000D&#92;u0020-&#92;u007E&#92;u0085&#92;u00A0-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;u10000-&#92;u10FFFF]+<br/>
      *
      * @param arn The ARN of the temporary security credentials that are returned from
      *         the <a>AssumeRole</a> action. For more information about ARNs and how

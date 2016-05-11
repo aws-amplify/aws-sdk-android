@@ -29,7 +29,7 @@ import java.util.Map;
  */
 public class CognitoUserSettings {
     /**
-     * User Settings
+     * User Settings.
      */
     private Map<String, String> userSettings;
 
@@ -41,7 +41,7 @@ public class CognitoUserSettings {
     }
 
     /**
-     * Constructs from MFAOptionType List
+     * Constructs from MFAOptionType List.
      *
      * @param userSettingsList      REQUIRED: User settings as a {@link MFAOptionType} list.
      */
@@ -55,7 +55,7 @@ public class CognitoUserSettings {
     }
 
     /**
-     * Returns a MFAOptionType list
+     * Returns a MFAOptionType list.
      *
      * @return User settings as a {@link MFAOptionType} list.
      */

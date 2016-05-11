@@ -227,20 +227,20 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
 
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
+        jsonErrorUnmarshallers.add(new EC2ThrottledExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new SubnetIPAddressLimitReachedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UnsupportedMediaTypeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidSubnetIDExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new RequestTooLargeExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new EC2AccessDeniedExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new UnsupportedMediaTypeExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new EC2UnexpectedExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidRequestContentExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new SubnetIPAddressLimitReachedExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new EC2ThrottledExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidSecurityGroupIDExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new RequestTooLargeExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new EC2UnexpectedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new EC2AccessDeniedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ENILimitReachedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidRequestContentExceptionUnmarshaller());
         
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
         
@@ -286,20 +286,20 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * @return The response from the Invoke service method, as returned by
      *         AWSLambda.
      * 
-     * @throws InvalidRequestContentException
-     * @throws InvalidSubnetIDException
      * @throws InvalidParameterValueException
+     * @throws EC2AccessDeniedException
+     * @throws ENILimitReachedException
      * @throws InvalidSecurityGroupIDException
      * @throws ServiceException
-     * @throws RequestTooLargeException
-     * @throws SubnetIPAddressLimitReachedException
+     * @throws TooManyRequestsException
      * @throws EC2ThrottledException
-     * @throws ResourceNotFoundException
-     * @throws EC2AccessDeniedException
+     * @throws SubnetIPAddressLimitReachedException
+     * @throws RequestTooLargeException
      * @throws UnsupportedMediaTypeException
      * @throws EC2UnexpectedException
-     * @throws TooManyRequestsException
-     * @throws ENILimitReachedException
+     * @throws InvalidSubnetIDException
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestContentException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while

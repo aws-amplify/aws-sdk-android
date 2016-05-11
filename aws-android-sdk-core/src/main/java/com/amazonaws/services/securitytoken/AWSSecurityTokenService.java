@@ -144,71 +144,6 @@ public interface AWSSecurityTokenService {
     
     /**
      * <p>
-     * Returns a set of temporary credentials for an AWS account or IAM
-     * user. The credentials consist of an access key ID, a secret access
-     * key, and a security token. Typically, you use
-     * <code>GetSessionToken</code> if you want to use MFA to protect
-     * programmatic calls to specific AWS APIs like Amazon EC2
-     * <code>StopInstances</code> . MFA-enabled IAM users would need to call
-     * <code>GetSessionToken</code> and submit an MFA code that is associated
-     * with their MFA device. Using the temporary security credentials that
-     * are returned from the call, IAM users can then make programmatic calls
-     * to APIs that require MFA authentication. If you do not supply a
-     * correct MFA code, then the API returns an access denied error.
-     * </p>
-     * <p>
-     * The <code>GetSessionToken</code> action must be called by using the
-     * long-term AWS security credentials of the AWS account or an IAM user.
-     * Credentials that are created by IAM users are valid for the duration
-     * that you specify, between 900 seconds (15 minutes) and 129600 seconds
-     * (36 hours); credentials that are created by using account credentials
-     * have a maximum duration of 3600 seconds (1 hour).
-     * </p>
-     * <p>
-     * <b>NOTE:</b> We recommend that you do not call GetSessionToken with
-     * root account credentials. Instead, follow our best practices by
-     * creating one or more IAM users, giving them the necessary permissions,
-     * and using IAM users for everyday interaction with AWS.
-     * </p>
-     * <p>
-     * The permissions associated with the temporary security credentials
-     * returned by <code>GetSessionToken</code> are based on the permissions
-     * associated with account or IAM user whose credentials are used to call
-     * the action. If <code>GetSessionToken</code> is called using root
-     * account credentials, the temporary credentials have root account
-     * permissions. Similarly, if <code>GetSessionToken</code> is called
-     * using the credentials of an IAM user, the temporary credentials have
-     * the same permissions as the IAM user.
-     * </p>
-     * <p>
-     * For more information about using <code>GetSessionToken</code> to
-     * create temporary credentials, go to
-     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getsessiontoken"> Temporary Credentials for Users in Untrusted Environments </a>
-     * in the <i>Using IAM</i> .
-     * </p>
-     *
-     * @param getSessionTokenRequest Container for the necessary parameters
-     *           to execute the GetSessionToken service method on
-     *           AWSSecurityTokenService.
-     * 
-     * @return The response from the GetSessionToken service method, as
-     *         returned by AWSSecurityTokenService.
-     * 
-     * @throws RegionDisabledException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSSecurityTokenService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetSessionTokenResult getSessionToken(GetSessionTokenRequest getSessionTokenRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Returns a set of temporary security credentials for users who have
      * been authenticated in a mobile or web application with a web identity
      * provider, such as Amazon Cognito, Login with Amazon, Facebook, Google,
@@ -302,13 +237,13 @@ public interface AWSSecurityTokenService {
      * @return The response from the AssumeRoleWithWebIdentity service
      *         method, as returned by AWSSecurityTokenService.
      * 
-     * @throws PackedPolicyTooLargeException
-     * @throws IDPRejectedClaimException
-     * @throws MalformedPolicyDocumentException
-     * @throws InvalidIdentityTokenException
-     * @throws ExpiredTokenException
      * @throws RegionDisabledException
+     * @throws IDPRejectedClaimException
      * @throws IDPCommunicationErrorException
+     * @throws PackedPolicyTooLargeException
+     * @throws InvalidIdentityTokenException
+     * @throws MalformedPolicyDocumentException
+     * @throws ExpiredTokenException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -322,102 +257,78 @@ public interface AWSSecurityTokenService {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * Returns a set of temporary security credentials (consisting of an
-     * access key ID, a secret access key, and a security token) for a
-     * federated user. A typical use is in a proxy application that gets
-     * temporary security credentials on behalf of distributed applications
-     * inside a corporate network. Because you must call the
-     * <code>GetFederationToken</code> action using the long-term security
-     * credentials of an IAM user, this call is appropriate in contexts where
-     * those credentials can be safely stored, usually in a server-based
-     * application.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> If you are creating a mobile-based or browser-based app
-     * that can authenticate users using a web identity provider like Login
-     * with Amazon, Facebook, Google, or an OpenID Connect-compatible
-     * identity provider, we recommend that you use Amazon Cognito or
-     * AssumeRoleWithWebIdentity. For more information, see Federation
-     * Through a Web-based Identity Provider.
-     * </p>
-     * <p>
-     * The <code>GetFederationToken</code> action must be called by using
-     * the long-term AWS security credentials of an IAM user. You can also
-     * call <code>GetFederationToken</code> using the security credentials of
-     * an AWS account (root), but this is not recommended. Instead, we
-     * recommend that you create an IAM user for the purpose of the proxy
-     * application and then attach a policy to the IAM user that limits
-     * federated users to only the actions and resources they need access to.
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"> IAM Best Practices </a>
-     * in the <i>Using IAM</i> .
-     * </p>
-     * <p>
-     * The temporary security credentials that are obtained by using the
-     * long-term credentials of an IAM user are valid for the specified
-     * duration, between 900 seconds (15 minutes) and 129600 seconds (36
-     * hours). Temporary credentials that are obtained by using AWS account
-     * (root) credentials have a maximum duration of 3600 seconds (1 hour)
-     * </p>
-     * <p>
-     * <b>Permissions</b>
-     * </p>
-     * <p>
-     * The permissions for the temporary security credentials returned by
-     * <code>GetFederationToken</code> are determined by a combination of the
-     * following:
-     * </p>
-     * 
-     * <ul>
-     * <li>The policy or policies that are attached to the IAM user whose
-     * credentials are used to call <code>GetFederationToken</code> .</li>
-     * <li>The policy that is passed as a parameter in the call.</li>
-     * 
-     * </ul>
-     * <p>
-     * The passed policy is attached to the temporary security credentials
-     * that result from the <code>GetFederationToken</code> API call--that
-     * is, to the <i>federated user</i> . When the federated user makes an
-     * AWS request, AWS evaluates the policy attached to the federated user
-     * in combination with the policy or policies attached to the IAM user
-     * whose credentials were used to call <code>GetFederationToken</code> .
-     * AWS allows the federated user's request only when both the federated
-     * user <i> and </i> the IAM user are explicitly allowed to perform the
-     * requested action. The passed policy cannot grant more permissions than
-     * those that are defined in the IAM user policy.
-     * </p>
-     * <p>
-     * A typical use case is that the permissions of the IAM user whose
-     * credentials are used to call <code>GetFederationToken</code> are
-     * designed to allow access to all the actions and resources that any
-     * federated user will need. Then, for individual users, you pass a
-     * policy to the operation that scopes down the permissions to a level
-     * that's appropriate to that individual user, using a policy that allows
-     * only a subset of permissions that are granted to the IAM user.
-     * </p>
-     * <p>
-     * If you do not pass a policy, the resulting temporary security
-     * credentials have no effective permissions. The only exception is when
-     * the temporary security credentials are used to access a resource that
-     * has a resource-based policy that specifically allows the federated
-     * user to access the resource.
-     * </p>
-     * <p>
-     * For more information about how permissions work, see
-     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getfederationtoken"> GetFederationToken—Federation Through a Custom Identity Broker </a>
-     * .
-     * </p>
      *
-     * @param getFederationTokenRequest Container for the necessary
-     *           parameters to execute the GetFederationToken service method on
+     * @param getCallerIdentityRequest Container for the necessary parameters
+     *           to execute the GetCallerIdentity service method on
      *           AWSSecurityTokenService.
      * 
-     * @return The response from the GetFederationToken service method, as
+     * @return The response from the GetCallerIdentity service method, as
      *         returned by AWSSecurityTokenService.
      * 
-     * @throws PackedPolicyTooLargeException
-     * @throws MalformedPolicyDocumentException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSSecurityTokenService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetCallerIdentityResult getCallerIdentity(GetCallerIdentityRequest getCallerIdentityRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns a set of temporary credentials for an AWS account or IAM
+     * user. The credentials consist of an access key ID, a secret access
+     * key, and a security token. Typically, you use
+     * <code>GetSessionToken</code> if you want to use MFA to protect
+     * programmatic calls to specific AWS APIs like Amazon EC2
+     * <code>StopInstances</code> . MFA-enabled IAM users would need to call
+     * <code>GetSessionToken</code> and submit an MFA code that is associated
+     * with their MFA device. Using the temporary security credentials that
+     * are returned from the call, IAM users can then make programmatic calls
+     * to APIs that require MFA authentication. If you do not supply a
+     * correct MFA code, then the API returns an access denied error.
+     * </p>
+     * <p>
+     * The <code>GetSessionToken</code> action must be called by using the
+     * long-term AWS security credentials of the AWS account or an IAM user.
+     * Credentials that are created by IAM users are valid for the duration
+     * that you specify, between 900 seconds (15 minutes) and 129600 seconds
+     * (36 hours); credentials that are created by using account credentials
+     * have a maximum duration of 3600 seconds (1 hour).
+     * </p>
+     * <p>
+     * <b>NOTE:</b> We recommend that you do not call GetSessionToken with
+     * root account credentials. Instead, follow our best practices by
+     * creating one or more IAM users, giving them the necessary permissions,
+     * and using IAM users for everyday interaction with AWS.
+     * </p>
+     * <p>
+     * The permissions associated with the temporary security credentials
+     * returned by <code>GetSessionToken</code> are based on the permissions
+     * associated with account or IAM user whose credentials are used to call
+     * the action. If <code>GetSessionToken</code> is called using root
+     * account credentials, the temporary credentials have root account
+     * permissions. Similarly, if <code>GetSessionToken</code> is called
+     * using the credentials of an IAM user, the temporary credentials have
+     * the same permissions as the IAM user.
+     * </p>
+     * <p>
+     * For more information about using <code>GetSessionToken</code> to
+     * create temporary credentials, go to
+     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getsessiontoken"> Temporary Credentials for Users in Untrusted Environments </a>
+     * in the <i>Using IAM</i> .
+     * </p>
+     *
+     * @param getSessionTokenRequest Container for the necessary parameters
+     *           to execute the GetSessionToken service method on
+     *           AWSSecurityTokenService.
+     * 
+     * @return The response from the GetSessionToken service method, as
+     *         returned by AWSSecurityTokenService.
+     * 
      * @throws RegionDisabledException
      *
      * @throws AmazonClientException
@@ -428,7 +339,7 @@ public interface AWSSecurityTokenService {
      *             If an error response is returned by AWSSecurityTokenService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public GetFederationTokenResult getFederationToken(GetFederationTokenRequest getFederationTokenRequest) 
+    public GetSessionTokenResult getSessionToken(GetSessionTokenRequest getSessionTokenRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -551,9 +462,9 @@ public interface AWSSecurityTokenService {
      * @return The response from the AssumeRole service method, as returned
      *         by AWSSecurityTokenService.
      * 
+     * @throws RegionDisabledException
      * @throws PackedPolicyTooLargeException
      * @throws MalformedPolicyDocumentException
-     * @throws RegionDisabledException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -566,6 +477,132 @@ public interface AWSSecurityTokenService {
     public AssumeRoleResult assumeRole(AssumeRoleRequest assumeRoleRequest) 
             throws AmazonServiceException, AmazonClientException;
 
+    /**
+     * <p>
+     * Returns a set of temporary security credentials (consisting of an
+     * access key ID, a secret access key, and a security token) for a
+     * federated user. A typical use is in a proxy application that gets
+     * temporary security credentials on behalf of distributed applications
+     * inside a corporate network. Because you must call the
+     * <code>GetFederationToken</code> action using the long-term security
+     * credentials of an IAM user, this call is appropriate in contexts where
+     * those credentials can be safely stored, usually in a server-based
+     * application.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> If you are creating a mobile-based or browser-based app
+     * that can authenticate users using a web identity provider like Login
+     * with Amazon, Facebook, Google, or an OpenID Connect-compatible
+     * identity provider, we recommend that you use Amazon Cognito or
+     * AssumeRoleWithWebIdentity. For more information, see Federation
+     * Through a Web-based Identity Provider.
+     * </p>
+     * <p>
+     * The <code>GetFederationToken</code> action must be called by using
+     * the long-term AWS security credentials of an IAM user. You can also
+     * call <code>GetFederationToken</code> using the security credentials of
+     * an AWS account (root), but this is not recommended. Instead, we
+     * recommend that you create an IAM user for the purpose of the proxy
+     * application and then attach a policy to the IAM user that limits
+     * federated users to only the actions and resources they need access to.
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"> IAM Best Practices </a>
+     * in the <i>Using IAM</i> .
+     * </p>
+     * <p>
+     * The temporary security credentials that are obtained by using the
+     * long-term credentials of an IAM user are valid for the specified
+     * duration, between 900 seconds (15 minutes) and 129600 seconds (36
+     * hours). Temporary credentials that are obtained by using AWS account
+     * (root) credentials have a maximum duration of 3600 seconds (1 hour)
+     * </p>
+     * <p>
+     * <b>Permissions</b>
+     * </p>
+     * <p>
+     * The permissions for the temporary security credentials returned by
+     * <code>GetFederationToken</code> are determined by a combination of the
+     * following:
+     * </p>
+     * 
+     * <ul>
+     * <li>The policy or policies that are attached to the IAM user whose
+     * credentials are used to call <code>GetFederationToken</code> .</li>
+     * <li>The policy that is passed as a parameter in the call.</li>
+     * 
+     * </ul>
+     * <p>
+     * The passed policy is attached to the temporary security credentials
+     * that result from the <code>GetFederationToken</code> API call--that
+     * is, to the <i>federated user</i> . When the federated user makes an
+     * AWS request, AWS evaluates the policy attached to the federated user
+     * in combination with the policy or policies attached to the IAM user
+     * whose credentials were used to call <code>GetFederationToken</code> .
+     * AWS allows the federated user's request only when both the federated
+     * user <i> and </i> the IAM user are explicitly allowed to perform the
+     * requested action. The passed policy cannot grant more permissions than
+     * those that are defined in the IAM user policy.
+     * </p>
+     * <p>
+     * A typical use case is that the permissions of the IAM user whose
+     * credentials are used to call <code>GetFederationToken</code> are
+     * designed to allow access to all the actions and resources that any
+     * federated user will need. Then, for individual users, you pass a
+     * policy to the operation that scopes down the permissions to a level
+     * that's appropriate to that individual user, using a policy that allows
+     * only a subset of permissions that are granted to the IAM user.
+     * </p>
+     * <p>
+     * If you do not pass a policy, the resulting temporary security
+     * credentials have no effective permissions. The only exception is when
+     * the temporary security credentials are used to access a resource that
+     * has a resource-based policy that specifically allows the federated
+     * user to access the resource.
+     * </p>
+     * <p>
+     * For more information about how permissions work, see
+     * <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html"> Permissions for GetFederationToken </a> . For information about using <code>GetFederationToken</code> to create temporary security credentials, see <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getfederationtoken"> GetFederationToken—Federation Through a Custom Identity Broker </a>
+     * .
+     * </p>
+     *
+     * @param getFederationTokenRequest Container for the necessary
+     *           parameters to execute the GetFederationToken service method on
+     *           AWSSecurityTokenService.
+     * 
+     * @return The response from the GetFederationToken service method, as
+     *         returned by AWSSecurityTokenService.
+     * 
+     * @throws RegionDisabledException
+     * @throws PackedPolicyTooLargeException
+     * @throws MalformedPolicyDocumentException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSSecurityTokenService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetFederationTokenResult getFederationToken(GetFederationTokenRequest getFederationTokenRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * 
+     * @return The response from the GetCallerIdentity service method, as
+     *         returned by AWSSecurityTokenService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSSecurityTokenService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetCallerIdentityResult getCallerIdentity() throws AmazonServiceException, AmazonClientException;
+    
     /**
      * <p>
      * Returns a set of temporary credentials for an AWS account or IAM

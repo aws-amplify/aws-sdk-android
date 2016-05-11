@@ -20,8 +20,7 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider.util;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoInternalErrorException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
 import com.amazonaws.util.Base64;
-
-import java.nio.charset.StandardCharsets;
+import com.amazonaws.util.StringUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -55,14 +54,14 @@ public final class CognitoSecretHash {
             return null;
         }
 
-        SecretKeySpec signingKey = new SecretKeySpec(clientSecret.getBytes(StandardCharsets.UTF_8),
+        SecretKeySpec signingKey = new SecretKeySpec(clientSecret.getBytes(StringUtils.UTF8),
                 HMAC_SHA_256);
 
         try {
             Mac mac = Mac.getInstance(HMAC_SHA_256);
             mac.init(signingKey);
-            mac.update(userId.getBytes(StandardCharsets.UTF_8));
-            byte[] rawHmac = mac.doFinal(clientId.getBytes(StandardCharsets.UTF_8));
+            mac.update(userId.getBytes(StringUtils.UTF8));
+            byte[] rawHmac = mac.doFinal(clientId.getBytes(StringUtils.UTF8));
             return  new String(Base64.encode(rawHmac));
         } catch (Exception e) {
             throw new CognitoInternalErrorException("errors in HMAC calculation");

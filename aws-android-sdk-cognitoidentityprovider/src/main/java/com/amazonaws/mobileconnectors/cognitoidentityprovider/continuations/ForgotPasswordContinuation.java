@@ -26,7 +26,9 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPas
  */
 public class ForgotPasswordContinuation implements CognitoIdentityProviderContinuation<CognitoUserCodeDeliveryDetails> {
 
-    // Boolean constants used to indicate where this continuation will run.
+    /**
+     * Boolean constants used to indicate where this continuation will run.
+     */
     final public static boolean RUN_IN_BACKGROUND = true;
     final public static boolean RUN_IN_CURRENT = false;
 

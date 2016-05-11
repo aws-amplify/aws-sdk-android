@@ -27,11 +27,11 @@ public interface AWSIotMqttClientStatusCallback {
 
     enum AWSIotMqttClientStatus {
         /**
-         * Client is attepting to connect.
+         * Client is attempting to connect.
          */
         Connecting,
         /**
-         * Client succssfully connected.
+         * Client successfully connected.
          */
         Connected,
         /**

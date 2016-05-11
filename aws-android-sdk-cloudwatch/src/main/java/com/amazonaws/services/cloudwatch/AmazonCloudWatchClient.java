@@ -259,14 +259,14 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
     }
 
     private void init() {
-        exceptionUnmarshallers.add(new InvalidNextTokenExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new InvalidParameterCombinationExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidFormatExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new InternalServiceExceptionUnmarshaller());
-        exceptionUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         exceptionUnmarshallers.add(new MissingRequiredParameterExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InternalServiceExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidParameterCombinationExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidNextTokenExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         
         exceptionUnmarshallers.add(new StandardErrorUnmarshaller());
         
@@ -280,6 +280,75 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
                 "/com/amazonaws/services/cloudwatch/request.handler2s"));
     }
 
+    /**
+     * <p>
+     * Deletes all specified alarms. In the event of an error, no alarms are
+     * deleted.
+     * </p>
+     *
+     * @param deleteAlarmsRequest Container for the necessary parameters to
+     *           execute the DeleteAlarms service method on AmazonCloudWatch.
+     * 
+     * 
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteAlarms(DeleteAlarmsRequest deleteAlarmsRequest) {
+        ExecutionContext executionContext = createExecutionContext(deleteAlarmsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DeleteAlarmsRequest> request = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new DeleteAlarmsRequestMarshaller().marshall(deleteAlarmsRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, null);
+        }
+    }
+    
+    /**
+     * <p>
+     * Enables actions for the specified alarms.
+     * </p>
+     *
+     * @param enableAlarmActionsRequest Container for the necessary
+     *           parameters to execute the EnableAlarmActions service method on
+     *           AmazonCloudWatch.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void enableAlarmActions(EnableAlarmActionsRequest enableAlarmActionsRequest) {
+        ExecutionContext executionContext = createExecutionContext(enableAlarmActionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<EnableAlarmActionsRequest> request = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new EnableAlarmActionsRequestMarshaller().marshall(enableAlarmActionsRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, null);
+        }
+    }
+    
     /**
      * <p>
      * Creates or updates an alarm and associates it with the specified
@@ -328,6 +397,84 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
     
     /**
      * <p>
+     * Retrieves all alarms for a single metric. Specify a statistic,
+     * period, or unit to filter the set of alarms further.
+     * </p>
+     *
+     * @param describeAlarmsForMetricRequest Container for the necessary
+     *           parameters to execute the DescribeAlarmsForMetric service method on
+     *           AmazonCloudWatch.
+     * 
+     * @return The response from the DescribeAlarmsForMetric service method,
+     *         as returned by AmazonCloudWatch.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAlarmsForMetricResult describeAlarmsForMetric(DescribeAlarmsForMetricRequest describeAlarmsForMetricRequest) {
+        ExecutionContext executionContext = createExecutionContext(describeAlarmsForMetricRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DescribeAlarmsForMetricRequest> request = null;
+        Response<DescribeAlarmsForMetricResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new DescribeAlarmsForMetricRequestMarshaller().marshall(describeAlarmsForMetricRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new DescribeAlarmsForMetricResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
+     * Temporarily sets the state of an alarm. When the updated
+     * <code>StateValue</code> differs from the previous value, the action
+     * configured for the appropriate state is invoked. This is not a
+     * permanent change. The next periodic alarm check (in about a minute)
+     * will set the alarm to its actual state.
+     * </p>
+     *
+     * @param setAlarmStateRequest Container for the necessary parameters to
+     *           execute the SetAlarmState service method on AmazonCloudWatch.
+     * 
+     * 
+     * @throws InvalidFormatException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void setAlarmState(SetAlarmStateRequest setAlarmStateRequest) {
+        ExecutionContext executionContext = createExecutionContext(setAlarmStateRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<SetAlarmStateRequest> request = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new SetAlarmStateRequestMarshaller().marshall(setAlarmStateRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, null);
+        }
+    }
+    
+    /**
+     * <p>
      * Publishes metric data points to Amazon CloudWatch. Amazon Cloudwatch
      * associates the data points with the specified metric. If the specified
      * metric does not exist, Amazon CloudWatch creates the metric.
@@ -354,9 +501,9 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
      * 
      * 
      * @throws InvalidParameterValueException
-     * @throws InternalServiceException
-     * @throws InvalidParameterCombinationException
      * @throws MissingRequiredParameterException
+     * @throws InvalidParameterCombinationException
+     * @throws InternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -404,8 +551,8 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
      * @return The response from the ListMetrics service method, as returned
      *         by AmazonCloudWatch.
      * 
-     * @throws InternalServiceException
      * @throws InvalidParameterValueException
+     * @throws InternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -426,6 +573,87 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
             response = invoke(request, new ListMetricsResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
+     * Disables actions for the specified alarms. When an alarm's actions
+     * are disabled the alarm's state may change, but none of the alarm's
+     * actions will execute.
+     * </p>
+     *
+     * @param disableAlarmActionsRequest Container for the necessary
+     *           parameters to execute the DisableAlarmActions service method on
+     *           AmazonCloudWatch.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void disableAlarmActions(DisableAlarmActionsRequest disableAlarmActionsRequest) {
+        ExecutionContext executionContext = createExecutionContext(disableAlarmActionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DisableAlarmActionsRequest> request = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new DisableAlarmActionsRequestMarshaller().marshall(disableAlarmActionsRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, null);
+        }
+    }
+    
+    /**
+     * <p>
+     * Retrieves history for the specified alarm. Filter alarms by date
+     * range or item type. If an alarm name is not specified, Amazon
+     * CloudWatch returns histories for all of the owner's alarms.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> Amazon CloudWatch retains the history of an alarm for
+     * two weeks, whether or not you delete the alarm.
+     * </p>
+     *
+     * @param describeAlarmHistoryRequest Container for the necessary
+     *           parameters to execute the DescribeAlarmHistory service method on
+     *           AmazonCloudWatch.
+     * 
+     * @return The response from the DescribeAlarmHistory service method, as
+     *         returned by AmazonCloudWatch.
+     * 
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAlarmHistoryResult describeAlarmHistory(DescribeAlarmHistoryRequest describeAlarmHistoryRequest) {
+        ExecutionContext executionContext = createExecutionContext(describeAlarmHistoryRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DescribeAlarmHistoryRequest> request = null;
+        Response<DescribeAlarmHistoryResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new DescribeAlarmHistoryRequestMarshaller().marshall(describeAlarmHistoryRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new DescribeAlarmHistoryResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
             endClientExecution(awsRequestMetrics, request, response);
@@ -478,9 +706,9 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
      *         returned by AmazonCloudWatch.
      * 
      * @throws InvalidParameterValueException
-     * @throws InternalServiceException
-     * @throws InvalidParameterCombinationException
      * @throws MissingRequiredParameterException
+     * @throws InvalidParameterCombinationException
+     * @throws InternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -504,42 +732,6 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
             return response.getAwsResponse();
         } finally {
             endClientExecution(awsRequestMetrics, request, response);
-        }
-    }
-    
-    /**
-     * <p>
-     * Disables actions for the specified alarms. When an alarm's actions
-     * are disabled the alarm's state may change, but none of the alarm's
-     * actions will execute.
-     * </p>
-     *
-     * @param disableAlarmActionsRequest Container for the necessary
-     *           parameters to execute the DisableAlarmActions service method on
-     *           AmazonCloudWatch.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void disableAlarmActions(DisableAlarmActionsRequest disableAlarmActionsRequest) {
-        ExecutionContext executionContext = createExecutionContext(disableAlarmActionsRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<DisableAlarmActionsRequest> request = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new DisableAlarmActionsRequestMarshaller().marshall(disableAlarmActionsRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            invoke(request, null, executionContext);
-        } finally {
-            endClientExecution(awsRequestMetrics, request, null);
         }
     }
     
@@ -586,198 +778,6 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
     
     /**
      * <p>
-     * Retrieves all alarms for a single metric. Specify a statistic,
-     * period, or unit to filter the set of alarms further.
-     * </p>
-     *
-     * @param describeAlarmsForMetricRequest Container for the necessary
-     *           parameters to execute the DescribeAlarmsForMetric service method on
-     *           AmazonCloudWatch.
-     * 
-     * @return The response from the DescribeAlarmsForMetric service method,
-     *         as returned by AmazonCloudWatch.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeAlarmsForMetricResult describeAlarmsForMetric(DescribeAlarmsForMetricRequest describeAlarmsForMetricRequest) {
-        ExecutionContext executionContext = createExecutionContext(describeAlarmsForMetricRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<DescribeAlarmsForMetricRequest> request = null;
-        Response<DescribeAlarmsForMetricResult> response = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new DescribeAlarmsForMetricRequestMarshaller().marshall(describeAlarmsForMetricRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            response = invoke(request, new DescribeAlarmsForMetricResultStaxUnmarshaller(), executionContext);
-            return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response);
-        }
-    }
-    
-    /**
-     * <p>
-     * Retrieves history for the specified alarm. Filter alarms by date
-     * range or item type. If an alarm name is not specified, Amazon
-     * CloudWatch returns histories for all of the owner's alarms.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> Amazon CloudWatch retains the history of an alarm for
-     * two weeks, whether or not you delete the alarm.
-     * </p>
-     *
-     * @param describeAlarmHistoryRequest Container for the necessary
-     *           parameters to execute the DescribeAlarmHistory service method on
-     *           AmazonCloudWatch.
-     * 
-     * @return The response from the DescribeAlarmHistory service method, as
-     *         returned by AmazonCloudWatch.
-     * 
-     * @throws InvalidNextTokenException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeAlarmHistoryResult describeAlarmHistory(DescribeAlarmHistoryRequest describeAlarmHistoryRequest) {
-        ExecutionContext executionContext = createExecutionContext(describeAlarmHistoryRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<DescribeAlarmHistoryRequest> request = null;
-        Response<DescribeAlarmHistoryResult> response = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new DescribeAlarmHistoryRequestMarshaller().marshall(describeAlarmHistoryRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            response = invoke(request, new DescribeAlarmHistoryResultStaxUnmarshaller(), executionContext);
-            return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response);
-        }
-    }
-    
-    /**
-     * <p>
-     * Enables actions for the specified alarms.
-     * </p>
-     *
-     * @param enableAlarmActionsRequest Container for the necessary
-     *           parameters to execute the EnableAlarmActions service method on
-     *           AmazonCloudWatch.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void enableAlarmActions(EnableAlarmActionsRequest enableAlarmActionsRequest) {
-        ExecutionContext executionContext = createExecutionContext(enableAlarmActionsRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<EnableAlarmActionsRequest> request = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new EnableAlarmActionsRequestMarshaller().marshall(enableAlarmActionsRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            invoke(request, null, executionContext);
-        } finally {
-            endClientExecution(awsRequestMetrics, request, null);
-        }
-    }
-    
-    /**
-     * <p>
-     * Deletes all specified alarms. In the event of an error, no alarms are
-     * deleted.
-     * </p>
-     *
-     * @param deleteAlarmsRequest Container for the necessary parameters to
-     *           execute the DeleteAlarms service method on AmazonCloudWatch.
-     * 
-     * 
-     * @throws ResourceNotFoundException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteAlarms(DeleteAlarmsRequest deleteAlarmsRequest) {
-        ExecutionContext executionContext = createExecutionContext(deleteAlarmsRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<DeleteAlarmsRequest> request = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new DeleteAlarmsRequestMarshaller().marshall(deleteAlarmsRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            invoke(request, null, executionContext);
-        } finally {
-            endClientExecution(awsRequestMetrics, request, null);
-        }
-    }
-    
-    /**
-     * <p>
-     * Temporarily sets the state of an alarm. When the updated
-     * <code>StateValue</code> differs from the previous value, the action
-     * configured for the appropriate state is invoked. This is not a
-     * permanent change. The next periodic alarm check (in about a minute)
-     * will set the alarm to its actual state.
-     * </p>
-     *
-     * @param setAlarmStateRequest Container for the necessary parameters to
-     *           execute the SetAlarmState service method on AmazonCloudWatch.
-     * 
-     * 
-     * @throws ResourceNotFoundException
-     * @throws InvalidFormatException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void setAlarmState(SetAlarmStateRequest setAlarmStateRequest) {
-        ExecutionContext executionContext = createExecutionContext(setAlarmStateRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<SetAlarmStateRequest> request = null;
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        try {
-            request = new SetAlarmStateRequestMarshaller().marshall(setAlarmStateRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-            invoke(request, null, executionContext);
-        } finally {
-            endClientExecution(awsRequestMetrics, request, null);
-        }
-    }
-    
-    /**
-     * <p>
      * Returns a list of valid metrics stored for the AWS account owner.
      * Returned metrics can be used with <code>GetMetricStatistics</code> to
      * obtain statistical data for a given metric.
@@ -796,8 +796,8 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
      * @return The response from the ListMetrics service method, as returned
      *         by AmazonCloudWatch.
      * 
-     * @throws InternalServiceException
      * @throws InvalidParameterValueException
+     * @throws InternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -809,31 +809,6 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
      */
     public ListMetricsResult listMetrics() throws AmazonServiceException, AmazonClientException {
         return listMetrics(new ListMetricsRequest());
-    }
-    
-    /**
-     * <p>
-     * Retrieves alarms with the specified names. If no name is specified,
-     * all alarms for the user are returned. Alarms can be retrieved by using
-     * only a prefix for the alarm name, the alarm state, or a prefix for any
-     * action.
-     * </p>
-     * 
-     * @return The response from the DescribeAlarms service method, as
-     *         returned by AmazonCloudWatch.
-     * 
-     * @throws InvalidNextTokenException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeAlarmsResult describeAlarms() throws AmazonServiceException, AmazonClientException {
-        return describeAlarms(new DescribeAlarmsRequest());
     }
     
     /**
@@ -862,6 +837,31 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
      */
     public DescribeAlarmHistoryResult describeAlarmHistory() throws AmazonServiceException, AmazonClientException {
         return describeAlarmHistory(new DescribeAlarmHistoryRequest());
+    }
+    
+    /**
+     * <p>
+     * Retrieves alarms with the specified names. If no name is specified,
+     * all alarms for the user are returned. Alarms can be retrieved by using
+     * only a prefix for the alarm name, the alarm state, or a prefix for any
+     * action.
+     * </p>
+     * 
+     * @return The response from the DescribeAlarms service method, as
+     *         returned by AmazonCloudWatch.
+     * 
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAlarmsResult describeAlarms() throws AmazonServiceException, AmazonClientException {
+        return describeAlarms(new DescribeAlarmsRequest());
     }
 
     /**

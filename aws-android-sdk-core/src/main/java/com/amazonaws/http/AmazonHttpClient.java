@@ -417,8 +417,8 @@ public class AmazonHttpClient {
                     resetRequestAfterError(request, ase);
                 }
             } catch (IOException ioe) {
-                if (log.isInfoEnabled()) {
-                    log.info("Unable to execute HTTP request: " + ioe.getMessage(), ioe);
+                if (log.isDebugEnabled()) {
+                    log.debug("Unable to execute HTTP request: " + ioe.getMessage(), ioe);
                 }
                 awsRequestMetrics.incrementCounter(Field.Exception);
                 awsRequestMetrics.addProperty(Field.Exception, ioe);

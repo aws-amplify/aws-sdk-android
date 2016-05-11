@@ -226,16 +226,16 @@ public class AWSIotDataClient extends AmazonWebServiceClient implements AWSIotDa
 
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
-        jsonErrorUnmarshallers.add(new MethodNotAllowedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InternalFailureExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidRequestExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new RequestEntityTooLargeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceUnavailableExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new MethodNotAllowedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ThrottlingExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UnsupportedDocumentEncodingExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnauthorizedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ConflictExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new RequestEntityTooLargeExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new ThrottlingExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InternalFailureExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new UnsupportedDocumentEncodingExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidRequestExceptionUnmarshaller());
         
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
         
@@ -257,6 +257,65 @@ public class AWSIotDataClient extends AmazonWebServiceClient implements AWSIotDa
 
     /**
      * <p>
+     * Gets the thing shadow for the specified thing.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html"> GetThingShadow </a>
+     * in the <i>AWS IoT Developer Guide</i> .
+     * </p>
+     *
+     * @param getThingShadowRequest Container for the necessary parameters to
+     *           execute the GetThingShadow service method on AWSIotData.
+     * 
+     * @return The response from the GetThingShadow service method, as
+     *         returned by AWSIotData.
+     * 
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws UnsupportedDocumentEncodingException
+     * @throws UnauthorizedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceUnavailableException
+     * @throws MethodNotAllowedException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSIotData indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetThingShadowResult getThingShadow(GetThingShadowRequest getThingShadowRequest) {
+        ExecutionContext executionContext = createExecutionContext(getThingShadowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetThingShadowRequest> request = null;
+        Response<GetThingShadowResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetThingShadowRequestMarshaller().marshall(getThingShadowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetThingShadowResult, JsonUnmarshallerContext> unmarshaller = new GetThingShadowResultJsonUnmarshaller();
+            JsonResponseHandler<GetThingShadowResult> responseHandler = new JsonResponseHandler<GetThingShadowResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Updates the thing shadow for the specified thing.
      * </p>
      * <p>
@@ -271,15 +330,15 @@ public class AWSIotDataClient extends AmazonWebServiceClient implements AWSIotDa
      * @return The response from the UpdateThingShadow service method, as
      *         returned by AWSIotData.
      * 
-     * @throws ConflictException
-     * @throws MethodNotAllowedException
-     * @throws ServiceUnavailableException
-     * @throws RequestEntityTooLargeException
      * @throws ThrottlingException
      * @throws InternalFailureException
-     * @throws UnsupportedDocumentEncodingException
      * @throws InvalidRequestException
+     * @throws UnsupportedDocumentEncodingException
+     * @throws RequestEntityTooLargeException
      * @throws UnauthorizedException
+     * @throws ConflictException
+     * @throws ServiceUnavailableException
+     * @throws MethodNotAllowedException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -317,49 +376,6 @@ public class AWSIotDataClient extends AmazonWebServiceClient implements AWSIotDa
 
     /**
      * <p>
-     * Publishes state information.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http"> HTTP Protocol </a>
-     * in the <i>AWS IoT Developer Guide</i> .
-     * </p>
-     *
-     * @param publishRequest Container for the necessary parameters to
-     *           execute the Publish service method on AWSIotData.
-     * 
-     * 
-     * @throws MethodNotAllowedException
-     * @throws InternalFailureException
-     * @throws InvalidRequestException
-     * @throws UnauthorizedException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSIotData indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void publish(PublishRequest publishRequest) {
-        ExecutionContext executionContext = createExecutionContext(publishRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<PublishRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new PublishRequestMarshaller().marshall(publishRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
      * Deletes the thing shadow for the specified thing.
      * </p>
      * <p>
@@ -374,14 +390,14 @@ public class AWSIotDataClient extends AmazonWebServiceClient implements AWSIotDa
      * @return The response from the DeleteThingShadow service method, as
      *         returned by AWSIotData.
      * 
-     * @throws MethodNotAllowedException
-     * @throws ResourceNotFoundException
-     * @throws ServiceUnavailableException
      * @throws ThrottlingException
      * @throws InternalFailureException
-     * @throws UnsupportedDocumentEncodingException
      * @throws InvalidRequestException
+     * @throws UnsupportedDocumentEncodingException
      * @throws UnauthorizedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceUnavailableException
+     * @throws MethodNotAllowedException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -419,28 +435,22 @@ public class AWSIotDataClient extends AmazonWebServiceClient implements AWSIotDa
 
     /**
      * <p>
-     * Gets the thing shadow for the specified thing.
+     * Publishes state information.
      * </p>
      * <p>
      * For more information, see
-     * <a href="http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html"> GetThingShadow </a>
+     * <a href="http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http"> HTTP Protocol </a>
      * in the <i>AWS IoT Developer Guide</i> .
      * </p>
      *
-     * @param getThingShadowRequest Container for the necessary parameters to
-     *           execute the GetThingShadow service method on AWSIotData.
+     * @param publishRequest Container for the necessary parameters to
+     *           execute the Publish service method on AWSIotData.
      * 
-     * @return The response from the GetThingShadow service method, as
-     *         returned by AWSIotData.
      * 
-     * @throws MethodNotAllowedException
-     * @throws ResourceNotFoundException
-     * @throws ServiceUnavailableException
-     * @throws ThrottlingException
      * @throws InternalFailureException
-     * @throws UnsupportedDocumentEncodingException
      * @throws InvalidRequestException
      * @throws UnauthorizedException
+     * @throws MethodNotAllowedException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -450,30 +460,20 @@ public class AWSIotDataClient extends AmazonWebServiceClient implements AWSIotDa
      *             If an error response is returned by AWSIotData indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public GetThingShadowResult getThingShadow(GetThingShadowRequest getThingShadowRequest) {
-        ExecutionContext executionContext = createExecutionContext(getThingShadowRequest);
+    public void publish(PublishRequest publishRequest) {
+        ExecutionContext executionContext = createExecutionContext(publishRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<GetThingShadowRequest> request = null;
-        Response<GetThingShadowResult> response = null;
+        Request<PublishRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
         try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new GetThingShadowRequestMarshaller().marshall(getThingShadowRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<GetThingShadowResult, JsonUnmarshallerContext> unmarshaller = new GetThingShadowResultJsonUnmarshaller();
-            JsonResponseHandler<GetThingShadowResult> responseHandler = new JsonResponseHandler<GetThingShadowResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
+            request = new PublishRequestMarshaller().marshall(publishRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
         } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
         }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
     }
 
     @Override

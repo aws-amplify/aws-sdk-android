@@ -181,39 +181,22 @@ public interface AWSKMS {
     
     /**
      * <p>
-     * Schedules the deletion of a customer master key (CMK). You may
-     * provide a waiting period, specified in days, before deletion occurs.
-     * If you do not provide a waiting period, the default period of 30 days
-     * is used. When this operation is successful, the state of the CMK
-     * changes to <code>PendingDeletion</code> . Before the waiting period
-     * ends, you can use CancelKeyDeletion to cancel the deletion of the CMK.
-     * After the waiting period ends, AWS KMS deletes the CMK and all AWS KMS
-     * data associated with it, including all aliases that point to it.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b> Deleting a CMK is a destructive and potentially
-     * dangerous operation. When a CMK is deleted, all data that was
-     * encrypted under the CMK is rendered unrecoverable. To restrict the use
-     * of a CMK without deleting it, use DisableKey.
-     * </p>
-     * <p>
-     * For more information about scheduling a CMK for deletion, go to
-     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"> Deleting Customer Master Keys </a>
+     * Sets the state of a master key to disabled, thereby preventing its
+     * use for cryptographic operations. For more information about how key
+     * state affects the use of a master key, go to
+     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"> How Key State Affects the Use of a Customer Master Key </a>
      * in the <i>AWS Key Management Service Developer Guide</i> .
      * </p>
      *
-     * @param scheduleKeyDeletionRequest Container for the necessary
-     *           parameters to execute the ScheduleKeyDeletion service method on
-     *           AWSKMS.
+     * @param disableKeyRequest Container for the necessary parameters to
+     *           execute the DisableKey service method on AWSKMS.
      * 
-     * @return The response from the ScheduleKeyDeletion service method, as
-     *         returned by AWSKMS.
      * 
      * @throws DependencyTimeoutException
+     * @throws KMSInternalException
      * @throws InvalidArnException
      * @throws NotFoundException
      * @throws KMSInvalidStateException
-     * @throws KMSInternalException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -223,30 +206,42 @@ public interface AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ScheduleKeyDeletionResult scheduleKeyDeletion(ScheduleKeyDeletionRequest scheduleKeyDeletionRequest) 
+    public void disableKey(DisableKeyRequest disableKeyRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Creates a customer master key. Customer master keys can be used to
-     * encrypt small amounts of data (less than 4K) directly, but they are
-     * most commonly used to encrypt or envelope data keys that are then used
-     * to encrypt customer data. For more information about data keys, see
-     * GenerateDataKey and GenerateDataKeyWithoutPlaintext.
+     * Encrypts data on the server side with a new customer master key
+     * without exposing the plaintext of the data on the client side. The
+     * data is first decrypted and then encrypted. This operation can also be
+     * used to change the encryption context of a ciphertext.
+     * </p>
+     * <p>
+     * Unlike other actions, <code>ReEncrypt</code> is authorized twice -
+     * once as <code>ReEncryptFrom</code> on the source key and once as
+     * <code>ReEncryptTo</code> on the destination key. We therefore
+     * recommend that you include the <code>"action":"kms:ReEncrypt*"</code>
+     * statement in your key policies to permit re-encryption from or to the
+     * key. The statement is included automatically when you authorize use of
+     * the key through the console but must be included manually when you set
+     * a policy by using the PutKeyPolicy function.
      * </p>
      *
-     * @param createKeyRequest Container for the necessary parameters to
-     *           execute the CreateKey service method on AWSKMS.
+     * @param reEncryptRequest Container for the necessary parameters to
+     *           execute the ReEncrypt service method on AWSKMS.
      * 
-     * @return The response from the CreateKey service method, as returned by
+     * @return The response from the ReEncrypt service method, as returned by
      *         AWSKMS.
      * 
+     * @throws InvalidCiphertextException
      * @throws DependencyTimeoutException
-     * @throws MalformedPolicyDocumentException
-     * @throws InvalidArnException
-     * @throws UnsupportedOperationException
+     * @throws DisabledException
      * @throws KMSInternalException
-     * @throws LimitExceededException
+     * @throws KeyUnavailableException
+     * @throws InvalidKeyUsageException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -256,7 +251,70 @@ public interface AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public CreateKeyResult createKey(CreateKeyRequest createKeyRequest) 
+    public ReEncryptResult reEncrypt(ReEncryptRequest reEncryptRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Cancels the deletion of a customer master key (CMK). When this
+     * operation is successful, the CMK is set to the <code>Disabled</code>
+     * state. To enable a CMK, use EnableKey.
+     * </p>
+     * <p>
+     * For more information about scheduling and canceling deletion of a
+     * CMK, go to
+     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"> Deleting Customer Master Keys </a>
+     * in the <i>AWS Key Management Service Developer Guide</i> .
+     * </p>
+     *
+     * @param cancelKeyDeletionRequest Container for the necessary parameters
+     *           to execute the CancelKeyDeletion service method on AWSKMS.
+     * 
+     * @return The response from the CancelKeyDeletion service method, as
+     *         returned by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CancelKeyDeletionResult cancelKeyDeletion(CancelKeyDeletionRequest cancelKeyDeletionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Enables rotation of the specified customer master key.
+     * </p>
+     *
+     * @param enableKeyRotationRequest Container for the necessary parameters
+     *           to execute the EnableKeyRotation service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void enableKeyRotation(EnableKeyRotationRequest enableKeyRotationRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -297,13 +355,13 @@ public interface AWSKMS {
      *         AWSKMS.
      * 
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
      * @throws DisabledException
-     * @throws InvalidKeyUsageException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
+     * @throws KeyUnavailableException
+     * @throws InvalidKeyUsageException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -318,6 +376,70 @@ public interface AWSKMS {
 
     /**
      * <p>
+     * Returns a list of all grants for which the grant's
+     * <code>RetiringPrincipal</code> matches the one specified.
+     * </p>
+     * <p>
+     * A typical use is to list all grants that you are able to retire. To
+     * retire a grant, use RetireGrant.
+     * </p>
+     *
+     * @param listRetirableGrantsRequest Container for the necessary
+     *           parameters to execute the ListRetirableGrants service method on
+     *           AWSKMS.
+     * 
+     * @return The response from the ListRetirableGrants service method, as
+     *         returned by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws InvalidMarkerException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListRetirableGrantsResult listRetirableGrants(ListRetirableGrantsRequest listRetirableGrantsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves a Boolean value that indicates whether key rotation is
+     * enabled for the specified key.
+     * </p>
+     *
+     * @param getKeyRotationStatusRequest Container for the necessary
+     *           parameters to execute the GetKeyRotationStatus service method on
+     *           AWSKMS.
+     * 
+     * @return The response from the GetKeyRotationStatus service method, as
+     *         returned by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetKeyRotationStatusResult getKeyRotationStatus(GetKeyRotationStatusRequest getKeyRotationStatusRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Retrieves a policy attached to the specified key.
      * </p>
      *
@@ -328,10 +450,10 @@ public interface AWSKMS {
      *         by AWSKMS.
      * 
      * @throws DependencyTimeoutException
+     * @throws KMSInternalException
      * @throws InvalidArnException
      * @throws NotFoundException
      * @throws KMSInvalidStateException
-     * @throws KMSInternalException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -346,17 +468,39 @@ public interface AWSKMS {
 
     /**
      * <p>
-     * Lists the customer master keys.
+     * Schedules the deletion of a customer master key (CMK). You may
+     * provide a waiting period, specified in days, before deletion occurs.
+     * If you do not provide a waiting period, the default period of 30 days
+     * is used. When this operation is successful, the state of the CMK
+     * changes to <code>PendingDeletion</code> . Before the waiting period
+     * ends, you can use CancelKeyDeletion to cancel the deletion of the CMK.
+     * After the waiting period ends, AWS KMS deletes the CMK and all AWS KMS
+     * data associated with it, including all aliases that point to it.
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b> Deleting a CMK is a destructive and potentially
+     * dangerous operation. When a CMK is deleted, all data that was
+     * encrypted under the CMK is rendered unrecoverable. To restrict the use
+     * of a CMK without deleting it, use DisableKey.
+     * </p>
+     * <p>
+     * For more information about scheduling a CMK for deletion, go to
+     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"> Deleting Customer Master Keys </a>
+     * in the <i>AWS Key Management Service Developer Guide</i> .
      * </p>
      *
-     * @param listKeysRequest Container for the necessary parameters to
-     *           execute the ListKeys service method on AWSKMS.
+     * @param scheduleKeyDeletionRequest Container for the necessary
+     *           parameters to execute the ScheduleKeyDeletion service method on
+     *           AWSKMS.
      * 
-     * @return The response from the ListKeys service method, as returned by
-     *         AWSKMS.
+     * @return The response from the ScheduleKeyDeletion service method, as
+     *         returned by AWSKMS.
      * 
      * @throws DependencyTimeoutException
      * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -366,7 +510,58 @@ public interface AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ListKeysResult listKeys(ListKeysRequest listKeysRequest) 
+    public ScheduleKeyDeletionResult scheduleKeyDeletion(ScheduleKeyDeletionRequest scheduleKeyDeletionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Decrypts ciphertext. Ciphertext is plaintext that has been previously
+     * encrypted by using any of the following functions:
+     * <ul>
+     * <li> GenerateDataKey </li>
+     * <li> GenerateDataKeyWithoutPlaintext </li>
+     * <li> Encrypt </li>
+     * 
+     * </ul>
+     * 
+     * </p>
+     * <p>
+     * Note that if a caller has been granted access permissions to all keys
+     * (through, for example, IAM user policies that grant
+     * <code>Decrypt</code> permission on all resources), then ciphertext
+     * encrypted by using keys in other accounts where the key grants access
+     * to the caller can be decrypted. To remedy this, we recommend that you
+     * do not grant <code>Decrypt</code> access in an IAM user policy.
+     * Instead grant <code>Decrypt</code> access only in key policies. If you
+     * must grant <code>Decrypt</code> access in an IAM user policy, you
+     * should scope the resource to specific keys or to specific trusted
+     * accounts.
+     * </p>
+     *
+     * @param decryptRequest Container for the necessary parameters to
+     *           execute the Decrypt service method on AWSKMS.
+     * 
+     * @return The response from the Decrypt service method, as returned by
+     *         AWSKMS.
+     * 
+     * @throws InvalidCiphertextException
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws KeyUnavailableException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DecryptResult decrypt(DecryptRequest decryptRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -380,10 +575,10 @@ public interface AWSKMS {
      * 
      * 
      * @throws DependencyTimeoutException
+     * @throws KMSInternalException
      * @throws InvalidArnException
      * @throws NotFoundException
      * @throws KMSInvalidStateException
-     * @throws KMSInternalException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -394,6 +589,261 @@ public interface AWSKMS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void updateKeyDescription(UpdateKeyDescriptionRequest updateKeyDescriptionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * List the grants for a specified key.
+     * </p>
+     *
+     * @param listGrantsRequest Container for the necessary parameters to
+     *           execute the ListGrants service method on AWSKMS.
+     * 
+     * @return The response from the ListGrants service method, as returned
+     *         by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws InvalidMarkerException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListGrantsResult listGrants(ListGrantsRequest listGrantsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified alias. To map an alias to a different key, call
+     * UpdateAlias.
+     * </p>
+     *
+     * @param deleteAliasRequest Container for the necessary parameters to
+     *           execute the DeleteAlias service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteAlias(DeleteAliasRequest deleteAliasRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Adds a grant to a key to specify who can use the key and under what
+     * conditions. Grants are alternate permission mechanisms to key
+     * policies.
+     * </p>
+     * <p>
+     * For more information about grants, see
+     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/grants.html"> Grants </a>
+     * in the <i>AWS Key Management Service Developer Guide</i> .
+     * </p>
+     *
+     * @param createGrantRequest Container for the necessary parameters to
+     *           execute the CreateGrant service method on AWSKMS.
+     * 
+     * @return The response from the CreateGrant service method, as returned
+     *         by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws LimitExceededException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CreateGrantResult createGrant(CreateGrantRequest createGrantRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves a list of policies attached to a key.
+     * </p>
+     *
+     * @param listKeyPoliciesRequest Container for the necessary parameters
+     *           to execute the ListKeyPolicies service method on AWSKMS.
+     * 
+     * @return The response from the ListKeyPolicies service method, as
+     *         returned by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListKeyPoliciesResult listKeyPolicies(ListKeyPoliciesRequest listKeyPoliciesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Attaches a policy to the specified key.
+     * </p>
+     *
+     * @param putKeyPolicyRequest Container for the necessary parameters to
+     *           execute the PutKeyPolicy service method on AWSKMS.
+     * 
+     * 
+     * @throws UnsupportedOperationException
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws MalformedPolicyDocumentException
+     * @throws LimitExceededException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void putKeyPolicy(PutKeyPolicyRequest putKeyPolicyRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns a data key encrypted by a customer master key without the
+     * plaintext copy of that key. Otherwise, this API functions exactly like
+     * GenerateDataKey. You can use this API to, for example, satisfy an
+     * audit requirement that an encrypted key be made available without
+     * exposing the plaintext copy of that key.
+     * </p>
+     *
+     * @param generateDataKeyWithoutPlaintextRequest Container for the
+     *           necessary parameters to execute the GenerateDataKeyWithoutPlaintext
+     *           service method on AWSKMS.
+     * 
+     * @return The response from the GenerateDataKeyWithoutPlaintext service
+     *         method, as returned by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws KeyUnavailableException
+     * @throws InvalidKeyUsageException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GenerateDataKeyWithoutPlaintextResult generateDataKeyWithoutPlaintext(GenerateDataKeyWithoutPlaintextRequest generateDataKeyWithoutPlaintextRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Disables rotation of the specified key.
+     * </p>
+     *
+     * @param disableKeyRotationRequest Container for the necessary
+     *           parameters to execute the DisableKeyRotation service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void disableKeyRotation(DisableKeyRotationRequest disableKeyRotationRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a display name for a customer master key. An alias can be
+     * used to identify a key and should be unique. The console enforces a
+     * one-to-one mapping between the alias and a key. An alias name can
+     * contain only alphanumeric characters, forward slashes (/), underscores
+     * (_), and dashes (-). An alias must start with the word "alias"
+     * followed by a forward slash (alias/). An alias that begins with "aws"
+     * after the forward slash (alias/aws...) is reserved by Amazon Web
+     * Services (AWS).
+     * </p>
+     * <p>
+     * The alias and the key it is mapped to must be in the same AWS account
+     * and the same region.
+     * </p>
+     * <p>
+     * To map an alias to a different key, call UpdateAlias.
+     * </p>
+     *
+     * @param createAliasRequest Container for the necessary parameters to
+     *           execute the CreateAlias service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidAliasNameException
+     * @throws NotFoundException
+     * @throws AlreadyExistsException
+     * @throws LimitExceededException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void createAlias(CreateAliasRequest createAliasRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -449,13 +899,13 @@ public interface AWSKMS {
      *         returned by AWSKMS.
      * 
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
      * @throws DisabledException
-     * @throws InvalidKeyUsageException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
+     * @throws KeyUnavailableException
+     * @throws InvalidKeyUsageException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -466,6 +916,169 @@ public interface AWSKMS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public GenerateDataKeyResult generateDataKey(GenerateDataKeyRequest generateDataKeyRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Marks a key as enabled, thereby permitting its use.
+     * </p>
+     *
+     * @param enableKeyRequest Container for the necessary parameters to
+     *           execute the EnableKey service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void enableKey(EnableKeyRequest enableKeyRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists the customer master keys.
+     * </p>
+     *
+     * @param listKeysRequest Container for the necessary parameters to
+     *           execute the ListKeys service method on AWSKMS.
+     * 
+     * @return The response from the ListKeys service method, as returned by
+     *         AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListKeysResult listKeys(ListKeysRequest listKeysRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retires a grant. You can retire a grant when you're done using it to
+     * clean up. You should revoke a grant when you intend to actively deny
+     * operations that depend on it. The following are permitted to call this
+     * API:
+     * <ul>
+     * <li>The account that created the grant</li>
+     * <li>The <code>RetiringPrincipal</code> , if present</li>
+     * <li>The <code>GranteePrincipal</code> , if <code>RetireGrant</code>
+     * is a grantee operation</li>
+     * 
+     * </ul>
+     * The grant to retire must be identified by its grant token or by a
+     * combination of the key ARN and the grant ID. A grant token is a unique
+     * variable-length base64-encoded string. A grant ID is a 64 character
+     * unique identifier of a grant. Both are returned by the
+     * <code>CreateGrant</code> function.
+     * </p>
+     *
+     * @param retireGrantRequest Container for the necessary parameters to
+     *           execute the RetireGrant service method on AWSKMS.
+     * 
+     * 
+     * @throws InvalidGrantIdException
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void retireGrant(RetireGrantRequest retireGrantRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Revokes a grant. You can revoke a grant to actively deny operations
+     * that depend on it.
+     * </p>
+     *
+     * @param revokeGrantRequest Container for the necessary parameters to
+     *           execute the RevokeGrant service method on AWSKMS.
+     * 
+     * 
+     * @throws InvalidGrantIdException
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void revokeGrant(RevokeGrantRequest revokeGrantRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates an alias to map it to a different key.
+     * </p>
+     * <p>
+     * An alias is not a property of a key. Therefore, an alias can be
+     * mapped to and unmapped from an existing key without changing the
+     * properties of the key.
+     * </p>
+     * <p>
+     * An alias name can contain only alphanumeric characters, forward
+     * slashes (/), underscores (_), and dashes (-). An alias must start with
+     * the word "alias" followed by a forward slash (alias/). An alias that
+     * begins with "aws" after the forward slash (alias/aws...) is reserved
+     * by Amazon Web Services (AWS).
+     * </p>
+     * <p>
+     * The alias and the key it is mapped to must be in the same AWS account
+     * and the same region.
+     * </p>
+     *
+     * @param updateAliasRequest Container for the necessary parameters to
+     *           execute the UpdateAlias service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void updateAlias(UpdateAliasRequest updateAliasRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -496,29 +1109,24 @@ public interface AWSKMS {
 
     /**
      * <p>
-     * Adds a grant to a key to specify who can use the key and under what
-     * conditions. Grants are alternate permission mechanisms to key
-     * policies.
-     * </p>
-     * <p>
-     * For more information about grants, see
-     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/grants.html"> Grants </a>
-     * in the <i>AWS Key Management Service Developer Guide</i> .
+     * Creates a customer master key. Customer master keys can be used to
+     * encrypt small amounts of data (less than 4K) directly, but they are
+     * most commonly used to encrypt or envelope data keys that are then used
+     * to encrypt customer data. For more information about data keys, see
+     * GenerateDataKey and GenerateDataKeyWithoutPlaintext.
      * </p>
      *
-     * @param createGrantRequest Container for the necessary parameters to
-     *           execute the CreateGrant service method on AWSKMS.
+     * @param createKeyRequest Container for the necessary parameters to
+     *           execute the CreateKey service method on AWSKMS.
      * 
-     * @return The response from the CreateGrant service method, as returned
-     *         by AWSKMS.
+     * @return The response from the CreateKey service method, as returned by
+     *         AWSKMS.
      * 
+     * @throws UnsupportedOperationException
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws MalformedPolicyDocumentException
      * @throws LimitExceededException
      *
      * @throws AmazonClientException
@@ -529,270 +1137,7 @@ public interface AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public CreateGrantResult createGrant(CreateGrantRequest createGrantRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns a data key encrypted by a customer master key without the
-     * plaintext copy of that key. Otherwise, this API functions exactly like
-     * GenerateDataKey. You can use this API to, for example, satisfy an
-     * audit requirement that an encrypted key be made available without
-     * exposing the plaintext copy of that key.
-     * </p>
-     *
-     * @param generateDataKeyWithoutPlaintextRequest Container for the
-     *           necessary parameters to execute the GenerateDataKeyWithoutPlaintext
-     *           service method on AWSKMS.
-     * 
-     * @return The response from the GenerateDataKeyWithoutPlaintext service
-     *         method, as returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws InvalidKeyUsageException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GenerateDataKeyWithoutPlaintextResult generateDataKeyWithoutPlaintext(GenerateDataKeyWithoutPlaintextRequest generateDataKeyWithoutPlaintextRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified alias. To map an alias to a different key, call
-     * UpdateAlias.
-     * </p>
-     *
-     * @param deleteAliasRequest Container for the necessary parameters to
-     *           execute the DeleteAlias service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteAlias(DeleteAliasRequest deleteAliasRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Updates an alias to map it to a different key.
-     * </p>
-     * <p>
-     * An alias is not a property of a key. Therefore, an alias can be
-     * mapped to and unmapped from an existing key without changing the
-     * properties of the key.
-     * </p>
-     * <p>
-     * An alias name can contain only alphanumeric characters, forward
-     * slashes (/), underscores (_), and dashes (-). An alias must start with
-     * the word "alias" followed by a forward slash (alias/). An alias that
-     * begins with "aws" after the forward slash (alias/aws...) is reserved
-     * by Amazon Web Services (AWS).
-     * </p>
-     * <p>
-     * The alias and the key it is mapped to must be in the same AWS account
-     * and the same region.
-     * </p>
-     *
-     * @param updateAliasRequest Container for the necessary parameters to
-     *           execute the UpdateAlias service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void updateAlias(UpdateAliasRequest updateAliasRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Enables rotation of the specified customer master key.
-     * </p>
-     *
-     * @param enableKeyRotationRequest Container for the necessary parameters
-     *           to execute the EnableKeyRotation service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void enableKeyRotation(EnableKeyRotationRequest enableKeyRotationRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns a list of all grants for which the grant's
-     * <code>RetiringPrincipal</code> matches the one specified.
-     * </p>
-     * <p>
-     * A typical use is to list all grants that you are able to retire. To
-     * retire a grant, use RetireGrant.
-     * </p>
-     *
-     * @param listRetirableGrantsRequest Container for the necessary
-     *           parameters to execute the ListRetirableGrants service method on
-     *           AWSKMS.
-     * 
-     * @return The response from the ListRetirableGrants service method, as
-     *         returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidMarkerException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListRetirableGrantsResult listRetirableGrants(ListRetirableGrantsRequest listRetirableGrantsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Retires a grant. You can retire a grant when you're done using it to
-     * clean up. You should revoke a grant when you intend to actively deny
-     * operations that depend on it. The following are permitted to call this
-     * API:
-     * <ul>
-     * <li>The account that created the grant</li>
-     * <li>The <code>RetiringPrincipal</code> , if present</li>
-     * <li>The <code>GranteePrincipal</code> , if <code>RetireGrant</code>
-     * is a grantee operation</li>
-     * 
-     * </ul>
-     * The grant to retire must be identified by its grant token or by a
-     * combination of the key ARN and the grant ID. A grant token is a unique
-     * variable-length base64-encoded string. A grant ID is a 64 character
-     * unique identifier of a grant. Both are returned by the
-     * <code>CreateGrant</code> function.
-     * </p>
-     *
-     * @param retireGrantRequest Container for the necessary parameters to
-     *           execute the RetireGrant service method on AWSKMS.
-     * 
-     * 
-     * @throws InvalidGrantIdException
-     * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void retireGrant(RetireGrantRequest retireGrantRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Provides detailed information about the specified customer master
-     * key.
-     * </p>
-     *
-     * @param describeKeyRequest Container for the necessary parameters to
-     *           execute the DescribeKey service method on AWSKMS.
-     * 
-     * @return The response from the DescribeKey service method, as returned
-     *         by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeKeyResult describeKey(DescribeKeyRequest describeKeyRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * List the grants for a specified key.
-     * </p>
-     *
-     * @param listGrantsRequest Container for the necessary parameters to
-     *           execute the ListGrants service method on AWSKMS.
-     * 
-     * @return The response from the ListGrants service method, as returned
-     *         by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidMarkerException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListGrantsResult listGrants(ListGrantsRequest listGrantsRequest) 
+    public CreateKeyResult createKey(CreateKeyRequest createKeyRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -822,73 +1167,20 @@ public interface AWSKMS {
 
     /**
      * <p>
-     * Decrypts ciphertext. Ciphertext is plaintext that has been previously
-     * encrypted by using any of the following functions:
-     * <ul>
-     * <li> GenerateDataKey </li>
-     * <li> GenerateDataKeyWithoutPlaintext </li>
-     * <li> Encrypt </li>
-     * 
-     * </ul>
-     * 
-     * </p>
-     * <p>
-     * Note that if a caller has been granted access permissions to all keys
-     * (through, for example, IAM user policies that grant
-     * <code>Decrypt</code> permission on all resources), then ciphertext
-     * encrypted by using keys in other accounts where the key grants access
-     * to the caller can be decrypted. To remedy this, we recommend that you
-     * do not grant <code>Decrypt</code> access in an IAM user policy.
-     * Instead grant <code>Decrypt</code> access only in key policies. If you
-     * must grant <code>Decrypt</code> access in an IAM user policy, you
-     * should scope the resource to specific keys or to specific trusted
-     * accounts.
+     * Provides detailed information about the specified customer master
+     * key.
      * </p>
      *
-     * @param decryptRequest Container for the necessary parameters to
-     *           execute the Decrypt service method on AWSKMS.
+     * @param describeKeyRequest Container for the necessary parameters to
+     *           execute the DescribeKey service method on AWSKMS.
      * 
-     * @return The response from the Decrypt service method, as returned by
-     *         AWSKMS.
+     * @return The response from the DescribeKey service method, as returned
+     *         by AWSKMS.
      * 
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws InvalidCiphertextException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DecryptResult decrypt(DecryptRequest decryptRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Retrieves a Boolean value that indicates whether key rotation is
-     * enabled for the specified key.
-     * </p>
-     *
-     * @param getKeyRotationStatusRequest Container for the necessary
-     *           parameters to execute the GetKeyRotationStatus service method on
-     *           AWSKMS.
-     * 
-     * @return The response from the GetKeyRotationStatus service method, as
-     *         returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
      * @throws InvalidArnException
      * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -898,330 +1190,9 @@ public interface AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public GetKeyRotationStatusResult getKeyRotationStatus(GetKeyRotationStatusRequest getKeyRotationStatusRequest) 
+    public DescribeKeyResult describeKey(DescribeKeyRequest describeKeyRequest) 
             throws AmazonServiceException, AmazonClientException;
 
-    /**
-     * <p>
-     * Retrieves a list of policies attached to a key.
-     * </p>
-     *
-     * @param listKeyPoliciesRequest Container for the necessary parameters
-     *           to execute the ListKeyPolicies service method on AWSKMS.
-     * 
-     * @return The response from the ListKeyPolicies service method, as
-     *         returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListKeyPoliciesResult listKeyPolicies(ListKeyPoliciesRequest listKeyPoliciesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Disables rotation of the specified key.
-     * </p>
-     *
-     * @param disableKeyRotationRequest Container for the necessary
-     *           parameters to execute the DisableKeyRotation service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void disableKeyRotation(DisableKeyRotationRequest disableKeyRotationRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates a display name for a customer master key. An alias can be
-     * used to identify a key and should be unique. The console enforces a
-     * one-to-one mapping between the alias and a key. An alias name can
-     * contain only alphanumeric characters, forward slashes (/), underscores
-     * (_), and dashes (-). An alias must start with the word "alias"
-     * followed by a forward slash (alias/). An alias that begins with "aws"
-     * after the forward slash (alias/aws...) is reserved by Amazon Web
-     * Services (AWS).
-     * </p>
-     * <p>
-     * The alias and the key it is mapped to must be in the same AWS account
-     * and the same region.
-     * </p>
-     * <p>
-     * To map an alias to a different key, call UpdateAlias.
-     * </p>
-     *
-     * @param createAliasRequest Container for the necessary parameters to
-     *           execute the CreateAlias service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws AlreadyExistsException
-     * @throws InvalidAliasNameException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     * @throws LimitExceededException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void createAlias(CreateAliasRequest createAliasRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Cancels the deletion of a customer master key (CMK). When this
-     * operation is successful, the CMK is set to the <code>Disabled</code>
-     * state. To enable a CMK, use EnableKey.
-     * </p>
-     * <p>
-     * For more information about scheduling and canceling deletion of a
-     * CMK, go to
-     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"> Deleting Customer Master Keys </a>
-     * in the <i>AWS Key Management Service Developer Guide</i> .
-     * </p>
-     *
-     * @param cancelKeyDeletionRequest Container for the necessary parameters
-     *           to execute the CancelKeyDeletion service method on AWSKMS.
-     * 
-     * @return The response from the CancelKeyDeletion service method, as
-     *         returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public CancelKeyDeletionResult cancelKeyDeletion(CancelKeyDeletionRequest cancelKeyDeletionRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Revokes a grant. You can revoke a grant to actively deny operations
-     * that depend on it.
-     * </p>
-     *
-     * @param revokeGrantRequest Container for the necessary parameters to
-     *           execute the RevokeGrant service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidGrantIdException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void revokeGrant(RevokeGrantRequest revokeGrantRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Attaches a policy to the specified key.
-     * </p>
-     *
-     * @param putKeyPolicyRequest Container for the necessary parameters to
-     *           execute the PutKeyPolicy service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws MalformedPolicyDocumentException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws UnsupportedOperationException
-     * @throws KMSInternalException
-     * @throws LimitExceededException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void putKeyPolicy(PutKeyPolicyRequest putKeyPolicyRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Marks a key as enabled, thereby permitting its use.
-     * </p>
-     *
-     * @param enableKeyRequest Container for the necessary parameters to
-     *           execute the EnableKey service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     * @throws LimitExceededException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void enableKey(EnableKeyRequest enableKeyRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Sets the state of a master key to disabled, thereby preventing its
-     * use for cryptographic operations. For more information about how key
-     * state affects the use of a master key, go to
-     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"> How Key State Affects the Use of a Customer Master Key </a>
-     * in the <i>AWS Key Management Service Developer Guide</i> .
-     * </p>
-     *
-     * @param disableKeyRequest Container for the necessary parameters to
-     *           execute the DisableKey service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void disableKey(DisableKeyRequest disableKeyRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Encrypts data on the server side with a new customer master key
-     * without exposing the plaintext of the data on the client side. The
-     * data is first decrypted and then encrypted. This operation can also be
-     * used to change the encryption context of a ciphertext.
-     * </p>
-     * <p>
-     * Unlike other actions, <code>ReEncrypt</code> is authorized twice -
-     * once as <code>ReEncryptFrom</code> on the source key and once as
-     * <code>ReEncryptTo</code> on the destination key. We therefore
-     * recommend that you include the <code>"action":"kms:ReEncrypt*"</code>
-     * statement in your key policies to permit re-encryption from or to the
-     * key. The statement is included automatically when you authorize use of
-     * the key through the console but must be included manually when you set
-     * a policy by using the PutKeyPolicy function.
-     * </p>
-     *
-     * @param reEncryptRequest Container for the necessary parameters to
-     *           execute the ReEncrypt service method on AWSKMS.
-     * 
-     * @return The response from the ReEncrypt service method, as returned by
-     *         AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws InvalidCiphertextException
-     * @throws InvalidKeyUsageException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ReEncryptResult reEncrypt(ReEncryptRequest reEncryptRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates a customer master key. Customer master keys can be used to
-     * encrypt small amounts of data (less than 4K) directly, but they are
-     * most commonly used to encrypt or envelope data keys that are then used
-     * to encrypt customer data. For more information about data keys, see
-     * GenerateDataKey and GenerateDataKeyWithoutPlaintext.
-     * </p>
-     * 
-     * @return The response from the CreateKey service method, as returned by
-     *         AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws MalformedPolicyDocumentException
-     * @throws InvalidArnException
-     * @throws UnsupportedOperationException
-     * @throws KMSInternalException
-     * @throws LimitExceededException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public CreateKeyResult createKey() throws AmazonServiceException, AmazonClientException;
-    
     /**
      * <p>
      * Lists the customer master keys.
@@ -1242,6 +1213,44 @@ public interface AWSKMS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public ListKeysResult listKeys() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Retires a grant. You can retire a grant when you're done using it to
+     * clean up. You should revoke a grant when you intend to actively deny
+     * operations that depend on it. The following are permitted to call this
+     * API:
+     * <ul>
+     * <li>The account that created the grant</li>
+     * <li>The <code>RetiringPrincipal</code> , if present</li>
+     * <li>The <code>GranteePrincipal</code> , if <code>RetireGrant</code>
+     * is a grantee operation</li>
+     * 
+     * </ul>
+     * The grant to retire must be identified by its grant token or by a
+     * combination of the key ARN and the grant ID. A grant token is a unique
+     * variable-length base64-encoded string. A grant ID is a 64 character
+     * unique identifier of a grant. Both are returned by the
+     * <code>CreateGrant</code> function.
+     * </p>
+     * 
+     * 
+     * @throws InvalidGrantIdException
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void retireGrant() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -1267,31 +1276,22 @@ public interface AWSKMS {
     
     /**
      * <p>
-     * Retires a grant. You can retire a grant when you're done using it to
-     * clean up. You should revoke a grant when you intend to actively deny
-     * operations that depend on it. The following are permitted to call this
-     * API:
-     * <ul>
-     * <li>The account that created the grant</li>
-     * <li>The <code>RetiringPrincipal</code> , if present</li>
-     * <li>The <code>GranteePrincipal</code> , if <code>RetireGrant</code>
-     * is a grantee operation</li>
-     * 
-     * </ul>
-     * The grant to retire must be identified by its grant token or by a
-     * combination of the key ARN and the grant ID. A grant token is a unique
-     * variable-length base64-encoded string. A grant ID is a 64 character
-     * unique identifier of a grant. Both are returned by the
-     * <code>CreateGrant</code> function.
+     * Creates a customer master key. Customer master keys can be used to
+     * encrypt small amounts of data (less than 4K) directly, but they are
+     * most commonly used to encrypt or envelope data keys that are then used
+     * to encrypt customer data. For more information about data keys, see
+     * GenerateDataKey and GenerateDataKeyWithoutPlaintext.
      * </p>
      * 
+     * @return The response from the CreateKey service method, as returned by
+     *         AWSKMS.
      * 
-     * @throws InvalidGrantIdException
+     * @throws UnsupportedOperationException
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws MalformedPolicyDocumentException
+     * @throws LimitExceededException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1301,7 +1301,7 @@ public interface AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void retireGrant() throws AmazonServiceException, AmazonClientException;
+    public CreateKeyResult createKey() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>

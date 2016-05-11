@@ -94,6 +94,67 @@ public interface AmazonSimpleEmailService {
     
     /**
      * <p>
+     * Returns the user's current sending limits.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param getSendQuotaRequest Container for the necessary parameters to
+     *           execute the GetSendQuota service method on AmazonSimpleEmailService.
+     * 
+     * @return The response from the GetSendQuota service method, as returned
+     *         by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetSendQuotaResult getSendQuota(GetSendQuotaRequest getSendQuotaRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Sets the position of the specified receipt rule in the receipt rule
+     * set.
+     * </p>
+     * <p>
+     * For information about managing receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param setReceiptRulePositionRequest Container for the necessary
+     *           parameters to execute the SetReceiptRulePosition service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the SetReceiptRulePosition service method,
+     *         as returned by AmazonSimpleEmailService.
+     * 
+     * @throws RuleDoesNotExistException
+     * @throws RuleSetDoesNotExistException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SetReceiptRulePositionResult setReceiptRulePosition(SetReceiptRulePositionRequest setReceiptRulePositionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Deletes the specified identity (email address or domain) from the
      * list of verified identities.
      * </p>
@@ -121,30 +182,77 @@ public interface AmazonSimpleEmailService {
 
     /**
      * <p>
-     * Updates a receipt rule.
+     * Enables or disables Easy DKIM signing of email sent from an identity:
+     * </p>
+     * 
+     * <ul>
+     * <li>If Easy DKIM signing is enabled for a domain name identity (e.g.,
+     * <code>example.com</code> ), then Amazon SES will DKIM-sign all email
+     * sent by addresses under that domain name (e.g.,
+     * <code>user@example.com</code> ).</li>
+     * <li>If Easy DKIM signing is enabled for an email address, then Amazon
+     * SES will DKIM-sign all email sent by that email address.</li>
+     * 
+     * </ul>
+     * <p>
+     * For email addresses (e.g., <code>user@example.com</code> ), you can
+     * only enable Easy DKIM signing if the corresponding domain (e.g.,
+     * <code>example.com</code> ) has been set up for Easy DKIM using the AWS
+     * Console or the <code>VerifyDomainDkim</code> action.
      * </p>
      * <p>
-     * For information about managing receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * This action is throttled at one request per second.
+     * </p>
+     * <p>
+     * For more information about Easy DKIM signing, go to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param setIdentityDkimEnabledRequest Container for the necessary
+     *           parameters to execute the SetIdentityDkimEnabled service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the SetIdentityDkimEnabled service method,
+     *         as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SetIdentityDkimEnabledResult setIdentityDkimEnabled(SetIdentityDkimEnabledRequest setIdentityDkimEnabledRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a receipt rule set by cloning an existing one. All receipt
+     * rules and configurations are copied to the new receipt rule set and
+     * are completely independent of the source rule set.
+     * </p>
+     * <p>
+     * For information about setting up rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param updateReceiptRuleRequest Container for the necessary parameters
-     *           to execute the UpdateReceiptRule service method on
+     * @param cloneReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the CloneReceiptRuleSet service method on
      *           AmazonSimpleEmailService.
      * 
-     * @return The response from the UpdateReceiptRule service method, as
+     * @return The response from the CloneReceiptRuleSet service method, as
      *         returned by AmazonSimpleEmailService.
      * 
      * @throws LimitExceededException
-     * @throws InvalidS3ConfigurationException
      * @throws RuleSetDoesNotExistException
-     * @throws InvalidLambdaFunctionException
-     * @throws RuleDoesNotExistException
-     * @throws InvalidSnsTopicException
+     * @throws AlreadyExistsException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -154,179 +262,7 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public UpdateReceiptRuleResult updateReceiptRule(UpdateReceiptRuleRequest updateReceiptRuleRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns a list containing all of the email addresses that have been
-     * verified.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b>The ListVerifiedEmailAddresses action is deprecated
-     * as of the May 15, 2012 release of Domain Verification. The
-     * ListIdentities action is now preferred.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param listVerifiedEmailAddressesRequest Container for the necessary
-     *           parameters to execute the ListVerifiedEmailAddresses service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the ListVerifiedEmailAddresses service
-     *         method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListVerifiedEmailAddressesResult listVerifiedEmailAddresses(ListVerifiedEmailAddressesRequest listVerifiedEmailAddressesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified receipt rule.
-     * </p>
-     * <p>
-     * For information about managing receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteReceiptRuleRequest Container for the necessary parameters
-     *           to execute the DeleteReceiptRule service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the DeleteReceiptRule service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     * @throws RuleSetDoesNotExistException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DeleteReceiptRuleResult deleteReceiptRule(DeleteReceiptRuleRequest deleteReceiptRuleRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param verifyEmailIdentityRequest Container for the necessary
-     *           parameters to execute the VerifyEmailIdentity service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the VerifyEmailIdentity service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public VerifyEmailIdentityResult verifyEmailIdentity(VerifyEmailIdentityRequest verifyEmailIdentityRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Given a list of verified identities (email addresses and/or domains),
-     * returns a structure describing identity notification attributes.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second and can only get
-     * notification attributes for up to 100 identities at a time.
-     * </p>
-     * <p>
-     * For more information about using notifications with Amazon SES, see
-     * the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param getIdentityNotificationAttributesRequest Container for the
-     *           necessary parameters to execute the GetIdentityNotificationAttributes
-     *           service method on AmazonSimpleEmailService.
-     * 
-     * @return The response from the GetIdentityNotificationAttributes
-     *         service method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetIdentityNotificationAttributesResult getIdentityNotificationAttributes(GetIdentityNotificationAttributesRequest getIdentityNotificationAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns a set of DKIM tokens for a domain. DKIM <i>tokens</i> are
-     * character strings that represent your domain's identity. Using these
-     * tokens, you will need to create DNS CNAME records that point to DKIM
-     * public keys hosted by Amazon SES. Amazon Web Services will eventually
-     * detect that you have updated your DNS records; this detection process
-     * may take up to 72 hours. Upon successful detection, Amazon SES will be
-     * able to DKIM-sign email originating from that domain.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * To enable or disable Easy DKIM signing for a domain, use the
-     * <code>SetIdentityDkimEnabled</code> action.
-     * </p>
-     * <p>
-     * For more information about creating DNS records using DKIM tokens, go
-     * to the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param verifyDomainDkimRequest Container for the necessary parameters
-     *           to execute the VerifyDomainDkim service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the VerifyDomainDkim service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public VerifyDomainDkimResult verifyDomainDkim(VerifyDomainDkimRequest verifyDomainDkimRequest) 
+    public CloneReceiptRuleSetResult cloneReceiptRuleSet(CloneReceiptRuleSetRequest cloneReceiptRuleSetRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -383,55 +319,32 @@ public interface AmazonSimpleEmailService {
 
     /**
      * <p>
-     * Returns the details of the specified receipt rule set.
+     * Returns the requested sending authorization policies for the given
+     * identity (email address or domain). The policies are returned as a map
+     * of policy names to policy contents. You can retrieve a maximum of 20
+     * policies at a time.
      * </p>
      * <p>
-     * For information about managing receipt rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param describeReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the DescribeReceiptRuleSet service method on
+     * @param getIdentityPoliciesRequest Container for the necessary
+     *           parameters to execute the GetIdentityPolicies service method on
      *           AmazonSimpleEmailService.
      * 
-     * @return The response from the DescribeReceiptRuleSet service method,
-     *         as returned by AmazonSimpleEmailService.
-     * 
-     * @throws RuleSetDoesNotExistException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeReceiptRuleSetResult describeReceiptRuleSet(DescribeReceiptRuleSetRequest describeReceiptRuleSetRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b>The VerifyEmailAddress action is deprecated as of
-     * the May 15, 2012 release of Domain Verification. The
-     * VerifyEmailIdentity action is now preferred.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param verifyEmailAddressRequest Container for the necessary
-     *           parameters to execute the VerifyEmailAddress service method on
-     *           AmazonSimpleEmailService.
-     * 
+     * @return The response from the GetIdentityPolicies service method, as
+     *         returned by AmazonSimpleEmailService.
      * 
      *
      * @throws AmazonClientException
@@ -442,7 +355,7 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void verifyEmailAddress(VerifyEmailAddressRequest verifyEmailAddressRequest) 
+    public GetIdentityPoliciesResult getIdentityPolicies(GetIdentityPoliciesRequest getIdentityPoliciesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -488,126 +401,20 @@ public interface AmazonSimpleEmailService {
 
     /**
      * <p>
-     * Returns a list containing all of the identities (email addresses and
-     * domains) for a specific AWS Account, regardless of verification
-     * status.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param listIdentitiesRequest Container for the necessary parameters to
-     *           execute the ListIdentities service method on AmazonSimpleEmailService.
-     * 
-     * @return The response from the ListIdentities service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListIdentitiesResult listIdentities(ListIdentitiesRequest listIdentitiesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Given a list of identities (email addresses and/or domains), returns
-     * the verification status and (for domain identities) the verification
-     * token for each identity.
+     * Returns the custom MAIL FROM attributes for a list of identities
+     * (email addresses and/or domains).
      * </p>
      * <p>
      * This action is throttled at one request per second and can only get
-     * verification attributes for up to 100 identities at a time.
+     * custom MAIL FROM attributes for up to 100 identities at a time.
      * </p>
      *
-     * @param getIdentityVerificationAttributesRequest Container for the
-     *           necessary parameters to execute the GetIdentityVerificationAttributes
-     *           service method on AmazonSimpleEmailService.
-     * 
-     * @return The response from the GetIdentityVerificationAttributes
-     *         service method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetIdentityVerificationAttributesResult getIdentityVerificationAttributes(GetIdentityVerificationAttributesRequest getIdentityVerificationAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Enables or disables the custom MAIL FROM domain setup for a verified
-     * identity (email address or domain).
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b>To send emails using the specified MAIL FROM domain,
-     * you must add an MX record to your MAIL FROM domain's DNS settings. If
-     * you want your emails to pass Sender Policy Framework (SPF) checks, you
-     * must also add or update an SPF record. For more information, see the
-     * Amazon SES Developer Guide.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param setIdentityMailFromDomainRequest Container for the necessary
-     *           parameters to execute the SetIdentityMailFromDomain service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the SetIdentityMailFromDomain service
-     *         method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public SetIdentityMailFromDomainResult setIdentityMailFromDomain(SetIdentityMailFromDomainRequest setIdentityMailFromDomainRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Given an identity (email address or domain), enables or disables
-     * whether Amazon SES forwards bounce and complaint notifications as
-     * email. Feedback forwarding can only be disabled when Amazon Simple
-     * Notification Service (Amazon SNS) topics are specified for both
-     * bounces and complaints.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>Feedback forwarding does not apply to delivery
-     * notifications. Delivery notifications are only available through
-     * Amazon SNS.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * For more information about using notifications with Amazon SES, see
-     * the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param setIdentityFeedbackForwardingEnabledRequest Container for the
+     * @param getIdentityMailFromDomainAttributesRequest Container for the
      *           necessary parameters to execute the
-     *           SetIdentityFeedbackForwardingEnabled service method on
+     *           GetIdentityMailFromDomainAttributes service method on
      *           AmazonSimpleEmailService.
      * 
-     * @return The response from the SetIdentityFeedbackForwardingEnabled
+     * @return The response from the GetIdentityMailFromDomainAttributes
      *         service method, as returned by AmazonSimpleEmailService.
      * 
      *
@@ -619,17 +426,16 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public SetIdentityFeedbackForwardingEnabledResult setIdentityFeedbackForwardingEnabled(SetIdentityFeedbackForwardingEnabledRequest setIdentityFeedbackForwardingEnabledRequest) 
+    public GetIdentityMailFromDomainAttributesResult getIdentityMailFromDomainAttributes(GetIdentityMailFromDomainAttributesRequest getIdentityMailFromDomainAttributesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Reorders the receipt rules within a receipt rule set.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>All of the rules in the rule set must be represented in
-     * this request. That is, this API will return an error if the reorder
-     * request doesn't explicitly position all of the rules.
+     * Lists the receipt rule sets that exist under your AWS account. If
+     * there are additional receipt rule sets to be retrieved, you will
+     * receive a <code>NextToken</code> that you can provide to the next call
+     * to <code>ListReceiptRuleSets</code> to retrieve the additional
+     * entries.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the
@@ -640,45 +446,11 @@ public interface AmazonSimpleEmailService {
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param reorderReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the ReorderReceiptRuleSet service method on
+     * @param listReceiptRuleSetsRequest Container for the necessary
+     *           parameters to execute the ListReceiptRuleSets service method on
      *           AmazonSimpleEmailService.
      * 
-     * @return The response from the ReorderReceiptRuleSet service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     * @throws RuleSetDoesNotExistException
-     * @throws RuleDoesNotExistException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ReorderReceiptRuleSetResult reorderReceiptRuleSet(ReorderReceiptRuleSetRequest reorderReceiptRuleSetRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified IP address filter.
-     * </p>
-     * <p>
-     * For information about managing IP address filters, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteReceiptFilterRequest Container for the necessary
-     *           parameters to execute the DeleteReceiptFilter service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the DeleteReceiptFilter service method, as
+     * @return The response from the ListReceiptRuleSets service method, as
      *         returned by AmazonSimpleEmailService.
      * 
      *
@@ -690,76 +462,7 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DeleteReceiptFilterResult deleteReceiptFilter(DeleteReceiptFilterRequest deleteReceiptFilterRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Sets the position of the specified receipt rule in the receipt rule
-     * set.
-     * </p>
-     * <p>
-     * For information about managing receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param setReceiptRulePositionRequest Container for the necessary
-     *           parameters to execute the SetReceiptRulePosition service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the SetReceiptRulePosition service method,
-     *         as returned by AmazonSimpleEmailService.
-     * 
-     * @throws RuleSetDoesNotExistException
-     * @throws RuleDoesNotExistException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public SetReceiptRulePositionResult setReceiptRulePosition(SetReceiptRulePositionRequest setReceiptRulePositionRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns the details of the specified receipt rule.
-     * </p>
-     * <p>
-     * For information about setting up receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param describeReceiptRuleRequest Container for the necessary
-     *           parameters to execute the DescribeReceiptRule service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the DescribeReceiptRule service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     * @throws RuleSetDoesNotExistException
-     * @throws RuleDoesNotExistException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeReceiptRuleResult describeReceiptRule(DescribeReceiptRuleRequest describeReceiptRuleRequest) 
+    public ListReceiptRuleSetsResult listReceiptRuleSets(ListReceiptRuleSetsRequest listReceiptRuleSetsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -814,8 +517,8 @@ public interface AmazonSimpleEmailService {
      * @return The response from the CreateReceiptFilter service method, as
      *         returned by AmazonSimpleEmailService.
      * 
-     * @throws AlreadyExistsException
      * @throws LimitExceededException
+     * @throws AlreadyExistsException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -830,22 +533,48 @@ public interface AmazonSimpleEmailService {
 
     /**
      * <p>
-     * Returns the user's sending statistics. The result is a list of data
-     * points, representing the last two weeks of sending activity.
+     * Deletes the specified email address from the list of verified
+     * addresses.
      * </p>
      * <p>
-     * Each data point in the list contains statistics for a 15-minute
-     * interval.
+     * <b>IMPORTANT:</b>The DeleteVerifiedEmailAddress action is deprecated
+     * as of the May 15, 2012 release of Domain Verification. The
+     * DeleteIdentity action is now preferred.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param getSendStatisticsRequest Container for the necessary parameters
-     *           to execute the GetSendStatistics service method on
+     * @param deleteVerifiedEmailAddressRequest Container for the necessary
+     *           parameters to execute the DeleteVerifiedEmailAddress service method on
      *           AmazonSimpleEmailService.
      * 
-     * @return The response from the GetSendStatistics service method, as
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteVerifiedEmailAddress(DeleteVerifiedEmailAddressRequest deleteVerifiedEmailAddressRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Verifies a domain.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param verifyDomainIdentityRequest Container for the necessary
+     *           parameters to execute the VerifyDomainIdentity service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the VerifyDomainIdentity service method, as
      *         returned by AmazonSimpleEmailService.
      * 
      *
@@ -857,65 +586,30 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public GetSendStatisticsResult getSendStatistics(GetSendStatisticsRequest getSendStatisticsRequest) 
+    public VerifyDomainIdentityResult verifyDomainIdentity(VerifyDomainIdentityRequest verifyDomainIdentityRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Sets the specified receipt rule set as the active receipt rule set.
+     * Enables or disables the custom MAIL FROM domain setup for a verified
+     * identity (email address or domain).
      * </p>
      * <p>
-     * <b>NOTE:</b>To disable your email-receiving through Amazon SES
-     * completely, you can call this API with RuleSetName set to null.
-     * </p>
-     * <p>
-     * For information about managing receipt rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
-     * .
+     * <b>IMPORTANT:</b>To send emails using the specified MAIL FROM domain,
+     * you must add an MX record to your MAIL FROM domain's DNS settings. If
+     * you want your emails to pass Sender Policy Framework (SPF) checks, you
+     * must also add or update an SPF record. For more information, see the
+     * Amazon SES Developer Guide.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param setActiveReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the SetActiveReceiptRuleSet service method on
+     * @param setIdentityMailFromDomainRequest Container for the necessary
+     *           parameters to execute the SetIdentityMailFromDomain service method on
      *           AmazonSimpleEmailService.
      * 
-     * @return The response from the SetActiveReceiptRuleSet service method,
-     *         as returned by AmazonSimpleEmailService.
-     * 
-     * @throws RuleSetDoesNotExistException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public SetActiveReceiptRuleSetResult setActiveReceiptRuleSet(SetActiveReceiptRuleSetRequest setActiveReceiptRuleSetRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns the metadata and receipt rules for the receipt rule set that
-     * is currently active.
-     * </p>
-     * <p>
-     * For information about setting up receipt rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param describeActiveReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the DescribeActiveReceiptRuleSet service method
-     *           on AmazonSimpleEmailService.
-     * 
-     * @return The response from the DescribeActiveReceiptRuleSet service
+     * @return The response from the SetIdentityMailFromDomain service
      *         method, as returned by AmazonSimpleEmailService.
      * 
      *
@@ -927,7 +621,84 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DescribeActiveReceiptRuleSetResult describeActiveReceiptRuleSet(DescribeActiveReceiptRuleSetRequest describeActiveReceiptRuleSetRequest) 
+    public SetIdentityMailFromDomainResult setIdentityMailFromDomain(SetIdentityMailFromDomainRequest setIdentityMailFromDomainRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Reorders the receipt rules within a receipt rule set.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>All of the rules in the rule set must be represented in
+     * this request. That is, this API will return an error if the reorder
+     * request doesn't explicitly position all of the rules.
+     * </p>
+     * <p>
+     * For information about managing receipt rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param reorderReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the ReorderReceiptRuleSet service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the ReorderReceiptRuleSet service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     * @throws RuleDoesNotExistException
+     * @throws RuleSetDoesNotExistException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ReorderReceiptRuleSetResult reorderReceiptRuleSet(ReorderReceiptRuleSetRequest reorderReceiptRuleSetRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates a receipt rule.
+     * </p>
+     * <p>
+     * For information about managing receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param updateReceiptRuleRequest Container for the necessary parameters
+     *           to execute the UpdateReceiptRule service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the UpdateReceiptRule service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     * @throws RuleDoesNotExistException
+     * @throws LimitExceededException
+     * @throws InvalidLambdaFunctionException
+     * @throws InvalidSnsTopicException
+     * @throws RuleSetDoesNotExistException
+     * @throws InvalidS3ConfigurationException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public UpdateReceiptRuleResult updateReceiptRule(UpdateReceiptRuleRequest updateReceiptRuleRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1022,31 +793,22 @@ public interface AmazonSimpleEmailService {
 
     /**
      * <p>
-     * Creates a receipt rule.
+     * Given a list of identities (email addresses and/or domains), returns
+     * the verification status and (for domain identities) the verification
+     * token for each identity.
      * </p>
      * <p>
-     * For information about setting up receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
+     * This action is throttled at one request per second and can only get
+     * verification attributes for up to 100 identities at a time.
      * </p>
      *
-     * @param createReceiptRuleRequest Container for the necessary parameters
-     *           to execute the CreateReceiptRule service method on
-     *           AmazonSimpleEmailService.
+     * @param getIdentityVerificationAttributesRequest Container for the
+     *           necessary parameters to execute the GetIdentityVerificationAttributes
+     *           service method on AmazonSimpleEmailService.
      * 
-     * @return The response from the CreateReceiptRule service method, as
-     *         returned by AmazonSimpleEmailService.
+     * @return The response from the GetIdentityVerificationAttributes
+     *         service method, as returned by AmazonSimpleEmailService.
      * 
-     * @throws AlreadyExistsException
-     * @throws LimitExceededException
-     * @throws InvalidS3ConfigurationException
-     * @throws RuleSetDoesNotExistException
-     * @throws InvalidLambdaFunctionException
-     * @throws RuleDoesNotExistException
-     * @throws InvalidSnsTopicException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1056,7 +818,40 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public CreateReceiptRuleResult createReceiptRule(CreateReceiptRuleRequest createReceiptRuleRequest) 
+    public GetIdentityVerificationAttributesResult getIdentityVerificationAttributes(GetIdentityVerificationAttributesRequest getIdentityVerificationAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified receipt rule.
+     * </p>
+     * <p>
+     * For information about managing receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteReceiptRuleRequest Container for the necessary parameters
+     *           to execute the DeleteReceiptRule service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the DeleteReceiptRule service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     * @throws RuleSetDoesNotExistException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DeleteReceiptRuleResult deleteReceiptRule(DeleteReceiptRuleRequest deleteReceiptRuleRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1098,32 +893,71 @@ public interface AmazonSimpleEmailService {
 
     /**
      * <p>
-     * Adds or updates a sending authorization policy for the specified
-     * identity (email address or domain).
+     * Given an identity (email address or domain), sets the Amazon Simple
+     * Notification Service (Amazon SNS) topic to which Amazon SES will
+     * publish bounce, complaint, and/or delivery notifications for emails
+     * sent with that identity as the <code>Source</code> .
      * </p>
      * <p>
-     * <b>NOTE:</b>This API is for the identity owner only. If you have not
-     * verified the identity, this API will return an error.
+     * <b>NOTE:</b>Unless feedback forwarding is enabled, you must specify
+     * Amazon SNS topics for bounce and complaint notifications. For more
+     * information, see SetIdentityFeedbackForwardingEnabled.
      * </p>
      * <p>
-     * Sending authorization is a feature that enables an identity owner to
-     * authorize other senders to use its identities. For information about
-     * using sending authorization, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * This action is throttled at one request per second.
+     * </p>
+     * <p>
+     * For more information about feedback notification, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param setIdentityNotificationTopicRequest Container for the necessary
+     *           parameters to execute the SetIdentityNotificationTopic service method
+     *           on AmazonSimpleEmailService.
+     * 
+     * @return The response from the SetIdentityNotificationTopic service
+     *         method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SetIdentityNotificationTopicResult setIdentityNotificationTopic(SetIdentityNotificationTopicRequest setIdentityNotificationTopicRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a receipt rule.
+     * </p>
+     * <p>
+     * For information about setting up receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param putIdentityPolicyRequest Container for the necessary parameters
-     *           to execute the PutIdentityPolicy service method on
+     * @param createReceiptRuleRequest Container for the necessary parameters
+     *           to execute the CreateReceiptRule service method on
      *           AmazonSimpleEmailService.
      * 
-     * @return The response from the PutIdentityPolicy service method, as
+     * @return The response from the CreateReceiptRule service method, as
      *         returned by AmazonSimpleEmailService.
      * 
-     * @throws InvalidPolicyException
+     * @throws RuleDoesNotExistException
+     * @throws LimitExceededException
+     * @throws InvalidLambdaFunctionException
+     * @throws InvalidSnsTopicException
+     * @throws RuleSetDoesNotExistException
+     * @throws InvalidS3ConfigurationException
+     * @throws AlreadyExistsException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1133,171 +967,16 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public PutIdentityPolicyResult putIdentityPolicy(PutIdentityPolicyRequest putIdentityPolicyRequest) 
+    public CreateReceiptRuleResult createReceiptRule(CreateReceiptRuleRequest createReceiptRuleRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Returns the requested sending authorization policies for the given
-     * identity (email address or domain). The policies are returned as a map
-     * of policy names to policy contents. You can retrieve a maximum of 20
-     * policies at a time.
+     * Sets the specified receipt rule set as the active receipt rule set.
      * </p>
      * <p>
-     * <b>NOTE:</b>This API is for the identity owner only. If you have not
-     * verified the identity, this API will return an error.
-     * </p>
-     * <p>
-     * Sending authorization is a feature that enables an identity owner to
-     * authorize other senders to use its identities. For information about
-     * using sending authorization, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param getIdentityPoliciesRequest Container for the necessary
-     *           parameters to execute the GetIdentityPolicies service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the GetIdentityPolicies service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetIdentityPoliciesResult getIdentityPolicies(GetIdentityPoliciesRequest getIdentityPoliciesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Enables or disables Easy DKIM signing of email sent from an identity:
-     * </p>
-     * 
-     * <ul>
-     * <li>If Easy DKIM signing is enabled for a domain name identity (e.g.,
-     * <code>example.com</code> ), then Amazon SES will DKIM-sign all email
-     * sent by addresses under that domain name (e.g.,
-     * <code>user@example.com</code> ).</li>
-     * <li>If Easy DKIM signing is enabled for an email address, then Amazon
-     * SES will DKIM-sign all email sent by that email address.</li>
-     * 
-     * </ul>
-     * <p>
-     * For email addresses (e.g., <code>user@example.com</code> ), you can
-     * only enable Easy DKIM signing if the corresponding domain (e.g.,
-     * <code>example.com</code> ) has been set up for Easy DKIM using the AWS
-     * Console or the <code>VerifyDomainDkim</code> action.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * For more information about Easy DKIM signing, go to the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param setIdentityDkimEnabledRequest Container for the necessary
-     *           parameters to execute the SetIdentityDkimEnabled service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the SetIdentityDkimEnabled service method,
-     *         as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public SetIdentityDkimEnabledResult setIdentityDkimEnabled(SetIdentityDkimEnabledRequest setIdentityDkimEnabledRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns the user's current sending limits.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param getSendQuotaRequest Container for the necessary parameters to
-     *           execute the GetSendQuota service method on AmazonSimpleEmailService.
-     * 
-     * @return The response from the GetSendQuota service method, as returned
-     *         by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetSendQuotaResult getSendQuota(GetSendQuotaRequest getSendQuotaRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified sending authorization policy for the given
-     * identity (email address or domain). This API returns successfully even
-     * if a policy with the specified name does not exist.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>This API is for the identity owner only. If you have not
-     * verified the identity, this API will return an error.
-     * </p>
-     * <p>
-     * Sending authorization is a feature that enables an identity owner to
-     * authorize other senders to use its identities. For information about
-     * using sending authorization, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteIdentityPolicyRequest Container for the necessary
-     *           parameters to execute the DeleteIdentityPolicy service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the DeleteIdentityPolicy service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DeleteIdentityPolicyResult deleteIdentityPolicy(DeleteIdentityPolicyRequest deleteIdentityPolicyRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Lists the receipt rule sets that exist under your AWS account. If
-     * there are additional receipt rule sets to be retrieved, you will
-     * receive a <code>NextToken</code> that you can provide to the next call
-     * to <code>ListReceiptRuleSets</code> to retrieve the additional
-     * entries.
+     * <b>NOTE:</b>To disable your email-receiving through Amazon SES
+     * completely, you can call this API with RuleSetName set to null.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the
@@ -1308,11 +987,44 @@ public interface AmazonSimpleEmailService {
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param listReceiptRuleSetsRequest Container for the necessary
-     *           parameters to execute the ListReceiptRuleSets service method on
+     * @param setActiveReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the SetActiveReceiptRuleSet service method on
      *           AmazonSimpleEmailService.
      * 
-     * @return The response from the ListReceiptRuleSets service method, as
+     * @return The response from the SetActiveReceiptRuleSet service method,
+     *         as returned by AmazonSimpleEmailService.
+     * 
+     * @throws RuleSetDoesNotExistException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SetActiveReceiptRuleSetResult setActiveReceiptRuleSet(SetActiveReceiptRuleSetRequest setActiveReceiptRuleSetRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified IP address filter.
+     * </p>
+     * <p>
+     * For information about managing IP address filters, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteReceiptFilterRequest Container for the necessary
+     *           parameters to execute the DeleteReceiptFilter service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the DeleteReceiptFilter service method, as
      *         returned by AmazonSimpleEmailService.
      * 
      *
@@ -1324,7 +1036,121 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ListReceiptRuleSetsResult listReceiptRuleSets(ListReceiptRuleSetsRequest listReceiptRuleSetsRequest) 
+    public DeleteReceiptFilterResult deleteReceiptFilter(DeleteReceiptFilterRequest deleteReceiptFilterRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the details of the specified receipt rule set.
+     * </p>
+     * <p>
+     * For information about managing receipt rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param describeReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the DescribeReceiptRuleSet service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the DescribeReceiptRuleSet service method,
+     *         as returned by AmazonSimpleEmailService.
+     * 
+     * @throws RuleSetDoesNotExistException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeReceiptRuleSetResult describeReceiptRuleSet(DescribeReceiptRuleSetRequest describeReceiptRuleSetRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Given an identity (email address or domain), enables or disables
+     * whether Amazon SES forwards bounce and complaint notifications as
+     * email. Feedback forwarding can only be disabled when Amazon Simple
+     * Notification Service (Amazon SNS) topics are specified for both
+     * bounces and complaints.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>Feedback forwarding does not apply to delivery
+     * notifications. Delivery notifications are only available through
+     * Amazon SNS.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * <p>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param setIdentityFeedbackForwardingEnabledRequest Container for the
+     *           necessary parameters to execute the
+     *           SetIdentityFeedbackForwardingEnabled service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the SetIdentityFeedbackForwardingEnabled
+     *         service method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SetIdentityFeedbackForwardingEnabledResult setIdentityFeedbackForwardingEnabled(SetIdentityFeedbackForwardingEnabledRequest setIdentityFeedbackForwardingEnabledRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Generates and sends a bounce message to the sender of an email you
+     * received through Amazon SES. You can only use this API on an email up
+     * to 24 hours after you receive it.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>You cannot use this API to send generic bounces for mail
+     * that was not received by Amazon SES.
+     * </p>
+     * <p>
+     * For information about receiving email through Amazon SES, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param sendBounceRequest Container for the necessary parameters to
+     *           execute the SendBounce service method on AmazonSimpleEmailService.
+     * 
+     * @return The response from the SendBounce service method, as returned
+     *         by AmazonSimpleEmailService.
+     * 
+     * @throws MessageRejectedException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SendBounceResult sendBounce(SendBounceRequest sendBounceRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1385,17 +1211,18 @@ public interface AmazonSimpleEmailService {
 
     /**
      * <p>
-     * Verifies a domain.
+     * Returns a list containing all of the identities (email addresses and
+     * domains) for a specific AWS Account, regardless of verification
+     * status.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param verifyDomainIdentityRequest Container for the necessary
-     *           parameters to execute the VerifyDomainIdentity service method on
-     *           AmazonSimpleEmailService.
+     * @param listIdentitiesRequest Container for the necessary parameters to
+     *           execute the ListIdentities service method on AmazonSimpleEmailService.
      * 
-     * @return The response from the VerifyDomainIdentity service method, as
+     * @return The response from the ListIdentities service method, as
      *         returned by AmazonSimpleEmailService.
      * 
      *
@@ -1407,105 +1234,37 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public VerifyDomainIdentityResult verifyDomainIdentity(VerifyDomainIdentityRequest verifyDomainIdentityRequest) 
+    public ListIdentitiesResult listIdentities(ListIdentitiesRequest listIdentitiesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Given an identity (email address or domain), sets the Amazon Simple
-     * Notification Service (Amazon SNS) topic to which Amazon SES will
-     * publish bounce, complaint, and/or delivery notifications for emails
-     * sent with that identity as the <code>Source</code> .
+     * Adds or updates a sending authorization policy for the specified
+     * identity (email address or domain).
      * </p>
      * <p>
-     * <b>NOTE:</b>Unless feedback forwarding is enabled, you must specify
-     * Amazon SNS topics for bounce and complaint notifications. For more
-     * information, see SetIdentityFeedbackForwardingEnabled.
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * For more information about feedback notification, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param setIdentityNotificationTopicRequest Container for the necessary
-     *           parameters to execute the SetIdentityNotificationTopic service method
-     *           on AmazonSimpleEmailService.
-     * 
-     * @return The response from the SetIdentityNotificationTopic service
-     *         method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public SetIdentityNotificationTopicResult setIdentityNotificationTopic(SetIdentityNotificationTopicRequest setIdentityNotificationTopicRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified email address from the list of verified
-     * addresses.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b>The DeleteVerifiedEmailAddress action is deprecated
-     * as of the May 15, 2012 release of Domain Verification. The
-     * DeleteIdentity action is now preferred.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteVerifiedEmailAddressRequest Container for the necessary
-     *           parameters to execute the DeleteVerifiedEmailAddress service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteVerifiedEmailAddress(DeleteVerifiedEmailAddressRequest deleteVerifiedEmailAddressRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates a receipt rule set by cloning an existing one. All receipt
-     * rules and configurations are copied to the new receipt rule set and
-     * are completely independent of the source rule set.
-     * </p>
-     * <p>
-     * For information about setting up rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param cloneReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the CloneReceiptRuleSet service method on
+     * @param putIdentityPolicyRequest Container for the necessary parameters
+     *           to execute the PutIdentityPolicy service method on
      *           AmazonSimpleEmailService.
      * 
-     * @return The response from the CloneReceiptRuleSet service method, as
+     * @return The response from the PutIdentityPolicy service method, as
      *         returned by AmazonSimpleEmailService.
      * 
-     * @throws AlreadyExistsException
-     * @throws LimitExceededException
-     * @throws RuleSetDoesNotExistException
+     * @throws InvalidPolicyException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1515,65 +1274,28 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public CloneReceiptRuleSetResult cloneReceiptRuleSet(CloneReceiptRuleSetRequest cloneReceiptRuleSetRequest) 
+    public PutIdentityPolicyResult putIdentityPolicy(PutIdentityPolicyRequest putIdentityPolicyRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Returns the custom MAIL FROM attributes for a list of identities
-     * (email addresses and/or domains).
+     * Verifies an email address. This action causes a confirmation email
+     * message to be sent to the specified address.
      * </p>
      * <p>
-     * This action is throttled at one request per second and can only get
-     * custom MAIL FROM attributes for up to 100 identities at a time.
-     * </p>
-     *
-     * @param getIdentityMailFromDomainAttributesRequest Container for the
-     *           necessary parameters to execute the
-     *           GetIdentityMailFromDomainAttributes service method on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return The response from the GetIdentityMailFromDomainAttributes
-     *         service method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetIdentityMailFromDomainAttributesResult getIdentityMailFromDomainAttributes(GetIdentityMailFromDomainAttributesRequest getIdentityMailFromDomainAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Generates and sends a bounce message to the sender of an email you
-     * received through Amazon SES. You can only use this API on an email up
-     * to 24 hours after you receive it.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>You cannot use this API to send generic bounces for mail
-     * that was not received by Amazon SES.
-     * </p>
-     * <p>
-     * For information about receiving email through Amazon SES, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"> Amazon SES Developer Guide </a>
-     * .
+     * <b>IMPORTANT:</b>The VerifyEmailAddress action is deprecated as of
+     * the May 15, 2012 release of Domain Verification. The
+     * VerifyEmailIdentity action is now preferred.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param sendBounceRequest Container for the necessary parameters to
-     *           execute the SendBounce service method on AmazonSimpleEmailService.
+     * @param verifyEmailAddressRequest Container for the necessary
+     *           parameters to execute the VerifyEmailAddress service method on
+     *           AmazonSimpleEmailService.
      * 
-     * @return The response from the SendBounce service method, as returned
-     *         by AmazonSimpleEmailService.
      * 
-     * @throws MessageRejectedException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1583,7 +1305,35 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public SendBounceResult sendBounce(SendBounceRequest sendBounceRequest) 
+    public void verifyEmailAddress(VerifyEmailAddressRequest verifyEmailAddressRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Verifies an email address. This action causes a confirmation email
+     * message to be sent to the specified address.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param verifyEmailIdentityRequest Container for the necessary
+     *           parameters to execute the VerifyEmailIdentity service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the VerifyEmailIdentity service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public VerifyEmailIdentityResult verifyEmailIdentity(VerifyEmailIdentityRequest verifyEmailIdentityRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1606,8 +1356,8 @@ public interface AmazonSimpleEmailService {
      * @return The response from the CreateReceiptRuleSet service method, as
      *         returned by AmazonSimpleEmailService.
      * 
-     * @throws AlreadyExistsException
      * @throws LimitExceededException
+     * @throws AlreadyExistsException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1618,6 +1368,180 @@ public interface AmazonSimpleEmailService {
      *             either a problem with the data in the request, or a server side issue.
      */
     public CreateReceiptRuleSetResult createReceiptRuleSet(CreateReceiptRuleSetRequest createReceiptRuleSetRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified sending authorization policy for the given
+     * identity (email address or domain). This API returns successfully even
+     * if a policy with the specified name does not exist.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteIdentityPolicyRequest Container for the necessary
+     *           parameters to execute the DeleteIdentityPolicy service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the DeleteIdentityPolicy service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DeleteIdentityPolicyResult deleteIdentityPolicy(DeleteIdentityPolicyRequest deleteIdentityPolicyRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the user's sending statistics. The result is a list of data
+     * points, representing the last two weeks of sending activity.
+     * </p>
+     * <p>
+     * Each data point in the list contains statistics for a 15-minute
+     * interval.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param getSendStatisticsRequest Container for the necessary parameters
+     *           to execute the GetSendStatistics service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the GetSendStatistics service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetSendStatisticsResult getSendStatistics(GetSendStatisticsRequest getSendStatisticsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Given a list of verified identities (email addresses and/or domains),
+     * returns a structure describing identity notification attributes.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second and can only get
+     * notification attributes for up to 100 identities at a time.
+     * </p>
+     * <p>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param getIdentityNotificationAttributesRequest Container for the
+     *           necessary parameters to execute the GetIdentityNotificationAttributes
+     *           service method on AmazonSimpleEmailService.
+     * 
+     * @return The response from the GetIdentityNotificationAttributes
+     *         service method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetIdentityNotificationAttributesResult getIdentityNotificationAttributes(GetIdentityNotificationAttributesRequest getIdentityNotificationAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the metadata and receipt rules for the receipt rule set that
+     * is currently active.
+     * </p>
+     * <p>
+     * For information about setting up receipt rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param describeActiveReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the DescribeActiveReceiptRuleSet service method
+     *           on AmazonSimpleEmailService.
+     * 
+     * @return The response from the DescribeActiveReceiptRuleSet service
+     *         method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeActiveReceiptRuleSetResult describeActiveReceiptRuleSet(DescribeActiveReceiptRuleSetRequest describeActiveReceiptRuleSetRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the details of the specified receipt rule.
+     * </p>
+     * <p>
+     * For information about setting up receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param describeReceiptRuleRequest Container for the necessary
+     *           parameters to execute the DescribeReceiptRule service method on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return The response from the DescribeReceiptRule service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     * @throws RuleDoesNotExistException
+     * @throws RuleSetDoesNotExistException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeReceiptRuleResult describeReceiptRule(DescribeReceiptRuleRequest describeReceiptRuleRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1633,6 +1557,10 @@ public interface AmazonSimpleEmailService {
      * <p>
      * This action is throttled at one request per second.
      * </p>
+     *
+     * @param listVerifiedEmailAddressesRequest Container for the necessary
+     *           parameters to execute the ListVerifiedEmailAddresses service method on
+     *           AmazonSimpleEmailService.
      * 
      * @return The response from the ListVerifiedEmailAddresses service
      *         method, as returned by AmazonSimpleEmailService.
@@ -1646,19 +1574,38 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ListVerifiedEmailAddressesResult listVerifiedEmailAddresses() throws AmazonServiceException, AmazonClientException;
-    
+    public ListVerifiedEmailAddressesResult listVerifiedEmailAddresses(ListVerifiedEmailAddressesRequest listVerifiedEmailAddressesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
     /**
      * <p>
-     * Returns a list containing all of the identities (email addresses and
-     * domains) for a specific AWS Account, regardless of verification
-     * status.
+     * Returns a set of DKIM tokens for a domain. DKIM <i>tokens</i> are
+     * character strings that represent your domain's identity. Using these
+     * tokens, you will need to create DNS CNAME records that point to DKIM
+     * public keys hosted by Amazon SES. Amazon Web Services will eventually
+     * detect that you have updated your DNS records; this detection process
+     * may take up to 72 hours. Upon successful detection, Amazon SES will be
+     * able to DKIM-sign email originating from that domain.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
+     * <p>
+     * To enable or disable Easy DKIM signing for a domain, use the
+     * <code>SetIdentityDkimEnabled</code> action.
+     * </p>
+     * <p>
+     * For more information about creating DNS records using DKIM tokens, go
+     * to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param verifyDomainDkimRequest Container for the necessary parameters
+     *           to execute the VerifyDomainDkim service method on
+     *           AmazonSimpleEmailService.
      * 
-     * @return The response from the ListIdentities service method, as
+     * @return The response from the VerifyDomainDkim service method, as
      *         returned by AmazonSimpleEmailService.
      * 
      *
@@ -1670,122 +1617,9 @@ public interface AmazonSimpleEmailService {
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ListIdentitiesResult listIdentities() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Lists the IP address filters associated with your account.
-     * </p>
-     * <p>
-     * For information about managing IP address filters, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * 
-     * @return The response from the ListReceiptFilters service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListReceiptFiltersResult listReceiptFilters() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Returns the user's sending statistics. The result is a list of data
-     * points, representing the last two weeks of sending activity.
-     * </p>
-     * <p>
-     * Each data point in the list contains statistics for a 15-minute
-     * interval.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * 
-     * @return The response from the GetSendStatistics service method, as
-     *         returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetSendStatisticsResult getSendStatistics() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Sets the specified receipt rule set as the active receipt rule set.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>To disable your email-receiving through Amazon SES
-     * completely, you can call this API with RuleSetName set to null.
-     * </p>
-     * <p>
-     * For information about managing receipt rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * 
-     * @return The response from the SetActiveReceiptRuleSet service method,
-     *         as returned by AmazonSimpleEmailService.
-     * 
-     * @throws RuleSetDoesNotExistException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public SetActiveReceiptRuleSetResult setActiveReceiptRuleSet() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Returns the metadata and receipt rules for the receipt rule set that
-     * is currently active.
-     * </p>
-     * <p>
-     * For information about setting up receipt rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * 
-     * @return The response from the DescribeActiveReceiptRuleSet service
-     *         method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeActiveReceiptRuleSetResult describeActiveReceiptRuleSet() throws AmazonServiceException, AmazonClientException;
-    
+    public VerifyDomainDkimResult verifyDomainDkim(VerifyDomainDkimRequest verifyDomainDkimRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
     /**
      * <p>
      * Returns the user's current sending limits.
@@ -1838,6 +1672,172 @@ public interface AmazonSimpleEmailService {
      *             either a problem with the data in the request, or a server side issue.
      */
     public ListReceiptRuleSetsResult listReceiptRuleSets() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Lists the IP address filters associated with your account.
+     * </p>
+     * <p>
+     * For information about managing IP address filters, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * 
+     * @return The response from the ListReceiptFilters service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListReceiptFiltersResult listReceiptFilters() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Sets the specified receipt rule set as the active receipt rule set.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>To disable your email-receiving through Amazon SES
+     * completely, you can call this API with RuleSetName set to null.
+     * </p>
+     * <p>
+     * For information about managing receipt rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * 
+     * @return The response from the SetActiveReceiptRuleSet service method,
+     *         as returned by AmazonSimpleEmailService.
+     * 
+     * @throws RuleSetDoesNotExistException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SetActiveReceiptRuleSetResult setActiveReceiptRuleSet() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Returns a list containing all of the identities (email addresses and
+     * domains) for a specific AWS Account, regardless of verification
+     * status.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * 
+     * @return The response from the ListIdentities service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListIdentitiesResult listIdentities() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Returns the user's sending statistics. The result is a list of data
+     * points, representing the last two weeks of sending activity.
+     * </p>
+     * <p>
+     * Each data point in the list contains statistics for a 15-minute
+     * interval.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * 
+     * @return The response from the GetSendStatistics service method, as
+     *         returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetSendStatisticsResult getSendStatistics() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Returns the metadata and receipt rules for the receipt rule set that
+     * is currently active.
+     * </p>
+     * <p>
+     * For information about setting up receipt rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * 
+     * @return The response from the DescribeActiveReceiptRuleSet service
+     *         method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeActiveReceiptRuleSetResult describeActiveReceiptRuleSet() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Returns a list containing all of the email addresses that have been
+     * verified.
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b>The ListVerifiedEmailAddresses action is deprecated
+     * as of the May 15, 2012 release of Domain Verification. The
+     * ListIdentities action is now preferred.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * 
+     * @return The response from the ListVerifiedEmailAddresses service
+     *         method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListVerifiedEmailAddressesResult listVerifiedEmailAddresses() throws AmazonServiceException, AmazonClientException;
     
     /**
      * Shuts down this client object, releasing any resources that might be held

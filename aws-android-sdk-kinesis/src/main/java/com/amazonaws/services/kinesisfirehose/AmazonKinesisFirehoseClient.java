@@ -332,9 +332,9 @@ public class AmazonKinesisFirehoseClient extends AmazonWebServiceClient implemen
      * @return The response from the PutRecordBatch service method, as
      *         returned by AmazonKinesisFirehose.
      * 
-     * @throws ServiceUnavailableException
-     * @throws ResourceNotFoundException
      * @throws InvalidArgumentException
+     * @throws ResourceNotFoundException
+     * @throws ServiceUnavailableException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while

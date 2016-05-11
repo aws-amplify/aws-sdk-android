@@ -17,9 +17,10 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.util.Log;
 
-import com.amazonaws.AbortedException;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.event.ProgressListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
+import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
@@ -31,7 +32,7 @@ import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.util.Mimetypes;
 
 import java.io.File;
-import java.io.InterruptedIOException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -49,13 +50,15 @@ class UploadTask implements Callable<Boolean> {
     private final TransferRecord upload;
     private final TransferDBUtil dbUtil;
     private final TransferStatusUpdater updater;
+    private final NetworkInfoReceiver networkInfo;
 
     public UploadTask(TransferRecord uploadInfo, AmazonS3 s3, TransferDBUtil dbUtil,
-            TransferStatusUpdater updater) {
+            TransferStatusUpdater updater, NetworkInfoReceiver networkInfo) {
         this.upload = uploadInfo;
         this.s3 = s3;
         this.dbUtil = dbUtil;
         this.updater = updater;
+        this.networkInfo = networkInfo;
     }
 
     /*
@@ -63,6 +66,10 @@ class UploadTask implements Callable<Boolean> {
      */
     @Override
     public Boolean call() throws Exception {
+        if (!networkInfo.isNetworkConnected()) {
+            updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+            return false;
+        }
         updater.updateState(upload.id, TransferState.IN_PROGRESS);
         if (upload.isMultipart == 1 && upload.partNumber == 0) {
             /*
@@ -153,16 +160,19 @@ class UploadTask implements Callable<Boolean> {
             // handle pause, cancel, etc
             if (ee.getCause() != null && ee.getCause() instanceof Exception) {
                 Exception e = (Exception) ee.getCause();
-                if (e instanceof AbortedException || e.getCause() != null
-                        && (e.getCause() instanceof InterruptedIOException
-                        || e.getCause() instanceof InterruptedException)) {
-                    // abort by user
+                if (RetryUtils.isInterrupted(e)) {
+                    /*
+                     * thread is interrupted by user. don't update the state as
+                     * it's set by caller who interrupted
+                     */
                     Log.d(TAG, "Transfer " + upload.id + " is interrupted by user");
-                    // don't update the state as it's set by caller who
-                    // interrupted the transfer
                     return false;
+                } else if (e.getCause() != null && e.getCause() instanceof IOException
+                        && !networkInfo.isNetworkConnected()) {
+                    Log.d(TAG, "Transfer " + upload.id + " waits for network");
+                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                 }
-                updater.throwError(upload.id, (Exception) ee.getCause());
+                updater.throwError(upload.id, e);
             }
             updater.updateState(upload.id, TransferState.FAILED);
             return false;
@@ -197,14 +207,17 @@ class UploadTask implements Callable<Boolean> {
             updater.updateState(upload.id, TransferState.COMPLETED);
             return true;
         } catch (Exception e) {
-            if (e instanceof AbortedException
-                    || e.getCause() != null && (e.getCause() instanceof InterruptedIOException
-                    || e.getCause() instanceof InterruptedException)) {
-                // thread interrupted by user
+            if (RetryUtils.isInterrupted(e)) {
+                /*
+                 * thread is interrupted by user. don't update the state as it's
+                 * set by caller who interrupted
+                 */
                 Log.d(TAG, "Transfer " + upload.id + " is interrupted by user");
-                // don't update the state as it's set by caller who interrupted
-                // the transfer
                 return false;
+            } else if (e.getCause() != null && e.getCause() instanceof IOException
+                    && !networkInfo.isNetworkConnected()) {
+                Log.d(TAG, "Transfer " + upload.id + " waits for network");
+                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
             }
             // all other exceptions
             Log.e(TAG, "Failed to upload: " + upload.id + " due to " + e.getMessage());

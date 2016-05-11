@@ -93,7 +93,7 @@ public class CognitoUserSession {
         try {
             return (currentTimeStamp.before(idToken.getExpiration())
                     & currentTimeStamp.before(accessToken.getExpiration()));
-        } catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }

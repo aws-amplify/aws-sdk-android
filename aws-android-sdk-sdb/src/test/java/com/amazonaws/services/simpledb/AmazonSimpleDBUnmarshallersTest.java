@@ -34,6 +34,140 @@ public class AmazonSimpleDBUnmarshallersTest {
 
 
 	/**
+	 * Test DomainMetadata response unmarshaller
+	 */
+	@Test
+    public void testDomainMetadata() throws Exception {
+		InputStream responseXML = DomainMetadataResult.class.getClassLoader()
+				.getResourceAsStream("com/amazonaws/services/simpledb/DomainMetadataResponse.xml");
+
+        XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
+        Reader reader = new InputStreamReader(responseXML);
+        XmlPullParser xpp = xmlPullParserFactory.newPullParser();
+        xpp.setInput(reader);
+        StaxUnmarshallerContext unmarshallerContext = new StaxUnmarshallerContext(xpp);
+
+        DomainMetadataResult domainMetadataResult = (DomainMetadataResult)new DomainMetadataResultStaxUnmarshaller().unmarshall(unmarshallerContext);
+
+        HandlerChainFactory chainFactory = new HandlerChainFactory();
+        final List<RequestHandler2> requestHandler2s = 
+            Collections.synchronizedList(chainFactory.newRequestHandlerChain(
+                "/com/amazonaws/services/simpledb/request.handlers"));
+        requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
+                "/com/amazonaws/services/simpledb/request.handler2s"));
+        for (RequestHandler2 handler2 : requestHandler2s) {
+            Response res = new Response(domainMetadataResult, null);
+            handler2.afterResponse(null, res);
+        }
+
+            
+        assertNotNull(domainMetadataResult.getItemCount());
+        assertTrue(domainMetadataResult.getItemCount().equals(1));
+        
+        assertNotNull(domainMetadataResult.getItemNamesSizeBytes());
+        assertTrue(domainMetadataResult.getItemNamesSizeBytes().equals(1L));
+        
+        assertNotNull(domainMetadataResult.getAttributeNameCount());
+        assertTrue(domainMetadataResult.getAttributeNameCount().equals(1));
+        
+        assertNotNull(domainMetadataResult.getAttributeNamesSizeBytes());
+        assertTrue(domainMetadataResult.getAttributeNamesSizeBytes().equals(1L));
+        
+        assertNotNull(domainMetadataResult.getAttributeValueCount());
+        assertTrue(domainMetadataResult.getAttributeValueCount().equals(1));
+        
+        assertNotNull(domainMetadataResult.getAttributeValuesSizeBytes());
+        assertTrue(domainMetadataResult.getAttributeValuesSizeBytes().equals(1L));
+        
+        assertNotNull(domainMetadataResult.getTimestamp());
+        assertTrue(domainMetadataResult.getTimestamp().equals(1));
+        
+    }
+    
+	/**
+	 * Test GetAttributes response unmarshaller
+	 */
+	@Test
+    public void testGetAttributes() throws Exception {
+		InputStream responseXML = GetAttributesResult.class.getClassLoader()
+				.getResourceAsStream("com/amazonaws/services/simpledb/GetAttributesResponse.xml");
+
+        XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
+        Reader reader = new InputStreamReader(responseXML);
+        XmlPullParser xpp = xmlPullParserFactory.newPullParser();
+        xpp.setInput(reader);
+        StaxUnmarshallerContext unmarshallerContext = new StaxUnmarshallerContext(xpp);
+
+        GetAttributesResult getAttributesResult = (GetAttributesResult)new GetAttributesResultStaxUnmarshaller().unmarshall(unmarshallerContext);
+
+        HandlerChainFactory chainFactory = new HandlerChainFactory();
+        final List<RequestHandler2> requestHandler2s = 
+            Collections.synchronizedList(chainFactory.newRequestHandlerChain(
+                "/com/amazonaws/services/simpledb/request.handlers"));
+        requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
+                "/com/amazonaws/services/simpledb/request.handler2s"));
+        for (RequestHandler2 handler2 : requestHandler2s) {
+            Response res = new Response(getAttributesResult, null);
+            handler2.afterResponse(null, res);
+        }
+
+            
+        assertNotNull(getAttributesResult.getAttributes());
+        assertTrue(getAttributesResult.getAttributes().size() == 2);
+        
+        for (Object attributesObject : getAttributesResult.getAttributes()) {
+            Attribute attributes = (Attribute)attributesObject;
+        assertNotNull(attributes.getName());
+        assertTrue(attributes.getName().equals("1"));
+        
+        assertNotNull(attributes.getValue());
+        assertTrue(attributes.getValue().equals("1"));
+        
+        }
+    	
+    }
+    
+	/**
+	 * Test ListDomains response unmarshaller
+	 */
+	@Test
+    public void testListDomains() throws Exception {
+		InputStream responseXML = ListDomainsResult.class.getClassLoader()
+				.getResourceAsStream("com/amazonaws/services/simpledb/ListDomainsResponse.xml");
+
+        XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
+        Reader reader = new InputStreamReader(responseXML);
+        XmlPullParser xpp = xmlPullParserFactory.newPullParser();
+        xpp.setInput(reader);
+        StaxUnmarshallerContext unmarshallerContext = new StaxUnmarshallerContext(xpp);
+
+        ListDomainsResult listDomainsResult = (ListDomainsResult)new ListDomainsResultStaxUnmarshaller().unmarshall(unmarshallerContext);
+
+        HandlerChainFactory chainFactory = new HandlerChainFactory();
+        final List<RequestHandler2> requestHandler2s = 
+            Collections.synchronizedList(chainFactory.newRequestHandlerChain(
+                "/com/amazonaws/services/simpledb/request.handlers"));
+        requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
+                "/com/amazonaws/services/simpledb/request.handler2s"));
+        for (RequestHandler2 handler2 : requestHandler2s) {
+            Response res = new Response(listDomainsResult, null);
+            handler2.afterResponse(null, res);
+        }
+
+            
+        assertNotNull(listDomainsResult.getDomainNames());
+        assertTrue(listDomainsResult.getDomainNames().size() == 2);
+        
+        for (Object domainNamesObject : listDomainsResult.getDomainNames()) {
+            String domainNames = (String)domainNamesObject;
+        }
+    	
+        assertNotNull(listDomainsResult.getNextToken());
+        assertTrue(listDomainsResult.getNextToken().equals("1"));
+        
+    }
+    
+	/**
 	 * Test Select response unmarshaller
 	 */
 	@Test
@@ -86,140 +220,6 @@ public class AmazonSimpleDBUnmarshallersTest {
     	
         assertNotNull(selectResult.getNextToken());
         assertTrue(selectResult.getNextToken().equals("1"));
-        
-    }
-    
-	/**
-	 * Test ListDomains response unmarshaller
-	 */
-	@Test
-    public void testListDomains() throws Exception {
-		InputStream responseXML = ListDomainsResult.class.getClassLoader()
-				.getResourceAsStream("com/amazonaws/services/simpledb/ListDomainsResponse.xml");
-
-        XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
-        Reader reader = new InputStreamReader(responseXML);
-        XmlPullParser xpp = xmlPullParserFactory.newPullParser();
-        xpp.setInput(reader);
-        StaxUnmarshallerContext unmarshallerContext = new StaxUnmarshallerContext(xpp);
-
-        ListDomainsResult listDomainsResult = (ListDomainsResult)new ListDomainsResultStaxUnmarshaller().unmarshall(unmarshallerContext);
-
-        HandlerChainFactory chainFactory = new HandlerChainFactory();
-        final List<RequestHandler2> requestHandler2s = 
-            Collections.synchronizedList(chainFactory.newRequestHandlerChain(
-                "/com/amazonaws/services/simpledb/request.handlers"));
-        requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
-                "/com/amazonaws/services/simpledb/request.handler2s"));
-        for (RequestHandler2 handler2 : requestHandler2s) {
-            Response res = new Response(listDomainsResult, null);
-            handler2.afterResponse(null, res);
-        }
-
-            
-        assertNotNull(listDomainsResult.getDomainNames());
-        assertTrue(listDomainsResult.getDomainNames().size() == 2);
-        
-        for (Object domainNamesObject : listDomainsResult.getDomainNames()) {
-            String domainNames = (String)domainNamesObject;
-        }
-    	
-        assertNotNull(listDomainsResult.getNextToken());
-        assertTrue(listDomainsResult.getNextToken().equals("1"));
-        
-    }
-    
-	/**
-	 * Test GetAttributes response unmarshaller
-	 */
-	@Test
-    public void testGetAttributes() throws Exception {
-		InputStream responseXML = GetAttributesResult.class.getClassLoader()
-				.getResourceAsStream("com/amazonaws/services/simpledb/GetAttributesResponse.xml");
-
-        XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
-        Reader reader = new InputStreamReader(responseXML);
-        XmlPullParser xpp = xmlPullParserFactory.newPullParser();
-        xpp.setInput(reader);
-        StaxUnmarshallerContext unmarshallerContext = new StaxUnmarshallerContext(xpp);
-
-        GetAttributesResult getAttributesResult = (GetAttributesResult)new GetAttributesResultStaxUnmarshaller().unmarshall(unmarshallerContext);
-
-        HandlerChainFactory chainFactory = new HandlerChainFactory();
-        final List<RequestHandler2> requestHandler2s = 
-            Collections.synchronizedList(chainFactory.newRequestHandlerChain(
-                "/com/amazonaws/services/simpledb/request.handlers"));
-        requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
-                "/com/amazonaws/services/simpledb/request.handler2s"));
-        for (RequestHandler2 handler2 : requestHandler2s) {
-            Response res = new Response(getAttributesResult, null);
-            handler2.afterResponse(null, res);
-        }
-
-            
-        assertNotNull(getAttributesResult.getAttributes());
-        assertTrue(getAttributesResult.getAttributes().size() == 2);
-        
-        for (Object attributesObject : getAttributesResult.getAttributes()) {
-            Attribute attributes = (Attribute)attributesObject;
-        assertNotNull(attributes.getName());
-        assertTrue(attributes.getName().equals("1"));
-        
-        assertNotNull(attributes.getValue());
-        assertTrue(attributes.getValue().equals("1"));
-        
-        }
-    	
-    }
-    
-	/**
-	 * Test DomainMetadata response unmarshaller
-	 */
-	@Test
-    public void testDomainMetadata() throws Exception {
-		InputStream responseXML = DomainMetadataResult.class.getClassLoader()
-				.getResourceAsStream("com/amazonaws/services/simpledb/DomainMetadataResponse.xml");
-
-        XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
-        Reader reader = new InputStreamReader(responseXML);
-        XmlPullParser xpp = xmlPullParserFactory.newPullParser();
-        xpp.setInput(reader);
-        StaxUnmarshallerContext unmarshallerContext = new StaxUnmarshallerContext(xpp);
-
-        DomainMetadataResult domainMetadataResult = (DomainMetadataResult)new DomainMetadataResultStaxUnmarshaller().unmarshall(unmarshallerContext);
-
-        HandlerChainFactory chainFactory = new HandlerChainFactory();
-        final List<RequestHandler2> requestHandler2s = 
-            Collections.synchronizedList(chainFactory.newRequestHandlerChain(
-                "/com/amazonaws/services/simpledb/request.handlers"));
-        requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
-                "/com/amazonaws/services/simpledb/request.handler2s"));
-        for (RequestHandler2 handler2 : requestHandler2s) {
-            Response res = new Response(domainMetadataResult, null);
-            handler2.afterResponse(null, res);
-        }
-
-            
-        assertNotNull(domainMetadataResult.getItemCount());
-        assertTrue(domainMetadataResult.getItemCount().equals(1));
-        
-        assertNotNull(domainMetadataResult.getItemNamesSizeBytes());
-        assertTrue(domainMetadataResult.getItemNamesSizeBytes().equals(1L));
-        
-        assertNotNull(domainMetadataResult.getAttributeNameCount());
-        assertTrue(domainMetadataResult.getAttributeNameCount().equals(1));
-        
-        assertNotNull(domainMetadataResult.getAttributeNamesSizeBytes());
-        assertTrue(domainMetadataResult.getAttributeNamesSizeBytes().equals(1L));
-        
-        assertNotNull(domainMetadataResult.getAttributeValueCount());
-        assertTrue(domainMetadataResult.getAttributeValueCount().equals(1));
-        
-        assertNotNull(domainMetadataResult.getAttributeValuesSizeBytes());
-        assertTrue(domainMetadataResult.getAttributeValuesSizeBytes().equals(1L));
-        
-        assertNotNull(domainMetadataResult.getTimestamp());
-        assertTrue(domainMetadataResult.getTimestamp().equals(1));
         
     }
     

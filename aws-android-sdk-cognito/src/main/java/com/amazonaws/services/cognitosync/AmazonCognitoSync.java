@@ -108,6 +108,144 @@ public interface AmazonCognitoSync {
     
     /**
      * <p>
+     * Gets paginated records, optionally changed after a particular sync
+     * count for a dataset and identity. With Amazon Cognito Sync, each
+     * identity has access only to its own data. Thus, the credentials used
+     * to make this API call need to have access to the identity data.
+     * </p>
+     * <p>
+     * ListRecords can be called with temporary user credentials provided by
+     * Cognito Identity or with developer credentials. You should use Cognito
+     * Identity credentials to make this API call.
+     * </p>
+     *
+     * @param listRecordsRequest Container for the necessary parameters to
+     *           execute the ListRecords service method on AmazonCognitoSync.
+     * 
+     * @return The response from the ListRecords service method, as returned
+     *         by AmazonCognitoSync.
+     * 
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoSync indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListRecordsResult listRecords(ListRecordsRequest listRecordsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Unsubscribes from receiving notifications when a dataset is modified
+     * by another device.
+     * </p>
+     * <p>
+     * This API can only be called with temporary credentials provided by
+     * Cognito Identity. You cannot call this API with developer credentials.
+     * </p>
+     *
+     * @param unsubscribeFromDatasetRequest Container for the necessary
+     *           parameters to execute the UnsubscribeFromDataset service method on
+     *           AmazonCognitoSync.
+     * 
+     * @return The response from the UnsubscribeFromDataset service method,
+     *         as returned by AmazonCognitoSync.
+     * 
+     * @throws ResourceNotFoundException
+     * @throws InternalErrorException
+     * @throws InvalidConfigurationException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoSync indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public UnsubscribeFromDatasetResult unsubscribeFromDataset(UnsubscribeFromDatasetRequest unsubscribeFromDatasetRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Registers a device to receive push sync notifications.
+     * </p>
+     * <p>
+     * This API can only be called with temporary credentials provided by
+     * Cognito Identity. You cannot call this API with developer credentials.
+     * </p>
+     *
+     * @param registerDeviceRequest Container for the necessary parameters to
+     *           execute the RegisterDevice service method on AmazonCognitoSync.
+     * 
+     * @return The response from the RegisterDevice service method, as
+     *         returned by AmazonCognitoSync.
+     * 
+     * @throws ResourceNotFoundException
+     * @throws InternalErrorException
+     * @throws InvalidConfigurationException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoSync indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public RegisterDeviceResult registerDevice(RegisterDeviceRequest registerDeviceRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Subscribes to receive notifications when a dataset is modified by
+     * another device.
+     * </p>
+     * <p>
+     * This API can only be called with temporary credentials provided by
+     * Cognito Identity. You cannot call this API with developer credentials.
+     * </p>
+     *
+     * @param subscribeToDatasetRequest Container for the necessary
+     *           parameters to execute the SubscribeToDataset service method on
+     *           AmazonCognitoSync.
+     * 
+     * @return The response from the SubscribeToDataset service method, as
+     *         returned by AmazonCognitoSync.
+     * 
+     * @throws ResourceNotFoundException
+     * @throws InternalErrorException
+     * @throws InvalidConfigurationException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoSync indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SubscribeToDatasetResult subscribeToDataset(SubscribeToDatasetRequest subscribeToDatasetRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Posts updates to records and adds and deletes records for a dataset
      * and user.
      * </p>
@@ -137,15 +275,15 @@ public interface AmazonCognitoSync {
      * @return The response from the UpdateRecords service method, as
      *         returned by AmazonCognitoSync.
      * 
-     * @throws LimitExceededException
-     * @throws TooManyRequestsException
-     * @throws ResourceConflictException
-     * @throws InvalidParameterException
      * @throws ResourceNotFoundException
-     * @throws InvalidLambdaFunctionOutputException
-     * @throws NotAuthorizedException
-     * @throws LambdaThrottledException
      * @throws InternalErrorException
+     * @throws LambdaThrottledException
+     * @throws InvalidLambdaFunctionOutputException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws NotAuthorizedException
+     * @throws ResourceConflictException
+     * @throws TooManyRequestsException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -156,76 +294,6 @@ public interface AmazonCognitoSync {
      *             either a problem with the data in the request, or a server side issue.
      */
     public UpdateRecordsResult updateRecords(UpdateRecordsRequest updateRecordsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Unsubscribes from receiving notifications when a dataset is modified
-     * by another device.
-     * </p>
-     * <p>
-     * This API can only be called with temporary credentials provided by
-     * Cognito Identity. You cannot call this API with developer credentials.
-     * </p>
-     *
-     * @param unsubscribeFromDatasetRequest Container for the necessary
-     *           parameters to execute the UnsubscribeFromDataset service method on
-     *           AmazonCognitoSync.
-     * 
-     * @return The response from the UnsubscribeFromDataset service method,
-     *         as returned by AmazonCognitoSync.
-     * 
-     * @throws TooManyRequestsException
-     * @throws InvalidConfigurationException
-     * @throws InvalidParameterException
-     * @throws ResourceNotFoundException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoSync indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public UnsubscribeFromDatasetResult unsubscribeFromDataset(UnsubscribeFromDatasetRequest unsubscribeFromDatasetRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Subscribes to receive notifications when a dataset is modified by
-     * another device.
-     * </p>
-     * <p>
-     * This API can only be called with temporary credentials provided by
-     * Cognito Identity. You cannot call this API with developer credentials.
-     * </p>
-     *
-     * @param subscribeToDatasetRequest Container for the necessary
-     *           parameters to execute the SubscribeToDataset service method on
-     *           AmazonCognitoSync.
-     * 
-     * @return The response from the SubscribeToDataset service method, as
-     *         returned by AmazonCognitoSync.
-     * 
-     * @throws TooManyRequestsException
-     * @throws InvalidConfigurationException
-     * @throws InvalidParameterException
-     * @throws ResourceNotFoundException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoSync indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public SubscribeToDatasetResult subscribeToDataset(SubscribeToDatasetRequest subscribeToDatasetRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -246,10 +314,10 @@ public interface AmazonCognitoSync {
      * @return The response from the ListDatasets service method, as returned
      *         by AmazonCognitoSync.
      * 
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
      * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -260,41 +328,6 @@ public interface AmazonCognitoSync {
      *             either a problem with the data in the request, or a server side issue.
      */
     public ListDatasetsResult listDatasets(ListDatasetsRequest listDatasetsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Gets paginated records, optionally changed after a particular sync
-     * count for a dataset and identity. With Amazon Cognito Sync, each
-     * identity has access only to its own data. Thus, the credentials used
-     * to make this API call need to have access to the identity data.
-     * </p>
-     * <p>
-     * ListRecords can be called with temporary user credentials provided by
-     * Cognito Identity or with developer credentials. You should use Cognito
-     * Identity credentials to make this API call.
-     * </p>
-     *
-     * @param listRecordsRequest Container for the necessary parameters to
-     *           execute the ListRecords service method on AmazonCognitoSync.
-     * 
-     * @return The response from the ListRecords service method, as returned
-     *         by AmazonCognitoSync.
-     * 
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoSync indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListRecordsResult listRecords(ListRecordsRequest listRecordsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -316,11 +349,11 @@ public interface AmazonCognitoSync {
      * @return The response from the DescribeDataset service method, as
      *         returned by AmazonCognitoSync.
      * 
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
      * @throws ResourceNotFoundException
-     * @throws NotAuthorizedException
      * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -352,12 +385,12 @@ public interface AmazonCognitoSync {
      * @return The response from the DeleteDataset service method, as
      *         returned by AmazonCognitoSync.
      * 
-     * @throws TooManyRequestsException
-     * @throws ResourceConflictException
-     * @throws InvalidParameterException
      * @throws ResourceNotFoundException
-     * @throws NotAuthorizedException
      * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws InvalidParameterException
+     * @throws ResourceConflictException
+     * @throws TooManyRequestsException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -368,39 +401,6 @@ public interface AmazonCognitoSync {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DeleteDatasetResult deleteDataset(DeleteDatasetRequest deleteDatasetRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Registers a device to receive push sync notifications.
-     * </p>
-     * <p>
-     * This API can only be called with temporary credentials provided by
-     * Cognito Identity. You cannot call this API with developer credentials.
-     * </p>
-     *
-     * @param registerDeviceRequest Container for the necessary parameters to
-     *           execute the RegisterDevice service method on AmazonCognitoSync.
-     * 
-     * @return The response from the RegisterDevice service method, as
-     *         returned by AmazonCognitoSync.
-     * 
-     * @throws TooManyRequestsException
-     * @throws InvalidConfigurationException
-     * @throws InvalidParameterException
-     * @throws ResourceNotFoundException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoSync indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public RegisterDeviceResult registerDevice(RegisterDeviceRequest registerDeviceRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**

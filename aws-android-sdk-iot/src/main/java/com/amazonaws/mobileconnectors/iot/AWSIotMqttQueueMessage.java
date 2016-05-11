@@ -27,18 +27,22 @@ class AWSIotMqttQueueMessage {
     private byte[] message;
     /** Message quality of service. */
     private AWSIotMqttQos qos;
+    /** Message delivery user data. */
+    private PublishMessageUserData userData;
 
     /**
      * Create a new AWSIotMqttQueueMessage.
-     * 
+     *
      * @param topic MQTT topic on which this message was to be published.
      * @param message Message content.
      * @param qos message quality of service.
+     * @param userData user data including a status callback and user message token.
      */
-    public AWSIotMqttQueueMessage(String topic, byte[] message, AWSIotMqttQos qos) {
+    public AWSIotMqttQueueMessage(String topic, byte[] message, AWSIotMqttQos qos, PublishMessageUserData userData) {
         this.topic = topic;
         this.message = message;
         this.qos = qos;
+        this.userData = userData;
     }
 
     /**
@@ -46,17 +50,8 @@ class AWSIotMqttQueueMessage {
      * 
      * @return MQTT topic on which this message was published.
      */
-    public String getTopic() {
+    String getTopic() {
         return topic;
-    }
-
-    /**
-     * Set the topic.
-     * 
-     * @param topic MQTT topic on which this message is to be published.
-     */
-    public void setTopic(String topic) {
-        this.topic = topic;
     }
 
     /**
@@ -64,17 +59,8 @@ class AWSIotMqttQueueMessage {
      * 
      * @return Message content as a byte array.
      */
-    public byte[] getMessage() {
+    byte[] getMessage() {
         return message;
-    }
-
-    /**
-     * Set the message content.
-     * 
-     * @param message Message content as a byte array.
-     */
-    public void setMessage(byte[] message) {
-        this.message = message;
     }
 
     /**
@@ -82,16 +68,16 @@ class AWSIotMqttQueueMessage {
      * 
      * @return quality of service.
      */
-    public AWSIotMqttQos getQos() {
+    AWSIotMqttQos getQos() {
         return qos;
     }
 
     /**
-     * Set the message quality of service.
-     * 
-     * @param qos message quality of service.
+     * Get the delivery callback.
+     *
+     * @return publish message user data.
      */
-    public void setQos(AWSIotMqttQos qos) {
-        this.qos = qos;
+    PublishMessageUserData getUserData() {
+        return userData;
     }
 }

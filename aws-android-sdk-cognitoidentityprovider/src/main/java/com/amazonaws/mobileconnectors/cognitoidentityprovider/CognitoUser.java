@@ -48,10 +48,13 @@ import com.amazonaws.services.cognitoidentityprovider.model.AuthenticationResult
 import com.amazonaws.services.cognitoidentityprovider.model.ChangePasswordRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.CodeDeliveryDetailsType;
 import com.amazonaws.services.cognitoidentityprovider.model.CodeMismatchException;
-import com.amazonaws.services.cognitoidentityprovider.model.ConfirmSignUpRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ConfirmForgotPasswordRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.ConfirmSignUpRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserAttributesRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.EnhanceAuthRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.EnhanceAuthResult;
+import com.amazonaws.services.cognitoidentityprovider.model.ForgotPasswordRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ForgotPasswordResult;
 import com.amazonaws.services.cognitoidentityprovider.model.GetAuthenticationDetailsRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.GetAuthenticationDetailsResult;
@@ -59,14 +62,11 @@ import com.amazonaws.services.cognitoidentityprovider.model.GetUserAttributeVeri
 import com.amazonaws.services.cognitoidentityprovider.model.GetUserAttributeVerificationCodeResult;
 import com.amazonaws.services.cognitoidentityprovider.model.GetUserRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.GetUserResult;
-import com.amazonaws.services.cognitoidentityprovider.model.EnhanceAuthRequest;
-import com.amazonaws.services.cognitoidentityprovider.model.EnhanceAuthResult;
 import com.amazonaws.services.cognitoidentityprovider.model.InvalidParameterException;
 import com.amazonaws.services.cognitoidentityprovider.model.PasswordClaimType;
 import com.amazonaws.services.cognitoidentityprovider.model.RefreshTokensRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.RefreshTokensResult;
 import com.amazonaws.services.cognitoidentityprovider.model.ResendConfirmationCodeRequest;
-import com.amazonaws.services.cognitoidentityprovider.model.ForgotPasswordRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ResendConfirmationCodeResult;
 import com.amazonaws.services.cognitoidentityprovider.model.SetUserSettingsRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.SetUserSettingsResult;
@@ -74,10 +74,10 @@ import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributes
 import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesResult;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifyUserAttributeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifyUserAttributeResult;
+import com.amazonaws.util.StringUtils;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -129,11 +129,13 @@ public class CognitoUser {
      */
     private String userId;
 
-    // Username used for authentication process. This will be set from the results in the pre-auth API call.
+    /** 
+     * Username used for authentication process. This will be set from the results in the pre-auth API call.
+     */
     private String usernameInternal;
     
     /**
-     * Reference to the {@link CognitoUserPool} to which this user belongs .
+     * Reference to the {@link CognitoUserPool} to which this user belongs.
      */
     private CognitoUserPool pool;
 
@@ -142,6 +144,9 @@ public class CognitoUser {
      */
     private String secretHash;
 
+    /**
+     * Current valid session.
+     */
     private CognitoUserSession cipSession;
 
     /**
@@ -149,11 +154,11 @@ public class CognitoUser {
      *
      * @param pool              REQUIRED: Reference to {@link CognitoUserPool}, to which this user belongs.
      * @param userId            REQUIRED: userId of this user.
-     * @param clientId			REQUIRED: Client-Id of the android app.
+     * @param clientId          REQUIRED: Client-Id of the android app.
      * @param clientSecret      REQUIRED: Client secret assigned for this Client-Id.
-     * @param secretHash		REQUIRED: Secret-Hash, calculated for this android app.
-     * @param client			REQUIRED: Low level android client.
-     * @param context			REQUIRED: Application context.
+     * @param secretHash        REQUIRED: Secret-Hash, calculated for this android app.
+     * @param client            REQUIRED: Low level android client.
+     * @param context           REQUIRED: Application context.
      */
     protected CognitoUser(CognitoUserPool pool, String userId,
                           String clientId, String clientSecret, String secretHash,
@@ -324,6 +329,8 @@ public class CognitoUser {
 
     /**
      * Internal method to request registration code resend.
+     * 
+     * @return {@link ResendConfirmationCodeResult}
      */
     private ResendConfirmationCodeResult resendConfirmationCodeInternal() {
         ResendConfirmationCodeRequest resendConfirmationCodeRequest = new ResendConfirmationCodeRequest();
@@ -420,6 +427,8 @@ public class CognitoUser {
 
     /**
      * Internal method to start forgot password process.
+     * 
+     * @return {@link ForgotPasswordResult}
      */
     private ForgotPasswordResult forgotPasswordInternal() {
         ForgotPasswordRequest resetPasswordRequest = new ForgotPasswordRequest();
@@ -559,8 +568,7 @@ public class CognitoUser {
                             callback.getAuthenticationDetails(authenticationContinuation, cognitoUser.getUserId());
                         }
                     };
-                }
-                catch (final Exception e) {
+                } catch (final Exception e) {
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
@@ -671,8 +679,7 @@ public class CognitoUser {
         // Update secret hash
         try {
             this.secretHash = CognitoSecretHash.getSecretHash(userId, clientId, clientSecret);
-        }
-        catch (Exception exception) {
+        } catch (Exception exception) {
             callback.onFailure(exception);
         }
 
@@ -693,8 +700,7 @@ public class CognitoUser {
                                 callback.onSuccess(session);
                             }
                         };
-                    }
-                    else {
+                    } else {
                         final MultiFactorAuthenticationContinuation multiFactorAuthenticationContinuation =
                                 new MultiFactorAuthenticationContinuation(cognitoUser,
                                         authenticateResult.getAuthState(),
@@ -747,8 +753,7 @@ public class CognitoUser {
         // Update secret hash
         try {
             this.secretHash = CognitoSecretHash.getSecretHash(userId, clientId, clientSecret);
-        }
-        catch (Exception exception) {
+        } catch (Exception exception) {
             callback.onFailure(exception);
         }
 
@@ -756,8 +761,7 @@ public class CognitoUser {
             AuthenticateResult authenticateResult = authenticate(authenticationDetails);
             if (authenticateResult.getCodeDeliveryDetails() == null) {
                 callback.onSuccess(cipSession);
-            }
-            else {
+            } else {
                 final MultiFactorAuthenticationContinuation multiFactorAuthenticationContinuation =
                         new MultiFactorAuthenticationContinuation(this,
                                 authenticateResult.getAuthState(),
@@ -781,8 +785,9 @@ public class CognitoUser {
     private AuthenticateResult authenticate(AuthenticationDetails authenticationDetails) {
 
         // Validate authentication Details
-        if (authenticationDetails == null)
+        if (authenticationDetails == null) {
             throw new CognitoParameterInvalidException("AuthenticationDetails is null");
+        }
 
         // Set user name
         userId = authenticationDetails.getUserId();
@@ -891,6 +896,7 @@ public class CognitoUser {
      * Internal method to send MFA code for verification.
      *
      * @param mfaCode				REQUIRED: Multi Factor Authentication code
+     * @param authState             REQUIRED: Authentication state
      */
     private void sendMFACodeInternal(String mfaCode, String authState) {
 
@@ -991,6 +997,7 @@ public class CognitoUser {
      *
      * @param oldUserPassword REQUIRED: old password.
      * @param newUserPassword REQUIRED: new password.
+     * @param session         REQUIRED: valid session.
      */
     private void changePasswordInternal(String oldUserPassword, String newUserPassword,
                                         CognitoUserSession session) {
@@ -1000,8 +1007,7 @@ public class CognitoUser {
             changePasswordRequest.setProposedPassword(newUserPassword);
             changePasswordRequest.setAccessToken(session.getAccessToken().getJWTToken());
             cognitoIdentityProviderClient.changePassword(changePasswordRequest);
-        }
-        else {
+        } else {
             throw new CognitoNotAuthorizedException("user is not authenticated");
         }
     }
@@ -1089,8 +1095,7 @@ public class CognitoUser {
 
             return new CognitoUserDetails(new CognitoUserAttributes(userResult.getUserAttributes()),
                     new CognitoUserSettings(userResult.getMFAOptions()));
-        }
-        else {
+        } else {
             throw new CognitoNotAuthorizedException("user is not authenticated");
         }
     }
@@ -1181,18 +1186,18 @@ public class CognitoUser {
      *
      * @param attributeName         REQUIRED: Name of the attribute that requires verification.
      * @param session               REQUIRED: A valid {@link CognitoUserSession}.
+     * @return {@link GetUserAttributeVerificationCodeResult}
      */
     private GetUserAttributeVerificationCodeResult getAttributeVerificationCodeInternal(final String attributeName,
                                                       final CognitoUserSession session) {
-        if(session != null && session.isValid()){
+        if (session != null && session.isValid()) {
             GetUserAttributeVerificationCodeRequest getUserAttributeVerificationCodeRequest
                     = new GetUserAttributeVerificationCodeRequest();
             getUserAttributeVerificationCodeRequest.setAccessToken(session.getAccessToken().getJWTToken());
             getUserAttributeVerificationCodeRequest.setAttributeName(attributeName);
 
             return cognitoIdentityProviderClient.getUserAttributeVerificationCode(getUserAttributeVerificationCodeRequest);
-        }
-        else {
+        } else {
             throw new CognitoNotAuthorizedException("user is not authenticated");
         }
     }
@@ -1281,15 +1286,14 @@ public class CognitoUser {
     private VerifyUserAttributeResult verifyAttributeInternal(String attributeName,
                                                               String verificationCode,
                                                               CognitoUserSession session) {
-        if(session != null && session.isValid()) {
+        if (session != null && session.isValid()) {
             VerifyUserAttributeRequest verifyUserAttributeRequest = new VerifyUserAttributeRequest();
             verifyUserAttributeRequest.setAttributeName(attributeName);
             verifyUserAttributeRequest.setAccessToken(session.getAccessToken().getJWTToken());
             verifyUserAttributeRequest.setCode(verificationCode);
 
             return cognitoIdentityProviderClient.verifyUserAttribute(verifyUserAttributeRequest);
-        }
-        else {
+        } else {
             throw new CognitoNotAuthorizedException("user is not authenticated");
         }
     }
@@ -1325,7 +1329,7 @@ public class CognitoUser {
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
-                            for(CodeDeliveryDetailsType details: updateUserAttributesResult.getCodeDeliveryDetailsList()) {
+                            for (CodeDeliveryDetailsType details: updateUserAttributesResult.getCodeDeliveryDetailsList()) {
                                 attributesVerificationList.add(new CognitoUserCodeDeliveryDetails(details));
                             }
                             callback.onSuccess(attributesVerificationList);
@@ -1363,19 +1367,13 @@ public class CognitoUser {
 
         try {
         	CognitoUserSession session = getCachedSession();
-        	if(session == null) {
-        		System.out.println("++++Update: Null ");
-        	} else {
-        		System.out.println("++++Update: "+session.toString());
-        	}
-        	System.out.println("++++Update: ");
             UpdateUserAttributesResult updateUserAttributesResult =
                     updateAttributesInternal(attributes, session);
 
             List<CognitoUserCodeDeliveryDetails> attributesVerificationList =
                     new ArrayList<CognitoUserCodeDeliveryDetails>();
 
-            for(CodeDeliveryDetailsType details: updateUserAttributesResult.getCodeDeliveryDetailsList()) {
+            for (CodeDeliveryDetailsType details: updateUserAttributesResult.getCodeDeliveryDetailsList()) {
                 attributesVerificationList.add(new CognitoUserCodeDeliveryDetails(details));
             }
             callback.onSuccess(attributesVerificationList);
@@ -1389,6 +1387,7 @@ public class CognitoUser {
      *
      * @param attributes        REQUIRED: Attributes.
      * @param session           REQUIRED: A valid {@link CognitoUserSession}.
+     * @return {@link UpdateUserAttributesResult}
      */
     private UpdateUserAttributesResult updateAttributesInternal(final CognitoUserAttributes attributes,
                                           final CognitoUserSession session) {
@@ -1398,8 +1397,7 @@ public class CognitoUser {
             updateUserAttributesRequest.setUserAttributes(attributes.getAttributesList());
 
             return cognitoIdentityProviderClient.updateUserAttributes(updateUserAttributesRequest);
-        }
-        else {
+        } else {
             throw new CognitoNotAuthorizedException("user is not authenticated");
         }
     }
@@ -1670,8 +1668,8 @@ public class CognitoUser {
             setUserSettingsRequest.setMFAOptions(cognitoUserSettings.getSettingsList());
 
             SetUserSettingsResult setUserSettingsResult =
-                    cognitoIdentityProviderClient.setUserSettings(setUserSettingsRequest); }
-        else {
+                    cognitoIdentityProviderClient.setUserSettings(setUserSettingsRequest); 
+        } else {
             throw new CognitoNotAuthorizedException("user is not authenticated");
         }
     }
@@ -1764,7 +1762,7 @@ public class CognitoUser {
         // Store the internal username, so that it is used in the rest of the authentication process.
         // This username will be used in lieu of userID (which can be username or an alias).
         this.usernameInternal = authParameters.getUsername();
-        secretHash = CognitoSecretHash.getSecretHash(usernameInternal,clientId,clientSecret);
+        secretHash = CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret);
 
         // Authenticate user
         return authenticateUser(authenticationDetails.getPassword(), authParameters, authenticationHelper);
@@ -1815,14 +1813,14 @@ public class CognitoUser {
             Mac mac = Mac.getInstance("HmacSHA256");
             SecretKeySpec keySpec = new SecretKeySpec(key, "HmacSHA256");
             mac.init(keySpec);
-            mac.update(pool.getUserPoolId().split("_", 2)[1].getBytes(StandardCharsets.UTF_8));
-            mac.update(usernameInternal.getBytes(StandardCharsets.UTF_8));
+            mac.update(pool.getUserPoolId().split("_", 2)[1].getBytes(StringUtils.UTF8));
+            mac.update(usernameInternal.getBytes(StringUtils.UTF8));
             mac.update(authDetails.getSecretBlock().array());
 
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy");
             simpleDateFormat.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
             String dateString = simpleDateFormat.format(timestamp);
-            byte[] dateBytes = dateString.getBytes(StandardCharsets.UTF_8);
+            byte[] dateBytes = dateString.getBytes(StringUtils.UTF8);
 
             hmac = mac.doFinal(dateBytes);
         } catch (NoSuchAlgorithmException e) {
@@ -1939,15 +1937,15 @@ public class CognitoUser {
 
             // x = H(salt | H(poolName | userId | ":" | password))
             messageDigest.reset();
-            messageDigest.update(poolName.getBytes(StandardCharsets.UTF_8));
-            messageDigest.update(userId.getBytes(StandardCharsets.UTF_8));
-            messageDigest.update(":".getBytes(StandardCharsets.UTF_8));
-            byte [] userIdHash = messageDigest.digest(userPassword.getBytes(StandardCharsets.UTF_8));
+            messageDigest.update(poolName.getBytes(StringUtils.UTF8));
+            messageDigest.update(userId.getBytes(StringUtils.UTF8));
+            messageDigest.update(":".getBytes(StringUtils.UTF8));
+            byte[] userIdHash = messageDigest.digest(userPassword.getBytes(StringUtils.UTF8));
 
             messageDigest.reset();
             messageDigest.update(salt.toByteArray());
             BigInteger x = new BigInteger(1, messageDigest.digest(userIdHash));
-            BigInteger S = (B.subtract(k.multiply(g.modPow(x,N))).modPow(a.add(u.multiply(x)), N)).mod(N);
+            BigInteger S = (B.subtract(k.multiply(g.modPow(x, N))).modPow(a.add(u.multiply(x)), N)).mod(N);
 
             Hkdf hkdf = null;
             try {
@@ -1993,12 +1991,11 @@ public class CognitoUser {
 
         CognitoRefreshToken refreshToken;
         if (refreshTokenOverride != null) {
-            refreshToken = refreshTokenOverride; }
-        else {
+            refreshToken = refreshTokenOverride; 
+        } else {
             String reftoken = authResult.getRefreshToken();
             refreshToken = new CognitoRefreshToken(reftoken);
         }
-
         return new CognitoUserSession(idToken, accessToken, refreshToken);
     }
 

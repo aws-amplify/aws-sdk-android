@@ -34,6 +34,7 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations;
 
 /**
  * Defined general interface for "Continuations".
+ * @param <T> defines the type of the data of the user parameters of this continuation.
  */
 public interface CognitoIdentityProviderContinuation<T> {
 

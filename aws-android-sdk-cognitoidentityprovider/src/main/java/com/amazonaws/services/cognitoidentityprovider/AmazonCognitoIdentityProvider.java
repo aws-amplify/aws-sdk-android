@@ -92,436 +92,6 @@ public interface AmazonCognitoIdentityProvider {
     
     /**
      * <p>
-     * Gets the JSON Web keys for the specified user pool.
-     * </p>
-     *
-     * @param getJWKSRequest Container for the necessary parameters to
-     *           execute the GetJWKS service method on AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the GetJWKS service method, as returned by
-     *         AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetJWKSResult getJWKS(GetJWKSRequest getJWKSRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Client method for returning the configuration information and
-     * metadata of the specified user pool client.
-     * </p>
-     *
-     * @param describeUserPoolClientRequest Container for the necessary
-     *           parameters to execute the DescribeUserPoolClient service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the DescribeUserPoolClient service method,
-     *         as returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeUserPoolClientResult describeUserPoolClient(DescribeUserPoolClientRequest describeUserPoolClientRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Changes the password for a specified user in a user pool.
-     * </p>
-     *
-     * @param changePasswordRequest Container for the necessary parameters to
-     *           execute the ChangePassword service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the ChangePassword service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws InvalidPasswordException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ChangePasswordResult changePassword(ChangePasswordRequest changePasswordRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified Amazon Cognito user pool.
-     * </p>
-     *
-     * @param deleteUserPoolRequest Container for the necessary parameters to
-     *           execute the DeleteUserPool service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteUserPool(DeleteUserPoolRequest deleteUserPoolRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the user attributes in a user pool as an administrator. Works
-     * on any user.
-     * </p>
-     *
-     * @param adminDeleteUserAttributesRequest Container for the necessary
-     *           parameters to execute the AdminDeleteUserAttributes service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the AdminDeleteUserAttributes service
-     *         method, as returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public AdminDeleteUserAttributesResult adminDeleteUserAttributes(AdminDeleteUserAttributesRequest adminDeleteUserAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Allows a user to delete one's self.
-     * </p>
-     *
-     * @param deleteUserRequest Container for the necessary parameters to
-     *           execute the DeleteUser service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteUser(DeleteUserRequest deleteUserRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Grants the ability to supply a multi-factor authentication (MFA)
-     * token for an MFA-enabled user to get the ID, access, and refresh
-     * tokens.
-     * </p>
-     *
-     * @param enhanceAuthRequest Container for the necessary parameters to
-     *           execute the EnhanceAuth service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the EnhanceAuth service method, as returned
-     *         by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws CodeMismatchException
-     * @throws UnexpectedLambdaException
-     * @throws InvalidLambdaResponseException
-     * @throws ExpiredCodeException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws UserLambdaValidationException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public EnhanceAuthResult enhanceAuth(EnhanceAuthRequest enhanceAuthRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Resets the specified user's password in a user pool as an
-     * administrator. Works on any user.
-     * </p>
-     *
-     * @param adminResetUserPasswordRequest Container for the necessary
-     *           parameters to execute the AdminResetUserPassword service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the AdminResetUserPassword service method,
-     *         as returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws InvalidLambdaResponseException
-     * @throws TooManyRequestsException
-     * @throws LimitExceededException
-     * @throws InvalidParameterException
-     * @throws UserLambdaValidationException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public AdminResetUserPasswordResult adminResetUserPassword(AdminResetUserPasswordRequest adminResetUserPasswordRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Lists the user pools associated with an AWS account.
-     * </p>
-     *
-     * @param listUserPoolsRequest Container for the necessary parameters to
-     *           execute the ListUserPools service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the ListUserPools service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListUserPoolsResult listUserPools(ListUserPoolsRequest listUserPoolsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Refreshes the tokens for the specified client ID.
-     * </p>
-     *
-     * @param refreshTokensRequest Container for the necessary parameters to
-     *           execute the RefreshTokens service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the RefreshTokens service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public RefreshTokensResult refreshTokens(RefreshTokensRequest refreshTokensRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Gets the OpenId configuration information for the specified user
-     * pool.
-     * </p>
-     *
-     * @param getOpenIdConfigurationRequest Container for the necessary
-     *           parameters to execute the GetOpenIdConfiguration service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the GetOpenIdConfiguration service method,
-     *         as returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetOpenIdConfigurationResult getOpenIdConfiguration(GetOpenIdConfigurationRequest getOpenIdConfigurationRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Lists the users in the Amazon Cognito user pool.
-     * </p>
-     *
-     * @param listUsersRequest Container for the necessary parameters to
-     *           execute the ListUsers service method on AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the ListUsers service method, as returned by
-     *         AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListUsersResult listUsers(ListUsersRequest listUsersRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Disables the specified user as an administrator. Works on any user.
-     * </p>
-     *
-     * @param adminDisableUserRequest Container for the necessary parameters
-     *           to execute the AdminDisableUser service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the AdminDisableUser service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public AdminDisableUserResult adminDisableUser(AdminDisableUserRequest adminDisableUserRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Lists the clients that have been created for the specified user pool.
-     * </p>
-     *
-     * @param listUserPoolClientsRequest Container for the necessary
-     *           parameters to execute the ListUserPoolClients service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the ListUserPoolClients service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListUserPoolClientsResult listUserPoolClients(ListUserPoolClientsRequest listUserPoolClientsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Allows the developer to delete the user pool client.
-     * </p>
-     *
-     * @param deleteUserPoolClientRequest Container for the necessary
-     *           parameters to execute the DeleteUserPoolClient service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteUserPoolClient(DeleteUserPoolClientRequest deleteUserPoolClientRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Allows a user to enter a code provided when they reset their password
      * to update their password.
      * </p>
@@ -533,19 +103,19 @@ public interface AmazonCognitoIdentityProvider {
      * @return The response from the ConfirmForgotPassword service method, as
      *         returned by AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws CodeMismatchException
-     * @throws InvalidLambdaResponseException
      * @throws TooManyFailedAttemptsException
-     * @throws ExpiredCodeException
+     * @throws InvalidLambdaResponseException
+     * @throws UserLambdaValidationException
+     * @throws ResourceNotFoundException
+     * @throws CodeMismatchException
      * @throws InvalidPasswordException
      * @throws TooManyRequestsException
-     * @throws LimitExceededException
+     * @throws UnexpectedLambdaException
      * @throws InvalidParameterException
-     * @throws UserLambdaValidationException
+     * @throws LimitExceededException
      * @throws NotAuthorizedException
      * @throws InternalErrorException
+     * @throws ExpiredCodeException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -560,149 +130,18 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Deletes the attributes for a user.
+     * Lists the users in the Amazon Cognito user pool.
      * </p>
      *
-     * @param deleteUserAttributesRequest Container for the necessary
-     *           parameters to execute the DeleteUserAttributes service method on
-     *           AmazonCognitoIdentityProvider.
+     * @param listUsersRequest Container for the necessary parameters to
+     *           execute the ListUsers service method on AmazonCognitoIdentityProvider.
      * 
-     * @return The response from the DeleteUserAttributes service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DeleteUserAttributesResult deleteUserAttributes(DeleteUserAttributesRequest deleteUserAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Retrieves the password for the specified client ID or username.
-     * </p>
-     *
-     * @param forgotPasswordRequest Container for the necessary parameters to
-     *           execute the ForgotPassword service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the ForgotPassword service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws InvalidLambdaResponseException
-     * @throws TooManyRequestsException
-     * @throws LimitExceededException
-     * @throws InvalidParameterException
-     * @throws UserLambdaValidationException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ForgotPasswordResult forgotPassword(ForgotPasswordRequest forgotPasswordRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * First step of the Secure Remote Password protocol (SRP) auth flow to
-     * authenticate a user. To learn about the second step, see Authenticate.
-     * </p>
-     *
-     * @param getAuthenticationDetailsRequest Container for the necessary
-     *           parameters to execute the GetAuthenticationDetails service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the GetAuthenticationDetails service method,
-     *         as returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws InvalidLambdaResponseException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws UserLambdaValidationException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetAuthenticationDetailsResult getAuthenticationDetails(GetAuthenticationDetailsRequest getAuthenticationDetailsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Updates the specified user pool with the specified attributes.
-     * </p>
-     *
-     * @param updateUserPoolRequest Container for the necessary parameters to
-     *           execute the UpdateUserPool service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the UpdateUserPool service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws ConcurrentModificationException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public UpdateUserPoolResult updateUserPool(UpdateUserPoolRequest updateUserPoolRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Registers the user in the specified user pool and creates a user
-     * name, password, and user attributes.
-     * </p>
-     *
-     * @param signUpRequest Container for the necessary parameters to execute
-     *           the SignUp service method on AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the SignUp service method, as returned by
+     * @return The response from the ListUsers service method, as returned by
      *         AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws UsernameExistsException
-     * @throws InvalidLambdaResponseException
-     * @throws InvalidPasswordException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
      * @throws InvalidParameterException
-     * @throws UserLambdaValidationException
-     * @throws NotAuthorizedException
      * @throws InternalErrorException
      *
      * @throws AmazonClientException
@@ -713,7 +152,7 @@ public interface AmazonCognitoIdentityProvider {
      *             If an error response is returned by AmazonCognitoIdentityProvider indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public SignUpResult signUp(SignUpRequest signUpRequest) 
+    public ListUsersResult listUsers(ListUsersRequest listUsersRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -748,93 +187,6 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Returns the configuration information and metadata of the specified
-     * user pool.
-     * </p>
-     *
-     * @param describeUserPoolRequest Container for the necessary parameters
-     *           to execute the DescribeUserPool service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the DescribeUserPool service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeUserPoolResult describeUserPool(DescribeUserPoolRequest describeUserPoolRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates the user pool client.
-     * </p>
-     *
-     * @param createUserPoolClientRequest Container for the necessary
-     *           parameters to execute the CreateUserPoolClient service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the CreateUserPoolClient service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws LimitExceededException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public CreateUserPoolClientResult createUserPoolClient(CreateUserPoolClientRequest createUserPoolClientRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Gets the specified user by user name in a user pool as an
-     * administrator. Works on any user.
-     * </p>
-     *
-     * @param adminGetUserRequest Container for the necessary parameters to
-     *           execute the AdminGetUser service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the AdminGetUser service method, as returned
-     *         by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public AdminGetUserResult adminGetUser(AdminGetUserRequest adminGetUserRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Enables the specified user as an administrator. Works on any user.
      * </p>
      *
@@ -845,8 +197,8 @@ public interface AmazonCognitoIdentityProvider {
      * @return The response from the AdminEnableUser service method, as
      *         returned by AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      *
@@ -863,6 +215,427 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
+     * Gets the specified user by user name in a user pool as an
+     * administrator. Works on any user.
+     * </p>
+     *
+     * @param adminGetUserRequest Container for the necessary parameters to
+     *           execute the AdminGetUser service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the AdminGetUser service method, as returned
+     *         by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public AdminGetUserResult adminGetUser(AdminGetUserRequest adminGetUserRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a user as an administrator. Works on any user.
+     * </p>
+     *
+     * @param adminDeleteUserRequest Container for the necessary parameters
+     *           to execute the AdminDeleteUser service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void adminDeleteUser(AdminDeleteUserRequest adminDeleteUserRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the user attributes in a user pool as an administrator. Works
+     * on any user.
+     * </p>
+     *
+     * @param adminDeleteUserAttributesRequest Container for the necessary
+     *           parameters to execute the AdminDeleteUserAttributes service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the AdminDeleteUserAttributes service
+     *         method, as returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public AdminDeleteUserAttributesResult adminDeleteUserAttributes(AdminDeleteUserAttributesRequest adminDeleteUserAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified Amazon Cognito user pool.
+     * </p>
+     *
+     * @param deleteUserPoolRequest Container for the necessary parameters to
+     *           execute the DeleteUserPool service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteUserPool(DeleteUserPoolRequest deleteUserPoolRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Allows the developer to delete the user pool client.
+     * </p>
+     *
+     * @param deleteUserPoolClientRequest Container for the necessary
+     *           parameters to execute the DeleteUserPoolClient service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteUserPoolClient(DeleteUserPoolClientRequest deleteUserPoolClientRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the attributes for a user.
+     * </p>
+     *
+     * @param deleteUserAttributesRequest Container for the necessary
+     *           parameters to execute the DeleteUserAttributes service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the DeleteUserAttributes service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DeleteUserAttributesResult deleteUserAttributes(DeleteUserAttributesRequest deleteUserAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * First step of the Secure Remote Password protocol (SRP) auth flow to
+     * authenticate a user. To learn about the second step, see Authenticate.
+     * </p>
+     *
+     * @param getAuthenticationDetailsRequest Container for the necessary
+     *           parameters to execute the GetAuthenticationDetails service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the GetAuthenticationDetails service method,
+     *         as returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws InvalidLambdaResponseException
+     * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws UnexpectedLambdaException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetAuthenticationDetailsResult getAuthenticationDetails(GetAuthenticationDetailsRequest getAuthenticationDetailsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Confirms registration of a user and handles the existing alias from a
+     * previous user.
+     * </p>
+     *
+     * @param confirmSignUpRequest Container for the necessary parameters to
+     *           execute the ConfirmSignUp service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the ConfirmSignUp service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyFailedAttemptsException
+     * @throws InvalidLambdaResponseException
+     * @throws UserLambdaValidationException
+     * @throws ResourceNotFoundException
+     * @throws CodeMismatchException
+     * @throws AliasExistsException
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws LimitExceededException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws ExpiredCodeException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ConfirmSignUpResult confirmSignUp(ConfirmSignUpRequest confirmSignUpRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Grants the ability to supply a multi-factor authentication (MFA)
+     * token for an MFA-enabled user to get the ID, access, and refresh
+     * tokens.
+     * </p>
+     *
+     * @param enhanceAuthRequest Container for the necessary parameters to
+     *           execute the EnhanceAuth service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the EnhanceAuth service method, as returned
+     *         by AmazonCognitoIdentityProvider.
+     * 
+     * @throws InvalidLambdaResponseException
+     * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws ExpiredCodeException
+     * @throws CodeMismatchException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public EnhanceAuthResult enhanceAuth(EnhanceAuthRequest enhanceAuthRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Verifies the specified user attributes in the user pool.
+     * </p>
+     *
+     * @param verifyUserAttributeRequest Container for the necessary
+     *           parameters to execute the VerifyUserAttribute service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the VerifyUserAttribute service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws ExpiredCodeException
+     * @throws CodeMismatchException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public VerifyUserAttributeResult verifyUserAttribute(VerifyUserAttributeRequest verifyUserAttributeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the specified user pool with the specified attributes.
+     * </p>
+     *
+     * @param updateUserPoolRequest Container for the necessary parameters to
+     *           execute the UpdateUserPool service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the UpdateUserPool service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws ConcurrentModificationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public UpdateUserPoolResult updateUserPool(UpdateUserPoolRequest updateUserPoolRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates the user pool client.
+     * </p>
+     *
+     * @param createUserPoolClientRequest Container for the necessary
+     *           parameters to execute the CreateUserPoolClient service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the CreateUserPoolClient service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CreateUserPoolClientResult createUserPoolClient(CreateUserPoolClientRequest createUserPoolClientRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the specified user's attributes, including developer
+     * attributes, as an administrator. Works on any user.
+     * </p>
+     *
+     * @param adminUpdateUserAttributesRequest Container for the necessary
+     *           parameters to execute the AdminUpdateUserAttributes service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the AdminUpdateUserAttributes service
+     *         method, as returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws AliasExistsException
+     * @throws InvalidLambdaResponseException
+     * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public AdminUpdateUserAttributesResult adminUpdateUserAttributes(AdminUpdateUserAttributesRequest adminUpdateUserAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists the user pools associated with an AWS account.
+     * </p>
+     *
+     * @param listUserPoolsRequest Container for the necessary parameters to
+     *           execute the ListUserPools service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the ListUserPools service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListUserPoolsResult listUserPools(ListUserPoolsRequest listUserPoolsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Gets the user attributes and metadata for a user.
      * </p>
      *
@@ -872,8 +645,8 @@ public interface AmazonCognitoIdentityProvider {
      * @return The response from the GetUser service method, as returned by
      *         AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws NotAuthorizedException
      * @throws InternalErrorException
@@ -891,6 +664,218 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
+     * Client method for returning the configuration information and
+     * metadata of the specified user pool client.
+     * </p>
+     *
+     * @param describeUserPoolClientRequest Container for the necessary
+     *           parameters to execute the DescribeUserPoolClient service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the DescribeUserPoolClient service method,
+     *         as returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeUserPoolClientResult describeUserPoolClient(DescribeUserPoolClientRequest describeUserPoolClientRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves the password for the specified client ID or username.
+     * </p>
+     *
+     * @param forgotPasswordRequest Container for the necessary parameters to
+     *           execute the ForgotPassword service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the ForgotPassword service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws InvalidLambdaResponseException
+     * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws LimitExceededException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ForgotPasswordResult forgotPassword(ForgotPasswordRequest forgotPasswordRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Refreshes the tokens for the specified client ID.
+     * </p>
+     *
+     * @param refreshTokensRequest Container for the necessary parameters to
+     *           execute the RefreshTokens service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the RefreshTokens service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public RefreshTokensResult refreshTokens(RefreshTokensRequest refreshTokensRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the configuration information and metadata of the specified
+     * user pool.
+     * </p>
+     *
+     * @param describeUserPoolRequest Container for the necessary parameters
+     *           to execute the DescribeUserPool service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the DescribeUserPool service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeUserPoolResult describeUserPool(DescribeUserPoolRequest describeUserPoolRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Allows the developer to update the specified user pool client and
+     * password policy.
+     * </p>
+     *
+     * @param updateUserPoolClientRequest Container for the necessary
+     *           parameters to execute the UpdateUserPoolClient service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the UpdateUserPoolClient service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public UpdateUserPoolClientResult updateUserPoolClient(UpdateUserPoolClientRequest updateUserPoolClientRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Allows a user to update a specific attribute (one at a time).
+     * </p>
+     *
+     * @param updateUserAttributesRequest Container for the necessary
+     *           parameters to execute the UpdateUserAttributes service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the UpdateUserAttributes service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws AliasExistsException
+     * @throws InvalidLambdaResponseException
+     * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws ExpiredCodeException
+     * @throws CodeMismatchException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public UpdateUserAttributesResult updateUserAttributes(UpdateUserAttributesRequest updateUserAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Adds additional user attributes to the user pool schema.
+     * </p>
+     *
+     * @param addCustomAttributesRequest Container for the necessary
+     *           parameters to execute the AddCustomAttributes service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the AddCustomAttributes service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public AddCustomAttributesResult addCustomAttributes(AddCustomAttributesRequest addCustomAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a new Amazon Cognito user pool and sets the password policy
      * for the pool.
      * </p>
@@ -903,8 +888,8 @@ public interface AmazonCognitoIdentityProvider {
      *         returned by AmazonCognitoIdentityProvider.
      * 
      * @throws TooManyRequestsException
-     * @throws LimitExceededException
      * @throws InvalidParameterException
+     * @throws LimitExceededException
      * @throws InternalErrorException
      *
      * @throws AmazonClientException
@@ -916,6 +901,191 @@ public interface AmazonCognitoIdentityProvider {
      *             either a problem with the data in the request, or a server side issue.
      */
     public CreateUserPoolResult createUserPool(CreateUserPoolRequest createUserPoolRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * The second step in the authentication flow of Secure Remote Password
+     * protocol (SRP) for authenticating a user to get ID, access and refresh
+     * tokens. To learn more about the first step, see
+     * GetAuthenticationDetails.
+     * </p>
+     *
+     * @param authenticateRequest Container for the necessary parameters to
+     *           execute the Authenticate service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the Authenticate service method, as returned
+     *         by AmazonCognitoIdentityProvider.
+     * 
+     * @throws InvalidLambdaResponseException
+     * @throws MFAMethodNotFoundException
+     * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public AuthenticateResult authenticate(AuthenticateRequest authenticateRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Resets the specified user's password in a user pool as an
+     * administrator. Works on any user.
+     * </p>
+     *
+     * @param adminResetUserPasswordRequest Container for the necessary
+     *           parameters to execute the AdminResetUserPassword service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the AdminResetUserPassword service method,
+     *         as returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws InvalidLambdaResponseException
+     * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws LimitExceededException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public AdminResetUserPasswordResult adminResetUserPassword(AdminResetUserPasswordRequest adminResetUserPasswordRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the JSON Web keys for the specified user pool.
+     * </p>
+     *
+     * @param getJWKSRequest Container for the necessary parameters to
+     *           execute the GetJWKS service method on AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the GetJWKS service method, as returned by
+     *         AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetJWKSResult getJWKS(GetJWKSRequest getJWKSRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists the clients that have been created for the specified user pool.
+     * </p>
+     *
+     * @param listUserPoolClientsRequest Container for the necessary
+     *           parameters to execute the ListUserPoolClients service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the ListUserPoolClients service method, as
+     *         returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListUserPoolClientsResult listUserPoolClients(ListUserPoolClientsRequest listUserPoolClientsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Allows a user to delete one's self.
+     * </p>
+     *
+     * @param deleteUserRequest Container for the necessary parameters to
+     *           execute the DeleteUser service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteUser(DeleteUserRequest deleteUserRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Registers the user in the specified user pool and creates a user
+     * name, password, and user attributes.
+     * </p>
+     *
+     * @param signUpRequest Container for the necessary parameters to execute
+     *           the SignUp service method on AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the SignUp service method, as returned by
+     *         AmazonCognitoIdentityProvider.
+     * 
+     * @throws InvalidPasswordException
+     * @throws UsernameExistsException
+     * @throws InvalidLambdaResponseException
+     * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SignUpResult signUp(SignUpRequest signUpRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -948,238 +1118,6 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Updates the specified user's attributes, including developer
-     * attributes, as an administrator. Works on any user.
-     * </p>
-     *
-     * @param adminUpdateUserAttributesRequest Container for the necessary
-     *           parameters to execute the AdminUpdateUserAttributes service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the AdminUpdateUserAttributes service
-     *         method, as returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws InvalidLambdaResponseException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws AliasExistsException
-     * @throws UserLambdaValidationException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public AdminUpdateUserAttributesResult adminUpdateUserAttributes(AdminUpdateUserAttributesRequest adminUpdateUserAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes a user as an administrator. Works on any user.
-     * </p>
-     *
-     * @param adminDeleteUserRequest Container for the necessary parameters
-     *           to execute the AdminDeleteUser service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * 
-     * @throws ResourceNotFoundException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void adminDeleteUser(AdminDeleteUserRequest adminDeleteUserRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Confirms registration of a user and handles the existing alias from a
-     * previous user.
-     * </p>
-     *
-     * @param confirmSignUpRequest Container for the necessary parameters to
-     *           execute the ConfirmSignUp service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the ConfirmSignUp service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws CodeMismatchException
-     * @throws InvalidLambdaResponseException
-     * @throws TooManyFailedAttemptsException
-     * @throws ExpiredCodeException
-     * @throws TooManyRequestsException
-     * @throws LimitExceededException
-     * @throws InvalidParameterException
-     * @throws AliasExistsException
-     * @throws UserLambdaValidationException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ConfirmSignUpResult confirmSignUp(ConfirmSignUpRequest confirmSignUpRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Gets the user attribute verification code for the specified attribute
-     * name.
-     * </p>
-     *
-     * @param getUserAttributeVerificationCodeRequest Container for the
-     *           necessary parameters to execute the GetUserAttributeVerificationCode
-     *           service method on AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the GetUserAttributeVerificationCode service
-     *         method, as returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws InvalidLambdaResponseException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws UserLambdaValidationException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetUserAttributeVerificationCodeResult getUserAttributeVerificationCode(GetUserAttributeVerificationCodeRequest getUserAttributeVerificationCodeRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Verifies the specified user attributes in the user pool.
-     * </p>
-     *
-     * @param verifyUserAttributeRequest Container for the necessary
-     *           parameters to execute the VerifyUserAttribute service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the VerifyUserAttribute service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws CodeMismatchException
-     * @throws ExpiredCodeException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public VerifyUserAttributeResult verifyUserAttribute(VerifyUserAttributeRequest verifyUserAttributeRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * The second step in the authentication flow of Secure Remote Password
-     * protocol (SRP) for authenticating a user to get ID, access and refresh
-     * tokens. To learn more about the first step, see
-     * GetAuthenticationDetails.
-     * </p>
-     *
-     * @param authenticateRequest Container for the necessary parameters to
-     *           execute the Authenticate service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the Authenticate service method, as returned
-     *         by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws MFAMethodNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws InvalidLambdaResponseException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws UserLambdaValidationException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public AuthenticateResult authenticate(AuthenticateRequest authenticateRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Allows a user to update a specific attribute (one at a time).
-     * </p>
-     *
-     * @param updateUserAttributesRequest Container for the necessary
-     *           parameters to execute the UpdateUserAttributes service method on
-     *           AmazonCognitoIdentityProvider.
-     * 
-     * @return The response from the UpdateUserAttributes service method, as
-     *         returned by AmazonCognitoIdentityProvider.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws CodeMismatchException
-     * @throws UnexpectedLambdaException
-     * @throws InvalidLambdaResponseException
-     * @throws ExpiredCodeException
-     * @throws TooManyRequestsException
-     * @throws InvalidParameterException
-     * @throws AliasExistsException
-     * @throws NotAuthorizedException
-     * @throws UserLambdaValidationException
-     * @throws InternalErrorException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public UpdateUserAttributesResult updateUserAttributes(UpdateUserAttributesRequest updateUserAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Resends the confirmation (for confirmation of registration) to a
      * specific user in the user pool.
      * </p>
@@ -1191,13 +1129,13 @@ public interface AmazonCognitoIdentityProvider {
      * @return The response from the ResendConfirmationCode service method,
      *         as returned by AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
      * @throws InvalidLambdaResponseException
-     * @throws TooManyRequestsException
-     * @throws LimitExceededException
-     * @throws InvalidParameterException
      * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws LimitExceededException
      * @throws NotAuthorizedException
      * @throws InternalErrorException
      *
@@ -1214,20 +1152,24 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Allows the developer to update the specified user pool client and
-     * password policy.
+     * Gets the user attribute verification code for the specified attribute
+     * name.
      * </p>
      *
-     * @param updateUserPoolClientRequest Container for the necessary
-     *           parameters to execute the UpdateUserPoolClient service method on
-     *           AmazonCognitoIdentityProvider.
+     * @param getUserAttributeVerificationCodeRequest Container for the
+     *           necessary parameters to execute the GetUserAttributeVerificationCode
+     *           service method on AmazonCognitoIdentityProvider.
      * 
-     * @return The response from the UpdateUserPoolClient service method, as
-     *         returned by AmazonCognitoIdentityProvider.
+     * @return The response from the GetUserAttributeVerificationCode service
+     *         method, as returned by AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
+     * @throws InvalidLambdaResponseException
      * @throws TooManyRequestsException
+     * @throws UserLambdaValidationException
+     * @throws ResourceNotFoundException
      * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      *
      * @throws AmazonClientException
@@ -1238,23 +1180,23 @@ public interface AmazonCognitoIdentityProvider {
      *             If an error response is returned by AmazonCognitoIdentityProvider indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public UpdateUserPoolClientResult updateUserPoolClient(UpdateUserPoolClientRequest updateUserPoolClientRequest) 
+    public GetUserAttributeVerificationCodeResult getUserAttributeVerificationCode(GetUserAttributeVerificationCodeRequest getUserAttributeVerificationCodeRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Adds additional user attributes to the user pool schema.
+     * Disables the specified user as an administrator. Works on any user.
      * </p>
      *
-     * @param addCustomAttributesRequest Container for the necessary
-     *           parameters to execute the AddCustomAttributes service method on
+     * @param adminDisableUserRequest Container for the necessary parameters
+     *           to execute the AdminDisableUser service method on
      *           AmazonCognitoIdentityProvider.
      * 
-     * @return The response from the AddCustomAttributes service method, as
+     * @return The response from the AdminDisableUser service method, as
      *         returned by AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      *
@@ -1266,7 +1208,35 @@ public interface AmazonCognitoIdentityProvider {
      *             If an error response is returned by AmazonCognitoIdentityProvider indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public AddCustomAttributesResult addCustomAttributes(AddCustomAttributesRequest addCustomAttributesRequest) 
+    public AdminDisableUserResult adminDisableUser(AdminDisableUserRequest adminDisableUserRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the OpenId configuration information for the specified user
+     * pool.
+     * </p>
+     *
+     * @param getOpenIdConfigurationRequest Container for the necessary
+     *           parameters to execute the GetOpenIdConfiguration service method on
+     *           AmazonCognitoIdentityProvider.
+     * 
+     * @return The response from the GetOpenIdConfiguration service method,
+     *         as returned by AmazonCognitoIdentityProvider.
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetOpenIdConfigurationResult getOpenIdConfiguration(GetOpenIdConfigurationRequest getOpenIdConfigurationRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1282,14 +1252,14 @@ public interface AmazonCognitoIdentityProvider {
      * @return The response from the AdminConfirmSignUp service method, as
      *         returned by AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
-     * @throws UnexpectedLambdaException
-     * @throws InvalidLambdaResponseException
      * @throws TooManyFailedAttemptsException
-     * @throws TooManyRequestsException
-     * @throws LimitExceededException
-     * @throws InvalidParameterException
+     * @throws InvalidLambdaResponseException
      * @throws UserLambdaValidationException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws LimitExceededException
      * @throws NotAuthorizedException
      * @throws InternalErrorException
      *
@@ -1306,12 +1276,19 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Allows a user to delete one's self.
+     * Changes the password for a specified user in a user pool.
      * </p>
+     *
+     * @param changePasswordRequest Container for the necessary parameters to
+     *           execute the ChangePassword service method on
+     *           AmazonCognitoIdentityProvider.
      * 
+     * @return The response from the ChangePassword service method, as
+     *         returned by AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
+     * @throws InvalidPasswordException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws NotAuthorizedException
      * @throws InternalErrorException
@@ -1324,8 +1301,9 @@ public interface AmazonCognitoIdentityProvider {
      *             If an error response is returned by AmazonCognitoIdentityProvider indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void deleteUser() throws AmazonServiceException, AmazonClientException;
-    
+    public ChangePasswordResult changePassword(ChangePasswordRequest changePasswordRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
     /**
      * <p>
      * Gets the user attributes and metadata for a user.
@@ -1334,8 +1312,8 @@ public interface AmazonCognitoIdentityProvider {
      * @return The response from the GetUser service method, as returned by
      *         AmazonCognitoIdentityProvider.
      * 
-     * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws NotAuthorizedException
      * @throws InternalErrorException
@@ -1349,6 +1327,28 @@ public interface AmazonCognitoIdentityProvider {
      *             either a problem with the data in the request, or a server side issue.
      */
     public GetUserResult getUser() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Allows a user to delete one's self.
+     * </p>
+     * 
+     * 
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCognitoIdentityProvider indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteUser() throws AmazonServiceException, AmazonClientException;
     
     /**
      * Shuts down this client object, releasing any resources that might be held

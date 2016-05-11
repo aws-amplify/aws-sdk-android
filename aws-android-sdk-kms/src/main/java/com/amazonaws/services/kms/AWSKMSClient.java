@@ -316,23 +316,23 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
-        jsonErrorUnmarshallers.add(new DisabledExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new KMSInternalExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new DependencyTimeoutExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new NotFoundExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidCiphertextExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new KMSInvalidStateExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new MalformedPolicyDocumentExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidKeyUsageExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new AlreadyExistsExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidArnExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidMarkerExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidGrantTokenExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new KeyUnavailableExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidAliasNameExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidGrantIdExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new NotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new KMSInvalidStateExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new DependencyTimeoutExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidMarkerExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new DisabledExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidArnExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidGrantTokenExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedOperationExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new MalformedPolicyDocumentExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new AlreadyExistsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidGrantIdExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new KeyUnavailableExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidKeyUsageExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidCiphertextExceptionUnmarshaller());
         
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
         
@@ -354,39 +354,22 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
     /**
      * <p>
-     * Schedules the deletion of a customer master key (CMK). You may
-     * provide a waiting period, specified in days, before deletion occurs.
-     * If you do not provide a waiting period, the default period of 30 days
-     * is used. When this operation is successful, the state of the CMK
-     * changes to <code>PendingDeletion</code> . Before the waiting period
-     * ends, you can use CancelKeyDeletion to cancel the deletion of the CMK.
-     * After the waiting period ends, AWS KMS deletes the CMK and all AWS KMS
-     * data associated with it, including all aliases that point to it.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b> Deleting a CMK is a destructive and potentially
-     * dangerous operation. When a CMK is deleted, all data that was
-     * encrypted under the CMK is rendered unrecoverable. To restrict the use
-     * of a CMK without deleting it, use DisableKey.
-     * </p>
-     * <p>
-     * For more information about scheduling a CMK for deletion, go to
-     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"> Deleting Customer Master Keys </a>
+     * Sets the state of a master key to disabled, thereby preventing its
+     * use for cryptographic operations. For more information about how key
+     * state affects the use of a master key, go to
+     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"> How Key State Affects the Use of a Customer Master Key </a>
      * in the <i>AWS Key Management Service Developer Guide</i> .
      * </p>
      *
-     * @param scheduleKeyDeletionRequest Container for the necessary
-     *           parameters to execute the ScheduleKeyDeletion service method on
-     *           AWSKMS.
+     * @param disableKeyRequest Container for the necessary parameters to
+     *           execute the DisableKey service method on AWSKMS.
      * 
-     * @return The response from the ScheduleKeyDeletion service method, as
-     *         returned by AWSKMS.
      * 
      * @throws DependencyTimeoutException
+     * @throws KMSInternalException
      * @throws InvalidArnException
      * @throws NotFoundException
      * @throws KMSInvalidStateException
-     * @throws KMSInternalException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -396,23 +379,81 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ScheduleKeyDeletionResult scheduleKeyDeletion(ScheduleKeyDeletionRequest scheduleKeyDeletionRequest) {
-        ExecutionContext executionContext = createExecutionContext(scheduleKeyDeletionRequest);
+    public void disableKey(DisableKeyRequest disableKeyRequest) {
+        ExecutionContext executionContext = createExecutionContext(disableKeyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DisableKeyRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new DisableKeyRequestMarshaller().marshall(disableKeyRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
+    /**
+     * <p>
+     * Encrypts data on the server side with a new customer master key
+     * without exposing the plaintext of the data on the client side. The
+     * data is first decrypted and then encrypted. This operation can also be
+     * used to change the encryption context of a ciphertext.
+     * </p>
+     * <p>
+     * Unlike other actions, <code>ReEncrypt</code> is authorized twice -
+     * once as <code>ReEncryptFrom</code> on the source key and once as
+     * <code>ReEncryptTo</code> on the destination key. We therefore
+     * recommend that you include the <code>"action":"kms:ReEncrypt*"</code>
+     * statement in your key policies to permit re-encryption from or to the
+     * key. The statement is included automatically when you authorize use of
+     * the key through the console but must be included manually when you set
+     * a policy by using the PutKeyPolicy function.
+     * </p>
+     *
+     * @param reEncryptRequest Container for the necessary parameters to
+     *           execute the ReEncrypt service method on AWSKMS.
+     * 
+     * @return The response from the ReEncrypt service method, as returned by
+     *         AWSKMS.
+     * 
+     * @throws InvalidCiphertextException
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws KeyUnavailableException
+     * @throws InvalidKeyUsageException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ReEncryptResult reEncrypt(ReEncryptRequest reEncryptRequest) {
+        ExecutionContext executionContext = createExecutionContext(reEncryptRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<ScheduleKeyDeletionRequest> request = null;
-        Response<ScheduleKeyDeletionResult> response = null;
+        Request<ReEncryptRequest> request = null;
+        Response<ReEncryptResult> response = null;
         try {
             awsRequestMetrics.startEvent(Field.RequestMarshallTime);
             try {
-                request = new ScheduleKeyDeletionRequestMarshaller().marshall(scheduleKeyDeletionRequest);
+                request = new ReEncryptRequestMarshaller().marshall(reEncryptRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            Unmarshaller<ScheduleKeyDeletionResult, JsonUnmarshallerContext> unmarshaller = new ScheduleKeyDeletionResultJsonUnmarshaller();
-            JsonResponseHandler<ScheduleKeyDeletionResult> responseHandler = new JsonResponseHandler<ScheduleKeyDeletionResult>(unmarshaller);
+            Unmarshaller<ReEncryptResult, JsonUnmarshallerContext> unmarshaller = new ReEncryptResultJsonUnmarshaller();
+            JsonResponseHandler<ReEncryptResult> responseHandler = new JsonResponseHandler<ReEncryptResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             
@@ -424,25 +465,28 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
     /**
      * <p>
-     * Creates a customer master key. Customer master keys can be used to
-     * encrypt small amounts of data (less than 4K) directly, but they are
-     * most commonly used to encrypt or envelope data keys that are then used
-     * to encrypt customer data. For more information about data keys, see
-     * GenerateDataKey and GenerateDataKeyWithoutPlaintext.
+     * Cancels the deletion of a customer master key (CMK). When this
+     * operation is successful, the CMK is set to the <code>Disabled</code>
+     * state. To enable a CMK, use EnableKey.
+     * </p>
+     * <p>
+     * For more information about scheduling and canceling deletion of a
+     * CMK, go to
+     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"> Deleting Customer Master Keys </a>
+     * in the <i>AWS Key Management Service Developer Guide</i> .
      * </p>
      *
-     * @param createKeyRequest Container for the necessary parameters to
-     *           execute the CreateKey service method on AWSKMS.
+     * @param cancelKeyDeletionRequest Container for the necessary parameters
+     *           to execute the CancelKeyDeletion service method on AWSKMS.
      * 
-     * @return The response from the CreateKey service method, as returned by
-     *         AWSKMS.
+     * @return The response from the CancelKeyDeletion service method, as
+     *         returned by AWSKMS.
      * 
      * @throws DependencyTimeoutException
-     * @throws MalformedPolicyDocumentException
-     * @throws InvalidArnException
-     * @throws UnsupportedOperationException
      * @throws KMSInternalException
-     * @throws LimitExceededException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -452,23 +496,23 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public CreateKeyResult createKey(CreateKeyRequest createKeyRequest) {
-        ExecutionContext executionContext = createExecutionContext(createKeyRequest);
+    public CancelKeyDeletionResult cancelKeyDeletion(CancelKeyDeletionRequest cancelKeyDeletionRequest) {
+        ExecutionContext executionContext = createExecutionContext(cancelKeyDeletionRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<CreateKeyRequest> request = null;
-        Response<CreateKeyResult> response = null;
+        Request<CancelKeyDeletionRequest> request = null;
+        Response<CancelKeyDeletionResult> response = null;
         try {
             awsRequestMetrics.startEvent(Field.RequestMarshallTime);
             try {
-                request = new CreateKeyRequestMarshaller().marshall(createKeyRequest);
+                request = new CancelKeyDeletionRequestMarshaller().marshall(cancelKeyDeletionRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            Unmarshaller<CreateKeyResult, JsonUnmarshallerContext> unmarshaller = new CreateKeyResultJsonUnmarshaller();
-            JsonResponseHandler<CreateKeyResult> responseHandler = new JsonResponseHandler<CreateKeyResult>(unmarshaller);
+            Unmarshaller<CancelKeyDeletionResult, JsonUnmarshallerContext> unmarshaller = new CancelKeyDeletionResultJsonUnmarshaller();
+            JsonResponseHandler<CancelKeyDeletionResult> responseHandler = new JsonResponseHandler<CancelKeyDeletionResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             
@@ -478,6 +522,46 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
         }
     }
 
+    /**
+     * <p>
+     * Enables rotation of the specified customer master key.
+     * </p>
+     *
+     * @param enableKeyRotationRequest Container for the necessary parameters
+     *           to execute the EnableKeyRotation service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void enableKeyRotation(EnableKeyRotationRequest enableKeyRotationRequest) {
+        ExecutionContext executionContext = createExecutionContext(enableKeyRotationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<EnableKeyRotationRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new EnableKeyRotationRequestMarshaller().marshall(enableKeyRotationRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
     /**
      * <p>
      * Encrypts plaintext into ciphertext by using a customer master key.
@@ -516,13 +600,13 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      *         AWSKMS.
      * 
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
      * @throws DisabledException
-     * @throws InvalidKeyUsageException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
+     * @throws KeyUnavailableException
+     * @throws InvalidKeyUsageException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -560,6 +644,116 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
     /**
      * <p>
+     * Returns a list of all grants for which the grant's
+     * <code>RetiringPrincipal</code> matches the one specified.
+     * </p>
+     * <p>
+     * A typical use is to list all grants that you are able to retire. To
+     * retire a grant, use RetireGrant.
+     * </p>
+     *
+     * @param listRetirableGrantsRequest Container for the necessary
+     *           parameters to execute the ListRetirableGrants service method on
+     *           AWSKMS.
+     * 
+     * @return The response from the ListRetirableGrants service method, as
+     *         returned by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws InvalidMarkerException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListRetirableGrantsResult listRetirableGrants(ListRetirableGrantsRequest listRetirableGrantsRequest) {
+        ExecutionContext executionContext = createExecutionContext(listRetirableGrantsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListRetirableGrantsRequest> request = null;
+        Response<ListRetirableGrantsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListRetirableGrantsRequestMarshaller().marshall(listRetirableGrantsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListRetirableGrantsResult, JsonUnmarshallerContext> unmarshaller = new ListRetirableGrantsResultJsonUnmarshaller();
+            JsonResponseHandler<ListRetirableGrantsResult> responseHandler = new JsonResponseHandler<ListRetirableGrantsResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves a Boolean value that indicates whether key rotation is
+     * enabled for the specified key.
+     * </p>
+     *
+     * @param getKeyRotationStatusRequest Container for the necessary
+     *           parameters to execute the GetKeyRotationStatus service method on
+     *           AWSKMS.
+     * 
+     * @return The response from the GetKeyRotationStatus service method, as
+     *         returned by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetKeyRotationStatusResult getKeyRotationStatus(GetKeyRotationStatusRequest getKeyRotationStatusRequest) {
+        ExecutionContext executionContext = createExecutionContext(getKeyRotationStatusRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetKeyRotationStatusRequest> request = null;
+        Response<GetKeyRotationStatusResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetKeyRotationStatusRequestMarshaller().marshall(getKeyRotationStatusRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetKeyRotationStatusResult, JsonUnmarshallerContext> unmarshaller = new GetKeyRotationStatusResultJsonUnmarshaller();
+            JsonResponseHandler<GetKeyRotationStatusResult> responseHandler = new JsonResponseHandler<GetKeyRotationStatusResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Retrieves a policy attached to the specified key.
      * </p>
      *
@@ -570,10 +764,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      *         by AWSKMS.
      * 
      * @throws DependencyTimeoutException
+     * @throws KMSInternalException
      * @throws InvalidArnException
      * @throws NotFoundException
      * @throws KMSInvalidStateException
-     * @throws KMSInternalException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -611,17 +805,39 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
     /**
      * <p>
-     * Lists the customer master keys.
+     * Schedules the deletion of a customer master key (CMK). You may
+     * provide a waiting period, specified in days, before deletion occurs.
+     * If you do not provide a waiting period, the default period of 30 days
+     * is used. When this operation is successful, the state of the CMK
+     * changes to <code>PendingDeletion</code> . Before the waiting period
+     * ends, you can use CancelKeyDeletion to cancel the deletion of the CMK.
+     * After the waiting period ends, AWS KMS deletes the CMK and all AWS KMS
+     * data associated with it, including all aliases that point to it.
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b> Deleting a CMK is a destructive and potentially
+     * dangerous operation. When a CMK is deleted, all data that was
+     * encrypted under the CMK is rendered unrecoverable. To restrict the use
+     * of a CMK without deleting it, use DisableKey.
+     * </p>
+     * <p>
+     * For more information about scheduling a CMK for deletion, go to
+     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"> Deleting Customer Master Keys </a>
+     * in the <i>AWS Key Management Service Developer Guide</i> .
      * </p>
      *
-     * @param listKeysRequest Container for the necessary parameters to
-     *           execute the ListKeys service method on AWSKMS.
+     * @param scheduleKeyDeletionRequest Container for the necessary
+     *           parameters to execute the ScheduleKeyDeletion service method on
+     *           AWSKMS.
      * 
-     * @return The response from the ListKeys service method, as returned by
-     *         AWSKMS.
+     * @return The response from the ScheduleKeyDeletion service method, as
+     *         returned by AWSKMS.
      * 
      * @throws DependencyTimeoutException
      * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -631,23 +847,97 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ListKeysResult listKeys(ListKeysRequest listKeysRequest) {
-        ExecutionContext executionContext = createExecutionContext(listKeysRequest);
+    public ScheduleKeyDeletionResult scheduleKeyDeletion(ScheduleKeyDeletionRequest scheduleKeyDeletionRequest) {
+        ExecutionContext executionContext = createExecutionContext(scheduleKeyDeletionRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<ListKeysRequest> request = null;
-        Response<ListKeysResult> response = null;
+        Request<ScheduleKeyDeletionRequest> request = null;
+        Response<ScheduleKeyDeletionResult> response = null;
         try {
             awsRequestMetrics.startEvent(Field.RequestMarshallTime);
             try {
-                request = new ListKeysRequestMarshaller().marshall(listKeysRequest);
+                request = new ScheduleKeyDeletionRequestMarshaller().marshall(scheduleKeyDeletionRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            Unmarshaller<ListKeysResult, JsonUnmarshallerContext> unmarshaller = new ListKeysResultJsonUnmarshaller();
-            JsonResponseHandler<ListKeysResult> responseHandler = new JsonResponseHandler<ListKeysResult>(unmarshaller);
+            Unmarshaller<ScheduleKeyDeletionResult, JsonUnmarshallerContext> unmarshaller = new ScheduleKeyDeletionResultJsonUnmarshaller();
+            JsonResponseHandler<ScheduleKeyDeletionResult> responseHandler = new JsonResponseHandler<ScheduleKeyDeletionResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Decrypts ciphertext. Ciphertext is plaintext that has been previously
+     * encrypted by using any of the following functions:
+     * <ul>
+     * <li> GenerateDataKey </li>
+     * <li> GenerateDataKeyWithoutPlaintext </li>
+     * <li> Encrypt </li>
+     * 
+     * </ul>
+     * 
+     * </p>
+     * <p>
+     * Note that if a caller has been granted access permissions to all keys
+     * (through, for example, IAM user policies that grant
+     * <code>Decrypt</code> permission on all resources), then ciphertext
+     * encrypted by using keys in other accounts where the key grants access
+     * to the caller can be decrypted. To remedy this, we recommend that you
+     * do not grant <code>Decrypt</code> access in an IAM user policy.
+     * Instead grant <code>Decrypt</code> access only in key policies. If you
+     * must grant <code>Decrypt</code> access in an IAM user policy, you
+     * should scope the resource to specific keys or to specific trusted
+     * accounts.
+     * </p>
+     *
+     * @param decryptRequest Container for the necessary parameters to
+     *           execute the Decrypt service method on AWSKMS.
+     * 
+     * @return The response from the Decrypt service method, as returned by
+     *         AWSKMS.
+     * 
+     * @throws InvalidCiphertextException
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws KeyUnavailableException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DecryptResult decrypt(DecryptRequest decryptRequest) {
+        ExecutionContext executionContext = createExecutionContext(decryptRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DecryptRequest> request = null;
+        Response<DecryptResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DecryptRequestMarshaller().marshall(decryptRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DecryptResult, JsonUnmarshallerContext> unmarshaller = new DecryptResultJsonUnmarshaller();
+            JsonResponseHandler<DecryptResult> responseHandler = new JsonResponseHandler<DecryptResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             
@@ -668,10 +958,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * 
      * 
      * @throws DependencyTimeoutException
+     * @throws KMSInternalException
      * @throws InvalidArnException
      * @throws NotFoundException
      * @throws KMSInvalidStateException
-     * @throws KMSInternalException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -688,6 +978,405 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
         awsRequestMetrics.startEvent(Field.RequestMarshallTime);
         try {
             request = new UpdateKeyDescriptionRequestMarshaller().marshall(updateKeyDescriptionRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
+    /**
+     * <p>
+     * List the grants for a specified key.
+     * </p>
+     *
+     * @param listGrantsRequest Container for the necessary parameters to
+     *           execute the ListGrants service method on AWSKMS.
+     * 
+     * @return The response from the ListGrants service method, as returned
+     *         by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws InvalidMarkerException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListGrantsResult listGrants(ListGrantsRequest listGrantsRequest) {
+        ExecutionContext executionContext = createExecutionContext(listGrantsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListGrantsRequest> request = null;
+        Response<ListGrantsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListGrantsRequestMarshaller().marshall(listGrantsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListGrantsResult, JsonUnmarshallerContext> unmarshaller = new ListGrantsResultJsonUnmarshaller();
+            JsonResponseHandler<ListGrantsResult> responseHandler = new JsonResponseHandler<ListGrantsResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the specified alias. To map an alias to a different key, call
+     * UpdateAlias.
+     * </p>
+     *
+     * @param deleteAliasRequest Container for the necessary parameters to
+     *           execute the DeleteAlias service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteAlias(DeleteAliasRequest deleteAliasRequest) {
+        ExecutionContext executionContext = createExecutionContext(deleteAliasRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DeleteAliasRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new DeleteAliasRequestMarshaller().marshall(deleteAliasRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
+    /**
+     * <p>
+     * Adds a grant to a key to specify who can use the key and under what
+     * conditions. Grants are alternate permission mechanisms to key
+     * policies.
+     * </p>
+     * <p>
+     * For more information about grants, see
+     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/grants.html"> Grants </a>
+     * in the <i>AWS Key Management Service Developer Guide</i> .
+     * </p>
+     *
+     * @param createGrantRequest Container for the necessary parameters to
+     *           execute the CreateGrant service method on AWSKMS.
+     * 
+     * @return The response from the CreateGrant service method, as returned
+     *         by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws LimitExceededException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CreateGrantResult createGrant(CreateGrantRequest createGrantRequest) {
+        ExecutionContext executionContext = createExecutionContext(createGrantRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateGrantRequest> request = null;
+        Response<CreateGrantResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateGrantRequestMarshaller().marshall(createGrantRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateGrantResult, JsonUnmarshallerContext> unmarshaller = new CreateGrantResultJsonUnmarshaller();
+            JsonResponseHandler<CreateGrantResult> responseHandler = new JsonResponseHandler<CreateGrantResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves a list of policies attached to a key.
+     * </p>
+     *
+     * @param listKeyPoliciesRequest Container for the necessary parameters
+     *           to execute the ListKeyPolicies service method on AWSKMS.
+     * 
+     * @return The response from the ListKeyPolicies service method, as
+     *         returned by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListKeyPoliciesResult listKeyPolicies(ListKeyPoliciesRequest listKeyPoliciesRequest) {
+        ExecutionContext executionContext = createExecutionContext(listKeyPoliciesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListKeyPoliciesRequest> request = null;
+        Response<ListKeyPoliciesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListKeyPoliciesRequestMarshaller().marshall(listKeyPoliciesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListKeyPoliciesResult, JsonUnmarshallerContext> unmarshaller = new ListKeyPoliciesResultJsonUnmarshaller();
+            JsonResponseHandler<ListKeyPoliciesResult> responseHandler = new JsonResponseHandler<ListKeyPoliciesResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Attaches a policy to the specified key.
+     * </p>
+     *
+     * @param putKeyPolicyRequest Container for the necessary parameters to
+     *           execute the PutKeyPolicy service method on AWSKMS.
+     * 
+     * 
+     * @throws UnsupportedOperationException
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws MalformedPolicyDocumentException
+     * @throws LimitExceededException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void putKeyPolicy(PutKeyPolicyRequest putKeyPolicyRequest) {
+        ExecutionContext executionContext = createExecutionContext(putKeyPolicyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<PutKeyPolicyRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new PutKeyPolicyRequestMarshaller().marshall(putKeyPolicyRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
+    /**
+     * <p>
+     * Returns a data key encrypted by a customer master key without the
+     * plaintext copy of that key. Otherwise, this API functions exactly like
+     * GenerateDataKey. You can use this API to, for example, satisfy an
+     * audit requirement that an encrypted key be made available without
+     * exposing the plaintext copy of that key.
+     * </p>
+     *
+     * @param generateDataKeyWithoutPlaintextRequest Container for the
+     *           necessary parameters to execute the GenerateDataKeyWithoutPlaintext
+     *           service method on AWSKMS.
+     * 
+     * @return The response from the GenerateDataKeyWithoutPlaintext service
+     *         method, as returned by AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws KeyUnavailableException
+     * @throws InvalidKeyUsageException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GenerateDataKeyWithoutPlaintextResult generateDataKeyWithoutPlaintext(GenerateDataKeyWithoutPlaintextRequest generateDataKeyWithoutPlaintextRequest) {
+        ExecutionContext executionContext = createExecutionContext(generateDataKeyWithoutPlaintextRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GenerateDataKeyWithoutPlaintextRequest> request = null;
+        Response<GenerateDataKeyWithoutPlaintextResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GenerateDataKeyWithoutPlaintextRequestMarshaller().marshall(generateDataKeyWithoutPlaintextRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GenerateDataKeyWithoutPlaintextResult, JsonUnmarshallerContext> unmarshaller = new GenerateDataKeyWithoutPlaintextResultJsonUnmarshaller();
+            JsonResponseHandler<GenerateDataKeyWithoutPlaintextResult> responseHandler = new JsonResponseHandler<GenerateDataKeyWithoutPlaintextResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Disables rotation of the specified key.
+     * </p>
+     *
+     * @param disableKeyRotationRequest Container for the necessary
+     *           parameters to execute the DisableKeyRotation service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws DisabledException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void disableKeyRotation(DisableKeyRotationRequest disableKeyRotationRequest) {
+        ExecutionContext executionContext = createExecutionContext(disableKeyRotationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DisableKeyRotationRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new DisableKeyRotationRequestMarshaller().marshall(disableKeyRotationRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
+    /**
+     * <p>
+     * Creates a display name for a customer master key. An alias can be
+     * used to identify a key and should be unique. The console enforces a
+     * one-to-one mapping between the alias and a key. An alias name can
+     * contain only alphanumeric characters, forward slashes (/), underscores
+     * (_), and dashes (-). An alias must start with the word "alias"
+     * followed by a forward slash (alias/). An alias that begins with "aws"
+     * after the forward slash (alias/aws...) is reserved by Amazon Web
+     * Services (AWS).
+     * </p>
+     * <p>
+     * The alias and the key it is mapped to must be in the same AWS account
+     * and the same region.
+     * </p>
+     * <p>
+     * To map an alias to a different key, call UpdateAlias.
+     * </p>
+     *
+     * @param createAliasRequest Container for the necessary parameters to
+     *           execute the CreateAlias service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidAliasNameException
+     * @throws NotFoundException
+     * @throws AlreadyExistsException
+     * @throws LimitExceededException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void createAlias(CreateAliasRequest createAliasRequest) {
+        ExecutionContext executionContext = createExecutionContext(createAliasRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<CreateAliasRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new CreateAliasRequestMarshaller().marshall(createAliasRequest);
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
         } finally {
@@ -750,13 +1439,13 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      *         returned by AWSKMS.
      * 
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
      * @throws DisabledException
-     * @throws InvalidKeyUsageException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
+     * @throws KeyUnavailableException
+     * @throws InvalidKeyUsageException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -792,6 +1481,244 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
         }
     }
 
+    /**
+     * <p>
+     * Marks a key as enabled, thereby permitting its use.
+     * </p>
+     *
+     * @param enableKeyRequest Container for the necessary parameters to
+     *           execute the EnableKey service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void enableKey(EnableKeyRequest enableKeyRequest) {
+        ExecutionContext executionContext = createExecutionContext(enableKeyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<EnableKeyRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new EnableKeyRequestMarshaller().marshall(enableKeyRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
+    /**
+     * <p>
+     * Lists the customer master keys.
+     * </p>
+     *
+     * @param listKeysRequest Container for the necessary parameters to
+     *           execute the ListKeys service method on AWSKMS.
+     * 
+     * @return The response from the ListKeys service method, as returned by
+     *         AWSKMS.
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListKeysResult listKeys(ListKeysRequest listKeysRequest) {
+        ExecutionContext executionContext = createExecutionContext(listKeysRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListKeysRequest> request = null;
+        Response<ListKeysResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListKeysRequestMarshaller().marshall(listKeysRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListKeysResult, JsonUnmarshallerContext> unmarshaller = new ListKeysResultJsonUnmarshaller();
+            JsonResponseHandler<ListKeysResult> responseHandler = new JsonResponseHandler<ListKeysResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retires a grant. You can retire a grant when you're done using it to
+     * clean up. You should revoke a grant when you intend to actively deny
+     * operations that depend on it. The following are permitted to call this
+     * API:
+     * <ul>
+     * <li>The account that created the grant</li>
+     * <li>The <code>RetiringPrincipal</code> , if present</li>
+     * <li>The <code>GranteePrincipal</code> , if <code>RetireGrant</code>
+     * is a grantee operation</li>
+     * 
+     * </ul>
+     * The grant to retire must be identified by its grant token or by a
+     * combination of the key ARN and the grant ID. A grant token is a unique
+     * variable-length base64-encoded string. A grant ID is a 64 character
+     * unique identifier of a grant. Both are returned by the
+     * <code>CreateGrant</code> function.
+     * </p>
+     *
+     * @param retireGrantRequest Container for the necessary parameters to
+     *           execute the RetireGrant service method on AWSKMS.
+     * 
+     * 
+     * @throws InvalidGrantIdException
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void retireGrant(RetireGrantRequest retireGrantRequest) {
+        ExecutionContext executionContext = createExecutionContext(retireGrantRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<RetireGrantRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new RetireGrantRequestMarshaller().marshall(retireGrantRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
+    /**
+     * <p>
+     * Revokes a grant. You can revoke a grant to actively deny operations
+     * that depend on it.
+     * </p>
+     *
+     * @param revokeGrantRequest Container for the necessary parameters to
+     *           execute the RevokeGrant service method on AWSKMS.
+     * 
+     * 
+     * @throws InvalidGrantIdException
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void revokeGrant(RevokeGrantRequest revokeGrantRequest) {
+        ExecutionContext executionContext = createExecutionContext(revokeGrantRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<RevokeGrantRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new RevokeGrantRequestMarshaller().marshall(revokeGrantRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
+    /**
+     * <p>
+     * Updates an alias to map it to a different key.
+     * </p>
+     * <p>
+     * An alias is not a property of a key. Therefore, an alias can be
+     * mapped to and unmapped from an existing key without changing the
+     * properties of the key.
+     * </p>
+     * <p>
+     * An alias name can contain only alphanumeric characters, forward
+     * slashes (/), underscores (_), and dashes (-). An alias must start with
+     * the word "alias" followed by a forward slash (alias/). An alias that
+     * begins with "aws" after the forward slash (alias/aws...) is reserved
+     * by Amazon Web Services (AWS).
+     * </p>
+     * <p>
+     * The alias and the key it is mapped to must be in the same AWS account
+     * and the same region.
+     * </p>
+     *
+     * @param updateAliasRequest Container for the necessary parameters to
+     *           execute the UpdateAlias service method on AWSKMS.
+     * 
+     * 
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws NotFoundException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void updateAlias(UpdateAliasRequest updateAliasRequest) {
+        ExecutionContext executionContext = createExecutionContext(updateAliasRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<UpdateAliasRequest> request;
+        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+        try {
+            request = new UpdateAliasRequestMarshaller().marshall(updateAliasRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+        } finally {
+            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+        }
+        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+        invoke(request, responseHandler, executionContext);
+    }
+    
     /**
      * <p>
      * Lists all of the key aliases in the account.
@@ -843,29 +1770,24 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
     /**
      * <p>
-     * Adds a grant to a key to specify who can use the key and under what
-     * conditions. Grants are alternate permission mechanisms to key
-     * policies.
-     * </p>
-     * <p>
-     * For more information about grants, see
-     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/grants.html"> Grants </a>
-     * in the <i>AWS Key Management Service Developer Guide</i> .
+     * Creates a customer master key. Customer master keys can be used to
+     * encrypt small amounts of data (less than 4K) directly, but they are
+     * most commonly used to encrypt or envelope data keys that are then used
+     * to encrypt customer data. For more information about data keys, see
+     * GenerateDataKey and GenerateDataKeyWithoutPlaintext.
      * </p>
      *
-     * @param createGrantRequest Container for the necessary parameters to
-     *           execute the CreateGrant service method on AWSKMS.
+     * @param createKeyRequest Container for the necessary parameters to
+     *           execute the CreateKey service method on AWSKMS.
      * 
-     * @return The response from the CreateGrant service method, as returned
-     *         by AWSKMS.
+     * @return The response from the CreateKey service method, as returned by
+     *         AWSKMS.
      * 
+     * @throws UnsupportedOperationException
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws MalformedPolicyDocumentException
      * @throws LimitExceededException
      *
      * @throws AmazonClientException
@@ -876,430 +1798,23 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public CreateGrantResult createGrant(CreateGrantRequest createGrantRequest) {
-        ExecutionContext executionContext = createExecutionContext(createGrantRequest);
+    public CreateKeyResult createKey(CreateKeyRequest createKeyRequest) {
+        ExecutionContext executionContext = createExecutionContext(createKeyRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<CreateGrantRequest> request = null;
-        Response<CreateGrantResult> response = null;
+        Request<CreateKeyRequest> request = null;
+        Response<CreateKeyResult> response = null;
         try {
             awsRequestMetrics.startEvent(Field.RequestMarshallTime);
             try {
-                request = new CreateGrantRequestMarshaller().marshall(createGrantRequest);
+                request = new CreateKeyRequestMarshaller().marshall(createKeyRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            Unmarshaller<CreateGrantResult, JsonUnmarshallerContext> unmarshaller = new CreateGrantResultJsonUnmarshaller();
-            JsonResponseHandler<CreateGrantResult> responseHandler = new JsonResponseHandler<CreateGrantResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
-     * Returns a data key encrypted by a customer master key without the
-     * plaintext copy of that key. Otherwise, this API functions exactly like
-     * GenerateDataKey. You can use this API to, for example, satisfy an
-     * audit requirement that an encrypted key be made available without
-     * exposing the plaintext copy of that key.
-     * </p>
-     *
-     * @param generateDataKeyWithoutPlaintextRequest Container for the
-     *           necessary parameters to execute the GenerateDataKeyWithoutPlaintext
-     *           service method on AWSKMS.
-     * 
-     * @return The response from the GenerateDataKeyWithoutPlaintext service
-     *         method, as returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws InvalidKeyUsageException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GenerateDataKeyWithoutPlaintextResult generateDataKeyWithoutPlaintext(GenerateDataKeyWithoutPlaintextRequest generateDataKeyWithoutPlaintextRequest) {
-        ExecutionContext executionContext = createExecutionContext(generateDataKeyWithoutPlaintextRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<GenerateDataKeyWithoutPlaintextRequest> request = null;
-        Response<GenerateDataKeyWithoutPlaintextResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new GenerateDataKeyWithoutPlaintextRequestMarshaller().marshall(generateDataKeyWithoutPlaintextRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<GenerateDataKeyWithoutPlaintextResult, JsonUnmarshallerContext> unmarshaller = new GenerateDataKeyWithoutPlaintextResultJsonUnmarshaller();
-            JsonResponseHandler<GenerateDataKeyWithoutPlaintextResult> responseHandler = new JsonResponseHandler<GenerateDataKeyWithoutPlaintextResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
-     * Deletes the specified alias. To map an alias to a different key, call
-     * UpdateAlias.
-     * </p>
-     *
-     * @param deleteAliasRequest Container for the necessary parameters to
-     *           execute the DeleteAlias service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteAlias(DeleteAliasRequest deleteAliasRequest) {
-        ExecutionContext executionContext = createExecutionContext(deleteAliasRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<DeleteAliasRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new DeleteAliasRequestMarshaller().marshall(deleteAliasRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Updates an alias to map it to a different key.
-     * </p>
-     * <p>
-     * An alias is not a property of a key. Therefore, an alias can be
-     * mapped to and unmapped from an existing key without changing the
-     * properties of the key.
-     * </p>
-     * <p>
-     * An alias name can contain only alphanumeric characters, forward
-     * slashes (/), underscores (_), and dashes (-). An alias must start with
-     * the word "alias" followed by a forward slash (alias/). An alias that
-     * begins with "aws" after the forward slash (alias/aws...) is reserved
-     * by Amazon Web Services (AWS).
-     * </p>
-     * <p>
-     * The alias and the key it is mapped to must be in the same AWS account
-     * and the same region.
-     * </p>
-     *
-     * @param updateAliasRequest Container for the necessary parameters to
-     *           execute the UpdateAlias service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void updateAlias(UpdateAliasRequest updateAliasRequest) {
-        ExecutionContext executionContext = createExecutionContext(updateAliasRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<UpdateAliasRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new UpdateAliasRequestMarshaller().marshall(updateAliasRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Enables rotation of the specified customer master key.
-     * </p>
-     *
-     * @param enableKeyRotationRequest Container for the necessary parameters
-     *           to execute the EnableKeyRotation service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void enableKeyRotation(EnableKeyRotationRequest enableKeyRotationRequest) {
-        ExecutionContext executionContext = createExecutionContext(enableKeyRotationRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<EnableKeyRotationRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new EnableKeyRotationRequestMarshaller().marshall(enableKeyRotationRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Returns a list of all grants for which the grant's
-     * <code>RetiringPrincipal</code> matches the one specified.
-     * </p>
-     * <p>
-     * A typical use is to list all grants that you are able to retire. To
-     * retire a grant, use RetireGrant.
-     * </p>
-     *
-     * @param listRetirableGrantsRequest Container for the necessary
-     *           parameters to execute the ListRetirableGrants service method on
-     *           AWSKMS.
-     * 
-     * @return The response from the ListRetirableGrants service method, as
-     *         returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidMarkerException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListRetirableGrantsResult listRetirableGrants(ListRetirableGrantsRequest listRetirableGrantsRequest) {
-        ExecutionContext executionContext = createExecutionContext(listRetirableGrantsRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<ListRetirableGrantsRequest> request = null;
-        Response<ListRetirableGrantsResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new ListRetirableGrantsRequestMarshaller().marshall(listRetirableGrantsRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<ListRetirableGrantsResult, JsonUnmarshallerContext> unmarshaller = new ListRetirableGrantsResultJsonUnmarshaller();
-            JsonResponseHandler<ListRetirableGrantsResult> responseHandler = new JsonResponseHandler<ListRetirableGrantsResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
-     * Retires a grant. You can retire a grant when you're done using it to
-     * clean up. You should revoke a grant when you intend to actively deny
-     * operations that depend on it. The following are permitted to call this
-     * API:
-     * <ul>
-     * <li>The account that created the grant</li>
-     * <li>The <code>RetiringPrincipal</code> , if present</li>
-     * <li>The <code>GranteePrincipal</code> , if <code>RetireGrant</code>
-     * is a grantee operation</li>
-     * 
-     * </ul>
-     * The grant to retire must be identified by its grant token or by a
-     * combination of the key ARN and the grant ID. A grant token is a unique
-     * variable-length base64-encoded string. A grant ID is a 64 character
-     * unique identifier of a grant. Both are returned by the
-     * <code>CreateGrant</code> function.
-     * </p>
-     *
-     * @param retireGrantRequest Container for the necessary parameters to
-     *           execute the RetireGrant service method on AWSKMS.
-     * 
-     * 
-     * @throws InvalidGrantIdException
-     * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void retireGrant(RetireGrantRequest retireGrantRequest) {
-        ExecutionContext executionContext = createExecutionContext(retireGrantRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<RetireGrantRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new RetireGrantRequestMarshaller().marshall(retireGrantRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Provides detailed information about the specified customer master
-     * key.
-     * </p>
-     *
-     * @param describeKeyRequest Container for the necessary parameters to
-     *           execute the DescribeKey service method on AWSKMS.
-     * 
-     * @return The response from the DescribeKey service method, as returned
-     *         by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeKeyResult describeKey(DescribeKeyRequest describeKeyRequest) {
-        ExecutionContext executionContext = createExecutionContext(describeKeyRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<DescribeKeyRequest> request = null;
-        Response<DescribeKeyResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new DescribeKeyRequestMarshaller().marshall(describeKeyRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<DescribeKeyResult, JsonUnmarshallerContext> unmarshaller = new DescribeKeyResultJsonUnmarshaller();
-            JsonResponseHandler<DescribeKeyResult> responseHandler = new JsonResponseHandler<DescribeKeyResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
-     * List the grants for a specified key.
-     * </p>
-     *
-     * @param listGrantsRequest Container for the necessary parameters to
-     *           execute the ListGrants service method on AWSKMS.
-     * 
-     * @return The response from the ListGrants service method, as returned
-     *         by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidMarkerException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListGrantsResult listGrants(ListGrantsRequest listGrantsRequest) {
-        ExecutionContext executionContext = createExecutionContext(listGrantsRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<ListGrantsRequest> request = null;
-        Response<ListGrantsResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new ListGrantsRequestMarshaller().marshall(listGrantsRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<ListGrantsResult, JsonUnmarshallerContext> unmarshaller = new ListGrantsResultJsonUnmarshaller();
-            JsonResponseHandler<ListGrantsResult> responseHandler = new JsonResponseHandler<ListGrantsResult>(unmarshaller);
+            Unmarshaller<CreateKeyResult, JsonUnmarshallerContext> unmarshaller = new CreateKeyResultJsonUnmarshaller();
+            JsonResponseHandler<CreateKeyResult> responseHandler = new JsonResponseHandler<CreateKeyResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             
@@ -1359,43 +1874,20 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
     /**
      * <p>
-     * Decrypts ciphertext. Ciphertext is plaintext that has been previously
-     * encrypted by using any of the following functions:
-     * <ul>
-     * <li> GenerateDataKey </li>
-     * <li> GenerateDataKeyWithoutPlaintext </li>
-     * <li> Encrypt </li>
-     * 
-     * </ul>
-     * 
-     * </p>
-     * <p>
-     * Note that if a caller has been granted access permissions to all keys
-     * (through, for example, IAM user policies that grant
-     * <code>Decrypt</code> permission on all resources), then ciphertext
-     * encrypted by using keys in other accounts where the key grants access
-     * to the caller can be decrypted. To remedy this, we recommend that you
-     * do not grant <code>Decrypt</code> access in an IAM user policy.
-     * Instead grant <code>Decrypt</code> access only in key policies. If you
-     * must grant <code>Decrypt</code> access in an IAM user policy, you
-     * should scope the resource to specific keys or to specific trusted
-     * accounts.
+     * Provides detailed information about the specified customer master
+     * key.
      * </p>
      *
-     * @param decryptRequest Container for the necessary parameters to
-     *           execute the Decrypt service method on AWSKMS.
+     * @param describeKeyRequest Container for the necessary parameters to
+     *           execute the DescribeKey service method on AWSKMS.
      * 
-     * @return The response from the Decrypt service method, as returned by
-     *         AWSKMS.
+     * @return The response from the DescribeKey service method, as returned
+     *         by AWSKMS.
      * 
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws InvalidCiphertextException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws NotFoundException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1405,23 +1897,23 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DecryptResult decrypt(DecryptRequest decryptRequest) {
-        ExecutionContext executionContext = createExecutionContext(decryptRequest);
+    public DescribeKeyResult describeKey(DescribeKeyRequest describeKeyRequest) {
+        ExecutionContext executionContext = createExecutionContext(describeKeyRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<DecryptRequest> request = null;
-        Response<DecryptResult> response = null;
+        Request<DescribeKeyRequest> request = null;
+        Response<DescribeKeyResult> response = null;
         try {
             awsRequestMetrics.startEvent(Field.RequestMarshallTime);
             try {
-                request = new DecryptRequestMarshaller().marshall(decryptRequest);
+                request = new DescribeKeyRequestMarshaller().marshall(describeKeyRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            Unmarshaller<DecryptResult, JsonUnmarshallerContext> unmarshaller = new DecryptResultJsonUnmarshaller();
-            JsonResponseHandler<DecryptResult> responseHandler = new JsonResponseHandler<DecryptResult>(unmarshaller);
+            Unmarshaller<DescribeKeyResult, JsonUnmarshallerContext> unmarshaller = new DescribeKeyResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeKeyResult> responseHandler = new JsonResponseHandler<DescribeKeyResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             
@@ -1431,529 +1923,6 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
         }
     }
 
-    /**
-     * <p>
-     * Retrieves a Boolean value that indicates whether key rotation is
-     * enabled for the specified key.
-     * </p>
-     *
-     * @param getKeyRotationStatusRequest Container for the necessary
-     *           parameters to execute the GetKeyRotationStatus service method on
-     *           AWSKMS.
-     * 
-     * @return The response from the GetKeyRotationStatus service method, as
-     *         returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetKeyRotationStatusResult getKeyRotationStatus(GetKeyRotationStatusRequest getKeyRotationStatusRequest) {
-        ExecutionContext executionContext = createExecutionContext(getKeyRotationStatusRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<GetKeyRotationStatusRequest> request = null;
-        Response<GetKeyRotationStatusResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new GetKeyRotationStatusRequestMarshaller().marshall(getKeyRotationStatusRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<GetKeyRotationStatusResult, JsonUnmarshallerContext> unmarshaller = new GetKeyRotationStatusResultJsonUnmarshaller();
-            JsonResponseHandler<GetKeyRotationStatusResult> responseHandler = new JsonResponseHandler<GetKeyRotationStatusResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
-     * Retrieves a list of policies attached to a key.
-     * </p>
-     *
-     * @param listKeyPoliciesRequest Container for the necessary parameters
-     *           to execute the ListKeyPolicies service method on AWSKMS.
-     * 
-     * @return The response from the ListKeyPolicies service method, as
-     *         returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListKeyPoliciesResult listKeyPolicies(ListKeyPoliciesRequest listKeyPoliciesRequest) {
-        ExecutionContext executionContext = createExecutionContext(listKeyPoliciesRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<ListKeyPoliciesRequest> request = null;
-        Response<ListKeyPoliciesResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new ListKeyPoliciesRequestMarshaller().marshall(listKeyPoliciesRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<ListKeyPoliciesResult, JsonUnmarshallerContext> unmarshaller = new ListKeyPoliciesResultJsonUnmarshaller();
-            JsonResponseHandler<ListKeyPoliciesResult> responseHandler = new JsonResponseHandler<ListKeyPoliciesResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
-     * Disables rotation of the specified key.
-     * </p>
-     *
-     * @param disableKeyRotationRequest Container for the necessary
-     *           parameters to execute the DisableKeyRotation service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void disableKeyRotation(DisableKeyRotationRequest disableKeyRotationRequest) {
-        ExecutionContext executionContext = createExecutionContext(disableKeyRotationRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<DisableKeyRotationRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new DisableKeyRotationRequestMarshaller().marshall(disableKeyRotationRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Creates a display name for a customer master key. An alias can be
-     * used to identify a key and should be unique. The console enforces a
-     * one-to-one mapping between the alias and a key. An alias name can
-     * contain only alphanumeric characters, forward slashes (/), underscores
-     * (_), and dashes (-). An alias must start with the word "alias"
-     * followed by a forward slash (alias/). An alias that begins with "aws"
-     * after the forward slash (alias/aws...) is reserved by Amazon Web
-     * Services (AWS).
-     * </p>
-     * <p>
-     * The alias and the key it is mapped to must be in the same AWS account
-     * and the same region.
-     * </p>
-     * <p>
-     * To map an alias to a different key, call UpdateAlias.
-     * </p>
-     *
-     * @param createAliasRequest Container for the necessary parameters to
-     *           execute the CreateAlias service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws AlreadyExistsException
-     * @throws InvalidAliasNameException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     * @throws LimitExceededException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void createAlias(CreateAliasRequest createAliasRequest) {
-        ExecutionContext executionContext = createExecutionContext(createAliasRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<CreateAliasRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new CreateAliasRequestMarshaller().marshall(createAliasRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Cancels the deletion of a customer master key (CMK). When this
-     * operation is successful, the CMK is set to the <code>Disabled</code>
-     * state. To enable a CMK, use EnableKey.
-     * </p>
-     * <p>
-     * For more information about scheduling and canceling deletion of a
-     * CMK, go to
-     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"> Deleting Customer Master Keys </a>
-     * in the <i>AWS Key Management Service Developer Guide</i> .
-     * </p>
-     *
-     * @param cancelKeyDeletionRequest Container for the necessary parameters
-     *           to execute the CancelKeyDeletion service method on AWSKMS.
-     * 
-     * @return The response from the CancelKeyDeletion service method, as
-     *         returned by AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public CancelKeyDeletionResult cancelKeyDeletion(CancelKeyDeletionRequest cancelKeyDeletionRequest) {
-        ExecutionContext executionContext = createExecutionContext(cancelKeyDeletionRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<CancelKeyDeletionRequest> request = null;
-        Response<CancelKeyDeletionResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new CancelKeyDeletionRequestMarshaller().marshall(cancelKeyDeletionRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<CancelKeyDeletionResult, JsonUnmarshallerContext> unmarshaller = new CancelKeyDeletionResultJsonUnmarshaller();
-            JsonResponseHandler<CancelKeyDeletionResult> responseHandler = new JsonResponseHandler<CancelKeyDeletionResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
-     * Revokes a grant. You can revoke a grant to actively deny operations
-     * that depend on it.
-     * </p>
-     *
-     * @param revokeGrantRequest Container for the necessary parameters to
-     *           execute the RevokeGrant service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidGrantIdException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void revokeGrant(RevokeGrantRequest revokeGrantRequest) {
-        ExecutionContext executionContext = createExecutionContext(revokeGrantRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<RevokeGrantRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new RevokeGrantRequestMarshaller().marshall(revokeGrantRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Attaches a policy to the specified key.
-     * </p>
-     *
-     * @param putKeyPolicyRequest Container for the necessary parameters to
-     *           execute the PutKeyPolicy service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws MalformedPolicyDocumentException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws UnsupportedOperationException
-     * @throws KMSInternalException
-     * @throws LimitExceededException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void putKeyPolicy(PutKeyPolicyRequest putKeyPolicyRequest) {
-        ExecutionContext executionContext = createExecutionContext(putKeyPolicyRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<PutKeyPolicyRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new PutKeyPolicyRequestMarshaller().marshall(putKeyPolicyRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Marks a key as enabled, thereby permitting its use.
-     * </p>
-     *
-     * @param enableKeyRequest Container for the necessary parameters to
-     *           execute the EnableKey service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     * @throws LimitExceededException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void enableKey(EnableKeyRequest enableKeyRequest) {
-        ExecutionContext executionContext = createExecutionContext(enableKeyRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<EnableKeyRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new EnableKeyRequestMarshaller().marshall(enableKeyRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Sets the state of a master key to disabled, thereby preventing its
-     * use for cryptographic operations. For more information about how key
-     * state affects the use of a master key, go to
-     * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"> How Key State Affects the Use of a Customer Master Key </a>
-     * in the <i>AWS Key Management Service Developer Guide</i> .
-     * </p>
-     *
-     * @param disableKeyRequest Container for the necessary parameters to
-     *           execute the DisableKey service method on AWSKMS.
-     * 
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidArnException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void disableKey(DisableKeyRequest disableKeyRequest) {
-        ExecutionContext executionContext = createExecutionContext(disableKeyRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        Request<DisableKeyRequest> request;
-        awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-        try {
-            request = new DisableKeyRequestMarshaller().marshall(disableKeyRequest);
-            // Binds the request metrics to the current request.
-            request.setAWSRequestMetrics(awsRequestMetrics);
-        } finally {
-            awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-        }
-        JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
-        invoke(request, responseHandler, executionContext);
-    }
-    
-    /**
-     * <p>
-     * Encrypts data on the server side with a new customer master key
-     * without exposing the plaintext of the data on the client side. The
-     * data is first decrypted and then encrypted. This operation can also be
-     * used to change the encryption context of a ciphertext.
-     * </p>
-     * <p>
-     * Unlike other actions, <code>ReEncrypt</code> is authorized twice -
-     * once as <code>ReEncryptFrom</code> on the source key and once as
-     * <code>ReEncryptTo</code> on the destination key. We therefore
-     * recommend that you include the <code>"action":"kms:ReEncrypt*"</code>
-     * statement in your key policies to permit re-encryption from or to the
-     * key. The statement is included automatically when you authorize use of
-     * the key through the console but must be included manually when you set
-     * a policy by using the PutKeyPolicy function.
-     * </p>
-     *
-     * @param reEncryptRequest Container for the necessary parameters to
-     *           execute the ReEncrypt service method on AWSKMS.
-     * 
-     * @return The response from the ReEncrypt service method, as returned by
-     *         AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws KeyUnavailableException
-     * @throws NotFoundException
-     * @throws DisabledException
-     * @throws InvalidCiphertextException
-     * @throws InvalidKeyUsageException
-     * @throws KMSInvalidStateException
-     * @throws KMSInternalException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ReEncryptResult reEncrypt(ReEncryptRequest reEncryptRequest) {
-        ExecutionContext executionContext = createExecutionContext(reEncryptRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<ReEncryptRequest> request = null;
-        Response<ReEncryptResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new ReEncryptRequestMarshaller().marshall(reEncryptRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<ReEncryptResult, JsonUnmarshallerContext> unmarshaller = new ReEncryptResultJsonUnmarshaller();
-            JsonResponseHandler<ReEncryptResult> responseHandler = new JsonResponseHandler<ReEncryptResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
-     * Creates a customer master key. Customer master keys can be used to
-     * encrypt small amounts of data (less than 4K) directly, but they are
-     * most commonly used to encrypt or envelope data keys that are then used
-     * to encrypt customer data. For more information about data keys, see
-     * GenerateDataKey and GenerateDataKeyWithoutPlaintext.
-     * </p>
-     * 
-     * @return The response from the CreateKey service method, as returned by
-     *         AWSKMS.
-     * 
-     * @throws DependencyTimeoutException
-     * @throws MalformedPolicyDocumentException
-     * @throws InvalidArnException
-     * @throws UnsupportedOperationException
-     * @throws KMSInternalException
-     * @throws LimitExceededException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSKMS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public CreateKeyResult createKey() throws AmazonServiceException, AmazonClientException {
-        return createKey(new CreateKeyRequest());
-    }
-    
     /**
      * <p>
      * Lists the customer master keys.
@@ -1975,6 +1944,46 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      */
     public ListKeysResult listKeys() throws AmazonServiceException, AmazonClientException {
         return listKeys(new ListKeysRequest());
+    }
+    
+    /**
+     * <p>
+     * Retires a grant. You can retire a grant when you're done using it to
+     * clean up. You should revoke a grant when you intend to actively deny
+     * operations that depend on it. The following are permitted to call this
+     * API:
+     * <ul>
+     * <li>The account that created the grant</li>
+     * <li>The <code>RetiringPrincipal</code> , if present</li>
+     * <li>The <code>GranteePrincipal</code> , if <code>RetireGrant</code>
+     * is a grantee operation</li>
+     * 
+     * </ul>
+     * The grant to retire must be identified by its grant token or by a
+     * combination of the key ARN and the grant ID. A grant token is a unique
+     * variable-length base64-encoded string. A grant ID is a 64 character
+     * unique identifier of a grant. Both are returned by the
+     * <code>CreateGrant</code> function.
+     * </p>
+     * 
+     * 
+     * @throws InvalidGrantIdException
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws NotFoundException
+     * @throws InvalidGrantTokenException
+     * @throws KMSInvalidStateException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSKMS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void retireGrant() throws AmazonServiceException, AmazonClientException {
+        retireGrant(new RetireGrantRequest());
     }
     
     /**
@@ -2003,31 +2012,22 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
     
     /**
      * <p>
-     * Retires a grant. You can retire a grant when you're done using it to
-     * clean up. You should revoke a grant when you intend to actively deny
-     * operations that depend on it. The following are permitted to call this
-     * API:
-     * <ul>
-     * <li>The account that created the grant</li>
-     * <li>The <code>RetiringPrincipal</code> , if present</li>
-     * <li>The <code>GranteePrincipal</code> , if <code>RetireGrant</code>
-     * is a grantee operation</li>
-     * 
-     * </ul>
-     * The grant to retire must be identified by its grant token or by a
-     * combination of the key ARN and the grant ID. A grant token is a unique
-     * variable-length base64-encoded string. A grant ID is a 64 character
-     * unique identifier of a grant. Both are returned by the
-     * <code>CreateGrant</code> function.
+     * Creates a customer master key. Customer master keys can be used to
+     * encrypt small amounts of data (less than 4K) directly, but they are
+     * most commonly used to encrypt or envelope data keys that are then used
+     * to encrypt customer data. For more information about data keys, see
+     * GenerateDataKey and GenerateDataKeyWithoutPlaintext.
      * </p>
      * 
+     * @return The response from the CreateKey service method, as returned by
+     *         AWSKMS.
      * 
-     * @throws InvalidGrantIdException
+     * @throws UnsupportedOperationException
      * @throws DependencyTimeoutException
-     * @throws InvalidGrantTokenException
-     * @throws NotFoundException
-     * @throws KMSInvalidStateException
      * @throws KMSInternalException
+     * @throws InvalidArnException
+     * @throws MalformedPolicyDocumentException
+     * @throws LimitExceededException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -2037,8 +2037,8 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      *             If an error response is returned by AWSKMS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void retireGrant() throws AmazonServiceException, AmazonClientException {
-        retireGrant(new RetireGrantRequest());
+    public CreateKeyResult createKey() throws AmazonServiceException, AmazonClientException {
+        return createKey(new CreateKeyRequest());
     }
     
     /**

@@ -88,6 +88,62 @@ public interface AmazonAutoScaling {
     
     /**
      * <p>
+     * Creates or updates a lifecycle hook for the specified Auto Scaling
+     * Group.
+     * </p>
+     * <p>
+     * A lifecycle hook tells Auto Scaling that you want to perform an
+     * action on an instance that is not actively in service; for example,
+     * either when the instance launches or before the instance terminates.
+     * </p>
+     * <p>
+     * This operation is a part of the basic sequence for adding a lifecycle
+     * hook to an Auto Scaling group:
+     * </p>
+     * <ol> <li>Create a notification target. A target can be either an
+     * Amazon SQS queue or an Amazon SNS topic.</li>
+     * <li>Create an IAM role. This role allows Auto Scaling to publish
+     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
+     * <li> <b>Create the lifecycle hook. You can create a hook that acts
+     * when instances launch or when instances terminate.</b> </li>
+     * <li>If necessary, record the lifecycle action heartbeat to keep the
+     * instance in a pending state.</li>
+     * <li>Complete the lifecycle action.</li>
+     * </ol> <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     * <p>
+     * If you exceed your maximum limit of lifecycle hooks, which by default
+     * is 50 per region, the call fails. For information about updating this
+     * limit, see
+     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
+     * in the <i>Amazon Web Services General Reference</i> .
+     * </p>
+     *
+     * @param putLifecycleHookRequest Container for the necessary parameters
+     *           to execute the PutLifecycleHook service method on AmazonAutoScaling.
+     * 
+     * @return The response from the PutLifecycleHook service method, as
+     *         returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws LimitExceededException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public PutLifecycleHookResult putLifecycleHook(PutLifecycleHookRequest putLifecycleHookRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes the current Auto Scaling resource limits for your AWS
      * account.
      * </p>
@@ -130,8 +186,8 @@ public interface AmazonAutoScaling {
      * @return The response from the DescribeAutoScalingGroups service
      *         method, as returned by AmazonAutoScaling.
      * 
-     * @throws InvalidNextTokenException
      * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -146,21 +202,17 @@ public interface AmazonAutoScaling {
 
     /**
      * <p>
-     * Enables monitoring of the specified metrics for the specified Auto
-     * Scaling group.
-     * </p>
-     * <p>
-     * You can only enable metrics collection if
-     * <code>InstanceMonitoring</code> in the launch configuration for the
-     * group is set to <code>True</code> .
+     * Describes the policies for the specified Auto Scaling group.
      * </p>
      *
-     * @param enableMetricsCollectionRequest Container for the necessary
-     *           parameters to execute the EnableMetricsCollection service method on
-     *           AmazonAutoScaling.
+     * @param describePoliciesRequest Container for the necessary parameters
+     *           to execute the DescribePolicies service method on AmazonAutoScaling.
      * 
+     * @return The response from the DescribePolicies service method, as
+     *         returned by AmazonAutoScaling.
      * 
      * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -170,61 +222,7 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void enableMetricsCollection(EnableMetricsCollectionRequest enableMetricsCollectionRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Resumes the specified suspended Auto Scaling processes for the
-     * specified Auto Scaling group. To resume specific processes, use the
-     * <code>ScalingProcesses</code> parameter. To resume all processes, omit
-     * the <code>ScalingProcesses</code> parameter. For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param resumeProcessesRequest Container for the necessary parameters
-     *           to execute the ResumeProcesses service method on AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceInUseException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void resumeProcesses(ResumeProcessesRequest resumeProcessesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes the scaling process types for use with ResumeProcesses and
-     * SuspendProcesses.
-     * </p>
-     *
-     * @param describeScalingProcessTypesRequest Container for the necessary
-     *           parameters to execute the DescribeScalingProcessTypes service method
-     *           on AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeScalingProcessTypes service
-     *         method, as returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeScalingProcessTypesResult describeScalingProcessTypes(DescribeScalingProcessTypesRequest describeScalingProcessTypesRequest) 
+    public DescribePoliciesResult describePolicies(DescribePoliciesRequest describePoliciesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -247,8 +245,8 @@ public interface AmazonAutoScaling {
      *           AmazonAutoScaling.
      * 
      * 
-     * @throws LimitExceededException
      * @throws ResourceContentionException
+     * @throws LimitExceededException
      * @throws AlreadyExistsException
      *
      * @throws AmazonClientException
@@ -260,446 +258,6 @@ public interface AmazonAutoScaling {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void createAutoScalingGroup(CreateAutoScalingGroupRequest createAutoScalingGroupRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Attaches one or more EC2 instances to the specified Auto Scaling
-     * group.
-     * </p>
-     * <p>
-     * When you attach instances, Auto Scaling increases the desired
-     * capacity of the group by the number of instances being attached. If
-     * the number of instances being attached plus the desired capacity of
-     * the group exceeds the maximum size of the group, the operation fails.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-instance-asg.html"> Attach EC2 Instances to Your Auto Scaling Group </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param attachInstancesRequest Container for the necessary parameters
-     *           to execute the AttachInstances service method on AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void attachInstances(AttachInstancesRequest attachInstancesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes one or more scaling activities for the specified Auto
-     * Scaling group. If you omit the <code>ActivityIds</code> , the call
-     * returns all activities from the past six weeks. Activities are sorted
-     * by the start time. Activities still in progress appear first on the
-     * list.
-     * </p>
-     *
-     * @param describeScalingActivitiesRequest Container for the necessary
-     *           parameters to execute the DescribeScalingActivities service method on
-     *           AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeScalingActivities service
-     *         method, as returned by AmazonAutoScaling.
-     * 
-     * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeScalingActivitiesResult describeScalingActivities(DescribeScalingActivitiesRequest describeScalingActivitiesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes the termination policies supported by Auto Scaling.
-     * </p>
-     *
-     * @param describeTerminationPolicyTypesRequest Container for the
-     *           necessary parameters to execute the DescribeTerminationPolicyTypes
-     *           service method on AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeTerminationPolicyTypes service
-     *         method, as returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeTerminationPolicyTypesResult describeTerminationPolicyTypes(DescribeTerminationPolicyTypesRequest describeTerminationPolicyTypesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates or updates a lifecycle hook for the specified Auto Scaling
-     * Group.
-     * </p>
-     * <p>
-     * A lifecycle hook tells Auto Scaling that you want to perform an
-     * action on an instance that is not actively in service; for example,
-     * either when the instance launches or before the instance terminates.
-     * </p>
-     * <p>
-     * This operation is a part of the basic sequence for adding a lifecycle
-     * hook to an Auto Scaling group:
-     * </p>
-     * <ol> <li>Create a notification target. A target can be either an
-     * Amazon SQS queue or an Amazon SNS topic.</li>
-     * <li>Create an IAM role. This role allows Auto Scaling to publish
-     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
-     * <li> <b>Create the lifecycle hook. You can create a hook that acts
-     * when instances launch or when instances terminate.</b> </li>
-     * <li>If necessary, record the lifecycle action heartbeat to keep the
-     * instance in a pending state.</li>
-     * <li>Complete the lifecycle action.</li>
-     * </ol> <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     * <p>
-     * If you exceed your maximum limit of lifecycle hooks, which by default
-     * is 50 per region, the call fails. For information about updating this
-     * limit, see
-     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
-     * in the <i>Amazon Web Services General Reference</i> .
-     * </p>
-     *
-     * @param putLifecycleHookRequest Container for the necessary parameters
-     *           to execute the PutLifecycleHook service method on AmazonAutoScaling.
-     * 
-     * @return The response from the PutLifecycleHook service method, as
-     *         returned by AmazonAutoScaling.
-     * 
-     * @throws LimitExceededException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public PutLifecycleHookResult putLifecycleHook(PutLifecycleHookRequest putLifecycleHookRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes the specified tags.
-     * </p>
-     * <p>
-     * You can use filters to limit the results. For example, you can query
-     * for the tags for a specific Auto Scaling group. You can specify
-     * multiple values for a filter. A tag must match at least one of the
-     * specified values for it to be included in the results.
-     * </p>
-     * <p>
-     * You can also specify multiple filters. The result includes
-     * information for a particular tag only if it matches all the filters.
-     * If there's no match, no special message is returned.
-     * </p>
-     *
-     * @param describeTagsRequest Container for the necessary parameters to
-     *           execute the DescribeTags service method on AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeTags service method, as returned
-     *         by AmazonAutoScaling.
-     * 
-     * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeTagsResult describeTags(DescribeTagsRequest describeTagsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Removes one or more load balancers from the specified Auto Scaling
-     * group.
-     * </p>
-     * <p>
-     * When you detach a load balancer, it enters the <code>Removing</code>
-     * state while deregistering the instances in the group. When all
-     * instances are deregistered, then you can no longer describe the load
-     * balancer using DescribeLoadBalancers. Note that the instances remain
-     * running.
-     * </p>
-     *
-     * @param detachLoadBalancersRequest Container for the necessary
-     *           parameters to execute the DetachLoadBalancers service method on
-     *           AmazonAutoScaling.
-     * 
-     * @return The response from the DetachLoadBalancers service method, as
-     *         returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DetachLoadBalancersResult detachLoadBalancers(DetachLoadBalancersRequest detachLoadBalancersRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified Auto Scaling policy.
-     * </p>
-     * <p>
-     * Deleting a policy deletes the underlying alarm action, but does not
-     * delete the alarm, even if it no longer has an associated action.
-     * </p>
-     *
-     * @param deletePolicyRequest Container for the necessary parameters to
-     *           execute the DeletePolicy service method on AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deletePolicy(DeletePolicyRequest deletePolicyRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Completes the lifecycle action for the associated token initiated
-     * under the given lifecycle hook with the specified result.
-     * </p>
-     * <p>
-     * This operation is a part of the basic sequence for adding a lifecycle
-     * hook to an Auto Scaling group:
-     * </p>
-     * <ol> <li>Create a notification target. A target can be either an
-     * Amazon SQS queue or an Amazon SNS topic.</li>
-     * <li>Create an IAM role. This role allows Auto Scaling to publish
-     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
-     * <li>Create the lifecycle hook. You can create a hook that acts when
-     * instances launch or when instances terminate.</li>
-     * <li>If necessary, record the lifecycle action heartbeat to keep the
-     * instance in a pending state.</li>
-     * <li> <b>Complete the lifecycle action</b> .</li>
-     * </ol> <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param completeLifecycleActionRequest Container for the necessary
-     *           parameters to execute the CompleteLifecycleAction service method on
-     *           AmazonAutoScaling.
-     * 
-     * @return The response from the CompleteLifecycleAction service method,
-     *         as returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public CompleteLifecycleActionResult completeLifecycleAction(CompleteLifecycleActionRequest completeLifecycleActionRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified notification.
-     * </p>
-     *
-     * @param deleteNotificationConfigurationRequest Container for the
-     *           necessary parameters to execute the DeleteNotificationConfiguration
-     *           service method on AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteNotificationConfiguration(DeleteNotificationConfigurationRequest deleteNotificationConfigurationRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified scheduled action.
-     * </p>
-     *
-     * @param deleteScheduledActionRequest Container for the necessary
-     *           parameters to execute the DeleteScheduledAction service method on
-     *           AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteScheduledAction(DeleteScheduledActionRequest deleteScheduledActionRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Sets the health status of the specified instance.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"> Health Checks </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param setInstanceHealthRequest Container for the necessary parameters
-     *           to execute the SetInstanceHealth service method on AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void setInstanceHealth(SetInstanceHealthRequest setInstanceHealthRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates or updates tags for the specified Auto Scaling group.
-     * </p>
-     * <p>
-     * A tag is defined by its resource ID, resource type, key, value, and
-     * propagate flag. The value and the propagate flag are optional
-     * parameters. The only supported resource type is
-     * <code>auto-scaling-group</code> , and the resource ID must be the name
-     * of the group. The <code>PropagateAtLaunch</code> flag determines
-     * whether the tag is added to instances launched in the group. Valid
-     * values are <code>true</code> or <code>false</code> .
-     * </p>
-     * <p>
-     * When you specify a tag with a key that already exists, the operation
-     * overwrites the previous tag definition, and you do not get an error
-     * message.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASTagging.html"> Tagging Auto Scaling Groups and Instances </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param createOrUpdateTagsRequest Container for the necessary
-     *           parameters to execute the CreateOrUpdateTags service method on
-     *           AmazonAutoScaling.
-     * 
-     * 
-     * @throws LimitExceededException
-     * @throws ResourceContentionException
-     * @throws AlreadyExistsException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void createOrUpdateTags(CreateOrUpdateTagsRequest createOrUpdateTagsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Suspends the specified Auto Scaling processes for the specified Auto
-     * Scaling group. To suspend specific processes, use the
-     * <code>ScalingProcesses</code> parameter. To suspend all processes,
-     * omit the <code>ScalingProcesses</code> parameter.
-     * </p>
-     * <p>
-     * Note that if you suspend either the <code>Launch</code> or
-     * <code>Terminate</code> process types, it can prevent other process
-     * types from functioning properly.
-     * </p>
-     * <p>
-     * To resume processes that have been suspended, use ResumeProcesses.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param suspendProcessesRequest Container for the necessary parameters
-     *           to execute the SuspendProcesses service method on AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceInUseException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void suspendProcesses(SuspendProcessesRequest suspendProcessesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -740,18 +298,14 @@ public interface AmazonAutoScaling {
 
     /**
      * <p>
-     * Describes one or more Auto Scaling instances. If a list is not
-     * provided, the call describes all instances.
+     * Deletes the specified notification.
      * </p>
      *
-     * @param describeAutoScalingInstancesRequest Container for the necessary
-     *           parameters to execute the DescribeAutoScalingInstances service method
-     *           on AmazonAutoScaling.
+     * @param deleteNotificationConfigurationRequest Container for the
+     *           necessary parameters to execute the DeleteNotificationConfiguration
+     *           service method on AmazonAutoScaling.
      * 
-     * @return The response from the DescribeAutoScalingInstances service
-     *         method, as returned by AmazonAutoScaling.
      * 
-     * @throws InvalidNextTokenException
      * @throws ResourceContentionException
      *
      * @throws AmazonClientException
@@ -762,7 +316,102 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DescribeAutoScalingInstancesResult describeAutoScalingInstances(DescribeAutoScalingInstancesRequest describeAutoScalingInstancesRequest) 
+    public void deleteNotificationConfiguration(DeleteNotificationConfigurationRequest deleteNotificationConfigurationRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the specified tags.
+     * </p>
+     * <p>
+     * You can use filters to limit the results. For example, you can query
+     * for the tags for a specific Auto Scaling group. You can specify
+     * multiple values for a filter. A tag must match at least one of the
+     * specified values for it to be included in the results.
+     * </p>
+     * <p>
+     * You can also specify multiple filters. The result includes
+     * information for a particular tag only if it matches all the filters.
+     * If there's no match, no special message is returned.
+     * </p>
+     *
+     * @param describeTagsRequest Container for the necessary parameters to
+     *           execute the DescribeTags service method on AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeTags service method, as returned
+     *         by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeTagsResult describeTags(DescribeTagsRequest describeTagsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Configures an Auto Scaling group to send notifications when specified
+     * events take place. Subscribers to this topic can have messages for
+     * events delivered to an endpoint such as a web server or email address.
+     * </p>
+     * <p>
+     * For more information see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASGettingNotifications.html"> Getting Notifications When Your Auto Scaling Group Changes </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     * <p>
+     * This configuration overwrites an existing configuration.
+     * </p>
+     *
+     * @param putNotificationConfigurationRequest Container for the necessary
+     *           parameters to execute the PutNotificationConfiguration service method
+     *           on AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     * @throws LimitExceededException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void putNotificationConfiguration(PutNotificationConfigurationRequest putNotificationConfigurationRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the available types of lifecycle hooks.
+     * </p>
+     *
+     * @param describeLifecycleHookTypesRequest Container for the necessary
+     *           parameters to execute the DescribeLifecycleHookTypes service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeLifecycleHookTypes service
+     *         method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeLifecycleHookTypesResult describeLifecycleHookTypes(DescribeLifecycleHookTypesRequest describeLifecycleHookTypesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -804,15 +453,13 @@ public interface AmazonAutoScaling {
 
     /**
      * <p>
-     * Describes the available types of lifecycle hooks.
+     * Deletes the specified scheduled action.
      * </p>
      *
-     * @param describeLifecycleHookTypesRequest Container for the necessary
-     *           parameters to execute the DescribeLifecycleHookTypes service method on
+     * @param deleteScheduledActionRequest Container for the necessary
+     *           parameters to execute the DeleteScheduledAction service method on
      *           AmazonAutoScaling.
      * 
-     * @return The response from the DescribeLifecycleHookTypes service
-     *         method, as returned by AmazonAutoScaling.
      * 
      * @throws ResourceContentionException
      *
@@ -824,63 +471,22 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DescribeLifecycleHookTypesResult describeLifecycleHookTypes(DescribeLifecycleHookTypesRequest describeLifecycleHookTypesRequest) 
+    public void deleteScheduledAction(DeleteScheduledActionRequest deleteScheduledActionRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Deletes the specified Auto Scaling group.
-     * </p>
-     * <p>
-     * If the group has instances or scaling activities in progress, you
-     * must specify the option to force the deletion in order for it to
-     * succeed.
-     * </p>
-     * <p>
-     * If the group has policies, deleting the group deletes the policies,
-     * the underlying alarm actions, and any alarm that no longer has an
-     * associated action.
-     * </p>
-     * <p>
-     * To remove instances from the Auto Scaling group before deleting it,
-     * call DetachInstances with the list of instances and the option to
-     * decrement the desired capacity so that Auto Scaling does not launch
-     * replacement instances.
-     * </p>
-     * <p>
-     * To terminate all instances before deleting the Auto Scaling group,
-     * call UpdateAutoScalingGroup and set the minimum size and desired
-     * capacity of the Auto Scaling group to zero.
-     * </p>
-     *
-     * @param deleteAutoScalingGroupRequest Container for the necessary
-     *           parameters to execute the DeleteAutoScalingGroup service method on
-     *           AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceInUseException
-     * @throws ScalingActivityInProgressException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteAutoScalingGroup(DeleteAutoScalingGroupRequest deleteAutoScalingGroupRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Disables monitoring of the specified metrics for the specified Auto
+     * Enables monitoring of the specified metrics for the specified Auto
      * Scaling group.
      * </p>
+     * <p>
+     * You can only enable metrics collection if
+     * <code>InstanceMonitoring</code> in the launch configuration for the
+     * group is set to <code>True</code> .
+     * </p>
      *
-     * @param disableMetricsCollectionRequest Container for the necessary
-     *           parameters to execute the DisableMetricsCollection service method on
+     * @param enableMetricsCollectionRequest Container for the necessary
+     *           parameters to execute the EnableMetricsCollection service method on
      *           AmazonAutoScaling.
      * 
      * 
@@ -894,109 +500,31 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void disableMetricsCollection(DisableMetricsCollectionRequest disableMetricsCollectionRequest) 
+    public void enableMetricsCollection(EnableMetricsCollectionRequest enableMetricsCollectionRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Describes one or more launch configurations. If you omit the list of
-     * names, then the call describes all launch configurations.
+     * Creates a launch configuration.
      * </p>
-     *
-     * @param describeLaunchConfigurationsRequest Container for the necessary
-     *           parameters to execute the DescribeLaunchConfigurations service method
-     *           on AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeLaunchConfigurations service
-     *         method, as returned by AmazonAutoScaling.
-     * 
-     * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeLaunchConfigurationsResult describeLaunchConfigurations(DescribeLaunchConfigurationsRequest describeLaunchConfigurationsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
      * <p>
-     * Describes the actions scheduled for your Auto Scaling group that
-     * haven't run. To describe the actions that have already run, use
-     * DescribeScalingActivities.
-     * </p>
-     *
-     * @param describeScheduledActionsRequest Container for the necessary
-     *           parameters to execute the DescribeScheduledActions service method on
-     *           AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeScheduledActions service method,
-     *         as returned by AmazonAutoScaling.
-     * 
-     * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeScheduledActionsResult describeScheduledActions(DescribeScheduledActionsRequest describeScheduledActionsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes the policy adjustment types for use with PutScalingPolicy.
-     * </p>
-     *
-     * @param describeAdjustmentTypesRequest Container for the necessary
-     *           parameters to execute the DescribeAdjustmentTypes service method on
-     *           AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeAdjustmentTypes service method,
-     *         as returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeAdjustmentTypesResult describeAdjustmentTypes(DescribeAdjustmentTypesRequest describeAdjustmentTypesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates or updates a scheduled scaling action for an Auto Scaling
-     * group. When updating a scheduled scaling action, if you leave a
-     * parameter unspecified, the corresponding value remains unchanged in
-     * the affected Auto Scaling group.
+     * If you exceed your maximum limit of launch configurations, which by
+     * default is 100 per region, the call fails. For information about
+     * viewing and updating this limit, see DescribeAccountLimits.
      * </p>
      * <p>
      * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html"> Scheduled Scaling </a>
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/LaunchConfiguration.html"> Launch Configurations </a>
      * in the <i>Auto Scaling Developer Guide</i> .
      * </p>
      *
-     * @param putScheduledUpdateGroupActionRequest Container for the
-     *           necessary parameters to execute the PutScheduledUpdateGroupAction
-     *           service method on AmazonAutoScaling.
+     * @param createLaunchConfigurationRequest Container for the necessary
+     *           parameters to execute the CreateLaunchConfiguration service method on
+     *           AmazonAutoScaling.
      * 
      * 
-     * @throws LimitExceededException
      * @throws ResourceContentionException
+     * @throws LimitExceededException
      * @throws AlreadyExistsException
      *
      * @throws AmazonClientException
@@ -1007,7 +535,34 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void putScheduledUpdateGroupAction(PutScheduledUpdateGroupActionRequest putScheduledUpdateGroupActionRequest) 
+    public void createLaunchConfiguration(CreateLaunchConfigurationRequest createLaunchConfigurationRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes one or more Auto Scaling instances. If a list is not
+     * provided, the call describes all instances.
+     * </p>
+     *
+     * @param describeAutoScalingInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeAutoScalingInstances service method
+     *           on AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeAutoScalingInstances service
+     *         method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAutoScalingInstancesResult describeAutoScalingInstances(DescribeAutoScalingInstancesRequest describeAutoScalingInstancesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1033,406 +588,6 @@ public interface AmazonAutoScaling {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeLifecycleHooksResult describeLifecycleHooks(DescribeLifecycleHooksRequest describeLifecycleHooksRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified launch configuration.
-     * </p>
-     * <p>
-     * The launch configuration must not be attached to an Auto Scaling
-     * group. When this call completes, the launch configuration is no longer
-     * available for use.
-     * </p>
-     *
-     * @param deleteLaunchConfigurationRequest Container for the necessary
-     *           parameters to execute the DeleteLaunchConfiguration service method on
-     *           AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceInUseException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteLaunchConfiguration(DeleteLaunchConfigurationRequest deleteLaunchConfigurationRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes the policies for the specified Auto Scaling group.
-     * </p>
-     *
-     * @param describePoliciesRequest Container for the necessary parameters
-     *           to execute the DescribePolicies service method on AmazonAutoScaling.
-     * 
-     * @return The response from the DescribePolicies service method, as
-     *         returned by AmazonAutoScaling.
-     * 
-     * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribePoliciesResult describePolicies(DescribePoliciesRequest describePoliciesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes the notification actions associated with the specified Auto
-     * Scaling group.
-     * </p>
-     *
-     * @param describeNotificationConfigurationsRequest Container for the
-     *           necessary parameters to execute the DescribeNotificationConfigurations
-     *           service method on AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeNotificationConfigurations
-     *         service method, as returned by AmazonAutoScaling.
-     * 
-     * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeNotificationConfigurationsResult describeNotificationConfigurations(DescribeNotificationConfigurationsRequest describeNotificationConfigurationsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified lifecycle hook.
-     * </p>
-     * <p>
-     * If there are any outstanding lifecycle actions, they are completed
-     * first ( <code>ABANDON</code> for launching instances,
-     * <code>CONTINUE</code> for terminating instances).
-     * </p>
-     *
-     * @param deleteLifecycleHookRequest Container for the necessary
-     *           parameters to execute the DeleteLifecycleHook service method on
-     *           AmazonAutoScaling.
-     * 
-     * @return The response from the DeleteLifecycleHook service method, as
-     *         returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DeleteLifecycleHookResult deleteLifecycleHook(DeleteLifecycleHookRequest deleteLifecycleHookRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Executes the specified policy.
-     * </p>
-     *
-     * @param executePolicyRequest Container for the necessary parameters to
-     *           execute the ExecutePolicy service method on AmazonAutoScaling.
-     * 
-     * 
-     * @throws ScalingActivityInProgressException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void executePolicy(ExecutePolicyRequest executePolicyRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the specified tags.
-     * </p>
-     *
-     * @param deleteTagsRequest Container for the necessary parameters to
-     *           execute the DeleteTags service method on AmazonAutoScaling.
-     * 
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteTags(DeleteTagsRequest deleteTagsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates or updates a policy for an Auto Scaling group. To update an
-     * existing policy, use the existing policy name and set the parameters
-     * you want to change. Any existing parameter not changed in an update to
-     * an existing policy is not changed in this update request.
-     * </p>
-     * <p>
-     * If you exceed your maximum limit of step adjustments, which by
-     * default is 20 per region, the call fails. For information about
-     * updating this limit, see
-     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
-     * in the <i>Amazon Web Services General Reference</i> .
-     * </p>
-     *
-     * @param putScalingPolicyRequest Container for the necessary parameters
-     *           to execute the PutScalingPolicy service method on AmazonAutoScaling.
-     * 
-     * @return The response from the PutScalingPolicy service method, as
-     *         returned by AmazonAutoScaling.
-     * 
-     * @throws LimitExceededException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public PutScalingPolicyResult putScalingPolicy(PutScalingPolicyRequest putScalingPolicyRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Updates the instance protection settings of the specified instances.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html#instance-protection"> Instance Protection </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param setInstanceProtectionRequest Container for the necessary
-     *           parameters to execute the SetInstanceProtection service method on
-     *           AmazonAutoScaling.
-     * 
-     * @return The response from the SetInstanceProtection service method, as
-     *         returned by AmazonAutoScaling.
-     * 
-     * @throws LimitExceededException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public SetInstanceProtectionResult setInstanceProtection(SetInstanceProtectionRequest setInstanceProtectionRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Configures an Auto Scaling group to send notifications when specified
-     * events take place. Subscribers to this topic can have messages for
-     * events delivered to an endpoint such as a web server or email address.
-     * </p>
-     * <p>
-     * For more information see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASGettingNotifications.html"> Getting Notifications When Your Auto Scaling Group Changes </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     * <p>
-     * This configuration overwrites an existing configuration.
-     * </p>
-     *
-     * @param putNotificationConfigurationRequest Container for the necessary
-     *           parameters to execute the PutNotificationConfiguration service method
-     *           on AmazonAutoScaling.
-     * 
-     * 
-     * @throws LimitExceededException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void putNotificationConfiguration(PutNotificationConfigurationRequest putNotificationConfigurationRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Moves the specified instances out of <code>Standby</code> mode.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param exitStandbyRequest Container for the necessary parameters to
-     *           execute the ExitStandby service method on AmazonAutoScaling.
-     * 
-     * @return The response from the ExitStandby service method, as returned
-     *         by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ExitStandbyResult exitStandby(ExitStandbyRequest exitStandbyRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes the notification types that are supported by Auto Scaling.
-     * </p>
-     *
-     * @param describeAutoScalingNotificationTypesRequest Container for the
-     *           necessary parameters to execute the
-     *           DescribeAutoScalingNotificationTypes service method on
-     *           AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeAutoScalingNotificationTypes
-     *         service method, as returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeAutoScalingNotificationTypesResult describeAutoScalingNotificationTypes(DescribeAutoScalingNotificationTypesRequest describeAutoScalingNotificationTypesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Describes the load balancers for the specified Auto Scaling group.
-     * </p>
-     *
-     * @param describeLoadBalancersRequest Container for the necessary
-     *           parameters to execute the DescribeLoadBalancers service method on
-     *           AmazonAutoScaling.
-     * 
-     * @return The response from the DescribeLoadBalancers service method, as
-     *         returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeLoadBalancersResult describeLoadBalancers(DescribeLoadBalancersRequest describeLoadBalancersRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates a launch configuration.
-     * </p>
-     * <p>
-     * If you exceed your maximum limit of launch configurations, which by
-     * default is 100 per region, the call fails. For information about
-     * viewing and updating this limit, see DescribeAccountLimits.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/LaunchConfiguration.html"> Launch Configurations </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param createLaunchConfigurationRequest Container for the necessary
-     *           parameters to execute the CreateLaunchConfiguration service method on
-     *           AmazonAutoScaling.
-     * 
-     * 
-     * @throws LimitExceededException
-     * @throws ResourceContentionException
-     * @throws AlreadyExistsException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void createLaunchConfiguration(CreateLaunchConfigurationRequest createLaunchConfigurationRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Moves the specified instances into <code>Standby</code> mode.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param enterStandbyRequest Container for the necessary parameters to
-     *           execute the EnterStandby service method on AmazonAutoScaling.
-     * 
-     * @return The response from the EnterStandby service method, as returned
-     *         by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public EnterStandbyResult enterStandby(EnterStandbyRequest enterStandbyRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1546,6 +701,365 @@ public interface AmazonAutoScaling {
 
     /**
      * <p>
+     * Describes the scaling process types for use with ResumeProcesses and
+     * SuspendProcesses.
+     * </p>
+     *
+     * @param describeScalingProcessTypesRequest Container for the necessary
+     *           parameters to execute the DescribeScalingProcessTypes service method
+     *           on AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeScalingProcessTypes service
+     *         method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeScalingProcessTypesResult describeScalingProcessTypes(DescribeScalingProcessTypesRequest describeScalingProcessTypesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the termination policies supported by Auto Scaling.
+     * </p>
+     *
+     * @param describeTerminationPolicyTypesRequest Container for the
+     *           necessary parameters to execute the DescribeTerminationPolicyTypes
+     *           service method on AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeTerminationPolicyTypes service
+     *         method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeTerminationPolicyTypesResult describeTerminationPolicyTypes(DescribeTerminationPolicyTypesRequest describeTerminationPolicyTypesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Completes the lifecycle action for the associated token initiated
+     * under the given lifecycle hook with the specified result.
+     * </p>
+     * <p>
+     * This operation is a part of the basic sequence for adding a lifecycle
+     * hook to an Auto Scaling group:
+     * </p>
+     * <ol> <li>Create a notification target. A target can be either an
+     * Amazon SQS queue or an Amazon SNS topic.</li>
+     * <li>Create an IAM role. This role allows Auto Scaling to publish
+     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
+     * <li>Create the lifecycle hook. You can create a hook that acts when
+     * instances launch or when instances terminate.</li>
+     * <li>If necessary, record the lifecycle action heartbeat to keep the
+     * instance in a pending state.</li>
+     * <li> <b>Complete the lifecycle action</b> .</li>
+     * </ol> <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param completeLifecycleActionRequest Container for the necessary
+     *           parameters to execute the CompleteLifecycleAction service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the CompleteLifecycleAction service method,
+     *         as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CompleteLifecycleActionResult completeLifecycleAction(CompleteLifecycleActionRequest completeLifecycleActionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified Auto Scaling group.
+     * </p>
+     * <p>
+     * If the group has instances or scaling activities in progress, you
+     * must specify the option to force the deletion in order for it to
+     * succeed.
+     * </p>
+     * <p>
+     * If the group has policies, deleting the group deletes the policies,
+     * the underlying alarm actions, and any alarm that no longer has an
+     * associated action.
+     * </p>
+     * <p>
+     * To remove instances from the Auto Scaling group before deleting it,
+     * call DetachInstances with the list of instances and the option to
+     * decrement the desired capacity so that Auto Scaling does not launch
+     * replacement instances.
+     * </p>
+     * <p>
+     * To terminate all instances before deleting the Auto Scaling group,
+     * call UpdateAutoScalingGroup and set the minimum size and desired
+     * capacity of the Auto Scaling group to zero.
+     * </p>
+     *
+     * @param deleteAutoScalingGroupRequest Container for the necessary
+     *           parameters to execute the DeleteAutoScalingGroup service method on
+     *           AmazonAutoScaling.
+     * 
+     * 
+     * @throws ScalingActivityInProgressException
+     * @throws ResourceContentionException
+     * @throws ResourceInUseException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteAutoScalingGroup(DeleteAutoScalingGroupRequest deleteAutoScalingGroupRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the load balancers for the specified Auto Scaling group.
+     * </p>
+     *
+     * @param describeLoadBalancersRequest Container for the necessary
+     *           parameters to execute the DescribeLoadBalancers service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeLoadBalancers service method, as
+     *         returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeLoadBalancersResult describeLoadBalancers(DescribeLoadBalancersRequest describeLoadBalancersRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Removes one or more load balancers from the specified Auto Scaling
+     * group.
+     * </p>
+     * <p>
+     * When you detach a load balancer, it enters the <code>Removing</code>
+     * state while deregistering the instances in the group. When all
+     * instances are deregistered, then you can no longer describe the load
+     * balancer using DescribeLoadBalancers. Note that the instances remain
+     * running.
+     * </p>
+     *
+     * @param detachLoadBalancersRequest Container for the necessary
+     *           parameters to execute the DetachLoadBalancers service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the DetachLoadBalancers service method, as
+     *         returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DetachLoadBalancersResult detachLoadBalancers(DetachLoadBalancersRequest detachLoadBalancersRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates or updates a policy for an Auto Scaling group. To update an
+     * existing policy, use the existing policy name and set the parameters
+     * you want to change. Any existing parameter not changed in an update to
+     * an existing policy is not changed in this update request.
+     * </p>
+     * <p>
+     * If you exceed your maximum limit of step adjustments, which by
+     * default is 20 per region, the call fails. For information about
+     * updating this limit, see
+     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
+     * in the <i>Amazon Web Services General Reference</i> .
+     * </p>
+     *
+     * @param putScalingPolicyRequest Container for the necessary parameters
+     *           to execute the PutScalingPolicy service method on AmazonAutoScaling.
+     * 
+     * @return The response from the PutScalingPolicy service method, as
+     *         returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws LimitExceededException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public PutScalingPolicyResult putScalingPolicy(PutScalingPolicyRequest putScalingPolicyRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes one or more scaling activities for the specified Auto
+     * Scaling group. If you omit the <code>ActivityIds</code> , the call
+     * returns all activities from the past six weeks. Activities are sorted
+     * by the start time. Activities still in progress appear first on the
+     * list.
+     * </p>
+     *
+     * @param describeScalingActivitiesRequest Container for the necessary
+     *           parameters to execute the DescribeScalingActivities service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeScalingActivities service
+     *         method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeScalingActivitiesResult describeScalingActivities(DescribeScalingActivitiesRequest describeScalingActivitiesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Moves the specified instances into <code>Standby</code> mode.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param enterStandbyRequest Container for the necessary parameters to
+     *           execute the EnterStandby service method on AmazonAutoScaling.
+     * 
+     * @return The response from the EnterStandby service method, as returned
+     *         by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public EnterStandbyResult enterStandby(EnterStandbyRequest enterStandbyRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified tags.
+     * </p>
+     *
+     * @param deleteTagsRequest Container for the necessary parameters to
+     *           execute the DeleteTags service method on AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteTags(DeleteTagsRequest deleteTagsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates or updates tags for the specified Auto Scaling group.
+     * </p>
+     * <p>
+     * A tag is defined by its resource ID, resource type, key, value, and
+     * propagate flag. The value and the propagate flag are optional
+     * parameters. The only supported resource type is
+     * <code>auto-scaling-group</code> , and the resource ID must be the name
+     * of the group. The <code>PropagateAtLaunch</code> flag determines
+     * whether the tag is added to instances launched in the group. Valid
+     * values are <code>true</code> or <code>false</code> .
+     * </p>
+     * <p>
+     * When you specify a tag with a key that already exists, the operation
+     * overwrites the previous tag definition, and you do not get an error
+     * message.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASTagging.html"> Tagging Auto Scaling Groups and Instances </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param createOrUpdateTagsRequest Container for the necessary
+     *           parameters to execute the CreateOrUpdateTags service method on
+     *           AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     * @throws LimitExceededException
+     * @throws AlreadyExistsException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void createOrUpdateTags(CreateOrUpdateTagsRequest createOrUpdateTagsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes the available CloudWatch metrics for Auto Scaling.
      * </p>
      * <p>
@@ -1572,6 +1086,58 @@ public interface AmazonAutoScaling {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeMetricCollectionTypesResult describeMetricCollectionTypes(DescribeMetricCollectionTypesRequest describeMetricCollectionTypesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the actions scheduled for your Auto Scaling group that
+     * haven't run. To describe the actions that have already run, use
+     * DescribeScalingActivities.
+     * </p>
+     *
+     * @param describeScheduledActionsRequest Container for the necessary
+     *           parameters to execute the DescribeScheduledActions service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeScheduledActions service method,
+     *         as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeScheduledActionsResult describeScheduledActions(DescribeScheduledActionsRequest describeScheduledActionsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Disables monitoring of the specified metrics for the specified Auto
+     * Scaling group.
+     * </p>
+     *
+     * @param disableMetricsCollectionRequest Container for the necessary
+     *           parameters to execute the DisableMetricsCollection service method on
+     *           AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void disableMetricsCollection(DisableMetricsCollectionRequest disableMetricsCollectionRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1605,6 +1171,35 @@ public interface AmazonAutoScaling {
 
     /**
      * <p>
+     * Deletes the specified launch configuration.
+     * </p>
+     * <p>
+     * The launch configuration must not be attached to an Auto Scaling
+     * group. When this call completes, the launch configuration is no longer
+     * available for use.
+     * </p>
+     *
+     * @param deleteLaunchConfigurationRequest Container for the necessary
+     *           parameters to execute the DeleteLaunchConfiguration service method on
+     *           AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     * @throws ResourceInUseException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteLaunchConfiguration(DeleteLaunchConfigurationRequest deleteLaunchConfigurationRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Terminates the specified instance and optionally adjusts the desired
      * group size.
      * </p>
@@ -1633,6 +1228,411 @@ public interface AmazonAutoScaling {
      *             either a problem with the data in the request, or a server side issue.
      */
     public TerminateInstanceInAutoScalingGroupResult terminateInstanceInAutoScalingGroup(TerminateInstanceInAutoScalingGroupRequest terminateInstanceInAutoScalingGroupRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified Auto Scaling policy.
+     * </p>
+     * <p>
+     * Deleting a policy deletes the underlying alarm action, but does not
+     * delete the alarm, even if it no longer has an associated action.
+     * </p>
+     *
+     * @param deletePolicyRequest Container for the necessary parameters to
+     *           execute the DeletePolicy service method on AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deletePolicy(DeletePolicyRequest deletePolicyRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Sets the health status of the specified instance.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"> Health Checks </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param setInstanceHealthRequest Container for the necessary parameters
+     *           to execute the SetInstanceHealth service method on AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void setInstanceHealth(SetInstanceHealthRequest setInstanceHealthRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Executes the specified policy.
+     * </p>
+     *
+     * @param executePolicyRequest Container for the necessary parameters to
+     *           execute the ExecutePolicy service method on AmazonAutoScaling.
+     * 
+     * 
+     * @throws ScalingActivityInProgressException
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void executePolicy(ExecutePolicyRequest executePolicyRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the notification types that are supported by Auto Scaling.
+     * </p>
+     *
+     * @param describeAutoScalingNotificationTypesRequest Container for the
+     *           necessary parameters to execute the
+     *           DescribeAutoScalingNotificationTypes service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeAutoScalingNotificationTypes
+     *         service method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAutoScalingNotificationTypesResult describeAutoScalingNotificationTypes(DescribeAutoScalingNotificationTypesRequest describeAutoScalingNotificationTypesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Suspends the specified Auto Scaling processes for the specified Auto
+     * Scaling group. To suspend specific processes, use the
+     * <code>ScalingProcesses</code> parameter. To suspend all processes,
+     * omit the <code>ScalingProcesses</code> parameter.
+     * </p>
+     * <p>
+     * Note that if you suspend either the <code>Launch</code> or
+     * <code>Terminate</code> process types, it can prevent other process
+     * types from functioning properly.
+     * </p>
+     * <p>
+     * To resume processes that have been suspended, use ResumeProcesses.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param suspendProcessesRequest Container for the necessary parameters
+     *           to execute the SuspendProcesses service method on AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     * @throws ResourceInUseException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void suspendProcesses(SuspendProcessesRequest suspendProcessesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified lifecycle hook.
+     * </p>
+     * <p>
+     * If there are any outstanding lifecycle actions, they are completed
+     * first ( <code>ABANDON</code> for launching instances,
+     * <code>CONTINUE</code> for terminating instances).
+     * </p>
+     *
+     * @param deleteLifecycleHookRequest Container for the necessary
+     *           parameters to execute the DeleteLifecycleHook service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the DeleteLifecycleHook service method, as
+     *         returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DeleteLifecycleHookResult deleteLifecycleHook(DeleteLifecycleHookRequest deleteLifecycleHookRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Resumes the specified suspended Auto Scaling processes for the
+     * specified Auto Scaling group. To resume specific processes, use the
+     * <code>ScalingProcesses</code> parameter. To resume all processes, omit
+     * the <code>ScalingProcesses</code> parameter. For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param resumeProcessesRequest Container for the necessary parameters
+     *           to execute the ResumeProcesses service method on AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     * @throws ResourceInUseException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void resumeProcesses(ResumeProcessesRequest resumeProcessesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the policy adjustment types for use with PutScalingPolicy.
+     * </p>
+     *
+     * @param describeAdjustmentTypesRequest Container for the necessary
+     *           parameters to execute the DescribeAdjustmentTypes service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeAdjustmentTypes service method,
+     *         as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAdjustmentTypesResult describeAdjustmentTypes(DescribeAdjustmentTypesRequest describeAdjustmentTypesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the notification actions associated with the specified Auto
+     * Scaling group.
+     * </p>
+     *
+     * @param describeNotificationConfigurationsRequest Container for the
+     *           necessary parameters to execute the DescribeNotificationConfigurations
+     *           service method on AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeNotificationConfigurations
+     *         service method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeNotificationConfigurationsResult describeNotificationConfigurations(DescribeNotificationConfigurationsRequest describeNotificationConfigurationsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Moves the specified instances out of <code>Standby</code> mode.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param exitStandbyRequest Container for the necessary parameters to
+     *           execute the ExitStandby service method on AmazonAutoScaling.
+     * 
+     * @return The response from the ExitStandby service method, as returned
+     *         by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ExitStandbyResult exitStandby(ExitStandbyRequest exitStandbyRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes one or more launch configurations. If you omit the list of
+     * names, then the call describes all launch configurations.
+     * </p>
+     *
+     * @param describeLaunchConfigurationsRequest Container for the necessary
+     *           parameters to execute the DescribeLaunchConfigurations service method
+     *           on AmazonAutoScaling.
+     * 
+     * @return The response from the DescribeLaunchConfigurations service
+     *         method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeLaunchConfigurationsResult describeLaunchConfigurations(DescribeLaunchConfigurationsRequest describeLaunchConfigurationsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the instance protection settings of the specified instances.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html#instance-protection"> Instance Protection </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param setInstanceProtectionRequest Container for the necessary
+     *           parameters to execute the SetInstanceProtection service method on
+     *           AmazonAutoScaling.
+     * 
+     * @return The response from the SetInstanceProtection service method, as
+     *         returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws LimitExceededException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SetInstanceProtectionResult setInstanceProtection(SetInstanceProtectionRequest setInstanceProtectionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates or updates a scheduled scaling action for an Auto Scaling
+     * group. When updating a scheduled scaling action, if you leave a
+     * parameter unspecified, the corresponding value remains unchanged in
+     * the affected Auto Scaling group.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html"> Scheduled Scaling </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param putScheduledUpdateGroupActionRequest Container for the
+     *           necessary parameters to execute the PutScheduledUpdateGroupAction
+     *           service method on AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     * @throws LimitExceededException
+     * @throws AlreadyExistsException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void putScheduledUpdateGroupAction(PutScheduledUpdateGroupActionRequest putScheduledUpdateGroupActionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Attaches one or more EC2 instances to the specified Auto Scaling
+     * group.
+     * </p>
+     * <p>
+     * When you attach instances, Auto Scaling increases the desired
+     * capacity of the group by the number of instances being attached. If
+     * the number of instances being attached plus the desired capacity of
+     * the group exceeds the maximum size of the group, the operation fails.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-instance-asg.html"> Attach EC2 Instances to Your Auto Scaling Group </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param attachInstancesRequest Container for the necessary parameters
+     *           to execute the AttachInstances service method on AmazonAutoScaling.
+     * 
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void attachInstances(AttachInstancesRequest attachInstancesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1670,8 +1670,8 @@ public interface AmazonAutoScaling {
      * @return The response from the DescribeAutoScalingGroups service
      *         method, as returned by AmazonAutoScaling.
      * 
-     * @throws InvalidNextTokenException
      * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1685,119 +1685,14 @@ public interface AmazonAutoScaling {
     
     /**
      * <p>
-     * Describes the scaling process types for use with ResumeProcesses and
-     * SuspendProcesses.
+     * Describes the policies for the specified Auto Scaling group.
      * </p>
      * 
-     * @return The response from the DescribeScalingProcessTypes service
-     *         method, as returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeScalingProcessTypesResult describeScalingProcessTypes() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Describes one or more scaling activities for the specified Auto
-     * Scaling group. If you omit the <code>ActivityIds</code> , the call
-     * returns all activities from the past six weeks. Activities are sorted
-     * by the start time. Activities still in progress appear first on the
-     * list.
-     * </p>
-     * 
-     * @return The response from the DescribeScalingActivities service
-     *         method, as returned by AmazonAutoScaling.
-     * 
-     * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeScalingActivitiesResult describeScalingActivities() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Describes the termination policies supported by Auto Scaling.
-     * </p>
-     * 
-     * @return The response from the DescribeTerminationPolicyTypes service
-     *         method, as returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeTerminationPolicyTypesResult describeTerminationPolicyTypes() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Describes the specified tags.
-     * </p>
-     * <p>
-     * You can use filters to limit the results. For example, you can query
-     * for the tags for a specific Auto Scaling group. You can specify
-     * multiple values for a filter. A tag must match at least one of the
-     * specified values for it to be included in the results.
-     * </p>
-     * <p>
-     * You can also specify multiple filters. The result includes
-     * information for a particular tag only if it matches all the filters.
-     * If there's no match, no special message is returned.
-     * </p>
-     * 
-     * @return The response from the DescribeTags service method, as returned
-     *         by AmazonAutoScaling.
-     * 
-     * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeTagsResult describeTags() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Removes one or more load balancers from the specified Auto Scaling
-     * group.
-     * </p>
-     * <p>
-     * When you detach a load balancer, it enters the <code>Removing</code>
-     * state while deregistering the instances in the group. When all
-     * instances are deregistered, then you can no longer describe the load
-     * balancer using DescribeLoadBalancers. Note that the instances remain
-     * running.
-     * </p>
-     * 
-     * @return The response from the DetachLoadBalancers service method, as
+     * @return The response from the DescribePolicies service method, as
      *         returned by AmazonAutoScaling.
      * 
      * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1807,7 +1702,7 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DetachLoadBalancersResult detachLoadBalancers() throws AmazonServiceException, AmazonClientException;
+    public DescribePoliciesResult describePolicies() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -1842,15 +1737,25 @@ public interface AmazonAutoScaling {
     
     /**
      * <p>
-     * Describes one or more Auto Scaling instances. If a list is not
-     * provided, the call describes all instances.
+     * Describes the specified tags.
+     * </p>
+     * <p>
+     * You can use filters to limit the results. For example, you can query
+     * for the tags for a specific Auto Scaling group. You can specify
+     * multiple values for a filter. A tag must match at least one of the
+     * specified values for it to be included in the results.
+     * </p>
+     * <p>
+     * You can also specify multiple filters. The result includes
+     * information for a particular tag only if it matches all the filters.
+     * If there's no match, no special message is returned.
      * </p>
      * 
-     * @return The response from the DescribeAutoScalingInstances service
-     *         method, as returned by AmazonAutoScaling.
+     * @return The response from the DescribeTags service method, as returned
+     *         by AmazonAutoScaling.
      * 
-     * @throws InvalidNextTokenException
      * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1860,7 +1765,7 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DescribeAutoScalingInstancesResult describeAutoScalingInstances() throws AmazonServiceException, AmazonClientException;
+    public DescribeTagsResult describeTags() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -1884,15 +1789,15 @@ public interface AmazonAutoScaling {
     
     /**
      * <p>
-     * Describes one or more launch configurations. If you omit the list of
-     * names, then the call describes all launch configurations.
+     * Describes one or more Auto Scaling instances. If a list is not
+     * provided, the call describes all instances.
      * </p>
      * 
-     * @return The response from the DescribeLaunchConfigurations service
+     * @return The response from the DescribeAutoScalingInstances service
      *         method, as returned by AmazonAutoScaling.
      * 
+     * @throws ResourceContentionException
      * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1902,38 +1807,16 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DescribeLaunchConfigurationsResult describeLaunchConfigurations() throws AmazonServiceException, AmazonClientException;
+    public DescribeAutoScalingInstancesResult describeAutoScalingInstances() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
-     * Describes the actions scheduled for your Auto Scaling group that
-     * haven't run. To describe the actions that have already run, use
-     * DescribeScalingActivities.
+     * Describes the scaling process types for use with ResumeProcesses and
+     * SuspendProcesses.
      * </p>
      * 
-     * @return The response from the DescribeScheduledActions service method,
-     *         as returned by AmazonAutoScaling.
-     * 
-     * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeScheduledActionsResult describeScheduledActions() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Describes the policy adjustment types for use with PutScalingPolicy.
-     * </p>
-     * 
-     * @return The response from the DescribeAdjustmentTypes service method,
-     *         as returned by AmazonAutoScaling.
+     * @return The response from the DescribeScalingProcessTypes service
+     *         method, as returned by AmazonAutoScaling.
      * 
      * @throws ResourceContentionException
      *
@@ -1945,17 +1828,44 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DescribeAdjustmentTypesResult describeAdjustmentTypes() throws AmazonServiceException, AmazonClientException;
+    public DescribeScalingProcessTypesResult describeScalingProcessTypes() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
-     * Describes the policies for the specified Auto Scaling group.
+     * Describes the termination policies supported by Auto Scaling.
      * </p>
      * 
-     * @return The response from the DescribePolicies service method, as
+     * @return The response from the DescribeTerminationPolicyTypes service
+     *         method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeTerminationPolicyTypesResult describeTerminationPolicyTypes() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Removes one or more load balancers from the specified Auto Scaling
+     * group.
+     * </p>
+     * <p>
+     * When you detach a load balancer, it enters the <code>Removing</code>
+     * state while deregistering the instances in the group. When all
+     * instances are deregistered, then you can no longer describe the load
+     * balancer using DescribeLoadBalancers. Note that the instances remain
+     * running.
+     * </p>
+     * 
+     * @return The response from the DetachLoadBalancers service method, as
      *         returned by AmazonAutoScaling.
      * 
-     * @throws InvalidNextTokenException
      * @throws ResourceContentionException
      *
      * @throws AmazonClientException
@@ -1966,19 +1876,22 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DescribePoliciesResult describePolicies() throws AmazonServiceException, AmazonClientException;
+    public DetachLoadBalancersResult detachLoadBalancers() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
-     * Describes the notification actions associated with the specified Auto
-     * Scaling group.
+     * Describes one or more scaling activities for the specified Auto
+     * Scaling group. If you omit the <code>ActivityIds</code> , the call
+     * returns all activities from the past six weeks. Activities are sorted
+     * by the start time. Activities still in progress appear first on the
+     * list.
      * </p>
      * 
-     * @return The response from the DescribeNotificationConfigurations
-     *         service method, as returned by AmazonAutoScaling.
+     * @return The response from the DescribeScalingActivities service
+     *         method, as returned by AmazonAutoScaling.
      * 
+     * @throws ResourceContentionException
      * @throws InvalidNextTokenException
-     * @throws ResourceContentionException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1988,27 +1901,7 @@ public interface AmazonAutoScaling {
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public DescribeNotificationConfigurationsResult describeNotificationConfigurations() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Describes the notification types that are supported by Auto Scaling.
-     * </p>
-     * 
-     * @return The response from the DescribeAutoScalingNotificationTypes
-     *         service method, as returned by AmazonAutoScaling.
-     * 
-     * @throws ResourceContentionException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeAutoScalingNotificationTypesResult describeAutoScalingNotificationTypes() throws AmazonServiceException, AmazonClientException;
+    public DescribeScalingActivitiesResult describeScalingActivities() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -2034,6 +1927,113 @@ public interface AmazonAutoScaling {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeMetricCollectionTypesResult describeMetricCollectionTypes() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes the actions scheduled for your Auto Scaling group that
+     * haven't run. To describe the actions that have already run, use
+     * DescribeScalingActivities.
+     * </p>
+     * 
+     * @return The response from the DescribeScheduledActions service method,
+     *         as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeScheduledActionsResult describeScheduledActions() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes the notification types that are supported by Auto Scaling.
+     * </p>
+     * 
+     * @return The response from the DescribeAutoScalingNotificationTypes
+     *         service method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAutoScalingNotificationTypesResult describeAutoScalingNotificationTypes() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes the policy adjustment types for use with PutScalingPolicy.
+     * </p>
+     * 
+     * @return The response from the DescribeAdjustmentTypes service method,
+     *         as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAdjustmentTypesResult describeAdjustmentTypes() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes the notification actions associated with the specified Auto
+     * Scaling group.
+     * </p>
+     * 
+     * @return The response from the DescribeNotificationConfigurations
+     *         service method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeNotificationConfigurationsResult describeNotificationConfigurations() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Describes one or more launch configurations. If you omit the list of
+     * names, then the call describes all launch configurations.
+     * </p>
+     * 
+     * @return The response from the DescribeLaunchConfigurations service
+     *         method, as returned by AmazonAutoScaling.
+     * 
+     * @throws ResourceContentionException
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeLaunchConfigurationsResult describeLaunchConfigurations() throws AmazonServiceException, AmazonClientException;
     
     /**
      * Shuts down this client object, releasing any resources that might be held

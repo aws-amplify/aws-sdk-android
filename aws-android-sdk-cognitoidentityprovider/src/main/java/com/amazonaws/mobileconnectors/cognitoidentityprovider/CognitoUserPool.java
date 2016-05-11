@@ -60,7 +60,7 @@ import java.util.Map;
  */
 public class CognitoUserPool {
     /**
-     * Cognito Your Identity Pool ID
+     * Cognito Your User Pool ID.
      */
     private final String userPoolId;
 
@@ -86,7 +86,7 @@ public class CognitoUserPool {
     private final AmazonCognitoIdentityProvider client;
 
     /**
-     * Calculated with {@code userId}, {@code clientId} and {@code clientSecret}
+     * Calculated with {@code userId}, {@code clientId} and {@code clientSecret}.
      */
     private String secretHash;
 
@@ -199,7 +199,7 @@ public class CognitoUserPool {
                                     new CognitoUserCodeDeliveryDetails(signUpResult.getCodeDeliveryDetails()));
                         }
                     };
-                } catch(final Exception e) {
+                } catch (final Exception e) {
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
@@ -235,7 +235,7 @@ public class CognitoUserPool {
             CognitoUser user = getUser(userId);
             callback.onSuccess(user, signUpResult.getUserConfirmed(),
                     new CognitoUserCodeDeliveryDetails(signUpResult.getCodeDeliveryDetails()));
-        } catch(final Exception e) {
+        } catch (final Exception e) {
             callback.onFailure(e);
         }
     }
@@ -292,10 +292,9 @@ public class CognitoUserPool {
 
         String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
 
-        if(csiCachedTokens.contains(csiLastUserKey)){
+        if(csiCachedTokens.contains(csiLastUserKey)) {
             return getUser(csiCachedTokens.getString(csiLastUserKey, null));
-        }
-        else {
+        } else {
             return getUser();
         }
     }
@@ -310,7 +309,7 @@ public class CognitoUserPool {
     }
 
     /**
-     * Returns a CognitoUser with userId {@code userId}
+     * Returns a CognitoUser with userId {@code userId}.
      * <p>
      *     This CognitoUser is not authenticated. Call {@link CognitoUser#getSession(AuthenticationHandler)}
      *     to get valid tokens {@link CognitoUserSession}
@@ -325,7 +324,7 @@ public class CognitoUserPool {
             return getUser();
         }
 
-        if(userId.isEmpty()) {
+        if (userId.isEmpty()) {
             return getUser();
         }
 

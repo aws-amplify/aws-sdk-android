@@ -26,14 +26,34 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.Authentic
  */
 public class AuthenticationContinuation implements CognitoIdentityProviderContinuation<String> {
 
-    // Boolean constants used to indicate where this continuation will run.
+    /**
+     *  Boolean constant to indicate that the continuation will run in background.
+     */
     final public static boolean RUN_IN_BACKGROUND = true;
+    
+    /**
+     * Boolean constants used to indicate that the continuation will run in current thread.
+     */
     final public static boolean RUN_IN_CURRENT = false;
 
+    /**
+     * An instance of {@link CognitoUser} referring to the user, for whom this continuation was created. 
+     */
     final private CognitoUser user;
+    
+    /**
+     * Authentication callback handler.
+     */
     final private AuthenticationHandler callback;
+    
+    /**
+     * Indicates if this continuation has to run in a background thread.
+     */
     final private boolean runInBackground;
 
+    /**
+     * Users authentication details details required. 
+     */
     private AuthenticationDetails authenticationDetails = null;
 
     /**
@@ -54,7 +74,7 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
      *
      * @return
      */
-    public String getParameters(){
+    public String getParameters() {
         return "AuthenticationDetails";
     }
 
@@ -62,10 +82,9 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
      * Call this to continue with the authentication process.
      */
     public void continueTask() {
-        if(runInBackground){
+        if (runInBackground) {
             user.authenticateUserInBackground(authenticationDetails, callback);
-        }
-        else{
+        } else {
             user.authenticateUser(authenticationDetails, callback);
         }
     }

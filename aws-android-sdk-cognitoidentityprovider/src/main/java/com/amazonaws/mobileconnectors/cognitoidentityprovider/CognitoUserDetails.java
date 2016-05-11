@@ -21,10 +21,21 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider;
  * Wraps user attributes {@link CognitoUserAttributes} and user settings {@link CognitoUserSettings} objects.
  */
 public class CognitoUserDetails {
+	/**
+	 * User attributes.
+	 */
     private CognitoUserAttributes cognitoUserAttributes;
+    
+    /**
+     * User settings.
+     */
     private CognitoUserSettings cognitoUserSettings;
 
-    // Constructor to create a user details wrapper
+    /**
+     * Constructor to create a user details wrapper
+     * @param cognitoUserAttributes    REQUIRED: User attributes, of type {@link CognitoUserAttributes}.
+     * @param cognitoUserSettings      REQUIRED: User settings of type {@link CognitoUserSettings}.
+     */
     protected CognitoUserDetails(CognitoUserAttributes cognitoUserAttributes,
                                  CognitoUserSettings cognitoUserSettings) {
         this.cognitoUserAttributes = cognitoUserAttributes;
@@ -41,7 +52,7 @@ public class CognitoUserDetails {
     }
 
     /**
-     * Returns users' settings
+     * Returns users' settings.
      *
      * @return {@link CognitoUserSettings}
      */

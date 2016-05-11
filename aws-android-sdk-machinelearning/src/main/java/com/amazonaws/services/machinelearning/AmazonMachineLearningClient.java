@@ -222,8 +222,8 @@ public class AmazonMachineLearningClient extends AmazonWebServiceClient implemen
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
         jsonErrorUnmarshallers.add(new PredictorNotMountedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidInputExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidInputExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalServerExceptionUnmarshaller());
         
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
@@ -246,63 +246,6 @@ public class AmazonMachineLearningClient extends AmazonWebServiceClient implemen
 
     /**
      * <p>
-     * Generates a prediction for the observation using the specified
-     * <code>ML Model</code> .
-     * </p>
-     * <p>
-     * <b>NOTE:</b> Note Not all response parameters will be populated.
-     * Whether a response parameter is populated depends on the type of model
-     * requested.
-     * </p>
-     *
-     * @param predictRequest Container for the necessary parameters to
-     *           execute the Predict service method on AmazonMachineLearning.
-     * 
-     * @return The response from the Predict service method, as returned by
-     *         AmazonMachineLearning.
-     * 
-     * @throws ResourceNotFoundException
-     * @throws InvalidInputException
-     * @throws PredictorNotMountedException
-     * @throws LimitExceededException
-     * @throws InternalServerException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonMachineLearning indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public PredictResult predict(PredictRequest predictRequest) {
-        ExecutionContext executionContext = createExecutionContext(predictRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<PredictRequest> request = null;
-        Response<PredictResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new PredictRequestMarshaller().marshall(predictRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<PredictResult, JsonUnmarshallerContext> unmarshaller = new PredictResultJsonUnmarshaller();
-            JsonResponseHandler<PredictResult> responseHandler = new JsonResponseHandler<PredictResult>(unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
-        } finally {
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
      * Returns an <code>MLModel</code> that includes detailed metadata, and
      * data source information as well as the current status of the
      * <code>MLModel</code> .
@@ -317,9 +260,9 @@ public class AmazonMachineLearningClient extends AmazonWebServiceClient implemen
      * @return The response from the GetMLModel service method, as returned
      *         by AmazonMachineLearning.
      * 
-     * @throws ResourceNotFoundException
      * @throws InvalidInputException
      * @throws InternalServerException
+     * @throws ResourceNotFoundException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -346,6 +289,63 @@ public class AmazonMachineLearningClient extends AmazonWebServiceClient implemen
             }
             Unmarshaller<GetMLModelResult, JsonUnmarshallerContext> unmarshaller = new GetMLModelResultJsonUnmarshaller();
             JsonResponseHandler<GetMLModelResult> responseHandler = new JsonResponseHandler<GetMLModelResult>(unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+            
+        return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Generates a prediction for the observation using the specified
+     * <code>ML Model</code> .
+     * </p>
+     * <p>
+     * <b>NOTE:</b> Note Not all response parameters will be populated.
+     * Whether a response parameter is populated depends on the type of model
+     * requested.
+     * </p>
+     *
+     * @param predictRequest Container for the necessary parameters to
+     *           execute the Predict service method on AmazonMachineLearning.
+     * 
+     * @return The response from the Predict service method, as returned by
+     *         AmazonMachineLearning.
+     * 
+     * @throws InvalidInputException
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws PredictorNotMountedException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonMachineLearning indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public PredictResult predict(PredictRequest predictRequest) {
+        ExecutionContext executionContext = createExecutionContext(predictRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PredictRequest> request = null;
+        Response<PredictResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PredictRequestMarshaller().marshall(predictRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PredictResult, JsonUnmarshallerContext> unmarshaller = new PredictResultJsonUnmarshaller();
+            JsonResponseHandler<PredictResult> responseHandler = new JsonResponseHandler<PredictResult>(unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
             

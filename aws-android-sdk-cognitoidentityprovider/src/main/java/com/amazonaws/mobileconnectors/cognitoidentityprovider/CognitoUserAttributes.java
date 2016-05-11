@@ -29,11 +29,13 @@ import java.util.Map;
  */
 public class CognitoUserAttributes {
     /**
-     * All attributes set for a user
+     * All attributes set for a user.
      */
     private Map<String, String> userAttributes;
 
-    // Multi-factor authentication options set for a user
+    /**
+     *  Multi-factor authentication options set for a user.
+     */
     private Map<String, String> mfaOptions;
 
     /**

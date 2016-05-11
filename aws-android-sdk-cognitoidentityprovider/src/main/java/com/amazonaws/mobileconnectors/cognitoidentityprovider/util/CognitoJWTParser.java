@@ -43,7 +43,7 @@ public class CognitoJWTParser {
     public static JSONObject getHeader(String JWT) {
         try {
             validateJWT(JWT);
-            byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[HEADER], Base64.DEFAULT);
+            byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[HEADER], Base64.URL_SAFE);
             return new JSONObject(new String(sectionDecoded, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
@@ -63,7 +63,7 @@ public class CognitoJWTParser {
     public static JSONObject getPayload(String JWT) {
         try {
             validateJWT(JWT);
-            byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[PAYLOAD], Base64.DEFAULT);
+            byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[PAYLOAD], Base64.URL_SAFE);
             return new JSONObject(new String(sectionDecoded, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
@@ -83,7 +83,7 @@ public class CognitoJWTParser {
     public static String getSignature(String JWT) {
         try {
             validateJWT(JWT);
-            byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[SIGNATURE], Base64.DEFAULT);
+            byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[SIGNATURE], Base64.URL_SAFE);
             return new String(sectionDecoded, "UTF-8");
         } catch (Exception e) {
             throw new CognitoParameterInvalidException("error in parsing JSON");

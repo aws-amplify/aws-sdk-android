@@ -32,12 +32,12 @@ public class CognitoUserCodeDeliveryDetails {
     private final String destination;
 
     /**
-     * This indicated how the code will be delivered. i.e. email/sms/voice call etc
+     * This indicated how the code will be delivered. i.e. email/sms/voice call etc.
      */
     private final String deliveryMedium;
 
     /**
-     * This is will represent what mode - Email/Phone number
+     * This is will represent what mode - Email/Phone number.
      */
     private final String attributeName;
 
@@ -52,7 +52,10 @@ public class CognitoUserCodeDeliveryDetails {
         attributeName = codeDeliveryDetails.getAttributeName();
     }
 
-    // Constructs this object with MFAOptionType
+    /**
+     * Constructs this object with MFAOptionType.
+     * @param mfaOptionType    REQUIRED: MFA delivery options.
+     */
     protected CognitoUserCodeDeliveryDetails(MFAOptionType mfaOptionType) {
         destination = null;
         deliveryMedium = mfaOptionType.getDeliveryMedium();

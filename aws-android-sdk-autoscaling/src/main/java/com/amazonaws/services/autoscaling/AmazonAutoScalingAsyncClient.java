@@ -277,6 +277,140 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
             
     /**
      * <p>
+     * Creates or updates a lifecycle hook for the specified Auto Scaling
+     * Group.
+     * </p>
+     * <p>
+     * A lifecycle hook tells Auto Scaling that you want to perform an
+     * action on an instance that is not actively in service; for example,
+     * either when the instance launches or before the instance terminates.
+     * </p>
+     * <p>
+     * This operation is a part of the basic sequence for adding a lifecycle
+     * hook to an Auto Scaling group:
+     * </p>
+     * <ol> <li>Create a notification target. A target can be either an
+     * Amazon SQS queue or an Amazon SNS topic.</li>
+     * <li>Create an IAM role. This role allows Auto Scaling to publish
+     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
+     * <li> <b>Create the lifecycle hook. You can create a hook that acts
+     * when instances launch or when instances terminate.</b> </li>
+     * <li>If necessary, record the lifecycle action heartbeat to keep the
+     * instance in a pending state.</li>
+     * <li>Complete the lifecycle action.</li>
+     * </ol> <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     * <p>
+     * If you exceed your maximum limit of lifecycle hooks, which by default
+     * is 50 per region, the call fails. For information about updating this
+     * limit, see
+     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
+     * in the <i>Amazon Web Services General Reference</i> .
+     * </p>
+     *
+     * @param putLifecycleHookRequest Container for the necessary parameters
+     *           to execute the PutLifecycleHook operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         PutLifecycleHook service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<PutLifecycleHookResult> putLifecycleHookAsync(final PutLifecycleHookRequest putLifecycleHookRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<PutLifecycleHookResult>() {
+            public PutLifecycleHookResult call() throws Exception {
+                return putLifecycleHook(putLifecycleHookRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Creates or updates a lifecycle hook for the specified Auto Scaling
+     * Group.
+     * </p>
+     * <p>
+     * A lifecycle hook tells Auto Scaling that you want to perform an
+     * action on an instance that is not actively in service; for example,
+     * either when the instance launches or before the instance terminates.
+     * </p>
+     * <p>
+     * This operation is a part of the basic sequence for adding a lifecycle
+     * hook to an Auto Scaling group:
+     * </p>
+     * <ol> <li>Create a notification target. A target can be either an
+     * Amazon SQS queue or an Amazon SNS topic.</li>
+     * <li>Create an IAM role. This role allows Auto Scaling to publish
+     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
+     * <li> <b>Create the lifecycle hook. You can create a hook that acts
+     * when instances launch or when instances terminate.</b> </li>
+     * <li>If necessary, record the lifecycle action heartbeat to keep the
+     * instance in a pending state.</li>
+     * <li>Complete the lifecycle action.</li>
+     * </ol> <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     * <p>
+     * If you exceed your maximum limit of lifecycle hooks, which by default
+     * is 50 per region, the call fails. For information about updating this
+     * limit, see
+     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
+     * in the <i>Amazon Web Services General Reference</i> .
+     * </p>
+     *
+     * @param putLifecycleHookRequest Container for the necessary parameters
+     *           to execute the PutLifecycleHook operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         PutLifecycleHook service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<PutLifecycleHookResult> putLifecycleHookAsync(
+            final PutLifecycleHookRequest putLifecycleHookRequest,
+            final AsyncHandler<PutLifecycleHookRequest, PutLifecycleHookResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<PutLifecycleHookResult>() {
+            public PutLifecycleHookResult call() throws Exception {
+              PutLifecycleHookResult result;
+                try {
+                result = putLifecycleHook(putLifecycleHookRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(putLifecycleHookRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Describes the current Auto Scaling resource limits for your AWS
      * account.
      * </p>
@@ -443,22 +577,14 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
     
     /**
      * <p>
-     * Enables monitoring of the specified metrics for the specified Auto
-     * Scaling group.
-     * </p>
-     * <p>
-     * You can only enable metrics collection if
-     * <code>InstanceMonitoring</code> in the launch configuration for the
-     * group is set to <code>True</code> .
+     * Describes the policies for the specified Auto Scaling group.
      * </p>
      *
-     * @param enableMetricsCollectionRequest Container for the necessary
-     *           parameters to execute the EnableMetricsCollection operation on
-     *           AmazonAutoScaling.
+     * @param describePoliciesRequest Container for the necessary parameters
+     *           to execute the DescribePolicies operation on AmazonAutoScaling.
      * 
      * @return A Java Future object containing the response from the
-     *         EnableMetricsCollection service method, as returned by
-     *         AmazonAutoScaling.
+     *         DescribePolicies service method, as returned by AmazonAutoScaling.
      * 
      *
      * @throws AmazonClientException
@@ -469,38 +595,29 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> enableMetricsCollectionAsync(final EnableMetricsCollectionRequest enableMetricsCollectionRequest) 
+    public Future<DescribePoliciesResult> describePoliciesAsync(final DescribePoliciesRequest describePoliciesRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                enableMetricsCollection(enableMetricsCollectionRequest);
-                return null;
+        return executorService.submit(new Callable<DescribePoliciesResult>() {
+            public DescribePoliciesResult call() throws Exception {
+                return describePolicies(describePoliciesRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Enables monitoring of the specified metrics for the specified Auto
-     * Scaling group.
-     * </p>
-     * <p>
-     * You can only enable metrics collection if
-     * <code>InstanceMonitoring</code> in the launch configuration for the
-     * group is set to <code>True</code> .
+     * Describes the policies for the specified Auto Scaling group.
      * </p>
      *
-     * @param enableMetricsCollectionRequest Container for the necessary
-     *           parameters to execute the EnableMetricsCollection operation on
-     *           AmazonAutoScaling.
+     * @param describePoliciesRequest Container for the necessary parameters
+     *           to execute the DescribePolicies operation on AmazonAutoScaling.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         EnableMetricsCollection service method, as returned by
-     *         AmazonAutoScaling.
+     *         DescribePolicies service method, as returned by AmazonAutoScaling.
      * 
      *
      * @throws AmazonClientException
@@ -511,179 +628,20 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> enableMetricsCollectionAsync(
-            final EnableMetricsCollectionRequest enableMetricsCollectionRequest,
-            final AsyncHandler<EnableMetricsCollectionRequest, Void> asyncHandler)
+    public Future<DescribePoliciesResult> describePoliciesAsync(
+            final DescribePoliciesRequest describePoliciesRequest,
+            final AsyncHandler<DescribePoliciesRequest, DescribePoliciesResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                enableMetricsCollection(enableMetricsCollectionRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(enableMetricsCollectionRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Resumes the specified suspended Auto Scaling processes for the
-     * specified Auto Scaling group. To resume specific processes, use the
-     * <code>ScalingProcesses</code> parameter. To resume all processes, omit
-     * the <code>ScalingProcesses</code> parameter. For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param resumeProcessesRequest Container for the necessary parameters
-     *           to execute the ResumeProcesses operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ResumeProcesses service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> resumeProcessesAsync(final ResumeProcessesRequest resumeProcessesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                resumeProcesses(resumeProcessesRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Resumes the specified suspended Auto Scaling processes for the
-     * specified Auto Scaling group. To resume specific processes, use the
-     * <code>ScalingProcesses</code> parameter. To resume all processes, omit
-     * the <code>ScalingProcesses</code> parameter. For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param resumeProcessesRequest Container for the necessary parameters
-     *           to execute the ResumeProcesses operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ResumeProcesses service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> resumeProcessesAsync(
-            final ResumeProcessesRequest resumeProcessesRequest,
-            final AsyncHandler<ResumeProcessesRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                resumeProcesses(resumeProcessesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(resumeProcessesRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes the scaling process types for use with ResumeProcesses and
-     * SuspendProcesses.
-     * </p>
-     *
-     * @param describeScalingProcessTypesRequest Container for the necessary
-     *           parameters to execute the DescribeScalingProcessTypes operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeScalingProcessTypes service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeScalingProcessTypesResult> describeScalingProcessTypesAsync(final DescribeScalingProcessTypesRequest describeScalingProcessTypesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeScalingProcessTypesResult>() {
-            public DescribeScalingProcessTypesResult call() throws Exception {
-                return describeScalingProcessTypes(describeScalingProcessTypesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the scaling process types for use with ResumeProcesses and
-     * SuspendProcesses.
-     * </p>
-     *
-     * @param describeScalingProcessTypesRequest Container for the necessary
-     *           parameters to execute the DescribeScalingProcessTypes operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeScalingProcessTypes service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeScalingProcessTypesResult> describeScalingProcessTypesAsync(
-            final DescribeScalingProcessTypesRequest describeScalingProcessTypesRequest,
-            final AsyncHandler<DescribeScalingProcessTypesRequest, DescribeScalingProcessTypesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeScalingProcessTypesResult>() {
-            public DescribeScalingProcessTypesResult call() throws Exception {
-              DescribeScalingProcessTypesResult result;
+        return executorService.submit(new Callable<DescribePoliciesResult>() {
+            public DescribePoliciesResult call() throws Exception {
+              DescribePoliciesResult result;
                 try {
-                result = describeScalingProcessTypes(describeScalingProcessTypesRequest);
+                result = describePolicies(describePoliciesRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(describeScalingProcessTypesRequest, result);
+              asyncHandler.onSuccess(describePoliciesRequest, result);
                  return result;
         }
     });
@@ -787,26 +745,26 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
     
     /**
      * <p>
-     * Attaches one or more EC2 instances to the specified Auto Scaling
+     * Attaches one or more load balancers to the specified Auto Scaling
      * group.
      * </p>
      * <p>
-     * When you attach instances, Auto Scaling increases the desired
-     * capacity of the group by the number of instances being attached. If
-     * the number of instances being attached plus the desired capacity of
-     * the group exceeds the maximum size of the group, the operation fails.
+     * To describe the load balancers for an Auto Scaling group, use
+     * DescribeLoadBalancers. To detach the load balancer from the Auto
+     * Scaling group, use DetachLoadBalancers.
      * </p>
      * <p>
      * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-instance-asg.html"> Attach EC2 Instances to Your Auto Scaling Group </a>
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-load-balancer-asg.html"> Attach a Load Balancer to Your Auto Scaling Group </a>
      * in the <i>Auto Scaling Developer Guide</i> .
      * </p>
      *
-     * @param attachInstancesRequest Container for the necessary parameters
-     *           to execute the AttachInstances operation on AmazonAutoScaling.
+     * @param attachLoadBalancersRequest Container for the necessary
+     *           parameters to execute the AttachLoadBalancers operation on
+     *           AmazonAutoScaling.
      * 
      * @return A Java Future object containing the response from the
-     *         AttachInstances service method, as returned by AmazonAutoScaling.
+     *         AttachLoadBalancers service method, as returned by AmazonAutoScaling.
      * 
      *
      * @throws AmazonClientException
@@ -817,11 +775,97 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> attachInstancesAsync(final AttachInstancesRequest attachInstancesRequest) 
+    public Future<AttachLoadBalancersResult> attachLoadBalancersAsync(final AttachLoadBalancersRequest attachLoadBalancersRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<AttachLoadBalancersResult>() {
+            public AttachLoadBalancersResult call() throws Exception {
+                return attachLoadBalancers(attachLoadBalancersRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Attaches one or more load balancers to the specified Auto Scaling
+     * group.
+     * </p>
+     * <p>
+     * To describe the load balancers for an Auto Scaling group, use
+     * DescribeLoadBalancers. To detach the load balancer from the Auto
+     * Scaling group, use DetachLoadBalancers.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-load-balancer-asg.html"> Attach a Load Balancer to Your Auto Scaling Group </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param attachLoadBalancersRequest Container for the necessary
+     *           parameters to execute the AttachLoadBalancers operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         AttachLoadBalancers service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<AttachLoadBalancersResult> attachLoadBalancersAsync(
+            final AttachLoadBalancersRequest attachLoadBalancersRequest,
+            final AsyncHandler<AttachLoadBalancersRequest, AttachLoadBalancersResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<AttachLoadBalancersResult>() {
+            public AttachLoadBalancersResult call() throws Exception {
+              AttachLoadBalancersResult result;
+                try {
+                result = attachLoadBalancers(attachLoadBalancersRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(attachLoadBalancersRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the specified notification.
+     * </p>
+     *
+     * @param deleteNotificationConfigurationRequest Container for the
+     *           necessary parameters to execute the DeleteNotificationConfiguration
+     *           operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteNotificationConfiguration service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteNotificationConfigurationAsync(final DeleteNotificationConfigurationRequest deleteNotificationConfigurationRequest) 
             throws AmazonServiceException, AmazonClientException {
         return executorService.submit(new Callable<Void>() {
             public Void call() throws Exception {
-                attachInstances(attachInstancesRequest);
+                deleteNotificationConfiguration(deleteNotificationConfigurationRequest);
                 return null;
         }
     });
@@ -829,30 +873,20 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
 
     /**
      * <p>
-     * Attaches one or more EC2 instances to the specified Auto Scaling
-     * group.
-     * </p>
-     * <p>
-     * When you attach instances, Auto Scaling increases the desired
-     * capacity of the group by the number of instances being attached. If
-     * the number of instances being attached plus the desired capacity of
-     * the group exceeds the maximum size of the group, the operation fails.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-instance-asg.html"> Attach EC2 Instances to Your Auto Scaling Group </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
+     * Deletes the specified notification.
      * </p>
      *
-     * @param attachInstancesRequest Container for the necessary parameters
-     *           to execute the AttachInstances operation on AmazonAutoScaling.
+     * @param deleteNotificationConfigurationRequest Container for the
+     *           necessary parameters to execute the DeleteNotificationConfiguration
+     *           operation on AmazonAutoScaling.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         AttachInstances service method, as returned by AmazonAutoScaling.
+     *         DeleteNotificationConfiguration service method, as returned by
+     *         AmazonAutoScaling.
      * 
      *
      * @throws AmazonClientException
@@ -863,314 +897,20 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> attachInstancesAsync(
-            final AttachInstancesRequest attachInstancesRequest,
-            final AsyncHandler<AttachInstancesRequest, Void> asyncHandler)
+    public Future<Void> deleteNotificationConfigurationAsync(
+            final DeleteNotificationConfigurationRequest deleteNotificationConfigurationRequest,
+            final AsyncHandler<DeleteNotificationConfigurationRequest, Void> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
         return executorService.submit(new Callable<Void>() {
             public Void call() throws Exception {
               try {
-                attachInstances(attachInstancesRequest);
+                deleteNotificationConfiguration(deleteNotificationConfigurationRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(attachInstancesRequest, null);
+              asyncHandler.onSuccess(deleteNotificationConfigurationRequest, null);
                  return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes one or more scaling activities for the specified Auto
-     * Scaling group. If you omit the <code>ActivityIds</code> , the call
-     * returns all activities from the past six weeks. Activities are sorted
-     * by the start time. Activities still in progress appear first on the
-     * list.
-     * </p>
-     *
-     * @param describeScalingActivitiesRequest Container for the necessary
-     *           parameters to execute the DescribeScalingActivities operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeScalingActivities service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeScalingActivitiesResult> describeScalingActivitiesAsync(final DescribeScalingActivitiesRequest describeScalingActivitiesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeScalingActivitiesResult>() {
-            public DescribeScalingActivitiesResult call() throws Exception {
-                return describeScalingActivities(describeScalingActivitiesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes one or more scaling activities for the specified Auto
-     * Scaling group. If you omit the <code>ActivityIds</code> , the call
-     * returns all activities from the past six weeks. Activities are sorted
-     * by the start time. Activities still in progress appear first on the
-     * list.
-     * </p>
-     *
-     * @param describeScalingActivitiesRequest Container for the necessary
-     *           parameters to execute the DescribeScalingActivities operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeScalingActivities service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeScalingActivitiesResult> describeScalingActivitiesAsync(
-            final DescribeScalingActivitiesRequest describeScalingActivitiesRequest,
-            final AsyncHandler<DescribeScalingActivitiesRequest, DescribeScalingActivitiesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeScalingActivitiesResult>() {
-            public DescribeScalingActivitiesResult call() throws Exception {
-              DescribeScalingActivitiesResult result;
-                try {
-                result = describeScalingActivities(describeScalingActivitiesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeScalingActivitiesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes the termination policies supported by Auto Scaling.
-     * </p>
-     *
-     * @param describeTerminationPolicyTypesRequest Container for the
-     *           necessary parameters to execute the DescribeTerminationPolicyTypes
-     *           operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeTerminationPolicyTypes service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeTerminationPolicyTypesResult> describeTerminationPolicyTypesAsync(final DescribeTerminationPolicyTypesRequest describeTerminationPolicyTypesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeTerminationPolicyTypesResult>() {
-            public DescribeTerminationPolicyTypesResult call() throws Exception {
-                return describeTerminationPolicyTypes(describeTerminationPolicyTypesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the termination policies supported by Auto Scaling.
-     * </p>
-     *
-     * @param describeTerminationPolicyTypesRequest Container for the
-     *           necessary parameters to execute the DescribeTerminationPolicyTypes
-     *           operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeTerminationPolicyTypes service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeTerminationPolicyTypesResult> describeTerminationPolicyTypesAsync(
-            final DescribeTerminationPolicyTypesRequest describeTerminationPolicyTypesRequest,
-            final AsyncHandler<DescribeTerminationPolicyTypesRequest, DescribeTerminationPolicyTypesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeTerminationPolicyTypesResult>() {
-            public DescribeTerminationPolicyTypesResult call() throws Exception {
-              DescribeTerminationPolicyTypesResult result;
-                try {
-                result = describeTerminationPolicyTypes(describeTerminationPolicyTypesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeTerminationPolicyTypesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Creates or updates a lifecycle hook for the specified Auto Scaling
-     * Group.
-     * </p>
-     * <p>
-     * A lifecycle hook tells Auto Scaling that you want to perform an
-     * action on an instance that is not actively in service; for example,
-     * either when the instance launches or before the instance terminates.
-     * </p>
-     * <p>
-     * This operation is a part of the basic sequence for adding a lifecycle
-     * hook to an Auto Scaling group:
-     * </p>
-     * <ol> <li>Create a notification target. A target can be either an
-     * Amazon SQS queue or an Amazon SNS topic.</li>
-     * <li>Create an IAM role. This role allows Auto Scaling to publish
-     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
-     * <li> <b>Create the lifecycle hook. You can create a hook that acts
-     * when instances launch or when instances terminate.</b> </li>
-     * <li>If necessary, record the lifecycle action heartbeat to keep the
-     * instance in a pending state.</li>
-     * <li>Complete the lifecycle action.</li>
-     * </ol> <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     * <p>
-     * If you exceed your maximum limit of lifecycle hooks, which by default
-     * is 50 per region, the call fails. For information about updating this
-     * limit, see
-     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
-     * in the <i>Amazon Web Services General Reference</i> .
-     * </p>
-     *
-     * @param putLifecycleHookRequest Container for the necessary parameters
-     *           to execute the PutLifecycleHook operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         PutLifecycleHook service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<PutLifecycleHookResult> putLifecycleHookAsync(final PutLifecycleHookRequest putLifecycleHookRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<PutLifecycleHookResult>() {
-            public PutLifecycleHookResult call() throws Exception {
-                return putLifecycleHook(putLifecycleHookRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Creates or updates a lifecycle hook for the specified Auto Scaling
-     * Group.
-     * </p>
-     * <p>
-     * A lifecycle hook tells Auto Scaling that you want to perform an
-     * action on an instance that is not actively in service; for example,
-     * either when the instance launches or before the instance terminates.
-     * </p>
-     * <p>
-     * This operation is a part of the basic sequence for adding a lifecycle
-     * hook to an Auto Scaling group:
-     * </p>
-     * <ol> <li>Create a notification target. A target can be either an
-     * Amazon SQS queue or an Amazon SNS topic.</li>
-     * <li>Create an IAM role. This role allows Auto Scaling to publish
-     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
-     * <li> <b>Create the lifecycle hook. You can create a hook that acts
-     * when instances launch or when instances terminate.</b> </li>
-     * <li>If necessary, record the lifecycle action heartbeat to keep the
-     * instance in a pending state.</li>
-     * <li>Complete the lifecycle action.</li>
-     * </ol> <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     * <p>
-     * If you exceed your maximum limit of lifecycle hooks, which by default
-     * is 50 per region, the call fails. For information about updating this
-     * limit, see
-     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
-     * in the <i>Amazon Web Services General Reference</i> .
-     * </p>
-     *
-     * @param putLifecycleHookRequest Container for the necessary parameters
-     *           to execute the PutLifecycleHook operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         PutLifecycleHook service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<PutLifecycleHookResult> putLifecycleHookAsync(
-            final PutLifecycleHookRequest putLifecycleHookRequest,
-            final AsyncHandler<PutLifecycleHookRequest, PutLifecycleHookResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<PutLifecycleHookResult>() {
-            public PutLifecycleHookResult call() throws Exception {
-              PutLifecycleHookResult result;
-                try {
-                result = putLifecycleHook(putLifecycleHookRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(putLifecycleHookRequest, result);
-                 return result;
         }
     });
     }
@@ -1271,23 +1011,26 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
     
     /**
      * <p>
-     * Removes one or more load balancers from the specified Auto Scaling
-     * group.
+     * Configures an Auto Scaling group to send notifications when specified
+     * events take place. Subscribers to this topic can have messages for
+     * events delivered to an endpoint such as a web server or email address.
      * </p>
      * <p>
-     * When you detach a load balancer, it enters the <code>Removing</code>
-     * state while deregistering the instances in the group. When all
-     * instances are deregistered, then you can no longer describe the load
-     * balancer using DescribeLoadBalancers. Note that the instances remain
-     * running.
+     * For more information see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASGettingNotifications.html"> Getting Notifications When Your Auto Scaling Group Changes </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     * <p>
+     * This configuration overwrites an existing configuration.
      * </p>
      *
-     * @param detachLoadBalancersRequest Container for the necessary
-     *           parameters to execute the DetachLoadBalancers operation on
+     * @param putNotificationConfigurationRequest Container for the necessary
+     *           parameters to execute the PutNotificationConfiguration operation on
      *           AmazonAutoScaling.
      * 
      * @return A Java Future object containing the response from the
-     *         DetachLoadBalancers service method, as returned by AmazonAutoScaling.
+     *         PutNotificationConfiguration service method, as returned by
+     *         AmazonAutoScaling.
      * 
      *
      * @throws AmazonClientException
@@ -1298,30 +1041,33 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DetachLoadBalancersResult> detachLoadBalancersAsync(final DetachLoadBalancersRequest detachLoadBalancersRequest) 
+    public Future<Void> putNotificationConfigurationAsync(final PutNotificationConfigurationRequest putNotificationConfigurationRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DetachLoadBalancersResult>() {
-            public DetachLoadBalancersResult call() throws Exception {
-                return detachLoadBalancers(detachLoadBalancersRequest);
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                putNotificationConfiguration(putNotificationConfigurationRequest);
+                return null;
         }
     });
     }
 
     /**
      * <p>
-     * Removes one or more load balancers from the specified Auto Scaling
-     * group.
+     * Configures an Auto Scaling group to send notifications when specified
+     * events take place. Subscribers to this topic can have messages for
+     * events delivered to an endpoint such as a web server or email address.
      * </p>
      * <p>
-     * When you detach a load balancer, it enters the <code>Removing</code>
-     * state while deregistering the instances in the group. When all
-     * instances are deregistered, then you can no longer describe the load
-     * balancer using DescribeLoadBalancers. Note that the instances remain
-     * running.
+     * For more information see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASGettingNotifications.html"> Getting Notifications When Your Auto Scaling Group Changes </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     * <p>
+     * This configuration overwrites an existing configuration.
      * </p>
      *
-     * @param detachLoadBalancersRequest Container for the necessary
-     *           parameters to execute the DetachLoadBalancers operation on
+     * @param putNotificationConfigurationRequest Container for the necessary
+     *           parameters to execute the PutNotificationConfiguration operation on
      *           AmazonAutoScaling.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -1329,7 +1075,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         DetachLoadBalancers service method, as returned by AmazonAutoScaling.
+     *         PutNotificationConfiguration service method, as returned by
+     *         AmazonAutoScaling.
      * 
      *
      * @throws AmazonClientException
@@ -1340,838 +1087,95 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DetachLoadBalancersResult> detachLoadBalancersAsync(
-            final DetachLoadBalancersRequest detachLoadBalancersRequest,
-            final AsyncHandler<DetachLoadBalancersRequest, DetachLoadBalancersResult> asyncHandler)
+    public Future<Void> putNotificationConfigurationAsync(
+            final PutNotificationConfigurationRequest putNotificationConfigurationRequest,
+            final AsyncHandler<PutNotificationConfigurationRequest, Void> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DetachLoadBalancersResult>() {
-            public DetachLoadBalancersResult call() throws Exception {
-              DetachLoadBalancersResult result;
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                putNotificationConfiguration(putNotificationConfigurationRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(putNotificationConfigurationRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the available types of lifecycle hooks.
+     * </p>
+     *
+     * @param describeLifecycleHookTypesRequest Container for the necessary
+     *           parameters to execute the DescribeLifecycleHookTypes operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLifecycleHookTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLifecycleHookTypesResult> describeLifecycleHookTypesAsync(final DescribeLifecycleHookTypesRequest describeLifecycleHookTypesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLifecycleHookTypesResult>() {
+            public DescribeLifecycleHookTypesResult call() throws Exception {
+                return describeLifecycleHookTypes(describeLifecycleHookTypesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the available types of lifecycle hooks.
+     * </p>
+     *
+     * @param describeLifecycleHookTypesRequest Container for the necessary
+     *           parameters to execute the DescribeLifecycleHookTypes operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLifecycleHookTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLifecycleHookTypesResult> describeLifecycleHookTypesAsync(
+            final DescribeLifecycleHookTypesRequest describeLifecycleHookTypesRequest,
+            final AsyncHandler<DescribeLifecycleHookTypesRequest, DescribeLifecycleHookTypesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLifecycleHookTypesResult>() {
+            public DescribeLifecycleHookTypesResult call() throws Exception {
+              DescribeLifecycleHookTypesResult result;
                 try {
-                result = detachLoadBalancers(detachLoadBalancersRequest);
+                result = describeLifecycleHookTypes(describeLifecycleHookTypesRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(detachLoadBalancersRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified Auto Scaling policy.
-     * </p>
-     * <p>
-     * Deleting a policy deletes the underlying alarm action, but does not
-     * delete the alarm, even if it no longer has an associated action.
-     * </p>
-     *
-     * @param deletePolicyRequest Container for the necessary parameters to
-     *           execute the DeletePolicy operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeletePolicy service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deletePolicyAsync(final DeletePolicyRequest deletePolicyRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                deletePolicy(deletePolicyRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified Auto Scaling policy.
-     * </p>
-     * <p>
-     * Deleting a policy deletes the underlying alarm action, but does not
-     * delete the alarm, even if it no longer has an associated action.
-     * </p>
-     *
-     * @param deletePolicyRequest Container for the necessary parameters to
-     *           execute the DeletePolicy operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeletePolicy service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deletePolicyAsync(
-            final DeletePolicyRequest deletePolicyRequest,
-            final AsyncHandler<DeletePolicyRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                deletePolicy(deletePolicyRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deletePolicyRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Completes the lifecycle action for the associated token initiated
-     * under the given lifecycle hook with the specified result.
-     * </p>
-     * <p>
-     * This operation is a part of the basic sequence for adding a lifecycle
-     * hook to an Auto Scaling group:
-     * </p>
-     * <ol> <li>Create a notification target. A target can be either an
-     * Amazon SQS queue or an Amazon SNS topic.</li>
-     * <li>Create an IAM role. This role allows Auto Scaling to publish
-     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
-     * <li>Create the lifecycle hook. You can create a hook that acts when
-     * instances launch or when instances terminate.</li>
-     * <li>If necessary, record the lifecycle action heartbeat to keep the
-     * instance in a pending state.</li>
-     * <li> <b>Complete the lifecycle action</b> .</li>
-     * </ol> <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param completeLifecycleActionRequest Container for the necessary
-     *           parameters to execute the CompleteLifecycleAction operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         CompleteLifecycleAction service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<CompleteLifecycleActionResult> completeLifecycleActionAsync(final CompleteLifecycleActionRequest completeLifecycleActionRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CompleteLifecycleActionResult>() {
-            public CompleteLifecycleActionResult call() throws Exception {
-                return completeLifecycleAction(completeLifecycleActionRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Completes the lifecycle action for the associated token initiated
-     * under the given lifecycle hook with the specified result.
-     * </p>
-     * <p>
-     * This operation is a part of the basic sequence for adding a lifecycle
-     * hook to an Auto Scaling group:
-     * </p>
-     * <ol> <li>Create a notification target. A target can be either an
-     * Amazon SQS queue or an Amazon SNS topic.</li>
-     * <li>Create an IAM role. This role allows Auto Scaling to publish
-     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
-     * <li>Create the lifecycle hook. You can create a hook that acts when
-     * instances launch or when instances terminate.</li>
-     * <li>If necessary, record the lifecycle action heartbeat to keep the
-     * instance in a pending state.</li>
-     * <li> <b>Complete the lifecycle action</b> .</li>
-     * </ol> <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param completeLifecycleActionRequest Container for the necessary
-     *           parameters to execute the CompleteLifecycleAction operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         CompleteLifecycleAction service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<CompleteLifecycleActionResult> completeLifecycleActionAsync(
-            final CompleteLifecycleActionRequest completeLifecycleActionRequest,
-            final AsyncHandler<CompleteLifecycleActionRequest, CompleteLifecycleActionResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CompleteLifecycleActionResult>() {
-            public CompleteLifecycleActionResult call() throws Exception {
-              CompleteLifecycleActionResult result;
-                try {
-                result = completeLifecycleAction(completeLifecycleActionRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(completeLifecycleActionRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified notification.
-     * </p>
-     *
-     * @param deleteNotificationConfigurationRequest Container for the
-     *           necessary parameters to execute the DeleteNotificationConfiguration
-     *           operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteNotificationConfiguration service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteNotificationConfigurationAsync(final DeleteNotificationConfigurationRequest deleteNotificationConfigurationRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                deleteNotificationConfiguration(deleteNotificationConfigurationRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified notification.
-     * </p>
-     *
-     * @param deleteNotificationConfigurationRequest Container for the
-     *           necessary parameters to execute the DeleteNotificationConfiguration
-     *           operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteNotificationConfiguration service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteNotificationConfigurationAsync(
-            final DeleteNotificationConfigurationRequest deleteNotificationConfigurationRequest,
-            final AsyncHandler<DeleteNotificationConfigurationRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                deleteNotificationConfiguration(deleteNotificationConfigurationRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteNotificationConfigurationRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified scheduled action.
-     * </p>
-     *
-     * @param deleteScheduledActionRequest Container for the necessary
-     *           parameters to execute the DeleteScheduledAction operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteScheduledAction service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteScheduledActionAsync(final DeleteScheduledActionRequest deleteScheduledActionRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                deleteScheduledAction(deleteScheduledActionRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified scheduled action.
-     * </p>
-     *
-     * @param deleteScheduledActionRequest Container for the necessary
-     *           parameters to execute the DeleteScheduledAction operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteScheduledAction service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteScheduledActionAsync(
-            final DeleteScheduledActionRequest deleteScheduledActionRequest,
-            final AsyncHandler<DeleteScheduledActionRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                deleteScheduledAction(deleteScheduledActionRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteScheduledActionRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Sets the health status of the specified instance.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"> Health Checks </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param setInstanceHealthRequest Container for the necessary parameters
-     *           to execute the SetInstanceHealth operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetInstanceHealth service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> setInstanceHealthAsync(final SetInstanceHealthRequest setInstanceHealthRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                setInstanceHealth(setInstanceHealthRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Sets the health status of the specified instance.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"> Health Checks </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param setInstanceHealthRequest Container for the necessary parameters
-     *           to execute the SetInstanceHealth operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetInstanceHealth service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> setInstanceHealthAsync(
-            final SetInstanceHealthRequest setInstanceHealthRequest,
-            final AsyncHandler<SetInstanceHealthRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                setInstanceHealth(setInstanceHealthRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(setInstanceHealthRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Creates or updates tags for the specified Auto Scaling group.
-     * </p>
-     * <p>
-     * A tag is defined by its resource ID, resource type, key, value, and
-     * propagate flag. The value and the propagate flag are optional
-     * parameters. The only supported resource type is
-     * <code>auto-scaling-group</code> , and the resource ID must be the name
-     * of the group. The <code>PropagateAtLaunch</code> flag determines
-     * whether the tag is added to instances launched in the group. Valid
-     * values are <code>true</code> or <code>false</code> .
-     * </p>
-     * <p>
-     * When you specify a tag with a key that already exists, the operation
-     * overwrites the previous tag definition, and you do not get an error
-     * message.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASTagging.html"> Tagging Auto Scaling Groups and Instances </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param createOrUpdateTagsRequest Container for the necessary
-     *           parameters to execute the CreateOrUpdateTags operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         CreateOrUpdateTags service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> createOrUpdateTagsAsync(final CreateOrUpdateTagsRequest createOrUpdateTagsRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                createOrUpdateTags(createOrUpdateTagsRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Creates or updates tags for the specified Auto Scaling group.
-     * </p>
-     * <p>
-     * A tag is defined by its resource ID, resource type, key, value, and
-     * propagate flag. The value and the propagate flag are optional
-     * parameters. The only supported resource type is
-     * <code>auto-scaling-group</code> , and the resource ID must be the name
-     * of the group. The <code>PropagateAtLaunch</code> flag determines
-     * whether the tag is added to instances launched in the group. Valid
-     * values are <code>true</code> or <code>false</code> .
-     * </p>
-     * <p>
-     * When you specify a tag with a key that already exists, the operation
-     * overwrites the previous tag definition, and you do not get an error
-     * message.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASTagging.html"> Tagging Auto Scaling Groups and Instances </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param createOrUpdateTagsRequest Container for the necessary
-     *           parameters to execute the CreateOrUpdateTags operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         CreateOrUpdateTags service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> createOrUpdateTagsAsync(
-            final CreateOrUpdateTagsRequest createOrUpdateTagsRequest,
-            final AsyncHandler<CreateOrUpdateTagsRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                createOrUpdateTags(createOrUpdateTagsRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(createOrUpdateTagsRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Suspends the specified Auto Scaling processes for the specified Auto
-     * Scaling group. To suspend specific processes, use the
-     * <code>ScalingProcesses</code> parameter. To suspend all processes,
-     * omit the <code>ScalingProcesses</code> parameter.
-     * </p>
-     * <p>
-     * Note that if you suspend either the <code>Launch</code> or
-     * <code>Terminate</code> process types, it can prevent other process
-     * types from functioning properly.
-     * </p>
-     * <p>
-     * To resume processes that have been suspended, use ResumeProcesses.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param suspendProcessesRequest Container for the necessary parameters
-     *           to execute the SuspendProcesses operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SuspendProcesses service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> suspendProcessesAsync(final SuspendProcessesRequest suspendProcessesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                suspendProcesses(suspendProcessesRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Suspends the specified Auto Scaling processes for the specified Auto
-     * Scaling group. To suspend specific processes, use the
-     * <code>ScalingProcesses</code> parameter. To suspend all processes,
-     * omit the <code>ScalingProcesses</code> parameter.
-     * </p>
-     * <p>
-     * Note that if you suspend either the <code>Launch</code> or
-     * <code>Terminate</code> process types, it can prevent other process
-     * types from functioning properly.
-     * </p>
-     * <p>
-     * To resume processes that have been suspended, use ResumeProcesses.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param suspendProcessesRequest Container for the necessary parameters
-     *           to execute the SuspendProcesses operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SuspendProcesses service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> suspendProcessesAsync(
-            final SuspendProcessesRequest suspendProcessesRequest,
-            final AsyncHandler<SuspendProcessesRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                suspendProcesses(suspendProcessesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(suspendProcessesRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Attaches one or more load balancers to the specified Auto Scaling
-     * group.
-     * </p>
-     * <p>
-     * To describe the load balancers for an Auto Scaling group, use
-     * DescribeLoadBalancers. To detach the load balancer from the Auto
-     * Scaling group, use DetachLoadBalancers.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-load-balancer-asg.html"> Attach a Load Balancer to Your Auto Scaling Group </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param attachLoadBalancersRequest Container for the necessary
-     *           parameters to execute the AttachLoadBalancers operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         AttachLoadBalancers service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<AttachLoadBalancersResult> attachLoadBalancersAsync(final AttachLoadBalancersRequest attachLoadBalancersRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<AttachLoadBalancersResult>() {
-            public AttachLoadBalancersResult call() throws Exception {
-                return attachLoadBalancers(attachLoadBalancersRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Attaches one or more load balancers to the specified Auto Scaling
-     * group.
-     * </p>
-     * <p>
-     * To describe the load balancers for an Auto Scaling group, use
-     * DescribeLoadBalancers. To detach the load balancer from the Auto
-     * Scaling group, use DetachLoadBalancers.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-load-balancer-asg.html"> Attach a Load Balancer to Your Auto Scaling Group </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param attachLoadBalancersRequest Container for the necessary
-     *           parameters to execute the AttachLoadBalancers operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         AttachLoadBalancers service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<AttachLoadBalancersResult> attachLoadBalancersAsync(
-            final AttachLoadBalancersRequest attachLoadBalancersRequest,
-            final AsyncHandler<AttachLoadBalancersRequest, AttachLoadBalancersResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<AttachLoadBalancersResult>() {
-            public AttachLoadBalancersResult call() throws Exception {
-              AttachLoadBalancersResult result;
-                try {
-                result = attachLoadBalancers(attachLoadBalancersRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(attachLoadBalancersRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes one or more Auto Scaling instances. If a list is not
-     * provided, the call describes all instances.
-     * </p>
-     *
-     * @param describeAutoScalingInstancesRequest Container for the necessary
-     *           parameters to execute the DescribeAutoScalingInstances operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeAutoScalingInstances service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeAutoScalingInstancesResult> describeAutoScalingInstancesAsync(final DescribeAutoScalingInstancesRequest describeAutoScalingInstancesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeAutoScalingInstancesResult>() {
-            public DescribeAutoScalingInstancesResult call() throws Exception {
-                return describeAutoScalingInstances(describeAutoScalingInstancesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes one or more Auto Scaling instances. If a list is not
-     * provided, the call describes all instances.
-     * </p>
-     *
-     * @param describeAutoScalingInstancesRequest Container for the necessary
-     *           parameters to execute the DescribeAutoScalingInstances operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeAutoScalingInstances service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeAutoScalingInstancesResult> describeAutoScalingInstancesAsync(
-            final DescribeAutoScalingInstancesRequest describeAutoScalingInstancesRequest,
-            final AsyncHandler<DescribeAutoScalingInstancesRequest, DescribeAutoScalingInstancesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeAutoScalingInstancesResult>() {
-            public DescribeAutoScalingInstancesResult call() throws Exception {
-              DescribeAutoScalingInstancesResult result;
-                try {
-                result = describeAutoScalingInstances(describeAutoScalingInstancesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeAutoScalingInstancesRequest, result);
+              asyncHandler.onSuccess(describeLifecycleHookTypesRequest, result);
                  return result;
         }
     });
@@ -2277,15 +1281,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
     
     /**
      * <p>
-     * Describes the available types of lifecycle hooks.
+     * Deletes the specified scheduled action.
      * </p>
      *
-     * @param describeLifecycleHookTypesRequest Container for the necessary
-     *           parameters to execute the DescribeLifecycleHookTypes operation on
+     * @param deleteScheduledActionRequest Container for the necessary
+     *           parameters to execute the DeleteScheduledAction operation on
      *           AmazonAutoScaling.
      * 
      * @return A Java Future object containing the response from the
-     *         DescribeLifecycleHookTypes service method, as returned by
+     *         DeleteScheduledAction service method, as returned by
      *         AmazonAutoScaling.
      * 
      *
@@ -2297,108 +1301,11 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DescribeLifecycleHookTypesResult> describeLifecycleHookTypesAsync(final DescribeLifecycleHookTypesRequest describeLifecycleHookTypesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLifecycleHookTypesResult>() {
-            public DescribeLifecycleHookTypesResult call() throws Exception {
-                return describeLifecycleHookTypes(describeLifecycleHookTypesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the available types of lifecycle hooks.
-     * </p>
-     *
-     * @param describeLifecycleHookTypesRequest Container for the necessary
-     *           parameters to execute the DescribeLifecycleHookTypes operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeLifecycleHookTypes service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeLifecycleHookTypesResult> describeLifecycleHookTypesAsync(
-            final DescribeLifecycleHookTypesRequest describeLifecycleHookTypesRequest,
-            final AsyncHandler<DescribeLifecycleHookTypesRequest, DescribeLifecycleHookTypesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLifecycleHookTypesResult>() {
-            public DescribeLifecycleHookTypesResult call() throws Exception {
-              DescribeLifecycleHookTypesResult result;
-                try {
-                result = describeLifecycleHookTypes(describeLifecycleHookTypesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeLifecycleHookTypesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified Auto Scaling group.
-     * </p>
-     * <p>
-     * If the group has instances or scaling activities in progress, you
-     * must specify the option to force the deletion in order for it to
-     * succeed.
-     * </p>
-     * <p>
-     * If the group has policies, deleting the group deletes the policies,
-     * the underlying alarm actions, and any alarm that no longer has an
-     * associated action.
-     * </p>
-     * <p>
-     * To remove instances from the Auto Scaling group before deleting it,
-     * call DetachInstances with the list of instances and the option to
-     * decrement the desired capacity so that Auto Scaling does not launch
-     * replacement instances.
-     * </p>
-     * <p>
-     * To terminate all instances before deleting the Auto Scaling group,
-     * call UpdateAutoScalingGroup and set the minimum size and desired
-     * capacity of the Auto Scaling group to zero.
-     * </p>
-     *
-     * @param deleteAutoScalingGroupRequest Container for the necessary
-     *           parameters to execute the DeleteAutoScalingGroup operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteAutoScalingGroup service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteAutoScalingGroupAsync(final DeleteAutoScalingGroupRequest deleteAutoScalingGroupRequest) 
+    public Future<Void> deleteScheduledActionAsync(final DeleteScheduledActionRequest deleteScheduledActionRequest) 
             throws AmazonServiceException, AmazonClientException {
         return executorService.submit(new Callable<Void>() {
             public Void call() throws Exception {
-                deleteAutoScalingGroup(deleteAutoScalingGroupRequest);
+                deleteScheduledAction(deleteScheduledActionRequest);
                 return null;
         }
     });
@@ -2406,32 +1313,11 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
 
     /**
      * <p>
-     * Deletes the specified Auto Scaling group.
-     * </p>
-     * <p>
-     * If the group has instances or scaling activities in progress, you
-     * must specify the option to force the deletion in order for it to
-     * succeed.
-     * </p>
-     * <p>
-     * If the group has policies, deleting the group deletes the policies,
-     * the underlying alarm actions, and any alarm that no longer has an
-     * associated action.
-     * </p>
-     * <p>
-     * To remove instances from the Auto Scaling group before deleting it,
-     * call DetachInstances with the list of instances and the option to
-     * decrement the desired capacity so that Auto Scaling does not launch
-     * replacement instances.
-     * </p>
-     * <p>
-     * To terminate all instances before deleting the Auto Scaling group,
-     * call UpdateAutoScalingGroup and set the minimum size and desired
-     * capacity of the Auto Scaling group to zero.
+     * Deletes the specified scheduled action.
      * </p>
      *
-     * @param deleteAutoScalingGroupRequest Container for the necessary
-     *           parameters to execute the DeleteAutoScalingGroup operation on
+     * @param deleteScheduledActionRequest Container for the necessary
+     *           parameters to execute the DeleteScheduledAction operation on
      *           AmazonAutoScaling.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -2439,7 +1325,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         DeleteAutoScalingGroup service method, as returned by
+     *         DeleteScheduledAction service method, as returned by
      *         AmazonAutoScaling.
      * 
      *
@@ -2451,19 +1337,19 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> deleteAutoScalingGroupAsync(
-            final DeleteAutoScalingGroupRequest deleteAutoScalingGroupRequest,
-            final AsyncHandler<DeleteAutoScalingGroupRequest, Void> asyncHandler)
+    public Future<Void> deleteScheduledActionAsync(
+            final DeleteScheduledActionRequest deleteScheduledActionRequest,
+            final AsyncHandler<DeleteScheduledActionRequest, Void> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
         return executorService.submit(new Callable<Void>() {
             public Void call() throws Exception {
               try {
-                deleteAutoScalingGroup(deleteAutoScalingGroupRequest);
+                deleteScheduledAction(deleteScheduledActionRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(deleteAutoScalingGroupRequest, null);
+              asyncHandler.onSuccess(deleteScheduledActionRequest, null);
                  return null;
         }
     });
@@ -2471,16 +1357,21 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
     
     /**
      * <p>
-     * Disables monitoring of the specified metrics for the specified Auto
+     * Enables monitoring of the specified metrics for the specified Auto
      * Scaling group.
      * </p>
+     * <p>
+     * You can only enable metrics collection if
+     * <code>InstanceMonitoring</code> in the launch configuration for the
+     * group is set to <code>True</code> .
+     * </p>
      *
-     * @param disableMetricsCollectionRequest Container for the necessary
-     *           parameters to execute the DisableMetricsCollection operation on
+     * @param enableMetricsCollectionRequest Container for the necessary
+     *           parameters to execute the EnableMetricsCollection operation on
      *           AmazonAutoScaling.
      * 
      * @return A Java Future object containing the response from the
-     *         DisableMetricsCollection service method, as returned by
+     *         EnableMetricsCollection service method, as returned by
      *         AmazonAutoScaling.
      * 
      *
@@ -2492,11 +1383,11 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> disableMetricsCollectionAsync(final DisableMetricsCollectionRequest disableMetricsCollectionRequest) 
+    public Future<Void> enableMetricsCollectionAsync(final EnableMetricsCollectionRequest enableMetricsCollectionRequest) 
             throws AmazonServiceException, AmazonClientException {
         return executorService.submit(new Callable<Void>() {
             public Void call() throws Exception {
-                disableMetricsCollection(disableMetricsCollectionRequest);
+                enableMetricsCollection(enableMetricsCollectionRequest);
                 return null;
         }
     });
@@ -2504,12 +1395,17 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
 
     /**
      * <p>
-     * Disables monitoring of the specified metrics for the specified Auto
+     * Enables monitoring of the specified metrics for the specified Auto
      * Scaling group.
      * </p>
+     * <p>
+     * You can only enable metrics collection if
+     * <code>InstanceMonitoring</code> in the launch configuration for the
+     * group is set to <code>True</code> .
+     * </p>
      *
-     * @param disableMetricsCollectionRequest Container for the necessary
-     *           parameters to execute the DisableMetricsCollection operation on
+     * @param enableMetricsCollectionRequest Container for the necessary
+     *           parameters to execute the EnableMetricsCollection operation on
      *           AmazonAutoScaling.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -2517,7 +1413,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         DisableMetricsCollection service method, as returned by
+     *         EnableMetricsCollection service method, as returned by
      *         AmazonAutoScaling.
      * 
      *
@@ -2529,1394 +1425,20 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> disableMetricsCollectionAsync(
-            final DisableMetricsCollectionRequest disableMetricsCollectionRequest,
-            final AsyncHandler<DisableMetricsCollectionRequest, Void> asyncHandler)
+    public Future<Void> enableMetricsCollectionAsync(
+            final EnableMetricsCollectionRequest enableMetricsCollectionRequest,
+            final AsyncHandler<EnableMetricsCollectionRequest, Void> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
         return executorService.submit(new Callable<Void>() {
             public Void call() throws Exception {
               try {
-                disableMetricsCollection(disableMetricsCollectionRequest);
+                enableMetricsCollection(enableMetricsCollectionRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(disableMetricsCollectionRequest, null);
+              asyncHandler.onSuccess(enableMetricsCollectionRequest, null);
                  return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes one or more launch configurations. If you omit the list of
-     * names, then the call describes all launch configurations.
-     * </p>
-     *
-     * @param describeLaunchConfigurationsRequest Container for the necessary
-     *           parameters to execute the DescribeLaunchConfigurations operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeLaunchConfigurations service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeLaunchConfigurationsResult> describeLaunchConfigurationsAsync(final DescribeLaunchConfigurationsRequest describeLaunchConfigurationsRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLaunchConfigurationsResult>() {
-            public DescribeLaunchConfigurationsResult call() throws Exception {
-                return describeLaunchConfigurations(describeLaunchConfigurationsRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes one or more launch configurations. If you omit the list of
-     * names, then the call describes all launch configurations.
-     * </p>
-     *
-     * @param describeLaunchConfigurationsRequest Container for the necessary
-     *           parameters to execute the DescribeLaunchConfigurations operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeLaunchConfigurations service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeLaunchConfigurationsResult> describeLaunchConfigurationsAsync(
-            final DescribeLaunchConfigurationsRequest describeLaunchConfigurationsRequest,
-            final AsyncHandler<DescribeLaunchConfigurationsRequest, DescribeLaunchConfigurationsResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLaunchConfigurationsResult>() {
-            public DescribeLaunchConfigurationsResult call() throws Exception {
-              DescribeLaunchConfigurationsResult result;
-                try {
-                result = describeLaunchConfigurations(describeLaunchConfigurationsRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeLaunchConfigurationsRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes the actions scheduled for your Auto Scaling group that
-     * haven't run. To describe the actions that have already run, use
-     * DescribeScalingActivities.
-     * </p>
-     *
-     * @param describeScheduledActionsRequest Container for the necessary
-     *           parameters to execute the DescribeScheduledActions operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeScheduledActions service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeScheduledActionsResult> describeScheduledActionsAsync(final DescribeScheduledActionsRequest describeScheduledActionsRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeScheduledActionsResult>() {
-            public DescribeScheduledActionsResult call() throws Exception {
-                return describeScheduledActions(describeScheduledActionsRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the actions scheduled for your Auto Scaling group that
-     * haven't run. To describe the actions that have already run, use
-     * DescribeScalingActivities.
-     * </p>
-     *
-     * @param describeScheduledActionsRequest Container for the necessary
-     *           parameters to execute the DescribeScheduledActions operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeScheduledActions service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeScheduledActionsResult> describeScheduledActionsAsync(
-            final DescribeScheduledActionsRequest describeScheduledActionsRequest,
-            final AsyncHandler<DescribeScheduledActionsRequest, DescribeScheduledActionsResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeScheduledActionsResult>() {
-            public DescribeScheduledActionsResult call() throws Exception {
-              DescribeScheduledActionsResult result;
-                try {
-                result = describeScheduledActions(describeScheduledActionsRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeScheduledActionsRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes the policy adjustment types for use with PutScalingPolicy.
-     * </p>
-     *
-     * @param describeAdjustmentTypesRequest Container for the necessary
-     *           parameters to execute the DescribeAdjustmentTypes operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeAdjustmentTypes service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeAdjustmentTypesResult> describeAdjustmentTypesAsync(final DescribeAdjustmentTypesRequest describeAdjustmentTypesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeAdjustmentTypesResult>() {
-            public DescribeAdjustmentTypesResult call() throws Exception {
-                return describeAdjustmentTypes(describeAdjustmentTypesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the policy adjustment types for use with PutScalingPolicy.
-     * </p>
-     *
-     * @param describeAdjustmentTypesRequest Container for the necessary
-     *           parameters to execute the DescribeAdjustmentTypes operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeAdjustmentTypes service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeAdjustmentTypesResult> describeAdjustmentTypesAsync(
-            final DescribeAdjustmentTypesRequest describeAdjustmentTypesRequest,
-            final AsyncHandler<DescribeAdjustmentTypesRequest, DescribeAdjustmentTypesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeAdjustmentTypesResult>() {
-            public DescribeAdjustmentTypesResult call() throws Exception {
-              DescribeAdjustmentTypesResult result;
-                try {
-                result = describeAdjustmentTypes(describeAdjustmentTypesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeAdjustmentTypesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Creates or updates a scheduled scaling action for an Auto Scaling
-     * group. When updating a scheduled scaling action, if you leave a
-     * parameter unspecified, the corresponding value remains unchanged in
-     * the affected Auto Scaling group.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html"> Scheduled Scaling </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param putScheduledUpdateGroupActionRequest Container for the
-     *           necessary parameters to execute the PutScheduledUpdateGroupAction
-     *           operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         PutScheduledUpdateGroupAction service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> putScheduledUpdateGroupActionAsync(final PutScheduledUpdateGroupActionRequest putScheduledUpdateGroupActionRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                putScheduledUpdateGroupAction(putScheduledUpdateGroupActionRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Creates or updates a scheduled scaling action for an Auto Scaling
-     * group. When updating a scheduled scaling action, if you leave a
-     * parameter unspecified, the corresponding value remains unchanged in
-     * the affected Auto Scaling group.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html"> Scheduled Scaling </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param putScheduledUpdateGroupActionRequest Container for the
-     *           necessary parameters to execute the PutScheduledUpdateGroupAction
-     *           operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         PutScheduledUpdateGroupAction service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> putScheduledUpdateGroupActionAsync(
-            final PutScheduledUpdateGroupActionRequest putScheduledUpdateGroupActionRequest,
-            final AsyncHandler<PutScheduledUpdateGroupActionRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                putScheduledUpdateGroupAction(putScheduledUpdateGroupActionRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(putScheduledUpdateGroupActionRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes the lifecycle hooks for the specified Auto Scaling group.
-     * </p>
-     *
-     * @param describeLifecycleHooksRequest Container for the necessary
-     *           parameters to execute the DescribeLifecycleHooks operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeLifecycleHooks service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeLifecycleHooksResult> describeLifecycleHooksAsync(final DescribeLifecycleHooksRequest describeLifecycleHooksRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLifecycleHooksResult>() {
-            public DescribeLifecycleHooksResult call() throws Exception {
-                return describeLifecycleHooks(describeLifecycleHooksRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the lifecycle hooks for the specified Auto Scaling group.
-     * </p>
-     *
-     * @param describeLifecycleHooksRequest Container for the necessary
-     *           parameters to execute the DescribeLifecycleHooks operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeLifecycleHooks service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeLifecycleHooksResult> describeLifecycleHooksAsync(
-            final DescribeLifecycleHooksRequest describeLifecycleHooksRequest,
-            final AsyncHandler<DescribeLifecycleHooksRequest, DescribeLifecycleHooksResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLifecycleHooksResult>() {
-            public DescribeLifecycleHooksResult call() throws Exception {
-              DescribeLifecycleHooksResult result;
-                try {
-                result = describeLifecycleHooks(describeLifecycleHooksRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeLifecycleHooksRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified launch configuration.
-     * </p>
-     * <p>
-     * The launch configuration must not be attached to an Auto Scaling
-     * group. When this call completes, the launch configuration is no longer
-     * available for use.
-     * </p>
-     *
-     * @param deleteLaunchConfigurationRequest Container for the necessary
-     *           parameters to execute the DeleteLaunchConfiguration operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteLaunchConfiguration service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteLaunchConfigurationAsync(final DeleteLaunchConfigurationRequest deleteLaunchConfigurationRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                deleteLaunchConfiguration(deleteLaunchConfigurationRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified launch configuration.
-     * </p>
-     * <p>
-     * The launch configuration must not be attached to an Auto Scaling
-     * group. When this call completes, the launch configuration is no longer
-     * available for use.
-     * </p>
-     *
-     * @param deleteLaunchConfigurationRequest Container for the necessary
-     *           parameters to execute the DeleteLaunchConfiguration operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteLaunchConfiguration service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteLaunchConfigurationAsync(
-            final DeleteLaunchConfigurationRequest deleteLaunchConfigurationRequest,
-            final AsyncHandler<DeleteLaunchConfigurationRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                deleteLaunchConfiguration(deleteLaunchConfigurationRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteLaunchConfigurationRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes the policies for the specified Auto Scaling group.
-     * </p>
-     *
-     * @param describePoliciesRequest Container for the necessary parameters
-     *           to execute the DescribePolicies operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribePolicies service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribePoliciesResult> describePoliciesAsync(final DescribePoliciesRequest describePoliciesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribePoliciesResult>() {
-            public DescribePoliciesResult call() throws Exception {
-                return describePolicies(describePoliciesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the policies for the specified Auto Scaling group.
-     * </p>
-     *
-     * @param describePoliciesRequest Container for the necessary parameters
-     *           to execute the DescribePolicies operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribePolicies service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribePoliciesResult> describePoliciesAsync(
-            final DescribePoliciesRequest describePoliciesRequest,
-            final AsyncHandler<DescribePoliciesRequest, DescribePoliciesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribePoliciesResult>() {
-            public DescribePoliciesResult call() throws Exception {
-              DescribePoliciesResult result;
-                try {
-                result = describePolicies(describePoliciesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describePoliciesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes the notification actions associated with the specified Auto
-     * Scaling group.
-     * </p>
-     *
-     * @param describeNotificationConfigurationsRequest Container for the
-     *           necessary parameters to execute the DescribeNotificationConfigurations
-     *           operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeNotificationConfigurations service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeNotificationConfigurationsResult> describeNotificationConfigurationsAsync(final DescribeNotificationConfigurationsRequest describeNotificationConfigurationsRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeNotificationConfigurationsResult>() {
-            public DescribeNotificationConfigurationsResult call() throws Exception {
-                return describeNotificationConfigurations(describeNotificationConfigurationsRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the notification actions associated with the specified Auto
-     * Scaling group.
-     * </p>
-     *
-     * @param describeNotificationConfigurationsRequest Container for the
-     *           necessary parameters to execute the DescribeNotificationConfigurations
-     *           operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeNotificationConfigurations service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeNotificationConfigurationsResult> describeNotificationConfigurationsAsync(
-            final DescribeNotificationConfigurationsRequest describeNotificationConfigurationsRequest,
-            final AsyncHandler<DescribeNotificationConfigurationsRequest, DescribeNotificationConfigurationsResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeNotificationConfigurationsResult>() {
-            public DescribeNotificationConfigurationsResult call() throws Exception {
-              DescribeNotificationConfigurationsResult result;
-                try {
-                result = describeNotificationConfigurations(describeNotificationConfigurationsRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeNotificationConfigurationsRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified lifecycle hook.
-     * </p>
-     * <p>
-     * If there are any outstanding lifecycle actions, they are completed
-     * first ( <code>ABANDON</code> for launching instances,
-     * <code>CONTINUE</code> for terminating instances).
-     * </p>
-     *
-     * @param deleteLifecycleHookRequest Container for the necessary
-     *           parameters to execute the DeleteLifecycleHook operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteLifecycleHook service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DeleteLifecycleHookResult> deleteLifecycleHookAsync(final DeleteLifecycleHookRequest deleteLifecycleHookRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteLifecycleHookResult>() {
-            public DeleteLifecycleHookResult call() throws Exception {
-                return deleteLifecycleHook(deleteLifecycleHookRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified lifecycle hook.
-     * </p>
-     * <p>
-     * If there are any outstanding lifecycle actions, they are completed
-     * first ( <code>ABANDON</code> for launching instances,
-     * <code>CONTINUE</code> for terminating instances).
-     * </p>
-     *
-     * @param deleteLifecycleHookRequest Container for the necessary
-     *           parameters to execute the DeleteLifecycleHook operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteLifecycleHook service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DeleteLifecycleHookResult> deleteLifecycleHookAsync(
-            final DeleteLifecycleHookRequest deleteLifecycleHookRequest,
-            final AsyncHandler<DeleteLifecycleHookRequest, DeleteLifecycleHookResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteLifecycleHookResult>() {
-            public DeleteLifecycleHookResult call() throws Exception {
-              DeleteLifecycleHookResult result;
-                try {
-                result = deleteLifecycleHook(deleteLifecycleHookRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteLifecycleHookRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Executes the specified policy.
-     * </p>
-     *
-     * @param executePolicyRequest Container for the necessary parameters to
-     *           execute the ExecutePolicy operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ExecutePolicy service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> executePolicyAsync(final ExecutePolicyRequest executePolicyRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                executePolicy(executePolicyRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Executes the specified policy.
-     * </p>
-     *
-     * @param executePolicyRequest Container for the necessary parameters to
-     *           execute the ExecutePolicy operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ExecutePolicy service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> executePolicyAsync(
-            final ExecutePolicyRequest executePolicyRequest,
-            final AsyncHandler<ExecutePolicyRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                executePolicy(executePolicyRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(executePolicyRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified tags.
-     * </p>
-     *
-     * @param deleteTagsRequest Container for the necessary parameters to
-     *           execute the DeleteTags operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteTags service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteTagsAsync(final DeleteTagsRequest deleteTagsRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                deleteTags(deleteTagsRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified tags.
-     * </p>
-     *
-     * @param deleteTagsRequest Container for the necessary parameters to
-     *           execute the DeleteTags operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteTags service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> deleteTagsAsync(
-            final DeleteTagsRequest deleteTagsRequest,
-            final AsyncHandler<DeleteTagsRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                deleteTags(deleteTagsRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteTagsRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Creates or updates a policy for an Auto Scaling group. To update an
-     * existing policy, use the existing policy name and set the parameters
-     * you want to change. Any existing parameter not changed in an update to
-     * an existing policy is not changed in this update request.
-     * </p>
-     * <p>
-     * If you exceed your maximum limit of step adjustments, which by
-     * default is 20 per region, the call fails. For information about
-     * updating this limit, see
-     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
-     * in the <i>Amazon Web Services General Reference</i> .
-     * </p>
-     *
-     * @param putScalingPolicyRequest Container for the necessary parameters
-     *           to execute the PutScalingPolicy operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         PutScalingPolicy service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<PutScalingPolicyResult> putScalingPolicyAsync(final PutScalingPolicyRequest putScalingPolicyRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<PutScalingPolicyResult>() {
-            public PutScalingPolicyResult call() throws Exception {
-                return putScalingPolicy(putScalingPolicyRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Creates or updates a policy for an Auto Scaling group. To update an
-     * existing policy, use the existing policy name and set the parameters
-     * you want to change. Any existing parameter not changed in an update to
-     * an existing policy is not changed in this update request.
-     * </p>
-     * <p>
-     * If you exceed your maximum limit of step adjustments, which by
-     * default is 20 per region, the call fails. For information about
-     * updating this limit, see
-     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
-     * in the <i>Amazon Web Services General Reference</i> .
-     * </p>
-     *
-     * @param putScalingPolicyRequest Container for the necessary parameters
-     *           to execute the PutScalingPolicy operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         PutScalingPolicy service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<PutScalingPolicyResult> putScalingPolicyAsync(
-            final PutScalingPolicyRequest putScalingPolicyRequest,
-            final AsyncHandler<PutScalingPolicyRequest, PutScalingPolicyResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<PutScalingPolicyResult>() {
-            public PutScalingPolicyResult call() throws Exception {
-              PutScalingPolicyResult result;
-                try {
-                result = putScalingPolicy(putScalingPolicyRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(putScalingPolicyRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Updates the instance protection settings of the specified instances.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html#instance-protection"> Instance Protection </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param setInstanceProtectionRequest Container for the necessary
-     *           parameters to execute the SetInstanceProtection operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetInstanceProtection service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SetInstanceProtectionResult> setInstanceProtectionAsync(final SetInstanceProtectionRequest setInstanceProtectionRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetInstanceProtectionResult>() {
-            public SetInstanceProtectionResult call() throws Exception {
-                return setInstanceProtection(setInstanceProtectionRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Updates the instance protection settings of the specified instances.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html#instance-protection"> Instance Protection </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param setInstanceProtectionRequest Container for the necessary
-     *           parameters to execute the SetInstanceProtection operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetInstanceProtection service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SetInstanceProtectionResult> setInstanceProtectionAsync(
-            final SetInstanceProtectionRequest setInstanceProtectionRequest,
-            final AsyncHandler<SetInstanceProtectionRequest, SetInstanceProtectionResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetInstanceProtectionResult>() {
-            public SetInstanceProtectionResult call() throws Exception {
-              SetInstanceProtectionResult result;
-                try {
-                result = setInstanceProtection(setInstanceProtectionRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(setInstanceProtectionRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Configures an Auto Scaling group to send notifications when specified
-     * events take place. Subscribers to this topic can have messages for
-     * events delivered to an endpoint such as a web server or email address.
-     * </p>
-     * <p>
-     * For more information see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASGettingNotifications.html"> Getting Notifications When Your Auto Scaling Group Changes </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     * <p>
-     * This configuration overwrites an existing configuration.
-     * </p>
-     *
-     * @param putNotificationConfigurationRequest Container for the necessary
-     *           parameters to execute the PutNotificationConfiguration operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         PutNotificationConfiguration service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> putNotificationConfigurationAsync(final PutNotificationConfigurationRequest putNotificationConfigurationRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                putNotificationConfiguration(putNotificationConfigurationRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Configures an Auto Scaling group to send notifications when specified
-     * events take place. Subscribers to this topic can have messages for
-     * events delivered to an endpoint such as a web server or email address.
-     * </p>
-     * <p>
-     * For more information see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASGettingNotifications.html"> Getting Notifications When Your Auto Scaling Group Changes </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     * <p>
-     * This configuration overwrites an existing configuration.
-     * </p>
-     *
-     * @param putNotificationConfigurationRequest Container for the necessary
-     *           parameters to execute the PutNotificationConfiguration operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         PutNotificationConfiguration service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> putNotificationConfigurationAsync(
-            final PutNotificationConfigurationRequest putNotificationConfigurationRequest,
-            final AsyncHandler<PutNotificationConfigurationRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                putNotificationConfiguration(putNotificationConfigurationRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(putNotificationConfigurationRequest, null);
-                 return null;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Moves the specified instances out of <code>Standby</code> mode.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param exitStandbyRequest Container for the necessary parameters to
-     *           execute the ExitStandby operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ExitStandby service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<ExitStandbyResult> exitStandbyAsync(final ExitStandbyRequest exitStandbyRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ExitStandbyResult>() {
-            public ExitStandbyResult call() throws Exception {
-                return exitStandby(exitStandbyRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Moves the specified instances out of <code>Standby</code> mode.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
-     * </p>
-     *
-     * @param exitStandbyRequest Container for the necessary parameters to
-     *           execute the ExitStandby operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ExitStandby service method, as returned by AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<ExitStandbyResult> exitStandbyAsync(
-            final ExitStandbyRequest exitStandbyRequest,
-            final AsyncHandler<ExitStandbyRequest, ExitStandbyResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ExitStandbyResult>() {
-            public ExitStandbyResult call() throws Exception {
-              ExitStandbyResult result;
-                try {
-                result = exitStandby(exitStandbyRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(exitStandbyRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes the notification types that are supported by Auto Scaling.
-     * </p>
-     *
-     * @param describeAutoScalingNotificationTypesRequest Container for the
-     *           necessary parameters to execute the
-     *           DescribeAutoScalingNotificationTypes operation on AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeAutoScalingNotificationTypes service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeAutoScalingNotificationTypesResult> describeAutoScalingNotificationTypesAsync(final DescribeAutoScalingNotificationTypesRequest describeAutoScalingNotificationTypesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeAutoScalingNotificationTypesResult>() {
-            public DescribeAutoScalingNotificationTypesResult call() throws Exception {
-                return describeAutoScalingNotificationTypes(describeAutoScalingNotificationTypesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the notification types that are supported by Auto Scaling.
-     * </p>
-     *
-     * @param describeAutoScalingNotificationTypesRequest Container for the
-     *           necessary parameters to execute the
-     *           DescribeAutoScalingNotificationTypes operation on AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeAutoScalingNotificationTypes service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeAutoScalingNotificationTypesResult> describeAutoScalingNotificationTypesAsync(
-            final DescribeAutoScalingNotificationTypesRequest describeAutoScalingNotificationTypesRequest,
-            final AsyncHandler<DescribeAutoScalingNotificationTypesRequest, DescribeAutoScalingNotificationTypesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeAutoScalingNotificationTypesResult>() {
-            public DescribeAutoScalingNotificationTypesResult call() throws Exception {
-              DescribeAutoScalingNotificationTypesResult result;
-                try {
-                result = describeAutoScalingNotificationTypes(describeAutoScalingNotificationTypesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeAutoScalingNotificationTypesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Describes the load balancers for the specified Auto Scaling group.
-     * </p>
-     *
-     * @param describeLoadBalancersRequest Container for the necessary
-     *           parameters to execute the DescribeLoadBalancers operation on
-     *           AmazonAutoScaling.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeLoadBalancers service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeLoadBalancersResult> describeLoadBalancersAsync(final DescribeLoadBalancersRequest describeLoadBalancersRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLoadBalancersResult>() {
-            public DescribeLoadBalancersResult call() throws Exception {
-                return describeLoadBalancers(describeLoadBalancersRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Describes the load balancers for the specified Auto Scaling group.
-     * </p>
-     *
-     * @param describeLoadBalancersRequest Container for the necessary
-     *           parameters to execute the DescribeLoadBalancers operation on
-     *           AmazonAutoScaling.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeLoadBalancers service method, as returned by
-     *         AmazonAutoScaling.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonAutoScaling indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeLoadBalancersResult> describeLoadBalancersAsync(
-            final DescribeLoadBalancersRequest describeLoadBalancersRequest,
-            final AsyncHandler<DescribeLoadBalancersRequest, DescribeLoadBalancersResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLoadBalancersResult>() {
-            public DescribeLoadBalancersResult call() throws Exception {
-              DescribeLoadBalancersResult result;
-                try {
-                result = describeLoadBalancers(describeLoadBalancersRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeLoadBalancersRequest, result);
-                 return result;
         }
     });
     }
@@ -4019,19 +1541,17 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
     
     /**
      * <p>
-     * Moves the specified instances into <code>Standby</code> mode.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
+     * Describes one or more Auto Scaling instances. If a list is not
+     * provided, the call describes all instances.
      * </p>
      *
-     * @param enterStandbyRequest Container for the necessary parameters to
-     *           execute the EnterStandby operation on AmazonAutoScaling.
+     * @param describeAutoScalingInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeAutoScalingInstances operation on
+     *           AmazonAutoScaling.
      * 
      * @return A Java Future object containing the response from the
-     *         EnterStandby service method, as returned by AmazonAutoScaling.
+     *         DescribeAutoScalingInstances service method, as returned by
+     *         AmazonAutoScaling.
      * 
      *
      * @throws AmazonClientException
@@ -4042,34 +1562,32 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<EnterStandbyResult> enterStandbyAsync(final EnterStandbyRequest enterStandbyRequest) 
+    public Future<DescribeAutoScalingInstancesResult> describeAutoScalingInstancesAsync(final DescribeAutoScalingInstancesRequest describeAutoScalingInstancesRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<EnterStandbyResult>() {
-            public EnterStandbyResult call() throws Exception {
-                return enterStandby(enterStandbyRequest);
+        return executorService.submit(new Callable<DescribeAutoScalingInstancesResult>() {
+            public DescribeAutoScalingInstancesResult call() throws Exception {
+                return describeAutoScalingInstances(describeAutoScalingInstancesRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Moves the specified instances into <code>Standby</code> mode.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
-     * in the <i>Auto Scaling Developer Guide</i> .
+     * Describes one or more Auto Scaling instances. If a list is not
+     * provided, the call describes all instances.
      * </p>
      *
-     * @param enterStandbyRequest Container for the necessary parameters to
-     *           execute the EnterStandby operation on AmazonAutoScaling.
+     * @param describeAutoScalingInstancesRequest Container for the necessary
+     *           parameters to execute the DescribeAutoScalingInstances operation on
+     *           AmazonAutoScaling.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         EnterStandby service method, as returned by AmazonAutoScaling.
+     *         DescribeAutoScalingInstances service method, as returned by
+     *         AmazonAutoScaling.
      * 
      *
      * @throws AmazonClientException
@@ -4080,20 +1598,96 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
      *             If an error response is returned by AmazonAutoScaling indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<EnterStandbyResult> enterStandbyAsync(
-            final EnterStandbyRequest enterStandbyRequest,
-            final AsyncHandler<EnterStandbyRequest, EnterStandbyResult> asyncHandler)
+    public Future<DescribeAutoScalingInstancesResult> describeAutoScalingInstancesAsync(
+            final DescribeAutoScalingInstancesRequest describeAutoScalingInstancesRequest,
+            final AsyncHandler<DescribeAutoScalingInstancesRequest, DescribeAutoScalingInstancesResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<EnterStandbyResult>() {
-            public EnterStandbyResult call() throws Exception {
-              EnterStandbyResult result;
+        return executorService.submit(new Callable<DescribeAutoScalingInstancesResult>() {
+            public DescribeAutoScalingInstancesResult call() throws Exception {
+              DescribeAutoScalingInstancesResult result;
                 try {
-                result = enterStandby(enterStandbyRequest);
+                result = describeAutoScalingInstances(describeAutoScalingInstancesRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(enterStandbyRequest, result);
+              asyncHandler.onSuccess(describeAutoScalingInstancesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the lifecycle hooks for the specified Auto Scaling group.
+     * </p>
+     *
+     * @param describeLifecycleHooksRequest Container for the necessary
+     *           parameters to execute the DescribeLifecycleHooks operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLifecycleHooks service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLifecycleHooksResult> describeLifecycleHooksAsync(final DescribeLifecycleHooksRequest describeLifecycleHooksRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLifecycleHooksResult>() {
+            public DescribeLifecycleHooksResult call() throws Exception {
+                return describeLifecycleHooks(describeLifecycleHooksRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the lifecycle hooks for the specified Auto Scaling group.
+     * </p>
+     *
+     * @param describeLifecycleHooksRequest Container for the necessary
+     *           parameters to execute the DescribeLifecycleHooks operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLifecycleHooks service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLifecycleHooksResult> describeLifecycleHooksAsync(
+            final DescribeLifecycleHooksRequest describeLifecycleHooksRequest,
+            final AsyncHandler<DescribeLifecycleHooksRequest, DescribeLifecycleHooksResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLifecycleHooksResult>() {
+            public DescribeLifecycleHooksResult call() throws Exception {
+              DescribeLifecycleHooksResult result;
+                try {
+                result = describeLifecycleHooks(describeLifecycleHooksRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeLifecycleHooksRequest, result);
                  return result;
         }
     });
@@ -4373,6 +1967,1000 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
     
     /**
      * <p>
+     * Describes the scaling process types for use with ResumeProcesses and
+     * SuspendProcesses.
+     * </p>
+     *
+     * @param describeScalingProcessTypesRequest Container for the necessary
+     *           parameters to execute the DescribeScalingProcessTypes operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeScalingProcessTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeScalingProcessTypesResult> describeScalingProcessTypesAsync(final DescribeScalingProcessTypesRequest describeScalingProcessTypesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeScalingProcessTypesResult>() {
+            public DescribeScalingProcessTypesResult call() throws Exception {
+                return describeScalingProcessTypes(describeScalingProcessTypesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the scaling process types for use with ResumeProcesses and
+     * SuspendProcesses.
+     * </p>
+     *
+     * @param describeScalingProcessTypesRequest Container for the necessary
+     *           parameters to execute the DescribeScalingProcessTypes operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeScalingProcessTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeScalingProcessTypesResult> describeScalingProcessTypesAsync(
+            final DescribeScalingProcessTypesRequest describeScalingProcessTypesRequest,
+            final AsyncHandler<DescribeScalingProcessTypesRequest, DescribeScalingProcessTypesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeScalingProcessTypesResult>() {
+            public DescribeScalingProcessTypesResult call() throws Exception {
+              DescribeScalingProcessTypesResult result;
+                try {
+                result = describeScalingProcessTypes(describeScalingProcessTypesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeScalingProcessTypesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the termination policies supported by Auto Scaling.
+     * </p>
+     *
+     * @param describeTerminationPolicyTypesRequest Container for the
+     *           necessary parameters to execute the DescribeTerminationPolicyTypes
+     *           operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeTerminationPolicyTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeTerminationPolicyTypesResult> describeTerminationPolicyTypesAsync(final DescribeTerminationPolicyTypesRequest describeTerminationPolicyTypesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeTerminationPolicyTypesResult>() {
+            public DescribeTerminationPolicyTypesResult call() throws Exception {
+                return describeTerminationPolicyTypes(describeTerminationPolicyTypesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the termination policies supported by Auto Scaling.
+     * </p>
+     *
+     * @param describeTerminationPolicyTypesRequest Container for the
+     *           necessary parameters to execute the DescribeTerminationPolicyTypes
+     *           operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeTerminationPolicyTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeTerminationPolicyTypesResult> describeTerminationPolicyTypesAsync(
+            final DescribeTerminationPolicyTypesRequest describeTerminationPolicyTypesRequest,
+            final AsyncHandler<DescribeTerminationPolicyTypesRequest, DescribeTerminationPolicyTypesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeTerminationPolicyTypesResult>() {
+            public DescribeTerminationPolicyTypesResult call() throws Exception {
+              DescribeTerminationPolicyTypesResult result;
+                try {
+                result = describeTerminationPolicyTypes(describeTerminationPolicyTypesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeTerminationPolicyTypesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Completes the lifecycle action for the associated token initiated
+     * under the given lifecycle hook with the specified result.
+     * </p>
+     * <p>
+     * This operation is a part of the basic sequence for adding a lifecycle
+     * hook to an Auto Scaling group:
+     * </p>
+     * <ol> <li>Create a notification target. A target can be either an
+     * Amazon SQS queue or an Amazon SNS topic.</li>
+     * <li>Create an IAM role. This role allows Auto Scaling to publish
+     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
+     * <li>Create the lifecycle hook. You can create a hook that acts when
+     * instances launch or when instances terminate.</li>
+     * <li>If necessary, record the lifecycle action heartbeat to keep the
+     * instance in a pending state.</li>
+     * <li> <b>Complete the lifecycle action</b> .</li>
+     * </ol> <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param completeLifecycleActionRequest Container for the necessary
+     *           parameters to execute the CompleteLifecycleAction operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CompleteLifecycleAction service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CompleteLifecycleActionResult> completeLifecycleActionAsync(final CompleteLifecycleActionRequest completeLifecycleActionRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CompleteLifecycleActionResult>() {
+            public CompleteLifecycleActionResult call() throws Exception {
+                return completeLifecycleAction(completeLifecycleActionRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Completes the lifecycle action for the associated token initiated
+     * under the given lifecycle hook with the specified result.
+     * </p>
+     * <p>
+     * This operation is a part of the basic sequence for adding a lifecycle
+     * hook to an Auto Scaling group:
+     * </p>
+     * <ol> <li>Create a notification target. A target can be either an
+     * Amazon SQS queue or an Amazon SNS topic.</li>
+     * <li>Create an IAM role. This role allows Auto Scaling to publish
+     * lifecycle notifications to the designated SQS queue or SNS topic.</li>
+     * <li>Create the lifecycle hook. You can create a hook that acts when
+     * instances launch or when instances terminate.</li>
+     * <li>If necessary, record the lifecycle action heartbeat to keep the
+     * instance in a pending state.</li>
+     * <li> <b>Complete the lifecycle action</b> .</li>
+     * </ol> <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param completeLifecycleActionRequest Container for the necessary
+     *           parameters to execute the CompleteLifecycleAction operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CompleteLifecycleAction service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CompleteLifecycleActionResult> completeLifecycleActionAsync(
+            final CompleteLifecycleActionRequest completeLifecycleActionRequest,
+            final AsyncHandler<CompleteLifecycleActionRequest, CompleteLifecycleActionResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CompleteLifecycleActionResult>() {
+            public CompleteLifecycleActionResult call() throws Exception {
+              CompleteLifecycleActionResult result;
+                try {
+                result = completeLifecycleAction(completeLifecycleActionRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(completeLifecycleActionRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the specified Auto Scaling group.
+     * </p>
+     * <p>
+     * If the group has instances or scaling activities in progress, you
+     * must specify the option to force the deletion in order for it to
+     * succeed.
+     * </p>
+     * <p>
+     * If the group has policies, deleting the group deletes the policies,
+     * the underlying alarm actions, and any alarm that no longer has an
+     * associated action.
+     * </p>
+     * <p>
+     * To remove instances from the Auto Scaling group before deleting it,
+     * call DetachInstances with the list of instances and the option to
+     * decrement the desired capacity so that Auto Scaling does not launch
+     * replacement instances.
+     * </p>
+     * <p>
+     * To terminate all instances before deleting the Auto Scaling group,
+     * call UpdateAutoScalingGroup and set the minimum size and desired
+     * capacity of the Auto Scaling group to zero.
+     * </p>
+     *
+     * @param deleteAutoScalingGroupRequest Container for the necessary
+     *           parameters to execute the DeleteAutoScalingGroup operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteAutoScalingGroup service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteAutoScalingGroupAsync(final DeleteAutoScalingGroupRequest deleteAutoScalingGroupRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteAutoScalingGroup(deleteAutoScalingGroupRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified Auto Scaling group.
+     * </p>
+     * <p>
+     * If the group has instances or scaling activities in progress, you
+     * must specify the option to force the deletion in order for it to
+     * succeed.
+     * </p>
+     * <p>
+     * If the group has policies, deleting the group deletes the policies,
+     * the underlying alarm actions, and any alarm that no longer has an
+     * associated action.
+     * </p>
+     * <p>
+     * To remove instances from the Auto Scaling group before deleting it,
+     * call DetachInstances with the list of instances and the option to
+     * decrement the desired capacity so that Auto Scaling does not launch
+     * replacement instances.
+     * </p>
+     * <p>
+     * To terminate all instances before deleting the Auto Scaling group,
+     * call UpdateAutoScalingGroup and set the minimum size and desired
+     * capacity of the Auto Scaling group to zero.
+     * </p>
+     *
+     * @param deleteAutoScalingGroupRequest Container for the necessary
+     *           parameters to execute the DeleteAutoScalingGroup operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteAutoScalingGroup service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteAutoScalingGroupAsync(
+            final DeleteAutoScalingGroupRequest deleteAutoScalingGroupRequest,
+            final AsyncHandler<DeleteAutoScalingGroupRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                deleteAutoScalingGroup(deleteAutoScalingGroupRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteAutoScalingGroupRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the load balancers for the specified Auto Scaling group.
+     * </p>
+     *
+     * @param describeLoadBalancersRequest Container for the necessary
+     *           parameters to execute the DescribeLoadBalancers operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLoadBalancers service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLoadBalancersResult> describeLoadBalancersAsync(final DescribeLoadBalancersRequest describeLoadBalancersRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLoadBalancersResult>() {
+            public DescribeLoadBalancersResult call() throws Exception {
+                return describeLoadBalancers(describeLoadBalancersRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the load balancers for the specified Auto Scaling group.
+     * </p>
+     *
+     * @param describeLoadBalancersRequest Container for the necessary
+     *           parameters to execute the DescribeLoadBalancers operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLoadBalancers service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLoadBalancersResult> describeLoadBalancersAsync(
+            final DescribeLoadBalancersRequest describeLoadBalancersRequest,
+            final AsyncHandler<DescribeLoadBalancersRequest, DescribeLoadBalancersResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLoadBalancersResult>() {
+            public DescribeLoadBalancersResult call() throws Exception {
+              DescribeLoadBalancersResult result;
+                try {
+                result = describeLoadBalancers(describeLoadBalancersRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeLoadBalancersRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Removes one or more load balancers from the specified Auto Scaling
+     * group.
+     * </p>
+     * <p>
+     * When you detach a load balancer, it enters the <code>Removing</code>
+     * state while deregistering the instances in the group. When all
+     * instances are deregistered, then you can no longer describe the load
+     * balancer using DescribeLoadBalancers. Note that the instances remain
+     * running.
+     * </p>
+     *
+     * @param detachLoadBalancersRequest Container for the necessary
+     *           parameters to execute the DetachLoadBalancers operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DetachLoadBalancers service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DetachLoadBalancersResult> detachLoadBalancersAsync(final DetachLoadBalancersRequest detachLoadBalancersRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DetachLoadBalancersResult>() {
+            public DetachLoadBalancersResult call() throws Exception {
+                return detachLoadBalancers(detachLoadBalancersRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Removes one or more load balancers from the specified Auto Scaling
+     * group.
+     * </p>
+     * <p>
+     * When you detach a load balancer, it enters the <code>Removing</code>
+     * state while deregistering the instances in the group. When all
+     * instances are deregistered, then you can no longer describe the load
+     * balancer using DescribeLoadBalancers. Note that the instances remain
+     * running.
+     * </p>
+     *
+     * @param detachLoadBalancersRequest Container for the necessary
+     *           parameters to execute the DetachLoadBalancers operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DetachLoadBalancers service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DetachLoadBalancersResult> detachLoadBalancersAsync(
+            final DetachLoadBalancersRequest detachLoadBalancersRequest,
+            final AsyncHandler<DetachLoadBalancersRequest, DetachLoadBalancersResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DetachLoadBalancersResult>() {
+            public DetachLoadBalancersResult call() throws Exception {
+              DetachLoadBalancersResult result;
+                try {
+                result = detachLoadBalancers(detachLoadBalancersRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(detachLoadBalancersRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Creates or updates a policy for an Auto Scaling group. To update an
+     * existing policy, use the existing policy name and set the parameters
+     * you want to change. Any existing parameter not changed in an update to
+     * an existing policy is not changed in this update request.
+     * </p>
+     * <p>
+     * If you exceed your maximum limit of step adjustments, which by
+     * default is 20 per region, the call fails. For information about
+     * updating this limit, see
+     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
+     * in the <i>Amazon Web Services General Reference</i> .
+     * </p>
+     *
+     * @param putScalingPolicyRequest Container for the necessary parameters
+     *           to execute the PutScalingPolicy operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         PutScalingPolicy service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<PutScalingPolicyResult> putScalingPolicyAsync(final PutScalingPolicyRequest putScalingPolicyRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<PutScalingPolicyResult>() {
+            public PutScalingPolicyResult call() throws Exception {
+                return putScalingPolicy(putScalingPolicyRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Creates or updates a policy for an Auto Scaling group. To update an
+     * existing policy, use the existing policy name and set the parameters
+     * you want to change. Any existing parameter not changed in an update to
+     * an existing policy is not changed in this update request.
+     * </p>
+     * <p>
+     * If you exceed your maximum limit of step adjustments, which by
+     * default is 20 per region, the call fails. For information about
+     * updating this limit, see
+     * <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"> AWS Service Limits </a>
+     * in the <i>Amazon Web Services General Reference</i> .
+     * </p>
+     *
+     * @param putScalingPolicyRequest Container for the necessary parameters
+     *           to execute the PutScalingPolicy operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         PutScalingPolicy service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<PutScalingPolicyResult> putScalingPolicyAsync(
+            final PutScalingPolicyRequest putScalingPolicyRequest,
+            final AsyncHandler<PutScalingPolicyRequest, PutScalingPolicyResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<PutScalingPolicyResult>() {
+            public PutScalingPolicyResult call() throws Exception {
+              PutScalingPolicyResult result;
+                try {
+                result = putScalingPolicy(putScalingPolicyRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(putScalingPolicyRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes one or more scaling activities for the specified Auto
+     * Scaling group. If you omit the <code>ActivityIds</code> , the call
+     * returns all activities from the past six weeks. Activities are sorted
+     * by the start time. Activities still in progress appear first on the
+     * list.
+     * </p>
+     *
+     * @param describeScalingActivitiesRequest Container for the necessary
+     *           parameters to execute the DescribeScalingActivities operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeScalingActivities service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeScalingActivitiesResult> describeScalingActivitiesAsync(final DescribeScalingActivitiesRequest describeScalingActivitiesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeScalingActivitiesResult>() {
+            public DescribeScalingActivitiesResult call() throws Exception {
+                return describeScalingActivities(describeScalingActivitiesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes one or more scaling activities for the specified Auto
+     * Scaling group. If you omit the <code>ActivityIds</code> , the call
+     * returns all activities from the past six weeks. Activities are sorted
+     * by the start time. Activities still in progress appear first on the
+     * list.
+     * </p>
+     *
+     * @param describeScalingActivitiesRequest Container for the necessary
+     *           parameters to execute the DescribeScalingActivities operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeScalingActivities service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeScalingActivitiesResult> describeScalingActivitiesAsync(
+            final DescribeScalingActivitiesRequest describeScalingActivitiesRequest,
+            final AsyncHandler<DescribeScalingActivitiesRequest, DescribeScalingActivitiesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeScalingActivitiesResult>() {
+            public DescribeScalingActivitiesResult call() throws Exception {
+              DescribeScalingActivitiesResult result;
+                try {
+                result = describeScalingActivities(describeScalingActivitiesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeScalingActivitiesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Moves the specified instances into <code>Standby</code> mode.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param enterStandbyRequest Container for the necessary parameters to
+     *           execute the EnterStandby operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         EnterStandby service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<EnterStandbyResult> enterStandbyAsync(final EnterStandbyRequest enterStandbyRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<EnterStandbyResult>() {
+            public EnterStandbyResult call() throws Exception {
+                return enterStandby(enterStandbyRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Moves the specified instances into <code>Standby</code> mode.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param enterStandbyRequest Container for the necessary parameters to
+     *           execute the EnterStandby operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         EnterStandby service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<EnterStandbyResult> enterStandbyAsync(
+            final EnterStandbyRequest enterStandbyRequest,
+            final AsyncHandler<EnterStandbyRequest, EnterStandbyResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<EnterStandbyResult>() {
+            public EnterStandbyResult call() throws Exception {
+              EnterStandbyResult result;
+                try {
+                result = enterStandby(enterStandbyRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(enterStandbyRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the specified tags.
+     * </p>
+     *
+     * @param deleteTagsRequest Container for the necessary parameters to
+     *           execute the DeleteTags operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteTags service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteTagsAsync(final DeleteTagsRequest deleteTagsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteTags(deleteTagsRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified tags.
+     * </p>
+     *
+     * @param deleteTagsRequest Container for the necessary parameters to
+     *           execute the DeleteTags operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteTags service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteTagsAsync(
+            final DeleteTagsRequest deleteTagsRequest,
+            final AsyncHandler<DeleteTagsRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                deleteTags(deleteTagsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteTagsRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Creates or updates tags for the specified Auto Scaling group.
+     * </p>
+     * <p>
+     * A tag is defined by its resource ID, resource type, key, value, and
+     * propagate flag. The value and the propagate flag are optional
+     * parameters. The only supported resource type is
+     * <code>auto-scaling-group</code> , and the resource ID must be the name
+     * of the group. The <code>PropagateAtLaunch</code> flag determines
+     * whether the tag is added to instances launched in the group. Valid
+     * values are <code>true</code> or <code>false</code> .
+     * </p>
+     * <p>
+     * When you specify a tag with a key that already exists, the operation
+     * overwrites the previous tag definition, and you do not get an error
+     * message.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASTagging.html"> Tagging Auto Scaling Groups and Instances </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param createOrUpdateTagsRequest Container for the necessary
+     *           parameters to execute the CreateOrUpdateTags operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateOrUpdateTags service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> createOrUpdateTagsAsync(final CreateOrUpdateTagsRequest createOrUpdateTagsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                createOrUpdateTags(createOrUpdateTagsRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Creates or updates tags for the specified Auto Scaling group.
+     * </p>
+     * <p>
+     * A tag is defined by its resource ID, resource type, key, value, and
+     * propagate flag. The value and the propagate flag are optional
+     * parameters. The only supported resource type is
+     * <code>auto-scaling-group</code> , and the resource ID must be the name
+     * of the group. The <code>PropagateAtLaunch</code> flag determines
+     * whether the tag is added to instances launched in the group. Valid
+     * values are <code>true</code> or <code>false</code> .
+     * </p>
+     * <p>
+     * When you specify a tag with a key that already exists, the operation
+     * overwrites the previous tag definition, and you do not get an error
+     * message.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASTagging.html"> Tagging Auto Scaling Groups and Instances </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param createOrUpdateTagsRequest Container for the necessary
+     *           parameters to execute the CreateOrUpdateTags operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateOrUpdateTags service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> createOrUpdateTagsAsync(
+            final CreateOrUpdateTagsRequest createOrUpdateTagsRequest,
+            final AsyncHandler<CreateOrUpdateTagsRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                createOrUpdateTags(createOrUpdateTagsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(createOrUpdateTagsRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Describes the available CloudWatch metrics for Auto Scaling.
      * </p>
      * <p>
@@ -4453,6 +3041,164 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
               }
               asyncHandler.onSuccess(describeMetricCollectionTypesRequest, result);
                  return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the actions scheduled for your Auto Scaling group that
+     * haven't run. To describe the actions that have already run, use
+     * DescribeScalingActivities.
+     * </p>
+     *
+     * @param describeScheduledActionsRequest Container for the necessary
+     *           parameters to execute the DescribeScheduledActions operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeScheduledActions service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeScheduledActionsResult> describeScheduledActionsAsync(final DescribeScheduledActionsRequest describeScheduledActionsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeScheduledActionsResult>() {
+            public DescribeScheduledActionsResult call() throws Exception {
+                return describeScheduledActions(describeScheduledActionsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the actions scheduled for your Auto Scaling group that
+     * haven't run. To describe the actions that have already run, use
+     * DescribeScalingActivities.
+     * </p>
+     *
+     * @param describeScheduledActionsRequest Container for the necessary
+     *           parameters to execute the DescribeScheduledActions operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeScheduledActions service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeScheduledActionsResult> describeScheduledActionsAsync(
+            final DescribeScheduledActionsRequest describeScheduledActionsRequest,
+            final AsyncHandler<DescribeScheduledActionsRequest, DescribeScheduledActionsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeScheduledActionsResult>() {
+            public DescribeScheduledActionsResult call() throws Exception {
+              DescribeScheduledActionsResult result;
+                try {
+                result = describeScheduledActions(describeScheduledActionsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeScheduledActionsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Disables monitoring of the specified metrics for the specified Auto
+     * Scaling group.
+     * </p>
+     *
+     * @param disableMetricsCollectionRequest Container for the necessary
+     *           parameters to execute the DisableMetricsCollection operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DisableMetricsCollection service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> disableMetricsCollectionAsync(final DisableMetricsCollectionRequest disableMetricsCollectionRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                disableMetricsCollection(disableMetricsCollectionRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Disables monitoring of the specified metrics for the specified Auto
+     * Scaling group.
+     * </p>
+     *
+     * @param disableMetricsCollectionRequest Container for the necessary
+     *           parameters to execute the DisableMetricsCollection operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DisableMetricsCollection service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> disableMetricsCollectionAsync(
+            final DisableMetricsCollectionRequest disableMetricsCollectionRequest,
+            final AsyncHandler<DisableMetricsCollectionRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                disableMetricsCollection(disableMetricsCollectionRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(disableMetricsCollectionRequest, null);
+                 return null;
         }
     });
     }
@@ -4543,6 +3289,92 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
     
     /**
      * <p>
+     * Deletes the specified launch configuration.
+     * </p>
+     * <p>
+     * The launch configuration must not be attached to an Auto Scaling
+     * group. When this call completes, the launch configuration is no longer
+     * available for use.
+     * </p>
+     *
+     * @param deleteLaunchConfigurationRequest Container for the necessary
+     *           parameters to execute the DeleteLaunchConfiguration operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteLaunchConfiguration service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteLaunchConfigurationAsync(final DeleteLaunchConfigurationRequest deleteLaunchConfigurationRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteLaunchConfiguration(deleteLaunchConfigurationRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified launch configuration.
+     * </p>
+     * <p>
+     * The launch configuration must not be attached to an Auto Scaling
+     * group. When this call completes, the launch configuration is no longer
+     * available for use.
+     * </p>
+     *
+     * @param deleteLaunchConfigurationRequest Container for the necessary
+     *           parameters to execute the DeleteLaunchConfiguration operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteLaunchConfiguration service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deleteLaunchConfigurationAsync(
+            final DeleteLaunchConfigurationRequest deleteLaunchConfigurationRequest,
+            final AsyncHandler<DeleteLaunchConfigurationRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                deleteLaunchConfiguration(deleteLaunchConfigurationRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteLaunchConfigurationRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Terminates the specified instance and optionally adjusts the desired
      * group size.
      * </p>
@@ -4623,6 +3455,1174 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient
               }
               asyncHandler.onSuccess(terminateInstanceInAutoScalingGroupRequest, result);
                  return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the specified Auto Scaling policy.
+     * </p>
+     * <p>
+     * Deleting a policy deletes the underlying alarm action, but does not
+     * delete the alarm, even if it no longer has an associated action.
+     * </p>
+     *
+     * @param deletePolicyRequest Container for the necessary parameters to
+     *           execute the DeletePolicy operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeletePolicy service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deletePolicyAsync(final DeletePolicyRequest deletePolicyRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deletePolicy(deletePolicyRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified Auto Scaling policy.
+     * </p>
+     * <p>
+     * Deleting a policy deletes the underlying alarm action, but does not
+     * delete the alarm, even if it no longer has an associated action.
+     * </p>
+     *
+     * @param deletePolicyRequest Container for the necessary parameters to
+     *           execute the DeletePolicy operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeletePolicy service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> deletePolicyAsync(
+            final DeletePolicyRequest deletePolicyRequest,
+            final AsyncHandler<DeletePolicyRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                deletePolicy(deletePolicyRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deletePolicyRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Sets the health status of the specified instance.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"> Health Checks </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param setInstanceHealthRequest Container for the necessary parameters
+     *           to execute the SetInstanceHealth operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetInstanceHealth service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> setInstanceHealthAsync(final SetInstanceHealthRequest setInstanceHealthRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                setInstanceHealth(setInstanceHealthRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Sets the health status of the specified instance.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"> Health Checks </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param setInstanceHealthRequest Container for the necessary parameters
+     *           to execute the SetInstanceHealth operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetInstanceHealth service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> setInstanceHealthAsync(
+            final SetInstanceHealthRequest setInstanceHealthRequest,
+            final AsyncHandler<SetInstanceHealthRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                setInstanceHealth(setInstanceHealthRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(setInstanceHealthRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Executes the specified policy.
+     * </p>
+     *
+     * @param executePolicyRequest Container for the necessary parameters to
+     *           execute the ExecutePolicy operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ExecutePolicy service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> executePolicyAsync(final ExecutePolicyRequest executePolicyRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                executePolicy(executePolicyRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Executes the specified policy.
+     * </p>
+     *
+     * @param executePolicyRequest Container for the necessary parameters to
+     *           execute the ExecutePolicy operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ExecutePolicy service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> executePolicyAsync(
+            final ExecutePolicyRequest executePolicyRequest,
+            final AsyncHandler<ExecutePolicyRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                executePolicy(executePolicyRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(executePolicyRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the notification types that are supported by Auto Scaling.
+     * </p>
+     *
+     * @param describeAutoScalingNotificationTypesRequest Container for the
+     *           necessary parameters to execute the
+     *           DescribeAutoScalingNotificationTypes operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeAutoScalingNotificationTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeAutoScalingNotificationTypesResult> describeAutoScalingNotificationTypesAsync(final DescribeAutoScalingNotificationTypesRequest describeAutoScalingNotificationTypesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeAutoScalingNotificationTypesResult>() {
+            public DescribeAutoScalingNotificationTypesResult call() throws Exception {
+                return describeAutoScalingNotificationTypes(describeAutoScalingNotificationTypesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the notification types that are supported by Auto Scaling.
+     * </p>
+     *
+     * @param describeAutoScalingNotificationTypesRequest Container for the
+     *           necessary parameters to execute the
+     *           DescribeAutoScalingNotificationTypes operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeAutoScalingNotificationTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeAutoScalingNotificationTypesResult> describeAutoScalingNotificationTypesAsync(
+            final DescribeAutoScalingNotificationTypesRequest describeAutoScalingNotificationTypesRequest,
+            final AsyncHandler<DescribeAutoScalingNotificationTypesRequest, DescribeAutoScalingNotificationTypesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeAutoScalingNotificationTypesResult>() {
+            public DescribeAutoScalingNotificationTypesResult call() throws Exception {
+              DescribeAutoScalingNotificationTypesResult result;
+                try {
+                result = describeAutoScalingNotificationTypes(describeAutoScalingNotificationTypesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeAutoScalingNotificationTypesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Suspends the specified Auto Scaling processes for the specified Auto
+     * Scaling group. To suspend specific processes, use the
+     * <code>ScalingProcesses</code> parameter. To suspend all processes,
+     * omit the <code>ScalingProcesses</code> parameter.
+     * </p>
+     * <p>
+     * Note that if you suspend either the <code>Launch</code> or
+     * <code>Terminate</code> process types, it can prevent other process
+     * types from functioning properly.
+     * </p>
+     * <p>
+     * To resume processes that have been suspended, use ResumeProcesses.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param suspendProcessesRequest Container for the necessary parameters
+     *           to execute the SuspendProcesses operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SuspendProcesses service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> suspendProcessesAsync(final SuspendProcessesRequest suspendProcessesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                suspendProcesses(suspendProcessesRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Suspends the specified Auto Scaling processes for the specified Auto
+     * Scaling group. To suspend specific processes, use the
+     * <code>ScalingProcesses</code> parameter. To suspend all processes,
+     * omit the <code>ScalingProcesses</code> parameter.
+     * </p>
+     * <p>
+     * Note that if you suspend either the <code>Launch</code> or
+     * <code>Terminate</code> process types, it can prevent other process
+     * types from functioning properly.
+     * </p>
+     * <p>
+     * To resume processes that have been suspended, use ResumeProcesses.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param suspendProcessesRequest Container for the necessary parameters
+     *           to execute the SuspendProcesses operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SuspendProcesses service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> suspendProcessesAsync(
+            final SuspendProcessesRequest suspendProcessesRequest,
+            final AsyncHandler<SuspendProcessesRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                suspendProcesses(suspendProcessesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(suspendProcessesRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the specified lifecycle hook.
+     * </p>
+     * <p>
+     * If there are any outstanding lifecycle actions, they are completed
+     * first ( <code>ABANDON</code> for launching instances,
+     * <code>CONTINUE</code> for terminating instances).
+     * </p>
+     *
+     * @param deleteLifecycleHookRequest Container for the necessary
+     *           parameters to execute the DeleteLifecycleHook operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteLifecycleHook service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteLifecycleHookResult> deleteLifecycleHookAsync(final DeleteLifecycleHookRequest deleteLifecycleHookRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteLifecycleHookResult>() {
+            public DeleteLifecycleHookResult call() throws Exception {
+                return deleteLifecycleHook(deleteLifecycleHookRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified lifecycle hook.
+     * </p>
+     * <p>
+     * If there are any outstanding lifecycle actions, they are completed
+     * first ( <code>ABANDON</code> for launching instances,
+     * <code>CONTINUE</code> for terminating instances).
+     * </p>
+     *
+     * @param deleteLifecycleHookRequest Container for the necessary
+     *           parameters to execute the DeleteLifecycleHook operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteLifecycleHook service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteLifecycleHookResult> deleteLifecycleHookAsync(
+            final DeleteLifecycleHookRequest deleteLifecycleHookRequest,
+            final AsyncHandler<DeleteLifecycleHookRequest, DeleteLifecycleHookResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteLifecycleHookResult>() {
+            public DeleteLifecycleHookResult call() throws Exception {
+              DeleteLifecycleHookResult result;
+                try {
+                result = deleteLifecycleHook(deleteLifecycleHookRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteLifecycleHookRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Resumes the specified suspended Auto Scaling processes for the
+     * specified Auto Scaling group. To resume specific processes, use the
+     * <code>ScalingProcesses</code> parameter. To resume all processes, omit
+     * the <code>ScalingProcesses</code> parameter. For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param resumeProcessesRequest Container for the necessary parameters
+     *           to execute the ResumeProcesses operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ResumeProcesses service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> resumeProcessesAsync(final ResumeProcessesRequest resumeProcessesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                resumeProcesses(resumeProcessesRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Resumes the specified suspended Auto Scaling processes for the
+     * specified Auto Scaling group. To resume specific processes, use the
+     * <code>ScalingProcesses</code> parameter. To resume all processes, omit
+     * the <code>ScalingProcesses</code> parameter. For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param resumeProcessesRequest Container for the necessary parameters
+     *           to execute the ResumeProcesses operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ResumeProcesses service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> resumeProcessesAsync(
+            final ResumeProcessesRequest resumeProcessesRequest,
+            final AsyncHandler<ResumeProcessesRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                resumeProcesses(resumeProcessesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(resumeProcessesRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the policy adjustment types for use with PutScalingPolicy.
+     * </p>
+     *
+     * @param describeAdjustmentTypesRequest Container for the necessary
+     *           parameters to execute the DescribeAdjustmentTypes operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeAdjustmentTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeAdjustmentTypesResult> describeAdjustmentTypesAsync(final DescribeAdjustmentTypesRequest describeAdjustmentTypesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeAdjustmentTypesResult>() {
+            public DescribeAdjustmentTypesResult call() throws Exception {
+                return describeAdjustmentTypes(describeAdjustmentTypesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the policy adjustment types for use with PutScalingPolicy.
+     * </p>
+     *
+     * @param describeAdjustmentTypesRequest Container for the necessary
+     *           parameters to execute the DescribeAdjustmentTypes operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeAdjustmentTypes service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeAdjustmentTypesResult> describeAdjustmentTypesAsync(
+            final DescribeAdjustmentTypesRequest describeAdjustmentTypesRequest,
+            final AsyncHandler<DescribeAdjustmentTypesRequest, DescribeAdjustmentTypesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeAdjustmentTypesResult>() {
+            public DescribeAdjustmentTypesResult call() throws Exception {
+              DescribeAdjustmentTypesResult result;
+                try {
+                result = describeAdjustmentTypes(describeAdjustmentTypesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeAdjustmentTypesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes the notification actions associated with the specified Auto
+     * Scaling group.
+     * </p>
+     *
+     * @param describeNotificationConfigurationsRequest Container for the
+     *           necessary parameters to execute the DescribeNotificationConfigurations
+     *           operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeNotificationConfigurations service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeNotificationConfigurationsResult> describeNotificationConfigurationsAsync(final DescribeNotificationConfigurationsRequest describeNotificationConfigurationsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeNotificationConfigurationsResult>() {
+            public DescribeNotificationConfigurationsResult call() throws Exception {
+                return describeNotificationConfigurations(describeNotificationConfigurationsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes the notification actions associated with the specified Auto
+     * Scaling group.
+     * </p>
+     *
+     * @param describeNotificationConfigurationsRequest Container for the
+     *           necessary parameters to execute the DescribeNotificationConfigurations
+     *           operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeNotificationConfigurations service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeNotificationConfigurationsResult> describeNotificationConfigurationsAsync(
+            final DescribeNotificationConfigurationsRequest describeNotificationConfigurationsRequest,
+            final AsyncHandler<DescribeNotificationConfigurationsRequest, DescribeNotificationConfigurationsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeNotificationConfigurationsResult>() {
+            public DescribeNotificationConfigurationsResult call() throws Exception {
+              DescribeNotificationConfigurationsResult result;
+                try {
+                result = describeNotificationConfigurations(describeNotificationConfigurationsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeNotificationConfigurationsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Moves the specified instances out of <code>Standby</code> mode.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param exitStandbyRequest Container for the necessary parameters to
+     *           execute the ExitStandby operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ExitStandby service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ExitStandbyResult> exitStandbyAsync(final ExitStandbyRequest exitStandbyRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ExitStandbyResult>() {
+            public ExitStandbyResult call() throws Exception {
+                return exitStandby(exitStandbyRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Moves the specified instances out of <code>Standby</code> mode.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html"> Auto Scaling InService State </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param exitStandbyRequest Container for the necessary parameters to
+     *           execute the ExitStandby operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ExitStandby service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ExitStandbyResult> exitStandbyAsync(
+            final ExitStandbyRequest exitStandbyRequest,
+            final AsyncHandler<ExitStandbyRequest, ExitStandbyResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ExitStandbyResult>() {
+            public ExitStandbyResult call() throws Exception {
+              ExitStandbyResult result;
+                try {
+                result = exitStandby(exitStandbyRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(exitStandbyRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Describes one or more launch configurations. If you omit the list of
+     * names, then the call describes all launch configurations.
+     * </p>
+     *
+     * @param describeLaunchConfigurationsRequest Container for the necessary
+     *           parameters to execute the DescribeLaunchConfigurations operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLaunchConfigurations service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLaunchConfigurationsResult> describeLaunchConfigurationsAsync(final DescribeLaunchConfigurationsRequest describeLaunchConfigurationsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLaunchConfigurationsResult>() {
+            public DescribeLaunchConfigurationsResult call() throws Exception {
+                return describeLaunchConfigurations(describeLaunchConfigurationsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Describes one or more launch configurations. If you omit the list of
+     * names, then the call describes all launch configurations.
+     * </p>
+     *
+     * @param describeLaunchConfigurationsRequest Container for the necessary
+     *           parameters to execute the DescribeLaunchConfigurations operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeLaunchConfigurations service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeLaunchConfigurationsResult> describeLaunchConfigurationsAsync(
+            final DescribeLaunchConfigurationsRequest describeLaunchConfigurationsRequest,
+            final AsyncHandler<DescribeLaunchConfigurationsRequest, DescribeLaunchConfigurationsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLaunchConfigurationsResult>() {
+            public DescribeLaunchConfigurationsResult call() throws Exception {
+              DescribeLaunchConfigurationsResult result;
+                try {
+                result = describeLaunchConfigurations(describeLaunchConfigurationsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeLaunchConfigurationsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Updates the instance protection settings of the specified instances.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html#instance-protection"> Instance Protection </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param setInstanceProtectionRequest Container for the necessary
+     *           parameters to execute the SetInstanceProtection operation on
+     *           AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetInstanceProtection service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SetInstanceProtectionResult> setInstanceProtectionAsync(final SetInstanceProtectionRequest setInstanceProtectionRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SetInstanceProtectionResult>() {
+            public SetInstanceProtectionResult call() throws Exception {
+                return setInstanceProtection(setInstanceProtectionRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Updates the instance protection settings of the specified instances.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html#instance-protection"> Instance Protection </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param setInstanceProtectionRequest Container for the necessary
+     *           parameters to execute the SetInstanceProtection operation on
+     *           AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetInstanceProtection service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SetInstanceProtectionResult> setInstanceProtectionAsync(
+            final SetInstanceProtectionRequest setInstanceProtectionRequest,
+            final AsyncHandler<SetInstanceProtectionRequest, SetInstanceProtectionResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SetInstanceProtectionResult>() {
+            public SetInstanceProtectionResult call() throws Exception {
+              SetInstanceProtectionResult result;
+                try {
+                result = setInstanceProtection(setInstanceProtectionRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(setInstanceProtectionRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Creates or updates a scheduled scaling action for an Auto Scaling
+     * group. When updating a scheduled scaling action, if you leave a
+     * parameter unspecified, the corresponding value remains unchanged in
+     * the affected Auto Scaling group.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html"> Scheduled Scaling </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param putScheduledUpdateGroupActionRequest Container for the
+     *           necessary parameters to execute the PutScheduledUpdateGroupAction
+     *           operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         PutScheduledUpdateGroupAction service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> putScheduledUpdateGroupActionAsync(final PutScheduledUpdateGroupActionRequest putScheduledUpdateGroupActionRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                putScheduledUpdateGroupAction(putScheduledUpdateGroupActionRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Creates or updates a scheduled scaling action for an Auto Scaling
+     * group. When updating a scheduled scaling action, if you leave a
+     * parameter unspecified, the corresponding value remains unchanged in
+     * the affected Auto Scaling group.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html"> Scheduled Scaling </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param putScheduledUpdateGroupActionRequest Container for the
+     *           necessary parameters to execute the PutScheduledUpdateGroupAction
+     *           operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         PutScheduledUpdateGroupAction service method, as returned by
+     *         AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> putScheduledUpdateGroupActionAsync(
+            final PutScheduledUpdateGroupActionRequest putScheduledUpdateGroupActionRequest,
+            final AsyncHandler<PutScheduledUpdateGroupActionRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                putScheduledUpdateGroupAction(putScheduledUpdateGroupActionRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(putScheduledUpdateGroupActionRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Attaches one or more EC2 instances to the specified Auto Scaling
+     * group.
+     * </p>
+     * <p>
+     * When you attach instances, Auto Scaling increases the desired
+     * capacity of the group by the number of instances being attached. If
+     * the number of instances being attached plus the desired capacity of
+     * the group exceeds the maximum size of the group, the operation fails.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-instance-asg.html"> Attach EC2 Instances to Your Auto Scaling Group </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param attachInstancesRequest Container for the necessary parameters
+     *           to execute the AttachInstances operation on AmazonAutoScaling.
+     * 
+     * @return A Java Future object containing the response from the
+     *         AttachInstances service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> attachInstancesAsync(final AttachInstancesRequest attachInstancesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                attachInstances(attachInstancesRequest);
+                return null;
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Attaches one or more EC2 instances to the specified Auto Scaling
+     * group.
+     * </p>
+     * <p>
+     * When you attach instances, Auto Scaling increases the desired
+     * capacity of the group by the number of instances being attached. If
+     * the number of instances being attached plus the desired capacity of
+     * the group exceeds the maximum size of the group, the operation fails.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-instance-asg.html"> Attach EC2 Instances to Your Auto Scaling Group </a>
+     * in the <i>Auto Scaling Developer Guide</i> .
+     * </p>
+     *
+     * @param attachInstancesRequest Container for the necessary parameters
+     *           to execute the AttachInstances operation on AmazonAutoScaling.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         AttachInstances service method, as returned by AmazonAutoScaling.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonAutoScaling indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<Void> attachInstancesAsync(
+            final AttachInstancesRequest attachInstancesRequest,
+            final AsyncHandler<AttachInstancesRequest, Void> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                attachInstances(attachInstancesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(attachInstancesRequest, null);
+                 return null;
         }
     });
     }

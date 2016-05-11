@@ -136,6 +136,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>[&#92;u0009&#92;u000A&#92;u000D&#92;u0020-&#92;u007E&#92;u0085&#92;u00A0-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;u10000-&#92;u10FFFF]+<br/>
      */
     private String roleArn;
 
@@ -244,6 +245,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>[&#92;u0009&#92;u000A&#92;u000D&#92;u0020-&#92;u007E&#92;u0085&#92;u00A0-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;u10000-&#92;u10FFFF]+<br/>
      *
      * @return The Amazon Resource Name (ARN) of the role to assume.
      */
@@ -256,6 +258,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>[&#92;u0009&#92;u000A&#92;u000D&#92;u0020-&#92;u007E&#92;u0085&#92;u00A0-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;u10000-&#92;u10FFFF]+<br/>
      *
      * @param roleArn The Amazon Resource Name (ARN) of the role to assume.
      */
@@ -270,6 +273,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>[&#92;u0009&#92;u000A&#92;u000D&#92;u0020-&#92;u007E&#92;u0085&#92;u00A0-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;u10000-&#92;u10FFFF]+<br/>
      *
      * @param roleArn The Amazon Resource Name (ARN) of the role to assume.
      *

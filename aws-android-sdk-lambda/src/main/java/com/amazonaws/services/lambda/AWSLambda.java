@@ -116,20 +116,20 @@ public interface AWSLambda {
      * @return The response from the Invoke service method, as returned by
      *         AWSLambda.
      * 
-     * @throws InvalidRequestContentException
-     * @throws InvalidSubnetIDException
      * @throws InvalidParameterValueException
+     * @throws EC2AccessDeniedException
+     * @throws ENILimitReachedException
      * @throws InvalidSecurityGroupIDException
      * @throws ServiceException
-     * @throws RequestTooLargeException
-     * @throws SubnetIPAddressLimitReachedException
+     * @throws TooManyRequestsException
      * @throws EC2ThrottledException
-     * @throws ResourceNotFoundException
-     * @throws EC2AccessDeniedException
+     * @throws SubnetIPAddressLimitReachedException
+     * @throws RequestTooLargeException
      * @throws UnsupportedMediaTypeException
      * @throws EC2UnexpectedException
-     * @throws TooManyRequestsException
-     * @throws ENILimitReachedException
+     * @throws InvalidSubnetIDException
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestContentException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while

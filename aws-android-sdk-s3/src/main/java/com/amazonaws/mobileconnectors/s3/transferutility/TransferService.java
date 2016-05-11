@@ -131,8 +131,8 @@ public class TransferService extends Service {
      * A Broadcast receiver to receive network connection change events.
      */
     static class NetworkInfoReceiver extends BroadcastReceiver {
-        boolean networkConnected;
         private final Handler handler;
+        private final ConnectivityManager connManager;
 
         /**
          * Constructs a NetworkInfoReceiver.
@@ -141,13 +141,14 @@ public class TransferService extends Service {
          */
         public NetworkInfoReceiver(Context context, Handler handler) {
             this.handler = handler;
-            networkConnected = getNetworkStatus(context);
+            connManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
         }
 
         @Override
         public void onReceive(Context context, Intent intent) {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
-                networkConnected = getNetworkStatus(context);
+                boolean networkConnected = isNetworkConnected();
                 Log.d(TAG, "Network connected: " + networkConnected);
                 handler.sendEmptyMessage(networkConnected ? MSG_CHECK : MSG_DISCONNECT);
             }
@@ -159,12 +160,6 @@ public class TransferService extends Service {
          * @return true if network is connected, false otherwise.
          */
         boolean isNetworkConnected() {
-            return networkConnected;
-        }
-
-        private boolean getNetworkStatus(Context context) {
-            ConnectivityManager connManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo info = connManager.getActiveNetworkInfo();
             return info != null && info.isConnected();
         }
@@ -285,11 +280,7 @@ public class TransferService extends Service {
                 TransferRecord transfer = dbUtil.getTransferById(id);
                 if (transfer != null) {
                     updater.addTransfer(transfer);
-                    if (networkInfoReceiver.isNetworkConnected()) {
-                        transfer.start(s3, dbUtil, updater);
-                    } else {
-                        updater.updateState(id, TransferState.WAITING_FOR_NETWORK);
-                    }
+                    transfer.start(s3, dbUtil, updater, networkInfoReceiver);
                 } else {
                     Log.e(TAG, "Can't find transfer: " + id);
                 }
@@ -312,11 +303,7 @@ public class TransferService extends Service {
                     Log.e(TAG, "Can't find transfer: " + id);
                 }
             }
-            if (networkInfoReceiver.isNetworkConnected()) {
-                transfer.start(s3, dbUtil, updater);
-            } else {
-                updater.updateState(id, TransferState.WAITING_FOR_NETWORK);
-            }
+            transfer.start(s3, dbUtil, updater, networkInfoReceiver);
         } else if (INTENT_ACTION_TRANSFER_CANCEL.equals(action)) {
             TransferRecord transfer = updater.getTransfer(id);
             if (transfer == null) {
@@ -392,14 +379,14 @@ public class TransferService extends Service {
                     if (updater.getTransfer(id) == null) {
                         TransferRecord transfer = new TransferRecord(id);
                         transfer.updateFromDB(c);
-                        if (transfer.start(s3, dbUtil, updater)) {
+                        if (transfer.start(s3, dbUtil, updater, networkInfoReceiver)) {
                             updater.addTransfer(transfer);
                             count++;
                         }
                     } else {
                         TransferRecord transfer = updater.getTransfer(id);
                         if (!transfer.isRunning()) {
-                            transfer.start(s3, dbUtil, updater);
+                            transfer.start(s3, dbUtil, updater, networkInfoReceiver);
                         }
                     }
                 }

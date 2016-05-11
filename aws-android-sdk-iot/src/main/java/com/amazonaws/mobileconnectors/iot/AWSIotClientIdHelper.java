@@ -13,6 +13,7 @@ import java.util.UUID;
  * Helper class for generating random Client IDs and persisting them on the
  * device.
  */
+@Deprecated
 final class AWSIotClientIdHelper {
     /** Static member to hold the client ID. */
     private static String clientId = null;

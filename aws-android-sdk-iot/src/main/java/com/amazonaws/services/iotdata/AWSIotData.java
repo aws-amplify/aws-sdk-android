@@ -91,6 +91,42 @@ public interface AWSIotData {
     
     /**
      * <p>
+     * Gets the thing shadow for the specified thing.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html"> GetThingShadow </a>
+     * in the <i>AWS IoT Developer Guide</i> .
+     * </p>
+     *
+     * @param getThingShadowRequest Container for the necessary parameters to
+     *           execute the GetThingShadow service method on AWSIotData.
+     * 
+     * @return The response from the GetThingShadow service method, as
+     *         returned by AWSIotData.
+     * 
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws UnsupportedDocumentEncodingException
+     * @throws UnauthorizedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceUnavailableException
+     * @throws MethodNotAllowedException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AWSIotData indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetThingShadowResult getThingShadow(GetThingShadowRequest getThingShadowRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Updates the thing shadow for the specified thing.
      * </p>
      * <p>
@@ -105,15 +141,15 @@ public interface AWSIotData {
      * @return The response from the UpdateThingShadow service method, as
      *         returned by AWSIotData.
      * 
-     * @throws ConflictException
-     * @throws MethodNotAllowedException
-     * @throws ServiceUnavailableException
-     * @throws RequestEntityTooLargeException
      * @throws ThrottlingException
      * @throws InternalFailureException
-     * @throws UnsupportedDocumentEncodingException
      * @throws InvalidRequestException
+     * @throws UnsupportedDocumentEncodingException
+     * @throws RequestEntityTooLargeException
      * @throws UnauthorizedException
+     * @throws ConflictException
+     * @throws ServiceUnavailableException
+     * @throws MethodNotAllowedException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -124,36 +160,6 @@ public interface AWSIotData {
      *             either a problem with the data in the request, or a server side issue.
      */
     public UpdateThingShadowResult updateThingShadow(UpdateThingShadowRequest updateThingShadowRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Publishes state information.
-     * </p>
-     * <p>
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http"> HTTP Protocol </a>
-     * in the <i>AWS IoT Developer Guide</i> .
-     * </p>
-     *
-     * @param publishRequest Container for the necessary parameters to
-     *           execute the Publish service method on AWSIotData.
-     * 
-     * 
-     * @throws MethodNotAllowedException
-     * @throws InternalFailureException
-     * @throws InvalidRequestException
-     * @throws UnauthorizedException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSIotData indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void publish(PublishRequest publishRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -172,14 +178,14 @@ public interface AWSIotData {
      * @return The response from the DeleteThingShadow service method, as
      *         returned by AWSIotData.
      * 
-     * @throws MethodNotAllowedException
-     * @throws ResourceNotFoundException
-     * @throws ServiceUnavailableException
      * @throws ThrottlingException
      * @throws InternalFailureException
-     * @throws UnsupportedDocumentEncodingException
      * @throws InvalidRequestException
+     * @throws UnsupportedDocumentEncodingException
      * @throws UnauthorizedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceUnavailableException
+     * @throws MethodNotAllowedException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -194,28 +200,22 @@ public interface AWSIotData {
 
     /**
      * <p>
-     * Gets the thing shadow for the specified thing.
+     * Publishes state information.
      * </p>
      * <p>
      * For more information, see
-     * <a href="http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html"> GetThingShadow </a>
+     * <a href="http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http"> HTTP Protocol </a>
      * in the <i>AWS IoT Developer Guide</i> .
      * </p>
      *
-     * @param getThingShadowRequest Container for the necessary parameters to
-     *           execute the GetThingShadow service method on AWSIotData.
+     * @param publishRequest Container for the necessary parameters to
+     *           execute the Publish service method on AWSIotData.
      * 
-     * @return The response from the GetThingShadow service method, as
-     *         returned by AWSIotData.
      * 
-     * @throws MethodNotAllowedException
-     * @throws ResourceNotFoundException
-     * @throws ServiceUnavailableException
-     * @throws ThrottlingException
      * @throws InternalFailureException
-     * @throws UnsupportedDocumentEncodingException
      * @throws InvalidRequestException
      * @throws UnauthorizedException
+     * @throws MethodNotAllowedException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -225,7 +225,7 @@ public interface AWSIotData {
      *             If an error response is returned by AWSIotData indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public GetThingShadowResult getThingShadow(GetThingShadowRequest getThingShadowRequest) 
+    public void publish(PublishRequest publishRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**

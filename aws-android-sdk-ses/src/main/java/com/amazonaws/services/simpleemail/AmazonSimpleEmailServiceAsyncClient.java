@@ -283,6 +283,178 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
             
     /**
      * <p>
+     * Returns the user's current sending limits.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param getSendQuotaRequest Container for the necessary parameters to
+     *           execute the GetSendQuota operation on AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetSendQuota service method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetSendQuotaResult> getSendQuotaAsync(final GetSendQuotaRequest getSendQuotaRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetSendQuotaResult>() {
+            public GetSendQuotaResult call() throws Exception {
+                return getSendQuota(getSendQuotaRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns the user's current sending limits.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param getSendQuotaRequest Container for the necessary parameters to
+     *           execute the GetSendQuota operation on AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetSendQuota service method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetSendQuotaResult> getSendQuotaAsync(
+            final GetSendQuotaRequest getSendQuotaRequest,
+            final AsyncHandler<GetSendQuotaRequest, GetSendQuotaResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetSendQuotaResult>() {
+            public GetSendQuotaResult call() throws Exception {
+              GetSendQuotaResult result;
+                try {
+                result = getSendQuota(getSendQuotaRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(getSendQuotaRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Sets the position of the specified receipt rule in the receipt rule
+     * set.
+     * </p>
+     * <p>
+     * For information about managing receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param setReceiptRulePositionRequest Container for the necessary
+     *           parameters to execute the SetReceiptRulePosition operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetReceiptRulePosition service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SetReceiptRulePositionResult> setReceiptRulePositionAsync(final SetReceiptRulePositionRequest setReceiptRulePositionRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SetReceiptRulePositionResult>() {
+            public SetReceiptRulePositionResult call() throws Exception {
+                return setReceiptRulePosition(setReceiptRulePositionRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Sets the position of the specified receipt rule in the receipt rule
+     * set.
+     * </p>
+     * <p>
+     * For information about managing receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param setReceiptRulePositionRequest Container for the necessary
+     *           parameters to execute the SetReceiptRulePosition operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetReceiptRulePosition service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SetReceiptRulePositionResult> setReceiptRulePositionAsync(
+            final SetReceiptRulePositionRequest setReceiptRulePositionRequest,
+            final AsyncHandler<SetReceiptRulePositionRequest, SetReceiptRulePositionResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SetReceiptRulePositionResult>() {
+            public SetReceiptRulePositionResult call() throws Exception {
+              SetReceiptRulePositionResult result;
+                try {
+                result = setReceiptRulePosition(setReceiptRulePositionRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(setReceiptRulePositionRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * Deletes the specified identity (email address or domain) from the
      * list of verified identities.
      * </p>
@@ -365,23 +537,39 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Updates a receipt rule.
+     * Enables or disables Easy DKIM signing of email sent from an identity:
      * </p>
+     * 
+     * <ul>
+     * <li>If Easy DKIM signing is enabled for a domain name identity (e.g.,
+     * <code>example.com</code> ), then Amazon SES will DKIM-sign all email
+     * sent by addresses under that domain name (e.g.,
+     * <code>user@example.com</code> ).</li>
+     * <li>If Easy DKIM signing is enabled for an email address, then Amazon
+     * SES will DKIM-sign all email sent by that email address.</li>
+     * 
+     * </ul>
      * <p>
-     * For information about managing receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
+     * For email addresses (e.g., <code>user@example.com</code> ), you can
+     * only enable Easy DKIM signing if the corresponding domain (e.g.,
+     * <code>example.com</code> ) has been set up for Easy DKIM using the AWS
+     * Console or the <code>VerifyDomainDkim</code> action.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
+     * <p>
+     * For more information about Easy DKIM signing, go to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
      *
-     * @param updateReceiptRuleRequest Container for the necessary parameters
-     *           to execute the UpdateReceiptRule operation on
+     * @param setIdentityDkimEnabledRequest Container for the necessary
+     *           parameters to execute the SetIdentityDkimEnabled operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         UpdateReceiptRule service method, as returned by
+     *         SetIdentityDkimEnabled service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -393,30 +581,46 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<UpdateReceiptRuleResult> updateReceiptRuleAsync(final UpdateReceiptRuleRequest updateReceiptRuleRequest) 
+    public Future<SetIdentityDkimEnabledResult> setIdentityDkimEnabledAsync(final SetIdentityDkimEnabledRequest setIdentityDkimEnabledRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<UpdateReceiptRuleResult>() {
-            public UpdateReceiptRuleResult call() throws Exception {
-                return updateReceiptRule(updateReceiptRuleRequest);
+        return executorService.submit(new Callable<SetIdentityDkimEnabledResult>() {
+            public SetIdentityDkimEnabledResult call() throws Exception {
+                return setIdentityDkimEnabled(setIdentityDkimEnabledRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Updates a receipt rule.
+     * Enables or disables Easy DKIM signing of email sent from an identity:
      * </p>
+     * 
+     * <ul>
+     * <li>If Easy DKIM signing is enabled for a domain name identity (e.g.,
+     * <code>example.com</code> ), then Amazon SES will DKIM-sign all email
+     * sent by addresses under that domain name (e.g.,
+     * <code>user@example.com</code> ).</li>
+     * <li>If Easy DKIM signing is enabled for an email address, then Amazon
+     * SES will DKIM-sign all email sent by that email address.</li>
+     * 
+     * </ul>
      * <p>
-     * For information about managing receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
+     * For email addresses (e.g., <code>user@example.com</code> ), you can
+     * only enable Easy DKIM signing if the corresponding domain (e.g.,
+     * <code>example.com</code> ) has been set up for Easy DKIM using the AWS
+     * Console or the <code>VerifyDomainDkim</code> action.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
+     * <p>
+     * For more information about Easy DKIM signing, go to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
      *
-     * @param updateReceiptRuleRequest Container for the necessary parameters
-     *           to execute the UpdateReceiptRule operation on
+     * @param setIdentityDkimEnabledRequest Container for the necessary
+     *           parameters to execute the SetIdentityDkimEnabled operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -424,7 +628,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         UpdateReceiptRule service method, as returned by
+     *         SetIdentityDkimEnabled service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -436,20 +640,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<UpdateReceiptRuleResult> updateReceiptRuleAsync(
-            final UpdateReceiptRuleRequest updateReceiptRuleRequest,
-            final AsyncHandler<UpdateReceiptRuleRequest, UpdateReceiptRuleResult> asyncHandler)
+    public Future<SetIdentityDkimEnabledResult> setIdentityDkimEnabledAsync(
+            final SetIdentityDkimEnabledRequest setIdentityDkimEnabledRequest,
+            final AsyncHandler<SetIdentityDkimEnabledRequest, SetIdentityDkimEnabledResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<UpdateReceiptRuleResult>() {
-            public UpdateReceiptRuleResult call() throws Exception {
-              UpdateReceiptRuleResult result;
+        return executorService.submit(new Callable<SetIdentityDkimEnabledResult>() {
+            public SetIdentityDkimEnabledResult call() throws Exception {
+              SetIdentityDkimEnabledResult result;
                 try {
-                result = updateReceiptRule(updateReceiptRuleRequest);
+                result = setIdentityDkimEnabled(setIdentityDkimEnabledRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(updateReceiptRuleRequest, result);
+              asyncHandler.onSuccess(setIdentityDkimEnabledRequest, result);
                  return result;
         }
     });
@@ -457,24 +661,25 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Returns a list containing all of the email addresses that have been
-     * verified.
+     * Creates a receipt rule set by cloning an existing one. All receipt
+     * rules and configurations are copied to the new receipt rule set and
+     * are completely independent of the source rule set.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>The ListVerifiedEmailAddresses action is deprecated
-     * as of the May 15, 2012 release of Domain Verification. The
-     * ListIdentities action is now preferred.
+     * For information about setting up rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
+     * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param listVerifiedEmailAddressesRequest Container for the necessary
-     *           parameters to execute the ListVerifiedEmailAddresses operation on
+     * @param cloneReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the CloneReceiptRuleSet operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         ListVerifiedEmailAddresses service method, as returned by
+     *         CloneReceiptRuleSet service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -486,31 +691,32 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<ListVerifiedEmailAddressesResult> listVerifiedEmailAddressesAsync(final ListVerifiedEmailAddressesRequest listVerifiedEmailAddressesRequest) 
+    public Future<CloneReceiptRuleSetResult> cloneReceiptRuleSetAsync(final CloneReceiptRuleSetRequest cloneReceiptRuleSetRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListVerifiedEmailAddressesResult>() {
-            public ListVerifiedEmailAddressesResult call() throws Exception {
-                return listVerifiedEmailAddresses(listVerifiedEmailAddressesRequest);
+        return executorService.submit(new Callable<CloneReceiptRuleSetResult>() {
+            public CloneReceiptRuleSetResult call() throws Exception {
+                return cloneReceiptRuleSet(cloneReceiptRuleSetRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Returns a list containing all of the email addresses that have been
-     * verified.
+     * Creates a receipt rule set by cloning an existing one. All receipt
+     * rules and configurations are copied to the new receipt rule set and
+     * are completely independent of the source rule set.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>The ListVerifiedEmailAddresses action is deprecated
-     * as of the May 15, 2012 release of Domain Verification. The
-     * ListIdentities action is now preferred.
+     * For information about setting up rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
+     * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param listVerifiedEmailAddressesRequest Container for the necessary
-     *           parameters to execute the ListVerifiedEmailAddresses operation on
+     * @param cloneReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the CloneReceiptRuleSet operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -518,7 +724,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         ListVerifiedEmailAddresses service method, as returned by
+     *         CloneReceiptRuleSet service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -530,406 +736,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<ListVerifiedEmailAddressesResult> listVerifiedEmailAddressesAsync(
-            final ListVerifiedEmailAddressesRequest listVerifiedEmailAddressesRequest,
-            final AsyncHandler<ListVerifiedEmailAddressesRequest, ListVerifiedEmailAddressesResult> asyncHandler)
+    public Future<CloneReceiptRuleSetResult> cloneReceiptRuleSetAsync(
+            final CloneReceiptRuleSetRequest cloneReceiptRuleSetRequest,
+            final AsyncHandler<CloneReceiptRuleSetRequest, CloneReceiptRuleSetResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListVerifiedEmailAddressesResult>() {
-            public ListVerifiedEmailAddressesResult call() throws Exception {
-              ListVerifiedEmailAddressesResult result;
+        return executorService.submit(new Callable<CloneReceiptRuleSetResult>() {
+            public CloneReceiptRuleSetResult call() throws Exception {
+              CloneReceiptRuleSetResult result;
                 try {
-                result = listVerifiedEmailAddresses(listVerifiedEmailAddressesRequest);
+                result = cloneReceiptRuleSet(cloneReceiptRuleSetRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(listVerifiedEmailAddressesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified receipt rule.
-     * </p>
-     * <p>
-     * For information about managing receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteReceiptRuleRequest Container for the necessary parameters
-     *           to execute the DeleteReceiptRule operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteReceiptRule service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DeleteReceiptRuleResult> deleteReceiptRuleAsync(final DeleteReceiptRuleRequest deleteReceiptRuleRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteReceiptRuleResult>() {
-            public DeleteReceiptRuleResult call() throws Exception {
-                return deleteReceiptRule(deleteReceiptRuleRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified receipt rule.
-     * </p>
-     * <p>
-     * For information about managing receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteReceiptRuleRequest Container for the necessary parameters
-     *           to execute the DeleteReceiptRule operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteReceiptRule service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DeleteReceiptRuleResult> deleteReceiptRuleAsync(
-            final DeleteReceiptRuleRequest deleteReceiptRuleRequest,
-            final AsyncHandler<DeleteReceiptRuleRequest, DeleteReceiptRuleResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteReceiptRuleResult>() {
-            public DeleteReceiptRuleResult call() throws Exception {
-              DeleteReceiptRuleResult result;
-                try {
-                result = deleteReceiptRule(deleteReceiptRuleRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteReceiptRuleRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param verifyEmailIdentityRequest Container for the necessary
-     *           parameters to execute the VerifyEmailIdentity operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         VerifyEmailIdentity service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<VerifyEmailIdentityResult> verifyEmailIdentityAsync(final VerifyEmailIdentityRequest verifyEmailIdentityRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<VerifyEmailIdentityResult>() {
-            public VerifyEmailIdentityResult call() throws Exception {
-                return verifyEmailIdentity(verifyEmailIdentityRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param verifyEmailIdentityRequest Container for the necessary
-     *           parameters to execute the VerifyEmailIdentity operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         VerifyEmailIdentity service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<VerifyEmailIdentityResult> verifyEmailIdentityAsync(
-            final VerifyEmailIdentityRequest verifyEmailIdentityRequest,
-            final AsyncHandler<VerifyEmailIdentityRequest, VerifyEmailIdentityResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<VerifyEmailIdentityResult>() {
-            public VerifyEmailIdentityResult call() throws Exception {
-              VerifyEmailIdentityResult result;
-                try {
-                result = verifyEmailIdentity(verifyEmailIdentityRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(verifyEmailIdentityRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Given a list of verified identities (email addresses and/or domains),
-     * returns a structure describing identity notification attributes.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second and can only get
-     * notification attributes for up to 100 identities at a time.
-     * </p>
-     * <p>
-     * For more information about using notifications with Amazon SES, see
-     * the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param getIdentityNotificationAttributesRequest Container for the
-     *           necessary parameters to execute the GetIdentityNotificationAttributes
-     *           operation on AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         GetIdentityNotificationAttributes service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetIdentityNotificationAttributesResult> getIdentityNotificationAttributesAsync(final GetIdentityNotificationAttributesRequest getIdentityNotificationAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetIdentityNotificationAttributesResult>() {
-            public GetIdentityNotificationAttributesResult call() throws Exception {
-                return getIdentityNotificationAttributes(getIdentityNotificationAttributesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Given a list of verified identities (email addresses and/or domains),
-     * returns a structure describing identity notification attributes.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second and can only get
-     * notification attributes for up to 100 identities at a time.
-     * </p>
-     * <p>
-     * For more information about using notifications with Amazon SES, see
-     * the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param getIdentityNotificationAttributesRequest Container for the
-     *           necessary parameters to execute the GetIdentityNotificationAttributes
-     *           operation on AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         GetIdentityNotificationAttributes service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetIdentityNotificationAttributesResult> getIdentityNotificationAttributesAsync(
-            final GetIdentityNotificationAttributesRequest getIdentityNotificationAttributesRequest,
-            final AsyncHandler<GetIdentityNotificationAttributesRequest, GetIdentityNotificationAttributesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetIdentityNotificationAttributesResult>() {
-            public GetIdentityNotificationAttributesResult call() throws Exception {
-              GetIdentityNotificationAttributesResult result;
-                try {
-                result = getIdentityNotificationAttributes(getIdentityNotificationAttributesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(getIdentityNotificationAttributesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Returns a set of DKIM tokens for a domain. DKIM <i>tokens</i> are
-     * character strings that represent your domain's identity. Using these
-     * tokens, you will need to create DNS CNAME records that point to DKIM
-     * public keys hosted by Amazon SES. Amazon Web Services will eventually
-     * detect that you have updated your DNS records; this detection process
-     * may take up to 72 hours. Upon successful detection, Amazon SES will be
-     * able to DKIM-sign email originating from that domain.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * To enable or disable Easy DKIM signing for a domain, use the
-     * <code>SetIdentityDkimEnabled</code> action.
-     * </p>
-     * <p>
-     * For more information about creating DNS records using DKIM tokens, go
-     * to the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param verifyDomainDkimRequest Container for the necessary parameters
-     *           to execute the VerifyDomainDkim operation on AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         VerifyDomainDkim service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<VerifyDomainDkimResult> verifyDomainDkimAsync(final VerifyDomainDkimRequest verifyDomainDkimRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<VerifyDomainDkimResult>() {
-            public VerifyDomainDkimResult call() throws Exception {
-                return verifyDomainDkim(verifyDomainDkimRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Returns a set of DKIM tokens for a domain. DKIM <i>tokens</i> are
-     * character strings that represent your domain's identity. Using these
-     * tokens, you will need to create DNS CNAME records that point to DKIM
-     * public keys hosted by Amazon SES. Amazon Web Services will eventually
-     * detect that you have updated your DNS records; this detection process
-     * may take up to 72 hours. Upon successful detection, Amazon SES will be
-     * able to DKIM-sign email originating from that domain.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * To enable or disable Easy DKIM signing for a domain, use the
-     * <code>SetIdentityDkimEnabled</code> action.
-     * </p>
-     * <p>
-     * For more information about creating DNS records using DKIM tokens, go
-     * to the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param verifyDomainDkimRequest Container for the necessary parameters
-     *           to execute the VerifyDomainDkim operation on AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         VerifyDomainDkim service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<VerifyDomainDkimResult> verifyDomainDkimAsync(
-            final VerifyDomainDkimRequest verifyDomainDkimRequest,
-            final AsyncHandler<VerifyDomainDkimRequest, VerifyDomainDkimResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<VerifyDomainDkimResult>() {
-            public VerifyDomainDkimResult call() throws Exception {
-              VerifyDomainDkimResult result;
-                try {
-                result = verifyDomainDkim(verifyDomainDkimRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(verifyDomainDkimRequest, result);
+              asyncHandler.onSuccess(cloneReceiptRuleSetRequest, result);
                  return result;
         }
     });
@@ -1069,23 +889,32 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Returns the details of the specified receipt rule set.
+     * Returns the requested sending authorization policies for the given
+     * identity (email address or domain). The policies are returned as a map
+     * of policy names to policy contents. You can retrieve a maximum of 20
+     * policies at a time.
      * </p>
      * <p>
-     * For information about managing receipt rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param describeReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the DescribeReceiptRuleSet operation on
+     * @param getIdentityPoliciesRequest Container for the necessary
+     *           parameters to execute the GetIdentityPolicies operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         DescribeReceiptRuleSet service method, as returned by
+     *         GetIdentityPolicies service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -1097,30 +926,39 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DescribeReceiptRuleSetResult> describeReceiptRuleSetAsync(final DescribeReceiptRuleSetRequest describeReceiptRuleSetRequest) 
+    public Future<GetIdentityPoliciesResult> getIdentityPoliciesAsync(final GetIdentityPoliciesRequest getIdentityPoliciesRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeReceiptRuleSetResult>() {
-            public DescribeReceiptRuleSetResult call() throws Exception {
-                return describeReceiptRuleSet(describeReceiptRuleSetRequest);
+        return executorService.submit(new Callable<GetIdentityPoliciesResult>() {
+            public GetIdentityPoliciesResult call() throws Exception {
+                return getIdentityPolicies(getIdentityPoliciesRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Returns the details of the specified receipt rule set.
+     * Returns the requested sending authorization policies for the given
+     * identity (email address or domain). The policies are returned as a map
+     * of policy names to policy contents. You can retrieve a maximum of 20
+     * policies at a time.
      * </p>
      * <p>
-     * For information about managing receipt rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param describeReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the DescribeReceiptRuleSet operation on
+     * @param getIdentityPoliciesRequest Container for the necessary
+     *           parameters to execute the GetIdentityPolicies operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -1128,7 +966,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         DescribeReceiptRuleSet service method, as returned by
+     *         GetIdentityPolicies service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -1140,115 +978,21 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DescribeReceiptRuleSetResult> describeReceiptRuleSetAsync(
-            final DescribeReceiptRuleSetRequest describeReceiptRuleSetRequest,
-            final AsyncHandler<DescribeReceiptRuleSetRequest, DescribeReceiptRuleSetResult> asyncHandler)
+    public Future<GetIdentityPoliciesResult> getIdentityPoliciesAsync(
+            final GetIdentityPoliciesRequest getIdentityPoliciesRequest,
+            final AsyncHandler<GetIdentityPoliciesRequest, GetIdentityPoliciesResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeReceiptRuleSetResult>() {
-            public DescribeReceiptRuleSetResult call() throws Exception {
-              DescribeReceiptRuleSetResult result;
+        return executorService.submit(new Callable<GetIdentityPoliciesResult>() {
+            public GetIdentityPoliciesResult call() throws Exception {
+              GetIdentityPoliciesResult result;
                 try {
-                result = describeReceiptRuleSet(describeReceiptRuleSetRequest);
+                result = getIdentityPolicies(getIdentityPoliciesRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(describeReceiptRuleSetRequest, result);
+              asyncHandler.onSuccess(getIdentityPoliciesRequest, result);
                  return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b>The VerifyEmailAddress action is deprecated as of
-     * the May 15, 2012 release of Domain Verification. The
-     * VerifyEmailIdentity action is now preferred.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param verifyEmailAddressRequest Container for the necessary
-     *           parameters to execute the VerifyEmailAddress operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         VerifyEmailAddress service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> verifyEmailAddressAsync(final VerifyEmailAddressRequest verifyEmailAddressRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-                verifyEmailAddress(verifyEmailAddressRequest);
-                return null;
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b>The VerifyEmailAddress action is deprecated as of
-     * the May 15, 2012 release of Domain Verification. The
-     * VerifyEmailIdentity action is now preferred.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param verifyEmailAddressRequest Container for the necessary
-     *           parameters to execute the VerifyEmailAddress operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         VerifyEmailAddress service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<Void> verifyEmailAddressAsync(
-            final VerifyEmailAddressRequest verifyEmailAddressRequest,
-            final AsyncHandler<VerifyEmailAddressRequest, Void> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<Void>() {
-            public Void call() throws Exception {
-              try {
-                verifyEmailAddress(verifyEmailAddressRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(verifyEmailAddressRequest, null);
-                 return null;
         }
     });
     }
@@ -1365,105 +1109,21 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Returns a list containing all of the identities (email addresses and
-     * domains) for a specific AWS Account, regardless of verification
-     * status.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param listIdentitiesRequest Container for the necessary parameters to
-     *           execute the ListIdentities operation on AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ListIdentities service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<ListIdentitiesResult> listIdentitiesAsync(final ListIdentitiesRequest listIdentitiesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListIdentitiesResult>() {
-            public ListIdentitiesResult call() throws Exception {
-                return listIdentities(listIdentitiesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Returns a list containing all of the identities (email addresses and
-     * domains) for a specific AWS Account, regardless of verification
-     * status.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param listIdentitiesRequest Container for the necessary parameters to
-     *           execute the ListIdentities operation on AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ListIdentities service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<ListIdentitiesResult> listIdentitiesAsync(
-            final ListIdentitiesRequest listIdentitiesRequest,
-            final AsyncHandler<ListIdentitiesRequest, ListIdentitiesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListIdentitiesResult>() {
-            public ListIdentitiesResult call() throws Exception {
-              ListIdentitiesResult result;
-                try {
-                result = listIdentities(listIdentitiesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(listIdentitiesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Given a list of identities (email addresses and/or domains), returns
-     * the verification status and (for domain identities) the verification
-     * token for each identity.
+     * Returns the custom MAIL FROM attributes for a list of identities
+     * (email addresses and/or domains).
      * </p>
      * <p>
      * This action is throttled at one request per second and can only get
-     * verification attributes for up to 100 identities at a time.
+     * custom MAIL FROM attributes for up to 100 identities at a time.
      * </p>
      *
-     * @param getIdentityVerificationAttributesRequest Container for the
-     *           necessary parameters to execute the GetIdentityVerificationAttributes
-     *           operation on AmazonSimpleEmailService.
+     * @param getIdentityMailFromDomainAttributesRequest Container for the
+     *           necessary parameters to execute the
+     *           GetIdentityMailFromDomainAttributes operation on
+     *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         GetIdentityVerificationAttributes service method, as returned by
+     *         GetIdentityMailFromDomainAttributes service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -1475,240 +1135,28 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<GetIdentityVerificationAttributesResult> getIdentityVerificationAttributesAsync(final GetIdentityVerificationAttributesRequest getIdentityVerificationAttributesRequest) 
+    public Future<GetIdentityMailFromDomainAttributesResult> getIdentityMailFromDomainAttributesAsync(final GetIdentityMailFromDomainAttributesRequest getIdentityMailFromDomainAttributesRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetIdentityVerificationAttributesResult>() {
-            public GetIdentityVerificationAttributesResult call() throws Exception {
-                return getIdentityVerificationAttributes(getIdentityVerificationAttributesRequest);
+        return executorService.submit(new Callable<GetIdentityMailFromDomainAttributesResult>() {
+            public GetIdentityMailFromDomainAttributesResult call() throws Exception {
+                return getIdentityMailFromDomainAttributes(getIdentityMailFromDomainAttributesRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Given a list of identities (email addresses and/or domains), returns
-     * the verification status and (for domain identities) the verification
-     * token for each identity.
+     * Returns the custom MAIL FROM attributes for a list of identities
+     * (email addresses and/or domains).
      * </p>
      * <p>
      * This action is throttled at one request per second and can only get
-     * verification attributes for up to 100 identities at a time.
+     * custom MAIL FROM attributes for up to 100 identities at a time.
      * </p>
      *
-     * @param getIdentityVerificationAttributesRequest Container for the
-     *           necessary parameters to execute the GetIdentityVerificationAttributes
-     *           operation on AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         GetIdentityVerificationAttributes service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetIdentityVerificationAttributesResult> getIdentityVerificationAttributesAsync(
-            final GetIdentityVerificationAttributesRequest getIdentityVerificationAttributesRequest,
-            final AsyncHandler<GetIdentityVerificationAttributesRequest, GetIdentityVerificationAttributesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetIdentityVerificationAttributesResult>() {
-            public GetIdentityVerificationAttributesResult call() throws Exception {
-              GetIdentityVerificationAttributesResult result;
-                try {
-                result = getIdentityVerificationAttributes(getIdentityVerificationAttributesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(getIdentityVerificationAttributesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Enables or disables the custom MAIL FROM domain setup for a verified
-     * identity (email address or domain).
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b>To send emails using the specified MAIL FROM domain,
-     * you must add an MX record to your MAIL FROM domain's DNS settings. If
-     * you want your emails to pass Sender Policy Framework (SPF) checks, you
-     * must also add or update an SPF record. For more information, see the
-     * Amazon SES Developer Guide.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param setIdentityMailFromDomainRequest Container for the necessary
-     *           parameters to execute the SetIdentityMailFromDomain operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetIdentityMailFromDomain service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SetIdentityMailFromDomainResult> setIdentityMailFromDomainAsync(final SetIdentityMailFromDomainRequest setIdentityMailFromDomainRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetIdentityMailFromDomainResult>() {
-            public SetIdentityMailFromDomainResult call() throws Exception {
-                return setIdentityMailFromDomain(setIdentityMailFromDomainRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Enables or disables the custom MAIL FROM domain setup for a verified
-     * identity (email address or domain).
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b>To send emails using the specified MAIL FROM domain,
-     * you must add an MX record to your MAIL FROM domain's DNS settings. If
-     * you want your emails to pass Sender Policy Framework (SPF) checks, you
-     * must also add or update an SPF record. For more information, see the
-     * Amazon SES Developer Guide.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param setIdentityMailFromDomainRequest Container for the necessary
-     *           parameters to execute the SetIdentityMailFromDomain operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetIdentityMailFromDomain service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SetIdentityMailFromDomainResult> setIdentityMailFromDomainAsync(
-            final SetIdentityMailFromDomainRequest setIdentityMailFromDomainRequest,
-            final AsyncHandler<SetIdentityMailFromDomainRequest, SetIdentityMailFromDomainResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetIdentityMailFromDomainResult>() {
-            public SetIdentityMailFromDomainResult call() throws Exception {
-              SetIdentityMailFromDomainResult result;
-                try {
-                result = setIdentityMailFromDomain(setIdentityMailFromDomainRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(setIdentityMailFromDomainRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Given an identity (email address or domain), enables or disables
-     * whether Amazon SES forwards bounce and complaint notifications as
-     * email. Feedback forwarding can only be disabled when Amazon Simple
-     * Notification Service (Amazon SNS) topics are specified for both
-     * bounces and complaints.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>Feedback forwarding does not apply to delivery
-     * notifications. Delivery notifications are only available through
-     * Amazon SNS.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * For more information about using notifications with Amazon SES, see
-     * the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param setIdentityFeedbackForwardingEnabledRequest Container for the
+     * @param getIdentityMailFromDomainAttributesRequest Container for the
      *           necessary parameters to execute the
-     *           SetIdentityFeedbackForwardingEnabled operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetIdentityFeedbackForwardingEnabled service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SetIdentityFeedbackForwardingEnabledResult> setIdentityFeedbackForwardingEnabledAsync(final SetIdentityFeedbackForwardingEnabledRequest setIdentityFeedbackForwardingEnabledRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetIdentityFeedbackForwardingEnabledResult>() {
-            public SetIdentityFeedbackForwardingEnabledResult call() throws Exception {
-                return setIdentityFeedbackForwardingEnabled(setIdentityFeedbackForwardingEnabledRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Given an identity (email address or domain), enables or disables
-     * whether Amazon SES forwards bounce and complaint notifications as
-     * email. Feedback forwarding can only be disabled when Amazon Simple
-     * Notification Service (Amazon SNS) topics are specified for both
-     * bounces and complaints.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>Feedback forwarding does not apply to delivery
-     * notifications. Delivery notifications are only available through
-     * Amazon SNS.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * For more information about using notifications with Amazon SES, see
-     * the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param setIdentityFeedbackForwardingEnabledRequest Container for the
-     *           necessary parameters to execute the
-     *           SetIdentityFeedbackForwardingEnabled operation on
+     *           GetIdentityMailFromDomainAttributes operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -1716,7 +1164,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         SetIdentityFeedbackForwardingEnabled service method, as returned by
+     *         GetIdentityMailFromDomainAttributes service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -1728,20 +1176,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<SetIdentityFeedbackForwardingEnabledResult> setIdentityFeedbackForwardingEnabledAsync(
-            final SetIdentityFeedbackForwardingEnabledRequest setIdentityFeedbackForwardingEnabledRequest,
-            final AsyncHandler<SetIdentityFeedbackForwardingEnabledRequest, SetIdentityFeedbackForwardingEnabledResult> asyncHandler)
+    public Future<GetIdentityMailFromDomainAttributesResult> getIdentityMailFromDomainAttributesAsync(
+            final GetIdentityMailFromDomainAttributesRequest getIdentityMailFromDomainAttributesRequest,
+            final AsyncHandler<GetIdentityMailFromDomainAttributesRequest, GetIdentityMailFromDomainAttributesResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetIdentityFeedbackForwardingEnabledResult>() {
-            public SetIdentityFeedbackForwardingEnabledResult call() throws Exception {
-              SetIdentityFeedbackForwardingEnabledResult result;
+        return executorService.submit(new Callable<GetIdentityMailFromDomainAttributesResult>() {
+            public GetIdentityMailFromDomainAttributesResult call() throws Exception {
+              GetIdentityMailFromDomainAttributesResult result;
                 try {
-                result = setIdentityFeedbackForwardingEnabled(setIdentityFeedbackForwardingEnabledRequest);
+                result = getIdentityMailFromDomainAttributes(getIdentityMailFromDomainAttributesRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(setIdentityFeedbackForwardingEnabledRequest, result);
+              asyncHandler.onSuccess(getIdentityMailFromDomainAttributesRequest, result);
                  return result;
         }
     });
@@ -1749,12 +1197,11 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Reorders the receipt rules within a receipt rule set.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>All of the rules in the rule set must be represented in
-     * this request. That is, this API will return an error if the reorder
-     * request doesn't explicitly position all of the rules.
+     * Lists the receipt rule sets that exist under your AWS account. If
+     * there are additional receipt rule sets to be retrieved, you will
+     * receive a <code>NextToken</code> that you can provide to the next call
+     * to <code>ListReceiptRuleSets</code> to retrieve the additional
+     * entries.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the
@@ -1765,12 +1212,12 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param reorderReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the ReorderReceiptRuleSet operation on
+     * @param listReceiptRuleSetsRequest Container for the necessary
+     *           parameters to execute the ListReceiptRuleSets operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         ReorderReceiptRuleSet service method, as returned by
+     *         ListReceiptRuleSets service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -1782,23 +1229,22 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<ReorderReceiptRuleSetResult> reorderReceiptRuleSetAsync(final ReorderReceiptRuleSetRequest reorderReceiptRuleSetRequest) 
+    public Future<ListReceiptRuleSetsResult> listReceiptRuleSetsAsync(final ListReceiptRuleSetsRequest listReceiptRuleSetsRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ReorderReceiptRuleSetResult>() {
-            public ReorderReceiptRuleSetResult call() throws Exception {
-                return reorderReceiptRuleSet(reorderReceiptRuleSetRequest);
+        return executorService.submit(new Callable<ListReceiptRuleSetsResult>() {
+            public ListReceiptRuleSetsResult call() throws Exception {
+                return listReceiptRuleSets(listReceiptRuleSetsRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Reorders the receipt rules within a receipt rule set.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>All of the rules in the rule set must be represented in
-     * this request. That is, this API will return an error if the reorder
-     * request doesn't explicitly position all of the rules.
+     * Lists the receipt rule sets that exist under your AWS account. If
+     * there are additional receipt rule sets to be retrieved, you will
+     * receive a <code>NextToken</code> that you can provide to the next call
+     * to <code>ListReceiptRuleSets</code> to retrieve the additional
+     * entries.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the
@@ -1809,8 +1255,8 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param reorderReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the ReorderReceiptRuleSet operation on
+     * @param listReceiptRuleSetsRequest Container for the necessary
+     *           parameters to execute the ListReceiptRuleSets operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -1818,7 +1264,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         ReorderReceiptRuleSet service method, as returned by
+     *         ListReceiptRuleSets service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -1830,298 +1276,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<ReorderReceiptRuleSetResult> reorderReceiptRuleSetAsync(
-            final ReorderReceiptRuleSetRequest reorderReceiptRuleSetRequest,
-            final AsyncHandler<ReorderReceiptRuleSetRequest, ReorderReceiptRuleSetResult> asyncHandler)
+    public Future<ListReceiptRuleSetsResult> listReceiptRuleSetsAsync(
+            final ListReceiptRuleSetsRequest listReceiptRuleSetsRequest,
+            final AsyncHandler<ListReceiptRuleSetsRequest, ListReceiptRuleSetsResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ReorderReceiptRuleSetResult>() {
-            public ReorderReceiptRuleSetResult call() throws Exception {
-              ReorderReceiptRuleSetResult result;
+        return executorService.submit(new Callable<ListReceiptRuleSetsResult>() {
+            public ListReceiptRuleSetsResult call() throws Exception {
+              ListReceiptRuleSetsResult result;
                 try {
-                result = reorderReceiptRuleSet(reorderReceiptRuleSetRequest);
+                result = listReceiptRuleSets(listReceiptRuleSetsRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(reorderReceiptRuleSetRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified IP address filter.
-     * </p>
-     * <p>
-     * For information about managing IP address filters, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteReceiptFilterRequest Container for the necessary
-     *           parameters to execute the DeleteReceiptFilter operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteReceiptFilter service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DeleteReceiptFilterResult> deleteReceiptFilterAsync(final DeleteReceiptFilterRequest deleteReceiptFilterRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteReceiptFilterResult>() {
-            public DeleteReceiptFilterResult call() throws Exception {
-                return deleteReceiptFilter(deleteReceiptFilterRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified IP address filter.
-     * </p>
-     * <p>
-     * For information about managing IP address filters, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteReceiptFilterRequest Container for the necessary
-     *           parameters to execute the DeleteReceiptFilter operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteReceiptFilter service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DeleteReceiptFilterResult> deleteReceiptFilterAsync(
-            final DeleteReceiptFilterRequest deleteReceiptFilterRequest,
-            final AsyncHandler<DeleteReceiptFilterRequest, DeleteReceiptFilterResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteReceiptFilterResult>() {
-            public DeleteReceiptFilterResult call() throws Exception {
-              DeleteReceiptFilterResult result;
-                try {
-                result = deleteReceiptFilter(deleteReceiptFilterRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteReceiptFilterRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Sets the position of the specified receipt rule in the receipt rule
-     * set.
-     * </p>
-     * <p>
-     * For information about managing receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param setReceiptRulePositionRequest Container for the necessary
-     *           parameters to execute the SetReceiptRulePosition operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetReceiptRulePosition service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SetReceiptRulePositionResult> setReceiptRulePositionAsync(final SetReceiptRulePositionRequest setReceiptRulePositionRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetReceiptRulePositionResult>() {
-            public SetReceiptRulePositionResult call() throws Exception {
-                return setReceiptRulePosition(setReceiptRulePositionRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Sets the position of the specified receipt rule in the receipt rule
-     * set.
-     * </p>
-     * <p>
-     * For information about managing receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param setReceiptRulePositionRequest Container for the necessary
-     *           parameters to execute the SetReceiptRulePosition operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetReceiptRulePosition service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SetReceiptRulePositionResult> setReceiptRulePositionAsync(
-            final SetReceiptRulePositionRequest setReceiptRulePositionRequest,
-            final AsyncHandler<SetReceiptRulePositionRequest, SetReceiptRulePositionResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetReceiptRulePositionResult>() {
-            public SetReceiptRulePositionResult call() throws Exception {
-              SetReceiptRulePositionResult result;
-                try {
-                result = setReceiptRulePosition(setReceiptRulePositionRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(setReceiptRulePositionRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Returns the details of the specified receipt rule.
-     * </p>
-     * <p>
-     * For information about setting up receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param describeReceiptRuleRequest Container for the necessary
-     *           parameters to execute the DescribeReceiptRule operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeReceiptRule service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeReceiptRuleResult> describeReceiptRuleAsync(final DescribeReceiptRuleRequest describeReceiptRuleRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeReceiptRuleResult>() {
-            public DescribeReceiptRuleResult call() throws Exception {
-                return describeReceiptRule(describeReceiptRuleRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Returns the details of the specified receipt rule.
-     * </p>
-     * <p>
-     * For information about setting up receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param describeReceiptRuleRequest Container for the necessary
-     *           parameters to execute the DescribeReceiptRule operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DescribeReceiptRule service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DescribeReceiptRuleResult> describeReceiptRuleAsync(
-            final DescribeReceiptRuleRequest describeReceiptRuleRequest,
-            final AsyncHandler<DescribeReceiptRuleRequest, DescribeReceiptRuleResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeReceiptRuleResult>() {
-            public DescribeReceiptRuleResult call() throws Exception {
-              DescribeReceiptRuleResult result;
-                try {
-                result = describeReceiptRule(describeReceiptRuleRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(describeReceiptRuleRequest, result);
+              asyncHandler.onSuccess(listReceiptRuleSetsRequest, result);
                  return result;
         }
     });
@@ -2313,23 +1481,24 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Returns the user's sending statistics. The result is a list of data
-     * points, representing the last two weeks of sending activity.
+     * Deletes the specified email address from the list of verified
+     * addresses.
      * </p>
      * <p>
-     * Each data point in the list contains statistics for a 15-minute
-     * interval.
+     * <b>IMPORTANT:</b>The DeleteVerifiedEmailAddress action is deprecated
+     * as of the May 15, 2012 release of Domain Verification. The
+     * DeleteIdentity action is now preferred.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param getSendStatisticsRequest Container for the necessary parameters
-     *           to execute the GetSendStatistics operation on
+     * @param deleteVerifiedEmailAddressRequest Container for the necessary
+     *           parameters to execute the DeleteVerifiedEmailAddress operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         GetSendStatistics service method, as returned by
+     *         DeleteVerifiedEmailAddress service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -2341,30 +1510,32 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<GetSendStatisticsResult> getSendStatisticsAsync(final GetSendStatisticsRequest getSendStatisticsRequest) 
+    public Future<Void> deleteVerifiedEmailAddressAsync(final DeleteVerifiedEmailAddressRequest deleteVerifiedEmailAddressRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetSendStatisticsResult>() {
-            public GetSendStatisticsResult call() throws Exception {
-                return getSendStatistics(getSendStatisticsRequest);
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteVerifiedEmailAddress(deleteVerifiedEmailAddressRequest);
+                return null;
         }
     });
     }
 
     /**
      * <p>
-     * Returns the user's sending statistics. The result is a list of data
-     * points, representing the last two weeks of sending activity.
+     * Deletes the specified email address from the list of verified
+     * addresses.
      * </p>
      * <p>
-     * Each data point in the list contains statistics for a 15-minute
-     * interval.
+     * <b>IMPORTANT:</b>The DeleteVerifiedEmailAddress action is deprecated
+     * as of the May 15, 2012 release of Domain Verification. The
+     * DeleteIdentity action is now preferred.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param getSendStatisticsRequest Container for the necessary parameters
-     *           to execute the GetSendStatistics operation on
+     * @param deleteVerifiedEmailAddressRequest Container for the necessary
+     *           parameters to execute the DeleteVerifiedEmailAddress operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -2372,7 +1543,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         GetSendStatistics service method, as returned by
+     *         DeleteVerifiedEmailAddress service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -2384,20 +1555,101 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<GetSendStatisticsResult> getSendStatisticsAsync(
-            final GetSendStatisticsRequest getSendStatisticsRequest,
-            final AsyncHandler<GetSendStatisticsRequest, GetSendStatisticsResult> asyncHandler)
+    public Future<Void> deleteVerifiedEmailAddressAsync(
+            final DeleteVerifiedEmailAddressRequest deleteVerifiedEmailAddressRequest,
+            final AsyncHandler<DeleteVerifiedEmailAddressRequest, Void> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetSendStatisticsResult>() {
-            public GetSendStatisticsResult call() throws Exception {
-              GetSendStatisticsResult result;
-                try {
-                result = getSendStatistics(getSendStatisticsRequest);
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+              try {
+                deleteVerifiedEmailAddress(deleteVerifiedEmailAddressRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(getSendStatisticsRequest, result);
+              asyncHandler.onSuccess(deleteVerifiedEmailAddressRequest, null);
+                 return null;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Verifies a domain.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param verifyDomainIdentityRequest Container for the necessary
+     *           parameters to execute the VerifyDomainIdentity operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         VerifyDomainIdentity service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<VerifyDomainIdentityResult> verifyDomainIdentityAsync(final VerifyDomainIdentityRequest verifyDomainIdentityRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<VerifyDomainIdentityResult>() {
+            public VerifyDomainIdentityResult call() throws Exception {
+                return verifyDomainIdentity(verifyDomainIdentityRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Verifies a domain.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param verifyDomainIdentityRequest Container for the necessary
+     *           parameters to execute the VerifyDomainIdentity operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         VerifyDomainIdentity service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<VerifyDomainIdentityResult> verifyDomainIdentityAsync(
+            final VerifyDomainIdentityRequest verifyDomainIdentityRequest,
+            final AsyncHandler<VerifyDomainIdentityRequest, VerifyDomainIdentityResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<VerifyDomainIdentityResult>() {
+            public VerifyDomainIdentityResult call() throws Exception {
+              VerifyDomainIdentityResult result;
+                try {
+                result = verifyDomainIdentity(verifyDomainIdentityRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(verifyDomainIdentityRequest, result);
                  return result;
         }
     });
@@ -2405,11 +1657,110 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Sets the specified receipt rule set as the active receipt rule set.
+     * Enables or disables the custom MAIL FROM domain setup for a verified
+     * identity (email address or domain).
      * </p>
      * <p>
-     * <b>NOTE:</b>To disable your email-receiving through Amazon SES
-     * completely, you can call this API with RuleSetName set to null.
+     * <b>IMPORTANT:</b>To send emails using the specified MAIL FROM domain,
+     * you must add an MX record to your MAIL FROM domain's DNS settings. If
+     * you want your emails to pass Sender Policy Framework (SPF) checks, you
+     * must also add or update an SPF record. For more information, see the
+     * Amazon SES Developer Guide.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param setIdentityMailFromDomainRequest Container for the necessary
+     *           parameters to execute the SetIdentityMailFromDomain operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetIdentityMailFromDomain service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SetIdentityMailFromDomainResult> setIdentityMailFromDomainAsync(final SetIdentityMailFromDomainRequest setIdentityMailFromDomainRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SetIdentityMailFromDomainResult>() {
+            public SetIdentityMailFromDomainResult call() throws Exception {
+                return setIdentityMailFromDomain(setIdentityMailFromDomainRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Enables or disables the custom MAIL FROM domain setup for a verified
+     * identity (email address or domain).
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b>To send emails using the specified MAIL FROM domain,
+     * you must add an MX record to your MAIL FROM domain's DNS settings. If
+     * you want your emails to pass Sender Policy Framework (SPF) checks, you
+     * must also add or update an SPF record. For more information, see the
+     * Amazon SES Developer Guide.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param setIdentityMailFromDomainRequest Container for the necessary
+     *           parameters to execute the SetIdentityMailFromDomain operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetIdentityMailFromDomain service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SetIdentityMailFromDomainResult> setIdentityMailFromDomainAsync(
+            final SetIdentityMailFromDomainRequest setIdentityMailFromDomainRequest,
+            final AsyncHandler<SetIdentityMailFromDomainRequest, SetIdentityMailFromDomainResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SetIdentityMailFromDomainResult>() {
+            public SetIdentityMailFromDomainResult call() throws Exception {
+              SetIdentityMailFromDomainResult result;
+                try {
+                result = setIdentityMailFromDomain(setIdentityMailFromDomainRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(setIdentityMailFromDomainRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Reorders the receipt rules within a receipt rule set.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>All of the rules in the rule set must be represented in
+     * this request. That is, this API will return an error if the reorder
+     * request doesn't explicitly position all of the rules.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the
@@ -2420,12 +1771,12 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param setActiveReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the SetActiveReceiptRuleSet operation on
+     * @param reorderReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the ReorderReceiptRuleSet operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         SetActiveReceiptRuleSet service method, as returned by
+     *         ReorderReceiptRuleSet service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -2437,22 +1788,23 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<SetActiveReceiptRuleSetResult> setActiveReceiptRuleSetAsync(final SetActiveReceiptRuleSetRequest setActiveReceiptRuleSetRequest) 
+    public Future<ReorderReceiptRuleSetResult> reorderReceiptRuleSetAsync(final ReorderReceiptRuleSetRequest reorderReceiptRuleSetRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetActiveReceiptRuleSetResult>() {
-            public SetActiveReceiptRuleSetResult call() throws Exception {
-                return setActiveReceiptRuleSet(setActiveReceiptRuleSetRequest);
+        return executorService.submit(new Callable<ReorderReceiptRuleSetResult>() {
+            public ReorderReceiptRuleSetResult call() throws Exception {
+                return reorderReceiptRuleSet(reorderReceiptRuleSetRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Sets the specified receipt rule set as the active receipt rule set.
+     * Reorders the receipt rules within a receipt rule set.
      * </p>
      * <p>
-     * <b>NOTE:</b>To disable your email-receiving through Amazon SES
-     * completely, you can call this API with RuleSetName set to null.
+     * <b>NOTE:</b>All of the rules in the rule set must be represented in
+     * this request. That is, this API will return an error if the reorder
+     * request doesn't explicitly position all of the rules.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the
@@ -2463,8 +1815,8 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param setActiveReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the SetActiveReceiptRuleSet operation on
+     * @param reorderReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the ReorderReceiptRuleSet operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -2472,7 +1824,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         SetActiveReceiptRuleSet service method, as returned by
+     *         ReorderReceiptRuleSet service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -2484,20 +1836,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<SetActiveReceiptRuleSetResult> setActiveReceiptRuleSetAsync(
-            final SetActiveReceiptRuleSetRequest setActiveReceiptRuleSetRequest,
-            final AsyncHandler<SetActiveReceiptRuleSetRequest, SetActiveReceiptRuleSetResult> asyncHandler)
+    public Future<ReorderReceiptRuleSetResult> reorderReceiptRuleSetAsync(
+            final ReorderReceiptRuleSetRequest reorderReceiptRuleSetRequest,
+            final AsyncHandler<ReorderReceiptRuleSetRequest, ReorderReceiptRuleSetResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetActiveReceiptRuleSetResult>() {
-            public SetActiveReceiptRuleSetResult call() throws Exception {
-              SetActiveReceiptRuleSetResult result;
+        return executorService.submit(new Callable<ReorderReceiptRuleSetResult>() {
+            public ReorderReceiptRuleSetResult call() throws Exception {
+              ReorderReceiptRuleSetResult result;
                 try {
-                result = setActiveReceiptRuleSet(setActiveReceiptRuleSetRequest);
+                result = reorderReceiptRuleSet(reorderReceiptRuleSetRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(setActiveReceiptRuleSetRequest, result);
+              asyncHandler.onSuccess(reorderReceiptRuleSetRequest, result);
                  return result;
         }
     });
@@ -2505,24 +1857,23 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Returns the metadata and receipt rules for the receipt rule set that
-     * is currently active.
+     * Updates a receipt rule.
      * </p>
      * <p>
-     * For information about setting up receipt rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
+     * For information about managing receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param describeActiveReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the DescribeActiveReceiptRuleSet operation on
+     * @param updateReceiptRuleRequest Container for the necessary parameters
+     *           to execute the UpdateReceiptRule operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         DescribeActiveReceiptRuleSet service method, as returned by
+     *         UpdateReceiptRule service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -2534,31 +1885,30 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DescribeActiveReceiptRuleSetResult> describeActiveReceiptRuleSetAsync(final DescribeActiveReceiptRuleSetRequest describeActiveReceiptRuleSetRequest) 
+    public Future<UpdateReceiptRuleResult> updateReceiptRuleAsync(final UpdateReceiptRuleRequest updateReceiptRuleRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeActiveReceiptRuleSetResult>() {
-            public DescribeActiveReceiptRuleSetResult call() throws Exception {
-                return describeActiveReceiptRuleSet(describeActiveReceiptRuleSetRequest);
+        return executorService.submit(new Callable<UpdateReceiptRuleResult>() {
+            public UpdateReceiptRuleResult call() throws Exception {
+                return updateReceiptRule(updateReceiptRuleRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Returns the metadata and receipt rules for the receipt rule set that
-     * is currently active.
+     * Updates a receipt rule.
      * </p>
      * <p>
-     * For information about setting up receipt rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
+     * For information about managing receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param describeActiveReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the DescribeActiveReceiptRuleSet operation on
+     * @param updateReceiptRuleRequest Container for the necessary parameters
+     *           to execute the UpdateReceiptRule operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -2566,7 +1916,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         DescribeActiveReceiptRuleSet service method, as returned by
+     *         UpdateReceiptRule service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -2578,20 +1928,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DescribeActiveReceiptRuleSetResult> describeActiveReceiptRuleSetAsync(
-            final DescribeActiveReceiptRuleSetRequest describeActiveReceiptRuleSetRequest,
-            final AsyncHandler<DescribeActiveReceiptRuleSetRequest, DescribeActiveReceiptRuleSetResult> asyncHandler)
+    public Future<UpdateReceiptRuleResult> updateReceiptRuleAsync(
+            final UpdateReceiptRuleRequest updateReceiptRuleRequest,
+            final AsyncHandler<UpdateReceiptRuleRequest, UpdateReceiptRuleResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeActiveReceiptRuleSetResult>() {
-            public DescribeActiveReceiptRuleSetResult call() throws Exception {
-              DescribeActiveReceiptRuleSetResult result;
+        return executorService.submit(new Callable<UpdateReceiptRuleResult>() {
+            public UpdateReceiptRuleResult call() throws Exception {
+              UpdateReceiptRuleResult result;
                 try {
-                result = describeActiveReceiptRuleSet(describeActiveReceiptRuleSetRequest);
+                result = updateReceiptRule(updateReceiptRuleRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(describeActiveReceiptRuleSetRequest, result);
+              asyncHandler.onSuccess(updateReceiptRuleRequest, result);
                  return result;
         }
     });
@@ -2801,23 +2151,21 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Creates a receipt rule.
+     * Given a list of identities (email addresses and/or domains), returns
+     * the verification status and (for domain identities) the verification
+     * token for each identity.
      * </p>
      * <p>
-     * For information about setting up receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
+     * This action is throttled at one request per second and can only get
+     * verification attributes for up to 100 identities at a time.
      * </p>
      *
-     * @param createReceiptRuleRequest Container for the necessary parameters
-     *           to execute the CreateReceiptRule operation on
-     *           AmazonSimpleEmailService.
+     * @param getIdentityVerificationAttributesRequest Container for the
+     *           necessary parameters to execute the GetIdentityVerificationAttributes
+     *           operation on AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         CreateReceiptRule service method, as returned by
+     *         GetIdentityVerificationAttributes service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -2829,30 +2177,120 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<CreateReceiptRuleResult> createReceiptRuleAsync(final CreateReceiptRuleRequest createReceiptRuleRequest) 
+    public Future<GetIdentityVerificationAttributesResult> getIdentityVerificationAttributesAsync(final GetIdentityVerificationAttributesRequest getIdentityVerificationAttributesRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CreateReceiptRuleResult>() {
-            public CreateReceiptRuleResult call() throws Exception {
-                return createReceiptRule(createReceiptRuleRequest);
+        return executorService.submit(new Callable<GetIdentityVerificationAttributesResult>() {
+            public GetIdentityVerificationAttributesResult call() throws Exception {
+                return getIdentityVerificationAttributes(getIdentityVerificationAttributesRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Creates a receipt rule.
+     * Given a list of identities (email addresses and/or domains), returns
+     * the verification status and (for domain identities) the verification
+     * token for each identity.
      * </p>
      * <p>
-     * For information about setting up receipt rules, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * This action is throttled at one request per second and can only get
+     * verification attributes for up to 100 identities at a time.
+     * </p>
+     *
+     * @param getIdentityVerificationAttributesRequest Container for the
+     *           necessary parameters to execute the GetIdentityVerificationAttributes
+     *           operation on AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetIdentityVerificationAttributes service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetIdentityVerificationAttributesResult> getIdentityVerificationAttributesAsync(
+            final GetIdentityVerificationAttributesRequest getIdentityVerificationAttributesRequest,
+            final AsyncHandler<GetIdentityVerificationAttributesRequest, GetIdentityVerificationAttributesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetIdentityVerificationAttributesResult>() {
+            public GetIdentityVerificationAttributesResult call() throws Exception {
+              GetIdentityVerificationAttributesResult result;
+                try {
+                result = getIdentityVerificationAttributes(getIdentityVerificationAttributesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(getIdentityVerificationAttributesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the specified receipt rule.
+     * </p>
+     * <p>
+     * For information about managing receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param createReceiptRuleRequest Container for the necessary parameters
-     *           to execute the CreateReceiptRule operation on
+     * @param deleteReceiptRuleRequest Container for the necessary parameters
+     *           to execute the DeleteReceiptRule operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteReceiptRule service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteReceiptRuleResult> deleteReceiptRuleAsync(final DeleteReceiptRuleRequest deleteReceiptRuleRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteReceiptRuleResult>() {
+            public DeleteReceiptRuleResult call() throws Exception {
+                return deleteReceiptRule(deleteReceiptRuleRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified receipt rule.
+     * </p>
+     * <p>
+     * For information about managing receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteReceiptRuleRequest Container for the necessary parameters
+     *           to execute the DeleteReceiptRule operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -2860,7 +2298,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         CreateReceiptRule service method, as returned by
+     *         DeleteReceiptRule service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -2872,20 +2310,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<CreateReceiptRuleResult> createReceiptRuleAsync(
-            final CreateReceiptRuleRequest createReceiptRuleRequest,
-            final AsyncHandler<CreateReceiptRuleRequest, CreateReceiptRuleResult> asyncHandler)
+    public Future<DeleteReceiptRuleResult> deleteReceiptRuleAsync(
+            final DeleteReceiptRuleRequest deleteReceiptRuleRequest,
+            final AsyncHandler<DeleteReceiptRuleRequest, DeleteReceiptRuleResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CreateReceiptRuleResult>() {
-            public CreateReceiptRuleResult call() throws Exception {
-              CreateReceiptRuleResult result;
+        return executorService.submit(new Callable<DeleteReceiptRuleResult>() {
+            public DeleteReceiptRuleResult call() throws Exception {
+              DeleteReceiptRuleResult result;
                 try {
-                result = createReceiptRule(createReceiptRuleRequest);
+                result = deleteReceiptRule(deleteReceiptRuleRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(createReceiptRuleRequest, result);
+              asyncHandler.onSuccess(deleteReceiptRuleRequest, result);
                  return result;
         }
     });
@@ -2993,30 +2431,31 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Adds or updates a sending authorization policy for the specified
-     * identity (email address or domain).
+     * Given an identity (email address or domain), sets the Amazon Simple
+     * Notification Service (Amazon SNS) topic to which Amazon SES will
+     * publish bounce, complaint, and/or delivery notifications for emails
+     * sent with that identity as the <code>Source</code> .
      * </p>
      * <p>
-     * <b>NOTE:</b>This API is for the identity owner only. If you have not
-     * verified the identity, this API will return an error.
-     * </p>
-     * <p>
-     * Sending authorization is a feature that enables an identity owner to
-     * authorize other senders to use its identities. For information about
-     * using sending authorization, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
-     * .
+     * <b>NOTE:</b>Unless feedback forwarding is enabled, you must specify
+     * Amazon SNS topics for bounce and complaint notifications. For more
+     * information, see SetIdentityFeedbackForwardingEnabled.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
+     * <p>
+     * For more information about feedback notification, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
      *
-     * @param putIdentityPolicyRequest Container for the necessary parameters
-     *           to execute the PutIdentityPolicy operation on
+     * @param setIdentityNotificationTopicRequest Container for the necessary
+     *           parameters to execute the SetIdentityNotificationTopic operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         PutIdentityPolicy service method, as returned by
+     *         SetIdentityNotificationTopic service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3028,37 +2467,38 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<PutIdentityPolicyResult> putIdentityPolicyAsync(final PutIdentityPolicyRequest putIdentityPolicyRequest) 
+    public Future<SetIdentityNotificationTopicResult> setIdentityNotificationTopicAsync(final SetIdentityNotificationTopicRequest setIdentityNotificationTopicRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<PutIdentityPolicyResult>() {
-            public PutIdentityPolicyResult call() throws Exception {
-                return putIdentityPolicy(putIdentityPolicyRequest);
+        return executorService.submit(new Callable<SetIdentityNotificationTopicResult>() {
+            public SetIdentityNotificationTopicResult call() throws Exception {
+                return setIdentityNotificationTopic(setIdentityNotificationTopicRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Adds or updates a sending authorization policy for the specified
-     * identity (email address or domain).
+     * Given an identity (email address or domain), sets the Amazon Simple
+     * Notification Service (Amazon SNS) topic to which Amazon SES will
+     * publish bounce, complaint, and/or delivery notifications for emails
+     * sent with that identity as the <code>Source</code> .
      * </p>
      * <p>
-     * <b>NOTE:</b>This API is for the identity owner only. If you have not
-     * verified the identity, this API will return an error.
-     * </p>
-     * <p>
-     * Sending authorization is a feature that enables an identity owner to
-     * authorize other senders to use its identities. For information about
-     * using sending authorization, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
-     * .
+     * <b>NOTE:</b>Unless feedback forwarding is enabled, you must specify
+     * Amazon SNS topics for bounce and complaint notifications. For more
+     * information, see SetIdentityFeedbackForwardingEnabled.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
+     * <p>
+     * For more information about feedback notification, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
      *
-     * @param putIdentityPolicyRequest Container for the necessary parameters
-     *           to execute the PutIdentityPolicy operation on
+     * @param setIdentityNotificationTopicRequest Container for the necessary
+     *           parameters to execute the SetIdentityNotificationTopic operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -3066,7 +2506,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         PutIdentityPolicy service method, as returned by
+     *         SetIdentityNotificationTopic service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3078,20 +2518,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<PutIdentityPolicyResult> putIdentityPolicyAsync(
-            final PutIdentityPolicyRequest putIdentityPolicyRequest,
-            final AsyncHandler<PutIdentityPolicyRequest, PutIdentityPolicyResult> asyncHandler)
+    public Future<SetIdentityNotificationTopicResult> setIdentityNotificationTopicAsync(
+            final SetIdentityNotificationTopicRequest setIdentityNotificationTopicRequest,
+            final AsyncHandler<SetIdentityNotificationTopicRequest, SetIdentityNotificationTopicResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<PutIdentityPolicyResult>() {
-            public PutIdentityPolicyResult call() throws Exception {
-              PutIdentityPolicyResult result;
+        return executorService.submit(new Callable<SetIdentityNotificationTopicResult>() {
+            public SetIdentityNotificationTopicResult call() throws Exception {
+              SetIdentityNotificationTopicResult result;
                 try {
-                result = putIdentityPolicy(putIdentityPolicyRequest);
+                result = setIdentityNotificationTopic(setIdentityNotificationTopicRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(putIdentityPolicyRequest, result);
+              asyncHandler.onSuccess(setIdentityNotificationTopicRequest, result);
                  return result;
         }
     });
@@ -3099,32 +2539,23 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Returns the requested sending authorization policies for the given
-     * identity (email address or domain). The policies are returned as a map
-     * of policy names to policy contents. You can retrieve a maximum of 20
-     * policies at a time.
+     * Creates a receipt rule.
      * </p>
      * <p>
-     * <b>NOTE:</b>This API is for the identity owner only. If you have not
-     * verified the identity, this API will return an error.
-     * </p>
-     * <p>
-     * Sending authorization is a feature that enables an identity owner to
-     * authorize other senders to use its identities. For information about
-     * using sending authorization, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * For information about setting up receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param getIdentityPoliciesRequest Container for the necessary
-     *           parameters to execute the GetIdentityPolicies operation on
+     * @param createReceiptRuleRequest Container for the necessary parameters
+     *           to execute the CreateReceiptRule operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         GetIdentityPolicies service method, as returned by
+     *         CreateReceiptRule service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3136,39 +2567,30 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<GetIdentityPoliciesResult> getIdentityPoliciesAsync(final GetIdentityPoliciesRequest getIdentityPoliciesRequest) 
+    public Future<CreateReceiptRuleResult> createReceiptRuleAsync(final CreateReceiptRuleRequest createReceiptRuleRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetIdentityPoliciesResult>() {
-            public GetIdentityPoliciesResult call() throws Exception {
-                return getIdentityPolicies(getIdentityPoliciesRequest);
+        return executorService.submit(new Callable<CreateReceiptRuleResult>() {
+            public CreateReceiptRuleResult call() throws Exception {
+                return createReceiptRule(createReceiptRuleRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Returns the requested sending authorization policies for the given
-     * identity (email address or domain). The policies are returned as a map
-     * of policy names to policy contents. You can retrieve a maximum of 20
-     * policies at a time.
+     * Creates a receipt rule.
      * </p>
      * <p>
-     * <b>NOTE:</b>This API is for the identity owner only. If you have not
-     * verified the identity, this API will return an error.
-     * </p>
-     * <p>
-     * Sending authorization is a feature that enables an identity owner to
-     * authorize other senders to use its identities. For information about
-     * using sending authorization, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * For information about setting up receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
      * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param getIdentityPoliciesRequest Container for the necessary
-     *           parameters to execute the GetIdentityPolicies operation on
+     * @param createReceiptRuleRequest Container for the necessary parameters
+     *           to execute the CreateReceiptRule operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -3176,7 +2598,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         GetIdentityPolicies service method, as returned by
+     *         CreateReceiptRule service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3188,20 +2610,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<GetIdentityPoliciesResult> getIdentityPoliciesAsync(
-            final GetIdentityPoliciesRequest getIdentityPoliciesRequest,
-            final AsyncHandler<GetIdentityPoliciesRequest, GetIdentityPoliciesResult> asyncHandler)
+    public Future<CreateReceiptRuleResult> createReceiptRuleAsync(
+            final CreateReceiptRuleRequest createReceiptRuleRequest,
+            final AsyncHandler<CreateReceiptRuleRequest, CreateReceiptRuleResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetIdentityPoliciesResult>() {
-            public GetIdentityPoliciesResult call() throws Exception {
-              GetIdentityPoliciesResult result;
+        return executorService.submit(new Callable<CreateReceiptRuleResult>() {
+            public CreateReceiptRuleResult call() throws Exception {
+              CreateReceiptRuleResult result;
                 try {
-                result = getIdentityPolicies(getIdentityPoliciesRequest);
+                result = createReceiptRule(createReceiptRuleRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(getIdentityPoliciesRequest, result);
+              asyncHandler.onSuccess(createReceiptRuleRequest, result);
                  return result;
         }
     });
@@ -3209,321 +2631,11 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Enables or disables Easy DKIM signing of email sent from an identity:
-     * </p>
-     * 
-     * <ul>
-     * <li>If Easy DKIM signing is enabled for a domain name identity (e.g.,
-     * <code>example.com</code> ), then Amazon SES will DKIM-sign all email
-     * sent by addresses under that domain name (e.g.,
-     * <code>user@example.com</code> ).</li>
-     * <li>If Easy DKIM signing is enabled for an email address, then Amazon
-     * SES will DKIM-sign all email sent by that email address.</li>
-     * 
-     * </ul>
-     * <p>
-     * For email addresses (e.g., <code>user@example.com</code> ), you can
-     * only enable Easy DKIM signing if the corresponding domain (e.g.,
-     * <code>example.com</code> ) has been set up for Easy DKIM using the AWS
-     * Console or the <code>VerifyDomainDkim</code> action.
+     * Sets the specified receipt rule set as the active receipt rule set.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * For more information about Easy DKIM signing, go to the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param setIdentityDkimEnabledRequest Container for the necessary
-     *           parameters to execute the SetIdentityDkimEnabled operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetIdentityDkimEnabled service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SetIdentityDkimEnabledResult> setIdentityDkimEnabledAsync(final SetIdentityDkimEnabledRequest setIdentityDkimEnabledRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetIdentityDkimEnabledResult>() {
-            public SetIdentityDkimEnabledResult call() throws Exception {
-                return setIdentityDkimEnabled(setIdentityDkimEnabledRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Enables or disables Easy DKIM signing of email sent from an identity:
-     * </p>
-     * 
-     * <ul>
-     * <li>If Easy DKIM signing is enabled for a domain name identity (e.g.,
-     * <code>example.com</code> ), then Amazon SES will DKIM-sign all email
-     * sent by addresses under that domain name (e.g.,
-     * <code>user@example.com</code> ).</li>
-     * <li>If Easy DKIM signing is enabled for an email address, then Amazon
-     * SES will DKIM-sign all email sent by that email address.</li>
-     * 
-     * </ul>
-     * <p>
-     * For email addresses (e.g., <code>user@example.com</code> ), you can
-     * only enable Easy DKIM signing if the corresponding domain (e.g.,
-     * <code>example.com</code> ) has been set up for Easy DKIM using the AWS
-     * Console or the <code>VerifyDomainDkim</code> action.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     * <p>
-     * For more information about Easy DKIM signing, go to the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     *
-     * @param setIdentityDkimEnabledRequest Container for the necessary
-     *           parameters to execute the SetIdentityDkimEnabled operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SetIdentityDkimEnabled service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SetIdentityDkimEnabledResult> setIdentityDkimEnabledAsync(
-            final SetIdentityDkimEnabledRequest setIdentityDkimEnabledRequest,
-            final AsyncHandler<SetIdentityDkimEnabledRequest, SetIdentityDkimEnabledResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetIdentityDkimEnabledResult>() {
-            public SetIdentityDkimEnabledResult call() throws Exception {
-              SetIdentityDkimEnabledResult result;
-                try {
-                result = setIdentityDkimEnabled(setIdentityDkimEnabledRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(setIdentityDkimEnabledRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Returns the user's current sending limits.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param getSendQuotaRequest Container for the necessary parameters to
-     *           execute the GetSendQuota operation on AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         GetSendQuota service method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetSendQuotaResult> getSendQuotaAsync(final GetSendQuotaRequest getSendQuotaRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetSendQuotaResult>() {
-            public GetSendQuotaResult call() throws Exception {
-                return getSendQuota(getSendQuotaRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Returns the user's current sending limits.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param getSendQuotaRequest Container for the necessary parameters to
-     *           execute the GetSendQuota operation on AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         GetSendQuota service method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetSendQuotaResult> getSendQuotaAsync(
-            final GetSendQuotaRequest getSendQuotaRequest,
-            final AsyncHandler<GetSendQuotaRequest, GetSendQuotaResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetSendQuotaResult>() {
-            public GetSendQuotaResult call() throws Exception {
-              GetSendQuotaResult result;
-                try {
-                result = getSendQuota(getSendQuotaRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(getSendQuotaRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Deletes the specified sending authorization policy for the given
-     * identity (email address or domain). This API returns successfully even
-     * if a policy with the specified name does not exist.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>This API is for the identity owner only. If you have not
-     * verified the identity, this API will return an error.
-     * </p>
-     * <p>
-     * Sending authorization is a feature that enables an identity owner to
-     * authorize other senders to use its identities. For information about
-     * using sending authorization, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteIdentityPolicyRequest Container for the necessary
-     *           parameters to execute the DeleteIdentityPolicy operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteIdentityPolicy service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DeleteIdentityPolicyResult> deleteIdentityPolicyAsync(final DeleteIdentityPolicyRequest deleteIdentityPolicyRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteIdentityPolicyResult>() {
-            public DeleteIdentityPolicyResult call() throws Exception {
-                return deleteIdentityPolicy(deleteIdentityPolicyRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Deletes the specified sending authorization policy for the given
-     * identity (email address or domain). This API returns successfully even
-     * if a policy with the specified name does not exist.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>This API is for the identity owner only. If you have not
-     * verified the identity, this API will return an error.
-     * </p>
-     * <p>
-     * Sending authorization is a feature that enables an identity owner to
-     * authorize other senders to use its identities. For information about
-     * using sending authorization, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param deleteIdentityPolicyRequest Container for the necessary
-     *           parameters to execute the DeleteIdentityPolicy operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         DeleteIdentityPolicy service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<DeleteIdentityPolicyResult> deleteIdentityPolicyAsync(
-            final DeleteIdentityPolicyRequest deleteIdentityPolicyRequest,
-            final AsyncHandler<DeleteIdentityPolicyRequest, DeleteIdentityPolicyResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteIdentityPolicyResult>() {
-            public DeleteIdentityPolicyResult call() throws Exception {
-              DeleteIdentityPolicyResult result;
-                try {
-                result = deleteIdentityPolicy(deleteIdentityPolicyRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(deleteIdentityPolicyRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Lists the receipt rule sets that exist under your AWS account. If
-     * there are additional receipt rule sets to be retrieved, you will
-     * receive a <code>NextToken</code> that you can provide to the next call
-     * to <code>ListReceiptRuleSets</code> to retrieve the additional
-     * entries.
+     * <b>NOTE:</b>To disable your email-receiving through Amazon SES
+     * completely, you can call this API with RuleSetName set to null.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the
@@ -3534,12 +2646,12 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param listReceiptRuleSetsRequest Container for the necessary
-     *           parameters to execute the ListReceiptRuleSets operation on
+     * @param setActiveReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the SetActiveReceiptRuleSet operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         ListReceiptRuleSets service method, as returned by
+     *         SetActiveReceiptRuleSet service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3551,22 +2663,22 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<ListReceiptRuleSetsResult> listReceiptRuleSetsAsync(final ListReceiptRuleSetsRequest listReceiptRuleSetsRequest) 
+    public Future<SetActiveReceiptRuleSetResult> setActiveReceiptRuleSetAsync(final SetActiveReceiptRuleSetRequest setActiveReceiptRuleSetRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListReceiptRuleSetsResult>() {
-            public ListReceiptRuleSetsResult call() throws Exception {
-                return listReceiptRuleSets(listReceiptRuleSetsRequest);
+        return executorService.submit(new Callable<SetActiveReceiptRuleSetResult>() {
+            public SetActiveReceiptRuleSetResult call() throws Exception {
+                return setActiveReceiptRuleSet(setActiveReceiptRuleSetRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Lists the receipt rule sets that exist under your AWS account. If
-     * there are additional receipt rule sets to be retrieved, you will
-     * receive a <code>NextToken</code> that you can provide to the next call
-     * to <code>ListReceiptRuleSets</code> to retrieve the additional
-     * entries.
+     * Sets the specified receipt rule set as the active receipt rule set.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>To disable your email-receiving through Amazon SES
+     * completely, you can call this API with RuleSetName set to null.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the
@@ -3577,8 +2689,8 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param listReceiptRuleSetsRequest Container for the necessary
-     *           parameters to execute the ListReceiptRuleSets operation on
+     * @param setActiveReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the SetActiveReceiptRuleSet operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -3586,7 +2698,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         ListReceiptRuleSets service method, as returned by
+     *         SetActiveReceiptRuleSet service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3598,20 +2710,418 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<ListReceiptRuleSetsResult> listReceiptRuleSetsAsync(
-            final ListReceiptRuleSetsRequest listReceiptRuleSetsRequest,
-            final AsyncHandler<ListReceiptRuleSetsRequest, ListReceiptRuleSetsResult> asyncHandler)
+    public Future<SetActiveReceiptRuleSetResult> setActiveReceiptRuleSetAsync(
+            final SetActiveReceiptRuleSetRequest setActiveReceiptRuleSetRequest,
+            final AsyncHandler<SetActiveReceiptRuleSetRequest, SetActiveReceiptRuleSetResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListReceiptRuleSetsResult>() {
-            public ListReceiptRuleSetsResult call() throws Exception {
-              ListReceiptRuleSetsResult result;
+        return executorService.submit(new Callable<SetActiveReceiptRuleSetResult>() {
+            public SetActiveReceiptRuleSetResult call() throws Exception {
+              SetActiveReceiptRuleSetResult result;
                 try {
-                result = listReceiptRuleSets(listReceiptRuleSetsRequest);
+                result = setActiveReceiptRuleSet(setActiveReceiptRuleSetRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(listReceiptRuleSetsRequest, result);
+              asyncHandler.onSuccess(setActiveReceiptRuleSetRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the specified IP address filter.
+     * </p>
+     * <p>
+     * For information about managing IP address filters, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteReceiptFilterRequest Container for the necessary
+     *           parameters to execute the DeleteReceiptFilter operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteReceiptFilter service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteReceiptFilterResult> deleteReceiptFilterAsync(final DeleteReceiptFilterRequest deleteReceiptFilterRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteReceiptFilterResult>() {
+            public DeleteReceiptFilterResult call() throws Exception {
+                return deleteReceiptFilter(deleteReceiptFilterRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified IP address filter.
+     * </p>
+     * <p>
+     * For information about managing IP address filters, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteReceiptFilterRequest Container for the necessary
+     *           parameters to execute the DeleteReceiptFilter operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteReceiptFilter service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteReceiptFilterResult> deleteReceiptFilterAsync(
+            final DeleteReceiptFilterRequest deleteReceiptFilterRequest,
+            final AsyncHandler<DeleteReceiptFilterRequest, DeleteReceiptFilterResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteReceiptFilterResult>() {
+            public DeleteReceiptFilterResult call() throws Exception {
+              DeleteReceiptFilterResult result;
+                try {
+                result = deleteReceiptFilter(deleteReceiptFilterRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteReceiptFilterRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns the details of the specified receipt rule set.
+     * </p>
+     * <p>
+     * For information about managing receipt rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param describeReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the DescribeReceiptRuleSet operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeReceiptRuleSet service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeReceiptRuleSetResult> describeReceiptRuleSetAsync(final DescribeReceiptRuleSetRequest describeReceiptRuleSetRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeReceiptRuleSetResult>() {
+            public DescribeReceiptRuleSetResult call() throws Exception {
+                return describeReceiptRuleSet(describeReceiptRuleSetRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns the details of the specified receipt rule set.
+     * </p>
+     * <p>
+     * For information about managing receipt rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param describeReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the DescribeReceiptRuleSet operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeReceiptRuleSet service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeReceiptRuleSetResult> describeReceiptRuleSetAsync(
+            final DescribeReceiptRuleSetRequest describeReceiptRuleSetRequest,
+            final AsyncHandler<DescribeReceiptRuleSetRequest, DescribeReceiptRuleSetResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeReceiptRuleSetResult>() {
+            public DescribeReceiptRuleSetResult call() throws Exception {
+              DescribeReceiptRuleSetResult result;
+                try {
+                result = describeReceiptRuleSet(describeReceiptRuleSetRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeReceiptRuleSetRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Given an identity (email address or domain), enables or disables
+     * whether Amazon SES forwards bounce and complaint notifications as
+     * email. Feedback forwarding can only be disabled when Amazon Simple
+     * Notification Service (Amazon SNS) topics are specified for both
+     * bounces and complaints.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>Feedback forwarding does not apply to delivery
+     * notifications. Delivery notifications are only available through
+     * Amazon SNS.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * <p>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param setIdentityFeedbackForwardingEnabledRequest Container for the
+     *           necessary parameters to execute the
+     *           SetIdentityFeedbackForwardingEnabled operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetIdentityFeedbackForwardingEnabled service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SetIdentityFeedbackForwardingEnabledResult> setIdentityFeedbackForwardingEnabledAsync(final SetIdentityFeedbackForwardingEnabledRequest setIdentityFeedbackForwardingEnabledRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SetIdentityFeedbackForwardingEnabledResult>() {
+            public SetIdentityFeedbackForwardingEnabledResult call() throws Exception {
+                return setIdentityFeedbackForwardingEnabled(setIdentityFeedbackForwardingEnabledRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Given an identity (email address or domain), enables or disables
+     * whether Amazon SES forwards bounce and complaint notifications as
+     * email. Feedback forwarding can only be disabled when Amazon Simple
+     * Notification Service (Amazon SNS) topics are specified for both
+     * bounces and complaints.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>Feedback forwarding does not apply to delivery
+     * notifications. Delivery notifications are only available through
+     * Amazon SNS.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * <p>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param setIdentityFeedbackForwardingEnabledRequest Container for the
+     *           necessary parameters to execute the
+     *           SetIdentityFeedbackForwardingEnabled operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SetIdentityFeedbackForwardingEnabled service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SetIdentityFeedbackForwardingEnabledResult> setIdentityFeedbackForwardingEnabledAsync(
+            final SetIdentityFeedbackForwardingEnabledRequest setIdentityFeedbackForwardingEnabledRequest,
+            final AsyncHandler<SetIdentityFeedbackForwardingEnabledRequest, SetIdentityFeedbackForwardingEnabledResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SetIdentityFeedbackForwardingEnabledResult>() {
+            public SetIdentityFeedbackForwardingEnabledResult call() throws Exception {
+              SetIdentityFeedbackForwardingEnabledResult result;
+                try {
+                result = setIdentityFeedbackForwardingEnabled(setIdentityFeedbackForwardingEnabledRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(setIdentityFeedbackForwardingEnabledRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Generates and sends a bounce message to the sender of an email you
+     * received through Amazon SES. You can only use this API on an email up
+     * to 24 hours after you receive it.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>You cannot use this API to send generic bounces for mail
+     * that was not received by Amazon SES.
+     * </p>
+     * <p>
+     * For information about receiving email through Amazon SES, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param sendBounceRequest Container for the necessary parameters to
+     *           execute the SendBounce operation on AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SendBounce service method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SendBounceResult> sendBounceAsync(final SendBounceRequest sendBounceRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SendBounceResult>() {
+            public SendBounceResult call() throws Exception {
+                return sendBounce(sendBounceRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Generates and sends a bounce message to the sender of an email you
+     * received through Amazon SES. You can only use this API on an email up
+     * to 24 hours after you receive it.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>You cannot use this API to send generic bounces for mail
+     * that was not received by Amazon SES.
+     * </p>
+     * <p>
+     * For information about receiving email through Amazon SES, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param sendBounceRequest Container for the necessary parameters to
+     *           execute the SendBounce operation on AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         SendBounce service method, as returned by AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<SendBounceResult> sendBounceAsync(
+            final SendBounceRequest sendBounceRequest,
+            final AsyncHandler<SendBounceRequest, SendBounceResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SendBounceResult>() {
+            public SendBounceResult call() throws Exception {
+              SendBounceResult result;
+                try {
+                result = sendBounce(sendBounceRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(sendBounceRequest, result);
                  return result;
         }
     });
@@ -3753,18 +3263,19 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Verifies a domain.
+     * Returns a list containing all of the identities (email addresses and
+     * domains) for a specific AWS Account, regardless of verification
+     * status.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param verifyDomainIdentityRequest Container for the necessary
-     *           parameters to execute the VerifyDomainIdentity operation on
-     *           AmazonSimpleEmailService.
+     * @param listIdentitiesRequest Container for the necessary parameters to
+     *           execute the ListIdentities operation on AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         VerifyDomainIdentity service method, as returned by
+     *         ListIdentities service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3776,33 +3287,34 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<VerifyDomainIdentityResult> verifyDomainIdentityAsync(final VerifyDomainIdentityRequest verifyDomainIdentityRequest) 
+    public Future<ListIdentitiesResult> listIdentitiesAsync(final ListIdentitiesRequest listIdentitiesRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<VerifyDomainIdentityResult>() {
-            public VerifyDomainIdentityResult call() throws Exception {
-                return verifyDomainIdentity(verifyDomainIdentityRequest);
+        return executorService.submit(new Callable<ListIdentitiesResult>() {
+            public ListIdentitiesResult call() throws Exception {
+                return listIdentities(listIdentitiesRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Verifies a domain.
+     * Returns a list containing all of the identities (email addresses and
+     * domains) for a specific AWS Account, regardless of verification
+     * status.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param verifyDomainIdentityRequest Container for the necessary
-     *           parameters to execute the VerifyDomainIdentity operation on
-     *           AmazonSimpleEmailService.
+     * @param listIdentitiesRequest Container for the necessary parameters to
+     *           execute the ListIdentities operation on AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         VerifyDomainIdentity service method, as returned by
+     *         ListIdentities service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3814,20 +3326,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<VerifyDomainIdentityResult> verifyDomainIdentityAsync(
-            final VerifyDomainIdentityRequest verifyDomainIdentityRequest,
-            final AsyncHandler<VerifyDomainIdentityRequest, VerifyDomainIdentityResult> asyncHandler)
+    public Future<ListIdentitiesResult> listIdentitiesAsync(
+            final ListIdentitiesRequest listIdentitiesRequest,
+            final AsyncHandler<ListIdentitiesRequest, ListIdentitiesResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<VerifyDomainIdentityResult>() {
-            public VerifyDomainIdentityResult call() throws Exception {
-              VerifyDomainIdentityResult result;
+        return executorService.submit(new Callable<ListIdentitiesResult>() {
+            public ListIdentitiesResult call() throws Exception {
+              ListIdentitiesResult result;
                 try {
-                result = verifyDomainIdentity(verifyDomainIdentityRequest);
+                result = listIdentities(listIdentitiesRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(verifyDomainIdentityRequest, result);
+              asyncHandler.onSuccess(listIdentitiesRequest, result);
                  return result;
         }
     });
@@ -3835,31 +3347,30 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Given an identity (email address or domain), sets the Amazon Simple
-     * Notification Service (Amazon SNS) topic to which Amazon SES will
-     * publish bounce, complaint, and/or delivery notifications for emails
-     * sent with that identity as the <code>Source</code> .
+     * Adds or updates a sending authorization policy for the specified
+     * identity (email address or domain).
      * </p>
      * <p>
-     * <b>NOTE:</b>Unless feedback forwarding is enabled, you must specify
-     * Amazon SNS topics for bounce and complaint notifications. For more
-     * information, see SetIdentityFeedbackForwardingEnabled.
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
-     * <p>
-     * For more information about feedback notification, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
      *
-     * @param setIdentityNotificationTopicRequest Container for the necessary
-     *           parameters to execute the SetIdentityNotificationTopic operation on
+     * @param putIdentityPolicyRequest Container for the necessary parameters
+     *           to execute the PutIdentityPolicy operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         SetIdentityNotificationTopic service method, as returned by
+     *         PutIdentityPolicy service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3871,38 +3382,37 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<SetIdentityNotificationTopicResult> setIdentityNotificationTopicAsync(final SetIdentityNotificationTopicRequest setIdentityNotificationTopicRequest) 
+    public Future<PutIdentityPolicyResult> putIdentityPolicyAsync(final PutIdentityPolicyRequest putIdentityPolicyRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetIdentityNotificationTopicResult>() {
-            public SetIdentityNotificationTopicResult call() throws Exception {
-                return setIdentityNotificationTopic(setIdentityNotificationTopicRequest);
+        return executorService.submit(new Callable<PutIdentityPolicyResult>() {
+            public PutIdentityPolicyResult call() throws Exception {
+                return putIdentityPolicy(putIdentityPolicyRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Given an identity (email address or domain), sets the Amazon Simple
-     * Notification Service (Amazon SNS) topic to which Amazon SES will
-     * publish bounce, complaint, and/or delivery notifications for emails
-     * sent with that identity as the <code>Source</code> .
+     * Adds or updates a sending authorization policy for the specified
+     * identity (email address or domain).
      * </p>
      * <p>
-     * <b>NOTE:</b>Unless feedback forwarding is enabled, you must specify
-     * Amazon SNS topics for bounce and complaint notifications. For more
-     * information, see SetIdentityFeedbackForwardingEnabled.
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
-     * <p>
-     * For more information about feedback notification, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
      *
-     * @param setIdentityNotificationTopicRequest Container for the necessary
-     *           parameters to execute the SetIdentityNotificationTopic operation on
+     * @param putIdentityPolicyRequest Container for the necessary parameters
+     *           to execute the PutIdentityPolicy operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -3910,7 +3420,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         SetIdentityNotificationTopic service method, as returned by
+     *         PutIdentityPolicy service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3922,20 +3432,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<SetIdentityNotificationTopicResult> setIdentityNotificationTopicAsync(
-            final SetIdentityNotificationTopicRequest setIdentityNotificationTopicRequest,
-            final AsyncHandler<SetIdentityNotificationTopicRequest, SetIdentityNotificationTopicResult> asyncHandler)
+    public Future<PutIdentityPolicyResult> putIdentityPolicyAsync(
+            final PutIdentityPolicyRequest putIdentityPolicyRequest,
+            final AsyncHandler<PutIdentityPolicyRequest, PutIdentityPolicyResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SetIdentityNotificationTopicResult>() {
-            public SetIdentityNotificationTopicResult call() throws Exception {
-              SetIdentityNotificationTopicResult result;
+        return executorService.submit(new Callable<PutIdentityPolicyResult>() {
+            public PutIdentityPolicyResult call() throws Exception {
+              PutIdentityPolicyResult result;
                 try {
-                result = setIdentityNotificationTopic(setIdentityNotificationTopicRequest);
+                result = putIdentityPolicy(putIdentityPolicyRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(setIdentityNotificationTopicRequest, result);
+              asyncHandler.onSuccess(putIdentityPolicyRequest, result);
                  return result;
         }
     });
@@ -3943,24 +3453,24 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Deletes the specified email address from the list of verified
-     * addresses.
+     * Verifies an email address. This action causes a confirmation email
+     * message to be sent to the specified address.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>The DeleteVerifiedEmailAddress action is deprecated
-     * as of the May 15, 2012 release of Domain Verification. The
-     * DeleteIdentity action is now preferred.
+     * <b>IMPORTANT:</b>The VerifyEmailAddress action is deprecated as of
+     * the May 15, 2012 release of Domain Verification. The
+     * VerifyEmailIdentity action is now preferred.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param deleteVerifiedEmailAddressRequest Container for the necessary
-     *           parameters to execute the DeleteVerifiedEmailAddress operation on
+     * @param verifyEmailAddressRequest Container for the necessary
+     *           parameters to execute the VerifyEmailAddress operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         DeleteVerifiedEmailAddress service method, as returned by
+     *         VerifyEmailAddress service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -3972,11 +3482,11 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> deleteVerifiedEmailAddressAsync(final DeleteVerifiedEmailAddressRequest deleteVerifiedEmailAddressRequest) 
+    public Future<Void> verifyEmailAddressAsync(final VerifyEmailAddressRequest verifyEmailAddressRequest) 
             throws AmazonServiceException, AmazonClientException {
         return executorService.submit(new Callable<Void>() {
             public Void call() throws Exception {
-                deleteVerifiedEmailAddress(deleteVerifiedEmailAddressRequest);
+                verifyEmailAddress(verifyEmailAddressRequest);
                 return null;
         }
     });
@@ -3984,20 +3494,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
 
     /**
      * <p>
-     * Deletes the specified email address from the list of verified
-     * addresses.
+     * Verifies an email address. This action causes a confirmation email
+     * message to be sent to the specified address.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>The DeleteVerifiedEmailAddress action is deprecated
-     * as of the May 15, 2012 release of Domain Verification. The
-     * DeleteIdentity action is now preferred.
+     * <b>IMPORTANT:</b>The VerifyEmailAddress action is deprecated as of
+     * the May 15, 2012 release of Domain Verification. The
+     * VerifyEmailIdentity action is now preferred.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param deleteVerifiedEmailAddressRequest Container for the necessary
-     *           parameters to execute the DeleteVerifiedEmailAddress operation on
+     * @param verifyEmailAddressRequest Container for the necessary
+     *           parameters to execute the VerifyEmailAddress operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -4005,7 +3515,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         DeleteVerifiedEmailAddress service method, as returned by
+     *         VerifyEmailAddress service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -4017,19 +3527,19 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<Void> deleteVerifiedEmailAddressAsync(
-            final DeleteVerifiedEmailAddressRequest deleteVerifiedEmailAddressRequest,
-            final AsyncHandler<DeleteVerifiedEmailAddressRequest, Void> asyncHandler)
+    public Future<Void> verifyEmailAddressAsync(
+            final VerifyEmailAddressRequest verifyEmailAddressRequest,
+            final AsyncHandler<VerifyEmailAddressRequest, Void> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
         return executorService.submit(new Callable<Void>() {
             public Void call() throws Exception {
               try {
-                deleteVerifiedEmailAddress(deleteVerifiedEmailAddressRequest);
+                verifyEmailAddress(verifyEmailAddressRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(deleteVerifiedEmailAddressRequest, null);
+              asyncHandler.onSuccess(verifyEmailAddressRequest, null);
                  return null;
         }
     });
@@ -4037,25 +3547,19 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
     
     /**
      * <p>
-     * Creates a receipt rule set by cloning an existing one. All receipt
-     * rules and configurations are copied to the new receipt rule set and
-     * are completely independent of the source rule set.
-     * </p>
-     * <p>
-     * For information about setting up rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
-     * .
+     * Verifies an email address. This action causes a confirmation email
+     * message to be sent to the specified address.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param cloneReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the CloneReceiptRuleSet operation on
+     * @param verifyEmailIdentityRequest Container for the necessary
+     *           parameters to execute the VerifyEmailIdentity operation on
      *           AmazonSimpleEmailService.
      * 
      * @return A Java Future object containing the response from the
-     *         CloneReceiptRuleSet service method, as returned by
+     *         VerifyEmailIdentity service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -4067,32 +3571,26 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<CloneReceiptRuleSetResult> cloneReceiptRuleSetAsync(final CloneReceiptRuleSetRequest cloneReceiptRuleSetRequest) 
+    public Future<VerifyEmailIdentityResult> verifyEmailIdentityAsync(final VerifyEmailIdentityRequest verifyEmailIdentityRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CloneReceiptRuleSetResult>() {
-            public CloneReceiptRuleSetResult call() throws Exception {
-                return cloneReceiptRuleSet(cloneReceiptRuleSetRequest);
+        return executorService.submit(new Callable<VerifyEmailIdentityResult>() {
+            public VerifyEmailIdentityResult call() throws Exception {
+                return verifyEmailIdentity(verifyEmailIdentityRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Creates a receipt rule set by cloning an existing one. All receipt
-     * rules and configurations are copied to the new receipt rule set and
-     * are completely independent of the source rule set.
-     * </p>
-     * <p>
-     * For information about setting up rule sets, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
-     * .
+     * Verifies an email address. This action causes a confirmation email
+     * message to be sent to the specified address.
      * </p>
      * <p>
      * This action is throttled at one request per second.
      * </p>
      *
-     * @param cloneReceiptRuleSetRequest Container for the necessary
-     *           parameters to execute the CloneReceiptRuleSet operation on
+     * @param verifyEmailIdentityRequest Container for the necessary
+     *           parameters to execute the VerifyEmailIdentity operation on
      *           AmazonSimpleEmailService.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
@@ -4100,7 +3598,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         CloneReceiptRuleSet service method, as returned by
+     *         VerifyEmailIdentity service method, as returned by
      *         AmazonSimpleEmailService.
      * 
      *
@@ -4112,208 +3610,20 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *             If an error response is returned by AmazonSimpleEmailService indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<CloneReceiptRuleSetResult> cloneReceiptRuleSetAsync(
-            final CloneReceiptRuleSetRequest cloneReceiptRuleSetRequest,
-            final AsyncHandler<CloneReceiptRuleSetRequest, CloneReceiptRuleSetResult> asyncHandler)
+    public Future<VerifyEmailIdentityResult> verifyEmailIdentityAsync(
+            final VerifyEmailIdentityRequest verifyEmailIdentityRequest,
+            final AsyncHandler<VerifyEmailIdentityRequest, VerifyEmailIdentityResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CloneReceiptRuleSetResult>() {
-            public CloneReceiptRuleSetResult call() throws Exception {
-              CloneReceiptRuleSetResult result;
+        return executorService.submit(new Callable<VerifyEmailIdentityResult>() {
+            public VerifyEmailIdentityResult call() throws Exception {
+              VerifyEmailIdentityResult result;
                 try {
-                result = cloneReceiptRuleSet(cloneReceiptRuleSetRequest);
+                result = verifyEmailIdentity(verifyEmailIdentityRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(cloneReceiptRuleSetRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Returns the custom MAIL FROM attributes for a list of identities
-     * (email addresses and/or domains).
-     * </p>
-     * <p>
-     * This action is throttled at one request per second and can only get
-     * custom MAIL FROM attributes for up to 100 identities at a time.
-     * </p>
-     *
-     * @param getIdentityMailFromDomainAttributesRequest Container for the
-     *           necessary parameters to execute the
-     *           GetIdentityMailFromDomainAttributes operation on
-     *           AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         GetIdentityMailFromDomainAttributes service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetIdentityMailFromDomainAttributesResult> getIdentityMailFromDomainAttributesAsync(final GetIdentityMailFromDomainAttributesRequest getIdentityMailFromDomainAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetIdentityMailFromDomainAttributesResult>() {
-            public GetIdentityMailFromDomainAttributesResult call() throws Exception {
-                return getIdentityMailFromDomainAttributes(getIdentityMailFromDomainAttributesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Returns the custom MAIL FROM attributes for a list of identities
-     * (email addresses and/or domains).
-     * </p>
-     * <p>
-     * This action is throttled at one request per second and can only get
-     * custom MAIL FROM attributes for up to 100 identities at a time.
-     * </p>
-     *
-     * @param getIdentityMailFromDomainAttributesRequest Container for the
-     *           necessary parameters to execute the
-     *           GetIdentityMailFromDomainAttributes operation on
-     *           AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         GetIdentityMailFromDomainAttributes service method, as returned by
-     *         AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetIdentityMailFromDomainAttributesResult> getIdentityMailFromDomainAttributesAsync(
-            final GetIdentityMailFromDomainAttributesRequest getIdentityMailFromDomainAttributesRequest,
-            final AsyncHandler<GetIdentityMailFromDomainAttributesRequest, GetIdentityMailFromDomainAttributesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetIdentityMailFromDomainAttributesResult>() {
-            public GetIdentityMailFromDomainAttributesResult call() throws Exception {
-              GetIdentityMailFromDomainAttributesResult result;
-                try {
-                result = getIdentityMailFromDomainAttributes(getIdentityMailFromDomainAttributesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(getIdentityMailFromDomainAttributesRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Generates and sends a bounce message to the sender of an email you
-     * received through Amazon SES. You can only use this API on an email up
-     * to 24 hours after you receive it.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>You cannot use this API to send generic bounces for mail
-     * that was not received by Amazon SES.
-     * </p>
-     * <p>
-     * For information about receiving email through Amazon SES, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param sendBounceRequest Container for the necessary parameters to
-     *           execute the SendBounce operation on AmazonSimpleEmailService.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SendBounce service method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SendBounceResult> sendBounceAsync(final SendBounceRequest sendBounceRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SendBounceResult>() {
-            public SendBounceResult call() throws Exception {
-                return sendBounce(sendBounceRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Generates and sends a bounce message to the sender of an email you
-     * received through Amazon SES. You can only use this API on an email up
-     * to 24 hours after you receive it.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>You cannot use this API to send generic bounces for mail
-     * that was not received by Amazon SES.
-     * </p>
-     * <p>
-     * For information about receiving email through Amazon SES, see the
-     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"> Amazon SES Developer Guide </a>
-     * .
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
-     * </p>
-     *
-     * @param sendBounceRequest Container for the necessary parameters to
-     *           execute the SendBounce operation on AmazonSimpleEmailService.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         SendBounce service method, as returned by AmazonSimpleEmailService.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSimpleEmailService indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<SendBounceResult> sendBounceAsync(
-            final SendBounceRequest sendBounceRequest,
-            final AsyncHandler<SendBounceRequest, SendBounceResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<SendBounceResult>() {
-            public SendBounceResult call() throws Exception {
-              SendBounceResult result;
-                try {
-                result = sendBounce(sendBounceRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(sendBounceRequest, result);
+              asyncHandler.onSuccess(verifyEmailIdentityRequest, result);
                  return result;
         }
     });
@@ -4406,6 +3716,696 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
             throw ex;
               }
               asyncHandler.onSuccess(createReceiptRuleSetRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Deletes the specified sending authorization policy for the given
+     * identity (email address or domain). This API returns successfully even
+     * if a policy with the specified name does not exist.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteIdentityPolicyRequest Container for the necessary
+     *           parameters to execute the DeleteIdentityPolicy operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteIdentityPolicy service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteIdentityPolicyResult> deleteIdentityPolicyAsync(final DeleteIdentityPolicyRequest deleteIdentityPolicyRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteIdentityPolicyResult>() {
+            public DeleteIdentityPolicyResult call() throws Exception {
+                return deleteIdentityPolicy(deleteIdentityPolicyRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Deletes the specified sending authorization policy for the given
+     * identity (email address or domain). This API returns successfully even
+     * if a policy with the specified name does not exist.
+     * </p>
+     * <p>
+     * <b>NOTE:</b>This API is for the identity owner only. If you have not
+     * verified the identity, this API will return an error.
+     * </p>
+     * <p>
+     * Sending authorization is a feature that enables an identity owner to
+     * authorize other senders to use its identities. For information about
+     * using sending authorization, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param deleteIdentityPolicyRequest Container for the necessary
+     *           parameters to execute the DeleteIdentityPolicy operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DeleteIdentityPolicy service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DeleteIdentityPolicyResult> deleteIdentityPolicyAsync(
+            final DeleteIdentityPolicyRequest deleteIdentityPolicyRequest,
+            final AsyncHandler<DeleteIdentityPolicyRequest, DeleteIdentityPolicyResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteIdentityPolicyResult>() {
+            public DeleteIdentityPolicyResult call() throws Exception {
+              DeleteIdentityPolicyResult result;
+                try {
+                result = deleteIdentityPolicy(deleteIdentityPolicyRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(deleteIdentityPolicyRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns the user's sending statistics. The result is a list of data
+     * points, representing the last two weeks of sending activity.
+     * </p>
+     * <p>
+     * Each data point in the list contains statistics for a 15-minute
+     * interval.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param getSendStatisticsRequest Container for the necessary parameters
+     *           to execute the GetSendStatistics operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetSendStatistics service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetSendStatisticsResult> getSendStatisticsAsync(final GetSendStatisticsRequest getSendStatisticsRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetSendStatisticsResult>() {
+            public GetSendStatisticsResult call() throws Exception {
+                return getSendStatistics(getSendStatisticsRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns the user's sending statistics. The result is a list of data
+     * points, representing the last two weeks of sending activity.
+     * </p>
+     * <p>
+     * Each data point in the list contains statistics for a 15-minute
+     * interval.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param getSendStatisticsRequest Container for the necessary parameters
+     *           to execute the GetSendStatistics operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetSendStatistics service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetSendStatisticsResult> getSendStatisticsAsync(
+            final GetSendStatisticsRequest getSendStatisticsRequest,
+            final AsyncHandler<GetSendStatisticsRequest, GetSendStatisticsResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetSendStatisticsResult>() {
+            public GetSendStatisticsResult call() throws Exception {
+              GetSendStatisticsResult result;
+                try {
+                result = getSendStatistics(getSendStatisticsRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(getSendStatisticsRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Given a list of verified identities (email addresses and/or domains),
+     * returns a structure describing identity notification attributes.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second and can only get
+     * notification attributes for up to 100 identities at a time.
+     * </p>
+     * <p>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param getIdentityNotificationAttributesRequest Container for the
+     *           necessary parameters to execute the GetIdentityNotificationAttributes
+     *           operation on AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetIdentityNotificationAttributes service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetIdentityNotificationAttributesResult> getIdentityNotificationAttributesAsync(final GetIdentityNotificationAttributesRequest getIdentityNotificationAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetIdentityNotificationAttributesResult>() {
+            public GetIdentityNotificationAttributesResult call() throws Exception {
+                return getIdentityNotificationAttributes(getIdentityNotificationAttributesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Given a list of verified identities (email addresses and/or domains),
+     * returns a structure describing identity notification attributes.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second and can only get
+     * notification attributes for up to 100 identities at a time.
+     * </p>
+     * <p>
+     * For more information about using notifications with Amazon SES, see
+     * the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param getIdentityNotificationAttributesRequest Container for the
+     *           necessary parameters to execute the GetIdentityNotificationAttributes
+     *           operation on AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         GetIdentityNotificationAttributes service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetIdentityNotificationAttributesResult> getIdentityNotificationAttributesAsync(
+            final GetIdentityNotificationAttributesRequest getIdentityNotificationAttributesRequest,
+            final AsyncHandler<GetIdentityNotificationAttributesRequest, GetIdentityNotificationAttributesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetIdentityNotificationAttributesResult>() {
+            public GetIdentityNotificationAttributesResult call() throws Exception {
+              GetIdentityNotificationAttributesResult result;
+                try {
+                result = getIdentityNotificationAttributes(getIdentityNotificationAttributesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(getIdentityNotificationAttributesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns the metadata and receipt rules for the receipt rule set that
+     * is currently active.
+     * </p>
+     * <p>
+     * For information about setting up receipt rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param describeActiveReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the DescribeActiveReceiptRuleSet operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeActiveReceiptRuleSet service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeActiveReceiptRuleSetResult> describeActiveReceiptRuleSetAsync(final DescribeActiveReceiptRuleSetRequest describeActiveReceiptRuleSetRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeActiveReceiptRuleSetResult>() {
+            public DescribeActiveReceiptRuleSetResult call() throws Exception {
+                return describeActiveReceiptRuleSet(describeActiveReceiptRuleSetRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns the metadata and receipt rules for the receipt rule set that
+     * is currently active.
+     * </p>
+     * <p>
+     * For information about setting up receipt rule sets, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param describeActiveReceiptRuleSetRequest Container for the necessary
+     *           parameters to execute the DescribeActiveReceiptRuleSet operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeActiveReceiptRuleSet service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeActiveReceiptRuleSetResult> describeActiveReceiptRuleSetAsync(
+            final DescribeActiveReceiptRuleSetRequest describeActiveReceiptRuleSetRequest,
+            final AsyncHandler<DescribeActiveReceiptRuleSetRequest, DescribeActiveReceiptRuleSetResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeActiveReceiptRuleSetResult>() {
+            public DescribeActiveReceiptRuleSetResult call() throws Exception {
+              DescribeActiveReceiptRuleSetResult result;
+                try {
+                result = describeActiveReceiptRuleSet(describeActiveReceiptRuleSetRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeActiveReceiptRuleSetRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns the details of the specified receipt rule.
+     * </p>
+     * <p>
+     * For information about setting up receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param describeReceiptRuleRequest Container for the necessary
+     *           parameters to execute the DescribeReceiptRule operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeReceiptRule service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeReceiptRuleResult> describeReceiptRuleAsync(final DescribeReceiptRuleRequest describeReceiptRuleRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeReceiptRuleResult>() {
+            public DescribeReceiptRuleResult call() throws Exception {
+                return describeReceiptRule(describeReceiptRuleRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns the details of the specified receipt rule.
+     * </p>
+     * <p>
+     * For information about setting up receipt rules, see the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param describeReceiptRuleRequest Container for the necessary
+     *           parameters to execute the DescribeReceiptRule operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeReceiptRule service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeReceiptRuleResult> describeReceiptRuleAsync(
+            final DescribeReceiptRuleRequest describeReceiptRuleRequest,
+            final AsyncHandler<DescribeReceiptRuleRequest, DescribeReceiptRuleResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeReceiptRuleResult>() {
+            public DescribeReceiptRuleResult call() throws Exception {
+              DescribeReceiptRuleResult result;
+                try {
+                result = describeReceiptRule(describeReceiptRuleRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(describeReceiptRuleRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns a list containing all of the email addresses that have been
+     * verified.
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b>The ListVerifiedEmailAddresses action is deprecated
+     * as of the May 15, 2012 release of Domain Verification. The
+     * ListIdentities action is now preferred.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param listVerifiedEmailAddressesRequest Container for the necessary
+     *           parameters to execute the ListVerifiedEmailAddresses operation on
+     *           AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ListVerifiedEmailAddresses service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ListVerifiedEmailAddressesResult> listVerifiedEmailAddressesAsync(final ListVerifiedEmailAddressesRequest listVerifiedEmailAddressesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListVerifiedEmailAddressesResult>() {
+            public ListVerifiedEmailAddressesResult call() throws Exception {
+                return listVerifiedEmailAddresses(listVerifiedEmailAddressesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns a list containing all of the email addresses that have been
+     * verified.
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b>The ListVerifiedEmailAddresses action is deprecated
+     * as of the May 15, 2012 release of Domain Verification. The
+     * ListIdentities action is now preferred.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     *
+     * @param listVerifiedEmailAddressesRequest Container for the necessary
+     *           parameters to execute the ListVerifiedEmailAddresses operation on
+     *           AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ListVerifiedEmailAddresses service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ListVerifiedEmailAddressesResult> listVerifiedEmailAddressesAsync(
+            final ListVerifiedEmailAddressesRequest listVerifiedEmailAddressesRequest,
+            final AsyncHandler<ListVerifiedEmailAddressesRequest, ListVerifiedEmailAddressesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListVerifiedEmailAddressesResult>() {
+            public ListVerifiedEmailAddressesResult call() throws Exception {
+              ListVerifiedEmailAddressesResult result;
+                try {
+                result = listVerifiedEmailAddresses(listVerifiedEmailAddressesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(listVerifiedEmailAddressesRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns a set of DKIM tokens for a domain. DKIM <i>tokens</i> are
+     * character strings that represent your domain's identity. Using these
+     * tokens, you will need to create DNS CNAME records that point to DKIM
+     * public keys hosted by Amazon SES. Amazon Web Services will eventually
+     * detect that you have updated your DNS records; this detection process
+     * may take up to 72 hours. Upon successful detection, Amazon SES will be
+     * able to DKIM-sign email originating from that domain.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * <p>
+     * To enable or disable Easy DKIM signing for a domain, use the
+     * <code>SetIdentityDkimEnabled</code> action.
+     * </p>
+     * <p>
+     * For more information about creating DNS records using DKIM tokens, go
+     * to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param verifyDomainDkimRequest Container for the necessary parameters
+     *           to execute the VerifyDomainDkim operation on AmazonSimpleEmailService.
+     * 
+     * @return A Java Future object containing the response from the
+     *         VerifyDomainDkim service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<VerifyDomainDkimResult> verifyDomainDkimAsync(final VerifyDomainDkimRequest verifyDomainDkimRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<VerifyDomainDkimResult>() {
+            public VerifyDomainDkimResult call() throws Exception {
+                return verifyDomainDkim(verifyDomainDkimRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns a set of DKIM tokens for a domain. DKIM <i>tokens</i> are
+     * character strings that represent your domain's identity. Using these
+     * tokens, you will need to create DNS CNAME records that point to DKIM
+     * public keys hosted by Amazon SES. Amazon Web Services will eventually
+     * detect that you have updated your DNS records; this detection process
+     * may take up to 72 hours. Upon successful detection, Amazon SES will be
+     * able to DKIM-sign email originating from that domain.
+     * </p>
+     * <p>
+     * This action is throttled at one request per second.
+     * </p>
+     * <p>
+     * To enable or disable Easy DKIM signing for a domain, use the
+     * <code>SetIdentityDkimEnabled</code> action.
+     * </p>
+     * <p>
+     * For more information about creating DNS records using DKIM tokens, go
+     * to the
+     * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"> Amazon SES Developer Guide </a>
+     * .
+     * </p>
+     *
+     * @param verifyDomainDkimRequest Container for the necessary parameters
+     *           to execute the VerifyDomainDkim operation on AmazonSimpleEmailService.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         VerifyDomainDkim service method, as returned by
+     *         AmazonSimpleEmailService.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSimpleEmailService indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<VerifyDomainDkimResult> verifyDomainDkimAsync(
+            final VerifyDomainDkimRequest verifyDomainDkimRequest,
+            final AsyncHandler<VerifyDomainDkimRequest, VerifyDomainDkimResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<VerifyDomainDkimResult>() {
+            public VerifyDomainDkimResult call() throws Exception {
+              VerifyDomainDkimResult result;
+                try {
+                result = verifyDomainDkim(verifyDomainDkimRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(verifyDomainDkimRequest, result);
                  return result;
         }
     });

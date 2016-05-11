@@ -454,6 +454,120 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
             
     /**
      * <p>
+     * The <i>CreateTable</i> operation adds a new table to your account. In
+     * an AWS account, table names must be unique within each region. That
+     * is, you can have two tables with same name if you create the tables in
+     * different regions.
+     * </p>
+     * <p>
+     * <i>CreateTable</i> is an asynchronous operation. Upon receiving a
+     * <i>CreateTable</i> request, DynamoDB immediately returns a response
+     * with a <i>TableStatus</i> of <code>CREATING</code> . After the table
+     * is created, DynamoDB sets the <i>TableStatus</i> to
+     * <code>ACTIVE</code> . You can perform read and write operations only
+     * on an <code>ACTIVE</code> table.
+     * </p>
+     * <p>
+     * You can optionally define secondary indexes on the new table, as part
+     * of the <i>CreateTable</i> operation. If you want to create multiple
+     * tables with secondary indexes on them, you must create the tables
+     * sequentially. Only one table with secondary indexes can be in the
+     * <code>CREATING</code> state at any given time.
+     * </p>
+     * <p>
+     * You can use the <i>DescribeTable</i> API to check the table status.
+     * </p>
+     *
+     * @param createTableRequest Container for the necessary parameters to
+     *           execute the CreateTable operation on AmazonDynamoDBv2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateTable service method, as returned by AmazonDynamoDBv2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CreateTableResult> createTableAsync(final CreateTableRequest createTableRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateTableResult>() {
+            public CreateTableResult call() throws Exception {
+                return createTable(createTableRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * The <i>CreateTable</i> operation adds a new table to your account. In
+     * an AWS account, table names must be unique within each region. That
+     * is, you can have two tables with same name if you create the tables in
+     * different regions.
+     * </p>
+     * <p>
+     * <i>CreateTable</i> is an asynchronous operation. Upon receiving a
+     * <i>CreateTable</i> request, DynamoDB immediately returns a response
+     * with a <i>TableStatus</i> of <code>CREATING</code> . After the table
+     * is created, DynamoDB sets the <i>TableStatus</i> to
+     * <code>ACTIVE</code> . You can perform read and write operations only
+     * on an <code>ACTIVE</code> table.
+     * </p>
+     * <p>
+     * You can optionally define secondary indexes on the new table, as part
+     * of the <i>CreateTable</i> operation. If you want to create multiple
+     * tables with secondary indexes on them, you must create the tables
+     * sequentially. Only one table with secondary indexes can be in the
+     * <code>CREATING</code> state at any given time.
+     * </p>
+     * <p>
+     * You can use the <i>DescribeTable</i> API to check the table status.
+     * </p>
+     *
+     * @param createTableRequest Container for the necessary parameters to
+     *           execute the CreateTable operation on AmazonDynamoDBv2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         CreateTable service method, as returned by AmazonDynamoDBv2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<CreateTableResult> createTableAsync(
+            final CreateTableRequest createTableRequest,
+            final AsyncHandler<CreateTableRequest, CreateTableResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateTableResult>() {
+            public CreateTableResult call() throws Exception {
+              CreateTableResult result;
+                try {
+                result = createTable(createTableRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(createTableRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
      * The <i>Scan</i> operation returns one or more items and item
      * attributes by accessing every item in a table or a secondary index. To
      * have DynamoDB return fewer items, you can provide a <i>ScanFilter</i>
@@ -582,48 +696,85 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
     
     /**
      * <p>
-     * Modifies the provisioned throughput settings, global secondary
-     * indexes, or DynamoDB Streams settings for a given table.
+     * Returns the current provisioned-capacity limits for your AWS account
+     * in a region, both for the region as a whole and for any one DynamoDB
+     * table that you create there.
      * </p>
      * <p>
-     * You can only perform one of the following operations at once:
+     * When you establish an AWS account, the account has initial limits on
+     * the maximum read capacity units and write capacity units that you can
+     * provision across all of your DynamoDB tables in a given region. Also,
+     * there are per-table limits that apply when you create a table there.
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"> Limits </a>
+     * page in the <i>Amazon DynamoDB Developer Guide</i> .
+     * </p>
+     * <p>
+     * Although you can increase these limits by filing a case at
+     * <a href="https://console.aws.amazon.com/support/home#/"> AWS Support Center </a>
+     * , obtaining the increase is not instantaneous. The
+     * <i>DescribeLimits</i> API lets you write code to compare the capacity
+     * you are currently using to those limits imposed by your account so
+     * that you have enough time to apply for an increase before you hit a
+     * limit.
+     * </p>
+     * <p>
+     * For example, you could use one of the AWS SDKs to do the following:
+     * </p>
+     * <ol> <li>Call <i>DescribeLimits</i> for a particular region to obtain
+     * your current account limits on provisioned capacity there.</li>
+     * <li>Create a variable to hold the aggregate read capacity units
+     * provisioned for all your tables in that region, and one to hold the
+     * aggregate write capacity units. Zero them both.</li>
+     * <li>Call <i>ListTables</i> to obtain a list of all your DynamoDB
+     * tables.</li>
+     * <li> <p>
+     * For each table name listed by <i>ListTables</i> , do the following:
      * </p>
      * 
      * <ul>
-     * <li> <p>
-     * Modify the provisioned throughput settings of the table.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Enable or disable Streams on the table.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Remove a global secondary index from the table.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Create a new global secondary index on the table. Once the index
-     * begins backfilling, you can use <i>UpdateTable</i> to perform other
-     * operations.
-     * </p>
-     * </li>
+     * <li>Call <i>DescribeTable</i> with the table name.</li>
+     * <li>Use the data returned by <i>DescribeTable</i> to add the read
+     * capacity units and write capacity units provisioned for the table
+     * itself to your variables.</li>
+     * <li>If the table has one or more global secondary indexes (GSIs),
+     * loop over these GSIs and add their provisioned capacity values to your
+     * variables as well.</li>
      * 
      * </ul>
+     * </li>
+     * <li>Report the account limits for that region returned by
+     * <i>DescribeLimits</i> , along with the total current provisioned
+     * capacity levels you have calculated.</li>
+     * </ol> <p>
+     * This will let you see whether you are getting close to your
+     * account-level limits.
+     * </p>
      * <p>
-     * <i>UpdateTable</i> is an asynchronous operation; while it is
-     * executing, the table status changes from <code>ACTIVE</code> to
-     * <code>UPDATING</code> . While it is <code>UPDATING</code> , you cannot
-     * issue another <i>UpdateTable</i> request. When the table returns to
-     * the <code>ACTIVE</code> state, the <i>UpdateTable</i> operation is
-     * complete.
+     * The per-table limits apply only when you are creating a new table.
+     * They restrict the sum of the provisioned capacity of the new table
+     * itself and all its global secondary indexes.
+     * </p>
+     * <p>
+     * For existing tables and their GSIs, DynamoDB will not let you
+     * increase provisioned capacity extremely rapidly, but the only upper
+     * limit that applies is that the aggregate provisioned capacity over all
+     * your tables and GSIs cannot exceed either of the per-account limits.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> DescribeLimits should only be called periodically. You
+     * can expect throttling errors if you call it more than once in a
+     * minute.
+     * </p>
+     * <p>
+     * The <i>DescribeLimits</i> Request element has no content.
      * </p>
      *
-     * @param updateTableRequest Container for the necessary parameters to
-     *           execute the UpdateTable operation on AmazonDynamoDBv2.
+     * @param describeLimitsRequest Container for the necessary parameters to
+     *           execute the DescribeLimits operation on AmazonDynamoDBv2.
      * 
      * @return A Java Future object containing the response from the
-     *         UpdateTable service method, as returned by AmazonDynamoDBv2.
+     *         DescribeLimits service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -634,63 +785,100 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<UpdateTableResult> updateTableAsync(final UpdateTableRequest updateTableRequest) 
+    public Future<DescribeLimitsResult> describeLimitsAsync(final DescribeLimitsRequest describeLimitsRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<UpdateTableResult>() {
-            public UpdateTableResult call() throws Exception {
-                return updateTable(updateTableRequest);
+        return executorService.submit(new Callable<DescribeLimitsResult>() {
+            public DescribeLimitsResult call() throws Exception {
+                return describeLimits(describeLimitsRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Modifies the provisioned throughput settings, global secondary
-     * indexes, or DynamoDB Streams settings for a given table.
+     * Returns the current provisioned-capacity limits for your AWS account
+     * in a region, both for the region as a whole and for any one DynamoDB
+     * table that you create there.
      * </p>
      * <p>
-     * You can only perform one of the following operations at once:
+     * When you establish an AWS account, the account has initial limits on
+     * the maximum read capacity units and write capacity units that you can
+     * provision across all of your DynamoDB tables in a given region. Also,
+     * there are per-table limits that apply when you create a table there.
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"> Limits </a>
+     * page in the <i>Amazon DynamoDB Developer Guide</i> .
+     * </p>
+     * <p>
+     * Although you can increase these limits by filing a case at
+     * <a href="https://console.aws.amazon.com/support/home#/"> AWS Support Center </a>
+     * , obtaining the increase is not instantaneous. The
+     * <i>DescribeLimits</i> API lets you write code to compare the capacity
+     * you are currently using to those limits imposed by your account so
+     * that you have enough time to apply for an increase before you hit a
+     * limit.
+     * </p>
+     * <p>
+     * For example, you could use one of the AWS SDKs to do the following:
+     * </p>
+     * <ol> <li>Call <i>DescribeLimits</i> for a particular region to obtain
+     * your current account limits on provisioned capacity there.</li>
+     * <li>Create a variable to hold the aggregate read capacity units
+     * provisioned for all your tables in that region, and one to hold the
+     * aggregate write capacity units. Zero them both.</li>
+     * <li>Call <i>ListTables</i> to obtain a list of all your DynamoDB
+     * tables.</li>
+     * <li> <p>
+     * For each table name listed by <i>ListTables</i> , do the following:
      * </p>
      * 
      * <ul>
-     * <li> <p>
-     * Modify the provisioned throughput settings of the table.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Enable or disable Streams on the table.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Remove a global secondary index from the table.
-     * </p>
-     * </li>
-     * <li> <p>
-     * Create a new global secondary index on the table. Once the index
-     * begins backfilling, you can use <i>UpdateTable</i> to perform other
-     * operations.
-     * </p>
-     * </li>
+     * <li>Call <i>DescribeTable</i> with the table name.</li>
+     * <li>Use the data returned by <i>DescribeTable</i> to add the read
+     * capacity units and write capacity units provisioned for the table
+     * itself to your variables.</li>
+     * <li>If the table has one or more global secondary indexes (GSIs),
+     * loop over these GSIs and add their provisioned capacity values to your
+     * variables as well.</li>
      * 
      * </ul>
+     * </li>
+     * <li>Report the account limits for that region returned by
+     * <i>DescribeLimits</i> , along with the total current provisioned
+     * capacity levels you have calculated.</li>
+     * </ol> <p>
+     * This will let you see whether you are getting close to your
+     * account-level limits.
+     * </p>
      * <p>
-     * <i>UpdateTable</i> is an asynchronous operation; while it is
-     * executing, the table status changes from <code>ACTIVE</code> to
-     * <code>UPDATING</code> . While it is <code>UPDATING</code> , you cannot
-     * issue another <i>UpdateTable</i> request. When the table returns to
-     * the <code>ACTIVE</code> state, the <i>UpdateTable</i> operation is
-     * complete.
+     * The per-table limits apply only when you are creating a new table.
+     * They restrict the sum of the provisioned capacity of the new table
+     * itself and all its global secondary indexes.
+     * </p>
+     * <p>
+     * For existing tables and their GSIs, DynamoDB will not let you
+     * increase provisioned capacity extremely rapidly, but the only upper
+     * limit that applies is that the aggregate provisioned capacity over all
+     * your tables and GSIs cannot exceed either of the per-account limits.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> DescribeLimits should only be called periodically. You
+     * can expect throttling errors if you call it more than once in a
+     * minute.
+     * </p>
+     * <p>
+     * The <i>DescribeLimits</i> Request element has no content.
      * </p>
      *
-     * @param updateTableRequest Container for the necessary parameters to
-     *           execute the UpdateTable operation on AmazonDynamoDBv2.
+     * @param describeLimitsRequest Container for the necessary parameters to
+     *           execute the DescribeLimits operation on AmazonDynamoDBv2.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         UpdateTable service method, as returned by AmazonDynamoDBv2.
+     *         DescribeLimits service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -701,20 +889,20 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<UpdateTableResult> updateTableAsync(
-            final UpdateTableRequest updateTableRequest,
-            final AsyncHandler<UpdateTableRequest, UpdateTableResult> asyncHandler)
+    public Future<DescribeLimitsResult> describeLimitsAsync(
+            final DescribeLimitsRequest describeLimitsRequest,
+            final AsyncHandler<DescribeLimitsRequest, DescribeLimitsResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<UpdateTableResult>() {
-            public UpdateTableResult call() throws Exception {
-              UpdateTableResult result;
+        return executorService.submit(new Callable<DescribeLimitsResult>() {
+            public DescribeLimitsResult call() throws Exception {
+              DescribeLimitsResult result;
                 try {
-                result = updateTable(updateTableRequest);
+                result = describeLimits(describeLimitsRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(updateTableRequest, result);
+              asyncHandler.onSuccess(describeLimitsRequest, result);
                  return result;
         }
     });
@@ -722,38 +910,81 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
     
     /**
      * <p>
-     * The <i>DeleteTable</i> operation deletes a table and all of its
-     * items. After a <i>DeleteTable</i> request, the specified table is in
-     * the <code>DELETING</code> state until DynamoDB completes the deletion.
-     * If the table is in the <code>ACTIVE</code> state, you can delete it.
-     * If a table is in <code>CREATING</code> or <code>UPDATING</code>
-     * states, then DynamoDB returns a <i>ResourceInUseException</i> . If the
-     * specified table does not exist, DynamoDB returns a
-     * <i>ResourceNotFoundException</i> . If table is already in the
-     * <code>DELETING</code> state, no error is returned.
+     * The <i>BatchGetItem</i> operation returns the attributes of one or
+     * more items from one or more tables. You identify requested items by
+     * primary key.
      * </p>
      * <p>
-     * <b>NOTE:</b> DynamoDB might continue to accept data read and write
-     * operations, such as GetItem and PutItem, on a table in the DELETING
-     * state until the table deletion is complete.
+     * A single operation can retrieve up to 16 MB of data, which can
+     * contain as many as 100 items. <i>BatchGetItem</i> will return a
+     * partial result if the response size limit is exceeded, the table's
+     * provisioned throughput is exceeded, or an internal processing failure
+     * occurs. If a partial result is returned, the operation returns a value
+     * for <i>UnprocessedKeys</i> . You can use this value to retry the
+     * operation starting with the next item to get.
      * </p>
      * <p>
-     * When you delete a table, any indexes on that table are also deleted.
+     * <b>IMPORTANT:</b> If you request more than 100 items BatchGetItem
+     * will return a ValidationException with the message "Too many items
+     * requested for the BatchGetItem call".
      * </p>
      * <p>
-     * If you have DynamoDB Streams enabled on the table, then the
-     * corresponding stream on that table goes into the <code>DISABLED</code>
-     * state, and the stream is automatically deleted after 24 hours.
+     * For example, if you ask to retrieve 100 items, but each individual
+     * item is 300 KB in size, the system returns 52 items (so as not to
+     * exceed the 16 MB limit). It also returns an appropriate
+     * <i>UnprocessedKeys</i> value so you can get the next page of results.
+     * If desired, your application can include its own logic to assemble the
+     * pages of results into one data set.
      * </p>
      * <p>
-     * Use the <i>DescribeTable</i> API to check the status of the table.
+     * If <i>none</i> of the items can be processed due to insufficient
+     * provisioned throughput on all of the tables in the request, then
+     * <i>BatchGetItem</i> will return a
+     * <i>ProvisionedThroughputExceededException</i> . If <i>at least one</i>
+     * of the items is successfully processed, then <i>BatchGetItem</i>
+     * completes successfully, while returning the keys of the unread items
+     * in <i>UnprocessedKeys</i> .
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b> If DynamoDB returns any unprocessed items, you
+     * should retry the batch operation on those items. However, we strongly
+     * recommend that you use an exponential backoff algorithm. If you retry
+     * the batch operation immediately, the underlying read or write requests
+     * can still fail due to throttling on the individual tables. If you
+     * delay the batch operation using exponential backoff, the individual
+     * requests in the batch are much more likely to succeed. For more
+     * information, see Batch Operations and Error Handling in the Amazon
+     * DynamoDB Developer Guide.
+     * </p>
+     * <p>
+     * By default, <i>BatchGetItem</i> performs eventually consistent reads
+     * on every table in the request. If you want strongly consistent reads
+     * instead, you can set <i>ConsistentRead</i> to <code>true</code> for
+     * any or all tables.
+     * </p>
+     * <p>
+     * In order to minimize response latency, <i>BatchGetItem</i> retrieves
+     * items in parallel.
+     * </p>
+     * <p>
+     * When designing your application, keep in mind that DynamoDB does not
+     * return attributes in any particular order. To help parse the response
+     * by item, include the primary key values for the items in your request
+     * in the <i>AttributesToGet</i> parameter.
+     * </p>
+     * <p>
+     * If a requested item does not exist, it is not returned in the result.
+     * Requests for nonexistent items consume the minimum read capacity units
+     * according to the type of read. For more information, see
+     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#CapacityUnitCalculations"> Capacity Units Calculations </a>
+     * in the <i>Amazon DynamoDB Developer Guide</i> .
      * </p>
      *
-     * @param deleteTableRequest Container for the necessary parameters to
-     *           execute the DeleteTable operation on AmazonDynamoDBv2.
+     * @param batchGetItemRequest Container for the necessary parameters to
+     *           execute the BatchGetItem operation on AmazonDynamoDBv2.
      * 
      * @return A Java Future object containing the response from the
-     *         DeleteTable service method, as returned by AmazonDynamoDBv2.
+     *         BatchGetItem service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -764,53 +995,96 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DeleteTableResult> deleteTableAsync(final DeleteTableRequest deleteTableRequest) 
+    public Future<BatchGetItemResult> batchGetItemAsync(final BatchGetItemRequest batchGetItemRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteTableResult>() {
-            public DeleteTableResult call() throws Exception {
-                return deleteTable(deleteTableRequest);
+        return executorService.submit(new Callable<BatchGetItemResult>() {
+            public BatchGetItemResult call() throws Exception {
+                return batchGetItem(batchGetItemRequest);
         }
     });
     }
 
     /**
      * <p>
-     * The <i>DeleteTable</i> operation deletes a table and all of its
-     * items. After a <i>DeleteTable</i> request, the specified table is in
-     * the <code>DELETING</code> state until DynamoDB completes the deletion.
-     * If the table is in the <code>ACTIVE</code> state, you can delete it.
-     * If a table is in <code>CREATING</code> or <code>UPDATING</code>
-     * states, then DynamoDB returns a <i>ResourceInUseException</i> . If the
-     * specified table does not exist, DynamoDB returns a
-     * <i>ResourceNotFoundException</i> . If table is already in the
-     * <code>DELETING</code> state, no error is returned.
+     * The <i>BatchGetItem</i> operation returns the attributes of one or
+     * more items from one or more tables. You identify requested items by
+     * primary key.
      * </p>
      * <p>
-     * <b>NOTE:</b> DynamoDB might continue to accept data read and write
-     * operations, such as GetItem and PutItem, on a table in the DELETING
-     * state until the table deletion is complete.
+     * A single operation can retrieve up to 16 MB of data, which can
+     * contain as many as 100 items. <i>BatchGetItem</i> will return a
+     * partial result if the response size limit is exceeded, the table's
+     * provisioned throughput is exceeded, or an internal processing failure
+     * occurs. If a partial result is returned, the operation returns a value
+     * for <i>UnprocessedKeys</i> . You can use this value to retry the
+     * operation starting with the next item to get.
      * </p>
      * <p>
-     * When you delete a table, any indexes on that table are also deleted.
+     * <b>IMPORTANT:</b> If you request more than 100 items BatchGetItem
+     * will return a ValidationException with the message "Too many items
+     * requested for the BatchGetItem call".
      * </p>
      * <p>
-     * If you have DynamoDB Streams enabled on the table, then the
-     * corresponding stream on that table goes into the <code>DISABLED</code>
-     * state, and the stream is automatically deleted after 24 hours.
+     * For example, if you ask to retrieve 100 items, but each individual
+     * item is 300 KB in size, the system returns 52 items (so as not to
+     * exceed the 16 MB limit). It also returns an appropriate
+     * <i>UnprocessedKeys</i> value so you can get the next page of results.
+     * If desired, your application can include its own logic to assemble the
+     * pages of results into one data set.
      * </p>
      * <p>
-     * Use the <i>DescribeTable</i> API to check the status of the table.
+     * If <i>none</i> of the items can be processed due to insufficient
+     * provisioned throughput on all of the tables in the request, then
+     * <i>BatchGetItem</i> will return a
+     * <i>ProvisionedThroughputExceededException</i> . If <i>at least one</i>
+     * of the items is successfully processed, then <i>BatchGetItem</i>
+     * completes successfully, while returning the keys of the unread items
+     * in <i>UnprocessedKeys</i> .
+     * </p>
+     * <p>
+     * <b>IMPORTANT:</b> If DynamoDB returns any unprocessed items, you
+     * should retry the batch operation on those items. However, we strongly
+     * recommend that you use an exponential backoff algorithm. If you retry
+     * the batch operation immediately, the underlying read or write requests
+     * can still fail due to throttling on the individual tables. If you
+     * delay the batch operation using exponential backoff, the individual
+     * requests in the batch are much more likely to succeed. For more
+     * information, see Batch Operations and Error Handling in the Amazon
+     * DynamoDB Developer Guide.
+     * </p>
+     * <p>
+     * By default, <i>BatchGetItem</i> performs eventually consistent reads
+     * on every table in the request. If you want strongly consistent reads
+     * instead, you can set <i>ConsistentRead</i> to <code>true</code> for
+     * any or all tables.
+     * </p>
+     * <p>
+     * In order to minimize response latency, <i>BatchGetItem</i> retrieves
+     * items in parallel.
+     * </p>
+     * <p>
+     * When designing your application, keep in mind that DynamoDB does not
+     * return attributes in any particular order. To help parse the response
+     * by item, include the primary key values for the items in your request
+     * in the <i>AttributesToGet</i> parameter.
+     * </p>
+     * <p>
+     * If a requested item does not exist, it is not returned in the result.
+     * Requests for nonexistent items consume the minimum read capacity units
+     * according to the type of read. For more information, see
+     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#CapacityUnitCalculations"> Capacity Units Calculations </a>
+     * in the <i>Amazon DynamoDB Developer Guide</i> .
      * </p>
      *
-     * @param deleteTableRequest Container for the necessary parameters to
-     *           execute the DeleteTable operation on AmazonDynamoDBv2.
+     * @param batchGetItemRequest Container for the necessary parameters to
+     *           execute the BatchGetItem operation on AmazonDynamoDBv2.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         DeleteTable service method, as returned by AmazonDynamoDBv2.
+     *         BatchGetItem service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -821,20 +1095,186 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DeleteTableResult> deleteTableAsync(
-            final DeleteTableRequest deleteTableRequest,
-            final AsyncHandler<DeleteTableRequest, DeleteTableResult> asyncHandler)
+    public Future<BatchGetItemResult> batchGetItemAsync(
+            final BatchGetItemRequest batchGetItemRequest,
+            final AsyncHandler<BatchGetItemRequest, BatchGetItemResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DeleteTableResult>() {
-            public DeleteTableResult call() throws Exception {
-              DeleteTableResult result;
+        return executorService.submit(new Callable<BatchGetItemResult>() {
+            public BatchGetItemResult call() throws Exception {
+              BatchGetItemResult result;
                 try {
-                result = deleteTable(deleteTableRequest);
+                result = batchGetItem(batchGetItemRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(deleteTableRequest, result);
+              asyncHandler.onSuccess(batchGetItemRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * The <i>GetItem</i> operation returns a set of attributes for the item
+     * with the given primary key. If there is no matching item,
+     * <i>GetItem</i> does not return any data.
+     * </p>
+     * <p>
+     * <i>GetItem</i> provides an eventually consistent read by default. If
+     * your application requires a strongly consistent read, set
+     * <i>ConsistentRead</i> to <code>true</code> . Although a strongly
+     * consistent read might take more time than an eventually consistent
+     * read, it always returns the last updated value.
+     * </p>
+     *
+     * @param getItemRequest Container for the necessary parameters to
+     *           execute the GetItem operation on AmazonDynamoDBv2.
+     * 
+     * @return A Java Future object containing the response from the GetItem
+     *         service method, as returned by AmazonDynamoDBv2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetItemResult> getItemAsync(final GetItemRequest getItemRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetItemResult>() {
+            public GetItemResult call() throws Exception {
+                return getItem(getItemRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * The <i>GetItem</i> operation returns a set of attributes for the item
+     * with the given primary key. If there is no matching item,
+     * <i>GetItem</i> does not return any data.
+     * </p>
+     * <p>
+     * <i>GetItem</i> provides an eventually consistent read by default. If
+     * your application requires a strongly consistent read, set
+     * <i>ConsistentRead</i> to <code>true</code> . Although a strongly
+     * consistent read might take more time than an eventually consistent
+     * read, it always returns the last updated value.
+     * </p>
+     *
+     * @param getItemRequest Container for the necessary parameters to
+     *           execute the GetItem operation on AmazonDynamoDBv2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the GetItem
+     *         service method, as returned by AmazonDynamoDBv2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<GetItemResult> getItemAsync(
+            final GetItemRequest getItemRequest,
+            final AsyncHandler<GetItemRequest, GetItemResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetItemResult>() {
+            public GetItemResult call() throws Exception {
+              GetItemResult result;
+                try {
+                result = getItem(getItemRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(getItemRequest, result);
+                 return result;
+        }
+    });
+    }
+    
+    /**
+     * <p>
+     * Returns an array of table names associated with the current account
+     * and endpoint. The output from <i>ListTables</i> is paginated, with
+     * each page returning a maximum of 100 table names.
+     * </p>
+     *
+     * @param listTablesRequest Container for the necessary parameters to
+     *           execute the ListTables operation on AmazonDynamoDBv2.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ListTables service method, as returned by AmazonDynamoDBv2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ListTablesResult> listTablesAsync(final ListTablesRequest listTablesRequest) 
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTablesResult>() {
+            public ListTablesResult call() throws Exception {
+                return listTables(listTablesRequest);
+        }
+    });
+    }
+
+    /**
+     * <p>
+     * Returns an array of table names associated with the current account
+     * and endpoint. The output from <i>ListTables</i> is paginated, with
+     * each page returning a maximum of 100 table names.
+     * </p>
+     *
+     * @param listTablesRequest Container for the necessary parameters to
+     *           execute the ListTables operation on AmazonDynamoDBv2.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ListTables service method, as returned by AmazonDynamoDBv2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonDynamoDBv2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ListTablesResult> listTablesAsync(
+            final ListTablesRequest listTablesRequest,
+            final AsyncHandler<ListTablesRequest, ListTablesResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTablesResult>() {
+            public ListTablesResult call() throws Exception {
+              ListTablesResult result;
+                try {
+                result = listTables(listTablesRequest);
+              } catch (Exception ex) {
+                  asyncHandler.onError(ex);
+            throw ex;
+              }
+              asyncHandler.onSuccess(listTablesRequest, result);
                  return result;
         }
     });
@@ -1110,24 +1550,38 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
     
     /**
      * <p>
-     * Returns information about the table, including the current status of
-     * the table, when it was created, the primary key schema, and any
-     * indexes on the table.
+     * The <i>DeleteTable</i> operation deletes a table and all of its
+     * items. After a <i>DeleteTable</i> request, the specified table is in
+     * the <code>DELETING</code> state until DynamoDB completes the deletion.
+     * If the table is in the <code>ACTIVE</code> state, you can delete it.
+     * If a table is in <code>CREATING</code> or <code>UPDATING</code>
+     * states, then DynamoDB returns a <i>ResourceInUseException</i> . If the
+     * specified table does not exist, DynamoDB returns a
+     * <i>ResourceNotFoundException</i> . If table is already in the
+     * <code>DELETING</code> state, no error is returned.
      * </p>
      * <p>
-     * <b>NOTE:</b> If you issue a DescribeTable request immediately after a
-     * CreateTable request, DynamoDB might return a
-     * ResourceNotFoundException. This is because DescribeTable uses an
-     * eventually consistent query, and the metadata for your table might not
-     * be available at that moment. Wait for a few seconds, and then try the
-     * DescribeTable request again.
+     * <b>NOTE:</b> DynamoDB might continue to accept data read and write
+     * operations, such as GetItem and PutItem, on a table in the DELETING
+     * state until the table deletion is complete.
+     * </p>
+     * <p>
+     * When you delete a table, any indexes on that table are also deleted.
+     * </p>
+     * <p>
+     * If you have DynamoDB Streams enabled on the table, then the
+     * corresponding stream on that table goes into the <code>DISABLED</code>
+     * state, and the stream is automatically deleted after 24 hours.
+     * </p>
+     * <p>
+     * Use the <i>DescribeTable</i> API to check the status of the table.
      * </p>
      *
-     * @param describeTableRequest Container for the necessary parameters to
-     *           execute the DescribeTable operation on AmazonDynamoDBv2.
+     * @param deleteTableRequest Container for the necessary parameters to
+     *           execute the DeleteTable operation on AmazonDynamoDBv2.
      * 
      * @return A Java Future object containing the response from the
-     *         DescribeTable service method, as returned by AmazonDynamoDBv2.
+     *         DeleteTable service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -1138,39 +1592,53 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DescribeTableResult> describeTableAsync(final DescribeTableRequest describeTableRequest) 
+    public Future<DeleteTableResult> deleteTableAsync(final DeleteTableRequest deleteTableRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeTableResult>() {
-            public DescribeTableResult call() throws Exception {
-                return describeTable(describeTableRequest);
+        return executorService.submit(new Callable<DeleteTableResult>() {
+            public DeleteTableResult call() throws Exception {
+                return deleteTable(deleteTableRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Returns information about the table, including the current status of
-     * the table, when it was created, the primary key schema, and any
-     * indexes on the table.
+     * The <i>DeleteTable</i> operation deletes a table and all of its
+     * items. After a <i>DeleteTable</i> request, the specified table is in
+     * the <code>DELETING</code> state until DynamoDB completes the deletion.
+     * If the table is in the <code>ACTIVE</code> state, you can delete it.
+     * If a table is in <code>CREATING</code> or <code>UPDATING</code>
+     * states, then DynamoDB returns a <i>ResourceInUseException</i> . If the
+     * specified table does not exist, DynamoDB returns a
+     * <i>ResourceNotFoundException</i> . If table is already in the
+     * <code>DELETING</code> state, no error is returned.
      * </p>
      * <p>
-     * <b>NOTE:</b> If you issue a DescribeTable request immediately after a
-     * CreateTable request, DynamoDB might return a
-     * ResourceNotFoundException. This is because DescribeTable uses an
-     * eventually consistent query, and the metadata for your table might not
-     * be available at that moment. Wait for a few seconds, and then try the
-     * DescribeTable request again.
+     * <b>NOTE:</b> DynamoDB might continue to accept data read and write
+     * operations, such as GetItem and PutItem, on a table in the DELETING
+     * state until the table deletion is complete.
+     * </p>
+     * <p>
+     * When you delete a table, any indexes on that table are also deleted.
+     * </p>
+     * <p>
+     * If you have DynamoDB Streams enabled on the table, then the
+     * corresponding stream on that table goes into the <code>DISABLED</code>
+     * state, and the stream is automatically deleted after 24 hours.
+     * </p>
+     * <p>
+     * Use the <i>DescribeTable</i> API to check the status of the table.
      * </p>
      *
-     * @param describeTableRequest Container for the necessary parameters to
-     *           execute the DescribeTable operation on AmazonDynamoDBv2.
+     * @param deleteTableRequest Container for the necessary parameters to
+     *           execute the DeleteTable operation on AmazonDynamoDBv2.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         DescribeTable service method, as returned by AmazonDynamoDBv2.
+     *         DeleteTable service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -1181,200 +1649,20 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DescribeTableResult> describeTableAsync(
-            final DescribeTableRequest describeTableRequest,
-            final AsyncHandler<DescribeTableRequest, DescribeTableResult> asyncHandler)
+    public Future<DeleteTableResult> deleteTableAsync(
+            final DeleteTableRequest deleteTableRequest,
+            final AsyncHandler<DeleteTableRequest, DeleteTableResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeTableResult>() {
-            public DescribeTableResult call() throws Exception {
-              DescribeTableResult result;
+        return executorService.submit(new Callable<DeleteTableResult>() {
+            public DeleteTableResult call() throws Exception {
+              DeleteTableResult result;
                 try {
-                result = describeTable(describeTableRequest);
+                result = deleteTable(deleteTableRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(describeTableRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * The <i>GetItem</i> operation returns a set of attributes for the item
-     * with the given primary key. If there is no matching item,
-     * <i>GetItem</i> does not return any data.
-     * </p>
-     * <p>
-     * <i>GetItem</i> provides an eventually consistent read by default. If
-     * your application requires a strongly consistent read, set
-     * <i>ConsistentRead</i> to <code>true</code> . Although a strongly
-     * consistent read might take more time than an eventually consistent
-     * read, it always returns the last updated value.
-     * </p>
-     *
-     * @param getItemRequest Container for the necessary parameters to
-     *           execute the GetItem operation on AmazonDynamoDBv2.
-     * 
-     * @return A Java Future object containing the response from the GetItem
-     *         service method, as returned by AmazonDynamoDBv2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonDynamoDBv2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetItemResult> getItemAsync(final GetItemRequest getItemRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetItemResult>() {
-            public GetItemResult call() throws Exception {
-                return getItem(getItemRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * The <i>GetItem</i> operation returns a set of attributes for the item
-     * with the given primary key. If there is no matching item,
-     * <i>GetItem</i> does not return any data.
-     * </p>
-     * <p>
-     * <i>GetItem</i> provides an eventually consistent read by default. If
-     * your application requires a strongly consistent read, set
-     * <i>ConsistentRead</i> to <code>true</code> . Although a strongly
-     * consistent read might take more time than an eventually consistent
-     * read, it always returns the last updated value.
-     * </p>
-     *
-     * @param getItemRequest Container for the necessary parameters to
-     *           execute the GetItem operation on AmazonDynamoDBv2.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the GetItem
-     *         service method, as returned by AmazonDynamoDBv2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonDynamoDBv2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<GetItemResult> getItemAsync(
-            final GetItemRequest getItemRequest,
-            final AsyncHandler<GetItemRequest, GetItemResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<GetItemResult>() {
-            public GetItemResult call() throws Exception {
-              GetItemResult result;
-                try {
-                result = getItem(getItemRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(getItemRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Edits an existing item's attributes, or adds a new item to the table
-     * if it does not already exist. You can put, delete, or add attribute
-     * values. You can also perform a conditional update on an existing item
-     * (insert a new attribute name-value pair if it doesn't exist, or
-     * replace an existing name-value pair if it has certain expected
-     * attribute values).
-     * </p>
-     * <p>
-     * You can also return the item's attribute values in the same
-     * <i>UpdateItem</i> operation using the <i>ReturnValues</i> parameter.
-     * </p>
-     *
-     * @param updateItemRequest Container for the necessary parameters to
-     *           execute the UpdateItem operation on AmazonDynamoDBv2.
-     * 
-     * @return A Java Future object containing the response from the
-     *         UpdateItem service method, as returned by AmazonDynamoDBv2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonDynamoDBv2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<UpdateItemResult> updateItemAsync(final UpdateItemRequest updateItemRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<UpdateItemResult>() {
-            public UpdateItemResult call() throws Exception {
-                return updateItem(updateItemRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Edits an existing item's attributes, or adds a new item to the table
-     * if it does not already exist. You can put, delete, or add attribute
-     * values. You can also perform a conditional update on an existing item
-     * (insert a new attribute name-value pair if it doesn't exist, or
-     * replace an existing name-value pair if it has certain expected
-     * attribute values).
-     * </p>
-     * <p>
-     * You can also return the item's attribute values in the same
-     * <i>UpdateItem</i> operation using the <i>ReturnValues</i> parameter.
-     * </p>
-     *
-     * @param updateItemRequest Container for the necessary parameters to
-     *           execute the UpdateItem operation on AmazonDynamoDBv2.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         UpdateItem service method, as returned by AmazonDynamoDBv2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonDynamoDBv2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<UpdateItemResult> updateItemAsync(
-            final UpdateItemRequest updateItemRequest,
-            final AsyncHandler<UpdateItemRequest, UpdateItemResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<UpdateItemResult>() {
-            public UpdateItemResult call() throws Exception {
-              UpdateItemResult result;
-                try {
-                result = updateItem(updateItemRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(updateItemRequest, result);
+              asyncHandler.onSuccess(deleteTableRequest, result);
                  return result;
         }
     });
@@ -1488,85 +1776,48 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
     
     /**
      * <p>
-     * Returns the current provisioned-capacity limits for your AWS account
-     * in a region, both for the region as a whole and for any one DynamoDB
-     * table that you create there.
+     * Modifies the provisioned throughput settings, global secondary
+     * indexes, or DynamoDB Streams settings for a given table.
      * </p>
      * <p>
-     * When you establish an AWS account, the account has initial limits on
-     * the maximum read capacity units and write capacity units that you can
-     * provision across all of your DynamoDB tables in a given region. Also,
-     * there are per-table limits that apply when you create a table there.
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"> Limits </a>
-     * page in the <i>Amazon DynamoDB Developer Guide</i> .
-     * </p>
-     * <p>
-     * Although you can increase these limits by filing a case at
-     * <a href="https://console.aws.amazon.com/support/home#/"> AWS Support Center </a>
-     * , obtaining the increase is not instantaneous. The
-     * <i>DescribeLimits</i> API lets you write code to compare the capacity
-     * you are currently using to those limits imposed by your account so
-     * that you have enough time to apply for an increase before you hit a
-     * limit.
-     * </p>
-     * <p>
-     * For example, you could use one of the AWS SDKs to do the following:
-     * </p>
-     * <ol> <li>Call <i>DescribeLimits</i> for a particular region to obtain
-     * your current account limits on provisioned capacity there.</li>
-     * <li>Create a variable to hold the aggregate read capacity units
-     * provisioned for all your tables in that region, and one to hold the
-     * aggregate write capacity units. Zero them both.</li>
-     * <li>Call <i>ListTables</i> to obtain a list of all your DynamoDB
-     * tables.</li>
-     * <li> <p>
-     * For each table name listed by <i>ListTables</i> , do the following:
+     * You can only perform one of the following operations at once:
      * </p>
      * 
      * <ul>
-     * <li>Call <i>DescribeTable</i> with the table name.</li>
-     * <li>Use the data returned by <i>DescribeTable</i> to add the read
-     * capacity units and write capacity units provisioned for the table
-     * itself to your variables.</li>
-     * <li>If the table has one or more global secondary indexes (GSIs),
-     * loop over these GSIs and add their provisioned capacity values to your
-     * variables as well.</li>
+     * <li> <p>
+     * Modify the provisioned throughput settings of the table.
+     * </p>
+     * </li>
+     * <li> <p>
+     * Enable or disable Streams on the table.
+     * </p>
+     * </li>
+     * <li> <p>
+     * Remove a global secondary index from the table.
+     * </p>
+     * </li>
+     * <li> <p>
+     * Create a new global secondary index on the table. Once the index
+     * begins backfilling, you can use <i>UpdateTable</i> to perform other
+     * operations.
+     * </p>
+     * </li>
      * 
      * </ul>
-     * </li>
-     * <li>Report the account limits for that region returned by
-     * <i>DescribeLimits</i> , along with the total current provisioned
-     * capacity levels you have calculated.</li>
-     * </ol> <p>
-     * This will let you see whether you are getting close to your
-     * account-level limits.
-     * </p>
      * <p>
-     * The per-table limits apply only when you are creating a new table.
-     * They restrict the sum of the provisioned capacity of the new table
-     * itself and all its global secondary indexes.
-     * </p>
-     * <p>
-     * For existing tables and their GSIs, DynamoDB will not let you
-     * increase provisioned capacity extremely rapidly, but the only upper
-     * limit that applies is that the aggregate provisioned capacity over all
-     * your tables and GSIs cannot exceed either of the per-account limits.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> DescribeLimits should only be called periodically. You
-     * can expect throttling errors if you call it more than once in a
-     * minute.
-     * </p>
-     * <p>
-     * The <i>DescribeLimits</i> Request element has no content.
+     * <i>UpdateTable</i> is an asynchronous operation; while it is
+     * executing, the table status changes from <code>ACTIVE</code> to
+     * <code>UPDATING</code> . While it is <code>UPDATING</code> , you cannot
+     * issue another <i>UpdateTable</i> request. When the table returns to
+     * the <code>ACTIVE</code> state, the <i>UpdateTable</i> operation is
+     * complete.
      * </p>
      *
-     * @param describeLimitsRequest Container for the necessary parameters to
-     *           execute the DescribeLimits operation on AmazonDynamoDBv2.
+     * @param updateTableRequest Container for the necessary parameters to
+     *           execute the UpdateTable operation on AmazonDynamoDBv2.
      * 
      * @return A Java Future object containing the response from the
-     *         DescribeLimits service method, as returned by AmazonDynamoDBv2.
+     *         UpdateTable service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -1577,100 +1828,63 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DescribeLimitsResult> describeLimitsAsync(final DescribeLimitsRequest describeLimitsRequest) 
+    public Future<UpdateTableResult> updateTableAsync(final UpdateTableRequest updateTableRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLimitsResult>() {
-            public DescribeLimitsResult call() throws Exception {
-                return describeLimits(describeLimitsRequest);
+        return executorService.submit(new Callable<UpdateTableResult>() {
+            public UpdateTableResult call() throws Exception {
+                return updateTable(updateTableRequest);
         }
     });
     }
 
     /**
      * <p>
-     * Returns the current provisioned-capacity limits for your AWS account
-     * in a region, both for the region as a whole and for any one DynamoDB
-     * table that you create there.
+     * Modifies the provisioned throughput settings, global secondary
+     * indexes, or DynamoDB Streams settings for a given table.
      * </p>
      * <p>
-     * When you establish an AWS account, the account has initial limits on
-     * the maximum read capacity units and write capacity units that you can
-     * provision across all of your DynamoDB tables in a given region. Also,
-     * there are per-table limits that apply when you create a table there.
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"> Limits </a>
-     * page in the <i>Amazon DynamoDB Developer Guide</i> .
-     * </p>
-     * <p>
-     * Although you can increase these limits by filing a case at
-     * <a href="https://console.aws.amazon.com/support/home#/"> AWS Support Center </a>
-     * , obtaining the increase is not instantaneous. The
-     * <i>DescribeLimits</i> API lets you write code to compare the capacity
-     * you are currently using to those limits imposed by your account so
-     * that you have enough time to apply for an increase before you hit a
-     * limit.
-     * </p>
-     * <p>
-     * For example, you could use one of the AWS SDKs to do the following:
-     * </p>
-     * <ol> <li>Call <i>DescribeLimits</i> for a particular region to obtain
-     * your current account limits on provisioned capacity there.</li>
-     * <li>Create a variable to hold the aggregate read capacity units
-     * provisioned for all your tables in that region, and one to hold the
-     * aggregate write capacity units. Zero them both.</li>
-     * <li>Call <i>ListTables</i> to obtain a list of all your DynamoDB
-     * tables.</li>
-     * <li> <p>
-     * For each table name listed by <i>ListTables</i> , do the following:
+     * You can only perform one of the following operations at once:
      * </p>
      * 
      * <ul>
-     * <li>Call <i>DescribeTable</i> with the table name.</li>
-     * <li>Use the data returned by <i>DescribeTable</i> to add the read
-     * capacity units and write capacity units provisioned for the table
-     * itself to your variables.</li>
-     * <li>If the table has one or more global secondary indexes (GSIs),
-     * loop over these GSIs and add their provisioned capacity values to your
-     * variables as well.</li>
+     * <li> <p>
+     * Modify the provisioned throughput settings of the table.
+     * </p>
+     * </li>
+     * <li> <p>
+     * Enable or disable Streams on the table.
+     * </p>
+     * </li>
+     * <li> <p>
+     * Remove a global secondary index from the table.
+     * </p>
+     * </li>
+     * <li> <p>
+     * Create a new global secondary index on the table. Once the index
+     * begins backfilling, you can use <i>UpdateTable</i> to perform other
+     * operations.
+     * </p>
+     * </li>
      * 
      * </ul>
-     * </li>
-     * <li>Report the account limits for that region returned by
-     * <i>DescribeLimits</i> , along with the total current provisioned
-     * capacity levels you have calculated.</li>
-     * </ol> <p>
-     * This will let you see whether you are getting close to your
-     * account-level limits.
-     * </p>
      * <p>
-     * The per-table limits apply only when you are creating a new table.
-     * They restrict the sum of the provisioned capacity of the new table
-     * itself and all its global secondary indexes.
-     * </p>
-     * <p>
-     * For existing tables and their GSIs, DynamoDB will not let you
-     * increase provisioned capacity extremely rapidly, but the only upper
-     * limit that applies is that the aggregate provisioned capacity over all
-     * your tables and GSIs cannot exceed either of the per-account limits.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> DescribeLimits should only be called periodically. You
-     * can expect throttling errors if you call it more than once in a
-     * minute.
-     * </p>
-     * <p>
-     * The <i>DescribeLimits</i> Request element has no content.
+     * <i>UpdateTable</i> is an asynchronous operation; while it is
+     * executing, the table status changes from <code>ACTIVE</code> to
+     * <code>UPDATING</code> . While it is <code>UPDATING</code> , you cannot
+     * issue another <i>UpdateTable</i> request. When the table returns to
+     * the <code>ACTIVE</code> state, the <i>UpdateTable</i> operation is
+     * complete.
      * </p>
      *
-     * @param describeLimitsRequest Container for the necessary parameters to
-     *           execute the DescribeLimits operation on AmazonDynamoDBv2.
+     * @param updateTableRequest Container for the necessary parameters to
+     *           execute the UpdateTable operation on AmazonDynamoDBv2.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         DescribeLimits service method, as returned by AmazonDynamoDBv2.
+     *         UpdateTable service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -1681,20 +1895,20 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<DescribeLimitsResult> describeLimitsAsync(
-            final DescribeLimitsRequest describeLimitsRequest,
-            final AsyncHandler<DescribeLimitsRequest, DescribeLimitsResult> asyncHandler)
+    public Future<UpdateTableResult> updateTableAsync(
+            final UpdateTableRequest updateTableRequest,
+            final AsyncHandler<UpdateTableRequest, UpdateTableResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<DescribeLimitsResult>() {
-            public DescribeLimitsResult call() throws Exception {
-              DescribeLimitsResult result;
+        return executorService.submit(new Callable<UpdateTableResult>() {
+            public UpdateTableResult call() throws Exception {
+              UpdateTableResult result;
                 try {
-                result = describeLimits(describeLimitsRequest);
+                result = updateTable(updateTableRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(describeLimitsRequest, result);
+              asyncHandler.onSuccess(updateTableRequest, result);
                  return result;
         }
     });
@@ -1702,35 +1916,23 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
     
     /**
      * <p>
-     * The <i>CreateTable</i> operation adds a new table to your account. In
-     * an AWS account, table names must be unique within each region. That
-     * is, you can have two tables with same name if you create the tables in
-     * different regions.
+     * Edits an existing item's attributes, or adds a new item to the table
+     * if it does not already exist. You can put, delete, or add attribute
+     * values. You can also perform a conditional update on an existing item
+     * (insert a new attribute name-value pair if it doesn't exist, or
+     * replace an existing name-value pair if it has certain expected
+     * attribute values).
      * </p>
      * <p>
-     * <i>CreateTable</i> is an asynchronous operation. Upon receiving a
-     * <i>CreateTable</i> request, DynamoDB immediately returns a response
-     * with a <i>TableStatus</i> of <code>CREATING</code> . After the table
-     * is created, DynamoDB sets the <i>TableStatus</i> to
-     * <code>ACTIVE</code> . You can perform read and write operations only
-     * on an <code>ACTIVE</code> table.
-     * </p>
-     * <p>
-     * You can optionally define secondary indexes on the new table, as part
-     * of the <i>CreateTable</i> operation. If you want to create multiple
-     * tables with secondary indexes on them, you must create the tables
-     * sequentially. Only one table with secondary indexes can be in the
-     * <code>CREATING</code> state at any given time.
-     * </p>
-     * <p>
-     * You can use the <i>DescribeTable</i> API to check the table status.
+     * You can also return the item's attribute values in the same
+     * <i>UpdateItem</i> operation using the <i>ReturnValues</i> parameter.
      * </p>
      *
-     * @param createTableRequest Container for the necessary parameters to
-     *           execute the CreateTable operation on AmazonDynamoDBv2.
+     * @param updateItemRequest Container for the necessary parameters to
+     *           execute the UpdateItem operation on AmazonDynamoDBv2.
      * 
      * @return A Java Future object containing the response from the
-     *         CreateTable service method, as returned by AmazonDynamoDBv2.
+     *         UpdateItem service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -1741,50 +1943,38 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<CreateTableResult> createTableAsync(final CreateTableRequest createTableRequest) 
+    public Future<UpdateItemResult> updateItemAsync(final UpdateItemRequest updateItemRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CreateTableResult>() {
-            public CreateTableResult call() throws Exception {
-                return createTable(createTableRequest);
+        return executorService.submit(new Callable<UpdateItemResult>() {
+            public UpdateItemResult call() throws Exception {
+                return updateItem(updateItemRequest);
         }
     });
     }
 
     /**
      * <p>
-     * The <i>CreateTable</i> operation adds a new table to your account. In
-     * an AWS account, table names must be unique within each region. That
-     * is, you can have two tables with same name if you create the tables in
-     * different regions.
+     * Edits an existing item's attributes, or adds a new item to the table
+     * if it does not already exist. You can put, delete, or add attribute
+     * values. You can also perform a conditional update on an existing item
+     * (insert a new attribute name-value pair if it doesn't exist, or
+     * replace an existing name-value pair if it has certain expected
+     * attribute values).
      * </p>
      * <p>
-     * <i>CreateTable</i> is an asynchronous operation. Upon receiving a
-     * <i>CreateTable</i> request, DynamoDB immediately returns a response
-     * with a <i>TableStatus</i> of <code>CREATING</code> . After the table
-     * is created, DynamoDB sets the <i>TableStatus</i> to
-     * <code>ACTIVE</code> . You can perform read and write operations only
-     * on an <code>ACTIVE</code> table.
-     * </p>
-     * <p>
-     * You can optionally define secondary indexes on the new table, as part
-     * of the <i>CreateTable</i> operation. If you want to create multiple
-     * tables with secondary indexes on them, you must create the tables
-     * sequentially. Only one table with secondary indexes can be in the
-     * <code>CREATING</code> state at any given time.
-     * </p>
-     * <p>
-     * You can use the <i>DescribeTable</i> API to check the table status.
+     * You can also return the item's attribute values in the same
+     * <i>UpdateItem</i> operation using the <i>ReturnValues</i> parameter.
      * </p>
      *
-     * @param createTableRequest Container for the necessary parameters to
-     *           execute the CreateTable operation on AmazonDynamoDBv2.
+     * @param updateItemRequest Container for the necessary parameters to
+     *           execute the UpdateItem operation on AmazonDynamoDBv2.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         CreateTable service method, as returned by AmazonDynamoDBv2.
+     *         UpdateItem service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -1795,20 +1985,20 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<CreateTableResult> createTableAsync(
-            final CreateTableRequest createTableRequest,
-            final AsyncHandler<CreateTableRequest, CreateTableResult> asyncHandler)
+    public Future<UpdateItemResult> updateItemAsync(
+            final UpdateItemRequest updateItemRequest,
+            final AsyncHandler<UpdateItemRequest, UpdateItemResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<CreateTableResult>() {
-            public CreateTableResult call() throws Exception {
-              CreateTableResult result;
+        return executorService.submit(new Callable<UpdateItemResult>() {
+            public UpdateItemResult call() throws Exception {
+              UpdateItemResult result;
                 try {
-                result = createTable(createTableRequest);
+                result = updateItem(updateItemRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(createTableRequest, result);
+              asyncHandler.onSuccess(updateItemRequest, result);
                  return result;
         }
     });
@@ -1816,81 +2006,24 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
     
     /**
      * <p>
-     * The <i>BatchGetItem</i> operation returns the attributes of one or
-     * more items from one or more tables. You identify requested items by
-     * primary key.
+     * Returns information about the table, including the current status of
+     * the table, when it was created, the primary key schema, and any
+     * indexes on the table.
      * </p>
      * <p>
-     * A single operation can retrieve up to 16 MB of data, which can
-     * contain as many as 100 items. <i>BatchGetItem</i> will return a
-     * partial result if the response size limit is exceeded, the table's
-     * provisioned throughput is exceeded, or an internal processing failure
-     * occurs. If a partial result is returned, the operation returns a value
-     * for <i>UnprocessedKeys</i> . You can use this value to retry the
-     * operation starting with the next item to get.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b> If you request more than 100 items BatchGetItem
-     * will return a ValidationException with the message "Too many items
-     * requested for the BatchGetItem call".
-     * </p>
-     * <p>
-     * For example, if you ask to retrieve 100 items, but each individual
-     * item is 300 KB in size, the system returns 52 items (so as not to
-     * exceed the 16 MB limit). It also returns an appropriate
-     * <i>UnprocessedKeys</i> value so you can get the next page of results.
-     * If desired, your application can include its own logic to assemble the
-     * pages of results into one data set.
-     * </p>
-     * <p>
-     * If <i>none</i> of the items can be processed due to insufficient
-     * provisioned throughput on all of the tables in the request, then
-     * <i>BatchGetItem</i> will return a
-     * <i>ProvisionedThroughputExceededException</i> . If <i>at least one</i>
-     * of the items is successfully processed, then <i>BatchGetItem</i>
-     * completes successfully, while returning the keys of the unread items
-     * in <i>UnprocessedKeys</i> .
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b> If DynamoDB returns any unprocessed items, you
-     * should retry the batch operation on those items. However, we strongly
-     * recommend that you use an exponential backoff algorithm. If you retry
-     * the batch operation immediately, the underlying read or write requests
-     * can still fail due to throttling on the individual tables. If you
-     * delay the batch operation using exponential backoff, the individual
-     * requests in the batch are much more likely to succeed. For more
-     * information, see Batch Operations and Error Handling in the Amazon
-     * DynamoDB Developer Guide.
-     * </p>
-     * <p>
-     * By default, <i>BatchGetItem</i> performs eventually consistent reads
-     * on every table in the request. If you want strongly consistent reads
-     * instead, you can set <i>ConsistentRead</i> to <code>true</code> for
-     * any or all tables.
-     * </p>
-     * <p>
-     * In order to minimize response latency, <i>BatchGetItem</i> retrieves
-     * items in parallel.
-     * </p>
-     * <p>
-     * When designing your application, keep in mind that DynamoDB does not
-     * return attributes in any particular order. To help parse the response
-     * by item, include the primary key values for the items in your request
-     * in the <i>AttributesToGet</i> parameter.
-     * </p>
-     * <p>
-     * If a requested item does not exist, it is not returned in the result.
-     * Requests for nonexistent items consume the minimum read capacity units
-     * according to the type of read. For more information, see
-     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#CapacityUnitCalculations"> Capacity Units Calculations </a>
-     * in the <i>Amazon DynamoDB Developer Guide</i> .
+     * <b>NOTE:</b> If you issue a DescribeTable request immediately after a
+     * CreateTable request, DynamoDB might return a
+     * ResourceNotFoundException. This is because DescribeTable uses an
+     * eventually consistent query, and the metadata for your table might not
+     * be available at that moment. Wait for a few seconds, and then try the
+     * DescribeTable request again.
      * </p>
      *
-     * @param batchGetItemRequest Container for the necessary parameters to
-     *           execute the BatchGetItem operation on AmazonDynamoDBv2.
+     * @param describeTableRequest Container for the necessary parameters to
+     *           execute the DescribeTable operation on AmazonDynamoDBv2.
      * 
      * @return A Java Future object containing the response from the
-     *         BatchGetItem service method, as returned by AmazonDynamoDBv2.
+     *         DescribeTable service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -1901,96 +2034,39 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<BatchGetItemResult> batchGetItemAsync(final BatchGetItemRequest batchGetItemRequest) 
+    public Future<DescribeTableResult> describeTableAsync(final DescribeTableRequest describeTableRequest) 
             throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<BatchGetItemResult>() {
-            public BatchGetItemResult call() throws Exception {
-                return batchGetItem(batchGetItemRequest);
+        return executorService.submit(new Callable<DescribeTableResult>() {
+            public DescribeTableResult call() throws Exception {
+                return describeTable(describeTableRequest);
         }
     });
     }
 
     /**
      * <p>
-     * The <i>BatchGetItem</i> operation returns the attributes of one or
-     * more items from one or more tables. You identify requested items by
-     * primary key.
+     * Returns information about the table, including the current status of
+     * the table, when it was created, the primary key schema, and any
+     * indexes on the table.
      * </p>
      * <p>
-     * A single operation can retrieve up to 16 MB of data, which can
-     * contain as many as 100 items. <i>BatchGetItem</i> will return a
-     * partial result if the response size limit is exceeded, the table's
-     * provisioned throughput is exceeded, or an internal processing failure
-     * occurs. If a partial result is returned, the operation returns a value
-     * for <i>UnprocessedKeys</i> . You can use this value to retry the
-     * operation starting with the next item to get.
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b> If you request more than 100 items BatchGetItem
-     * will return a ValidationException with the message "Too many items
-     * requested for the BatchGetItem call".
-     * </p>
-     * <p>
-     * For example, if you ask to retrieve 100 items, but each individual
-     * item is 300 KB in size, the system returns 52 items (so as not to
-     * exceed the 16 MB limit). It also returns an appropriate
-     * <i>UnprocessedKeys</i> value so you can get the next page of results.
-     * If desired, your application can include its own logic to assemble the
-     * pages of results into one data set.
-     * </p>
-     * <p>
-     * If <i>none</i> of the items can be processed due to insufficient
-     * provisioned throughput on all of the tables in the request, then
-     * <i>BatchGetItem</i> will return a
-     * <i>ProvisionedThroughputExceededException</i> . If <i>at least one</i>
-     * of the items is successfully processed, then <i>BatchGetItem</i>
-     * completes successfully, while returning the keys of the unread items
-     * in <i>UnprocessedKeys</i> .
-     * </p>
-     * <p>
-     * <b>IMPORTANT:</b> If DynamoDB returns any unprocessed items, you
-     * should retry the batch operation on those items. However, we strongly
-     * recommend that you use an exponential backoff algorithm. If you retry
-     * the batch operation immediately, the underlying read or write requests
-     * can still fail due to throttling on the individual tables. If you
-     * delay the batch operation using exponential backoff, the individual
-     * requests in the batch are much more likely to succeed. For more
-     * information, see Batch Operations and Error Handling in the Amazon
-     * DynamoDB Developer Guide.
-     * </p>
-     * <p>
-     * By default, <i>BatchGetItem</i> performs eventually consistent reads
-     * on every table in the request. If you want strongly consistent reads
-     * instead, you can set <i>ConsistentRead</i> to <code>true</code> for
-     * any or all tables.
-     * </p>
-     * <p>
-     * In order to minimize response latency, <i>BatchGetItem</i> retrieves
-     * items in parallel.
-     * </p>
-     * <p>
-     * When designing your application, keep in mind that DynamoDB does not
-     * return attributes in any particular order. To help parse the response
-     * by item, include the primary key values for the items in your request
-     * in the <i>AttributesToGet</i> parameter.
-     * </p>
-     * <p>
-     * If a requested item does not exist, it is not returned in the result.
-     * Requests for nonexistent items consume the minimum read capacity units
-     * according to the type of read. For more information, see
-     * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#CapacityUnitCalculations"> Capacity Units Calculations </a>
-     * in the <i>Amazon DynamoDB Developer Guide</i> .
+     * <b>NOTE:</b> If you issue a DescribeTable request immediately after a
+     * CreateTable request, DynamoDB might return a
+     * ResourceNotFoundException. This is because DescribeTable uses an
+     * eventually consistent query, and the metadata for your table might not
+     * be available at that moment. Wait for a few seconds, and then try the
+     * DescribeTable request again.
      * </p>
      *
-     * @param batchGetItemRequest Container for the necessary parameters to
-     *           execute the BatchGetItem operation on AmazonDynamoDBv2.
+     * @param describeTableRequest Container for the necessary parameters to
+     *           execute the DescribeTable operation on AmazonDynamoDBv2.
      * @param asyncHandler Asynchronous callback handler for events in the
      *           life-cycle of the request. Users could provide the implementation of
      *           the four callback methods in this interface to process the operation
      *           result or handle the exception.
      * 
      * @return A Java Future object containing the response from the
-     *         BatchGetItem service method, as returned by AmazonDynamoDBv2.
+     *         DescribeTable service method, as returned by AmazonDynamoDBv2.
      * 
      *
      * @throws AmazonClientException
@@ -2001,20 +2077,20 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
      *             If an error response is returned by AmazonDynamoDBv2 indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public Future<BatchGetItemResult> batchGetItemAsync(
-            final BatchGetItemRequest batchGetItemRequest,
-            final AsyncHandler<BatchGetItemRequest, BatchGetItemResult> asyncHandler)
+    public Future<DescribeTableResult> describeTableAsync(
+            final DescribeTableRequest describeTableRequest,
+            final AsyncHandler<DescribeTableRequest, DescribeTableResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<BatchGetItemResult>() {
-            public BatchGetItemResult call() throws Exception {
-              BatchGetItemResult result;
+        return executorService.submit(new Callable<DescribeTableResult>() {
+            public DescribeTableResult call() throws Exception {
+              DescribeTableResult result;
                 try {
-                result = batchGetItem(batchGetItemRequest);
+                result = describeTable(describeTableRequest);
               } catch (Exception ex) {
                   asyncHandler.onError(ex);
             throw ex;
               }
-              asyncHandler.onSuccess(batchGetItemRequest, result);
+              asyncHandler.onSuccess(describeTableRequest, result);
                  return result;
         }
     });
@@ -2297,82 +2373,6 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient
             throw ex;
               }
               asyncHandler.onSuccess(putItemRequest, result);
-                 return result;
-        }
-    });
-    }
-    
-    /**
-     * <p>
-     * Returns an array of table names associated with the current account
-     * and endpoint. The output from <i>ListTables</i> is paginated, with
-     * each page returning a maximum of 100 table names.
-     * </p>
-     *
-     * @param listTablesRequest Container for the necessary parameters to
-     *           execute the ListTables operation on AmazonDynamoDBv2.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ListTables service method, as returned by AmazonDynamoDBv2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonDynamoDBv2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<ListTablesResult> listTablesAsync(final ListTablesRequest listTablesRequest) 
-            throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListTablesResult>() {
-            public ListTablesResult call() throws Exception {
-                return listTables(listTablesRequest);
-        }
-    });
-    }
-
-    /**
-     * <p>
-     * Returns an array of table names associated with the current account
-     * and endpoint. The output from <i>ListTables</i> is paginated, with
-     * each page returning a maximum of 100 table names.
-     * </p>
-     *
-     * @param listTablesRequest Container for the necessary parameters to
-     *           execute the ListTables operation on AmazonDynamoDBv2.
-     * @param asyncHandler Asynchronous callback handler for events in the
-     *           life-cycle of the request. Users could provide the implementation of
-     *           the four callback methods in this interface to process the operation
-     *           result or handle the exception.
-     * 
-     * @return A Java Future object containing the response from the
-     *         ListTables service method, as returned by AmazonDynamoDBv2.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonDynamoDBv2 indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public Future<ListTablesResult> listTablesAsync(
-            final ListTablesRequest listTablesRequest,
-            final AsyncHandler<ListTablesRequest, ListTablesResult> asyncHandler)
-                    throws AmazonServiceException, AmazonClientException {
-        return executorService.submit(new Callable<ListTablesResult>() {
-            public ListTablesResult call() throws Exception {
-              ListTablesResult result;
-                try {
-                result = listTables(listTablesRequest);
-              } catch (Exception ex) {
-                  asyncHandler.onError(ex);
-            throw ex;
-              }
-              asyncHandler.onSuccess(listTablesRequest, result);
                  return result;
         }
     });

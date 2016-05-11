@@ -43,7 +43,7 @@ public class AuthenticationDetails {
     public AuthenticationDetails(String  userId, String password, Map<String, String> validationData){
         this.userId = userId;
         this.password = password;
-        if(validationData != null){
+        if (validationData != null) {
             this.validationData = new ArrayList<AttributeType>();
             for (Map.Entry<String, String> data : validationData.entrySet()) {
                 AttributeType validation = new AttributeType();
@@ -52,7 +52,7 @@ public class AuthenticationDetails {
                 this.validationData.add(validation);
             }
         }
-        else{
+        else {
             this.validationData = null;
         }
     }
@@ -69,17 +69,16 @@ public class AuthenticationDetails {
     /**
      * This method returns the User Id.
      *
-     * @return
+     * @return the current userId.
      */
-    public String getUserId()
-    {
+    public String getUserId() {
         return  userId;
     }
 
     /**
      * This method returns the validation data.
      *
-     * @return
+     * @return User validation data as a List.
      */
     public List<AttributeType> getValidationData() {
         return validationData;

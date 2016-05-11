@@ -100,26 +100,24 @@ public interface AmazonSNS {
     
     /**
      * <p>
-     * Verifies an endpoint owner's intent to receive messages by validating
-     * the token sent to the endpoint by an earlier <code>Subscribe</code>
-     * action. If the token is valid, the action creates a new subscription
-     * and returns its Amazon Resource Name (ARN). This call requires an AWS
-     * signature only when the <code>AuthenticateOnUnsubscribe</code> flag is
-     * set to "true".
+     * Creates a topic to which notifications can be published. Users can
+     * create at most 3000 topics. For more information, see
+     * <a href="http://aws.amazon.com/sns/"> http://aws.amazon.com/sns </a>
+     * . This action is idempotent, so if the requester already owns a topic
+     * with the specified name, that topic's ARN is returned without creating
+     * a new topic.
      * </p>
      *
-     * @param confirmSubscriptionRequest Container for the necessary
-     *           parameters to execute the ConfirmSubscription service method on
-     *           AmazonSNS.
+     * @param createTopicRequest Container for the necessary parameters to
+     *           execute the CreateTopic service method on AmazonSNS.
      * 
-     * @return The response from the ConfirmSubscription service method, as
-     *         returned by AmazonSNS.
+     * @return The response from the CreateTopic service method, as returned
+     *         by AmazonSNS.
      * 
-     * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws SubscriptionLimitExceededException
      * @throws InvalidParameterException
+     * @throws TopicLimitExceededException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -129,338 +127,7 @@ public interface AmazonSNS {
      *             If an error response is returned by AmazonSNS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ConfirmSubscriptionResult confirmSubscription(ConfirmSubscriptionRequest confirmSubscriptionRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Creates a platform application object for one of the supported push
-     * notification services, such as APNS and GCM, to which devices and
-     * mobile apps may register. You must specify PlatformPrincipal and
-     * PlatformCredential attributes when using the
-     * <code>CreatePlatformApplication</code> action. The PlatformPrincipal
-     * is received from the notification service. For APNS/APNS_SANDBOX,
-     * PlatformPrincipal is "SSL certificate". For GCM, PlatformPrincipal is
-     * not applicable. For ADM, PlatformPrincipal is "client id". The
-     * PlatformCredential is also received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
-     * PlatformCredential is "API key". For ADM, PlatformCredential is
-     * "client secret". The PlatformApplicationArn that is returned when
-     * using <code>CreatePlatformApplication</code> is then used as an
-     * attribute for the <code>CreatePlatformEndpoint</code> action. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
-     * .
-     * </p>
-     *
-     * @param createPlatformApplicationRequest Container for the necessary
-     *           parameters to execute the CreatePlatformApplication service method on
-     *           AmazonSNS.
-     * 
-     * @return The response from the CreatePlatformApplication service
-     *         method, as returned by AmazonSNS.
-     * 
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public CreatePlatformApplicationResult createPlatformApplication(CreatePlatformApplicationRequest createPlatformApplicationRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns all of the properties of a topic. Topic properties returned
-     * might differ based on the authorization of the user.
-     * </p>
-     *
-     * @param getTopicAttributesRequest Container for the necessary
-     *           parameters to execute the GetTopicAttributes service method on
-     *           AmazonSNS.
-     * 
-     * @return The response from the GetTopicAttributes service method, as
-     *         returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetTopicAttributesResult getTopicAttributes(GetTopicAttributesRequest getTopicAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Prepares to subscribe an endpoint by sending the endpoint a
-     * confirmation message. To actually create a subscription, the endpoint
-     * owner must call the <code>ConfirmSubscription</code> action with the
-     * token from the confirmation message. Confirmation tokens are valid for
-     * three days.
-     * </p>
-     *
-     * @param subscribeRequest Container for the necessary parameters to
-     *           execute the Subscribe service method on AmazonSNS.
-     * 
-     * @return The response from the Subscribe service method, as returned by
-     *         AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws SubscriptionLimitExceededException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public SubscribeResult subscribe(SubscribeRequest subscribeRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes the endpoint from Amazon SNS. This action is idempotent. For
-     * more information, see
-     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
-     * .
-     * </p>
-     *
-     * @param deleteEndpointRequest Container for the necessary parameters to
-     *           execute the DeleteEndpoint service method on AmazonSNS.
-     * 
-     * 
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteEndpoint(DeleteEndpointRequest deleteEndpointRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Allows a topic owner to set an attribute of the topic to a new value.
-     * </p>
-     *
-     * @param setTopicAttributesRequest Container for the necessary
-     *           parameters to execute the SetTopicAttributes service method on
-     *           AmazonSNS.
-     * 
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void setTopicAttributes(SetTopicAttributesRequest setTopicAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes a topic and all its subscriptions. Deleting a topic might
-     * prevent some messages previously sent to the topic from being
-     * delivered to subscribers. This action is idempotent, so deleting a
-     * topic that does not exist does not result in an error.
-     * </p>
-     *
-     * @param deleteTopicRequest Container for the necessary parameters to
-     *           execute the DeleteTopic service method on AmazonSNS.
-     * 
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteTopic(DeleteTopicRequest deleteTopicRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Removes a statement from a topic's access control policy.
-     * </p>
-     *
-     * @param removePermissionRequest Container for the necessary parameters
-     *           to execute the RemovePermission service method on AmazonSNS.
-     * 
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void removePermission(RemovePermissionRequest removePermissionRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Retrieves the endpoint attributes for a device on one of the
-     * supported push notification services, such as GCM and APNS. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
-     * .
-     * </p>
-     *
-     * @param getEndpointAttributesRequest Container for the necessary
-     *           parameters to execute the GetEndpointAttributes service method on
-     *           AmazonSNS.
-     * 
-     * @return The response from the GetEndpointAttributes service method, as
-     *         returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetEndpointAttributesResult getEndpointAttributes(GetEndpointAttributesRequest getEndpointAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Retrieves the attributes of the platform application object for the
-     * supported push notification services, such as APNS and GCM. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
-     * .
-     * </p>
-     *
-     * @param getPlatformApplicationAttributesRequest Container for the
-     *           necessary parameters to execute the GetPlatformApplicationAttributes
-     *           service method on AmazonSNS.
-     * 
-     * @return The response from the GetPlatformApplicationAttributes service
-     *         method, as returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetPlatformApplicationAttributesResult getPlatformApplicationAttributes(GetPlatformApplicationAttributesRequest getPlatformApplicationAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns a list of the requester's subscriptions. Each call returns a
-     * limited list of subscriptions, up to 100. If there are more
-     * subscriptions, a <code>NextToken</code> is also returned. Use the
-     * <code>NextToken</code> parameter in a new
-     * <code>ListSubscriptions</code> call to get further results.
-     * </p>
-     *
-     * @param listSubscriptionsRequest Container for the necessary parameters
-     *           to execute the ListSubscriptions service method on AmazonSNS.
-     * 
-     * @return The response from the ListSubscriptions service method, as
-     *         returned by AmazonSNS.
-     * 
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListSubscriptionsResult listSubscriptions(ListSubscriptionsRequest listSubscriptionsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Allows a subscription owner to set an attribute of the topic to a new
-     * value.
-     * </p>
-     *
-     * @param setSubscriptionAttributesRequest Container for the necessary
-     *           parameters to execute the SetSubscriptionAttributes service method on
-     *           AmazonSNS.
-     * 
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void setSubscriptionAttributes(SetSubscriptionAttributesRequest setSubscriptionAttributesRequest) 
+    public CreateTopicResult createTopic(CreateTopicRequest createTopicRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -479,8 +146,8 @@ public interface AmazonSNS {
      * 
      * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -491,6 +158,38 @@ public interface AmazonSNS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void setPlatformApplicationAttributes(SetPlatformApplicationAttributesRequest setPlatformApplicationAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a subscription. If the subscription requires authentication
+     * for deletion, only the owner of the subscription or the topic's owner
+     * can unsubscribe, and an AWS signature is required. If the
+     * <code>Unsubscribe</code> call does not require authentication and the
+     * requester is not the subscription owner, a final cancellation message
+     * is delivered to the endpoint, so that the endpoint owner can easily
+     * resubscribe to the topic if the <code>Unsubscribe</code> request was
+     * unintended.
+     * </p>
+     *
+     * @param unsubscribeRequest Container for the necessary parameters to
+     *           execute the Unsubscribe service method on AmazonSNS.
+     * 
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void unsubscribe(UnsubscribeRequest unsubscribeRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -527,8 +226,8 @@ public interface AmazonSNS {
      * 
      * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -543,46 +242,24 @@ public interface AmazonSNS {
 
     /**
      * <p>
-     * Adds a statement to a topic's access control policy, granting access
-     * for the specified AWS accounts to the specified actions.
+     * Retrieves the attributes of the platform application object for the
+     * supported push notification services, such as APNS and GCM. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
+     * .
      * </p>
      *
-     * @param addPermissionRequest Container for the necessary parameters to
-     *           execute the AddPermission service method on AmazonSNS.
+     * @param getPlatformApplicationAttributesRequest Container for the
+     *           necessary parameters to execute the GetPlatformApplicationAttributes
+     *           service method on AmazonSNS.
      * 
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void addPermission(AddPermissionRequest addPermissionRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns all of the properties of a subscription.
-     * </p>
-     *
-     * @param getSubscriptionAttributesRequest Container for the necessary
-     *           parameters to execute the GetSubscriptionAttributes service method on
-     *           AmazonSNS.
-     * 
-     * @return The response from the GetSubscriptionAttributes service
+     * @return The response from the GetPlatformApplicationAttributes service
      *         method, as returned by AmazonSNS.
      * 
      * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -592,29 +269,25 @@ public interface AmazonSNS {
      *             If an error response is returned by AmazonSNS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public GetSubscriptionAttributesResult getSubscriptionAttributes(GetSubscriptionAttributesRequest getSubscriptionAttributesRequest) 
+    public GetPlatformApplicationAttributesResult getPlatformApplicationAttributes(GetPlatformApplicationAttributesRequest getPlatformApplicationAttributesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Creates a topic to which notifications can be published. Users can
-     * create at most 3000 topics. For more information, see
-     * <a href="http://aws.amazon.com/sns/"> http://aws.amazon.com/sns </a>
-     * . This action is idempotent, so if the requester already owns a topic
-     * with the specified name, that topic's ARN is returned without creating
-     * a new topic.
+     * Deletes a platform application object for one of the supported push
+     * notification services, such as APNS and GCM. For more information, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
+     * .
      * </p>
      *
-     * @param createTopicRequest Container for the necessary parameters to
-     *           execute the CreateTopic service method on AmazonSNS.
+     * @param deletePlatformApplicationRequest Container for the necessary
+     *           parameters to execute the DeletePlatformApplication service method on
+     *           AmazonSNS.
      * 
-     * @return The response from the CreateTopic service method, as returned
-     *         by AmazonSNS.
      * 
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
-     * @throws TopicLimitExceededException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -624,27 +297,23 @@ public interface AmazonSNS {
      *             If an error response is returned by AmazonSNS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public CreateTopicResult createTopic(CreateTopicRequest createTopicRequest) 
+    public void deletePlatformApplication(DeletePlatformApplicationRequest deletePlatformApplicationRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
-     * Returns a list of the requester's topics. Each call returns a limited
-     * list of topics, up to 100. If there are more topics, a
-     * <code>NextToken</code> is also returned. Use the
-     * <code>NextToken</code> parameter in a new <code>ListTopics</code> call
-     * to get further results.
+     * Allows a topic owner to set an attribute of the topic to a new value.
      * </p>
      *
-     * @param listTopicsRequest Container for the necessary parameters to
-     *           execute the ListTopics service method on AmazonSNS.
+     * @param setTopicAttributesRequest Container for the necessary
+     *           parameters to execute the SetTopicAttributes service method on
+     *           AmazonSNS.
      * 
-     * @return The response from the ListTopics service method, as returned
-     *         by AmazonSNS.
      * 
+     * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -654,7 +323,7 @@ public interface AmazonSNS {
      *             If an error response is returned by AmazonSNS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public ListTopicsResult listTopics(ListTopicsRequest listTopicsRequest) 
+    public void setTopicAttributes(SetTopicAttributesRequest setTopicAttributesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -682,8 +351,8 @@ public interface AmazonSNS {
      * 
      * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -698,20 +367,20 @@ public interface AmazonSNS {
 
     /**
      * <p>
-     * Deletes a platform application object for one of the supported push
-     * notification services, such as APNS and GCM. For more information, see
-     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
-     * .
+     * Returns all of the properties of a subscription.
      * </p>
      *
-     * @param deletePlatformApplicationRequest Container for the necessary
-     *           parameters to execute the DeletePlatformApplication service method on
+     * @param getSubscriptionAttributesRequest Container for the necessary
+     *           parameters to execute the GetSubscriptionAttributes service method on
      *           AmazonSNS.
      * 
+     * @return The response from the GetSubscriptionAttributes service
+     *         method, as returned by AmazonSNS.
      * 
+     * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -721,7 +390,252 @@ public interface AmazonSNS {
      *             If an error response is returned by AmazonSNS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void deletePlatformApplication(DeletePlatformApplicationRequest deletePlatformApplicationRequest) 
+    public GetSubscriptionAttributesResult getSubscriptionAttributes(GetSubscriptionAttributesRequest getSubscriptionAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Removes a statement from a topic's access control policy.
+     * </p>
+     *
+     * @param removePermissionRequest Container for the necessary parameters
+     *           to execute the RemovePermission service method on AmazonSNS.
+     * 
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void removePermission(RemovePermissionRequest removePermissionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Allows a subscription owner to set an attribute of the topic to a new
+     * value.
+     * </p>
+     *
+     * @param setSubscriptionAttributesRequest Container for the necessary
+     *           parameters to execute the SetSubscriptionAttributes service method on
+     *           AmazonSNS.
+     * 
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void setSubscriptionAttributes(SetSubscriptionAttributesRequest setSubscriptionAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Verifies an endpoint owner's intent to receive messages by validating
+     * the token sent to the endpoint by an earlier <code>Subscribe</code>
+     * action. If the token is valid, the action creates a new subscription
+     * and returns its Amazon Resource Name (ARN). This call requires an AWS
+     * signature only when the <code>AuthenticateOnUnsubscribe</code> flag is
+     * set to "true".
+     * </p>
+     *
+     * @param confirmSubscriptionRequest Container for the necessary
+     *           parameters to execute the ConfirmSubscription service method on
+     *           AmazonSNS.
+     * 
+     * @return The response from the ConfirmSubscription service method, as
+     *         returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws SubscriptionLimitExceededException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ConfirmSubscriptionResult confirmSubscription(ConfirmSubscriptionRequest confirmSubscriptionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns all of the properties of a topic. Topic properties returned
+     * might differ based on the authorization of the user.
+     * </p>
+     *
+     * @param getTopicAttributesRequest Container for the necessary
+     *           parameters to execute the GetTopicAttributes service method on
+     *           AmazonSNS.
+     * 
+     * @return The response from the GetTopicAttributes service method, as
+     *         returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetTopicAttributesResult getTopicAttributes(GetTopicAttributesRequest getTopicAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns a list of the requester's subscriptions. Each call returns a
+     * limited list of subscriptions, up to 100. If there are more
+     * subscriptions, a <code>NextToken</code> is also returned. Use the
+     * <code>NextToken</code> parameter in a new
+     * <code>ListSubscriptions</code> call to get further results.
+     * </p>
+     *
+     * @param listSubscriptionsRequest Container for the necessary parameters
+     *           to execute the ListSubscriptions service method on AmazonSNS.
+     * 
+     * @return The response from the ListSubscriptions service method, as
+     *         returned by AmazonSNS.
+     * 
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListSubscriptionsResult listSubscriptions(ListSubscriptionsRequest listSubscriptionsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns a list of the requester's topics. Each call returns a limited
+     * list of topics, up to 100. If there are more topics, a
+     * <code>NextToken</code> is also returned. Use the
+     * <code>NextToken</code> parameter in a new <code>ListTopics</code> call
+     * to get further results.
+     * </p>
+     *
+     * @param listTopicsRequest Container for the necessary parameters to
+     *           execute the ListTopics service method on AmazonSNS.
+     * 
+     * @return The response from the ListTopics service method, as returned
+     *         by AmazonSNS.
+     * 
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListTopicsResult listTopics(ListTopicsRequest listTopicsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a platform application object for one of the supported push
+     * notification services, such as APNS and GCM, to which devices and
+     * mobile apps may register. You must specify PlatformPrincipal and
+     * PlatformCredential attributes when using the
+     * <code>CreatePlatformApplication</code> action. The PlatformPrincipal
+     * is received from the notification service. For APNS/APNS_SANDBOX,
+     * PlatformPrincipal is "SSL certificate". For GCM, PlatformPrincipal is
+     * not applicable. For ADM, PlatformPrincipal is "client id". The
+     * PlatformCredential is also received from the notification service. For
+     * APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     * PlatformCredential is "API key". For ADM, PlatformCredential is
+     * "client secret". The PlatformApplicationArn that is returned when
+     * using <code>CreatePlatformApplication</code> is then used as an
+     * attribute for the <code>CreatePlatformEndpoint</code> action. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
+     * .
+     * </p>
+     *
+     * @param createPlatformApplicationRequest Container for the necessary
+     *           parameters to execute the CreatePlatformApplication service method on
+     *           AmazonSNS.
+     * 
+     * @return The response from the CreatePlatformApplication service
+     *         method, as returned by AmazonSNS.
+     * 
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CreatePlatformApplicationResult createPlatformApplication(CreatePlatformApplicationRequest createPlatformApplicationRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the endpoint from Amazon SNS. This action is idempotent. For
+     * more information, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
+     * .
+     * </p>
+     *
+     * @param deleteEndpointRequest Container for the necessary parameters to
+     *           execute the DeleteEndpoint service method on AmazonSNS.
+     * 
+     * 
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteEndpoint(DeleteEndpointRequest deleteEndpointRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -747,8 +661,8 @@ public interface AmazonSNS {
      *         as returned by AmazonSNS.
      * 
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -763,22 +677,20 @@ public interface AmazonSNS {
 
     /**
      * <p>
-     * Sets the attributes for an endpoint for a device on one of the
-     * supported push notification services, such as GCM and APNS. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
-     * .
+     * Deletes a topic and all its subscriptions. Deleting a topic might
+     * prevent some messages previously sent to the topic from being
+     * delivered to subscribers. This action is idempotent, so deleting a
+     * topic that does not exist does not result in an error.
      * </p>
      *
-     * @param setEndpointAttributesRequest Container for the necessary
-     *           parameters to execute the SetEndpointAttributes service method on
-     *           AmazonSNS.
+     * @param deleteTopicRequest Container for the necessary parameters to
+     *           execute the DeleteTopic service method on AmazonSNS.
      * 
      * 
      * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -788,71 +700,7 @@ public interface AmazonSNS {
      *             If an error response is returned by AmazonSNS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void setEndpointAttributes(SetEndpointAttributesRequest setEndpointAttributesRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes a subscription. If the subscription requires authentication
-     * for deletion, only the owner of the subscription or the topic's owner
-     * can unsubscribe, and an AWS signature is required. If the
-     * <code>Unsubscribe</code> call does not require authentication and the
-     * requester is not the subscription owner, a final cancellation message
-     * is delivered to the endpoint, so that the endpoint owner can easily
-     * resubscribe to the topic if the <code>Unsubscribe</code> request was
-     * unintended.
-     * </p>
-     *
-     * @param unsubscribeRequest Container for the necessary parameters to
-     *           execute the Unsubscribe service method on AmazonSNS.
-     * 
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void unsubscribe(UnsubscribeRequest unsubscribeRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Returns a list of the subscriptions to a specific topic. Each call
-     * returns a limited list of subscriptions, up to 100. If there are more
-     * subscriptions, a <code>NextToken</code> is also returned. Use the
-     * <code>NextToken</code> parameter in a new
-     * <code>ListSubscriptionsByTopic</code> call to get further results.
-     * </p>
-     *
-     * @param listSubscriptionsByTopicRequest Container for the necessary
-     *           parameters to execute the ListSubscriptionsByTopic service method on
-     *           AmazonSNS.
-     * 
-     * @return The response from the ListSubscriptionsByTopic service method,
-     *         as returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListSubscriptionsByTopicResult listSubscriptionsByTopic(ListSubscriptionsByTopicRequest listSubscriptionsByTopicRequest) 
+    public void deleteTopic(DeleteTopicRequest deleteTopicRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -878,13 +726,13 @@ public interface AmazonSNS {
      * @return The response from the Publish service method, as returned by
      *         AmazonSNS.
      * 
-     * @throws NotFoundException
      * @throws PlatformApplicationDisabledException
-     * @throws EndpointDisabledException
-     * @throws InvalidParameterValueException
+     * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
+     * @throws InvalidParameterValueException
      * @throws InvalidParameterException
+     * @throws EndpointDisabledException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -895,6 +743,158 @@ public interface AmazonSNS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public PublishResult publish(PublishRequest publishRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves the endpoint attributes for a device on one of the
+     * supported push notification services, such as GCM and APNS. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
+     * .
+     * </p>
+     *
+     * @param getEndpointAttributesRequest Container for the necessary
+     *           parameters to execute the GetEndpointAttributes service method on
+     *           AmazonSNS.
+     * 
+     * @return The response from the GetEndpointAttributes service method, as
+     *         returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetEndpointAttributesResult getEndpointAttributes(GetEndpointAttributesRequest getEndpointAttributesRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Prepares to subscribe an endpoint by sending the endpoint a
+     * confirmation message. To actually create a subscription, the endpoint
+     * owner must call the <code>ConfirmSubscription</code> action with the
+     * token from the confirmation message. Confirmation tokens are valid for
+     * three days.
+     * </p>
+     *
+     * @param subscribeRequest Container for the necessary parameters to
+     *           execute the Subscribe service method on AmazonSNS.
+     * 
+     * @return The response from the Subscribe service method, as returned by
+     *         AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws SubscriptionLimitExceededException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SubscribeResult subscribe(SubscribeRequest subscribeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns a list of the subscriptions to a specific topic. Each call
+     * returns a limited list of subscriptions, up to 100. If there are more
+     * subscriptions, a <code>NextToken</code> is also returned. Use the
+     * <code>NextToken</code> parameter in a new
+     * <code>ListSubscriptionsByTopic</code> call to get further results.
+     * </p>
+     *
+     * @param listSubscriptionsByTopicRequest Container for the necessary
+     *           parameters to execute the ListSubscriptionsByTopic service method on
+     *           AmazonSNS.
+     * 
+     * @return The response from the ListSubscriptionsByTopic service method,
+     *         as returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListSubscriptionsByTopicResult listSubscriptionsByTopic(ListSubscriptionsByTopicRequest listSubscriptionsByTopicRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Adds a statement to a topic's access control policy, granting access
+     * for the specified AWS accounts to the specified actions.
+     * </p>
+     *
+     * @param addPermissionRequest Container for the necessary parameters to
+     *           execute the AddPermission service method on AmazonSNS.
+     * 
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void addPermission(AddPermissionRequest addPermissionRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Sets the attributes for an endpoint for a device on one of the
+     * supported push notification services, such as GCM and APNS. For more
+     * information, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
+     * .
+     * </p>
+     *
+     * @param setEndpointAttributesRequest Container for the necessary
+     *           parameters to execute the SetEndpointAttributes service method on
+     *           AmazonSNS.
+     * 
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void setEndpointAttributes(SetEndpointAttributesRequest setEndpointAttributesRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -910,8 +910,8 @@ public interface AmazonSNS {
      *         returned by AmazonSNS.
      * 
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -936,8 +936,8 @@ public interface AmazonSNS {
      *         by AmazonSNS.
      * 
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -968,8 +968,8 @@ public interface AmazonSNS {
      *         as returned by AmazonSNS.
      * 
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -980,6 +980,190 @@ public interface AmazonSNS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public ListPlatformApplicationsResult listPlatformApplications() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Creates a topic to which notifications can be published. Users can
+     * create at most 3000 topics. For more information, see
+     * <a href="http://aws.amazon.com/sns/"> http://aws.amazon.com/sns </a>
+     * . This action is idempotent, so if the requester already owns a topic
+     * with the specified name, that topic's ARN is returned without creating
+     * a new topic.
+     * </p>
+     * 
+     * @param name The name of the topic you want to create. <p>Constraints:
+     * Topic names must be made up of only uppercase and lowercase ASCII
+     * letters, numbers, underscores, and hyphens, and must be between 1 and
+     * 256 characters long.
+     * 
+     * @return The response from the CreateTopic service method, as returned
+     *         by AmazonSNS.
+     * 
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws TopicLimitExceededException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public CreateTopicResult createTopic(String name)
+             throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Deletes a subscription. If the subscription requires authentication
+     * for deletion, only the owner of the subscription or the topic's owner
+     * can unsubscribe, and an AWS signature is required. If the
+     * <code>Unsubscribe</code> call does not require authentication and the
+     * requester is not the subscription owner, a final cancellation message
+     * is delivered to the endpoint, so that the endpoint owner can easily
+     * resubscribe to the topic if the <code>Unsubscribe</code> request was
+     * unintended.
+     * </p>
+     * 
+     * @param subscriptionArn The ARN of the subscription to be deleted.
+     * 
+     * @return The response from the Unsubscribe service method, as returned
+     *         by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void unsubscribe(String subscriptionArn)
+             throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Allows a topic owner to set an attribute of the topic to a new value.
+     * </p>
+     * 
+     * @param topicArn The ARN of the topic to modify.
+     * @param attributeName The name of the attribute you want to set. Only a
+     * subset of the topic's attributes are mutable. <p>Valid values:
+     * <code>Policy</code> | <code>DisplayName</code> |
+     * <code>DeliveryPolicy</code>
+     * @param attributeValue The new value for the attribute.
+     * 
+     * @return The response from the SetTopicAttributes service method, as
+     *         returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void setTopicAttributes(String topicArn, String attributeName, String attributeValue)
+             throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Returns all of the properties of a subscription.
+     * </p>
+     * 
+     * @param subscriptionArn The ARN of the subscription whose properties
+     * you want to get.
+     * 
+     * @return The response from the GetSubscriptionAttributes service
+     *         method, as returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetSubscriptionAttributesResult getSubscriptionAttributes(String subscriptionArn)
+             throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Removes a statement from a topic's access control policy.
+     * </p>
+     * 
+     * @param topicArn The ARN of the topic whose access control policy you
+     * wish to modify.
+     * @param label The unique label of the statement you want to remove.
+     * 
+     * @return The response from the RemovePermission service method, as
+     *         returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void removePermission(String topicArn, String label)
+             throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Allows a subscription owner to set an attribute of the topic to a new
+     * value.
+     * </p>
+     * 
+     * @param subscriptionArn The ARN of the subscription to modify.
+     * @param attributeName The name of the attribute you want to set. Only a
+     * subset of the subscriptions attributes are mutable. <p>Valid values:
+     * <code>DeliveryPolicy</code> | <code>RawMessageDelivery</code>
+     * @param attributeValue The new value for the attribute in JSON format.
+     * 
+     * @return The response from the SetSubscriptionAttributes service
+     *         method, as returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void setSubscriptionAttributes(String subscriptionArn, String attributeName, String attributeValue)
+             throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -1006,9 +1190,9 @@ public interface AmazonSNS {
      * 
      * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws SubscriptionLimitExceededException
      * @throws InvalidParameterException
+     * @throws SubscriptionLimitExceededException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1041,9 +1225,9 @@ public interface AmazonSNS {
      * 
      * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws SubscriptionLimitExceededException
      * @throws InvalidParameterException
+     * @throws SubscriptionLimitExceededException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1069,8 +1253,8 @@ public interface AmazonSNS {
      * 
      * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1085,44 +1269,22 @@ public interface AmazonSNS {
     
     /**
      * <p>
-     * Prepares to subscribe an endpoint by sending the endpoint a
-     * confirmation message. To actually create a subscription, the endpoint
-     * owner must call the <code>ConfirmSubscription</code> action with the
-     * token from the confirmation message. Confirmation tokens are valid for
-     * three days.
+     * Returns a list of the requester's subscriptions. Each call returns a
+     * limited list of subscriptions, up to 100. If there are more
+     * subscriptions, a <code>NextToken</code> is also returned. Use the
+     * <code>NextToken</code> parameter in a new
+     * <code>ListSubscriptions</code> call to get further results.
      * </p>
      * 
-     * @param topicArn The ARN of the topic you want to subscribe to.
-     * @param protocol The protocol you want to use. Supported protocols
-     * include: <ul> <li><code>http</code> -- delivery of JSON-encoded
-     * message via HTTP POST</li> <li><code>https</code> -- delivery of
-     * JSON-encoded message via HTTPS POST</li> <li><code>email</code> --
-     * delivery of message via SMTP</li> <li><code>email-json</code> --
-     * delivery of JSON-encoded message via SMTP</li> <li><code>sms</code> --
-     * delivery of message via SMS</li> <li><code>sqs</code> -- delivery of
-     * JSON-encoded message to an Amazon SQS queue</li>
-     * <li><code>application</code> -- delivery of JSON-encoded message to an
-     * EndpointArn for a mobile app and device.</li> </ul>
-     * @param endpoint The endpoint that you want to receive notifications.
-     * Endpoints vary by protocol: <ul> <li>For the <code>http</code>
-     * protocol, the endpoint is an URL beginning with "http://"</li> <li>For
-     * the <code>https</code> protocol, the endpoint is a URL beginning with
-     * "https://"</li> <li>For the <code>email</code> protocol, the endpoint
-     * is an email address</li> <li>For the <code>email-json</code> protocol,
-     * the endpoint is an email address</li> <li>For the <code>sms</code>
-     * protocol, the endpoint is a phone number of an SMS-enabled device</li>
-     * <li>For the <code>sqs</code> protocol, the endpoint is the ARN of an
-     * Amazon SQS queue</li> <li>For the <code>application</code> protocol,
-     * the endpoint is the EndpointArn of a mobile app and device.</li> </ul>
+     * @param nextToken Token returned by the previous
+     * <code>ListSubscriptions</code> request.
      * 
-     * @return The response from the Subscribe service method, as returned by
-     *         AmazonSNS.
+     * @return The response from the ListSubscriptions service method, as
+     *         returned by AmazonSNS.
      * 
-     * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws SubscriptionLimitExceededException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1132,28 +1294,27 @@ public interface AmazonSNS {
      *             If an error response is returned by AmazonSNS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public SubscribeResult subscribe(String topicArn, String protocol, String endpoint)
+    public ListSubscriptionsResult listSubscriptions(String nextToken)
              throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
-     * Allows a topic owner to set an attribute of the topic to a new value.
+     * Returns a list of the requester's topics. Each call returns a limited
+     * list of topics, up to 100. If there are more topics, a
+     * <code>NextToken</code> is also returned. Use the
+     * <code>NextToken</code> parameter in a new <code>ListTopics</code> call
+     * to get further results.
      * </p>
      * 
-     * @param topicArn The ARN of the topic to modify.
-     * @param attributeName The name of the attribute you want to set. Only a
-     * subset of the topic's attributes are mutable. <p>Valid values:
-     * <code>Policy</code> | <code>DisplayName</code> |
-     * <code>DeliveryPolicy</code>
-     * @param attributeValue The new value for the attribute.
+     * @param nextToken Token returned by the previous
+     * <code>ListTopics</code> request.
      * 
-     * @return The response from the SetTopicAttributes service method, as
-     *         returned by AmazonSNS.
+     * @return The response from the ListTopics service method, as returned
+     *         by AmazonSNS.
      * 
-     * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1163,7 +1324,7 @@ public interface AmazonSNS {
      *             If an error response is returned by AmazonSNS indicating
      *             either a problem with the data in the request, or a server side issue.
      */
-    public void setTopicAttributes(String topicArn, String attributeName, String attributeValue)
+    public ListTopicsResult listTopics(String nextToken)
              throws AmazonServiceException, AmazonClientException;
     
     /**
@@ -1192,8 +1353,8 @@ public interface AmazonSNS {
      * 
      * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
      * @throws InvalidParameterException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1204,317 +1365,6 @@ public interface AmazonSNS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void deleteTopic(String topicArn)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Removes a statement from a topic's access control policy.
-     * </p>
-     * 
-     * @param topicArn The ARN of the topic whose access control policy you
-     * wish to modify.
-     * @param label The unique label of the statement you want to remove.
-     * 
-     * @return The response from the RemovePermission service method, as
-     *         returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void removePermission(String topicArn, String label)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Returns a list of the requester's subscriptions. Each call returns a
-     * limited list of subscriptions, up to 100. If there are more
-     * subscriptions, a <code>NextToken</code> is also returned. Use the
-     * <code>NextToken</code> parameter in a new
-     * <code>ListSubscriptions</code> call to get further results.
-     * </p>
-     * 
-     * @param nextToken Token returned by the previous
-     * <code>ListSubscriptions</code> request.
-     * 
-     * @return The response from the ListSubscriptions service method, as
-     *         returned by AmazonSNS.
-     * 
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListSubscriptionsResult listSubscriptions(String nextToken)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Allows a subscription owner to set an attribute of the topic to a new
-     * value.
-     * </p>
-     * 
-     * @param subscriptionArn The ARN of the subscription to modify.
-     * @param attributeName The name of the attribute you want to set. Only a
-     * subset of the subscriptions attributes are mutable. <p>Valid values:
-     * <code>DeliveryPolicy</code> | <code>RawMessageDelivery</code>
-     * @param attributeValue The new value for the attribute in JSON format.
-     * 
-     * @return The response from the SetSubscriptionAttributes service
-     *         method, as returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void setSubscriptionAttributes(String subscriptionArn, String attributeName, String attributeValue)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Adds a statement to a topic's access control policy, granting access
-     * for the specified AWS accounts to the specified actions.
-     * </p>
-     * 
-     * @param topicArn The ARN of the topic whose access control policy you
-     * wish to modify.
-     * @param label A unique identifier for the new policy statement.
-     * @param aWSAccountIds The AWS account IDs of the users (principals) who
-     * will be given access to the specified actions. The users must have AWS
-     * accounts, but do not need to be signed up for this service.
-     * @param actionNames The action you want to allow for the specified
-     * principal(s). <p>Valid values: any Amazon SNS action name.
-     * 
-     * @return The response from the AddPermission service method, as
-     *         returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void addPermission(String topicArn, String label, java.util.List<String> aWSAccountIds, java.util.List<String> actionNames)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Returns all of the properties of a subscription.
-     * </p>
-     * 
-     * @param subscriptionArn The ARN of the subscription whose properties
-     * you want to get.
-     * 
-     * @return The response from the GetSubscriptionAttributes service
-     *         method, as returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public GetSubscriptionAttributesResult getSubscriptionAttributes(String subscriptionArn)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Creates a topic to which notifications can be published. Users can
-     * create at most 3000 topics. For more information, see
-     * <a href="http://aws.amazon.com/sns/"> http://aws.amazon.com/sns </a>
-     * . This action is idempotent, so if the requester already owns a topic
-     * with the specified name, that topic's ARN is returned without creating
-     * a new topic.
-     * </p>
-     * 
-     * @param name The name of the topic you want to create. <p>Constraints:
-     * Topic names must be made up of only uppercase and lowercase ASCII
-     * letters, numbers, underscores, and hyphens, and must be between 1 and
-     * 256 characters long.
-     * 
-     * @return The response from the CreateTopic service method, as returned
-     *         by AmazonSNS.
-     * 
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     * @throws TopicLimitExceededException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public CreateTopicResult createTopic(String name)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Returns a list of the requester's topics. Each call returns a limited
-     * list of topics, up to 100. If there are more topics, a
-     * <code>NextToken</code> is also returned. Use the
-     * <code>NextToken</code> parameter in a new <code>ListTopics</code> call
-     * to get further results.
-     * </p>
-     * 
-     * @param nextToken Token returned by the previous
-     * <code>ListTopics</code> request.
-     * 
-     * @return The response from the ListTopics service method, as returned
-     *         by AmazonSNS.
-     * 
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListTopicsResult listTopics(String nextToken)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Deletes a subscription. If the subscription requires authentication
-     * for deletion, only the owner of the subscription or the topic's owner
-     * can unsubscribe, and an AWS signature is required. If the
-     * <code>Unsubscribe</code> call does not require authentication and the
-     * requester is not the subscription owner, a final cancellation message
-     * is delivered to the endpoint, so that the endpoint owner can easily
-     * resubscribe to the topic if the <code>Unsubscribe</code> request was
-     * unintended.
-     * </p>
-     * 
-     * @param subscriptionArn The ARN of the subscription to be deleted.
-     * 
-     * @return The response from the Unsubscribe service method, as returned
-     *         by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void unsubscribe(String subscriptionArn)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Returns a list of the subscriptions to a specific topic. Each call
-     * returns a limited list of subscriptions, up to 100. If there are more
-     * subscriptions, a <code>NextToken</code> is also returned. Use the
-     * <code>NextToken</code> parameter in a new
-     * <code>ListSubscriptionsByTopic</code> call to get further results.
-     * </p>
-     * 
-     * @param topicArn The ARN of the topic for which you wish to find
-     * subscriptions.
-     * @param nextToken Token returned by the previous
-     * <code>ListSubscriptionsByTopic</code> request.
-     * 
-     * @return The response from the ListSubscriptionsByTopic service method,
-     *         as returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListSubscriptionsByTopicResult listSubscriptionsByTopic(String topicArn, String nextToken)
-             throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Returns a list of the subscriptions to a specific topic. Each call
-     * returns a limited list of subscriptions, up to 100. If there are more
-     * subscriptions, a <code>NextToken</code> is also returned. Use the
-     * <code>NextToken</code> parameter in a new
-     * <code>ListSubscriptionsByTopic</code> call to get further results.
-     * </p>
-     * 
-     * @param topicArn The ARN of the topic for which you wish to find
-     * subscriptions.
-     * 
-     * @return The response from the ListSubscriptionsByTopic service method,
-     *         as returned by AmazonSNS.
-     * 
-     * @throws NotFoundException
-     * @throws AuthorizationErrorException
-     * @throws InternalErrorException
-     * @throws InvalidParameterException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonSNS indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public ListSubscriptionsByTopicResult listSubscriptionsByTopic(String topicArn)
              throws AmazonServiceException, AmazonClientException;
     
     /**
@@ -1562,13 +1412,13 @@ public interface AmazonSNS {
      * @return The response from the Publish service method, as returned by
      *         AmazonSNS.
      * 
-     * @throws NotFoundException
      * @throws PlatformApplicationDisabledException
-     * @throws EndpointDisabledException
-     * @throws InvalidParameterValueException
+     * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
+     * @throws InvalidParameterValueException
      * @throws InvalidParameterException
+     * @throws EndpointDisabledException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1633,13 +1483,13 @@ public interface AmazonSNS {
      * @return The response from the Publish service method, as returned by
      *         AmazonSNS.
      * 
-     * @throws NotFoundException
      * @throws PlatformApplicationDisabledException
-     * @throws EndpointDisabledException
-     * @throws InvalidParameterValueException
+     * @throws NotFoundException
      * @throws AuthorizationErrorException
-     * @throws InternalErrorException
+     * @throws InvalidParameterValueException
      * @throws InvalidParameterException
+     * @throws EndpointDisabledException
+     * @throws InternalErrorException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -1650,6 +1500,156 @@ public interface AmazonSNS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public PublishResult publish(String topicArn, String message, String subject)
+             throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Prepares to subscribe an endpoint by sending the endpoint a
+     * confirmation message. To actually create a subscription, the endpoint
+     * owner must call the <code>ConfirmSubscription</code> action with the
+     * token from the confirmation message. Confirmation tokens are valid for
+     * three days.
+     * </p>
+     * 
+     * @param topicArn The ARN of the topic you want to subscribe to.
+     * @param protocol The protocol you want to use. Supported protocols
+     * include: <ul> <li><code>http</code> -- delivery of JSON-encoded
+     * message via HTTP POST</li> <li><code>https</code> -- delivery of
+     * JSON-encoded message via HTTPS POST</li> <li><code>email</code> --
+     * delivery of message via SMTP</li> <li><code>email-json</code> --
+     * delivery of JSON-encoded message via SMTP</li> <li><code>sms</code> --
+     * delivery of message via SMS</li> <li><code>sqs</code> -- delivery of
+     * JSON-encoded message to an Amazon SQS queue</li>
+     * <li><code>application</code> -- delivery of JSON-encoded message to an
+     * EndpointArn for a mobile app and device.</li> </ul>
+     * @param endpoint The endpoint that you want to receive notifications.
+     * Endpoints vary by protocol: <ul> <li>For the <code>http</code>
+     * protocol, the endpoint is an URL beginning with "http://"</li> <li>For
+     * the <code>https</code> protocol, the endpoint is a URL beginning with
+     * "https://"</li> <li>For the <code>email</code> protocol, the endpoint
+     * is an email address</li> <li>For the <code>email-json</code> protocol,
+     * the endpoint is an email address</li> <li>For the <code>sms</code>
+     * protocol, the endpoint is a phone number of an SMS-enabled device</li>
+     * <li>For the <code>sqs</code> protocol, the endpoint is the ARN of an
+     * Amazon SQS queue</li> <li>For the <code>application</code> protocol,
+     * the endpoint is the EndpointArn of a mobile app and device.</li> </ul>
+     * 
+     * @return The response from the Subscribe service method, as returned by
+     *         AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws SubscriptionLimitExceededException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public SubscribeResult subscribe(String topicArn, String protocol, String endpoint)
+             throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Returns a list of the subscriptions to a specific topic. Each call
+     * returns a limited list of subscriptions, up to 100. If there are more
+     * subscriptions, a <code>NextToken</code> is also returned. Use the
+     * <code>NextToken</code> parameter in a new
+     * <code>ListSubscriptionsByTopic</code> call to get further results.
+     * </p>
+     * 
+     * @param topicArn The ARN of the topic for which you wish to find
+     * subscriptions.
+     * @param nextToken Token returned by the previous
+     * <code>ListSubscriptionsByTopic</code> request.
+     * 
+     * @return The response from the ListSubscriptionsByTopic service method,
+     *         as returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListSubscriptionsByTopicResult listSubscriptionsByTopic(String topicArn, String nextToken)
+             throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Returns a list of the subscriptions to a specific topic. Each call
+     * returns a limited list of subscriptions, up to 100. If there are more
+     * subscriptions, a <code>NextToken</code> is also returned. Use the
+     * <code>NextToken</code> parameter in a new
+     * <code>ListSubscriptionsByTopic</code> call to get further results.
+     * </p>
+     * 
+     * @param topicArn The ARN of the topic for which you wish to find
+     * subscriptions.
+     * 
+     * @return The response from the ListSubscriptionsByTopic service method,
+     *         as returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListSubscriptionsByTopicResult listSubscriptionsByTopic(String topicArn)
+             throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Adds a statement to a topic's access control policy, granting access
+     * for the specified AWS accounts to the specified actions.
+     * </p>
+     * 
+     * @param topicArn The ARN of the topic whose access control policy you
+     * wish to modify.
+     * @param label A unique identifier for the new policy statement.
+     * @param aWSAccountIds The AWS account IDs of the users (principals) who
+     * will be given access to the specified actions. The users must have AWS
+     * accounts, but do not need to be signed up for this service.
+     * @param actionNames The action you want to allow for the specified
+     * principal(s). <p>Valid values: any Amazon SNS action name.
+     * 
+     * @return The response from the AddPermission service method, as
+     *         returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void addPermission(String topicArn, String label, java.util.List<String> aWSAccountIds, java.util.List<String> actionNames)
              throws AmazonServiceException, AmazonClientException;
     
     /**

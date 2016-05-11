@@ -124,6 +124,51 @@ public interface AmazonCloudWatch {
     
     /**
      * <p>
+     * Deletes all specified alarms. In the event of an error, no alarms are
+     * deleted.
+     * </p>
+     *
+     * @param deleteAlarmsRequest Container for the necessary parameters to
+     *           execute the DeleteAlarms service method on AmazonCloudWatch.
+     * 
+     * 
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void deleteAlarms(DeleteAlarmsRequest deleteAlarmsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Enables actions for the specified alarms.
+     * </p>
+     *
+     * @param enableAlarmActionsRequest Container for the necessary
+     *           parameters to execute the EnableAlarmActions service method on
+     *           AmazonCloudWatch.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void enableAlarmActions(EnableAlarmActionsRequest enableAlarmActionsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates or updates an alarm and associates it with the specified
      * Amazon CloudWatch metric. Optionally, this operation can associate one
      * or more Amazon Simple Notification Service resources with the alarm.
@@ -158,6 +203,58 @@ public interface AmazonCloudWatch {
 
     /**
      * <p>
+     * Retrieves all alarms for a single metric. Specify a statistic,
+     * period, or unit to filter the set of alarms further.
+     * </p>
+     *
+     * @param describeAlarmsForMetricRequest Container for the necessary
+     *           parameters to execute the DescribeAlarmsForMetric service method on
+     *           AmazonCloudWatch.
+     * 
+     * @return The response from the DescribeAlarmsForMetric service method,
+     *         as returned by AmazonCloudWatch.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAlarmsForMetricResult describeAlarmsForMetric(DescribeAlarmsForMetricRequest describeAlarmsForMetricRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Temporarily sets the state of an alarm. When the updated
+     * <code>StateValue</code> differs from the previous value, the action
+     * configured for the appropriate state is invoked. This is not a
+     * permanent change. The next periodic alarm check (in about a minute)
+     * will set the alarm to its actual state.
+     * </p>
+     *
+     * @param setAlarmStateRequest Container for the necessary parameters to
+     *           execute the SetAlarmState service method on AmazonCloudWatch.
+     * 
+     * 
+     * @throws InvalidFormatException
+     * @throws ResourceNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void setAlarmState(SetAlarmStateRequest setAlarmStateRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Publishes metric data points to Amazon CloudWatch. Amazon Cloudwatch
      * associates the data points with the specified metric. If the specified
      * metric does not exist, Amazon CloudWatch creates the metric.
@@ -184,9 +281,9 @@ public interface AmazonCloudWatch {
      * 
      * 
      * @throws InvalidParameterValueException
-     * @throws InternalServiceException
-     * @throws InvalidParameterCombinationException
      * @throws MissingRequiredParameterException
+     * @throws InvalidParameterCombinationException
+     * @throws InternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -222,8 +319,8 @@ public interface AmazonCloudWatch {
      * @return The response from the ListMetrics service method, as returned
      *         by AmazonCloudWatch.
      * 
-     * @throws InternalServiceException
      * @throws InvalidParameterValueException
+     * @throws InternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -234,6 +331,61 @@ public interface AmazonCloudWatch {
      *             either a problem with the data in the request, or a server side issue.
      */
     public ListMetricsResult listMetrics(ListMetricsRequest listMetricsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Disables actions for the specified alarms. When an alarm's actions
+     * are disabled the alarm's state may change, but none of the alarm's
+     * actions will execute.
+     * </p>
+     *
+     * @param disableAlarmActionsRequest Container for the necessary
+     *           parameters to execute the DisableAlarmActions service method on
+     *           AmazonCloudWatch.
+     * 
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void disableAlarmActions(DisableAlarmActionsRequest disableAlarmActionsRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves history for the specified alarm. Filter alarms by date
+     * range or item type. If an alarm name is not specified, Amazon
+     * CloudWatch returns histories for all of the owner's alarms.
+     * </p>
+     * <p>
+     * <b>NOTE:</b> Amazon CloudWatch retains the history of an alarm for
+     * two weeks, whether or not you delete the alarm.
+     * </p>
+     *
+     * @param describeAlarmHistoryRequest Container for the necessary
+     *           parameters to execute the DescribeAlarmHistory service method on
+     *           AmazonCloudWatch.
+     * 
+     * @return The response from the DescribeAlarmHistory service method, as
+     *         returned by AmazonCloudWatch.
+     * 
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAlarmHistoryResult describeAlarmHistory(DescribeAlarmHistoryRequest describeAlarmHistoryRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -282,9 +434,9 @@ public interface AmazonCloudWatch {
      *         returned by AmazonCloudWatch.
      * 
      * @throws InvalidParameterValueException
-     * @throws InternalServiceException
-     * @throws InvalidParameterCombinationException
      * @throws MissingRequiredParameterException
+     * @throws InvalidParameterCombinationException
+     * @throws InternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -295,30 +447,6 @@ public interface AmazonCloudWatch {
      *             either a problem with the data in the request, or a server side issue.
      */
     public GetMetricStatisticsResult getMetricStatistics(GetMetricStatisticsRequest getMetricStatisticsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Disables actions for the specified alarms. When an alarm's actions
-     * are disabled the alarm's state may change, but none of the alarm's
-     * actions will execute.
-     * </p>
-     *
-     * @param disableAlarmActionsRequest Container for the necessary
-     *           parameters to execute the DisableAlarmActions service method on
-     *           AmazonCloudWatch.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void disableAlarmActions(DisableAlarmActionsRequest disableAlarmActionsRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -350,134 +478,6 @@ public interface AmazonCloudWatch {
 
     /**
      * <p>
-     * Retrieves all alarms for a single metric. Specify a statistic,
-     * period, or unit to filter the set of alarms further.
-     * </p>
-     *
-     * @param describeAlarmsForMetricRequest Container for the necessary
-     *           parameters to execute the DescribeAlarmsForMetric service method on
-     *           AmazonCloudWatch.
-     * 
-     * @return The response from the DescribeAlarmsForMetric service method,
-     *         as returned by AmazonCloudWatch.
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeAlarmsForMetricResult describeAlarmsForMetric(DescribeAlarmsForMetricRequest describeAlarmsForMetricRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Retrieves history for the specified alarm. Filter alarms by date
-     * range or item type. If an alarm name is not specified, Amazon
-     * CloudWatch returns histories for all of the owner's alarms.
-     * </p>
-     * <p>
-     * <b>NOTE:</b> Amazon CloudWatch retains the history of an alarm for
-     * two weeks, whether or not you delete the alarm.
-     * </p>
-     *
-     * @param describeAlarmHistoryRequest Container for the necessary
-     *           parameters to execute the DescribeAlarmHistory service method on
-     *           AmazonCloudWatch.
-     * 
-     * @return The response from the DescribeAlarmHistory service method, as
-     *         returned by AmazonCloudWatch.
-     * 
-     * @throws InvalidNextTokenException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeAlarmHistoryResult describeAlarmHistory(DescribeAlarmHistoryRequest describeAlarmHistoryRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Enables actions for the specified alarms.
-     * </p>
-     *
-     * @param enableAlarmActionsRequest Container for the necessary
-     *           parameters to execute the EnableAlarmActions service method on
-     *           AmazonCloudWatch.
-     * 
-     * 
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void enableAlarmActions(EnableAlarmActionsRequest enableAlarmActionsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Deletes all specified alarms. In the event of an error, no alarms are
-     * deleted.
-     * </p>
-     *
-     * @param deleteAlarmsRequest Container for the necessary parameters to
-     *           execute the DeleteAlarms service method on AmazonCloudWatch.
-     * 
-     * 
-     * @throws ResourceNotFoundException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void deleteAlarms(DeleteAlarmsRequest deleteAlarmsRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
-     * Temporarily sets the state of an alarm. When the updated
-     * <code>StateValue</code> differs from the previous value, the action
-     * configured for the appropriate state is invoked. This is not a
-     * permanent change. The next periodic alarm check (in about a minute)
-     * will set the alarm to its actual state.
-     * </p>
-     *
-     * @param setAlarmStateRequest Container for the necessary parameters to
-     *           execute the SetAlarmState service method on AmazonCloudWatch.
-     * 
-     * 
-     * @throws ResourceNotFoundException
-     * @throws InvalidFormatException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public void setAlarmState(SetAlarmStateRequest setAlarmStateRequest) 
-            throws AmazonServiceException, AmazonClientException;
-
-    /**
-     * <p>
      * Returns a list of valid metrics stored for the AWS account owner.
      * Returned metrics can be used with <code>GetMetricStatistics</code> to
      * obtain statistical data for a given metric.
@@ -496,8 +496,8 @@ public interface AmazonCloudWatch {
      * @return The response from the ListMetrics service method, as returned
      *         by AmazonCloudWatch.
      * 
-     * @throws InternalServiceException
      * @throws InvalidParameterValueException
+     * @throws InternalServiceException
      *
      * @throws AmazonClientException
      *             If any internal errors are encountered inside the client while
@@ -508,29 +508,6 @@ public interface AmazonCloudWatch {
      *             either a problem with the data in the request, or a server side issue.
      */
     public ListMetricsResult listMetrics() throws AmazonServiceException, AmazonClientException;
-    
-    /**
-     * <p>
-     * Retrieves alarms with the specified names. If no name is specified,
-     * all alarms for the user are returned. Alarms can be retrieved by using
-     * only a prefix for the alarm name, the alarm state, or a prefix for any
-     * action.
-     * </p>
-     * 
-     * @return The response from the DescribeAlarms service method, as
-     *         returned by AmazonCloudWatch.
-     * 
-     * @throws InvalidNextTokenException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AmazonCloudWatch indicating
-     *             either a problem with the data in the request, or a server side issue.
-     */
-    public DescribeAlarmsResult describeAlarms() throws AmazonServiceException, AmazonClientException;
     
     /**
      * <p>
@@ -557,6 +534,29 @@ public interface AmazonCloudWatch {
      *             either a problem with the data in the request, or a server side issue.
      */
     public DescribeAlarmHistoryResult describeAlarmHistory() throws AmazonServiceException, AmazonClientException;
+    
+    /**
+     * <p>
+     * Retrieves alarms with the specified names. If no name is specified,
+     * all alarms for the user are returned. Alarms can be retrieved by using
+     * only a prefix for the alarm name, the alarm state, or a prefix for any
+     * action.
+     * </p>
+     * 
+     * @return The response from the DescribeAlarms service method, as
+     *         returned by AmazonCloudWatch.
+     * 
+     * @throws InvalidNextTokenException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonCloudWatch indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeAlarmsResult describeAlarms() throws AmazonServiceException, AmazonClientException;
     
     /**
      * Shuts down this client object, releasing any resources that might be held

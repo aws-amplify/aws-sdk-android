@@ -17,12 +17,11 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.util.Log;
 
-import com.amazonaws.AbortedException;
+import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 
-import java.io.InterruptedIOException;
 import java.util.concurrent.Callable;
 
 class UploadPartTask implements Callable<Boolean> {
@@ -51,9 +50,7 @@ class UploadPartTask implements Callable<Boolean> {
             return true;
         } catch (Exception e) {
             dbUtil.updateState(request.getId(), TransferState.FAILED);
-            if (e instanceof AbortedException
-                    || e.getCause() != null && (e.getCause() instanceof InterruptedIOException
-                    || e.getCause() instanceof InterruptedException)) {
+            if (RetryUtils.isInterrupted(e)) {
                 // thread interrupted by user
                 return false;
             }
