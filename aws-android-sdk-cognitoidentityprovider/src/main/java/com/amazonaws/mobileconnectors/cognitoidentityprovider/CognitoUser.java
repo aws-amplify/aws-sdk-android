@@ -86,6 +86,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.SimpleTimeZone;
 
 import javax.crypto.Mac;
@@ -1817,7 +1818,7 @@ public class CognitoUser {
             mac.update(usernameInternal.getBytes(StringUtils.UTF8));
             mac.update(authDetails.getSecretBlock().array());
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US);
             simpleDateFormat.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
             String dateString = simpleDateFormat.format(timestamp);
             byte[] dateBytes = dateString.getBytes(StringUtils.UTF8);

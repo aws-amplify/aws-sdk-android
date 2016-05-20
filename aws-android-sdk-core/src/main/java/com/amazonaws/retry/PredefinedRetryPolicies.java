@@ -162,8 +162,11 @@ public class PredefinedRetryPolicies {
                  * back-off strategy so that we don't overload a server with a
                  * flood of retries.
                  */
-                if (ase.getStatusCode() == HttpStatus.SC_INTERNAL_SERVER_ERROR
-                        || ase.getStatusCode() == HttpStatus.SC_SERVICE_UNAVAILABLE) {
+                int statusCode = ase.getStatusCode();
+                if (statusCode == HttpStatus.SC_INTERNAL_SERVER_ERROR
+                        || statusCode == HttpStatus.SC_SERVICE_UNAVAILABLE
+                        || statusCode == HttpStatus.SC_BAD_GATEWAY
+                        || statusCode == HttpStatus.SC_GATEWAY_TIMEOUT) {
                     return true;
                 }
 

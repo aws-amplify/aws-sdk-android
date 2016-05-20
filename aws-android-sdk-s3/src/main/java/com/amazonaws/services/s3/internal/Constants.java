@@ -28,6 +28,8 @@ public class Constants {
 
     /** Default hostname for the S3 service endpoint */
     public static String S3_HOSTNAME = "s3.amazonaws.com";
+    /** Service hostname for accessing accelerated S3 buckets */
+    public static final String S3_ACCELERATE_HOSTNAME = "s3-accelerate.amazonaws.com";
 
     /** Service name for Amazon S3 */
     public static String S3_SERVICE_NAME = "Amazon S3";

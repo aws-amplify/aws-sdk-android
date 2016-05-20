@@ -19,6 +19,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.internal.ServiceUtils;
 import com.amazonaws.services.s3.internal.XmlWriter;
+import com.amazonaws.services.s3.model.BucketAccelerateConfiguration;
 import com.amazonaws.services.s3.model.BucketCrossOriginConfiguration;
 import com.amazonaws.services.s3.model.BucketLifecycleConfiguration;
 import com.amazonaws.services.s3.model.BucketLifecycleConfiguration.NoncurrentVersionTransition;
@@ -27,17 +28,21 @@ import com.amazonaws.services.s3.model.BucketLifecycleConfiguration.Transition;
 import com.amazonaws.services.s3.model.BucketLoggingConfiguration;
 import com.amazonaws.services.s3.model.BucketNotificationConfiguration;
 import com.amazonaws.services.s3.model.BucketNotificationConfiguration.TopicConfiguration;
+import com.amazonaws.services.s3.model.BucketReplicationConfiguration;
 import com.amazonaws.services.s3.model.BucketTaggingConfiguration;
 import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
 import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
 import com.amazonaws.services.s3.model.CORSRule;
 import com.amazonaws.services.s3.model.CORSRule.AllowedMethods;
 import com.amazonaws.services.s3.model.RedirectRule;
+import com.amazonaws.services.s3.model.ReplicationDestinationConfig;
+import com.amazonaws.services.s3.model.ReplicationRule;
 import com.amazonaws.services.s3.model.RoutingRule;
 import com.amazonaws.services.s3.model.RoutingRuleCondition;
 import com.amazonaws.services.s3.model.TagSet;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Converts bucket configuration objects into XML byte arrays.
@@ -66,6 +71,20 @@ public class BucketConfigurationXmlFactory {
 
         xml.end();
 
+        return xml.getBytes();
+    }
+
+    /**
+     * Converts the specified accelerate configuration into an XML byte array.
+     *
+     * @param accelerateConfiguration The configuration to convert.
+     * @return The XML byte array representation.
+     */
+    public byte[] convertToXmlByteArray(BucketAccelerateConfiguration accelerateConfiguration) {
+        XmlWriter xml = new XmlWriter();
+        xml.start("AccelerateConfiguration", "xmlns", Constants.XML_NAMESPACE);
+        xml.start("Status").value(accelerateConfiguration.getStatus()).end();
+        xml.end();
         return xml.getBytes();
     }
 
@@ -115,6 +134,36 @@ public class BucketConfigurationXmlFactory {
 
         xml.end();
 
+        return xml.getBytes();
+    }
+
+    public byte[] convertToXmlByteArray(BucketReplicationConfiguration replicationConfiguration) {
+        XmlWriter xml = new XmlWriter();
+        xml.start("ReplicationConfiguration");
+        Map<String, ReplicationRule> rules = replicationConfiguration.getRules();
+
+        final String role = replicationConfiguration.getRoleARN();
+        xml.start("Role").value(role).end();
+        for (Map.Entry<String, ReplicationRule> entry : rules.entrySet()) {
+            final String ruleId = entry.getKey();
+            final ReplicationRule rule = entry.getValue();
+
+            xml.start("Rule");
+            xml.start("ID").value(ruleId).end();
+            xml.start("Prefix").value(rule.getPrefix()).end();
+            xml.start("Status").value(rule.getStatus()).end();
+
+            final ReplicationDestinationConfig config = rule.getDestinationConfig();
+            xml.start("Destination");
+            xml.start("Bucket").value(config.getBucketARN()).end();
+            if (config.getStorageClass() != null) {
+                xml.start("StorageClass").value(config.getStorageClass()).end();
+            }
+            xml.end();
+
+            xml.end();
+        }
+        xml.end();
         return xml.getBytes();
     }
 

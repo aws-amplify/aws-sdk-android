@@ -24,11 +24,13 @@ import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.services.s3.model.AccessControlList;
 import com.amazonaws.services.s3.model.Bucket;
+import com.amazonaws.services.s3.model.BucketAccelerateConfiguration;
 import com.amazonaws.services.s3.model.BucketCrossOriginConfiguration;
 import com.amazonaws.services.s3.model.BucketLifecycleConfiguration;
 import com.amazonaws.services.s3.model.BucketLoggingConfiguration;
 import com.amazonaws.services.s3.model.BucketNotificationConfiguration;
 import com.amazonaws.services.s3.model.BucketPolicy;
+import com.amazonaws.services.s3.model.BucketReplicationConfiguration;
 import com.amazonaws.services.s3.model.BucketTaggingConfiguration;
 import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
 import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
@@ -43,6 +45,7 @@ import com.amazonaws.services.s3.model.CreateBucketRequest;
 import com.amazonaws.services.s3.model.DeleteBucketCrossOriginConfigurationRequest;
 import com.amazonaws.services.s3.model.DeleteBucketLifecycleConfigurationRequest;
 import com.amazonaws.services.s3.model.DeleteBucketPolicyRequest;
+import com.amazonaws.services.s3.model.DeleteBucketReplicationConfigurationRequest;
 import com.amazonaws.services.s3.model.DeleteBucketRequest;
 import com.amazonaws.services.s3.model.DeleteBucketTaggingConfigurationRequest;
 import com.amazonaws.services.s3.model.DeleteBucketWebsiteConfigurationRequest;
@@ -51,18 +54,24 @@ import com.amazonaws.services.s3.model.DeleteObjectsRequest;
 import com.amazonaws.services.s3.model.DeleteObjectsResult;
 import com.amazonaws.services.s3.model.DeleteVersionRequest;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+import com.amazonaws.services.s3.model.GetBucketAccelerateConfigurationRequest;
 import com.amazonaws.services.s3.model.GetBucketAclRequest;
 import com.amazonaws.services.s3.model.GetBucketLocationRequest;
 import com.amazonaws.services.s3.model.GetBucketPolicyRequest;
+import com.amazonaws.services.s3.model.GetBucketReplicationConfigurationRequest;
 import com.amazonaws.services.s3.model.GetBucketWebsiteConfigurationRequest;
 import com.amazonaws.services.s3.model.GetObjectMetadataRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.GroupGrantee;
+import com.amazonaws.services.s3.model.HeadBucketRequest;
+import com.amazonaws.services.s3.model.HeadBucketResult;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
 import com.amazonaws.services.s3.model.ListBucketsRequest;
 import com.amazonaws.services.s3.model.ListMultipartUploadsRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
+import com.amazonaws.services.s3.model.ListObjectsV2Request;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.ListPartsRequest;
 import com.amazonaws.services.s3.model.ListVersionsRequest;
 import com.amazonaws.services.s3.model.MultiObjectDeleteException;
@@ -77,12 +86,14 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.services.s3.model.RestoreObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.SetBucketAccelerateConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketAclRequest;
 import com.amazonaws.services.s3.model.SetBucketCrossOriginConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketLifecycleConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketLoggingConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketNotificationConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketPolicyRequest;
+import com.amazonaws.services.s3.model.SetBucketReplicationConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketTaggingConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketWebsiteConfigurationRequest;
@@ -367,6 +378,17 @@ public interface AmazonS3 {
      */
     public ObjectListing listObjects(ListObjectsRequest listObjectsRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    public ListObjectsV2Result listObjectsV2(String bucketName) throws AmazonClientException,
+            AmazonServiceException;
+
+    public ListObjectsV2Result listObjectsV2(String bucketName, String prefix)
+            throws AmazonClientException,
+            AmazonServiceException;
+
+    public ListObjectsV2Result listObjectsV2(ListObjectsV2Request listObjectsV2Request)
+            throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -731,6 +753,27 @@ public interface AmazonS3 {
      * @see AmazonS3#createBucket(CreateBucketRequest)
      */
     public boolean doesBucketExist(String bucketName)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * Performs a head bucket operation on the requested bucket name. This
+     * operation is useful to determine if a bucket exists and you have
+     * permission to access it.
+     *
+     * @param headBucketRequest The request containing the bucket name.
+     * @return This method returns a {@link HeadBucketResult} if the bucket
+     *         exists and you have permission to access it. Otherwise, the
+     *         method will throw an {@link AmazonServiceException} with status
+     *         code {@code '404 Not Found'} if the bucket does not exist,
+     *         {@code '403 Forbidden'} if the user does not have access to the
+     *         bucket, or {@code '301 Moved Permanently'} if the bucket is in a
+     *         different region than the client is configured with
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     */
+    public HeadBucketResult headBucket(HeadBucketRequest headBucketRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3350,5 +3393,176 @@ public interface AmazonS3 {
      * @see AmazonS3#disableRequesterPays(String)
      */
     public boolean isRequesterPaysEnabled(String bucketName)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets a replication configuration for the Amazon S3 bucket.
+     *
+     * @param bucketName The Amazon S3 bucket for which the replication
+     *            configuration is set.
+     * @param configuration The replication configuration.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @see AmazonS3#setBucketReplicationConfiguration(SetBucketReplicationConfigurationRequest)
+     * @see AmazonS3#getBucketReplicationConfiguration(String)
+     * @see AmazonS3#deleteBucketReplicationConfiguration(String)
+     */
+    public void setBucketReplicationConfiguration(String bucketName,
+            BucketReplicationConfiguration configuration)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets a replication configuration for the Amazon S3 bucket.
+     *
+     * @param setBucketReplicationConfigurationRequest The request object
+     *            containing all the options for setting a replication
+     *            configuration for an Amazon S3 bucket.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @see AmazonS3#setBucketReplicationConfiguration(String,
+     *      BucketReplicationConfiguration)
+     * @see AmazonS3#getBucketReplicationConfiguration(String)
+     * @see AmazonS3#deleteBucketReplicationConfiguration(String)
+     */
+    public void setBucketReplicationConfiguration(
+            SetBucketReplicationConfigurationRequest setBucketReplicationConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Retrieves the replication configuration for the given Amazon S3 bucket.
+     *
+     * @param bucketName The bucket name for which the replication configuration
+     *            is to be retrieved.
+     * @return the replication configuration of the bucket.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @see AmazonS3#setBucketReplicationConfiguration(String,
+     *      BucketReplicationConfiguration)
+     * @see AmazonS3#deleteBucketReplicationConfiguration(String)
+     */
+    public BucketReplicationConfiguration getBucketReplicationConfiguration(
+            String bucketName) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * Retrieves the replication configuration for the given Amazon S3 bucket.
+     *
+     * @param getBucketReplicationConfigurationRequest The request object for
+     *            retrieving the bucket replication configuration.
+     * @return the replication configuration of the bucket.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @see AmazonS3#setBucketReplicationConfiguration(String,
+     *      BucketReplicationConfiguration)
+     * @see AmazonS3#deleteBucketReplicationConfiguration(String)
+     */
+    BucketReplicationConfiguration getBucketReplicationConfiguration(
+            GetBucketReplicationConfigurationRequest getBucketReplicationConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Deletes the replication configuration for the given Amazon S3 bucket.
+     *
+     * @param bucketName The bucket name for which the replication configuration
+     *            is to be deleted.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @see AmazonS3#setBucketReplicationConfiguration(String,
+     *      BucketReplicationConfiguration)
+     * @see AmazonS3#getBucketReplicationConfiguration(String)
+     * @see AmazonS3#deleteBucketReplicationConfiguration(DeleteBucketReplicationConfigurationRequest)
+     */
+    void deleteBucketReplicationConfiguration(String bucketName)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Deletes the replication configuration for the given Amazon S3 bucket.
+     *
+     * @param request The request object for delete bucket replication
+     *            configuration.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @see AmazonS3#setBucketReplicationConfiguration(String,
+     *      BucketReplicationConfiguration)
+     * @see AmazonS3#getBucketReplicationConfiguration(String)
+     * @see AmazonS3#deleteBucketReplicationConfiguration(String)
+     */
+    void deleteBucketReplicationConfiguration(DeleteBucketReplicationConfigurationRequest request)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * @param bucketName Name of bucket that presumably contains object
+     * @param objectName Name of object that has to be checked
+     * @return result of the search
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     */
+    boolean doesObjectExist(String bucketName, String objectName)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Retrieves the accelerate configuration for the given bucket.
+     *
+     * @param bucketName The name of the bucket whose accelerate configuration
+     *            is being fetched.
+     * @return the accelerate configuration of the bucket.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     */
+    public BucketAccelerateConfiguration getBucketAccelerateConfiguration(
+            String bucket) throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Retrieves the accelerate configuration for the given bucket.
+     *
+     * @param getBucketAccelerateConfigurationRequest The request object for
+     *            retrieving the bucket accelerate configuration.
+     * @return the accelerate configuration of the bucket.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     */
+    public BucketAccelerateConfiguration getBucketAccelerateConfiguration(
+            GetBucketAccelerateConfigurationRequest getBucketAccelerateConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets the accelerate configuration for the specified bucket. *
+     *
+     * @param bucketName The name of the bucket whose accelerate configuration
+     *            is being set.
+     * @param accelerateConfiguration The new accelerate configuration for this
+     *            bucket, which completely replaces any existing configuration.
+     */
+    public void setBucketAccelerateConfiguration(String bucketName,
+            BucketAccelerateConfiguration accelerateConfiguration)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets the accelerate configuration for the specified bucket.
+     *
+     * @param setBucketAccelerateConfigurationRequest The request object
+     *            containing all options for setting the bucket accelerate
+     *            configuration.
+     */
+    public void setBucketAccelerateConfiguration(
+            SetBucketAccelerateConfigurationRequest setBucketAccelerateConfigurationRequest)
             throws AmazonServiceException, AmazonClientException;
 }

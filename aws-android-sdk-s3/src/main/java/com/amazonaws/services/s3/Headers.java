@@ -64,6 +64,9 @@ public interface Headers {
     /** S3 response header for a request's extended debugging ID */
     public static final String EXTENDED_REQUEST_ID = "x-amz-id-2";
 
+    /** S3 response header in response from accelerate endpoint. */
+    public static final String CLOUD_FRONT_ID = "X-Amz-Cf-Id";
+
     /**
      * S3 request header indicating how to handle metadata when copying an
      * object
@@ -220,4 +223,10 @@ public interface Headers {
      * the request.
      */
     public static final String REQUESTER_CHARGED_HEADER = "x-amz-request-charged";
+
+    /**
+     * Region where the bucket is located. This header is returned only in HEAD
+     * bucket and ListObjects response.
+     */
+    public static final String S3_BUCKET_REGION = "x-amz-bucket-region";
 }

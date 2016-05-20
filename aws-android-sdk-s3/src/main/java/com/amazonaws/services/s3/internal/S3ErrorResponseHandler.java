@@ -30,6 +30,7 @@ import org.w3c.dom.Document;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 /**
  * Response handler for S3 error responses. S3 error responses are different
@@ -54,15 +55,7 @@ public class S3ErrorResponseHandler
          */
         final InputStream is = errorResponse.getContent();
         if (is == null) {
-            String requestId = errorResponse.getHeaders().get(Headers.REQUEST_ID);
-            String extendedRequestId = errorResponse.getHeaders().get(Headers.EXTENDED_REQUEST_ID);
-            AmazonS3Exception ase = new AmazonS3Exception(errorResponse.getStatusText());
-            final int statusCode = errorResponse.getStatusCode();
-            ase.setStatusCode(statusCode);
-            ase.setRequestId(requestId);
-            ase.setExtendedRequestId(extendedRequestId);
-            ase.setErrorType(errorTypeOf(statusCode));
-            return ase;
+            return newAmazonS3Exception(errorResponse.getStatusText(), errorResponse);
         }
         // Try to read the error response
         String content = "";
@@ -86,6 +79,7 @@ public class S3ErrorResponseHandler
             ase.setErrorCode(errorCode);
             ase.setRequestId(requestId);
             ase.setExtendedRequestId(extendedRequestId);
+            ase.setCloudFrontId(errorResponse.getHeaders().get(Headers.CLOUD_FRONT_ID));
             return ase;
         } catch (Exception ex) {
             if (log.isDebugEnabled())
@@ -104,6 +98,10 @@ public class S3ErrorResponseHandler
         ase.setErrorCode(statusCode + " " + httpResponse.getStatusText());
         ase.setStatusCode(statusCode);
         ase.setErrorType(errorTypeOf(statusCode));
+        Map<String, String> headers = httpResponse.getHeaders();
+        ase.setRequestId(headers.get(Headers.REQUEST_ID));
+        ase.setExtendedRequestId(headers.get(Headers.EXTENDED_REQUEST_ID));
+        ase.setCloudFrontId(headers.get(Headers.CLOUD_FRONT_ID));
         return ase;
     }
 

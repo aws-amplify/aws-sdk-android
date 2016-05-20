@@ -43,7 +43,7 @@ import java.util.List;
  * @see AmazonS3Client#copyObject(com.amazonaws.services.s3.model.CopyObjectRequest)
  * @see CopyObjectResult
  */
-public class CopyObjectRequest extends AmazonWebServiceRequest {
+public class CopyObjectRequest extends AmazonWebServiceRequest implements S3AccelerateUnsupported {
 
     /** The name of the bucket containing the object to be copied */
     private String sourceBucketName;

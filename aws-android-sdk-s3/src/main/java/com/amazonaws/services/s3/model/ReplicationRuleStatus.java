@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,10 +15,21 @@
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
 /**
- * Request object for listing all the Amazon S3 buckets owned by a user.
+ * A enum class for status of a Amazon S3 bucket replication rule.
  */
-public class ListBucketsRequest extends AmazonWebServiceRequest implements S3AccelerateUnsupported {
+public enum ReplicationRuleStatus {
+    Enabled("Enabled"),
+
+    Disabled("Disabled");
+
+    private final String status;
+
+    private ReplicationRuleStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
 }

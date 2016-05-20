@@ -47,9 +47,20 @@ public class CognitoUserCodeDeliveryDetails {
      * @param codeDeliveryDetails       REQUIRED: Cognito code delivery details.
      */
     protected CognitoUserCodeDeliveryDetails(CodeDeliveryDetailsType codeDeliveryDetails) {
-        destination = codeDeliveryDetails.getDestination();
-        deliveryMedium = codeDeliveryDetails.getDeliveryMedium();
-        attributeName = codeDeliveryDetails.getAttributeName();
+    	/**
+    	 * If the codeDeliveryDetails is null, a code was not sent to the user.
+    	 * When codeDeliveryDetails is not null, construct this object with the delivery details.
+    	 * When codeDeliveryDetails is null, construct this as an empty object. 
+    	 */
+    	if (codeDeliveryDetails != null) {
+	        destination = codeDeliveryDetails.getDestination();
+	        deliveryMedium = codeDeliveryDetails.getDeliveryMedium();
+	        attributeName = codeDeliveryDetails.getAttributeName();
+    	} else {
+    		destination = null;
+    		deliveryMedium = null;
+    		attributeName = null;
+    	}
     }
 
     /**
@@ -57,9 +68,20 @@ public class CognitoUserCodeDeliveryDetails {
      * @param mfaOptionType    REQUIRED: MFA delivery options.
      */
     protected CognitoUserCodeDeliveryDetails(MFAOptionType mfaOptionType) {
-        destination = null;
-        deliveryMedium = mfaOptionType.getDeliveryMedium();
-        attributeName = mfaOptionType.getAttributeName();
+    	/**
+    	 * If the mfaOptionType is null, an MFA code was not sent to the user.
+    	 * When mfaOptionType is not null, construct this object with the MFA delivery details from mfaOptionType.
+    	 * When mfaOptionType is null, construct this as an empty object. 
+    	 */
+    	if (mfaOptionType != null) {
+	        destination = null;
+	        deliveryMedium = mfaOptionType.getDeliveryMedium();
+	        attributeName = mfaOptionType.getAttributeName();
+    	} else {
+    		destination = null;
+	        deliveryMedium = null;
+	        attributeName = null;
+    	}
     }
 
     /**

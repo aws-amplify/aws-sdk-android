@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2012 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,12 +13,18 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.s3.model;
+package com.amazonaws.services.s3;
 
-import com.amazonaws.AmazonWebServiceRequest;
+import static org.junit.Assert.assertTrue;
 
-/**
- * Request object for listing all the Amazon S3 buckets owned by a user.
- */
-public class ListBucketsRequest extends AmazonWebServiceRequest implements S3AccelerateUnsupported {
+import org.junit.Test;
+
+public class S3ClientOptionsTest {
+    @Test
+    public void testBuilder() {
+        S3ClientOptions options = S3ClientOptions.builder().setAccelerateModeEnabled(true)
+                .setPathStyleAccess(true).build();
+        assertTrue(options.isAccelerateModeEnabled());
+        assertTrue(options.isPathStyleAccess());
+    }
 }

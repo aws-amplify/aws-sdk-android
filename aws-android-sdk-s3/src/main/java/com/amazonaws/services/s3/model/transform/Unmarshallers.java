@@ -18,14 +18,17 @@ package com.amazonaws.services.s3.model.transform;
 import com.amazonaws.services.s3.internal.DeleteObjectsResponse;
 import com.amazonaws.services.s3.model.AccessControlList;
 import com.amazonaws.services.s3.model.Bucket;
+import com.amazonaws.services.s3.model.BucketAccelerateConfiguration;
 import com.amazonaws.services.s3.model.BucketCrossOriginConfiguration;
 import com.amazonaws.services.s3.model.BucketLifecycleConfiguration;
 import com.amazonaws.services.s3.model.BucketLoggingConfiguration;
 import com.amazonaws.services.s3.model.BucketNotificationConfiguration;
+import com.amazonaws.services.s3.model.BucketReplicationConfiguration;
 import com.amazonaws.services.s3.model.BucketTaggingConfiguration;
 import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
 import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.MultipartUploadListing;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.Owner;
@@ -78,6 +81,19 @@ public class Unmarshallers {
         public ObjectListing unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
                     .parseListBucketObjectsResponse(in).getObjectListing();
+        }
+    }
+
+    /**
+     * Unmarshaller for the ListObjectsV2 XML response.
+     */
+    public static final class ListObjectsV2Unmarshaller implements
+            Unmarshaller<ListObjectsV2Result, InputStream> {
+
+        @Override
+        public ListObjectsV2Result unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser()
+                    .parseListObjectsV2Response(in).getResult();
         }
     }
 
@@ -165,6 +181,18 @@ public class Unmarshallers {
     /**
      * Unmarshaller for the BucketNotificationConfiguration XML response.
      */
+    public static final class BucketReplicationConfigurationUnmarshaller implements
+            Unmarshaller<BucketReplicationConfiguration, InputStream> {
+        @Override
+        public BucketReplicationConfiguration unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser()
+                    .parseReplicationConfigurationResponse(in).getConfiguration();
+        }
+    }
+
+    /**
+     * Unmarshaller for the BucketNotificationConfiguration XML response.
+     */
     public static final class BucketNotificationConfigurationUnmarshaller implements
             Unmarshaller<BucketNotificationConfiguration, InputStream> {
         @Override
@@ -183,6 +211,18 @@ public class Unmarshallers {
         public BucketTaggingConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
                     .parseTaggingConfigurationResponse(in).getConfiguration();
+        }
+    }
+
+    /**
+     * Unmarshaller for the BucketAccelerateConfiguration XML response.
+     */
+    public static final class BucketAccelerateConfigurationUnmarshaller implements
+            Unmarshaller<BucketAccelerateConfiguration, InputStream> {
+        @Override
+        public BucketAccelerateConfiguration unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser()
+                    .parseAccelerateConfigurationResponse(in).getConfiguration();
         }
     }
 

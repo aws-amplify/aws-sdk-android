@@ -284,10 +284,14 @@ public class AmazonHttpClient {
 
         // Make a copy of the original request params and headers so that we can
         // permute it in this loop and start over with the original every time.
-        Map<String, String> originalParameters = new LinkedHashMap<String, String>();
-        originalParameters.putAll(request.getParameters());
-        Map<String, String> originalHeaders = new HashMap<String, String>();
-        originalHeaders.putAll(request.getHeaders());
+        Map<String, String> originalParameters = new LinkedHashMap<String, String>(
+                request.getParameters());
+        Map<String, String> originalHeaders = new HashMap<String, String>(request.getHeaders());
+        // mark input stream if supported
+        InputStream originalContent = request.getContent();
+        if (originalContent != null && originalContent.markSupported()) {
+            originalContent.mark(-1);
+        }
 
         final AWSCredentials credentials = executionContext.getCredentials();
         Signer signer = null;
@@ -300,6 +304,12 @@ public class AmazonHttpClient {
             if (requestCount > 1) { // retry
                 request.setParameters(originalParameters);
                 request.setHeaders(originalHeaders);
+                request.setContent(originalContent);
+            }
+            if (redirectedURI != null) {
+                request.setEndpoint(URI.create(
+                        redirectedURI.getScheme() + "://" + redirectedURI.getAuthority()));
+                request.setResourcePath(redirectedURI.getPath());
             }
 
             try {
@@ -312,6 +322,10 @@ public class AmazonHttpClient {
                                 config.getRetryPolicy());
                     } finally {
                         awsRequestMetrics.endEvent(Field.RetryPauseTime);
+                    }
+                    InputStream content = request.getContent();
+                    if (content != null && content.markSupported()) {
+                        content.reset();
                     }
                 }
                 request.addHeader(HEADER_SDK_RETRY_INFO,
@@ -335,24 +349,6 @@ public class AmazonHttpClient {
 
                 httpRequest = requestFactory.createHttpRequest(request, config,
                         executionContext);
-                if (redirectedURI != null) {
-                    httpRequest.setUri(redirectedURI);
-                }
-
-                // mark input stream if supported
-                InputStream content = httpRequest.getContent();
-                if (content != null) {
-                    if (requestCount > 1) { // retry
-                        if (content.markSupported()) {
-                            content.reset();
-                            content.mark(-1);
-                        }
-                    } else {
-                        if (content.markSupported()) {
-                            content.mark(-1);
-                        }
-                    }
-                }
 
                 retriedException = null;
                 awsRequestMetrics.startEvent(Field.HttpRequestTime);

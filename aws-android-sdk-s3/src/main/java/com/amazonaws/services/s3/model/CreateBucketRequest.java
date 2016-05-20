@@ -23,7 +23,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * @see DeleteBucketRequest
  * @see CopyObjectRequest
  */
-public class CreateBucketRequest extends AmazonWebServiceRequest {
+public class CreateBucketRequest extends AmazonWebServiceRequest
+        implements S3AccelerateUnsupported {
 
     /** The name of the Amazon S3 bucket to create. */
     private String bucketName;

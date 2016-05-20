@@ -27,6 +27,7 @@ import java.util.Map;
  */
 public class S3ResponseMetadata extends ResponseMetadata {
     public static final String HOST_ID = "HOST_ID";
+    public static final String CLOUD_FRONT_ID = "CLOUD_FRONT_ID";
 
     /**
      * Creates a new S3ResponseMetadata object from a specified map of metadata
@@ -62,4 +63,7 @@ public class S3ResponseMetadata extends ResponseMetadata {
         return metadata.get(HOST_ID);
     }
 
+    public String getCloudFrontId() {
+        return metadata.get(CLOUD_FRONT_ID);
+    }
 }

@@ -247,7 +247,9 @@ You can build the source via Maven, which can be downloaded and installed from [
 
 After installing Java and Maven, clone this repository
 
-Note:  Cognito Sync is located in a separate repository [here](https://github.com/aws/amazon-cognito-android).
+#### Developing
+
+The recommended IDE is Eclipse, but you should be able to use your favorite IDE as long as it supports Maven. You can import the cloned repository as 'Existing Maven Projects' and then start to make changes. In order to standardize formatting, please import `eclipse-formatting.xml` into `Java -> Code Stype -> Formatter` and `eclipse.importorder` into `Java -> Code Style -> Organize Imports`.
 
 #### Compiling
 

@@ -27,7 +27,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * returns a success message, not an error message.
  * </p>
  */
-public class DeleteBucketRequest extends AmazonWebServiceRequest {
+public class DeleteBucketRequest extends AmazonWebServiceRequest
+        implements S3AccelerateUnsupported {
 
     /**
      * The name of the Amazon S3 bucket to delete.

@@ -39,7 +39,7 @@ import java.util.List;
  * @see AmazonS3Client#uploadPart(UploadPartRequest)
  * @see CopyPartResult
  */
-public class CopyPartRequest extends AmazonWebServiceRequest {
+public class CopyPartRequest extends AmazonWebServiceRequest implements S3AccelerateUnsupported {
 
     /**
      * The upload id of the multipart upload into which to copy this part.

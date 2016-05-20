@@ -29,6 +29,7 @@ import com.amazonaws.services.s3.internal.ServiceUtils;
 import com.amazonaws.services.s3.model.AccessControlList;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.Bucket;
+import com.amazonaws.services.s3.model.BucketAccelerateConfiguration;
 import com.amazonaws.services.s3.model.BucketCrossOriginConfiguration;
 import com.amazonaws.services.s3.model.BucketLifecycleConfiguration;
 import com.amazonaws.services.s3.model.BucketLifecycleConfiguration.NoncurrentVersionTransition;
@@ -37,6 +38,7 @@ import com.amazonaws.services.s3.model.BucketLifecycleConfiguration.Transition;
 import com.amazonaws.services.s3.model.BucketLoggingConfiguration;
 import com.amazonaws.services.s3.model.BucketNotificationConfiguration;
 import com.amazonaws.services.s3.model.BucketNotificationConfiguration.TopicConfiguration;
+import com.amazonaws.services.s3.model.BucketReplicationConfiguration;
 import com.amazonaws.services.s3.model.BucketTaggingConfiguration;
 import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
 import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
@@ -50,6 +52,7 @@ import com.amazonaws.services.s3.model.EmailAddressGrantee;
 import com.amazonaws.services.s3.model.Grantee;
 import com.amazonaws.services.s3.model.GroupGrantee;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.MultiObjectDeleteException.DeleteError;
 import com.amazonaws.services.s3.model.MultipartUpload;
 import com.amazonaws.services.s3.model.MultipartUploadListing;
@@ -59,6 +62,8 @@ import com.amazonaws.services.s3.model.PartListing;
 import com.amazonaws.services.s3.model.PartSummary;
 import com.amazonaws.services.s3.model.Permission;
 import com.amazonaws.services.s3.model.RedirectRule;
+import com.amazonaws.services.s3.model.ReplicationDestinationConfig;
+import com.amazonaws.services.s3.model.ReplicationRule;
 import com.amazonaws.services.s3.model.RequestPaymentConfiguration;
 import com.amazonaws.services.s3.model.RequestPaymentConfiguration.Payer;
 import com.amazonaws.services.s3.model.RoutingRule;
@@ -91,7 +96,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -300,6 +304,22 @@ public class XmlResponsesSaxParser {
     }
 
     /**
+     * Parses a ListBucketV2 response XML document from an input stream.
+     *
+     * @param inputStream XML data input stream.
+     * @return the XML handler object populated with data parsed from the XML
+     *         stream.
+     * @throws AmazonClientException
+     */
+    public ListObjectsV2Handler parseListObjectsV2Response(InputStream inputStream)
+            throws IOException {
+        ListObjectsV2Handler handler = new ListObjectsV2Handler();
+        parseXmlInputStream(handler, sanitizeXmlDocument(handler, inputStream));
+
+        return handler;
+    }
+
+    /**
      * Parses a ListVersions response XML document from an input stream.
      *
      * @param inputStream XML data input stream.
@@ -408,10 +428,25 @@ public class XmlResponsesSaxParser {
         return handler;
     }
 
+    public BucketReplicationConfigurationHandler parseReplicationConfigurationResponse(
+            InputStream inputStream) throws IOException {
+        BucketReplicationConfigurationHandler handler = new BucketReplicationConfigurationHandler();
+        parseXmlInputStream(handler, inputStream);
+        return handler;
+    }
+
     public BucketTaggingConfigurationHandler parseTaggingConfigurationResponse(
             InputStream inputStream)
             throws IOException {
         BucketTaggingConfigurationHandler handler = new BucketTaggingConfigurationHandler();
+        parseXmlInputStream(handler, inputStream);
+        return handler;
+    }
+
+    public BucketAccelerateConfigurationHandler parseAccelerateConfigurationResponse(
+            InputStream inputStream)
+            throws IOException {
+        BucketAccelerateConfigurationHandler handler = new BucketAccelerateConfigurationHandler();
         parseXmlInputStream(handler, inputStream);
         return handler;
     }
@@ -631,6 +666,161 @@ public class XmlResponsesSaxParser {
             else if (in("ListBucketResult", "CommonPrefixes")) {
                 if (name.equals("Prefix")) {
                     objectListing.getCommonPrefixes().add(getText());
+                }
+            }
+        }
+    }
+
+    /**
+     * Handler for ListObjectsV2 response XML documents.
+     */
+    public static class ListObjectsV2Handler extends AbstractHandler {
+        private final ListObjectsV2Result result = new ListObjectsV2Result();
+
+        private S3ObjectSummary currentObject = null;
+        private Owner currentOwner = null;
+        private String lastKey = null;
+
+        public ListObjectsV2Result getResult() {
+            return result;
+        }
+
+        @Override
+        protected void doStartElement(
+                String uri,
+                String name,
+                String qName,
+                Attributes attrs) {
+
+            if (in("ListBucketResult")) {
+                if (name.equals("Contents")) {
+                    currentObject = new S3ObjectSummary();
+                    currentObject.setBucketName(result.getBucketName());
+                }
+            }
+
+            else if (in("ListBucketResult", "Contents")) {
+                if (name.equals("Owner")) {
+                    currentOwner = new Owner();
+                }
+            }
+        }
+
+        @Override
+        protected void doEndElement(String uri, String name, String qName) {
+            if (atTopLevel()) {
+                if (name.equals("ListBucketResult")) {
+                    /*
+                     * S3 only includes the NextContinuationToken XML element if
+                     * the request specified a delimiter, but for consistency
+                     * we'd like to always give easy access to the next token if
+                     * we're returning a list of results that's truncated.
+                     */
+                    if (result.isTruncated()
+                            && result.getNextContinuationToken() == null) {
+
+                        String nextContinuationToken = null;
+                        if (!result.getObjectSummaries().isEmpty()) {
+                            nextContinuationToken = result.getObjectSummaries()
+                                    .get(result.getObjectSummaries().size() - 1)
+                                    .getKey();
+
+                        } else {
+                            log.error("S3 response indicates truncated results, "
+                                    + "but contains no object summaries.");
+                        }
+
+                        result.setNextContinuationToken(nextContinuationToken);
+                    }
+                }
+            }
+
+            else if (in("ListBucketResult")) {
+                if (name.equals("Name")) {
+                    result.setBucketName(getText());
+                    if (log.isDebugEnabled()) {
+                        log.debug("Examining listing for bucket: "
+                                + result.getBucketName());
+                    }
+
+                } else if (name.equals("Prefix")) {
+                    result.setPrefix(checkForEmptyString(getText()));
+
+                } else if (name.equals("MaxKeys")) {
+                    result.setMaxKeys(parseInt(getText()));
+
+                } else if (name.equals("NextContinuationToken")) {
+                    result.setNextContinuationToken(getText());
+
+                } else if (name.equals("ContinuationToken")) {
+                    result.setContinuationToken(getText());
+
+                } else if (name.equals("StartAfter")) {
+                    result.setStartAfter(getText());
+
+                } else if (name.equals("KeyCount")) {
+                    result.setKeyCount(parseInt(getText()));
+
+                } else if (name.equals("Delimiter")) {
+                    result.setDelimiter(checkForEmptyString(getText()));
+
+                } else if (name.equals("EncodingType")) {
+                    result.setEncodingType(checkForEmptyString(getText()));
+                } else if (name.equals("IsTruncated")) {
+                    String isTruncatedStr = StringUtils.lowerCase(getText());
+
+                    if (isTruncatedStr.startsWith("false")) {
+                        result.setTruncated(false);
+                    } else if (isTruncatedStr.startsWith("true")) {
+                        result.setTruncated(true);
+                    } else {
+                        throw new IllegalStateException(
+                                "Invalid value for IsTruncated field: "
+                                        + isTruncatedStr);
+                    }
+
+                } else if (name.equals("Contents")) {
+                    result.getObjectSummaries().add(currentObject);
+                    currentObject = null;
+                }
+            }
+
+            else if (in("ListBucketResult", "Contents")) {
+                if (name.equals("Key")) {
+                    lastKey = getText();
+                    currentObject.setKey(lastKey);
+                } else if (name.equals("LastModified")) {
+                    currentObject.setLastModified(
+                            ServiceUtils.parseIso8601Date(getText()));
+
+                } else if (name.equals("ETag")) {
+                    currentObject.setETag(
+                            ServiceUtils.removeQuotes(getText()));
+
+                } else if (name.equals("Size")) {
+                    currentObject.setSize(parseLong(getText()));
+
+                } else if (name.equals("StorageClass")) {
+                    currentObject.setStorageClass(getText());
+
+                } else if (name.equals("Owner")) {
+                    currentObject.setOwner(currentOwner);
+                    currentOwner = null;
+                }
+            }
+
+            else if (in("ListBucketResult", "Contents", "Owner")) {
+                if (name.equals("ID")) {
+                    currentOwner.setId(getText());
+
+                } else if (name.equals("DisplayName")) {
+                    currentOwner.setDisplayName(getText());
+                }
+            }
+
+            else if (in("ListBucketResult", "CommonPrefixes")) {
+                if (name.equals("Prefix")) {
+                    result.getCommonPrefixes().add(getText());
                 }
             }
         }
@@ -1331,6 +1521,34 @@ public class XmlResponsesSaxParser {
         }
     }
 
+    public static class BucketAccelerateConfigurationHandler extends AbstractHandler {
+
+        private final BucketAccelerateConfiguration configuration = new BucketAccelerateConfiguration(
+                (String) null);
+
+        public BucketAccelerateConfiguration getConfiguration() {
+            return configuration;
+        }
+
+        @Override
+        protected void doStartElement(
+                String uri,
+                String name,
+                String qName,
+                Attributes attrs) {
+
+        }
+
+        @Override
+        protected void doEndElement(String uri, String name, String qName) {
+            if (in("AccelerateConfiguration")) {
+                if (name.equals("Status")) {
+                    configuration.setStatus(getText());
+                }
+            }
+        }
+    }
+
     /*
      * <?xml version="1.0" encoding="UTF-8"?> <CompleteMultipartUploadResult
      * xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -1781,6 +1999,102 @@ public class XmlResponsesSaxParser {
 
                     topic = null;
                     event = null;
+                }
+            }
+        }
+    }
+
+    /**
+     * Handler for parsing the get replication configuration response from
+     * Amazon S3. Sample HTTP response is given below.
+     *
+     * <pre>
+     * <ReplicationConfiguration>
+     *  <Rule>
+     *      <ID>replication-rule-1-1421862858808</ID>
+     *      <Prefix>testPrefix1</Prefix>
+     *      <Status>Enabled</Status>
+     *      <Destination>
+     *          <Bucket>bucketARN</Bucket>
+     *      </Destination>
+     *  </Rule>
+     *  <Rule>
+     *      <ID>replication-rule-2-1421862858808</ID>
+     *      <Prefix>testPrefix2</Prefix>
+     *      <Status>Disabled</Status>
+     *      <Destination>
+     *          <Bucket>arn:aws:s3:::bucket-dest-replication-integ-test-1421862858808</Bucket>
+     *      </Destination>
+     *  </Rule>
+     * </ReplicationConfiguration>
+     * </pre>
+     */
+    public static class BucketReplicationConfigurationHandler extends
+            AbstractHandler {
+
+        private final BucketReplicationConfiguration bucketReplicationConfiguration = new BucketReplicationConfiguration();
+        private String currentRuleId;
+        private ReplicationRule currentRule;
+        private ReplicationDestinationConfig destinationConfig;
+        private static final String REPLICATION_CONFIG = "ReplicationConfiguration";
+        private static final String ROLE = "Role";
+        private static final String RULE = "Rule";
+        private static final String DESTINATION = "Destination";
+        private static final String ID = "ID";
+        private static final String PREFIX = "Prefix";
+        private static final String STATUS = "Status";
+        private static final String BUCKET = "Bucket";
+        private static final String STORAGECLASS = "StorageClass";
+
+        public BucketReplicationConfiguration getConfiguration() {
+            return bucketReplicationConfiguration;
+        }
+
+        @Override
+        protected void doStartElement(String uri, String name, String qName,
+                Attributes attrs) {
+
+            if (in(REPLICATION_CONFIG)) {
+                if (name.equals(RULE)) {
+                    currentRule = new ReplicationRule();
+                }
+            } else if (in(REPLICATION_CONFIG, RULE)) {
+                if (name.equals(DESTINATION)) {
+                    destinationConfig = new ReplicationDestinationConfig();
+                }
+            }
+        }
+
+        @Override
+        protected void doEndElement(String uri, String name, String qName) {
+            if (in(REPLICATION_CONFIG)) {
+                if (name.equals(RULE)) {
+                    bucketReplicationConfiguration.addRule(currentRuleId,
+                            currentRule);
+                    currentRule = null;
+                    currentRuleId = null;
+                    destinationConfig = null;
+                } else if (name.equals(ROLE)) {
+                    bucketReplicationConfiguration.setRoleARN(getText());
+                }
+            } else if (in(REPLICATION_CONFIG, RULE)) {
+                if (name.equals(ID)) {
+                    currentRuleId = getText();
+                } else if (name.equals(PREFIX)) {
+                    currentRule.setPrefix(getText());
+                } else {
+                    if (name.equals(STATUS)) {
+                        currentRule.setStatus(getText());
+
+                    } else if (name.equals(DESTINATION)) {
+                        currentRule.setDestinationConfig(destinationConfig);
+                    }
+                }
+            } else if (in(REPLICATION_CONFIG, RULE, DESTINATION)) {
+                if (name.equals(BUCKET)) {
+                    destinationConfig.setBucketARN(getText());
+                } else if (name.equals(STORAGECLASS)) {
+                    destinationConfig.setStorageClass(getText());
                 }
             }
         }

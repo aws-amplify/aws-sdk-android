@@ -130,7 +130,7 @@ public class AmazonHttpClientTest {
         assertEquals(signerCalled.size(), 2);
         assertTrue(signerCalled.get(0));
         assertTrue(signerCalled.get(1));
-        assertEquals(capture.getValue().getUri().toString(), "https://www.redirect.com");
+        assertEquals(capture.getValue().getUri().toString(), "https://www.redirect.com/");
 
         EasyMock.verify(httpClient, ec);
     }

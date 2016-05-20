@@ -33,6 +33,11 @@ public class AmazonS3Exception extends AmazonServiceException {
     private String extendedRequestId;
 
     /**
+     * An S3 specific CloudFront ID in responses from the accelerate endpoint.
+     */
+    private String cloudFrontId;
+
+    /**
      * Constructs a new {@link AmazonS3Exception} with the specified message.
      *
      * @param message The error message describing why this exception was
@@ -76,6 +81,28 @@ public class AmazonS3Exception extends AmazonServiceException {
      */
     public void setExtendedRequestId(String extendedRequestId) {
         this.extendedRequestId = extendedRequestId;
+    }
+
+    /**
+     * Gets Amazon S3's CloudFront ID when the request is performed in the
+     * accelerate mode.
+     *
+     * @return Amazon S3's CloudFront ID in response from the accelerate
+     *         endpoint.
+     * @see AmazonS3Exception#setCloudFrontId(String)
+     */
+    public String getCloudFrontId() {
+        return cloudFrontId;
+    }
+
+    /**
+     * Sets Amazon S3's CloudFront ID.
+     *
+     * @param cloudFrontId Amazon S3's CloudFront ID in response from the
+     *            accelerate endpoint.
+     */
+    public void setCloudFrontId(String cloudFrontId) {
+        this.cloudFrontId = cloudFrontId;
     }
 
     /**
