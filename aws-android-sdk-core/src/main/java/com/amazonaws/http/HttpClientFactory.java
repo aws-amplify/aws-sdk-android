@@ -106,13 +106,17 @@ class HttpClientFactory {
          * register a new scheme for HTTPS that won't cause self-signed certs to
          * error out.
          */
+        /*
+         * Commented as per https://support.google.com/faqs/answer/6346016. Uncomment for testing.
+         */
+        /*
         if (System.getProperty(DISABLE_CERT_CHECKING_SYSTEM_PROPERTY) != null) {
             SSLSocketFactory sf = getTrustAllSSLSocketFactory();
             sf.setHostnameVerifier(SSLSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
             Scheme sch = new Scheme("https", sf, 443);
             httpClient.getConnectionManager().getSchemeRegistry().register(sch);
         }
-
+        */
         /* Set proxy if configured */
         String proxyHost = config.getProxyHost();
         int proxyPort = config.getProxyPort();
@@ -163,11 +167,13 @@ class HttpClientFactory {
         }
     }
 
+
     /**
      * Gets an SSLSocketFactory that bypasses SSL certificate checks.
      *
      * @return SSLSocketFactory
      */
+    /*
     private static SSLSocketFactory getTrustAllSSLSocketFactory() {
         try {
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -178,11 +184,12 @@ class HttpClientFactory {
             throw new AmazonClientException("Failed to create trust all socket factory", e);
         }
     }
-
+    */
     /**
      * An SSLSocketFactory that bypasses SSL certificate checks. This class is
      * only intended to be used for testing purposes.
      */
+    /*
     private static class TrustAllSSLSocketFactory extends SSLSocketFactory {
         private final SSLContext sslContext;
 
@@ -206,11 +213,12 @@ class HttpClientFactory {
             return sslContext.getSocketFactory().createSocket();
         }
     }
-
+    */
     /**
      * Simple implementation of X509TrustManager that trusts all certificates.
      * This class is only intended to be used for testing purposes.
      */
+    /*
     private static class TrustingX509TrustManager implements X509TrustManager {
         private static final X509Certificate[] X509_CERTIFICATES = new X509Certificate[0];
 
@@ -231,4 +239,5 @@ class HttpClientFactory {
             // No-op, to trust all certs
         }
     };
+    */
 }

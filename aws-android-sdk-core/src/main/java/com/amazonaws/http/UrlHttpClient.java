@@ -185,12 +185,16 @@ public class UrlHttpClient implements HttpClient {
             HttpsURLConnection https = (HttpsURLConnection) connection;
 
             // disable cert check
+            /*
+             * Commented as per https://support.google.com/faqs/answer/6346016. Uncomment for testing.
             if (System.getProperty(DISABLE_CERT_CHECKING_SYSTEM_PROPERTY) != null) {
                 disableCertificateValidation(https);
             }
+            */
         }
     }
 
+    /*
     private SSLContext sc = null;
 
     private void disableCertificateValidation(HttpsURLConnection connection) {
@@ -210,10 +214,11 @@ public class UrlHttpClient implements HttpClient {
         connection.setSSLSocketFactory(sc.getSocketFactory());
         connection.setHostnameVerifier(new AllowAllHostnameVerifier());
     }
-
+    */
     /**
      * An allow all hostname verifier, only used internally for testing purpose.
      */
+    /*
     static class AllowAllHostnameVerifier implements HostnameVerifier {
         @Override
         public boolean verify(String hostname, SSLSession session) {
@@ -221,10 +226,11 @@ public class UrlHttpClient implements HttpClient {
             return true;
         }
     }
-
+    */
     /**
      * A trust all policy manager, only used internally for testing purpose.
      */
+    /*
     static class TrustAllManager implements X509TrustManager {
         @Override
         public X509Certificate[] getAcceptedIssuers() {
@@ -241,4 +247,5 @@ public class UrlHttpClient implements HttpClient {
             // No-op, to trust all certs
         }
     }
+    */
 }

@@ -91,7 +91,8 @@ public class UrlHttpClientTest {
         assertFalse("disable cache", conn.getUseCaches());
     }
 
-    @Test
+    //commenting as we donot support this. See https://support.google.com/faqs/answer/6346016
+    //@Test
     public void testConfigureConnectionWithCertCheckingDisabled() throws MalformedURLException {
         HttpsURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
         System.setProperty(SDKGlobalConfiguration.DISABLE_CERT_CHECKING_SYSTEM_PROPERTY, "true");
