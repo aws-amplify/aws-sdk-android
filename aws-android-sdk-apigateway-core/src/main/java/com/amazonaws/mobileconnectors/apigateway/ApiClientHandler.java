@@ -84,13 +84,56 @@ class ApiClientHandler implements InvocationHandler {
             throws Throwable {
         Request<?> request = buildRequest(method, args);
 
-        ExecutionContext context = new ExecutionContext();
-        context.setContextUserAgent(apiName);
+        ExecutionContext context = executionContext(method, args);
         HttpRequest httpRequest = requestFactory.createHttpRequest(request, clientConfiguration,
                 context);
         HttpResponse response = client.execute(httpRequest);
 
         return handleResponse(response, method);
+    }
+
+    /**
+     * Get the execution context for the given request. Check the method's parameter
+     * annotations and if no user agent header is set, use the execution context's header
+     * with {@link #apiName} as {@link ExecutionContext#contextUserAgent}.
+     *
+     * @param method method annotated with {@link Operation}
+     * @param args arguments of the method
+     * @return The execution context for the given method
+     */
+    private ExecutionContext executionContext(Method method, Object[] args) {
+        ExecutionContext context = new ExecutionContext();
+
+        Annotation[][] annotations = method.getParameterAnnotations();
+        int length = annotations.length;
+        for (int i = 0; i < length; i++) {
+            if (annotations[i].length == 0) continue;
+
+            for (Annotation annotation : annotations[i]) {
+                if (annotation instanceof Parameter && isUserAgentHeader((Parameter) annotation, args[i])) {
+                    return context;
+                }
+            }
+        }
+
+        context.setContextUserAgent(apiName);
+        return context;
+    }
+
+    /**
+     * Check if the given parameter is a user agent and has a valid value. If the value
+     * is empty than we consider this as not valid.
+     *
+     * @param parameter Annotation in the argument
+     * @param arg Argument to check
+     * @return True if it's the user agent header and it's value is not empty.
+     */
+    private boolean isUserAgentHeader(Parameter parameter, Object arg) {
+        String name = parameter.name();
+        String location = parameter.location();
+
+        return "header".equals(location) && "User-Agent".equals(name)
+                && !String.valueOf(arg).isEmpty();
     }
 
     /**
