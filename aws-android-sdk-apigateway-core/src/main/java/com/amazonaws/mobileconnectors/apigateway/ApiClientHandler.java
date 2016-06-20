@@ -67,15 +67,15 @@ class ApiClientHandler implements InvocationHandler {
     private final ClientConfiguration clientConfiguration;
 
     ApiClientHandler(String endpoint, String apiName,
-            Signer signer, AWSCredentialsProvider provider, String apiKey) {
+            Signer signer, AWSCredentialsProvider provider, String apiKey, ClientConfiguration clientConfiguration) {
         this.endpoint = endpoint;
         this.apiName = apiName;
         this.signer = signer;
         this.provider = provider;
         this.apiKey = apiKey;
+        this.clientConfiguration = clientConfiguration;
 
-        clientConfiguration = new ClientConfiguration();
-        client = new UrlHttpClient(clientConfiguration);
+        client = new UrlHttpClient(this.clientConfiguration);
         requestFactory = new HttpRequestFactory();
     }
 

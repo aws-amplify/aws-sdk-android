@@ -15,6 +15,7 @@
 
 package com.amazonaws.mobileconnectors.apigateway;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWS4Signer;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.Signer;
@@ -38,6 +39,7 @@ public class ApiClientFactory {
     private String apiKey;
     private String regionOverride;
     private AWSCredentialsProvider provider;
+    private ClientConfiguration clientConfiguration;
 
     /**
      * Sets the endpoint of the APIs.
@@ -74,6 +76,17 @@ public class ApiClientFactory {
     }
 
     /**
+     * Specify the client configuration to use with this factory
+     *
+     * @param clientConfiguration Configuration to use
+     * @return the factory itself for chaining
+     */
+    public ApiClientFactory clientConfiguration(ClientConfiguration clientConfiguration) {
+        this.clientConfiguration = clientConfiguration;
+        return this;
+    }
+
+    /**
      * Sets the credentials provider, needed if APIs require authentication.
      *
      * @param provider an AWS credentials provider
@@ -101,8 +114,8 @@ public class ApiClientFactory {
         String apiName = getApiName(apiClass);
         ApiClientHandler handler = getHandler(endpoint, apiName);
         Object proxy = Proxy.newProxyInstance(apiClass.getClassLoader(),
-                new Class<?>[] {
-                    apiClass
+                new Class<?>[]{
+                        apiClass
                 }, handler);
         return apiClass.cast(proxy);
     }
@@ -117,7 +130,7 @@ public class ApiClientFactory {
         Signer signer = provider == null ? null : getSigner(getRegion(endpoint));
 
         ApiClientHandler handler = new ApiClientHandler(
-                endpoint, apiName, signer, provider, apiKey);
+                endpoint, apiName, signer, provider, apiKey, clientConfiguration);
         return handler;
     }
 
@@ -149,7 +162,7 @@ public class ApiClientFactory {
      * Gets signer.
      *
      * @param serviceName service name
-     * @param region region
+     * @param region      region
      * @return signer
      */
     Signer getSigner(String region) {
