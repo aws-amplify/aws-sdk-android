@@ -123,15 +123,17 @@ public class ApiClientFactory {
     /**
      * Gets an invocation handler for the given API.
      *
-     * @param apiClass API class
+     * @param endpoint Request endpoint
+     * @param apiName API class name
      * @return an invocation handler
      */
     ApiClientHandler getHandler(String endpoint, String apiName) {
         Signer signer = provider == null ? null : getSigner(getRegion(endpoint));
 
-        ApiClientHandler handler = new ApiClientHandler(
-                endpoint, apiName, signer, provider, apiKey, clientConfiguration);
-        return handler;
+        // Ensure we always pass a configuration to the handler
+        ClientConfiguration configuration = (clientConfiguration == null) ? new ClientConfiguration() : clientConfiguration;
+
+        return new ApiClientHandler(endpoint, apiName, signer, provider, apiKey, configuration);
     }
 
     /**
