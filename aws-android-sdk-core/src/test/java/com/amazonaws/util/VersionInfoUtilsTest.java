@@ -24,7 +24,7 @@ public class VersionInfoUtilsTest {
 
     @Test
     public void getVersion() {
-        assertEquals("2.2.18", VersionInfoUtils.getVersion());
+        assertEquals("2.2.19", VersionInfoUtils.getVersion());
     }
 
     @Test

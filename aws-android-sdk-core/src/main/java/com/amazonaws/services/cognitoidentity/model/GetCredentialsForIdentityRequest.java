@@ -53,6 +53,8 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
      */
     private java.util.Map<String,String> logins;
 
+    private String customRoleArn;
+
     /**
      * A unique identifier in the format REGION:GUID.
      * <p>
@@ -185,6 +187,48 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
     }
     
     /**
+     * Returns the value of the CustomRoleArn property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     *
+     * @return The value of the CustomRoleArn property for this object.
+     */
+    public String getCustomRoleArn() {
+        return customRoleArn;
+    }
+    
+    /**
+     * Sets the value of the CustomRoleArn property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     *
+     * @param customRoleArn The new value for the CustomRoleArn property for this object.
+     */
+    public void setCustomRoleArn(String customRoleArn) {
+        this.customRoleArn = customRoleArn;
+    }
+    
+    /**
+     * Sets the value of the CustomRoleArn property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     *
+     * @param customRoleArn The new value for the CustomRoleArn property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public GetCredentialsForIdentityRequest withCustomRoleArn(String customRoleArn) {
+        this.customRoleArn = customRoleArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -197,7 +241,8 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getIdentityId() != null) sb.append("IdentityId: " + getIdentityId() + ",");
-        if (getLogins() != null) sb.append("Logins: " + getLogins() );
+        if (getLogins() != null) sb.append("Logins: " + getLogins() + ",");
+        if (getCustomRoleArn() != null) sb.append("CustomRoleArn: " + getCustomRoleArn() );
         sb.append("}");
         return sb.toString();
     }
@@ -209,6 +254,7 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
         
         hashCode = prime * hashCode + ((getIdentityId() == null) ? 0 : getIdentityId().hashCode()); 
         hashCode = prime * hashCode + ((getLogins() == null) ? 0 : getLogins().hashCode()); 
+        hashCode = prime * hashCode + ((getCustomRoleArn() == null) ? 0 : getCustomRoleArn().hashCode()); 
         return hashCode;
     }
     
@@ -224,6 +270,8 @@ public class GetCredentialsForIdentityRequest extends AmazonWebServiceRequest im
         if (other.getIdentityId() != null && other.getIdentityId().equals(this.getIdentityId()) == false) return false; 
         if (other.getLogins() == null ^ this.getLogins() == null) return false;
         if (other.getLogins() != null && other.getLogins().equals(this.getLogins()) == false) return false; 
+        if (other.getCustomRoleArn() == null ^ this.getCustomRoleArn() == null) return false;
+        if (other.getCustomRoleArn() != null && other.getCustomRoleArn().equals(this.getCustomRoleArn()) == false) return false; 
         return true;
     }
     

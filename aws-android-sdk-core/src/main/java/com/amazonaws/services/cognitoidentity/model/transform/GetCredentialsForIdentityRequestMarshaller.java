@@ -73,6 +73,9 @@ public class GetCredentialsForIdentityRequestMarshaller implements Marshaller<Re
                 }
                 jsonWriter.endObject();
             }
+            if (getCredentialsForIdentityRequest.getCustomRoleArn() != null) {
+                jsonWriter.name("CustomRoleArn").value(getCredentialsForIdentityRequest.getCustomRoleArn());
+            }
 
             jsonWriter.endObject();
 

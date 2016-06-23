@@ -1,9 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.2.19](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.19) (06/23/2016)
+
+### New Features
+- **Amazon Cognito Identity**: Added support for SAML role resolution.
+
+
 ## [Release 2.2.18](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.18) (06/02/2016)
 
 ### Bug Fixes
 - **AWS Core Runtime Library**: Removed testing implementation for `X509TrustManager`, for more information [see](https://support.google.com/faqs/answer/6346016).
+
 
 ## [Release 2.2.17](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.17) (05/20/2016)
 

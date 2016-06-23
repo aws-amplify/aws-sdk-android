@@ -305,18 +305,29 @@ class TransferStatusUpdater {
     private class TransferProgressListener implements ProgressListener {
 
         private final TransferRecord transfer;
+        /*
+         * Current transfer progress per task. In a multipart upload, this value
+         * is per upload part task. The purpose is to reset the progress upon a
+         * reset event.
+         */
+        private long bytesCurrent;
 
         public TransferProgressListener(TransferRecord transfer) {
             this.transfer = transfer;
         }
 
         @Override
-        public void progressChanged(ProgressEvent progressEvent) {
-            // TODO: handle retry of upload where progress could be problematic.
-            if (progressEvent.getBytesTransferred() > 0) {
+        public synchronized void progressChanged(ProgressEvent progressEvent) {
+            if (progressEvent.getEventCode() == ProgressEvent.RESET_EVENT_CODE) {
+                // Reset will discard what's been transferred, so subtract the
+                // bytes transferred in this task from the total progress.
+                transfer.bytesCurrent -= bytesCurrent;
+                bytesCurrent = 0;
+            } else {
+                bytesCurrent += progressEvent.getBytesTransferred();
                 transfer.bytesCurrent += progressEvent.getBytesTransferred();
-                updateProgress(transfer.id, transfer.bytesCurrent, transfer.bytesTotal);
             }
+            updateProgress(transfer.id, transfer.bytesCurrent, transfer.bytesTotal);
         }
     }
 

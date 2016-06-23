@@ -18,7 +18,6 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.event.ProgressListener;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
@@ -120,14 +119,13 @@ class UploadTask implements Callable<Boolean> {
         }
         updater.updateProgress(upload.id, bytesAlreadyTransferrd, upload.bytesTotal);
 
-        ProgressListener transferProgress = updater.newProgressListener(upload.id);
         List<UploadPartRequest> requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
                 upload.multipartId);
         Log.d(TAG, "multipart upload " + upload.id + " in " + requestList.size() + " parts.");
         ArrayList<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
         for (UploadPartRequest request : requestList) {
             TransferUtility.appendMultipartTransferServiceUserAgentString(request);
-            request.setGeneralProgressListener(transferProgress);
+            request.setGeneralProgressListener(updater.newProgressListener(upload.id));
             futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil)));
         }
         try {
