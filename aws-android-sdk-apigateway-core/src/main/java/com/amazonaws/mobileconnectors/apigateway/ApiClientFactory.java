@@ -114,7 +114,7 @@ public class ApiClientFactory {
         String apiName = getApiName(apiClass);
         ApiClientHandler handler = getHandler(endpoint, apiName);
         Object proxy = Proxy.newProxyInstance(apiClass.getClassLoader(),
-                new Class<?>[]{
+                new Class<?>[] {
                     apiClass
                 }, handler);
         return apiClass.cast(proxy);
