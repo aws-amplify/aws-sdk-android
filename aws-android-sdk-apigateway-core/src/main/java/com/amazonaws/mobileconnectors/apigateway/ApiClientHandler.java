@@ -67,7 +67,7 @@ class ApiClientHandler implements InvocationHandler {
     private final ClientConfiguration clientConfiguration;
 
     ApiClientHandler(String endpoint, String apiName,
-                     Signer signer, AWSCredentialsProvider provider, String apiKey, ClientConfiguration clientConfiguration) {
+            Signer signer, AWSCredentialsProvider provider, String apiKey, ClientConfiguration clientConfiguration) {
         this.endpoint = endpoint;
         this.apiName = apiName;
         this.signer = signer;
@@ -140,7 +140,7 @@ class ApiClientHandler implements InvocationHandler {
      * Build a {@link Request} object for the given method.
      *
      * @param method method that annotated with {@link Operation}
-     * @param args   arguments of the method
+     * @param args arguments of the method
      * @return a {@link Request} object
      */
     Request<?> buildRequest(Method method, Object[] args) {
@@ -199,8 +199,8 @@ class ApiClientHandler implements InvocationHandler {
      * Process an argument annotated with {@link Parameter}.
      *
      * @param request request to be set
-     * @param p       annotation
-     * @param arg     argument
+     * @param p annotation
+     * @param arg argument
      */
     void processParameter(Request<?> request, Parameter p, Object arg) {
         String name = p.name();
@@ -234,7 +234,7 @@ class ApiClientHandler implements InvocationHandler {
      * none of GET, POST, PUT, DELETE, and HEAD, then it will be tunneled via
      * X-HTTP-Method-Override. Note that not all servers support this header.
      *
-     * @param request    request to be set
+     * @param request request to be set
      * @param httpMethod given http method
      * @param hasContent indicate whether the request has content body
      */
@@ -256,7 +256,7 @@ class ApiClientHandler implements InvocationHandler {
      * Converts response to method's declared returned object
      *
      * @param response http response
-     * @param method   method
+     * @param method method
      * @return object of method's declared returned type
      * @throws Throwable
      */

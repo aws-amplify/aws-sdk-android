@@ -115,7 +115,7 @@ public class ApiClientFactory {
         ApiClientHandler handler = getHandler(endpoint, apiName);
         Object proxy = Proxy.newProxyInstance(apiClass.getClassLoader(),
                 new Class<?>[]{
-                        apiClass
+                    apiClass
                 }, handler);
         return apiClass.cast(proxy);
     }
@@ -164,7 +164,7 @@ public class ApiClientFactory {
      * Gets signer.
      *
      * @param serviceName service name
-     * @param region      region
+     * @param region region
      * @return signer
      */
     Signer getSigner(String region) {
