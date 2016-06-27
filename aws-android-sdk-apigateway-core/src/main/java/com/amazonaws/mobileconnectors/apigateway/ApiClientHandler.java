@@ -66,7 +66,7 @@ class ApiClientHandler implements InvocationHandler {
     private final HttpRequestFactory requestFactory;
     private final ClientConfiguration clientConfiguration;
 
-    ApiClientHandler(String endpoint, String apiName,
+    public ApiClientHandler(String endpoint, String apiName,
             Signer signer, AWSCredentialsProvider provider, String apiKey) {
         this.endpoint = endpoint;
         this.apiName = apiName;
