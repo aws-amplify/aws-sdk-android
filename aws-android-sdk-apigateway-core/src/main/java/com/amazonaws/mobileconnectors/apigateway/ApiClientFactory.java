@@ -15,6 +15,7 @@
 
 package com.amazonaws.mobileconnectors.apigateway;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWS4Signer;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.Signer;
@@ -38,6 +39,7 @@ public class ApiClientFactory {
     private String apiKey;
     private String regionOverride;
     private AWSCredentialsProvider provider;
+    private ClientConfiguration clientConfiguration;
 
     /**
      * Sets the endpoint of the APIs.
@@ -70,6 +72,17 @@ public class ApiClientFactory {
      */
     public ApiClientFactory region(String region) {
         this.regionOverride = region;
+        return this;
+    }
+
+    /**
+     * Specify the client configuration to use with this factory
+     *
+     * @param clientConfiguration Configuration to use
+     * @return the factory itself for chaining
+     */
+    public ApiClientFactory clientConfiguration(ClientConfiguration clientConfiguration) {
+        this.clientConfiguration = clientConfiguration;
         return this;
     }
 
@@ -110,15 +123,17 @@ public class ApiClientFactory {
     /**
      * Gets an invocation handler for the given API.
      *
-     * @param apiClass API class
+     * @param endpoint Request endpoint
+     * @param apiName API class name
      * @return an invocation handler
      */
     ApiClientHandler getHandler(String endpoint, String apiName) {
         Signer signer = provider == null ? null : getSigner(getRegion(endpoint));
 
-        ApiClientHandler handler = new ApiClientHandler(
-                endpoint, apiName, signer, provider, apiKey);
-        return handler;
+        // Ensure we always pass a configuration to the handler
+        ClientConfiguration configuration = (clientConfiguration == null) ? new ClientConfiguration() : clientConfiguration;
+
+        return new ApiClientHandler(endpoint, apiName, signer, provider, apiKey, configuration);
     }
 
     /**
