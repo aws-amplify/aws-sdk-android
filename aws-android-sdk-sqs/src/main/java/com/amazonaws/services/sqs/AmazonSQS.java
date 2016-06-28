@@ -35,44 +35,68 @@ import com.amazonaws.services.sqs.model.*;
  * </p>
  * <p>
  * Helpful Links:
+ * </p>
+ * 
  * <ul>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://queue.amazonaws.com/doc/2012-11-05/QueueService.wsdl"> Current WSDL (2012-11-05) </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/MakingRequestsArticle.html"> Making API Requests </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://aws.amazon.com/sqs/"> Amazon SQS product page </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html"> Using Amazon SQS Message Attributes </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"> Using Amazon SQS Dead Letter Queues </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sqs_region"> Regions and Endpoints </a>
+ * 
+ * </p>
  * </li>
  * 
  * </ul>
- * 
- * </p>
  * <p>
  * We also provide SDKs that enable you to access Amazon SQS from your
  * preferred programming language. The SDKs contain functionality that
  * automatically takes care of tasks such as:
  * </p>
- * <p>
  * 
  * <ul>
- * <li>Cryptographically signing your service requests</li>
- * <li>Retrying requests</li>
- * <li>Handling error responses</li>
+ * <li> <p>
+ * Cryptographically signing your service requests
+ * </p>
+ * </li>
+ * <li> <p>
+ * Retrying requests
+ * </p>
+ * </li>
+ * <li> <p>
+ * Handling error responses
+ * </p>
+ * </li>
  * 
  * </ul>
- * 
- * </p>
  * <p>
  * For a list of available SDKs, go to
  * <a href="http://aws.amazon.com/tools/"> Tools for Amazon Web Services </a>
@@ -147,13 +171,13 @@ public interface AmazonSQS {
      * <code>ChangeMessageVisibilityBatch</code> action.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>Because the batch request can result in a
+     * <b>IMPORTANT:</b> Because the batch request can result in a
      * combination of successful and unsuccessful actions, you should check
      * for batch errors even when the call returns an HTTP status code of
      * 200.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -200,12 +224,14 @@ public interface AmazonSQS {
      * </p>
      * <p>
      * For example, let's say you have a message and its default message
-     * visibility timeout is 30 minutes. You could call
-     * <code>ChangeMessageVisiblity</code> with a value of two hours and the
-     * effective timeout would be two hours and 30 minutes. When that time
-     * comes near you could again extend the time out by calling
-     * ChangeMessageVisiblity, but this time the maximum allowed timeout
-     * would be 9 hours and 30 minutes.
+     * visibility timeout is 5 minutes. After 3 minutes, you call
+     * <code>ChangeMessageVisiblity</code> with a timeout of 10 minutes. At
+     * that time, the timeout for the message would be extended by 10 minutes
+     * beyond the time of the ChangeMessageVisibility call. This results in a
+     * total visibility timeout of 13 minutes. You can continue to call
+     * ChangeMessageVisibility to extend the visibility timeout to a maximum
+     * of 12 hours. If you try to extend beyond 12 hours, the request will be
+     * rejected.
      * </p>
      * <p>
      * <b>NOTE:</b> There is a 120,000 limit for the number of inflight
@@ -218,13 +244,13 @@ public interface AmazonSQS {
      * queues you use to process the messages.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>If you attempt to set the VisibilityTimeout to an
+     * <b>IMPORTANT:</b> If you attempt to set the VisibilityTimeout to an
      * amount more than the maximum time left, Amazon SQS returns an error.
      * It will not automatically recalculate and increase the timeout to the
      * maximum time remaining.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>Unlike with a queue, when you change the visibility
+     * <b>IMPORTANT:</b> Unlike with a queue, when you change the visibility
      * timeout for a specific message, that timeout value is applied
      * immediately but is not saved in memory for that message. If you don't
      * delete a message after it is received, the visibility timeout for the
@@ -265,8 +291,7 @@ public interface AmazonSQS {
      * <p>
      * You may pass one or more attributes in the request. If you do not
      * provide a value for any attribute, the queue will have the default
-     * value for that attribute. Permitted attributes are the same that can
-     * be set using SetQueueAttributes.
+     * value for that attribute.
      * </p>
      * <p>
      * <b>NOTE:</b> Use GetQueueUrl to get a queue's URL. GetQueueUrl
@@ -280,7 +305,7 @@ public interface AmazonSQS {
      * an existing queue, <code>CreateQueue</code> returns an error.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -328,8 +353,8 @@ public interface AmazonSQS {
      * entry, the default for the queue is used.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>The following list shows the characters (in Unicode)
-     * that are allowed in your message, according to the W3C XML
+     * <b>IMPORTANT:</b> The following list shows the characters (in
+     * Unicode) that are allowed in your message, according to the W3C XML
      * specification. For more information, go to
      * http://www.faqs.org/rfcs/rfc1321.html. If you send any characters that
      * are not included in the list, your request will be rejected. #x9 | #xA
@@ -342,7 +367,7 @@ public interface AmazonSQS {
      * 200.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -387,7 +412,7 @@ public interface AmazonSQS {
      * minutes.
      * </p>
      * <p>
-     * <b>NOTE:</b>Going forward, new attributes might be added. If you are
+     * <b>NOTE:</b> Going forward, new attributes might be added. If you are
      * writing code that calls this action, we recommend that you structure
      * your code so that it can handle new attributes gracefully.
      * </p>
@@ -430,7 +455,7 @@ public interface AmazonSQS {
      * Using The Access Policy Language in the Amazon SQS Developer Guide.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -532,7 +557,7 @@ public interface AmazonSQS {
      * 200.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -736,7 +761,7 @@ public interface AmazonSQS {
      * Deletes the messages in a queue specified by the <b>queue URL</b> .
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>When you use the PurgeQueue API, the deleted
+     * <b>IMPORTANT:</b> When you use the PurgeQueue API, the deleted
      * messages in the queue cannot be retrieved.
      * </p>
      * <p>
@@ -768,59 +793,10 @@ public interface AmazonSQS {
 
     /**
      * <p>
-     * Gets attributes for the specified queue. The following attributes are
-     * supported:
-     * <ul>
-     * <li> <code>All</code> - returns all values.</li>
-     * <li> <code>ApproximateNumberOfMessages</code> - returns the
-     * approximate number of visible messages in a queue. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"> Resources Required to Process Messages </a>
-     * in the <i>Amazon SQS Developer Guide</i> .</li>
-     * <li> <code>ApproximateNumberOfMessagesNotVisible</code> - returns the
-     * approximate number of messages that are not timed-out and not deleted.
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"> Resources Required to Process Messages </a>
-     * in the <i>Amazon SQS Developer Guide</i> .</li>
-     * <li> <code>VisibilityTimeout</code> - returns the visibility timeout
-     * for the queue. For more information about visibility timeout, see
-     * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"> Visibility Timeout </a>
-     * in the <i>Amazon SQS Developer Guide</i> .</li>
-     * <li> <code>CreatedTimestamp</code> - returns the time when the queue
-     * was created (epoch time in seconds).</li>
-     * <li> <code>LastModifiedTimestamp</code> - returns the time when the
-     * queue was last changed (epoch time in seconds).</li>
-     * <li> <code>Policy</code> - returns the queue's policy.</li>
-     * <li> <code>MaximumMessageSize</code> - returns the limit of how many
-     * bytes a message can contain before Amazon SQS rejects it.</li>
-     * <li> <code>MessageRetentionPeriod</code> - returns the number of
-     * seconds Amazon SQS retains a message.</li>
-     * <li> <code>QueueArn</code> - returns the queue's Amazon resource name
-     * (ARN).</li>
-     * <li> <code>ApproximateNumberOfMessagesDelayed</code> - returns the
-     * approximate number of messages that are pending to be added to the
-     * queue.</li>
-     * <li> <code>DelaySeconds</code> - returns the default delay on the
-     * queue in seconds.</li>
-     * <li> <code>ReceiveMessageWaitTimeSeconds</code> - returns the time
-     * for which a ReceiveMessage call will wait for a message to
-     * arrive.</li>
-     * <li> <code>RedrivePolicy</code> - returns the parameters for dead
-     * letter queue functionality of the source queue. For more information
-     * about RedrivePolicy and dead letter queues, see
-     * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"> Using Amazon SQS Dead Letter Queues </a>
-     * in the <i>Amazon SQS Developer Guide</i> .</li>
-     * 
-     * </ul>
-     * 
+     * Gets attributes for the specified queue.
      * </p>
      * <p>
-     * <b>NOTE:</b>Going forward, new attributes might be added. If you are
-     * writing code that calls this action, we recommend that you structure
-     * your code so that it can handle new attributes gracefully.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -989,13 +965,13 @@ public interface AmazonSQS {
      * <code>ChangeMessageVisibilityBatch</code> action.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>Because the batch request can result in a
+     * <b>IMPORTANT:</b> Because the batch request can result in a
      * combination of successful and unsuccessful actions, you should check
      * for batch errors even when the call returns an HTTP status code of
      * 200.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -1008,6 +984,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param entries A list of receipt handles of the messages for which the
      * visibility timeout must be changed.
      * 
@@ -1042,12 +1019,14 @@ public interface AmazonSQS {
      * </p>
      * <p>
      * For example, let's say you have a message and its default message
-     * visibility timeout is 30 minutes. You could call
-     * <code>ChangeMessageVisiblity</code> with a value of two hours and the
-     * effective timeout would be two hours and 30 minutes. When that time
-     * comes near you could again extend the time out by calling
-     * ChangeMessageVisiblity, but this time the maximum allowed timeout
-     * would be 9 hours and 30 minutes.
+     * visibility timeout is 5 minutes. After 3 minutes, you call
+     * <code>ChangeMessageVisiblity</code> with a timeout of 10 minutes. At
+     * that time, the timeout for the message would be extended by 10 minutes
+     * beyond the time of the ChangeMessageVisibility call. This results in a
+     * total visibility timeout of 13 minutes. You can continue to call
+     * ChangeMessageVisibility to extend the visibility timeout to a maximum
+     * of 12 hours. If you try to extend beyond 12 hours, the request will be
+     * rejected.
      * </p>
      * <p>
      * <b>NOTE:</b> There is a 120,000 limit for the number of inflight
@@ -1060,13 +1039,13 @@ public interface AmazonSQS {
      * queues you use to process the messages.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>If you attempt to set the VisibilityTimeout to an
+     * <b>IMPORTANT:</b> If you attempt to set the VisibilityTimeout to an
      * amount more than the maximum time left, Amazon SQS returns an error.
      * It will not automatically recalculate and increase the timeout to the
      * maximum time remaining.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>Unlike with a queue, when you change the visibility
+     * <b>IMPORTANT:</b> Unlike with a queue, when you change the visibility
      * timeout for a specific message, that timeout value is applied
      * immediately but is not saved in memory for that message. If you don't
      * delete a message after it is received, the visibility timeout for the
@@ -1075,6 +1054,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param receiptHandle The receipt handle associated with the message
      * whose visibility timeout should be changed. This parameter is returned
      * by the <a>ReceiveMessage</a> action.
@@ -1112,8 +1092,7 @@ public interface AmazonSQS {
      * <p>
      * You may pass one or more attributes in the request. If you do not
      * provide a value for any attribute, the queue will have the default
-     * value for that attribute. Permitted attributes are the same that can
-     * be set using SetQueueAttributes.
+     * value for that attribute.
      * </p>
      * <p>
      * <b>NOTE:</b> Use GetQueueUrl to get a queue's URL. GetQueueUrl
@@ -1127,7 +1106,7 @@ public interface AmazonSQS {
      * an existing queue, <code>CreateQueue</code> returns an error.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -1139,7 +1118,8 @@ public interface AmazonSQS {
      * <code>&Attribute.2=that</code>
      * </p>
      * 
-     * @param queueName The name for the queue to be created.
+     * @param queueName The name for the queue to be created. <p>Queue names
+     * are case-sensitive.
      * 
      * @return The response from the CreateQueue service method, as returned
      *         by AmazonSQS.
@@ -1174,8 +1154,8 @@ public interface AmazonSQS {
      * entry, the default for the queue is used.
      * </p>
      * <p>
-     * <b>IMPORTANT:</b>The following list shows the characters (in Unicode)
-     * that are allowed in your message, according to the W3C XML
+     * <b>IMPORTANT:</b> The following list shows the characters (in
+     * Unicode) that are allowed in your message, according to the W3C XML
      * specification. For more information, go to
      * http://www.faqs.org/rfcs/rfc1321.html. If you send any characters that
      * are not included in the list, your request will be rejected. #x9 | #xA
@@ -1188,7 +1168,7 @@ public interface AmazonSQS {
      * 200.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -1201,6 +1181,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param entries A list of <a>SendMessageBatchRequestEntry</a> items.
      * 
      * @return The response from the SendMessageBatch service method, as
@@ -1233,40 +1214,47 @@ public interface AmazonSQS {
      * minutes.
      * </p>
      * <p>
-     * <b>NOTE:</b>Going forward, new attributes might be added. If you are
+     * <b>NOTE:</b> Going forward, new attributes might be added. If you are
      * writing code that calls this action, we recommend that you structure
      * your code so that it can handle new attributes gracefully.
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param attributes A map of attributes to set. <p>The following lists
      * the names, descriptions, and values of the special request parameters
-     * the <code>SetQueueAttributes</code> action uses: <p> <ul>
-     * <li><code>DelaySeconds</code> - The time in seconds that the delivery
-     * of all messages in the queue will be delayed. An integer from 0 to 900
-     * (15 minutes). The default for this attribute is 0 (zero).</li>
-     * <li><code>MaximumMessageSize</code> - The limit of how many bytes a
-     * message can contain before Amazon SQS rejects it. An integer from 1024
-     * bytes (1 KiB) up to 262144 bytes (256 KiB). The default for this
-     * attribute is 262144 (256 KiB).</li>
-     * <li><code>MessageRetentionPeriod</code> - The number of seconds Amazon
-     * SQS retains a message. Integer representing seconds, from 60 (1
+     * the <code>SetQueueAttributes</code> action uses: <ul>
+     * <li><p><code>DelaySeconds</code> - The time in seconds that the
+     * delivery of all messages in the queue will be delayed. An integer from
+     * 0 to 900 (15 minutes). The default for this attribute is 0
+     * (zero).</li> <li><p><code>MaximumMessageSize</code> - The limit of how
+     * many bytes a message can contain before Amazon SQS rejects it. An
+     * integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB). The
+     * default for this attribute is 262144 (256 KiB).</li>
+     * <li><p><code>MessageRetentionPeriod</code> - The number of seconds
+     * Amazon SQS retains a message. Integer representing seconds, from 60 (1
      * minute) to 1209600 (14 days). The default for this attribute is 345600
-     * (4 days).</li> <li><code>Policy</code> - The queue's policy. A valid
-     * AWS policy. For more information about policy structure, see <a
+     * (4 days).</li> <li><p><code>Policy</code> - The queue's policy. A
+     * valid AWS policy. For more information about policy structure, see <a
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/PoliciesOverview.html">Overview
      * of AWS IAM Policies</a> in the <i>Amazon IAM User Guide</i>.</li>
-     * <li><code>ReceiveMessageWaitTimeSeconds</code> - The time for which a
-     * ReceiveMessage call will wait for a message to arrive. An integer from
-     * 0 to 20 (seconds). The default for this attribute is 0. </li>
-     * <li><code>VisibilityTimeout</code> - The visibility timeout for the
+     * <li><p><code>ReceiveMessageWaitTimeSeconds</code> - The time for which
+     * a ReceiveMessage call will wait for a message to arrive. An integer
+     * from 0 to 20 (seconds). The default for this attribute is 0.</li>
+     * <li><p><code>VisibilityTimeout</code> - The visibility timeout for the
      * queue. An integer from 0 to 43200 (12 hours). The default for this
      * attribute is 30. For more information about visibility timeout, see
      * Visibility Timeout in the <i>Amazon SQS Developer Guide</i>.</li>
-     * <li><code>RedrivePolicy</code> - The parameters for dead letter queue
-     * functionality of the source queue. For more information about
+     * <li><p><code>RedrivePolicy</code> - The parameters for dead letter
+     * queue functionality of the source queue. For more information about
      * RedrivePolicy and dead letter queues, see Using Amazon SQS Dead Letter
-     * Queues in the <i>Amazon SQS Developer Guide</i>.</li> </ul>
+     * Queues in the <i>Amazon SQS Developer Guide</i>.</li> </ul> <p>Any
+     * other valid special request parameters that are specified (such as
+     * <code>ApproximateNumberOfMessages</code>,
+     * <code>ApproximateNumberOfMessagesDelayed</code>,
+     * <code>ApproximateNumberOfMessagesNotVisible</code>,
+     * <code>CreatedTimestamp</code>, <code>LastModifiedTimestamp</code>, and
+     * <code>QueueArn</code>) will be ignored.
      * 
      * @return The response from the SetQueueAttributes service method, as
      *         returned by AmazonSQS.
@@ -1304,7 +1292,7 @@ public interface AmazonSQS {
      * Using The Access Policy Language in the Amazon SQS Developer Guide.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -1317,6 +1305,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param label The unique identification of the permission you're
      * setting (e.g., <code>AliceSendMessage</code>). Constraints: Maximum 80
      * characters; alphanumeric characters, hyphens (-), and underscores (_)
@@ -1366,6 +1355,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param label The identification of the permission to remove. This is
      * the label added with the <a>AddPermission</a> action.
      * 
@@ -1402,6 +1392,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param messageBody The message to send. String maximum 256 KB in size.
      * For a list of allowed characters, see the preceding important note.
      * 
@@ -1435,7 +1426,7 @@ public interface AmazonSQS {
      * 200.
      * </p>
      * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -1448,6 +1439,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param entries A list of receipt handles for the messages to be
      * deleted.
      * 
@@ -1480,7 +1472,7 @@ public interface AmazonSQS {
      * 
      * @param queueNamePrefix A string to use for filtering the list results.
      * Only those queues whose name begins with the specified string are
-     * returned.
+     * returned. <p>Queue names are case-sensitive.
      * 
      * @return The response from the ListQueues service method, as returned
      *         by AmazonSQS.
@@ -1526,6 +1518,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param receiptHandle The receipt handle associated with the message to
      * delete.
      * 
@@ -1620,6 +1613,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * 
      * @return The response from the ReceiveMessage service method, as
      *         returned by AmazonSQS.
@@ -1639,59 +1633,10 @@ public interface AmazonSQS {
     
     /**
      * <p>
-     * Gets attributes for the specified queue. The following attributes are
-     * supported:
-     * <ul>
-     * <li> <code>All</code> - returns all values.</li>
-     * <li> <code>ApproximateNumberOfMessages</code> - returns the
-     * approximate number of visible messages in a queue. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"> Resources Required to Process Messages </a>
-     * in the <i>Amazon SQS Developer Guide</i> .</li>
-     * <li> <code>ApproximateNumberOfMessagesNotVisible</code> - returns the
-     * approximate number of messages that are not timed-out and not deleted.
-     * For more information, see
-     * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"> Resources Required to Process Messages </a>
-     * in the <i>Amazon SQS Developer Guide</i> .</li>
-     * <li> <code>VisibilityTimeout</code> - returns the visibility timeout
-     * for the queue. For more information about visibility timeout, see
-     * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"> Visibility Timeout </a>
-     * in the <i>Amazon SQS Developer Guide</i> .</li>
-     * <li> <code>CreatedTimestamp</code> - returns the time when the queue
-     * was created (epoch time in seconds).</li>
-     * <li> <code>LastModifiedTimestamp</code> - returns the time when the
-     * queue was last changed (epoch time in seconds).</li>
-     * <li> <code>Policy</code> - returns the queue's policy.</li>
-     * <li> <code>MaximumMessageSize</code> - returns the limit of how many
-     * bytes a message can contain before Amazon SQS rejects it.</li>
-     * <li> <code>MessageRetentionPeriod</code> - returns the number of
-     * seconds Amazon SQS retains a message.</li>
-     * <li> <code>QueueArn</code> - returns the queue's Amazon resource name
-     * (ARN).</li>
-     * <li> <code>ApproximateNumberOfMessagesDelayed</code> - returns the
-     * approximate number of messages that are pending to be added to the
-     * queue.</li>
-     * <li> <code>DelaySeconds</code> - returns the default delay on the
-     * queue in seconds.</li>
-     * <li> <code>ReceiveMessageWaitTimeSeconds</code> - returns the time
-     * for which a ReceiveMessage call will wait for a message to
-     * arrive.</li>
-     * <li> <code>RedrivePolicy</code> - returns the parameters for dead
-     * letter queue functionality of the source queue. For more information
-     * about RedrivePolicy and dead letter queues, see
-     * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"> Using Amazon SQS Dead Letter Queues </a>
-     * in the <i>Amazon SQS Developer Guide</i> .</li>
-     * 
-     * </ul>
-     * 
+     * Gets attributes for the specified queue.
      * </p>
      * <p>
-     * <b>NOTE:</b>Going forward, new attributes might be added. If you are
-     * writing code that calls this action, we recommend that you structure
-     * your code so that it can handle new attributes gracefully.
-     * </p>
-     * <p>
-     * <b>NOTE:</b>Some API actions take lists of parameters. These lists
+     * <b>NOTE:</b> Some API actions take lists of parameters. These lists
      * are specified using the param.n notation. Values of n are integers
      * starting from 1. For example, a parameter list with two elements looks
      * like this:
@@ -1704,8 +1649,53 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param attributeNames A list of attributes to retrieve information
-     * for.
+     * for. The following attributes are supported: <ul>
+     * <li><p><code>All</code> - returns all values.</li>
+     * <li><p><code>ApproximateNumberOfMessages</code> - returns the
+     * approximate number of visible messages in a queue. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html">Resources
+     * Required to Process Messages</a> in the <i>Amazon SQS Developer
+     * Guide</i>.</li>
+     * <li><p><code>ApproximateNumberOfMessagesNotVisible</code> - returns
+     * the approximate number of messages that are not timed-out and not
+     * deleted. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html">Resources
+     * Required to Process Messages</a> in the <i>Amazon SQS Developer
+     * Guide</i>.</li> <li><p><code>VisibilityTimeout</code> - returns the
+     * visibility timeout for the queue. For more information about
+     * visibility timeout, see <a
+     * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html">Visibility
+     * Timeout</a> in the <i>Amazon SQS Developer Guide</i>.</li>
+     * <li><p><code>CreatedTimestamp</code> - returns the time when the queue
+     * was created (epoch time in seconds).</li>
+     * <li><p><code>LastModifiedTimestamp</code> - returns the time when the
+     * queue was last changed (epoch time in seconds).</li>
+     * <li><p><code>Policy</code> - returns the queue's policy.</li>
+     * <li><p><code>MaximumMessageSize</code> - returns the limit of how many
+     * bytes a message can contain before Amazon SQS rejects it.</li>
+     * <li><p><code>MessageRetentionPeriod</code> - returns the number of
+     * seconds Amazon SQS retains a message.</li>
+     * <li><p><code>QueueArn</code> - returns the queue's Amazon resource
+     * name (ARN).</li>
+     * <li><p><code>ApproximateNumberOfMessagesDelayed</code> - returns the
+     * approximate number of messages that are pending to be added to the
+     * queue.</li> <li><p><code>DelaySeconds</code> - returns the default
+     * delay on the queue in seconds.</li>
+     * <li><p><code>ReceiveMessageWaitTimeSeconds</code> - returns the time
+     * for which a ReceiveMessage call will wait for a message to
+     * arrive.</li> <li><p><code>RedrivePolicy</code> - returns the
+     * parameters for dead letter queue functionality of the source queue.
+     * For more information about RedrivePolicy and dead letter queues, see
+     * <a
+     * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html">Using
+     * Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
+     * Guide</i>.</li> </ul> <note><p>Going forward, new attributes might be
+     * added. If you are writing code that calls this action, we recommend
+     * that you structure your code so that it can handle new attributes
+     * gracefully.</note>
      * 
      * @return The response from the GetQueueAttributes service method, as
      *         returned by AmazonSQS.
@@ -1740,7 +1730,7 @@ public interface AmazonSQS {
      * 
      * @param queueName The name of the queue whose URL must be fetched.
      * Maximum 80 characters; alphanumeric characters, hyphens (-), and
-     * underscores (_) are allowed.
+     * underscores (_) are allowed. <p>Queue names are case-sensitive.
      * 
      * @return The response from the GetQueueUrl service method, as returned
      *         by AmazonSQS.
@@ -1784,6 +1774,7 @@ public interface AmazonSQS {
      * </p>
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * 
      * @return The response from the DeleteQueue service method, as returned
      *         by AmazonSQS.

@@ -57,6 +57,21 @@ public class PublishRequestMarshaller implements Marshaller<Request<PublishReque
             request.addParameter("MessageStructure", StringUtils.fromString(publishRequest.getMessageStructure()));
         }
         if (publishRequest != null) {
+            if (publishRequest.getAttributes() != null) {
+                int attributesListIndex = 1;
+                for (Map.Entry<String, String> attributesListValue : publishRequest.getAttributes().entrySet()) {
+
+                    if (attributesListValue.getKey() != null) {
+                        request.addParameter("Attributes.entry." + attributesListIndex + ".key", StringUtils.fromString(attributesListValue.getKey()));
+                    }
+                    if (attributesListValue.getValue() != null) {
+                        request.addParameter("Attributes.entry." + attributesListIndex + ".value", StringUtils.fromString(attributesListValue.getValue()));
+                    }
+                    ++attributesListIndex;
+                }
+            }
+        }
+        if (publishRequest != null) {
             if (publishRequest.getMessageAttributes() != null) {
                 int messageAttributesListIndex = 1;
                 for (Map.Entry<String, MessageAttributeValue> messageAttributesListValue : publishRequest.getMessageAttributes().entrySet()) {

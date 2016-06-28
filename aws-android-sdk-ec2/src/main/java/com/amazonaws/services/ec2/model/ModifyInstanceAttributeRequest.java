@@ -113,7 +113,8 @@ public class ModifyInstanceAttributeRequest extends AmazonWebServiceRequest impl
     private String ramdisk;
 
     /**
-     * Changes the instance's user data to the specified value.
+     * Changes the instance's user data to the specified base64-encoded
+     * value. For command line tools, base64 encoding is performed for you.
      */
     private String userData;
 
@@ -771,29 +772,35 @@ public class ModifyInstanceAttributeRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Changes the instance's user data to the specified value.
+     * Changes the instance's user data to the specified base64-encoded
+     * value. For command line tools, base64 encoding is performed for you.
      *
-     * @return Changes the instance's user data to the specified value.
+     * @return Changes the instance's user data to the specified base64-encoded
+     *         value. For command line tools, base64 encoding is performed for you.
      */
     public String getUserData() {
         return userData;
     }
     
     /**
-     * Changes the instance's user data to the specified value.
+     * Changes the instance's user data to the specified base64-encoded
+     * value. For command line tools, base64 encoding is performed for you.
      *
-     * @param userData Changes the instance's user data to the specified value.
+     * @param userData Changes the instance's user data to the specified base64-encoded
+     *         value. For command line tools, base64 encoding is performed for you.
      */
     public void setUserData(String userData) {
         this.userData = userData;
     }
     
     /**
-     * Changes the instance's user data to the specified value.
+     * Changes the instance's user data to the specified base64-encoded
+     * value. For command line tools, base64 encoding is performed for you.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param userData Changes the instance's user data to the specified value.
+     * @param userData Changes the instance's user data to the specified base64-encoded
+     *         value. For command line tools, base64 encoding is performed for you.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -72,18 +72,19 @@ public class DescribeImagesRequest extends AmazonWebServiceRequest implements Se
      * <p><code>block-device-mapping.volume-size</code> - The volume size of
      * the EBS volume, in GiB. </li> <li>
      * <p><code>block-device-mapping.volume-type</code> - The volume type of
-     * the EBS volume (<code>gp2</code> | <code>standard</code> |
-     * <code>io1</code>). </li> <li> <p><code>description</code> - The
-     * description of the image (provided during image creation). </li> <li>
-     * <p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image. </li> <li> <p><code>image-type</code> - The image type
-     * (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).
-     * </li> <li> <p><code>is-public</code> - A Boolean that indicates
-     * whether the image is public. </li> <li> <p><code>kernel-id</code> -
-     * The kernel ID. </li> <li> <p><code>manifest-location</code> - The
-     * location of the image manifest. </li> <li> <p><code>name</code> - The
-     * name of the AMI (provided during image creation). </li> <li>
+     * the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1
+     * </code>| <code>sc1</code> | <code>standard</code>). </li> <li>
+     * <p><code>description</code> - The description of the image (provided
+     * during image creation). </li> <li> <p><code>hypervisor</code> - The
+     * hypervisor type (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>image-id</code> - The ID of the image. </li> <li>
+     * <p><code>image-type</code> - The image type (<code>machine</code> |
+     * <code>kernel</code> | <code>ramdisk</code>). </li> <li>
+     * <p><code>is-public</code> - A Boolean that indicates whether the image
+     * is public. </li> <li> <p><code>kernel-id</code> - The kernel ID. </li>
+     * <li> <p><code>manifest-location</code> - The location of the image
+     * manifest. </li> <li> <p><code>name</code> - The name of the AMI
+     * (provided during image creation). </li> <li>
      * <p><code>owner-alias</code> - The AWS account alias (for example,
      * <code>amazon</code>). </li> <li> <p><code>owner-id</code> - The AWS
      * account ID of the image owner. </li> <li> <p><code>platform</code> -
@@ -392,18 +393,19 @@ public class DescribeImagesRequest extends AmazonWebServiceRequest implements Se
      * <p><code>block-device-mapping.volume-size</code> - The volume size of
      * the EBS volume, in GiB. </li> <li>
      * <p><code>block-device-mapping.volume-type</code> - The volume type of
-     * the EBS volume (<code>gp2</code> | <code>standard</code> |
-     * <code>io1</code>). </li> <li> <p><code>description</code> - The
-     * description of the image (provided during image creation). </li> <li>
-     * <p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image. </li> <li> <p><code>image-type</code> - The image type
-     * (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).
-     * </li> <li> <p><code>is-public</code> - A Boolean that indicates
-     * whether the image is public. </li> <li> <p><code>kernel-id</code> -
-     * The kernel ID. </li> <li> <p><code>manifest-location</code> - The
-     * location of the image manifest. </li> <li> <p><code>name</code> - The
-     * name of the AMI (provided during image creation). </li> <li>
+     * the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1
+     * </code>| <code>sc1</code> | <code>standard</code>). </li> <li>
+     * <p><code>description</code> - The description of the image (provided
+     * during image creation). </li> <li> <p><code>hypervisor</code> - The
+     * hypervisor type (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>image-id</code> - The ID of the image. </li> <li>
+     * <p><code>image-type</code> - The image type (<code>machine</code> |
+     * <code>kernel</code> | <code>ramdisk</code>). </li> <li>
+     * <p><code>is-public</code> - A Boolean that indicates whether the image
+     * is public. </li> <li> <p><code>kernel-id</code> - The kernel ID. </li>
+     * <li> <p><code>manifest-location</code> - The location of the image
+     * manifest. </li> <li> <p><code>name</code> - The name of the AMI
+     * (provided during image creation). </li> <li>
      * <p><code>owner-alias</code> - The AWS account alias (for example,
      * <code>amazon</code>). </li> <li> <p><code>owner-id</code> - The AWS
      * account ID of the image owner. </li> <li> <p><code>platform</code> -
@@ -449,18 +451,19 @@ public class DescribeImagesRequest extends AmazonWebServiceRequest implements Se
      *         <p><code>block-device-mapping.volume-size</code> - The volume size of
      *         the EBS volume, in GiB. </li> <li>
      *         <p><code>block-device-mapping.volume-type</code> - The volume type of
-     *         the EBS volume (<code>gp2</code> | <code>standard</code> |
-     *         <code>io1</code>). </li> <li> <p><code>description</code> - The
-     *         description of the image (provided during image creation). </li> <li>
-     *         <p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> |
-     *         <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     *         image. </li> <li> <p><code>image-type</code> - The image type
-     *         (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).
-     *         </li> <li> <p><code>is-public</code> - A Boolean that indicates
-     *         whether the image is public. </li> <li> <p><code>kernel-id</code> -
-     *         The kernel ID. </li> <li> <p><code>manifest-location</code> - The
-     *         location of the image manifest. </li> <li> <p><code>name</code> - The
-     *         name of the AMI (provided during image creation). </li> <li>
+     *         the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1
+     *         </code>| <code>sc1</code> | <code>standard</code>). </li> <li>
+     *         <p><code>description</code> - The description of the image (provided
+     *         during image creation). </li> <li> <p><code>hypervisor</code> - The
+     *         hypervisor type (<code>ovm</code> | <code>xen</code>). </li> <li>
+     *         <p><code>image-id</code> - The ID of the image. </li> <li>
+     *         <p><code>image-type</code> - The image type (<code>machine</code> |
+     *         <code>kernel</code> | <code>ramdisk</code>). </li> <li>
+     *         <p><code>is-public</code> - A Boolean that indicates whether the image
+     *         is public. </li> <li> <p><code>kernel-id</code> - The kernel ID. </li>
+     *         <li> <p><code>manifest-location</code> - The location of the image
+     *         manifest. </li> <li> <p><code>name</code> - The name of the AMI
+     *         (provided during image creation). </li> <li>
      *         <p><code>owner-alias</code> - The AWS account alias (for example,
      *         <code>amazon</code>). </li> <li> <p><code>owner-id</code> - The AWS
      *         account ID of the image owner. </li> <li> <p><code>platform</code> -
@@ -515,18 +518,19 @@ public class DescribeImagesRequest extends AmazonWebServiceRequest implements Se
      * <p><code>block-device-mapping.volume-size</code> - The volume size of
      * the EBS volume, in GiB. </li> <li>
      * <p><code>block-device-mapping.volume-type</code> - The volume type of
-     * the EBS volume (<code>gp2</code> | <code>standard</code> |
-     * <code>io1</code>). </li> <li> <p><code>description</code> - The
-     * description of the image (provided during image creation). </li> <li>
-     * <p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image. </li> <li> <p><code>image-type</code> - The image type
-     * (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).
-     * </li> <li> <p><code>is-public</code> - A Boolean that indicates
-     * whether the image is public. </li> <li> <p><code>kernel-id</code> -
-     * The kernel ID. </li> <li> <p><code>manifest-location</code> - The
-     * location of the image manifest. </li> <li> <p><code>name</code> - The
-     * name of the AMI (provided during image creation). </li> <li>
+     * the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1
+     * </code>| <code>sc1</code> | <code>standard</code>). </li> <li>
+     * <p><code>description</code> - The description of the image (provided
+     * during image creation). </li> <li> <p><code>hypervisor</code> - The
+     * hypervisor type (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>image-id</code> - The ID of the image. </li> <li>
+     * <p><code>image-type</code> - The image type (<code>machine</code> |
+     * <code>kernel</code> | <code>ramdisk</code>). </li> <li>
+     * <p><code>is-public</code> - A Boolean that indicates whether the image
+     * is public. </li> <li> <p><code>kernel-id</code> - The kernel ID. </li>
+     * <li> <p><code>manifest-location</code> - The location of the image
+     * manifest. </li> <li> <p><code>name</code> - The name of the AMI
+     * (provided during image creation). </li> <li>
      * <p><code>owner-alias</code> - The AWS account alias (for example,
      * <code>amazon</code>). </li> <li> <p><code>owner-id</code> - The AWS
      * account ID of the image owner. </li> <li> <p><code>platform</code> -
@@ -572,18 +576,19 @@ public class DescribeImagesRequest extends AmazonWebServiceRequest implements Se
      *         <p><code>block-device-mapping.volume-size</code> - The volume size of
      *         the EBS volume, in GiB. </li> <li>
      *         <p><code>block-device-mapping.volume-type</code> - The volume type of
-     *         the EBS volume (<code>gp2</code> | <code>standard</code> |
-     *         <code>io1</code>). </li> <li> <p><code>description</code> - The
-     *         description of the image (provided during image creation). </li> <li>
-     *         <p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> |
-     *         <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     *         image. </li> <li> <p><code>image-type</code> - The image type
-     *         (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).
-     *         </li> <li> <p><code>is-public</code> - A Boolean that indicates
-     *         whether the image is public. </li> <li> <p><code>kernel-id</code> -
-     *         The kernel ID. </li> <li> <p><code>manifest-location</code> - The
-     *         location of the image manifest. </li> <li> <p><code>name</code> - The
-     *         name of the AMI (provided during image creation). </li> <li>
+     *         the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1
+     *         </code>| <code>sc1</code> | <code>standard</code>). </li> <li>
+     *         <p><code>description</code> - The description of the image (provided
+     *         during image creation). </li> <li> <p><code>hypervisor</code> - The
+     *         hypervisor type (<code>ovm</code> | <code>xen</code>). </li> <li>
+     *         <p><code>image-id</code> - The ID of the image. </li> <li>
+     *         <p><code>image-type</code> - The image type (<code>machine</code> |
+     *         <code>kernel</code> | <code>ramdisk</code>). </li> <li>
+     *         <p><code>is-public</code> - A Boolean that indicates whether the image
+     *         is public. </li> <li> <p><code>kernel-id</code> - The kernel ID. </li>
+     *         <li> <p><code>manifest-location</code> - The location of the image
+     *         manifest. </li> <li> <p><code>name</code> - The name of the AMI
+     *         (provided during image creation). </li> <li>
      *         <p><code>owner-alias</code> - The AWS account alias (for example,
      *         <code>amazon</code>). </li> <li> <p><code>owner-id</code> - The AWS
      *         account ID of the image owner. </li> <li> <p><code>platform</code> -
@@ -640,18 +645,19 @@ public class DescribeImagesRequest extends AmazonWebServiceRequest implements Se
      * <p><code>block-device-mapping.volume-size</code> - The volume size of
      * the EBS volume, in GiB. </li> <li>
      * <p><code>block-device-mapping.volume-type</code> - The volume type of
-     * the EBS volume (<code>gp2</code> | <code>standard</code> |
-     * <code>io1</code>). </li> <li> <p><code>description</code> - The
-     * description of the image (provided during image creation). </li> <li>
-     * <p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image. </li> <li> <p><code>image-type</code> - The image type
-     * (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).
-     * </li> <li> <p><code>is-public</code> - A Boolean that indicates
-     * whether the image is public. </li> <li> <p><code>kernel-id</code> -
-     * The kernel ID. </li> <li> <p><code>manifest-location</code> - The
-     * location of the image manifest. </li> <li> <p><code>name</code> - The
-     * name of the AMI (provided during image creation). </li> <li>
+     * the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1
+     * </code>| <code>sc1</code> | <code>standard</code>). </li> <li>
+     * <p><code>description</code> - The description of the image (provided
+     * during image creation). </li> <li> <p><code>hypervisor</code> - The
+     * hypervisor type (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>image-id</code> - The ID of the image. </li> <li>
+     * <p><code>image-type</code> - The image type (<code>machine</code> |
+     * <code>kernel</code> | <code>ramdisk</code>). </li> <li>
+     * <p><code>is-public</code> - A Boolean that indicates whether the image
+     * is public. </li> <li> <p><code>kernel-id</code> - The kernel ID. </li>
+     * <li> <p><code>manifest-location</code> - The location of the image
+     * manifest. </li> <li> <p><code>name</code> - The name of the AMI
+     * (provided during image creation). </li> <li>
      * <p><code>owner-alias</code> - The AWS account alias (for example,
      * <code>amazon</code>). </li> <li> <p><code>owner-id</code> - The AWS
      * account ID of the image owner. </li> <li> <p><code>platform</code> -
@@ -699,18 +705,19 @@ public class DescribeImagesRequest extends AmazonWebServiceRequest implements Se
      *         <p><code>block-device-mapping.volume-size</code> - The volume size of
      *         the EBS volume, in GiB. </li> <li>
      *         <p><code>block-device-mapping.volume-type</code> - The volume type of
-     *         the EBS volume (<code>gp2</code> | <code>standard</code> |
-     *         <code>io1</code>). </li> <li> <p><code>description</code> - The
-     *         description of the image (provided during image creation). </li> <li>
-     *         <p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> |
-     *         <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     *         image. </li> <li> <p><code>image-type</code> - The image type
-     *         (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).
-     *         </li> <li> <p><code>is-public</code> - A Boolean that indicates
-     *         whether the image is public. </li> <li> <p><code>kernel-id</code> -
-     *         The kernel ID. </li> <li> <p><code>manifest-location</code> - The
-     *         location of the image manifest. </li> <li> <p><code>name</code> - The
-     *         name of the AMI (provided during image creation). </li> <li>
+     *         the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1
+     *         </code>| <code>sc1</code> | <code>standard</code>). </li> <li>
+     *         <p><code>description</code> - The description of the image (provided
+     *         during image creation). </li> <li> <p><code>hypervisor</code> - The
+     *         hypervisor type (<code>ovm</code> | <code>xen</code>). </li> <li>
+     *         <p><code>image-id</code> - The ID of the image. </li> <li>
+     *         <p><code>image-type</code> - The image type (<code>machine</code> |
+     *         <code>kernel</code> | <code>ramdisk</code>). </li> <li>
+     *         <p><code>is-public</code> - A Boolean that indicates whether the image
+     *         is public. </li> <li> <p><code>kernel-id</code> - The kernel ID. </li>
+     *         <li> <p><code>manifest-location</code> - The location of the image
+     *         manifest. </li> <li> <p><code>name</code> - The name of the AMI
+     *         (provided during image creation). </li> <li>
      *         <p><code>owner-alias</code> - The AWS account alias (for example,
      *         <code>amazon</code>). </li> <li> <p><code>owner-id</code> - The AWS
      *         account ID of the image owner. </li> <li> <p><code>platform</code> -
@@ -768,18 +775,19 @@ public class DescribeImagesRequest extends AmazonWebServiceRequest implements Se
      * <p><code>block-device-mapping.volume-size</code> - The volume size of
      * the EBS volume, in GiB. </li> <li>
      * <p><code>block-device-mapping.volume-type</code> - The volume type of
-     * the EBS volume (<code>gp2</code> | <code>standard</code> |
-     * <code>io1</code>). </li> <li> <p><code>description</code> - The
-     * description of the image (provided during image creation). </li> <li>
-     * <p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> |
-     * <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     * image. </li> <li> <p><code>image-type</code> - The image type
-     * (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).
-     * </li> <li> <p><code>is-public</code> - A Boolean that indicates
-     * whether the image is public. </li> <li> <p><code>kernel-id</code> -
-     * The kernel ID. </li> <li> <p><code>manifest-location</code> - The
-     * location of the image manifest. </li> <li> <p><code>name</code> - The
-     * name of the AMI (provided during image creation). </li> <li>
+     * the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1
+     * </code>| <code>sc1</code> | <code>standard</code>). </li> <li>
+     * <p><code>description</code> - The description of the image (provided
+     * during image creation). </li> <li> <p><code>hypervisor</code> - The
+     * hypervisor type (<code>ovm</code> | <code>xen</code>). </li> <li>
+     * <p><code>image-id</code> - The ID of the image. </li> <li>
+     * <p><code>image-type</code> - The image type (<code>machine</code> |
+     * <code>kernel</code> | <code>ramdisk</code>). </li> <li>
+     * <p><code>is-public</code> - A Boolean that indicates whether the image
+     * is public. </li> <li> <p><code>kernel-id</code> - The kernel ID. </li>
+     * <li> <p><code>manifest-location</code> - The location of the image
+     * manifest. </li> <li> <p><code>name</code> - The name of the AMI
+     * (provided during image creation). </li> <li>
      * <p><code>owner-alias</code> - The AWS account alias (for example,
      * <code>amazon</code>). </li> <li> <p><code>owner-id</code> - The AWS
      * account ID of the image owner. </li> <li> <p><code>platform</code> -
@@ -827,18 +835,19 @@ public class DescribeImagesRequest extends AmazonWebServiceRequest implements Se
      *         <p><code>block-device-mapping.volume-size</code> - The volume size of
      *         the EBS volume, in GiB. </li> <li>
      *         <p><code>block-device-mapping.volume-type</code> - The volume type of
-     *         the EBS volume (<code>gp2</code> | <code>standard</code> |
-     *         <code>io1</code>). </li> <li> <p><code>description</code> - The
-     *         description of the image (provided during image creation). </li> <li>
-     *         <p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> |
-     *         <code>xen</code>). </li> <li> <p><code>image-id</code> - The ID of the
-     *         image. </li> <li> <p><code>image-type</code> - The image type
-     *         (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).
-     *         </li> <li> <p><code>is-public</code> - A Boolean that indicates
-     *         whether the image is public. </li> <li> <p><code>kernel-id</code> -
-     *         The kernel ID. </li> <li> <p><code>manifest-location</code> - The
-     *         location of the image manifest. </li> <li> <p><code>name</code> - The
-     *         name of the AMI (provided during image creation). </li> <li>
+     *         the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1
+     *         </code>| <code>sc1</code> | <code>standard</code>). </li> <li>
+     *         <p><code>description</code> - The description of the image (provided
+     *         during image creation). </li> <li> <p><code>hypervisor</code> - The
+     *         hypervisor type (<code>ovm</code> | <code>xen</code>). </li> <li>
+     *         <p><code>image-id</code> - The ID of the image. </li> <li>
+     *         <p><code>image-type</code> - The image type (<code>machine</code> |
+     *         <code>kernel</code> | <code>ramdisk</code>). </li> <li>
+     *         <p><code>is-public</code> - A Boolean that indicates whether the image
+     *         is public. </li> <li> <p><code>kernel-id</code> - The kernel ID. </li>
+     *         <li> <p><code>manifest-location</code> - The location of the image
+     *         manifest. </li> <li> <p><code>name</code> - The name of the AMI
+     *         (provided during image creation). </li> <li>
      *         <p><code>owner-alias</code> - The AWS account alias (for example,
      *         <code>amazon</code>). </li> <li> <p><code>owner-id</code> - The AWS
      *         account ID of the image owner. </li> <li> <p><code>platform</code> -

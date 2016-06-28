@@ -103,6 +103,29 @@ public class SpotFleetRequestConfigData implements Serializable {
     private String allocationStrategy;
 
     /**
+     * The number of units fulfilled by this request compared to the set
+     * target capacity.
+     */
+    private Double fulfilledCapacity;
+
+    /**
+     * The type of request. Indicates whether the fleet will only
+     * <code>request</code> the target capacity or also attempt to
+     * <code>maintain</code> it. When you <code>request</code> a certain
+     * target capacity, the fleet will only place the required bids. It will
+     * not attempt to replenish Spot instances if capacity is diminished, nor
+     * will it submit bids in alternative Spot pools if capacity is not
+     * available. When you want to <code>maintain</code> a certain target
+     * capacity, fleet will place the required bids to meet this target
+     * capacity. It will also automatically replenish any interrupted
+     * instances. Default: <code>maintain</code>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>request, maintain
+     */
+    private String type;
+
+    /**
      * A unique, case-sensitive identifier you provide to ensure idempotency
      * of your listings. This helps avoid duplicate listings. For more
      * information, see <a
@@ -727,6 +750,217 @@ public class SpotFleetRequestConfigData implements Serializable {
     }
 
     /**
+     * The number of units fulfilled by this request compared to the set
+     * target capacity.
+     *
+     * @return The number of units fulfilled by this request compared to the set
+     *         target capacity.
+     */
+    public Double getFulfilledCapacity() {
+        return fulfilledCapacity;
+    }
+    
+    /**
+     * The number of units fulfilled by this request compared to the set
+     * target capacity.
+     *
+     * @param fulfilledCapacity The number of units fulfilled by this request compared to the set
+     *         target capacity.
+     */
+    public void setFulfilledCapacity(Double fulfilledCapacity) {
+        this.fulfilledCapacity = fulfilledCapacity;
+    }
+    
+    /**
+     * The number of units fulfilled by this request compared to the set
+     * target capacity.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param fulfilledCapacity The number of units fulfilled by this request compared to the set
+     *         target capacity.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public SpotFleetRequestConfigData withFulfilledCapacity(Double fulfilledCapacity) {
+        this.fulfilledCapacity = fulfilledCapacity;
+        return this;
+    }
+
+    /**
+     * The type of request. Indicates whether the fleet will only
+     * <code>request</code> the target capacity or also attempt to
+     * <code>maintain</code> it. When you <code>request</code> a certain
+     * target capacity, the fleet will only place the required bids. It will
+     * not attempt to replenish Spot instances if capacity is diminished, nor
+     * will it submit bids in alternative Spot pools if capacity is not
+     * available. When you want to <code>maintain</code> a certain target
+     * capacity, fleet will place the required bids to meet this target
+     * capacity. It will also automatically replenish any interrupted
+     * instances. Default: <code>maintain</code>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>request, maintain
+     *
+     * @return The type of request. Indicates whether the fleet will only
+     *         <code>request</code> the target capacity or also attempt to
+     *         <code>maintain</code> it. When you <code>request</code> a certain
+     *         target capacity, the fleet will only place the required bids. It will
+     *         not attempt to replenish Spot instances if capacity is diminished, nor
+     *         will it submit bids in alternative Spot pools if capacity is not
+     *         available. When you want to <code>maintain</code> a certain target
+     *         capacity, fleet will place the required bids to meet this target
+     *         capacity. It will also automatically replenish any interrupted
+     *         instances. Default: <code>maintain</code>.
+     *
+     * @see FleetType
+     */
+    public String getType() {
+        return type;
+    }
+    
+    /**
+     * The type of request. Indicates whether the fleet will only
+     * <code>request</code> the target capacity or also attempt to
+     * <code>maintain</code> it. When you <code>request</code> a certain
+     * target capacity, the fleet will only place the required bids. It will
+     * not attempt to replenish Spot instances if capacity is diminished, nor
+     * will it submit bids in alternative Spot pools if capacity is not
+     * available. When you want to <code>maintain</code> a certain target
+     * capacity, fleet will place the required bids to meet this target
+     * capacity. It will also automatically replenish any interrupted
+     * instances. Default: <code>maintain</code>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>request, maintain
+     *
+     * @param type The type of request. Indicates whether the fleet will only
+     *         <code>request</code> the target capacity or also attempt to
+     *         <code>maintain</code> it. When you <code>request</code> a certain
+     *         target capacity, the fleet will only place the required bids. It will
+     *         not attempt to replenish Spot instances if capacity is diminished, nor
+     *         will it submit bids in alternative Spot pools if capacity is not
+     *         available. When you want to <code>maintain</code> a certain target
+     *         capacity, fleet will place the required bids to meet this target
+     *         capacity. It will also automatically replenish any interrupted
+     *         instances. Default: <code>maintain</code>.
+     *
+     * @see FleetType
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    /**
+     * The type of request. Indicates whether the fleet will only
+     * <code>request</code> the target capacity or also attempt to
+     * <code>maintain</code> it. When you <code>request</code> a certain
+     * target capacity, the fleet will only place the required bids. It will
+     * not attempt to replenish Spot instances if capacity is diminished, nor
+     * will it submit bids in alternative Spot pools if capacity is not
+     * available. When you want to <code>maintain</code> a certain target
+     * capacity, fleet will place the required bids to meet this target
+     * capacity. It will also automatically replenish any interrupted
+     * instances. Default: <code>maintain</code>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>request, maintain
+     *
+     * @param type The type of request. Indicates whether the fleet will only
+     *         <code>request</code> the target capacity or also attempt to
+     *         <code>maintain</code> it. When you <code>request</code> a certain
+     *         target capacity, the fleet will only place the required bids. It will
+     *         not attempt to replenish Spot instances if capacity is diminished, nor
+     *         will it submit bids in alternative Spot pools if capacity is not
+     *         available. When you want to <code>maintain</code> a certain target
+     *         capacity, fleet will place the required bids to meet this target
+     *         capacity. It will also automatically replenish any interrupted
+     *         instances. Default: <code>maintain</code>.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     *
+     * @see FleetType
+     */
+    public SpotFleetRequestConfigData withType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * The type of request. Indicates whether the fleet will only
+     * <code>request</code> the target capacity or also attempt to
+     * <code>maintain</code> it. When you <code>request</code> a certain
+     * target capacity, the fleet will only place the required bids. It will
+     * not attempt to replenish Spot instances if capacity is diminished, nor
+     * will it submit bids in alternative Spot pools if capacity is not
+     * available. When you want to <code>maintain</code> a certain target
+     * capacity, fleet will place the required bids to meet this target
+     * capacity. It will also automatically replenish any interrupted
+     * instances. Default: <code>maintain</code>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>request, maintain
+     *
+     * @param type The type of request. Indicates whether the fleet will only
+     *         <code>request</code> the target capacity or also attempt to
+     *         <code>maintain</code> it. When you <code>request</code> a certain
+     *         target capacity, the fleet will only place the required bids. It will
+     *         not attempt to replenish Spot instances if capacity is diminished, nor
+     *         will it submit bids in alternative Spot pools if capacity is not
+     *         available. When you want to <code>maintain</code> a certain target
+     *         capacity, fleet will place the required bids to meet this target
+     *         capacity. It will also automatically replenish any interrupted
+     *         instances. Default: <code>maintain</code>.
+     *
+     * @see FleetType
+     */
+    public void setType(FleetType type) {
+        this.type = type.toString();
+    }
+    
+    /**
+     * The type of request. Indicates whether the fleet will only
+     * <code>request</code> the target capacity or also attempt to
+     * <code>maintain</code> it. When you <code>request</code> a certain
+     * target capacity, the fleet will only place the required bids. It will
+     * not attempt to replenish Spot instances if capacity is diminished, nor
+     * will it submit bids in alternative Spot pools if capacity is not
+     * available. When you want to <code>maintain</code> a certain target
+     * capacity, fleet will place the required bids to meet this target
+     * capacity. It will also automatically replenish any interrupted
+     * instances. Default: <code>maintain</code>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>request, maintain
+     *
+     * @param type The type of request. Indicates whether the fleet will only
+     *         <code>request</code> the target capacity or also attempt to
+     *         <code>maintain</code> it. When you <code>request</code> a certain
+     *         target capacity, the fleet will only place the required bids. It will
+     *         not attempt to replenish Spot instances if capacity is diminished, nor
+     *         will it submit bids in alternative Spot pools if capacity is not
+     *         available. When you want to <code>maintain</code> a certain target
+     *         capacity, fleet will place the required bids to meet this target
+     *         capacity. It will also automatically replenish any interrupted
+     *         instances. Default: <code>maintain</code>.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     *
+     * @see FleetType
+     */
+    public SpotFleetRequestConfigData withType(FleetType type) {
+        this.type = type.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -747,7 +981,9 @@ public class SpotFleetRequestConfigData implements Serializable {
         if (getIamFleetRole() != null) sb.append("IamFleetRole: " + getIamFleetRole() + ",");
         if (getLaunchSpecifications() != null) sb.append("LaunchSpecifications: " + getLaunchSpecifications() + ",");
         if (getExcessCapacityTerminationPolicy() != null) sb.append("ExcessCapacityTerminationPolicy: " + getExcessCapacityTerminationPolicy() + ",");
-        if (getAllocationStrategy() != null) sb.append("AllocationStrategy: " + getAllocationStrategy() );
+        if (getAllocationStrategy() != null) sb.append("AllocationStrategy: " + getAllocationStrategy() + ",");
+        if (getFulfilledCapacity() != null) sb.append("FulfilledCapacity: " + getFulfilledCapacity() + ",");
+        if (getType() != null) sb.append("Type: " + getType() );
         sb.append("}");
         return sb.toString();
     }
@@ -767,6 +1003,8 @@ public class SpotFleetRequestConfigData implements Serializable {
         hashCode = prime * hashCode + ((getLaunchSpecifications() == null) ? 0 : getLaunchSpecifications().hashCode()); 
         hashCode = prime * hashCode + ((getExcessCapacityTerminationPolicy() == null) ? 0 : getExcessCapacityTerminationPolicy().hashCode()); 
         hashCode = prime * hashCode + ((getAllocationStrategy() == null) ? 0 : getAllocationStrategy().hashCode()); 
+        hashCode = prime * hashCode + ((getFulfilledCapacity() == null) ? 0 : getFulfilledCapacity().hashCode()); 
+        hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode()); 
         return hashCode;
     }
     
@@ -798,6 +1036,10 @@ public class SpotFleetRequestConfigData implements Serializable {
         if (other.getExcessCapacityTerminationPolicy() != null && other.getExcessCapacityTerminationPolicy().equals(this.getExcessCapacityTerminationPolicy()) == false) return false; 
         if (other.getAllocationStrategy() == null ^ this.getAllocationStrategy() == null) return false;
         if (other.getAllocationStrategy() != null && other.getAllocationStrategy().equals(this.getAllocationStrategy()) == false) return false; 
+        if (other.getFulfilledCapacity() == null ^ this.getFulfilledCapacity() == null) return false;
+        if (other.getFulfilledCapacity() != null && other.getFulfilledCapacity().equals(this.getFulfilledCapacity()) == false) return false; 
+        if (other.getType() == null ^ this.getType() == null) return false;
+        if (other.getType() != null && other.getType().equals(this.getType()) == false) return false; 
         return true;
     }
     

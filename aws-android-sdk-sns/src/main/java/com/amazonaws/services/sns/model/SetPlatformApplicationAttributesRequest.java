@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Sets the attributes of the platform application object for the
  * supported push notification services, such as APNS and GCM. For more
  * information, see
- * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
+ * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a> . For information on configuring attributes for message delivery status, see <a href="http://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html"> Using Amazon SNS Application Attributes for Message Delivery Status </a>
  * .
  * </p>
  *
@@ -41,11 +41,11 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * A map of the platform application attributes. Attributes in this map
      * include the following: <ul> <li><code>PlatformCredential</code> -- The
      * credential received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     * APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM,
      * PlatformCredential is "API key". For ADM, PlatformCredential is
      * "client secret".</li> <li><code>PlatformPrincipal</code> -- The
      * principal received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformPrincipal is "SSL certificate". For GCM,
+     * APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM,
      * PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is
      * "client id".</li> <li><code>EventEndpointCreated</code> -- Topic ARN
      * to which EndpointCreated event notifications should be sent.</li>
@@ -56,7 +56,12 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <li><code>EventDeliveryFailure</code> -- Topic ARN to which
      * DeliveryFailure event notifications should be sent upon Direct Publish
      * delivery failure (permanent) to one of the application's
-     * endpoints.</li> </ul>
+     * endpoints.</li> <li><code>SuccessFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>FailureFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>SuccessFeedbackSampleRate</code> -- Sample
+     * rate percentage (0-100) of successfully delivered messages.</li> </ul>
      */
     private java.util.Map<String,String> attributes;
 
@@ -97,11 +102,11 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * A map of the platform application attributes. Attributes in this map
      * include the following: <ul> <li><code>PlatformCredential</code> -- The
      * credential received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     * APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM,
      * PlatformCredential is "API key". For ADM, PlatformCredential is
      * "client secret".</li> <li><code>PlatformPrincipal</code> -- The
      * principal received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformPrincipal is "SSL certificate". For GCM,
+     * APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM,
      * PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is
      * "client id".</li> <li><code>EventEndpointCreated</code> -- Topic ARN
      * to which EndpointCreated event notifications should be sent.</li>
@@ -112,16 +117,21 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <li><code>EventDeliveryFailure</code> -- Topic ARN to which
      * DeliveryFailure event notifications should be sent upon Direct Publish
      * delivery failure (permanent) to one of the application's
-     * endpoints.</li> </ul>
+     * endpoints.</li> <li><code>SuccessFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>FailureFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>SuccessFeedbackSampleRate</code> -- Sample
+     * rate percentage (0-100) of successfully delivered messages.</li> </ul>
      *
      * @return A map of the platform application attributes. Attributes in this map
      *         include the following: <ul> <li><code>PlatformCredential</code> -- The
      *         credential received from the notification service. For
-     *         APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     *         APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM,
      *         PlatformCredential is "API key". For ADM, PlatformCredential is
      *         "client secret".</li> <li><code>PlatformPrincipal</code> -- The
      *         principal received from the notification service. For
-     *         APNS/APNS_SANDBOX, PlatformPrincipal is "SSL certificate". For GCM,
+     *         APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM,
      *         PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is
      *         "client id".</li> <li><code>EventEndpointCreated</code> -- Topic ARN
      *         to which EndpointCreated event notifications should be sent.</li>
@@ -132,7 +142,12 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *         <li><code>EventDeliveryFailure</code> -- Topic ARN to which
      *         DeliveryFailure event notifications should be sent upon Direct Publish
      *         delivery failure (permanent) to one of the application's
-     *         endpoints.</li> </ul>
+     *         endpoints.</li> <li><code>SuccessFeedbackRoleArn</code> -- IAM role
+     *         ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     *         your behalf.</li> <li><code>FailureFeedbackRoleArn</code> -- IAM role
+     *         ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     *         your behalf.</li> <li><code>SuccessFeedbackSampleRate</code> -- Sample
+     *         rate percentage (0-100) of successfully delivered messages.</li> </ul>
      */
     public java.util.Map<String,String> getAttributes() {
         
@@ -146,11 +161,11 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * A map of the platform application attributes. Attributes in this map
      * include the following: <ul> <li><code>PlatformCredential</code> -- The
      * credential received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     * APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM,
      * PlatformCredential is "API key". For ADM, PlatformCredential is
      * "client secret".</li> <li><code>PlatformPrincipal</code> -- The
      * principal received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformPrincipal is "SSL certificate". For GCM,
+     * APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM,
      * PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is
      * "client id".</li> <li><code>EventEndpointCreated</code> -- Topic ARN
      * to which EndpointCreated event notifications should be sent.</li>
@@ -161,16 +176,21 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <li><code>EventDeliveryFailure</code> -- Topic ARN to which
      * DeliveryFailure event notifications should be sent upon Direct Publish
      * delivery failure (permanent) to one of the application's
-     * endpoints.</li> </ul>
+     * endpoints.</li> <li><code>SuccessFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>FailureFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>SuccessFeedbackSampleRate</code> -- Sample
+     * rate percentage (0-100) of successfully delivered messages.</li> </ul>
      *
      * @param attributes A map of the platform application attributes. Attributes in this map
      *         include the following: <ul> <li><code>PlatformCredential</code> -- The
      *         credential received from the notification service. For
-     *         APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     *         APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM,
      *         PlatformCredential is "API key". For ADM, PlatformCredential is
      *         "client secret".</li> <li><code>PlatformPrincipal</code> -- The
      *         principal received from the notification service. For
-     *         APNS/APNS_SANDBOX, PlatformPrincipal is "SSL certificate". For GCM,
+     *         APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM,
      *         PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is
      *         "client id".</li> <li><code>EventEndpointCreated</code> -- Topic ARN
      *         to which EndpointCreated event notifications should be sent.</li>
@@ -181,7 +201,12 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *         <li><code>EventDeliveryFailure</code> -- Topic ARN to which
      *         DeliveryFailure event notifications should be sent upon Direct Publish
      *         delivery failure (permanent) to one of the application's
-     *         endpoints.</li> </ul>
+     *         endpoints.</li> <li><code>SuccessFeedbackRoleArn</code> -- IAM role
+     *         ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     *         your behalf.</li> <li><code>FailureFeedbackRoleArn</code> -- IAM role
+     *         ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     *         your behalf.</li> <li><code>SuccessFeedbackSampleRate</code> -- Sample
+     *         rate percentage (0-100) of successfully delivered messages.</li> </ul>
      */
     public void setAttributes(java.util.Map<String,String> attributes) {
         this.attributes = attributes;
@@ -191,11 +216,11 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * A map of the platform application attributes. Attributes in this map
      * include the following: <ul> <li><code>PlatformCredential</code> -- The
      * credential received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     * APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM,
      * PlatformCredential is "API key". For ADM, PlatformCredential is
      * "client secret".</li> <li><code>PlatformPrincipal</code> -- The
      * principal received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformPrincipal is "SSL certificate". For GCM,
+     * APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM,
      * PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is
      * "client id".</li> <li><code>EventEndpointCreated</code> -- Topic ARN
      * to which EndpointCreated event notifications should be sent.</li>
@@ -206,18 +231,23 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <li><code>EventDeliveryFailure</code> -- Topic ARN to which
      * DeliveryFailure event notifications should be sent upon Direct Publish
      * delivery failure (permanent) to one of the application's
-     * endpoints.</li> </ul>
+     * endpoints.</li> <li><code>SuccessFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>FailureFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>SuccessFeedbackSampleRate</code> -- Sample
+     * rate percentage (0-100) of successfully delivered messages.</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param attributes A map of the platform application attributes. Attributes in this map
      *         include the following: <ul> <li><code>PlatformCredential</code> -- The
      *         credential received from the notification service. For
-     *         APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     *         APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM,
      *         PlatformCredential is "API key". For ADM, PlatformCredential is
      *         "client secret".</li> <li><code>PlatformPrincipal</code> -- The
      *         principal received from the notification service. For
-     *         APNS/APNS_SANDBOX, PlatformPrincipal is "SSL certificate". For GCM,
+     *         APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM,
      *         PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is
      *         "client id".</li> <li><code>EventEndpointCreated</code> -- Topic ARN
      *         to which EndpointCreated event notifications should be sent.</li>
@@ -228,7 +258,12 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *         <li><code>EventDeliveryFailure</code> -- Topic ARN to which
      *         DeliveryFailure event notifications should be sent upon Direct Publish
      *         delivery failure (permanent) to one of the application's
-     *         endpoints.</li> </ul>
+     *         endpoints.</li> <li><code>SuccessFeedbackRoleArn</code> -- IAM role
+     *         ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     *         your behalf.</li> <li><code>FailureFeedbackRoleArn</code> -- IAM role
+     *         ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     *         your behalf.</li> <li><code>SuccessFeedbackSampleRate</code> -- Sample
+     *         rate percentage (0-100) of successfully delivered messages.</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -242,11 +277,11 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * A map of the platform application attributes. Attributes in this map
      * include the following: <ul> <li><code>PlatformCredential</code> -- The
      * credential received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     * APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM,
      * PlatformCredential is "API key". For ADM, PlatformCredential is
      * "client secret".</li> <li><code>PlatformPrincipal</code> -- The
      * principal received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformPrincipal is "SSL certificate". For GCM,
+     * APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM,
      * PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is
      * "client id".</li> <li><code>EventEndpointCreated</code> -- Topic ARN
      * to which EndpointCreated event notifications should be sent.</li>
@@ -257,7 +292,12 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <li><code>EventDeliveryFailure</code> -- Topic ARN to which
      * DeliveryFailure event notifications should be sent upon Direct Publish
      * delivery failure (permanent) to one of the application's
-     * endpoints.</li> </ul>
+     * endpoints.</li> <li><code>SuccessFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>FailureFeedbackRoleArn</code> -- IAM role
+     * ARN used to give Amazon SNS write access to use CloudWatch Logs on
+     * your behalf.</li> <li><code>SuccessFeedbackSampleRate</code> -- Sample
+     * rate percentage (0-100) of successfully delivered messages.</li> </ul>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and
      * returns a reference to this object so that method calls can be chained

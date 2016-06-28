@@ -44,7 +44,7 @@ public class SnapshotDetail implements Serializable {
     private String url;
 
     /**
-     * 
+     * The S3 bucket for the disk image.
      */
     private UserBucketDetails userBucket;
 
@@ -206,29 +206,29 @@ public class SnapshotDetail implements Serializable {
     }
 
     /**
-     * 
+     * The S3 bucket for the disk image.
      *
-     * @return 
+     * @return The S3 bucket for the disk image.
      */
     public UserBucketDetails getUserBucket() {
         return userBucket;
     }
     
     /**
-     * 
+     * The S3 bucket for the disk image.
      *
-     * @param userBucket 
+     * @param userBucket The S3 bucket for the disk image.
      */
     public void setUserBucket(UserBucketDetails userBucket) {
         this.userBucket = userBucket;
     }
     
     /**
-     * 
+     * The S3 bucket for the disk image.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param userBucket 
+     * @param userBucket The S3 bucket for the disk image.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

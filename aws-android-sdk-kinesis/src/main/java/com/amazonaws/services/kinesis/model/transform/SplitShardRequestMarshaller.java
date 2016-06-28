@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.kinesis.model.transform;
 
 import static com.amazonaws.util.StringUtils.UTF8;
@@ -20,8 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.Map;
-import java.util.List;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
@@ -36,48 +35,58 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Split Shard Request Marshaller
+ * JSON request marshaller for SplitShardRequest
  */
-public class SplitShardRequestMarshaller implements Marshaller<Request<SplitShardRequest>, SplitShardRequest> {
+public class SplitShardRequestMarshaller implements
+        Marshaller<Request<SplitShardRequest>, SplitShardRequest> {
 
     public Request<SplitShardRequest> marshall(SplitShardRequest splitShardRequest) {
-    if (splitShardRequest == null) {
-        throw new AmazonClientException("Invalid argument passed to marshall(...)");
-    }
+        if (splitShardRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(SplitShardRequest)");
+        }
 
-        Request<SplitShardRequest> request = new DefaultRequest<SplitShardRequest>(splitShardRequest, "AmazonKinesis");
+        Request<SplitShardRequest> request = new DefaultRequest<SplitShardRequest>(
+                splitShardRequest, "AmazonKinesis");
         String target = "Kinesis_20131202.SplitShard";
         request.addHeader("X-Amz-Target", target);
-
         request.setHttpMethod(HttpMethodName.POST);
-        request.setResourcePath("");
-        
+
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
-
             jsonWriter.beginObject();
-            
+
             if (splitShardRequest.getStreamName() != null) {
-                jsonWriter.name("StreamName").value(splitShardRequest.getStreamName());
+                String streamName = splitShardRequest.getStreamName();
+                jsonWriter.name("StreamName");
+                jsonWriter.value(streamName);
             }
             if (splitShardRequest.getShardToSplit() != null) {
-                jsonWriter.name("ShardToSplit").value(splitShardRequest.getShardToSplit());
+                String shardToSplit = splitShardRequest.getShardToSplit();
+                jsonWriter.name("ShardToSplit");
+                jsonWriter.value(shardToSplit);
             }
             if (splitShardRequest.getNewStartingHashKey() != null) {
-                jsonWriter.name("NewStartingHashKey").value(splitShardRequest.getNewStartingHashKey());
+                String newStartingHashKey = splitShardRequest.getNewStartingHashKey();
+                jsonWriter.name("NewStartingHashKey");
+                jsonWriter.value(newStartingHashKey);
             }
 
             jsonWriter.endObject();
-
             jsonWriter.close();
             String snippet = stringWriter.toString();
             byte[] content = snippet.getBytes(UTF8);
             request.setContent(new StringInputStream(snippet));
             request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
+        }
+        if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
-        } catch(Throwable t) {
-            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

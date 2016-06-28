@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Contains the output for DescribeImportSnapshotTasks.
+ * </p>
  */
 public class DescribeImportSnapshotTasksResult implements Serializable {
 

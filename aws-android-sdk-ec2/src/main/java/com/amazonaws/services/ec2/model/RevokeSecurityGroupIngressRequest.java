@@ -58,18 +58,19 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
      * can't specify this parameter in combination with the following
      * parameters: the CIDR IP address range, the start of the port range,
      * the IP protocol, and the end of the port range. For EC2-VPC, the
-     * source security group must be in the same VPC.
+     * source security group must be in the same VPC. To revoke a specific
+     * rule for an IP protocol and port range, use a set of IP permissions
+     * instead.
      */
     private String sourceSecurityGroupName;
 
     /**
-     * [EC2-Classic, default VPC] The AWS account ID of the source security
-     * group. For EC2-VPC, the source security group must be in the same VPC.
-     * You can't specify this parameter in combination with the following
-     * parameters: the CIDR IP address range, the IP protocol, the start of
-     * the port range, and the end of the port range. To revoke a specific
-     * rule for an IP protocol and port range, use a set of IP permissions
-     * instead.
+     * [EC2-Classic] The AWS account ID of the source security group, if the
+     * source security group is in a different account. You can't specify
+     * this parameter in combination with the following parameters: the CIDR
+     * IP address range, the IP protocol, the start of the port range, and
+     * the end of the port range. To revoke a specific rule for an IP
+     * protocol and port range, use a set of IP permissions instead.
      */
     private String sourceSecurityGroupOwnerId;
 
@@ -205,13 +206,17 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
      * can't specify this parameter in combination with the following
      * parameters: the CIDR IP address range, the start of the port range,
      * the IP protocol, and the end of the port range. For EC2-VPC, the
-     * source security group must be in the same VPC.
+     * source security group must be in the same VPC. To revoke a specific
+     * rule for an IP protocol and port range, use a set of IP permissions
+     * instead.
      *
      * @return [EC2-Classic, default VPC] The name of the source security group. You
      *         can't specify this parameter in combination with the following
      *         parameters: the CIDR IP address range, the start of the port range,
      *         the IP protocol, and the end of the port range. For EC2-VPC, the
-     *         source security group must be in the same VPC.
+     *         source security group must be in the same VPC. To revoke a specific
+     *         rule for an IP protocol and port range, use a set of IP permissions
+     *         instead.
      */
     public String getSourceSecurityGroupName() {
         return sourceSecurityGroupName;
@@ -222,13 +227,17 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
      * can't specify this parameter in combination with the following
      * parameters: the CIDR IP address range, the start of the port range,
      * the IP protocol, and the end of the port range. For EC2-VPC, the
-     * source security group must be in the same VPC.
+     * source security group must be in the same VPC. To revoke a specific
+     * rule for an IP protocol and port range, use a set of IP permissions
+     * instead.
      *
      * @param sourceSecurityGroupName [EC2-Classic, default VPC] The name of the source security group. You
      *         can't specify this parameter in combination with the following
      *         parameters: the CIDR IP address range, the start of the port range,
      *         the IP protocol, and the end of the port range. For EC2-VPC, the
-     *         source security group must be in the same VPC.
+     *         source security group must be in the same VPC. To revoke a specific
+     *         rule for an IP protocol and port range, use a set of IP permissions
+     *         instead.
      */
     public void setSourceSecurityGroupName(String sourceSecurityGroupName) {
         this.sourceSecurityGroupName = sourceSecurityGroupName;
@@ -239,7 +248,9 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
      * can't specify this parameter in combination with the following
      * parameters: the CIDR IP address range, the start of the port range,
      * the IP protocol, and the end of the port range. For EC2-VPC, the
-     * source security group must be in the same VPC.
+     * source security group must be in the same VPC. To revoke a specific
+     * rule for an IP protocol and port range, use a set of IP permissions
+     * instead.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -247,7 +258,9 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
      *         can't specify this parameter in combination with the following
      *         parameters: the CIDR IP address range, the start of the port range,
      *         the IP protocol, and the end of the port range. For EC2-VPC, the
-     *         source security group must be in the same VPC.
+     *         source security group must be in the same VPC. To revoke a specific
+     *         rule for an IP protocol and port range, use a set of IP permissions
+     *         instead.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -258,65 +271,59 @@ public class RevokeSecurityGroupIngressRequest extends AmazonWebServiceRequest i
     }
 
     /**
-     * [EC2-Classic, default VPC] The AWS account ID of the source security
-     * group. For EC2-VPC, the source security group must be in the same VPC.
-     * You can't specify this parameter in combination with the following
-     * parameters: the CIDR IP address range, the IP protocol, the start of
-     * the port range, and the end of the port range. To revoke a specific
-     * rule for an IP protocol and port range, use a set of IP permissions
-     * instead.
+     * [EC2-Classic] The AWS account ID of the source security group, if the
+     * source security group is in a different account. You can't specify
+     * this parameter in combination with the following parameters: the CIDR
+     * IP address range, the IP protocol, the start of the port range, and
+     * the end of the port range. To revoke a specific rule for an IP
+     * protocol and port range, use a set of IP permissions instead.
      *
-     * @return [EC2-Classic, default VPC] The AWS account ID of the source security
-     *         group. For EC2-VPC, the source security group must be in the same VPC.
-     *         You can't specify this parameter in combination with the following
-     *         parameters: the CIDR IP address range, the IP protocol, the start of
-     *         the port range, and the end of the port range. To revoke a specific
-     *         rule for an IP protocol and port range, use a set of IP permissions
-     *         instead.
+     * @return [EC2-Classic] The AWS account ID of the source security group, if the
+     *         source security group is in a different account. You can't specify
+     *         this parameter in combination with the following parameters: the CIDR
+     *         IP address range, the IP protocol, the start of the port range, and
+     *         the end of the port range. To revoke a specific rule for an IP
+     *         protocol and port range, use a set of IP permissions instead.
      */
     public String getSourceSecurityGroupOwnerId() {
         return sourceSecurityGroupOwnerId;
     }
     
     /**
-     * [EC2-Classic, default VPC] The AWS account ID of the source security
-     * group. For EC2-VPC, the source security group must be in the same VPC.
-     * You can't specify this parameter in combination with the following
-     * parameters: the CIDR IP address range, the IP protocol, the start of
-     * the port range, and the end of the port range. To revoke a specific
-     * rule for an IP protocol and port range, use a set of IP permissions
-     * instead.
+     * [EC2-Classic] The AWS account ID of the source security group, if the
+     * source security group is in a different account. You can't specify
+     * this parameter in combination with the following parameters: the CIDR
+     * IP address range, the IP protocol, the start of the port range, and
+     * the end of the port range. To revoke a specific rule for an IP
+     * protocol and port range, use a set of IP permissions instead.
      *
-     * @param sourceSecurityGroupOwnerId [EC2-Classic, default VPC] The AWS account ID of the source security
-     *         group. For EC2-VPC, the source security group must be in the same VPC.
-     *         You can't specify this parameter in combination with the following
-     *         parameters: the CIDR IP address range, the IP protocol, the start of
-     *         the port range, and the end of the port range. To revoke a specific
-     *         rule for an IP protocol and port range, use a set of IP permissions
-     *         instead.
+     * @param sourceSecurityGroupOwnerId [EC2-Classic] The AWS account ID of the source security group, if the
+     *         source security group is in a different account. You can't specify
+     *         this parameter in combination with the following parameters: the CIDR
+     *         IP address range, the IP protocol, the start of the port range, and
+     *         the end of the port range. To revoke a specific rule for an IP
+     *         protocol and port range, use a set of IP permissions instead.
      */
     public void setSourceSecurityGroupOwnerId(String sourceSecurityGroupOwnerId) {
         this.sourceSecurityGroupOwnerId = sourceSecurityGroupOwnerId;
     }
     
     /**
-     * [EC2-Classic, default VPC] The AWS account ID of the source security
-     * group. For EC2-VPC, the source security group must be in the same VPC.
-     * You can't specify this parameter in combination with the following
-     * parameters: the CIDR IP address range, the IP protocol, the start of
-     * the port range, and the end of the port range. To revoke a specific
-     * rule for an IP protocol and port range, use a set of IP permissions
-     * instead.
+     * [EC2-Classic] The AWS account ID of the source security group, if the
+     * source security group is in a different account. You can't specify
+     * this parameter in combination with the following parameters: the CIDR
+     * IP address range, the IP protocol, the start of the port range, and
+     * the end of the port range. To revoke a specific rule for an IP
+     * protocol and port range, use a set of IP permissions instead.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param sourceSecurityGroupOwnerId [EC2-Classic, default VPC] The AWS account ID of the source security
-     *         group. For EC2-VPC, the source security group must be in the same VPC.
-     *         You can't specify this parameter in combination with the following
-     *         parameters: the CIDR IP address range, the IP protocol, the start of
-     *         the port range, and the end of the port range. To revoke a specific
-     *         rule for an IP protocol and port range, use a set of IP permissions
-     *         instead.
+     * @param sourceSecurityGroupOwnerId [EC2-Classic] The AWS account ID of the source security group, if the
+     *         source security group is in a different account. You can't specify
+     *         this parameter in combination with the following parameters: the CIDR
+     *         IP address range, the IP protocol, the start of the port range, and
+     *         the end of the port range. To revoke a specific rule for an IP
+     *         protocol and port range, use a set of IP permissions instead.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

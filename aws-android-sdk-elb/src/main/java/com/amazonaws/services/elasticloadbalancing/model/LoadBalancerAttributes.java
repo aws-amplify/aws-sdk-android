@@ -66,6 +66,9 @@ public class LoadBalancerAttributes implements Serializable {
 
     /**
      * This parameter is reserved.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10<br/>
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<AdditionalAttribute> additionalAttributes;
 
@@ -329,6 +332,9 @@ public class LoadBalancerAttributes implements Serializable {
 
     /**
      * This parameter is reserved.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @return This parameter is reserved.
      */
@@ -342,6 +348,9 @@ public class LoadBalancerAttributes implements Serializable {
     
     /**
      * This parameter is reserved.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @param additionalAttributes This parameter is reserved.
      */
@@ -359,6 +368,9 @@ public class LoadBalancerAttributes implements Serializable {
      * This parameter is reserved.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @param additionalAttributes This parameter is reserved.
      *
@@ -377,6 +389,9 @@ public class LoadBalancerAttributes implements Serializable {
      * This parameter is reserved.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10<br/>
      *
      * @param additionalAttributes This parameter is reserved.
      *

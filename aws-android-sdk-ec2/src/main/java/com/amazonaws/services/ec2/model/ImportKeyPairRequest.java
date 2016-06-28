@@ -46,8 +46,8 @@ public class ImportKeyPairRequest extends AmazonWebServiceRequest implements Ser
     private String keyName;
 
     /**
-     * The public key. You must base64 encode the public key material before
-     * sending it to AWS.
+     * The public key. For API calls, the text must be base64-encoded. For
+     * command line tools, base64 encoding is performed for you.
      */
     private String publicKeyMaterial;
 
@@ -63,8 +63,9 @@ public class ImportKeyPairRequest extends AmazonWebServiceRequest implements Ser
      * initialize any additional object members.
      * 
      * @param keyName A unique name for the key pair.
-     * @param publicKeyMaterial The public key. You must base64 encode the
-     * public key material before sending it to AWS.
+     * @param publicKeyMaterial The public key. For API calls, the text must
+     * be base64-encoded. For command line tools, base64 encoding is
+     * performed for you.
      */
     public ImportKeyPairRequest(String keyName, String publicKeyMaterial) {
         setKeyName(keyName);
@@ -105,35 +106,35 @@ public class ImportKeyPairRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
-     * The public key. You must base64 encode the public key material before
-     * sending it to AWS.
+     * The public key. For API calls, the text must be base64-encoded. For
+     * command line tools, base64 encoding is performed for you.
      *
-     * @return The public key. You must base64 encode the public key material before
-     *         sending it to AWS.
+     * @return The public key. For API calls, the text must be base64-encoded. For
+     *         command line tools, base64 encoding is performed for you.
      */
     public String getPublicKeyMaterial() {
         return publicKeyMaterial;
     }
     
     /**
-     * The public key. You must base64 encode the public key material before
-     * sending it to AWS.
+     * The public key. For API calls, the text must be base64-encoded. For
+     * command line tools, base64 encoding is performed for you.
      *
-     * @param publicKeyMaterial The public key. You must base64 encode the public key material before
-     *         sending it to AWS.
+     * @param publicKeyMaterial The public key. For API calls, the text must be base64-encoded. For
+     *         command line tools, base64 encoding is performed for you.
      */
     public void setPublicKeyMaterial(String publicKeyMaterial) {
         this.publicKeyMaterial = publicKeyMaterial;
     }
     
     /**
-     * The public key. You must base64 encode the public key material before
-     * sending it to AWS.
+     * The public key. For API calls, the text must be base64-encoded. For
+     * command line tools, base64 encoding is performed for you.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param publicKeyMaterial The public key. You must base64 encode the public key material before
-     *         sending it to AWS.
+     * @param publicKeyMaterial The public key. For API calls, the text must be base64-encoded. For
+     *         command line tools, base64 encoding is performed for you.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

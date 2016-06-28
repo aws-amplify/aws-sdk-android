@@ -64,23 +64,23 @@ public class ReportInstanceStatusRequest extends AmazonWebServiceRequest impleme
 
     /**
      * One or more reason codes that describes the health state of your
-     * instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     * instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     * My instance is unresponsive.</li>
-     * <li><p><code>not-accepting-credentials</code>: My instance is not
-     * accepting my credentials.</li>
-     * <li><p><code>password-not-available</code>: A password is not
-     * available for my instance.</li>
-     * <li><p><code>performance-network</code>: My instance is experiencing
-     * performance problems which I believe are network related.</li>
-     * <li><p><code>performance-instance-store</code>: My instance is
-     * experiencing performance problems which I believe are related to the
-     * instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     * instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     * instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     * My instance is unresponsive. </li> <li>
+     * <p><code>not-accepting-credentials</code>: My instance is not
+     * accepting my credentials. </li> <li>
+     * <p><code>password-not-available</code>: A password is not available
+     * for my instance. </li> <li> <p><code>performance-network</code>: My
      * instance is experiencing performance problems which I believe are
-     * related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     * My instance is experiencing performance problems.</li>
-     * <li><p><code>other</code>: [explain using the description
-     * parameter]</li> </ul>
+     * network related. </li> <li>
+     * <p><code>performance-instance-store</code>: My instance is
+     * experiencing performance problems which I believe are related to the
+     * instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     * instance is experiencing performance problems which I believe are
+     * related to an EBS volume. </li> <li>
+     * <p><code>performance-other</code>: My instance is experiencing
+     * performance problems. </li> <li> <p><code>other</code>: [explain using
+     * the description parameter] </li> </ul>
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> reasonCodes;
 
@@ -307,42 +307,42 @@ public class ReportInstanceStatusRequest extends AmazonWebServiceRequest impleme
 
     /**
      * One or more reason codes that describes the health state of your
-     * instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     * instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     * My instance is unresponsive.</li>
-     * <li><p><code>not-accepting-credentials</code>: My instance is not
-     * accepting my credentials.</li>
-     * <li><p><code>password-not-available</code>: A password is not
-     * available for my instance.</li>
-     * <li><p><code>performance-network</code>: My instance is experiencing
-     * performance problems which I believe are network related.</li>
-     * <li><p><code>performance-instance-store</code>: My instance is
-     * experiencing performance problems which I believe are related to the
-     * instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     * instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     * instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     * My instance is unresponsive. </li> <li>
+     * <p><code>not-accepting-credentials</code>: My instance is not
+     * accepting my credentials. </li> <li>
+     * <p><code>password-not-available</code>: A password is not available
+     * for my instance. </li> <li> <p><code>performance-network</code>: My
      * instance is experiencing performance problems which I believe are
-     * related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     * My instance is experiencing performance problems.</li>
-     * <li><p><code>other</code>: [explain using the description
-     * parameter]</li> </ul>
+     * network related. </li> <li>
+     * <p><code>performance-instance-store</code>: My instance is
+     * experiencing performance problems which I believe are related to the
+     * instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     * instance is experiencing performance problems which I believe are
+     * related to an EBS volume. </li> <li>
+     * <p><code>performance-other</code>: My instance is experiencing
+     * performance problems. </li> <li> <p><code>other</code>: [explain using
+     * the description parameter] </li> </ul>
      *
      * @return One or more reason codes that describes the health state of your
-     *         instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     *         instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     *         My instance is unresponsive.</li>
-     *         <li><p><code>not-accepting-credentials</code>: My instance is not
-     *         accepting my credentials.</li>
-     *         <li><p><code>password-not-available</code>: A password is not
-     *         available for my instance.</li>
-     *         <li><p><code>performance-network</code>: My instance is experiencing
-     *         performance problems which I believe are network related.</li>
-     *         <li><p><code>performance-instance-store</code>: My instance is
-     *         experiencing performance problems which I believe are related to the
-     *         instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     *         instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     *         instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     *         My instance is unresponsive. </li> <li>
+     *         <p><code>not-accepting-credentials</code>: My instance is not
+     *         accepting my credentials. </li> <li>
+     *         <p><code>password-not-available</code>: A password is not available
+     *         for my instance. </li> <li> <p><code>performance-network</code>: My
      *         instance is experiencing performance problems which I believe are
-     *         related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     *         My instance is experiencing performance problems.</li>
-     *         <li><p><code>other</code>: [explain using the description
-     *         parameter]</li> </ul>
+     *         network related. </li> <li>
+     *         <p><code>performance-instance-store</code>: My instance is
+     *         experiencing performance problems which I believe are related to the
+     *         instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     *         instance is experiencing performance problems which I believe are
+     *         related to an EBS volume. </li> <li>
+     *         <p><code>performance-other</code>: My instance is experiencing
+     *         performance problems. </li> <li> <p><code>other</code>: [explain using
+     *         the description parameter] </li> </ul>
      */
     public java.util.List<String> getReasonCodes() {
         if (reasonCodes == null) {
@@ -354,42 +354,42 @@ public class ReportInstanceStatusRequest extends AmazonWebServiceRequest impleme
     
     /**
      * One or more reason codes that describes the health state of your
-     * instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     * instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     * My instance is unresponsive.</li>
-     * <li><p><code>not-accepting-credentials</code>: My instance is not
-     * accepting my credentials.</li>
-     * <li><p><code>password-not-available</code>: A password is not
-     * available for my instance.</li>
-     * <li><p><code>performance-network</code>: My instance is experiencing
-     * performance problems which I believe are network related.</li>
-     * <li><p><code>performance-instance-store</code>: My instance is
-     * experiencing performance problems which I believe are related to the
-     * instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     * instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     * instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     * My instance is unresponsive. </li> <li>
+     * <p><code>not-accepting-credentials</code>: My instance is not
+     * accepting my credentials. </li> <li>
+     * <p><code>password-not-available</code>: A password is not available
+     * for my instance. </li> <li> <p><code>performance-network</code>: My
      * instance is experiencing performance problems which I believe are
-     * related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     * My instance is experiencing performance problems.</li>
-     * <li><p><code>other</code>: [explain using the description
-     * parameter]</li> </ul>
+     * network related. </li> <li>
+     * <p><code>performance-instance-store</code>: My instance is
+     * experiencing performance problems which I believe are related to the
+     * instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     * instance is experiencing performance problems which I believe are
+     * related to an EBS volume. </li> <li>
+     * <p><code>performance-other</code>: My instance is experiencing
+     * performance problems. </li> <li> <p><code>other</code>: [explain using
+     * the description parameter] </li> </ul>
      *
      * @param reasonCodes One or more reason codes that describes the health state of your
-     *         instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     *         instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     *         My instance is unresponsive.</li>
-     *         <li><p><code>not-accepting-credentials</code>: My instance is not
-     *         accepting my credentials.</li>
-     *         <li><p><code>password-not-available</code>: A password is not
-     *         available for my instance.</li>
-     *         <li><p><code>performance-network</code>: My instance is experiencing
-     *         performance problems which I believe are network related.</li>
-     *         <li><p><code>performance-instance-store</code>: My instance is
-     *         experiencing performance problems which I believe are related to the
-     *         instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     *         instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     *         instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     *         My instance is unresponsive. </li> <li>
+     *         <p><code>not-accepting-credentials</code>: My instance is not
+     *         accepting my credentials. </li> <li>
+     *         <p><code>password-not-available</code>: A password is not available
+     *         for my instance. </li> <li> <p><code>performance-network</code>: My
      *         instance is experiencing performance problems which I believe are
-     *         related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     *         My instance is experiencing performance problems.</li>
-     *         <li><p><code>other</code>: [explain using the description
-     *         parameter]</li> </ul>
+     *         network related. </li> <li>
+     *         <p><code>performance-instance-store</code>: My instance is
+     *         experiencing performance problems which I believe are related to the
+     *         instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     *         instance is experiencing performance problems which I believe are
+     *         related to an EBS volume. </li> <li>
+     *         <p><code>performance-other</code>: My instance is experiencing
+     *         performance problems. </li> <li> <p><code>other</code>: [explain using
+     *         the description parameter] </li> </ul>
      */
     public void setReasonCodes(java.util.Collection<String> reasonCodes) {
         if (reasonCodes == null) {
@@ -403,44 +403,44 @@ public class ReportInstanceStatusRequest extends AmazonWebServiceRequest impleme
     
     /**
      * One or more reason codes that describes the health state of your
-     * instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     * instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     * My instance is unresponsive.</li>
-     * <li><p><code>not-accepting-credentials</code>: My instance is not
-     * accepting my credentials.</li>
-     * <li><p><code>password-not-available</code>: A password is not
-     * available for my instance.</li>
-     * <li><p><code>performance-network</code>: My instance is experiencing
-     * performance problems which I believe are network related.</li>
-     * <li><p><code>performance-instance-store</code>: My instance is
-     * experiencing performance problems which I believe are related to the
-     * instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     * instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     * instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     * My instance is unresponsive. </li> <li>
+     * <p><code>not-accepting-credentials</code>: My instance is not
+     * accepting my credentials. </li> <li>
+     * <p><code>password-not-available</code>: A password is not available
+     * for my instance. </li> <li> <p><code>performance-network</code>: My
      * instance is experiencing performance problems which I believe are
-     * related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     * My instance is experiencing performance problems.</li>
-     * <li><p><code>other</code>: [explain using the description
-     * parameter]</li> </ul>
+     * network related. </li> <li>
+     * <p><code>performance-instance-store</code>: My instance is
+     * experiencing performance problems which I believe are related to the
+     * instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     * instance is experiencing performance problems which I believe are
+     * related to an EBS volume. </li> <li>
+     * <p><code>performance-other</code>: My instance is experiencing
+     * performance problems. </li> <li> <p><code>other</code>: [explain using
+     * the description parameter] </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param reasonCodes One or more reason codes that describes the health state of your
-     *         instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     *         instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     *         My instance is unresponsive.</li>
-     *         <li><p><code>not-accepting-credentials</code>: My instance is not
-     *         accepting my credentials.</li>
-     *         <li><p><code>password-not-available</code>: A password is not
-     *         available for my instance.</li>
-     *         <li><p><code>performance-network</code>: My instance is experiencing
-     *         performance problems which I believe are network related.</li>
-     *         <li><p><code>performance-instance-store</code>: My instance is
-     *         experiencing performance problems which I believe are related to the
-     *         instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     *         instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     *         instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     *         My instance is unresponsive. </li> <li>
+     *         <p><code>not-accepting-credentials</code>: My instance is not
+     *         accepting my credentials. </li> <li>
+     *         <p><code>password-not-available</code>: A password is not available
+     *         for my instance. </li> <li> <p><code>performance-network</code>: My
      *         instance is experiencing performance problems which I believe are
-     *         related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     *         My instance is experiencing performance problems.</li>
-     *         <li><p><code>other</code>: [explain using the description
-     *         parameter]</li> </ul>
+     *         network related. </li> <li>
+     *         <p><code>performance-instance-store</code>: My instance is
+     *         experiencing performance problems which I believe are related to the
+     *         instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     *         instance is experiencing performance problems which I believe are
+     *         related to an EBS volume. </li> <li>
+     *         <p><code>performance-other</code>: My instance is experiencing
+     *         performance problems. </li> <li> <p><code>other</code>: [explain using
+     *         the description parameter] </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -455,44 +455,44 @@ public class ReportInstanceStatusRequest extends AmazonWebServiceRequest impleme
     
     /**
      * One or more reason codes that describes the health state of your
-     * instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     * instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     * My instance is unresponsive.</li>
-     * <li><p><code>not-accepting-credentials</code>: My instance is not
-     * accepting my credentials.</li>
-     * <li><p><code>password-not-available</code>: A password is not
-     * available for my instance.</li>
-     * <li><p><code>performance-network</code>: My instance is experiencing
-     * performance problems which I believe are network related.</li>
-     * <li><p><code>performance-instance-store</code>: My instance is
-     * experiencing performance problems which I believe are related to the
-     * instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     * instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     * instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     * My instance is unresponsive. </li> <li>
+     * <p><code>not-accepting-credentials</code>: My instance is not
+     * accepting my credentials. </li> <li>
+     * <p><code>password-not-available</code>: A password is not available
+     * for my instance. </li> <li> <p><code>performance-network</code>: My
      * instance is experiencing performance problems which I believe are
-     * related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     * My instance is experiencing performance problems.</li>
-     * <li><p><code>other</code>: [explain using the description
-     * parameter]</li> </ul>
+     * network related. </li> <li>
+     * <p><code>performance-instance-store</code>: My instance is
+     * experiencing performance problems which I believe are related to the
+     * instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     * instance is experiencing performance problems which I believe are
+     * related to an EBS volume. </li> <li>
+     * <p><code>performance-other</code>: My instance is experiencing
+     * performance problems. </li> <li> <p><code>other</code>: [explain using
+     * the description parameter] </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param reasonCodes One or more reason codes that describes the health state of your
-     *         instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     *         instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     *         My instance is unresponsive.</li>
-     *         <li><p><code>not-accepting-credentials</code>: My instance is not
-     *         accepting my credentials.</li>
-     *         <li><p><code>password-not-available</code>: A password is not
-     *         available for my instance.</li>
-     *         <li><p><code>performance-network</code>: My instance is experiencing
-     *         performance problems which I believe are network related.</li>
-     *         <li><p><code>performance-instance-store</code>: My instance is
-     *         experiencing performance problems which I believe are related to the
-     *         instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     *         instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     *         instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     *         My instance is unresponsive. </li> <li>
+     *         <p><code>not-accepting-credentials</code>: My instance is not
+     *         accepting my credentials. </li> <li>
+     *         <p><code>password-not-available</code>: A password is not available
+     *         for my instance. </li> <li> <p><code>performance-network</code>: My
      *         instance is experiencing performance problems which I believe are
-     *         related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     *         My instance is experiencing performance problems.</li>
-     *         <li><p><code>other</code>: [explain using the description
-     *         parameter]</li> </ul>
+     *         network related. </li> <li>
+     *         <p><code>performance-instance-store</code>: My instance is
+     *         experiencing performance problems which I believe are related to the
+     *         instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     *         instance is experiencing performance problems which I believe are
+     *         related to an EBS volume. </li> <li>
+     *         <p><code>performance-other</code>: My instance is experiencing
+     *         performance problems. </li> <li> <p><code>other</code>: [explain using
+     *         the description parameter] </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -511,44 +511,44 @@ public class ReportInstanceStatusRequest extends AmazonWebServiceRequest impleme
 
     /**
      * One or more reason codes that describes the health state of your
-     * instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     * instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     * My instance is unresponsive.</li>
-     * <li><p><code>not-accepting-credentials</code>: My instance is not
-     * accepting my credentials.</li>
-     * <li><p><code>password-not-available</code>: A password is not
-     * available for my instance.</li>
-     * <li><p><code>performance-network</code>: My instance is experiencing
-     * performance problems which I believe are network related.</li>
-     * <li><p><code>performance-instance-store</code>: My instance is
-     * experiencing performance problems which I believe are related to the
-     * instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     * instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     * instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     * My instance is unresponsive. </li> <li>
+     * <p><code>not-accepting-credentials</code>: My instance is not
+     * accepting my credentials. </li> <li>
+     * <p><code>password-not-available</code>: A password is not available
+     * for my instance. </li> <li> <p><code>performance-network</code>: My
      * instance is experiencing performance problems which I believe are
-     * related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     * My instance is experiencing performance problems.</li>
-     * <li><p><code>other</code>: [explain using the description
-     * parameter]</li> </ul>
+     * network related. </li> <li>
+     * <p><code>performance-instance-store</code>: My instance is
+     * experiencing performance problems which I believe are related to the
+     * instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     * instance is experiencing performance problems which I believe are
+     * related to an EBS volume. </li> <li>
+     * <p><code>performance-other</code>: My instance is experiencing
+     * performance problems. </li> <li> <p><code>other</code>: [explain using
+     * the description parameter] </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param reasonCodes One or more reason codes that describes the health state of your
-     *         instance. <ul> <li><p><code>instance-stuck-in-state</code>: My
-     *         instance is stuck in a state.</li> <li><p><code>unresponsive</code>:
-     *         My instance is unresponsive.</li>
-     *         <li><p><code>not-accepting-credentials</code>: My instance is not
-     *         accepting my credentials.</li>
-     *         <li><p><code>password-not-available</code>: A password is not
-     *         available for my instance.</li>
-     *         <li><p><code>performance-network</code>: My instance is experiencing
-     *         performance problems which I believe are network related.</li>
-     *         <li><p><code>performance-instance-store</code>: My instance is
-     *         experiencing performance problems which I believe are related to the
-     *         instance stores.</li> <li><p><code>performance-ebs-volume</code>: My
+     *         instance. <ul> <li> <p><code>instance-stuck-in-state</code>: My
+     *         instance is stuck in a state. </li> <li> <p><code>unresponsive</code>:
+     *         My instance is unresponsive. </li> <li>
+     *         <p><code>not-accepting-credentials</code>: My instance is not
+     *         accepting my credentials. </li> <li>
+     *         <p><code>password-not-available</code>: A password is not available
+     *         for my instance. </li> <li> <p><code>performance-network</code>: My
      *         instance is experiencing performance problems which I believe are
-     *         related to an EBS volume.</li> <li><p><code>performance-other</code>:
-     *         My instance is experiencing performance problems.</li>
-     *         <li><p><code>other</code>: [explain using the description
-     *         parameter]</li> </ul>
+     *         network related. </li> <li>
+     *         <p><code>performance-instance-store</code>: My instance is
+     *         experiencing performance problems which I believe are related to the
+     *         instance stores. </li> <li> <p><code>performance-ebs-volume</code>: My
+     *         instance is experiencing performance problems which I believe are
+     *         related to an EBS volume. </li> <li>
+     *         <p><code>performance-other</code>: My instance is experiencing
+     *         performance problems. </li> <li> <p><code>other</code>: [explain using
+     *         the description parameter] </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

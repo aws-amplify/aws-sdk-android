@@ -18,8 +18,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The quota for the number of tags that can be assigned to a load
- * balancer has been reached.
+ * The limit on the number of tags that can be assigned to a load
+ * balancer was exceeded.
  * </p>
  */        
 public class TooManyTagsException extends AmazonServiceException {

@@ -29,8 +29,8 @@ import com.amazonaws.services.ec2.model.transform.RebootInstancesRequestMarshall
  * belong to you. Requests to reboot terminated instances are ignored.
  * </p>
  * <p>
- * If a Linux/Unix instance does not cleanly shut down within four
- * minutes, Amazon EC2 performs a hard reboot.
+ * If an instance does not cleanly shut down within four minutes, Amazon
+ * EC2 performs a hard reboot.
  * </p>
  * <p>
  * For more information about troubleshooting, see

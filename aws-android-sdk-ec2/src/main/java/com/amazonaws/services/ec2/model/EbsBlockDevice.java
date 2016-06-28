@@ -29,13 +29,14 @@ public class EbsBlockDevice implements Serializable {
     private String snapshotId;
 
     /**
-     * The size of the volume, in GiB. <p>Constraints: <code>1-1024</code>
-     * for <code>standard</code> volumes, <code>1-16384</code> for
-     * <code>gp2</code> volumes, and <code>4-16384</code> for
-     * <code>io1</code> volumes. If you specify a snapshot, the volume size
-     * must be equal to or larger than the snapshot size. <p>Default: If
-     * you're creating the volume from a snapshot and don't specify a volume
-     * size, the default is the snapshot size.
+     * The size of the volume, in GiB. <p>Constraints: 1-16384 for General
+     * Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD
+     * (<code>io1</code>), 500-16384 for Throughput Optimized HDD
+     * (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and
+     * 1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a
+     * snapshot, the volume size must be equal to or larger than the snapshot
+     * size. <p>Default: If you're creating the volume from a snapshot and
+     * don't specify a volume size, the default is the snapshot size.
      */
     private Integer volumeSize;
 
@@ -45,31 +46,30 @@ public class EbsBlockDevice implements Serializable {
     private Boolean deleteOnTermination;
 
     /**
-     * The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     * <code>standard</code> for Magnetic volumes. <p>Default:
+     * The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     * <code>sc1</code>, or <code>standard</code>. <p>Default:
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      */
     private String volumeType;
 
     /**
      * The number of I/O operations per second (IOPS) that the volume
-     * supports. For Provisioned IOPS (SSD) volumes, this represents the
-     * number of IOPS that are provisioned for the volume. For General
-     * Purpose (SSD) volumes, this represents the baseline performance of the
-     * volume and the rate at which the volume accumulates I/O credits for
-     * bursting. For more information on General Purpose (SSD) baseline
-     * performance, I/O credits, and bursting, see <a
+     * supports. For io1, this represents the number of IOPS that are
+     * provisioned for the volume. For <code>gp2</code>, this represents the
+     * baseline performance of the volume and the rate at which the volume
+     * accumulates I/O credits for bursting. For more information on General
+     * Purpose SSD baseline performance, I/O credits, and bursting, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
      * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
-     * (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
-     * <p>Condition: This parameter is required for requests to create
-     * <code>io1</code> volumes; it is not used in requests to create
-     * <code>standard</code> or <code>gp2</code> volumes.
+     * Guide</i>. <p>Constraint: Range is 100-20000 IOPS for io1 volumes and
+     * 100-10000 IOPS for <code>gp2</code> volumes. <p>Condition: This
+     * parameter is required for requests to create
+     * <code><code>io1</code></code> volumes; it is not used in requests to
+     * create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or
+     * <code>standard</code> volumes.
      */
     private Integer iops;
 
@@ -114,65 +114,71 @@ public class EbsBlockDevice implements Serializable {
     }
 
     /**
-     * The size of the volume, in GiB. <p>Constraints: <code>1-1024</code>
-     * for <code>standard</code> volumes, <code>1-16384</code> for
-     * <code>gp2</code> volumes, and <code>4-16384</code> for
-     * <code>io1</code> volumes. If you specify a snapshot, the volume size
-     * must be equal to or larger than the snapshot size. <p>Default: If
-     * you're creating the volume from a snapshot and don't specify a volume
-     * size, the default is the snapshot size.
+     * The size of the volume, in GiB. <p>Constraints: 1-16384 for General
+     * Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD
+     * (<code>io1</code>), 500-16384 for Throughput Optimized HDD
+     * (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and
+     * 1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a
+     * snapshot, the volume size must be equal to or larger than the snapshot
+     * size. <p>Default: If you're creating the volume from a snapshot and
+     * don't specify a volume size, the default is the snapshot size.
      *
-     * @return The size of the volume, in GiB. <p>Constraints: <code>1-1024</code>
-     *         for <code>standard</code> volumes, <code>1-16384</code> for
-     *         <code>gp2</code> volumes, and <code>4-16384</code> for
-     *         <code>io1</code> volumes. If you specify a snapshot, the volume size
-     *         must be equal to or larger than the snapshot size. <p>Default: If
-     *         you're creating the volume from a snapshot and don't specify a volume
-     *         size, the default is the snapshot size.
+     * @return The size of the volume, in GiB. <p>Constraints: 1-16384 for General
+     *         Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD
+     *         (<code>io1</code>), 500-16384 for Throughput Optimized HDD
+     *         (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and
+     *         1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a
+     *         snapshot, the volume size must be equal to or larger than the snapshot
+     *         size. <p>Default: If you're creating the volume from a snapshot and
+     *         don't specify a volume size, the default is the snapshot size.
      */
     public Integer getVolumeSize() {
         return volumeSize;
     }
     
     /**
-     * The size of the volume, in GiB. <p>Constraints: <code>1-1024</code>
-     * for <code>standard</code> volumes, <code>1-16384</code> for
-     * <code>gp2</code> volumes, and <code>4-16384</code> for
-     * <code>io1</code> volumes. If you specify a snapshot, the volume size
-     * must be equal to or larger than the snapshot size. <p>Default: If
-     * you're creating the volume from a snapshot and don't specify a volume
-     * size, the default is the snapshot size.
+     * The size of the volume, in GiB. <p>Constraints: 1-16384 for General
+     * Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD
+     * (<code>io1</code>), 500-16384 for Throughput Optimized HDD
+     * (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and
+     * 1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a
+     * snapshot, the volume size must be equal to or larger than the snapshot
+     * size. <p>Default: If you're creating the volume from a snapshot and
+     * don't specify a volume size, the default is the snapshot size.
      *
-     * @param volumeSize The size of the volume, in GiB. <p>Constraints: <code>1-1024</code>
-     *         for <code>standard</code> volumes, <code>1-16384</code> for
-     *         <code>gp2</code> volumes, and <code>4-16384</code> for
-     *         <code>io1</code> volumes. If you specify a snapshot, the volume size
-     *         must be equal to or larger than the snapshot size. <p>Default: If
-     *         you're creating the volume from a snapshot and don't specify a volume
-     *         size, the default is the snapshot size.
+     * @param volumeSize The size of the volume, in GiB. <p>Constraints: 1-16384 for General
+     *         Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD
+     *         (<code>io1</code>), 500-16384 for Throughput Optimized HDD
+     *         (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and
+     *         1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a
+     *         snapshot, the volume size must be equal to or larger than the snapshot
+     *         size. <p>Default: If you're creating the volume from a snapshot and
+     *         don't specify a volume size, the default is the snapshot size.
      */
     public void setVolumeSize(Integer volumeSize) {
         this.volumeSize = volumeSize;
     }
     
     /**
-     * The size of the volume, in GiB. <p>Constraints: <code>1-1024</code>
-     * for <code>standard</code> volumes, <code>1-16384</code> for
-     * <code>gp2</code> volumes, and <code>4-16384</code> for
-     * <code>io1</code> volumes. If you specify a snapshot, the volume size
-     * must be equal to or larger than the snapshot size. <p>Default: If
-     * you're creating the volume from a snapshot and don't specify a volume
-     * size, the default is the snapshot size.
+     * The size of the volume, in GiB. <p>Constraints: 1-16384 for General
+     * Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD
+     * (<code>io1</code>), 500-16384 for Throughput Optimized HDD
+     * (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and
+     * 1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a
+     * snapshot, the volume size must be equal to or larger than the snapshot
+     * size. <p>Default: If you're creating the volume from a snapshot and
+     * don't specify a volume size, the default is the snapshot size.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param volumeSize The size of the volume, in GiB. <p>Constraints: <code>1-1024</code>
-     *         for <code>standard</code> volumes, <code>1-16384</code> for
-     *         <code>gp2</code> volumes, and <code>4-16384</code> for
-     *         <code>io1</code> volumes. If you specify a snapshot, the volume size
-     *         must be equal to or larger than the snapshot size. <p>Default: If
-     *         you're creating the volume from a snapshot and don't specify a volume
-     *         size, the default is the snapshot size.
+     * @param volumeSize The size of the volume, in GiB. <p>Constraints: 1-16384 for General
+     *         Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD
+     *         (<code>io1</code>), 500-16384 for Throughput Optimized HDD
+     *         (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and
+     *         1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a
+     *         snapshot, the volume size must be equal to or larger than the snapshot
+     *         size. <p>Default: If you're creating the volume from a snapshot and
+     *         don't specify a volume size, the default is the snapshot size.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -225,17 +231,15 @@ public class EbsBlockDevice implements Serializable {
     }
 
     /**
-     * The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     * <code>standard</code> for Magnetic volumes. <p>Default:
+     * The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     * <code>sc1</code>, or <code>standard</code>. <p>Default:
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @return The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     *         <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     *         <code>standard</code> for Magnetic volumes. <p>Default:
+     * @return The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     *         <code>sc1</code>, or <code>standard</code>. <p>Default:
      *         <code>standard</code>
      *
      * @see VolumeType
@@ -245,17 +249,15 @@ public class EbsBlockDevice implements Serializable {
     }
     
     /**
-     * The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     * <code>standard</code> for Magnetic volumes. <p>Default:
+     * The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     * <code>sc1</code>, or <code>standard</code>. <p>Default:
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @param volumeType The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     *         <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     *         <code>standard</code> for Magnetic volumes. <p>Default:
+     * @param volumeType The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     *         <code>sc1</code>, or <code>standard</code>. <p>Default:
      *         <code>standard</code>
      *
      * @see VolumeType
@@ -265,19 +267,17 @@ public class EbsBlockDevice implements Serializable {
     }
     
     /**
-     * The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     * <code>standard</code> for Magnetic volumes. <p>Default:
+     * The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     * <code>sc1</code>, or <code>standard</code>. <p>Default:
      * <code>standard</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @param volumeType The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     *         <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     *         <code>standard</code> for Magnetic volumes. <p>Default:
+     * @param volumeType The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     *         <code>sc1</code>, or <code>standard</code>. <p>Default:
      *         <code>standard</code>
      *
      * @return A reference to this updated object so that method calls can be chained
@@ -291,17 +291,15 @@ public class EbsBlockDevice implements Serializable {
     }
 
     /**
-     * The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     * <code>standard</code> for Magnetic volumes. <p>Default:
+     * The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     * <code>sc1</code>, or <code>standard</code>. <p>Default:
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @param volumeType The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     *         <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     *         <code>standard</code> for Magnetic volumes. <p>Default:
+     * @param volumeType The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     *         <code>sc1</code>, or <code>standard</code>. <p>Default:
      *         <code>standard</code>
      *
      * @see VolumeType
@@ -311,19 +309,17 @@ public class EbsBlockDevice implements Serializable {
     }
     
     /**
-     * The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     * <code>standard</code> for Magnetic volumes. <p>Default:
+     * The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     * <code>sc1</code>, or <code>standard</code>. <p>Default:
      * <code>standard</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @param volumeType The volume type. <code>gp2</code> for General Purpose (SSD) volumes,
-     *         <code>io1</code> for Provisioned IOPS (SSD) volumes, and
-     *         <code>standard</code> for Magnetic volumes. <p>Default:
+     * @param volumeType The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>,
+     *         <code>sc1</code>, or <code>standard</code>. <p>Default:
      *         <code>standard</code>
      *
      * @return A reference to this updated object so that method calls can be chained
@@ -338,34 +334,34 @@ public class EbsBlockDevice implements Serializable {
 
     /**
      * The number of I/O operations per second (IOPS) that the volume
-     * supports. For Provisioned IOPS (SSD) volumes, this represents the
-     * number of IOPS that are provisioned for the volume. For General
-     * Purpose (SSD) volumes, this represents the baseline performance of the
-     * volume and the rate at which the volume accumulates I/O credits for
-     * bursting. For more information on General Purpose (SSD) baseline
-     * performance, I/O credits, and bursting, see <a
+     * supports. For io1, this represents the number of IOPS that are
+     * provisioned for the volume. For <code>gp2</code>, this represents the
+     * baseline performance of the volume and the rate at which the volume
+     * accumulates I/O credits for bursting. For more information on General
+     * Purpose SSD baseline performance, I/O credits, and bursting, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
      * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
-     * (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
-     * <p>Condition: This parameter is required for requests to create
-     * <code>io1</code> volumes; it is not used in requests to create
-     * <code>standard</code> or <code>gp2</code> volumes.
+     * Guide</i>. <p>Constraint: Range is 100-20000 IOPS for io1 volumes and
+     * 100-10000 IOPS for <code>gp2</code> volumes. <p>Condition: This
+     * parameter is required for requests to create
+     * <code><code>io1</code></code> volumes; it is not used in requests to
+     * create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or
+     * <code>standard</code> volumes.
      *
      * @return The number of I/O operations per second (IOPS) that the volume
-     *         supports. For Provisioned IOPS (SSD) volumes, this represents the
-     *         number of IOPS that are provisioned for the volume. For General
-     *         Purpose (SSD) volumes, this represents the baseline performance of the
-     *         volume and the rate at which the volume accumulates I/O credits for
-     *         bursting. For more information on General Purpose (SSD) baseline
-     *         performance, I/O credits, and bursting, see <a
+     *         supports. For io1, this represents the number of IOPS that are
+     *         provisioned for the volume. For <code>gp2</code>, this represents the
+     *         baseline performance of the volume and the rate at which the volume
+     *         accumulates I/O credits for bursting. For more information on General
+     *         Purpose SSD baseline performance, I/O credits, and bursting, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
      *         EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
-     *         (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
-     *         <p>Condition: This parameter is required for requests to create
-     *         <code>io1</code> volumes; it is not used in requests to create
-     *         <code>standard</code> or <code>gp2</code> volumes.
+     *         Guide</i>. <p>Constraint: Range is 100-20000 IOPS for io1 volumes and
+     *         100-10000 IOPS for <code>gp2</code> volumes. <p>Condition: This
+     *         parameter is required for requests to create
+     *         <code><code>io1</code></code> volumes; it is not used in requests to
+     *         create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or
+     *         <code>standard</code> volumes.
      */
     public Integer getIops() {
         return iops;
@@ -373,34 +369,34 @@ public class EbsBlockDevice implements Serializable {
     
     /**
      * The number of I/O operations per second (IOPS) that the volume
-     * supports. For Provisioned IOPS (SSD) volumes, this represents the
-     * number of IOPS that are provisioned for the volume. For General
-     * Purpose (SSD) volumes, this represents the baseline performance of the
-     * volume and the rate at which the volume accumulates I/O credits for
-     * bursting. For more information on General Purpose (SSD) baseline
-     * performance, I/O credits, and bursting, see <a
+     * supports. For io1, this represents the number of IOPS that are
+     * provisioned for the volume. For <code>gp2</code>, this represents the
+     * baseline performance of the volume and the rate at which the volume
+     * accumulates I/O credits for bursting. For more information on General
+     * Purpose SSD baseline performance, I/O credits, and bursting, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
      * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
-     * (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
-     * <p>Condition: This parameter is required for requests to create
-     * <code>io1</code> volumes; it is not used in requests to create
-     * <code>standard</code> or <code>gp2</code> volumes.
+     * Guide</i>. <p>Constraint: Range is 100-20000 IOPS for io1 volumes and
+     * 100-10000 IOPS for <code>gp2</code> volumes. <p>Condition: This
+     * parameter is required for requests to create
+     * <code><code>io1</code></code> volumes; it is not used in requests to
+     * create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or
+     * <code>standard</code> volumes.
      *
      * @param iops The number of I/O operations per second (IOPS) that the volume
-     *         supports. For Provisioned IOPS (SSD) volumes, this represents the
-     *         number of IOPS that are provisioned for the volume. For General
-     *         Purpose (SSD) volumes, this represents the baseline performance of the
-     *         volume and the rate at which the volume accumulates I/O credits for
-     *         bursting. For more information on General Purpose (SSD) baseline
-     *         performance, I/O credits, and bursting, see <a
+     *         supports. For io1, this represents the number of IOPS that are
+     *         provisioned for the volume. For <code>gp2</code>, this represents the
+     *         baseline performance of the volume and the rate at which the volume
+     *         accumulates I/O credits for bursting. For more information on General
+     *         Purpose SSD baseline performance, I/O credits, and bursting, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
      *         EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
-     *         (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
-     *         <p>Condition: This parameter is required for requests to create
-     *         <code>io1</code> volumes; it is not used in requests to create
-     *         <code>standard</code> or <code>gp2</code> volumes.
+     *         Guide</i>. <p>Constraint: Range is 100-20000 IOPS for io1 volumes and
+     *         100-10000 IOPS for <code>gp2</code> volumes. <p>Condition: This
+     *         parameter is required for requests to create
+     *         <code><code>io1</code></code> volumes; it is not used in requests to
+     *         create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or
+     *         <code>standard</code> volumes.
      */
     public void setIops(Integer iops) {
         this.iops = iops;
@@ -408,36 +404,36 @@ public class EbsBlockDevice implements Serializable {
     
     /**
      * The number of I/O operations per second (IOPS) that the volume
-     * supports. For Provisioned IOPS (SSD) volumes, this represents the
-     * number of IOPS that are provisioned for the volume. For General
-     * Purpose (SSD) volumes, this represents the baseline performance of the
-     * volume and the rate at which the volume accumulates I/O credits for
-     * bursting. For more information on General Purpose (SSD) baseline
-     * performance, I/O credits, and bursting, see <a
+     * supports. For io1, this represents the number of IOPS that are
+     * provisioned for the volume. For <code>gp2</code>, this represents the
+     * baseline performance of the volume and the rate at which the volume
+     * accumulates I/O credits for bursting. For more information on General
+     * Purpose SSD baseline performance, I/O credits, and bursting, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
      * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
-     * (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
-     * <p>Condition: This parameter is required for requests to create
-     * <code>io1</code> volumes; it is not used in requests to create
-     * <code>standard</code> or <code>gp2</code> volumes.
+     * Guide</i>. <p>Constraint: Range is 100-20000 IOPS for io1 volumes and
+     * 100-10000 IOPS for <code>gp2</code> volumes. <p>Condition: This
+     * parameter is required for requests to create
+     * <code><code>io1</code></code> volumes; it is not used in requests to
+     * create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or
+     * <code>standard</code> volumes.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param iops The number of I/O operations per second (IOPS) that the volume
-     *         supports. For Provisioned IOPS (SSD) volumes, this represents the
-     *         number of IOPS that are provisioned for the volume. For General
-     *         Purpose (SSD) volumes, this represents the baseline performance of the
-     *         volume and the rate at which the volume accumulates I/O credits for
-     *         bursting. For more information on General Purpose (SSD) baseline
-     *         performance, I/O credits, and bursting, see <a
+     *         supports. For io1, this represents the number of IOPS that are
+     *         provisioned for the volume. For <code>gp2</code>, this represents the
+     *         baseline performance of the volume and the rate at which the volume
+     *         accumulates I/O credits for bursting. For more information on General
+     *         Purpose SSD baseline performance, I/O credits, and bursting, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
      *         EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>Constraint: Range is 100 to 20000 for Provisioned IOPS
-     *         (SSD) volumes and 3 to 10000 for General Purpose (SSD) volumes.
-     *         <p>Condition: This parameter is required for requests to create
-     *         <code>io1</code> volumes; it is not used in requests to create
-     *         <code>standard</code> or <code>gp2</code> volumes.
+     *         Guide</i>. <p>Constraint: Range is 100-20000 IOPS for io1 volumes and
+     *         100-10000 IOPS for <code>gp2</code> volumes. <p>Condition: This
+     *         parameter is required for requests to create
+     *         <code><code>io1</code></code> volumes; it is not used in requests to
+     *         create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or
+     *         <code>standard</code> volumes.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -23,11 +23,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Publishes metric data points to Amazon CloudWatch. Amazon Cloudwatch
  * associates the data points with the specified metric. If the specified
- * metric does not exist, Amazon CloudWatch creates the metric.
- * </p>
- * <p>
- * <b>NOTE:</b> If you create a metric with the PutMetricData action,
- * allow up to fifteen minutes for the metric to appear in calls to the
+ * metric does not exist, Amazon CloudWatch creates the metric. It can
+ * take up to fifteen minutes for a new metric to appear in calls to the
  * ListMetrics action.
  * </p>
  * <p>
@@ -41,13 +38,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * truncated. Likewise, values with base-10 exponents less than -130 (1 x
  * 10^-130) are also truncated.
  * </p>
+ * <p>
+ * Data that is timestamped 24 hours or more in the past may take in
+ * excess of 48 hours to become available from submission time using
+ * <code>GetMetricStatistics</code> .
+ * </p>
  *
  * @see com.amazonaws.services.cloudwatch.AmazonCloudWatch#putMetricData(PutMetricDataRequest)
  */
 public class PutMetricDataRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The namespace for the metric data.
+     * The namespace for the metric data. <note> You cannot specify a
+     * namespace that begins with "AWS/". Namespaces that begin with "AWS/"
+     * are reserved for other Amazon Web Services products that send metrics
+     * to Amazon CloudWatch. </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -61,33 +66,48 @@ public class PutMetricDataRequest extends AmazonWebServiceRequest implements Ser
     private com.amazonaws.internal.ListWithAutoConstructFlag<MetricDatum> metricData;
 
     /**
-     * The namespace for the metric data.
+     * The namespace for the metric data. <note> You cannot specify a
+     * namespace that begins with "AWS/". Namespaces that begin with "AWS/"
+     * are reserved for other Amazon Web Services products that send metrics
+     * to Amazon CloudWatch. </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[^:].*<br/>
      *
-     * @return The namespace for the metric data.
+     * @return The namespace for the metric data. <note> You cannot specify a
+     *         namespace that begins with "AWS/". Namespaces that begin with "AWS/"
+     *         are reserved for other Amazon Web Services products that send metrics
+     *         to Amazon CloudWatch. </note>
      */
     public String getNamespace() {
         return namespace;
     }
     
     /**
-     * The namespace for the metric data.
+     * The namespace for the metric data. <note> You cannot specify a
+     * namespace that begins with "AWS/". Namespaces that begin with "AWS/"
+     * are reserved for other Amazon Web Services products that send metrics
+     * to Amazon CloudWatch. </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[^:].*<br/>
      *
-     * @param namespace The namespace for the metric data.
+     * @param namespace The namespace for the metric data. <note> You cannot specify a
+     *         namespace that begins with "AWS/". Namespaces that begin with "AWS/"
+     *         are reserved for other Amazon Web Services products that send metrics
+     *         to Amazon CloudWatch. </note>
      */
     public void setNamespace(String namespace) {
         this.namespace = namespace;
     }
     
     /**
-     * The namespace for the metric data.
+     * The namespace for the metric data. <note> You cannot specify a
+     * namespace that begins with "AWS/". Namespaces that begin with "AWS/"
+     * are reserved for other Amazon Web Services products that send metrics
+     * to Amazon CloudWatch. </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -95,7 +115,10 @@ public class PutMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[^:].*<br/>
      *
-     * @param namespace The namespace for the metric data.
+     * @param namespace The namespace for the metric data. <note> You cannot specify a
+     *         namespace that begins with "AWS/". Namespaces that begin with "AWS/"
+     *         are reserved for other Amazon Web Services products that send metrics
+     *         to Amazon CloudWatch. </note>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

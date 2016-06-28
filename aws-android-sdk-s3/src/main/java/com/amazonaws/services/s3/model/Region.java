@@ -110,6 +110,18 @@ public enum Region {
     EU_Frankfurt("eu-central-1"),
 
     /**
+     * The Asia Pacific (Mumbai) Region. This region uses Amazon S3 servers
+     * located in Singapore.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-ap-south-1.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    AP_Mumbai("ap-south-1"),
+
+    /**
      * The Asia Pacific (Singapore) Region. This region uses Amazon S3 servers
      * located in Singapore.
      * <p>
@@ -146,6 +158,18 @@ public enum Region {
     AP_Tokyo("ap-northeast-1"),
 
     /**
+     * The Asia Pacific (Seoul) Region. This region uses Amazon S3 servers
+     * located in Seoul.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3.ap-northeast-2.amazonaws.com</code> on all requests to these
+     * buckets to reduce any latency experienced after the first hour of
+     * creating a bucket in this region.
+     * </p>
+     */
+    AP_Seoul("ap-northeast-2"),
+
+    /**
      * The South America (Sao Paulo) Region. This region uses Amazon S3 servers
      * located in Sao Paulo.
      * <p>
@@ -169,9 +193,14 @@ public enum Region {
     /**
      * Used to extract the S3 regional id from an S3 end point. Note this
      * pattern will not match the S3 US standard endpoint by intent.
+     * 
+     * <pre>
+     * s3-eu-west-1.amazonaws.com
+     * s3.cn-north-1.amazonaws.com.cn
+     * </pre>
      */
     public static final Pattern S3_REGIONAL_ENDPOINT_PATTERN = Pattern
-            .compile("s3-([^.]+)\\.amazonaws\\.com");
+            .compile("s3[-.]([^.]+)\\.amazonaws\\.com(\\.[^.]*)?");
 
     /** The list of ID's representing each region. */
     private final List<String> regionIds;

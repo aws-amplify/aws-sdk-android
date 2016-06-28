@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -15,50 +15,51 @@
 
 package com.amazonaws.services.iot.model.transform;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.amazonaws.services.iot.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * Create Certificate From Csr Result JSON Unmarshaller
+ * JSON unmarshaller for response CreateCertificateFromCsrResult
  */
-public class CreateCertificateFromCsrResultJsonUnmarshaller implements Unmarshaller<CreateCertificateFromCsrResult, JsonUnmarshallerContext> {
+public class CreateCertificateFromCsrResultJsonUnmarshaller implements
+        Unmarshaller<CreateCertificateFromCsrResult, JsonUnmarshallerContext> {
 
-    public CreateCertificateFromCsrResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public CreateCertificateFromCsrResult unmarshall(JsonUnmarshallerContext context)
+            throws Exception {
         CreateCertificateFromCsrResult createCertificateFromCsrResult = new CreateCertificateFromCsrResult();
 
         AwsJsonReader reader = context.getReader();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            
             if (name.equals("certificateArn")) {
-                createCertificateFromCsrResult.setCertificateArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            if (name.equals("certificateId")) {
-                createCertificateFromCsrResult.setCertificateId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            if (name.equals("certificatePem")) {
-                createCertificateFromCsrResult.setCertificatePem(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            {
+                createCertificateFromCsrResult.setCertificateArn(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("certificateId")) {
+                createCertificateFromCsrResult.setCertificateId(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("certificatePem")) {
+                createCertificateFromCsrResult.setCertificatePem(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
                 reader.skipValue();
             }
-            
         }
         reader.endObject();
-        
+
         return createCertificateFromCsrResult;
     }
 
     private static CreateCertificateFromCsrResultJsonUnmarshaller instance;
+
     public static CreateCertificateFromCsrResultJsonUnmarshaller getInstance() {
-        if (instance == null) instance = new CreateCertificateFromCsrResultJsonUnmarshaller();
+        if (instance == null)
+            instance = new CreateCertificateFromCsrResultJsonUnmarshaller();
         return instance;
     }
 }
-    

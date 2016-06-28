@@ -1,6 +1,6 @@
-
 /**
- * Classes modeling the various types represented by AWSKMS.
+ * Classes modeling the various types represented by AWSKMS
  */
- package com.amazonaws.services.kms.model;
-        
+
+package com.amazonaws.services.kms.model;
+

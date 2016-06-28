@@ -110,8 +110,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified, the default cooldown period for the group applies. <p>This
      * parameter is not supported unless the policy type is
      * <code>SimpleScaling</code>. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     private Integer cooldown;
 
@@ -519,16 +519,16 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified, the default cooldown period for the group applies. <p>This
      * parameter is not supported unless the policy type is
      * <code>SimpleScaling</code>. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return The amount of time, in seconds, after a scaling activity completes and
      *         before the next scaling activity can start. If this parameter is not
      *         specified, the default cooldown period for the group applies. <p>This
      *         parameter is not supported unless the policy type is
      *         <code>SimpleScaling</code>. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public Integer getCooldown() {
         return cooldown;
@@ -540,16 +540,16 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified, the default cooldown period for the group applies. <p>This
      * parameter is not supported unless the policy type is
      * <code>SimpleScaling</code>. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @param cooldown The amount of time, in seconds, after a scaling activity completes and
      *         before the next scaling activity can start. If this parameter is not
      *         specified, the default cooldown period for the group applies. <p>This
      *         parameter is not supported unless the policy type is
      *         <code>SimpleScaling</code>. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public void setCooldown(Integer cooldown) {
         this.cooldown = cooldown;
@@ -561,8 +561,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified, the default cooldown period for the group applies. <p>This
      * parameter is not supported unless the policy type is
      * <code>SimpleScaling</code>. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -571,8 +571,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         specified, the default cooldown period for the group applies. <p>This
      *         parameter is not supported unless the policy type is
      *         <code>SimpleScaling</code>. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

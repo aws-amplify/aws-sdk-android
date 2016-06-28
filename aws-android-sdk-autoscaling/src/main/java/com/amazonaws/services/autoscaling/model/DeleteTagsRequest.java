@@ -29,26 +29,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteTagsRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * Each tag should be defined by its resource type, resource ID, key,
-     * value, and a propagate flag. Valid values are: Resource type =
-     * <i>auto-scaling-group</i>, Resource ID = <i>AutoScalingGroupName</i>,
-     * key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
-     * <i>false</i>.
+     * One or more tags.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<Tag> tags;
 
     /**
-     * Each tag should be defined by its resource type, resource ID, key,
-     * value, and a propagate flag. Valid values are: Resource type =
-     * <i>auto-scaling-group</i>, Resource ID = <i>AutoScalingGroupName</i>,
-     * key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
-     * <i>false</i>.
+     * One or more tags.
      *
-     * @return Each tag should be defined by its resource type, resource ID, key,
-     *         value, and a propagate flag. Valid values are: Resource type =
-     *         <i>auto-scaling-group</i>, Resource ID = <i>AutoScalingGroupName</i>,
-     *         key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
-     *         <i>false</i>.
+     * @return One or more tags.
      */
     public java.util.List<Tag> getTags() {
         if (tags == null) {
@@ -59,17 +47,9 @@ public class DeleteTagsRequest extends AmazonWebServiceRequest implements Serial
     }
     
     /**
-     * Each tag should be defined by its resource type, resource ID, key,
-     * value, and a propagate flag. Valid values are: Resource type =
-     * <i>auto-scaling-group</i>, Resource ID = <i>AutoScalingGroupName</i>,
-     * key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
-     * <i>false</i>.
+     * One or more tags.
      *
-     * @param tags Each tag should be defined by its resource type, resource ID, key,
-     *         value, and a propagate flag. Valid values are: Resource type =
-     *         <i>auto-scaling-group</i>, Resource ID = <i>AutoScalingGroupName</i>,
-     *         key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
-     *         <i>false</i>.
+     * @param tags One or more tags.
      */
     public void setTags(java.util.Collection<Tag> tags) {
         if (tags == null) {
@@ -82,19 +62,11 @@ public class DeleteTagsRequest extends AmazonWebServiceRequest implements Serial
     }
     
     /**
-     * Each tag should be defined by its resource type, resource ID, key,
-     * value, and a propagate flag. Valid values are: Resource type =
-     * <i>auto-scaling-group</i>, Resource ID = <i>AutoScalingGroupName</i>,
-     * key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
-     * <i>false</i>.
+     * One or more tags.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param tags Each tag should be defined by its resource type, resource ID, key,
-     *         value, and a propagate flag. Valid values are: Resource type =
-     *         <i>auto-scaling-group</i>, Resource ID = <i>AutoScalingGroupName</i>,
-     *         key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
-     *         <i>false</i>.
+     * @param tags One or more tags.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -108,19 +80,11 @@ public class DeleteTagsRequest extends AmazonWebServiceRequest implements Serial
     }
     
     /**
-     * Each tag should be defined by its resource type, resource ID, key,
-     * value, and a propagate flag. Valid values are: Resource type =
-     * <i>auto-scaling-group</i>, Resource ID = <i>AutoScalingGroupName</i>,
-     * key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
-     * <i>false</i>.
+     * One or more tags.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param tags Each tag should be defined by its resource type, resource ID, key,
-     *         value, and a propagate flag. Valid values are: Resource type =
-     *         <i>auto-scaling-group</i>, Resource ID = <i>AutoScalingGroupName</i>,
-     *         key=<i>value</i>, value=<i>value</i>, propagate=<i>true</i> or
-     *         <i>false</i>.
+     * @param tags One or more tags.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

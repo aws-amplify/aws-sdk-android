@@ -46,7 +46,7 @@ public class HealthCheck implements Serializable {
      * individual instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>5 - 300<br/>
      */
     private Integer interval;
 
@@ -56,7 +56,7 @@ public class HealthCheck implements Serializable {
      * <code>Interval</code> value.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>2 - 60<br/>
      */
     private Integer timeout;
 
@@ -239,7 +239,7 @@ public class HealthCheck implements Serializable {
      * individual instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>5 - 300<br/>
      *
      * @return The approximate interval, in seconds, between health checks of an
      *         individual instance.
@@ -253,7 +253,7 @@ public class HealthCheck implements Serializable {
      * individual instance.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>5 - 300<br/>
      *
      * @param interval The approximate interval, in seconds, between health checks of an
      *         individual instance.
@@ -269,7 +269,7 @@ public class HealthCheck implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>5 - 300<br/>
      *
      * @param interval The approximate interval, in seconds, between health checks of an
      *         individual instance.
@@ -288,7 +288,7 @@ public class HealthCheck implements Serializable {
      * <code>Interval</code> value.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>2 - 60<br/>
      *
      * @return The amount of time, in seconds, during which no response means a
      *         failed health check. <p>This value must be less than the
@@ -304,7 +304,7 @@ public class HealthCheck implements Serializable {
      * <code>Interval</code> value.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>2 - 60<br/>
      *
      * @param timeout The amount of time, in seconds, during which no response means a
      *         failed health check. <p>This value must be less than the
@@ -322,7 +322,7 @@ public class HealthCheck implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>2 - 60<br/>
      *
      * @param timeout The amount of time, in seconds, during which no response means a
      *         failed health check. <p>This value must be less than the

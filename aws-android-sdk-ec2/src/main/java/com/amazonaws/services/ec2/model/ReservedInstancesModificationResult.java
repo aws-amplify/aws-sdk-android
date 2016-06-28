@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Describes the modification request/s.
+ * </p>
  */
 public class ReservedInstancesModificationResult implements Serializable {
 

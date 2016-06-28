@@ -59,7 +59,8 @@ public class CreateNetworkAclEntryRequest extends AmazonWebServiceRequest implem
     /**
      * The rule number for the entry (for example, 100). ACL entries are
      * processed in ascending order by rule number. <p>Constraints: Positive
-     * integer from 1 to 32766
+     * integer from 1 to 32766. The range 32767 to 65535 is reserved for
+     * internal use.
      */
     private Integer ruleNumber;
 
@@ -135,11 +136,13 @@ public class CreateNetworkAclEntryRequest extends AmazonWebServiceRequest implem
     /**
      * The rule number for the entry (for example, 100). ACL entries are
      * processed in ascending order by rule number. <p>Constraints: Positive
-     * integer from 1 to 32766
+     * integer from 1 to 32766. The range 32767 to 65535 is reserved for
+     * internal use.
      *
      * @return The rule number for the entry (for example, 100). ACL entries are
      *         processed in ascending order by rule number. <p>Constraints: Positive
-     *         integer from 1 to 32766
+     *         integer from 1 to 32766. The range 32767 to 65535 is reserved for
+     *         internal use.
      */
     public Integer getRuleNumber() {
         return ruleNumber;
@@ -148,11 +151,13 @@ public class CreateNetworkAclEntryRequest extends AmazonWebServiceRequest implem
     /**
      * The rule number for the entry (for example, 100). ACL entries are
      * processed in ascending order by rule number. <p>Constraints: Positive
-     * integer from 1 to 32766
+     * integer from 1 to 32766. The range 32767 to 65535 is reserved for
+     * internal use.
      *
      * @param ruleNumber The rule number for the entry (for example, 100). ACL entries are
      *         processed in ascending order by rule number. <p>Constraints: Positive
-     *         integer from 1 to 32766
+     *         integer from 1 to 32766. The range 32767 to 65535 is reserved for
+     *         internal use.
      */
     public void setRuleNumber(Integer ruleNumber) {
         this.ruleNumber = ruleNumber;
@@ -161,13 +166,15 @@ public class CreateNetworkAclEntryRequest extends AmazonWebServiceRequest implem
     /**
      * The rule number for the entry (for example, 100). ACL entries are
      * processed in ascending order by rule number. <p>Constraints: Positive
-     * integer from 1 to 32766
+     * integer from 1 to 32766. The range 32767 to 65535 is reserved for
+     * internal use.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param ruleNumber The rule number for the entry (for example, 100). ACL entries are
      *         processed in ascending order by rule number. <p>Constraints: Positive
-     *         integer from 1 to 32766
+     *         integer from 1 to 32766. The range 32767 to 65535 is reserved for
+     *         internal use.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonMachineLearning.
+ * Marhsalling for the various types represented byAmazonMachineLearning
  */
- package com.amazonaws.services.machinelearning.model.transform;
-        
+
+package com.amazonaws.services.machinelearning.model.transform;
+

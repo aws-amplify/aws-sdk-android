@@ -1,6 +1,6 @@
-
 /**
- * Classes modeling the various types represented by AmazonDynamoDBv2.
+ * Classes modeling the various types represented by AmazonDynamoDB
  */
- package com.amazonaws.services.dynamodbv2.model;
-        
+
+package com.amazonaws.services.dynamodbv2.model;
+

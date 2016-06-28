@@ -91,6 +91,22 @@ class RegionDefaults {
         updateRegion(region, "kms", "kms.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "execute-api", "iot.us-west-2.amazonaws.com", false, true);
 
+        region = new Region("ap-south-1", "");
+        ret.add(region);
+
+        updateRegion(region, "s3", "s3-ap-south-1.amazonaws.com", true, true);
+        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "monitoring", "monitoring.ap-south-1.amazonaws.com", true, true);
+        updateRegion(region, "sns", "sns.ap-south-1.amazonaws.com", true, true);
+        updateRegion(region, "autoscaling", "autoscaling.ap-south-1.amazonaws.com", true, true);
+        updateRegion(region, "dynamodb", "dynamodb.ap-south-1.amazonaws.com", true, true);
+        updateRegion(region, "ec2", "ec2.ap-south-1.amazonaws.com", true, true);
+        updateRegion(region, "kinesis", "kinesis.ap-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.ap-south-1.amazonaws.com", true, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.ap-south-1.amazonaws.com", true, true);
+        updateRegion(region, "kms", "kms.ap-south-1.amazonaws.com", false, true);
+
         region = new Region("ap-northeast-1", "");
         ret.add(region);
 

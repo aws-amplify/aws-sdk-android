@@ -24,8 +24,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Deletes the messages in a queue specified by the <b>queue URL</b> .
  * </p>
  * <p>
- * <b>IMPORTANT:</b>When you use the PurgeQueue API, the deleted messages
- * in the queue cannot be retrieved.
+ * <b>IMPORTANT:</b> When you use the PurgeQueue API, the deleted
+ * messages in the queue cannot be retrieved.
  * </p>
  * <p>
  * When you purge a queue, the message deletion process takes up to 60
@@ -42,16 +42,16 @@ public class PurgeQueueRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * The queue URL of the queue to delete the messages from when using the
-     * <code>PurgeQueue</code> API.
+     * <code>PurgeQueue</code> API. <p>Queue URLs are case-sensitive.
      */
     private String queueUrl;
 
     /**
      * The queue URL of the queue to delete the messages from when using the
-     * <code>PurgeQueue</code> API.
+     * <code>PurgeQueue</code> API. <p>Queue URLs are case-sensitive.
      *
      * @return The queue URL of the queue to delete the messages from when using the
-     *         <code>PurgeQueue</code> API.
+     *         <code>PurgeQueue</code> API. <p>Queue URLs are case-sensitive.
      */
     public String getQueueUrl() {
         return queueUrl;
@@ -59,10 +59,10 @@ public class PurgeQueueRequest extends AmazonWebServiceRequest implements Serial
     
     /**
      * The queue URL of the queue to delete the messages from when using the
-     * <code>PurgeQueue</code> API.
+     * <code>PurgeQueue</code> API. <p>Queue URLs are case-sensitive.
      *
      * @param queueUrl The queue URL of the queue to delete the messages from when using the
-     *         <code>PurgeQueue</code> API.
+     *         <code>PurgeQueue</code> API. <p>Queue URLs are case-sensitive.
      */
     public void setQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
@@ -70,12 +70,12 @@ public class PurgeQueueRequest extends AmazonWebServiceRequest implements Serial
     
     /**
      * The queue URL of the queue to delete the messages from when using the
-     * <code>PurgeQueue</code> API.
+     * <code>PurgeQueue</code> API. <p>Queue URLs are case-sensitive.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param queueUrl The queue URL of the queue to delete the messages from when using the
-     *         <code>PurgeQueue</code> API.
+     *         <code>PurgeQueue</code> API. <p>Queue URLs are case-sensitive.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

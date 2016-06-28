@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class DescribeTagsResult implements Serializable {
 
     /**
-     * The tags.
+     * One or more tags.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<TagDescription> tags;
 
@@ -36,9 +36,9 @@ public class DescribeTagsResult implements Serializable {
     private String nextToken;
 
     /**
-     * The tags.
+     * One or more tags.
      *
-     * @return The tags.
+     * @return One or more tags.
      */
     public java.util.List<TagDescription> getTags() {
         if (tags == null) {
@@ -49,9 +49,9 @@ public class DescribeTagsResult implements Serializable {
     }
     
     /**
-     * The tags.
+     * One or more tags.
      *
-     * @param tags The tags.
+     * @param tags One or more tags.
      */
     public void setTags(java.util.Collection<TagDescription> tags) {
         if (tags == null) {
@@ -64,11 +64,11 @@ public class DescribeTagsResult implements Serializable {
     }
     
     /**
-     * The tags.
+     * One or more tags.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param tags The tags.
+     * @param tags One or more tags.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -82,11 +82,11 @@ public class DescribeTagsResult implements Serializable {
     }
     
     /**
-     * The tags.
+     * One or more tags.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param tags The tags.
+     * @param tags One or more tags.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

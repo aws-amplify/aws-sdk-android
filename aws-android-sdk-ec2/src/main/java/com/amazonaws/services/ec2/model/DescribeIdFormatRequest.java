@@ -31,7 +31,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The following resource types support longer IDs: <code>instance</code>
  * |
  * 
- * <code>reservation</code> .
+ * <code>reservation</code> |
+ * <code>snapshot</code> |
+ * <code>volume</code> .
  * </p>
  * <p>
  * These settings apply to the IAM user who makes the request; they do

@@ -39,8 +39,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Using The Access Policy Language in the Amazon SQS Developer Guide.
  * </p>
  * <p>
- * <b>NOTE:</b>Some API actions take lists of parameters. These lists are
- * specified using the param.n notation. Values of n are integers
+ * <b>NOTE:</b> Some API actions take lists of parameters. These lists
+ * are specified using the param.n notation. Values of n are integers
  * starting from 1. For example, a parameter list with two elements looks
  * like this:
  * </p>
@@ -56,7 +56,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class AddPermissionRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      */
     private String queueUrl;
 
@@ -106,6 +107,7 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      * initialize any additional object members.
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param label The unique identification of the permission you're
      * setting (e.g., <code>AliceSendMessage</code>). Constraints: Maximum 80
      * characters; alphanumeric characters, hyphens (-), and underscores (_)
@@ -139,29 +141,35 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @return The URL of the Amazon SQS queue to take action on.
+     * @return The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public String getQueueUrl() {
         return queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public void setQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

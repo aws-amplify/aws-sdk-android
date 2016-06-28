@@ -79,9 +79,9 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if
-     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
-     * otherwise. For more information, see <a
+     * <code>ClassicLinkVPCId</code>. This parameter is required if you
+     * specify a ClassicLink-enabled VPC, and cannot be used otherwise. For
+     * more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      */
@@ -501,16 +501,16 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if
-     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
-     * otherwise. For more information, see <a
+     * <code>ClassicLinkVPCId</code>. This parameter is required if you
+     * specify a ClassicLink-enabled VPC, and cannot be used otherwise. For
+     * more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      *
      * @return The IDs of one or more security groups for the VPC specified in
-     *         <code>ClassicLinkVPCId</code>. This parameter is required if
-     *         <code>ClassicLinkVPCId</code> is specified, and cannot be used
-     *         otherwise. For more information, see <a
+     *         <code>ClassicLinkVPCId</code>. This parameter is required if you
+     *         specify a ClassicLink-enabled VPC, and cannot be used otherwise. For
+     *         more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      */
@@ -524,16 +524,16 @@ public class LaunchConfiguration implements Serializable {
     
     /**
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if
-     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
-     * otherwise. For more information, see <a
+     * <code>ClassicLinkVPCId</code>. This parameter is required if you
+     * specify a ClassicLink-enabled VPC, and cannot be used otherwise. For
+     * more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      *
      * @param classicLinkVPCSecurityGroups The IDs of one or more security groups for the VPC specified in
-     *         <code>ClassicLinkVPCId</code>. This parameter is required if
-     *         <code>ClassicLinkVPCId</code> is specified, and cannot be used
-     *         otherwise. For more information, see <a
+     *         <code>ClassicLinkVPCId</code>. This parameter is required if you
+     *         specify a ClassicLink-enabled VPC, and cannot be used otherwise. For
+     *         more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      */
@@ -549,18 +549,18 @@ public class LaunchConfiguration implements Serializable {
     
     /**
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if
-     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
-     * otherwise. For more information, see <a
+     * <code>ClassicLinkVPCId</code>. This parameter is required if you
+     * specify a ClassicLink-enabled VPC, and cannot be used otherwise. For
+     * more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param classicLinkVPCSecurityGroups The IDs of one or more security groups for the VPC specified in
-     *         <code>ClassicLinkVPCId</code>. This parameter is required if
-     *         <code>ClassicLinkVPCId</code> is specified, and cannot be used
-     *         otherwise. For more information, see <a
+     *         <code>ClassicLinkVPCId</code>. This parameter is required if you
+     *         specify a ClassicLink-enabled VPC, and cannot be used otherwise. For
+     *         more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      *
@@ -577,18 +577,18 @@ public class LaunchConfiguration implements Serializable {
     
     /**
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if
-     * <code>ClassicLinkVPCId</code> is specified, and cannot be used
-     * otherwise. For more information, see <a
+     * <code>ClassicLinkVPCId</code>. This parameter is required if you
+     * specify a ClassicLink-enabled VPC, and cannot be used otherwise. For
+     * more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param classicLinkVPCSecurityGroups The IDs of one or more security groups for the VPC specified in
-     *         <code>ClassicLinkVPCId</code>. This parameter is required if
-     *         <code>ClassicLinkVPCId</code> is specified, and cannot be used
-     *         otherwise. For more information, see <a
+     *         <code>ClassicLinkVPCId</code>. This parameter is required if you
+     *         specify a ClassicLink-enabled VPC, and cannot be used otherwise. For
+     *         more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      *

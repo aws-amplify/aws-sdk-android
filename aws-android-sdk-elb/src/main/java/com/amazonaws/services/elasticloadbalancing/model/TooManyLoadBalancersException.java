@@ -18,7 +18,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The quota for the number of load balancers has been reached.
+ * The limit on the number of load balancers was exceeded.
  * </p>
  */        
 public class TooManyLoadBalancersException extends AmazonServiceException {

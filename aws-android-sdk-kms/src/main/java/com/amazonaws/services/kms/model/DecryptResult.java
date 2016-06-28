@@ -1,29 +1,28 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.kms.model;
 
 import java.io.Serializable;
 
-/**
- * 
- */
 public class DecryptResult implements Serializable {
-
     /**
-     * ARN of the key used to perform the decryption. This value is returned
-     * if no errors are encountered during the operation.
+     * <p>
+     * ARN of the key used to perform the decryption. This value is returned if
+     * no errors are encountered during the operation.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -31,9 +30,10 @@ public class DecryptResult implements Serializable {
     private String keyId;
 
     /**
-     * Decrypted plaintext data. This value may not be returned if the
-     * customer master key is not available or if you didn't have permission
-     * to use it.
+     * <p>
+     * Decrypted plaintext data. This value may not be returned if the customer
+     * master key is not available or if you didn't have permission to use it.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
@@ -41,47 +41,59 @@ public class DecryptResult implements Serializable {
     private java.nio.ByteBuffer plaintext;
 
     /**
-     * ARN of the key used to perform the decryption. This value is returned
-     * if no errors are encountered during the operation.
+     * <p>
+     * ARN of the key used to perform the decryption. This value is returned if
+     * no errors are encountered during the operation.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @return ARN of the key used to perform the decryption. This value is returned
-     *         if no errors are encountered during the operation.
+     * @return <p>
+     *         ARN of the key used to perform the decryption. This value is
+     *         returned if no errors are encountered during the operation.
+     *         </p>
      */
     public String getKeyId() {
         return keyId;
     }
-    
+
     /**
-     * ARN of the key used to perform the decryption. This value is returned
-     * if no errors are encountered during the operation.
+     * <p>
+     * ARN of the key used to perform the decryption. This value is returned if
+     * no errors are encountered during the operation.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param keyId ARN of the key used to perform the decryption. This value is returned
-     *         if no errors are encountered during the operation.
+     * @param keyId <p>
+     *            ARN of the key used to perform the decryption. This value is
+     *            returned if no errors are encountered during the operation.
+     *            </p>
      */
     public void setKeyId(String keyId) {
         this.keyId = keyId;
     }
-    
+
     /**
-     * ARN of the key used to perform the decryption. This value is returned
-     * if no errors are encountered during the operation.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * ARN of the key used to perform the decryption. This value is returned if
+     * no errors are encountered during the operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param keyId ARN of the key used to perform the decryption. This value is returned
-     *         if no errors are encountered during the operation.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param keyId <p>
+     *            ARN of the key used to perform the decryption. This value is
+     *            returned if no errors are encountered during the operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DecryptResult withKeyId(String keyId) {
         this.keyId = keyId;
@@ -89,53 +101,62 @@ public class DecryptResult implements Serializable {
     }
 
     /**
-     * Decrypted plaintext data. This value may not be returned if the
-     * customer master key is not available or if you didn't have permission
-     * to use it.
+     * <p>
+     * Decrypted plaintext data. This value may not be returned if the customer
+     * master key is not available or if you didn't have permission to use it.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
-     * @return Decrypted plaintext data. This value may not be returned if the
-     *         customer master key is not available or if you didn't have permission
-     *         to use it.
+     * @return <p>
+     *         Decrypted plaintext data. This value may not be returned if the
+     *         customer master key is not available or if you didn't have
+     *         permission to use it.
+     *         </p>
      */
     public java.nio.ByteBuffer getPlaintext() {
         return plaintext;
     }
-    
+
     /**
-     * Decrypted plaintext data. This value may not be returned if the
-     * customer master key is not available or if you didn't have permission
-     * to use it.
+     * <p>
+     * Decrypted plaintext data. This value may not be returned if the customer
+     * master key is not available or if you didn't have permission to use it.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
-     * @param plaintext Decrypted plaintext data. This value may not be returned if the
-     *         customer master key is not available or if you didn't have permission
-     *         to use it.
+     * @param plaintext <p>
+     *            Decrypted plaintext data. This value may not be returned if
+     *            the customer master key is not available or if you didn't have
+     *            permission to use it.
+     *            </p>
      */
     public void setPlaintext(java.nio.ByteBuffer plaintext) {
         this.plaintext = plaintext;
     }
-    
+
     /**
-     * Decrypted plaintext data. This value may not be returned if the
-     * customer master key is not available or if you didn't have permission
-     * to use it.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Decrypted plaintext data. This value may not be returned if the customer
+     * master key is not available or if you didn't have permission to use it.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
-     * @param plaintext Decrypted plaintext data. This value may not be returned if the
-     *         customer master key is not available or if you didn't have permission
-     *         to use it.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param plaintext <p>
+     *            Decrypted plaintext data. This value may not be returned if
+     *            the customer master key is not available or if you didn't have
+     *            permission to use it.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DecryptResult withPlaintext(java.nio.ByteBuffer plaintext) {
         this.plaintext = plaintext;
@@ -147,43 +168,50 @@ public class DecryptResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getKeyId() != null) sb.append("KeyId: " + getKeyId() + ",");
-        if (getPlaintext() != null) sb.append("Plaintext: " + getPlaintext() );
+        if (getKeyId() != null)
+            sb.append("KeyId: " + getKeyId() + ",");
+        if (getPlaintext() != null)
+            sb.append("Plaintext: " + getPlaintext());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getKeyId() == null) ? 0 : getKeyId().hashCode()); 
-        hashCode = prime * hashCode + ((getPlaintext() == null) ? 0 : getPlaintext().hashCode()); 
+
+        hashCode = prime * hashCode + ((getKeyId() == null) ? 0 : getKeyId().hashCode());
+        hashCode = prime * hashCode + ((getPlaintext() == null) ? 0 : getPlaintext().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DecryptResult == false) return false;
-        DecryptResult other = (DecryptResult)obj;
-        
-        if (other.getKeyId() == null ^ this.getKeyId() == null) return false;
-        if (other.getKeyId() != null && other.getKeyId().equals(this.getKeyId()) == false) return false; 
-        if (other.getPlaintext() == null ^ this.getPlaintext() == null) return false;
-        if (other.getPlaintext() != null && other.getPlaintext().equals(this.getPlaintext()) == false) return false; 
+        if (obj instanceof DecryptResult == false)
+            return false;
+        DecryptResult other = (DecryptResult) obj;
+
+        if (other.getKeyId() == null ^ this.getKeyId() == null)
+            return false;
+        if (other.getKeyId() != null && other.getKeyId().equals(this.getKeyId()) == false)
+            return false;
+        if (other.getPlaintext() == null ^ this.getPlaintext() == null)
+            return false;
+        if (other.getPlaintext() != null
+                && other.getPlaintext().equals(this.getPlaintext()) == false)
+            return false;
         return true;
     }
-    
 }
-    

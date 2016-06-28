@@ -50,7 +50,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteQueueRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      */
     private String queueUrl;
 
@@ -66,35 +67,42 @@ public class DeleteQueueRequest extends AmazonWebServiceRequest implements Seria
      * initialize any additional object members.
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      */
     public DeleteQueueRequest(String queueUrl) {
         setQueueUrl(queueUrl);
     }
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @return The URL of the Amazon SQS queue to take action on.
+     * @return The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public String getQueueUrl() {
         return queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public void setQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -41,7 +41,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class AttachInstancesRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * One or more EC2 instance IDs.
+     * One or more instance IDs.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> instanceIds;
 
@@ -55,9 +55,9 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
     private String autoScalingGroupName;
 
     /**
-     * One or more EC2 instance IDs.
+     * One or more instance IDs.
      *
-     * @return One or more EC2 instance IDs.
+     * @return One or more instance IDs.
      */
     public java.util.List<String> getInstanceIds() {
         if (instanceIds == null) {
@@ -68,9 +68,9 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
     }
     
     /**
-     * One or more EC2 instance IDs.
+     * One or more instance IDs.
      *
-     * @param instanceIds One or more EC2 instance IDs.
+     * @param instanceIds One or more instance IDs.
      */
     public void setInstanceIds(java.util.Collection<String> instanceIds) {
         if (instanceIds == null) {
@@ -83,11 +83,11 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
     }
     
     /**
-     * One or more EC2 instance IDs.
+     * One or more instance IDs.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceIds One or more EC2 instance IDs.
+     * @param instanceIds One or more instance IDs.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -101,11 +101,11 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
     }
     
     /**
-     * One or more EC2 instance IDs.
+     * One or more instance IDs.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceIds One or more EC2 instance IDs.
+     * @param instanceIds One or more instance IDs.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

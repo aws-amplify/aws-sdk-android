@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonCognitoIdentity.
+ * Marhsalling for the various types represented byAmazonCognitoIdentity
  */
- package com.amazonaws.services.cognitoidentity.model.transform;
-        
+
+package com.amazonaws.services.cognitoidentity.model.transform;
+

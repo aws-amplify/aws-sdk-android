@@ -17,44 +17,68 @@
  * </p>
  * <p>
  * Helpful Links:
+ * </p>
+ * 
  * <ul>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://queue.amazonaws.com/doc/2012-11-05/QueueService.wsdl"> Current WSDL (2012-11-05) </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/MakingRequestsArticle.html"> Making API Requests </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://aws.amazon.com/sqs/"> Amazon SQS product page </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html"> Using Amazon SQS Message Attributes </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"> Using Amazon SQS Dead Letter Queues </a>
+ * 
+ * </p>
  * </li>
- * <li>
+ * <li> <p>
+ * 
  * <a href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sqs_region"> Regions and Endpoints </a>
+ * 
+ * </p>
  * </li>
  * 
  * </ul>
- * 
- * </p>
  * <p>
  * We also provide SDKs that enable you to access Amazon SQS from your
  * preferred programming language. The SDKs contain functionality that
  * automatically takes care of tasks such as:
  * </p>
- * <p>
  * 
  * <ul>
- * <li>Cryptographically signing your service requests</li>
- * <li>Retrying requests</li>
- * <li>Handling error responses</li>
+ * <li> <p>
+ * Cryptographically signing your service requests
+ * </p>
+ * </li>
+ * <li> <p>
+ * Retrying requests
+ * </p>
+ * </li>
+ * <li> <p>
+ * Handling error responses
+ * </p>
+ * </li>
  * 
  * </ul>
- * 
- * </p>
  * <p>
  * For a list of available SDKs, go to
  * <a href="http://aws.amazon.com/tools/"> Tools for Amazon Web Services </a>

@@ -25,7 +25,12 @@ import java.io.Serializable;
 public class Datapoint implements Serializable {
 
     /**
-     * The time stamp used for the datapoint.
+     * The time stamp used for the datapoint. Amazon CloudWatch uses
+     * Coordinated Universal Time (UTC) when returning time stamps, which do
+     * not accommodate seasonal adjustments such as daylight savings time.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     private java.util.Date timestamp;
 
@@ -64,29 +69,59 @@ public class Datapoint implements Serializable {
     private String unit;
 
     /**
-     * The time stamp used for the datapoint.
+     * The time stamp used for the datapoint. Amazon CloudWatch uses
+     * Coordinated Universal Time (UTC) when returning time stamps, which do
+     * not accommodate seasonal adjustments such as daylight savings time.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
-     * @return The time stamp used for the datapoint.
+     * @return The time stamp used for the datapoint. Amazon CloudWatch uses
+     *         Coordinated Universal Time (UTC) when returning time stamps, which do
+     *         not accommodate seasonal adjustments such as daylight savings time.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     public java.util.Date getTimestamp() {
         return timestamp;
     }
     
     /**
-     * The time stamp used for the datapoint.
+     * The time stamp used for the datapoint. Amazon CloudWatch uses
+     * Coordinated Universal Time (UTC) when returning time stamps, which do
+     * not accommodate seasonal adjustments such as daylight savings time.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
-     * @param timestamp The time stamp used for the datapoint.
+     * @param timestamp The time stamp used for the datapoint. Amazon CloudWatch uses
+     *         Coordinated Universal Time (UTC) when returning time stamps, which do
+     *         not accommodate seasonal adjustments such as daylight savings time.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     public void setTimestamp(java.util.Date timestamp) {
         this.timestamp = timestamp;
     }
     
     /**
-     * The time stamp used for the datapoint.
+     * The time stamp used for the datapoint. Amazon CloudWatch uses
+     * Coordinated Universal Time (UTC) when returning time stamps, which do
+     * not accommodate seasonal adjustments such as daylight savings time.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param timestamp The time stamp used for the datapoint.
+     * @param timestamp The time stamp used for the datapoint. Amazon CloudWatch uses
+     *         Coordinated Universal Time (UTC) when returning time stamps, which do
+     *         not accommodate seasonal adjustments such as daylight savings time.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

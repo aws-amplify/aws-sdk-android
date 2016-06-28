@@ -34,13 +34,22 @@ import com.amazonaws.services.ec2.model.transform.DescribeSnapshotsRequestMarsha
  * </p>
  * 
  * <ul>
- * <li> <i>public</i> : The owner of the snapshot granted create volume
+ * <li> <p>
+ * <i>public</i> : The owner of the snapshot granted create volume
  * permissions for the snapshot to the <code>all</code> group. All AWS
- * accounts have create volume permissions for these snapshots.</li>
- * <li> <i>explicit</i> : The owner of the snapshot granted create
- * volume permissions to a specific AWS account.</li>
- * <li> <i>implicit</i> : An AWS account has implicit create volume
- * permissions for all snapshots it owns.</li>
+ * accounts have create volume permissions for these snapshots.
+ * </p>
+ * </li>
+ * <li> <p>
+ * <i>explicit</i> : The owner of the snapshot granted create volume
+ * permissions to a specific AWS account.
+ * </p>
+ * </li>
+ * <li> <p>
+ * <i>implicit</i> : An AWS account has implicit create volume
+ * permissions for all snapshots it owns.
+ * </p>
+ * </li>
  * 
  * </ul>
  * <p>

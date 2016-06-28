@@ -39,6 +39,12 @@ public class VpcPeeringConnectionVpcInfo implements Serializable {
     private String vpcId;
 
     /**
+     * Information about the VPC peering connection options for the accepter
+     * or requester VPC.
+     */
+    private VpcPeeringConnectionOptionsDescription peeringOptions;
+
+    /**
      * The CIDR block for the VPC.
      *
      * @return The CIDR block for the VPC.
@@ -138,6 +144,45 @@ public class VpcPeeringConnectionVpcInfo implements Serializable {
     }
 
     /**
+     * Information about the VPC peering connection options for the accepter
+     * or requester VPC.
+     *
+     * @return Information about the VPC peering connection options for the accepter
+     *         or requester VPC.
+     */
+    public VpcPeeringConnectionOptionsDescription getPeeringOptions() {
+        return peeringOptions;
+    }
+    
+    /**
+     * Information about the VPC peering connection options for the accepter
+     * or requester VPC.
+     *
+     * @param peeringOptions Information about the VPC peering connection options for the accepter
+     *         or requester VPC.
+     */
+    public void setPeeringOptions(VpcPeeringConnectionOptionsDescription peeringOptions) {
+        this.peeringOptions = peeringOptions;
+    }
+    
+    /**
+     * Information about the VPC peering connection options for the accepter
+     * or requester VPC.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param peeringOptions Information about the VPC peering connection options for the accepter
+     *         or requester VPC.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public VpcPeeringConnectionVpcInfo withPeeringOptions(VpcPeeringConnectionOptionsDescription peeringOptions) {
+        this.peeringOptions = peeringOptions;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -151,7 +196,8 @@ public class VpcPeeringConnectionVpcInfo implements Serializable {
         sb.append("{");
         if (getCidrBlock() != null) sb.append("CidrBlock: " + getCidrBlock() + ",");
         if (getOwnerId() != null) sb.append("OwnerId: " + getOwnerId() + ",");
-        if (getVpcId() != null) sb.append("VpcId: " + getVpcId() );
+        if (getVpcId() != null) sb.append("VpcId: " + getVpcId() + ",");
+        if (getPeeringOptions() != null) sb.append("PeeringOptions: " + getPeeringOptions() );
         sb.append("}");
         return sb.toString();
     }
@@ -164,6 +210,7 @@ public class VpcPeeringConnectionVpcInfo implements Serializable {
         hashCode = prime * hashCode + ((getCidrBlock() == null) ? 0 : getCidrBlock().hashCode()); 
         hashCode = prime * hashCode + ((getOwnerId() == null) ? 0 : getOwnerId().hashCode()); 
         hashCode = prime * hashCode + ((getVpcId() == null) ? 0 : getVpcId().hashCode()); 
+        hashCode = prime * hashCode + ((getPeeringOptions() == null) ? 0 : getPeeringOptions().hashCode()); 
         return hashCode;
     }
     
@@ -181,6 +228,8 @@ public class VpcPeeringConnectionVpcInfo implements Serializable {
         if (other.getOwnerId() != null && other.getOwnerId().equals(this.getOwnerId()) == false) return false; 
         if (other.getVpcId() == null ^ this.getVpcId() == null) return false;
         if (other.getVpcId() != null && other.getVpcId().equals(this.getVpcId()) == false) return false; 
+        if (other.getPeeringOptions() == null ^ this.getPeeringOptions() == null) return false;
+        if (other.getPeeringOptions() != null && other.getPeeringOptions().equals(this.getPeeringOptions()) == false) return false; 
         return true;
     }
     

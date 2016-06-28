@@ -52,12 +52,9 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
     private com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filters;
 
     /**
-     * The maximum number of results to return for the request in a single
-     * page. The remaining results of the initial request can be seen by
-     * sending another request with the returned <code>NextToken</code>
-     * value. This value can be between 5 and 1000; if
-     * <code>MaxResults</code> is given a value larger than 1000, only 1000
-     * results are returned.
+     * The maximum number of results to return in a single call. This value
+     * can be between 5 and 1000. To retrieve the remaining results, make
+     * another call with the returned <code>NextToken</code> value.
      */
     private Integer maxResults;
 
@@ -251,59 +248,41 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The maximum number of results to return for the request in a single
-     * page. The remaining results of the initial request can be seen by
-     * sending another request with the returned <code>NextToken</code>
-     * value. This value can be between 5 and 1000; if
-     * <code>MaxResults</code> is given a value larger than 1000, only 1000
-     * results are returned.
+     * The maximum number of results to return in a single call. This value
+     * can be between 5 and 1000. To retrieve the remaining results, make
+     * another call with the returned <code>NextToken</code> value.
      *
-     * @return The maximum number of results to return for the request in a single
-     *         page. The remaining results of the initial request can be seen by
-     *         sending another request with the returned <code>NextToken</code>
-     *         value. This value can be between 5 and 1000; if
-     *         <code>MaxResults</code> is given a value larger than 1000, only 1000
-     *         results are returned.
+     * @return The maximum number of results to return in a single call. This value
+     *         can be between 5 and 1000. To retrieve the remaining results, make
+     *         another call with the returned <code>NextToken</code> value.
      */
     public Integer getMaxResults() {
         return maxResults;
     }
     
     /**
-     * The maximum number of results to return for the request in a single
-     * page. The remaining results of the initial request can be seen by
-     * sending another request with the returned <code>NextToken</code>
-     * value. This value can be between 5 and 1000; if
-     * <code>MaxResults</code> is given a value larger than 1000, only 1000
-     * results are returned.
+     * The maximum number of results to return in a single call. This value
+     * can be between 5 and 1000. To retrieve the remaining results, make
+     * another call with the returned <code>NextToken</code> value.
      *
-     * @param maxResults The maximum number of results to return for the request in a single
-     *         page. The remaining results of the initial request can be seen by
-     *         sending another request with the returned <code>NextToken</code>
-     *         value. This value can be between 5 and 1000; if
-     *         <code>MaxResults</code> is given a value larger than 1000, only 1000
-     *         results are returned.
+     * @param maxResults The maximum number of results to return in a single call. This value
+     *         can be between 5 and 1000. To retrieve the remaining results, make
+     *         another call with the returned <code>NextToken</code> value.
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
     
     /**
-     * The maximum number of results to return for the request in a single
-     * page. The remaining results of the initial request can be seen by
-     * sending another request with the returned <code>NextToken</code>
-     * value. This value can be between 5 and 1000; if
-     * <code>MaxResults</code> is given a value larger than 1000, only 1000
-     * results are returned.
+     * The maximum number of results to return in a single call. This value
+     * can be between 5 and 1000. To retrieve the remaining results, make
+     * another call with the returned <code>NextToken</code> value.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param maxResults The maximum number of results to return for the request in a single
-     *         page. The remaining results of the initial request can be seen by
-     *         sending another request with the returned <code>NextToken</code>
-     *         value. This value can be between 5 and 1000; if
-     *         <code>MaxResults</code> is given a value larger than 1000, only 1000
-     *         results are returned.
+     * @param maxResults The maximum number of results to return in a single call. This value
+     *         can be between 5 and 1000. To retrieve the remaining results, make
+     *         another call with the returned <code>NextToken</code> value.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

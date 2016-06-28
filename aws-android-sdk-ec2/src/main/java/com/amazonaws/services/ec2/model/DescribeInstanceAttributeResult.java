@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Contains the output of DescribeInstanceAttribute.
+ * </p>
  */
 public class DescribeInstanceAttributeResult implements Serializable {
 

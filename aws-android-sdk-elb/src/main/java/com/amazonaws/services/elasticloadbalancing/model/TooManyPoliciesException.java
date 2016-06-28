@@ -18,8 +18,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The quota for the number of policies for this load balancer has been
- * reached.
+ * The limit on the number of policies for this load balancer was
+ * exceeded.
  * </p>
  */        
 public class TooManyPoliciesException extends AmazonServiceException {

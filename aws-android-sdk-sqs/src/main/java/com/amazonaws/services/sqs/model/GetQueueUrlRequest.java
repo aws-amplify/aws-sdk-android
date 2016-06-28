@@ -42,7 +42,7 @@ public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Seria
     /**
      * The name of the queue whose URL must be fetched. Maximum 80
      * characters; alphanumeric characters, hyphens (-), and underscores (_)
-     * are allowed.
+     * are allowed. <p>Queue names are case-sensitive.
      */
     private String queueName;
 
@@ -64,7 +64,7 @@ public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Seria
      * 
      * @param queueName The name of the queue whose URL must be fetched.
      * Maximum 80 characters; alphanumeric characters, hyphens (-), and
-     * underscores (_) are allowed.
+     * underscores (_) are allowed. <p>Queue names are case-sensitive.
      */
     public GetQueueUrlRequest(String queueName) {
         setQueueName(queueName);
@@ -73,11 +73,11 @@ public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Seria
     /**
      * The name of the queue whose URL must be fetched. Maximum 80
      * characters; alphanumeric characters, hyphens (-), and underscores (_)
-     * are allowed.
+     * are allowed. <p>Queue names are case-sensitive.
      *
      * @return The name of the queue whose URL must be fetched. Maximum 80
      *         characters; alphanumeric characters, hyphens (-), and underscores (_)
-     *         are allowed.
+     *         are allowed. <p>Queue names are case-sensitive.
      */
     public String getQueueName() {
         return queueName;
@@ -86,11 +86,11 @@ public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Seria
     /**
      * The name of the queue whose URL must be fetched. Maximum 80
      * characters; alphanumeric characters, hyphens (-), and underscores (_)
-     * are allowed.
+     * are allowed. <p>Queue names are case-sensitive.
      *
      * @param queueName The name of the queue whose URL must be fetched. Maximum 80
      *         characters; alphanumeric characters, hyphens (-), and underscores (_)
-     *         are allowed.
+     *         are allowed. <p>Queue names are case-sensitive.
      */
     public void setQueueName(String queueName) {
         this.queueName = queueName;
@@ -99,13 +99,13 @@ public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Seria
     /**
      * The name of the queue whose URL must be fetched. Maximum 80
      * characters; alphanumeric characters, hyphens (-), and underscores (_)
-     * are allowed.
+     * are allowed. <p>Queue names are case-sensitive.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param queueName The name of the queue whose URL must be fetched. Maximum 80
      *         characters; alphanumeric characters, hyphens (-), and underscores (_)
-     *         are allowed.
+     *         are allowed. <p>Queue names are case-sensitive.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

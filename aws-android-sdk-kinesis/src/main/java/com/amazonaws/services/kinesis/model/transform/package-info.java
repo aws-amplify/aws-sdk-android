@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonKinesis.
+ * Marhsalling for the various types represented byAmazonKinesis
  */
- package com.amazonaws.services.kinesis.model.transform;
-        
+
+package com.amazonaws.services.kinesis.model.transform;
+

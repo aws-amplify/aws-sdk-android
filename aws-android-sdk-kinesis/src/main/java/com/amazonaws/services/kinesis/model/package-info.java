@@ -1,6 +1,6 @@
-
 /**
- * Classes modeling the various types represented by AmazonKinesis.
+ * Classes modeling the various types represented by AmazonKinesis
  */
- package com.amazonaws.services.kinesis.model;
-        
+
+package com.amazonaws.services.kinesis.model;
+

@@ -35,7 +35,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * entry, the default for the queue is used.
  * </p>
  * <p>
- * <b>IMPORTANT:</b>The following list shows the characters (in Unicode)
+ * <b>IMPORTANT:</b> The following list shows the characters (in Unicode)
  * that are allowed in your message, according to the W3C XML
  * specification. For more information, go to
  * http://www.faqs.org/rfcs/rfc1321.html. If you send any characters that
@@ -49,8 +49,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * 200.
  * </p>
  * <p>
- * <b>NOTE:</b>Some API actions take lists of parameters. These lists are
- * specified using the param.n notation. Values of n are integers
+ * <b>NOTE:</b> Some API actions take lists of parameters. These lists
+ * are specified using the param.n notation. Values of n are integers
  * starting from 1. For example, a parameter list with two elements looks
  * like this:
  * </p>
@@ -66,7 +66,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class SendMessageBatchRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      */
     private String queueUrl;
 
@@ -87,6 +88,7 @@ public class SendMessageBatchRequest extends AmazonWebServiceRequest implements 
      * initialize any additional object members.
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      */
     public SendMessageBatchRequest(String queueUrl) {
         setQueueUrl(queueUrl);
@@ -98,6 +100,7 @@ public class SendMessageBatchRequest extends AmazonWebServiceRequest implements 
      * initialize any additional object members.
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param entries A list of <a>SendMessageBatchRequestEntry</a> items.
      */
     public SendMessageBatchRequest(String queueUrl, java.util.List<SendMessageBatchRequestEntry> entries) {
@@ -106,29 +109,35 @@ public class SendMessageBatchRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @return The URL of the Amazon SQS queue to take action on.
+     * @return The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public String getQueueUrl() {
         return queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public void setQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

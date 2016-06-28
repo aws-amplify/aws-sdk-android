@@ -29,7 +29,13 @@ import com.amazonaws.services.ec2.model.transform.PurchaseScheduledInstancesRequ
  * Scheduled Instances enable you to purchase Amazon EC2 compute capacity
  * by the hour for a one-year term. Before you can purchase a Scheduled
  * Instance, you must call DescribeScheduledInstanceAvailability to check
- * for available schedules and obtain a purchase token.
+ * for available schedules and obtain a purchase token. After you
+ * purchase a Scheduled Instance, you must call RunScheduledInstances
+ * during each scheduled time period.
+ * </p>
+ * <p>
+ * After you purchase a Scheduled Instance, you can't cancel, modify, or
+ * resell your purchase.
  * </p>
  *
  * @see com.amazonaws.services.ec2.AmazonEC2#purchaseScheduledInstances(PurchaseScheduledInstancesRequest)

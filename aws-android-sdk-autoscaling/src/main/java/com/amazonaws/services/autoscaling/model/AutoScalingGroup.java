@@ -84,6 +84,8 @@ public class AutoScalingGroup implements Serializable {
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> loadBalancerNames;
 
+    private com.amazonaws.internal.ListWithAutoConstructFlag<String> targetGroupARNs;
+
     /**
      * The service to use for the health checks. The valid values are
      * <code>EC2</code> and <code>ELB</code>.
@@ -135,7 +137,7 @@ public class AutoScalingGroup implements Serializable {
      * the subnets match the values for <code>AvailabilityZones</code>.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String vPCZoneIdentifier;
@@ -593,6 +595,74 @@ public class AutoScalingGroup implements Serializable {
     }
 
     /**
+     * Returns the value of the TargetGroupARNs property for this object.
+     *
+     * @return The value of the TargetGroupARNs property for this object.
+     */
+    public java.util.List<String> getTargetGroupARNs() {
+        if (targetGroupARNs == null) {
+              targetGroupARNs = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
+              targetGroupARNs.setAutoConstruct(true);
+        }
+        return targetGroupARNs;
+    }
+    
+    /**
+     * Sets the value of the TargetGroupARNs property for this object.
+     *
+     * @param targetGroupARNs The new value for the TargetGroupARNs property for this object.
+     */
+    public void setTargetGroupARNs(java.util.Collection<String> targetGroupARNs) {
+        if (targetGroupARNs == null) {
+            this.targetGroupARNs = null;
+            return;
+        }
+        com.amazonaws.internal.ListWithAutoConstructFlag<String> targetGroupARNsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(targetGroupARNs.size());
+        targetGroupARNsCopy.addAll(targetGroupARNs);
+        this.targetGroupARNs = targetGroupARNsCopy;
+    }
+    
+    /**
+     * Sets the value of the TargetGroupARNs property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param targetGroupARNs The new value for the TargetGroupARNs property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public AutoScalingGroup withTargetGroupARNs(String... targetGroupARNs) {
+        if (getTargetGroupARNs() == null) setTargetGroupARNs(new java.util.ArrayList<String>(targetGroupARNs.length));
+        for (String value : targetGroupARNs) {
+            getTargetGroupARNs().add(value);
+        }
+        return this;
+    }
+    
+    /**
+     * Sets the value of the TargetGroupARNs property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param targetGroupARNs The new value for the TargetGroupARNs property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public AutoScalingGroup withTargetGroupARNs(java.util.Collection<String> targetGroupARNs) {
+        if (targetGroupARNs == null) {
+            this.targetGroupARNs = null;
+        } else {
+            com.amazonaws.internal.ListWithAutoConstructFlag<String> targetGroupARNsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(targetGroupARNs.size());
+            targetGroupARNsCopy.addAll(targetGroupARNs);
+            this.targetGroupARNs = targetGroupARNsCopy;
+        }
+
+        return this;
+    }
+
+    /**
      * The service to use for the health checks. The valid values are
      * <code>EC2</code> and <code>ELB</code>.
      * <p>
@@ -927,7 +997,7 @@ public class AutoScalingGroup implements Serializable {
      * the subnets match the values for <code>AvailabilityZones</code>.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return One or more subnet IDs, if applicable, separated by commas. <p>If you
@@ -946,7 +1016,7 @@ public class AutoScalingGroup implements Serializable {
      * the subnets match the values for <code>AvailabilityZones</code>.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param vPCZoneIdentifier One or more subnet IDs, if applicable, separated by commas. <p>If you
@@ -967,7 +1037,7 @@ public class AutoScalingGroup implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param vPCZoneIdentifier One or more subnet IDs, if applicable, separated by commas. <p>If you
@@ -1309,6 +1379,7 @@ public class AutoScalingGroup implements Serializable {
         if (getDefaultCooldown() != null) sb.append("DefaultCooldown: " + getDefaultCooldown() + ",");
         if (getAvailabilityZones() != null) sb.append("AvailabilityZones: " + getAvailabilityZones() + ",");
         if (getLoadBalancerNames() != null) sb.append("LoadBalancerNames: " + getLoadBalancerNames() + ",");
+        if (getTargetGroupARNs() != null) sb.append("TargetGroupARNs: " + getTargetGroupARNs() + ",");
         if (getHealthCheckType() != null) sb.append("HealthCheckType: " + getHealthCheckType() + ",");
         if (getHealthCheckGracePeriod() != null) sb.append("HealthCheckGracePeriod: " + getHealthCheckGracePeriod() + ",");
         if (getInstances() != null) sb.append("Instances: " + getInstances() + ",");
@@ -1339,6 +1410,7 @@ public class AutoScalingGroup implements Serializable {
         hashCode = prime * hashCode + ((getDefaultCooldown() == null) ? 0 : getDefaultCooldown().hashCode()); 
         hashCode = prime * hashCode + ((getAvailabilityZones() == null) ? 0 : getAvailabilityZones().hashCode()); 
         hashCode = prime * hashCode + ((getLoadBalancerNames() == null) ? 0 : getLoadBalancerNames().hashCode()); 
+        hashCode = prime * hashCode + ((getTargetGroupARNs() == null) ? 0 : getTargetGroupARNs().hashCode()); 
         hashCode = prime * hashCode + ((getHealthCheckType() == null) ? 0 : getHealthCheckType().hashCode()); 
         hashCode = prime * hashCode + ((getHealthCheckGracePeriod() == null) ? 0 : getHealthCheckGracePeriod().hashCode()); 
         hashCode = prime * hashCode + ((getInstances() == null) ? 0 : getInstances().hashCode()); 
@@ -1380,6 +1452,8 @@ public class AutoScalingGroup implements Serializable {
         if (other.getAvailabilityZones() != null && other.getAvailabilityZones().equals(this.getAvailabilityZones()) == false) return false; 
         if (other.getLoadBalancerNames() == null ^ this.getLoadBalancerNames() == null) return false;
         if (other.getLoadBalancerNames() != null && other.getLoadBalancerNames().equals(this.getLoadBalancerNames()) == false) return false; 
+        if (other.getTargetGroupARNs() == null ^ this.getTargetGroupARNs() == null) return false;
+        if (other.getTargetGroupARNs() != null && other.getTargetGroupARNs().equals(this.getTargetGroupARNs()) == false) return false; 
         if (other.getHealthCheckType() == null ^ this.getHealthCheckType() == null) return false;
         if (other.getHealthCheckType() != null && other.getHealthCheckType().equals(this.getHealthCheckType()) == false) return false; 
         if (other.getHealthCheckGracePeriod() == null ^ this.getHealthCheckGracePeriod() == null) return false;

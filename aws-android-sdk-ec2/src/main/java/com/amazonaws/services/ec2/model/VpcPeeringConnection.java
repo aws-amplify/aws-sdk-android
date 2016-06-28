@@ -24,7 +24,10 @@ import java.io.Serializable;
 public class VpcPeeringConnection implements Serializable {
 
     /**
-     * The information of the peer VPC.
+     * Information about the accepter VPC. CIDR block information is not
+     * returned when creating a VPC peering connection, or when describing a
+     * VPC peering connection that's in the <code>initiating-request</code>
+     * or <code>pending-acceptance</code> state.
      */
     private VpcPeeringConnectionVpcInfo accepterVpcInfo;
 
@@ -34,7 +37,7 @@ public class VpcPeeringConnection implements Serializable {
     private java.util.Date expirationTime;
 
     /**
-     * The information of the requester VPC.
+     * Information about the requester VPC.
      */
     private VpcPeeringConnectionVpcInfo requesterVpcInfo;
 
@@ -54,29 +57,47 @@ public class VpcPeeringConnection implements Serializable {
     private String vpcPeeringConnectionId;
 
     /**
-     * The information of the peer VPC.
+     * Information about the accepter VPC. CIDR block information is not
+     * returned when creating a VPC peering connection, or when describing a
+     * VPC peering connection that's in the <code>initiating-request</code>
+     * or <code>pending-acceptance</code> state.
      *
-     * @return The information of the peer VPC.
+     * @return Information about the accepter VPC. CIDR block information is not
+     *         returned when creating a VPC peering connection, or when describing a
+     *         VPC peering connection that's in the <code>initiating-request</code>
+     *         or <code>pending-acceptance</code> state.
      */
     public VpcPeeringConnectionVpcInfo getAccepterVpcInfo() {
         return accepterVpcInfo;
     }
     
     /**
-     * The information of the peer VPC.
+     * Information about the accepter VPC. CIDR block information is not
+     * returned when creating a VPC peering connection, or when describing a
+     * VPC peering connection that's in the <code>initiating-request</code>
+     * or <code>pending-acceptance</code> state.
      *
-     * @param accepterVpcInfo The information of the peer VPC.
+     * @param accepterVpcInfo Information about the accepter VPC. CIDR block information is not
+     *         returned when creating a VPC peering connection, or when describing a
+     *         VPC peering connection that's in the <code>initiating-request</code>
+     *         or <code>pending-acceptance</code> state.
      */
     public void setAccepterVpcInfo(VpcPeeringConnectionVpcInfo accepterVpcInfo) {
         this.accepterVpcInfo = accepterVpcInfo;
     }
     
     /**
-     * The information of the peer VPC.
+     * Information about the accepter VPC. CIDR block information is not
+     * returned when creating a VPC peering connection, or when describing a
+     * VPC peering connection that's in the <code>initiating-request</code>
+     * or <code>pending-acceptance</code> state.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param accepterVpcInfo The information of the peer VPC.
+     * @param accepterVpcInfo Information about the accepter VPC. CIDR block information is not
+     *         returned when creating a VPC peering connection, or when describing a
+     *         VPC peering connection that's in the <code>initiating-request</code>
+     *         or <code>pending-acceptance</code> state.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -120,29 +141,29 @@ public class VpcPeeringConnection implements Serializable {
     }
 
     /**
-     * The information of the requester VPC.
+     * Information about the requester VPC.
      *
-     * @return The information of the requester VPC.
+     * @return Information about the requester VPC.
      */
     public VpcPeeringConnectionVpcInfo getRequesterVpcInfo() {
         return requesterVpcInfo;
     }
     
     /**
-     * The information of the requester VPC.
+     * Information about the requester VPC.
      *
-     * @param requesterVpcInfo The information of the requester VPC.
+     * @param requesterVpcInfo Information about the requester VPC.
      */
     public void setRequesterVpcInfo(VpcPeeringConnectionVpcInfo requesterVpcInfo) {
         this.requesterVpcInfo = requesterVpcInfo;
     }
     
     /**
-     * The information of the requester VPC.
+     * Information about the requester VPC.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param requesterVpcInfo The information of the requester VPC.
+     * @param requesterVpcInfo Information about the requester VPC.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

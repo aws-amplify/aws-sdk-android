@@ -23,44 +23,42 @@ import com.amazonaws.services.ec2.model.transform.StopInstancesRequestMarshaller
 /**
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#stopInstances(StopInstancesRequest) StopInstances operation}.
  * <p>
- * Stops an Amazon EBS-backed instance. Each time you transition an
- * instance from stopped to started, Amazon EC2 charges a full instance
- * hour, even if transitions happen multiple times within a single hour.
+ * Stops an Amazon EBS-backed instance.
  * </p>
  * <p>
- * You can't start or stop Spot instances.
- * </p>
- * <p>
- * Instances that use Amazon EBS volumes as their root devices can be
- * quickly stopped and started. When an instance is stopped, the compute
- * resources are released and you are not billed for hourly instance
- * usage. However, your root partition Amazon EBS volume remains,
+ * We don't charge hourly usage for a stopped instance, or data transfer
+ * fees; however, your root partition Amazon EBS volume remains,
  * continues to persist your data, and you are charged for Amazon EBS
- * volume usage. You can restart your instance at any time.
+ * volume usage. Each time you transition an instance from stopped to
+ * started, Amazon EC2 charges a full instance hour, even if transitions
+ * happen multiple times within a single hour.
  * </p>
  * <p>
- * Before stopping an instance, make sure it is in a state from which it
- * can be restarted. Stopping an instance does not preserve data stored
- * in RAM.
+ * You can't start or stop Spot instances, and you can't stop instance
+ * store-backed instances.
  * </p>
  * <p>
- * Performing this operation on an instance that uses an instance store
- * as its root device returns an error.
+ * When you stop an instance, we shut it down. You can restart your
+ * instance at any time. Before stopping an instance, make sure it is in
+ * a state from which it can be restarted. Stopping an instance does not
+ * preserve data stored in RAM.
  * </p>
  * <p>
- * You can stop, start, and terminate EBS-backed instances. You can only
- * terminate instance store-backed instances. What happens to an instance
- * differs if you stop it or terminate it. For example, when you stop an
- * instance, the root device and any other devices attached to the
- * instance persist. When you terminate an instance, the root device and
- * any other devices attached during the instance launch are
- * automatically deleted. For more information about the differences
- * between stopping and terminating instances, see
+ * Stopping an instance is different to rebooting or terminating it. For
+ * example, when you stop an instance, the root device and any other
+ * devices attached to the instance persist. When you terminate an
+ * instance, the root device and any other devices attached during the
+ * instance launch are automatically deleted. For more information about
+ * the differences between rebooting, stopping, and terminating
+ * instances, see
  * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html"> Instance Lifecycle </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>
  * <p>
- * For more information about troubleshooting, see
+ * When you stop an instance, we attempt to shut it down forcibly after a
+ * short while. If your instance appears stuck in the stopping state
+ * after a period of time, there may be an issue with the underlying host
+ * computer. For more information, see
  * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html"> Troubleshooting Stopping Your Instance </a>
  * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
  * </p>

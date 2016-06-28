@@ -341,7 +341,7 @@ public class V2MarshallerTests {
         MockClass mock = new MockClass();
 
         DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
-                "getString", null));
+                "getString"));
         DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.S);
     }
@@ -351,7 +351,7 @@ public class V2MarshallerTests {
         MockClass mock = new MockClass();
 
         DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
-                "getStringSet", null));
+                "getStringSet"));
         DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.SS);
     }
@@ -361,7 +361,7 @@ public class V2MarshallerTests {
         MockClass mock = new MockClass();
 
         DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
-                "getNumber", null));
+                "getNumber"));
         DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.N);
     }
@@ -371,7 +371,7 @@ public class V2MarshallerTests {
         MockClass mock = new MockClass();
 
         DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
-                "getNumberSet", null));
+                "getNumberSet"));
         DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.NS);
     }
@@ -381,7 +381,7 @@ public class V2MarshallerTests {
         MockClass mock = new MockClass();
 
         DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
-                "getBinary", null));
+                "getBinary"));
         DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.B);
     }
@@ -391,7 +391,7 @@ public class V2MarshallerTests {
         MockClass mock = new MockClass();
 
         DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
-                "getBinarySet", null));
+                "getBinarySet"));
         DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.BS);
     }
@@ -401,7 +401,7 @@ public class V2MarshallerTests {
         MockClass mock = new MockClass();
 
         DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
-                "getBool", null));
+                "getBool"));
         DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.BOOL);
     }
@@ -411,7 +411,7 @@ public class V2MarshallerTests {
         MockClass mock = new MockClass();
 
         DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
-                "getList", null));
+                "getList"));
         DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.L);
     }
@@ -421,7 +421,7 @@ public class V2MarshallerTests {
         MockClass mock = new MockClass();
 
         DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
-                "getMap", null));
+                "getMap"));
         DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.M);
     }

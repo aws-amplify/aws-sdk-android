@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -15,47 +15,41 @@
 
 package com.amazonaws.services.kms.model.transform;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.amazonaws.services.kms.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * Key List Entry JSON Unmarshaller
+ * JSON unmarshaller for POJO KeyListEntry
  */
-public class KeyListEntryJsonUnmarshaller implements Unmarshaller<KeyListEntry, JsonUnmarshallerContext> {
+class KeyListEntryJsonUnmarshaller implements Unmarshaller<KeyListEntry, JsonUnmarshallerContext> {
 
     public KeyListEntry unmarshall(JsonUnmarshallerContext context) throws Exception {
         KeyListEntry keyListEntry = new KeyListEntry();
-
         AwsJsonReader reader = context.getReader();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            
             if (name.equals("KeyId")) {
-                keyListEntry.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            if (name.equals("KeyArn")) {
-                keyListEntry.setKeyArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            {
+                keyListEntry.setKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("KeyArn")) {
+                keyListEntry.setKeyArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else {
                 reader.skipValue();
             }
-            
         }
         reader.endObject();
-        
         return keyListEntry;
     }
 
     private static KeyListEntryJsonUnmarshaller instance;
+
     public static KeyListEntryJsonUnmarshaller getInstance() {
-        if (instance == null) instance = new KeyListEntryJsonUnmarshaller();
+        if (instance == null)
+            instance = new KeyListEntryJsonUnmarshaller();
         return instance;
     }
 }
-    

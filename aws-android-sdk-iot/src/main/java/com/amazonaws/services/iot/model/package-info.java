@@ -1,6 +1,6 @@
-
 /**
- * Classes modeling the various types represented by AWSIot.
+ * Classes modeling the various types represented by AWSIot
  */
- package com.amazonaws.services.iot.model;
-        
+
+package com.amazonaws.services.iot.model;
+

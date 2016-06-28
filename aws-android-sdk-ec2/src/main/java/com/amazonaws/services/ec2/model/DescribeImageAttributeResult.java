@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Contains the output of DescribeImageAttribute.
+ * </p>
  */
 public class DescribeImageAttributeResult implements Serializable {
 

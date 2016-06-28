@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
@@ -19,20 +20,18 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider#authenticate(AuthenticateRequest) Authenticate operation}.
  * <p>
- * The second step in the authentication flow of Secure Remote Password
- * protocol (SRP) for authenticating a user to get ID, access and refresh
- * tokens. To learn more about the first step, see
- * GetAuthenticationDetails.
+ * The second step in the authentication flow of Secure Remote Password protocol
+ * (SRP) for authenticating a user to get ID, access and refresh tokens. To
+ * learn more about the first step, see <a
+ * href="API_GetAuthenticationDetails.html">GetAuthenticationDetails</a>.
  * </p>
- *
- * @see com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider#authenticate(AuthenticateRequest)
  */
 public class AuthenticateRequest extends AmazonWebServiceRequest implements Serializable {
-
     /**
+     * <p>
      * The ID of the client associated with the user pool.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -41,9 +40,11 @@ public class AuthenticateRequest extends AmazonWebServiceRequest implements Seri
     private String clientId;
 
     /**
+     * <p>
      * A keyed-hash message authentication code (HMAC) calculated using the
-     * secret key of a user pool client and username plus the client ID in
-     * the message.
+     * secret key of a user pool client and username plus the client ID in the
+     * message.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -52,7 +53,9 @@ public class AuthenticateRequest extends AmazonWebServiceRequest implements Seri
     private String secretHash;
 
     /**
+     * <p>
      * The user name of the user you wish to authenticate.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -61,54 +64,70 @@ public class AuthenticateRequest extends AmazonWebServiceRequest implements Seri
     private String username;
 
     /**
+     * <p>
      * The password claim of the authentication request.
+     * </p>
      */
     private PasswordClaimType passwordClaim;
 
     /**
+     * <p>
      * The timestamp of the authentication request.
+     * </p>
      */
     private java.util.Date timestamp;
 
     /**
+     * <p>
      * The ID of the client associated with the user pool.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @return The ID of the client associated with the user pool.
+     * @return <p>
+     *         The ID of the client associated with the user pool.
+     *         </p>
      */
     public String getClientId() {
         return clientId;
     }
-    
+
     /**
+     * <p>
      * The ID of the client associated with the user pool.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The ID of the client associated with the user pool.
+     * @param clientId <p>
+     *            The ID of the client associated with the user pool.
+     *            </p>
      */
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
-    
+
     /**
-     * The ID of the client associated with the user pool.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID of the client associated with the user pool.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The ID of the client associated with the user pool.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param clientId <p>
+     *            The ID of the client associated with the user pool.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticateRequest withClientId(String clientId) {
         this.clientId = clientId;
@@ -116,56 +135,68 @@ public class AuthenticateRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
      * A keyed-hash message authentication code (HMAC) calculated using the
-     * secret key of a user pool client and username plus the client ID in
-     * the message.
+     * secret key of a user pool client and username plus the client ID in the
+     * message.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+=/]+<br/>
      *
-     * @return A keyed-hash message authentication code (HMAC) calculated using the
-     *         secret key of a user pool client and username plus the client ID in
-     *         the message.
+     * @return <p>
+     *         A keyed-hash message authentication code (HMAC) calculated using
+     *         the secret key of a user pool client and username plus the client
+     *         ID in the message.
+     *         </p>
      */
     public String getSecretHash() {
         return secretHash;
     }
-    
+
     /**
+     * <p>
      * A keyed-hash message authentication code (HMAC) calculated using the
-     * secret key of a user pool client and username plus the client ID in
-     * the message.
+     * secret key of a user pool client and username plus the client ID in the
+     * message.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+=/]+<br/>
      *
-     * @param secretHash A keyed-hash message authentication code (HMAC) calculated using the
-     *         secret key of a user pool client and username plus the client ID in
-     *         the message.
+     * @param secretHash <p>
+     *            A keyed-hash message authentication code (HMAC) calculated
+     *            using the secret key of a user pool client and username plus
+     *            the client ID in the message.
+     *            </p>
      */
     public void setSecretHash(String secretHash) {
         this.secretHash = secretHash;
     }
-    
+
     /**
-     * A keyed-hash message authentication code (HMAC) calculated using the
-     * secret key of a user pool client and username plus the client ID in
-     * the message.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A keyed-hash message authentication code (HMAC) calculated using the
+     * secret key of a user pool client and username plus the client ID in the
+     * message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+=/]+<br/>
      *
-     * @param secretHash A keyed-hash message authentication code (HMAC) calculated using the
-     *         secret key of a user pool client and username plus the client ID in
-     *         the message.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param secretHash <p>
+     *            A keyed-hash message authentication code (HMAC) calculated
+     *            using the secret key of a user pool client and username plus
+     *            the client ID in the message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticateRequest withSecretHash(String secretHash) {
         this.secretHash = secretHash;
@@ -173,44 +204,56 @@ public class AuthenticateRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
      * The user name of the user you wish to authenticate.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @return The user name of the user you wish to authenticate.
+     * @return <p>
+     *         The user name of the user you wish to authenticate.
+     *         </p>
      */
     public String getUsername() {
         return username;
     }
-    
+
     /**
+     * <p>
      * The user name of the user you wish to authenticate.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The user name of the user you wish to authenticate.
+     * @param username <p>
+     *            The user name of the user you wish to authenticate.
+     *            </p>
      */
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     /**
-     * The user name of the user you wish to authenticate.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The user name of the user you wish to authenticate.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The user name of the user you wish to authenticate.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param username <p>
+     *            The user name of the user you wish to authenticate.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticateRequest withUsername(String username) {
         this.username = username;
@@ -218,32 +261,44 @@ public class AuthenticateRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
      * The password claim of the authentication request.
+     * </p>
      *
-     * @return The password claim of the authentication request.
+     * @return <p>
+     *         The password claim of the authentication request.
+     *         </p>
      */
     public PasswordClaimType getPasswordClaim() {
         return passwordClaim;
     }
-    
+
     /**
+     * <p>
      * The password claim of the authentication request.
+     * </p>
      *
-     * @param passwordClaim The password claim of the authentication request.
+     * @param passwordClaim <p>
+     *            The password claim of the authentication request.
+     *            </p>
      */
     public void setPasswordClaim(PasswordClaimType passwordClaim) {
         this.passwordClaim = passwordClaim;
     }
-    
+
     /**
-     * The password claim of the authentication request.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The password claim of the authentication request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param passwordClaim The password claim of the authentication request.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param passwordClaim <p>
+     *            The password claim of the authentication request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticateRequest withPasswordClaim(PasswordClaimType passwordClaim) {
         this.passwordClaim = passwordClaim;
@@ -251,32 +306,44 @@ public class AuthenticateRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
      * The timestamp of the authentication request.
+     * </p>
      *
-     * @return The timestamp of the authentication request.
+     * @return <p>
+     *         The timestamp of the authentication request.
+     *         </p>
      */
     public java.util.Date getTimestamp() {
         return timestamp;
     }
-    
+
     /**
+     * <p>
      * The timestamp of the authentication request.
+     * </p>
      *
-     * @param timestamp The timestamp of the authentication request.
+     * @param timestamp <p>
+     *            The timestamp of the authentication request.
+     *            </p>
      */
     public void setTimestamp(java.util.Date timestamp) {
         this.timestamp = timestamp;
     }
-    
+
     /**
-     * The timestamp of the authentication request.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The timestamp of the authentication request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param timestamp The timestamp of the authentication request.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param timestamp <p>
+     *            The timestamp of the authentication request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticateRequest withTimestamp(java.util.Date timestamp) {
         this.timestamp = timestamp;
@@ -288,55 +355,74 @@ public class AuthenticateRequest extends AmazonWebServiceRequest implements Seri
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getClientId() != null) sb.append("ClientId: " + getClientId() + ",");
-        if (getSecretHash() != null) sb.append("SecretHash: " + getSecretHash() + ",");
-        if (getUsername() != null) sb.append("Username: " + getUsername() + ",");
-        if (getPasswordClaim() != null) sb.append("PasswordClaim: " + getPasswordClaim() + ",");
-        if (getTimestamp() != null) sb.append("Timestamp: " + getTimestamp() );
+        if (getClientId() != null)
+            sb.append("ClientId: " + getClientId() + ",");
+        if (getSecretHash() != null)
+            sb.append("SecretHash: " + getSecretHash() + ",");
+        if (getUsername() != null)
+            sb.append("Username: " + getUsername() + ",");
+        if (getPasswordClaim() != null)
+            sb.append("PasswordClaim: " + getPasswordClaim() + ",");
+        if (getTimestamp() != null)
+            sb.append("Timestamp: " + getTimestamp());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getClientId() == null) ? 0 : getClientId().hashCode()); 
-        hashCode = prime * hashCode + ((getSecretHash() == null) ? 0 : getSecretHash().hashCode()); 
-        hashCode = prime * hashCode + ((getUsername() == null) ? 0 : getUsername().hashCode()); 
-        hashCode = prime * hashCode + ((getPasswordClaim() == null) ? 0 : getPasswordClaim().hashCode()); 
-        hashCode = prime * hashCode + ((getTimestamp() == null) ? 0 : getTimestamp().hashCode()); 
+
+        hashCode = prime * hashCode + ((getClientId() == null) ? 0 : getClientId().hashCode());
+        hashCode = prime * hashCode + ((getSecretHash() == null) ? 0 : getSecretHash().hashCode());
+        hashCode = prime * hashCode + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        hashCode = prime * hashCode
+                + ((getPasswordClaim() == null) ? 0 : getPasswordClaim().hashCode());
+        hashCode = prime * hashCode + ((getTimestamp() == null) ? 0 : getTimestamp().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof AuthenticateRequest == false) return false;
-        AuthenticateRequest other = (AuthenticateRequest)obj;
-        
-        if (other.getClientId() == null ^ this.getClientId() == null) return false;
-        if (other.getClientId() != null && other.getClientId().equals(this.getClientId()) == false) return false; 
-        if (other.getSecretHash() == null ^ this.getSecretHash() == null) return false;
-        if (other.getSecretHash() != null && other.getSecretHash().equals(this.getSecretHash()) == false) return false; 
-        if (other.getUsername() == null ^ this.getUsername() == null) return false;
-        if (other.getUsername() != null && other.getUsername().equals(this.getUsername()) == false) return false; 
-        if (other.getPasswordClaim() == null ^ this.getPasswordClaim() == null) return false;
-        if (other.getPasswordClaim() != null && other.getPasswordClaim().equals(this.getPasswordClaim()) == false) return false; 
-        if (other.getTimestamp() == null ^ this.getTimestamp() == null) return false;
-        if (other.getTimestamp() != null && other.getTimestamp().equals(this.getTimestamp()) == false) return false; 
+        if (obj instanceof AuthenticateRequest == false)
+            return false;
+        AuthenticateRequest other = (AuthenticateRequest) obj;
+
+        if (other.getClientId() == null ^ this.getClientId() == null)
+            return false;
+        if (other.getClientId() != null && other.getClientId().equals(this.getClientId()) == false)
+            return false;
+        if (other.getSecretHash() == null ^ this.getSecretHash() == null)
+            return false;
+        if (other.getSecretHash() != null
+                && other.getSecretHash().equals(this.getSecretHash()) == false)
+            return false;
+        if (other.getUsername() == null ^ this.getUsername() == null)
+            return false;
+        if (other.getUsername() != null && other.getUsername().equals(this.getUsername()) == false)
+            return false;
+        if (other.getPasswordClaim() == null ^ this.getPasswordClaim() == null)
+            return false;
+        if (other.getPasswordClaim() != null
+                && other.getPasswordClaim().equals(this.getPasswordClaim()) == false)
+            return false;
+        if (other.getTimestamp() == null ^ this.getTimestamp() == null)
+            return false;
+        if (other.getTimestamp() != null
+                && other.getTimestamp().equals(this.getTimestamp()) == false)
+            return false;
         return true;
     }
-    
 }
-    

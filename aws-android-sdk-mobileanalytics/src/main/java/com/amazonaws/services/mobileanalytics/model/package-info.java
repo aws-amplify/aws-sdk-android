@@ -1,6 +1,6 @@
-
 /**
- * Classes modeling the various types represented by AmazonMobileAnalytics.
+ * Classes modeling the various types represented by AmazonMobileAnalytics
  */
- package com.amazonaws.services.mobileanalytics.model;
-        
+
+package com.amazonaws.services.mobileanalytics.model;
+

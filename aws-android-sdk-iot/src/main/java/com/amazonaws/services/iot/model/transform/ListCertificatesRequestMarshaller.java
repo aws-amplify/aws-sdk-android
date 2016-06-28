@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.iot.model.transform;
 
 import static com.amazonaws.util.StringUtils.UTF8;
@@ -20,8 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.Map;
-import java.util.List;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
@@ -36,41 +35,35 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * List Certificates Request Marshaller
+ * JSON request marshaller for ListCertificatesRequest
  */
-public class ListCertificatesRequestMarshaller implements Marshaller<Request<ListCertificatesRequest>, ListCertificatesRequest> {
+public class ListCertificatesRequestMarshaller implements
+        Marshaller<Request<ListCertificatesRequest>, ListCertificatesRequest> {
 
     public Request<ListCertificatesRequest> marshall(ListCertificatesRequest listCertificatesRequest) {
-    if (listCertificatesRequest == null) {
-        throw new AmazonClientException("Invalid argument passed to marshall(...)");
-    }
+        if (listCertificatesRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(ListCertificatesRequest)");
+        }
 
-        Request<ListCertificatesRequest> request = new DefaultRequest<ListCertificatesRequest>(listCertificatesRequest, "AWSIot");
-        String target = "AWSIotService.ListCertificates";
-        request.addHeader("X-Amz-Target", target);
-
+        Request<ListCertificatesRequest> request = new DefaultRequest<ListCertificatesRequest>(
+                listCertificatesRequest, "AWSIot");
         request.setHttpMethod(HttpMethodName.GET);
-        String uriResourcePath = "/certificates?pageSize={pageSize}&marker={marker}&isAscendingOrder={ascendingOrder}"; 
-        uriResourcePath = uriResourcePath.replace("{pageSize}", (listCertificatesRequest.getPageSize() == null) ? "" : StringUtils.fromInteger(listCertificatesRequest.getPageSize())); 
-        uriResourcePath = uriResourcePath.replace("{marker}", (listCertificatesRequest.getMarker() == null) ? "" : StringUtils.fromString(listCertificatesRequest.getMarker())); 
-        uriResourcePath = uriResourcePath.replace("{ascendingOrder}", (listCertificatesRequest.isAscendingOrder() == null) ? "" : StringUtils.fromBoolean(listCertificatesRequest.isAscendingOrder())); 
 
-        uriResourcePath = uriResourcePath.replaceAll("//", "/");
-
-        if (uriResourcePath.contains("?")) {
-            String queryString = uriResourcePath.substring(uriResourcePath.indexOf("?") + 1);
-            uriResourcePath    = uriResourcePath.substring(0, uriResourcePath.indexOf("?"));
-
-            for (String s : queryString.split("[;&]")) {
-                String[] nameValuePair = s.split("=");
-                if (nameValuePair.length == 2) {
-                    if(!(nameValuePair[1].isEmpty()))
-                        request.addParameter(nameValuePair[0], nameValuePair[1]);
-                }
-            }
+        String uriResourcePath = "/certificates";
+        if (listCertificatesRequest.getPageSize() != null) {
+            request.addParameter("pageSize",
+                    StringUtils.fromInteger(listCertificatesRequest.getPageSize()));
+        }
+        if (listCertificatesRequest.getMarker() != null) {
+            request.addParameter("marker",
+                    StringUtils.fromString(listCertificatesRequest.getMarker()));
+        }
+        if (listCertificatesRequest.getAscendingOrder() != null) {
+            request.addParameter("isAscendingOrder",
+                    StringUtils.fromBoolean(listCertificatesRequest.getAscendingOrder()));
         }
         request.setResourcePath(uriResourcePath);
-        
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }

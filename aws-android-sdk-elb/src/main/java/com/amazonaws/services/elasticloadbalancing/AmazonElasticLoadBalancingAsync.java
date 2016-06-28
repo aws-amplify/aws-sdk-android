@@ -26,13 +26,17 @@ import com.amazonaws.services.elasticloadbalancing.model.*;
  * Each asynchronous method will return a Java Future object, and users are also allowed
  * to provide a callback handler.
  * Elastic Load Balancing <p>
- * Elastic Load Balancing distributes incoming traffic across your EC2
- * instances.
- * </p>
- * <p>
- * For information about the features of Elastic Load Balancing, see
- * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elastic-load-balancing.html"> What Is Elastic Load Balancing? </a>
- * in the <i>Elastic Load Balancing Developer Guide</i> .
+ * A load balancer distributes incoming traffic across your EC2
+ * instances. This enables you to increase the availability of your
+ * application. The load balancer also monitors the health of its
+ * registered instances and ensures that it routes traffic only to
+ * healthy instances. You configure your load balancer to accept incoming
+ * traffic by specifying one or more listeners, which are configured with
+ * a protocol and port number for connections from clients to the load
+ * balancer and a protocol and port number for connections from the load
+ * balancer to the instances. For more information, see the
+ * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/"> Elastic Load Balancing Developer Guide </a>
+ * .
  * </p>
  * <p>
  * For information about the AWS regions supported by Elastic Load
@@ -518,6 +522,61 @@ public interface AmazonElasticLoadBalancingAsync extends AmazonElasticLoadBalanc
      */
     public Future<DescribeLoadBalancersResult> describeLoadBalancersAsync(DescribeLoadBalancersRequest describeLoadBalancersRequest,
             AsyncHandler<DescribeLoadBalancersRequest, DescribeLoadBalancersResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the provisioned capacity of the specified load balancer.
+     * </p>
+     *
+     * @param describeProvisionedCapacityRequest Container for the necessary
+     *           parameters to execute the DescribeProvisionedCapacity operation on
+     *           AmazonElasticLoadBalancing.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeProvisionedCapacity service method, as returned by
+     *         AmazonElasticLoadBalancing.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonElasticLoadBalancing indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeProvisionedCapacityResult> describeProvisionedCapacityAsync(DescribeProvisionedCapacityRequest describeProvisionedCapacityRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the provisioned capacity of the specified load balancer.
+     * </p>
+     *
+     * @param describeProvisionedCapacityRequest Container for the necessary
+     *           parameters to execute the DescribeProvisionedCapacity operation on
+     *           AmazonElasticLoadBalancing.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         DescribeProvisionedCapacity service method, as returned by
+     *         AmazonElasticLoadBalancing.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonElasticLoadBalancing indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<DescribeProvisionedCapacityResult> describeProvisionedCapacityAsync(DescribeProvisionedCapacityRequest describeProvisionedCapacityRequest,
+            AsyncHandler<DescribeProvisionedCapacityRequest, DescribeProvisionedCapacityResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1011,6 +1070,83 @@ public interface AmazonElasticLoadBalancingAsync extends AmazonElasticLoadBalanc
      */
     public Future<SetLoadBalancerPoliciesOfListenerResult> setLoadBalancerPoliciesOfListenerAsync(SetLoadBalancerPoliciesOfListenerRequest setLoadBalancerPoliciesOfListenerRequest,
             AsyncHandler<SetLoadBalancerPoliciesOfListenerRequest, SetLoadBalancerPoliciesOfListenerResult> asyncHandler)
+                    throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Modifies the provisioned capacity of the specified load balancer.
+     * </p>
+     * <p>
+     * There is a limit on the number of times that you can decrease the
+     * provisioned capacity of your load balancer in a day. To view the
+     * remaining number of times that you can decrease the provisioned
+     * capacity, call DescribeProvisionedCapacity.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-provisioned-capacity.html"> Configure Provisioned Capacity </a>
+     * in the <i>Elastic Load Balancing Developer Guide</i>
+     * </p>
+     *
+     * @param modifyProvisionedCapacityRequest Container for the necessary
+     *           parameters to execute the ModifyProvisionedCapacity operation on
+     *           AmazonElasticLoadBalancing.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ModifyProvisionedCapacity service method, as returned by
+     *         AmazonElasticLoadBalancing.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonElasticLoadBalancing indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ModifyProvisionedCapacityResult> modifyProvisionedCapacityAsync(ModifyProvisionedCapacityRequest modifyProvisionedCapacityRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Modifies the provisioned capacity of the specified load balancer.
+     * </p>
+     * <p>
+     * There is a limit on the number of times that you can decrease the
+     * provisioned capacity of your load balancer in a day. To view the
+     * remaining number of times that you can decrease the provisioned
+     * capacity, call DescribeProvisionedCapacity.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-provisioned-capacity.html"> Configure Provisioned Capacity </a>
+     * in the <i>Elastic Load Balancing Developer Guide</i>
+     * </p>
+     *
+     * @param modifyProvisionedCapacityRequest Container for the necessary
+     *           parameters to execute the ModifyProvisionedCapacity operation on
+     *           AmazonElasticLoadBalancing.
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *           life-cycle of the request. Users could provide the implementation of
+     *           the four callback methods in this interface to process the operation
+     *           result or handle the exception.
+     * 
+     * @return A Java Future object containing the response from the
+     *         ModifyProvisionedCapacity service method, as returned by
+     *         AmazonElasticLoadBalancing.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonElasticLoadBalancing indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public Future<ModifyProvisionedCapacityResult> modifyProvisionedCapacityAsync(ModifyProvisionedCapacityRequest modifyProvisionedCapacityRequest,
+            AsyncHandler<ModifyProvisionedCapacityRequest, ModifyProvisionedCapacityResult> asyncHandler)
                     throws AmazonServiceException, AmazonClientException;
 
     /**

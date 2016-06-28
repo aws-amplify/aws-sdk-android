@@ -53,13 +53,13 @@ import com.amazonaws.services.ec2.model.transform.CreateVolumeRequestMarshaller;
 public class CreateVolumeRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<CreateVolumeRequest> {
 
     /**
-     * The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
-     * for <code>standard</code> volumes, <code>1-16384</code> for
-     * <code>gp2</code> volumes, and <code>4-16384</code> for
-     * <code>io1</code> volumes. If you specify a snapshot, the volume size
-     * must be equal to or larger than the snapshot size. <p>Default: If
-     * you're creating the volume from a snapshot and don't specify a volume
-     * size, the default is the snapshot size.
+     * The size of the volume, in GiBs. <p>Constraints: 1-16384 for
+     * <code>gp2</code>, 4-16384 for <code>io1</code>, 500-16384 for
+     * <code>st1</code>, 500-16384 for <code>sc1</code>, and 1-1024 for
+     * <code>standard</code>. If you specify a snapshot, the volume size must
+     * be equal to or larger than the snapshot size. <p>Default: If you're
+     * creating the volume from a snapshot and don't specify a volume size,
+     * the default is the snapshot size.
      */
     private Integer size;
 
@@ -76,21 +76,22 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     private String availabilityZone;
 
     /**
-     * The volume type. This can be <code>gp2</code> for General Purpose
-     * (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     * <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     * Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      * <code>standard</code> for Magnetic volumes. <p>Default:
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      */
     private String volumeType;
 
     /**
-     * Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * Only valid for Provisioned IOPS SSD volumes. The number of I/O
      * operations per second (IOPS) to provision for the volume, with a
      * maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
-     * Provisioned IOPS (SSD) volumes
+     * Provisioned IOPS SSD volumes
      */
     private Integer iops;
 
@@ -133,13 +134,13 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
      * Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      * 
-     * @param size The size of the volume, in GiBs. <p>Constraints:
-     * <code>1-1024</code> for <code>standard</code> volumes,
-     * <code>1-16384</code> for <code>gp2</code> volumes, and
-     * <code>4-16384</code> for <code>io1</code> volumes. If you specify a
-     * snapshot, the volume size must be equal to or larger than the snapshot
-     * size. <p>Default: If you're creating the volume from a snapshot and
-     * don't specify a volume size, the default is the snapshot size.
+     * @param size The size of the volume, in GiBs. <p>Constraints: 1-16384
+     * for <code>gp2</code>, 4-16384 for <code>io1</code>, 500-16384 for
+     * <code>st1</code>, 500-16384 for <code>sc1</code>, and 1-1024 for
+     * <code>standard</code>. If you specify a snapshot, the volume size must
+     * be equal to or larger than the snapshot size. <p>Default: If you're
+     * creating the volume from a snapshot and don't specify a volume size,
+     * the default is the snapshot size.
      * @param availabilityZone The Availability Zone in which to create the
      * volume. Use <a>DescribeAvailabilityZones</a> to list the Availability
      * Zones that are currently available to you.
@@ -165,65 +166,65 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
-     * for <code>standard</code> volumes, <code>1-16384</code> for
-     * <code>gp2</code> volumes, and <code>4-16384</code> for
-     * <code>io1</code> volumes. If you specify a snapshot, the volume size
-     * must be equal to or larger than the snapshot size. <p>Default: If
-     * you're creating the volume from a snapshot and don't specify a volume
-     * size, the default is the snapshot size.
+     * The size of the volume, in GiBs. <p>Constraints: 1-16384 for
+     * <code>gp2</code>, 4-16384 for <code>io1</code>, 500-16384 for
+     * <code>st1</code>, 500-16384 for <code>sc1</code>, and 1-1024 for
+     * <code>standard</code>. If you specify a snapshot, the volume size must
+     * be equal to or larger than the snapshot size. <p>Default: If you're
+     * creating the volume from a snapshot and don't specify a volume size,
+     * the default is the snapshot size.
      *
-     * @return The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
-     *         for <code>standard</code> volumes, <code>1-16384</code> for
-     *         <code>gp2</code> volumes, and <code>4-16384</code> for
-     *         <code>io1</code> volumes. If you specify a snapshot, the volume size
-     *         must be equal to or larger than the snapshot size. <p>Default: If
-     *         you're creating the volume from a snapshot and don't specify a volume
-     *         size, the default is the snapshot size.
+     * @return The size of the volume, in GiBs. <p>Constraints: 1-16384 for
+     *         <code>gp2</code>, 4-16384 for <code>io1</code>, 500-16384 for
+     *         <code>st1</code>, 500-16384 for <code>sc1</code>, and 1-1024 for
+     *         <code>standard</code>. If you specify a snapshot, the volume size must
+     *         be equal to or larger than the snapshot size. <p>Default: If you're
+     *         creating the volume from a snapshot and don't specify a volume size,
+     *         the default is the snapshot size.
      */
     public Integer getSize() {
         return size;
     }
     
     /**
-     * The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
-     * for <code>standard</code> volumes, <code>1-16384</code> for
-     * <code>gp2</code> volumes, and <code>4-16384</code> for
-     * <code>io1</code> volumes. If you specify a snapshot, the volume size
-     * must be equal to or larger than the snapshot size. <p>Default: If
-     * you're creating the volume from a snapshot and don't specify a volume
-     * size, the default is the snapshot size.
+     * The size of the volume, in GiBs. <p>Constraints: 1-16384 for
+     * <code>gp2</code>, 4-16384 for <code>io1</code>, 500-16384 for
+     * <code>st1</code>, 500-16384 for <code>sc1</code>, and 1-1024 for
+     * <code>standard</code>. If you specify a snapshot, the volume size must
+     * be equal to or larger than the snapshot size. <p>Default: If you're
+     * creating the volume from a snapshot and don't specify a volume size,
+     * the default is the snapshot size.
      *
-     * @param size The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
-     *         for <code>standard</code> volumes, <code>1-16384</code> for
-     *         <code>gp2</code> volumes, and <code>4-16384</code> for
-     *         <code>io1</code> volumes. If you specify a snapshot, the volume size
-     *         must be equal to or larger than the snapshot size. <p>Default: If
-     *         you're creating the volume from a snapshot and don't specify a volume
-     *         size, the default is the snapshot size.
+     * @param size The size of the volume, in GiBs. <p>Constraints: 1-16384 for
+     *         <code>gp2</code>, 4-16384 for <code>io1</code>, 500-16384 for
+     *         <code>st1</code>, 500-16384 for <code>sc1</code>, and 1-1024 for
+     *         <code>standard</code>. If you specify a snapshot, the volume size must
+     *         be equal to or larger than the snapshot size. <p>Default: If you're
+     *         creating the volume from a snapshot and don't specify a volume size,
+     *         the default is the snapshot size.
      */
     public void setSize(Integer size) {
         this.size = size;
     }
     
     /**
-     * The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
-     * for <code>standard</code> volumes, <code>1-16384</code> for
-     * <code>gp2</code> volumes, and <code>4-16384</code> for
-     * <code>io1</code> volumes. If you specify a snapshot, the volume size
-     * must be equal to or larger than the snapshot size. <p>Default: If
-     * you're creating the volume from a snapshot and don't specify a volume
-     * size, the default is the snapshot size.
+     * The size of the volume, in GiBs. <p>Constraints: 1-16384 for
+     * <code>gp2</code>, 4-16384 for <code>io1</code>, 500-16384 for
+     * <code>st1</code>, 500-16384 for <code>sc1</code>, and 1-1024 for
+     * <code>standard</code>. If you specify a snapshot, the volume size must
+     * be equal to or larger than the snapshot size. <p>Default: If you're
+     * creating the volume from a snapshot and don't specify a volume size,
+     * the default is the snapshot size.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param size The size of the volume, in GiBs. <p>Constraints: <code>1-1024</code>
-     *         for <code>standard</code> volumes, <code>1-16384</code> for
-     *         <code>gp2</code> volumes, and <code>4-16384</code> for
-     *         <code>io1</code> volumes. If you specify a snapshot, the volume size
-     *         must be equal to or larger than the snapshot size. <p>Default: If
-     *         you're creating the volume from a snapshot and don't specify a volume
-     *         size, the default is the snapshot size.
+     * @param size The size of the volume, in GiBs. <p>Constraints: 1-16384 for
+     *         <code>gp2</code>, 4-16384 for <code>io1</code>, 500-16384 for
+     *         <code>st1</code>, 500-16384 for <code>sc1</code>, and 1-1024 for
+     *         <code>standard</code>. If you specify a snapshot, the volume size must
+     *         be equal to or larger than the snapshot size. <p>Default: If you're
+     *         creating the volume from a snapshot and don't specify a volume size,
+     *         the default is the snapshot size.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -312,16 +313,18 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The volume type. This can be <code>gp2</code> for General Purpose
-     * (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     * <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     * Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      * <code>standard</code> for Magnetic volumes. <p>Default:
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @return The volume type. This can be <code>gp2</code> for General Purpose
-     *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * @return The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     *         <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     *         Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      *         <code>standard</code> for Magnetic volumes. <p>Default:
      *         <code>standard</code>
      *
@@ -332,16 +335,18 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
     
     /**
-     * The volume type. This can be <code>gp2</code> for General Purpose
-     * (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     * <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     * Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      * <code>standard</code> for Magnetic volumes. <p>Default:
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
-     *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     *         <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     *         Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      *         <code>standard</code> for Magnetic volumes. <p>Default:
      *         <code>standard</code>
      *
@@ -352,18 +357,20 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
     
     /**
-     * The volume type. This can be <code>gp2</code> for General Purpose
-     * (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     * <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     * Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      * <code>standard</code> for Magnetic volumes. <p>Default:
      * <code>standard</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
-     *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     *         <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     *         Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      *         <code>standard</code> for Magnetic volumes. <p>Default:
      *         <code>standard</code>
      *
@@ -378,16 +385,18 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The volume type. This can be <code>gp2</code> for General Purpose
-     * (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     * <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     * Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      * <code>standard</code> for Magnetic volumes. <p>Default:
      * <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
-     *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     *         <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     *         Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      *         <code>standard</code> for Magnetic volumes. <p>Default:
      *         <code>standard</code>
      *
@@ -398,18 +407,20 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
     
     /**
-     * The volume type. This can be <code>gp2</code> for General Purpose
-     * (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     * <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     * Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      * <code>standard</code> for Magnetic volumes. <p>Default:
      * <code>standard</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, io1, gp2
+     * <b>Allowed Values: </b>standard, io1, gp2, sc1, st1
      *
-     * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose
-     *         (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, or
+     * @param volumeType The volume type. This can be <code>gp2</code> for General Purpose SSD,
+     *         <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for
+     *         Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or
      *         <code>standard</code> for Magnetic volumes. <p>Default:
      *         <code>standard</code>
      *
@@ -424,47 +435,47 @@ public class CreateVolumeRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * Only valid for Provisioned IOPS SSD volumes. The number of I/O
      * operations per second (IOPS) to provision for the volume, with a
      * maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
-     * Provisioned IOPS (SSD) volumes
+     * Provisioned IOPS SSD volumes
      *
-     * @return Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * @return Only valid for Provisioned IOPS SSD volumes. The number of I/O
      *         operations per second (IOPS) to provision for the volume, with a
      *         maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
-     *         Provisioned IOPS (SSD) volumes
+     *         Provisioned IOPS SSD volumes
      */
     public Integer getIops() {
         return iops;
     }
     
     /**
-     * Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * Only valid for Provisioned IOPS SSD volumes. The number of I/O
      * operations per second (IOPS) to provision for the volume, with a
      * maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
-     * Provisioned IOPS (SSD) volumes
+     * Provisioned IOPS SSD volumes
      *
-     * @param iops Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * @param iops Only valid for Provisioned IOPS SSD volumes. The number of I/O
      *         operations per second (IOPS) to provision for the volume, with a
      *         maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
-     *         Provisioned IOPS (SSD) volumes
+     *         Provisioned IOPS SSD volumes
      */
     public void setIops(Integer iops) {
         this.iops = iops;
     }
     
     /**
-     * Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * Only valid for Provisioned IOPS SSD volumes. The number of I/O
      * operations per second (IOPS) to provision for the volume, with a
      * maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
-     * Provisioned IOPS (SSD) volumes
+     * Provisioned IOPS SSD volumes
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param iops Only valid for Provisioned IOPS (SSD) volumes. The number of I/O
+     * @param iops Only valid for Provisioned IOPS SSD volumes. The number of I/O
      *         operations per second (IOPS) to provision for the volume, with a
      *         maximum ratio of 30 IOPS/GiB. <p>Constraint: Range is 100 to 20000 for
-     *         Provisioned IOPS (SSD) volumes
+     *         Provisioned IOPS SSD volumes
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

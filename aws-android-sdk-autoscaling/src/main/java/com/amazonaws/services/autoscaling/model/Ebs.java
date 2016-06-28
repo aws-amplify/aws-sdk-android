@@ -33,14 +33,13 @@ public class Ebs implements Serializable {
     private String snapshotId;
 
     /**
-     * The volume size, in gigabytes. <p>Valid values: If the volume type is
-     * <code>io1</code>, the minimum size of the volume is 10 GiB. If you
-     * specify <code>SnapshotId</code> and <code>VolumeSize</code>,
-     * <code>VolumeSize</code> must be equal to or larger than the size of
-     * the snapshot. <p>Default: If you create a volume from a snapshot and
-     * you don't specify a volume size, the default is the size of the
-     * snapshot. <p>Required: Required when the volume type is
-     * <code>io1</code>.
+     * The volume size, in GiB. For <code>standard</code> volumes, specify a
+     * value from 1 to 1,024. For <code>io1</code> volumes, specify a value
+     * from 4 to 16,384. For <code>gp2</code> volumes, specify a value from 1
+     * to 16,384. If you specify a snapshot, the volume size must be equal to
+     * or larger than the snapshot size. <p>Default: If you create a volume
+     * from a snapshot and you don't specify a volume size, the default is
+     * the snapshot size.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 16384<br/>
@@ -48,8 +47,11 @@ public class Ebs implements Serializable {
     private Integer volumeSize;
 
     /**
-     * The volume type. <p>Valid values: <code>standard | io1 | gp2</code>
-     * <p>Default: <code>standard</code>
+     * The volume type. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>. <p>Valid values: <code>standard</code> | <code>io1</code> |
+     * <code>gp2</code> <p>Default: <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -57,14 +59,15 @@ public class Ebs implements Serializable {
     private String volumeType;
 
     /**
-     * Indicates whether to delete the volume on instance termination.
+     * Indicates whether the volume is deleted on instance termination.
      * <p>Default: <code>true</code>
      */
     private Boolean deleteOnTermination;
 
     /**
-     * For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     * per second (IOPS) to provision for the volume. <p>Default: None
+     * The number of I/O operations per second (IOPS) to provision for the
+     * volume. <p>Constraint: Required when the volume type is
+     * <code>io1</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>100 - 20000<br/>
@@ -130,80 +133,74 @@ public class Ebs implements Serializable {
     }
 
     /**
-     * The volume size, in gigabytes. <p>Valid values: If the volume type is
-     * <code>io1</code>, the minimum size of the volume is 10 GiB. If you
-     * specify <code>SnapshotId</code> and <code>VolumeSize</code>,
-     * <code>VolumeSize</code> must be equal to or larger than the size of
-     * the snapshot. <p>Default: If you create a volume from a snapshot and
-     * you don't specify a volume size, the default is the size of the
-     * snapshot. <p>Required: Required when the volume type is
-     * <code>io1</code>.
+     * The volume size, in GiB. For <code>standard</code> volumes, specify a
+     * value from 1 to 1,024. For <code>io1</code> volumes, specify a value
+     * from 4 to 16,384. For <code>gp2</code> volumes, specify a value from 1
+     * to 16,384. If you specify a snapshot, the volume size must be equal to
+     * or larger than the snapshot size. <p>Default: If you create a volume
+     * from a snapshot and you don't specify a volume size, the default is
+     * the snapshot size.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 16384<br/>
      *
-     * @return The volume size, in gigabytes. <p>Valid values: If the volume type is
-     *         <code>io1</code>, the minimum size of the volume is 10 GiB. If you
-     *         specify <code>SnapshotId</code> and <code>VolumeSize</code>,
-     *         <code>VolumeSize</code> must be equal to or larger than the size of
-     *         the snapshot. <p>Default: If you create a volume from a snapshot and
-     *         you don't specify a volume size, the default is the size of the
-     *         snapshot. <p>Required: Required when the volume type is
-     *         <code>io1</code>.
+     * @return The volume size, in GiB. For <code>standard</code> volumes, specify a
+     *         value from 1 to 1,024. For <code>io1</code> volumes, specify a value
+     *         from 4 to 16,384. For <code>gp2</code> volumes, specify a value from 1
+     *         to 16,384. If you specify a snapshot, the volume size must be equal to
+     *         or larger than the snapshot size. <p>Default: If you create a volume
+     *         from a snapshot and you don't specify a volume size, the default is
+     *         the snapshot size.
      */
     public Integer getVolumeSize() {
         return volumeSize;
     }
     
     /**
-     * The volume size, in gigabytes. <p>Valid values: If the volume type is
-     * <code>io1</code>, the minimum size of the volume is 10 GiB. If you
-     * specify <code>SnapshotId</code> and <code>VolumeSize</code>,
-     * <code>VolumeSize</code> must be equal to or larger than the size of
-     * the snapshot. <p>Default: If you create a volume from a snapshot and
-     * you don't specify a volume size, the default is the size of the
-     * snapshot. <p>Required: Required when the volume type is
-     * <code>io1</code>.
+     * The volume size, in GiB. For <code>standard</code> volumes, specify a
+     * value from 1 to 1,024. For <code>io1</code> volumes, specify a value
+     * from 4 to 16,384. For <code>gp2</code> volumes, specify a value from 1
+     * to 16,384. If you specify a snapshot, the volume size must be equal to
+     * or larger than the snapshot size. <p>Default: If you create a volume
+     * from a snapshot and you don't specify a volume size, the default is
+     * the snapshot size.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 16384<br/>
      *
-     * @param volumeSize The volume size, in gigabytes. <p>Valid values: If the volume type is
-     *         <code>io1</code>, the minimum size of the volume is 10 GiB. If you
-     *         specify <code>SnapshotId</code> and <code>VolumeSize</code>,
-     *         <code>VolumeSize</code> must be equal to or larger than the size of
-     *         the snapshot. <p>Default: If you create a volume from a snapshot and
-     *         you don't specify a volume size, the default is the size of the
-     *         snapshot. <p>Required: Required when the volume type is
-     *         <code>io1</code>.
+     * @param volumeSize The volume size, in GiB. For <code>standard</code> volumes, specify a
+     *         value from 1 to 1,024. For <code>io1</code> volumes, specify a value
+     *         from 4 to 16,384. For <code>gp2</code> volumes, specify a value from 1
+     *         to 16,384. If you specify a snapshot, the volume size must be equal to
+     *         or larger than the snapshot size. <p>Default: If you create a volume
+     *         from a snapshot and you don't specify a volume size, the default is
+     *         the snapshot size.
      */
     public void setVolumeSize(Integer volumeSize) {
         this.volumeSize = volumeSize;
     }
     
     /**
-     * The volume size, in gigabytes. <p>Valid values: If the volume type is
-     * <code>io1</code>, the minimum size of the volume is 10 GiB. If you
-     * specify <code>SnapshotId</code> and <code>VolumeSize</code>,
-     * <code>VolumeSize</code> must be equal to or larger than the size of
-     * the snapshot. <p>Default: If you create a volume from a snapshot and
-     * you don't specify a volume size, the default is the size of the
-     * snapshot. <p>Required: Required when the volume type is
-     * <code>io1</code>.
+     * The volume size, in GiB. For <code>standard</code> volumes, specify a
+     * value from 1 to 1,024. For <code>io1</code> volumes, specify a value
+     * from 4 to 16,384. For <code>gp2</code> volumes, specify a value from 1
+     * to 16,384. If you specify a snapshot, the volume size must be equal to
+     * or larger than the snapshot size. <p>Default: If you create a volume
+     * from a snapshot and you don't specify a volume size, the default is
+     * the snapshot size.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 16384<br/>
      *
-     * @param volumeSize The volume size, in gigabytes. <p>Valid values: If the volume type is
-     *         <code>io1</code>, the minimum size of the volume is 10 GiB. If you
-     *         specify <code>SnapshotId</code> and <code>VolumeSize</code>,
-     *         <code>VolumeSize</code> must be equal to or larger than the size of
-     *         the snapshot. <p>Default: If you create a volume from a snapshot and
-     *         you don't specify a volume size, the default is the size of the
-     *         snapshot. <p>Required: Required when the volume type is
-     *         <code>io1</code>.
+     * @param volumeSize The volume size, in GiB. For <code>standard</code> volumes, specify a
+     *         value from 1 to 1,024. For <code>io1</code> volumes, specify a value
+     *         from 4 to 16,384. For <code>gp2</code> volumes, specify a value from 1
+     *         to 16,384. If you specify a snapshot, the volume size must be equal to
+     *         or larger than the snapshot size. <p>Default: If you create a volume
+     *         from a snapshot and you don't specify a volume size, the default is
+     *         the snapshot size.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -214,44 +211,62 @@ public class Ebs implements Serializable {
     }
 
     /**
-     * The volume type. <p>Valid values: <code>standard | io1 | gp2</code>
-     * <p>Default: <code>standard</code>
+     * The volume type. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>. <p>Valid values: <code>standard</code> | <code>io1</code> |
+     * <code>gp2</code> <p>Default: <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @return The volume type. <p>Valid values: <code>standard | io1 | gp2</code>
-     *         <p>Default: <code>standard</code>
+     * @return The volume type. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     *         EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>. <p>Valid values: <code>standard</code> | <code>io1</code> |
+     *         <code>gp2</code> <p>Default: <code>standard</code>
      */
     public String getVolumeType() {
         return volumeType;
     }
     
     /**
-     * The volume type. <p>Valid values: <code>standard | io1 | gp2</code>
-     * <p>Default: <code>standard</code>
+     * The volume type. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>. <p>Valid values: <code>standard</code> | <code>io1</code> |
+     * <code>gp2</code> <p>Default: <code>standard</code>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param volumeType The volume type. <p>Valid values: <code>standard | io1 | gp2</code>
-     *         <p>Default: <code>standard</code>
+     * @param volumeType The volume type. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     *         EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>. <p>Valid values: <code>standard</code> | <code>io1</code> |
+     *         <code>gp2</code> <p>Default: <code>standard</code>
      */
     public void setVolumeType(String volumeType) {
         this.volumeType = volumeType;
     }
     
     /**
-     * The volume type. <p>Valid values: <code>standard | io1 | gp2</code>
-     * <p>Default: <code>standard</code>
+     * The volume type. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     * EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>. <p>Valid values: <code>standard</code> | <code>io1</code> |
+     * <code>gp2</code> <p>Default: <code>standard</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param volumeType The volume type. <p>Valid values: <code>standard | io1 | gp2</code>
-     *         <p>Default: <code>standard</code>
+     * @param volumeType The volume type. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
+     *         EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>. <p>Valid values: <code>standard</code> | <code>io1</code> |
+     *         <code>gp2</code> <p>Default: <code>standard</code>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -262,10 +277,10 @@ public class Ebs implements Serializable {
     }
 
     /**
-     * Indicates whether to delete the volume on instance termination.
+     * Indicates whether the volume is deleted on instance termination.
      * <p>Default: <code>true</code>
      *
-     * @return Indicates whether to delete the volume on instance termination.
+     * @return Indicates whether the volume is deleted on instance termination.
      *         <p>Default: <code>true</code>
      */
     public Boolean isDeleteOnTermination() {
@@ -273,10 +288,10 @@ public class Ebs implements Serializable {
     }
     
     /**
-     * Indicates whether to delete the volume on instance termination.
+     * Indicates whether the volume is deleted on instance termination.
      * <p>Default: <code>true</code>
      *
-     * @param deleteOnTermination Indicates whether to delete the volume on instance termination.
+     * @param deleteOnTermination Indicates whether the volume is deleted on instance termination.
      *         <p>Default: <code>true</code>
      */
     public void setDeleteOnTermination(Boolean deleteOnTermination) {
@@ -284,12 +299,12 @@ public class Ebs implements Serializable {
     }
     
     /**
-     * Indicates whether to delete the volume on instance termination.
+     * Indicates whether the volume is deleted on instance termination.
      * <p>Default: <code>true</code>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param deleteOnTermination Indicates whether to delete the volume on instance termination.
+     * @param deleteOnTermination Indicates whether the volume is deleted on instance termination.
      *         <p>Default: <code>true</code>
      *
      * @return A reference to this updated object so that method calls can be chained
@@ -301,10 +316,10 @@ public class Ebs implements Serializable {
     }
 
     /**
-     * Indicates whether to delete the volume on instance termination.
+     * Indicates whether the volume is deleted on instance termination.
      * <p>Default: <code>true</code>
      *
-     * @return Indicates whether to delete the volume on instance termination.
+     * @return Indicates whether the volume is deleted on instance termination.
      *         <p>Default: <code>true</code>
      */
     public Boolean getDeleteOnTermination() {
@@ -312,44 +327,50 @@ public class Ebs implements Serializable {
     }
 
     /**
-     * For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     * per second (IOPS) to provision for the volume. <p>Default: None
+     * The number of I/O operations per second (IOPS) to provision for the
+     * volume. <p>Constraint: Required when the volume type is
+     * <code>io1</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>100 - 20000<br/>
      *
-     * @return For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     *         per second (IOPS) to provision for the volume. <p>Default: None
+     * @return The number of I/O operations per second (IOPS) to provision for the
+     *         volume. <p>Constraint: Required when the volume type is
+     *         <code>io1</code>.
      */
     public Integer getIops() {
         return iops;
     }
     
     /**
-     * For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     * per second (IOPS) to provision for the volume. <p>Default: None
+     * The number of I/O operations per second (IOPS) to provision for the
+     * volume. <p>Constraint: Required when the volume type is
+     * <code>io1</code>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>100 - 20000<br/>
      *
-     * @param iops For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     *         per second (IOPS) to provision for the volume. <p>Default: None
+     * @param iops The number of I/O operations per second (IOPS) to provision for the
+     *         volume. <p>Constraint: Required when the volume type is
+     *         <code>io1</code>.
      */
     public void setIops(Integer iops) {
         this.iops = iops;
     }
     
     /**
-     * For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     * per second (IOPS) to provision for the volume. <p>Default: None
+     * The number of I/O operations per second (IOPS) to provision for the
+     * volume. <p>Constraint: Required when the volume type is
+     * <code>io1</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>100 - 20000<br/>
      *
-     * @param iops For Provisioned IOPS (SSD) volumes only. The number of I/O operations
-     *         per second (IOPS) to provision for the volume. <p>Default: None
+     * @param iops The number of I/O operations per second (IOPS) to provision for the
+     *         volume. <p>Constraint: Required when the volume type is
+     *         <code>io1</code>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

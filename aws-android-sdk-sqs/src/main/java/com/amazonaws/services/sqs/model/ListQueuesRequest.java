@@ -33,7 +33,8 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * A string to use for filtering the list results. Only those queues
-     * whose name begins with the specified string are returned.
+     * whose name begins with the specified string are returned. <p>Queue
+     * names are case-sensitive.
      */
     private String queueNamePrefix;
 
@@ -50,7 +51,7 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
      * 
      * @param queueNamePrefix A string to use for filtering the list results.
      * Only those queues whose name begins with the specified string are
-     * returned.
+     * returned. <p>Queue names are case-sensitive.
      */
     public ListQueuesRequest(String queueNamePrefix) {
         setQueueNamePrefix(queueNamePrefix);
@@ -58,10 +59,12 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * A string to use for filtering the list results. Only those queues
-     * whose name begins with the specified string are returned.
+     * whose name begins with the specified string are returned. <p>Queue
+     * names are case-sensitive.
      *
      * @return A string to use for filtering the list results. Only those queues
-     *         whose name begins with the specified string are returned.
+     *         whose name begins with the specified string are returned. <p>Queue
+     *         names are case-sensitive.
      */
     public String getQueueNamePrefix() {
         return queueNamePrefix;
@@ -69,10 +72,12 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
     
     /**
      * A string to use for filtering the list results. Only those queues
-     * whose name begins with the specified string are returned.
+     * whose name begins with the specified string are returned. <p>Queue
+     * names are case-sensitive.
      *
      * @param queueNamePrefix A string to use for filtering the list results. Only those queues
-     *         whose name begins with the specified string are returned.
+     *         whose name begins with the specified string are returned. <p>Queue
+     *         names are case-sensitive.
      */
     public void setQueueNamePrefix(String queueNamePrefix) {
         this.queueNamePrefix = queueNamePrefix;
@@ -80,12 +85,14 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
     
     /**
      * A string to use for filtering the list results. Only those queues
-     * whose name begins with the specified string are returned.
+     * whose name begins with the specified string are returned. <p>Queue
+     * names are case-sensitive.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param queueNamePrefix A string to use for filtering the list results. Only those queues
-     *         whose name begins with the specified string are returned.
+     *         whose name begins with the specified string are returned. <p>Queue
+     *         names are case-sensitive.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

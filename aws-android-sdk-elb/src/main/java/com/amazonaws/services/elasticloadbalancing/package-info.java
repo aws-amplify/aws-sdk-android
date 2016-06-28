@@ -3,13 +3,17 @@
  * Synchronous and asynchronous client classes for accessing AmazonElasticLoadBalancing.
  *
  * Elastic Load Balancing <p>
- * Elastic Load Balancing distributes incoming traffic across your EC2
- * instances.
- * </p>
- * <p>
- * For information about the features of Elastic Load Balancing, see
- * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elastic-load-balancing.html"> What Is Elastic Load Balancing? </a>
- * in the <i>Elastic Load Balancing Developer Guide</i> .
+ * A load balancer distributes incoming traffic across your EC2
+ * instances. This enables you to increase the availability of your
+ * application. The load balancer also monitors the health of its
+ * registered instances and ensures that it routes traffic only to
+ * healthy instances. You configure your load balancer to accept incoming
+ * traffic by specifying one or more listeners, which are configured with
+ * a protocol and port number for connections from clients to the load
+ * balancer and a protocol and port number for connections from the load
+ * balancer to the instances. For more information, see the
+ * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/"> Elastic Load Balancing Developer Guide </a>
+ * .
  * </p>
  * <p>
  * For information about the AWS regions supported by Elastic Load

@@ -31,12 +31,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For example, let's say you have a message and its default message
- * visibility timeout is 30 minutes. You could call
- * <code>ChangeMessageVisiblity</code> with a value of two hours and the
- * effective timeout would be two hours and 30 minutes. When that time
- * comes near you could again extend the time out by calling
- * ChangeMessageVisiblity, but this time the maximum allowed timeout
- * would be 9 hours and 30 minutes.
+ * visibility timeout is 5 minutes. After 3 minutes, you call
+ * <code>ChangeMessageVisiblity</code> with a timeout of 10 minutes. At
+ * that time, the timeout for the message would be extended by 10 minutes
+ * beyond the time of the ChangeMessageVisibility call. This results in a
+ * total visibility timeout of 13 minutes. You can continue to call
+ * ChangeMessageVisibility to extend the visibility timeout to a maximum
+ * of 12 hours. If you try to extend beyond 12 hours, the request will be
+ * rejected.
  * </p>
  * <p>
  * <b>NOTE:</b> There is a 120,000 limit for the number of inflight
@@ -49,13 +51,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * queues you use to process the messages.
  * </p>
  * <p>
- * <b>IMPORTANT:</b>If you attempt to set the VisibilityTimeout to an
+ * <b>IMPORTANT:</b> If you attempt to set the VisibilityTimeout to an
  * amount more than the maximum time left, Amazon SQS returns an error.
  * It will not automatically recalculate and increase the timeout to the
  * maximum time remaining.
  * </p>
  * <p>
- * <b>IMPORTANT:</b>Unlike with a queue, when you change the visibility
+ * <b>IMPORTANT:</b> Unlike with a queue, when you change the visibility
  * timeout for a specific message, that timeout value is applied
  * immediately but is not saved in memory for that message. If you don't
  * delete a message after it is received, the visibility timeout for the
@@ -68,7 +70,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ChangeMessageVisibilityRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      */
     private String queueUrl;
 
@@ -97,6 +100,7 @@ public class ChangeMessageVisibilityRequest extends AmazonWebServiceRequest impl
      * initialize any additional object members.
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param receiptHandle The receipt handle associated with the message
      * whose visibility timeout should be changed. This parameter is returned
      * by the <a>ReceiveMessage</a> action.
@@ -110,29 +114,35 @@ public class ChangeMessageVisibilityRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @return The URL of the Amazon SQS queue to take action on.
+     * @return The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public String getQueueUrl() {
         return queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public void setQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

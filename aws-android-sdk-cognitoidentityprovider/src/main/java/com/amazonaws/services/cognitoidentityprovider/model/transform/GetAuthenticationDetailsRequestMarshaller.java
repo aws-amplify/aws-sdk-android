@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.cognitoidentityprovider.model.transform;
 
 import static com.amazonaws.util.StringUtils.UTF8;
@@ -20,8 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.Map;
-import java.util.List;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
@@ -36,72 +35,77 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Get Authentication Details Request Marshaller
+ * JSON request marshaller for GetAuthenticationDetailsRequest
  */
-public class GetAuthenticationDetailsRequestMarshaller implements Marshaller<Request<GetAuthenticationDetailsRequest>, GetAuthenticationDetailsRequest> {
+public class GetAuthenticationDetailsRequestMarshaller implements
+        Marshaller<Request<GetAuthenticationDetailsRequest>, GetAuthenticationDetailsRequest> {
 
-    public Request<GetAuthenticationDetailsRequest> marshall(GetAuthenticationDetailsRequest getAuthenticationDetailsRequest) {
-    if (getAuthenticationDetailsRequest == null) {
-        throw new AmazonClientException("Invalid argument passed to marshall(...)");
-    }
+    public Request<GetAuthenticationDetailsRequest> marshall(
+            GetAuthenticationDetailsRequest getAuthenticationDetailsRequest) {
+        if (getAuthenticationDetailsRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(GetAuthenticationDetailsRequest)");
+        }
 
-        Request<GetAuthenticationDetailsRequest> request = new DefaultRequest<GetAuthenticationDetailsRequest>(getAuthenticationDetailsRequest, "AmazonCognitoIdentityProvider");
+        Request<GetAuthenticationDetailsRequest> request = new DefaultRequest<GetAuthenticationDetailsRequest>(
+                getAuthenticationDetailsRequest, "AmazonCognitoIdentityProvider");
         String target = "AWSCognitoIdentityProviderService.GetAuthenticationDetails";
         request.addHeader("X-Amz-Target", target);
-
         request.setHttpMethod(HttpMethodName.POST);
-        request.setResourcePath("");
-        
+
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
-
             jsonWriter.beginObject();
-            
+
             if (getAuthenticationDetailsRequest.getClientId() != null) {
-                jsonWriter.name("ClientId").value(getAuthenticationDetailsRequest.getClientId());
+                String clientId = getAuthenticationDetailsRequest.getClientId();
+                jsonWriter.name("ClientId");
+                jsonWriter.value(clientId);
             }
             if (getAuthenticationDetailsRequest.getSecretHash() != null) {
-                jsonWriter.name("SecretHash").value(getAuthenticationDetailsRequest.getSecretHash());
+                String secretHash = getAuthenticationDetailsRequest.getSecretHash();
+                jsonWriter.name("SecretHash");
+                jsonWriter.value(secretHash);
             }
             if (getAuthenticationDetailsRequest.getUsername() != null) {
-                jsonWriter.name("Username").value(getAuthenticationDetailsRequest.getUsername());
+                String username = getAuthenticationDetailsRequest.getUsername();
+                jsonWriter.name("Username");
+                jsonWriter.value(username);
             }
             if (getAuthenticationDetailsRequest.getSrpA() != null) {
-                jsonWriter.name("SrpA").value(getAuthenticationDetailsRequest.getSrpA());
+                String srpA = getAuthenticationDetailsRequest.getSrpA();
+                jsonWriter.name("SrpA");
+                jsonWriter.value(srpA);
             }
-
-            com.amazonaws.internal.ListWithAutoConstructFlag<AttributeType> validationDataList = (com.amazonaws.internal.ListWithAutoConstructFlag<AttributeType>)(getAuthenticationDetailsRequest.getValidationData());
-            if (validationDataList != null && !(validationDataList.isAutoConstruct() && validationDataList.isEmpty())) {
-
+            if (getAuthenticationDetailsRequest.getValidationData() != null) {
+                java.util.List<AttributeType> validationData = getAuthenticationDetailsRequest
+                        .getValidationData();
                 jsonWriter.name("ValidationData");
                 jsonWriter.beginArray();
-
-                for (AttributeType validationDataListValue : validationDataList) {
-                    if (validationDataListValue != null) {
-                        jsonWriter.beginObject();
-                        if (validationDataListValue.getName() != null) {
-                            jsonWriter.name("Name").value(validationDataListValue.getName());
-                        }
-                        if (validationDataListValue.getValue() != null) {
-                            jsonWriter.name("Value").value(validationDataListValue.getValue());
-                        }
-                        jsonWriter.endObject();
+                for (AttributeType validationDataItem : validationData) {
+                    if (validationDataItem != null) {
+                        AttributeTypeJsonMarshaller.getInstance().marshall(validationDataItem,
+                                jsonWriter);
                     }
                 }
                 jsonWriter.endArray();
             }
 
             jsonWriter.endObject();
-
             jsonWriter.close();
             String snippet = stringWriter.toString();
             byte[] content = snippet.getBytes(UTF8);
             request.setContent(new StringInputStream(snippet));
             request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
+        }
+        if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
-        } catch(Throwable t) {
-            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

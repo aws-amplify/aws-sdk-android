@@ -287,33 +287,45 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * </p>
      * 
      * <ul>
-     * <li> <code>domain-name-servers</code> - The IP addresses of up to
-     * four domain name servers, or <code>AmazonProvidedDNS</code> . The
-     * default DHCP option set specifies <code>AmazonProvidedDNS</code> . If
-     * specifying more than one domain name server, specify the IP addresses
-     * in a single parameter, separated by commas.</li>
-     * <li> <code>domain-name</code> - If you're using AmazonProvidedDNS in
-     * <code>us-east-1</code> , specify <code>ec2.internal</code> . If you're
-     * using AmazonProvidedDNS in another region, specify
-     * <code>region.compute.internal</code> (for example,
-     * <code>ap-northeast-1.compute.internal</code> ). Otherwise, specify a
-     * domain name (for example, <code>MyCompany.com</code> ).
-     * <b>Important</b> : Some Linux operating systems accept multiple domain
-     * names separated by spaces. However, Windows and other Linux operating
-     * systems treat the value as a single domain, which results in
-     * unexpected behavior. If your DHCP options set is associated with a VPC
-     * that has instances with multiple operating systems, specify only one
-     * domain name.</li>
-     * <li> <code>ntp-servers</code> - The IP addresses of up to four
-     * Network Time Protocol (NTP) servers.</li>
-     * <li> <code>netbios-name-servers</code> - The IP addresses of up to
-     * four NetBIOS name servers.</li>
-     * <li> <code>netbios-node-type</code> - The NetBIOS node type (1, 2, 4,
-     * or 8). We recommend that you specify 2 (broadcast and multicast are
-     * not currently supported). For more information about these node types,
-     * see
+     * <li> <p>
+     * <code>domain-name-servers</code> - The IP addresses of up to four
+     * domain name servers, or AmazonProvidedDNS. The default DHCP option set
+     * specifies AmazonProvidedDNS. If specifying more than one domain name
+     * server, specify the IP addresses in a single parameter, separated by
+     * commas.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>domain-name</code> - If you're using AmazonProvidedDNS in
+     * "us-east-1", specify "ec2.internal". If you're using AmazonProvidedDNS
+     * in another region, specify "region.compute.internal" (for example,
+     * "ap-northeast-1.compute.internal"). Otherwise, specify a domain name
+     * (for example, "MyCompany.com"). <b>Important</b> : Some Linux
+     * operating systems accept multiple domain names separated by spaces.
+     * However, Windows and other Linux operating systems treat the value as
+     * a single domain, which results in unexpected behavior. If your DHCP
+     * options set is associated with a VPC that has instances with multiple
+     * operating systems, specify only one domain name.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>ntp-servers</code> - The IP addresses of up to four Network
+     * Time Protocol (NTP) servers.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>netbios-name-servers</code> - The IP addresses of up to four
+     * NetBIOS name servers.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <code>netbios-node-type</code> - The NetBIOS node type (1, 2, 4, or
+     * 8). We recommend that you specify 2 (broadcast and multicast are not
+     * currently supported). For more information about these node types, see
      * <a href="http://www.ietf.org/rfc/rfc2132.txt"> RFC 2132 </a>
-     * . </li>
+     * .
+     * </p>
+     * </li>
      * 
      * </ul>
      * <p>
@@ -378,6 +390,10 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * If you decide to shut down your VPN connection for any reason and
      * later create a new VPN connection, you must reconfigure your customer
      * gateway with the new information returned from this call.
+     * </p>
+     * <p>
+     * This is an idempotent operation. If you perform the operation more
+     * than once, Amazon EC2 doesn't return an error.
      * </p>
      * <p>
      * For more information about VPN connections, see
@@ -864,13 +880,25 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * </p>
      * 
      * <ul>
-     * <li>The volume can be attached only to a stopped instance.</li>
-     * <li>AWS Marketplace product codes are copied from the volume to the
-     * instance.</li>
-     * <li>You must be subscribed to the product.</li>
-     * <li>The instance type and operating system of the instance must
-     * support the product. For example, you can't detach a volume from a
-     * Windows instance and attach it to a Linux instance.</li>
+     * <li> <p>
+     * The volume can be attached only to a stopped instance.
+     * </p>
+     * </li>
+     * <li> <p>
+     * AWS Marketplace product codes are copied from the volume to the
+     * instance.
+     * </p>
+     * </li>
+     * <li> <p>
+     * You must be subscribed to the product.
+     * </p>
+     * </li>
+     * <li> <p>
+     * The instance type and operating system of the instance must support
+     * the product. For example, you can't detach a volume from a Windows
+     * instance and attach it to a Linux instance.
+     * </p>
+     * </li>
      * 
      * </ul>
      * <p>
@@ -994,6 +1022,47 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
             invoke(request, null, executionContext);
         } finally {
             endClientExecution(awsRequestMetrics, request, null);
+        }
+    }
+    
+    /**
+     * <p>
+     * [EC2-VPC only] Describes the stale security group rules for security
+     * groups in a specified VPC. Rules are stale when they reference a
+     * deleted security group in a peer VPC, or a security group in a peer
+     * VPC for which the VPC peering connection has been deleted.
+     * </p>
+     *
+     * @param describeStaleSecurityGroupsRequest Container for the necessary
+     *           parameters to execute the DescribeStaleSecurityGroups service method
+     *           on AmazonEC2.
+     * 
+     * @return The response from the DescribeStaleSecurityGroups service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeStaleSecurityGroupsResult describeStaleSecurityGroups(DescribeStaleSecurityGroupsRequest describeStaleSecurityGroupsRequest) {
+        ExecutionContext executionContext = createExecutionContext(describeStaleSecurityGroupsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DescribeStaleSecurityGroupsRequest> request = null;
+        Response<DescribeStaleSecurityGroupsResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new DescribeStaleSecurityGroupsRequestMarshaller().marshall(describeStaleSecurityGroupsRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new DescribeStaleSecurityGroupsResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
         }
     }
     
@@ -1247,7 +1316,9 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * period. You can't stop or reboot a Scheduled Instance, but you can
      * terminate it as needed. If you terminate a Scheduled Instance before
      * the current scheduled time period ends, you can launch it again after
-     * a few minutes.
+     * a few minutes. For more information, see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-scheduled-instances.html"> Scheduled Instances </a>
+     * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      *
      * @param runScheduledInstancesRequest Container for the necessary
@@ -1681,6 +1752,13 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * 100 instances each instead of one launch request for 500 instances.
      * </p>
      * <p>
+     * To tag your instance, ensure that it is <code>running</code> as
+     * CreateTags requires a resource ID. For more information about tagging,
+     * see
+     * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html"> Tagging Your Amazon EC2 Resources </a>
+     * .
+     * </p>
+     * <p>
      * If you don't specify a security group when launching an instance,
      * Amazon EC2 uses the default security group. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"> Security Groups </a>
@@ -1883,9 +1961,7 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * EC2-VPC platform back to the EC2-Classic platform. You cannot move an
      * Elastic IP address that was originally allocated for use in EC2-VPC.
      * The Elastic IP address must not be associated with an instance or
-     * network interface. You cannot restore an Elastic IP address that's
-     * associated with a reverse DNS record. Contact AWS account and billing
-     * support to remove the reverse DNS record.
+     * network interface.
      * </p>
      *
      * @param restoreAddressToClassicRequest Container for the necessary
@@ -2736,7 +2812,12 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * capacity by the hour for a one-year term. Before you can purchase a
      * Scheduled Instance, you must call
      * DescribeScheduledInstanceAvailability to check for available schedules
-     * and obtain a purchase token.
+     * and obtain a purchase token. After you purchase a Scheduled Instance,
+     * you must call RunScheduledInstances during each scheduled time period.
+     * </p>
+     * <p>
+     * After you purchase a Scheduled Instance, you can't cancel, modify, or
+     * resell your purchase.
      * </p>
      *
      * @param purchaseScheduledInstancesRequest Container for the necessary
@@ -2973,7 +3054,8 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
     
     /**
      * <p>
-     * Describes the status of one or more instances.
+     * Describes the status of one or more instances. By default, only
+     * running instances are described, unless specified otherwise.
      * </p>
      * <p>
      * Instance status includes the following components:
@@ -3906,7 +3988,8 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * Modifies the ID format for the specified resource on a per-region
      * basis. You can specify that resources should receive longer IDs
      * (17-character IDs) when they are created. The following resource types
-     * support longer IDs: <code>instance</code> | <code>reservation</code> .
+     * support longer IDs: <code>instance</code> | <code>reservation</code> |
+     * <code>snapshot</code> | <code>volume</code> .
      * </p>
      * <p>
      * This setting applies to the IAM user who makes the request; it does
@@ -4922,44 +5005,42 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
     
     /**
      * <p>
-     * Stops an Amazon EBS-backed instance. Each time you transition an
-     * instance from stopped to started, Amazon EC2 charges a full instance
-     * hour, even if transitions happen multiple times within a single hour.
+     * Stops an Amazon EBS-backed instance.
      * </p>
      * <p>
-     * You can't start or stop Spot instances.
-     * </p>
-     * <p>
-     * Instances that use Amazon EBS volumes as their root devices can be
-     * quickly stopped and started. When an instance is stopped, the compute
-     * resources are released and you are not billed for hourly instance
-     * usage. However, your root partition Amazon EBS volume remains,
+     * We don't charge hourly usage for a stopped instance, or data transfer
+     * fees; however, your root partition Amazon EBS volume remains,
      * continues to persist your data, and you are charged for Amazon EBS
-     * volume usage. You can restart your instance at any time.
+     * volume usage. Each time you transition an instance from stopped to
+     * started, Amazon EC2 charges a full instance hour, even if transitions
+     * happen multiple times within a single hour.
      * </p>
      * <p>
-     * Before stopping an instance, make sure it is in a state from which it
-     * can be restarted. Stopping an instance does not preserve data stored
-     * in RAM.
+     * You can't start or stop Spot instances, and you can't stop instance
+     * store-backed instances.
      * </p>
      * <p>
-     * Performing this operation on an instance that uses an instance store
-     * as its root device returns an error.
+     * When you stop an instance, we shut it down. You can restart your
+     * instance at any time. Before stopping an instance, make sure it is in
+     * a state from which it can be restarted. Stopping an instance does not
+     * preserve data stored in RAM.
      * </p>
      * <p>
-     * You can stop, start, and terminate EBS-backed instances. You can only
-     * terminate instance store-backed instances. What happens to an instance
-     * differs if you stop it or terminate it. For example, when you stop an
-     * instance, the root device and any other devices attached to the
-     * instance persist. When you terminate an instance, the root device and
-     * any other devices attached during the instance launch are
-     * automatically deleted. For more information about the differences
-     * between stopping and terminating instances, see
+     * Stopping an instance is different to rebooting or terminating it. For
+     * example, when you stop an instance, the root device and any other
+     * devices attached to the instance persist. When you terminate an
+     * instance, the root device and any other devices attached during the
+     * instance launch are automatically deleted. For more information about
+     * the differences between rebooting, stopping, and terminating
+     * instances, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html"> Instance Lifecycle </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
      * <p>
-     * For more information about troubleshooting, see
+     * When you stop an instance, we attempt to shut it down forcibly after
+     * a short while. If your instance appears stuck in the stopping state
+     * after a period of time, there may be an issue with the underlying host
+     * computer. For more information, see
      * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html"> Troubleshooting Stopping Your Instance </a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
      * </p>
@@ -5006,7 +5087,8 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * </p>
      * <p>
      * The following resource types support longer IDs:
-     * <code>instance</code> | <code>reservation</code> .
+     * <code>instance</code> | <code>reservation</code> |
+     * <code>snapshot</code> | <code>volume</code> .
      * </p>
      * <p>
      * These settings apply to the IAM user who makes the request; they do
@@ -5273,11 +5355,11 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * <p>
      * Resets an attribute of an instance to its default value. To reset the
      * <code>kernel</code> or <code>ramdisk</code> , the instance must be in
-     * a stopped state. To reset the <code>SourceDestCheck</code> , the
+     * a stopped state. To reset the <code>sourceDestCheck</code> , the
      * instance can be either running or stopped.
      * </p>
      * <p>
-     * The <code>SourceDestCheck</code> attribute controls whether
+     * The <code>sourceDestCheck</code> attribute controls whether
      * source/destination checking is enabled. The default value is
      * <code>true</code> , which means checking is enabled. This value must
      * be <code>false</code> for a NAT instance to perform NAT. For more
@@ -6155,6 +6237,48 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
     
     /**
      * <p>
+     * Retrieve a JPG-format screenshot of a running instance to help with
+     * troubleshooting.
+     * </p>
+     * <p>
+     * The returned content is base64-encoded.
+     * </p>
+     *
+     * @param getConsoleScreenshotRequest Container for the necessary
+     *           parameters to execute the GetConsoleScreenshot service method on
+     *           AmazonEC2.
+     * 
+     * @return The response from the GetConsoleScreenshot service method, as
+     *         returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public GetConsoleScreenshotResult getConsoleScreenshot(GetConsoleScreenshotRequest getConsoleScreenshotRequest) {
+        ExecutionContext executionContext = createExecutionContext(getConsoleScreenshotRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<GetConsoleScreenshotRequest> request = null;
+        Response<GetConsoleScreenshotResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new GetConsoleScreenshotRequestMarshaller().marshall(getConsoleScreenshotRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new GetConsoleScreenshotResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
      * Creates a route table for the specified VPC. After you create a route
      * table, you can add routes and associate the table with a subnet.
      * </p>
@@ -6895,6 +7019,70 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
     
     /**
      * <p>
+     * Modifies the VPC peering connection options on one side of a VPC
+     * peering connection. You can do the following:
+     * </p>
+     * 
+     * <ul>
+     * <li> <p>
+     * Enable/disable communication over the peering connection between an
+     * EC2-Classic instance that's linked to your VPC (using ClassicLink) and
+     * instances in the peer VPC.
+     * </p>
+     * </li>
+     * <li> <p>
+     * Enable/disable communication over the peering connection between
+     * instances in your VPC and an EC2-Classic instance that's linked to the
+     * peer VPC.
+     * </p>
+     * </li>
+     * 
+     * </ul>
+     * <p>
+     * If the peered VPCs are in different accounts, each owner must
+     * initiate a separate request to enable or disable communication in
+     * either direction, depending on whether their VPC was the requester or
+     * accepter for the VPC peering connection. If the peered VPCs are in the
+     * same account, you can modify the requester and accepter options in the
+     * same request. To confirm which VPC is the accepter and requester for a
+     * VPC peering connection, use the DescribeVpcPeeringConnections command.
+     * </p>
+     *
+     * @param modifyVpcPeeringConnectionOptionsRequest Container for the
+     *           necessary parameters to execute the ModifyVpcPeeringConnectionOptions
+     *           service method on AmazonEC2.
+     * 
+     * @return The response from the ModifyVpcPeeringConnectionOptions
+     *         service method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ModifyVpcPeeringConnectionOptionsResult modifyVpcPeeringConnectionOptions(ModifyVpcPeeringConnectionOptionsRequest modifyVpcPeeringConnectionOptionsRequest) {
+        ExecutionContext executionContext = createExecutionContext(modifyVpcPeeringConnectionOptionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<ModifyVpcPeeringConnectionOptionsRequest> request = null;
+        Response<ModifyVpcPeeringConnectionOptionsResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new ModifyVpcPeeringConnectionOptionsRequestMarshaller().marshall(modifyVpcPeeringConnectionOptionsRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ModifyVpcPeeringConnectionOptionsResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
      * Describes one or more of the EBS snapshots available to you.
      * Available snapshots include public snapshots available for any AWS
      * account to launch, private snapshots that you own, and private
@@ -6906,13 +7094,22 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * </p>
      * 
      * <ul>
-     * <li> <i>public</i> : The owner of the snapshot granted create volume
+     * <li> <p>
+     * <i>public</i> : The owner of the snapshot granted create volume
      * permissions for the snapshot to the <code>all</code> group. All AWS
-     * accounts have create volume permissions for these snapshots.</li>
-     * <li> <i>explicit</i> : The owner of the snapshot granted create
-     * volume permissions to a specific AWS account.</li>
-     * <li> <i>implicit</i> : An AWS account has implicit create volume
-     * permissions for all snapshots it owns.</li>
+     * accounts have create volume permissions for these snapshots.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <i>explicit</i> : The owner of the snapshot granted create volume
+     * permissions to a specific AWS account.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <i>implicit</i> : An AWS account has implicit create volume
+     * permissions for all snapshots it owns.
+     * </p>
+     * </li>
      * 
      * </ul>
      * <p>
@@ -7510,6 +7707,46 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
             response = invoke(request, new DescribeReservedInstancesResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
+     * [EC2-VPC only] Describes the VPCs on the other side of a VPC peering
+     * connection that are referencing the security groups you've specified
+     * in this request.
+     * </p>
+     *
+     * @param describeSecurityGroupReferencesRequest Container for the
+     *           necessary parameters to execute the DescribeSecurityGroupReferences
+     *           service method on AmazonEC2.
+     * 
+     * @return The response from the DescribeSecurityGroupReferences service
+     *         method, as returned by AmazonEC2.
+     * 
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonEC2 indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeSecurityGroupReferencesResult describeSecurityGroupReferences(DescribeSecurityGroupReferencesRequest describeSecurityGroupReferencesRequest) {
+        ExecutionContext executionContext = createExecutionContext(describeSecurityGroupReferencesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DescribeSecurityGroupReferencesRequest> request = null;
+        Response<DescribeSecurityGroupReferencesResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new DescribeSecurityGroupReferencesRequestMarshaller().marshall(describeSecurityGroupReferencesRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new DescribeSecurityGroupReferencesResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
             endClientExecution(awsRequestMetrics, request, response);
@@ -8695,8 +8932,8 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * belong to you. Requests to reboot terminated instances are ignored.
      * </p>
      * <p>
-     * If a Linux/Unix instance does not cleanly shut down within four
-     * minutes, Amazon EC2 performs a hard reboot.
+     * If an instance does not cleanly shut down within four minutes, Amazon
+     * EC2 performs a hard reboot.
      * </p>
      * <p>
      * For more information about troubleshooting, see
@@ -9149,10 +9386,8 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * instance. After the Elastic IP address is moved, it is no longer
      * available for use in the EC2-Classic platform, unless you move it back
      * using the RestoreAddressToClassic request. You cannot move an Elastic
-     * IP address that's allocated for use in the EC2-VPC platform to the
-     * EC2-Classic platform. You cannot migrate an Elastic IP address that's
-     * associated with a reverse DNS record. Contact AWS account and billing
-     * support to remove the reverse DNS record.
+     * IP address that was originally allocated for use in the EC2-VPC
+     * platform to the EC2-Classic platform.
      * </p>
      *
      * @param moveAddressToVpcRequest Container for the necessary parameters
@@ -9369,6 +9604,13 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * options, which includes only a default DNS server that we provide
      * (AmazonProvidedDNS). For more information about DHCP options, see
      * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html"> DHCP Options Sets </a>
+     * in the <i>Amazon Virtual Private Cloud User Guide</i> .
+     * </p>
+     * <p>
+     * You can specify the instance tenancy value for the VPC when you
+     * create it. You can't change this value for the VPC after you create
+     * it. For more information, see
+     * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/dedicated-instance.html.html"> Dedicated Instances </a>
      * in the <i>Amazon Virtual Private Cloud User Guide</i> .
      * </p>
      *
@@ -9951,7 +10193,8 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
     
     /**
      * <p>
-     * Describes the status of one or more instances.
+     * Describes the status of one or more instances. By default, only
+     * running instances are described, unless specified otherwise.
      * </p>
      * <p>
      * Instance status includes the following components:
@@ -10287,7 +10530,8 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * </p>
      * <p>
      * The following resource types support longer IDs:
-     * <code>instance</code> | <code>reservation</code> .
+     * <code>instance</code> | <code>reservation</code> |
+     * <code>snapshot</code> | <code>volume</code> .
      * </p>
      * <p>
      * These settings apply to the IAM user who makes the request; they do
@@ -10681,13 +10925,22 @@ public class AmazonEC2Client extends AmazonWebServiceClient implements AmazonEC2
      * </p>
      * 
      * <ul>
-     * <li> <i>public</i> : The owner of the snapshot granted create volume
+     * <li> <p>
+     * <i>public</i> : The owner of the snapshot granted create volume
      * permissions for the snapshot to the <code>all</code> group. All AWS
-     * accounts have create volume permissions for these snapshots.</li>
-     * <li> <i>explicit</i> : The owner of the snapshot granted create
-     * volume permissions to a specific AWS account.</li>
-     * <li> <i>implicit</i> : An AWS account has implicit create volume
-     * permissions for all snapshots it owns.</li>
+     * accounts have create volume permissions for these snapshots.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <i>explicit</i> : The owner of the snapshot granted create volume
+     * permissions to a specific AWS account.
+     * </p>
+     * </li>
+     * <li> <p>
+     * <i>implicit</i> : An AWS account has implicit create volume
+     * permissions for all snapshots it owns.
+     * </p>
+     * </li>
      * 
      * </ul>
      * <p>

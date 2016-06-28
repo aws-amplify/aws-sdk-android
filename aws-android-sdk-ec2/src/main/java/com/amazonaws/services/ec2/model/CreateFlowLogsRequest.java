@@ -40,7 +40,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateFlowLogsRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * One or more subnet, network interface, or VPC IDs.
+     * One or more subnet, network interface, or VPC IDs. <p>Constraints:
+     * Maximum of 1000 resources
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> resourceIds;
 
@@ -80,9 +81,11 @@ public class CreateFlowLogsRequest extends AmazonWebServiceRequest implements Se
     private String clientToken;
 
     /**
-     * One or more subnet, network interface, or VPC IDs.
+     * One or more subnet, network interface, or VPC IDs. <p>Constraints:
+     * Maximum of 1000 resources
      *
-     * @return One or more subnet, network interface, or VPC IDs.
+     * @return One or more subnet, network interface, or VPC IDs. <p>Constraints:
+     *         Maximum of 1000 resources
      */
     public java.util.List<String> getResourceIds() {
         if (resourceIds == null) {
@@ -93,9 +96,11 @@ public class CreateFlowLogsRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * One or more subnet, network interface, or VPC IDs.
+     * One or more subnet, network interface, or VPC IDs. <p>Constraints:
+     * Maximum of 1000 resources
      *
-     * @param resourceIds One or more subnet, network interface, or VPC IDs.
+     * @param resourceIds One or more subnet, network interface, or VPC IDs. <p>Constraints:
+     *         Maximum of 1000 resources
      */
     public void setResourceIds(java.util.Collection<String> resourceIds) {
         if (resourceIds == null) {
@@ -108,11 +113,13 @@ public class CreateFlowLogsRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * One or more subnet, network interface, or VPC IDs.
+     * One or more subnet, network interface, or VPC IDs. <p>Constraints:
+     * Maximum of 1000 resources
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param resourceIds One or more subnet, network interface, or VPC IDs.
+     * @param resourceIds One or more subnet, network interface, or VPC IDs. <p>Constraints:
+     *         Maximum of 1000 resources
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -126,11 +133,13 @@ public class CreateFlowLogsRequest extends AmazonWebServiceRequest implements Se
     }
     
     /**
-     * One or more subnet, network interface, or VPC IDs.
+     * One or more subnet, network interface, or VPC IDs. <p>Constraints:
+     * Maximum of 1000 resources
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param resourceIds One or more subnet, network interface, or VPC IDs.
+     * @param resourceIds One or more subnet, network interface, or VPC IDs. <p>Constraints:
+     *         Maximum of 1000 resources
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

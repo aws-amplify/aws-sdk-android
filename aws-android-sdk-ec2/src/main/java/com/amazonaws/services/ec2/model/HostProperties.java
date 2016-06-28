@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Describes properties of a Dedicated host.
+ * </p>
  */
 public class HostProperties implements Serializable {
 
@@ -37,7 +39,7 @@ public class HostProperties implements Serializable {
     private Integer totalVCpus;
 
     /**
-     * The instance type size that the Dedicated host supports (e.g.,
+     * The instance type size that the Dedicated host supports (for example,
      * m3.medium).
      */
     private String instanceType;
@@ -142,10 +144,10 @@ public class HostProperties implements Serializable {
     }
 
     /**
-     * The instance type size that the Dedicated host supports (e.g.,
+     * The instance type size that the Dedicated host supports (for example,
      * m3.medium).
      *
-     * @return The instance type size that the Dedicated host supports (e.g.,
+     * @return The instance type size that the Dedicated host supports (for example,
      *         m3.medium).
      */
     public String getInstanceType() {
@@ -153,10 +155,10 @@ public class HostProperties implements Serializable {
     }
     
     /**
-     * The instance type size that the Dedicated host supports (e.g.,
+     * The instance type size that the Dedicated host supports (for example,
      * m3.medium).
      *
-     * @param instanceType The instance type size that the Dedicated host supports (e.g.,
+     * @param instanceType The instance type size that the Dedicated host supports (for example,
      *         m3.medium).
      */
     public void setInstanceType(String instanceType) {
@@ -164,12 +166,12 @@ public class HostProperties implements Serializable {
     }
     
     /**
-     * The instance type size that the Dedicated host supports (e.g.,
+     * The instance type size that the Dedicated host supports (for example,
      * m3.medium).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceType The instance type size that the Dedicated host supports (e.g.,
+     * @param instanceType The instance type size that the Dedicated host supports (for example,
      *         m3.medium).
      *
      * @return A reference to this updated object so that method calls can be chained

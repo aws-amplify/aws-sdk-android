@@ -41,7 +41,9 @@ public class DescribeImportSnapshotTasksRequest extends AmazonWebServiceRequest 
     private String nextToken;
 
     /**
-     * The maximum number of results to return in a single request.
+     * The maximum number of results to return in a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>NextToken</code> value.
      */
     private Integer maxResults;
 
@@ -152,29 +154,41 @@ public class DescribeImportSnapshotTasksRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * The maximum number of results to return in a single request.
+     * The maximum number of results to return in a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>NextToken</code> value.
      *
-     * @return The maximum number of results to return in a single request.
+     * @return The maximum number of results to return in a single call. To retrieve
+     *         the remaining results, make another call with the returned
+     *         <code>NextToken</code> value.
      */
     public Integer getMaxResults() {
         return maxResults;
     }
     
     /**
-     * The maximum number of results to return in a single request.
+     * The maximum number of results to return in a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>NextToken</code> value.
      *
-     * @param maxResults The maximum number of results to return in a single request.
+     * @param maxResults The maximum number of results to return in a single call. To retrieve
+     *         the remaining results, make another call with the returned
+     *         <code>NextToken</code> value.
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
     
     /**
-     * The maximum number of results to return in a single request.
+     * The maximum number of results to return in a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>NextToken</code> value.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param maxResults The maximum number of results to return in a single request.
+     * @param maxResults The maximum number of results to return in a single call. To retrieve
+     *         the remaining results, make another call with the returned
+     *         <code>NextToken</code> value.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

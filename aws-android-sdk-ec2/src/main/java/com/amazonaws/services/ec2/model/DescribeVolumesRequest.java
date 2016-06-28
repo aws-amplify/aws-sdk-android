@@ -84,9 +84,10 @@ public class DescribeVolumesRequest extends AmazonWebServiceRequest implements S
      * resource. This filter is independent of the <code>tag-key</code>
      * filter. </li> <li> <p><code>volume-id</code> - The volume ID. </li>
      * <li> <p><code>volume-type</code> - The Amazon EBS volume type. This
-     * can be <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, or
-     * <code>standard</code> for Magnetic volumes. </li> </ul>
+     * can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for
+     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
+     * <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic
+     * volumes. </li> </ul>
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filters;
 
@@ -235,9 +236,10 @@ public class DescribeVolumesRequest extends AmazonWebServiceRequest implements S
      * resource. This filter is independent of the <code>tag-key</code>
      * filter. </li> <li> <p><code>volume-id</code> - The volume ID. </li>
      * <li> <p><code>volume-type</code> - The Amazon EBS volume type. This
-     * can be <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, or
-     * <code>standard</code> for Magnetic volumes. </li> </ul>
+     * can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for
+     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
+     * <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic
+     * volumes. </li> </ul>
      *
      * @return One or more filters. <ul> <li> <p><code>attachment.attach-time</code>
      *         - The time stamp when the attachment initiated. </li> <li>
@@ -272,9 +274,10 @@ public class DescribeVolumesRequest extends AmazonWebServiceRequest implements S
      *         resource. This filter is independent of the <code>tag-key</code>
      *         filter. </li> <li> <p><code>volume-id</code> - The volume ID. </li>
      *         <li> <p><code>volume-type</code> - The Amazon EBS volume type. This
-     *         can be <code>gp2</code> for General Purpose (SSD) volumes,
-     *         <code>io1</code> for Provisioned IOPS (SSD) volumes, or
-     *         <code>standard</code> for Magnetic volumes. </li> </ul>
+     *         can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for
+     *         Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
+     *         <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic
+     *         volumes. </li> </ul>
      */
     public java.util.List<Filter> getFilters() {
         if (filters == null) {
@@ -318,9 +321,10 @@ public class DescribeVolumesRequest extends AmazonWebServiceRequest implements S
      * resource. This filter is independent of the <code>tag-key</code>
      * filter. </li> <li> <p><code>volume-id</code> - The volume ID. </li>
      * <li> <p><code>volume-type</code> - The Amazon EBS volume type. This
-     * can be <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, or
-     * <code>standard</code> for Magnetic volumes. </li> </ul>
+     * can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for
+     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
+     * <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic
+     * volumes. </li> </ul>
      *
      * @param filters One or more filters. <ul> <li> <p><code>attachment.attach-time</code>
      *         - The time stamp when the attachment initiated. </li> <li>
@@ -355,9 +359,10 @@ public class DescribeVolumesRequest extends AmazonWebServiceRequest implements S
      *         resource. This filter is independent of the <code>tag-key</code>
      *         filter. </li> <li> <p><code>volume-id</code> - The volume ID. </li>
      *         <li> <p><code>volume-type</code> - The Amazon EBS volume type. This
-     *         can be <code>gp2</code> for General Purpose (SSD) volumes,
-     *         <code>io1</code> for Provisioned IOPS (SSD) volumes, or
-     *         <code>standard</code> for Magnetic volumes. </li> </ul>
+     *         can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for
+     *         Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
+     *         <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic
+     *         volumes. </li> </ul>
      */
     public void setFilters(java.util.Collection<Filter> filters) {
         if (filters == null) {
@@ -403,9 +408,10 @@ public class DescribeVolumesRequest extends AmazonWebServiceRequest implements S
      * resource. This filter is independent of the <code>tag-key</code>
      * filter. </li> <li> <p><code>volume-id</code> - The volume ID. </li>
      * <li> <p><code>volume-type</code> - The Amazon EBS volume type. This
-     * can be <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, or
-     * <code>standard</code> for Magnetic volumes. </li> </ul>
+     * can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for
+     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
+     * <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic
+     * volumes. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -442,9 +448,10 @@ public class DescribeVolumesRequest extends AmazonWebServiceRequest implements S
      *         resource. This filter is independent of the <code>tag-key</code>
      *         filter. </li> <li> <p><code>volume-id</code> - The volume ID. </li>
      *         <li> <p><code>volume-type</code> - The Amazon EBS volume type. This
-     *         can be <code>gp2</code> for General Purpose (SSD) volumes,
-     *         <code>io1</code> for Provisioned IOPS (SSD) volumes, or
-     *         <code>standard</code> for Magnetic volumes. </li> </ul>
+     *         can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for
+     *         Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
+     *         <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic
+     *         volumes. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -491,9 +498,10 @@ public class DescribeVolumesRequest extends AmazonWebServiceRequest implements S
      * resource. This filter is independent of the <code>tag-key</code>
      * filter. </li> <li> <p><code>volume-id</code> - The volume ID. </li>
      * <li> <p><code>volume-type</code> - The Amazon EBS volume type. This
-     * can be <code>gp2</code> for General Purpose (SSD) volumes,
-     * <code>io1</code> for Provisioned IOPS (SSD) volumes, or
-     * <code>standard</code> for Magnetic volumes. </li> </ul>
+     * can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for
+     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
+     * <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic
+     * volumes. </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -530,9 +538,10 @@ public class DescribeVolumesRequest extends AmazonWebServiceRequest implements S
      *         resource. This filter is independent of the <code>tag-key</code>
      *         filter. </li> <li> <p><code>volume-id</code> - The volume ID. </li>
      *         <li> <p><code>volume-type</code> - The Amazon EBS volume type. This
-     *         can be <code>gp2</code> for General Purpose (SSD) volumes,
-     *         <code>io1</code> for Provisioned IOPS (SSD) volumes, or
-     *         <code>standard</code> for Magnetic volumes. </li> </ul>
+     *         can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for
+     *         Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
+     *         <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic
+     *         volumes. </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

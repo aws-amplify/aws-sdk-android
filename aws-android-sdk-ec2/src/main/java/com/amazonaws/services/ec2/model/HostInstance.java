@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Describes an instance running on a Dedicated host.
+ * </p>
  */
 public class HostInstance implements Serializable {
 
@@ -27,7 +29,8 @@ public class HostInstance implements Serializable {
     private String instanceId;
 
     /**
-     * The instance type size (e.g., m3.medium) of the running instance.
+     * The instance type size (for example, m3.medium) of the running
+     * instance.
      */
     private String instanceType;
 
@@ -65,29 +68,35 @@ public class HostInstance implements Serializable {
     }
 
     /**
-     * The instance type size (e.g., m3.medium) of the running instance.
+     * The instance type size (for example, m3.medium) of the running
+     * instance.
      *
-     * @return The instance type size (e.g., m3.medium) of the running instance.
+     * @return The instance type size (for example, m3.medium) of the running
+     *         instance.
      */
     public String getInstanceType() {
         return instanceType;
     }
     
     /**
-     * The instance type size (e.g., m3.medium) of the running instance.
+     * The instance type size (for example, m3.medium) of the running
+     * instance.
      *
-     * @param instanceType The instance type size (e.g., m3.medium) of the running instance.
+     * @param instanceType The instance type size (for example, m3.medium) of the running
+     *         instance.
      */
     public void setInstanceType(String instanceType) {
         this.instanceType = instanceType;
     }
     
     /**
-     * The instance type size (e.g., m3.medium) of the running instance.
+     * The instance type size (for example, m3.medium) of the running
+     * instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceType The instance type size (e.g., m3.medium) of the running instance.
+     * @param instanceType The instance type size (for example, m3.medium) of the running
+     *         instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

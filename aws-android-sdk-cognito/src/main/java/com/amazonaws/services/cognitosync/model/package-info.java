@@ -1,6 +1,6 @@
-
 /**
- * Classes modeling the various types represented by AmazonCognitoSync.
+ * Classes modeling the various types represented by AmazonCognitoSync
  */
- package com.amazonaws.services.cognitosync.model;
-        
+
+package com.amazonaws.services.cognitosync.model;
+

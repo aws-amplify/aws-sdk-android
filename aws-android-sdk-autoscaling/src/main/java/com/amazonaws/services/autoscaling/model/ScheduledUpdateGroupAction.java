@@ -51,7 +51,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
     private String scheduledActionARN;
 
     /**
-     * This parameter is deprecated; use <code>StartTime</code> instead.
+     * This parameter is deprecated.
      */
     private java.util.Date time;
 
@@ -230,29 +230,29 @@ public class ScheduledUpdateGroupAction implements Serializable {
     }
 
     /**
-     * This parameter is deprecated; use <code>StartTime</code> instead.
+     * This parameter is deprecated.
      *
-     * @return This parameter is deprecated; use <code>StartTime</code> instead.
+     * @return This parameter is deprecated.
      */
     public java.util.Date getTime() {
         return time;
     }
     
     /**
-     * This parameter is deprecated; use <code>StartTime</code> instead.
+     * This parameter is deprecated.
      *
-     * @param time This parameter is deprecated; use <code>StartTime</code> instead.
+     * @param time This parameter is deprecated.
      */
     public void setTime(java.util.Date time) {
         this.time = time;
     }
     
     /**
-     * This parameter is deprecated; use <code>StartTime</code> instead.
+     * This parameter is deprecated.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param time This parameter is deprecated; use <code>StartTime</code> instead.
+     * @param time This parameter is deprecated.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

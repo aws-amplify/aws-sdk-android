@@ -34,7 +34,9 @@ public class MetricDatum implements Serializable {
     private String metricName;
 
     /**
-     * A list of dimensions associated with the metric.
+     * A list of dimensions associated with the metric. Note, when using the
+     * Dimensions value in a query, you need to append .member.N to it (e.g.,
+     * Dimensions.member.N).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
@@ -43,7 +45,12 @@ public class MetricDatum implements Serializable {
 
     /**
      * The time stamp used for the metric. If not specified, the default
-     * value is set to the time the metric data was received.
+     * value is set to the time the metric data was received. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     private java.util.Date timestamp;
 
@@ -113,12 +120,16 @@ public class MetricDatum implements Serializable {
     }
 
     /**
-     * A list of dimensions associated with the metric.
+     * A list of dimensions associated with the metric. Note, when using the
+     * Dimensions value in a query, you need to append .member.N to it (e.g.,
+     * Dimensions.member.N).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @return A list of dimensions associated with the metric.
+     * @return A list of dimensions associated with the metric. Note, when using the
+     *         Dimensions value in a query, you need to append .member.N to it (e.g.,
+     *         Dimensions.member.N).
      */
     public java.util.List<Dimension> getDimensions() {
         if (dimensions == null) {
@@ -129,12 +140,16 @@ public class MetricDatum implements Serializable {
     }
     
     /**
-     * A list of dimensions associated with the metric.
+     * A list of dimensions associated with the metric. Note, when using the
+     * Dimensions value in a query, you need to append .member.N to it (e.g.,
+     * Dimensions.member.N).
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @param dimensions A list of dimensions associated with the metric.
+     * @param dimensions A list of dimensions associated with the metric. Note, when using the
+     *         Dimensions value in a query, you need to append .member.N to it (e.g.,
+     *         Dimensions.member.N).
      */
     public void setDimensions(java.util.Collection<Dimension> dimensions) {
         if (dimensions == null) {
@@ -147,14 +162,18 @@ public class MetricDatum implements Serializable {
     }
     
     /**
-     * A list of dimensions associated with the metric.
+     * A list of dimensions associated with the metric. Note, when using the
+     * Dimensions value in a query, you need to append .member.N to it (e.g.,
+     * Dimensions.member.N).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @param dimensions A list of dimensions associated with the metric.
+     * @param dimensions A list of dimensions associated with the metric. Note, when using the
+     *         Dimensions value in a query, you need to append .member.N to it (e.g.,
+     *         Dimensions.member.N).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -168,14 +187,18 @@ public class MetricDatum implements Serializable {
     }
     
     /**
-     * A list of dimensions associated with the metric.
+     * A list of dimensions associated with the metric. Note, when using the
+     * Dimensions value in a query, you need to append .member.N to it (e.g.,
+     * Dimensions.member.N).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 10<br/>
      *
-     * @param dimensions A list of dimensions associated with the metric.
+     * @param dimensions A list of dimensions associated with the metric. Note, when using the
+     *         Dimensions value in a query, you need to append .member.N to it (e.g.,
+     *         Dimensions.member.N).
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -194,10 +217,20 @@ public class MetricDatum implements Serializable {
 
     /**
      * The time stamp used for the metric. If not specified, the default
-     * value is set to the time the metric data was received.
+     * value is set to the time the metric data was received. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
      * @return The time stamp used for the metric. If not specified, the default
-     *         value is set to the time the metric data was received.
+     *         value is set to the time the metric data was received. Amazon
+     *         CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     *         stamps, which do not accommodate seasonal adjustments such as daylight
+     *         savings time. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     public java.util.Date getTimestamp() {
         return timestamp;
@@ -205,10 +238,20 @@ public class MetricDatum implements Serializable {
     
     /**
      * The time stamp used for the metric. If not specified, the default
-     * value is set to the time the metric data was received.
+     * value is set to the time the metric data was received. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
      * @param timestamp The time stamp used for the metric. If not specified, the default
-     *         value is set to the time the metric data was received.
+     *         value is set to the time the metric data was received. Amazon
+     *         CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     *         stamps, which do not accommodate seasonal adjustments such as daylight
+     *         savings time. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     public void setTimestamp(java.util.Date timestamp) {
         this.timestamp = timestamp;
@@ -216,12 +259,22 @@ public class MetricDatum implements Serializable {
     
     /**
      * The time stamp used for the metric. If not specified, the default
-     * value is set to the time the metric data was received.
+     * value is set to the time the metric data was received. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param timestamp The time stamp used for the metric. If not specified, the default
-     *         value is set to the time the metric data was received.
+     *         value is set to the time the metric data was received. Amazon
+     *         CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     *         stamps, which do not accommodate seasonal adjustments such as daylight
+     *         savings time. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

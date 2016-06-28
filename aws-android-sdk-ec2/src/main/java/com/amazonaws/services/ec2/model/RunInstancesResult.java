@@ -18,7 +18,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The result of the RunInstances call.
+ * Contains the output of RunInstances.
  * </p>
  */
 public class RunInstancesResult implements Serializable {

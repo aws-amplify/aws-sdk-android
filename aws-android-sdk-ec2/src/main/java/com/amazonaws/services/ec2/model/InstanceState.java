@@ -25,13 +25,13 @@ public class InstanceState implements Serializable {
 
     /**
      * The low byte represents the state. The high byte is an opaque internal
-     * value and should be ignored. <ul> <li><p><code>0</code> :
-     * <code>pending</code></li> <li><p><code>16</code> :
-     * <code>running</code></li> <li><p><code>32</code> :
-     * <code>shutting-down</code></li> <li><p><code>48</code> :
-     * <code>terminated</code></li> <li><p><code>64</code> :
-     * <code>stopping</code></li> <li><p><code>80</code> :
-     * <code>stopped</code></li> </ul>
+     * value and should be ignored. <ul> <li> <p><code>0</code> :
+     * <code>pending</code> </li> <li> <p><code>16</code> :
+     * <code>running</code> </li> <li> <p><code>32</code> :
+     * <code>shutting-down</code> </li> <li> <p><code>48</code> :
+     * <code>terminated</code> </li> <li> <p><code>64</code> :
+     * <code>stopping</code> </li> <li> <p><code>80</code> :
+     * <code>stopped</code> </li> </ul>
      */
     private Integer code;
 
@@ -45,22 +45,22 @@ public class InstanceState implements Serializable {
 
     /**
      * The low byte represents the state. The high byte is an opaque internal
-     * value and should be ignored. <ul> <li><p><code>0</code> :
-     * <code>pending</code></li> <li><p><code>16</code> :
-     * <code>running</code></li> <li><p><code>32</code> :
-     * <code>shutting-down</code></li> <li><p><code>48</code> :
-     * <code>terminated</code></li> <li><p><code>64</code> :
-     * <code>stopping</code></li> <li><p><code>80</code> :
-     * <code>stopped</code></li> </ul>
+     * value and should be ignored. <ul> <li> <p><code>0</code> :
+     * <code>pending</code> </li> <li> <p><code>16</code> :
+     * <code>running</code> </li> <li> <p><code>32</code> :
+     * <code>shutting-down</code> </li> <li> <p><code>48</code> :
+     * <code>terminated</code> </li> <li> <p><code>64</code> :
+     * <code>stopping</code> </li> <li> <p><code>80</code> :
+     * <code>stopped</code> </li> </ul>
      *
      * @return The low byte represents the state. The high byte is an opaque internal
-     *         value and should be ignored. <ul> <li><p><code>0</code> :
-     *         <code>pending</code></li> <li><p><code>16</code> :
-     *         <code>running</code></li> <li><p><code>32</code> :
-     *         <code>shutting-down</code></li> <li><p><code>48</code> :
-     *         <code>terminated</code></li> <li><p><code>64</code> :
-     *         <code>stopping</code></li> <li><p><code>80</code> :
-     *         <code>stopped</code></li> </ul>
+     *         value and should be ignored. <ul> <li> <p><code>0</code> :
+     *         <code>pending</code> </li> <li> <p><code>16</code> :
+     *         <code>running</code> </li> <li> <p><code>32</code> :
+     *         <code>shutting-down</code> </li> <li> <p><code>48</code> :
+     *         <code>terminated</code> </li> <li> <p><code>64</code> :
+     *         <code>stopping</code> </li> <li> <p><code>80</code> :
+     *         <code>stopped</code> </li> </ul>
      */
     public Integer getCode() {
         return code;
@@ -68,22 +68,22 @@ public class InstanceState implements Serializable {
     
     /**
      * The low byte represents the state. The high byte is an opaque internal
-     * value and should be ignored. <ul> <li><p><code>0</code> :
-     * <code>pending</code></li> <li><p><code>16</code> :
-     * <code>running</code></li> <li><p><code>32</code> :
-     * <code>shutting-down</code></li> <li><p><code>48</code> :
-     * <code>terminated</code></li> <li><p><code>64</code> :
-     * <code>stopping</code></li> <li><p><code>80</code> :
-     * <code>stopped</code></li> </ul>
+     * value and should be ignored. <ul> <li> <p><code>0</code> :
+     * <code>pending</code> </li> <li> <p><code>16</code> :
+     * <code>running</code> </li> <li> <p><code>32</code> :
+     * <code>shutting-down</code> </li> <li> <p><code>48</code> :
+     * <code>terminated</code> </li> <li> <p><code>64</code> :
+     * <code>stopping</code> </li> <li> <p><code>80</code> :
+     * <code>stopped</code> </li> </ul>
      *
      * @param code The low byte represents the state. The high byte is an opaque internal
-     *         value and should be ignored. <ul> <li><p><code>0</code> :
-     *         <code>pending</code></li> <li><p><code>16</code> :
-     *         <code>running</code></li> <li><p><code>32</code> :
-     *         <code>shutting-down</code></li> <li><p><code>48</code> :
-     *         <code>terminated</code></li> <li><p><code>64</code> :
-     *         <code>stopping</code></li> <li><p><code>80</code> :
-     *         <code>stopped</code></li> </ul>
+     *         value and should be ignored. <ul> <li> <p><code>0</code> :
+     *         <code>pending</code> </li> <li> <p><code>16</code> :
+     *         <code>running</code> </li> <li> <p><code>32</code> :
+     *         <code>shutting-down</code> </li> <li> <p><code>48</code> :
+     *         <code>terminated</code> </li> <li> <p><code>64</code> :
+     *         <code>stopping</code> </li> <li> <p><code>80</code> :
+     *         <code>stopped</code> </li> </ul>
      */
     public void setCode(Integer code) {
         this.code = code;
@@ -91,24 +91,24 @@ public class InstanceState implements Serializable {
     
     /**
      * The low byte represents the state. The high byte is an opaque internal
-     * value and should be ignored. <ul> <li><p><code>0</code> :
-     * <code>pending</code></li> <li><p><code>16</code> :
-     * <code>running</code></li> <li><p><code>32</code> :
-     * <code>shutting-down</code></li> <li><p><code>48</code> :
-     * <code>terminated</code></li> <li><p><code>64</code> :
-     * <code>stopping</code></li> <li><p><code>80</code> :
-     * <code>stopped</code></li> </ul>
+     * value and should be ignored. <ul> <li> <p><code>0</code> :
+     * <code>pending</code> </li> <li> <p><code>16</code> :
+     * <code>running</code> </li> <li> <p><code>32</code> :
+     * <code>shutting-down</code> </li> <li> <p><code>48</code> :
+     * <code>terminated</code> </li> <li> <p><code>64</code> :
+     * <code>stopping</code> </li> <li> <p><code>80</code> :
+     * <code>stopped</code> </li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param code The low byte represents the state. The high byte is an opaque internal
-     *         value and should be ignored. <ul> <li><p><code>0</code> :
-     *         <code>pending</code></li> <li><p><code>16</code> :
-     *         <code>running</code></li> <li><p><code>32</code> :
-     *         <code>shutting-down</code></li> <li><p><code>48</code> :
-     *         <code>terminated</code></li> <li><p><code>64</code> :
-     *         <code>stopping</code></li> <li><p><code>80</code> :
-     *         <code>stopped</code></li> </ul>
+     *         value and should be ignored. <ul> <li> <p><code>0</code> :
+     *         <code>pending</code> </li> <li> <p><code>16</code> :
+     *         <code>running</code> </li> <li> <p><code>32</code> :
+     *         <code>shutting-down</code> </li> <li> <p><code>48</code> :
+     *         <code>terminated</code> </li> <li> <p><code>64</code> :
+     *         <code>stopping</code> </li> <li> <p><code>80</code> :
+     *         <code>stopped</code> </li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

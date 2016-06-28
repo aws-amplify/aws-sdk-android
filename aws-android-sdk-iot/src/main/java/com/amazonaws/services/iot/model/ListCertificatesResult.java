@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
@@ -22,119 +23,140 @@ import java.io.Serializable;
  * </p>
  */
 public class ListCertificatesResult implements Serializable {
-
     /**
+     * <p>
      * The descriptions of the certificates.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<Certificate> certificates;
+    private java.util.List<Certificate> certificates;
 
     /**
+     * <p>
      * The marker for the next set of results, or null if there are no
      * additional results.
+     * </p>
      */
     private String nextMarker;
 
     /**
+     * <p>
      * The descriptions of the certificates.
+     * </p>
      *
-     * @return The descriptions of the certificates.
+     * @return <p>
+     *         The descriptions of the certificates.
+     *         </p>
      */
     public java.util.List<Certificate> getCertificates() {
-        if (certificates == null) {
-              certificates = new com.amazonaws.internal.ListWithAutoConstructFlag<Certificate>();
-              certificates.setAutoConstruct(true);
-        }
         return certificates;
     }
-    
+
     /**
+     * <p>
      * The descriptions of the certificates.
+     * </p>
      *
-     * @param certificates The descriptions of the certificates.
+     * @param certificates <p>
+     *            The descriptions of the certificates.
+     *            </p>
      */
     public void setCertificates(java.util.Collection<Certificate> certificates) {
         if (certificates == null) {
             this.certificates = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<Certificate> certificatesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Certificate>(certificates.size());
-        certificatesCopy.addAll(certificates);
-        this.certificates = certificatesCopy;
+
+        this.certificates = new java.util.ArrayList<Certificate>(certificates);
     }
-    
+
     /**
-     * The descriptions of the certificates.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The descriptions of the certificates.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param certificates The descriptions of the certificates.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param certificates <p>
+     *            The descriptions of the certificates.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListCertificatesResult withCertificates(Certificate... certificates) {
-        if (getCertificates() == null) setCertificates(new java.util.ArrayList<Certificate>(certificates.length));
+        if (getCertificates() == null) {
+            this.certificates = new java.util.ArrayList<Certificate>(certificates.length);
+        }
         for (Certificate value : certificates) {
-            getCertificates().add(value);
+            this.certificates.add(value);
         }
         return this;
     }
-    
+
     /**
-     * The descriptions of the certificates.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The descriptions of the certificates.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param certificates The descriptions of the certificates.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param certificates <p>
+     *            The descriptions of the certificates.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListCertificatesResult withCertificates(java.util.Collection<Certificate> certificates) {
-        if (certificates == null) {
-            this.certificates = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<Certificate> certificatesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Certificate>(certificates.size());
-            certificatesCopy.addAll(certificates);
-            this.certificates = certificatesCopy;
-        }
-
+        setCertificates(certificates);
         return this;
     }
 
     /**
+     * <p>
      * The marker for the next set of results, or null if there are no
      * additional results.
+     * </p>
      *
-     * @return The marker for the next set of results, or null if there are no
+     * @return <p>
+     *         The marker for the next set of results, or null if there are no
      *         additional results.
+     *         </p>
      */
     public String getNextMarker() {
         return nextMarker;
     }
-    
+
     /**
+     * <p>
      * The marker for the next set of results, or null if there are no
      * additional results.
+     * </p>
      *
-     * @param nextMarker The marker for the next set of results, or null if there are no
-     *         additional results.
+     * @param nextMarker <p>
+     *            The marker for the next set of results, or null if there are
+     *            no additional results.
+     *            </p>
      */
     public void setNextMarker(String nextMarker) {
         this.nextMarker = nextMarker;
     }
-    
+
     /**
+     * <p>
      * The marker for the next set of results, or null if there are no
      * additional results.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param nextMarker The marker for the next set of results, or null if there are no
-     *         additional results.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param nextMarker <p>
+     *            The marker for the next set of results, or null if there are
+     *            no additional results.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListCertificatesResult withNextMarker(String nextMarker) {
         this.nextMarker = nextMarker;
@@ -146,43 +168,52 @@ public class ListCertificatesResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCertificates() != null) sb.append("Certificates: " + getCertificates() + ",");
-        if (getNextMarker() != null) sb.append("NextMarker: " + getNextMarker() );
+        if (getCertificates() != null)
+            sb.append("certificates: " + getCertificates() + ",");
+        if (getNextMarker() != null)
+            sb.append("nextMarker: " + getNextMarker());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getCertificates() == null) ? 0 : getCertificates().hashCode()); 
-        hashCode = prime * hashCode + ((getNextMarker() == null) ? 0 : getNextMarker().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getCertificates() == null) ? 0 : getCertificates().hashCode());
+        hashCode = prime * hashCode + ((getNextMarker() == null) ? 0 : getNextMarker().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof ListCertificatesResult == false) return false;
-        ListCertificatesResult other = (ListCertificatesResult)obj;
-        
-        if (other.getCertificates() == null ^ this.getCertificates() == null) return false;
-        if (other.getCertificates() != null && other.getCertificates().equals(this.getCertificates()) == false) return false; 
-        if (other.getNextMarker() == null ^ this.getNextMarker() == null) return false;
-        if (other.getNextMarker() != null && other.getNextMarker().equals(this.getNextMarker()) == false) return false; 
+        if (obj instanceof ListCertificatesResult == false)
+            return false;
+        ListCertificatesResult other = (ListCertificatesResult) obj;
+
+        if (other.getCertificates() == null ^ this.getCertificates() == null)
+            return false;
+        if (other.getCertificates() != null
+                && other.getCertificates().equals(this.getCertificates()) == false)
+            return false;
+        if (other.getNextMarker() == null ^ this.getNextMarker() == null)
+            return false;
+        if (other.getNextMarker() != null
+                && other.getNextMarker().equals(this.getNextMarker()) == false)
+            return false;
         return true;
     }
-    
 }
-    

@@ -110,7 +110,7 @@ public class CognitoSyncStorage implements RemoteDataStorage {
             appendUserAgent(request, userAgent);
             request.setIdentityPoolId(identityPoolId);
             // a large enough number to reduce # of requests
-            request.setMaxResults("64");
+            request.setMaxResults(64);
             request.setNextToken(nextToken);
 
             ListDatasetsResult result = null;
@@ -140,9 +140,9 @@ public class CognitoSyncStorage implements RemoteDataStorage {
             appendUserAgent(request, userAgent);
             request.setIdentityPoolId(identityPoolId);
             request.setDatasetName(datasetName);
-            request.setLastSyncCount(String.valueOf(lastSyncCount));
+            request.setLastSyncCount(lastSyncCount);
             // mark it large enough to reduce # of requests
-            request.setMaxResults("1024");
+            request.setMaxResults(1024);
             request.setNextToken(nextToken);
             ListRecordsResult result = null;
             try {
@@ -465,7 +465,9 @@ public class CognitoSyncStorage implements RemoteDataStorage {
             }
 
             Builder mergedDatasetNameList(List<String> mergedDatasetNameList) {
-                this.mergedDatasetNameList.addAll(mergedDatasetNameList);
+                if (mergedDatasetNameList != null) {
+                    this.mergedDatasetNameList.addAll(mergedDatasetNameList);
+                }
                 return this;
             }
 

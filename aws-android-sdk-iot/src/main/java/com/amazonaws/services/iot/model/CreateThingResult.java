@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
@@ -22,9 +23,10 @@ import java.io.Serializable;
  * </p>
  */
 public class CreateThingResult implements Serializable {
-
     /**
+     * <p>
      * The name of the thing.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -33,49 +35,63 @@ public class CreateThingResult implements Serializable {
     private String thingName;
 
     /**
+     * <p>
      * The thing ARN.
+     * </p>
      */
     private String thingArn;
 
     /**
+     * <p>
      * The name of the thing.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
-     * @return The name of the thing.
+     * @return <p>
+     *         The name of the thing.
+     *         </p>
      */
     public String getThingName() {
         return thingName;
     }
-    
+
     /**
+     * <p>
      * The name of the thing.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
-     * @param thingName The name of the thing.
+     * @param thingName <p>
+     *            The name of the thing.
+     *            </p>
      */
     public void setThingName(String thingName) {
         this.thingName = thingName;
     }
-    
+
     /**
-     * The name of the thing.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the thing.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
-     * @param thingName The name of the thing.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param thingName <p>
+     *            The name of the thing.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateThingResult withThingName(String thingName) {
         this.thingName = thingName;
@@ -83,32 +99,44 @@ public class CreateThingResult implements Serializable {
     }
 
     /**
+     * <p>
      * The thing ARN.
+     * </p>
      *
-     * @return The thing ARN.
+     * @return <p>
+     *         The thing ARN.
+     *         </p>
      */
     public String getThingArn() {
         return thingArn;
     }
-    
+
     /**
+     * <p>
      * The thing ARN.
+     * </p>
      *
-     * @param thingArn The thing ARN.
+     * @param thingArn <p>
+     *            The thing ARN.
+     *            </p>
      */
     public void setThingArn(String thingArn) {
         this.thingArn = thingArn;
     }
-    
+
     /**
-     * The thing ARN.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The thing ARN.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param thingArn The thing ARN.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param thingArn <p>
+     *            The thing ARN.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateThingResult withThingArn(String thingArn) {
         this.thingArn = thingArn;
@@ -120,43 +148,50 @@ public class CreateThingResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getThingName() != null) sb.append("ThingName: " + getThingName() + ",");
-        if (getThingArn() != null) sb.append("ThingArn: " + getThingArn() );
+        if (getThingName() != null)
+            sb.append("thingName: " + getThingName() + ",");
+        if (getThingArn() != null)
+            sb.append("thingArn: " + getThingArn());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode()); 
-        hashCode = prime * hashCode + ((getThingArn() == null) ? 0 : getThingArn().hashCode()); 
+
+        hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
+        hashCode = prime * hashCode + ((getThingArn() == null) ? 0 : getThingArn().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof CreateThingResult == false) return false;
-        CreateThingResult other = (CreateThingResult)obj;
-        
-        if (other.getThingName() == null ^ this.getThingName() == null) return false;
-        if (other.getThingName() != null && other.getThingName().equals(this.getThingName()) == false) return false; 
-        if (other.getThingArn() == null ^ this.getThingArn() == null) return false;
-        if (other.getThingArn() != null && other.getThingArn().equals(this.getThingArn()) == false) return false; 
+        if (obj instanceof CreateThingResult == false)
+            return false;
+        CreateThingResult other = (CreateThingResult) obj;
+
+        if (other.getThingName() == null ^ this.getThingName() == null)
+            return false;
+        if (other.getThingName() != null
+                && other.getThingName().equals(this.getThingName()) == false)
+            return false;
+        if (other.getThingArn() == null ^ this.getThingArn() == null)
+            return false;
+        if (other.getThingArn() != null && other.getThingArn().equals(this.getThingArn()) == false)
+            return false;
         return true;
     }
-    
 }
-    

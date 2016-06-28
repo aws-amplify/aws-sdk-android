@@ -82,15 +82,30 @@ class ApiClientHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable {
-        Request<?> request = buildRequest(method, args);
-
-        ExecutionContext context = new ExecutionContext();
-        context.setContextUserAgent(apiName);
-        HttpRequest httpRequest = requestFactory.createHttpRequest(request, clientConfiguration,
-                context);
+        HttpRequest httpRequest = createHttpRequest(method, args);
         HttpResponse response = client.execute(httpRequest);
 
         return handleResponse(response, method);
+    }
+
+    /**
+     * Build a {@link HttpRequest} object for the given method.
+     *
+     * @param method method that annotated with {@link Operation}
+     * @param args arguments of the method
+     * @return a {@link HttpRequest} object
+     */
+    HttpRequest createHttpRequest(Method method, Object[] args) {
+        Request<?> request = buildRequest(method, args);
+
+        ExecutionContext context = new ExecutionContext();
+        String userAgent = apiName;
+        if (request.getHeaders().containsKey("User-Agent")) {
+            // append it to execution context
+            userAgent += " " + request.getHeaders().get("User-Agent");
+        }
+        context.setContextUserAgent(userAgent);
+        return requestFactory.createHttpRequest(request, clientConfiguration, context);
     }
 
     /**

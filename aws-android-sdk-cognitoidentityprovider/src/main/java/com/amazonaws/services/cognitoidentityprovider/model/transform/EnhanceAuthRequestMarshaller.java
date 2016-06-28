@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.cognitoidentityprovider.model.transform;
 
 import static com.amazonaws.util.StringUtils.UTF8;
@@ -20,8 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.Map;
-import java.util.List;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
@@ -36,54 +35,68 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Enhance Auth Request Marshaller
+ * JSON request marshaller for EnhanceAuthRequest
  */
-public class EnhanceAuthRequestMarshaller implements Marshaller<Request<EnhanceAuthRequest>, EnhanceAuthRequest> {
+public class EnhanceAuthRequestMarshaller implements
+        Marshaller<Request<EnhanceAuthRequest>, EnhanceAuthRequest> {
 
     public Request<EnhanceAuthRequest> marshall(EnhanceAuthRequest enhanceAuthRequest) {
-    if (enhanceAuthRequest == null) {
-        throw new AmazonClientException("Invalid argument passed to marshall(...)");
-    }
+        if (enhanceAuthRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(EnhanceAuthRequest)");
+        }
 
-        Request<EnhanceAuthRequest> request = new DefaultRequest<EnhanceAuthRequest>(enhanceAuthRequest, "AmazonCognitoIdentityProvider");
+        Request<EnhanceAuthRequest> request = new DefaultRequest<EnhanceAuthRequest>(
+                enhanceAuthRequest, "AmazonCognitoIdentityProvider");
         String target = "AWSCognitoIdentityProviderService.EnhanceAuth";
         request.addHeader("X-Amz-Target", target);
-
         request.setHttpMethod(HttpMethodName.POST);
-        request.setResourcePath("");
-        
+
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
-
             jsonWriter.beginObject();
-            
+
             if (enhanceAuthRequest.getClientId() != null) {
-                jsonWriter.name("ClientId").value(enhanceAuthRequest.getClientId());
+                String clientId = enhanceAuthRequest.getClientId();
+                jsonWriter.name("ClientId");
+                jsonWriter.value(clientId);
             }
             if (enhanceAuthRequest.getSecretHash() != null) {
-                jsonWriter.name("SecretHash").value(enhanceAuthRequest.getSecretHash());
+                String secretHash = enhanceAuthRequest.getSecretHash();
+                jsonWriter.name("SecretHash");
+                jsonWriter.value(secretHash);
             }
             if (enhanceAuthRequest.getUsername() != null) {
-                jsonWriter.name("Username").value(enhanceAuthRequest.getUsername());
+                String username = enhanceAuthRequest.getUsername();
+                jsonWriter.name("Username");
+                jsonWriter.value(username);
             }
             if (enhanceAuthRequest.getAuthState() != null) {
-                jsonWriter.name("AuthState").value(enhanceAuthRequest.getAuthState());
+                String authState = enhanceAuthRequest.getAuthState();
+                jsonWriter.name("AuthState");
+                jsonWriter.value(authState);
             }
             if (enhanceAuthRequest.getCode() != null) {
-                jsonWriter.name("Code").value(enhanceAuthRequest.getCode());
+                String code = enhanceAuthRequest.getCode();
+                jsonWriter.name("Code");
+                jsonWriter.value(code);
             }
 
             jsonWriter.endObject();
-
             jsonWriter.close();
             String snippet = stringWriter.toString();
             byte[] content = snippet.getBytes(UTF8);
             request.setContent(new StringInputStream(snippet));
             request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
+        }
+        if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
-        } catch(Throwable t) {
-            throw new AmazonClientException("Unable to marshall request to JSON: " + t.getMessage(), t);
         }
 
         return request;

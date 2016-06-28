@@ -52,8 +52,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * executes the policy without waiting for the cooldown period to
      * complete. <p>This parameter is not supported if the policy type is
      * <code>StepScaling</code>. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     private Boolean honorCooldown;
 
@@ -173,16 +173,16 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * executes the policy without waiting for the cooldown period to
      * complete. <p>This parameter is not supported if the policy type is
      * <code>StepScaling</code>. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return If this parameter is true, Auto Scaling waits for the cooldown period
      *         to complete before executing the policy. Otherwise, Auto Scaling
      *         executes the policy without waiting for the cooldown period to
      *         complete. <p>This parameter is not supported if the policy type is
      *         <code>StepScaling</code>. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public Boolean isHonorCooldown() {
         return honorCooldown;
@@ -194,16 +194,16 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * executes the policy without waiting for the cooldown period to
      * complete. <p>This parameter is not supported if the policy type is
      * <code>StepScaling</code>. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @param honorCooldown If this parameter is true, Auto Scaling waits for the cooldown period
      *         to complete before executing the policy. Otherwise, Auto Scaling
      *         executes the policy without waiting for the cooldown period to
      *         complete. <p>This parameter is not supported if the policy type is
      *         <code>StepScaling</code>. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public void setHonorCooldown(Boolean honorCooldown) {
         this.honorCooldown = honorCooldown;
@@ -215,8 +215,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * executes the policy without waiting for the cooldown period to
      * complete. <p>This parameter is not supported if the policy type is
      * <code>StepScaling</code>. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -225,8 +225,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *         executes the policy without waiting for the cooldown period to
      *         complete. <p>This parameter is not supported if the policy type is
      *         <code>StepScaling</code>. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -242,16 +242,16 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * executes the policy without waiting for the cooldown period to
      * complete. <p>This parameter is not supported if the policy type is
      * <code>StepScaling</code>. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     * Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return If this parameter is true, Auto Scaling waits for the cooldown period
      *         to complete before executing the policy. Otherwise, Auto Scaling
      *         executes the policy without waiting for the cooldown period to
      *         complete. <p>This parameter is not supported if the policy type is
      *         <code>StepScaling</code>. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Understanding
-     *         Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
+     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public Boolean getHonorCooldown() {
         return honorCooldown;

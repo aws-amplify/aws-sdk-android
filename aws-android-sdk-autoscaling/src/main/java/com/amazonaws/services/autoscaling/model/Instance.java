@@ -51,7 +51,10 @@ public class Instance implements Serializable {
     private String lifecycleState;
 
     /**
-     * The health status of the instance.
+     * The health status of the instance. "Healthy" means that the instance
+     * is healthy and should remain in service. "Unhealthy" means that the
+     * instance is unhealthy and Auto Scaling should terminate and replace
+     * it.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
@@ -257,33 +260,48 @@ public class Instance implements Serializable {
     }
 
     /**
-     * The health status of the instance.
+     * The health status of the instance. "Healthy" means that the instance
+     * is healthy and should remain in service. "Unhealthy" means that the
+     * instance is unhealthy and Auto Scaling should terminate and replace
+     * it.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The health status of the instance.
+     * @return The health status of the instance. "Healthy" means that the instance
+     *         is healthy and should remain in service. "Unhealthy" means that the
+     *         instance is unhealthy and Auto Scaling should terminate and replace
+     *         it.
      */
     public String getHealthStatus() {
         return healthStatus;
     }
     
     /**
-     * The health status of the instance.
+     * The health status of the instance. "Healthy" means that the instance
+     * is healthy and should remain in service. "Unhealthy" means that the
+     * instance is unhealthy and Auto Scaling should terminate and replace
+     * it.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param healthStatus The health status of the instance.
+     * @param healthStatus The health status of the instance. "Healthy" means that the instance
+     *         is healthy and should remain in service. "Unhealthy" means that the
+     *         instance is unhealthy and Auto Scaling should terminate and replace
+     *         it.
      */
     public void setHealthStatus(String healthStatus) {
         this.healthStatus = healthStatus;
     }
     
     /**
-     * The health status of the instance.
+     * The health status of the instance. "Healthy" means that the instance
+     * is healthy and should remain in service. "Unhealthy" means that the
+     * instance is unhealthy and Auto Scaling should terminate and replace
+     * it.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -291,7 +309,10 @@ public class Instance implements Serializable {
      * <b>Length: </b>1 - 32<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param healthStatus The health status of the instance.
+     * @param healthStatus The health status of the instance. "Healthy" means that the instance
+     *         is healthy and should remain in service. "Unhealthy" means that the
+     *         instance is unhealthy and Auto Scaling should terminate and replace
+     *         it.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonDynamoDBv2.
+ * Marhsalling for the various types represented byAmazonDynamoDB
  */
- package com.amazonaws.services.dynamodbv2.model.transform;
-        
+
+package com.amazonaws.services.dynamodbv2.model.transform;
+

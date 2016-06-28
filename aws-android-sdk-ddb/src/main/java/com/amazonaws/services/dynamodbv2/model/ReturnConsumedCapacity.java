@@ -1,24 +1,57 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.dynamodbv2.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Return Consumed Capacity
+ * <p>
+ * Determines the level of detail about provisioned throughput consumption that
+ * is returned in the response:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <i>INDEXES</i> - The response includes the aggregate <i>ConsumedCapacity</i>
+ * for the operation, together with <i>ConsumedCapacity</i> for each table and
+ * secondary index that was accessed.
+ * </p>
+ * <p>
+ * Note that some operations, such as <i>GetItem</i> and <i>BatchGetItem</i>, do
+ * not access any indexes at all. In these cases, specifying <i>INDEXES</i> will
+ * only return <i>ConsumedCapacity</i> information for table(s).
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <i>TOTAL</i> - The response includes only the aggregate
+ * <i>ConsumedCapacity</i> for the operation.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <i>NONE</i> - No <i>ConsumedCapacity</i> details are included in the
+ * response.
+ * </p>
+ * </li>
+ * </ul>
  */
 public enum ReturnConsumedCapacity {
-    
+
     INDEXES("INDEXES"),
     TOTAL("TOTAL"),
     NONE("NONE");
@@ -31,29 +64,30 @@ public enum ReturnConsumedCapacity {
 
     @Override
     public String toString() {
-        return this.value;
+        return value;
+    }
+
+    private static final Map<String, ReturnConsumedCapacity> enumMap;
+    static {
+        enumMap = new HashMap<String, ReturnConsumedCapacity>();
+        enumMap.put("INDEXES", INDEXES);
+        enumMap.put("TOTAL", TOTAL);
+        enumMap.put("NONE", NONE);
     }
 
     /**
      * Use this in place of valueOf.
      *
-     * @param value
-     *            real value
+     * @param value real value
      * @return ReturnConsumedCapacity corresponding to the value
      */
     public static ReturnConsumedCapacity fromValue(String value) {
-        if (value == null || "".equals(value)) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
-        
-        } else if ("INDEXES".equals(value)) {
-            return ReturnConsumedCapacity.INDEXES;
-        } else if ("TOTAL".equals(value)) {
-            return ReturnConsumedCapacity.TOTAL;
-        } else if ("NONE".equals(value)) {
-            return ReturnConsumedCapacity.NONE;
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
         } else {
             throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
         }
     }
 }
-    

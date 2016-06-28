@@ -46,8 +46,9 @@ public class S3Storage implements Serializable {
     private String aWSAccessKeyId;
 
     /**
-     * A Base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     * permission to upload items into Amazon S3 on your behalf.
+     * A base64-encoded Amazon S3 upload policy that gives Amazon EC2
+     * permission to upload items into Amazon S3 on your behalf. For command
+     * line tools, base64 encoding is performed for you.
      */
     private String uploadPolicy;
 
@@ -192,35 +193,41 @@ public class S3Storage implements Serializable {
     }
 
     /**
-     * A Base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     * permission to upload items into Amazon S3 on your behalf.
+     * A base64-encoded Amazon S3 upload policy that gives Amazon EC2
+     * permission to upload items into Amazon S3 on your behalf. For command
+     * line tools, base64 encoding is performed for you.
      *
-     * @return A Base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     *         permission to upload items into Amazon S3 on your behalf.
+     * @return A base64-encoded Amazon S3 upload policy that gives Amazon EC2
+     *         permission to upload items into Amazon S3 on your behalf. For command
+     *         line tools, base64 encoding is performed for you.
      */
     public String getUploadPolicy() {
         return uploadPolicy;
     }
     
     /**
-     * A Base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     * permission to upload items into Amazon S3 on your behalf.
+     * A base64-encoded Amazon S3 upload policy that gives Amazon EC2
+     * permission to upload items into Amazon S3 on your behalf. For command
+     * line tools, base64 encoding is performed for you.
      *
-     * @param uploadPolicy A Base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     *         permission to upload items into Amazon S3 on your behalf.
+     * @param uploadPolicy A base64-encoded Amazon S3 upload policy that gives Amazon EC2
+     *         permission to upload items into Amazon S3 on your behalf. For command
+     *         line tools, base64 encoding is performed for you.
      */
     public void setUploadPolicy(String uploadPolicy) {
         this.uploadPolicy = uploadPolicy;
     }
     
     /**
-     * A Base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     * permission to upload items into Amazon S3 on your behalf.
+     * A base64-encoded Amazon S3 upload policy that gives Amazon EC2
+     * permission to upload items into Amazon S3 on your behalf. For command
+     * line tools, base64 encoding is performed for you.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param uploadPolicy A Base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     *         permission to upload items into Amazon S3 on your behalf.
+     * @param uploadPolicy A base64-encoded Amazon S3 upload policy that gives Amazon EC2
+     *         permission to upload items into Amazon S3 on your behalf. For command
+     *         line tools, base64 encoding is performed for you.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

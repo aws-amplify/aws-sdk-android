@@ -49,7 +49,12 @@ public class MetricAlarm implements Serializable {
     private String alarmDescription;
 
     /**
-     * The time stamp of the last update to the alarm configuration.
+     * The time stamp of the last update to the alarm configuration. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     private java.util.Date alarmConfigurationUpdatedTimestamp;
 
@@ -88,7 +93,8 @@ public class MetricAlarm implements Serializable {
      * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
      * is specified as an Amazon Resource Number (ARN). Currently the only
      * actions supported are publishing to an Amazon SNS topic or triggering
-     * an Auto Scaling policy.
+     * an Auto Scaling policy. <important>The current WSDL lists this
+     * attribute as <code>UnknownActions</code>.</important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 5<br/>
@@ -120,7 +126,12 @@ public class MetricAlarm implements Serializable {
     private String stateReasonData;
 
     /**
-     * The time stamp of the last update to the alarm's state.
+     * The time stamp of the last update to the alarm's state. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     private java.util.Date stateUpdatedTimestamp;
 
@@ -324,29 +335,59 @@ public class MetricAlarm implements Serializable {
     }
 
     /**
-     * The time stamp of the last update to the alarm configuration.
+     * The time stamp of the last update to the alarm configuration. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
-     * @return The time stamp of the last update to the alarm configuration.
+     * @return The time stamp of the last update to the alarm configuration. Amazon
+     *         CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     *         stamps, which do not accommodate seasonal adjustments such as daylight
+     *         savings time. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     public java.util.Date getAlarmConfigurationUpdatedTimestamp() {
         return alarmConfigurationUpdatedTimestamp;
     }
     
     /**
-     * The time stamp of the last update to the alarm configuration.
+     * The time stamp of the last update to the alarm configuration. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
-     * @param alarmConfigurationUpdatedTimestamp The time stamp of the last update to the alarm configuration.
+     * @param alarmConfigurationUpdatedTimestamp The time stamp of the last update to the alarm configuration. Amazon
+     *         CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     *         stamps, which do not accommodate seasonal adjustments such as daylight
+     *         savings time. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     public void setAlarmConfigurationUpdatedTimestamp(java.util.Date alarmConfigurationUpdatedTimestamp) {
         this.alarmConfigurationUpdatedTimestamp = alarmConfigurationUpdatedTimestamp;
     }
     
     /**
-     * The time stamp of the last update to the alarm configuration.
+     * The time stamp of the last update to the alarm configuration. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param alarmConfigurationUpdatedTimestamp The time stamp of the last update to the alarm configuration.
+     * @param alarmConfigurationUpdatedTimestamp The time stamp of the last update to the alarm configuration. Amazon
+     *         CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     *         stamps, which do not accommodate seasonal adjustments such as daylight
+     *         savings time. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -635,7 +676,8 @@ public class MetricAlarm implements Serializable {
      * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
      * is specified as an Amazon Resource Number (ARN). Currently the only
      * actions supported are publishing to an Amazon SNS topic or triggering
-     * an Auto Scaling policy.
+     * an Auto Scaling policy. <important>The current WSDL lists this
+     * attribute as <code>UnknownActions</code>.</important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 5<br/>
@@ -644,7 +686,8 @@ public class MetricAlarm implements Serializable {
      *         <code>INSUFFICIENT_DATA</code> state from any other state. Each action
      *         is specified as an Amazon Resource Number (ARN). Currently the only
      *         actions supported are publishing to an Amazon SNS topic or triggering
-     *         an Auto Scaling policy.
+     *         an Auto Scaling policy. <important>The current WSDL lists this
+     *         attribute as <code>UnknownActions</code>.</important>
      */
     public java.util.List<String> getInsufficientDataActions() {
         if (insufficientDataActions == null) {
@@ -659,7 +702,8 @@ public class MetricAlarm implements Serializable {
      * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
      * is specified as an Amazon Resource Number (ARN). Currently the only
      * actions supported are publishing to an Amazon SNS topic or triggering
-     * an Auto Scaling policy.
+     * an Auto Scaling policy. <important>The current WSDL lists this
+     * attribute as <code>UnknownActions</code>.</important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 5<br/>
@@ -668,7 +712,8 @@ public class MetricAlarm implements Serializable {
      *         <code>INSUFFICIENT_DATA</code> state from any other state. Each action
      *         is specified as an Amazon Resource Number (ARN). Currently the only
      *         actions supported are publishing to an Amazon SNS topic or triggering
-     *         an Auto Scaling policy.
+     *         an Auto Scaling policy. <important>The current WSDL lists this
+     *         attribute as <code>UnknownActions</code>.</important>
      */
     public void setInsufficientDataActions(java.util.Collection<String> insufficientDataActions) {
         if (insufficientDataActions == null) {
@@ -685,7 +730,8 @@ public class MetricAlarm implements Serializable {
      * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
      * is specified as an Amazon Resource Number (ARN). Currently the only
      * actions supported are publishing to an Amazon SNS topic or triggering
-     * an Auto Scaling policy.
+     * an Auto Scaling policy. <important>The current WSDL lists this
+     * attribute as <code>UnknownActions</code>.</important>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -696,7 +742,8 @@ public class MetricAlarm implements Serializable {
      *         <code>INSUFFICIENT_DATA</code> state from any other state. Each action
      *         is specified as an Amazon Resource Number (ARN). Currently the only
      *         actions supported are publishing to an Amazon SNS topic or triggering
-     *         an Auto Scaling policy.
+     *         an Auto Scaling policy. <important>The current WSDL lists this
+     *         attribute as <code>UnknownActions</code>.</important>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -714,7 +761,8 @@ public class MetricAlarm implements Serializable {
      * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
      * is specified as an Amazon Resource Number (ARN). Currently the only
      * actions supported are publishing to an Amazon SNS topic or triggering
-     * an Auto Scaling policy.
+     * an Auto Scaling policy. <important>The current WSDL lists this
+     * attribute as <code>UnknownActions</code>.</important>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -725,7 +773,8 @@ public class MetricAlarm implements Serializable {
      *         <code>INSUFFICIENT_DATA</code> state from any other state. Each action
      *         is specified as an Amazon Resource Number (ARN). Currently the only
      *         actions supported are publishing to an Amazon SNS topic or triggering
-     *         an Auto Scaling policy.
+     *         an Auto Scaling policy. <important>The current WSDL lists this
+     *         attribute as <code>UnknownActions</code>.</important>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -909,29 +958,59 @@ public class MetricAlarm implements Serializable {
     }
 
     /**
-     * The time stamp of the last update to the alarm's state.
+     * The time stamp of the last update to the alarm's state. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
-     * @return The time stamp of the last update to the alarm's state.
+     * @return The time stamp of the last update to the alarm's state. Amazon
+     *         CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     *         stamps, which do not accommodate seasonal adjustments such as daylight
+     *         savings time. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     public java.util.Date getStateUpdatedTimestamp() {
         return stateUpdatedTimestamp;
     }
     
     /**
-     * The time stamp of the last update to the alarm's state.
+     * The time stamp of the last update to the alarm's state. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
-     * @param stateUpdatedTimestamp The time stamp of the last update to the alarm's state.
+     * @param stateUpdatedTimestamp The time stamp of the last update to the alarm's state. Amazon
+     *         CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     *         stamps, which do not accommodate seasonal adjustments such as daylight
+     *         savings time. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      */
     public void setStateUpdatedTimestamp(java.util.Date stateUpdatedTimestamp) {
         this.stateUpdatedTimestamp = stateUpdatedTimestamp;
     }
     
     /**
-     * The time stamp of the last update to the alarm's state.
+     * The time stamp of the last update to the alarm's state. Amazon
+     * CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     * stamps, which do not accommodate seasonal adjustments such as daylight
+     * savings time. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     * stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param stateUpdatedTimestamp The time stamp of the last update to the alarm's state.
+     * @param stateUpdatedTimestamp The time stamp of the last update to the alarm's state. Amazon
+     *         CloudWatch uses Coordinated Universal Time (UTC) when returning time
+     *         stamps, which do not accommodate seasonal adjustments such as daylight
+     *         savings time. For more information, see <a
+     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Time
+     *         stamps</a> in the <i>Amazon CloudWatch Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

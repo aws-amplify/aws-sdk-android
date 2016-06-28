@@ -42,13 +42,25 @@ import com.amazonaws.services.ec2.model.transform.AttachVolumeRequestMarshaller;
  * </p>
  * 
  * <ul>
- * <li>The volume can be attached only to a stopped instance.</li>
- * <li>AWS Marketplace product codes are copied from the volume to the
- * instance.</li>
- * <li>You must be subscribed to the product.</li>
- * <li>The instance type and operating system of the instance must
- * support the product. For example, you can't detach a volume from a
- * Windows instance and attach it to a Linux instance.</li>
+ * <li> <p>
+ * The volume can be attached only to a stopped instance.
+ * </p>
+ * </li>
+ * <li> <p>
+ * AWS Marketplace product codes are copied from the volume to the
+ * instance.
+ * </p>
+ * </li>
+ * <li> <p>
+ * You must be subscribed to the product.
+ * </p>
+ * </li>
+ * <li> <p>
+ * The instance type and operating system of the instance must support
+ * the product. For example, you can't detach a volume from a Windows
+ * instance and attach it to a Linux instance.
+ * </p>
+ * </li>
  * 
  * </ul>
  * <p>

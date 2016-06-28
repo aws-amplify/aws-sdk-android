@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
@@ -22,59 +23,80 @@ import java.io.Serializable;
  * </p>
  */
 public class AuthenticationResultType implements Serializable {
-
     /**
+     * <p>
      * The access token of the authentication result.
+     * </p>
      */
     private String accessToken;
 
     /**
+     * <p>
      * The expiration period of the authentication result.
+     * </p>
      */
     private Integer expiresIn;
 
     /**
+     * <p>
      * The token type of the authentication result.
+     * </p>
      */
     private String tokenType;
 
     /**
+     * <p>
      * The refresh token of the authentication result.
+     * </p>
      */
     private String refreshToken;
 
     /**
+     * <p>
      * The ID token of the authentication result.
+     * </p>
      */
     private String idToken;
 
     /**
+     * <p>
      * The access token of the authentication result.
+     * </p>
      *
-     * @return The access token of the authentication result.
+     * @return <p>
+     *         The access token of the authentication result.
+     *         </p>
      */
     public String getAccessToken() {
         return accessToken;
     }
-    
+
     /**
+     * <p>
      * The access token of the authentication result.
+     * </p>
      *
-     * @param accessToken The access token of the authentication result.
+     * @param accessToken <p>
+     *            The access token of the authentication result.
+     *            </p>
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
-    
+
     /**
-     * The access token of the authentication result.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The access token of the authentication result.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param accessToken The access token of the authentication result.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param accessToken <p>
+     *            The access token of the authentication result.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticationResultType withAccessToken(String accessToken) {
         this.accessToken = accessToken;
@@ -82,32 +104,44 @@ public class AuthenticationResultType implements Serializable {
     }
 
     /**
+     * <p>
      * The expiration period of the authentication result.
+     * </p>
      *
-     * @return The expiration period of the authentication result.
+     * @return <p>
+     *         The expiration period of the authentication result.
+     *         </p>
      */
     public Integer getExpiresIn() {
         return expiresIn;
     }
-    
+
     /**
+     * <p>
      * The expiration period of the authentication result.
+     * </p>
      *
-     * @param expiresIn The expiration period of the authentication result.
+     * @param expiresIn <p>
+     *            The expiration period of the authentication result.
+     *            </p>
      */
     public void setExpiresIn(Integer expiresIn) {
         this.expiresIn = expiresIn;
     }
-    
+
     /**
-     * The expiration period of the authentication result.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The expiration period of the authentication result.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param expiresIn The expiration period of the authentication result.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param expiresIn <p>
+     *            The expiration period of the authentication result.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticationResultType withExpiresIn(Integer expiresIn) {
         this.expiresIn = expiresIn;
@@ -115,32 +149,44 @@ public class AuthenticationResultType implements Serializable {
     }
 
     /**
+     * <p>
      * The token type of the authentication result.
+     * </p>
      *
-     * @return The token type of the authentication result.
+     * @return <p>
+     *         The token type of the authentication result.
+     *         </p>
      */
     public String getTokenType() {
         return tokenType;
     }
-    
+
     /**
+     * <p>
      * The token type of the authentication result.
+     * </p>
      *
-     * @param tokenType The token type of the authentication result.
+     * @param tokenType <p>
+     *            The token type of the authentication result.
+     *            </p>
      */
     public void setTokenType(String tokenType) {
         this.tokenType = tokenType;
     }
-    
+
     /**
-     * The token type of the authentication result.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The token type of the authentication result.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param tokenType The token type of the authentication result.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param tokenType <p>
+     *            The token type of the authentication result.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticationResultType withTokenType(String tokenType) {
         this.tokenType = tokenType;
@@ -148,32 +194,44 @@ public class AuthenticationResultType implements Serializable {
     }
 
     /**
+     * <p>
      * The refresh token of the authentication result.
+     * </p>
      *
-     * @return The refresh token of the authentication result.
+     * @return <p>
+     *         The refresh token of the authentication result.
+     *         </p>
      */
     public String getRefreshToken() {
         return refreshToken;
     }
-    
+
     /**
+     * <p>
      * The refresh token of the authentication result.
+     * </p>
      *
-     * @param refreshToken The refresh token of the authentication result.
+     * @param refreshToken <p>
+     *            The refresh token of the authentication result.
+     *            </p>
      */
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }
-    
+
     /**
-     * The refresh token of the authentication result.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The refresh token of the authentication result.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param refreshToken The refresh token of the authentication result.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param refreshToken <p>
+     *            The refresh token of the authentication result.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticationResultType withRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
@@ -181,32 +239,44 @@ public class AuthenticationResultType implements Serializable {
     }
 
     /**
+     * <p>
      * The ID token of the authentication result.
+     * </p>
      *
-     * @return The ID token of the authentication result.
+     * @return <p>
+     *         The ID token of the authentication result.
+     *         </p>
      */
     public String getIdToken() {
         return idToken;
     }
-    
+
     /**
+     * <p>
      * The ID token of the authentication result.
+     * </p>
      *
-     * @param idToken The ID token of the authentication result.
+     * @param idToken <p>
+     *            The ID token of the authentication result.
+     *            </p>
      */
     public void setIdToken(String idToken) {
         this.idToken = idToken;
     }
-    
+
     /**
-     * The ID token of the authentication result.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID token of the authentication result.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param idToken The ID token of the authentication result.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param idToken <p>
+     *            The ID token of the authentication result.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AuthenticationResultType withIdToken(String idToken) {
         this.idToken = idToken;
@@ -218,55 +288,76 @@ public class AuthenticationResultType implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessToken() != null) sb.append("AccessToken: " + getAccessToken() + ",");
-        if (getExpiresIn() != null) sb.append("ExpiresIn: " + getExpiresIn() + ",");
-        if (getTokenType() != null) sb.append("TokenType: " + getTokenType() + ",");
-        if (getRefreshToken() != null) sb.append("RefreshToken: " + getRefreshToken() + ",");
-        if (getIdToken() != null) sb.append("IdToken: " + getIdToken() );
+        if (getAccessToken() != null)
+            sb.append("AccessToken: " + getAccessToken() + ",");
+        if (getExpiresIn() != null)
+            sb.append("ExpiresIn: " + getExpiresIn() + ",");
+        if (getTokenType() != null)
+            sb.append("TokenType: " + getTokenType() + ",");
+        if (getRefreshToken() != null)
+            sb.append("RefreshToken: " + getRefreshToken() + ",");
+        if (getIdToken() != null)
+            sb.append("IdToken: " + getIdToken());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getAccessToken() == null) ? 0 : getAccessToken().hashCode()); 
-        hashCode = prime * hashCode + ((getExpiresIn() == null) ? 0 : getExpiresIn().hashCode()); 
-        hashCode = prime * hashCode + ((getTokenType() == null) ? 0 : getTokenType().hashCode()); 
-        hashCode = prime * hashCode + ((getRefreshToken() == null) ? 0 : getRefreshToken().hashCode()); 
-        hashCode = prime * hashCode + ((getIdToken() == null) ? 0 : getIdToken().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getAccessToken() == null) ? 0 : getAccessToken().hashCode());
+        hashCode = prime * hashCode + ((getExpiresIn() == null) ? 0 : getExpiresIn().hashCode());
+        hashCode = prime * hashCode + ((getTokenType() == null) ? 0 : getTokenType().hashCode());
+        hashCode = prime * hashCode
+                + ((getRefreshToken() == null) ? 0 : getRefreshToken().hashCode());
+        hashCode = prime * hashCode + ((getIdToken() == null) ? 0 : getIdToken().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof AuthenticationResultType == false) return false;
-        AuthenticationResultType other = (AuthenticationResultType)obj;
-        
-        if (other.getAccessToken() == null ^ this.getAccessToken() == null) return false;
-        if (other.getAccessToken() != null && other.getAccessToken().equals(this.getAccessToken()) == false) return false; 
-        if (other.getExpiresIn() == null ^ this.getExpiresIn() == null) return false;
-        if (other.getExpiresIn() != null && other.getExpiresIn().equals(this.getExpiresIn()) == false) return false; 
-        if (other.getTokenType() == null ^ this.getTokenType() == null) return false;
-        if (other.getTokenType() != null && other.getTokenType().equals(this.getTokenType()) == false) return false; 
-        if (other.getRefreshToken() == null ^ this.getRefreshToken() == null) return false;
-        if (other.getRefreshToken() != null && other.getRefreshToken().equals(this.getRefreshToken()) == false) return false; 
-        if (other.getIdToken() == null ^ this.getIdToken() == null) return false;
-        if (other.getIdToken() != null && other.getIdToken().equals(this.getIdToken()) == false) return false; 
+        if (obj instanceof AuthenticationResultType == false)
+            return false;
+        AuthenticationResultType other = (AuthenticationResultType) obj;
+
+        if (other.getAccessToken() == null ^ this.getAccessToken() == null)
+            return false;
+        if (other.getAccessToken() != null
+                && other.getAccessToken().equals(this.getAccessToken()) == false)
+            return false;
+        if (other.getExpiresIn() == null ^ this.getExpiresIn() == null)
+            return false;
+        if (other.getExpiresIn() != null
+                && other.getExpiresIn().equals(this.getExpiresIn()) == false)
+            return false;
+        if (other.getTokenType() == null ^ this.getTokenType() == null)
+            return false;
+        if (other.getTokenType() != null
+                && other.getTokenType().equals(this.getTokenType()) == false)
+            return false;
+        if (other.getRefreshToken() == null ^ this.getRefreshToken() == null)
+            return false;
+        if (other.getRefreshToken() != null
+                && other.getRefreshToken().equals(this.getRefreshToken()) == false)
+            return false;
+        if (other.getIdToken() == null ^ this.getIdToken() == null)
+            return false;
+        if (other.getIdToken() != null && other.getIdToken().equals(this.getIdToken()) == false)
+            return false;
         return true;
     }
-    
 }
-    

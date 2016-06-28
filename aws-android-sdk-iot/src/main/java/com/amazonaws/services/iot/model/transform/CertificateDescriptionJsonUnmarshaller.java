@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -15,62 +15,66 @@
 
 package com.amazonaws.services.iot.model.transform;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.amazonaws.services.iot.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * Certificate Description JSON Unmarshaller
+ * JSON unmarshaller for POJO CertificateDescription
  */
-public class CertificateDescriptionJsonUnmarshaller implements Unmarshaller<CertificateDescription, JsonUnmarshallerContext> {
+class CertificateDescriptionJsonUnmarshaller implements
+        Unmarshaller<CertificateDescription, JsonUnmarshallerContext> {
 
     public CertificateDescription unmarshall(JsonUnmarshallerContext context) throws Exception {
         CertificateDescription certificateDescription = new CertificateDescription();
-
         AwsJsonReader reader = context.getReader();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            
             if (name.equals("certificateArn")) {
-                certificateDescription.setCertificateArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            if (name.equals("certificateId")) {
-                certificateDescription.setCertificateId(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            if (name.equals("status")) {
-                certificateDescription.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            if (name.equals("certificatePem")) {
-                certificateDescription.setCertificatePem(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            if (name.equals("ownedBy")) {
-                certificateDescription.setOwnedBy(StringJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            if (name.equals("creationDate")) {
-                certificateDescription.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            if (name.equals("lastModifiedDate")) {
-                certificateDescription.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
-            } else 
-            {
+                certificateDescription.setCertificateArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("certificateId")) {
+                certificateDescription.setCertificateId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("caCertificateId")) {
+                certificateDescription.setCaCertificateId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("status")) {
+                certificateDescription.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("certificatePem")) {
+                certificateDescription.setCertificatePem(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("ownedBy")) {
+                certificateDescription.setOwnedBy(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("previousOwnedBy")) {
+                certificateDescription.setPreviousOwnedBy(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("creationDate")) {
+                certificateDescription.setCreationDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("lastModifiedDate")) {
+                certificateDescription.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("transferData")) {
+                certificateDescription.setTransferData(TransferDataJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else {
                 reader.skipValue();
             }
-            
         }
         reader.endObject();
-        
         return certificateDescription;
     }
 
     private static CertificateDescriptionJsonUnmarshaller instance;
+
     public static CertificateDescriptionJsonUnmarshaller getInstance() {
-        if (instance == null) instance = new CertificateDescriptionJsonUnmarshaller();
+        if (instance == null)
+            instance = new CertificateDescriptionJsonUnmarshaller();
         return instance;
     }
 }
-    

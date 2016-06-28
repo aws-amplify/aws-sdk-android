@@ -30,9 +30,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * One or more Auto Scaling instances to describe, up to 50 instances. If
-     * you omit this parameter, all Auto Scaling instances are described. If
-     * you specify an ID that does not exist, it is ignored with no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an
+     * ID that does not exist, it is ignored with no error.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<String> instanceIds;
 
@@ -51,13 +51,13 @@ public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest
     private String nextToken;
 
     /**
-     * One or more Auto Scaling instances to describe, up to 50 instances. If
-     * you omit this parameter, all Auto Scaling instances are described. If
-     * you specify an ID that does not exist, it is ignored with no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an
+     * ID that does not exist, it is ignored with no error.
      *
-     * @return One or more Auto Scaling instances to describe, up to 50 instances. If
-     *         you omit this parameter, all Auto Scaling instances are described. If
-     *         you specify an ID that does not exist, it is ignored with no error.
+     * @return The instances to describe; up to 50 instance IDs. If you omit this
+     *         parameter, all Auto Scaling instances are described. If you specify an
+     *         ID that does not exist, it is ignored with no error.
      */
     public java.util.List<String> getInstanceIds() {
         if (instanceIds == null) {
@@ -68,13 +68,13 @@ public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest
     }
     
     /**
-     * One or more Auto Scaling instances to describe, up to 50 instances. If
-     * you omit this parameter, all Auto Scaling instances are described. If
-     * you specify an ID that does not exist, it is ignored with no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an
+     * ID that does not exist, it is ignored with no error.
      *
-     * @param instanceIds One or more Auto Scaling instances to describe, up to 50 instances. If
-     *         you omit this parameter, all Auto Scaling instances are described. If
-     *         you specify an ID that does not exist, it is ignored with no error.
+     * @param instanceIds The instances to describe; up to 50 instance IDs. If you omit this
+     *         parameter, all Auto Scaling instances are described. If you specify an
+     *         ID that does not exist, it is ignored with no error.
      */
     public void setInstanceIds(java.util.Collection<String> instanceIds) {
         if (instanceIds == null) {
@@ -87,15 +87,15 @@ public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest
     }
     
     /**
-     * One or more Auto Scaling instances to describe, up to 50 instances. If
-     * you omit this parameter, all Auto Scaling instances are described. If
-     * you specify an ID that does not exist, it is ignored with no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an
+     * ID that does not exist, it is ignored with no error.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceIds One or more Auto Scaling instances to describe, up to 50 instances. If
-     *         you omit this parameter, all Auto Scaling instances are described. If
-     *         you specify an ID that does not exist, it is ignored with no error.
+     * @param instanceIds The instances to describe; up to 50 instance IDs. If you omit this
+     *         parameter, all Auto Scaling instances are described. If you specify an
+     *         ID that does not exist, it is ignored with no error.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -109,15 +109,15 @@ public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest
     }
     
     /**
-     * One or more Auto Scaling instances to describe, up to 50 instances. If
-     * you omit this parameter, all Auto Scaling instances are described. If
-     * you specify an ID that does not exist, it is ignored with no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an
+     * ID that does not exist, it is ignored with no error.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param instanceIds One or more Auto Scaling instances to describe, up to 50 instances. If
-     *         you omit this parameter, all Auto Scaling instances are described. If
-     *         you specify an ID that does not exist, it is ignored with no error.
+     * @param instanceIds The instances to describe; up to 50 instance IDs. If you omit this
+     *         parameter, all Auto Scaling instances are described. If you specify an
+     *         ID that does not exist, it is ignored with no error.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

@@ -28,13 +28,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>ChangeMessageVisibilityBatch</code> action.
  * </p>
  * <p>
- * <b>IMPORTANT:</b>Because the batch request can result in a combination
- * of successful and unsuccessful actions, you should check for batch
- * errors even when the call returns an HTTP status code of 200.
+ * <b>IMPORTANT:</b> Because the batch request can result in a
+ * combination of successful and unsuccessful actions, you should check
+ * for batch errors even when the call returns an HTTP status code of
+ * 200.
  * </p>
  * <p>
- * <b>NOTE:</b>Some API actions take lists of parameters. These lists are
- * specified using the param.n notation. Values of n are integers
+ * <b>NOTE:</b> Some API actions take lists of parameters. These lists
+ * are specified using the param.n notation. Values of n are integers
  * starting from 1. For example, a parameter list with two elements looks
  * like this:
  * </p>
@@ -50,7 +51,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ChangeMessageVisibilityBatchRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      */
     private String queueUrl;
 
@@ -72,6 +74,7 @@ public class ChangeMessageVisibilityBatchRequest extends AmazonWebServiceRequest
      * initialize any additional object members.
      * 
      * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * <p>Queue URLs are case-sensitive.
      * @param entries A list of receipt handles of the messages for which the
      * visibility timeout must be changed.
      */
@@ -81,29 +84,35 @@ public class ChangeMessageVisibilityBatchRequest extends AmazonWebServiceRequest
     }
 
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @return The URL of the Amazon SQS queue to take action on.
+     * @return The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public String getQueueUrl() {
         return queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      */
     public void setQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
     }
     
     /**
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     * case-sensitive.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
+     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
+     *         case-sensitive.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

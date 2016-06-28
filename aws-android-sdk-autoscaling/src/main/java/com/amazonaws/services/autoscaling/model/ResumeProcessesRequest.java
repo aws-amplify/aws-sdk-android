@@ -21,11 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.autoscaling.AmazonAutoScaling#resumeProcesses(ResumeProcessesRequest) ResumeProcesses operation}.
  * <p>
- * Resumes the specified suspended Auto Scaling processes for the
- * specified Auto Scaling group. To resume specific processes, use the
- * <code>ScalingProcesses</code> parameter. To resume all processes, omit
- * the <code>ScalingProcesses</code> parameter. For more information, see
- * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspend and Resume Auto Scaling Processes </a>
+ * Resumes the specified suspended Auto Scaling processes, or all
+ * suspended process, for the specified Auto Scaling group.
+ * </p>
+ * <p>
+ * For more information, see
+ * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"> Suspending and Resuming Auto Scaling Processes </a>
  * in the <i>Auto Scaling Developer Guide</i> .
  * </p>
  *

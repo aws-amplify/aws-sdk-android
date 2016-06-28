@@ -84,6 +84,17 @@ public class CreateAutoScalingGroupRequestMarshaller implements Marshaller<Reque
 
             loadBalancerNamesListIndex++;
         }
+
+        java.util.List<String> targetGroupARNsList = createAutoScalingGroupRequest.getTargetGroupARNs();
+        int targetGroupARNsListIndex = 1;
+
+        for (String targetGroupARNsListValue : targetGroupARNsList) {
+            if (targetGroupARNsListValue != null) {
+                request.addParameter("TargetGroupARNs.member." + targetGroupARNsListIndex, StringUtils.fromString(targetGroupARNsListValue));
+            }
+
+            targetGroupARNsListIndex++;
+        }
         if (createAutoScalingGroupRequest.getHealthCheckType() != null) {
             request.addParameter("HealthCheckType", StringUtils.fromString(createAutoScalingGroupRequest.getHealthCheckType()));
         }

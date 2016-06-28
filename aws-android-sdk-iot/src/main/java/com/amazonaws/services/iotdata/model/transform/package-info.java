@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AWSIotData.
+ * Marhsalling for the various types represented byAWSIotData
  */
- package com.amazonaws.services.iotdata.model.transform;
-        
+
+package com.amazonaws.services.iotdata.model.transform;
+

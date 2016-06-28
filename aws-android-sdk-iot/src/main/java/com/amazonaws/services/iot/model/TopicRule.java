@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
@@ -22,9 +23,10 @@ import java.io.Serializable;
  * </p>
  */
 public class TopicRule implements Serializable {
-
     /**
+     * <p>
      * The name of the rule.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -33,73 +35,99 @@ public class TopicRule implements Serializable {
     private String ruleName;
 
     /**
+     * <p>
      * The SQL statement used to query the topic. When using a SQL query with
      * multiple lines, be sure to escape the newline characters.
+     * </p>
      */
     private String sql;
 
     /**
+     * <p>
      * The description of the rule.
+     * </p>
      */
     private String description;
 
     /**
+     * <p>
      * The date and time the rule was created.
+     * </p>
      */
     private java.util.Date createdAt;
 
     /**
-     * The actions associated with the rule.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * The actions associated with the rule.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<Action> actions;
+    private java.util.List<Action> actions;
 
     /**
+     * <p>
      * Specifies whether the rule is disabled.
+     * </p>
      */
     private Boolean ruleDisabled;
 
     /**
+     * <p>
+     * The version of the SQL rules engine to use when evaluating the rule.
+     * </p>
+     */
+    private String awsIotSqlVersion;
+
+    /**
+     * <p>
      * The name of the rule.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>^[a-zA-Z0-9_]+$<br/>
      *
-     * @return The name of the rule.
+     * @return <p>
+     *         The name of the rule.
+     *         </p>
      */
     public String getRuleName() {
         return ruleName;
     }
-    
+
     /**
+     * <p>
      * The name of the rule.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>^[a-zA-Z0-9_]+$<br/>
      *
-     * @param ruleName The name of the rule.
+     * @param ruleName <p>
+     *            The name of the rule.
+     *            </p>
      */
     public void setRuleName(String ruleName) {
         this.ruleName = ruleName;
     }
-    
+
     /**
-     * The name of the rule.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the rule.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>^[a-zA-Z0-9_]+$<br/>
      *
-     * @param ruleName The name of the rule.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param ruleName <p>
+     *            The name of the rule.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public TopicRule withRuleName(String ruleName) {
         this.ruleName = ruleName;
@@ -107,38 +135,52 @@ public class TopicRule implements Serializable {
     }
 
     /**
+     * <p>
      * The SQL statement used to query the topic. When using a SQL query with
      * multiple lines, be sure to escape the newline characters.
+     * </p>
      *
-     * @return The SQL statement used to query the topic. When using a SQL query with
-     *         multiple lines, be sure to escape the newline characters.
+     * @return <p>
+     *         The SQL statement used to query the topic. When using a SQL query
+     *         with multiple lines, be sure to escape the newline characters.
+     *         </p>
      */
     public String getSql() {
         return sql;
     }
-    
+
     /**
+     * <p>
      * The SQL statement used to query the topic. When using a SQL query with
      * multiple lines, be sure to escape the newline characters.
+     * </p>
      *
-     * @param sql The SQL statement used to query the topic. When using a SQL query with
-     *         multiple lines, be sure to escape the newline characters.
+     * @param sql <p>
+     *            The SQL statement used to query the topic. When using a SQL
+     *            query with multiple lines, be sure to escape the newline
+     *            characters.
+     *            </p>
      */
     public void setSql(String sql) {
         this.sql = sql;
     }
-    
+
     /**
+     * <p>
      * The SQL statement used to query the topic. When using a SQL query with
      * multiple lines, be sure to escape the newline characters.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param sql The SQL statement used to query the topic. When using a SQL query with
-     *         multiple lines, be sure to escape the newline characters.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param sql <p>
+     *            The SQL statement used to query the topic. When using a SQL
+     *            query with multiple lines, be sure to escape the newline
+     *            characters.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public TopicRule withSql(String sql) {
         this.sql = sql;
@@ -146,32 +188,44 @@ public class TopicRule implements Serializable {
     }
 
     /**
+     * <p>
      * The description of the rule.
+     * </p>
      *
-     * @return The description of the rule.
+     * @return <p>
+     *         The description of the rule.
+     *         </p>
      */
     public String getDescription() {
         return description;
     }
-    
+
     /**
+     * <p>
      * The description of the rule.
+     * </p>
      *
-     * @param description The description of the rule.
+     * @param description <p>
+     *            The description of the rule.
+     *            </p>
      */
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     /**
-     * The description of the rule.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The description of the rule.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param description The description of the rule.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param description <p>
+     *            The description of the rule.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public TopicRule withDescription(String description) {
         this.description = description;
@@ -179,32 +233,44 @@ public class TopicRule implements Serializable {
     }
 
     /**
+     * <p>
      * The date and time the rule was created.
+     * </p>
      *
-     * @return The date and time the rule was created.
+     * @return <p>
+     *         The date and time the rule was created.
+     *         </p>
      */
     public java.util.Date getCreatedAt() {
         return createdAt;
     }
-    
+
     /**
+     * <p>
      * The date and time the rule was created.
+     * </p>
      *
-     * @param createdAt The date and time the rule was created.
+     * @param createdAt <p>
+     *            The date and time the rule was created.
+     *            </p>
      */
     public void setCreatedAt(java.util.Date createdAt) {
         this.createdAt = createdAt;
     }
-    
+
     /**
-     * The date and time the rule was created.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The date and time the rule was created.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param createdAt The date and time the rule was created.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param createdAt <p>
+     *            The date and time the rule was created.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public TopicRule withCreatedAt(java.util.Date createdAt) {
         this.createdAt = createdAt;
@@ -212,112 +278,131 @@ public class TopicRule implements Serializable {
     }
 
     /**
-     * The actions associated with the rule.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * The actions associated with the rule.
+     * </p>
      *
-     * @return The actions associated with the rule.
+     * @return <p>
+     *         The actions associated with the rule.
+     *         </p>
      */
     public java.util.List<Action> getActions() {
-        if (actions == null) {
-              actions = new com.amazonaws.internal.ListWithAutoConstructFlag<Action>();
-              actions.setAutoConstruct(true);
-        }
         return actions;
     }
-    
+
     /**
-     * The actions associated with the rule.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * The actions associated with the rule.
+     * </p>
      *
-     * @param actions The actions associated with the rule.
+     * @param actions <p>
+     *            The actions associated with the rule.
+     *            </p>
      */
     public void setActions(java.util.Collection<Action> actions) {
         if (actions == null) {
             this.actions = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<Action> actionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Action>(actions.size());
-        actionsCopy.addAll(actions);
-        this.actions = actionsCopy;
+
+        this.actions = new java.util.ArrayList<Action>(actions);
     }
-    
+
     /**
+     * <p>
      * The actions associated with the rule.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param actions The actions associated with the rule.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param actions <p>
+     *            The actions associated with the rule.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public TopicRule withActions(Action... actions) {
-        if (getActions() == null) setActions(new java.util.ArrayList<Action>(actions.length));
+        if (getActions() == null) {
+            this.actions = new java.util.ArrayList<Action>(actions.length);
+        }
         for (Action value : actions) {
-            getActions().add(value);
+            this.actions.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * The actions associated with the rule.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param actions The actions associated with the rule.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param actions <p>
+     *            The actions associated with the rule.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public TopicRule withActions(java.util.Collection<Action> actions) {
-        if (actions == null) {
-            this.actions = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<Action> actionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Action>(actions.size());
-            actionsCopy.addAll(actions);
-            this.actions = actionsCopy;
-        }
-
+        setActions(actions);
         return this;
     }
 
     /**
+     * <p>
      * Specifies whether the rule is disabled.
+     * </p>
      *
-     * @return Specifies whether the rule is disabled.
+     * @return <p>
+     *         Specifies whether the rule is disabled.
+     *         </p>
      */
     public Boolean isRuleDisabled() {
         return ruleDisabled;
     }
-    
+
     /**
+     * <p>
      * Specifies whether the rule is disabled.
+     * </p>
      *
-     * @param ruleDisabled Specifies whether the rule is disabled.
+     * @return <p>
+     *         Specifies whether the rule is disabled.
+     *         </p>
+     */
+    public Boolean getRuleDisabled() {
+        return ruleDisabled;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the rule is disabled.
+     * </p>
+     *
+     * @param ruleDisabled <p>
+     *            Specifies whether the rule is disabled.
+     *            </p>
      */
     public void setRuleDisabled(Boolean ruleDisabled) {
         this.ruleDisabled = ruleDisabled;
     }
-    
+
     /**
-     * Specifies whether the rule is disabled.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Specifies whether the rule is disabled.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param ruleDisabled Specifies whether the rule is disabled.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param ruleDisabled <p>
+     *            Specifies whether the rule is disabled.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public TopicRule withRuleDisabled(Boolean ruleDisabled) {
         this.ruleDisabled = ruleDisabled;
@@ -325,12 +410,51 @@ public class TopicRule implements Serializable {
     }
 
     /**
-     * Specifies whether the rule is disabled.
+     * <p>
+     * The version of the SQL rules engine to use when evaluating the rule.
+     * </p>
      *
-     * @return Specifies whether the rule is disabled.
+     * @return <p>
+     *         The version of the SQL rules engine to use when evaluating the
+     *         rule.
+     *         </p>
      */
-    public Boolean getRuleDisabled() {
-        return ruleDisabled;
+    public String getAwsIotSqlVersion() {
+        return awsIotSqlVersion;
+    }
+
+    /**
+     * <p>
+     * The version of the SQL rules engine to use when evaluating the rule.
+     * </p>
+     *
+     * @param awsIotSqlVersion <p>
+     *            The version of the SQL rules engine to use when evaluating the
+     *            rule.
+     *            </p>
+     */
+    public void setAwsIotSqlVersion(String awsIotSqlVersion) {
+        this.awsIotSqlVersion = awsIotSqlVersion;
+    }
+
+    /**
+     * <p>
+     * The version of the SQL rules engine to use when evaluating the rule.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param awsIotSqlVersion <p>
+     *            The version of the SQL rules engine to use when evaluating the
+     *            rule.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TopicRule withAwsIotSqlVersion(String awsIotSqlVersion) {
+        this.awsIotSqlVersion = awsIotSqlVersion;
+        return this;
     }
 
     /**
@@ -338,59 +462,91 @@ public class TopicRule implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getRuleName() != null) sb.append("RuleName: " + getRuleName() + ",");
-        if (getSql() != null) sb.append("Sql: " + getSql() + ",");
-        if (getDescription() != null) sb.append("Description: " + getDescription() + ",");
-        if (getCreatedAt() != null) sb.append("CreatedAt: " + getCreatedAt() + ",");
-        if (getActions() != null) sb.append("Actions: " + getActions() + ",");
-        if (isRuleDisabled() != null) sb.append("RuleDisabled: " + isRuleDisabled() );
+        if (getRuleName() != null)
+            sb.append("ruleName: " + getRuleName() + ",");
+        if (getSql() != null)
+            sb.append("sql: " + getSql() + ",");
+        if (getDescription() != null)
+            sb.append("description: " + getDescription() + ",");
+        if (getCreatedAt() != null)
+            sb.append("createdAt: " + getCreatedAt() + ",");
+        if (getActions() != null)
+            sb.append("actions: " + getActions() + ",");
+        if (getRuleDisabled() != null)
+            sb.append("ruleDisabled: " + getRuleDisabled() + ",");
+        if (getAwsIotSqlVersion() != null)
+            sb.append("awsIotSqlVersion: " + getAwsIotSqlVersion());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getRuleName() == null) ? 0 : getRuleName().hashCode()); 
-        hashCode = prime * hashCode + ((getSql() == null) ? 0 : getSql().hashCode()); 
-        hashCode = prime * hashCode + ((getDescription() == null) ? 0 : getDescription().hashCode()); 
-        hashCode = prime * hashCode + ((getCreatedAt() == null) ? 0 : getCreatedAt().hashCode()); 
-        hashCode = prime * hashCode + ((getActions() == null) ? 0 : getActions().hashCode()); 
-        hashCode = prime * hashCode + ((isRuleDisabled() == null) ? 0 : isRuleDisabled().hashCode()); 
+
+        hashCode = prime * hashCode + ((getRuleName() == null) ? 0 : getRuleName().hashCode());
+        hashCode = prime * hashCode + ((getSql() == null) ? 0 : getSql().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode + ((getCreatedAt() == null) ? 0 : getCreatedAt().hashCode());
+        hashCode = prime * hashCode + ((getActions() == null) ? 0 : getActions().hashCode());
+        hashCode = prime * hashCode
+                + ((getRuleDisabled() == null) ? 0 : getRuleDisabled().hashCode());
+        hashCode = prime * hashCode
+                + ((getAwsIotSqlVersion() == null) ? 0 : getAwsIotSqlVersion().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof TopicRule == false) return false;
-        TopicRule other = (TopicRule)obj;
-        
-        if (other.getRuleName() == null ^ this.getRuleName() == null) return false;
-        if (other.getRuleName() != null && other.getRuleName().equals(this.getRuleName()) == false) return false; 
-        if (other.getSql() == null ^ this.getSql() == null) return false;
-        if (other.getSql() != null && other.getSql().equals(this.getSql()) == false) return false; 
-        if (other.getDescription() == null ^ this.getDescription() == null) return false;
-        if (other.getDescription() != null && other.getDescription().equals(this.getDescription()) == false) return false; 
-        if (other.getCreatedAt() == null ^ this.getCreatedAt() == null) return false;
-        if (other.getCreatedAt() != null && other.getCreatedAt().equals(this.getCreatedAt()) == false) return false; 
-        if (other.getActions() == null ^ this.getActions() == null) return false;
-        if (other.getActions() != null && other.getActions().equals(this.getActions()) == false) return false; 
-        if (other.isRuleDisabled() == null ^ this.isRuleDisabled() == null) return false;
-        if (other.isRuleDisabled() != null && other.isRuleDisabled().equals(this.isRuleDisabled()) == false) return false; 
+        if (obj instanceof TopicRule == false)
+            return false;
+        TopicRule other = (TopicRule) obj;
+
+        if (other.getRuleName() == null ^ this.getRuleName() == null)
+            return false;
+        if (other.getRuleName() != null && other.getRuleName().equals(this.getRuleName()) == false)
+            return false;
+        if (other.getSql() == null ^ this.getSql() == null)
+            return false;
+        if (other.getSql() != null && other.getSql().equals(this.getSql()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getCreatedAt() == null ^ this.getCreatedAt() == null)
+            return false;
+        if (other.getCreatedAt() != null
+                && other.getCreatedAt().equals(this.getCreatedAt()) == false)
+            return false;
+        if (other.getActions() == null ^ this.getActions() == null)
+            return false;
+        if (other.getActions() != null && other.getActions().equals(this.getActions()) == false)
+            return false;
+        if (other.getRuleDisabled() == null ^ this.getRuleDisabled() == null)
+            return false;
+        if (other.getRuleDisabled() != null
+                && other.getRuleDisabled().equals(this.getRuleDisabled()) == false)
+            return false;
+        if (other.getAwsIotSqlVersion() == null ^ this.getAwsIotSqlVersion() == null)
+            return false;
+        if (other.getAwsIotSqlVersion() != null
+                && other.getAwsIotSqlVersion().equals(this.getAwsIotSqlVersion()) == false)
+            return false;
         return true;
     }
-    
 }
-    

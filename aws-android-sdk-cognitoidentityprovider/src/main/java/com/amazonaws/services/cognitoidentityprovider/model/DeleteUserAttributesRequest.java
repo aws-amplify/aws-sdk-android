@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
@@ -19,129 +20,150 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider#deleteUserAttributes(DeleteUserAttributesRequest) DeleteUserAttributes operation}.
  * <p>
  * Deletes the attributes for a user.
  * </p>
- *
- * @see com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider#deleteUserAttributes(DeleteUserAttributesRequest)
  */
 public class DeleteUserAttributesRequest extends AmazonWebServiceRequest implements Serializable {
-
     /**
+     * <p>
      * An array of strings representing the user attribute names you wish to
      * delete.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> userAttributeNames;
+    private java.util.List<String> userAttributeNames;
 
     /**
+     * <p>
      * The access token used in the request to delete user attributes.
+     * </p>
      */
     private String accessToken;
 
     /**
+     * <p>
      * An array of strings representing the user attribute names you wish to
      * delete.
+     * </p>
      *
-     * @return An array of strings representing the user attribute names you wish to
-     *         delete.
+     * @return <p>
+     *         An array of strings representing the user attribute names you
+     *         wish to delete.
+     *         </p>
      */
     public java.util.List<String> getUserAttributeNames() {
-        if (userAttributeNames == null) {
-              userAttributeNames = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              userAttributeNames.setAutoConstruct(true);
-        }
         return userAttributeNames;
     }
-    
+
     /**
+     * <p>
      * An array of strings representing the user attribute names you wish to
      * delete.
+     * </p>
      *
-     * @param userAttributeNames An array of strings representing the user attribute names you wish to
-     *         delete.
+     * @param userAttributeNames <p>
+     *            An array of strings representing the user attribute names you
+     *            wish to delete.
+     *            </p>
      */
     public void setUserAttributeNames(java.util.Collection<String> userAttributeNames) {
         if (userAttributeNames == null) {
             this.userAttributeNames = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> userAttributeNamesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(userAttributeNames.size());
-        userAttributeNamesCopy.addAll(userAttributeNames);
-        this.userAttributeNames = userAttributeNamesCopy;
+
+        this.userAttributeNames = new java.util.ArrayList<String>(userAttributeNames);
     }
-    
+
     /**
+     * <p>
      * An array of strings representing the user attribute names you wish to
      * delete.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param userAttributeNames An array of strings representing the user attribute names you wish to
-     *         delete.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param userAttributeNames <p>
+     *            An array of strings representing the user attribute names you
+     *            wish to delete.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DeleteUserAttributesRequest withUserAttributeNames(String... userAttributeNames) {
-        if (getUserAttributeNames() == null) setUserAttributeNames(new java.util.ArrayList<String>(userAttributeNames.length));
+        if (getUserAttributeNames() == null) {
+            this.userAttributeNames = new java.util.ArrayList<String>(userAttributeNames.length);
+        }
         for (String value : userAttributeNames) {
-            getUserAttributeNames().add(value);
+            this.userAttributeNames.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * An array of strings representing the user attribute names you wish to
      * delete.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param userAttributeNames An array of strings representing the user attribute names you wish to
-     *         delete.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param userAttributeNames <p>
+     *            An array of strings representing the user attribute names you
+     *            wish to delete.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public DeleteUserAttributesRequest withUserAttributeNames(java.util.Collection<String> userAttributeNames) {
-        if (userAttributeNames == null) {
-            this.userAttributeNames = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> userAttributeNamesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(userAttributeNames.size());
-            userAttributeNamesCopy.addAll(userAttributeNames);
-            this.userAttributeNames = userAttributeNamesCopy;
-        }
-
+    public DeleteUserAttributesRequest withUserAttributeNames(
+            java.util.Collection<String> userAttributeNames) {
+        setUserAttributeNames(userAttributeNames);
         return this;
     }
 
     /**
+     * <p>
      * The access token used in the request to delete user attributes.
+     * </p>
      *
-     * @return The access token used in the request to delete user attributes.
+     * @return <p>
+     *         The access token used in the request to delete user attributes.
+     *         </p>
      */
     public String getAccessToken() {
         return accessToken;
     }
-    
+
     /**
+     * <p>
      * The access token used in the request to delete user attributes.
+     * </p>
      *
-     * @param accessToken The access token used in the request to delete user attributes.
+     * @param accessToken <p>
+     *            The access token used in the request to delete user
+     *            attributes.
+     *            </p>
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
-    
+
     /**
-     * The access token used in the request to delete user attributes.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The access token used in the request to delete user attributes.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param accessToken The access token used in the request to delete user attributes.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param accessToken <p>
+     *            The access token used in the request to delete user
+     *            attributes.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DeleteUserAttributesRequest withAccessToken(String accessToken) {
         this.accessToken = accessToken;
@@ -153,43 +175,53 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getUserAttributeNames() != null) sb.append("UserAttributeNames: " + getUserAttributeNames() + ",");
-        if (getAccessToken() != null) sb.append("AccessToken: " + getAccessToken() );
+        if (getUserAttributeNames() != null)
+            sb.append("UserAttributeNames: " + getUserAttributeNames() + ",");
+        if (getAccessToken() != null)
+            sb.append("AccessToken: " + getAccessToken());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getUserAttributeNames() == null) ? 0 : getUserAttributeNames().hashCode()); 
-        hashCode = prime * hashCode + ((getAccessToken() == null) ? 0 : getAccessToken().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getUserAttributeNames() == null) ? 0 : getUserAttributeNames().hashCode());
+        hashCode = prime * hashCode
+                + ((getAccessToken() == null) ? 0 : getAccessToken().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DeleteUserAttributesRequest == false) return false;
-        DeleteUserAttributesRequest other = (DeleteUserAttributesRequest)obj;
-        
-        if (other.getUserAttributeNames() == null ^ this.getUserAttributeNames() == null) return false;
-        if (other.getUserAttributeNames() != null && other.getUserAttributeNames().equals(this.getUserAttributeNames()) == false) return false; 
-        if (other.getAccessToken() == null ^ this.getAccessToken() == null) return false;
-        if (other.getAccessToken() != null && other.getAccessToken().equals(this.getAccessToken()) == false) return false; 
+        if (obj instanceof DeleteUserAttributesRequest == false)
+            return false;
+        DeleteUserAttributesRequest other = (DeleteUserAttributesRequest) obj;
+
+        if (other.getUserAttributeNames() == null ^ this.getUserAttributeNames() == null)
+            return false;
+        if (other.getUserAttributeNames() != null
+                && other.getUserAttributeNames().equals(this.getUserAttributeNames()) == false)
+            return false;
+        if (other.getAccessToken() == null ^ this.getAccessToken() == null)
+            return false;
+        if (other.getAccessToken() != null
+                && other.getAccessToken().equals(this.getAccessToken()) == false)
+            return false;
         return true;
     }
-    
 }
-    

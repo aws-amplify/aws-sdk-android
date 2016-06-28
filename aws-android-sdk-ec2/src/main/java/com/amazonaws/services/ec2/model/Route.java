@@ -76,12 +76,11 @@ public class Route implements Serializable {
 
     /**
      * Describes how the route was created. <ul>
-     * <li><code>CreateRouteTable</code> indicates that route was
-     * automatically created when the route table was created.</li>
-     * <li><code>CreateRoute</code> indicates that the route was manually
-     * added to the route table.</li>
-     * <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     * was propagated by route propagation.</li> </ul>
+     * <li><p><code>CreateRouteTable</code> - The route was automatically
+     * created when the route table was created.</li>
+     * <li><p><code>CreateRoute</code> - The route was manually added to the
+     * route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     * route was propagated by route propagation.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CreateRouteTable, CreateRoute, EnableVgwRoutePropagation
@@ -466,23 +465,21 @@ public class Route implements Serializable {
 
     /**
      * Describes how the route was created. <ul>
-     * <li><code>CreateRouteTable</code> indicates that route was
-     * automatically created when the route table was created.</li>
-     * <li><code>CreateRoute</code> indicates that the route was manually
-     * added to the route table.</li>
-     * <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     * was propagated by route propagation.</li> </ul>
+     * <li><p><code>CreateRouteTable</code> - The route was automatically
+     * created when the route table was created.</li>
+     * <li><p><code>CreateRoute</code> - The route was manually added to the
+     * route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     * route was propagated by route propagation.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CreateRouteTable, CreateRoute, EnableVgwRoutePropagation
      *
      * @return Describes how the route was created. <ul>
-     *         <li><code>CreateRouteTable</code> indicates that route was
-     *         automatically created when the route table was created.</li>
-     *         <li><code>CreateRoute</code> indicates that the route was manually
-     *         added to the route table.</li>
-     *         <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     *         was propagated by route propagation.</li> </ul>
+     *         <li><p><code>CreateRouteTable</code> - The route was automatically
+     *         created when the route table was created.</li>
+     *         <li><p><code>CreateRoute</code> - The route was manually added to the
+     *         route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     *         route was propagated by route propagation.</li> </ul>
      *
      * @see RouteOrigin
      */
@@ -492,23 +489,21 @@ public class Route implements Serializable {
     
     /**
      * Describes how the route was created. <ul>
-     * <li><code>CreateRouteTable</code> indicates that route was
-     * automatically created when the route table was created.</li>
-     * <li><code>CreateRoute</code> indicates that the route was manually
-     * added to the route table.</li>
-     * <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     * was propagated by route propagation.</li> </ul>
+     * <li><p><code>CreateRouteTable</code> - The route was automatically
+     * created when the route table was created.</li>
+     * <li><p><code>CreateRoute</code> - The route was manually added to the
+     * route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     * route was propagated by route propagation.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CreateRouteTable, CreateRoute, EnableVgwRoutePropagation
      *
      * @param origin Describes how the route was created. <ul>
-     *         <li><code>CreateRouteTable</code> indicates that route was
-     *         automatically created when the route table was created.</li>
-     *         <li><code>CreateRoute</code> indicates that the route was manually
-     *         added to the route table.</li>
-     *         <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     *         was propagated by route propagation.</li> </ul>
+     *         <li><p><code>CreateRouteTable</code> - The route was automatically
+     *         created when the route table was created.</li>
+     *         <li><p><code>CreateRoute</code> - The route was manually added to the
+     *         route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     *         route was propagated by route propagation.</li> </ul>
      *
      * @see RouteOrigin
      */
@@ -518,12 +513,11 @@ public class Route implements Serializable {
     
     /**
      * Describes how the route was created. <ul>
-     * <li><code>CreateRouteTable</code> indicates that route was
-     * automatically created when the route table was created.</li>
-     * <li><code>CreateRoute</code> indicates that the route was manually
-     * added to the route table.</li>
-     * <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     * was propagated by route propagation.</li> </ul>
+     * <li><p><code>CreateRouteTable</code> - The route was automatically
+     * created when the route table was created.</li>
+     * <li><p><code>CreateRoute</code> - The route was manually added to the
+     * route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     * route was propagated by route propagation.</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -531,12 +525,11 @@ public class Route implements Serializable {
      * <b>Allowed Values: </b>CreateRouteTable, CreateRoute, EnableVgwRoutePropagation
      *
      * @param origin Describes how the route was created. <ul>
-     *         <li><code>CreateRouteTable</code> indicates that route was
-     *         automatically created when the route table was created.</li>
-     *         <li><code>CreateRoute</code> indicates that the route was manually
-     *         added to the route table.</li>
-     *         <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     *         was propagated by route propagation.</li> </ul>
+     *         <li><p><code>CreateRouteTable</code> - The route was automatically
+     *         created when the route table was created.</li>
+     *         <li><p><code>CreateRoute</code> - The route was manually added to the
+     *         route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     *         route was propagated by route propagation.</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -550,23 +543,21 @@ public class Route implements Serializable {
 
     /**
      * Describes how the route was created. <ul>
-     * <li><code>CreateRouteTable</code> indicates that route was
-     * automatically created when the route table was created.</li>
-     * <li><code>CreateRoute</code> indicates that the route was manually
-     * added to the route table.</li>
-     * <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     * was propagated by route propagation.</li> </ul>
+     * <li><p><code>CreateRouteTable</code> - The route was automatically
+     * created when the route table was created.</li>
+     * <li><p><code>CreateRoute</code> - The route was manually added to the
+     * route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     * route was propagated by route propagation.</li> </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CreateRouteTable, CreateRoute, EnableVgwRoutePropagation
      *
      * @param origin Describes how the route was created. <ul>
-     *         <li><code>CreateRouteTable</code> indicates that route was
-     *         automatically created when the route table was created.</li>
-     *         <li><code>CreateRoute</code> indicates that the route was manually
-     *         added to the route table.</li>
-     *         <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     *         was propagated by route propagation.</li> </ul>
+     *         <li><p><code>CreateRouteTable</code> - The route was automatically
+     *         created when the route table was created.</li>
+     *         <li><p><code>CreateRoute</code> - The route was manually added to the
+     *         route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     *         route was propagated by route propagation.</li> </ul>
      *
      * @see RouteOrigin
      */
@@ -576,12 +567,11 @@ public class Route implements Serializable {
     
     /**
      * Describes how the route was created. <ul>
-     * <li><code>CreateRouteTable</code> indicates that route was
-     * automatically created when the route table was created.</li>
-     * <li><code>CreateRoute</code> indicates that the route was manually
-     * added to the route table.</li>
-     * <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     * was propagated by route propagation.</li> </ul>
+     * <li><p><code>CreateRouteTable</code> - The route was automatically
+     * created when the route table was created.</li>
+     * <li><p><code>CreateRoute</code> - The route was manually added to the
+     * route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     * route was propagated by route propagation.</li> </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -589,12 +579,11 @@ public class Route implements Serializable {
      * <b>Allowed Values: </b>CreateRouteTable, CreateRoute, EnableVgwRoutePropagation
      *
      * @param origin Describes how the route was created. <ul>
-     *         <li><code>CreateRouteTable</code> indicates that route was
-     *         automatically created when the route table was created.</li>
-     *         <li><code>CreateRoute</code> indicates that the route was manually
-     *         added to the route table.</li>
-     *         <li><code>EnableVgwRoutePropagation</code> indicates that the route
-     *         was propagated by route propagation.</li> </ul>
+     *         <li><p><code>CreateRouteTable</code> - The route was automatically
+     *         created when the route table was created.</li>
+     *         <li><p><code>CreateRoute</code> - The route was manually added to the
+     *         route table.</li> <li><p><code>EnableVgwRoutePropagation</code> - The
+     *         route was propagated by route propagation.</li> </ul>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

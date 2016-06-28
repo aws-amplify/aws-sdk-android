@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
@@ -22,68 +23,91 @@ import java.io.Serializable;
  * </p>
  */
 public class CloudwatchMetricAction implements Serializable {
-
     /**
+     * <p>
      * The IAM role that allows access to the CloudWatch metric.
+     * </p>
      */
     private String roleArn;
 
     /**
+     * <p>
      * The CloudWatch metric namespace name.
+     * </p>
      */
     private String metricNamespace;
 
     /**
+     * <p>
      * The CloudWatch metric name.
+     * </p>
      */
     private String metricName;
 
     /**
+     * <p>
      * The CloudWatch metric value.
+     * </p>
      */
     private String metricValue;
 
     /**
-     * The <a
-     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit">metric
-     * unit</a> supported by CloudWatch.
+     * <p>
+     * The <a href=
+     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     * >metric unit</a> supported by CloudWatch.
+     * </p>
      */
     private String metricUnit;
 
     /**
-     * An optional <a
-     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Unix
-     * timestamp</a>.
+     * <p>
+     * An optional <a href=
+     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     * >Unix timestamp</a>.
+     * </p>
      */
     private String metricTimestamp;
 
     /**
+     * <p>
      * The IAM role that allows access to the CloudWatch metric.
+     * </p>
      *
-     * @return The IAM role that allows access to the CloudWatch metric.
+     * @return <p>
+     *         The IAM role that allows access to the CloudWatch metric.
+     *         </p>
      */
     public String getRoleArn() {
         return roleArn;
     }
-    
+
     /**
+     * <p>
      * The IAM role that allows access to the CloudWatch metric.
+     * </p>
      *
-     * @param roleArn The IAM role that allows access to the CloudWatch metric.
+     * @param roleArn <p>
+     *            The IAM role that allows access to the CloudWatch metric.
+     *            </p>
      */
     public void setRoleArn(String roleArn) {
         this.roleArn = roleArn;
     }
-    
+
     /**
-     * The IAM role that allows access to the CloudWatch metric.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The IAM role that allows access to the CloudWatch metric.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param roleArn The IAM role that allows access to the CloudWatch metric.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param roleArn <p>
+     *            The IAM role that allows access to the CloudWatch metric.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CloudwatchMetricAction withRoleArn(String roleArn) {
         this.roleArn = roleArn;
@@ -91,32 +115,44 @@ public class CloudwatchMetricAction implements Serializable {
     }
 
     /**
+     * <p>
      * The CloudWatch metric namespace name.
+     * </p>
      *
-     * @return The CloudWatch metric namespace name.
+     * @return <p>
+     *         The CloudWatch metric namespace name.
+     *         </p>
      */
     public String getMetricNamespace() {
         return metricNamespace;
     }
-    
+
     /**
+     * <p>
      * The CloudWatch metric namespace name.
+     * </p>
      *
-     * @param metricNamespace The CloudWatch metric namespace name.
+     * @param metricNamespace <p>
+     *            The CloudWatch metric namespace name.
+     *            </p>
      */
     public void setMetricNamespace(String metricNamespace) {
         this.metricNamespace = metricNamespace;
     }
-    
+
     /**
-     * The CloudWatch metric namespace name.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The CloudWatch metric namespace name.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param metricNamespace The CloudWatch metric namespace name.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param metricNamespace <p>
+     *            The CloudWatch metric namespace name.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CloudwatchMetricAction withMetricNamespace(String metricNamespace) {
         this.metricNamespace = metricNamespace;
@@ -124,32 +160,44 @@ public class CloudwatchMetricAction implements Serializable {
     }
 
     /**
+     * <p>
      * The CloudWatch metric name.
+     * </p>
      *
-     * @return The CloudWatch metric name.
+     * @return <p>
+     *         The CloudWatch metric name.
+     *         </p>
      */
     public String getMetricName() {
         return metricName;
     }
-    
+
     /**
+     * <p>
      * The CloudWatch metric name.
+     * </p>
      *
-     * @param metricName The CloudWatch metric name.
+     * @param metricName <p>
+     *            The CloudWatch metric name.
+     *            </p>
      */
     public void setMetricName(String metricName) {
         this.metricName = metricName;
     }
-    
+
     /**
-     * The CloudWatch metric name.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The CloudWatch metric name.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param metricName The CloudWatch metric name.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param metricName <p>
+     *            The CloudWatch metric name.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CloudwatchMetricAction withMetricName(String metricName) {
         this.metricName = metricName;
@@ -157,32 +205,44 @@ public class CloudwatchMetricAction implements Serializable {
     }
 
     /**
+     * <p>
      * The CloudWatch metric value.
+     * </p>
      *
-     * @return The CloudWatch metric value.
+     * @return <p>
+     *         The CloudWatch metric value.
+     *         </p>
      */
     public String getMetricValue() {
         return metricValue;
     }
-    
+
     /**
+     * <p>
      * The CloudWatch metric value.
+     * </p>
      *
-     * @param metricValue The CloudWatch metric value.
+     * @param metricValue <p>
+     *            The CloudWatch metric value.
+     *            </p>
      */
     public void setMetricValue(String metricValue) {
         this.metricValue = metricValue;
     }
-    
+
     /**
-     * The CloudWatch metric value.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The CloudWatch metric value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param metricValue The CloudWatch metric value.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param metricValue <p>
+     *            The CloudWatch metric value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CloudwatchMetricAction withMetricValue(String metricValue) {
         this.metricValue = metricValue;
@@ -190,44 +250,56 @@ public class CloudwatchMetricAction implements Serializable {
     }
 
     /**
-     * The <a
-     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit">metric
-     * unit</a> supported by CloudWatch.
+     * <p>
+     * The <a href=
+     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     * >metric unit</a> supported by CloudWatch.
+     * </p>
      *
-     * @return The <a
-     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit">metric
-     *         unit</a> supported by CloudWatch.
+     * @return <p>
+     *         The <a href=
+     *         "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     *         >metric unit</a> supported by CloudWatch.
+     *         </p>
      */
     public String getMetricUnit() {
         return metricUnit;
     }
-    
+
     /**
-     * The <a
-     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit">metric
-     * unit</a> supported by CloudWatch.
+     * <p>
+     * The <a href=
+     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     * >metric unit</a> supported by CloudWatch.
+     * </p>
      *
-     * @param metricUnit The <a
-     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit">metric
-     *         unit</a> supported by CloudWatch.
+     * @param metricUnit <p>
+     *            The <a href=
+     *            "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     *            >metric unit</a> supported by CloudWatch.
+     *            </p>
      */
     public void setMetricUnit(String metricUnit) {
         this.metricUnit = metricUnit;
     }
-    
+
     /**
-     * The <a
-     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit">metric
-     * unit</a> supported by CloudWatch.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The <a href=
+     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     * >metric unit</a> supported by CloudWatch.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param metricUnit The <a
-     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit">metric
-     *         unit</a> supported by CloudWatch.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param metricUnit <p>
+     *            The <a href=
+     *            "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     *            >metric unit</a> supported by CloudWatch.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CloudwatchMetricAction withMetricUnit(String metricUnit) {
         this.metricUnit = metricUnit;
@@ -235,44 +307,56 @@ public class CloudwatchMetricAction implements Serializable {
     }
 
     /**
-     * An optional <a
-     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Unix
-     * timestamp</a>.
+     * <p>
+     * An optional <a href=
+     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     * >Unix timestamp</a>.
+     * </p>
      *
-     * @return An optional <a
-     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Unix
-     *         timestamp</a>.
+     * @return <p>
+     *         An optional <a href=
+     *         "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     *         >Unix timestamp</a>.
+     *         </p>
      */
     public String getMetricTimestamp() {
         return metricTimestamp;
     }
-    
+
     /**
-     * An optional <a
-     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Unix
-     * timestamp</a>.
+     * <p>
+     * An optional <a href=
+     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     * >Unix timestamp</a>.
+     * </p>
      *
-     * @param metricTimestamp An optional <a
-     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Unix
-     *         timestamp</a>.
+     * @param metricTimestamp <p>
+     *            An optional <a href=
+     *            "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     *            >Unix timestamp</a>.
+     *            </p>
      */
     public void setMetricTimestamp(String metricTimestamp) {
         this.metricTimestamp = metricTimestamp;
     }
-    
+
     /**
-     * An optional <a
-     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Unix
-     * timestamp</a>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * An optional <a href=
+     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     * >Unix timestamp</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param metricTimestamp An optional <a
-     *         href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp">Unix
-     *         timestamp</a>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param metricTimestamp <p>
+     *            An optional <a href=
+     *            "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     *            >Unix timestamp</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CloudwatchMetricAction withMetricTimestamp(String metricTimestamp) {
         this.metricTimestamp = metricTimestamp;
@@ -284,59 +368,85 @@ public class CloudwatchMetricAction implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getRoleArn() != null) sb.append("RoleArn: " + getRoleArn() + ",");
-        if (getMetricNamespace() != null) sb.append("MetricNamespace: " + getMetricNamespace() + ",");
-        if (getMetricName() != null) sb.append("MetricName: " + getMetricName() + ",");
-        if (getMetricValue() != null) sb.append("MetricValue: " + getMetricValue() + ",");
-        if (getMetricUnit() != null) sb.append("MetricUnit: " + getMetricUnit() + ",");
-        if (getMetricTimestamp() != null) sb.append("MetricTimestamp: " + getMetricTimestamp() );
+        if (getRoleArn() != null)
+            sb.append("roleArn: " + getRoleArn() + ",");
+        if (getMetricNamespace() != null)
+            sb.append("metricNamespace: " + getMetricNamespace() + ",");
+        if (getMetricName() != null)
+            sb.append("metricName: " + getMetricName() + ",");
+        if (getMetricValue() != null)
+            sb.append("metricValue: " + getMetricValue() + ",");
+        if (getMetricUnit() != null)
+            sb.append("metricUnit: " + getMetricUnit() + ",");
+        if (getMetricTimestamp() != null)
+            sb.append("metricTimestamp: " + getMetricTimestamp());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode()); 
-        hashCode = prime * hashCode + ((getMetricNamespace() == null) ? 0 : getMetricNamespace().hashCode()); 
-        hashCode = prime * hashCode + ((getMetricName() == null) ? 0 : getMetricName().hashCode()); 
-        hashCode = prime * hashCode + ((getMetricValue() == null) ? 0 : getMetricValue().hashCode()); 
-        hashCode = prime * hashCode + ((getMetricUnit() == null) ? 0 : getMetricUnit().hashCode()); 
-        hashCode = prime * hashCode + ((getMetricTimestamp() == null) ? 0 : getMetricTimestamp().hashCode()); 
+
+        hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getMetricNamespace() == null) ? 0 : getMetricNamespace().hashCode());
+        hashCode = prime * hashCode + ((getMetricName() == null) ? 0 : getMetricName().hashCode());
+        hashCode = prime * hashCode
+                + ((getMetricValue() == null) ? 0 : getMetricValue().hashCode());
+        hashCode = prime * hashCode + ((getMetricUnit() == null) ? 0 : getMetricUnit().hashCode());
+        hashCode = prime * hashCode
+                + ((getMetricTimestamp() == null) ? 0 : getMetricTimestamp().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof CloudwatchMetricAction == false) return false;
-        CloudwatchMetricAction other = (CloudwatchMetricAction)obj;
-        
-        if (other.getRoleArn() == null ^ this.getRoleArn() == null) return false;
-        if (other.getRoleArn() != null && other.getRoleArn().equals(this.getRoleArn()) == false) return false; 
-        if (other.getMetricNamespace() == null ^ this.getMetricNamespace() == null) return false;
-        if (other.getMetricNamespace() != null && other.getMetricNamespace().equals(this.getMetricNamespace()) == false) return false; 
-        if (other.getMetricName() == null ^ this.getMetricName() == null) return false;
-        if (other.getMetricName() != null && other.getMetricName().equals(this.getMetricName()) == false) return false; 
-        if (other.getMetricValue() == null ^ this.getMetricValue() == null) return false;
-        if (other.getMetricValue() != null && other.getMetricValue().equals(this.getMetricValue()) == false) return false; 
-        if (other.getMetricUnit() == null ^ this.getMetricUnit() == null) return false;
-        if (other.getMetricUnit() != null && other.getMetricUnit().equals(this.getMetricUnit()) == false) return false; 
-        if (other.getMetricTimestamp() == null ^ this.getMetricTimestamp() == null) return false;
-        if (other.getMetricTimestamp() != null && other.getMetricTimestamp().equals(this.getMetricTimestamp()) == false) return false; 
+        if (obj instanceof CloudwatchMetricAction == false)
+            return false;
+        CloudwatchMetricAction other = (CloudwatchMetricAction) obj;
+
+        if (other.getRoleArn() == null ^ this.getRoleArn() == null)
+            return false;
+        if (other.getRoleArn() != null && other.getRoleArn().equals(this.getRoleArn()) == false)
+            return false;
+        if (other.getMetricNamespace() == null ^ this.getMetricNamespace() == null)
+            return false;
+        if (other.getMetricNamespace() != null
+                && other.getMetricNamespace().equals(this.getMetricNamespace()) == false)
+            return false;
+        if (other.getMetricName() == null ^ this.getMetricName() == null)
+            return false;
+        if (other.getMetricName() != null
+                && other.getMetricName().equals(this.getMetricName()) == false)
+            return false;
+        if (other.getMetricValue() == null ^ this.getMetricValue() == null)
+            return false;
+        if (other.getMetricValue() != null
+                && other.getMetricValue().equals(this.getMetricValue()) == false)
+            return false;
+        if (other.getMetricUnit() == null ^ this.getMetricUnit() == null)
+            return false;
+        if (other.getMetricUnit() != null
+                && other.getMetricUnit().equals(this.getMetricUnit()) == false)
+            return false;
+        if (other.getMetricTimestamp() == null ^ this.getMetricTimestamp() == null)
+            return false;
+        if (other.getMetricTimestamp() != null
+                && other.getMetricTimestamp().equals(this.getMetricTimestamp()) == false)
+            return false;
         return true;
     }
-    
 }
-    

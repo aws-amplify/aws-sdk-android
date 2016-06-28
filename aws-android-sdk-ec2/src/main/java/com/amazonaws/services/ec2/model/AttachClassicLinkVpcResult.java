@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Contains the output of AttachClassicLinkVpc.
+ * </p>
  */
 public class AttachClassicLinkVpcResult implements Serializable {
 

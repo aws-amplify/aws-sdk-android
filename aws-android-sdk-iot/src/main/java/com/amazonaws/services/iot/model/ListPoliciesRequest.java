@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
@@ -19,22 +20,22 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.iot.AWSIot#listPolicies(ListPoliciesRequest) ListPolicies operation}.
  * <p>
  * Lists your policies.
  * </p>
- *
- * @see com.amazonaws.services.iot.AWSIot#listPolicies(ListPoliciesRequest)
  */
 public class ListPoliciesRequest extends AmazonWebServiceRequest implements Serializable {
-
     /**
+     * <p>
      * The marker for the next set of results.
+     * </p>
      */
     private String marker;
 
     /**
+     * <p>
      * The result page size.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 250<br/>
@@ -42,38 +43,52 @@ public class ListPoliciesRequest extends AmazonWebServiceRequest implements Seri
     private Integer pageSize;
 
     /**
+     * <p>
      * Specifies the order for results. If true, the results are returned in
      * ascending creation order.
+     * </p>
      */
     private Boolean ascendingOrder;
 
     /**
+     * <p>
      * The marker for the next set of results.
+     * </p>
      *
-     * @return The marker for the next set of results.
+     * @return <p>
+     *         The marker for the next set of results.
+     *         </p>
      */
     public String getMarker() {
         return marker;
     }
-    
+
     /**
+     * <p>
      * The marker for the next set of results.
+     * </p>
      *
-     * @param marker The marker for the next set of results.
+     * @param marker <p>
+     *            The marker for the next set of results.
+     *            </p>
      */
     public void setMarker(String marker) {
         this.marker = marker;
     }
-    
+
     /**
-     * The marker for the next set of results.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The marker for the next set of results.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param marker The marker for the next set of results.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param marker <p>
+     *            The marker for the next set of results.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListPoliciesRequest withMarker(String marker) {
         this.marker = marker;
@@ -81,41 +96,53 @@ public class ListPoliciesRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
      * The result page size.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 250<br/>
      *
-     * @return The result page size.
+     * @return <p>
+     *         The result page size.
+     *         </p>
      */
     public Integer getPageSize() {
         return pageSize;
     }
-    
+
     /**
+     * <p>
      * The result page size.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 250<br/>
      *
-     * @param pageSize The result page size.
+     * @param pageSize <p>
+     *            The result page size.
+     *            </p>
      */
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
-    
+
     /**
-     * The result page size.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The result page size.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 250<br/>
      *
-     * @param pageSize The result page size.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param pageSize <p>
+     *            The result page size.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListPoliciesRequest withPageSize(Integer pageSize) {
         this.pageSize = pageSize;
@@ -123,38 +150,65 @@ public class ListPoliciesRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
      * Specifies the order for results. If true, the results are returned in
      * ascending creation order.
+     * </p>
      *
-     * @return Specifies the order for results. If true, the results are returned in
-     *         ascending creation order.
+     * @return <p>
+     *         Specifies the order for results. If true, the results are
+     *         returned in ascending creation order.
+     *         </p>
      */
     public Boolean isAscendingOrder() {
         return ascendingOrder;
     }
-    
+
     /**
+     * <p>
      * Specifies the order for results. If true, the results are returned in
      * ascending creation order.
+     * </p>
      *
-     * @param ascendingOrder Specifies the order for results. If true, the results are returned in
-     *         ascending creation order.
+     * @return <p>
+     *         Specifies the order for results. If true, the results are
+     *         returned in ascending creation order.
+     *         </p>
+     */
+    public Boolean getAscendingOrder() {
+        return ascendingOrder;
+    }
+
+    /**
+     * <p>
+     * Specifies the order for results. If true, the results are returned in
+     * ascending creation order.
+     * </p>
+     *
+     * @param ascendingOrder <p>
+     *            Specifies the order for results. If true, the results are
+     *            returned in ascending creation order.
+     *            </p>
      */
     public void setAscendingOrder(Boolean ascendingOrder) {
         this.ascendingOrder = ascendingOrder;
     }
-    
+
     /**
+     * <p>
      * Specifies the order for results. If true, the results are returned in
      * ascending creation order.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param ascendingOrder Specifies the order for results. If true, the results are returned in
-     *         ascending creation order.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param ascendingOrder <p>
+     *            Specifies the order for results. If true, the results are
+     *            returned in ascending creation order.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListPoliciesRequest withAscendingOrder(Boolean ascendingOrder) {
         this.ascendingOrder = ascendingOrder;
@@ -162,62 +216,62 @@ public class ListPoliciesRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Specifies the order for results. If true, the results are returned in
-     * ascending creation order.
-     *
-     * @return Specifies the order for results. If true, the results are returned in
-     *         ascending creation order.
-     */
-    public Boolean getAscendingOrder() {
-        return ascendingOrder;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getMarker() != null) sb.append("Marker: " + getMarker() + ",");
-        if (getPageSize() != null) sb.append("PageSize: " + getPageSize() + ",");
-        if (isAscendingOrder() != null) sb.append("AscendingOrder: " + isAscendingOrder() );
+        if (getMarker() != null)
+            sb.append("marker: " + getMarker() + ",");
+        if (getPageSize() != null)
+            sb.append("pageSize: " + getPageSize() + ",");
+        if (getAscendingOrder() != null)
+            sb.append("ascendingOrder: " + getAscendingOrder());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getMarker() == null) ? 0 : getMarker().hashCode()); 
-        hashCode = prime * hashCode + ((getPageSize() == null) ? 0 : getPageSize().hashCode()); 
-        hashCode = prime * hashCode + ((isAscendingOrder() == null) ? 0 : isAscendingOrder().hashCode()); 
+
+        hashCode = prime * hashCode + ((getMarker() == null) ? 0 : getMarker().hashCode());
+        hashCode = prime * hashCode + ((getPageSize() == null) ? 0 : getPageSize().hashCode());
+        hashCode = prime * hashCode
+                + ((getAscendingOrder() == null) ? 0 : getAscendingOrder().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof ListPoliciesRequest == false) return false;
-        ListPoliciesRequest other = (ListPoliciesRequest)obj;
-        
-        if (other.getMarker() == null ^ this.getMarker() == null) return false;
-        if (other.getMarker() != null && other.getMarker().equals(this.getMarker()) == false) return false; 
-        if (other.getPageSize() == null ^ this.getPageSize() == null) return false;
-        if (other.getPageSize() != null && other.getPageSize().equals(this.getPageSize()) == false) return false; 
-        if (other.isAscendingOrder() == null ^ this.isAscendingOrder() == null) return false;
-        if (other.isAscendingOrder() != null && other.isAscendingOrder().equals(this.isAscendingOrder()) == false) return false; 
+        if (obj instanceof ListPoliciesRequest == false)
+            return false;
+        ListPoliciesRequest other = (ListPoliciesRequest) obj;
+
+        if (other.getMarker() == null ^ this.getMarker() == null)
+            return false;
+        if (other.getMarker() != null && other.getMarker().equals(this.getMarker()) == false)
+            return false;
+        if (other.getPageSize() == null ^ this.getPageSize() == null)
+            return false;
+        if (other.getPageSize() != null && other.getPageSize().equals(this.getPageSize()) == false)
+            return false;
+        if (other.getAscendingOrder() == null ^ this.getAscendingOrder() == null)
+            return false;
+        if (other.getAscendingOrder() != null
+                && other.getAscendingOrder().equals(this.getAscendingOrder()) == false)
+            return false;
         return true;
     }
-    
 }
-    

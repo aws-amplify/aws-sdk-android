@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
@@ -19,60 +20,74 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.iot.AWSIot#listPrincipalThings(ListPrincipalThingsRequest) ListPrincipalThings operation}.
  * <p>
  * Lists the things associated with the specified principal.
  * </p>
- *
- * @see com.amazonaws.services.iot.AWSIot#listPrincipalThings(ListPrincipalThingsRequest)
  */
 public class ListPrincipalThingsRequest extends AmazonWebServiceRequest implements Serializable {
-
     /**
+     * <p>
      * A token used to retrieve the next value.
+     * </p>
      */
     private String nextToken;
 
     /**
+     * <p>
      * The maximum number of principals to return.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 250<br/>
+     * <b>Range: </b>1 - 10000<br/>
      */
     private Integer maxResults;
 
     /**
+     * <p>
      * The principal.
+     * </p>
      */
     private String principal;
 
     /**
+     * <p>
      * A token used to retrieve the next value.
+     * </p>
      *
-     * @return A token used to retrieve the next value.
+     * @return <p>
+     *         A token used to retrieve the next value.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
-    
+
     /**
+     * <p>
      * A token used to retrieve the next value.
+     * </p>
      *
-     * @param nextToken A token used to retrieve the next value.
+     * @param nextToken <p>
+     *            A token used to retrieve the next value.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
-    
+
     /**
-     * A token used to retrieve the next value.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A token used to retrieve the next value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param nextToken A token used to retrieve the next value.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param nextToken <p>
+     *            A token used to retrieve the next value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListPrincipalThingsRequest withNextToken(String nextToken) {
         this.nextToken = nextToken;
@@ -80,41 +95,53 @@ public class ListPrincipalThingsRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
+     * <p>
      * The maximum number of principals to return.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 250<br/>
+     * <b>Range: </b>1 - 10000<br/>
      *
-     * @return The maximum number of principals to return.
+     * @return <p>
+     *         The maximum number of principals to return.
+     *         </p>
      */
     public Integer getMaxResults() {
         return maxResults;
     }
-    
+
     /**
+     * <p>
      * The maximum number of principals to return.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 250<br/>
+     * <b>Range: </b>1 - 10000<br/>
      *
-     * @param maxResults The maximum number of principals to return.
+     * @param maxResults <p>
+     *            The maximum number of principals to return.
+     *            </p>
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
-    
+
     /**
-     * The maximum number of principals to return.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The maximum number of principals to return.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 250<br/>
+     * <b>Range: </b>1 - 10000<br/>
      *
-     * @param maxResults The maximum number of principals to return.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param maxResults <p>
+     *            The maximum number of principals to return.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListPrincipalThingsRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
@@ -122,32 +149,44 @@ public class ListPrincipalThingsRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
+     * <p>
      * The principal.
+     * </p>
      *
-     * @return The principal.
+     * @return <p>
+     *         The principal.
+     *         </p>
      */
     public String getPrincipal() {
         return principal;
     }
-    
+
     /**
+     * <p>
      * The principal.
+     * </p>
      *
-     * @param principal The principal.
+     * @param principal <p>
+     *            The principal.
+     *            </p>
      */
     public void setPrincipal(String principal) {
         this.principal = principal;
     }
-    
+
     /**
-     * The principal.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The principal.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param principal The principal.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param principal <p>
+     *            The principal.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListPrincipalThingsRequest withPrincipal(String principal) {
         this.principal = principal;
@@ -159,47 +198,59 @@ public class ListPrincipalThingsRequest extends AmazonWebServiceRequest implemen
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getNextToken() != null) sb.append("NextToken: " + getNextToken() + ",");
-        if (getMaxResults() != null) sb.append("MaxResults: " + getMaxResults() + ",");
-        if (getPrincipal() != null) sb.append("Principal: " + getPrincipal() );
+        if (getNextToken() != null)
+            sb.append("nextToken: " + getNextToken() + ",");
+        if (getMaxResults() != null)
+            sb.append("maxResults: " + getMaxResults() + ",");
+        if (getPrincipal() != null)
+            sb.append("principal: " + getPrincipal());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode()); 
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode()); 
-        hashCode = prime * hashCode + ((getPrincipal() == null) ? 0 : getPrincipal().hashCode()); 
+
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode + ((getPrincipal() == null) ? 0 : getPrincipal().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof ListPrincipalThingsRequest == false) return false;
-        ListPrincipalThingsRequest other = (ListPrincipalThingsRequest)obj;
-        
-        if (other.getNextToken() == null ^ this.getNextToken() == null) return false;
-        if (other.getNextToken() != null && other.getNextToken().equals(this.getNextToken()) == false) return false; 
-        if (other.getMaxResults() == null ^ this.getMaxResults() == null) return false;
-        if (other.getMaxResults() != null && other.getMaxResults().equals(this.getMaxResults()) == false) return false; 
-        if (other.getPrincipal() == null ^ this.getPrincipal() == null) return false;
-        if (other.getPrincipal() != null && other.getPrincipal().equals(this.getPrincipal()) == false) return false; 
+        if (obj instanceof ListPrincipalThingsRequest == false)
+            return false;
+        ListPrincipalThingsRequest other = (ListPrincipalThingsRequest) obj;
+
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
+        if (other.getPrincipal() == null ^ this.getPrincipal() == null)
+            return false;
+        if (other.getPrincipal() != null
+                && other.getPrincipal().equals(this.getPrincipal()) == false)
+            return false;
         return true;
     }
-    
 }
-    

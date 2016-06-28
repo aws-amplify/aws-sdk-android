@@ -25,8 +25,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * basis. You can specify that resources should receive longer IDs
  * (17-character IDs) when they are created. The following resource types
  * support longer IDs: <code>instance</code> |
- * 
- * <code>reservation</code> .
+ * <code>reservation</code> |
+ * <code>snapshot</code> |
+ * <code>volume</code> .
  * </p>
  * <p>
  * This setting applies to the IAM user who makes the request; it does

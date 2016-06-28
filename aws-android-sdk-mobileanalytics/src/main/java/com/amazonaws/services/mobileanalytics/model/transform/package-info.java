@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonMobileAnalytics.
+ * Marhsalling for the various types represented byAmazonMobileAnalytics
  */
- package com.amazonaws.services.mobileanalytics.model.transform;
-        
+
+package com.amazonaws.services.mobileanalytics.model.transform;
+

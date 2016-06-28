@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
@@ -22,9 +23,10 @@ import java.io.Serializable;
  * </p>
  */
 public class UserType implements Serializable {
-
     /**
+     * <p>
      * The user name of the user you wish to describe.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -33,76 +35,102 @@ public class UserType implements Serializable {
     private String username;
 
     /**
+     * <p>
      * A container with information about the user type attributes.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<AttributeType> attributes;
+    private java.util.List<AttributeType> attributes;
 
     /**
+     * <p>
      * The creation date of the user.
+     * </p>
      */
     private java.util.Date userCreateDate;
 
     /**
+     * <p>
      * The last modified date of the user.
+     * </p>
      */
     private java.util.Date userLastModifiedDate;
 
     /**
+     * <p>
      * Specifies whether the user is enabled.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     * User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     * been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security
-     * threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
+     * <p>
+     * The user status. Can be one of the following:
+     * </p>
+     * <ul>
+     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     * <li>CONFIRMED - User has been confirmed.</li>
+     * <li>ARCHIVED - User is no longer active.</li>
+     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
+     * <li>UNKNOWN - User status is not known.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED, UNKNOWN
+     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
+     * UNKNOWN
      */
     private String userStatus;
 
     /**
+     * <p>
      * The user name of the user you wish to describe.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @return The user name of the user you wish to describe.
+     * @return <p>
+     *         The user name of the user you wish to describe.
+     *         </p>
      */
     public String getUsername() {
         return username;
     }
-    
+
     /**
+     * <p>
      * The user name of the user you wish to describe.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The user name of the user you wish to describe.
+     * @param username <p>
+     *            The user name of the user you wish to describe.
+     *            </p>
      */
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     /**
-     * The user name of the user you wish to describe.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The user name of the user you wish to describe.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The user name of the user you wish to describe.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param username <p>
+     *            The user name of the user you wish to describe.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UserType withUsername(String username) {
         this.username = username;
@@ -110,100 +138,118 @@ public class UserType implements Serializable {
     }
 
     /**
+     * <p>
      * A container with information about the user type attributes.
+     * </p>
      *
-     * @return A container with information about the user type attributes.
+     * @return <p>
+     *         A container with information about the user type attributes.
+     *         </p>
      */
     public java.util.List<AttributeType> getAttributes() {
-        if (attributes == null) {
-              attributes = new com.amazonaws.internal.ListWithAutoConstructFlag<AttributeType>();
-              attributes.setAutoConstruct(true);
-        }
         return attributes;
     }
-    
+
     /**
+     * <p>
      * A container with information about the user type attributes.
+     * </p>
      *
-     * @param attributes A container with information about the user type attributes.
+     * @param attributes <p>
+     *            A container with information about the user type attributes.
+     *            </p>
      */
     public void setAttributes(java.util.Collection<AttributeType> attributes) {
         if (attributes == null) {
             this.attributes = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<AttributeType> attributesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<AttributeType>(attributes.size());
-        attributesCopy.addAll(attributes);
-        this.attributes = attributesCopy;
+
+        this.attributes = new java.util.ArrayList<AttributeType>(attributes);
     }
-    
+
     /**
-     * A container with information about the user type attributes.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A container with information about the user type attributes.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param attributes A container with information about the user type attributes.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param attributes <p>
+     *            A container with information about the user type attributes.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UserType withAttributes(AttributeType... attributes) {
-        if (getAttributes() == null) setAttributes(new java.util.ArrayList<AttributeType>(attributes.length));
+        if (getAttributes() == null) {
+            this.attributes = new java.util.ArrayList<AttributeType>(attributes.length);
+        }
         for (AttributeType value : attributes) {
-            getAttributes().add(value);
+            this.attributes.add(value);
         }
         return this;
     }
-    
+
     /**
-     * A container with information about the user type attributes.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A container with information about the user type attributes.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param attributes A container with information about the user type attributes.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param attributes <p>
+     *            A container with information about the user type attributes.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UserType withAttributes(java.util.Collection<AttributeType> attributes) {
-        if (attributes == null) {
-            this.attributes = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<AttributeType> attributesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<AttributeType>(attributes.size());
-            attributesCopy.addAll(attributes);
-            this.attributes = attributesCopy;
-        }
-
+        setAttributes(attributes);
         return this;
     }
 
     /**
+     * <p>
      * The creation date of the user.
+     * </p>
      *
-     * @return The creation date of the user.
+     * @return <p>
+     *         The creation date of the user.
+     *         </p>
      */
     public java.util.Date getUserCreateDate() {
         return userCreateDate;
     }
-    
+
     /**
+     * <p>
      * The creation date of the user.
+     * </p>
      *
-     * @param userCreateDate The creation date of the user.
+     * @param userCreateDate <p>
+     *            The creation date of the user.
+     *            </p>
      */
     public void setUserCreateDate(java.util.Date userCreateDate) {
         this.userCreateDate = userCreateDate;
     }
-    
+
     /**
-     * The creation date of the user.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The creation date of the user.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param userCreateDate The creation date of the user.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param userCreateDate <p>
+     *            The creation date of the user.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UserType withUserCreateDate(java.util.Date userCreateDate) {
         this.userCreateDate = userCreateDate;
@@ -211,32 +257,44 @@ public class UserType implements Serializable {
     }
 
     /**
+     * <p>
      * The last modified date of the user.
+     * </p>
      *
-     * @return The last modified date of the user.
+     * @return <p>
+     *         The last modified date of the user.
+     *         </p>
      */
     public java.util.Date getUserLastModifiedDate() {
         return userLastModifiedDate;
     }
-    
+
     /**
+     * <p>
      * The last modified date of the user.
+     * </p>
      *
-     * @param userLastModifiedDate The last modified date of the user.
+     * @param userLastModifiedDate <p>
+     *            The last modified date of the user.
+     *            </p>
      */
     public void setUserLastModifiedDate(java.util.Date userLastModifiedDate) {
         this.userLastModifiedDate = userLastModifiedDate;
     }
-    
+
     /**
-     * The last modified date of the user.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The last modified date of the user.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param userLastModifiedDate The last modified date of the user.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param userLastModifiedDate <p>
+     *            The last modified date of the user.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UserType withUserLastModifiedDate(java.util.Date userLastModifiedDate) {
         this.userLastModifiedDate = userLastModifiedDate;
@@ -244,32 +302,57 @@ public class UserType implements Serializable {
     }
 
     /**
+     * <p>
      * Specifies whether the user is enabled.
+     * </p>
      *
-     * @return Specifies whether the user is enabled.
+     * @return <p>
+     *         Specifies whether the user is enabled.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
-    
+
     /**
+     * <p>
      * Specifies whether the user is enabled.
+     * </p>
      *
-     * @param enabled Specifies whether the user is enabled.
+     * @return <p>
+     *         Specifies whether the user is enabled.
+     *         </p>
+     */
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the user is enabled.
+     * </p>
+     *
+     * @param enabled <p>
+     *            Specifies whether the user is enabled.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-    
+
     /**
-     * Specifies whether the user is enabled.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Specifies whether the user is enabled.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param enabled Specifies whether the user is enabled.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param enabled <p>
+     *            Specifies whether the user is enabled.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UserType withEnabled(Boolean enabled) {
         this.enabled = enabled;
@@ -277,79 +360,103 @@ public class UserType implements Serializable {
     }
 
     /**
-     * Specifies whether the user is enabled.
-     *
-     * @return Specifies whether the user is enabled.
-     */
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    /**
-     * The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     * User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     * been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security
-     * threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
+     * <p>
+     * The user status. Can be one of the following:
+     * </p>
+     * <ul>
+     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     * <li>CONFIRMED - User has been confirmed.</li>
+     * <li>ARCHIVED - User is no longer active.</li>
+     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
+     * <li>UNKNOWN - User status is not known.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED, UNKNOWN
+     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
+     * UNKNOWN
      *
-     * @return The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     *         User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     *         been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
+     * @return <p>
+     *         The user status. Can be one of the following:
+     *         </p>
+     *         <ul>
+     *         <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     *         <li>CONFIRMED - User has been confirmed.</li>
+     *         <li>ARCHIVED - User is no longer active.</li>
      *         <li>COMPROMISED - User is disabled due to a potential security
-     *         threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
-     *
+     *         threat.</li>
+     *         <li>UNKNOWN - User status is not known.</li>
+     *         </ul>
      * @see UserStatusType
      */
     public String getUserStatus() {
         return userStatus;
     }
-    
+
     /**
-     * The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     * User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     * been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security
-     * threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
+     * <p>
+     * The user status. Can be one of the following:
+     * </p>
+     * <ul>
+     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     * <li>CONFIRMED - User has been confirmed.</li>
+     * <li>ARCHIVED - User is no longer active.</li>
+     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
+     * <li>UNKNOWN - User status is not known.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED, UNKNOWN
+     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
+     * UNKNOWN
      *
-     * @param userStatus The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     *         User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     *         been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     *         <li>COMPROMISED - User is disabled due to a potential security
-     *         threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
-     *
+     * @param userStatus <p>
+     *            The user status. Can be one of the following:
+     *            </p>
+     *            <ul>
+     *            <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     *            <li>CONFIRMED - User has been confirmed.</li>
+     *            <li>ARCHIVED - User is no longer active.</li>
+     *            <li>COMPROMISED - User is disabled due to a potential security
+     *            threat.</li>
+     *            <li>UNKNOWN - User status is not known.</li>
+     *            </ul>
      * @see UserStatusType
      */
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
     }
-    
+
     /**
-     * The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     * User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     * been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security
-     * threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The user status. Can be one of the following:
+     * </p>
+     * <ul>
+     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     * <li>CONFIRMED - User has been confirmed.</li>
+     * <li>ARCHIVED - User is no longer active.</li>
+     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
+     * <li>UNKNOWN - User status is not known.</li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED, UNKNOWN
+     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
+     * UNKNOWN
      *
-     * @param userStatus The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     *         User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     *         been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     *         <li>COMPROMISED - User is disabled due to a potential security
-     *         threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param userStatus <p>
+     *            The user status. Can be one of the following:
+     *            </p>
+     *            <ul>
+     *            <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     *            <li>CONFIRMED - User has been confirmed.</li>
+     *            <li>ARCHIVED - User is no longer active.</li>
+     *            <li>COMPROMISED - User is disabled due to a potential security
+     *            threat.</li>
+     *            <li>UNKNOWN - User status is not known.</li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see UserStatusType
      */
     public UserType withUserStatus(String userStatus) {
@@ -358,48 +465,70 @@ public class UserType implements Serializable {
     }
 
     /**
-     * The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     * User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     * been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security
-     * threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
+     * <p>
+     * The user status. Can be one of the following:
+     * </p>
+     * <ul>
+     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     * <li>CONFIRMED - User has been confirmed.</li>
+     * <li>ARCHIVED - User is no longer active.</li>
+     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
+     * <li>UNKNOWN - User status is not known.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED, UNKNOWN
+     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
+     * UNKNOWN
      *
-     * @param userStatus The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     *         User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     *         been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     *         <li>COMPROMISED - User is disabled due to a potential security
-     *         threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
-     *
+     * @param userStatus <p>
+     *            The user status. Can be one of the following:
+     *            </p>
+     *            <ul>
+     *            <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     *            <li>CONFIRMED - User has been confirmed.</li>
+     *            <li>ARCHIVED - User is no longer active.</li>
+     *            <li>COMPROMISED - User is disabled due to a potential security
+     *            threat.</li>
+     *            <li>UNKNOWN - User status is not known.</li>
+     *            </ul>
      * @see UserStatusType
      */
     public void setUserStatus(UserStatusType userStatus) {
         this.userStatus = userStatus.toString();
     }
-    
+
     /**
-     * The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     * User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     * been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security
-     * threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The user status. Can be one of the following:
+     * </p>
+     * <ul>
+     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     * <li>CONFIRMED - User has been confirmed.</li>
+     * <li>ARCHIVED - User is no longer active.</li>
+     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
+     * <li>UNKNOWN - User status is not known.</li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED, UNKNOWN
+     * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
+     * UNKNOWN
      *
-     * @param userStatus The user status. Can be one of the following: <ul> <li>UNCONFIRMED -
-     *         User has been created but not confirmed.</li> <li>CONFIRMED - User has
-     *         been confirmed.</li> <li>ARCHIVED - User is no longer active.</li>
-     *         <li>COMPROMISED - User is disabled due to a potential security
-     *         threat.</li> <li>UNKNOWN - User status is not known.</li> </ul>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param userStatus <p>
+     *            The user status. Can be one of the following:
+     *            </p>
+     *            <ul>
+     *            <li>UNCONFIRMED - User has been created but not confirmed.</li>
+     *            <li>CONFIRMED - User has been confirmed.</li>
+     *            <li>ARCHIVED - User is no longer active.</li>
+     *            <li>COMPROMISED - User is disabled due to a potential security
+     *            threat.</li>
+     *            <li>UNKNOWN - User status is not known.</li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see UserStatusType
      */
     public UserType withUserStatus(UserStatusType userStatus) {
@@ -412,59 +541,83 @@ public class UserType implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getUsername() != null) sb.append("Username: " + getUsername() + ",");
-        if (getAttributes() != null) sb.append("Attributes: " + getAttributes() + ",");
-        if (getUserCreateDate() != null) sb.append("UserCreateDate: " + getUserCreateDate() + ",");
-        if (getUserLastModifiedDate() != null) sb.append("UserLastModifiedDate: " + getUserLastModifiedDate() + ",");
-        if (isEnabled() != null) sb.append("Enabled: " + isEnabled() + ",");
-        if (getUserStatus() != null) sb.append("UserStatus: " + getUserStatus() );
+        if (getUsername() != null)
+            sb.append("Username: " + getUsername() + ",");
+        if (getAttributes() != null)
+            sb.append("Attributes: " + getAttributes() + ",");
+        if (getUserCreateDate() != null)
+            sb.append("UserCreateDate: " + getUserCreateDate() + ",");
+        if (getUserLastModifiedDate() != null)
+            sb.append("UserLastModifiedDate: " + getUserLastModifiedDate() + ",");
+        if (getEnabled() != null)
+            sb.append("Enabled: " + getEnabled() + ",");
+        if (getUserStatus() != null)
+            sb.append("UserStatus: " + getUserStatus());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getUsername() == null) ? 0 : getUsername().hashCode()); 
-        hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode()); 
-        hashCode = prime * hashCode + ((getUserCreateDate() == null) ? 0 : getUserCreateDate().hashCode()); 
-        hashCode = prime * hashCode + ((getUserLastModifiedDate() == null) ? 0 : getUserLastModifiedDate().hashCode()); 
-        hashCode = prime * hashCode + ((isEnabled() == null) ? 0 : isEnabled().hashCode()); 
-        hashCode = prime * hashCode + ((getUserStatus() == null) ? 0 : getUserStatus().hashCode()); 
+
+        hashCode = prime * hashCode + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserCreateDate() == null) ? 0 : getUserCreateDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserLastModifiedDate() == null) ? 0 : getUserLastModifiedDate().hashCode());
+        hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
+        hashCode = prime * hashCode + ((getUserStatus() == null) ? 0 : getUserStatus().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof UserType == false) return false;
-        UserType other = (UserType)obj;
-        
-        if (other.getUsername() == null ^ this.getUsername() == null) return false;
-        if (other.getUsername() != null && other.getUsername().equals(this.getUsername()) == false) return false; 
-        if (other.getAttributes() == null ^ this.getAttributes() == null) return false;
-        if (other.getAttributes() != null && other.getAttributes().equals(this.getAttributes()) == false) return false; 
-        if (other.getUserCreateDate() == null ^ this.getUserCreateDate() == null) return false;
-        if (other.getUserCreateDate() != null && other.getUserCreateDate().equals(this.getUserCreateDate()) == false) return false; 
-        if (other.getUserLastModifiedDate() == null ^ this.getUserLastModifiedDate() == null) return false;
-        if (other.getUserLastModifiedDate() != null && other.getUserLastModifiedDate().equals(this.getUserLastModifiedDate()) == false) return false; 
-        if (other.isEnabled() == null ^ this.isEnabled() == null) return false;
-        if (other.isEnabled() != null && other.isEnabled().equals(this.isEnabled()) == false) return false; 
-        if (other.getUserStatus() == null ^ this.getUserStatus() == null) return false;
-        if (other.getUserStatus() != null && other.getUserStatus().equals(this.getUserStatus()) == false) return false; 
+        if (obj instanceof UserType == false)
+            return false;
+        UserType other = (UserType) obj;
+
+        if (other.getUsername() == null ^ this.getUsername() == null)
+            return false;
+        if (other.getUsername() != null && other.getUsername().equals(this.getUsername()) == false)
+            return false;
+        if (other.getAttributes() == null ^ this.getAttributes() == null)
+            return false;
+        if (other.getAttributes() != null
+                && other.getAttributes().equals(this.getAttributes()) == false)
+            return false;
+        if (other.getUserCreateDate() == null ^ this.getUserCreateDate() == null)
+            return false;
+        if (other.getUserCreateDate() != null
+                && other.getUserCreateDate().equals(this.getUserCreateDate()) == false)
+            return false;
+        if (other.getUserLastModifiedDate() == null ^ this.getUserLastModifiedDate() == null)
+            return false;
+        if (other.getUserLastModifiedDate() != null
+                && other.getUserLastModifiedDate().equals(this.getUserLastModifiedDate()) == false)
+            return false;
+        if (other.getEnabled() == null ^ this.getEnabled() == null)
+            return false;
+        if (other.getEnabled() != null && other.getEnabled().equals(this.getEnabled()) == false)
+            return false;
+        if (other.getUserStatus() == null ^ this.getUserStatus() == null)
+            return false;
+        if (other.getUserStatus() != null
+                && other.getUserStatus().equals(this.getUserStatus()) == false)
+            return false;
         return true;
     }
-    
 }
-    

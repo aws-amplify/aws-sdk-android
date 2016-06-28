@@ -38,13 +38,17 @@ import com.amazonaws.services.elasticloadbalancing.model.transform.*;
  * completes.
  * <p>
  * Elastic Load Balancing <p>
- * Elastic Load Balancing distributes incoming traffic across your EC2
- * instances.
- * </p>
- * <p>
- * For information about the features of Elastic Load Balancing, see
- * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elastic-load-balancing.html"> What Is Elastic Load Balancing? </a>
- * in the <i>Elastic Load Balancing Developer Guide</i> .
+ * A load balancer distributes incoming traffic across your EC2
+ * instances. This enables you to increase the availability of your
+ * application. The load balancer also monitors the health of its
+ * registered instances and ensures that it routes traffic only to
+ * healthy instances. You configure your load balancer to accept incoming
+ * traffic by specifying one or more listeners, which are configured with
+ * a protocol and port number for connections from clients to the load
+ * balancer and a protocol and port number for connections from the load
+ * balancer to the instances. For more information, see the
+ * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/"> Elastic Load Balancing Developer Guide </a>
+ * .
  * </p>
  * <p>
  * For information about the AWS regions supported by Elastic Load
@@ -237,7 +241,10 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
     }
 
     private void init() {
+        exceptionUnmarshallers.add(new MinimumLBCapacityUnitsLimitExceededExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new MinimumLBCapacityUnitsDecreaseThrottlingExceptionUnmarshaller());
         exceptionUnmarshallers.add(new PolicyTypeNotFoundExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InsufficientCapacityExceptionUnmarshaller());
         exceptionUnmarshallers.add(new TooManyPoliciesExceptionUnmarshaller());
         exceptionUnmarshallers.add(new DuplicateTagKeysExceptionUnmarshaller());
         exceptionUnmarshallers.add(new TooManyLoadBalancersExceptionUnmarshaller());
@@ -245,6 +252,8 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
         exceptionUnmarshallers.add(new InvalidSubnetExceptionUnmarshaller());
         exceptionUnmarshallers.add(new DuplicateListenerExceptionUnmarshaller());
         exceptionUnmarshallers.add(new ListenerNotFoundExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new UnsupportedProtocolExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new DependencyThrottleExceptionUnmarshaller());
         exceptionUnmarshallers.add(new CertificateNotFoundExceptionUnmarshaller());
         exceptionUnmarshallers.add(new LoadBalancerAttributeNotFoundExceptionUnmarshaller());
         exceptionUnmarshallers.add(new PolicyNotFoundExceptionUnmarshaller());
@@ -566,6 +575,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
      * @return The response from the DescribeLoadBalancers service method, as
      *         returned by AmazonElasticLoadBalancing.
      * 
+     * @throws DependencyThrottleException
      * @throws LoadBalancerNotFoundException
      *
      * @throws AmazonClientException
@@ -587,6 +597,45 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
             response = invoke(request, new DescribeLoadBalancersResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
+     * Describes the provisioned capacity of the specified load balancer.
+     * </p>
+     *
+     * @param describeProvisionedCapacityRequest Container for the necessary
+     *           parameters to execute the DescribeProvisionedCapacity service method
+     *           on AmazonElasticLoadBalancing.
+     * 
+     * @return The response from the DescribeProvisionedCapacity service
+     *         method, as returned by AmazonElasticLoadBalancing.
+     * 
+     * @throws LoadBalancerNotFoundException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonElasticLoadBalancing indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public DescribeProvisionedCapacityResult describeProvisionedCapacity(DescribeProvisionedCapacityRequest describeProvisionedCapacityRequest) {
+        ExecutionContext executionContext = createExecutionContext(describeProvisionedCapacityRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<DescribeProvisionedCapacityRequest> request = null;
+        Response<DescribeProvisionedCapacityResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new DescribeProvisionedCapacityRequestMarshaller().marshall(describeProvisionedCapacityRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new DescribeProvisionedCapacityResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
             endClientExecution(awsRequestMetrics, request, response);
@@ -667,6 +716,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
      * 
      * 
      * @throws CertificateNotFoundException
+     * @throws UnsupportedProtocolException
      * @throws ListenerNotFoundException
      * @throws InvalidConfigurationRequestException
      * @throws LoadBalancerNotFoundException
@@ -924,6 +974,60 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
             response = invoke(request, new SetLoadBalancerPoliciesOfListenerResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+    
+    /**
+     * <p>
+     * Modifies the provisioned capacity of the specified load balancer.
+     * </p>
+     * <p>
+     * There is a limit on the number of times that you can decrease the
+     * provisioned capacity of your load balancer in a day. To view the
+     * remaining number of times that you can decrease the provisioned
+     * capacity, call DescribeProvisionedCapacity.
+     * </p>
+     * <p>
+     * For more information, see
+     * <a href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-provisioned-capacity.html"> Configure Provisioned Capacity </a>
+     * in the <i>Elastic Load Balancing Developer Guide</i>
+     * </p>
+     *
+     * @param modifyProvisionedCapacityRequest Container for the necessary
+     *           parameters to execute the ModifyProvisionedCapacity service method on
+     *           AmazonElasticLoadBalancing.
+     * 
+     * @return The response from the ModifyProvisionedCapacity service
+     *         method, as returned by AmazonElasticLoadBalancing.
+     * 
+     * @throws MinimumLBCapacityUnitsLimitExceededException
+     * @throws InvalidConfigurationRequestException
+     * @throws InsufficientCapacityException
+     * @throws LoadBalancerNotFoundException
+     * @throws MinimumLBCapacityUnitsDecreaseThrottlingException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonElasticLoadBalancing indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ModifyProvisionedCapacityResult modifyProvisionedCapacity(ModifyProvisionedCapacityRequest modifyProvisionedCapacityRequest) {
+        ExecutionContext executionContext = createExecutionContext(modifyProvisionedCapacityRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        Request<ModifyProvisionedCapacityRequest> request = null;
+        Response<ModifyProvisionedCapacityResult> response = null;
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        try {
+            request = new ModifyProvisionedCapacityRequestMarshaller().marshall(modifyProvisionedCapacityRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ModifyProvisionedCapacityResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
             endClientExecution(awsRequestMetrics, request, response);
@@ -1199,6 +1303,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
      *         returned by AmazonElasticLoadBalancing.
      * 
      * @throws CertificateNotFoundException
+     * @throws UnsupportedProtocolException
      * @throws TooManyTagsException
      * @throws InvalidSubnetException
      * @throws DuplicateLoadBalancerNameException
@@ -1322,6 +1427,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
      * 
      * 
      * @throws CertificateNotFoundException
+     * @throws UnsupportedProtocolException
      * @throws InvalidConfigurationRequestException
      * @throws LoadBalancerNotFoundException
      * @throws DuplicateListenerException
@@ -1723,6 +1829,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
      * @return The response from the DescribeLoadBalancers service method, as
      *         returned by AmazonElasticLoadBalancing.
      * 
+     * @throws DependencyThrottleException
      * @throws LoadBalancerNotFoundException
      *
      * @throws AmazonClientException

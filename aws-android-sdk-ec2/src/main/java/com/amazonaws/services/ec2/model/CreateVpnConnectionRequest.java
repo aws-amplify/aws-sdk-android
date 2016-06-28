@@ -42,6 +42,10 @@ import com.amazonaws.services.ec2.model.transform.CreateVpnConnectionRequestMars
  * gateway with the new information returned from this call.
  * </p>
  * <p>
+ * This is an idempotent operation. If you perform the operation more
+ * than once, Amazon EC2 doesn't return an error.
+ * </p>
+ * <p>
  * For more information about VPN connections, see
  * <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html"> Adding a Hardware Virtual Private Gateway to Your VPC </a>
  * in the <i>Amazon Virtual Private Cloud User Guide</i> .

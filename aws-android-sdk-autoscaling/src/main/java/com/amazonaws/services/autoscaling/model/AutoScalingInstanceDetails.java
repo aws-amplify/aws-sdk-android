@@ -52,9 +52,8 @@ public class AutoScalingInstanceDetails implements Serializable {
 
     /**
      * The lifecycle state for the instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates">Auto
-     * Scaling Instance States</a> in the <i>Auto Scaling Developer
-     * Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html">Auto
+     * Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
@@ -226,18 +225,16 @@ public class AutoScalingInstanceDetails implements Serializable {
 
     /**
      * The lifecycle state for the instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates">Auto
-     * Scaling Instance States</a> in the <i>Auto Scaling Developer
-     * Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html">Auto
+     * Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The lifecycle state for the instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates">Auto
-     *         Scaling Instance States</a> in the <i>Auto Scaling Developer
-     *         Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html">Auto
+     *         Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public String getLifecycleState() {
         return lifecycleState;
@@ -245,18 +242,16 @@ public class AutoScalingInstanceDetails implements Serializable {
     
     /**
      * The lifecycle state for the instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates">Auto
-     * Scaling Instance States</a> in the <i>Auto Scaling Developer
-     * Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html">Auto
+     * Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param lifecycleState The lifecycle state for the instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates">Auto
-     *         Scaling Instance States</a> in the <i>Auto Scaling Developer
-     *         Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html">Auto
+     *         Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
      */
     public void setLifecycleState(String lifecycleState) {
         this.lifecycleState = lifecycleState;
@@ -264,9 +259,8 @@ public class AutoScalingInstanceDetails implements Serializable {
     
     /**
      * The lifecycle state for the instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates">Auto
-     * Scaling Instance States</a> in the <i>Auto Scaling Developer
-     * Guide</i>.
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html">Auto
+     * Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -275,9 +269,8 @@ public class AutoScalingInstanceDetails implements Serializable {
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param lifecycleState The lifecycle state for the instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates">Auto
-     *         Scaling Instance States</a> in the <i>Auto Scaling Developer
-     *         Guide</i>.
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html">Auto
+     *         Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

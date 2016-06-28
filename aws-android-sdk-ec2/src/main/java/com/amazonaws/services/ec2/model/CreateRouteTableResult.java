@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Contains the output of CreateRouteTable.
+ * </p>
  */
 public class CreateRouteTableResult implements Serializable {
 

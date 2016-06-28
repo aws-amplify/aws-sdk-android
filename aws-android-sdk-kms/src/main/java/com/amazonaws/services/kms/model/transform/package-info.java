@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AWSKMS.
+ * Marhsalling for the various types represented byAWSKMS
  */
- package com.amazonaws.services.kms.model.transform;
-        
+
+package com.amazonaws.services.kms.model.transform;
+

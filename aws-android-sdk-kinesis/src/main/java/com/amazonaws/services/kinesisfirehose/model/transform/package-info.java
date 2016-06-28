@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonKinesisFirehose.
+ * Marhsalling for the various types represented byAmazonKinesisFirehose
  */
- package com.amazonaws.services.kinesisfirehose.model.transform;
-        
+
+package com.amazonaws.services.kinesisfirehose.model.transform;
+

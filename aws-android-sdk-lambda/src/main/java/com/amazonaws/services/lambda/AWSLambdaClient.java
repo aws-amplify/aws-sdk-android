@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.lambda;
 
 import java.util.*;
@@ -30,44 +31,44 @@ import com.amazonaws.services.lambda.model.*;
 import com.amazonaws.services.lambda.model.transform.*;
 
 /**
- * Client for accessing AWSLambda.  All service calls made
- * using this client are blocking, and will not return until the service call
- * completes.
+ * Client for accessing AWS Lambda. All service calls made using this client are
+ * blocking, and will not return until the service call completes.
  * <p>
- * AWS Lambda <p>
+ * <fullname>AWS Lambda</fullname>
+ * <p>
  * <b>Overview</b>
  * </p>
  * <p>
- * This is the <i>AWS Lambda API Reference</i> .
- * The AWS Lambda Developer Guide provides additional information.
- * For the service overview, go to
- * <a href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html"> What is AWS Lambda </a> , and for information about how the service works, go to <a href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html"> AWS Lambda: How it Works </a>
- * in the <i>AWS Lambda Developer Guide</i> .
+ * This is the <i>AWS Lambda API Reference</i>. The AWS Lambda Developer Guide
+ * provides additional information. For the service overview, go to <a
+ * href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is AWS
+ * Lambda</a>, and for information about how the service works, go to <a
+ * href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html"
+ * >AWS Lambda: How it Works</a> in the <i>AWS Lambda Developer Guide</i>.
  * </p>
  */
 public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda {
-
     /** Provider for AWS credentials. */
     private AWSCredentialsProvider awsCredentialsProvider;
 
     /**
-     * List of exception unmarshallers for all AWSLambda exceptions.
+     * List of exception unmarshallers for all AWS Lambda exceptions.
      */
     protected List<JsonErrorUnmarshaller> jsonErrorUnmarshallers;
 
     /**
-     * Constructs a new client to invoke service methods on
-     * AWSLambda.  A credentials provider chain will be used
-     * that searches for credentials in this order:
+     * Constructs a new client to invoke service methods on AWSLambda. A
+     * credentials provider chain will be used that searches for credentials in
+     * this order:
      * <ul>
-     *  <li> Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY </li>
-     *  <li> Java System Properties - aws.accessKeyId and aws.secretKey </li>
-     *  <li> Instance profile credentials delivered through the Amazon EC2 metadata service </li>
+     * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
+     * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
+     * <li>Instance profile credentials delivered through the Amazon EC2
+     * metadata service</li>
      * </ul>
-     *
      * <p>
-     * All service calls made using this new client object are blocking, and will not
-     * return until the service call completes.
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
      *
      * @see DefaultAWSCredentialsProviderChain
      */
@@ -77,23 +78,22 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
     }
 
     /**
-     * Constructs a new client to invoke service methods on
-     * AWSLambda.  A credentials provider chain will be used
-     * that searches for credentials in this order:
+     * Constructs a new client to invoke service methods on AWSLambda. A
+     * credentials provider chain will be used that searches for credentials in
+     * this order:
      * <ul>
-     *  <li> Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY </li>
-     *  <li> Java System Properties - aws.accessKeyId and aws.secretKey </li>
-     *  <li> Instance profile credentials delivered through the Amazon EC2 metadata service </li>
+     * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
+     * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
+     * <li>Instance profile credentials delivered through the Amazon EC2
+     * metadata service</li>
      * </ul>
-     *
      * <p>
-     * All service calls made using this new client object are blocking, and will not
-     * return until the service call completes.
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
      *
-     * @param clientConfiguration The client configuration options controlling how this
-     *                       client connects to AWSLambda
-     *                       (ex: proxy settings, retry counts, etc.).
-     *
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AWSLambda (ex: proxy settings,
+     *            retry counts, etc.).
      * @see DefaultAWSCredentialsProviderChain
      */
     @Deprecated
@@ -102,90 +102,129 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
     }
 
     /**
-     * Constructs a new client to invoke service methods on
-     * AWSLambda using the specified AWS account credentials.
-     * 
+     * Constructs a new client to invoke service methods on AWSLambda using the
+     * specified AWS account credentials.
      * <p>
-     * All service calls made using this new client object are blocking, and will not
-     * return until the service call completes.
+     * If AWS session credentials are passed in, then those credentials will be
+     * used to authenticate requests. Otherwise, if AWS long-term credentials
+     * are passed in, then session management will be handled automatically by
+     * the SDK. Callers are encouraged to use long-term credentials and let the
+     * SDK handle starting and renewing sessions.
+     * <p>
+     * Automatically managed sessions will be shared among all clients that use
+     * the same credentials and service endpoint. To opt out of this behavior,
+     * explicitly provide an instance of {@link AWSCredentialsProvider} that
+     * returns {@link AWSSessionCredentials}.
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
      *
-     * @param awsCredentials The AWS credentials (access key ID and secret key) to use
-     *                       when authenticating with AWS services.
+     * @param awsCredentials The AWS credentials (access key ID and secret key)
+     *            to use when authenticating with AWS services.
      */
     public AWSLambdaClient(AWSCredentials awsCredentials) {
         this(awsCredentials, new ClientConfiguration());
     }
 
     /**
-     * Constructs a new client to invoke service methods on
-     * AWSLambda using the specified AWS account credentials
-     * and client configuration options.
-     * 
+     * Constructs a new client to invoke service methods on AWSLambda using the
+     * specified AWS account credentials and client configuration options.
      * <p>
-     * All service calls made using this new client object are blocking, and will not
-     * return until the service call completes.
+     * If AWS session credentials are passed in, then those credentials will be
+     * used to authenticate requests. Otherwise, if AWS long-term credentials
+     * are passed in, then session management will be handled automatically by
+     * the SDK. Callers are encouraged to use long-term credentials and let the
+     * SDK handle starting and renewing sessions.
+     * <p>
+     * Automatically managed sessions will be shared among all clients that use
+     * the same credentials and service endpoint. To opt out of this behavior,
+     * explicitly provide an instance of {@link AWSCredentialsProvider} that
+     * returns {@link AWSSessionCredentials}.
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
      *
-     * @param awsCredentials The AWS credentials (access key ID and secret key) to use
-     *                       when authenticating with AWS services.
-     * @param clientConfiguration The client configuration options controlling how this
-     *                       client connects to AWSLambda
-     *                       (ex: proxy settings, retry counts, etc.).
+     * @param awsCredentials The AWS credentials (access key ID and secret key)
+     *            to use when authenticating with AWS services.
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AWSLambda (ex: proxy settings,
+     *            retry counts, etc.).
      */
     public AWSLambdaClient(AWSCredentials awsCredentials, ClientConfiguration clientConfiguration) {
         this(new StaticCredentialsProvider(awsCredentials), clientConfiguration);
     }
 
     /**
-     * Constructs a new client to invoke service methods on
-     * AWSLambda using the specified AWS account credentials provider.
-     * 
+     * Constructs a new client to invoke service methods on AWSLambda using the
+     * specified AWS account credentials provider.
      * <p>
-     * All service calls made using this new client object are blocking, and will not
-     * return until the service call completes.
+     * If AWS session credentials are passed in, then those credentials will be
+     * used to authenticate requests. Otherwise, if AWS long-term credentials
+     * are passed in, then session management will be handled automatically by
+     * the SDK. Callers are encouraged to use long-term credentials and let the
+     * SDK handle starting and renewing sessions.
+     * <p>
+     * Automatically managed sessions will be shared among all clients that use
+     * the same credentials and service endpoint. To opt out of this behavior,
+     * explicitly provide an instance of {@link AWSCredentialsProvider} that
+     * returns {@link AWSSessionCredentials}.
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
      *
-     * @param awsCredentialsProvider
-     *            The AWS credentials provider which will provide credentials
-     *            to authenticate requests with AWS services.
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
      */
     public AWSLambdaClient(AWSCredentialsProvider awsCredentialsProvider) {
         this(awsCredentialsProvider, new ClientConfiguration());
     }
 
     /**
-     * Constructs a new client to invoke service methods on
-     * AWSLambda using the specified AWS account credentials
-     * provider and client configuration options.
-     * 
+     * Constructs a new client to invoke service methods on AWSLambda using the
+     * specified AWS account credentials provider and client configuration
+     * options.
      * <p>
-     * All service calls made using this new client object are blocking, and will not
-     * return until the service call completes.
+     * If AWS session credentials are passed in, then those credentials will be
+     * used to authenticate requests. Otherwise, if AWS long-term credentials
+     * are passed in, then session management will be handled automatically by
+     * the SDK. Callers are encouraged to use long-term credentials and let the
+     * SDK handle starting and renewing sessions.
+     * <p>
+     * Automatically managed sessions will be shared among all clients that use
+     * the same credentials and service endpoint. To opt out of this behavior,
+     * explicitly provide an instance of {@link AWSCredentialsProvider} that
+     * returns {@link AWSSessionCredentials}.
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
      *
-     * @param awsCredentialsProvider
-     *            The AWS credentials provider which will provide credentials
-     *            to authenticate requests with AWS services.
-     * @param clientConfiguration The client configuration options controlling how this
-     *                       client connects to AWSLambda
-     *                       (ex: proxy settings, retry counts, etc.).
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AWSLambda (ex: proxy settings,
+     *            retry counts, etc.).
      */
-    public AWSLambdaClient(AWSCredentialsProvider awsCredentialsProvider, ClientConfiguration clientConfiguration) {
+    public AWSLambdaClient(AWSCredentialsProvider awsCredentialsProvider,
+            ClientConfiguration clientConfiguration) {
         this(awsCredentialsProvider, clientConfiguration, new UrlHttpClient(clientConfiguration));
     }
 
     /**
-     * Constructs a new client to invoke service methods on
-     * AWSLambda using the specified AWS account credentials
-     * provider, client configuration options and request metric collector.
-     * 
+     * Constructs a new client to invoke service methods on AWSLambda using the
+     * specified AWS account credentials provider, client configuration options
+     * and request metric collector.
      * <p>
-     * All service calls made using this new client object are blocking, and will not
-     * return until the service call completes.
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
      *
-     * @param awsCredentialsProvider
-     *            The AWS credentials provider which will provide credentials
-     *            to authenticate requests with AWS services.
-     * @param clientConfiguration The client configuration options controlling how this
-     *                       client connects to AWSLambda
-     *                       (ex: proxy settings, retry counts, etc.).
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AWSLambda (ex: proxy settings,
+     *            retry counts, etc.).
      * @param requestMetricCollector optional request metric collector
      */
     @Deprecated
@@ -193,60 +232,59 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
             ClientConfiguration clientConfiguration,
             RequestMetricCollector requestMetricCollector) {
         super(adjustClientConfiguration(clientConfiguration), requestMetricCollector);
-        
+
         this.awsCredentialsProvider = awsCredentialsProvider;
-        
+
         init();
     }
 
     /**
-     * Constructs a new client to invoke service methods on
-     * AWSLambda using the specified AWS account credentials
-     * provider, client configuration options and request metric collector.
-     * 
+     * Constructs a new client to invoke service methods on AWSLambda using the
+     * specified AWS account credentials provider, client configuration options
+     * and request metric collector.
      * <p>
-     * All service calls made using this new client object are blocking, and will not
-     * return until the service call completes.
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
      *
-     * @param awsCredentialsProvider
-     *            The AWS credentials provider which will provide credentials
-     *            to authenticate requests with AWS services.
-     * @param clientConfiguration The client configuration options controlling how this
-     *                       client connects to AWSLambda
-     *                       (ex: proxy settings, retry counts, etc.).
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AWSLambda (ex: proxy settings,
+     *            retry counts, etc.).
      * @param httpClient A http client
      */
     public AWSLambdaClient(AWSCredentialsProvider awsCredentialsProvider,
             ClientConfiguration clientConfiguration, HttpClient httpClient) {
         super(adjustClientConfiguration(clientConfiguration), httpClient);
-        
+
         this.awsCredentialsProvider = awsCredentialsProvider;
-        
+
         init();
     }
 
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
-        jsonErrorUnmarshallers.add(new EC2ThrottledExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new SubnetIPAddressLimitReachedExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new UnsupportedMediaTypeExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidSubnetIDExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new ServiceExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidSecurityGroupIDExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new RequestTooLargeExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new EC2UnexpectedExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new EC2AccessDeniedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new EC2ThrottledExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new EC2UnexpectedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ENILimitReachedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidRequestContentExceptionUnmarshaller());
-        
+        jsonErrorUnmarshallers.add(new InvalidSecurityGroupIDExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidSubnetIDExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidZipFileExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new RequestTooLargeExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ServiceExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new SubnetIPAddressLimitReachedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UnsupportedMediaTypeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
-        
+
         // calling this.setEndPoint(...) will also modify the signer accordingly
-        this.setEndpoint("lambda.us-east-1.amazonaws.com/");
-        
+        this.setEndpoint("lambda.us-east-1.amazonaws.com");
+
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
                 "/com/amazonaws/services/lambda/request.handlers"));
@@ -256,7 +294,7 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
 
     private static ClientConfiguration adjustClientConfiguration(ClientConfiguration orig) {
         ClientConfiguration config = orig;
-        
+
         return config;
     }
 
@@ -268,48 +306,47 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * If you are using the versioning feature, you can invoke the specific
      * function version by providing function version or alias name that is
      * pointing to the function version using the <code>Qualifier</code>
-     * parameter in the request. If you don't provide the
-     * <code>Qualifier</code> parameter, the <code>$LATEST</code> version of
-     * the Lambda function is invoked. For information about the versioning
-     * feature, see
-     * <a href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html"> AWS Lambda Function Versioning and Aliases </a>
-     * .
+     * parameter in the request. If you don't provide the <code>Qualifier</code>
+     * parameter, the <code>$LATEST</code> version of the Lambda function is
+     * invoked. Invocations occur at least once in response to an event and
+     * functions must be idempotent to handle this. For information about the
+     * versioning feature, see <a href=
+     * "http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
+     * Lambda Function Versioning and Aliases</a>.
      * </p>
      * <p>
      * This operation requires permission for the
      * <code>lambda:InvokeFunction</code> action.
      * </p>
-     *
-     * @param invokeRequest Container for the necessary parameters to execute
-     *           the Invoke service method on AWSLambda.
      * 
-     * @return The response from the Invoke service method, as returned by
-     *         AWSLambda.
-     * 
-     * @throws InvalidParameterValueException
-     * @throws EC2AccessDeniedException
-     * @throws ENILimitReachedException
-     * @throws InvalidSecurityGroupIDException
+     * @param invokeRequest <p/>
+     * @return invokeResult The response from the Invoke service method, as
+     *         returned by AWS Lambda.
      * @throws ServiceException
-     * @throws TooManyRequestsException
-     * @throws EC2ThrottledException
-     * @throws SubnetIPAddressLimitReachedException
-     * @throws RequestTooLargeException
-     * @throws UnsupportedMediaTypeException
-     * @throws EC2UnexpectedException
-     * @throws InvalidSubnetIDException
      * @throws ResourceNotFoundException
      * @throws InvalidRequestContentException
-     *
-     * @throws AmazonClientException
-     *             If any internal errors are encountered inside the client while
-     *             attempting to make the request or handle the response.  For example
-     *             if a network connection is not available.
-     * @throws AmazonServiceException
-     *             If an error response is returned by AWSLambda indicating
-     *             either a problem with the data in the request, or a server side issue.
+     * @throws RequestTooLargeException
+     * @throws UnsupportedMediaTypeException
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterValueException
+     * @throws EC2UnexpectedException
+     * @throws SubnetIPAddressLimitReachedException
+     * @throws ENILimitReachedException
+     * @throws EC2ThrottledException
+     * @throws EC2AccessDeniedException
+     * @throws InvalidSubnetIDException
+     * @throws InvalidSecurityGroupIDException
+     * @throws InvalidZipFileException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Lambda indicating either a problem with the data in the
+     *             request, or a server side issue.
      */
-    public InvokeResult invoke(InvokeRequest invokeRequest) {
+    public InvokeResult invoke(InvokeRequest invokeRequest)
+            throws AmazonServiceException, AmazonClientException {
         ExecutionContext executionContext = createExecutionContext(invokeRequest);
         AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
@@ -325,42 +362,32 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
             Unmarshaller<InvokeResult, JsonUnmarshallerContext> unmarshaller = new InvokeResultJsonUnmarshaller();
-            JsonResponseHandler<InvokeResult> responseHandler = new JsonResponseHandler<InvokeResult>(unmarshaller);
+            JsonResponseHandler<InvokeResult> responseHandler = new JsonResponseHandler<InvokeResult>(
+                    unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
-            
-        return response.getAwsResponse();
+
+            return response.getAwsResponse();
         } finally {
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }
 
-    @Override
-    public void setEndpoint(String endpoint) {
-        super.setEndpoint(endpoint);
-    }
-
-    @Override
-    public void setEndpoint(String endpoint, String serviceName, String regionId) throws IllegalArgumentException {
-        super.setEndpoint(endpoint, serviceName, regionId);
-    }
-
     /**
-     * Returns additional metadata for a previously executed successful, request, typically used for
-     * debugging issues where a service isn't acting as expected.  This data isn't considered part
-     * of the result data returned by an operation, so it's available through this separate,
-     * diagnostic interface.
+     * Returns additional metadata for a previously executed successful,
+     * request, typically used for debugging issues where a service isn't acting
+     * as expected. This data isn't considered part of the result data returned
+     * by an operation, so it's available through this separate, diagnostic
+     * interface.
      * <p>
-     * Response metadata is only cached for a limited period of time, so if you need to access
-     * this extra diagnostic information for an executed request, you should use this method
-     * to retrieve it as soon as possible after executing the request.
+     * Response metadata is only cached for a limited period of time, so if you
+     * need to access this extra diagnostic information for an executed request,
+     * you should use this method to retrieve it as soon as possible after
+     * executing the request.
      *
-     * @param request
-     *            The originally executed request
-     *
+     * @param request The originally executed request
      * @return The response metadata for the specified request, or null if none
      *         is available.
-     *
      * @deprecated ResponseMetadata cache can hold up to 50 requests and
      *             responses in memory and will cause memory issue. This method
      *             now always returns null.
@@ -391,10 +418,10 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
         }
 
         executionContext.setCredentials(credentials);
-        JsonErrorResponseHandler errorResponseHandler = new JsonErrorResponseHandler(jsonErrorUnmarshallers);
+        JsonErrorResponseHandler errorResponseHandler = new JsonErrorResponseHandler(
+                jsonErrorUnmarshallers);
         Response<X> result = client.execute(request, responseHandler,
                 errorResponseHandler, executionContext);
         return result;
     }
 }
-        

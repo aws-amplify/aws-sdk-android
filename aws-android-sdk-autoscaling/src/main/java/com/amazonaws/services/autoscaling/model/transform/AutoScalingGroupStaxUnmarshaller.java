@@ -79,6 +79,10 @@ public class AutoScalingGroupStaxUnmarshaller implements Unmarshaller<AutoScalin
                     autoScalingGroup.getLoadBalancerNames().add(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("TargetGroupARNs/member", targetDepth)) {
+                    autoScalingGroup.getTargetGroupARNs().add(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    continue;
+                }
                 if (context.testExpression("HealthCheckType", targetDepth)) {
                     autoScalingGroup.setHealthCheckType(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;

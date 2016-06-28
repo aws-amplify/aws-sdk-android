@@ -35,6 +35,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * second example below shows a request and response for publishing to a
  * mobile endpoint.
  * </p>
+ * <p>
+ * For more information about formatting messages, see
+ * <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-custommessage.html"> Send Custom Platform-Specific Payloads in Messages to Mobile Devices </a>
+ * .
+ * </p>
  *
  * @see com.amazonaws.services.sns.AmazonSNS#publish(PublishRequest)
  */
@@ -106,6 +111,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <code>json</code>
      */
     private String messageStructure;
+
+    private java.util.Map<String,String> attributes;
 
     /**
      * Message attributes for Publish action.
@@ -614,6 +621,73 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
+     * Returns the value of the Attributes property for this object.
+     *
+     * @return The value of the Attributes property for this object.
+     */
+    public java.util.Map<String,String> getAttributes() {
+        
+        if (attributes == null) {
+            attributes = new java.util.HashMap<String,String>();
+        }
+        return attributes;
+    }
+    
+    /**
+     * Sets the value of the Attributes property for this object.
+     *
+     * @param attributes The new value for the Attributes property for this object.
+     */
+    public void setAttributes(java.util.Map<String,String> attributes) {
+        this.attributes = attributes;
+    }
+    
+    /**
+     * Sets the value of the Attributes property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param attributes The new value for the Attributes property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained
+     *         together.
+     */
+    public PublishRequest withAttributes(java.util.Map<String,String> attributes) {
+        setAttributes(attributes);
+        return this;
+    }
+
+    /**
+     * Sets the value of the Attributes property for this object.
+     * <p>
+     * The method adds a new key-value pair into Attributes parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into Attributes.
+     * @param value The corresponding value of the entry to be added into Attributes.
+     */
+    public PublishRequest addAttributesEntry(String key, String value) {
+        if (null == this.attributes) {
+            this.attributes = new java.util.HashMap<String,String>();
+        }
+        if (this.attributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+        this.attributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Attributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     */
+    public PublishRequest clearAttributesEntries() {
+        this.attributes = null;
+        return this;
+    }
+    
+    /**
      * Message attributes for Publish action.
      *
      * @return Message attributes for Publish action.
@@ -697,6 +771,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
         if (getMessage() != null) sb.append("Message: " + getMessage() + ",");
         if (getSubject() != null) sb.append("Subject: " + getSubject() + ",");
         if (getMessageStructure() != null) sb.append("MessageStructure: " + getMessageStructure() + ",");
+        if (getAttributes() != null) sb.append("Attributes: " + getAttributes() + ",");
         if (getMessageAttributes() != null) sb.append("MessageAttributes: " + getMessageAttributes() );
         sb.append("}");
         return sb.toString();
@@ -712,6 +787,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode()); 
         hashCode = prime * hashCode + ((getSubject() == null) ? 0 : getSubject().hashCode()); 
         hashCode = prime * hashCode + ((getMessageStructure() == null) ? 0 : getMessageStructure().hashCode()); 
+        hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode()); 
         hashCode = prime * hashCode + ((getMessageAttributes() == null) ? 0 : getMessageAttributes().hashCode()); 
         return hashCode;
     }
@@ -734,6 +810,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
         if (other.getSubject() != null && other.getSubject().equals(this.getSubject()) == false) return false; 
         if (other.getMessageStructure() == null ^ this.getMessageStructure() == null) return false;
         if (other.getMessageStructure() != null && other.getMessageStructure().equals(this.getMessageStructure()) == false) return false; 
+        if (other.getAttributes() == null ^ this.getAttributes() == null) return false;
+        if (other.getAttributes() != null && other.getAttributes().equals(this.getAttributes()) == false) return false; 
         if (other.getMessageAttributes() == null ^ this.getMessageAttributes() == null) return false;
         if (other.getMessageAttributes() != null && other.getMessageAttributes().equals(this.getMessageAttributes()) == false) return false; 
         return true;

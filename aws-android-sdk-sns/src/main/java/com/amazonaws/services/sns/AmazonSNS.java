@@ -101,7 +101,7 @@ public interface AmazonSNS {
     /**
      * <p>
      * Creates a topic to which notifications can be published. Users can
-     * create at most 3000 topics. For more information, see
+     * create at most 100,000 topics. For more information, see
      * <a href="http://aws.amazon.com/sns/"> http://aws.amazon.com/sns </a>
      * . This action is idempotent, so if the requester already owns a topic
      * with the specified name, that topic's ARN is returned without creating
@@ -135,7 +135,7 @@ public interface AmazonSNS {
      * Sets the attributes of the platform application object for the
      * supported push notification services, such as APNS and GCM. For more
      * information, see
-     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a> . For information on configuring attributes for message delivery status, see <a href="http://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html"> Using Amazon SNS Application Attributes for Message Delivery Status </a>
      * .
      * </p>
      *
@@ -366,6 +366,32 @@ public interface AmazonSNS {
             throws AmazonServiceException, AmazonClientException;
 
     /**
+     *
+     * @param listTagsForResourceRequest Container for the necessary
+     *           parameters to execute the ListTagsForResource service method on
+     *           AmazonSNS.
+     * 
+     * @return The response from the ListTagsForResource service method, as
+     *         returned by AmazonSNS.
+     * 
+     * @throws NotFoundException
+     * @throws TaggingOperationFailedException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(ListTagsForResourceRequest listTagsForResourceRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
      * <p>
      * Returns all of the properties of a subscription.
      * </p>
@@ -579,13 +605,20 @@ public interface AmazonSNS {
      * PlatformPrincipal is "SSL certificate". For GCM, PlatformPrincipal is
      * not applicable. For ADM, PlatformPrincipal is "client id". The
      * PlatformCredential is also received from the notification service. For
-     * APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
+     * WNS, PlatformPrincipal is "Package Security Identifier". For MPNS,
+     * PlatformPrincipal is "TLS certificate". For Baidu, PlatformPrincipal
+     * is "API key".
+     * </p>
+     * <p>
+     * For APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM,
      * PlatformCredential is "API key". For ADM, PlatformCredential is
-     * "client secret". The PlatformApplicationArn that is returned when
-     * using <code>CreatePlatformApplication</code> is then used as an
-     * attribute for the <code>CreatePlatformEndpoint</code> action. For more
-     * information, see
-     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
+     * "client secret". For WNS, PlatformCredential is "secret key". For
+     * MPNS, PlatformCredential is "private key". For Baidu,
+     * PlatformCredential is "secret key". The PlatformApplicationArn that is
+     * returned when using <code>CreatePlatformApplication</code> is then
+     * used as an attribute for the <code>CreatePlatformEndpoint</code>
+     * action. For more information, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a> . For more information about obtaining the PlatformPrincipal and PlatformCredential for each of the supported push notification services, see <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html"> Getting Started with Apple Push Notification Service </a> , <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-adm.html"> Getting Started with Amazon Device Messaging </a> , <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-baidu.html"> Getting Started with Baidu Cloud Push </a> , <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-gcm.html"> Getting Started with Google Cloud Messaging for Android </a> , <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-mpns.html"> Getting Started with MPNS </a> , or <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-wns.html"> Getting Started with WNS </a>
      * .
      * </p>
      *
@@ -613,10 +646,14 @@ public interface AmazonSNS {
 
     /**
      * <p>
-     * Deletes the endpoint from Amazon SNS. This action is idempotent. For
-     * more information, see
+     * Deletes the endpoint for a device and mobile app from Amazon SNS.
+     * This action is idempotent. For more information, see
      * <a href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html"> Using Amazon SNS Mobile Push Notifications </a>
      * .
+     * </p>
+     * <p>
+     * When you delete an endpoint that is also subscribed to a topic, then
+     * you must also unsubscribe the endpoint from the topic.
      * </p>
      *
      * @param deleteEndpointRequest Container for the necessary parameters to
@@ -636,6 +673,29 @@ public interface AmazonSNS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public void deleteEndpoint(DeleteEndpointRequest deleteEndpointRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param addTagsToResourceRequest Container for the necessary parameters
+     *           to execute the AddTagsToResource service method on AmazonSNS.
+     * 
+     * 
+     * @throws NotFoundException
+     * @throws TaggingOperationFailedException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void addTagsToResource(AddTagsToResourceRequest addTagsToResourceRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -718,6 +778,11 @@ public interface AmazonSNS {
      * making a call with the <code>CreatePlatformEndpoint</code> action. The
      * second example below shows a request and response for publishing to a
      * mobile endpoint.
+     * </p>
+     * <p>
+     * For more information about formatting messages, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-custommessage.html"> Send Custom Platform-Specific Payloads in Messages to Mobile Devices </a>
+     * .
      * </p>
      *
      * @param publishRequest Container for the necessary parameters to
@@ -807,6 +872,30 @@ public interface AmazonSNS {
      *             either a problem with the data in the request, or a server side issue.
      */
     public SubscribeResult subscribe(SubscribeRequest subscribeRequest) 
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     *
+     * @param removeTagsFromResourceRequest Container for the necessary
+     *           parameters to execute the RemoveTagsFromResource service method on
+     *           AmazonSNS.
+     * 
+     * 
+     * @throws NotFoundException
+     * @throws TaggingOperationFailedException
+     * @throws AuthorizationErrorException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     *
+     * @throws AmazonClientException
+     *             If any internal errors are encountered inside the client while
+     *             attempting to make the request or handle the response.  For example
+     *             if a network connection is not available.
+     * @throws AmazonServiceException
+     *             If an error response is returned by AmazonSNS indicating
+     *             either a problem with the data in the request, or a server side issue.
+     */
+    public void removeTagsFromResource(RemoveTagsFromResourceRequest removeTagsFromResourceRequest) 
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -984,7 +1073,7 @@ public interface AmazonSNS {
     /**
      * <p>
      * Creates a topic to which notifications can be published. Users can
-     * create at most 3000 topics. For more information, see
+     * create at most 100,000 topics. For more information, see
      * <a href="http://aws.amazon.com/sns/"> http://aws.amazon.com/sns </a>
      * . This action is idempotent, so if the requester already owns a topic
      * with the specified name, that topic's ARN is returned without creating
@@ -1383,6 +1472,11 @@ public interface AmazonSNS {
      * second example below shows a request and response for publishing to a
      * mobile endpoint.
      * </p>
+     * <p>
+     * For more information about formatting messages, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-custommessage.html"> Send Custom Platform-Specific Payloads in Messages to Mobile Devices </a>
+     * .
+     * </p>
      * 
      * @param topicArn The topic you want to publish to.
      * @param message The message you want to send to the topic. <p>If you
@@ -1446,6 +1540,11 @@ public interface AmazonSNS {
      * making a call with the <code>CreatePlatformEndpoint</code> action. The
      * second example below shows a request and response for publishing to a
      * mobile endpoint.
+     * </p>
+     * <p>
+     * For more information about formatting messages, see
+     * <a href="http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-custommessage.html"> Send Custom Platform-Specific Payloads in Messages to Mobile Devices </a>
+     * .
      * </p>
      * 
      * @param topicArn The topic you want to publish to.
@@ -1521,7 +1620,9 @@ public interface AmazonSNS {
      * delivery of message via SMS</li> <li><code>sqs</code> -- delivery of
      * JSON-encoded message to an Amazon SQS queue</li>
      * <li><code>application</code> -- delivery of JSON-encoded message to an
-     * EndpointArn for a mobile app and device.</li> </ul>
+     * EndpointArn for a mobile app and device.</li> <li><code>lambda</code>
+     * -- delivery of JSON-encoded message to an AWS Lambda function.</li>
+     * </ul>
      * @param endpoint The endpoint that you want to receive notifications.
      * Endpoints vary by protocol: <ul> <li>For the <code>http</code>
      * protocol, the endpoint is an URL beginning with "http://"</li> <li>For
@@ -1532,7 +1633,9 @@ public interface AmazonSNS {
      * protocol, the endpoint is a phone number of an SMS-enabled device</li>
      * <li>For the <code>sqs</code> protocol, the endpoint is the ARN of an
      * Amazon SQS queue</li> <li>For the <code>application</code> protocol,
-     * the endpoint is the EndpointArn of a mobile app and device.</li> </ul>
+     * the endpoint is the EndpointArn of a mobile app and device.</li>
+     * <li>For the <code>lambda</code> protocol, the endpoint is the ARN of
+     * an AWS Lambda function.</li> </ul>
      * 
      * @return The response from the Subscribe service method, as returned by
      *         AmazonSNS.

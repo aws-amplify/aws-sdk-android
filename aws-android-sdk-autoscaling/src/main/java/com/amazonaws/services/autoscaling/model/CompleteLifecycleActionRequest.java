@@ -21,25 +21,29 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Container for the parameters to the {@link com.amazonaws.services.autoscaling.AmazonAutoScaling#completeLifecycleAction(CompleteLifecycleActionRequest) CompleteLifecycleAction operation}.
  * <p>
- * Completes the lifecycle action for the associated token initiated
- * under the given lifecycle hook with the specified result.
+ * Completes the lifecycle action for the specified token or instance
+ * with the specified result.
  * </p>
  * <p>
- * This operation is a part of the basic sequence for adding a lifecycle
- * hook to an Auto Scaling group:
+ * This step is a part of the procedure for adding a lifecycle hook to an
+ * Auto Scaling group:
  * </p>
- * <ol> <li>Create a notification target. A target can be either an
- * Amazon SQS queue or an Amazon SNS topic.</li>
- * <li>Create an IAM role. This role allows Auto Scaling to publish
- * lifecycle notifications to the designated SQS queue or SNS topic.</li>
- * <li>Create the lifecycle hook. You can create a hook that acts when
- * instances launch or when instances terminate.</li>
- * <li>If necessary, record the lifecycle action heartbeat to keep the
- * instance in a pending state.</li>
- * <li> <b>Complete the lifecycle action</b> .</li>
+ * <ol> <li>(Optional) Create a Lambda function and a rule that allows
+ * CloudWatch Events to invoke your Lambda function when Auto Scaling
+ * launches or terminates instances.</li>
+ * <li>(Optional) Create a notification target and an IAM role. The
+ * target can be either an Amazon SQS queue or an Amazon SNS topic. The
+ * role allows Auto Scaling to publish lifecycle notifications to the
+ * target.</li>
+ * <li>Create the lifecycle hook. Specify whether the hook is used when
+ * the instances launch or terminate.</li>
+ * <li>If you need more time, record the lifecycle action heartbeat to
+ * keep the instance in a pending state.</li>
+ * <li> <b>If you finish before the timeout period ends, complete the
+ * lifecycle action.</b> </li>
  * </ol> <p>
  * For more information, see
- * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html"> Auto Scaling Pending State </a> and <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html"> Auto Scaling Terminating State </a>
+ * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html"> Auto Scaling Lifecycle </a>
  * in the <i>Auto Scaling Developer Guide</i> .
  * </p>
  *
@@ -82,6 +86,13 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
      */
     private String lifecycleActionResult;
 
+    /**
+     * The ID of the instance.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 19<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     */
     private String instanceId;
 
     /**
@@ -274,33 +285,33 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Returns the value of the InstanceId property for this object.
+     * The ID of the instance.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @return The value of the InstanceId property for this object.
+     * @return The ID of the instance.
      */
     public String getInstanceId() {
         return instanceId;
     }
     
     /**
-     * Sets the value of the InstanceId property for this object.
+     * The ID of the instance.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param instanceId The new value for the InstanceId property for this object.
+     * @param instanceId The ID of the instance.
      */
     public void setInstanceId(String instanceId) {
         this.instanceId = instanceId;
     }
     
     /**
-     * Sets the value of the InstanceId property for this object.
+     * The ID of the instance.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
@@ -308,7 +319,7 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
-     * @param instanceId The new value for the InstanceId property for this object.
+     * @param instanceId The ID of the instance.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

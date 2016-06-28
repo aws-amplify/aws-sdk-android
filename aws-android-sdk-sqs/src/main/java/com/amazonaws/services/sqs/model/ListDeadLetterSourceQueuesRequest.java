@@ -35,34 +35,41 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListDeadLetterSourceQueuesRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The queue URL of a dead letter queue.
+     * The queue URL of a dead letter queue. <p>Queue URLs are
+     * case-sensitive.
      */
     private String queueUrl;
 
     /**
-     * The queue URL of a dead letter queue.
+     * The queue URL of a dead letter queue. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @return The queue URL of a dead letter queue.
+     * @return The queue URL of a dead letter queue. <p>Queue URLs are
+     *         case-sensitive.
      */
     public String getQueueUrl() {
         return queueUrl;
     }
     
     /**
-     * The queue URL of a dead letter queue.
+     * The queue URL of a dead letter queue. <p>Queue URLs are
+     * case-sensitive.
      *
-     * @param queueUrl The queue URL of a dead letter queue.
+     * @param queueUrl The queue URL of a dead letter queue. <p>Queue URLs are
+     *         case-sensitive.
      */
     public void setQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
     }
     
     /**
-     * The queue URL of a dead letter queue.
+     * The queue URL of a dead letter queue. <p>Queue URLs are
+     * case-sensitive.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param queueUrl The queue URL of a dead letter queue.
+     * @param queueUrl The queue URL of a dead letter queue. <p>Queue URLs are
+     *         case-sensitive.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.

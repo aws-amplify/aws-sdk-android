@@ -1,6 +1,6 @@
-
 /**
- * Classes modeling the various types represented by AWSLambda.
+ * Classes modeling the various types represented by AWSLambda
  */
- package com.amazonaws.services.lambda.model;
-        
+
+package com.amazonaws.services.lambda.model;
+

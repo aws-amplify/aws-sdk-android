@@ -259,6 +259,12 @@ public class RequestSpotFleetRequestMarshaller implements Marshaller<Request<Req
             if (spotFleetRequestConfigDataSpotFleetRequestConfig.getAllocationStrategy() != null) {
                 request.addParameter("SpotFleetRequestConfig.AllocationStrategy", StringUtils.fromString(spotFleetRequestConfigDataSpotFleetRequestConfig.getAllocationStrategy()));
             }
+            if (spotFleetRequestConfigDataSpotFleetRequestConfig.getFulfilledCapacity() != null) {
+                request.addParameter("SpotFleetRequestConfig.FulfilledCapacity", StringUtils.fromDouble(spotFleetRequestConfigDataSpotFleetRequestConfig.getFulfilledCapacity()));
+            }
+            if (spotFleetRequestConfigDataSpotFleetRequestConfig.getType() != null) {
+                request.addParameter("SpotFleetRequestConfig.Type", StringUtils.fromString(spotFleetRequestConfigDataSpotFleetRequestConfig.getType()));
+            }
         }
 
         return request;

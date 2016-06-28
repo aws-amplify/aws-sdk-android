@@ -17,7 +17,9 @@ package com.amazonaws.services.ec2.model;
 import java.io.Serializable;
 
 /**
- * 
+ * <p>
+ * Contains the output of MoveAddressToVpc.
+ * </p>
  */
 public class MoveAddressToVpcResult implements Serializable {
 

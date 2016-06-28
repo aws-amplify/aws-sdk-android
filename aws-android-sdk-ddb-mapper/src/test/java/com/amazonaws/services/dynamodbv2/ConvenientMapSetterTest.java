@@ -24,7 +24,6 @@ import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 
 import org.junit.Test;
 
-import java.util.AbstractMap;
 import java.util.Map;
 
 /**
@@ -52,11 +51,9 @@ public class ConvenientMapSetterTest {
     /** Test on using predefined map entry setter to provide map parameter. */
     @Test
     public void testPredefinedMapEntryMethod() {
-        ScanRequest scanRequest = new ScanRequest().withExclusiveStartKey(
-                new AbstractMap.SimpleEntry<String, AttributeValue>("hash-key",
-                        new AttributeValue().withS("1")),
-                new AbstractMap.SimpleEntry<String, AttributeValue>("range-key",
-                        new AttributeValue().withS("2")));
+        ScanRequest scanRequest = new ScanRequest()
+                .addExclusiveStartKeyEntry("hash-key", new AttributeValue().withS("1"))
+                .addExclusiveStartKeyEntry("range-key", new AttributeValue().withS("2"));
         Map<String, AttributeValue> item = scanRequest.getExclusiveStartKey();
         assertEquals(2, item.size());
         assertEquals("1", item.get("hash-key").getS());
@@ -69,28 +66,6 @@ public class ConvenientMapSetterTest {
         new PutItemRequest()
                 .addItemEntry("hash-key", new AttributeValue().withS("1"))
                 .addItemEntry("hash-key", new AttributeValue().withS("2"));
-    }
-
-    /** Test on handling null entry objects. */
-    @Test
-    public void testNullEntryException() {
-        // hashKey is set as not nullable, and rangeKey is nullable
-        // so this call should be fine
-        ScanRequest scanRequest = new ScanRequest().withExclusiveStartKey(
-                new AbstractMap.SimpleEntry<String, AttributeValue>("hash-key",
-                        new AttributeValue().withS("1")),
-                null);
-        // but this call should throw IllegalArgumentException
-        try {
-            scanRequest.withExclusiveStartKey(
-                    null,
-                    new AbstractMap.SimpleEntry<String, AttributeValue>("hash-key",
-                            new AttributeValue().withS("1")));
-            fail("Should throw IllegalArgumentException.");
-        } catch (IllegalArgumentException iae) {
-        } catch (Exception e) {
-            fail("Should throw IllegalArgumentException.");
-        }
     }
 
 }

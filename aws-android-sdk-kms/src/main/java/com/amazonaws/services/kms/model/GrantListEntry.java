@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.kms.model;
 
 import java.io.Serializable;
@@ -22,10 +23,11 @@ import java.io.Serializable;
  * </p>
  */
 public class GrantListEntry implements Serializable {
-
     /**
+     * <p>
      * The unique identifier for the customer master key (CMK) to which the
      * grant applies.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -33,7 +35,9 @@ public class GrantListEntry implements Serializable {
     private String keyId;
 
     /**
+     * <p>
      * The unique identifier for the grant.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -41,9 +45,11 @@ public class GrantListEntry implements Serializable {
     private String grantId;
 
     /**
+     * <p>
      * The friendly name that identifies the grant. If a name was provided in
      * the <a>CreateGrant</a> request, that name is returned. Otherwise this
      * value is null.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -52,12 +58,16 @@ public class GrantListEntry implements Serializable {
     private String name;
 
     /**
+     * <p>
      * The date and time when the grant was created.
+     * </p>
      */
     private java.util.Date creationDate;
 
     /**
+     * <p>
      * The principal that receives the grant's permissions.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -65,7 +75,9 @@ public class GrantListEntry implements Serializable {
     private String granteePrincipal;
 
     /**
+     * <p>
      * The principal that can retire the grant.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -73,7 +85,9 @@ public class GrantListEntry implements Serializable {
     private String retiringPrincipal;
 
     /**
+     * <p>
      * The AWS account under which the grant was issued.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -81,57 +95,73 @@ public class GrantListEntry implements Serializable {
     private String issuingAccount;
 
     /**
+     * <p>
      * The list of operations permitted by the grant.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> operations;
+    private java.util.List<String> operations = new java.util.ArrayList<String>();
 
     /**
+     * <p>
      * The conditions under which the grant's operations are allowed.
+     * </p>
      */
     private GrantConstraints constraints;
 
     /**
+     * <p>
      * The unique identifier for the customer master key (CMK) to which the
      * grant applies.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @return The unique identifier for the customer master key (CMK) to which the
-     *         grant applies.
+     * @return <p>
+     *         The unique identifier for the customer master key (CMK) to which
+     *         the grant applies.
+     *         </p>
      */
     public String getKeyId() {
         return keyId;
     }
-    
+
     /**
+     * <p>
      * The unique identifier for the customer master key (CMK) to which the
      * grant applies.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param keyId The unique identifier for the customer master key (CMK) to which the
-     *         grant applies.
+     * @param keyId <p>
+     *            The unique identifier for the customer master key (CMK) to
+     *            which the grant applies.
+     *            </p>
      */
     public void setKeyId(String keyId) {
         this.keyId = keyId;
     }
-    
+
     /**
+     * <p>
      * The unique identifier for the customer master key (CMK) to which the
      * grant applies.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param keyId The unique identifier for the customer master key (CMK) to which the
-     *         grant applies.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param keyId <p>
+     *            The unique identifier for the customer master key (CMK) to
+     *            which the grant applies.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withKeyId(String keyId) {
         this.keyId = keyId;
@@ -139,41 +169,53 @@ public class GrantListEntry implements Serializable {
     }
 
     /**
+     * <p>
      * The unique identifier for the grant.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
-     * @return The unique identifier for the grant.
+     * @return <p>
+     *         The unique identifier for the grant.
+     *         </p>
      */
     public String getGrantId() {
         return grantId;
     }
-    
+
     /**
+     * <p>
      * The unique identifier for the grant.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
-     * @param grantId The unique identifier for the grant.
+     * @param grantId <p>
+     *            The unique identifier for the grant.
+     *            </p>
      */
     public void setGrantId(String grantId) {
         this.grantId = grantId;
     }
-    
+
     /**
-     * The unique identifier for the grant.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The unique identifier for the grant.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
-     * @param grantId The unique identifier for the grant.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param grantId <p>
+     *            The unique identifier for the grant.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withGrantId(String grantId) {
         this.grantId = grantId;
@@ -181,56 +223,68 @@ public class GrantListEntry implements Serializable {
     }
 
     /**
+     * <p>
      * The friendly name that identifies the grant. If a name was provided in
      * the <a>CreateGrant</a> request, that name is returned. Otherwise this
      * value is null.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
-     * @return The friendly name that identifies the grant. If a name was provided in
-     *         the <a>CreateGrant</a> request, that name is returned. Otherwise this
-     *         value is null.
+     * @return <p>
+     *         The friendly name that identifies the grant. If a name was
+     *         provided in the <a>CreateGrant</a> request, that name is
+     *         returned. Otherwise this value is null.
+     *         </p>
      */
     public String getName() {
         return name;
     }
-    
+
     /**
+     * <p>
      * The friendly name that identifies the grant. If a name was provided in
      * the <a>CreateGrant</a> request, that name is returned. Otherwise this
      * value is null.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
-     * @param name The friendly name that identifies the grant. If a name was provided in
-     *         the <a>CreateGrant</a> request, that name is returned. Otherwise this
-     *         value is null.
+     * @param name <p>
+     *            The friendly name that identifies the grant. If a name was
+     *            provided in the <a>CreateGrant</a> request, that name is
+     *            returned. Otherwise this value is null.
+     *            </p>
      */
     public void setName(String name) {
         this.name = name;
     }
-    
+
     /**
+     * <p>
      * The friendly name that identifies the grant. If a name was provided in
      * the <a>CreateGrant</a> request, that name is returned. Otherwise this
      * value is null.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
-     * @param name The friendly name that identifies the grant. If a name was provided in
-     *         the <a>CreateGrant</a> request, that name is returned. Otherwise this
-     *         value is null.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param name <p>
+     *            The friendly name that identifies the grant. If a name was
+     *            provided in the <a>CreateGrant</a> request, that name is
+     *            returned. Otherwise this value is null.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withName(String name) {
         this.name = name;
@@ -238,32 +292,44 @@ public class GrantListEntry implements Serializable {
     }
 
     /**
+     * <p>
      * The date and time when the grant was created.
+     * </p>
      *
-     * @return The date and time when the grant was created.
+     * @return <p>
+     *         The date and time when the grant was created.
+     *         </p>
      */
     public java.util.Date getCreationDate() {
         return creationDate;
     }
-    
+
     /**
+     * <p>
      * The date and time when the grant was created.
+     * </p>
      *
-     * @param creationDate The date and time when the grant was created.
+     * @param creationDate <p>
+     *            The date and time when the grant was created.
+     *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
         this.creationDate = creationDate;
     }
-    
+
     /**
-     * The date and time when the grant was created.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The date and time when the grant was created.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param creationDate The date and time when the grant was created.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param creationDate <p>
+     *            The date and time when the grant was created.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withCreationDate(java.util.Date creationDate) {
         this.creationDate = creationDate;
@@ -271,41 +337,53 @@ public class GrantListEntry implements Serializable {
     }
 
     /**
+     * <p>
      * The principal that receives the grant's permissions.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @return The principal that receives the grant's permissions.
+     * @return <p>
+     *         The principal that receives the grant's permissions.
+     *         </p>
      */
     public String getGranteePrincipal() {
         return granteePrincipal;
     }
-    
+
     /**
+     * <p>
      * The principal that receives the grant's permissions.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param granteePrincipal The principal that receives the grant's permissions.
+     * @param granteePrincipal <p>
+     *            The principal that receives the grant's permissions.
+     *            </p>
      */
     public void setGranteePrincipal(String granteePrincipal) {
         this.granteePrincipal = granteePrincipal;
     }
-    
+
     /**
-     * The principal that receives the grant's permissions.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The principal that receives the grant's permissions.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param granteePrincipal The principal that receives the grant's permissions.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param granteePrincipal <p>
+     *            The principal that receives the grant's permissions.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withGranteePrincipal(String granteePrincipal) {
         this.granteePrincipal = granteePrincipal;
@@ -313,41 +391,53 @@ public class GrantListEntry implements Serializable {
     }
 
     /**
+     * <p>
      * The principal that can retire the grant.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @return The principal that can retire the grant.
+     * @return <p>
+     *         The principal that can retire the grant.
+     *         </p>
      */
     public String getRetiringPrincipal() {
         return retiringPrincipal;
     }
-    
+
     /**
+     * <p>
      * The principal that can retire the grant.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param retiringPrincipal The principal that can retire the grant.
+     * @param retiringPrincipal <p>
+     *            The principal that can retire the grant.
+     *            </p>
      */
     public void setRetiringPrincipal(String retiringPrincipal) {
         this.retiringPrincipal = retiringPrincipal;
     }
-    
+
     /**
-     * The principal that can retire the grant.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The principal that can retire the grant.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param retiringPrincipal The principal that can retire the grant.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param retiringPrincipal <p>
+     *            The principal that can retire the grant.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withRetiringPrincipal(String retiringPrincipal) {
         this.retiringPrincipal = retiringPrincipal;
@@ -355,41 +445,53 @@ public class GrantListEntry implements Serializable {
     }
 
     /**
+     * <p>
      * The AWS account under which the grant was issued.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @return The AWS account under which the grant was issued.
+     * @return <p>
+     *         The AWS account under which the grant was issued.
+     *         </p>
      */
     public String getIssuingAccount() {
         return issuingAccount;
     }
-    
+
     /**
+     * <p>
      * The AWS account under which the grant was issued.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param issuingAccount The AWS account under which the grant was issued.
+     * @param issuingAccount <p>
+     *            The AWS account under which the grant was issued.
+     *            </p>
      */
     public void setIssuingAccount(String issuingAccount) {
         this.issuingAccount = issuingAccount;
     }
-    
+
     /**
-     * The AWS account under which the grant was issued.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The AWS account under which the grant was issued.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
-     * @param issuingAccount The AWS account under which the grant was issued.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param issuingAccount <p>
+     *            The AWS account under which the grant was issued.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withIssuingAccount(String issuingAccount) {
         this.issuingAccount = issuingAccount;
@@ -397,123 +499,118 @@ public class GrantListEntry implements Serializable {
     }
 
     /**
+     * <p>
      * The list of operations permitted by the grant.
+     * </p>
      *
-     * @return The list of operations permitted by the grant.
+     * @return <p>
+     *         The list of operations permitted by the grant.
+     *         </p>
      */
     public java.util.List<String> getOperations() {
-        if (operations == null) {
-              operations = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              operations.setAutoConstruct(true);
-        }
         return operations;
     }
-    
+
     /**
+     * <p>
      * The list of operations permitted by the grant.
+     * </p>
      *
-     * @param operations The list of operations permitted by the grant.
+     * @param operations <p>
+     *            The list of operations permitted by the grant.
+     *            </p>
      */
     public void setOperations(java.util.Collection<String> operations) {
         if (operations == null) {
             this.operations = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> operationsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(operations.size());
-        operationsCopy.addAll(operations);
-        this.operations = operationsCopy;
+
+        this.operations = new java.util.ArrayList<String>(operations);
     }
-    
+
     /**
-     * The list of operations permitted by the grant.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The list of operations permitted by the grant.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param operations The list of operations permitted by the grant.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param operations <p>
+     *            The list of operations permitted by the grant.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withOperations(String... operations) {
-        if (getOperations() == null) setOperations(new java.util.ArrayList<String>(operations.length));
+        if (getOperations() == null) {
+            this.operations = new java.util.ArrayList<String>(operations.length);
+        }
         for (String value : operations) {
-            getOperations().add(value);
+            this.operations.add(value);
         }
         return this;
     }
-    
+
     /**
-     * The list of operations permitted by the grant.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The list of operations permitted by the grant.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param operations The list of operations permitted by the grant.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param operations <p>
+     *            The list of operations permitted by the grant.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withOperations(java.util.Collection<String> operations) {
-        if (operations == null) {
-            this.operations = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> operationsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(operations.size());
-            operationsCopy.addAll(operations);
-            this.operations = operationsCopy;
-        }
-
+        setOperations(operations);
         return this;
     }
 
     /**
-     * The list of operations permitted by the grant.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param operations The list of operations permitted by the grant.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public GrantListEntry withOperations(GrantOperation... operations) {
-        java.util.ArrayList<String> operationsCopy = new java.util.ArrayList<String>(operations.length);
-        for (GrantOperation member : operations) {
-            operationsCopy.add(member.toString());
-        }
-        if (getOperations() == null) {
-            setOperations(operationsCopy);
-        } else {
-            getOperations().addAll(operationsCopy);
-        }
-        return this;
-    }
-
-    /**
      * The conditions under which the grant's operations are allowed.
+     * </p>
      *
-     * @return The conditions under which the grant's operations are allowed.
+     * @return <p>
+     *         The conditions under which the grant's operations are allowed.
+     *         </p>
      */
     public GrantConstraints getConstraints() {
         return constraints;
     }
-    
+
     /**
+     * <p>
      * The conditions under which the grant's operations are allowed.
+     * </p>
      *
-     * @param constraints The conditions under which the grant's operations are allowed.
+     * @param constraints <p>
+     *            The conditions under which the grant's operations are allowed.
+     *            </p>
      */
     public void setConstraints(GrantConstraints constraints) {
         this.constraints = constraints;
     }
-    
+
     /**
-     * The conditions under which the grant's operations are allowed.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The conditions under which the grant's operations are allowed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param constraints The conditions under which the grant's operations are allowed.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param constraints <p>
+     *            The conditions under which the grant's operations are allowed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GrantListEntry withConstraints(GrantConstraints constraints) {
         this.constraints = constraints;
@@ -525,71 +622,109 @@ public class GrantListEntry implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getKeyId() != null) sb.append("KeyId: " + getKeyId() + ",");
-        if (getGrantId() != null) sb.append("GrantId: " + getGrantId() + ",");
-        if (getName() != null) sb.append("Name: " + getName() + ",");
-        if (getCreationDate() != null) sb.append("CreationDate: " + getCreationDate() + ",");
-        if (getGranteePrincipal() != null) sb.append("GranteePrincipal: " + getGranteePrincipal() + ",");
-        if (getRetiringPrincipal() != null) sb.append("RetiringPrincipal: " + getRetiringPrincipal() + ",");
-        if (getIssuingAccount() != null) sb.append("IssuingAccount: " + getIssuingAccount() + ",");
-        if (getOperations() != null) sb.append("Operations: " + getOperations() + ",");
-        if (getConstraints() != null) sb.append("Constraints: " + getConstraints() );
+        if (getKeyId() != null)
+            sb.append("KeyId: " + getKeyId() + ",");
+        if (getGrantId() != null)
+            sb.append("GrantId: " + getGrantId() + ",");
+        if (getName() != null)
+            sb.append("Name: " + getName() + ",");
+        if (getCreationDate() != null)
+            sb.append("CreationDate: " + getCreationDate() + ",");
+        if (getGranteePrincipal() != null)
+            sb.append("GranteePrincipal: " + getGranteePrincipal() + ",");
+        if (getRetiringPrincipal() != null)
+            sb.append("RetiringPrincipal: " + getRetiringPrincipal() + ",");
+        if (getIssuingAccount() != null)
+            sb.append("IssuingAccount: " + getIssuingAccount() + ",");
+        if (getOperations() != null)
+            sb.append("Operations: " + getOperations() + ",");
+        if (getConstraints() != null)
+            sb.append("Constraints: " + getConstraints());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getKeyId() == null) ? 0 : getKeyId().hashCode()); 
-        hashCode = prime * hashCode + ((getGrantId() == null) ? 0 : getGrantId().hashCode()); 
-        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode()); 
-        hashCode = prime * hashCode + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode()); 
-        hashCode = prime * hashCode + ((getGranteePrincipal() == null) ? 0 : getGranteePrincipal().hashCode()); 
-        hashCode = prime * hashCode + ((getRetiringPrincipal() == null) ? 0 : getRetiringPrincipal().hashCode()); 
-        hashCode = prime * hashCode + ((getIssuingAccount() == null) ? 0 : getIssuingAccount().hashCode()); 
-        hashCode = prime * hashCode + ((getOperations() == null) ? 0 : getOperations().hashCode()); 
-        hashCode = prime * hashCode + ((getConstraints() == null) ? 0 : getConstraints().hashCode()); 
+
+        hashCode = prime * hashCode + ((getKeyId() == null) ? 0 : getKeyId().hashCode());
+        hashCode = prime * hashCode + ((getGrantId() == null) ? 0 : getGrantId().hashCode());
+        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode
+                + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getGranteePrincipal() == null) ? 0 : getGranteePrincipal().hashCode());
+        hashCode = prime * hashCode
+                + ((getRetiringPrincipal() == null) ? 0 : getRetiringPrincipal().hashCode());
+        hashCode = prime * hashCode
+                + ((getIssuingAccount() == null) ? 0 : getIssuingAccount().hashCode());
+        hashCode = prime * hashCode + ((getOperations() == null) ? 0 : getOperations().hashCode());
+        hashCode = prime * hashCode
+                + ((getConstraints() == null) ? 0 : getConstraints().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof GrantListEntry == false) return false;
-        GrantListEntry other = (GrantListEntry)obj;
-        
-        if (other.getKeyId() == null ^ this.getKeyId() == null) return false;
-        if (other.getKeyId() != null && other.getKeyId().equals(this.getKeyId()) == false) return false; 
-        if (other.getGrantId() == null ^ this.getGrantId() == null) return false;
-        if (other.getGrantId() != null && other.getGrantId().equals(this.getGrantId()) == false) return false; 
-        if (other.getName() == null ^ this.getName() == null) return false;
-        if (other.getName() != null && other.getName().equals(this.getName()) == false) return false; 
-        if (other.getCreationDate() == null ^ this.getCreationDate() == null) return false;
-        if (other.getCreationDate() != null && other.getCreationDate().equals(this.getCreationDate()) == false) return false; 
-        if (other.getGranteePrincipal() == null ^ this.getGranteePrincipal() == null) return false;
-        if (other.getGranteePrincipal() != null && other.getGranteePrincipal().equals(this.getGranteePrincipal()) == false) return false; 
-        if (other.getRetiringPrincipal() == null ^ this.getRetiringPrincipal() == null) return false;
-        if (other.getRetiringPrincipal() != null && other.getRetiringPrincipal().equals(this.getRetiringPrincipal()) == false) return false; 
-        if (other.getIssuingAccount() == null ^ this.getIssuingAccount() == null) return false;
-        if (other.getIssuingAccount() != null && other.getIssuingAccount().equals(this.getIssuingAccount()) == false) return false; 
-        if (other.getOperations() == null ^ this.getOperations() == null) return false;
-        if (other.getOperations() != null && other.getOperations().equals(this.getOperations()) == false) return false; 
-        if (other.getConstraints() == null ^ this.getConstraints() == null) return false;
-        if (other.getConstraints() != null && other.getConstraints().equals(this.getConstraints()) == false) return false; 
+        if (obj instanceof GrantListEntry == false)
+            return false;
+        GrantListEntry other = (GrantListEntry) obj;
+
+        if (other.getKeyId() == null ^ this.getKeyId() == null)
+            return false;
+        if (other.getKeyId() != null && other.getKeyId().equals(this.getKeyId()) == false)
+            return false;
+        if (other.getGrantId() == null ^ this.getGrantId() == null)
+            return false;
+        if (other.getGrantId() != null && other.getGrantId().equals(this.getGrantId()) == false)
+            return false;
+        if (other.getName() == null ^ this.getName() == null)
+            return false;
+        if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getCreationDate() == null ^ this.getCreationDate() == null)
+            return false;
+        if (other.getCreationDate() != null
+                && other.getCreationDate().equals(this.getCreationDate()) == false)
+            return false;
+        if (other.getGranteePrincipal() == null ^ this.getGranteePrincipal() == null)
+            return false;
+        if (other.getGranteePrincipal() != null
+                && other.getGranteePrincipal().equals(this.getGranteePrincipal()) == false)
+            return false;
+        if (other.getRetiringPrincipal() == null ^ this.getRetiringPrincipal() == null)
+            return false;
+        if (other.getRetiringPrincipal() != null
+                && other.getRetiringPrincipal().equals(this.getRetiringPrincipal()) == false)
+            return false;
+        if (other.getIssuingAccount() == null ^ this.getIssuingAccount() == null)
+            return false;
+        if (other.getIssuingAccount() != null
+                && other.getIssuingAccount().equals(this.getIssuingAccount()) == false)
+            return false;
+        if (other.getOperations() == null ^ this.getOperations() == null)
+            return false;
+        if (other.getOperations() != null
+                && other.getOperations().equals(this.getOperations()) == false)
+            return false;
+        if (other.getConstraints() == null ^ this.getConstraints() == null)
+            return false;
+        if (other.getConstraints() != null
+                && other.getConstraints().equals(this.getConstraints()) == false)
+            return false;
         return true;
     }
-    
 }
-    

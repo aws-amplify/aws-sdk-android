@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Container for the parameters to the {@link com.amazonaws.services.sns.AmazonSNS#createTopic(CreateTopicRequest) CreateTopic operation}.
  * <p>
  * Creates a topic to which notifications can be published. Users can
- * create at most 3000 topics. For more information, see
+ * create at most 100,000 topics. For more information, see
  * <a href="http://aws.amazon.com/sns/"> http://aws.amazon.com/sns </a>
  * . This action is idempotent, so if the requester already owns a topic
  * with the specified name, that topic's ARN is returned without creating

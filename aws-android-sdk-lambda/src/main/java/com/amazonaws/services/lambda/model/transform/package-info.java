@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AWSLambda.
+ * Marhsalling for the various types represented byAWSLambda
  */
- package com.amazonaws.services.lambda.model.transform;
-        
+
+package com.amazonaws.services.lambda.model.transform;
+

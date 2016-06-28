@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
@@ -19,25 +20,25 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider#getUserAttributeVerificationCode(GetUserAttributeVerificationCodeRequest) GetUserAttributeVerificationCode operation}.
  * <p>
- * Gets the user attribute verification code for the specified attribute
- * name.
+ * Gets the user attribute verification code for the specified attribute name.
  * </p>
- *
- * @see com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider#getUserAttributeVerificationCode(GetUserAttributeVerificationCodeRequest)
  */
-public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceRequest implements Serializable {
-
+public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
+     * <p>
      * The access token returned by the server response to get the user
      * attribute verification code.
+     * </p>
      */
     private String accessToken;
 
     /**
+     * <p>
      * The attribute name returned by the server response to get the user
      * attribute verification code.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
@@ -46,38 +47,50 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
     private String attributeName;
 
     /**
+     * <p>
      * The access token returned by the server response to get the user
      * attribute verification code.
+     * </p>
      *
-     * @return The access token returned by the server response to get the user
+     * @return <p>
+     *         The access token returned by the server response to get the user
      *         attribute verification code.
+     *         </p>
      */
     public String getAccessToken() {
         return accessToken;
     }
-    
+
     /**
+     * <p>
      * The access token returned by the server response to get the user
      * attribute verification code.
+     * </p>
      *
-     * @param accessToken The access token returned by the server response to get the user
-     *         attribute verification code.
+     * @param accessToken <p>
+     *            The access token returned by the server response to get the
+     *            user attribute verification code.
+     *            </p>
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
-    
+
     /**
+     * <p>
      * The access token returned by the server response to get the user
      * attribute verification code.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param accessToken The access token returned by the server response to get the user
-     *         attribute verification code.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param accessToken <p>
+     *            The access token returned by the server response to get the
+     *            user attribute verification code.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GetUserAttributeVerificationCodeRequest withAccessToken(String accessToken) {
         this.accessToken = accessToken;
@@ -85,50 +98,62 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
     }
 
     /**
+     * <p>
      * The attribute name returned by the server response to get the user
      * attribute verification code.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @return The attribute name returned by the server response to get the user
-     *         attribute verification code.
+     * @return <p>
+     *         The attribute name returned by the server response to get the
+     *         user attribute verification code.
+     *         </p>
      */
     public String getAttributeName() {
         return attributeName;
     }
-    
+
     /**
+     * <p>
      * The attribute name returned by the server response to get the user
      * attribute verification code.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param attributeName The attribute name returned by the server response to get the user
-     *         attribute verification code.
+     * @param attributeName <p>
+     *            The attribute name returned by the server response to get the
+     *            user attribute verification code.
+     *            </p>
      */
     public void setAttributeName(String attributeName) {
         this.attributeName = attributeName;
     }
-    
+
     /**
+     * <p>
      * The attribute name returned by the server response to get the user
      * attribute verification code.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param attributeName The attribute name returned by the server response to get the user
-     *         attribute verification code.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param attributeName <p>
+     *            The attribute name returned by the server response to get the
+     *            user attribute verification code.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GetUserAttributeVerificationCodeRequest withAttributeName(String attributeName) {
         this.attributeName = attributeName;
@@ -140,43 +165,53 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessToken() != null) sb.append("AccessToken: " + getAccessToken() + ",");
-        if (getAttributeName() != null) sb.append("AttributeName: " + getAttributeName() );
+        if (getAccessToken() != null)
+            sb.append("AccessToken: " + getAccessToken() + ",");
+        if (getAttributeName() != null)
+            sb.append("AttributeName: " + getAttributeName());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getAccessToken() == null) ? 0 : getAccessToken().hashCode()); 
-        hashCode = prime * hashCode + ((getAttributeName() == null) ? 0 : getAttributeName().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getAccessToken() == null) ? 0 : getAccessToken().hashCode());
+        hashCode = prime * hashCode
+                + ((getAttributeName() == null) ? 0 : getAttributeName().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof GetUserAttributeVerificationCodeRequest == false) return false;
-        GetUserAttributeVerificationCodeRequest other = (GetUserAttributeVerificationCodeRequest)obj;
-        
-        if (other.getAccessToken() == null ^ this.getAccessToken() == null) return false;
-        if (other.getAccessToken() != null && other.getAccessToken().equals(this.getAccessToken()) == false) return false; 
-        if (other.getAttributeName() == null ^ this.getAttributeName() == null) return false;
-        if (other.getAttributeName() != null && other.getAttributeName().equals(this.getAttributeName()) == false) return false; 
+        if (obj instanceof GetUserAttributeVerificationCodeRequest == false)
+            return false;
+        GetUserAttributeVerificationCodeRequest other = (GetUserAttributeVerificationCodeRequest) obj;
+
+        if (other.getAccessToken() == null ^ this.getAccessToken() == null)
+            return false;
+        if (other.getAccessToken() != null
+                && other.getAccessToken().equals(this.getAccessToken()) == false)
+            return false;
+        if (other.getAttributeName() == null ^ this.getAttributeName() == null)
+            return false;
+        if (other.getAttributeName() != null
+                && other.getAttributeName().equals(this.getAttributeName()) == false)
+            return false;
         return true;
     }
-    
 }
-    

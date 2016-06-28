@@ -25,11 +25,11 @@ import com.amazonaws.services.ec2.model.transform.ResetInstanceAttributeRequestM
  * <p>
  * Resets an attribute of an instance to its default value. To reset the
  * <code>kernel</code> or <code>ramdisk</code> , the instance must be in
- * a stopped state. To reset the <code>SourceDestCheck</code> , the
+ * a stopped state. To reset the <code>sourceDestCheck</code> , the
  * instance can be either running or stopped.
  * </p>
  * <p>
- * The <code>SourceDestCheck</code> attribute controls whether
+ * The <code>sourceDestCheck</code> attribute controls whether
  * source/destination checking is enabled. The default value is
  * <code>true</code> , which means checking is enabled. This value must
  * be <code>false</code> for a NAT instance to perform NAT. For more
@@ -48,7 +48,10 @@ public class ResetInstanceAttributeRequest extends AmazonWebServiceRequest imple
     private String instanceId;
 
     /**
-     * The attribute to reset.
+     * The attribute to reset. <important><p>You can only reset the following
+     * attributes: <code>kernel</code> | <code>ramdisk</code> |
+     * <code>sourceDestCheck</code>. To change an instance attribute, use
+     * <a>ModifyInstanceAttribute</a>.</important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
@@ -67,7 +70,10 @@ public class ResetInstanceAttributeRequest extends AmazonWebServiceRequest imple
      * initialize any additional object members.
      * 
      * @param instanceId The ID of the instance.
-     * @param attribute The attribute to reset.
+     * @param attribute The attribute to reset. <important><p>You can only
+     * reset the following attributes: <code>kernel</code> |
+     * <code>ramdisk</code> | <code>sourceDestCheck</code>. To change an
+     * instance attribute, use <a>ModifyInstanceAttribute</a>.</important>
      */
     public ResetInstanceAttributeRequest(String instanceId, String attribute) {
         setInstanceId(instanceId);
@@ -80,7 +86,10 @@ public class ResetInstanceAttributeRequest extends AmazonWebServiceRequest imple
      * initialize any additional object members.
      * 
      * @param instanceId The ID of the instance.
-     * @param attribute The attribute to reset.
+     * @param attribute The attribute to reset. <important><p>You can only
+     * reset the following attributes: <code>kernel</code> |
+     * <code>ramdisk</code> | <code>sourceDestCheck</code>. To change an
+     * instance attribute, use <a>ModifyInstanceAttribute</a>.</important>
      */
     public ResetInstanceAttributeRequest(String instanceId, InstanceAttributeName attribute) {
         this.instanceId = instanceId;
@@ -121,12 +130,18 @@ public class ResetInstanceAttributeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The attribute to reset.
+     * The attribute to reset. <important><p>You can only reset the following
+     * attributes: <code>kernel</code> | <code>ramdisk</code> |
+     * <code>sourceDestCheck</code>. To change an instance attribute, use
+     * <a>ModifyInstanceAttribute</a>.</important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
      *
-     * @return The attribute to reset.
+     * @return The attribute to reset. <important><p>You can only reset the following
+     *         attributes: <code>kernel</code> | <code>ramdisk</code> |
+     *         <code>sourceDestCheck</code>. To change an instance attribute, use
+     *         <a>ModifyInstanceAttribute</a>.</important>
      *
      * @see InstanceAttributeName
      */
@@ -135,12 +150,18 @@ public class ResetInstanceAttributeRequest extends AmazonWebServiceRequest imple
     }
     
     /**
-     * The attribute to reset.
+     * The attribute to reset. <important><p>You can only reset the following
+     * attributes: <code>kernel</code> | <code>ramdisk</code> |
+     * <code>sourceDestCheck</code>. To change an instance attribute, use
+     * <a>ModifyInstanceAttribute</a>.</important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
      *
-     * @param attribute The attribute to reset.
+     * @param attribute The attribute to reset. <important><p>You can only reset the following
+     *         attributes: <code>kernel</code> | <code>ramdisk</code> |
+     *         <code>sourceDestCheck</code>. To change an instance attribute, use
+     *         <a>ModifyInstanceAttribute</a>.</important>
      *
      * @see InstanceAttributeName
      */
@@ -149,14 +170,20 @@ public class ResetInstanceAttributeRequest extends AmazonWebServiceRequest imple
     }
     
     /**
-     * The attribute to reset.
+     * The attribute to reset. <important><p>You can only reset the following
+     * attributes: <code>kernel</code> | <code>ramdisk</code> |
+     * <code>sourceDestCheck</code>. To change an instance attribute, use
+     * <a>ModifyInstanceAttribute</a>.</important>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
      *
-     * @param attribute The attribute to reset.
+     * @param attribute The attribute to reset. <important><p>You can only reset the following
+     *         attributes: <code>kernel</code> | <code>ramdisk</code> |
+     *         <code>sourceDestCheck</code>. To change an instance attribute, use
+     *         <a>ModifyInstanceAttribute</a>.</important>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
@@ -169,12 +196,18 @@ public class ResetInstanceAttributeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The attribute to reset.
+     * The attribute to reset. <important><p>You can only reset the following
+     * attributes: <code>kernel</code> | <code>ramdisk</code> |
+     * <code>sourceDestCheck</code>. To change an instance attribute, use
+     * <a>ModifyInstanceAttribute</a>.</important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
      *
-     * @param attribute The attribute to reset.
+     * @param attribute The attribute to reset. <important><p>You can only reset the following
+     *         attributes: <code>kernel</code> | <code>ramdisk</code> |
+     *         <code>sourceDestCheck</code>. To change an instance attribute, use
+     *         <a>ModifyInstanceAttribute</a>.</important>
      *
      * @see InstanceAttributeName
      */
@@ -183,14 +216,20 @@ public class ResetInstanceAttributeRequest extends AmazonWebServiceRequest imple
     }
     
     /**
-     * The attribute to reset.
+     * The attribute to reset. <important><p>You can only reset the following
+     * attributes: <code>kernel</code> | <code>ramdisk</code> |
+     * <code>sourceDestCheck</code>. To change an instance attribute, use
+     * <a>ModifyInstanceAttribute</a>.</important>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
      *
-     * @param attribute The attribute to reset.
+     * @param attribute The attribute to reset. <important><p>You can only reset the following
+     *         attributes: <code>kernel</code> | <code>ramdisk</code> |
+     *         <code>sourceDestCheck</code>. To change an instance attribute, use
+     *         <a>ModifyInstanceAttribute</a>.</important>
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
