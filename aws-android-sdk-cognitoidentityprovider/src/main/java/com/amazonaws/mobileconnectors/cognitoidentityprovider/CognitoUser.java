@@ -24,6 +24,7 @@ import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
@@ -103,6 +104,8 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class CognitoUser {
     private final String TAG = "CognitoUser";
+    /** Default threshold for refreshing session credentials */
+    public static final int DEFAULT_THRESHOLD_SECONDS = 500;
 
     /**
      * Application context.
@@ -621,6 +624,24 @@ public class CognitoUser {
     }
 
     /**
+     * Returns true if a new session needs to be started. A new session
+     * is needed when no session has been started yet, or if the last session is
+     * within the configured refresh threshold.
+     *
+     * @return True if a new session needs to be started.
+     */
+    private boolean needsNewSession(CognitoUserSession userSession) {
+        if (userSession == null) {
+            return true;
+        }
+        long currentTime = System.currentTimeMillis()
+                - SDKGlobalConfiguration.getGlobalTimeOffset() * 1000;
+        long timeRemaining = userSession.getIdToken().getExpiration().getTime()
+                - currentTime;
+        return timeRemaining < (DEFAULT_THRESHOLD_SECONDS * 1000);
+    }
+
+    /**
      * Call this method for valid, cached tokens for this user.
      *
      * @return Valid, cached tokens {@link CognitoUserSession}. {@code null} otherwise.
@@ -630,19 +651,17 @@ public class CognitoUser {
             throw new CognitoNotAuthorizedException("User-ID is null");
         }
 
-        if (cipSession != null) {
-            if (cipSession.isValid()) {
-                return cipSession;
-            }
+        if (!needsNewSession(cipSession)) {
+            return cipSession;
         }
 
         // Read cached tokens
         CognitoUserSession cachedTokens = readCachedTokens();
 
-        // Return cached tokens if they are still valid
-        if (cachedTokens.isValid()) {
+        // Return cached tokens if they are still valid with some margin
+        if (!needsNewSession(cachedTokens)) {
             cipSession = cachedTokens;
-            return  cipSession;
+            return cipSession;
         }
 
         if (cachedTokens.getRefreshToken() != null) {

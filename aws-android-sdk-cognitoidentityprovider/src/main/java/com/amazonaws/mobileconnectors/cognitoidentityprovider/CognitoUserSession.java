@@ -17,6 +17,7 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
+import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoAccessToken;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoIdToken;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoRefreshToken;
@@ -27,6 +28,8 @@ import java.util.Date;
  * This wraps all Cognito tokens for a user.
  */
 public class CognitoUserSession {
+    /** Default threshold for refreshing session credentials */
+    public static final int DEFAULT_THRESHOLD_SECONDS = 500;
     /**
      * Cognito identity token.
      */
@@ -88,8 +91,8 @@ public class CognitoUserSession {
      * @return boolean to indicate if the access and id tokens have not expired.
      */
     public boolean isValid() {
-        Date currentTimeStamp = new Date();
-        
+        Date currentTimeStamp = new Date(System.currentTimeMillis()
+                - SDKGlobalConfiguration.getGlobalTimeOffset() * 1000);
         try {
             return (currentTimeStamp.before(idToken.getExpiration())
                     & currentTimeStamp.before(accessToken.getExpiration()));
