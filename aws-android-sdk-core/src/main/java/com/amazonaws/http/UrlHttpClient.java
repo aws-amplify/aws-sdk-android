@@ -191,12 +191,32 @@ public class UrlHttpClient implements HttpClient {
                 disableCertificateValidation(https);
             }
             */
+
+            if (config.getTrustManager() != null) {
+                enableCustomTrustManager(https);
+            }
         }
     }
 
-    /*
     private SSLContext sc = null;
 
+    private void enableCustomTrustManager(HttpsURLConnection connection) {
+        if (sc == null) {
+            TrustManager[] customTrustManagers = new TrustManager[] {
+                    config.getTrustManager()
+            };
+            try {
+                sc = SSLContext.getInstance("TLS");
+                sc.init(null, customTrustManagers, null);
+            } catch (GeneralSecurityException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        connection.setSSLSocketFactory(sc.getSocketFactory());
+    }
+
+    /*
     private void disableCertificateValidation(HttpsURLConnection connection) {
         if (sc == null) {
             TrustManager[] trustAllCerts = new TrustManager[] {

@@ -29,6 +29,8 @@ import org.junit.Test;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import javax.net.ssl.TrustManager;
+
 public class ClientConfigurationTest {
 
     @Test
@@ -119,6 +121,11 @@ public class ClientConfigurationTest {
         c.setUserAgent("set");
         assertEquals(c.getUserAgent(), "set");
 
+        TrustManager trustManager = new TrustManager() {};
+        c.withTrustManager(trustManager);
+        assertSame(trustManager, c.getTrustManager());
+        c.setTrustManager(null);
+        assertNull(c.getTrustManager());
     }
 
     @Test
@@ -143,6 +150,8 @@ public class ClientConfigurationTest {
         c.withSocketBufferSizeHints(0, 1);
         c.withSocketTimeout(0);
         c.withUserAgent("ua");
+        TrustManager trustManager = new TrustManager() {};
+        c.withTrustManager(trustManager);
 
         ClientConfiguration n = new ClientConfiguration(c);
         assertEquals(c.getConnectionTimeout(), n.getConnectionTimeout());
@@ -161,7 +170,8 @@ public class ClientConfigurationTest {
         assertArrayEquals(c.getSocketBufferSizeHints(), n.getSocketBufferSizeHints());
         assertEquals(c.getSocketTimeout(), n.getSocketTimeout());
         assertEquals(c.getUserAgent(), n.getUserAgent());
-
+        assertEquals(c.getUserAgent(), n.getUserAgent());
+        assertSame(c.getTrustManager(), n.getTrustManager());
     }
 
 }
