@@ -22,7 +22,9 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
 
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
@@ -102,6 +104,8 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class CognitoUser {
     private final String TAG = "CognitoUser";
+    /** Default threshold for refreshing session credentials */
+    public static final int DEFAULT_THRESHOLD_SECONDS = 500;
 
     /**
      * Application context.
@@ -620,6 +624,24 @@ public class CognitoUser {
     }
 
     /**
+     * Returns true if a new session needs to be started. A new session
+     * is needed when no session has been started yet, or if the last session is
+     * within the configured refresh threshold.
+     *
+     * @return True if a new session needs to be started.
+     */
+    private boolean needsNewSession(CognitoUserSession userSession) {
+        if (userSession == null) {
+            return true;
+        }
+        long currentTime = System.currentTimeMillis()
+                - SDKGlobalConfiguration.getGlobalTimeOffset() * 1000;
+        long timeRemaining = userSession.getIdToken().getExpiration().getTime()
+                - currentTime;
+        return timeRemaining < (DEFAULT_THRESHOLD_SECONDS * 1000);
+    }
+
+    /**
      * Call this method for valid, cached tokens for this user.
      *
      * @return Valid, cached tokens {@link CognitoUserSession}. {@code null} otherwise.
@@ -629,23 +651,18 @@ public class CognitoUser {
             throw new CognitoNotAuthorizedException("User-ID is null");
         }
 
-        if (cipSession != null) {
-            if (cipSession.isValid()) {
-                return cipSession;
-            }
+        if (!needsNewSession(cipSession)) {
+            return cipSession;
         }
 
         // Read cached tokens
         CognitoUserSession cachedTokens = readCachedTokens();
 
-        // Return cached tokens if they are still valid
-        if (cachedTokens.isValid()) {
+        // Return cached tokens if they are still valid with some margin
+        if (!needsNewSession(cachedTokens)) {
             cipSession = cachedTokens;
-            return  cipSession;
+            return cipSession;
         }
-
-        // Clear any cached tokens, since none of them are valid.
-        clearCachedTokens();
 
         if (cachedTokens.getRefreshToken() != null) {
             // Use Refresh token to get new tokens
@@ -653,9 +670,17 @@ public class CognitoUser {
                 cipSession = refreshSessionInternal(cachedTokens.getRefreshToken());
                 cacheTokens(cipSession);
                 return cipSession;
-            } catch (Exception e) {
+            } catch (CognitoNotAuthorizedException e) {
+                // Clear any cached tokens, since none of them are valid.
+                clearCachedTokens();
                 // Could not get new tokens from refresh. Should authenticate user.
-                throw new CognitoNotAuthorizedException("user is not authenticated");
+                throw new CognitoNotAuthorizedException("user is not authenticated",e);
+            } catch (AmazonClientException e) {
+                // General IO errors - not clearing cached tokens
+                throw new AmazonClientException("failed to get new tokens from refresh",e);
+            } catch (Exception e) {
+                // Errors like NetworkOnMainThreadException etc - not clearing cached tokens.
+                throw new AmazonClientException("failed to get new tokens from refresh",e);
             }
         }
         throw new CognitoNotAuthorizedException("user is not authenticated");
@@ -2018,7 +2043,7 @@ public class CognitoUser {
                     cognitoIdentityProviderClient.refreshTokens(refreshTokensRequest);
             AuthenticationResultType authenticationResult = refreshTokensResult.getAuthenticationResult();
 
-            if (authenticationResult != null) {
+            if (authenticationResult == null) {
                 throw new CognitoNotAuthorizedException("user is not authenticated");
             }
 
