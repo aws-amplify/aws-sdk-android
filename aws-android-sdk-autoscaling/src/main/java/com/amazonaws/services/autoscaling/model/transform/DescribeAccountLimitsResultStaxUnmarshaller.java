@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -27,50 +27,64 @@ import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
 /**
- * Describe Account Limits Result StAX Unmarshaller
+ * StAX unmarshaller for response DescribeAccountLimitsResult
  */
-public class DescribeAccountLimitsResultStaxUnmarshaller implements Unmarshaller<DescribeAccountLimitsResult, StaxUnmarshallerContext> {
+public class DescribeAccountLimitsResultStaxUnmarshaller implements
+        Unmarshaller<DescribeAccountLimitsResult, StaxUnmarshallerContext> {
 
     public DescribeAccountLimitsResult unmarshall(StaxUnmarshallerContext context) throws Exception {
         DescribeAccountLimitsResult describeAccountLimitsResult = new DescribeAccountLimitsResult();
+
         int originalDepth = context.getCurrentDepth();
         int targetDepth = originalDepth + 1;
 
-        if (context.isStartOfDocument()) targetDepth += 2;
+        if (context.isStartOfDocument())
+            targetDepth += 2;
 
         while (true) {
             int xmlEvent = context.nextEvent();
-            if (xmlEvent == XmlPullParser.END_DOCUMENT) return describeAccountLimitsResult;
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("MaxNumberOfAutoScalingGroups", targetDepth)) {
-                    describeAccountLimitsResult.setMaxNumberOfAutoScalingGroups(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeAccountLimitsResult
+                            .setMaxNumberOfAutoScalingGroups(IntegerStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("MaxNumberOfLaunchConfigurations", targetDepth)) {
-                    describeAccountLimitsResult.setMaxNumberOfLaunchConfigurations(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeAccountLimitsResult
+                            .setMaxNumberOfLaunchConfigurations(IntegerStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NumberOfAutoScalingGroups", targetDepth)) {
-                    describeAccountLimitsResult.setNumberOfAutoScalingGroups(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeAccountLimitsResult
+                            .setNumberOfAutoScalingGroups(IntegerStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NumberOfLaunchConfigurations", targetDepth)) {
-                    describeAccountLimitsResult.setNumberOfLaunchConfigurations(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeAccountLimitsResult
+                            .setNumberOfLaunchConfigurations(IntegerStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
-                    return describeAccountLimitsResult;
+                    break;
                 }
             }
         }
+        return describeAccountLimitsResult;
     }
 
     private static DescribeAccountLimitsResultStaxUnmarshaller instance;
+
     public static DescribeAccountLimitsResultStaxUnmarshaller getInstance() {
-        if (instance == null) instance = new DescribeAccountLimitsResultStaxUnmarshaller();
+        if (instance == null)
+            instance = new DescribeAccountLimitsResultStaxUnmarshaller();
         return instance;
     }
 }
-    

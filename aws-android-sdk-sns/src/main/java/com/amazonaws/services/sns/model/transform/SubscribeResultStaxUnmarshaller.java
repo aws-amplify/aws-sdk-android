@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -27,38 +27,45 @@ import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
 /**
- * Subscribe Result StAX Unmarshaller
+ * StAX unmarshaller for response SubscribeResult
  */
-public class SubscribeResultStaxUnmarshaller implements Unmarshaller<SubscribeResult, StaxUnmarshallerContext> {
+public class SubscribeResultStaxUnmarshaller implements
+        Unmarshaller<SubscribeResult, StaxUnmarshallerContext> {
 
     public SubscribeResult unmarshall(StaxUnmarshallerContext context) throws Exception {
         SubscribeResult subscribeResult = new SubscribeResult();
+
         int originalDepth = context.getCurrentDepth();
         int targetDepth = originalDepth + 1;
 
-        if (context.isStartOfDocument()) targetDepth += 2;
+        if (context.isStartOfDocument())
+            targetDepth += 2;
 
         while (true) {
             int xmlEvent = context.nextEvent();
-            if (xmlEvent == XmlPullParser.END_DOCUMENT) return subscribeResult;
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("SubscriptionArn", targetDepth)) {
-                    subscribeResult.setSubscriptionArn(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    subscribeResult.setSubscriptionArn(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
-                    return subscribeResult;
+                    break;
                 }
             }
         }
+        return subscribeResult;
     }
 
     private static SubscribeResultStaxUnmarshaller instance;
+
     public static SubscribeResultStaxUnmarshaller getInstance() {
-        if (instance == null) instance = new SubscribeResultStaxUnmarshaller();
+        if (instance == null)
+            instance = new SubscribeResultStaxUnmarshaller();
         return instance;
     }
 }
-    

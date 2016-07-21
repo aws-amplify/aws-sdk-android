@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.sqs.model;
 
 import java.io.Serializable;
@@ -19,70 +20,89 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.sqs.AmazonSQS#sendMessage(SendMessageRequest) SendMessage operation}.
  * <p>
- * Delivers a message to the specified queue. With Amazon SQS, you now
- * have the ability to send large payload messages that are up to 256KB
- * (262,144 bytes) in size. To send large payloads, you must use an AWS
- * SDK that supports SigV4 signing. To verify whether SigV4 is supported
- * for an AWS SDK, check the SDK release notes.
+ * Delivers a message to the specified queue. With Amazon SQS, you now have the
+ * ability to send large payload messages that are up to 256KB (262,144 bytes)
+ * in size. To send large payloads, you must use an AWS SDK that supports SigV4
+ * signing. To verify whether SigV4 is supported for an AWS SDK, check the SDK
+ * release notes.
+ * </p>
+ * <important>
+ * <p>
+ * The following list shows the characters (in Unicode) allowed in your message,
+ * according to the W3C XML specification. For more information, go to <a
+ * href="http://www.w3.org/TR/REC-xml/#charsets"
+ * >http://www.w3.org/TR/REC-xml/#charsets</a> If you send any characters not
+ * included in the list, your request will be rejected.
  * </p>
  * <p>
- * <b>IMPORTANT:</b> The following list shows the characters (in Unicode)
- * allowed in your message, according to the W3C XML specification. For
- * more information, go to http://www.w3.org/TR/REC-xml/#charsets If you
- * send any characters not included in the list, your request will be
- * rejected. #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD] |
- * [#x10000 to #x10FFFF]
+ * #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD] | [#x10000 to
+ * #x10FFFF]
  * </p>
- *
- * @see com.amazonaws.services.sqs.AmazonSQS#sendMessage(SendMessageRequest)
+ * </important>
  */
 public class SendMessageRequest extends AmazonWebServiceRequest implements Serializable {
-
     /**
-     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     * case-sensitive.
+     * <p>
+     * The URL of the Amazon SQS queue to take action on.
+     * </p>
+     * <p>
+     * Queue URLs are case-sensitive.
+     * </p>
      */
     private String queueUrl;
 
     /**
-     * The message to send. String maximum 256 KB in size. For a list of
-     * allowed characters, see the preceding important note.
+     * <p>
+     * The message to send. String maximum 256 KB in size. For a list of allowed
+     * characters, see the preceding important note.
+     * </p>
      */
     private String messageBody;
 
     /**
+     * <p>
      * The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     * message. Messages with a positive <code>DelaySeconds</code> value
-     * become available for processing after the delay time is finished. If
-     * you don't specify a value, the default value for the queue applies.
+     * message. Messages with a positive <code>DelaySeconds</code> value become
+     * available for processing after the delay time is finished. If you don't
+     * specify a value, the default value for the queue applies.
+     * </p>
      */
     private Integer delaySeconds;
 
     /**
+     * <p>
      * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV">Message
-     * Attribute Items</a>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
+     * >Message Attribute Items</a>.
+     * </p>
      */
-    private java.util.Map<String,MessageAttributeValue> messageAttributes;
+    private java.util.Map<String, MessageAttributeValue> messageAttributes = new java.util.HashMap<String, MessageAttributeValue>();
 
     /**
-     * Default constructor for a new SendMessageRequest object.  Callers should use the
-     * setter or fluent setter (with...) methods to initialize this object after creating it.
+     * Default constructor for SendMessageRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
      */
-    public SendMessageRequest() {}
-    
+    public SendMessageRequest() {
+    }
+
     /**
-     * Constructs a new SendMessageRequest object.
-     * Callers should use the setter or fluent setter (with...) methods to
-     * initialize any additional object members.
+     * Constructs a new SendMessageRequest object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
      * 
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
-     * <p>Queue URLs are case-sensitive.
-     * @param messageBody The message to send. String maximum 256 KB in size.
-     * For a list of allowed characters, see the preceding important note.
+     * @param queueUrl <p>
+     *            The URL of the Amazon SQS queue to take action on.
+     *            </p>
+     *            <p>
+     *            Queue URLs are case-sensitive.
+     *            </p>
+     * @param messageBody <p>
+     *            The message to send. String maximum 256 KB in size. For a list
+     *            of allowed characters, see the preceding important note.
+     *            </p>
      */
     public SendMessageRequest(String queueUrl, String messageBody) {
         setQueueUrl(queueUrl);
@@ -90,38 +110,62 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     * case-sensitive.
+     * <p>
+     * The URL of the Amazon SQS queue to take action on.
+     * </p>
+     * <p>
+     * Queue URLs are case-sensitive.
+     * </p>
      *
-     * @return The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     *         case-sensitive.
+     * @return <p>
+     *         The URL of the Amazon SQS queue to take action on.
+     *         </p>
+     *         <p>
+     *         Queue URLs are case-sensitive.
+     *         </p>
      */
     public String getQueueUrl() {
         return queueUrl;
     }
-    
+
     /**
-     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     * case-sensitive.
+     * <p>
+     * The URL of the Amazon SQS queue to take action on.
+     * </p>
+     * <p>
+     * Queue URLs are case-sensitive.
+     * </p>
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     *         case-sensitive.
+     * @param queueUrl <p>
+     *            The URL of the Amazon SQS queue to take action on.
+     *            </p>
+     *            <p>
+     *            Queue URLs are case-sensitive.
+     *            </p>
      */
     public void setQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
     }
-    
+
     /**
-     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     * case-sensitive.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The URL of the Amazon SQS queue to take action on.
+     * </p>
+     * <p>
+     * Queue URLs are case-sensitive.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     *         case-sensitive.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param queueUrl <p>
+     *            The URL of the Amazon SQS queue to take action on.
+     *            </p>
+     *            <p>
+     *            Queue URLs are case-sensitive.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public SendMessageRequest withQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
@@ -129,38 +173,50 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * The message to send. String maximum 256 KB in size. For a list of
-     * allowed characters, see the preceding important note.
+     * <p>
+     * The message to send. String maximum 256 KB in size. For a list of allowed
+     * characters, see the preceding important note.
+     * </p>
      *
-     * @return The message to send. String maximum 256 KB in size. For a list of
+     * @return <p>
+     *         The message to send. String maximum 256 KB in size. For a list of
      *         allowed characters, see the preceding important note.
+     *         </p>
      */
     public String getMessageBody() {
         return messageBody;
     }
-    
+
     /**
-     * The message to send. String maximum 256 KB in size. For a list of
-     * allowed characters, see the preceding important note.
+     * <p>
+     * The message to send. String maximum 256 KB in size. For a list of allowed
+     * characters, see the preceding important note.
+     * </p>
      *
-     * @param messageBody The message to send. String maximum 256 KB in size. For a list of
-     *         allowed characters, see the preceding important note.
+     * @param messageBody <p>
+     *            The message to send. String maximum 256 KB in size. For a list
+     *            of allowed characters, see the preceding important note.
+     *            </p>
      */
     public void setMessageBody(String messageBody) {
         this.messageBody = messageBody;
     }
-    
+
     /**
-     * The message to send. String maximum 256 KB in size. For a list of
-     * allowed characters, see the preceding important note.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The message to send. String maximum 256 KB in size. For a list of allowed
+     * characters, see the preceding important note.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param messageBody The message to send. String maximum 256 KB in size. For a list of
-     *         allowed characters, see the preceding important note.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param messageBody <p>
+     *            The message to send. String maximum 256 KB in size. For a list
+     *            of allowed characters, see the preceding important note.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public SendMessageRequest withMessageBody(String messageBody) {
         this.messageBody = messageBody;
@@ -168,50 +224,65 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
+     * <p>
      * The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     * message. Messages with a positive <code>DelaySeconds</code> value
-     * become available for processing after the delay time is finished. If
-     * you don't specify a value, the default value for the queue applies.
+     * message. Messages with a positive <code>DelaySeconds</code> value become
+     * available for processing after the delay time is finished. If you don't
+     * specify a value, the default value for the queue applies.
+     * </p>
      *
-     * @return The number of seconds (0 to 900 - 15 minutes) to delay a specific
+     * @return <p>
+     *         The number of seconds (0 to 900 - 15 minutes) to delay a specific
      *         message. Messages with a positive <code>DelaySeconds</code> value
-     *         become available for processing after the delay time is finished. If
-     *         you don't specify a value, the default value for the queue applies.
+     *         become available for processing after the delay time is finished.
+     *         If you don't specify a value, the default value for the queue
+     *         applies.
+     *         </p>
      */
     public Integer getDelaySeconds() {
         return delaySeconds;
     }
-    
+
     /**
+     * <p>
      * The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     * message. Messages with a positive <code>DelaySeconds</code> value
-     * become available for processing after the delay time is finished. If
-     * you don't specify a value, the default value for the queue applies.
+     * message. Messages with a positive <code>DelaySeconds</code> value become
+     * available for processing after the delay time is finished. If you don't
+     * specify a value, the default value for the queue applies.
+     * </p>
      *
-     * @param delaySeconds The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     *         message. Messages with a positive <code>DelaySeconds</code> value
-     *         become available for processing after the delay time is finished. If
-     *         you don't specify a value, the default value for the queue applies.
+     * @param delaySeconds <p>
+     *            The number of seconds (0 to 900 - 15 minutes) to delay a
+     *            specific message. Messages with a positive
+     *            <code>DelaySeconds</code> value become available for
+     *            processing after the delay time is finished. If you don't
+     *            specify a value, the default value for the queue applies.
+     *            </p>
      */
     public void setDelaySeconds(Integer delaySeconds) {
         this.delaySeconds = delaySeconds;
     }
-    
+
     /**
-     * The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     * message. Messages with a positive <code>DelaySeconds</code> value
-     * become available for processing after the delay time is finished. If
-     * you don't specify a value, the default value for the queue applies.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The number of seconds (0 to 900 - 15 minutes) to delay a specific
+     * message. Messages with a positive <code>DelaySeconds</code> value become
+     * available for processing after the delay time is finished. If you don't
+     * specify a value, the default value for the queue applies.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param delaySeconds The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     *         message. Messages with a positive <code>DelaySeconds</code> value
-     *         become available for processing after the delay time is finished. If
-     *         you don't specify a value, the default value for the queue applies.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param delaySeconds <p>
+     *            The number of seconds (0 to 900 - 15 minutes) to delay a
+     *            specific message. Messages with a positive
+     *            <code>DelaySeconds</code> value become available for
+     *            processing after the delay time is finished. If you don't
+     *            specify a value, the default value for the queue applies.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public SendMessageRequest withDelaySeconds(Integer delaySeconds) {
         this.delaySeconds = delaySeconds;
@@ -219,79 +290,94 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
+     * <p>
      * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV">Message
-     * Attribute Items</a>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
+     * >Message Attribute Items</a>.
+     * </p>
      *
-     * @return Each message attribute consists of a Name, Type, and Value. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV">Message
-     *         Attribute Items</a>.
+     * @return <p>
+     *         Each message attribute consists of a Name, Type, and Value. For
+     *         more information, see <a href=
+     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
+     *         >Message Attribute Items</a>.
+     *         </p>
      */
-    public java.util.Map<String,MessageAttributeValue> getMessageAttributes() {
-        
-        if (messageAttributes == null) {
-            messageAttributes = new java.util.HashMap<String,MessageAttributeValue>();
-        }
+    public java.util.Map<String, MessageAttributeValue> getMessageAttributes() {
         return messageAttributes;
     }
-    
+
     /**
+     * <p>
      * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV">Message
-     * Attribute Items</a>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
+     * >Message Attribute Items</a>.
+     * </p>
      *
-     * @param messageAttributes Each message attribute consists of a Name, Type, and Value. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV">Message
-     *         Attribute Items</a>.
+     * @param messageAttributes <p>
+     *            Each message attribute consists of a Name, Type, and Value.
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
+     *            >Message Attribute Items</a>.
+     *            </p>
      */
-    public void setMessageAttributes(java.util.Map<String,MessageAttributeValue> messageAttributes) {
+    public void setMessageAttributes(java.util.Map<String, MessageAttributeValue> messageAttributes) {
         this.messageAttributes = messageAttributes;
     }
-    
+
     /**
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV">Message
-     * Attribute Items</a>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Each message attribute consists of a Name, Type, and Value. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
+     * >Message Attribute Items</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param messageAttributes Each message attribute consists of a Name, Type, and Value. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV">Message
-     *         Attribute Items</a>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param messageAttributes <p>
+     *            Each message attribute consists of a Name, Type, and Value.
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
+     *            >Message Attribute Items</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public SendMessageRequest withMessageAttributes(java.util.Map<String,MessageAttributeValue> messageAttributes) {
-        setMessageAttributes(messageAttributes);
+    public SendMessageRequest withMessageAttributes(
+            java.util.Map<String, MessageAttributeValue> messageAttributes) {
+        this.messageAttributes = messageAttributes;
         return this;
     }
 
     /**
+     * <p>
      * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV">Message
-     * Attribute Items</a>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
+     * >Message Attribute Items</a>.
+     * </p>
      * <p>
      * The method adds a new key-value pair into MessageAttributes parameter,
      * and returns a reference to this object so that method calls can be
      * chained together.
      *
      * @param key The key of the entry to be added into MessageAttributes.
-     * @param value The corresponding value of the entry to be added into MessageAttributes.
+     * @param value The corresponding value of the entry to be added into
+     *            MessageAttributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public SendMessageRequest addMessageAttributesEntry(String key, MessageAttributeValue value) {
         if (null == this.messageAttributes) {
-            this.messageAttributes = new java.util.HashMap<String,MessageAttributeValue>();
+            this.messageAttributes = new java.util.HashMap<String, MessageAttributeValue>();
         }
         if (this.messageAttributes.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString() + ") are provided.");
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
         this.messageAttributes.put(key, value);
         return this;
     }
@@ -299,63 +385,82 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
     /**
      * Removes all the entries added into MessageAttributes.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      */
     public SendMessageRequest clearMessageAttributesEntries() {
         this.messageAttributes = null;
         return this;
     }
-    
+
     /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getQueueUrl() != null) sb.append("QueueUrl: " + getQueueUrl() + ",");
-        if (getMessageBody() != null) sb.append("MessageBody: " + getMessageBody() + ",");
-        if (getDelaySeconds() != null) sb.append("DelaySeconds: " + getDelaySeconds() + ",");
-        if (getMessageAttributes() != null) sb.append("MessageAttributes: " + getMessageAttributes() );
+        if (getQueueUrl() != null)
+            sb.append("QueueUrl: " + getQueueUrl() + ",");
+        if (getMessageBody() != null)
+            sb.append("MessageBody: " + getMessageBody() + ",");
+        if (getDelaySeconds() != null)
+            sb.append("DelaySeconds: " + getDelaySeconds() + ",");
+        if (getMessageAttributes() != null)
+            sb.append("MessageAttributes: " + getMessageAttributes());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getQueueUrl() == null) ? 0 : getQueueUrl().hashCode()); 
-        hashCode = prime * hashCode + ((getMessageBody() == null) ? 0 : getMessageBody().hashCode()); 
-        hashCode = prime * hashCode + ((getDelaySeconds() == null) ? 0 : getDelaySeconds().hashCode()); 
-        hashCode = prime * hashCode + ((getMessageAttributes() == null) ? 0 : getMessageAttributes().hashCode()); 
+
+        hashCode = prime * hashCode + ((getQueueUrl() == null) ? 0 : getQueueUrl().hashCode());
+        hashCode = prime * hashCode
+                + ((getMessageBody() == null) ? 0 : getMessageBody().hashCode());
+        hashCode = prime * hashCode
+                + ((getDelaySeconds() == null) ? 0 : getDelaySeconds().hashCode());
+        hashCode = prime * hashCode
+                + ((getMessageAttributes() == null) ? 0 : getMessageAttributes().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof SendMessageRequest == false) return false;
-        SendMessageRequest other = (SendMessageRequest)obj;
-        
-        if (other.getQueueUrl() == null ^ this.getQueueUrl() == null) return false;
-        if (other.getQueueUrl() != null && other.getQueueUrl().equals(this.getQueueUrl()) == false) return false; 
-        if (other.getMessageBody() == null ^ this.getMessageBody() == null) return false;
-        if (other.getMessageBody() != null && other.getMessageBody().equals(this.getMessageBody()) == false) return false; 
-        if (other.getDelaySeconds() == null ^ this.getDelaySeconds() == null) return false;
-        if (other.getDelaySeconds() != null && other.getDelaySeconds().equals(this.getDelaySeconds()) == false) return false; 
-        if (other.getMessageAttributes() == null ^ this.getMessageAttributes() == null) return false;
-        if (other.getMessageAttributes() != null && other.getMessageAttributes().equals(this.getMessageAttributes()) == false) return false; 
+        if (obj instanceof SendMessageRequest == false)
+            return false;
+        SendMessageRequest other = (SendMessageRequest) obj;
+
+        if (other.getQueueUrl() == null ^ this.getQueueUrl() == null)
+            return false;
+        if (other.getQueueUrl() != null && other.getQueueUrl().equals(this.getQueueUrl()) == false)
+            return false;
+        if (other.getMessageBody() == null ^ this.getMessageBody() == null)
+            return false;
+        if (other.getMessageBody() != null
+                && other.getMessageBody().equals(this.getMessageBody()) == false)
+            return false;
+        if (other.getDelaySeconds() == null ^ this.getDelaySeconds() == null)
+            return false;
+        if (other.getDelaySeconds() != null
+                && other.getDelaySeconds().equals(this.getDelaySeconds()) == false)
+            return false;
+        if (other.getMessageAttributes() == null ^ this.getMessageAttributes() == null)
+            return false;
+        if (other.getMessageAttributes() != null
+                && other.getMessageAttributes().equals(this.getMessageAttributes()) == false)
+            return false;
         return true;
     }
-    
 }
-    

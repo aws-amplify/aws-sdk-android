@@ -1,24 +1,28 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.cloudwatch.model;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Standard Unit
  */
 public enum StandardUnit {
-    
+
     Seconds("Seconds"),
     Microseconds("Microseconds"),
     Milliseconds("Milliseconds"),
@@ -55,77 +59,54 @@ public enum StandardUnit {
 
     @Override
     public String toString() {
-        return this.value;
+        return value;
+    }
+
+    private static final Map<String, StandardUnit> enumMap;
+    static {
+        enumMap = new HashMap<String, StandardUnit>();
+        enumMap.put("Seconds", Seconds);
+        enumMap.put("Microseconds", Microseconds);
+        enumMap.put("Milliseconds", Milliseconds);
+        enumMap.put("Bytes", Bytes);
+        enumMap.put("Kilobytes", Kilobytes);
+        enumMap.put("Megabytes", Megabytes);
+        enumMap.put("Gigabytes", Gigabytes);
+        enumMap.put("Terabytes", Terabytes);
+        enumMap.put("Bits", Bits);
+        enumMap.put("Kilobits", Kilobits);
+        enumMap.put("Megabits", Megabits);
+        enumMap.put("Gigabits", Gigabits);
+        enumMap.put("Terabits", Terabits);
+        enumMap.put("Percent", Percent);
+        enumMap.put("Count", Count);
+        enumMap.put("Bytes/Second", BytesSecond);
+        enumMap.put("Kilobytes/Second", KilobytesSecond);
+        enumMap.put("Megabytes/Second", MegabytesSecond);
+        enumMap.put("Gigabytes/Second", GigabytesSecond);
+        enumMap.put("Terabytes/Second", TerabytesSecond);
+        enumMap.put("Bits/Second", BitsSecond);
+        enumMap.put("Kilobits/Second", KilobitsSecond);
+        enumMap.put("Megabits/Second", MegabitsSecond);
+        enumMap.put("Gigabits/Second", GigabitsSecond);
+        enumMap.put("Terabits/Second", TerabitsSecond);
+        enumMap.put("Count/Second", CountSecond);
+        enumMap.put("None", None);
     }
 
     /**
      * Use this in place of valueOf.
      *
-     * @param value
-     *            real value
+     * @param value real value
      * @return StandardUnit corresponding to the value
      */
     public static StandardUnit fromValue(String value) {
-        if (value == null || "".equals(value)) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
-        
-        } else if ("Seconds".equals(value)) {
-            return StandardUnit.Seconds;
-        } else if ("Microseconds".equals(value)) {
-            return StandardUnit.Microseconds;
-        } else if ("Milliseconds".equals(value)) {
-            return StandardUnit.Milliseconds;
-        } else if ("Bytes".equals(value)) {
-            return StandardUnit.Bytes;
-        } else if ("Kilobytes".equals(value)) {
-            return StandardUnit.Kilobytes;
-        } else if ("Megabytes".equals(value)) {
-            return StandardUnit.Megabytes;
-        } else if ("Gigabytes".equals(value)) {
-            return StandardUnit.Gigabytes;
-        } else if ("Terabytes".equals(value)) {
-            return StandardUnit.Terabytes;
-        } else if ("Bits".equals(value)) {
-            return StandardUnit.Bits;
-        } else if ("Kilobits".equals(value)) {
-            return StandardUnit.Kilobits;
-        } else if ("Megabits".equals(value)) {
-            return StandardUnit.Megabits;
-        } else if ("Gigabits".equals(value)) {
-            return StandardUnit.Gigabits;
-        } else if ("Terabits".equals(value)) {
-            return StandardUnit.Terabits;
-        } else if ("Percent".equals(value)) {
-            return StandardUnit.Percent;
-        } else if ("Count".equals(value)) {
-            return StandardUnit.Count;
-        } else if ("Bytes/Second".equals(value)) {
-            return StandardUnit.BytesSecond;
-        } else if ("Kilobytes/Second".equals(value)) {
-            return StandardUnit.KilobytesSecond;
-        } else if ("Megabytes/Second".equals(value)) {
-            return StandardUnit.MegabytesSecond;
-        } else if ("Gigabytes/Second".equals(value)) {
-            return StandardUnit.GigabytesSecond;
-        } else if ("Terabytes/Second".equals(value)) {
-            return StandardUnit.TerabytesSecond;
-        } else if ("Bits/Second".equals(value)) {
-            return StandardUnit.BitsSecond;
-        } else if ("Kilobits/Second".equals(value)) {
-            return StandardUnit.KilobitsSecond;
-        } else if ("Megabits/Second".equals(value)) {
-            return StandardUnit.MegabitsSecond;
-        } else if ("Gigabits/Second".equals(value)) {
-            return StandardUnit.GigabitsSecond;
-        } else if ("Terabits/Second".equals(value)) {
-            return StandardUnit.TerabitsSecond;
-        } else if ("Count/Second".equals(value)) {
-            return StandardUnit.CountSecond;
-        } else if ("None".equals(value)) {
-            return StandardUnit.None;
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
         } else {
             throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
         }
     }
 }
-    

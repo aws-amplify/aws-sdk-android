@@ -18,7 +18,7 @@ package com.amazonaws.services.lambda.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * <p/>
+ * 
  */
 public class EC2AccessDeniedException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -2018,7 +2018,7 @@ public class CognitoUser {
                     cognitoIdentityProviderClient.refreshTokens(refreshTokensRequest);
             AuthenticationResultType authenticationResult = refreshTokensResult.getAuthenticationResult();
 
-            if (authenticationResult != null) {
+            if (authenticationResult == null) {
                 throw new CognitoNotAuthorizedException("user is not authenticated");
             }
 

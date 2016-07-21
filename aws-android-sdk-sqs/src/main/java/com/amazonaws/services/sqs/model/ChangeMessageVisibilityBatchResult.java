@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.sqs.model;
 
 import java.io.Serializable;
@@ -19,155 +20,179 @@ import java.io.Serializable;
 /**
  * <p>
  * For each message in the batch, the response contains a
- * ChangeMessageVisibilityBatchResultEntry tag if the message succeeds or
- * a BatchResultErrorEntry tag if the message fails.
+ * <a>ChangeMessageVisibilityBatchResultEntry</a> tag if the message succeeds or
+ * a <a>BatchResultErrorEntry</a> tag if the message fails.
  * </p>
  */
 public class ChangeMessageVisibilityBatchResult implements Serializable {
-
     /**
+     * <p>
      * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<ChangeMessageVisibilityBatchResultEntry> successful;
+    private java.util.List<ChangeMessageVisibilityBatchResultEntry> successful = new java.util.ArrayList<ChangeMessageVisibilityBatchResultEntry>();
 
     /**
+     * <p>
      * A list of <a>BatchResultErrorEntry</a> items.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<BatchResultErrorEntry> failed;
+    private java.util.List<BatchResultErrorEntry> failed = new java.util.ArrayList<BatchResultErrorEntry>();
 
     /**
+     * <p>
      * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * </p>
      *
-     * @return A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * @return <p>
+     *         A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     *         </p>
      */
     public java.util.List<ChangeMessageVisibilityBatchResultEntry> getSuccessful() {
-        if (successful == null) {
-              successful = new com.amazonaws.internal.ListWithAutoConstructFlag<ChangeMessageVisibilityBatchResultEntry>();
-              successful.setAutoConstruct(true);
-        }
         return successful;
     }
-    
+
     /**
+     * <p>
      * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * </p>
      *
-     * @param successful A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * @param successful <p>
+     *            A list of <a>ChangeMessageVisibilityBatchResultEntry</a>
+     *            items.
+     *            </p>
      */
-    public void setSuccessful(java.util.Collection<ChangeMessageVisibilityBatchResultEntry> successful) {
+    public void setSuccessful(
+            java.util.Collection<ChangeMessageVisibilityBatchResultEntry> successful) {
         if (successful == null) {
             this.successful = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<ChangeMessageVisibilityBatchResultEntry> successfulCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ChangeMessageVisibilityBatchResultEntry>(successful.size());
-        successfulCopy.addAll(successful);
-        this.successful = successfulCopy;
+
+        this.successful = new java.util.ArrayList<ChangeMessageVisibilityBatchResultEntry>(
+                successful);
     }
-    
+
     /**
-     * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param successful A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param successful <p>
+     *            A list of <a>ChangeMessageVisibilityBatchResultEntry</a>
+     *            items.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public ChangeMessageVisibilityBatchResult withSuccessful(ChangeMessageVisibilityBatchResultEntry... successful) {
-        if (getSuccessful() == null) setSuccessful(new java.util.ArrayList<ChangeMessageVisibilityBatchResultEntry>(successful.length));
+    public ChangeMessageVisibilityBatchResult withSuccessful(
+            ChangeMessageVisibilityBatchResultEntry... successful) {
+        if (getSuccessful() == null) {
+            this.successful = new java.util.ArrayList<ChangeMessageVisibilityBatchResultEntry>(
+                    successful.length);
+        }
         for (ChangeMessageVisibilityBatchResultEntry value : successful) {
-            getSuccessful().add(value);
+            this.successful.add(value);
         }
         return this;
     }
-    
+
     /**
-     * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param successful A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param successful <p>
+     *            A list of <a>ChangeMessageVisibilityBatchResultEntry</a>
+     *            items.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public ChangeMessageVisibilityBatchResult withSuccessful(java.util.Collection<ChangeMessageVisibilityBatchResultEntry> successful) {
-        if (successful == null) {
-            this.successful = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<ChangeMessageVisibilityBatchResultEntry> successfulCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ChangeMessageVisibilityBatchResultEntry>(successful.size());
-            successfulCopy.addAll(successful);
-            this.successful = successfulCopy;
-        }
-
+    public ChangeMessageVisibilityBatchResult withSuccessful(
+            java.util.Collection<ChangeMessageVisibilityBatchResultEntry> successful) {
+        setSuccessful(successful);
         return this;
     }
 
     /**
+     * <p>
      * A list of <a>BatchResultErrorEntry</a> items.
+     * </p>
      *
-     * @return A list of <a>BatchResultErrorEntry</a> items.
+     * @return <p>
+     *         A list of <a>BatchResultErrorEntry</a> items.
+     *         </p>
      */
     public java.util.List<BatchResultErrorEntry> getFailed() {
-        if (failed == null) {
-              failed = new com.amazonaws.internal.ListWithAutoConstructFlag<BatchResultErrorEntry>();
-              failed.setAutoConstruct(true);
-        }
         return failed;
     }
-    
+
     /**
+     * <p>
      * A list of <a>BatchResultErrorEntry</a> items.
+     * </p>
      *
-     * @param failed A list of <a>BatchResultErrorEntry</a> items.
+     * @param failed <p>
+     *            A list of <a>BatchResultErrorEntry</a> items.
+     *            </p>
      */
     public void setFailed(java.util.Collection<BatchResultErrorEntry> failed) {
         if (failed == null) {
             this.failed = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<BatchResultErrorEntry> failedCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<BatchResultErrorEntry>(failed.size());
-        failedCopy.addAll(failed);
-        this.failed = failedCopy;
+
+        this.failed = new java.util.ArrayList<BatchResultErrorEntry>(failed);
     }
-    
+
     /**
-     * A list of <a>BatchResultErrorEntry</a> items.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A list of <a>BatchResultErrorEntry</a> items.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param failed A list of <a>BatchResultErrorEntry</a> items.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param failed <p>
+     *            A list of <a>BatchResultErrorEntry</a> items.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ChangeMessageVisibilityBatchResult withFailed(BatchResultErrorEntry... failed) {
-        if (getFailed() == null) setFailed(new java.util.ArrayList<BatchResultErrorEntry>(failed.length));
+        if (getFailed() == null) {
+            this.failed = new java.util.ArrayList<BatchResultErrorEntry>(failed.length);
+        }
         for (BatchResultErrorEntry value : failed) {
-            getFailed().add(value);
+            this.failed.add(value);
         }
         return this;
     }
-    
-    /**
-     * A list of <a>BatchResultErrorEntry</a> items.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param failed A list of <a>BatchResultErrorEntry</a> items.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ChangeMessageVisibilityBatchResult withFailed(java.util.Collection<BatchResultErrorEntry> failed) {
-        if (failed == null) {
-            this.failed = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<BatchResultErrorEntry> failedCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<BatchResultErrorEntry>(failed.size());
-            failedCopy.addAll(failed);
-            this.failed = failedCopy;
-        }
 
+    /**
+     * <p>
+     * A list of <a>BatchResultErrorEntry</a> items.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param failed <p>
+     *            A list of <a>BatchResultErrorEntry</a> items.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChangeMessageVisibilityBatchResult withFailed(
+            java.util.Collection<BatchResultErrorEntry> failed) {
+        setFailed(failed);
         return this;
     }
 
@@ -176,43 +201,50 @@ public class ChangeMessageVisibilityBatchResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getSuccessful() != null) sb.append("Successful: " + getSuccessful() + ",");
-        if (getFailed() != null) sb.append("Failed: " + getFailed() );
+        if (getSuccessful() != null)
+            sb.append("Successful: " + getSuccessful() + ",");
+        if (getFailed() != null)
+            sb.append("Failed: " + getFailed());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getSuccessful() == null) ? 0 : getSuccessful().hashCode()); 
-        hashCode = prime * hashCode + ((getFailed() == null) ? 0 : getFailed().hashCode()); 
+
+        hashCode = prime * hashCode + ((getSuccessful() == null) ? 0 : getSuccessful().hashCode());
+        hashCode = prime * hashCode + ((getFailed() == null) ? 0 : getFailed().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof ChangeMessageVisibilityBatchResult == false) return false;
-        ChangeMessageVisibilityBatchResult other = (ChangeMessageVisibilityBatchResult)obj;
-        
-        if (other.getSuccessful() == null ^ this.getSuccessful() == null) return false;
-        if (other.getSuccessful() != null && other.getSuccessful().equals(this.getSuccessful()) == false) return false; 
-        if (other.getFailed() == null ^ this.getFailed() == null) return false;
-        if (other.getFailed() != null && other.getFailed().equals(this.getFailed()) == false) return false; 
+        if (obj instanceof ChangeMessageVisibilityBatchResult == false)
+            return false;
+        ChangeMessageVisibilityBatchResult other = (ChangeMessageVisibilityBatchResult) obj;
+
+        if (other.getSuccessful() == null ^ this.getSuccessful() == null)
+            return false;
+        if (other.getSuccessful() != null
+                && other.getSuccessful().equals(this.getSuccessful()) == false)
+            return false;
+        if (other.getFailed() == null ^ this.getFailed() == null)
+            return false;
+        if (other.getFailed() != null && other.getFailed().equals(this.getFailed()) == false)
+            return false;
         return true;
     }
-    
 }
-    

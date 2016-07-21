@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -27,42 +27,50 @@ import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
 /**
- * Additional Attribute StAX Unmarshaller
+ * StAX unmarshaller for model AdditionalAttribute
  */
-public class AdditionalAttributeStaxUnmarshaller implements Unmarshaller<AdditionalAttribute, StaxUnmarshallerContext> {
+class AdditionalAttributeStaxUnmarshaller implements
+        Unmarshaller<AdditionalAttribute, StaxUnmarshallerContext> {
 
     public AdditionalAttribute unmarshall(StaxUnmarshallerContext context) throws Exception {
         AdditionalAttribute additionalAttribute = new AdditionalAttribute();
+
         int originalDepth = context.getCurrentDepth();
         int targetDepth = originalDepth + 1;
 
-        if (context.isStartOfDocument()) targetDepth += 2;
+        if (context.isStartOfDocument())
+            targetDepth += 2;
 
         while (true) {
             int xmlEvent = context.nextEvent();
-            if (xmlEvent == XmlPullParser.END_DOCUMENT) return additionalAttribute;
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Key", targetDepth)) {
-                    additionalAttribute.setKey(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    additionalAttribute.setKey(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("Value", targetDepth)) {
-                    additionalAttribute.setValue(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    additionalAttribute.setValue(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
-                    return additionalAttribute;
+                    break;
                 }
             }
         }
+        return additionalAttribute;
     }
 
     private static AdditionalAttributeStaxUnmarshaller instance;
+
     public static AdditionalAttributeStaxUnmarshaller getInstance() {
-        if (instance == null) instance = new AdditionalAttributeStaxUnmarshaller();
+        if (instance == null)
+            instance = new AdditionalAttributeStaxUnmarshaller();
         return instance;
     }
 }
-    

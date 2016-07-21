@@ -1,100 +1,120 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.simpleemail.model;
 
 import java.io.Serializable;
 
 /**
  * <p>
- * Message-related information to include in the Delivery Status
- * Notification (DSN) when an email that Amazon SES receives on your
- * behalf bounces.
+ * Message-related information to include in the Delivery Status Notification
+ * (DSN) when an email that Amazon SES receives on your behalf bounces.
  * </p>
  * <p>
- * For information about receiving email through Amazon SES, see the
- * <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"> Amazon SES Developer Guide </a>
- * .
+ * For information about receiving email through Amazon SES, see the <a href=
+ * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
+ * >Amazon SES Developer Guide</a>.
  * </p>
  */
 public class MessageDsn implements Serializable {
-
     /**
+     * <p>
      * The reporting MTA that attempted to deliver the message, formatted as
-     * specified in <a href="https://tools.ietf.org/html/rfc3464">RFC
-     * 3464</a> (<code>mta-name-type; mta-name</code>). The default value is
+     * specified in <a href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (
+     * <code>mta-name-type; mta-name</code>). The default value is
      * <code>dns; inbound-smtp.[region].amazonaws.com</code>.
+     * </p>
      */
     private String reportingMta;
 
     /**
-     * When the message was received by the reporting mail transfer agent
-     * (MTA), in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a>
-     * date-time format.
+     * <p>
+     * When the message was received by the reporting mail transfer agent (MTA),
+     * in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a> date-time
+     * format.
+     * </p>
      */
     private java.util.Date arrivalDate;
 
     /**
+     * <p>
      * Additional X-headers to include in the DSN.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<ExtensionField> extensionFields;
+    private java.util.List<ExtensionField> extensionFields = new java.util.ArrayList<ExtensionField>();
 
     /**
+     * <p>
      * The reporting MTA that attempted to deliver the message, formatted as
-     * specified in <a href="https://tools.ietf.org/html/rfc3464">RFC
-     * 3464</a> (<code>mta-name-type; mta-name</code>). The default value is
+     * specified in <a href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (
+     * <code>mta-name-type; mta-name</code>). The default value is
      * <code>dns; inbound-smtp.[region].amazonaws.com</code>.
+     * </p>
      *
-     * @return The reporting MTA that attempted to deliver the message, formatted as
-     *         specified in <a href="https://tools.ietf.org/html/rfc3464">RFC
-     *         3464</a> (<code>mta-name-type; mta-name</code>). The default value is
+     * @return <p>
+     *         The reporting MTA that attempted to deliver the message,
+     *         formatted as specified in <a
+     *         href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (
+     *         <code>mta-name-type; mta-name</code>). The default value is
      *         <code>dns; inbound-smtp.[region].amazonaws.com</code>.
+     *         </p>
      */
     public String getReportingMta() {
         return reportingMta;
     }
-    
+
     /**
+     * <p>
      * The reporting MTA that attempted to deliver the message, formatted as
-     * specified in <a href="https://tools.ietf.org/html/rfc3464">RFC
-     * 3464</a> (<code>mta-name-type; mta-name</code>). The default value is
+     * specified in <a href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (
+     * <code>mta-name-type; mta-name</code>). The default value is
      * <code>dns; inbound-smtp.[region].amazonaws.com</code>.
+     * </p>
      *
-     * @param reportingMta The reporting MTA that attempted to deliver the message, formatted as
-     *         specified in <a href="https://tools.ietf.org/html/rfc3464">RFC
-     *         3464</a> (<code>mta-name-type; mta-name</code>). The default value is
-     *         <code>dns; inbound-smtp.[region].amazonaws.com</code>.
+     * @param reportingMta <p>
+     *            The reporting MTA that attempted to deliver the message,
+     *            formatted as specified in <a
+     *            href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (
+     *            <code>mta-name-type; mta-name</code>). The default value is
+     *            <code>dns; inbound-smtp.[region].amazonaws.com</code>.
+     *            </p>
      */
     public void setReportingMta(String reportingMta) {
         this.reportingMta = reportingMta;
     }
-    
+
     /**
-     * The reporting MTA that attempted to deliver the message, formatted as
-     * specified in <a href="https://tools.ietf.org/html/rfc3464">RFC
-     * 3464</a> (<code>mta-name-type; mta-name</code>). The default value is
-     * <code>dns; inbound-smtp.[region].amazonaws.com</code>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The reporting MTA that attempted to deliver the message, formatted as
+     * specified in <a href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (
+     * <code>mta-name-type; mta-name</code>). The default value is
+     * <code>dns; inbound-smtp.[region].amazonaws.com</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param reportingMta The reporting MTA that attempted to deliver the message, formatted as
-     *         specified in <a href="https://tools.ietf.org/html/rfc3464">RFC
-     *         3464</a> (<code>mta-name-type; mta-name</code>). The default value is
-     *         <code>dns; inbound-smtp.[region].amazonaws.com</code>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param reportingMta <p>
+     *            The reporting MTA that attempted to deliver the message,
+     *            formatted as specified in <a
+     *            href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (
+     *            <code>mta-name-type; mta-name</code>). The default value is
+     *            <code>dns; inbound-smtp.[region].amazonaws.com</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public MessageDsn withReportingMta(String reportingMta) {
         this.reportingMta = reportingMta;
@@ -102,44 +122,59 @@ public class MessageDsn implements Serializable {
     }
 
     /**
-     * When the message was received by the reporting mail transfer agent
-     * (MTA), in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a>
-     * date-time format.
+     * <p>
+     * When the message was received by the reporting mail transfer agent (MTA),
+     * in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a> date-time
+     * format.
+     * </p>
      *
-     * @return When the message was received by the reporting mail transfer agent
-     *         (MTA), in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a>
-     *         date-time format.
+     * @return <p>
+     *         When the message was received by the reporting mail transfer
+     *         agent (MTA), in <a
+     *         href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a> date-time
+     *         format.
+     *         </p>
      */
     public java.util.Date getArrivalDate() {
         return arrivalDate;
     }
-    
+
     /**
-     * When the message was received by the reporting mail transfer agent
-     * (MTA), in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a>
-     * date-time format.
+     * <p>
+     * When the message was received by the reporting mail transfer agent (MTA),
+     * in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a> date-time
+     * format.
+     * </p>
      *
-     * @param arrivalDate When the message was received by the reporting mail transfer agent
-     *         (MTA), in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a>
-     *         date-time format.
+     * @param arrivalDate <p>
+     *            When the message was received by the reporting mail transfer
+     *            agent (MTA), in <a
+     *            href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a>
+     *            date-time format.
+     *            </p>
      */
     public void setArrivalDate(java.util.Date arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
-    
+
     /**
-     * When the message was received by the reporting mail transfer agent
-     * (MTA), in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a>
-     * date-time format.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * When the message was received by the reporting mail transfer agent (MTA),
+     * in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a> date-time
+     * format.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param arrivalDate When the message was received by the reporting mail transfer agent
-     *         (MTA), in <a href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a>
-     *         date-time format.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param arrivalDate <p>
+     *            When the message was received by the reporting mail transfer
+     *            agent (MTA), in <a
+     *            href="https://www.ietf.org/rfc/rfc0822.txt">RFC 822</a>
+     *            date-time format.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public MessageDsn withArrivalDate(java.util.Date arrivalDate) {
         this.arrivalDate = arrivalDate;
@@ -147,70 +182,76 @@ public class MessageDsn implements Serializable {
     }
 
     /**
+     * <p>
      * Additional X-headers to include in the DSN.
+     * </p>
      *
-     * @return Additional X-headers to include in the DSN.
+     * @return <p>
+     *         Additional X-headers to include in the DSN.
+     *         </p>
      */
     public java.util.List<ExtensionField> getExtensionFields() {
-        if (extensionFields == null) {
-              extensionFields = new com.amazonaws.internal.ListWithAutoConstructFlag<ExtensionField>();
-              extensionFields.setAutoConstruct(true);
-        }
         return extensionFields;
     }
-    
+
     /**
+     * <p>
      * Additional X-headers to include in the DSN.
+     * </p>
      *
-     * @param extensionFields Additional X-headers to include in the DSN.
+     * @param extensionFields <p>
+     *            Additional X-headers to include in the DSN.
+     *            </p>
      */
     public void setExtensionFields(java.util.Collection<ExtensionField> extensionFields) {
         if (extensionFields == null) {
             this.extensionFields = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<ExtensionField> extensionFieldsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ExtensionField>(extensionFields.size());
-        extensionFieldsCopy.addAll(extensionFields);
-        this.extensionFields = extensionFieldsCopy;
+
+        this.extensionFields = new java.util.ArrayList<ExtensionField>(extensionFields);
     }
-    
+
     /**
-     * Additional X-headers to include in the DSN.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Additional X-headers to include in the DSN.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param extensionFields Additional X-headers to include in the DSN.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param extensionFields <p>
+     *            Additional X-headers to include in the DSN.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public MessageDsn withExtensionFields(ExtensionField... extensionFields) {
-        if (getExtensionFields() == null) setExtensionFields(new java.util.ArrayList<ExtensionField>(extensionFields.length));
+        if (getExtensionFields() == null) {
+            this.extensionFields = new java.util.ArrayList<ExtensionField>(extensionFields.length);
+        }
         for (ExtensionField value : extensionFields) {
-            getExtensionFields().add(value);
+            this.extensionFields.add(value);
         }
         return this;
     }
-    
+
     /**
-     * Additional X-headers to include in the DSN.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Additional X-headers to include in the DSN.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param extensionFields Additional X-headers to include in the DSN.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param extensionFields <p>
+     *            Additional X-headers to include in the DSN.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public MessageDsn withExtensionFields(java.util.Collection<ExtensionField> extensionFields) {
-        if (extensionFields == null) {
-            this.extensionFields = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<ExtensionField> extensionFieldsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ExtensionField>(extensionFields.size());
-            extensionFieldsCopy.addAll(extensionFields);
-            this.extensionFields = extensionFieldsCopy;
-        }
-
+        setExtensionFields(extensionFields);
         return this;
     }
 
@@ -219,47 +260,62 @@ public class MessageDsn implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getReportingMta() != null) sb.append("ReportingMta: " + getReportingMta() + ",");
-        if (getArrivalDate() != null) sb.append("ArrivalDate: " + getArrivalDate() + ",");
-        if (getExtensionFields() != null) sb.append("ExtensionFields: " + getExtensionFields() );
+        if (getReportingMta() != null)
+            sb.append("ReportingMta: " + getReportingMta() + ",");
+        if (getArrivalDate() != null)
+            sb.append("ArrivalDate: " + getArrivalDate() + ",");
+        if (getExtensionFields() != null)
+            sb.append("ExtensionFields: " + getExtensionFields());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getReportingMta() == null) ? 0 : getReportingMta().hashCode()); 
-        hashCode = prime * hashCode + ((getArrivalDate() == null) ? 0 : getArrivalDate().hashCode()); 
-        hashCode = prime * hashCode + ((getExtensionFields() == null) ? 0 : getExtensionFields().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getReportingMta() == null) ? 0 : getReportingMta().hashCode());
+        hashCode = prime * hashCode
+                + ((getArrivalDate() == null) ? 0 : getArrivalDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getExtensionFields() == null) ? 0 : getExtensionFields().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof MessageDsn == false) return false;
-        MessageDsn other = (MessageDsn)obj;
-        
-        if (other.getReportingMta() == null ^ this.getReportingMta() == null) return false;
-        if (other.getReportingMta() != null && other.getReportingMta().equals(this.getReportingMta()) == false) return false; 
-        if (other.getArrivalDate() == null ^ this.getArrivalDate() == null) return false;
-        if (other.getArrivalDate() != null && other.getArrivalDate().equals(this.getArrivalDate()) == false) return false; 
-        if (other.getExtensionFields() == null ^ this.getExtensionFields() == null) return false;
-        if (other.getExtensionFields() != null && other.getExtensionFields().equals(this.getExtensionFields()) == false) return false; 
+        if (obj instanceof MessageDsn == false)
+            return false;
+        MessageDsn other = (MessageDsn) obj;
+
+        if (other.getReportingMta() == null ^ this.getReportingMta() == null)
+            return false;
+        if (other.getReportingMta() != null
+                && other.getReportingMta().equals(this.getReportingMta()) == false)
+            return false;
+        if (other.getArrivalDate() == null ^ this.getArrivalDate() == null)
+            return false;
+        if (other.getArrivalDate() != null
+                && other.getArrivalDate().equals(this.getArrivalDate()) == false)
+            return false;
+        if (other.getExtensionFields() == null ^ this.getExtensionFields() == null)
+            return false;
+        if (other.getExtensionFields() != null
+                && other.getExtensionFields().equals(this.getExtensionFields()) == false)
+            return false;
         return true;
     }
-    
 }
-    

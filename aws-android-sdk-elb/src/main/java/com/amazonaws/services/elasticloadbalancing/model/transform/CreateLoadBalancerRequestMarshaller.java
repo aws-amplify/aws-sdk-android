@@ -1,127 +1,127 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.elasticloadbalancing.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.amazonaws.services.elasticloadbalancing.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
 import com.amazonaws.services.elasticloadbalancing.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.StringUtils;
 
 /**
- * Create Load Balancer Request Marshaller
+ * StAX request marshaller for CreateLoadBalancerRequest
  */
-public class CreateLoadBalancerRequestMarshaller implements Marshaller<Request<CreateLoadBalancerRequest>, CreateLoadBalancerRequest> {
+public class CreateLoadBalancerRequestMarshaller implements
+        Marshaller<Request<CreateLoadBalancerRequest>, CreateLoadBalancerRequest> {
 
-    public Request<CreateLoadBalancerRequest> marshall(CreateLoadBalancerRequest createLoadBalancerRequest) {
-
+    public Request<CreateLoadBalancerRequest> marshall(
+            CreateLoadBalancerRequest createLoadBalancerRequest) {
         if (createLoadBalancerRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(CreateLoadBalancerRequest)");
         }
 
-        Request<CreateLoadBalancerRequest> request = new DefaultRequest<CreateLoadBalancerRequest>(createLoadBalancerRequest, "AmazonElasticLoadBalancing");
+        Request<CreateLoadBalancerRequest> request = new DefaultRequest<CreateLoadBalancerRequest>(
+                createLoadBalancerRequest, "AmazonElasticLoadBalancing");
         request.addParameter("Action", "CreateLoadBalancer");
         request.addParameter("Version", "2012-06-01");
 
+        String prefix;
         if (createLoadBalancerRequest.getLoadBalancerName() != null) {
-            request.addParameter("LoadBalancerName", StringUtils.fromString(createLoadBalancerRequest.getLoadBalancerName()));
+            prefix = "LoadBalancerName";
+            String loadBalancerName = createLoadBalancerRequest.getLoadBalancerName();
+            request.addParameter(prefix, StringUtils.fromString(loadBalancerName));
         }
-
-        java.util.List<Listener> listenersList = createLoadBalancerRequest.getListeners();
-        int listenersListIndex = 1;
-
-        for (Listener listenersListValue : listenersList) {
-            Listener listenerMember = listenersListValue;
-            if (listenerMember != null) {
-                if (listenerMember.getProtocol() != null) {
-                    request.addParameter("Listeners.member." + listenersListIndex + ".Protocol", StringUtils.fromString(listenerMember.getProtocol()));
+        if (createLoadBalancerRequest.getListeners() != null) {
+            prefix = "Listeners";
+            java.util.List<Listener> listeners = createLoadBalancerRequest.getListeners();
+            int listenersIndex = 1;
+            String listenersPrefix = prefix;
+            for (Listener listenersItem : listeners) {
+                prefix = listenersPrefix + ".member." + listenersIndex;
+                if (listenersItem != null) {
+                    ListenerStaxMarshaller.getInstance().marshall(listenersItem, request,
+                            prefix + ".");
                 }
-                if (listenerMember.getLoadBalancerPort() != null) {
-                    request.addParameter("Listeners.member." + listenersListIndex + ".LoadBalancerPort", StringUtils.fromInteger(listenerMember.getLoadBalancerPort()));
-                }
-                if (listenerMember.getInstanceProtocol() != null) {
-                    request.addParameter("Listeners.member." + listenersListIndex + ".InstanceProtocol", StringUtils.fromString(listenerMember.getInstanceProtocol()));
-                }
-                if (listenerMember.getInstancePort() != null) {
-                    request.addParameter("Listeners.member." + listenersListIndex + ".InstancePort", StringUtils.fromInteger(listenerMember.getInstancePort()));
-                }
-                if (listenerMember.getSSLCertificateId() != null) {
-                    request.addParameter("Listeners.member." + listenersListIndex + ".SSLCertificateId", StringUtils.fromString(listenerMember.getSSLCertificateId()));
-                }
+                listenersIndex++;
             }
-
-            listenersListIndex++;
+            prefix = listenersPrefix;
         }
-
-        java.util.List<String> availabilityZonesList = createLoadBalancerRequest.getAvailabilityZones();
-        int availabilityZonesListIndex = 1;
-
-        for (String availabilityZonesListValue : availabilityZonesList) {
-            if (availabilityZonesListValue != null) {
-                request.addParameter("AvailabilityZones.member." + availabilityZonesListIndex, StringUtils.fromString(availabilityZonesListValue));
+        if (createLoadBalancerRequest.getAvailabilityZones() != null) {
+            prefix = "AvailabilityZones";
+            java.util.List<String> availabilityZones = createLoadBalancerRequest
+                    .getAvailabilityZones();
+            int availabilityZonesIndex = 1;
+            String availabilityZonesPrefix = prefix;
+            for (String availabilityZonesItem : availabilityZones) {
+                prefix = availabilityZonesPrefix + ".member." + availabilityZonesIndex;
+                if (availabilityZonesItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(availabilityZonesItem));
+                }
+                availabilityZonesIndex++;
             }
-
-            availabilityZonesListIndex++;
+            prefix = availabilityZonesPrefix;
         }
-
-        java.util.List<String> subnetsList = createLoadBalancerRequest.getSubnets();
-        int subnetsListIndex = 1;
-
-        for (String subnetsListValue : subnetsList) {
-            if (subnetsListValue != null) {
-                request.addParameter("Subnets.member." + subnetsListIndex, StringUtils.fromString(subnetsListValue));
+        if (createLoadBalancerRequest.getSubnets() != null) {
+            prefix = "Subnets";
+            java.util.List<String> subnets = createLoadBalancerRequest.getSubnets();
+            int subnetsIndex = 1;
+            String subnetsPrefix = prefix;
+            for (String subnetsItem : subnets) {
+                prefix = subnetsPrefix + ".member." + subnetsIndex;
+                if (subnetsItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(subnetsItem));
+                }
+                subnetsIndex++;
             }
-
-            subnetsListIndex++;
+            prefix = subnetsPrefix;
         }
-
-        java.util.List<String> securityGroupsList = createLoadBalancerRequest.getSecurityGroups();
-        int securityGroupsListIndex = 1;
-
-        for (String securityGroupsListValue : securityGroupsList) {
-            if (securityGroupsListValue != null) {
-                request.addParameter("SecurityGroups.member." + securityGroupsListIndex, StringUtils.fromString(securityGroupsListValue));
+        if (createLoadBalancerRequest.getSecurityGroups() != null) {
+            prefix = "SecurityGroups";
+            java.util.List<String> securityGroups = createLoadBalancerRequest.getSecurityGroups();
+            int securityGroupsIndex = 1;
+            String securityGroupsPrefix = prefix;
+            for (String securityGroupsItem : securityGroups) {
+                prefix = securityGroupsPrefix + ".member." + securityGroupsIndex;
+                if (securityGroupsItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(securityGroupsItem));
+                }
+                securityGroupsIndex++;
             }
-
-            securityGroupsListIndex++;
+            prefix = securityGroupsPrefix;
         }
         if (createLoadBalancerRequest.getScheme() != null) {
-            request.addParameter("Scheme", StringUtils.fromString(createLoadBalancerRequest.getScheme()));
+            prefix = "Scheme";
+            String scheme = createLoadBalancerRequest.getScheme();
+            request.addParameter(prefix, StringUtils.fromString(scheme));
         }
-
-        java.util.List<Tag> tagsList = createLoadBalancerRequest.getTags();
-        int tagsListIndex = 1;
-
-        for (Tag tagsListValue : tagsList) {
-            Tag tagMember = tagsListValue;
-            if (tagMember != null) {
-                if (tagMember.getKey() != null) {
-                    request.addParameter("Tags.member." + tagsListIndex + ".Key", StringUtils.fromString(tagMember.getKey()));
+        if (createLoadBalancerRequest.getTags() != null) {
+            prefix = "Tags";
+            java.util.List<Tag> tags = createLoadBalancerRequest.getTags();
+            int tagsIndex = 1;
+            String tagsPrefix = prefix;
+            for (Tag tagsItem : tags) {
+                prefix = tagsPrefix + ".member." + tagsIndex;
+                if (tagsItem != null) {
+                    TagStaxMarshaller.getInstance().marshall(tagsItem, request, prefix + ".");
                 }
-                if (tagMember.getValue() != null) {
-                    request.addParameter("Tags.member." + tagsListIndex + ".Value", StringUtils.fromString(tagMember.getValue()));
-                }
+                tagsIndex++;
             }
-
-            tagsListIndex++;
+            prefix = tagsPrefix;
         }
 
         return request;

@@ -1,6 +1,6 @@
-
 /**
- * Classes modeling the various types represented by AmazonSimpleEmailService.
+ * Classes modeling the various types represented by AmazonSimpleEmailService
  */
- package com.amazonaws.services.simpleemail.model;
-        
+
+package com.amazonaws.services.simpleemail.model;
+

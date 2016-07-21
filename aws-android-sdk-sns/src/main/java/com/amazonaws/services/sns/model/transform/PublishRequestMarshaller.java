@@ -1,99 +1,97 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.sns.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.amazonaws.services.sns.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
 import com.amazonaws.services.sns.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.StringUtils;
 
 /**
- * Publish Request Marshaller
+ * StAX request marshaller for PublishRequest
  */
-public class PublishRequestMarshaller implements Marshaller<Request<PublishRequest>, PublishRequest> {
+public class PublishRequestMarshaller implements
+        Marshaller<Request<PublishRequest>, PublishRequest> {
 
     public Request<PublishRequest> marshall(PublishRequest publishRequest) {
-
         if (publishRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException("Invalid argument passed to marshall(PublishRequest)");
         }
 
-        Request<PublishRequest> request = new DefaultRequest<PublishRequest>(publishRequest, "AmazonSNS");
+        Request<PublishRequest> request = new DefaultRequest<PublishRequest>(publishRequest,
+                "AmazonSNS");
         request.addParameter("Action", "Publish");
         request.addParameter("Version", "2010-03-31");
 
+        String prefix;
         if (publishRequest.getTopicArn() != null) {
-            request.addParameter("TopicArn", StringUtils.fromString(publishRequest.getTopicArn()));
+            prefix = "TopicArn";
+            String topicArn = publishRequest.getTopicArn();
+            request.addParameter(prefix, StringUtils.fromString(topicArn));
         }
         if (publishRequest.getTargetArn() != null) {
-            request.addParameter("TargetArn", StringUtils.fromString(publishRequest.getTargetArn()));
+            prefix = "TargetArn";
+            String targetArn = publishRequest.getTargetArn();
+            request.addParameter(prefix, StringUtils.fromString(targetArn));
+        }
+        if (publishRequest.getPhoneNumber() != null) {
+            prefix = "PhoneNumber";
+            String phoneNumber = publishRequest.getPhoneNumber();
+            request.addParameter(prefix, StringUtils.fromString(phoneNumber));
         }
         if (publishRequest.getMessage() != null) {
-            request.addParameter("Message", StringUtils.fromString(publishRequest.getMessage()));
+            prefix = "Message";
+            String message = publishRequest.getMessage();
+            request.addParameter(prefix, StringUtils.fromString(message));
         }
         if (publishRequest.getSubject() != null) {
-            request.addParameter("Subject", StringUtils.fromString(publishRequest.getSubject()));
+            prefix = "Subject";
+            String subject = publishRequest.getSubject();
+            request.addParameter(prefix, StringUtils.fromString(subject));
         }
         if (publishRequest.getMessageStructure() != null) {
-            request.addParameter("MessageStructure", StringUtils.fromString(publishRequest.getMessageStructure()));
+            prefix = "MessageStructure";
+            String messageStructure = publishRequest.getMessageStructure();
+            request.addParameter(prefix, StringUtils.fromString(messageStructure));
         }
-        if (publishRequest != null) {
-            if (publishRequest.getAttributes() != null) {
-                int attributesListIndex = 1;
-                for (Map.Entry<String, String> attributesListValue : publishRequest.getAttributes().entrySet()) {
-
-                    if (attributesListValue.getKey() != null) {
-                        request.addParameter("Attributes.entry." + attributesListIndex + ".key", StringUtils.fromString(attributesListValue.getKey()));
-                    }
-                    if (attributesListValue.getValue() != null) {
-                        request.addParameter("Attributes.entry." + attributesListIndex + ".value", StringUtils.fromString(attributesListValue.getValue()));
-                    }
-                    ++attributesListIndex;
+        if (publishRequest.getMessageAttributes() != null) {
+            prefix = "MessageAttributes";
+            java.util.Map<String, MessageAttributeValue> messageAttributes = publishRequest
+                    .getMessageAttributes();
+            int messageAttributesIndex = 1;
+            String messageAttributesPrefix = prefix;
+            for (java.util.Map.Entry<String, MessageAttributeValue> messageAttributesEntry : messageAttributes
+                    .entrySet()) {
+                prefix = messageAttributesPrefix + ".entry." + messageAttributesIndex;
+                if (messageAttributesEntry.getKey() != null) {
+                    request.addParameter(prefix + ".Name",
+                            StringUtils.fromString(messageAttributesEntry.getKey()));
                 }
-            }
-        }
-        if (publishRequest != null) {
-            if (publishRequest.getMessageAttributes() != null) {
-                int messageAttributesListIndex = 1;
-                for (Map.Entry<String, MessageAttributeValue> messageAttributesListValue : publishRequest.getMessageAttributes().entrySet()) {
-
-                    if (messageAttributesListValue.getKey() != null) {
-                        request.addParameter("MessageAttributes.entry." + messageAttributesListIndex + ".Name", StringUtils.fromString(messageAttributesListValue.getKey()));
-                    }
-                    MessageAttributeValue messageAttributeValueValue = messageAttributesListValue.getValue();
-                    if (messageAttributeValueValue != null) {
-                        if (messageAttributeValueValue.getDataType() != null) {
-                            request.addParameter("MessageAttributes.entry." + messageAttributesListIndex + ".Value.DataType", StringUtils.fromString(messageAttributeValueValue.getDataType()));
-                        }
-                        if (messageAttributeValueValue.getStringValue() != null) {
-                            request.addParameter("MessageAttributes.entry." + messageAttributesListIndex + ".Value.StringValue", StringUtils.fromString(messageAttributeValueValue.getStringValue()));
-                        }
-                        if (messageAttributeValueValue.getBinaryValue() != null) {
-                            request.addParameter("MessageAttributes.entry." + messageAttributesListIndex + ".Value.BinaryValue", StringUtils.fromByteBuffer(messageAttributeValueValue.getBinaryValue()));
-                        }
-                    }
-                    ++messageAttributesListIndex;
+                prefix += ".Value";
+                if (messageAttributesEntry.getValue() != null) {
+                    MessageAttributeValue messageAttributesValue = messageAttributesEntry
+                            .getValue();
+                    MessageAttributeValueStaxMarshaller.getInstance().marshall(
+                            messageAttributesValue, request, prefix + ".");
                 }
+                messageAttributesIndex++;
             }
+            prefix = messageAttributesPrefix;
         }
 
         return request;

@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.sqs.model;
 
 import java.io.Serializable;
@@ -19,112 +20,152 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.sqs.AmazonSQS#deleteMessageBatch(DeleteMessageBatchRequest) DeleteMessageBatch operation}.
  * <p>
- * Deletes up to ten messages from the specified queue. This is a batch
- * version of DeleteMessage. The result of the delete action on each
- * message is reported individually in the response.
+ * Deletes up to ten messages from the specified queue. This is a batch version
+ * of <a>DeleteMessage</a>. The result of the delete action on each message is
+ * reported individually in the response.
+ * </p>
+ * <important>
+ * <p>
+ * Because the batch request can result in a combination of successful and
+ * unsuccessful actions, you should check for batch errors even when the call
+ * returns an HTTP status code of 200.
+ * </p>
+ * </important> <note>
+ * <p>
+ * Some API actions take lists of parameters. These lists are specified using
+ * the <code>param.n</code> notation. Values of <code>n</code> are integers
+ * starting from 1. For example, a parameter list with two elements looks like
+ * this:
+ * </p>
+ * </note>
+ * <p>
+ * <code><![CDATA[&amp;Attribute.1=this]]></code>
  * </p>
  * <p>
- * <b>IMPORTANT:</b> Because the batch request can result in a
- * combination of successful and unsuccessful actions, you should check
- * for batch errors even when the call returns an HTTP status code of
- * 200.
+ * <code><![CDATA[&amp;Attribute.2=that]]></code>
  * </p>
- * <p>
- * <b>NOTE:</b> Some API actions take lists of parameters. These lists
- * are specified using the param.n notation. Values of n are integers
- * starting from 1. For example, a parameter list with two elements looks
- * like this:
- * </p>
- * <p>
- * <code>&Attribute.1=this</code>
- * </p>
- * <p>
- * <code>&Attribute.2=that</code>
- * </p>
- *
- * @see com.amazonaws.services.sqs.AmazonSQS#deleteMessageBatch(DeleteMessageBatchRequest)
  */
 public class DeleteMessageBatchRequest extends AmazonWebServiceRequest implements Serializable {
-
     /**
-     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     * case-sensitive.
+     * <p>
+     * The URL of the Amazon SQS queue to take action on.
+     * </p>
+     * <p>
+     * Queue URLs are case-sensitive.
+     * </p>
      */
     private String queueUrl;
 
     /**
+     * <p>
      * A list of receipt handles for the messages to be deleted.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<DeleteMessageBatchRequestEntry> entries;
+    private java.util.List<DeleteMessageBatchRequestEntry> entries = new java.util.ArrayList<DeleteMessageBatchRequestEntry>();
 
     /**
-     * Default constructor for a new DeleteMessageBatchRequest object.  Callers should use the
-     * setter or fluent setter (with...) methods to initialize this object after creating it.
+     * Default constructor for DeleteMessageBatchRequest object. Callers should
+     * use the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
      */
-    public DeleteMessageBatchRequest() {}
-    
+    public DeleteMessageBatchRequest() {
+    }
+
     /**
-     * Constructs a new DeleteMessageBatchRequest object.
-     * Callers should use the setter or fluent setter (with...) methods to
-     * initialize any additional object members.
+     * Constructs a new DeleteMessageBatchRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
      * 
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
-     * <p>Queue URLs are case-sensitive.
+     * @param queueUrl <p>
+     *            The URL of the Amazon SQS queue to take action on.
+     *            </p>
+     *            <p>
+     *            Queue URLs are case-sensitive.
+     *            </p>
      */
     public DeleteMessageBatchRequest(String queueUrl) {
         setQueueUrl(queueUrl);
     }
 
     /**
-     * Constructs a new DeleteMessageBatchRequest object.
-     * Callers should use the setter or fluent setter (with...) methods to
-     * initialize any additional object members.
+     * Constructs a new DeleteMessageBatchRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
      * 
-     * @param queueUrl The URL of the Amazon SQS queue to take action on.
-     * <p>Queue URLs are case-sensitive.
-     * @param entries A list of receipt handles for the messages to be
-     * deleted.
+     * @param queueUrl <p>
+     *            The URL of the Amazon SQS queue to take action on.
+     *            </p>
+     *            <p>
+     *            Queue URLs are case-sensitive.
+     *            </p>
+     * @param entries <p>
+     *            A list of receipt handles for the messages to be deleted.
+     *            </p>
      */
-    public DeleteMessageBatchRequest(String queueUrl, java.util.List<DeleteMessageBatchRequestEntry> entries) {
+    public DeleteMessageBatchRequest(String queueUrl,
+            java.util.List<DeleteMessageBatchRequestEntry> entries) {
         setQueueUrl(queueUrl);
         setEntries(entries);
     }
 
     /**
-     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     * case-sensitive.
+     * <p>
+     * The URL of the Amazon SQS queue to take action on.
+     * </p>
+     * <p>
+     * Queue URLs are case-sensitive.
+     * </p>
      *
-     * @return The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     *         case-sensitive.
+     * @return <p>
+     *         The URL of the Amazon SQS queue to take action on.
+     *         </p>
+     *         <p>
+     *         Queue URLs are case-sensitive.
+     *         </p>
      */
     public String getQueueUrl() {
         return queueUrl;
     }
-    
+
     /**
-     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     * case-sensitive.
+     * <p>
+     * The URL of the Amazon SQS queue to take action on.
+     * </p>
+     * <p>
+     * Queue URLs are case-sensitive.
+     * </p>
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     *         case-sensitive.
+     * @param queueUrl <p>
+     *            The URL of the Amazon SQS queue to take action on.
+     *            </p>
+     *            <p>
+     *            Queue URLs are case-sensitive.
+     *            </p>
      */
     public void setQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
     }
-    
+
     /**
-     * The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     * case-sensitive.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The URL of the Amazon SQS queue to take action on.
+     * </p>
+     * <p>
+     * Queue URLs are case-sensitive.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param queueUrl The URL of the Amazon SQS queue to take action on. <p>Queue URLs are
-     *         case-sensitive.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param queueUrl <p>
+     *            The URL of the Amazon SQS queue to take action on.
+     *            </p>
+     *            <p>
+     *            Queue URLs are case-sensitive.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DeleteMessageBatchRequest withQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
@@ -132,70 +173,77 @@ public class DeleteMessageBatchRequest extends AmazonWebServiceRequest implement
     }
 
     /**
+     * <p>
      * A list of receipt handles for the messages to be deleted.
+     * </p>
      *
-     * @return A list of receipt handles for the messages to be deleted.
+     * @return <p>
+     *         A list of receipt handles for the messages to be deleted.
+     *         </p>
      */
     public java.util.List<DeleteMessageBatchRequestEntry> getEntries() {
-        if (entries == null) {
-              entries = new com.amazonaws.internal.ListWithAutoConstructFlag<DeleteMessageBatchRequestEntry>();
-              entries.setAutoConstruct(true);
-        }
         return entries;
     }
-    
+
     /**
+     * <p>
      * A list of receipt handles for the messages to be deleted.
+     * </p>
      *
-     * @param entries A list of receipt handles for the messages to be deleted.
+     * @param entries <p>
+     *            A list of receipt handles for the messages to be deleted.
+     *            </p>
      */
     public void setEntries(java.util.Collection<DeleteMessageBatchRequestEntry> entries) {
         if (entries == null) {
             this.entries = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<DeleteMessageBatchRequestEntry> entriesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<DeleteMessageBatchRequestEntry>(entries.size());
-        entriesCopy.addAll(entries);
-        this.entries = entriesCopy;
+
+        this.entries = new java.util.ArrayList<DeleteMessageBatchRequestEntry>(entries);
     }
-    
+
     /**
-     * A list of receipt handles for the messages to be deleted.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A list of receipt handles for the messages to be deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param entries A list of receipt handles for the messages to be deleted.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param entries <p>
+     *            A list of receipt handles for the messages to be deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DeleteMessageBatchRequest withEntries(DeleteMessageBatchRequestEntry... entries) {
-        if (getEntries() == null) setEntries(new java.util.ArrayList<DeleteMessageBatchRequestEntry>(entries.length));
+        if (getEntries() == null) {
+            this.entries = new java.util.ArrayList<DeleteMessageBatchRequestEntry>(entries.length);
+        }
         for (DeleteMessageBatchRequestEntry value : entries) {
-            getEntries().add(value);
+            this.entries.add(value);
         }
         return this;
     }
-    
-    /**
-     * A list of receipt handles for the messages to be deleted.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param entries A list of receipt handles for the messages to be deleted.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DeleteMessageBatchRequest withEntries(java.util.Collection<DeleteMessageBatchRequestEntry> entries) {
-        if (entries == null) {
-            this.entries = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<DeleteMessageBatchRequestEntry> entriesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<DeleteMessageBatchRequestEntry>(entries.size());
-            entriesCopy.addAll(entries);
-            this.entries = entriesCopy;
-        }
 
+    /**
+     * <p>
+     * A list of receipt handles for the messages to be deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param entries <p>
+     *            A list of receipt handles for the messages to be deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteMessageBatchRequest withEntries(
+            java.util.Collection<DeleteMessageBatchRequestEntry> entries) {
+        setEntries(entries);
         return this;
     }
 
@@ -204,43 +252,49 @@ public class DeleteMessageBatchRequest extends AmazonWebServiceRequest implement
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getQueueUrl() != null) sb.append("QueueUrl: " + getQueueUrl() + ",");
-        if (getEntries() != null) sb.append("Entries: " + getEntries() );
+        if (getQueueUrl() != null)
+            sb.append("QueueUrl: " + getQueueUrl() + ",");
+        if (getEntries() != null)
+            sb.append("Entries: " + getEntries());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getQueueUrl() == null) ? 0 : getQueueUrl().hashCode()); 
-        hashCode = prime * hashCode + ((getEntries() == null) ? 0 : getEntries().hashCode()); 
+
+        hashCode = prime * hashCode + ((getQueueUrl() == null) ? 0 : getQueueUrl().hashCode());
+        hashCode = prime * hashCode + ((getEntries() == null) ? 0 : getEntries().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DeleteMessageBatchRequest == false) return false;
-        DeleteMessageBatchRequest other = (DeleteMessageBatchRequest)obj;
-        
-        if (other.getQueueUrl() == null ^ this.getQueueUrl() == null) return false;
-        if (other.getQueueUrl() != null && other.getQueueUrl().equals(this.getQueueUrl()) == false) return false; 
-        if (other.getEntries() == null ^ this.getEntries() == null) return false;
-        if (other.getEntries() != null && other.getEntries().equals(this.getEntries()) == false) return false; 
+        if (obj instanceof DeleteMessageBatchRequest == false)
+            return false;
+        DeleteMessageBatchRequest other = (DeleteMessageBatchRequest) obj;
+
+        if (other.getQueueUrl() == null ^ this.getQueueUrl() == null)
+            return false;
+        if (other.getQueueUrl() != null && other.getQueueUrl().equals(this.getQueueUrl()) == false)
+            return false;
+        if (other.getEntries() == null ^ this.getEntries() == null)
+            return false;
+        if (other.getEntries() != null && other.getEntries().equals(this.getEntries()) == false)
+            return false;
         return true;
     }
-    
 }
-    

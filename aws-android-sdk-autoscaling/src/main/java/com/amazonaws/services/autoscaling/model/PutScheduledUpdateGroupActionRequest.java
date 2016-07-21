@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.autoscaling.model;
 
 import java.io.Serializable;
@@ -19,129 +20,171 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.autoscaling.AmazonAutoScaling#putScheduledUpdateGroupAction(PutScheduledUpdateGroupActionRequest) PutScheduledUpdateGroupAction operation}.
  * <p>
- * Creates or updates a scheduled scaling action for an Auto Scaling
- * group. When updating a scheduled scaling action, if you leave a
- * parameter unspecified, the corresponding value remains unchanged in
- * the affected Auto Scaling group.
+ * Creates or updates a scheduled scaling action for an Auto Scaling group. When
+ * updating a scheduled scaling action, if you leave a parameter unspecified,
+ * the corresponding value remains unchanged in the affected Auto Scaling group.
  * </p>
  * <p>
- * For more information, see
- * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html"> Scheduled Scaling </a>
- * in the <i>Auto Scaling Developer Guide</i> .
+ * For more information, see <a href=
+ * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html"
+ * >Scheduled Scaling</a> in the <i>Auto Scaling Developer Guide</i>.
  * </p>
- *
- * @see com.amazonaws.services.autoscaling.AmazonAutoScaling#putScheduledUpdateGroupAction(PutScheduledUpdateGroupActionRequest)
  */
-public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceRequest implements Serializable {
-
+public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
+     * <p>
      * The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String autoScalingGroupName;
 
     /**
+     * <p>
      * The name of this scaling action.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String scheduledActionName;
 
     /**
+     * <p>
      * This parameter is deprecated.
+     * </p>
      */
     private java.util.Date time;
 
     /**
+     * <p>
      * The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>). <p>If
-     * you try to schedule your action in the past, Auto Scaling returns an
-     * error message. <p>When <code>StartTime</code> and <code>EndTime</code>
-     * are specified with <code>Recurrence</code>, they form the boundaries
-     * of when the recurring action starts and stops.
+     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>).
+     * </p>
+     * <p>
+     * If you try to schedule your action in the past, Auto Scaling returns an
+     * error message.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
+     * </p>
      */
     private java.util.Date startTime;
 
     /**
+     * <p>
      * The time for this action to end.
+     * </p>
      */
     private java.util.Date endTime;
 
     /**
+     * <p>
      * The time when recurring future actions will start. Start time is
      * specified by the user following the Unix cron syntax format. For more
-     * information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a>
-     * in Wikipedia. <p>When <code>StartTime</code> and <code>EndTime</code>
-     * are specified with <code>Recurrence</code>, they form the boundaries
-     * of when the recurring action will start and stop.
+     * information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a> in
+     * Wikipedia.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action will start and stop.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String recurrence;
 
     /**
+     * <p>
      * The minimum size for the Auto Scaling group.
+     * </p>
      */
     private Integer minSize;
 
     /**
+     * <p>
      * The maximum size for the Auto Scaling group.
+     * </p>
      */
     private Integer maxSize;
 
     /**
+     * <p>
      * The number of EC2 instances that should be running in the group.
+     * </p>
      */
     private Integer desiredCapacity;
 
     /**
+     * <p>
      * The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * @return <p>
+     *         The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     *         </p>
      */
     public String getAutoScalingGroupName() {
         return autoScalingGroupName;
     }
-    
+
     /**
+     * <p>
      * The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param autoScalingGroupName The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * @param autoScalingGroupName <p>
+     *            The name or Amazon Resource Name (ARN) of the Auto Scaling
+     *            group.
+     *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
         this.autoScalingGroupName = autoScalingGroupName;
     }
-    
+
     /**
-     * The name or Amazon Resource Name (ARN) of the Auto Scaling group.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param autoScalingGroupName The name or Amazon Resource Name (ARN) of the Auto Scaling group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param autoScalingGroupName <p>
+     *            The name or Amazon Resource Name (ARN) of the Auto Scaling
+     *            group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutScheduledUpdateGroupActionRequest withAutoScalingGroupName(String autoScalingGroupName) {
         this.autoScalingGroupName = autoScalingGroupName;
@@ -149,44 +192,59 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
     }
 
     /**
+     * <p>
      * The name of this scaling action.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The name of this scaling action.
+     * @return <p>
+     *         The name of this scaling action.
+     *         </p>
      */
     public String getScheduledActionName() {
         return scheduledActionName;
     }
-    
+
     /**
+     * <p>
      * The name of this scaling action.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param scheduledActionName The name of this scaling action.
+     * @param scheduledActionName <p>
+     *            The name of this scaling action.
+     *            </p>
      */
     public void setScheduledActionName(String scheduledActionName) {
         this.scheduledActionName = scheduledActionName;
     }
-    
+
     /**
-     * The name of this scaling action.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of this scaling action.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param scheduledActionName The name of this scaling action.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param scheduledActionName <p>
+     *            The name of this scaling action.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutScheduledUpdateGroupActionRequest withScheduledActionName(String scheduledActionName) {
         this.scheduledActionName = scheduledActionName;
@@ -194,32 +252,44 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
     }
 
     /**
+     * <p>
      * This parameter is deprecated.
+     * </p>
      *
-     * @return This parameter is deprecated.
+     * @return <p>
+     *         This parameter is deprecated.
+     *         </p>
      */
     public java.util.Date getTime() {
         return time;
     }
-    
+
     /**
+     * <p>
      * This parameter is deprecated.
+     * </p>
      *
-     * @param time This parameter is deprecated.
+     * @param time <p>
+     *            This parameter is deprecated.
+     *            </p>
      */
     public void setTime(java.util.Date time) {
         this.time = time;
     }
-    
+
     /**
-     * This parameter is deprecated.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * This parameter is deprecated.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param time This parameter is deprecated.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param time <p>
+     *            This parameter is deprecated.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutScheduledUpdateGroupActionRequest withTime(java.util.Date time) {
         this.time = time;
@@ -227,62 +297,107 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
     }
 
     /**
+     * <p>
      * The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>). <p>If
-     * you try to schedule your action in the past, Auto Scaling returns an
-     * error message. <p>When <code>StartTime</code> and <code>EndTime</code>
-     * are specified with <code>Recurrence</code>, they form the boundaries
-     * of when the recurring action starts and stops.
+     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>).
+     * </p>
+     * <p>
+     * If you try to schedule your action in the past, Auto Scaling returns an
+     * error message.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
+     * </p>
      *
-     * @return The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     *         UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>). <p>If
-     *         you try to schedule your action in the past, Auto Scaling returns an
-     *         error message. <p>When <code>StartTime</code> and <code>EndTime</code>
-     *         are specified with <code>Recurrence</code>, they form the boundaries
+     * @return <p>
+     *         The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ"
+     *         format in UTC/GMT only (for example,
+     *         <code>2014-06-01T00:00:00Z</code>).
+     *         </p>
+     *         <p>
+     *         If you try to schedule your action in the past, Auto Scaling
+     *         returns an error message.
+     *         </p>
+     *         <p>
+     *         When <code>StartTime</code> and <code>EndTime</code> are
+     *         specified with <code>Recurrence</code>, they form the boundaries
      *         of when the recurring action starts and stops.
+     *         </p>
      */
     public java.util.Date getStartTime() {
         return startTime;
     }
-    
+
     /**
+     * <p>
      * The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>). <p>If
-     * you try to schedule your action in the past, Auto Scaling returns an
-     * error message. <p>When <code>StartTime</code> and <code>EndTime</code>
-     * are specified with <code>Recurrence</code>, they form the boundaries
-     * of when the recurring action starts and stops.
+     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>).
+     * </p>
+     * <p>
+     * If you try to schedule your action in the past, Auto Scaling returns an
+     * error message.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
+     * </p>
      *
-     * @param startTime The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     *         UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>). <p>If
-     *         you try to schedule your action in the past, Auto Scaling returns an
-     *         error message. <p>When <code>StartTime</code> and <code>EndTime</code>
-     *         are specified with <code>Recurrence</code>, they form the boundaries
-     *         of when the recurring action starts and stops.
+     * @param startTime <p>
+     *            The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ"
+     *            format in UTC/GMT only (for example,
+     *            <code>2014-06-01T00:00:00Z</code>).
+     *            </p>
+     *            <p>
+     *            If you try to schedule your action in the past, Auto Scaling
+     *            returns an error message.
+     *            </p>
+     *            <p>
+     *            When <code>StartTime</code> and <code>EndTime</code> are
+     *            specified with <code>Recurrence</code>, they form the
+     *            boundaries of when the recurring action starts and stops.
+     *            </p>
      */
     public void setStartTime(java.util.Date startTime) {
         this.startTime = startTime;
     }
-    
+
     /**
-     * The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>). <p>If
-     * you try to schedule your action in the past, Auto Scaling returns an
-     * error message. <p>When <code>StartTime</code> and <code>EndTime</code>
-     * are specified with <code>Recurrence</code>, they form the boundaries
-     * of when the recurring action starts and stops.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
+     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>).
+     * </p>
+     * <p>
+     * If you try to schedule your action in the past, Auto Scaling returns an
+     * error message.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param startTime The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     *         UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>). <p>If
-     *         you try to schedule your action in the past, Auto Scaling returns an
-     *         error message. <p>When <code>StartTime</code> and <code>EndTime</code>
-     *         are specified with <code>Recurrence</code>, they form the boundaries
-     *         of when the recurring action starts and stops.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param startTime <p>
+     *            The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ"
+     *            format in UTC/GMT only (for example,
+     *            <code>2014-06-01T00:00:00Z</code>).
+     *            </p>
+     *            <p>
+     *            If you try to schedule your action in the past, Auto Scaling
+     *            returns an error message.
+     *            </p>
+     *            <p>
+     *            When <code>StartTime</code> and <code>EndTime</code> are
+     *            specified with <code>Recurrence</code>, they form the
+     *            boundaries of when the recurring action starts and stops.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutScheduledUpdateGroupActionRequest withStartTime(java.util.Date startTime) {
         this.startTime = startTime;
@@ -290,32 +405,44 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
     }
 
     /**
+     * <p>
      * The time for this action to end.
+     * </p>
      *
-     * @return The time for this action to end.
+     * @return <p>
+     *         The time for this action to end.
+     *         </p>
      */
     public java.util.Date getEndTime() {
         return endTime;
     }
-    
+
     /**
+     * <p>
      * The time for this action to end.
+     * </p>
      *
-     * @param endTime The time for this action to end.
+     * @param endTime <p>
+     *            The time for this action to end.
+     *            </p>
      */
     public void setEndTime(java.util.Date endTime) {
         this.endTime = endTime;
     }
-    
+
     /**
-     * The time for this action to end.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The time for this action to end.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param endTime The time for this action to end.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param endTime <p>
+     *            The time for this action to end.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutScheduledUpdateGroupActionRequest withEndTime(java.util.Date endTime) {
         this.endTime = endTime;
@@ -323,74 +450,109 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
     }
 
     /**
+     * <p>
      * The time when recurring future actions will start. Start time is
      * specified by the user following the Unix cron syntax format. For more
-     * information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a>
-     * in Wikipedia. <p>When <code>StartTime</code> and <code>EndTime</code>
-     * are specified with <code>Recurrence</code>, they form the boundaries
-     * of when the recurring action will start and stop.
+     * information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a> in
+     * Wikipedia.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action will start and stop.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The time when recurring future actions will start. Start time is
-     *         specified by the user following the Unix cron syntax format. For more
-     *         information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a>
-     *         in Wikipedia. <p>When <code>StartTime</code> and <code>EndTime</code>
-     *         are specified with <code>Recurrence</code>, they form the boundaries
+     * @return <p>
+     *         The time when recurring future actions will start. Start time is
+     *         specified by the user following the Unix cron syntax format. For
+     *         more information, see <a
+     *         href="http://en.wikipedia.org/wiki/Cron">Cron</a> in Wikipedia.
+     *         </p>
+     *         <p>
+     *         When <code>StartTime</code> and <code>EndTime</code> are
+     *         specified with <code>Recurrence</code>, they form the boundaries
      *         of when the recurring action will start and stop.
+     *         </p>
      */
     public String getRecurrence() {
         return recurrence;
     }
-    
+
     /**
+     * <p>
      * The time when recurring future actions will start. Start time is
      * specified by the user following the Unix cron syntax format. For more
-     * information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a>
-     * in Wikipedia. <p>When <code>StartTime</code> and <code>EndTime</code>
-     * are specified with <code>Recurrence</code>, they form the boundaries
-     * of when the recurring action will start and stop.
+     * information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a> in
+     * Wikipedia.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action will start and stop.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param recurrence The time when recurring future actions will start. Start time is
-     *         specified by the user following the Unix cron syntax format. For more
-     *         information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a>
-     *         in Wikipedia. <p>When <code>StartTime</code> and <code>EndTime</code>
-     *         are specified with <code>Recurrence</code>, they form the boundaries
-     *         of when the recurring action will start and stop.
+     * @param recurrence <p>
+     *            The time when recurring future actions will start. Start time
+     *            is specified by the user following the Unix cron syntax
+     *            format. For more information, see <a
+     *            href="http://en.wikipedia.org/wiki/Cron">Cron</a> in
+     *            Wikipedia.
+     *            </p>
+     *            <p>
+     *            When <code>StartTime</code> and <code>EndTime</code> are
+     *            specified with <code>Recurrence</code>, they form the
+     *            boundaries of when the recurring action will start and stop.
+     *            </p>
      */
     public void setRecurrence(String recurrence) {
         this.recurrence = recurrence;
     }
-    
+
     /**
+     * <p>
      * The time when recurring future actions will start. Start time is
      * specified by the user following the Unix cron syntax format. For more
-     * information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a>
-     * in Wikipedia. <p>When <code>StartTime</code> and <code>EndTime</code>
-     * are specified with <code>Recurrence</code>, they form the boundaries
-     * of when the recurring action will start and stop.
+     * information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a> in
+     * Wikipedia.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action will start and stop.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param recurrence The time when recurring future actions will start. Start time is
-     *         specified by the user following the Unix cron syntax format. For more
-     *         information, see <a href="http://en.wikipedia.org/wiki/Cron">Cron</a>
-     *         in Wikipedia. <p>When <code>StartTime</code> and <code>EndTime</code>
-     *         are specified with <code>Recurrence</code>, they form the boundaries
-     *         of when the recurring action will start and stop.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param recurrence <p>
+     *            The time when recurring future actions will start. Start time
+     *            is specified by the user following the Unix cron syntax
+     *            format. For more information, see <a
+     *            href="http://en.wikipedia.org/wiki/Cron">Cron</a> in
+     *            Wikipedia.
+     *            </p>
+     *            <p>
+     *            When <code>StartTime</code> and <code>EndTime</code> are
+     *            specified with <code>Recurrence</code>, they form the
+     *            boundaries of when the recurring action will start and stop.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutScheduledUpdateGroupActionRequest withRecurrence(String recurrence) {
         this.recurrence = recurrence;
@@ -398,32 +560,44 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
     }
 
     /**
+     * <p>
      * The minimum size for the Auto Scaling group.
+     * </p>
      *
-     * @return The minimum size for the Auto Scaling group.
+     * @return <p>
+     *         The minimum size for the Auto Scaling group.
+     *         </p>
      */
     public Integer getMinSize() {
         return minSize;
     }
-    
+
     /**
+     * <p>
      * The minimum size for the Auto Scaling group.
+     * </p>
      *
-     * @param minSize The minimum size for the Auto Scaling group.
+     * @param minSize <p>
+     *            The minimum size for the Auto Scaling group.
+     *            </p>
      */
     public void setMinSize(Integer minSize) {
         this.minSize = minSize;
     }
-    
+
     /**
-     * The minimum size for the Auto Scaling group.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The minimum size for the Auto Scaling group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param minSize The minimum size for the Auto Scaling group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param minSize <p>
+     *            The minimum size for the Auto Scaling group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutScheduledUpdateGroupActionRequest withMinSize(Integer minSize) {
         this.minSize = minSize;
@@ -431,32 +605,44 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
     }
 
     /**
+     * <p>
      * The maximum size for the Auto Scaling group.
+     * </p>
      *
-     * @return The maximum size for the Auto Scaling group.
+     * @return <p>
+     *         The maximum size for the Auto Scaling group.
+     *         </p>
      */
     public Integer getMaxSize() {
         return maxSize;
     }
-    
+
     /**
+     * <p>
      * The maximum size for the Auto Scaling group.
+     * </p>
      *
-     * @param maxSize The maximum size for the Auto Scaling group.
+     * @param maxSize <p>
+     *            The maximum size for the Auto Scaling group.
+     *            </p>
      */
     public void setMaxSize(Integer maxSize) {
         this.maxSize = maxSize;
     }
-    
+
     /**
-     * The maximum size for the Auto Scaling group.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The maximum size for the Auto Scaling group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param maxSize The maximum size for the Auto Scaling group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param maxSize <p>
+     *            The maximum size for the Auto Scaling group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutScheduledUpdateGroupActionRequest withMaxSize(Integer maxSize) {
         this.maxSize = maxSize;
@@ -464,32 +650,46 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
     }
 
     /**
+     * <p>
      * The number of EC2 instances that should be running in the group.
+     * </p>
      *
-     * @return The number of EC2 instances that should be running in the group.
+     * @return <p>
+     *         The number of EC2 instances that should be running in the group.
+     *         </p>
      */
     public Integer getDesiredCapacity() {
         return desiredCapacity;
     }
-    
+
     /**
+     * <p>
      * The number of EC2 instances that should be running in the group.
+     * </p>
      *
-     * @param desiredCapacity The number of EC2 instances that should be running in the group.
+     * @param desiredCapacity <p>
+     *            The number of EC2 instances that should be running in the
+     *            group.
+     *            </p>
      */
     public void setDesiredCapacity(Integer desiredCapacity) {
         this.desiredCapacity = desiredCapacity;
     }
-    
+
     /**
-     * The number of EC2 instances that should be running in the group.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The number of EC2 instances that should be running in the group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param desiredCapacity The number of EC2 instances that should be running in the group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param desiredCapacity <p>
+     *            The number of EC2 instances that should be running in the
+     *            group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutScheduledUpdateGroupActionRequest withDesiredCapacity(Integer desiredCapacity) {
         this.desiredCapacity = desiredCapacity;
@@ -501,71 +701,106 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAutoScalingGroupName() != null) sb.append("AutoScalingGroupName: " + getAutoScalingGroupName() + ",");
-        if (getScheduledActionName() != null) sb.append("ScheduledActionName: " + getScheduledActionName() + ",");
-        if (getTime() != null) sb.append("Time: " + getTime() + ",");
-        if (getStartTime() != null) sb.append("StartTime: " + getStartTime() + ",");
-        if (getEndTime() != null) sb.append("EndTime: " + getEndTime() + ",");
-        if (getRecurrence() != null) sb.append("Recurrence: " + getRecurrence() + ",");
-        if (getMinSize() != null) sb.append("MinSize: " + getMinSize() + ",");
-        if (getMaxSize() != null) sb.append("MaxSize: " + getMaxSize() + ",");
-        if (getDesiredCapacity() != null) sb.append("DesiredCapacity: " + getDesiredCapacity() );
+        if (getAutoScalingGroupName() != null)
+            sb.append("AutoScalingGroupName: " + getAutoScalingGroupName() + ",");
+        if (getScheduledActionName() != null)
+            sb.append("ScheduledActionName: " + getScheduledActionName() + ",");
+        if (getTime() != null)
+            sb.append("Time: " + getTime() + ",");
+        if (getStartTime() != null)
+            sb.append("StartTime: " + getStartTime() + ",");
+        if (getEndTime() != null)
+            sb.append("EndTime: " + getEndTime() + ",");
+        if (getRecurrence() != null)
+            sb.append("Recurrence: " + getRecurrence() + ",");
+        if (getMinSize() != null)
+            sb.append("MinSize: " + getMinSize() + ",");
+        if (getMaxSize() != null)
+            sb.append("MaxSize: " + getMaxSize() + ",");
+        if (getDesiredCapacity() != null)
+            sb.append("DesiredCapacity: " + getDesiredCapacity());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getAutoScalingGroupName() == null) ? 0 : getAutoScalingGroupName().hashCode()); 
-        hashCode = prime * hashCode + ((getScheduledActionName() == null) ? 0 : getScheduledActionName().hashCode()); 
-        hashCode = prime * hashCode + ((getTime() == null) ? 0 : getTime().hashCode()); 
-        hashCode = prime * hashCode + ((getStartTime() == null) ? 0 : getStartTime().hashCode()); 
-        hashCode = prime * hashCode + ((getEndTime() == null) ? 0 : getEndTime().hashCode()); 
-        hashCode = prime * hashCode + ((getRecurrence() == null) ? 0 : getRecurrence().hashCode()); 
-        hashCode = prime * hashCode + ((getMinSize() == null) ? 0 : getMinSize().hashCode()); 
-        hashCode = prime * hashCode + ((getMaxSize() == null) ? 0 : getMaxSize().hashCode()); 
-        hashCode = prime * hashCode + ((getDesiredCapacity() == null) ? 0 : getDesiredCapacity().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getAutoScalingGroupName() == null) ? 0 : getAutoScalingGroupName().hashCode());
+        hashCode = prime * hashCode
+                + ((getScheduledActionName() == null) ? 0 : getScheduledActionName().hashCode());
+        hashCode = prime * hashCode + ((getTime() == null) ? 0 : getTime().hashCode());
+        hashCode = prime * hashCode + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
+        hashCode = prime * hashCode + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
+        hashCode = prime * hashCode + ((getRecurrence() == null) ? 0 : getRecurrence().hashCode());
+        hashCode = prime * hashCode + ((getMinSize() == null) ? 0 : getMinSize().hashCode());
+        hashCode = prime * hashCode + ((getMaxSize() == null) ? 0 : getMaxSize().hashCode());
+        hashCode = prime * hashCode
+                + ((getDesiredCapacity() == null) ? 0 : getDesiredCapacity().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof PutScheduledUpdateGroupActionRequest == false) return false;
-        PutScheduledUpdateGroupActionRequest other = (PutScheduledUpdateGroupActionRequest)obj;
-        
-        if (other.getAutoScalingGroupName() == null ^ this.getAutoScalingGroupName() == null) return false;
-        if (other.getAutoScalingGroupName() != null && other.getAutoScalingGroupName().equals(this.getAutoScalingGroupName()) == false) return false; 
-        if (other.getScheduledActionName() == null ^ this.getScheduledActionName() == null) return false;
-        if (other.getScheduledActionName() != null && other.getScheduledActionName().equals(this.getScheduledActionName()) == false) return false; 
-        if (other.getTime() == null ^ this.getTime() == null) return false;
-        if (other.getTime() != null && other.getTime().equals(this.getTime()) == false) return false; 
-        if (other.getStartTime() == null ^ this.getStartTime() == null) return false;
-        if (other.getStartTime() != null && other.getStartTime().equals(this.getStartTime()) == false) return false; 
-        if (other.getEndTime() == null ^ this.getEndTime() == null) return false;
-        if (other.getEndTime() != null && other.getEndTime().equals(this.getEndTime()) == false) return false; 
-        if (other.getRecurrence() == null ^ this.getRecurrence() == null) return false;
-        if (other.getRecurrence() != null && other.getRecurrence().equals(this.getRecurrence()) == false) return false; 
-        if (other.getMinSize() == null ^ this.getMinSize() == null) return false;
-        if (other.getMinSize() != null && other.getMinSize().equals(this.getMinSize()) == false) return false; 
-        if (other.getMaxSize() == null ^ this.getMaxSize() == null) return false;
-        if (other.getMaxSize() != null && other.getMaxSize().equals(this.getMaxSize()) == false) return false; 
-        if (other.getDesiredCapacity() == null ^ this.getDesiredCapacity() == null) return false;
-        if (other.getDesiredCapacity() != null && other.getDesiredCapacity().equals(this.getDesiredCapacity()) == false) return false; 
+        if (obj instanceof PutScheduledUpdateGroupActionRequest == false)
+            return false;
+        PutScheduledUpdateGroupActionRequest other = (PutScheduledUpdateGroupActionRequest) obj;
+
+        if (other.getAutoScalingGroupName() == null ^ this.getAutoScalingGroupName() == null)
+            return false;
+        if (other.getAutoScalingGroupName() != null
+                && other.getAutoScalingGroupName().equals(this.getAutoScalingGroupName()) == false)
+            return false;
+        if (other.getScheduledActionName() == null ^ this.getScheduledActionName() == null)
+            return false;
+        if (other.getScheduledActionName() != null
+                && other.getScheduledActionName().equals(this.getScheduledActionName()) == false)
+            return false;
+        if (other.getTime() == null ^ this.getTime() == null)
+            return false;
+        if (other.getTime() != null && other.getTime().equals(this.getTime()) == false)
+            return false;
+        if (other.getStartTime() == null ^ this.getStartTime() == null)
+            return false;
+        if (other.getStartTime() != null
+                && other.getStartTime().equals(this.getStartTime()) == false)
+            return false;
+        if (other.getEndTime() == null ^ this.getEndTime() == null)
+            return false;
+        if (other.getEndTime() != null && other.getEndTime().equals(this.getEndTime()) == false)
+            return false;
+        if (other.getRecurrence() == null ^ this.getRecurrence() == null)
+            return false;
+        if (other.getRecurrence() != null
+                && other.getRecurrence().equals(this.getRecurrence()) == false)
+            return false;
+        if (other.getMinSize() == null ^ this.getMinSize() == null)
+            return false;
+        if (other.getMinSize() != null && other.getMinSize().equals(this.getMinSize()) == false)
+            return false;
+        if (other.getMaxSize() == null ^ this.getMaxSize() == null)
+            return false;
+        if (other.getMaxSize() != null && other.getMaxSize().equals(this.getMaxSize()) == false)
+            return false;
+        if (other.getDesiredCapacity() == null ^ this.getDesiredCapacity() == null)
+            return false;
+        if (other.getDesiredCapacity() != null
+                && other.getDesiredCapacity().equals(this.getDesiredCapacity()) == false)
+            return false;
         return true;
     }
-    
 }
-    

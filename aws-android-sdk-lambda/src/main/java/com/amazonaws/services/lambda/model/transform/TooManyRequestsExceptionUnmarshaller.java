@@ -38,7 +38,6 @@ public class TooManyRequestsExceptionUnmarshaller extends JsonErrorUnmarshaller 
         e.setErrorCode("TooManyRequestsException");
         e.setRetryAfterSeconds(String.valueOf(error.get("retryAfterSeconds")));
         e.setType(String.valueOf(error.get("Type")));
-        e.setReason(String.valueOf(error.get("Reason")));
 
         return e;
     }

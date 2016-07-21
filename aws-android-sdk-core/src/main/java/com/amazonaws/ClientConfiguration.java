@@ -169,7 +169,8 @@ public class ClientConfiguration {
     private String signerOverride;
 
     /**
-     * Optional override to control how to perform authentication for secure connections.
+     * Optional override to control how to perform authentication for secure
+     * connections.
      */
     private TrustManager trustManager = null;
 
@@ -994,19 +995,19 @@ public class ClientConfiguration {
     }
 
     /**
-     * Gets the trust manager to use for secure connections from this client.
-     * If null the default authentication will be used.
+     * Gets the trust manager to use for secure connections from this client. If
+     * null the default authentication will be used.
      *
-     * @return The trust manager to use for this client, or null to use the default
-     * authentication for secure connections.
+     * @return The trust manager to use for this client, or null to use the
+     *         default authentication for secure connections.
      */
     public TrustManager getTrustManager() {
         return trustManager;
     }
 
     /**
-     * Sets the trust manager to use for secure connections from this client.
-     * If null the default authentication will be used.
+     * Sets the trust manager to use for secure connections from this client. If
+     * null the default authentication will be used.
      *
      * @param trustManager The trust manager to use for this client.
      */
@@ -1015,9 +1016,10 @@ public class ClientConfiguration {
     }
 
     /**
-     * Sets the trust manager to use for secure connections from this client, and returns the
-     * updated ClientConfiguration object so that additional calls may be chained together.
-     * If null the default authentication will be used.
+     * Sets the trust manager to use for secure connections from this client,
+     * and returns the updated ClientConfiguration object so that additional
+     * calls may be chained together. If null the default authentication will be
+     * used.
      *
      * @param trustManager The trust manager to use for this client.
      * @return The updated ClientConfiguration object.

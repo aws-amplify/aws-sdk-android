@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -27,42 +27,50 @@ import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
 /**
- * Backend Server Description StAX Unmarshaller
+ * StAX unmarshaller for model BackendServerDescription
  */
-public class BackendServerDescriptionStaxUnmarshaller implements Unmarshaller<BackendServerDescription, StaxUnmarshallerContext> {
+class BackendServerDescriptionStaxUnmarshaller implements
+        Unmarshaller<BackendServerDescription, StaxUnmarshallerContext> {
 
     public BackendServerDescription unmarshall(StaxUnmarshallerContext context) throws Exception {
         BackendServerDescription backendServerDescription = new BackendServerDescription();
+
         int originalDepth = context.getCurrentDepth();
         int targetDepth = originalDepth + 1;
 
-        if (context.isStartOfDocument()) targetDepth += 2;
+        if (context.isStartOfDocument())
+            targetDepth += 2;
 
         while (true) {
             int xmlEvent = context.nextEvent();
-            if (xmlEvent == XmlPullParser.END_DOCUMENT) return backendServerDescription;
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("InstancePort", targetDepth)) {
-                    backendServerDescription.setInstancePort(IntegerStaxUnmarshaller.getInstance().unmarshall(context));
+                    backendServerDescription.setInstancePort(IntegerStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("PolicyNames/member", targetDepth)) {
-                    backendServerDescription.getPolicyNames().add(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    backendServerDescription.getPolicyNames().add(
+                            StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
-                    return backendServerDescription;
+                    break;
                 }
             }
         }
+        return backendServerDescription;
     }
 
     private static BackendServerDescriptionStaxUnmarshaller instance;
+
     public static BackendServerDescriptionStaxUnmarshaller getInstance() {
-        if (instance == null) instance = new BackendServerDescriptionStaxUnmarshaller();
+        if (instance == null)
+            instance = new BackendServerDescriptionStaxUnmarshaller();
         return instance;
     }
 }
-    

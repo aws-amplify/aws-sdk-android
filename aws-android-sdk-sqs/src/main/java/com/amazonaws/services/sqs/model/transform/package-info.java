@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonSQS.
+ * Marhsalling for the various types represented byAmazonSQS
  */
- package com.amazonaws.services.sqs.model.transform;
-        
+
+package com.amazonaws.services.sqs.model.transform;
+

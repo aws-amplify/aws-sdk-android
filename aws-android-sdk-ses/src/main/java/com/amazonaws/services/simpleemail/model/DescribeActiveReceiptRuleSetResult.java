@@ -1,77 +1,96 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.simpleemail.model;
 
 import java.io.Serializable;
 
 /**
- * Describe Active Receipt Rule Set Result
+ * <p>
+ * Represents the metadata and receipt rules for the receipt rule set that is
+ * currently active.
+ * </p>
  */
 public class DescribeActiveReceiptRuleSetResult implements Serializable {
-
     /**
+     * <p>
      * The metadata for the currently active receipt rule set. The metadata
      * consists of the rule set name and a timestamp of when the rule set was
      * created.
+     * </p>
      */
     private ReceiptRuleSetMetadata metadata;
 
     /**
+     * <p>
      * The receipt rules that belong to the active rule set.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<ReceiptRule> rules;
+    private java.util.List<ReceiptRule> rules = new java.util.ArrayList<ReceiptRule>();
 
     /**
+     * <p>
      * The metadata for the currently active receipt rule set. The metadata
      * consists of the rule set name and a timestamp of when the rule set was
      * created.
+     * </p>
      *
-     * @return The metadata for the currently active receipt rule set. The metadata
-     *         consists of the rule set name and a timestamp of when the rule set was
-     *         created.
+     * @return <p>
+     *         The metadata for the currently active receipt rule set. The
+     *         metadata consists of the rule set name and a timestamp of when
+     *         the rule set was created.
+     *         </p>
      */
     public ReceiptRuleSetMetadata getMetadata() {
         return metadata;
     }
-    
+
     /**
+     * <p>
      * The metadata for the currently active receipt rule set. The metadata
      * consists of the rule set name and a timestamp of when the rule set was
      * created.
+     * </p>
      *
-     * @param metadata The metadata for the currently active receipt rule set. The metadata
-     *         consists of the rule set name and a timestamp of when the rule set was
-     *         created.
+     * @param metadata <p>
+     *            The metadata for the currently active receipt rule set. The
+     *            metadata consists of the rule set name and a timestamp of when
+     *            the rule set was created.
+     *            </p>
      */
     public void setMetadata(ReceiptRuleSetMetadata metadata) {
         this.metadata = metadata;
     }
-    
+
     /**
+     * <p>
      * The metadata for the currently active receipt rule set. The metadata
      * consists of the rule set name and a timestamp of when the rule set was
      * created.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param metadata The metadata for the currently active receipt rule set. The metadata
-     *         consists of the rule set name and a timestamp of when the rule set was
-     *         created.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param metadata <p>
+     *            The metadata for the currently active receipt rule set. The
+     *            metadata consists of the rule set name and a timestamp of when
+     *            the rule set was created.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeActiveReceiptRuleSetResult withMetadata(ReceiptRuleSetMetadata metadata) {
         this.metadata = metadata;
@@ -79,70 +98,76 @@ public class DescribeActiveReceiptRuleSetResult implements Serializable {
     }
 
     /**
+     * <p>
      * The receipt rules that belong to the active rule set.
+     * </p>
      *
-     * @return The receipt rules that belong to the active rule set.
+     * @return <p>
+     *         The receipt rules that belong to the active rule set.
+     *         </p>
      */
     public java.util.List<ReceiptRule> getRules() {
-        if (rules == null) {
-              rules = new com.amazonaws.internal.ListWithAutoConstructFlag<ReceiptRule>();
-              rules.setAutoConstruct(true);
-        }
         return rules;
     }
-    
+
     /**
+     * <p>
      * The receipt rules that belong to the active rule set.
+     * </p>
      *
-     * @param rules The receipt rules that belong to the active rule set.
+     * @param rules <p>
+     *            The receipt rules that belong to the active rule set.
+     *            </p>
      */
     public void setRules(java.util.Collection<ReceiptRule> rules) {
         if (rules == null) {
             this.rules = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<ReceiptRule> rulesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ReceiptRule>(rules.size());
-        rulesCopy.addAll(rules);
-        this.rules = rulesCopy;
+
+        this.rules = new java.util.ArrayList<ReceiptRule>(rules);
     }
-    
+
     /**
-     * The receipt rules that belong to the active rule set.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The receipt rules that belong to the active rule set.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param rules The receipt rules that belong to the active rule set.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param rules <p>
+     *            The receipt rules that belong to the active rule set.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeActiveReceiptRuleSetResult withRules(ReceiptRule... rules) {
-        if (getRules() == null) setRules(new java.util.ArrayList<ReceiptRule>(rules.length));
+        if (getRules() == null) {
+            this.rules = new java.util.ArrayList<ReceiptRule>(rules.length);
+        }
         for (ReceiptRule value : rules) {
-            getRules().add(value);
+            this.rules.add(value);
         }
         return this;
     }
-    
+
     /**
-     * The receipt rules that belong to the active rule set.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The receipt rules that belong to the active rule set.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param rules The receipt rules that belong to the active rule set.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param rules <p>
+     *            The receipt rules that belong to the active rule set.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeActiveReceiptRuleSetResult withRules(java.util.Collection<ReceiptRule> rules) {
-        if (rules == null) {
-            this.rules = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<ReceiptRule> rulesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ReceiptRule>(rules.size());
-            rulesCopy.addAll(rules);
-            this.rules = rulesCopy;
-        }
-
+        setRules(rules);
         return this;
     }
 
@@ -151,43 +176,49 @@ public class DescribeActiveReceiptRuleSetResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getMetadata() != null) sb.append("Metadata: " + getMetadata() + ",");
-        if (getRules() != null) sb.append("Rules: " + getRules() );
+        if (getMetadata() != null)
+            sb.append("Metadata: " + getMetadata() + ",");
+        if (getRules() != null)
+            sb.append("Rules: " + getRules());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getMetadata() == null) ? 0 : getMetadata().hashCode()); 
-        hashCode = prime * hashCode + ((getRules() == null) ? 0 : getRules().hashCode()); 
+
+        hashCode = prime * hashCode + ((getMetadata() == null) ? 0 : getMetadata().hashCode());
+        hashCode = prime * hashCode + ((getRules() == null) ? 0 : getRules().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeActiveReceiptRuleSetResult == false) return false;
-        DescribeActiveReceiptRuleSetResult other = (DescribeActiveReceiptRuleSetResult)obj;
-        
-        if (other.getMetadata() == null ^ this.getMetadata() == null) return false;
-        if (other.getMetadata() != null && other.getMetadata().equals(this.getMetadata()) == false) return false; 
-        if (other.getRules() == null ^ this.getRules() == null) return false;
-        if (other.getRules() != null && other.getRules().equals(this.getRules()) == false) return false; 
+        if (obj instanceof DescribeActiveReceiptRuleSetResult == false)
+            return false;
+        DescribeActiveReceiptRuleSetResult other = (DescribeActiveReceiptRuleSetResult) obj;
+
+        if (other.getMetadata() == null ^ this.getMetadata() == null)
+            return false;
+        if (other.getMetadata() != null && other.getMetadata().equals(this.getMetadata()) == false)
+            return false;
+        if (other.getRules() == null ^ this.getRules() == null)
+            return false;
+        if (other.getRules() != null && other.getRules().equals(this.getRules()) == false)
+            return false;
         return true;
     }
-    
 }
-    

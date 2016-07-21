@@ -1,5 +1,17 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.2.21](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.21) (07/21/2016)
+
+### Improvements
+- **Amazon Web Services**: General service updates and documentation improvements.
+- **AWS Core Runtime Library**: Allow custom `TrustManager` on `ClientConfiguration`. [#165](https://github.com/aws/aws-sdk-android/pull/165)
+- **AWS IoT**: Updated Eclipse Paho MQTT client to v1.1.0. [#145](https://github.com/aws/aws-sdk-android/issues/145)
+
+### Bug Fixes
+- **Amazon Mobile Analytics**: Fixed crash while creating the base directory. [#126](https://github.com/aws/aws-sdk-android/issues/126)
+- **Amazon Cognito**: Fixed a token refresh bug in Your User Pools.
+
+
 ## [Release 2.2.20](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.20) (06/27/2016)
 
 ### New Features

@@ -1,27 +1,38 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.actions;
 
 import com.amazonaws.auth.policy.Action;
 
 /**
- * The available AWS access control policy actions for Amazon Elastic Load Balancing.
+ * The available AWS access control policy actions for Amazon Elastic Load
+ * Balancing.
  */
 public enum ElasticLoadBalancingActions implements Action {
     /** Represents any action executed on Amazon Elastic Load Balancing. */
     AllElasticLoadBalancingActions("elasticloadbalancing:*"),
+
+    /** Action for the AddTags operation. */
+    AddTags("elasticloadbalancing:AddTags"),
+
+    /** Action for the ApplySecurityGroupsToLoadBalancer operation. */
+    ApplySecurityGroupsToLoadBalancer("elasticloadbalancing:ApplySecurityGroupsToLoadBalancer"),
+
+    /** Action for the AttachLoadBalancerToSubnets operation. */
+    AttachLoadBalancerToSubnets("elasticloadbalancing:AttachLoadBalancerToSubnets"),
 
     /** Action for the ConfigureHealthCheck operation. */
     ConfigureHealthCheck("elasticloadbalancing:ConfigureHealthCheck"),
@@ -38,6 +49,9 @@ public enum ElasticLoadBalancingActions implements Action {
     /** Action for the CreateLoadBalancerListeners operation. */
     CreateLoadBalancerListeners("elasticloadbalancing:CreateLoadBalancerListeners"),
 
+    /** Action for the CreateLoadBalancerPolicy operation. */
+    CreateLoadBalancerPolicy("elasticloadbalancing:CreateLoadBalancerPolicy"),
+
     /** Action for the DeleteLoadBalancer operation. */
     DeleteLoadBalancer("elasticloadbalancing:DeleteLoadBalancer"),
 
@@ -53,20 +67,48 @@ public enum ElasticLoadBalancingActions implements Action {
     /** Action for the DescribeInstanceHealth operation. */
     DescribeInstanceHealth("elasticloadbalancing:DescribeInstanceHealth"),
 
+    /** Action for the DescribeLoadBalancerAttributes operation. */
+    DescribeLoadBalancerAttributes("elasticloadbalancing:DescribeLoadBalancerAttributes"),
+
+    /** Action for the DescribeLoadBalancerPolicies operation. */
+    DescribeLoadBalancerPolicies("elasticloadbalancing:DescribeLoadBalancerPolicies"),
+
+    /** Action for the DescribeLoadBalancerPolicyTypes operation. */
+    DescribeLoadBalancerPolicyTypes("elasticloadbalancing:DescribeLoadBalancerPolicyTypes"),
+
     /** Action for the DescribeLoadBalancers operation. */
     DescribeLoadBalancers("elasticloadbalancing:DescribeLoadBalancers"),
 
+    /** Action for the DescribeTags operation. */
+    DescribeTags("elasticloadbalancing:DescribeTags"),
+
+    /** Action for the DetachLoadBalancerFromSubnets operation. */
+    DetachLoadBalancerFromSubnets("elasticloadbalancing:DetachLoadBalancerFromSubnets"),
+
     /** Action for the DisableAvailabilityZonesForLoadBalancer operation. */
-    DisableAvailabilityZonesForLoadBalancer("elasticloadbalancing:DisableAvailabilityZonesForLoadBalancer"),
+    DisableAvailabilityZonesForLoadBalancer(
+            "elasticloadbalancing:DisableAvailabilityZonesForLoadBalancer"),
 
     /** Action for the EnableAvailabilityZonesForLoadBalancer operation. */
-    EnableAvailabilityZonesForLoadBalancer("elasticloadbalancing:EnableAvailabilityZonesForLoadBalancer"),
+    EnableAvailabilityZonesForLoadBalancer(
+            "elasticloadbalancing:EnableAvailabilityZonesForLoadBalancer"),
+
+    /** Action for the ModifyLoadBalancerAttributes operation. */
+    ModifyLoadBalancerAttributes("elasticloadbalancing:ModifyLoadBalancerAttributes"),
 
     /** Action for the RegisterInstancesWithLoadBalancer operation. */
     RegisterInstancesWithLoadBalancer("elasticloadbalancing:RegisterInstancesWithLoadBalancer"),
 
+    /** Action for the RemoveTags operation. */
+    RemoveTags("elasticloadbalancing:RemoveTags"),
+
     /** Action for the SetLoadBalancerListenerSSLCertificate operation. */
-    SetLoadBalancerListenerSSLCertificate("elasticloadbalancing:SetLoadBalancerListenerSSLCertificate"),
+    SetLoadBalancerListenerSSLCertificate(
+            "elasticloadbalancing:SetLoadBalancerListenerSSLCertificate"),
+
+    /** Action for the SetLoadBalancerPoliciesForBackendServer operation. */
+    SetLoadBalancerPoliciesForBackendServer(
+            "elasticloadbalancing:SetLoadBalancerPoliciesForBackendServer"),
 
     /** Action for the SetLoadBalancerPoliciesOfListener operation. */
     SetLoadBalancerPoliciesOfListener("elasticloadbalancing:SetLoadBalancerPoliciesOfListener");

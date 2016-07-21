@@ -1,74 +1,83 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.simpleemail.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.amazonaws.services.simpleemail.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
 import com.amazonaws.services.simpleemail.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.StringUtils;
 
 /**
- * Send Raw Email Request Marshaller
+ * StAX request marshaller for SendRawEmailRequest
  */
-public class SendRawEmailRequestMarshaller implements Marshaller<Request<SendRawEmailRequest>, SendRawEmailRequest> {
+public class SendRawEmailRequestMarshaller implements
+        Marshaller<Request<SendRawEmailRequest>, SendRawEmailRequest> {
 
     public Request<SendRawEmailRequest> marshall(SendRawEmailRequest sendRawEmailRequest) {
-
         if (sendRawEmailRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(SendRawEmailRequest)");
         }
 
-        Request<SendRawEmailRequest> request = new DefaultRequest<SendRawEmailRequest>(sendRawEmailRequest, "AmazonSimpleEmailService");
+        Request<SendRawEmailRequest> request = new DefaultRequest<SendRawEmailRequest>(
+                sendRawEmailRequest, "AmazonSimpleEmailService");
         request.addParameter("Action", "SendRawEmail");
         request.addParameter("Version", "2010-12-01");
 
+        String prefix;
         if (sendRawEmailRequest.getSource() != null) {
-            request.addParameter("Source", StringUtils.fromString(sendRawEmailRequest.getSource()));
+            prefix = "Source";
+            String source = sendRawEmailRequest.getSource();
+            request.addParameter(prefix, StringUtils.fromString(source));
         }
-
-        java.util.List<String> destinationsList = sendRawEmailRequest.getDestinations();
-        int destinationsListIndex = 1;
-
-        for (String destinationsListValue : destinationsList) {
-            if (destinationsListValue != null) {
-                request.addParameter("Destinations.member." + destinationsListIndex, StringUtils.fromString(destinationsListValue));
+        if (sendRawEmailRequest.getDestinations() != null) {
+            prefix = "Destinations";
+            java.util.List<String> destinations = sendRawEmailRequest.getDestinations();
+            int destinationsIndex = 1;
+            String destinationsPrefix = prefix;
+            for (String destinationsItem : destinations) {
+                prefix = destinationsPrefix + ".member." + destinationsIndex;
+                if (destinationsItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(destinationsItem));
+                }
+                destinationsIndex++;
             }
-
-            destinationsListIndex++;
+            prefix = destinationsPrefix;
         }
-        RawMessage rawMessageRawMessage = sendRawEmailRequest.getRawMessage();
-        if (rawMessageRawMessage != null) {
-            if (rawMessageRawMessage.getData() != null) {
-                request.addParameter("RawMessage.Data", StringUtils.fromByteBuffer(rawMessageRawMessage.getData()));
-            }
+        if (sendRawEmailRequest.getRawMessage() != null) {
+            prefix = "RawMessage";
+            RawMessage rawMessage = sendRawEmailRequest.getRawMessage();
+            RawMessageStaxMarshaller.getInstance().marshall(rawMessage, request, prefix + ".");
         }
         if (sendRawEmailRequest.getFromArn() != null) {
-            request.addParameter("FromArn", StringUtils.fromString(sendRawEmailRequest.getFromArn()));
+            prefix = "FromArn";
+            String fromArn = sendRawEmailRequest.getFromArn();
+            request.addParameter(prefix, StringUtils.fromString(fromArn));
         }
         if (sendRawEmailRequest.getSourceArn() != null) {
-            request.addParameter("SourceArn", StringUtils.fromString(sendRawEmailRequest.getSourceArn()));
+            prefix = "SourceArn";
+            String sourceArn = sendRawEmailRequest.getSourceArn();
+            request.addParameter(prefix, StringUtils.fromString(sourceArn));
         }
         if (sendRawEmailRequest.getReturnPathArn() != null) {
-            request.addParameter("ReturnPathArn", StringUtils.fromString(sendRawEmailRequest.getReturnPathArn()));
+            prefix = "ReturnPathArn";
+            String returnPathArn = sendRawEmailRequest.getReturnPathArn();
+            request.addParameter(prefix, StringUtils.fromString(returnPathArn));
         }
 
         return request;

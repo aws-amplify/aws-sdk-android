@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonAutoScaling.
+ * Marhsalling for the various types represented byAmazonAutoScaling
  */
- package com.amazonaws.services.autoscaling.model.transform;
-        
+
+package com.amazonaws.services.autoscaling.model.transform;
+

@@ -1,156 +1,172 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.autoscaling.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.amazonaws.services.autoscaling.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
 import com.amazonaws.services.autoscaling.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.StringUtils;
 
 /**
- * Create Launch Configuration Request Marshaller
+ * StAX request marshaller for CreateLaunchConfigurationRequest
  */
-public class CreateLaunchConfigurationRequestMarshaller implements Marshaller<Request<CreateLaunchConfigurationRequest>, CreateLaunchConfigurationRequest> {
+public class CreateLaunchConfigurationRequestMarshaller implements
+        Marshaller<Request<CreateLaunchConfigurationRequest>, CreateLaunchConfigurationRequest> {
 
-    public Request<CreateLaunchConfigurationRequest> marshall(CreateLaunchConfigurationRequest createLaunchConfigurationRequest) {
-
+    public Request<CreateLaunchConfigurationRequest> marshall(
+            CreateLaunchConfigurationRequest createLaunchConfigurationRequest) {
         if (createLaunchConfigurationRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(CreateLaunchConfigurationRequest)");
         }
 
-        Request<CreateLaunchConfigurationRequest> request = new DefaultRequest<CreateLaunchConfigurationRequest>(createLaunchConfigurationRequest, "AmazonAutoScaling");
+        Request<CreateLaunchConfigurationRequest> request = new DefaultRequest<CreateLaunchConfigurationRequest>(
+                createLaunchConfigurationRequest, "AmazonAutoScaling");
         request.addParameter("Action", "CreateLaunchConfiguration");
         request.addParameter("Version", "2011-01-01");
 
+        String prefix;
         if (createLaunchConfigurationRequest.getLaunchConfigurationName() != null) {
-            request.addParameter("LaunchConfigurationName", StringUtils.fromString(createLaunchConfigurationRequest.getLaunchConfigurationName()));
+            prefix = "LaunchConfigurationName";
+            String launchConfigurationName = createLaunchConfigurationRequest
+                    .getLaunchConfigurationName();
+            request.addParameter(prefix, StringUtils.fromString(launchConfigurationName));
         }
         if (createLaunchConfigurationRequest.getImageId() != null) {
-            request.addParameter("ImageId", StringUtils.fromString(createLaunchConfigurationRequest.getImageId()));
+            prefix = "ImageId";
+            String imageId = createLaunchConfigurationRequest.getImageId();
+            request.addParameter(prefix, StringUtils.fromString(imageId));
         }
         if (createLaunchConfigurationRequest.getKeyName() != null) {
-            request.addParameter("KeyName", StringUtils.fromString(createLaunchConfigurationRequest.getKeyName()));
+            prefix = "KeyName";
+            String keyName = createLaunchConfigurationRequest.getKeyName();
+            request.addParameter(prefix, StringUtils.fromString(keyName));
         }
-
-        java.util.List<String> securityGroupsList = createLaunchConfigurationRequest.getSecurityGroups();
-        int securityGroupsListIndex = 1;
-
-        for (String securityGroupsListValue : securityGroupsList) {
-            if (securityGroupsListValue != null) {
-                request.addParameter("SecurityGroups.member." + securityGroupsListIndex, StringUtils.fromString(securityGroupsListValue));
+        if (createLaunchConfigurationRequest.getSecurityGroups() != null) {
+            prefix = "SecurityGroups";
+            java.util.List<String> securityGroups = createLaunchConfigurationRequest
+                    .getSecurityGroups();
+            int securityGroupsIndex = 1;
+            String securityGroupsPrefix = prefix;
+            for (String securityGroupsItem : securityGroups) {
+                prefix = securityGroupsPrefix + ".member." + securityGroupsIndex;
+                if (securityGroupsItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(securityGroupsItem));
+                }
+                securityGroupsIndex++;
             }
-
-            securityGroupsListIndex++;
+            prefix = securityGroupsPrefix;
         }
         if (createLaunchConfigurationRequest.getClassicLinkVPCId() != null) {
-            request.addParameter("ClassicLinkVPCId", StringUtils.fromString(createLaunchConfigurationRequest.getClassicLinkVPCId()));
+            prefix = "ClassicLinkVPCId";
+            String classicLinkVPCId = createLaunchConfigurationRequest.getClassicLinkVPCId();
+            request.addParameter(prefix, StringUtils.fromString(classicLinkVPCId));
         }
-
-        java.util.List<String> classicLinkVPCSecurityGroupsList = createLaunchConfigurationRequest.getClassicLinkVPCSecurityGroups();
-        int classicLinkVPCSecurityGroupsListIndex = 1;
-
-        for (String classicLinkVPCSecurityGroupsListValue : classicLinkVPCSecurityGroupsList) {
-            if (classicLinkVPCSecurityGroupsListValue != null) {
-                request.addParameter("ClassicLinkVPCSecurityGroups.member." + classicLinkVPCSecurityGroupsListIndex, StringUtils.fromString(classicLinkVPCSecurityGroupsListValue));
+        if (createLaunchConfigurationRequest.getClassicLinkVPCSecurityGroups() != null) {
+            prefix = "ClassicLinkVPCSecurityGroups";
+            java.util.List<String> classicLinkVPCSecurityGroups = createLaunchConfigurationRequest
+                    .getClassicLinkVPCSecurityGroups();
+            int classicLinkVPCSecurityGroupsIndex = 1;
+            String classicLinkVPCSecurityGroupsPrefix = prefix;
+            for (String classicLinkVPCSecurityGroupsItem : classicLinkVPCSecurityGroups) {
+                prefix = classicLinkVPCSecurityGroupsPrefix + ".member."
+                        + classicLinkVPCSecurityGroupsIndex;
+                if (classicLinkVPCSecurityGroupsItem != null) {
+                    request.addParameter(prefix,
+                            StringUtils.fromString(classicLinkVPCSecurityGroupsItem));
+                }
+                classicLinkVPCSecurityGroupsIndex++;
             }
-
-            classicLinkVPCSecurityGroupsListIndex++;
+            prefix = classicLinkVPCSecurityGroupsPrefix;
         }
         if (createLaunchConfigurationRequest.getUserData() != null) {
-            request.addParameter("UserData", StringUtils.fromString(createLaunchConfigurationRequest.getUserData()));
+            prefix = "UserData";
+            String userData = createLaunchConfigurationRequest.getUserData();
+            request.addParameter(prefix, StringUtils.fromString(userData));
         }
         if (createLaunchConfigurationRequest.getInstanceId() != null) {
-            request.addParameter("InstanceId", StringUtils.fromString(createLaunchConfigurationRequest.getInstanceId()));
+            prefix = "InstanceId";
+            String instanceId = createLaunchConfigurationRequest.getInstanceId();
+            request.addParameter(prefix, StringUtils.fromString(instanceId));
         }
         if (createLaunchConfigurationRequest.getInstanceType() != null) {
-            request.addParameter("InstanceType", StringUtils.fromString(createLaunchConfigurationRequest.getInstanceType()));
+            prefix = "InstanceType";
+            String instanceType = createLaunchConfigurationRequest.getInstanceType();
+            request.addParameter(prefix, StringUtils.fromString(instanceType));
         }
         if (createLaunchConfigurationRequest.getKernelId() != null) {
-            request.addParameter("KernelId", StringUtils.fromString(createLaunchConfigurationRequest.getKernelId()));
+            prefix = "KernelId";
+            String kernelId = createLaunchConfigurationRequest.getKernelId();
+            request.addParameter(prefix, StringUtils.fromString(kernelId));
         }
         if (createLaunchConfigurationRequest.getRamdiskId() != null) {
-            request.addParameter("RamdiskId", StringUtils.fromString(createLaunchConfigurationRequest.getRamdiskId()));
+            prefix = "RamdiskId";
+            String ramdiskId = createLaunchConfigurationRequest.getRamdiskId();
+            request.addParameter(prefix, StringUtils.fromString(ramdiskId));
         }
-
-        java.util.List<BlockDeviceMapping> blockDeviceMappingsList = createLaunchConfigurationRequest.getBlockDeviceMappings();
-        int blockDeviceMappingsListIndex = 1;
-
-        for (BlockDeviceMapping blockDeviceMappingsListValue : blockDeviceMappingsList) {
-            BlockDeviceMapping blockDeviceMappingMember = blockDeviceMappingsListValue;
-            if (blockDeviceMappingMember != null) {
-                if (blockDeviceMappingMember.getVirtualName() != null) {
-                    request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".VirtualName", StringUtils.fromString(blockDeviceMappingMember.getVirtualName()));
+        if (createLaunchConfigurationRequest.getBlockDeviceMappings() != null) {
+            prefix = "BlockDeviceMappings";
+            java.util.List<BlockDeviceMapping> blockDeviceMappings = createLaunchConfigurationRequest
+                    .getBlockDeviceMappings();
+            int blockDeviceMappingsIndex = 1;
+            String blockDeviceMappingsPrefix = prefix;
+            for (BlockDeviceMapping blockDeviceMappingsItem : blockDeviceMappings) {
+                prefix = blockDeviceMappingsPrefix + ".member." + blockDeviceMappingsIndex;
+                if (blockDeviceMappingsItem != null) {
+                    BlockDeviceMappingStaxMarshaller.getInstance().marshall(
+                            blockDeviceMappingsItem, request, prefix + ".");
                 }
-                if (blockDeviceMappingMember.getDeviceName() != null) {
-                    request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".DeviceName", StringUtils.fromString(blockDeviceMappingMember.getDeviceName()));
-                }
-                Ebs ebsEbs = blockDeviceMappingMember.getEbs();
-                if (ebsEbs != null) {
-                    if (ebsEbs.getSnapshotId() != null) {
-                        request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".Ebs.SnapshotId", StringUtils.fromString(ebsEbs.getSnapshotId()));
-                    }
-                    if (ebsEbs.getVolumeSize() != null) {
-                        request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".Ebs.VolumeSize", StringUtils.fromInteger(ebsEbs.getVolumeSize()));
-                    }
-                    if (ebsEbs.getVolumeType() != null) {
-                        request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".Ebs.VolumeType", StringUtils.fromString(ebsEbs.getVolumeType()));
-                    }
-                    if (ebsEbs.isDeleteOnTermination() != null) {
-                        request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".Ebs.DeleteOnTermination", StringUtils.fromBoolean(ebsEbs.isDeleteOnTermination()));
-                    }
-                    if (ebsEbs.getIops() != null) {
-                        request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".Ebs.Iops", StringUtils.fromInteger(ebsEbs.getIops()));
-                    }
-                    if (ebsEbs.isEncrypted() != null) {
-                        request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".Ebs.Encrypted", StringUtils.fromBoolean(ebsEbs.isEncrypted()));
-                    }
-                }
-                if (blockDeviceMappingMember.isNoDevice() != null) {
-                    request.addParameter("BlockDeviceMappings.member." + blockDeviceMappingsListIndex + ".NoDevice", StringUtils.fromBoolean(blockDeviceMappingMember.isNoDevice()));
-                }
+                blockDeviceMappingsIndex++;
             }
-
-            blockDeviceMappingsListIndex++;
+            prefix = blockDeviceMappingsPrefix;
         }
-        InstanceMonitoring instanceMonitoringInstanceMonitoring = createLaunchConfigurationRequest.getInstanceMonitoring();
-        if (instanceMonitoringInstanceMonitoring != null) {
-            if (instanceMonitoringInstanceMonitoring.isEnabled() != null) {
-                request.addParameter("InstanceMonitoring.Enabled", StringUtils.fromBoolean(instanceMonitoringInstanceMonitoring.isEnabled()));
-            }
+        if (createLaunchConfigurationRequest.getInstanceMonitoring() != null) {
+            prefix = "InstanceMonitoring";
+            InstanceMonitoring instanceMonitoring = createLaunchConfigurationRequest
+                    .getInstanceMonitoring();
+            InstanceMonitoringStaxMarshaller.getInstance().marshall(instanceMonitoring, request,
+                    prefix + ".");
         }
         if (createLaunchConfigurationRequest.getSpotPrice() != null) {
-            request.addParameter("SpotPrice", StringUtils.fromString(createLaunchConfigurationRequest.getSpotPrice()));
+            prefix = "SpotPrice";
+            String spotPrice = createLaunchConfigurationRequest.getSpotPrice();
+            request.addParameter(prefix, StringUtils.fromString(spotPrice));
         }
         if (createLaunchConfigurationRequest.getIamInstanceProfile() != null) {
-            request.addParameter("IamInstanceProfile", StringUtils.fromString(createLaunchConfigurationRequest.getIamInstanceProfile()));
+            prefix = "IamInstanceProfile";
+            String iamInstanceProfile = createLaunchConfigurationRequest.getIamInstanceProfile();
+            request.addParameter(prefix, StringUtils.fromString(iamInstanceProfile));
         }
-        if (createLaunchConfigurationRequest.isEbsOptimized() != null) {
-            request.addParameter("EbsOptimized", StringUtils.fromBoolean(createLaunchConfigurationRequest.isEbsOptimized()));
+        if (createLaunchConfigurationRequest.getEbsOptimized() != null) {
+            prefix = "EbsOptimized";
+            Boolean ebsOptimized = createLaunchConfigurationRequest.getEbsOptimized();
+            request.addParameter(prefix, StringUtils.fromBoolean(ebsOptimized));
         }
-        if (createLaunchConfigurationRequest.isAssociatePublicIpAddress() != null) {
-            request.addParameter("AssociatePublicIpAddress", StringUtils.fromBoolean(createLaunchConfigurationRequest.isAssociatePublicIpAddress()));
+        if (createLaunchConfigurationRequest.getAssociatePublicIpAddress() != null) {
+            prefix = "AssociatePublicIpAddress";
+            Boolean associatePublicIpAddress = createLaunchConfigurationRequest
+                    .getAssociatePublicIpAddress();
+            request.addParameter(prefix, StringUtils.fromBoolean(associatePublicIpAddress));
         }
         if (createLaunchConfigurationRequest.getPlacementTenancy() != null) {
-            request.addParameter("PlacementTenancy", StringUtils.fromString(createLaunchConfigurationRequest.getPlacementTenancy()));
+            prefix = "PlacementTenancy";
+            String placementTenancy = createLaunchConfigurationRequest.getPlacementTenancy();
+            request.addParameter(prefix, StringUtils.fromString(placementTenancy));
         }
 
         return request;

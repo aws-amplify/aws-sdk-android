@@ -1,69 +1,73 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.elasticloadbalancing.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.amazonaws.services.elasticloadbalancing.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
 import com.amazonaws.services.elasticloadbalancing.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.StringUtils;
 
 /**
- * Remove Tags Request Marshaller
+ * StAX request marshaller for RemoveTagsRequest
  */
-public class RemoveTagsRequestMarshaller implements Marshaller<Request<RemoveTagsRequest>, RemoveTagsRequest> {
+public class RemoveTagsRequestMarshaller implements
+        Marshaller<Request<RemoveTagsRequest>, RemoveTagsRequest> {
 
     public Request<RemoveTagsRequest> marshall(RemoveTagsRequest removeTagsRequest) {
-
         if (removeTagsRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(RemoveTagsRequest)");
         }
 
-        Request<RemoveTagsRequest> request = new DefaultRequest<RemoveTagsRequest>(removeTagsRequest, "AmazonElasticLoadBalancing");
+        Request<RemoveTagsRequest> request = new DefaultRequest<RemoveTagsRequest>(
+                removeTagsRequest, "AmazonElasticLoadBalancing");
         request.addParameter("Action", "RemoveTags");
         request.addParameter("Version", "2012-06-01");
 
-        java.util.List<String> loadBalancerNamesList = removeTagsRequest.getLoadBalancerNames();
-        int loadBalancerNamesListIndex = 1;
-
-        for (String loadBalancerNamesListValue : loadBalancerNamesList) {
-            if (loadBalancerNamesListValue != null) {
-                request.addParameter("LoadBalancerNames.member." + loadBalancerNamesListIndex, StringUtils.fromString(loadBalancerNamesListValue));
-            }
-
-            loadBalancerNamesListIndex++;
-        }
-
-        java.util.List<TagKeyOnly> tagsList = removeTagsRequest.getTags();
-        int tagsListIndex = 1;
-
-        for (TagKeyOnly tagsListValue : tagsList) {
-            TagKeyOnly tagKeyOnlyMember = tagsListValue;
-            if (tagKeyOnlyMember != null) {
-                if (tagKeyOnlyMember.getKey() != null) {
-                    request.addParameter("Tags.member." + tagsListIndex + ".Key", StringUtils.fromString(tagKeyOnlyMember.getKey()));
+        String prefix;
+        if (removeTagsRequest.getLoadBalancerNames() != null) {
+            prefix = "LoadBalancerNames";
+            java.util.List<String> loadBalancerNames = removeTagsRequest.getLoadBalancerNames();
+            int loadBalancerNamesIndex = 1;
+            String loadBalancerNamesPrefix = prefix;
+            for (String loadBalancerNamesItem : loadBalancerNames) {
+                prefix = loadBalancerNamesPrefix + ".member." + loadBalancerNamesIndex;
+                if (loadBalancerNamesItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(loadBalancerNamesItem));
                 }
+                loadBalancerNamesIndex++;
             }
-
-            tagsListIndex++;
+            prefix = loadBalancerNamesPrefix;
+        }
+        if (removeTagsRequest.getTags() != null) {
+            prefix = "Tags";
+            java.util.List<TagKeyOnly> tags = removeTagsRequest.getTags();
+            int tagsIndex = 1;
+            String tagsPrefix = prefix;
+            for (TagKeyOnly tagsItem : tags) {
+                prefix = tagsPrefix + ".member." + tagsIndex;
+                if (tagsItem != null) {
+                    TagKeyOnlyStaxMarshaller.getInstance()
+                            .marshall(tagsItem, request, prefix + ".");
+                }
+                tagsIndex++;
+            }
+            prefix = tagsPrefix;
         }
 
         return request;

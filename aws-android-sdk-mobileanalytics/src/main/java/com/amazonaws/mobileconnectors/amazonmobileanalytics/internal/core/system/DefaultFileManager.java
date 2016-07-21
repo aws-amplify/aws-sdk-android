@@ -34,14 +34,16 @@ public class DefaultFileManager implements FileManager {
     }
 
     @Override
-    public File createDirectory(final String directoryPath) {
+    public synchronized File createDirectory(final String directoryPath) {
         final File dir = new File(directory, directoryPath);
-        if (!dir.exists()) {
-            if (!dir.mkdirs()) {
-                return null;
-            }
+
+        //mkdirs() returns false if directory exists.  Will also return false if a file (not a directory) exists with the same name.
+        //Have seen race conditions here as well, hence this order.  Double check that file exists and return it.
+        if (dir.mkdirs() || dir.isDirectory()) {
+            return dir;
         }
-        return dir;
+
+        return null;
     }
 
     @Override
@@ -59,7 +61,7 @@ public class DefaultFileManager implements FileManager {
     @Override
     public Set<File> listFilesInDirectory(final File directory) {
         final Set<File> filesSet = new HashSet<File>();
-        if (directory.exists()) {
+        if (directory.isDirectory()) {
             final File[] files = directory.listFiles();
             for (File file : files) {
                 filesSet.add(file);
@@ -69,56 +71,58 @@ public class DefaultFileManager implements FileManager {
     }
 
     @Override
-    public File createFile(final String filepath) throws IOException {
+    public synchronized File createFile(final String filepath) throws IOException {
         final File file = new File(directory, filepath);
         return createFile(file);
     }
 
     @Override
-    public File createFile(final File file) throws IOException {
-        if (!file.exists()) {
-            if (!file.createNewFile()) {
-                return null;
-            }
+    public synchronized File createFile(final File file) throws IOException {
+        //createNewFile() returns false if file exists.  Will also return false if a directory (not a file) exists with the same name.
+        //Have seen race conditions here as well, hence this order.  Double check that file exists and return it.
+        if (file.createNewFile() || file.isFile()) {
+            return file;
+        } else {
+            return null;
         }
-        return file;
     }
 
     @Override
-    public boolean deleteFile(final String filepath) {
+    public synchronized boolean deleteFile(final String filepath) {
         final File file = new File(directory, filepath);
         return deleteFile(file);
     }
 
     @Override
-    public boolean deleteFile(final File file) {
-        if (file.exists()) {
-            return file.delete();
+    public synchronized boolean deleteFile(final File file) {
+        if (file.delete() || !file.exists()) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     @Override
-    public InputStream newInputStream(final String filepath) throws FileNotFoundException {
+    public synchronized InputStream newInputStream(final String filepath) throws FileNotFoundException {
         final File file = new File(directory, filepath);
         return newInputStream(file);
     }
 
     @Override
-    public InputStream newInputStream(final File file) throws FileNotFoundException {
+    public synchronized InputStream newInputStream(final File file) throws FileNotFoundException {
         final InputStream stream = new FileInputStream(file);
         return stream;
     }
 
     @Override
-    public OutputStream newOutputStream(final String filepath, final boolean append)
+    public synchronized OutputStream newOutputStream(final String filepath, final boolean append)
             throws FileNotFoundException {
         final File file = new File(directory, filepath);
         return newOutputStream(file, append);
     }
 
     @Override
-    public OutputStream newOutputStream(final File file, final boolean append)
+    public synchronized OutputStream newOutputStream(final File file, final boolean append)
             throws FileNotFoundException {
         final OutputStream stream = new FileOutputStream(file, append);
         return stream;

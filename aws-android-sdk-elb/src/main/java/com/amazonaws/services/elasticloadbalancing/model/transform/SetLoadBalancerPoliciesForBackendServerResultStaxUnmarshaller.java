@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -27,34 +27,41 @@ import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
 /**
- * Set Load Balancer Policies For Backend Server Result StAX Unmarshaller
+ * StAX unmarshaller for response SetLoadBalancerPoliciesForBackendServerResult
  */
-public class SetLoadBalancerPoliciesForBackendServerResultStaxUnmarshaller implements Unmarshaller<SetLoadBalancerPoliciesForBackendServerResult, StaxUnmarshallerContext> {
+public class SetLoadBalancerPoliciesForBackendServerResultStaxUnmarshaller implements
+        Unmarshaller<SetLoadBalancerPoliciesForBackendServerResult, StaxUnmarshallerContext> {
 
-    public SetLoadBalancerPoliciesForBackendServerResult unmarshall(StaxUnmarshallerContext context) throws Exception {
+    public SetLoadBalancerPoliciesForBackendServerResult unmarshall(StaxUnmarshallerContext context)
+            throws Exception {
         SetLoadBalancerPoliciesForBackendServerResult setLoadBalancerPoliciesForBackendServerResult = new SetLoadBalancerPoliciesForBackendServerResult();
+
         int originalDepth = context.getCurrentDepth();
         int targetDepth = originalDepth + 1;
 
-        if (context.isStartOfDocument()) targetDepth += 2;
+        if (context.isStartOfDocument())
+            targetDepth += 2;
 
         while (true) {
             int xmlEvent = context.nextEvent();
-            if (xmlEvent == XmlPullParser.END_DOCUMENT) return setLoadBalancerPoliciesForBackendServerResult;
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
-                    return setLoadBalancerPoliciesForBackendServerResult;
+                    break;
                 }
             }
         }
+        return setLoadBalancerPoliciesForBackendServerResult;
     }
 
     private static SetLoadBalancerPoliciesForBackendServerResultStaxUnmarshaller instance;
+
     public static SetLoadBalancerPoliciesForBackendServerResultStaxUnmarshaller getInstance() {
-        if (instance == null) instance = new SetLoadBalancerPoliciesForBackendServerResultStaxUnmarshaller();
+        if (instance == null)
+            instance = new SetLoadBalancerPoliciesForBackendServerResultStaxUnmarshaller();
         return instance;
     }
 }
-    

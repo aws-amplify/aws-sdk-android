@@ -38,6 +38,9 @@ class DynamoDBActionJsonUnmarshaller implements
             } else if (name.equals("roleArn")) {
                 dynamoDBAction.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("operation")) {
+                dynamoDBAction.setOperation(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("hashKeyField")) {
                 dynamoDBAction.setHashKeyField(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

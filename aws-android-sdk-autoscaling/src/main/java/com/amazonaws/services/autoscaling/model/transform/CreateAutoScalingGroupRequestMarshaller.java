@@ -1,151 +1,167 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.autoscaling.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.amazonaws.services.autoscaling.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
 import com.amazonaws.services.autoscaling.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.StringUtils;
 
 /**
- * Create Auto Scaling Group Request Marshaller
+ * StAX request marshaller for CreateAutoScalingGroupRequest
  */
-public class CreateAutoScalingGroupRequestMarshaller implements Marshaller<Request<CreateAutoScalingGroupRequest>, CreateAutoScalingGroupRequest> {
+public class CreateAutoScalingGroupRequestMarshaller implements
+        Marshaller<Request<CreateAutoScalingGroupRequest>, CreateAutoScalingGroupRequest> {
 
-    public Request<CreateAutoScalingGroupRequest> marshall(CreateAutoScalingGroupRequest createAutoScalingGroupRequest) {
-
+    public Request<CreateAutoScalingGroupRequest> marshall(
+            CreateAutoScalingGroupRequest createAutoScalingGroupRequest) {
         if (createAutoScalingGroupRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(CreateAutoScalingGroupRequest)");
         }
 
-        Request<CreateAutoScalingGroupRequest> request = new DefaultRequest<CreateAutoScalingGroupRequest>(createAutoScalingGroupRequest, "AmazonAutoScaling");
+        Request<CreateAutoScalingGroupRequest> request = new DefaultRequest<CreateAutoScalingGroupRequest>(
+                createAutoScalingGroupRequest, "AmazonAutoScaling");
         request.addParameter("Action", "CreateAutoScalingGroup");
         request.addParameter("Version", "2011-01-01");
 
+        String prefix;
         if (createAutoScalingGroupRequest.getAutoScalingGroupName() != null) {
-            request.addParameter("AutoScalingGroupName", StringUtils.fromString(createAutoScalingGroupRequest.getAutoScalingGroupName()));
+            prefix = "AutoScalingGroupName";
+            String autoScalingGroupName = createAutoScalingGroupRequest.getAutoScalingGroupName();
+            request.addParameter(prefix, StringUtils.fromString(autoScalingGroupName));
         }
         if (createAutoScalingGroupRequest.getLaunchConfigurationName() != null) {
-            request.addParameter("LaunchConfigurationName", StringUtils.fromString(createAutoScalingGroupRequest.getLaunchConfigurationName()));
+            prefix = "LaunchConfigurationName";
+            String launchConfigurationName = createAutoScalingGroupRequest
+                    .getLaunchConfigurationName();
+            request.addParameter(prefix, StringUtils.fromString(launchConfigurationName));
         }
         if (createAutoScalingGroupRequest.getInstanceId() != null) {
-            request.addParameter("InstanceId", StringUtils.fromString(createAutoScalingGroupRequest.getInstanceId()));
+            prefix = "InstanceId";
+            String instanceId = createAutoScalingGroupRequest.getInstanceId();
+            request.addParameter(prefix, StringUtils.fromString(instanceId));
         }
         if (createAutoScalingGroupRequest.getMinSize() != null) {
-            request.addParameter("MinSize", StringUtils.fromInteger(createAutoScalingGroupRequest.getMinSize()));
+            prefix = "MinSize";
+            Integer minSize = createAutoScalingGroupRequest.getMinSize();
+            request.addParameter(prefix, StringUtils.fromInteger(minSize));
         }
         if (createAutoScalingGroupRequest.getMaxSize() != null) {
-            request.addParameter("MaxSize", StringUtils.fromInteger(createAutoScalingGroupRequest.getMaxSize()));
+            prefix = "MaxSize";
+            Integer maxSize = createAutoScalingGroupRequest.getMaxSize();
+            request.addParameter(prefix, StringUtils.fromInteger(maxSize));
         }
         if (createAutoScalingGroupRequest.getDesiredCapacity() != null) {
-            request.addParameter("DesiredCapacity", StringUtils.fromInteger(createAutoScalingGroupRequest.getDesiredCapacity()));
+            prefix = "DesiredCapacity";
+            Integer desiredCapacity = createAutoScalingGroupRequest.getDesiredCapacity();
+            request.addParameter(prefix, StringUtils.fromInteger(desiredCapacity));
         }
         if (createAutoScalingGroupRequest.getDefaultCooldown() != null) {
-            request.addParameter("DefaultCooldown", StringUtils.fromInteger(createAutoScalingGroupRequest.getDefaultCooldown()));
+            prefix = "DefaultCooldown";
+            Integer defaultCooldown = createAutoScalingGroupRequest.getDefaultCooldown();
+            request.addParameter(prefix, StringUtils.fromInteger(defaultCooldown));
         }
-
-        java.util.List<String> availabilityZonesList = createAutoScalingGroupRequest.getAvailabilityZones();
-        int availabilityZonesListIndex = 1;
-
-        for (String availabilityZonesListValue : availabilityZonesList) {
-            if (availabilityZonesListValue != null) {
-                request.addParameter("AvailabilityZones.member." + availabilityZonesListIndex, StringUtils.fromString(availabilityZonesListValue));
+        if (createAutoScalingGroupRequest.getAvailabilityZones() != null) {
+            prefix = "AvailabilityZones";
+            java.util.List<String> availabilityZones = createAutoScalingGroupRequest
+                    .getAvailabilityZones();
+            int availabilityZonesIndex = 1;
+            String availabilityZonesPrefix = prefix;
+            for (String availabilityZonesItem : availabilityZones) {
+                prefix = availabilityZonesPrefix + ".member." + availabilityZonesIndex;
+                if (availabilityZonesItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(availabilityZonesItem));
+                }
+                availabilityZonesIndex++;
             }
-
-            availabilityZonesListIndex++;
+            prefix = availabilityZonesPrefix;
         }
-
-        java.util.List<String> loadBalancerNamesList = createAutoScalingGroupRequest.getLoadBalancerNames();
-        int loadBalancerNamesListIndex = 1;
-
-        for (String loadBalancerNamesListValue : loadBalancerNamesList) {
-            if (loadBalancerNamesListValue != null) {
-                request.addParameter("LoadBalancerNames.member." + loadBalancerNamesListIndex, StringUtils.fromString(loadBalancerNamesListValue));
+        if (createAutoScalingGroupRequest.getLoadBalancerNames() != null) {
+            prefix = "LoadBalancerNames";
+            java.util.List<String> loadBalancerNames = createAutoScalingGroupRequest
+                    .getLoadBalancerNames();
+            int loadBalancerNamesIndex = 1;
+            String loadBalancerNamesPrefix = prefix;
+            for (String loadBalancerNamesItem : loadBalancerNames) {
+                prefix = loadBalancerNamesPrefix + ".member." + loadBalancerNamesIndex;
+                if (loadBalancerNamesItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(loadBalancerNamesItem));
+                }
+                loadBalancerNamesIndex++;
             }
-
-            loadBalancerNamesListIndex++;
-        }
-
-        java.util.List<String> targetGroupARNsList = createAutoScalingGroupRequest.getTargetGroupARNs();
-        int targetGroupARNsListIndex = 1;
-
-        for (String targetGroupARNsListValue : targetGroupARNsList) {
-            if (targetGroupARNsListValue != null) {
-                request.addParameter("TargetGroupARNs.member." + targetGroupARNsListIndex, StringUtils.fromString(targetGroupARNsListValue));
-            }
-
-            targetGroupARNsListIndex++;
+            prefix = loadBalancerNamesPrefix;
         }
         if (createAutoScalingGroupRequest.getHealthCheckType() != null) {
-            request.addParameter("HealthCheckType", StringUtils.fromString(createAutoScalingGroupRequest.getHealthCheckType()));
+            prefix = "HealthCheckType";
+            String healthCheckType = createAutoScalingGroupRequest.getHealthCheckType();
+            request.addParameter(prefix, StringUtils.fromString(healthCheckType));
         }
         if (createAutoScalingGroupRequest.getHealthCheckGracePeriod() != null) {
-            request.addParameter("HealthCheckGracePeriod", StringUtils.fromInteger(createAutoScalingGroupRequest.getHealthCheckGracePeriod()));
+            prefix = "HealthCheckGracePeriod";
+            Integer healthCheckGracePeriod = createAutoScalingGroupRequest
+                    .getHealthCheckGracePeriod();
+            request.addParameter(prefix, StringUtils.fromInteger(healthCheckGracePeriod));
         }
         if (createAutoScalingGroupRequest.getPlacementGroup() != null) {
-            request.addParameter("PlacementGroup", StringUtils.fromString(createAutoScalingGroupRequest.getPlacementGroup()));
+            prefix = "PlacementGroup";
+            String placementGroup = createAutoScalingGroupRequest.getPlacementGroup();
+            request.addParameter(prefix, StringUtils.fromString(placementGroup));
         }
         if (createAutoScalingGroupRequest.getVPCZoneIdentifier() != null) {
-            request.addParameter("VPCZoneIdentifier", StringUtils.fromString(createAutoScalingGroupRequest.getVPCZoneIdentifier()));
+            prefix = "VPCZoneIdentifier";
+            String vPCZoneIdentifier = createAutoScalingGroupRequest.getVPCZoneIdentifier();
+            request.addParameter(prefix, StringUtils.fromString(vPCZoneIdentifier));
         }
-
-        java.util.List<String> terminationPoliciesList = createAutoScalingGroupRequest.getTerminationPolicies();
-        int terminationPoliciesListIndex = 1;
-
-        for (String terminationPoliciesListValue : terminationPoliciesList) {
-            if (terminationPoliciesListValue != null) {
-                request.addParameter("TerminationPolicies.member." + terminationPoliciesListIndex, StringUtils.fromString(terminationPoliciesListValue));
+        if (createAutoScalingGroupRequest.getTerminationPolicies() != null) {
+            prefix = "TerminationPolicies";
+            java.util.List<String> terminationPolicies = createAutoScalingGroupRequest
+                    .getTerminationPolicies();
+            int terminationPoliciesIndex = 1;
+            String terminationPoliciesPrefix = prefix;
+            for (String terminationPoliciesItem : terminationPolicies) {
+                prefix = terminationPoliciesPrefix + ".member." + terminationPoliciesIndex;
+                if (terminationPoliciesItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(terminationPoliciesItem));
+                }
+                terminationPoliciesIndex++;
             }
-
-            terminationPoliciesListIndex++;
+            prefix = terminationPoliciesPrefix;
         }
-        if (createAutoScalingGroupRequest.isNewInstancesProtectedFromScaleIn() != null) {
-            request.addParameter("NewInstancesProtectedFromScaleIn", StringUtils.fromBoolean(createAutoScalingGroupRequest.isNewInstancesProtectedFromScaleIn()));
+        if (createAutoScalingGroupRequest.getNewInstancesProtectedFromScaleIn() != null) {
+            prefix = "NewInstancesProtectedFromScaleIn";
+            Boolean newInstancesProtectedFromScaleIn = createAutoScalingGroupRequest
+                    .getNewInstancesProtectedFromScaleIn();
+            request.addParameter(prefix, StringUtils.fromBoolean(newInstancesProtectedFromScaleIn));
         }
-
-        java.util.List<Tag> tagsList = createAutoScalingGroupRequest.getTags();
-        int tagsListIndex = 1;
-
-        for (Tag tagsListValue : tagsList) {
-            Tag tagMember = tagsListValue;
-            if (tagMember != null) {
-                if (tagMember.getResourceId() != null) {
-                    request.addParameter("Tags.member." + tagsListIndex + ".ResourceId", StringUtils.fromString(tagMember.getResourceId()));
+        if (createAutoScalingGroupRequest.getTags() != null) {
+            prefix = "Tags";
+            java.util.List<Tag> tags = createAutoScalingGroupRequest.getTags();
+            int tagsIndex = 1;
+            String tagsPrefix = prefix;
+            for (Tag tagsItem : tags) {
+                prefix = tagsPrefix + ".member." + tagsIndex;
+                if (tagsItem != null) {
+                    TagStaxMarshaller.getInstance().marshall(tagsItem, request, prefix + ".");
                 }
-                if (tagMember.getResourceType() != null) {
-                    request.addParameter("Tags.member." + tagsListIndex + ".ResourceType", StringUtils.fromString(tagMember.getResourceType()));
-                }
-                if (tagMember.getKey() != null) {
-                    request.addParameter("Tags.member." + tagsListIndex + ".Key", StringUtils.fromString(tagMember.getKey()));
-                }
-                if (tagMember.getValue() != null) {
-                    request.addParameter("Tags.member." + tagsListIndex + ".Value", StringUtils.fromString(tagMember.getValue()));
-                }
-                if (tagMember.isPropagateAtLaunch() != null) {
-                    request.addParameter("Tags.member." + tagsListIndex + ".PropagateAtLaunch", StringUtils.fromBoolean(tagMember.isPropagateAtLaunch()));
-                }
+                tagsIndex++;
             }
-
-            tagsListIndex++;
+            prefix = tagsPrefix;
         }
 
         return request;

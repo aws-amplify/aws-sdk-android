@@ -63,6 +63,16 @@ public class DynamoDBAction implements Serializable {
 
     /**
      * <p>
+     * The type of operation to be performed. This follows the substitution
+     * template, so it can be <code>${operation}</code>, but the substitution
+     * must result in one of the following: <code>INSERT</code>,
+     * <code>UPDATE</code>, or <code>DELETE</code>.
+     * </p>
+     */
+    private String operation;
+
+    /**
+     * <p>
      * The hash key name.
      * </p>
      */
@@ -205,6 +215,71 @@ public class DynamoDBAction implements Serializable {
      */
     public DynamoDBAction withRoleArn(String roleArn) {
         this.roleArn = roleArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of operation to be performed. This follows the substitution
+     * template, so it can be <code>${operation}</code>, but the substitution
+     * must result in one of the following: <code>INSERT</code>,
+     * <code>UPDATE</code>, or <code>DELETE</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The type of operation to be performed. This follows the
+     *         substitution template, so it can be <code>${operation}</code>,
+     *         but the substitution must result in one of the following:
+     *         <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>.
+     *         </p>
+     */
+    public String getOperation() {
+        return operation;
+    }
+
+    /**
+     * <p>
+     * The type of operation to be performed. This follows the substitution
+     * template, so it can be <code>${operation}</code>, but the substitution
+     * must result in one of the following: <code>INSERT</code>,
+     * <code>UPDATE</code>, or <code>DELETE</code>.
+     * </p>
+     *
+     * @param operation <p>
+     *            The type of operation to be performed. This follows the
+     *            substitution template, so it can be <code>${operation}</code>,
+     *            but the substitution must result in one of the following:
+     *            <code>INSERT</code>, <code>UPDATE</code>, or
+     *            <code>DELETE</code>.
+     *            </p>
+     */
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    /**
+     * <p>
+     * The type of operation to be performed. This follows the substitution
+     * template, so it can be <code>${operation}</code>, but the substitution
+     * must result in one of the following: <code>INSERT</code>,
+     * <code>UPDATE</code>, or <code>DELETE</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param operation <p>
+     *            The type of operation to be performed. This follows the
+     *            substitution template, so it can be <code>${operation}</code>,
+     *            but the substitution must result in one of the following:
+     *            <code>INSERT</code>, <code>UPDATE</code>, or
+     *            <code>DELETE</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DynamoDBAction withOperation(String operation) {
+        this.operation = operation;
         return this;
     }
 
@@ -642,6 +717,8 @@ public class DynamoDBAction implements Serializable {
             sb.append("tableName: " + getTableName() + ",");
         if (getRoleArn() != null)
             sb.append("roleArn: " + getRoleArn() + ",");
+        if (getOperation() != null)
+            sb.append("operation: " + getOperation() + ",");
         if (getHashKeyField() != null)
             sb.append("hashKeyField: " + getHashKeyField() + ",");
         if (getHashKeyValue() != null)
@@ -667,6 +744,7 @@ public class DynamoDBAction implements Serializable {
 
         hashCode = prime * hashCode + ((getTableName() == null) ? 0 : getTableName().hashCode());
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
+        hashCode = prime * hashCode + ((getOperation() == null) ? 0 : getOperation().hashCode());
         hashCode = prime * hashCode
                 + ((getHashKeyField() == null) ? 0 : getHashKeyField().hashCode());
         hashCode = prime * hashCode
@@ -703,6 +781,11 @@ public class DynamoDBAction implements Serializable {
         if (other.getRoleArn() == null ^ this.getRoleArn() == null)
             return false;
         if (other.getRoleArn() != null && other.getRoleArn().equals(this.getRoleArn()) == false)
+            return false;
+        if (other.getOperation() == null ^ this.getOperation() == null)
+            return false;
+        if (other.getOperation() != null
+                && other.getOperation().equals(this.getOperation()) == false)
             return false;
         if (other.getHashKeyField() == null ^ this.getHashKeyField() == null)
             return false;

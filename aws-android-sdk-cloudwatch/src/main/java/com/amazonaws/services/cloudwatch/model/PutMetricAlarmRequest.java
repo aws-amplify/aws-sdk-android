@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.cloudwatch.model;
 
 import java.io.Serializable;
@@ -19,30 +20,59 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.cloudwatch.AmazonCloudWatch#putMetricAlarm(PutMetricAlarmRequest) PutMetricAlarm operation}.
  * <p>
- * Creates or updates an alarm and associates it with the specified
- * Amazon CloudWatch metric. Optionally, this operation can associate one
- * or more Amazon Simple Notification Service resources with the alarm.
+ * Creates or updates an alarm and associates it with the specified Amazon
+ * CloudWatch metric. Optionally, this operation can associate one or more
+ * Amazon Simple Notification Service resources with the alarm.
  * </p>
  * <p>
- * When this operation creates an alarm, the alarm state is immediately
- * set to <code>INSUFFICIENT_DATA</code> . The alarm is evaluated and
- * its <code>StateValue</code> is set appropriately. Any actions
- * associated with the <code>StateValue</code> is then executed.
+ * When this operation creates an alarm, the alarm state is immediately set to
+ * <code>INSUFFICIENT_DATA</code>. The alarm is evaluated and its
+ * <code>StateValue</code> is set appropriately. Any actions associated with the
+ * <code>StateValue</code> is then executed.
+ * </p>
+ * <note> When updating an existing alarm, its <code>StateValue</code> is left
+ * unchanged. </note> <note> If you are using an AWS Identity and Access
+ * Management (IAM) account to create or modify an alarm, you must have the
+ * following Amazon EC2 permissions:
+ * <ul>
+ * <li><code>ec2:DescribeInstanceStatus</code> and
+ * <code>ec2:DescribeInstances</code> for all alarms on Amazon EC2 instance
+ * status metrics.</li>
+ * <li><code>ec2:StopInstances</code> for alarms with stop actions.</li>
+ * <li><code>ec2:TerminateInstances</code> for alarms with terminate actions.</li>
+ * <li><code>ec2:DescribeInstanceRecoveryAttribute</code>, and
+ * <code>ec2:RecoverInstances</code> for alarms with recover actions.</li>
+ * </ul>
+ * <p>
+ * If you have read/write permissions for Amazon CloudWatch but not for Amazon
+ * EC2, you can still create an alarm but the stop or terminate actions won't be
+ * performed on the Amazon EC2 instance. However, if you are later granted
+ * permission to use the associated Amazon EC2 APIs, the alarm actions you
+ * created earlier will be performed. For more information about IAM
+ * permissions, see <a href=
+ * "http://docs.aws.amazon.com//IAM/latest/UserGuide/PermissionsAndPolicies.html"
+ * >Permissions and Policies</a> in <i>Using IAM</i>.
  * </p>
  * <p>
- * <b>NOTE:</b> When updating an existing alarm, its StateValue is left
- * unchanged.
+ * If you are using an IAM role (e.g., an Amazon EC2 instance profile), you
+ * cannot stop or terminate the instance using alarm actions. However, you can
+ * still see the alarm state and perform any other actions such as Amazon SNS
+ * notifications or Auto Scaling policies.
  * </p>
- *
- * @see com.amazonaws.services.cloudwatch.AmazonCloudWatch#putMetricAlarm(PutMetricAlarmRequest)
+ * <p>
+ * If you are using temporary security credentials granted using the AWS
+ * Security Token Service (AWS STS), you cannot stop or terminate an Amazon EC2
+ * instance using alarm actions.
+ * </p>
+ * </note>
  */
 public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Serializable {
-
     /**
-     * The descriptive name for the alarm. This name must be unique within
-     * the user's AWS account
+     * <p>
+     * The descriptive name for the alarm. This name must be unique within the
+     * user's AWS account
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -50,7 +80,9 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     private String alarmName;
 
     /**
+     * <p>
      * The description for the alarm.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
@@ -58,49 +90,110 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     private String alarmDescription;
 
     /**
-     * Indicates whether or not actions should be executed during any changes
-     * to the alarm's state.
+     * <p>
+     * Indicates whether or not actions should be executed during any changes to
+     * the alarm's state.
+     * </p>
      */
     private Boolean actionsEnabled;
 
     /**
-     * The list of actions to execute when this alarm transitions into an
-     * <code>OK</code> state from any other state. Each action is specified
-     * as an Amazon Resource Number (ARN). Currently the only action
-     * supported is publishing to an Amazon SNS topic or an Amazon Auto
-     * Scaling policy.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * The list of actions to execute when this alarm transitions into an
+     * <code>OK</code> state from any other state. Each action is specified as
+     * an Amazon Resource Name (ARN).
+     * </p>
+     * <p>
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
+     * <p>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> oKActions;
+    private java.util.List<String> oKActions = new java.util.ArrayList<String>();
 
     /**
-     * The list of actions to execute when this alarm transitions into an
-     * <code>ALARM</code> state from any other state. Each action is
-     * specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * The list of actions to execute when this alarm transitions into an
+     * <code>ALARM</code> state from any other state. Each action is specified
+     * as an Amazon Resource Name (ARN).
+     * </p>
+     * <p>
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
+     * <p>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> alarmActions;
+    private java.util.List<String> alarmActions = new java.util.ArrayList<String>();
 
     /**
-     * The list of actions to execute when this alarm transitions into an
-     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
-     * is specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * The list of actions to execute when this alarm transitions into an
+     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action is
+     * specified as an Amazon Resource Name (ARN).
+     * </p>
+     * <p>
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
+     * <p>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> insufficientDataActions;
+    private java.util.List<String> insufficientDataActions = new java.util.ArrayList<String>();
 
     /**
+     * <p>
      * The name for the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -108,7 +201,9 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     private String metricName;
 
     /**
+     * <p>
      * The namespace for the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -117,7 +212,9 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     private String namespace;
 
     /**
+     * <p>
      * The statistic to apply to the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SampleCount, Average, Sum, Minimum, Maximum
@@ -125,15 +222,16 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     private String statistic;
 
     /**
-     * The dimensions for the alarm's associated metric.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * The dimensions for the alarm's associated metric.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<Dimension> dimensions;
+    private java.util.List<Dimension> dimensions = new java.util.ArrayList<Dimension>();
 
     /**
+     * <p>
      * The period in seconds over which the specified statistic is applied.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>60 - <br/>
@@ -141,16 +239,35 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     private Integer period;
 
     /**
-     * The unit for the alarm's associated metric.
+     * <p>
+     * The statistic's unit of measure. For example, the units for the Amazon
+     * EC2 NetworkIn metric are Bytes because NetworkIn tracks the number of
+     * bytes that an instance receives on all network interfaces. You can also
+     * specify a unit when you create a custom metric. Units help provide
+     * conceptual meaning to your data. Metric data points that specify a unit
+     * of measure, such as Percent, are aggregated separately.
+     * </p>
+     * <p>
+     * <b>Note:</b> If you specify a unit, you must use a unit that is
+     * appropriate for the metric. Otherwise, this can cause an Amazon
+     * CloudWatch alarm to get stuck in the INSUFFICIENT DATA state.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits, Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second, Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second, Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second, Count/Second, None
+     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes,
+     * Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits,
+     * Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second,
+     * Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second,
+     * Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second,
+     * Count/Second, None
      */
     private String unit;
 
     /**
+     * <p>
      * The number of periods over which data is compared to the specified
      * threshold.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
@@ -158,62 +275,79 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     private Integer evaluationPeriods;
 
     /**
+     * <p>
      * The value against which the specified statistic is compared.
+     * </p>
      */
     private Double threshold;
 
     /**
+     * <p>
      * The arithmetic operation to use when comparing the specified
      * <code>Statistic</code> and <code>Threshold</code>. The specified
      * <code>Statistic</code> value is used as the first operand.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold, GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
+     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold,
+     * GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
      */
     private String comparisonOperator;
 
     /**
-     * The descriptive name for the alarm. This name must be unique within
-     * the user's AWS account
+     * <p>
+     * The descriptive name for the alarm. This name must be unique within the
+     * user's AWS account
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @return The descriptive name for the alarm. This name must be unique within
-     *         the user's AWS account
+     * @return <p>
+     *         The descriptive name for the alarm. This name must be unique
+     *         within the user's AWS account
+     *         </p>
      */
     public String getAlarmName() {
         return alarmName;
     }
-    
+
     /**
-     * The descriptive name for the alarm. This name must be unique within
-     * the user's AWS account
+     * <p>
+     * The descriptive name for the alarm. This name must be unique within the
+     * user's AWS account
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param alarmName The descriptive name for the alarm. This name must be unique within
-     *         the user's AWS account
+     * @param alarmName <p>
+     *            The descriptive name for the alarm. This name must be unique
+     *            within the user's AWS account
+     *            </p>
      */
     public void setAlarmName(String alarmName) {
         this.alarmName = alarmName;
     }
-    
+
     /**
-     * The descriptive name for the alarm. This name must be unique within
-     * the user's AWS account
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The descriptive name for the alarm. This name must be unique within the
+     * user's AWS account
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param alarmName The descriptive name for the alarm. This name must be unique within
-     *         the user's AWS account
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param alarmName <p>
+     *            The descriptive name for the alarm. This name must be unique
+     *            within the user's AWS account
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withAlarmName(String alarmName) {
         this.alarmName = alarmName;
@@ -221,41 +355,53 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * The description for the alarm.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
      *
-     * @return The description for the alarm.
+     * @return <p>
+     *         The description for the alarm.
+     *         </p>
      */
     public String getAlarmDescription() {
         return alarmDescription;
     }
-    
+
     /**
+     * <p>
      * The description for the alarm.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
      *
-     * @param alarmDescription The description for the alarm.
+     * @param alarmDescription <p>
+     *            The description for the alarm.
+     *            </p>
      */
     public void setAlarmDescription(String alarmDescription) {
         this.alarmDescription = alarmDescription;
     }
-    
+
     /**
-     * The description for the alarm.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The description for the alarm.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
      *
-     * @param alarmDescription The description for the alarm.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param alarmDescription <p>
+     *            The description for the alarm.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withAlarmDescription(String alarmDescription) {
         this.alarmDescription = alarmDescription;
@@ -263,38 +409,65 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * Indicates whether or not actions should be executed during any changes
-     * to the alarm's state.
+     * <p>
+     * Indicates whether or not actions should be executed during any changes to
+     * the alarm's state.
+     * </p>
      *
-     * @return Indicates whether or not actions should be executed during any changes
-     *         to the alarm's state.
+     * @return <p>
+     *         Indicates whether or not actions should be executed during any
+     *         changes to the alarm's state.
+     *         </p>
      */
     public Boolean isActionsEnabled() {
         return actionsEnabled;
     }
-    
+
     /**
-     * Indicates whether or not actions should be executed during any changes
-     * to the alarm's state.
+     * <p>
+     * Indicates whether or not actions should be executed during any changes to
+     * the alarm's state.
+     * </p>
      *
-     * @param actionsEnabled Indicates whether or not actions should be executed during any changes
-     *         to the alarm's state.
+     * @return <p>
+     *         Indicates whether or not actions should be executed during any
+     *         changes to the alarm's state.
+     *         </p>
+     */
+    public Boolean getActionsEnabled() {
+        return actionsEnabled;
+    }
+
+    /**
+     * <p>
+     * Indicates whether or not actions should be executed during any changes to
+     * the alarm's state.
+     * </p>
+     *
+     * @param actionsEnabled <p>
+     *            Indicates whether or not actions should be executed during any
+     *            changes to the alarm's state.
+     *            </p>
      */
     public void setActionsEnabled(Boolean actionsEnabled) {
         this.actionsEnabled = actionsEnabled;
     }
-    
+
     /**
-     * Indicates whether or not actions should be executed during any changes
-     * to the alarm's state.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Indicates whether or not actions should be executed during any changes to
+     * the alarm's state.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param actionsEnabled Indicates whether or not actions should be executed during any changes
-     *         to the alarm's state.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param actionsEnabled <p>
+     *            Indicates whether or not actions should be executed during any
+     *            changes to the alarm's state.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withActionsEnabled(Boolean actionsEnabled) {
         this.actionsEnabled = actionsEnabled;
@@ -302,388 +475,868 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * Indicates whether or not actions should be executed during any changes
-     * to the alarm's state.
+     * <p>
+     * The list of actions to execute when this alarm transitions into an
+     * <code>OK</code> state from any other state. Each action is specified as
+     * an Amazon Resource Name (ARN).
+     * </p>
+     * <p>
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
+     * <p>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
      *
-     * @return Indicates whether or not actions should be executed during any changes
-     *         to the alarm's state.
+     * @return <p>
+     *         The list of actions to execute when this alarm transitions into
+     *         an <code>OK</code> state from any other state. Each action is
+     *         specified as an Amazon Resource Name (ARN).
+     *         </p>
+     *         <p>
+     *         Valid Values: arn:aws:automate:<i>region (e.g.,
+     *         us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *         us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region (e.g.,
+     *         us-east-1)</i>:ec2:recover
+     *         </p>
+     *         <p>
+     *         Valid Values (for use with IAM roles):
+     *         arn:aws:swf:us-east-1:{<i>customer
+     *         -account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     *         arn:aws
+     *         :swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2
+     *         .InstanceId.Terminate/1.0 |
+     *         arn:aws:swf:us-east-1:{<i>customer-account
+     *         </i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0
+     *         </p>
+     *         <p>
+     *         <b>Note:</b> You must create at least one stop, terminate, or
+     *         reboot alarm using the Amazon EC2 or CloudWatch console to create
+     *         the <b>EC2ActionsAccess</b> IAM role for the first time. After
+     *         this IAM role is created, you can create stop, terminate, or
+     *         reboot alarms using the CLI.
+     *         </p>
      */
-    public Boolean getActionsEnabled() {
-        return actionsEnabled;
+    public java.util.List<String> getOKActions() {
+        return oKActions;
     }
 
     /**
-     * The list of actions to execute when this alarm transitions into an
-     * <code>OK</code> state from any other state. Each action is specified
-     * as an Amazon Resource Number (ARN). Currently the only action
-     * supported is publishing to an Amazon SNS topic or an Amazon Auto
-     * Scaling policy.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
-     *
-     * @return The list of actions to execute when this alarm transitions into an
-     *         <code>OK</code> state from any other state. Each action is specified
-     *         as an Amazon Resource Number (ARN). Currently the only action
-     *         supported is publishing to an Amazon SNS topic or an Amazon Auto
-     *         Scaling policy.
-     */
-    public java.util.List<String> getOKActions() {
-        if (oKActions == null) {
-              oKActions = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              oKActions.setAutoConstruct(true);
-        }
-        return oKActions;
-    }
-    
-    /**
      * The list of actions to execute when this alarm transitions into an
-     * <code>OK</code> state from any other state. Each action is specified
-     * as an Amazon Resource Number (ARN). Currently the only action
-     * supported is publishing to an Amazon SNS topic or an Amazon Auto
-     * Scaling policy.
+     * <code>OK</code> state from any other state. Each action is specified as
+     * an Amazon Resource Name (ARN).
+     * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
+     * <p>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
      *
-     * @param oKActions The list of actions to execute when this alarm transitions into an
-     *         <code>OK</code> state from any other state. Each action is specified
-     *         as an Amazon Resource Number (ARN). Currently the only action
-     *         supported is publishing to an Amazon SNS topic or an Amazon Auto
-     *         Scaling policy.
+     * @param oKActions <p>
+     *            The list of actions to execute when this alarm transitions
+     *            into an <code>OK</code> state from any other state. Each
+     *            action is specified as an Amazon Resource Name (ARN).
+     *            </p>
+     *            <p>
+     *            Valid Values: arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region
+     *            (e.g., us-east-1)</i>:ec2:recover
+     *            </p>
+     *            <p>
+     *            Valid Values (for use with IAM roles):
+     *            arn:aws:swf:us-east-1:{<
+     *            i>customer-account</i>}:action/actions/
+     *            AWS_EC2.InstanceId.Stop/1.0 |
+     *            arn:aws:swf:us-east-1:{<i>customer
+     *            -account</i>}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
+     *            | arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/
+     *            actions/AWS_EC2.InstanceId.Reboot/1.0
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> You must create at least one stop, terminate, or
+     *            reboot alarm using the Amazon EC2 or CloudWatch console to
+     *            create the <b>EC2ActionsAccess</b> IAM role for the first
+     *            time. After this IAM role is created, you can create stop,
+     *            terminate, or reboot alarms using the CLI.
+     *            </p>
      */
     public void setOKActions(java.util.Collection<String> oKActions) {
         if (oKActions == null) {
             this.oKActions = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> oKActionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(oKActions.size());
-        oKActionsCopy.addAll(oKActions);
-        this.oKActions = oKActionsCopy;
+
+        this.oKActions = new java.util.ArrayList<String>(oKActions);
     }
-    
+
     /**
+     * <p>
      * The list of actions to execute when this alarm transitions into an
-     * <code>OK</code> state from any other state. Each action is specified
-     * as an Amazon Resource Number (ARN). Currently the only action
-     * supported is publishing to an Amazon SNS topic or an Amazon Auto
-     * Scaling policy.
+     * <code>OK</code> state from any other state. Each action is specified as
+     * an Amazon Resource Name (ARN).
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param oKActions The list of actions to execute when this alarm transitions into an
-     *         <code>OK</code> state from any other state. Each action is specified
-     *         as an Amazon Resource Number (ARN). Currently the only action
-     *         supported is publishing to an Amazon SNS topic or an Amazon Auto
-     *         Scaling policy.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param oKActions <p>
+     *            The list of actions to execute when this alarm transitions
+     *            into an <code>OK</code> state from any other state. Each
+     *            action is specified as an Amazon Resource Name (ARN).
+     *            </p>
+     *            <p>
+     *            Valid Values: arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region
+     *            (e.g., us-east-1)</i>:ec2:recover
+     *            </p>
+     *            <p>
+     *            Valid Values (for use with IAM roles):
+     *            arn:aws:swf:us-east-1:{<
+     *            i>customer-account</i>}:action/actions/
+     *            AWS_EC2.InstanceId.Stop/1.0 |
+     *            arn:aws:swf:us-east-1:{<i>customer
+     *            -account</i>}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
+     *            | arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/
+     *            actions/AWS_EC2.InstanceId.Reboot/1.0
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> You must create at least one stop, terminate, or
+     *            reboot alarm using the Amazon EC2 or CloudWatch console to
+     *            create the <b>EC2ActionsAccess</b> IAM role for the first
+     *            time. After this IAM role is created, you can create stop,
+     *            terminate, or reboot alarms using the CLI.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withOKActions(String... oKActions) {
-        if (getOKActions() == null) setOKActions(new java.util.ArrayList<String>(oKActions.length));
+        if (getOKActions() == null) {
+            this.oKActions = new java.util.ArrayList<String>(oKActions.length);
+        }
         for (String value : oKActions) {
-            getOKActions().add(value);
+            this.oKActions.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * The list of actions to execute when this alarm transitions into an
-     * <code>OK</code> state from any other state. Each action is specified
-     * as an Amazon Resource Number (ARN). Currently the only action
-     * supported is publishing to an Amazon SNS topic or an Amazon Auto
-     * Scaling policy.
+     * <code>OK</code> state from any other state. Each action is specified as
+     * an Amazon Resource Name (ARN).
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param oKActions The list of actions to execute when this alarm transitions into an
-     *         <code>OK</code> state from any other state. Each action is specified
-     *         as an Amazon Resource Number (ARN). Currently the only action
-     *         supported is publishing to an Amazon SNS topic or an Amazon Auto
-     *         Scaling policy.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param oKActions <p>
+     *            The list of actions to execute when this alarm transitions
+     *            into an <code>OK</code> state from any other state. Each
+     *            action is specified as an Amazon Resource Name (ARN).
+     *            </p>
+     *            <p>
+     *            Valid Values: arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region
+     *            (e.g., us-east-1)</i>:ec2:recover
+     *            </p>
+     *            <p>
+     *            Valid Values (for use with IAM roles):
+     *            arn:aws:swf:us-east-1:{<
+     *            i>customer-account</i>}:action/actions/
+     *            AWS_EC2.InstanceId.Stop/1.0 |
+     *            arn:aws:swf:us-east-1:{<i>customer
+     *            -account</i>}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
+     *            | arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/
+     *            actions/AWS_EC2.InstanceId.Reboot/1.0
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> You must create at least one stop, terminate, or
+     *            reboot alarm using the Amazon EC2 or CloudWatch console to
+     *            create the <b>EC2ActionsAccess</b> IAM role for the first
+     *            time. After this IAM role is created, you can create stop,
+     *            terminate, or reboot alarms using the CLI.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withOKActions(java.util.Collection<String> oKActions) {
-        if (oKActions == null) {
-            this.oKActions = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> oKActionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(oKActions.size());
-            oKActionsCopy.addAll(oKActions);
-            this.oKActions = oKActionsCopy;
-        }
-
+        setOKActions(oKActions);
         return this;
     }
 
     /**
-     * The list of actions to execute when this alarm transitions into an
-     * <code>ALARM</code> state from any other state. Each action is
-     * specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * The list of actions to execute when this alarm transitions into an
+     * <code>ALARM</code> state from any other state. Each action is specified
+     * as an Amazon Resource Name (ARN).
+     * </p>
+     * <p>
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
+     * <p>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
      *
-     * @return The list of actions to execute when this alarm transitions into an
-     *         <code>ALARM</code> state from any other state. Each action is
-     *         specified as an Amazon Resource Number (ARN). Currently the only
-     *         action supported is publishing to an Amazon SNS topic or an Amazon
-     *         Auto Scaling policy.
+     * @return <p>
+     *         The list of actions to execute when this alarm transitions into
+     *         an <code>ALARM</code> state from any other state. Each action is
+     *         specified as an Amazon Resource Name (ARN).
+     *         </p>
+     *         <p>
+     *         Valid Values: arn:aws:automate:<i>region (e.g.,
+     *         us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *         us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region (e.g.,
+     *         us-east-1)</i>:ec2:recover
+     *         </p>
+     *         <p>
+     *         Valid Values (for use with IAM roles):
+     *         arn:aws:swf:us-east-1:{<i>customer
+     *         -account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     *         arn:aws
+     *         :swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2
+     *         .InstanceId.Terminate/1.0 |
+     *         arn:aws:swf:us-east-1:{<i>customer-account
+     *         </i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0
+     *         </p>
+     *         <p>
+     *         <b>Note:</b> You must create at least one stop, terminate, or
+     *         reboot alarm using the Amazon EC2 or CloudWatch console to create
+     *         the <b>EC2ActionsAccess</b> IAM role for the first time. After
+     *         this IAM role is created, you can create stop, terminate, or
+     *         reboot alarms using the CLI.
+     *         </p>
      */
     public java.util.List<String> getAlarmActions() {
-        if (alarmActions == null) {
-              alarmActions = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              alarmActions.setAutoConstruct(true);
-        }
         return alarmActions;
     }
-    
+
     /**
-     * The list of actions to execute when this alarm transitions into an
-     * <code>ALARM</code> state from any other state. Each action is
-     * specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * The list of actions to execute when this alarm transitions into an
+     * <code>ALARM</code> state from any other state. Each action is specified
+     * as an Amazon Resource Name (ARN).
+     * </p>
+     * <p>
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
+     * <p>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
      *
-     * @param alarmActions The list of actions to execute when this alarm transitions into an
-     *         <code>ALARM</code> state from any other state. Each action is
-     *         specified as an Amazon Resource Number (ARN). Currently the only
-     *         action supported is publishing to an Amazon SNS topic or an Amazon
-     *         Auto Scaling policy.
+     * @param alarmActions <p>
+     *            The list of actions to execute when this alarm transitions
+     *            into an <code>ALARM</code> state from any other state. Each
+     *            action is specified as an Amazon Resource Name (ARN).
+     *            </p>
+     *            <p>
+     *            Valid Values: arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region
+     *            (e.g., us-east-1)</i>:ec2:recover
+     *            </p>
+     *            <p>
+     *            Valid Values (for use with IAM roles):
+     *            arn:aws:swf:us-east-1:{<
+     *            i>customer-account</i>}:action/actions/
+     *            AWS_EC2.InstanceId.Stop/1.0 |
+     *            arn:aws:swf:us-east-1:{<i>customer
+     *            -account</i>}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
+     *            | arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/
+     *            actions/AWS_EC2.InstanceId.Reboot/1.0
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> You must create at least one stop, terminate, or
+     *            reboot alarm using the Amazon EC2 or CloudWatch console to
+     *            create the <b>EC2ActionsAccess</b> IAM role for the first
+     *            time. After this IAM role is created, you can create stop,
+     *            terminate, or reboot alarms using the CLI.
+     *            </p>
      */
     public void setAlarmActions(java.util.Collection<String> alarmActions) {
         if (alarmActions == null) {
             this.alarmActions = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> alarmActionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(alarmActions.size());
-        alarmActionsCopy.addAll(alarmActions);
-        this.alarmActions = alarmActionsCopy;
+
+        this.alarmActions = new java.util.ArrayList<String>(alarmActions);
     }
-    
+
     /**
+     * <p>
      * The list of actions to execute when this alarm transitions into an
-     * <code>ALARM</code> state from any other state. Each action is
-     * specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
+     * <code>ALARM</code> state from any other state. Each action is specified
+     * as an Amazon Resource Name (ARN).
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param alarmActions The list of actions to execute when this alarm transitions into an
-     *         <code>ALARM</code> state from any other state. Each action is
-     *         specified as an Amazon Resource Number (ARN). Currently the only
-     *         action supported is publishing to an Amazon SNS topic or an Amazon
-     *         Auto Scaling policy.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param alarmActions <p>
+     *            The list of actions to execute when this alarm transitions
+     *            into an <code>ALARM</code> state from any other state. Each
+     *            action is specified as an Amazon Resource Name (ARN).
+     *            </p>
+     *            <p>
+     *            Valid Values: arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region
+     *            (e.g., us-east-1)</i>:ec2:recover
+     *            </p>
+     *            <p>
+     *            Valid Values (for use with IAM roles):
+     *            arn:aws:swf:us-east-1:{<
+     *            i>customer-account</i>}:action/actions/
+     *            AWS_EC2.InstanceId.Stop/1.0 |
+     *            arn:aws:swf:us-east-1:{<i>customer
+     *            -account</i>}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
+     *            | arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/
+     *            actions/AWS_EC2.InstanceId.Reboot/1.0
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> You must create at least one stop, terminate, or
+     *            reboot alarm using the Amazon EC2 or CloudWatch console to
+     *            create the <b>EC2ActionsAccess</b> IAM role for the first
+     *            time. After this IAM role is created, you can create stop,
+     *            terminate, or reboot alarms using the CLI.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withAlarmActions(String... alarmActions) {
-        if (getAlarmActions() == null) setAlarmActions(new java.util.ArrayList<String>(alarmActions.length));
+        if (getAlarmActions() == null) {
+            this.alarmActions = new java.util.ArrayList<String>(alarmActions.length);
+        }
         for (String value : alarmActions) {
-            getAlarmActions().add(value);
+            this.alarmActions.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * The list of actions to execute when this alarm transitions into an
-     * <code>ALARM</code> state from any other state. Each action is
-     * specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
+     * <code>ALARM</code> state from any other state. Each action is specified
+     * as an Amazon Resource Name (ARN).
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param alarmActions The list of actions to execute when this alarm transitions into an
-     *         <code>ALARM</code> state from any other state. Each action is
-     *         specified as an Amazon Resource Number (ARN). Currently the only
-     *         action supported is publishing to an Amazon SNS topic or an Amazon
-     *         Auto Scaling policy.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param alarmActions <p>
+     *            The list of actions to execute when this alarm transitions
+     *            into an <code>ALARM</code> state from any other state. Each
+     *            action is specified as an Amazon Resource Name (ARN).
+     *            </p>
+     *            <p>
+     *            Valid Values: arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region
+     *            (e.g., us-east-1)</i>:ec2:recover
+     *            </p>
+     *            <p>
+     *            Valid Values (for use with IAM roles):
+     *            arn:aws:swf:us-east-1:{<
+     *            i>customer-account</i>}:action/actions/
+     *            AWS_EC2.InstanceId.Stop/1.0 |
+     *            arn:aws:swf:us-east-1:{<i>customer
+     *            -account</i>}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
+     *            | arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/
+     *            actions/AWS_EC2.InstanceId.Reboot/1.0
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> You must create at least one stop, terminate, or
+     *            reboot alarm using the Amazon EC2 or CloudWatch console to
+     *            create the <b>EC2ActionsAccess</b> IAM role for the first
+     *            time. After this IAM role is created, you can create stop,
+     *            terminate, or reboot alarms using the CLI.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withAlarmActions(java.util.Collection<String> alarmActions) {
-        if (alarmActions == null) {
-            this.alarmActions = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> alarmActionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(alarmActions.size());
-            alarmActionsCopy.addAll(alarmActions);
-            this.alarmActions = alarmActionsCopy;
-        }
-
+        setAlarmActions(alarmActions);
         return this;
     }
 
     /**
-     * The list of actions to execute when this alarm transitions into an
-     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
-     * is specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * The list of actions to execute when this alarm transitions into an
+     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action is
+     * specified as an Amazon Resource Name (ARN).
+     * </p>
+     * <p>
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
+     * <p>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
      *
-     * @return The list of actions to execute when this alarm transitions into an
-     *         <code>INSUFFICIENT_DATA</code> state from any other state. Each action
-     *         is specified as an Amazon Resource Number (ARN). Currently the only
-     *         action supported is publishing to an Amazon SNS topic or an Amazon
-     *         Auto Scaling policy.
+     * @return <p>
+     *         The list of actions to execute when this alarm transitions into
+     *         an <code>INSUFFICIENT_DATA</code> state from any other state.
+     *         Each action is specified as an Amazon Resource Name (ARN).
+     *         </p>
+     *         <p>
+     *         Valid Values: arn:aws:automate:<i>region (e.g.,
+     *         us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *         us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region (e.g.,
+     *         us-east-1)</i>:ec2:recover
+     *         </p>
+     *         <p>
+     *         Valid Values (for use with IAM roles):
+     *         arn:aws:swf:us-east-1:{<i>customer
+     *         -account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     *         arn:aws
+     *         :swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2
+     *         .InstanceId.Terminate/1.0 |
+     *         arn:aws:swf:us-east-1:{<i>customer-account
+     *         </i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0
+     *         </p>
+     *         <p>
+     *         <b>Note:</b> You must create at least one stop, terminate, or
+     *         reboot alarm using the Amazon EC2 or CloudWatch console to create
+     *         the <b>EC2ActionsAccess</b> IAM role for the first time. After
+     *         this IAM role is created, you can create stop, terminate, or
+     *         reboot alarms using the CLI.
+     *         </p>
      */
     public java.util.List<String> getInsufficientDataActions() {
-        if (insufficientDataActions == null) {
-              insufficientDataActions = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              insufficientDataActions.setAutoConstruct(true);
-        }
         return insufficientDataActions;
     }
-    
+
     /**
-     * The list of actions to execute when this alarm transitions into an
-     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
-     * is specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * The list of actions to execute when this alarm transitions into an
+     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action is
+     * specified as an Amazon Resource Name (ARN).
+     * </p>
+     * <p>
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
+     * <p>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
      *
-     * @param insufficientDataActions The list of actions to execute when this alarm transitions into an
-     *         <code>INSUFFICIENT_DATA</code> state from any other state. Each action
-     *         is specified as an Amazon Resource Number (ARN). Currently the only
-     *         action supported is publishing to an Amazon SNS topic or an Amazon
-     *         Auto Scaling policy.
+     * @param insufficientDataActions <p>
+     *            The list of actions to execute when this alarm transitions
+     *            into an <code>INSUFFICIENT_DATA</code> state from any other
+     *            state. Each action is specified as an Amazon Resource Name
+     *            (ARN).
+     *            </p>
+     *            <p>
+     *            Valid Values: arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region
+     *            (e.g., us-east-1)</i>:ec2:recover
+     *            </p>
+     *            <p>
+     *            Valid Values (for use with IAM roles):
+     *            arn:aws:swf:us-east-1:{<
+     *            i>customer-account</i>}:action/actions/
+     *            AWS_EC2.InstanceId.Stop/1.0 |
+     *            arn:aws:swf:us-east-1:{<i>customer
+     *            -account</i>}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
+     *            | arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/
+     *            actions/AWS_EC2.InstanceId.Reboot/1.0
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> You must create at least one stop, terminate, or
+     *            reboot alarm using the Amazon EC2 or CloudWatch console to
+     *            create the <b>EC2ActionsAccess</b> IAM role for the first
+     *            time. After this IAM role is created, you can create stop,
+     *            terminate, or reboot alarms using the CLI.
+     *            </p>
      */
     public void setInsufficientDataActions(java.util.Collection<String> insufficientDataActions) {
         if (insufficientDataActions == null) {
             this.insufficientDataActions = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> insufficientDataActionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(insufficientDataActions.size());
-        insufficientDataActionsCopy.addAll(insufficientDataActions);
-        this.insufficientDataActions = insufficientDataActionsCopy;
+
+        this.insufficientDataActions = new java.util.ArrayList<String>(insufficientDataActions);
     }
-    
+
     /**
+     * <p>
      * The list of actions to execute when this alarm transitions into an
-     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
-     * is specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
+     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action is
+     * specified as an Amazon Resource Name (ARN).
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param insufficientDataActions The list of actions to execute when this alarm transitions into an
-     *         <code>INSUFFICIENT_DATA</code> state from any other state. Each action
-     *         is specified as an Amazon Resource Number (ARN). Currently the only
-     *         action supported is publishing to an Amazon SNS topic or an Amazon
-     *         Auto Scaling policy.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param insufficientDataActions <p>
+     *            The list of actions to execute when this alarm transitions
+     *            into an <code>INSUFFICIENT_DATA</code> state from any other
+     *            state. Each action is specified as an Amazon Resource Name
+     *            (ARN).
+     *            </p>
+     *            <p>
+     *            Valid Values: arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region
+     *            (e.g., us-east-1)</i>:ec2:recover
+     *            </p>
+     *            <p>
+     *            Valid Values (for use with IAM roles):
+     *            arn:aws:swf:us-east-1:{<
+     *            i>customer-account</i>}:action/actions/
+     *            AWS_EC2.InstanceId.Stop/1.0 |
+     *            arn:aws:swf:us-east-1:{<i>customer
+     *            -account</i>}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
+     *            | arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/
+     *            actions/AWS_EC2.InstanceId.Reboot/1.0
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> You must create at least one stop, terminate, or
+     *            reboot alarm using the Amazon EC2 or CloudWatch console to
+     *            create the <b>EC2ActionsAccess</b> IAM role for the first
+     *            time. After this IAM role is created, you can create stop,
+     *            terminate, or reboot alarms using the CLI.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withInsufficientDataActions(String... insufficientDataActions) {
-        if (getInsufficientDataActions() == null) setInsufficientDataActions(new java.util.ArrayList<String>(insufficientDataActions.length));
+        if (getInsufficientDataActions() == null) {
+            this.insufficientDataActions = new java.util.ArrayList<String>(
+                    insufficientDataActions.length);
+        }
         for (String value : insufficientDataActions) {
-            getInsufficientDataActions().add(value);
+            this.insufficientDataActions.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * The list of actions to execute when this alarm transitions into an
-     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action
-     * is specified as an Amazon Resource Number (ARN). Currently the only
-     * action supported is publishing to an Amazon SNS topic or an Amazon
-     * Auto Scaling policy.
+     * <code>INSUFFICIENT_DATA</code> state from any other state. Each action is
+     * specified as an Amazon Resource Name (ARN).
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Valid Values: arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:stop |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:terminate |
+     * arn:aws:automate:<i>region (e.g., us-east-1)</i>:ec2:recover
+     * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 5<br/>
+     * Valid Values (for use with IAM roles):
+     * arn:aws:swf:us-east-1:{<i>customer-
+     * account</i>}:action/actions/AWS_EC2.InstanceId.Stop/1.0 |
+     * arn:aws:swf:us-east
+     * -1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId
+     * .Terminate/1.0 |
+     * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions
+     * /AWS_EC2.InstanceId.Reboot/1.0
+     * </p>
+     * <p>
+     * <b>Note:</b> You must create at least one stop, terminate, or reboot
+     * alarm using the Amazon EC2 or CloudWatch console to create the
+     * <b>EC2ActionsAccess</b> IAM role for the first time. After this IAM role
+     * is created, you can create stop, terminate, or reboot alarms using the
+     * CLI.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param insufficientDataActions The list of actions to execute when this alarm transitions into an
-     *         <code>INSUFFICIENT_DATA</code> state from any other state. Each action
-     *         is specified as an Amazon Resource Number (ARN). Currently the only
-     *         action supported is publishing to an Amazon SNS topic or an Amazon
-     *         Auto Scaling policy.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param insufficientDataActions <p>
+     *            The list of actions to execute when this alarm transitions
+     *            into an <code>INSUFFICIENT_DATA</code> state from any other
+     *            state. Each action is specified as an Amazon Resource Name
+     *            (ARN).
+     *            </p>
+     *            <p>
+     *            Valid Values: arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:stop | arn:aws:automate:<i>region (e.g.,
+     *            us-east-1)</i>:ec2:terminate | arn:aws:automate:<i>region
+     *            (e.g., us-east-1)</i>:ec2:recover
+     *            </p>
+     *            <p>
+     *            Valid Values (for use with IAM roles):
+     *            arn:aws:swf:us-east-1:{<
+     *            i>customer-account</i>}:action/actions/
+     *            AWS_EC2.InstanceId.Stop/1.0 |
+     *            arn:aws:swf:us-east-1:{<i>customer
+     *            -account</i>}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
+     *            | arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/
+     *            actions/AWS_EC2.InstanceId.Reboot/1.0
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> You must create at least one stop, terminate, or
+     *            reboot alarm using the Amazon EC2 or CloudWatch console to
+     *            create the <b>EC2ActionsAccess</b> IAM role for the first
+     *            time. After this IAM role is created, you can create stop,
+     *            terminate, or reboot alarms using the CLI.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public PutMetricAlarmRequest withInsufficientDataActions(java.util.Collection<String> insufficientDataActions) {
-        if (insufficientDataActions == null) {
-            this.insufficientDataActions = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> insufficientDataActionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(insufficientDataActions.size());
-            insufficientDataActionsCopy.addAll(insufficientDataActions);
-            this.insufficientDataActions = insufficientDataActionsCopy;
-        }
-
+    public PutMetricAlarmRequest withInsufficientDataActions(
+            java.util.Collection<String> insufficientDataActions) {
+        setInsufficientDataActions(insufficientDataActions);
         return this;
     }
 
     /**
+     * <p>
      * The name for the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @return The name for the alarm's associated metric.
+     * @return <p>
+     *         The name for the alarm's associated metric.
+     *         </p>
      */
     public String getMetricName() {
         return metricName;
     }
-    
+
     /**
+     * <p>
      * The name for the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param metricName The name for the alarm's associated metric.
+     * @param metricName <p>
+     *            The name for the alarm's associated metric.
+     *            </p>
      */
     public void setMetricName(String metricName) {
         this.metricName = metricName;
     }
-    
+
     /**
-     * The name for the alarm's associated metric.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name for the alarm's associated metric.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param metricName The name for the alarm's associated metric.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param metricName <p>
+     *            The name for the alarm's associated metric.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withMetricName(String metricName) {
         this.metricName = metricName;
@@ -691,44 +1344,56 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * The namespace for the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[^:].*<br/>
      *
-     * @return The namespace for the alarm's associated metric.
+     * @return <p>
+     *         The namespace for the alarm's associated metric.
+     *         </p>
      */
     public String getNamespace() {
         return namespace;
     }
-    
+
     /**
+     * <p>
      * The namespace for the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[^:].*<br/>
      *
-     * @param namespace The namespace for the alarm's associated metric.
+     * @param namespace <p>
+     *            The namespace for the alarm's associated metric.
+     *            </p>
      */
     public void setNamespace(String namespace) {
         this.namespace = namespace;
     }
-    
+
     /**
-     * The namespace for the alarm's associated metric.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The namespace for the alarm's associated metric.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[^:].*<br/>
      *
-     * @param namespace The namespace for the alarm's associated metric.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param namespace <p>
+     *            The namespace for the alarm's associated metric.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withNamespace(String namespace) {
         this.namespace = namespace;
@@ -736,46 +1401,55 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * The statistic to apply to the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SampleCount, Average, Sum, Minimum, Maximum
      *
-     * @return The statistic to apply to the alarm's associated metric.
-     *
+     * @return <p>
+     *         The statistic to apply to the alarm's associated metric.
+     *         </p>
      * @see Statistic
      */
     public String getStatistic() {
         return statistic;
     }
-    
+
     /**
+     * <p>
      * The statistic to apply to the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SampleCount, Average, Sum, Minimum, Maximum
      *
-     * @param statistic The statistic to apply to the alarm's associated metric.
-     *
+     * @param statistic <p>
+     *            The statistic to apply to the alarm's associated metric.
+     *            </p>
      * @see Statistic
      */
     public void setStatistic(String statistic) {
         this.statistic = statistic;
     }
-    
+
     /**
-     * The statistic to apply to the alarm's associated metric.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The statistic to apply to the alarm's associated metric.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SampleCount, Average, Sum, Minimum, Maximum
      *
-     * @param statistic The statistic to apply to the alarm's associated metric.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param statistic <p>
+     *            The statistic to apply to the alarm's associated metric.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see Statistic
      */
     public PutMetricAlarmRequest withStatistic(String statistic) {
@@ -784,32 +1458,38 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * The statistic to apply to the alarm's associated metric.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SampleCount, Average, Sum, Minimum, Maximum
      *
-     * @param statistic The statistic to apply to the alarm's associated metric.
-     *
+     * @param statistic <p>
+     *            The statistic to apply to the alarm's associated metric.
+     *            </p>
      * @see Statistic
      */
     public void setStatistic(Statistic statistic) {
         this.statistic = statistic.toString();
     }
-    
+
     /**
-     * The statistic to apply to the alarm's associated metric.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The statistic to apply to the alarm's associated metric.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SampleCount, Average, Sum, Minimum, Maximum
      *
-     * @param statistic The statistic to apply to the alarm's associated metric.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param statistic <p>
+     *            The statistic to apply to the alarm's associated metric.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see Statistic
      */
     public PutMetricAlarmRequest withStatistic(Statistic statistic) {
@@ -818,121 +1498,130 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * The dimensions for the alarm's associated metric.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * The dimensions for the alarm's associated metric.
+     * </p>
      *
-     * @return The dimensions for the alarm's associated metric.
+     * @return <p>
+     *         The dimensions for the alarm's associated metric.
+     *         </p>
      */
     public java.util.List<Dimension> getDimensions() {
-        if (dimensions == null) {
-              dimensions = new com.amazonaws.internal.ListWithAutoConstructFlag<Dimension>();
-              dimensions.setAutoConstruct(true);
-        }
         return dimensions;
     }
-    
+
     /**
-     * The dimensions for the alarm's associated metric.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * The dimensions for the alarm's associated metric.
+     * </p>
      *
-     * @param dimensions The dimensions for the alarm's associated metric.
+     * @param dimensions <p>
+     *            The dimensions for the alarm's associated metric.
+     *            </p>
      */
     public void setDimensions(java.util.Collection<Dimension> dimensions) {
         if (dimensions == null) {
             this.dimensions = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<Dimension> dimensionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Dimension>(dimensions.size());
-        dimensionsCopy.addAll(dimensions);
-        this.dimensions = dimensionsCopy;
+
+        this.dimensions = new java.util.ArrayList<Dimension>(dimensions);
     }
-    
+
     /**
+     * <p>
      * The dimensions for the alarm's associated metric.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param dimensions The dimensions for the alarm's associated metric.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param dimensions <p>
+     *            The dimensions for the alarm's associated metric.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withDimensions(Dimension... dimensions) {
-        if (getDimensions() == null) setDimensions(new java.util.ArrayList<Dimension>(dimensions.length));
+        if (getDimensions() == null) {
+            this.dimensions = new java.util.ArrayList<Dimension>(dimensions.length);
+        }
         for (Dimension value : dimensions) {
-            getDimensions().add(value);
+            this.dimensions.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * The dimensions for the alarm's associated metric.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 10<br/>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param dimensions The dimensions for the alarm's associated metric.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param dimensions <p>
+     *            The dimensions for the alarm's associated metric.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withDimensions(java.util.Collection<Dimension> dimensions) {
-        if (dimensions == null) {
-            this.dimensions = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<Dimension> dimensionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Dimension>(dimensions.size());
-            dimensionsCopy.addAll(dimensions);
-            this.dimensions = dimensionsCopy;
-        }
-
+        setDimensions(dimensions);
         return this;
     }
 
     /**
+     * <p>
      * The period in seconds over which the specified statistic is applied.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>60 - <br/>
      *
-     * @return The period in seconds over which the specified statistic is applied.
+     * @return <p>
+     *         The period in seconds over which the specified statistic is
+     *         applied.
+     *         </p>
      */
     public Integer getPeriod() {
         return period;
     }
-    
+
     /**
+     * <p>
      * The period in seconds over which the specified statistic is applied.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>60 - <br/>
      *
-     * @param period The period in seconds over which the specified statistic is applied.
+     * @param period <p>
+     *            The period in seconds over which the specified statistic is
+     *            applied.
+     *            </p>
      */
     public void setPeriod(Integer period) {
         this.period = period;
     }
-    
+
     /**
-     * The period in seconds over which the specified statistic is applied.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The period in seconds over which the specified statistic is applied.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>60 - <br/>
      *
-     * @param period The period in seconds over which the specified statistic is applied.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param period <p>
+     *            The period in seconds over which the specified statistic is
+     *            applied.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withPeriod(Integer period) {
         this.period = period;
@@ -940,46 +1629,135 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * The unit for the alarm's associated metric.
+     * <p>
+     * The statistic's unit of measure. For example, the units for the Amazon
+     * EC2 NetworkIn metric are Bytes because NetworkIn tracks the number of
+     * bytes that an instance receives on all network interfaces. You can also
+     * specify a unit when you create a custom metric. Units help provide
+     * conceptual meaning to your data. Metric data points that specify a unit
+     * of measure, such as Percent, are aggregated separately.
+     * </p>
+     * <p>
+     * <b>Note:</b> If you specify a unit, you must use a unit that is
+     * appropriate for the metric. Otherwise, this can cause an Amazon
+     * CloudWatch alarm to get stuck in the INSUFFICIENT DATA state.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits, Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second, Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second, Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second, Count/Second, None
+     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes,
+     * Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits,
+     * Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second,
+     * Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second,
+     * Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second,
+     * Count/Second, None
      *
-     * @return The unit for the alarm's associated metric.
-     *
+     * @return <p>
+     *         The statistic's unit of measure. For example, the units for the
+     *         Amazon EC2 NetworkIn metric are Bytes because NetworkIn tracks
+     *         the number of bytes that an instance receives on all network
+     *         interfaces. You can also specify a unit when you create a custom
+     *         metric. Units help provide conceptual meaning to your data.
+     *         Metric data points that specify a unit of measure, such as
+     *         Percent, are aggregated separately.
+     *         </p>
+     *         <p>
+     *         <b>Note:</b> If you specify a unit, you must use a unit that is
+     *         appropriate for the metric. Otherwise, this can cause an Amazon
+     *         CloudWatch alarm to get stuck in the INSUFFICIENT DATA state.
+     *         </p>
      * @see StandardUnit
      */
     public String getUnit() {
         return unit;
     }
-    
+
     /**
-     * The unit for the alarm's associated metric.
+     * <p>
+     * The statistic's unit of measure. For example, the units for the Amazon
+     * EC2 NetworkIn metric are Bytes because NetworkIn tracks the number of
+     * bytes that an instance receives on all network interfaces. You can also
+     * specify a unit when you create a custom metric. Units help provide
+     * conceptual meaning to your data. Metric data points that specify a unit
+     * of measure, such as Percent, are aggregated separately.
+     * </p>
+     * <p>
+     * <b>Note:</b> If you specify a unit, you must use a unit that is
+     * appropriate for the metric. Otherwise, this can cause an Amazon
+     * CloudWatch alarm to get stuck in the INSUFFICIENT DATA state.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits, Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second, Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second, Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second, Count/Second, None
+     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes,
+     * Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits,
+     * Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second,
+     * Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second,
+     * Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second,
+     * Count/Second, None
      *
-     * @param unit The unit for the alarm's associated metric.
-     *
+     * @param unit <p>
+     *            The statistic's unit of measure. For example, the units for
+     *            the Amazon EC2 NetworkIn metric are Bytes because NetworkIn
+     *            tracks the number of bytes that an instance receives on all
+     *            network interfaces. You can also specify a unit when you
+     *            create a custom metric. Units help provide conceptual meaning
+     *            to your data. Metric data points that specify a unit of
+     *            measure, such as Percent, are aggregated separately.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> If you specify a unit, you must use a unit that
+     *            is appropriate for the metric. Otherwise, this can cause an
+     *            Amazon CloudWatch alarm to get stuck in the INSUFFICIENT DATA
+     *            state.
+     *            </p>
      * @see StandardUnit
      */
     public void setUnit(String unit) {
         this.unit = unit;
     }
-    
+
     /**
-     * The unit for the alarm's associated metric.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The statistic's unit of measure. For example, the units for the Amazon
+     * EC2 NetworkIn metric are Bytes because NetworkIn tracks the number of
+     * bytes that an instance receives on all network interfaces. You can also
+     * specify a unit when you create a custom metric. Units help provide
+     * conceptual meaning to your data. Metric data points that specify a unit
+     * of measure, such as Percent, are aggregated separately.
+     * </p>
+     * <p>
+     * <b>Note:</b> If you specify a unit, you must use a unit that is
+     * appropriate for the metric. Otherwise, this can cause an Amazon
+     * CloudWatch alarm to get stuck in the INSUFFICIENT DATA state.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits, Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second, Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second, Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second, Count/Second, None
+     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes,
+     * Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits,
+     * Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second,
+     * Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second,
+     * Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second,
+     * Count/Second, None
      *
-     * @param unit The unit for the alarm's associated metric.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param unit <p>
+     *            The statistic's unit of measure. For example, the units for
+     *            the Amazon EC2 NetworkIn metric are Bytes because NetworkIn
+     *            tracks the number of bytes that an instance receives on all
+     *            network interfaces. You can also specify a unit when you
+     *            create a custom metric. Units help provide conceptual meaning
+     *            to your data. Metric data points that specify a unit of
+     *            measure, such as Percent, are aggregated separately.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> If you specify a unit, you must use a unit that
+     *            is appropriate for the metric. Otherwise, this can cause an
+     *            Amazon CloudWatch alarm to get stuck in the INSUFFICIENT DATA
+     *            state.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see StandardUnit
      */
     public PutMetricAlarmRequest withUnit(String unit) {
@@ -988,32 +1766,92 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * The unit for the alarm's associated metric.
+     * <p>
+     * The statistic's unit of measure. For example, the units for the Amazon
+     * EC2 NetworkIn metric are Bytes because NetworkIn tracks the number of
+     * bytes that an instance receives on all network interfaces. You can also
+     * specify a unit when you create a custom metric. Units help provide
+     * conceptual meaning to your data. Metric data points that specify a unit
+     * of measure, such as Percent, are aggregated separately.
+     * </p>
+     * <p>
+     * <b>Note:</b> If you specify a unit, you must use a unit that is
+     * appropriate for the metric. Otherwise, this can cause an Amazon
+     * CloudWatch alarm to get stuck in the INSUFFICIENT DATA state.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits, Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second, Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second, Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second, Count/Second, None
+     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes,
+     * Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits,
+     * Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second,
+     * Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second,
+     * Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second,
+     * Count/Second, None
      *
-     * @param unit The unit for the alarm's associated metric.
-     *
+     * @param unit <p>
+     *            The statistic's unit of measure. For example, the units for
+     *            the Amazon EC2 NetworkIn metric are Bytes because NetworkIn
+     *            tracks the number of bytes that an instance receives on all
+     *            network interfaces. You can also specify a unit when you
+     *            create a custom metric. Units help provide conceptual meaning
+     *            to your data. Metric data points that specify a unit of
+     *            measure, such as Percent, are aggregated separately.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> If you specify a unit, you must use a unit that
+     *            is appropriate for the metric. Otherwise, this can cause an
+     *            Amazon CloudWatch alarm to get stuck in the INSUFFICIENT DATA
+     *            state.
+     *            </p>
      * @see StandardUnit
      */
     public void setUnit(StandardUnit unit) {
         this.unit = unit.toString();
     }
-    
+
     /**
-     * The unit for the alarm's associated metric.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The statistic's unit of measure. For example, the units for the Amazon
+     * EC2 NetworkIn metric are Bytes because NetworkIn tracks the number of
+     * bytes that an instance receives on all network interfaces. You can also
+     * specify a unit when you create a custom metric. Units help provide
+     * conceptual meaning to your data. Metric data points that specify a unit
+     * of measure, such as Percent, are aggregated separately.
+     * </p>
+     * <p>
+     * <b>Note:</b> If you specify a unit, you must use a unit that is
+     * appropriate for the metric. Otherwise, this can cause an Amazon
+     * CloudWatch alarm to get stuck in the INSUFFICIENT DATA state.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits, Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second, Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second, Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second, Count/Second, None
+     * <b>Allowed Values: </b>Seconds, Microseconds, Milliseconds, Bytes,
+     * Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits,
+     * Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second,
+     * Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second,
+     * Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second,
+     * Count/Second, None
      *
-     * @param unit The unit for the alarm's associated metric.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param unit <p>
+     *            The statistic's unit of measure. For example, the units for
+     *            the Amazon EC2 NetworkIn metric are Bytes because NetworkIn
+     *            tracks the number of bytes that an instance receives on all
+     *            network interfaces. You can also specify a unit when you
+     *            create a custom metric. Units help provide conceptual meaning
+     *            to your data. Metric data points that specify a unit of
+     *            measure, such as Percent, are aggregated separately.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> If you specify a unit, you must use a unit that
+     *            is appropriate for the metric. Otherwise, this can cause an
+     *            Amazon CloudWatch alarm to get stuck in the INSUFFICIENT DATA
+     *            state.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see StandardUnit
      */
     public PutMetricAlarmRequest withUnit(StandardUnit unit) {
@@ -1022,47 +1860,59 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * The number of periods over which data is compared to the specified
      * threshold.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
-     * @return The number of periods over which data is compared to the specified
-     *         threshold.
+     * @return <p>
+     *         The number of periods over which data is compared to the
+     *         specified threshold.
+     *         </p>
      */
     public Integer getEvaluationPeriods() {
         return evaluationPeriods;
     }
-    
+
     /**
+     * <p>
      * The number of periods over which data is compared to the specified
      * threshold.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
-     * @param evaluationPeriods The number of periods over which data is compared to the specified
-     *         threshold.
+     * @param evaluationPeriods <p>
+     *            The number of periods over which data is compared to the
+     *            specified threshold.
+     *            </p>
      */
     public void setEvaluationPeriods(Integer evaluationPeriods) {
         this.evaluationPeriods = evaluationPeriods;
     }
-    
+
     /**
+     * <p>
      * The number of periods over which data is compared to the specified
      * threshold.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
-     * @param evaluationPeriods The number of periods over which data is compared to the specified
-     *         threshold.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param evaluationPeriods <p>
+     *            The number of periods over which data is compared to the
+     *            specified threshold.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withEvaluationPeriods(Integer evaluationPeriods) {
         this.evaluationPeriods = evaluationPeriods;
@@ -1070,32 +1920,44 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * The value against which the specified statistic is compared.
+     * </p>
      *
-     * @return The value against which the specified statistic is compared.
+     * @return <p>
+     *         The value against which the specified statistic is compared.
+     *         </p>
      */
     public Double getThreshold() {
         return threshold;
     }
-    
+
     /**
+     * <p>
      * The value against which the specified statistic is compared.
+     * </p>
      *
-     * @param threshold The value against which the specified statistic is compared.
+     * @param threshold <p>
+     *            The value against which the specified statistic is compared.
+     *            </p>
      */
     public void setThreshold(Double threshold) {
         this.threshold = threshold;
     }
-    
+
     /**
-     * The value against which the specified statistic is compared.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The value against which the specified statistic is compared.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param threshold The value against which the specified statistic is compared.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param threshold <p>
+     *            The value against which the specified statistic is compared.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public PutMetricAlarmRequest withThreshold(Double threshold) {
         this.threshold = threshold;
@@ -1103,58 +1965,72 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * The arithmetic operation to use when comparing the specified
      * <code>Statistic</code> and <code>Threshold</code>. The specified
      * <code>Statistic</code> value is used as the first operand.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold, GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
+     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold,
+     * GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
      *
-     * @return The arithmetic operation to use when comparing the specified
+     * @return <p>
+     *         The arithmetic operation to use when comparing the specified
      *         <code>Statistic</code> and <code>Threshold</code>. The specified
      *         <code>Statistic</code> value is used as the first operand.
-     *
+     *         </p>
      * @see ComparisonOperator
      */
     public String getComparisonOperator() {
         return comparisonOperator;
     }
-    
+
     /**
+     * <p>
      * The arithmetic operation to use when comparing the specified
      * <code>Statistic</code> and <code>Threshold</code>. The specified
      * <code>Statistic</code> value is used as the first operand.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold, GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
+     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold,
+     * GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
      *
-     * @param comparisonOperator The arithmetic operation to use when comparing the specified
-     *         <code>Statistic</code> and <code>Threshold</code>. The specified
-     *         <code>Statistic</code> value is used as the first operand.
-     *
+     * @param comparisonOperator <p>
+     *            The arithmetic operation to use when comparing the specified
+     *            <code>Statistic</code> and <code>Threshold</code>. The
+     *            specified <code>Statistic</code> value is used as the first
+     *            operand.
+     *            </p>
      * @see ComparisonOperator
      */
     public void setComparisonOperator(String comparisonOperator) {
         this.comparisonOperator = comparisonOperator;
     }
-    
+
     /**
+     * <p>
      * The arithmetic operation to use when comparing the specified
      * <code>Statistic</code> and <code>Threshold</code>. The specified
      * <code>Statistic</code> value is used as the first operand.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold, GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
+     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold,
+     * GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
      *
-     * @param comparisonOperator The arithmetic operation to use when comparing the specified
-     *         <code>Statistic</code> and <code>Threshold</code>. The specified
-     *         <code>Statistic</code> value is used as the first operand.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param comparisonOperator <p>
+     *            The arithmetic operation to use when comparing the specified
+     *            <code>Statistic</code> and <code>Threshold</code>. The
+     *            specified <code>Statistic</code> value is used as the first
+     *            operand.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see ComparisonOperator
      */
     public PutMetricAlarmRequest withComparisonOperator(String comparisonOperator) {
@@ -1163,40 +2039,50 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * The arithmetic operation to use when comparing the specified
      * <code>Statistic</code> and <code>Threshold</code>. The specified
      * <code>Statistic</code> value is used as the first operand.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold, GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
+     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold,
+     * GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
      *
-     * @param comparisonOperator The arithmetic operation to use when comparing the specified
-     *         <code>Statistic</code> and <code>Threshold</code>. The specified
-     *         <code>Statistic</code> value is used as the first operand.
-     *
+     * @param comparisonOperator <p>
+     *            The arithmetic operation to use when comparing the specified
+     *            <code>Statistic</code> and <code>Threshold</code>. The
+     *            specified <code>Statistic</code> value is used as the first
+     *            operand.
+     *            </p>
      * @see ComparisonOperator
      */
     public void setComparisonOperator(ComparisonOperator comparisonOperator) {
         this.comparisonOperator = comparisonOperator.toString();
     }
-    
+
     /**
+     * <p>
      * The arithmetic operation to use when comparing the specified
      * <code>Statistic</code> and <code>Threshold</code>. The specified
      * <code>Statistic</code> value is used as the first operand.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold, GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
+     * <b>Allowed Values: </b>GreaterThanOrEqualToThreshold,
+     * GreaterThanThreshold, LessThanThreshold, LessThanOrEqualToThreshold
      *
-     * @param comparisonOperator The arithmetic operation to use when comparing the specified
-     *         <code>Statistic</code> and <code>Threshold</code>. The specified
-     *         <code>Statistic</code> value is used as the first operand.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param comparisonOperator <p>
+     *            The arithmetic operation to use when comparing the specified
+     *            <code>Statistic</code> and <code>Threshold</code>. The
+     *            specified <code>Statistic</code> value is used as the first
+     *            operand.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see ComparisonOperator
      */
     public PutMetricAlarmRequest withComparisonOperator(ComparisonOperator comparisonOperator) {
@@ -1209,95 +2095,161 @@ public class PutMetricAlarmRequest extends AmazonWebServiceRequest implements Se
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAlarmName() != null) sb.append("AlarmName: " + getAlarmName() + ",");
-        if (getAlarmDescription() != null) sb.append("AlarmDescription: " + getAlarmDescription() + ",");
-        if (isActionsEnabled() != null) sb.append("ActionsEnabled: " + isActionsEnabled() + ",");
-        if (getOKActions() != null) sb.append("OKActions: " + getOKActions() + ",");
-        if (getAlarmActions() != null) sb.append("AlarmActions: " + getAlarmActions() + ",");
-        if (getInsufficientDataActions() != null) sb.append("InsufficientDataActions: " + getInsufficientDataActions() + ",");
-        if (getMetricName() != null) sb.append("MetricName: " + getMetricName() + ",");
-        if (getNamespace() != null) sb.append("Namespace: " + getNamespace() + ",");
-        if (getStatistic() != null) sb.append("Statistic: " + getStatistic() + ",");
-        if (getDimensions() != null) sb.append("Dimensions: " + getDimensions() + ",");
-        if (getPeriod() != null) sb.append("Period: " + getPeriod() + ",");
-        if (getUnit() != null) sb.append("Unit: " + getUnit() + ",");
-        if (getEvaluationPeriods() != null) sb.append("EvaluationPeriods: " + getEvaluationPeriods() + ",");
-        if (getThreshold() != null) sb.append("Threshold: " + getThreshold() + ",");
-        if (getComparisonOperator() != null) sb.append("ComparisonOperator: " + getComparisonOperator() );
+        if (getAlarmName() != null)
+            sb.append("AlarmName: " + getAlarmName() + ",");
+        if (getAlarmDescription() != null)
+            sb.append("AlarmDescription: " + getAlarmDescription() + ",");
+        if (getActionsEnabled() != null)
+            sb.append("ActionsEnabled: " + getActionsEnabled() + ",");
+        if (getOKActions() != null)
+            sb.append("OKActions: " + getOKActions() + ",");
+        if (getAlarmActions() != null)
+            sb.append("AlarmActions: " + getAlarmActions() + ",");
+        if (getInsufficientDataActions() != null)
+            sb.append("InsufficientDataActions: " + getInsufficientDataActions() + ",");
+        if (getMetricName() != null)
+            sb.append("MetricName: " + getMetricName() + ",");
+        if (getNamespace() != null)
+            sb.append("Namespace: " + getNamespace() + ",");
+        if (getStatistic() != null)
+            sb.append("Statistic: " + getStatistic() + ",");
+        if (getDimensions() != null)
+            sb.append("Dimensions: " + getDimensions() + ",");
+        if (getPeriod() != null)
+            sb.append("Period: " + getPeriod() + ",");
+        if (getUnit() != null)
+            sb.append("Unit: " + getUnit() + ",");
+        if (getEvaluationPeriods() != null)
+            sb.append("EvaluationPeriods: " + getEvaluationPeriods() + ",");
+        if (getThreshold() != null)
+            sb.append("Threshold: " + getThreshold() + ",");
+        if (getComparisonOperator() != null)
+            sb.append("ComparisonOperator: " + getComparisonOperator());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getAlarmName() == null) ? 0 : getAlarmName().hashCode()); 
-        hashCode = prime * hashCode + ((getAlarmDescription() == null) ? 0 : getAlarmDescription().hashCode()); 
-        hashCode = prime * hashCode + ((isActionsEnabled() == null) ? 0 : isActionsEnabled().hashCode()); 
-        hashCode = prime * hashCode + ((getOKActions() == null) ? 0 : getOKActions().hashCode()); 
-        hashCode = prime * hashCode + ((getAlarmActions() == null) ? 0 : getAlarmActions().hashCode()); 
-        hashCode = prime * hashCode + ((getInsufficientDataActions() == null) ? 0 : getInsufficientDataActions().hashCode()); 
-        hashCode = prime * hashCode + ((getMetricName() == null) ? 0 : getMetricName().hashCode()); 
-        hashCode = prime * hashCode + ((getNamespace() == null) ? 0 : getNamespace().hashCode()); 
-        hashCode = prime * hashCode + ((getStatistic() == null) ? 0 : getStatistic().hashCode()); 
-        hashCode = prime * hashCode + ((getDimensions() == null) ? 0 : getDimensions().hashCode()); 
-        hashCode = prime * hashCode + ((getPeriod() == null) ? 0 : getPeriod().hashCode()); 
-        hashCode = prime * hashCode + ((getUnit() == null) ? 0 : getUnit().hashCode()); 
-        hashCode = prime * hashCode + ((getEvaluationPeriods() == null) ? 0 : getEvaluationPeriods().hashCode()); 
-        hashCode = prime * hashCode + ((getThreshold() == null) ? 0 : getThreshold().hashCode()); 
-        hashCode = prime * hashCode + ((getComparisonOperator() == null) ? 0 : getComparisonOperator().hashCode()); 
+
+        hashCode = prime * hashCode + ((getAlarmName() == null) ? 0 : getAlarmName().hashCode());
+        hashCode = prime * hashCode
+                + ((getAlarmDescription() == null) ? 0 : getAlarmDescription().hashCode());
+        hashCode = prime * hashCode
+                + ((getActionsEnabled() == null) ? 0 : getActionsEnabled().hashCode());
+        hashCode = prime * hashCode + ((getOKActions() == null) ? 0 : getOKActions().hashCode());
+        hashCode = prime * hashCode
+                + ((getAlarmActions() == null) ? 0 : getAlarmActions().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getInsufficientDataActions() == null) ? 0 : getInsufficientDataActions()
+                        .hashCode());
+        hashCode = prime * hashCode + ((getMetricName() == null) ? 0 : getMetricName().hashCode());
+        hashCode = prime * hashCode + ((getNamespace() == null) ? 0 : getNamespace().hashCode());
+        hashCode = prime * hashCode + ((getStatistic() == null) ? 0 : getStatistic().hashCode());
+        hashCode = prime * hashCode + ((getDimensions() == null) ? 0 : getDimensions().hashCode());
+        hashCode = prime * hashCode + ((getPeriod() == null) ? 0 : getPeriod().hashCode());
+        hashCode = prime * hashCode + ((getUnit() == null) ? 0 : getUnit().hashCode());
+        hashCode = prime * hashCode
+                + ((getEvaluationPeriods() == null) ? 0 : getEvaluationPeriods().hashCode());
+        hashCode = prime * hashCode + ((getThreshold() == null) ? 0 : getThreshold().hashCode());
+        hashCode = prime * hashCode
+                + ((getComparisonOperator() == null) ? 0 : getComparisonOperator().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof PutMetricAlarmRequest == false) return false;
-        PutMetricAlarmRequest other = (PutMetricAlarmRequest)obj;
-        
-        if (other.getAlarmName() == null ^ this.getAlarmName() == null) return false;
-        if (other.getAlarmName() != null && other.getAlarmName().equals(this.getAlarmName()) == false) return false; 
-        if (other.getAlarmDescription() == null ^ this.getAlarmDescription() == null) return false;
-        if (other.getAlarmDescription() != null && other.getAlarmDescription().equals(this.getAlarmDescription()) == false) return false; 
-        if (other.isActionsEnabled() == null ^ this.isActionsEnabled() == null) return false;
-        if (other.isActionsEnabled() != null && other.isActionsEnabled().equals(this.isActionsEnabled()) == false) return false; 
-        if (other.getOKActions() == null ^ this.getOKActions() == null) return false;
-        if (other.getOKActions() != null && other.getOKActions().equals(this.getOKActions()) == false) return false; 
-        if (other.getAlarmActions() == null ^ this.getAlarmActions() == null) return false;
-        if (other.getAlarmActions() != null && other.getAlarmActions().equals(this.getAlarmActions()) == false) return false; 
-        if (other.getInsufficientDataActions() == null ^ this.getInsufficientDataActions() == null) return false;
-        if (other.getInsufficientDataActions() != null && other.getInsufficientDataActions().equals(this.getInsufficientDataActions()) == false) return false; 
-        if (other.getMetricName() == null ^ this.getMetricName() == null) return false;
-        if (other.getMetricName() != null && other.getMetricName().equals(this.getMetricName()) == false) return false; 
-        if (other.getNamespace() == null ^ this.getNamespace() == null) return false;
-        if (other.getNamespace() != null && other.getNamespace().equals(this.getNamespace()) == false) return false; 
-        if (other.getStatistic() == null ^ this.getStatistic() == null) return false;
-        if (other.getStatistic() != null && other.getStatistic().equals(this.getStatistic()) == false) return false; 
-        if (other.getDimensions() == null ^ this.getDimensions() == null) return false;
-        if (other.getDimensions() != null && other.getDimensions().equals(this.getDimensions()) == false) return false; 
-        if (other.getPeriod() == null ^ this.getPeriod() == null) return false;
-        if (other.getPeriod() != null && other.getPeriod().equals(this.getPeriod()) == false) return false; 
-        if (other.getUnit() == null ^ this.getUnit() == null) return false;
-        if (other.getUnit() != null && other.getUnit().equals(this.getUnit()) == false) return false; 
-        if (other.getEvaluationPeriods() == null ^ this.getEvaluationPeriods() == null) return false;
-        if (other.getEvaluationPeriods() != null && other.getEvaluationPeriods().equals(this.getEvaluationPeriods()) == false) return false; 
-        if (other.getThreshold() == null ^ this.getThreshold() == null) return false;
-        if (other.getThreshold() != null && other.getThreshold().equals(this.getThreshold()) == false) return false; 
-        if (other.getComparisonOperator() == null ^ this.getComparisonOperator() == null) return false;
-        if (other.getComparisonOperator() != null && other.getComparisonOperator().equals(this.getComparisonOperator()) == false) return false; 
+        if (obj instanceof PutMetricAlarmRequest == false)
+            return false;
+        PutMetricAlarmRequest other = (PutMetricAlarmRequest) obj;
+
+        if (other.getAlarmName() == null ^ this.getAlarmName() == null)
+            return false;
+        if (other.getAlarmName() != null
+                && other.getAlarmName().equals(this.getAlarmName()) == false)
+            return false;
+        if (other.getAlarmDescription() == null ^ this.getAlarmDescription() == null)
+            return false;
+        if (other.getAlarmDescription() != null
+                && other.getAlarmDescription().equals(this.getAlarmDescription()) == false)
+            return false;
+        if (other.getActionsEnabled() == null ^ this.getActionsEnabled() == null)
+            return false;
+        if (other.getActionsEnabled() != null
+                && other.getActionsEnabled().equals(this.getActionsEnabled()) == false)
+            return false;
+        if (other.getOKActions() == null ^ this.getOKActions() == null)
+            return false;
+        if (other.getOKActions() != null
+                && other.getOKActions().equals(this.getOKActions()) == false)
+            return false;
+        if (other.getAlarmActions() == null ^ this.getAlarmActions() == null)
+            return false;
+        if (other.getAlarmActions() != null
+                && other.getAlarmActions().equals(this.getAlarmActions()) == false)
+            return false;
+        if (other.getInsufficientDataActions() == null ^ this.getInsufficientDataActions() == null)
+            return false;
+        if (other.getInsufficientDataActions() != null
+                && other.getInsufficientDataActions().equals(this.getInsufficientDataActions()) == false)
+            return false;
+        if (other.getMetricName() == null ^ this.getMetricName() == null)
+            return false;
+        if (other.getMetricName() != null
+                && other.getMetricName().equals(this.getMetricName()) == false)
+            return false;
+        if (other.getNamespace() == null ^ this.getNamespace() == null)
+            return false;
+        if (other.getNamespace() != null
+                && other.getNamespace().equals(this.getNamespace()) == false)
+            return false;
+        if (other.getStatistic() == null ^ this.getStatistic() == null)
+            return false;
+        if (other.getStatistic() != null
+                && other.getStatistic().equals(this.getStatistic()) == false)
+            return false;
+        if (other.getDimensions() == null ^ this.getDimensions() == null)
+            return false;
+        if (other.getDimensions() != null
+                && other.getDimensions().equals(this.getDimensions()) == false)
+            return false;
+        if (other.getPeriod() == null ^ this.getPeriod() == null)
+            return false;
+        if (other.getPeriod() != null && other.getPeriod().equals(this.getPeriod()) == false)
+            return false;
+        if (other.getUnit() == null ^ this.getUnit() == null)
+            return false;
+        if (other.getUnit() != null && other.getUnit().equals(this.getUnit()) == false)
+            return false;
+        if (other.getEvaluationPeriods() == null ^ this.getEvaluationPeriods() == null)
+            return false;
+        if (other.getEvaluationPeriods() != null
+                && other.getEvaluationPeriods().equals(this.getEvaluationPeriods()) == false)
+            return false;
+        if (other.getThreshold() == null ^ this.getThreshold() == null)
+            return false;
+        if (other.getThreshold() != null
+                && other.getThreshold().equals(this.getThreshold()) == false)
+            return false;
+        if (other.getComparisonOperator() == null ^ this.getComparisonOperator() == null)
+            return false;
+        if (other.getComparisonOperator() != null
+                && other.getComparisonOperator().equals(this.getComparisonOperator()) == false)
+            return false;
         return true;
     }
-    
 }
-    

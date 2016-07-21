@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -27,21 +27,26 @@ import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
 /**
- * Get Identity Notification Attributes Result StAX Unmarshaller
+ * StAX unmarshaller for response GetIdentityNotificationAttributesResult
  */
-public class GetIdentityNotificationAttributesResultStaxUnmarshaller implements Unmarshaller<GetIdentityNotificationAttributesResult, StaxUnmarshallerContext> {
-    private static class NotificationAttributesMapEntryUnmarshaller implements Unmarshaller<Map.Entry<String, IdentityNotificationAttributes>, StaxUnmarshallerContext> {
+public class GetIdentityNotificationAttributesResultStaxUnmarshaller implements
+        Unmarshaller<GetIdentityNotificationAttributesResult, StaxUnmarshallerContext> {
+
+    private static class NotificationAttributesMapEntryUnmarshaller
+            implements
+            Unmarshaller<Map.Entry<String, IdentityNotificationAttributes>, StaxUnmarshallerContext> {
         @Override
-        public Entry<String, IdentityNotificationAttributes> unmarshall(StaxUnmarshallerContext context) throws Exception {
+        public Entry<String, IdentityNotificationAttributes> unmarshall(
+                StaxUnmarshallerContext context) throws Exception {
             int originalDepth = context.getCurrentDepth();
             int targetDepth = originalDepth + 1;
 
-            MapEntry<String, IdentityNotificationAttributes> entry
-                = new MapEntry<String, IdentityNotificationAttributes>();
+            MapEntry<String, IdentityNotificationAttributes> entry = new MapEntry<String, IdentityNotificationAttributes>();
 
             while (true) {
                 int xmlEvent = context.nextEvent();
-                if (xmlEvent == XmlPullParser.END_DOCUMENT) return entry;
+                if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                    return entry;
 
                 if (xmlEvent == XmlPullParser.START_TAG) {
                     if (context.testExpression("key", targetDepth)) {
@@ -49,52 +54,64 @@ public class GetIdentityNotificationAttributesResultStaxUnmarshaller implements 
                         continue;
                     }
                     if (context.testExpression("value", targetDepth)) {
-                        entry.setValue(IdentityNotificationAttributesStaxUnmarshaller.getInstance().unmarshall(context));
+                        entry.setValue(IdentityNotificationAttributesStaxUnmarshaller.getInstance()
+                                .unmarshall(context));
                         continue;
                     }
                 } else if (xmlEvent == XmlPullParser.END_TAG) {
-                    if (context.getCurrentDepth() < originalDepth) return entry;
+                    if (context.getCurrentDepth() < originalDepth)
+                        return entry;
                 }
             }
         }
 
         private static NotificationAttributesMapEntryUnmarshaller instance;
+
         public static NotificationAttributesMapEntryUnmarshaller getInstance() {
-            if (instance == null) instance = new NotificationAttributesMapEntryUnmarshaller();
+            if (instance == null)
+                instance = new NotificationAttributesMapEntryUnmarshaller();
             return instance;
         }
 
     }
 
-    public GetIdentityNotificationAttributesResult unmarshall(StaxUnmarshallerContext context) throws Exception {
+    public GetIdentityNotificationAttributesResult unmarshall(StaxUnmarshallerContext context)
+            throws Exception {
         GetIdentityNotificationAttributesResult getIdentityNotificationAttributesResult = new GetIdentityNotificationAttributesResult();
+
         int originalDepth = context.getCurrentDepth();
         int targetDepth = originalDepth + 1;
 
-        if (context.isStartOfDocument()) targetDepth += 2;
+        if (context.isStartOfDocument())
+            targetDepth += 2;
 
         while (true) {
             int xmlEvent = context.nextEvent();
-            if (xmlEvent == XmlPullParser.END_DOCUMENT) return getIdentityNotificationAttributesResult;
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("NotificationAttributes/entry", targetDepth)) {
-                    Entry<String, IdentityNotificationAttributes> entry = NotificationAttributesMapEntryUnmarshaller.getInstance().unmarshall(context);
-                    getIdentityNotificationAttributesResult.getNotificationAttributes().put(entry.getKey(), entry.getValue());
+                    Entry<String, IdentityNotificationAttributes> entry = NotificationAttributesMapEntryUnmarshaller
+                            .getInstance().unmarshall(context);
+                    getIdentityNotificationAttributesResult.getNotificationAttributes().put(
+                            entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
-                    return getIdentityNotificationAttributesResult;
+                    break;
                 }
             }
         }
+        return getIdentityNotificationAttributesResult;
     }
 
     private static GetIdentityNotificationAttributesResultStaxUnmarshaller instance;
+
     public static GetIdentityNotificationAttributesResultStaxUnmarshaller getInstance() {
-        if (instance == null) instance = new GetIdentityNotificationAttributesResultStaxUnmarshaller();
+        if (instance == null)
+            instance = new GetIdentityNotificationAttributesResultStaxUnmarshaller();
         return instance;
     }
 }
-    

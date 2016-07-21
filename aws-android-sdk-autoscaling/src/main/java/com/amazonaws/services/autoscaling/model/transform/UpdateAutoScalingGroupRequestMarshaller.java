@@ -1,100 +1,133 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.autoscaling.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.amazonaws.services.autoscaling.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
 import com.amazonaws.services.autoscaling.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.StringUtils;
 
 /**
- * Update Auto Scaling Group Request Marshaller
+ * StAX request marshaller for UpdateAutoScalingGroupRequest
  */
-public class UpdateAutoScalingGroupRequestMarshaller implements Marshaller<Request<UpdateAutoScalingGroupRequest>, UpdateAutoScalingGroupRequest> {
+public class UpdateAutoScalingGroupRequestMarshaller implements
+        Marshaller<Request<UpdateAutoScalingGroupRequest>, UpdateAutoScalingGroupRequest> {
 
-    public Request<UpdateAutoScalingGroupRequest> marshall(UpdateAutoScalingGroupRequest updateAutoScalingGroupRequest) {
-
+    public Request<UpdateAutoScalingGroupRequest> marshall(
+            UpdateAutoScalingGroupRequest updateAutoScalingGroupRequest) {
         if (updateAutoScalingGroupRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(UpdateAutoScalingGroupRequest)");
         }
 
-        Request<UpdateAutoScalingGroupRequest> request = new DefaultRequest<UpdateAutoScalingGroupRequest>(updateAutoScalingGroupRequest, "AmazonAutoScaling");
+        Request<UpdateAutoScalingGroupRequest> request = new DefaultRequest<UpdateAutoScalingGroupRequest>(
+                updateAutoScalingGroupRequest, "AmazonAutoScaling");
         request.addParameter("Action", "UpdateAutoScalingGroup");
         request.addParameter("Version", "2011-01-01");
 
+        String prefix;
         if (updateAutoScalingGroupRequest.getAutoScalingGroupName() != null) {
-            request.addParameter("AutoScalingGroupName", StringUtils.fromString(updateAutoScalingGroupRequest.getAutoScalingGroupName()));
+            prefix = "AutoScalingGroupName";
+            String autoScalingGroupName = updateAutoScalingGroupRequest.getAutoScalingGroupName();
+            request.addParameter(prefix, StringUtils.fromString(autoScalingGroupName));
         }
         if (updateAutoScalingGroupRequest.getLaunchConfigurationName() != null) {
-            request.addParameter("LaunchConfigurationName", StringUtils.fromString(updateAutoScalingGroupRequest.getLaunchConfigurationName()));
+            prefix = "LaunchConfigurationName";
+            String launchConfigurationName = updateAutoScalingGroupRequest
+                    .getLaunchConfigurationName();
+            request.addParameter(prefix, StringUtils.fromString(launchConfigurationName));
         }
         if (updateAutoScalingGroupRequest.getMinSize() != null) {
-            request.addParameter("MinSize", StringUtils.fromInteger(updateAutoScalingGroupRequest.getMinSize()));
+            prefix = "MinSize";
+            Integer minSize = updateAutoScalingGroupRequest.getMinSize();
+            request.addParameter(prefix, StringUtils.fromInteger(minSize));
         }
         if (updateAutoScalingGroupRequest.getMaxSize() != null) {
-            request.addParameter("MaxSize", StringUtils.fromInteger(updateAutoScalingGroupRequest.getMaxSize()));
+            prefix = "MaxSize";
+            Integer maxSize = updateAutoScalingGroupRequest.getMaxSize();
+            request.addParameter(prefix, StringUtils.fromInteger(maxSize));
         }
         if (updateAutoScalingGroupRequest.getDesiredCapacity() != null) {
-            request.addParameter("DesiredCapacity", StringUtils.fromInteger(updateAutoScalingGroupRequest.getDesiredCapacity()));
+            prefix = "DesiredCapacity";
+            Integer desiredCapacity = updateAutoScalingGroupRequest.getDesiredCapacity();
+            request.addParameter(prefix, StringUtils.fromInteger(desiredCapacity));
         }
         if (updateAutoScalingGroupRequest.getDefaultCooldown() != null) {
-            request.addParameter("DefaultCooldown", StringUtils.fromInteger(updateAutoScalingGroupRequest.getDefaultCooldown()));
+            prefix = "DefaultCooldown";
+            Integer defaultCooldown = updateAutoScalingGroupRequest.getDefaultCooldown();
+            request.addParameter(prefix, StringUtils.fromInteger(defaultCooldown));
         }
-
-        java.util.List<String> availabilityZonesList = updateAutoScalingGroupRequest.getAvailabilityZones();
-        int availabilityZonesListIndex = 1;
-
-        for (String availabilityZonesListValue : availabilityZonesList) {
-            if (availabilityZonesListValue != null) {
-                request.addParameter("AvailabilityZones.member." + availabilityZonesListIndex, StringUtils.fromString(availabilityZonesListValue));
+        if (updateAutoScalingGroupRequest.getAvailabilityZones() != null) {
+            prefix = "AvailabilityZones";
+            java.util.List<String> availabilityZones = updateAutoScalingGroupRequest
+                    .getAvailabilityZones();
+            int availabilityZonesIndex = 1;
+            String availabilityZonesPrefix = prefix;
+            for (String availabilityZonesItem : availabilityZones) {
+                prefix = availabilityZonesPrefix + ".member." + availabilityZonesIndex;
+                if (availabilityZonesItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(availabilityZonesItem));
+                }
+                availabilityZonesIndex++;
             }
-
-            availabilityZonesListIndex++;
+            prefix = availabilityZonesPrefix;
         }
         if (updateAutoScalingGroupRequest.getHealthCheckType() != null) {
-            request.addParameter("HealthCheckType", StringUtils.fromString(updateAutoScalingGroupRequest.getHealthCheckType()));
+            prefix = "HealthCheckType";
+            String healthCheckType = updateAutoScalingGroupRequest.getHealthCheckType();
+            request.addParameter(prefix, StringUtils.fromString(healthCheckType));
         }
         if (updateAutoScalingGroupRequest.getHealthCheckGracePeriod() != null) {
-            request.addParameter("HealthCheckGracePeriod", StringUtils.fromInteger(updateAutoScalingGroupRequest.getHealthCheckGracePeriod()));
+            prefix = "HealthCheckGracePeriod";
+            Integer healthCheckGracePeriod = updateAutoScalingGroupRequest
+                    .getHealthCheckGracePeriod();
+            request.addParameter(prefix, StringUtils.fromInteger(healthCheckGracePeriod));
         }
         if (updateAutoScalingGroupRequest.getPlacementGroup() != null) {
-            request.addParameter("PlacementGroup", StringUtils.fromString(updateAutoScalingGroupRequest.getPlacementGroup()));
+            prefix = "PlacementGroup";
+            String placementGroup = updateAutoScalingGroupRequest.getPlacementGroup();
+            request.addParameter(prefix, StringUtils.fromString(placementGroup));
         }
         if (updateAutoScalingGroupRequest.getVPCZoneIdentifier() != null) {
-            request.addParameter("VPCZoneIdentifier", StringUtils.fromString(updateAutoScalingGroupRequest.getVPCZoneIdentifier()));
+            prefix = "VPCZoneIdentifier";
+            String vPCZoneIdentifier = updateAutoScalingGroupRequest.getVPCZoneIdentifier();
+            request.addParameter(prefix, StringUtils.fromString(vPCZoneIdentifier));
         }
-
-        java.util.List<String> terminationPoliciesList = updateAutoScalingGroupRequest.getTerminationPolicies();
-        int terminationPoliciesListIndex = 1;
-
-        for (String terminationPoliciesListValue : terminationPoliciesList) {
-            if (terminationPoliciesListValue != null) {
-                request.addParameter("TerminationPolicies.member." + terminationPoliciesListIndex, StringUtils.fromString(terminationPoliciesListValue));
+        if (updateAutoScalingGroupRequest.getTerminationPolicies() != null) {
+            prefix = "TerminationPolicies";
+            java.util.List<String> terminationPolicies = updateAutoScalingGroupRequest
+                    .getTerminationPolicies();
+            int terminationPoliciesIndex = 1;
+            String terminationPoliciesPrefix = prefix;
+            for (String terminationPoliciesItem : terminationPolicies) {
+                prefix = terminationPoliciesPrefix + ".member." + terminationPoliciesIndex;
+                if (terminationPoliciesItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(terminationPoliciesItem));
+                }
+                terminationPoliciesIndex++;
             }
-
-            terminationPoliciesListIndex++;
+            prefix = terminationPoliciesPrefix;
         }
-        if (updateAutoScalingGroupRequest.isNewInstancesProtectedFromScaleIn() != null) {
-            request.addParameter("NewInstancesProtectedFromScaleIn", StringUtils.fromBoolean(updateAutoScalingGroupRequest.isNewInstancesProtectedFromScaleIn()));
+        if (updateAutoScalingGroupRequest.getNewInstancesProtectedFromScaleIn() != null) {
+            prefix = "NewInstancesProtectedFromScaleIn";
+            Boolean newInstancesProtectedFromScaleIn = updateAutoScalingGroupRequest
+                    .getNewInstancesProtectedFromScaleIn();
+            request.addParameter(prefix, StringUtils.fromBoolean(newInstancesProtectedFromScaleIn));
         }
 
         return request;

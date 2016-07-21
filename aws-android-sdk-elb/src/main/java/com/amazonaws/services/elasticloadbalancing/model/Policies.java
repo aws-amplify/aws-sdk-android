@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.elasticloadbalancing.model;
 
 import java.io.Serializable;
@@ -22,247 +23,274 @@ import java.io.Serializable;
  * </p>
  */
 public class Policies implements Serializable {
-
     /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateAppCookieStickinessPolicy</a>.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<AppCookieStickinessPolicy> appCookieStickinessPolicies;
+    private java.util.List<AppCookieStickinessPolicy> appCookieStickinessPolicies = new java.util.ArrayList<AppCookieStickinessPolicy>();
 
     /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateLBCookieStickinessPolicy</a>.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<LBCookieStickinessPolicy> lBCookieStickinessPolicies;
+    private java.util.List<LBCookieStickinessPolicy> lBCookieStickinessPolicies = new java.util.ArrayList<LBCookieStickinessPolicy>();
 
     /**
+     * <p>
      * The policies other than the stickiness policies.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> otherPolicies;
+    private java.util.List<String> otherPolicies = new java.util.ArrayList<String>();
 
     /**
-     * Default constructor for a new Policies object.  Callers should use the
-     * setter or fluent setter (with...) methods to initialize this object after creating it.
-     */
-    public Policies() {}
-    
-    /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateAppCookieStickinessPolicy</a>.
+     * </p>
      *
-     * @return The stickiness policies created using
+     * @return <p>
+     *         The stickiness policies created using
      *         <a>CreateAppCookieStickinessPolicy</a>.
+     *         </p>
      */
     public java.util.List<AppCookieStickinessPolicy> getAppCookieStickinessPolicies() {
-        if (appCookieStickinessPolicies == null) {
-              appCookieStickinessPolicies = new com.amazonaws.internal.ListWithAutoConstructFlag<AppCookieStickinessPolicy>();
-              appCookieStickinessPolicies.setAutoConstruct(true);
-        }
         return appCookieStickinessPolicies;
     }
-    
+
     /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateAppCookieStickinessPolicy</a>.
+     * </p>
      *
-     * @param appCookieStickinessPolicies The stickiness policies created using
-     *         <a>CreateAppCookieStickinessPolicy</a>.
+     * @param appCookieStickinessPolicies <p>
+     *            The stickiness policies created using
+     *            <a>CreateAppCookieStickinessPolicy</a>.
+     *            </p>
      */
-    public void setAppCookieStickinessPolicies(java.util.Collection<AppCookieStickinessPolicy> appCookieStickinessPolicies) {
+    public void setAppCookieStickinessPolicies(
+            java.util.Collection<AppCookieStickinessPolicy> appCookieStickinessPolicies) {
         if (appCookieStickinessPolicies == null) {
             this.appCookieStickinessPolicies = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<AppCookieStickinessPolicy> appCookieStickinessPoliciesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<AppCookieStickinessPolicy>(appCookieStickinessPolicies.size());
-        appCookieStickinessPoliciesCopy.addAll(appCookieStickinessPolicies);
-        this.appCookieStickinessPolicies = appCookieStickinessPoliciesCopy;
+
+        this.appCookieStickinessPolicies = new java.util.ArrayList<AppCookieStickinessPolicy>(
+                appCookieStickinessPolicies);
     }
-    
+
     /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateAppCookieStickinessPolicy</a>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param appCookieStickinessPolicies The stickiness policies created using
-     *         <a>CreateAppCookieStickinessPolicy</a>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param appCookieStickinessPolicies <p>
+     *            The stickiness policies created using
+     *            <a>CreateAppCookieStickinessPolicy</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public Policies withAppCookieStickinessPolicies(AppCookieStickinessPolicy... appCookieStickinessPolicies) {
-        if (getAppCookieStickinessPolicies() == null) setAppCookieStickinessPolicies(new java.util.ArrayList<AppCookieStickinessPolicy>(appCookieStickinessPolicies.length));
+    public Policies withAppCookieStickinessPolicies(
+            AppCookieStickinessPolicy... appCookieStickinessPolicies) {
+        if (getAppCookieStickinessPolicies() == null) {
+            this.appCookieStickinessPolicies = new java.util.ArrayList<AppCookieStickinessPolicy>(
+                    appCookieStickinessPolicies.length);
+        }
         for (AppCookieStickinessPolicy value : appCookieStickinessPolicies) {
-            getAppCookieStickinessPolicies().add(value);
+            this.appCookieStickinessPolicies.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateAppCookieStickinessPolicy</a>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param appCookieStickinessPolicies The stickiness policies created using
-     *         <a>CreateAppCookieStickinessPolicy</a>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param appCookieStickinessPolicies <p>
+     *            The stickiness policies created using
+     *            <a>CreateAppCookieStickinessPolicy</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public Policies withAppCookieStickinessPolicies(java.util.Collection<AppCookieStickinessPolicy> appCookieStickinessPolicies) {
-        if (appCookieStickinessPolicies == null) {
-            this.appCookieStickinessPolicies = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<AppCookieStickinessPolicy> appCookieStickinessPoliciesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<AppCookieStickinessPolicy>(appCookieStickinessPolicies.size());
-            appCookieStickinessPoliciesCopy.addAll(appCookieStickinessPolicies);
-            this.appCookieStickinessPolicies = appCookieStickinessPoliciesCopy;
-        }
-
+    public Policies withAppCookieStickinessPolicies(
+            java.util.Collection<AppCookieStickinessPolicy> appCookieStickinessPolicies) {
+        setAppCookieStickinessPolicies(appCookieStickinessPolicies);
         return this;
     }
 
     /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateLBCookieStickinessPolicy</a>.
+     * </p>
      *
-     * @return The stickiness policies created using
+     * @return <p>
+     *         The stickiness policies created using
      *         <a>CreateLBCookieStickinessPolicy</a>.
+     *         </p>
      */
     public java.util.List<LBCookieStickinessPolicy> getLBCookieStickinessPolicies() {
-        if (lBCookieStickinessPolicies == null) {
-              lBCookieStickinessPolicies = new com.amazonaws.internal.ListWithAutoConstructFlag<LBCookieStickinessPolicy>();
-              lBCookieStickinessPolicies.setAutoConstruct(true);
-        }
         return lBCookieStickinessPolicies;
     }
-    
+
     /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateLBCookieStickinessPolicy</a>.
+     * </p>
      *
-     * @param lBCookieStickinessPolicies The stickiness policies created using
-     *         <a>CreateLBCookieStickinessPolicy</a>.
+     * @param lBCookieStickinessPolicies <p>
+     *            The stickiness policies created using
+     *            <a>CreateLBCookieStickinessPolicy</a>.
+     *            </p>
      */
-    public void setLBCookieStickinessPolicies(java.util.Collection<LBCookieStickinessPolicy> lBCookieStickinessPolicies) {
+    public void setLBCookieStickinessPolicies(
+            java.util.Collection<LBCookieStickinessPolicy> lBCookieStickinessPolicies) {
         if (lBCookieStickinessPolicies == null) {
             this.lBCookieStickinessPolicies = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<LBCookieStickinessPolicy> lBCookieStickinessPoliciesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<LBCookieStickinessPolicy>(lBCookieStickinessPolicies.size());
-        lBCookieStickinessPoliciesCopy.addAll(lBCookieStickinessPolicies);
-        this.lBCookieStickinessPolicies = lBCookieStickinessPoliciesCopy;
+
+        this.lBCookieStickinessPolicies = new java.util.ArrayList<LBCookieStickinessPolicy>(
+                lBCookieStickinessPolicies);
     }
-    
+
     /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateLBCookieStickinessPolicy</a>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param lBCookieStickinessPolicies The stickiness policies created using
-     *         <a>CreateLBCookieStickinessPolicy</a>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param lBCookieStickinessPolicies <p>
+     *            The stickiness policies created using
+     *            <a>CreateLBCookieStickinessPolicy</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public Policies withLBCookieStickinessPolicies(LBCookieStickinessPolicy... lBCookieStickinessPolicies) {
-        if (getLBCookieStickinessPolicies() == null) setLBCookieStickinessPolicies(new java.util.ArrayList<LBCookieStickinessPolicy>(lBCookieStickinessPolicies.length));
+    public Policies withLBCookieStickinessPolicies(
+            LBCookieStickinessPolicy... lBCookieStickinessPolicies) {
+        if (getLBCookieStickinessPolicies() == null) {
+            this.lBCookieStickinessPolicies = new java.util.ArrayList<LBCookieStickinessPolicy>(
+                    lBCookieStickinessPolicies.length);
+        }
         for (LBCookieStickinessPolicy value : lBCookieStickinessPolicies) {
-            getLBCookieStickinessPolicies().add(value);
+            this.lBCookieStickinessPolicies.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * The stickiness policies created using
      * <a>CreateLBCookieStickinessPolicy</a>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param lBCookieStickinessPolicies The stickiness policies created using
-     *         <a>CreateLBCookieStickinessPolicy</a>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param lBCookieStickinessPolicies <p>
+     *            The stickiness policies created using
+     *            <a>CreateLBCookieStickinessPolicy</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public Policies withLBCookieStickinessPolicies(java.util.Collection<LBCookieStickinessPolicy> lBCookieStickinessPolicies) {
-        if (lBCookieStickinessPolicies == null) {
-            this.lBCookieStickinessPolicies = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<LBCookieStickinessPolicy> lBCookieStickinessPoliciesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<LBCookieStickinessPolicy>(lBCookieStickinessPolicies.size());
-            lBCookieStickinessPoliciesCopy.addAll(lBCookieStickinessPolicies);
-            this.lBCookieStickinessPolicies = lBCookieStickinessPoliciesCopy;
-        }
-
+    public Policies withLBCookieStickinessPolicies(
+            java.util.Collection<LBCookieStickinessPolicy> lBCookieStickinessPolicies) {
+        setLBCookieStickinessPolicies(lBCookieStickinessPolicies);
         return this;
     }
 
     /**
+     * <p>
      * The policies other than the stickiness policies.
+     * </p>
      *
-     * @return The policies other than the stickiness policies.
+     * @return <p>
+     *         The policies other than the stickiness policies.
+     *         </p>
      */
     public java.util.List<String> getOtherPolicies() {
-        if (otherPolicies == null) {
-              otherPolicies = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              otherPolicies.setAutoConstruct(true);
-        }
         return otherPolicies;
     }
-    
+
     /**
+     * <p>
      * The policies other than the stickiness policies.
+     * </p>
      *
-     * @param otherPolicies The policies other than the stickiness policies.
+     * @param otherPolicies <p>
+     *            The policies other than the stickiness policies.
+     *            </p>
      */
     public void setOtherPolicies(java.util.Collection<String> otherPolicies) {
         if (otherPolicies == null) {
             this.otherPolicies = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> otherPoliciesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(otherPolicies.size());
-        otherPoliciesCopy.addAll(otherPolicies);
-        this.otherPolicies = otherPoliciesCopy;
+
+        this.otherPolicies = new java.util.ArrayList<String>(otherPolicies);
     }
-    
+
     /**
-     * The policies other than the stickiness policies.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The policies other than the stickiness policies.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param otherPolicies The policies other than the stickiness policies.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param otherPolicies <p>
+     *            The policies other than the stickiness policies.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public Policies withOtherPolicies(String... otherPolicies) {
-        if (getOtherPolicies() == null) setOtherPolicies(new java.util.ArrayList<String>(otherPolicies.length));
+        if (getOtherPolicies() == null) {
+            this.otherPolicies = new java.util.ArrayList<String>(otherPolicies.length);
+        }
         for (String value : otherPolicies) {
-            getOtherPolicies().add(value);
+            this.otherPolicies.add(value);
         }
         return this;
     }
-    
+
     /**
-     * The policies other than the stickiness policies.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The policies other than the stickiness policies.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param otherPolicies The policies other than the stickiness policies.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param otherPolicies <p>
+     *            The policies other than the stickiness policies.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public Policies withOtherPolicies(java.util.Collection<String> otherPolicies) {
-        if (otherPolicies == null) {
-            this.otherPolicies = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> otherPoliciesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(otherPolicies.size());
-            otherPoliciesCopy.addAll(otherPolicies);
-            this.otherPolicies = otherPoliciesCopy;
-        }
-
+        setOtherPolicies(otherPolicies);
         return this;
     }
 
@@ -271,47 +299,70 @@ public class Policies implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAppCookieStickinessPolicies() != null) sb.append("AppCookieStickinessPolicies: " + getAppCookieStickinessPolicies() + ",");
-        if (getLBCookieStickinessPolicies() != null) sb.append("LBCookieStickinessPolicies: " + getLBCookieStickinessPolicies() + ",");
-        if (getOtherPolicies() != null) sb.append("OtherPolicies: " + getOtherPolicies() );
+        if (getAppCookieStickinessPolicies() != null)
+            sb.append("AppCookieStickinessPolicies: " + getAppCookieStickinessPolicies() + ",");
+        if (getLBCookieStickinessPolicies() != null)
+            sb.append("LBCookieStickinessPolicies: " + getLBCookieStickinessPolicies() + ",");
+        if (getOtherPolicies() != null)
+            sb.append("OtherPolicies: " + getOtherPolicies());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getAppCookieStickinessPolicies() == null) ? 0 : getAppCookieStickinessPolicies().hashCode()); 
-        hashCode = prime * hashCode + ((getLBCookieStickinessPolicies() == null) ? 0 : getLBCookieStickinessPolicies().hashCode()); 
-        hashCode = prime * hashCode + ((getOtherPolicies() == null) ? 0 : getOtherPolicies().hashCode()); 
+
+        hashCode = prime
+                * hashCode
+                + ((getAppCookieStickinessPolicies() == null) ? 0
+                        : getAppCookieStickinessPolicies().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getLBCookieStickinessPolicies() == null) ? 0 : getLBCookieStickinessPolicies()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getOtherPolicies() == null) ? 0 : getOtherPolicies().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof Policies == false) return false;
-        Policies other = (Policies)obj;
-        
-        if (other.getAppCookieStickinessPolicies() == null ^ this.getAppCookieStickinessPolicies() == null) return false;
-        if (other.getAppCookieStickinessPolicies() != null && other.getAppCookieStickinessPolicies().equals(this.getAppCookieStickinessPolicies()) == false) return false; 
-        if (other.getLBCookieStickinessPolicies() == null ^ this.getLBCookieStickinessPolicies() == null) return false;
-        if (other.getLBCookieStickinessPolicies() != null && other.getLBCookieStickinessPolicies().equals(this.getLBCookieStickinessPolicies()) == false) return false; 
-        if (other.getOtherPolicies() == null ^ this.getOtherPolicies() == null) return false;
-        if (other.getOtherPolicies() != null && other.getOtherPolicies().equals(this.getOtherPolicies()) == false) return false; 
+        if (obj instanceof Policies == false)
+            return false;
+        Policies other = (Policies) obj;
+
+        if (other.getAppCookieStickinessPolicies() == null
+                ^ this.getAppCookieStickinessPolicies() == null)
+            return false;
+        if (other.getAppCookieStickinessPolicies() != null
+                && other.getAppCookieStickinessPolicies().equals(
+                        this.getAppCookieStickinessPolicies()) == false)
+            return false;
+        if (other.getLBCookieStickinessPolicies() == null
+                ^ this.getLBCookieStickinessPolicies() == null)
+            return false;
+        if (other.getLBCookieStickinessPolicies() != null
+                && other.getLBCookieStickinessPolicies().equals(
+                        this.getLBCookieStickinessPolicies()) == false)
+            return false;
+        if (other.getOtherPolicies() == null ^ this.getOtherPolicies() == null)
+            return false;
+        if (other.getOtherPolicies() != null
+                && other.getOtherPolicies().equals(this.getOtherPolicies()) == false)
+            return false;
         return true;
     }
-    
 }
-    

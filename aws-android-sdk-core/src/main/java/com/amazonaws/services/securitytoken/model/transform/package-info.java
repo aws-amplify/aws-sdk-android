@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AWSSecurityTokenService.
+ * Marhsalling for the various types represented byAWSSecurityTokenService
  */
- package com.amazonaws.services.securitytoken.model.transform;
-        
+
+package com.amazonaws.services.securitytoken.model.transform;
+

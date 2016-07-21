@@ -326,12 +326,16 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @param deleteDatasetRequest A request to delete the specific dataset.
      * @return deleteDatasetResult The response from the DeleteDataset service
      *         method, as returned by Amazon Cognito Sync.
-     * @throws NotAuthorizedException
-     * @throws InvalidParameterException
-     * @throws ResourceNotFoundException
-     * @throws InternalErrorException
-     * @throws TooManyRequestsException
-     * @throws ResourceConflictException
+     * @throws NotAuthorizedException Thrown when a user is not authorized to
+     *             access the requested resource.
+     * @throws InvalidParameterException Thrown when a request parameter does
+     *             not comply with the associated constraints.
+     * @throws ResourceNotFoundException Thrown if the resource doesn't exist.
+     * @throws InternalErrorException Indicates an internal service error.
+     * @throws TooManyRequestsException Thrown if the request is throttled.
+     * @throws ResourceConflictException Thrown if an update can't be applied
+     *             because the resource was changed by another call and this
+     *             would result in a conflict.
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -386,11 +390,13 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      *            name.
      * @return describeDatasetResult The response from the DescribeDataset
      *         service method, as returned by Amazon Cognito Sync.
-     * @throws NotAuthorizedException
-     * @throws InvalidParameterException
-     * @throws ResourceNotFoundException
-     * @throws InternalErrorException
-     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException Thrown when a user is not authorized to
+     *             access the requested resource.
+     * @throws InvalidParameterException Thrown when a request parameter does
+     *             not comply with the associated constraints.
+     * @throws ResourceNotFoundException Thrown if the resource doesn't exist.
+     * @throws InternalErrorException Indicates an internal service error.
+     * @throws TooManyRequestsException Thrown if the request is throttled.
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -443,10 +449,12 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      *            identity.
      * @return listDatasetsResult The response from the ListDatasets service
      *         method, as returned by Amazon Cognito Sync.
-     * @throws NotAuthorizedException
-     * @throws InvalidParameterException
-     * @throws InternalErrorException
-     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException Thrown when a user is not authorized to
+     *             access the requested resource.
+     * @throws InvalidParameterException Thrown when a request parameter does
+     *             not comply with the associated constraints.
+     * @throws InternalErrorException Indicates an internal service error.
+     * @throws TooManyRequestsException Thrown if the request is throttled.
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -499,10 +507,12 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @param listRecordsRequest A request for a list of records.
      * @return listRecordsResult The response from the ListRecords service
      *         method, as returned by Amazon Cognito Sync.
-     * @throws InvalidParameterException
-     * @throws NotAuthorizedException
-     * @throws TooManyRequestsException
-     * @throws InternalErrorException
+     * @throws InvalidParameterException Thrown when a request parameter does
+     *             not comply with the associated constraints.
+     * @throws NotAuthorizedException Thrown when a user is not authorized to
+     *             access the requested resource.
+     * @throws TooManyRequestsException Thrown if the request is throttled.
+     * @throws InternalErrorException Indicates an internal service error.
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -553,12 +563,14 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      *            </p>
      * @return registerDeviceResult The response from the RegisterDevice service
      *         method, as returned by Amazon Cognito Sync.
-     * @throws NotAuthorizedException
-     * @throws InvalidParameterException
-     * @throws ResourceNotFoundException
-     * @throws InternalErrorException
+     * @throws NotAuthorizedException Thrown when a user is not authorized to
+     *             access the requested resource.
+     * @throws InvalidParameterException Thrown when a request parameter does
+     *             not comply with the associated constraints.
+     * @throws ResourceNotFoundException Thrown if the resource doesn't exist.
+     * @throws InternalErrorException Indicates an internal service error.
      * @throws InvalidConfigurationException
-     * @throws TooManyRequestsException
+     * @throws TooManyRequestsException Thrown if the request is throttled.
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -610,12 +622,14 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      *            </p>
      * @return subscribeToDatasetResult The response from the SubscribeToDataset
      *         service method, as returned by Amazon Cognito Sync.
-     * @throws NotAuthorizedException
-     * @throws InvalidParameterException
-     * @throws ResourceNotFoundException
-     * @throws InternalErrorException
+     * @throws NotAuthorizedException Thrown when a user is not authorized to
+     *             access the requested resource.
+     * @throws InvalidParameterException Thrown when a request parameter does
+     *             not comply with the associated constraints.
+     * @throws ResourceNotFoundException Thrown if the resource doesn't exist.
+     * @throws InternalErrorException Indicates an internal service error.
      * @throws InvalidConfigurationException
-     * @throws TooManyRequestsException
+     * @throws TooManyRequestsException Thrown if the request is throttled.
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -670,12 +684,14 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      * @return unsubscribeFromDatasetResult The response from the
      *         UnsubscribeFromDataset service method, as returned by Amazon
      *         Cognito Sync.
-     * @throws NotAuthorizedException
-     * @throws InvalidParameterException
-     * @throws ResourceNotFoundException
-     * @throws InternalErrorException
+     * @throws NotAuthorizedException Thrown when a user is not authorized to
+     *             access the requested resource.
+     * @throws InvalidParameterException Thrown when a request parameter does
+     *             not comply with the associated constraints.
+     * @throws ResourceNotFoundException Thrown if the resource doesn't exist.
+     * @throws InternalErrorException Indicates an internal service error.
      * @throws InvalidConfigurationException
-     * @throws TooManyRequestsException
+     * @throws TooManyRequestsException Thrown if the request is throttled.
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -743,15 +759,25 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
      *            and delete records for a dataset and user.
      * @return updateRecordsResult The response from the UpdateRecords service
      *         method, as returned by Amazon Cognito Sync.
-     * @throws InvalidParameterException
-     * @throws LimitExceededException
-     * @throws NotAuthorizedException
-     * @throws ResourceNotFoundException
-     * @throws ResourceConflictException
-     * @throws InvalidLambdaFunctionOutputException
-     * @throws LambdaThrottledException
-     * @throws TooManyRequestsException
-     * @throws InternalErrorException
+     * @throws InvalidParameterException Thrown when a request parameter does
+     *             not comply with the associated constraints.
+     * @throws LimitExceededException Thrown when the limit on the number of
+     *             objects or operations has been exceeded.
+     * @throws NotAuthorizedException Thrown when a user is not authorized to
+     *             access the requested resource.
+     * @throws ResourceNotFoundException Thrown if the resource doesn't exist.
+     * @throws ResourceConflictException Thrown if an update can't be applied
+     *             because the resource was changed by another call and this
+     *             would result in a conflict.
+     * @throws InvalidLambdaFunctionOutputException <p>
+     *             The AWS Lambda function returned invalid output or an
+     *             exception.
+     *             </p>
+     * @throws LambdaThrottledException <p>
+     *             AWS Lambda throttled your account, please contact AWS Support
+     *             </p>
+     * @throws TooManyRequestsException Thrown if the request is throttled.
+     * @throws InternalErrorException Indicates an internal service error.
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

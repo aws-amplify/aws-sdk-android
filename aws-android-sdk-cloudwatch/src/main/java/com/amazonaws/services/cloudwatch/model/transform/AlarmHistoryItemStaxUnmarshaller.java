@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -27,54 +27,65 @@ import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
 /**
- * Alarm History Item StAX Unmarshaller
+ * StAX unmarshaller for model AlarmHistoryItem
  */
-public class AlarmHistoryItemStaxUnmarshaller implements Unmarshaller<AlarmHistoryItem, StaxUnmarshallerContext> {
+class AlarmHistoryItemStaxUnmarshaller implements
+        Unmarshaller<AlarmHistoryItem, StaxUnmarshallerContext> {
 
     public AlarmHistoryItem unmarshall(StaxUnmarshallerContext context) throws Exception {
         AlarmHistoryItem alarmHistoryItem = new AlarmHistoryItem();
+
         int originalDepth = context.getCurrentDepth();
         int targetDepth = originalDepth + 1;
 
-        if (context.isStartOfDocument()) targetDepth += 2;
+        if (context.isStartOfDocument())
+            targetDepth += 2;
 
         while (true) {
             int xmlEvent = context.nextEvent();
-            if (xmlEvent == XmlPullParser.END_DOCUMENT) return alarmHistoryItem;
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("AlarmName", targetDepth)) {
-                    alarmHistoryItem.setAlarmName(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    alarmHistoryItem.setAlarmName(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("Timestamp", targetDepth)) {
-                    alarmHistoryItem.setTimestamp(DateStaxUnmarshaller.getInstance().unmarshall(context));
+                    alarmHistoryItem.setTimestamp(DateStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("HistoryItemType", targetDepth)) {
-                    alarmHistoryItem.setHistoryItemType(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    alarmHistoryItem.setHistoryItemType(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("HistorySummary", targetDepth)) {
-                    alarmHistoryItem.setHistorySummary(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    alarmHistoryItem.setHistorySummary(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("HistoryData", targetDepth)) {
-                    alarmHistoryItem.setHistoryData(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    alarmHistoryItem.setHistoryData(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
-                    return alarmHistoryItem;
+                    break;
                 }
             }
         }
+        return alarmHistoryItem;
     }
 
     private static AlarmHistoryItemStaxUnmarshaller instance;
+
     public static AlarmHistoryItemStaxUnmarshaller getInstance() {
-        if (instance == null) instance = new AlarmHistoryItemStaxUnmarshaller();
+        if (instance == null)
+            instance = new AlarmHistoryItemStaxUnmarshaller();
         return instance;
     }
 }
-    

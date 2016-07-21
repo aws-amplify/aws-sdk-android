@@ -1,24 +1,28 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.sqs.model;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Queue Attribute Name
  */
 public enum QueueAttributeName {
-    
+
     Policy("Policy"),
     VisibilityTimeout("VisibilityTimeout"),
     MaximumMessageSize("MaximumMessageSize"),
@@ -41,49 +45,40 @@ public enum QueueAttributeName {
 
     @Override
     public String toString() {
-        return this.value;
+        return value;
+    }
+
+    private static final Map<String, QueueAttributeName> enumMap;
+    static {
+        enumMap = new HashMap<String, QueueAttributeName>();
+        enumMap.put("Policy", Policy);
+        enumMap.put("VisibilityTimeout", VisibilityTimeout);
+        enumMap.put("MaximumMessageSize", MaximumMessageSize);
+        enumMap.put("MessageRetentionPeriod", MessageRetentionPeriod);
+        enumMap.put("ApproximateNumberOfMessages", ApproximateNumberOfMessages);
+        enumMap.put("ApproximateNumberOfMessagesNotVisible", ApproximateNumberOfMessagesNotVisible);
+        enumMap.put("CreatedTimestamp", CreatedTimestamp);
+        enumMap.put("LastModifiedTimestamp", LastModifiedTimestamp);
+        enumMap.put("QueueArn", QueueArn);
+        enumMap.put("ApproximateNumberOfMessagesDelayed", ApproximateNumberOfMessagesDelayed);
+        enumMap.put("DelaySeconds", DelaySeconds);
+        enumMap.put("ReceiveMessageWaitTimeSeconds", ReceiveMessageWaitTimeSeconds);
+        enumMap.put("RedrivePolicy", RedrivePolicy);
     }
 
     /**
      * Use this in place of valueOf.
      *
-     * @param value
-     *            real value
+     * @param value real value
      * @return QueueAttributeName corresponding to the value
      */
     public static QueueAttributeName fromValue(String value) {
-        if (value == null || "".equals(value)) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
-        
-        } else if ("Policy".equals(value)) {
-            return QueueAttributeName.Policy;
-        } else if ("VisibilityTimeout".equals(value)) {
-            return QueueAttributeName.VisibilityTimeout;
-        } else if ("MaximumMessageSize".equals(value)) {
-            return QueueAttributeName.MaximumMessageSize;
-        } else if ("MessageRetentionPeriod".equals(value)) {
-            return QueueAttributeName.MessageRetentionPeriod;
-        } else if ("ApproximateNumberOfMessages".equals(value)) {
-            return QueueAttributeName.ApproximateNumberOfMessages;
-        } else if ("ApproximateNumberOfMessagesNotVisible".equals(value)) {
-            return QueueAttributeName.ApproximateNumberOfMessagesNotVisible;
-        } else if ("CreatedTimestamp".equals(value)) {
-            return QueueAttributeName.CreatedTimestamp;
-        } else if ("LastModifiedTimestamp".equals(value)) {
-            return QueueAttributeName.LastModifiedTimestamp;
-        } else if ("QueueArn".equals(value)) {
-            return QueueAttributeName.QueueArn;
-        } else if ("ApproximateNumberOfMessagesDelayed".equals(value)) {
-            return QueueAttributeName.ApproximateNumberOfMessagesDelayed;
-        } else if ("DelaySeconds".equals(value)) {
-            return QueueAttributeName.DelaySeconds;
-        } else if ("ReceiveMessageWaitTimeSeconds".equals(value)) {
-            return QueueAttributeName.ReceiveMessageWaitTimeSeconds;
-        } else if ("RedrivePolicy".equals(value)) {
-            return QueueAttributeName.RedrivePolicy;
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
         } else {
             throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
         }
     }
 }
-    

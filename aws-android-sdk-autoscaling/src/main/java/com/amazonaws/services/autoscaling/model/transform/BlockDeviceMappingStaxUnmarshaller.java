@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -27,50 +27,60 @@ import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
 /**
- * Block Device Mapping StAX Unmarshaller
+ * StAX unmarshaller for model BlockDeviceMapping
  */
-public class BlockDeviceMappingStaxUnmarshaller implements Unmarshaller<BlockDeviceMapping, StaxUnmarshallerContext> {
+class BlockDeviceMappingStaxUnmarshaller implements
+        Unmarshaller<BlockDeviceMapping, StaxUnmarshallerContext> {
 
     public BlockDeviceMapping unmarshall(StaxUnmarshallerContext context) throws Exception {
         BlockDeviceMapping blockDeviceMapping = new BlockDeviceMapping();
+
         int originalDepth = context.getCurrentDepth();
         int targetDepth = originalDepth + 1;
 
-        if (context.isStartOfDocument()) targetDepth += 2;
+        if (context.isStartOfDocument())
+            targetDepth += 2;
 
         while (true) {
             int xmlEvent = context.nextEvent();
-            if (xmlEvent == XmlPullParser.END_DOCUMENT) return blockDeviceMapping;
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("VirtualName", targetDepth)) {
-                    blockDeviceMapping.setVirtualName(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    blockDeviceMapping.setVirtualName(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("DeviceName", targetDepth)) {
-                    blockDeviceMapping.setDeviceName(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    blockDeviceMapping.setDeviceName(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("Ebs", targetDepth)) {
-                    blockDeviceMapping.setEbs(EbsStaxUnmarshaller.getInstance().unmarshall(context));
+                    blockDeviceMapping
+                            .setEbs(EbsStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NoDevice", targetDepth)) {
-                    blockDeviceMapping.setNoDevice(BooleanStaxUnmarshaller.getInstance().unmarshall(context));
+                    blockDeviceMapping.setNoDevice(BooleanStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
-                    return blockDeviceMapping;
+                    break;
                 }
             }
         }
+        return blockDeviceMapping;
     }
 
     private static BlockDeviceMappingStaxUnmarshaller instance;
+
     public static BlockDeviceMappingStaxUnmarshaller getInstance() {
-        if (instance == null) instance = new BlockDeviceMappingStaxUnmarshaller();
+        if (instance == null)
+            instance = new BlockDeviceMappingStaxUnmarshaller();
         return instance;
     }
 }
-    

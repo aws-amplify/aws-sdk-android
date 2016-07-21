@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonCloudWatch.
+ * Marhsalling for the various types represented byAmazonCloudWatch
  */
- package com.amazonaws.services.cloudwatch.model.transform;
-        
+
+package com.amazonaws.services.cloudwatch.model.transform;
+

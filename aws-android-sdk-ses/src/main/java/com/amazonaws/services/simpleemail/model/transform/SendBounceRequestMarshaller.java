@@ -1,141 +1,86 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.amazonaws.services.simpleemail.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.amazonaws.services.simpleemail.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
 import com.amazonaws.services.simpleemail.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.StringUtils;
 
 /**
- * Send Bounce Request Marshaller
+ * StAX request marshaller for SendBounceRequest
  */
-public class SendBounceRequestMarshaller implements Marshaller<Request<SendBounceRequest>, SendBounceRequest> {
+public class SendBounceRequestMarshaller implements
+        Marshaller<Request<SendBounceRequest>, SendBounceRequest> {
 
     public Request<SendBounceRequest> marshall(SendBounceRequest sendBounceRequest) {
-
         if (sendBounceRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(SendBounceRequest)");
         }
 
-        Request<SendBounceRequest> request = new DefaultRequest<SendBounceRequest>(sendBounceRequest, "AmazonSimpleEmailService");
+        Request<SendBounceRequest> request = new DefaultRequest<SendBounceRequest>(
+                sendBounceRequest, "AmazonSimpleEmailService");
         request.addParameter("Action", "SendBounce");
         request.addParameter("Version", "2010-12-01");
 
+        String prefix;
         if (sendBounceRequest.getOriginalMessageId() != null) {
-            request.addParameter("OriginalMessageId", StringUtils.fromString(sendBounceRequest.getOriginalMessageId()));
+            prefix = "OriginalMessageId";
+            String originalMessageId = sendBounceRequest.getOriginalMessageId();
+            request.addParameter(prefix, StringUtils.fromString(originalMessageId));
         }
         if (sendBounceRequest.getBounceSender() != null) {
-            request.addParameter("BounceSender", StringUtils.fromString(sendBounceRequest.getBounceSender()));
+            prefix = "BounceSender";
+            String bounceSender = sendBounceRequest.getBounceSender();
+            request.addParameter(prefix, StringUtils.fromString(bounceSender));
         }
         if (sendBounceRequest.getExplanation() != null) {
-            request.addParameter("Explanation", StringUtils.fromString(sendBounceRequest.getExplanation()));
+            prefix = "Explanation";
+            String explanation = sendBounceRequest.getExplanation();
+            request.addParameter(prefix, StringUtils.fromString(explanation));
         }
-        MessageDsn messageDsnMessageDsn = sendBounceRequest.getMessageDsn();
-        if (messageDsnMessageDsn != null) {
-            if (messageDsnMessageDsn.getReportingMta() != null) {
-                request.addParameter("MessageDsn.ReportingMta", StringUtils.fromString(messageDsnMessageDsn.getReportingMta()));
-            }
-            if (messageDsnMessageDsn.getArrivalDate() != null) {
-                request.addParameter("MessageDsn.ArrivalDate", StringUtils.fromDate(messageDsnMessageDsn.getArrivalDate()));
-            }
-
-            java.util.List<ExtensionField> extensionFieldsList = messageDsnMessageDsn.getExtensionFields();
-            int extensionFieldsListIndex = 1;
-
-            for (ExtensionField extensionFieldsListValue : extensionFieldsList) {
-                ExtensionField extensionFieldMember = extensionFieldsListValue;
-                if (extensionFieldMember != null) {
-                    if (extensionFieldMember.getName() != null) {
-                        request.addParameter("MessageDsn.ExtensionFields.member." + extensionFieldsListIndex + ".Name", StringUtils.fromString(extensionFieldMember.getName()));
-                    }
-                    if (extensionFieldMember.getValue() != null) {
-                        request.addParameter("MessageDsn.ExtensionFields.member." + extensionFieldsListIndex + ".Value", StringUtils.fromString(extensionFieldMember.getValue()));
-                    }
-                }
-
-                extensionFieldsListIndex++;
-            }
+        if (sendBounceRequest.getMessageDsn() != null) {
+            prefix = "MessageDsn";
+            MessageDsn messageDsn = sendBounceRequest.getMessageDsn();
+            MessageDsnStaxMarshaller.getInstance().marshall(messageDsn, request, prefix + ".");
         }
-
-        java.util.List<BouncedRecipientInfo> bouncedRecipientInfoListList = sendBounceRequest.getBouncedRecipientInfoList();
-        int bouncedRecipientInfoListListIndex = 1;
-
-        for (BouncedRecipientInfo bouncedRecipientInfoListListValue : bouncedRecipientInfoListList) {
-            BouncedRecipientInfo bouncedRecipientInfoMember = bouncedRecipientInfoListListValue;
-            if (bouncedRecipientInfoMember != null) {
-                if (bouncedRecipientInfoMember.getRecipient() != null) {
-                    request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".Recipient", StringUtils.fromString(bouncedRecipientInfoMember.getRecipient()));
+        if (sendBounceRequest.getBouncedRecipientInfoList() != null) {
+            prefix = "BouncedRecipientInfoList";
+            java.util.List<BouncedRecipientInfo> bouncedRecipientInfoList = sendBounceRequest
+                    .getBouncedRecipientInfoList();
+            int bouncedRecipientInfoListIndex = 1;
+            String bouncedRecipientInfoListPrefix = prefix;
+            for (BouncedRecipientInfo bouncedRecipientInfoListItem : bouncedRecipientInfoList) {
+                prefix = bouncedRecipientInfoListPrefix + ".member."
+                        + bouncedRecipientInfoListIndex;
+                if (bouncedRecipientInfoListItem != null) {
+                    BouncedRecipientInfoStaxMarshaller.getInstance().marshall(
+                            bouncedRecipientInfoListItem, request, prefix + ".");
                 }
-                if (bouncedRecipientInfoMember.getRecipientArn() != null) {
-                    request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".RecipientArn", StringUtils.fromString(bouncedRecipientInfoMember.getRecipientArn()));
-                }
-                if (bouncedRecipientInfoMember.getBounceType() != null) {
-                    request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".BounceType", StringUtils.fromString(bouncedRecipientInfoMember.getBounceType()));
-                }
-                RecipientDsnFields recipientDsnFieldsRecipientDsnFields = bouncedRecipientInfoMember.getRecipientDsnFields();
-                if (recipientDsnFieldsRecipientDsnFields != null) {
-                    if (recipientDsnFieldsRecipientDsnFields.getFinalRecipient() != null) {
-                        request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".RecipientDsnFields.FinalRecipient", StringUtils.fromString(recipientDsnFieldsRecipientDsnFields.getFinalRecipient()));
-                    }
-                    if (recipientDsnFieldsRecipientDsnFields.getAction() != null) {
-                        request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".RecipientDsnFields.Action", StringUtils.fromString(recipientDsnFieldsRecipientDsnFields.getAction()));
-                    }
-                    if (recipientDsnFieldsRecipientDsnFields.getRemoteMta() != null) {
-                        request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".RecipientDsnFields.RemoteMta", StringUtils.fromString(recipientDsnFieldsRecipientDsnFields.getRemoteMta()));
-                    }
-                    if (recipientDsnFieldsRecipientDsnFields.getStatus() != null) {
-                        request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".RecipientDsnFields.Status", StringUtils.fromString(recipientDsnFieldsRecipientDsnFields.getStatus()));
-                    }
-                    if (recipientDsnFieldsRecipientDsnFields.getDiagnosticCode() != null) {
-                        request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".RecipientDsnFields.DiagnosticCode", StringUtils.fromString(recipientDsnFieldsRecipientDsnFields.getDiagnosticCode()));
-                    }
-                    if (recipientDsnFieldsRecipientDsnFields.getLastAttemptDate() != null) {
-                        request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".RecipientDsnFields.LastAttemptDate", StringUtils.fromDate(recipientDsnFieldsRecipientDsnFields.getLastAttemptDate()));
-                    }
-
-                    java.util.List<ExtensionField> extensionFieldsList = recipientDsnFieldsRecipientDsnFields.getExtensionFields();
-                    int extensionFieldsListIndex = 1;
-
-                    for (ExtensionField extensionFieldsListValue : extensionFieldsList) {
-                        ExtensionField extensionFieldMember = extensionFieldsListValue;
-                        if (extensionFieldMember != null) {
-                            if (extensionFieldMember.getName() != null) {
-                                request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".RecipientDsnFields.ExtensionFields.member." + extensionFieldsListIndex + ".Name", StringUtils.fromString(extensionFieldMember.getName()));
-                            }
-                            if (extensionFieldMember.getValue() != null) {
-                                request.addParameter("BouncedRecipientInfoList.member." + bouncedRecipientInfoListListIndex + ".RecipientDsnFields.ExtensionFields.member." + extensionFieldsListIndex + ".Value", StringUtils.fromString(extensionFieldMember.getValue()));
-                            }
-                        }
-
-                        extensionFieldsListIndex++;
-                    }
-                }
+                bouncedRecipientInfoListIndex++;
             }
-
-            bouncedRecipientInfoListListIndex++;
+            prefix = bouncedRecipientInfoListPrefix;
         }
         if (sendBounceRequest.getBounceSenderArn() != null) {
-            request.addParameter("BounceSenderArn", StringUtils.fromString(sendBounceRequest.getBounceSenderArn()));
+            prefix = "BounceSenderArn";
+            String bounceSenderArn = sendBounceRequest.getBounceSenderArn();
+            request.addParameter(prefix, StringUtils.fromString(bounceSenderArn));
         }
 
         return request;

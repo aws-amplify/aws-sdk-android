@@ -1,12 +1,12 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -27,21 +27,24 @@ import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
 /**
- * Platform Application StAX Unmarshaller
+ * StAX unmarshaller for model PlatformApplication
  */
-public class PlatformApplicationStaxUnmarshaller implements Unmarshaller<PlatformApplication, StaxUnmarshallerContext> {
-    private static class AttributesMapEntryUnmarshaller implements Unmarshaller<Map.Entry<String, String>, StaxUnmarshallerContext> {
+class PlatformApplicationStaxUnmarshaller implements
+        Unmarshaller<PlatformApplication, StaxUnmarshallerContext> {
+
+    private static class AttributesMapEntryUnmarshaller implements
+            Unmarshaller<Map.Entry<String, String>, StaxUnmarshallerContext> {
         @Override
         public Entry<String, String> unmarshall(StaxUnmarshallerContext context) throws Exception {
             int originalDepth = context.getCurrentDepth();
             int targetDepth = originalDepth + 1;
 
-            MapEntry<String, String> entry
-                = new MapEntry<String, String>();
+            MapEntry<String, String> entry = new MapEntry<String, String>();
 
             while (true) {
                 int xmlEvent = context.nextEvent();
-                if (xmlEvent == XmlPullParser.END_DOCUMENT) return entry;
+                if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                    return entry;
 
                 if (xmlEvent == XmlPullParser.START_TAG) {
                     if (context.testExpression("key", targetDepth)) {
@@ -53,14 +56,17 @@ public class PlatformApplicationStaxUnmarshaller implements Unmarshaller<Platfor
                         continue;
                     }
                 } else if (xmlEvent == XmlPullParser.END_TAG) {
-                    if (context.getCurrentDepth() < originalDepth) return entry;
+                    if (context.getCurrentDepth() < originalDepth)
+                        return entry;
                 }
             }
         }
 
         private static AttributesMapEntryUnmarshaller instance;
+
         public static AttributesMapEntryUnmarshaller getInstance() {
-            if (instance == null) instance = new AttributesMapEntryUnmarshaller();
+            if (instance == null)
+                instance = new AttributesMapEntryUnmarshaller();
             return instance;
         }
 
@@ -68,37 +74,44 @@ public class PlatformApplicationStaxUnmarshaller implements Unmarshaller<Platfor
 
     public PlatformApplication unmarshall(StaxUnmarshallerContext context) throws Exception {
         PlatformApplication platformApplication = new PlatformApplication();
+
         int originalDepth = context.getCurrentDepth();
         int targetDepth = originalDepth + 1;
 
-        if (context.isStartOfDocument()) targetDepth += 2;
+        if (context.isStartOfDocument())
+            targetDepth += 2;
 
         while (true) {
             int xmlEvent = context.nextEvent();
-            if (xmlEvent == XmlPullParser.END_DOCUMENT) return platformApplication;
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("PlatformApplicationArn", targetDepth)) {
-                    platformApplication.setPlatformApplicationArn(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    platformApplication.setPlatformApplicationArn(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("Attributes/entry", targetDepth)) {
-                    Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance().unmarshall(context);
+                    Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance()
+                            .unmarshall(context);
                     platformApplication.getAttributes().put(entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
-                    return platformApplication;
+                    break;
                 }
             }
         }
+        return platformApplication;
     }
 
     private static PlatformApplicationStaxUnmarshaller instance;
+
     public static PlatformApplicationStaxUnmarshaller getInstance() {
-        if (instance == null) instance = new PlatformApplicationStaxUnmarshaller();
+        if (instance == null)
+            instance = new PlatformApplicationStaxUnmarshaller();
         return instance;
     }
 }
-    

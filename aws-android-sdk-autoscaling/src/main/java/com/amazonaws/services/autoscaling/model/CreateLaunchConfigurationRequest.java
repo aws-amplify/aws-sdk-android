@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.autoscaling.model;
 
 import java.io.Serializable;
@@ -19,188 +20,236 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.autoscaling.AmazonAutoScaling#createLaunchConfiguration(CreateLaunchConfigurationRequest) CreateLaunchConfiguration operation}.
  * <p>
  * Creates a launch configuration.
  * </p>
  * <p>
- * If you exceed your maximum limit of launch configurations, which by
- * default is 100 per region, the call fails. For information about
- * viewing and updating this limit, see DescribeAccountLimits.
+ * If you exceed your maximum limit of launch configurations, which by default
+ * is 100 per region, the call fails. For information about viewing and updating
+ * this limit, see <a>DescribeAccountLimits</a>.
  * </p>
  * <p>
- * For more information, see
- * <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/LaunchConfiguration.html"> Launch Configurations </a>
- * in the <i>Auto Scaling Developer Guide</i> .
+ * For more information, see <a href=
+ * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/LaunchConfiguration.html"
+ * >Launch Configurations</a> in the <i>Auto Scaling Developer Guide</i>.
  * </p>
- *
- * @see com.amazonaws.services.autoscaling.AmazonAutoScaling#createLaunchConfiguration(CreateLaunchConfigurationRequest)
  */
-public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest implements Serializable {
-
+public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
-     * The name of the launch configuration. This name must be unique within
-     * the scope of your AWS account.
+     * <p>
+     * The name of the launch configuration. This name must be unique within the
+     * scope of your AWS account.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String launchConfigurationName;
 
     /**
+     * <p>
      * The ID of the Amazon Machine Image (AMI) to use to launch your EC2
-     * instances. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html">Finding
-     * an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * instances. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     * >Finding an AMI</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String imageId;
 
     /**
-     * The name of the key pair. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
-     * EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
+     * <p>
+     * The name of the key pair. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     * >Amazon EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String keyName;
 
     /**
+     * <p>
      * One or more security groups with which to associate the instances.
-     * <p>If your instances are launched in EC2-Classic, you can either
-     * specify security group names or the security group IDs. For more
-     * information about security groups for EC2-Classic, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-     * EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>If your instances are launched into a VPC, specify
-     * security group IDs. For more information, see <a
-     * href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-     * Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
-     * Guide</i>.
+     * </p>
+     * <p>
+     * If your instances are launched in EC2-Classic, you can either specify
+     * security group names or the security group IDs. For more information
+     * about security groups for EC2-Classic, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
+     * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * If your instances are launched into a VPC, specify security group IDs.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> securityGroups;
+    private java.util.List<String> securityGroups = new java.util.ArrayList<String>();
 
     /**
+     * <p>
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
      * to. This parameter is supported only if you are launching EC2-Classic
-     * instances. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * instances. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String classicLinkVPCId;
 
     /**
+     * <p>
      * The IDs of one or more security groups for the specified
      * ClassicLink-enabled VPC. This parameter is required if you specify a
      * ClassicLink-enabled VPC, and is not supported otherwise. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> classicLinkVPCSecurityGroups;
+    private java.util.List<String> classicLinkVPCSecurityGroups = new java.util.ArrayList<String>();
 
     /**
-     * The user data to make available to the launched EC2 instances. For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-     * Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>.
+     * <p>
+     * The user data to make available to the launched EC2 instances. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     * >Instance Metadata and User Data</a> in the <i>Amazon Elastic Compute
+     * Cloud User Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 21847<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Length: </b> - 21847<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String userData;
 
     /**
+     * <p>
      * The ID of the instance to use to create the launch configuration.
-     * <p>The new launch configuration derives attributes from the instance,
-     * with the exception of the block device mapping. <p>To create a launch
-     * configuration with a block device mapping or override any other
-     * instance attributes, specify them as part of the same request. <p>For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html">Create
-     * a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
+     * </p>
+     * <p>
+     * The new launch configuration derives attributes from the instance, with
+     * the exception of the block device mapping.
+     * </p>
+     * <p>
+     * To create a launch configuration with a block device mapping or override
+     * any other instance attributes, specify them as part of the same request.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html"
+     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
      * Scaling Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 19<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String instanceId;
 
     /**
+     * <p>
      * The instance type of the EC2 instance. For information about available
-     * instance types, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     * Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
+     * instance types, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * > Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide.</i>
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String instanceType;
 
     /**
+     * <p>
      * The ID of the kernel associated with the AMI.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String kernelId;
 
     /**
+     * <p>
      * The ID of the RAM disk associated with the AMI.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String ramdiskId;
 
     /**
+     * <p>
      * One or more mappings that specify how block devices are exposed to the
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-     * Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
+     * instance. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<BlockDeviceMapping> blockDeviceMappings;
+    private java.util.List<BlockDeviceMapping> blockDeviceMappings = new java.util.ArrayList<BlockDeviceMapping>();
 
     /**
+     * <p>
      * Enables detailed monitoring if it is disabled. Detailed monitoring is
-     * enabled by default. <p>When detailed monitoring is enabled, Amazon
-     * CloudWatch generates metrics every minute and your account is charged
-     * a fee. When you disable detailed monitoring, by specifying
-     * <code>False</code>, CloudWatch generates metrics every 5 minutes. For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html">Monitoring
-     * Your Auto Scaling Instances and Groups</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * enabled by default.
+     * </p>
+     * <p>
+     * When detailed monitoring is enabled, Amazon CloudWatch generates metrics
+     * every minute and your account is charged a fee. When you disable detailed
+     * monitoring, by specifying <code>False</code>, CloudWatch generates
+     * metrics every 5 minutes. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html"
+     * >Monitoring Your Auto Scaling Instances and Groups</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      */
     private InstanceMonitoring instanceMonitoring;
 
     /**
+     * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price. For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html">Launching
-     * Spot Instances in Your Auto Scaling Group</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * specify exceeds the current Spot market price. For more information, see
+     * <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -208,180 +257,244 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     private String spotPrice;
 
     /**
+     * <p>
      * The name or the Amazon Resource Name (ARN) of the instance profile
-     * associated with the IAM role for the instance. <p>EC2 instances
-     * launched with an IAM role will automatically have AWS security
-     * credentials available. You can use IAM roles with Auto Scaling to
-     * automatically enable applications running on your EC2 instances to
-     * securely access other AWS resources. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html">Launch
-     * Auto Scaling Instances with an IAM Role</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * associated with the IAM role for the instance.
+     * </p>
+     * <p>
+     * EC2 instances launched with an IAM role will automatically have AWS
+     * security credentials available. You can use IAM roles with Auto Scaling
+     * to automatically enable applications running on your EC2 instances to
+     * securely access other AWS resources. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html"
+     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String iamInstanceProfile;
 
     /**
+     * <p>
      * Indicates whether the instance is optimized for Amazon EBS I/O. By
      * default, the instance is not optimized for EBS I/O. The optimization
      * provides dedicated throughput to Amazon EBS and an optimized
-     * configuration stack to provide optimal I/O performance. This
-     * optimization is not available with all instance types. Additional
-     * usage charges apply. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-     * EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute Cloud
-     * User Guide</i>.
+     * configuration stack to provide optimal I/O performance. This optimization
+     * is not available with all instance types. Additional usage charges apply.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute
+     * Cloud User Guide</i>.
+     * </p>
      */
     private Boolean ebsOptimized;
 
     /**
-     * Used for groups that launch instances into a virtual private cloud
-     * (VPC). Specifies whether to assign a public IP address to each
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>. <p>If you specify this parameter, be sure to specify at
-     * least one subnet when you create your group. <p>Default: If the
-     * instance is launched into a default subnet, the default is
-     * <code>true</code>. If the instance is launched into a nondefault
-     * subnet, the default is <code>false</code>. For more information, see
-     * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
-     * Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * Used for groups that launch instances into a virtual private cloud (VPC).
+     * Specifies whether to assign a public IP address to each instance. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * If you specify this parameter, be sure to specify at least one subnet
+     * when you create your group.
+     * </p>
+     * <p>
+     * Default: If the instance is launched into a default subnet, the default
+     * is <code>true</code>. If the instance is launched into a nondefault
+     * subnet, the default is <code>false</code>. For more information, see <a
+     * href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html"
+     * >Supported Platforms</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
      */
     private Boolean associatePublicIpAddress;
 
     /**
+     * <p>
      * The tenancy of the instance. An instance with a tenancy of
      * <code>dedicated</code> runs on single-tenant hardware and can only be
-     * launched into a VPC. <p>You must set the value of this parameter to
-     * <code>dedicated</code> if want to launch Dedicated Instances into a
-     * shared tenancy VPC (VPC with instance placement tenancy attribute set
-     * to <code>default</code>). <p>If you specify this parameter, be sure to
-     * specify at least one subnet when you create your group. <p>For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>. <p>Valid values: <code>default</code> |
-     * <code>dedicated</code>
+     * launched into a VPC.
+     * </p>
+     * <p>
+     * You must set the value of this parameter to <code>dedicated</code> if
+     * want to launch Dedicated Instances into a shared tenancy VPC (VPC with
+     * instance placement tenancy attribute set to <code>default</code>).
+     * </p>
+     * <p>
+     * If you specify this parameter, be sure to specify at least one subnet
+     * when you create your group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Valid values: <code>default</code> | <code>dedicated</code>
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String placementTenancy;
 
     /**
-     * The name of the launch configuration. This name must be unique within
-     * the scope of your AWS account.
+     * <p>
+     * The name of the launch configuration. This name must be unique within the
+     * scope of your AWS account.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The name of the launch configuration. This name must be unique within
-     *         the scope of your AWS account.
+     * @return <p>
+     *         The name of the launch configuration. This name must be unique
+     *         within the scope of your AWS account.
+     *         </p>
      */
     public String getLaunchConfigurationName() {
         return launchConfigurationName;
     }
-    
+
     /**
-     * The name of the launch configuration. This name must be unique within
-     * the scope of your AWS account.
+     * <p>
+     * The name of the launch configuration. This name must be unique within the
+     * scope of your AWS account.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param launchConfigurationName The name of the launch configuration. This name must be unique within
-     *         the scope of your AWS account.
+     * @param launchConfigurationName <p>
+     *            The name of the launch configuration. This name must be unique
+     *            within the scope of your AWS account.
+     *            </p>
      */
     public void setLaunchConfigurationName(String launchConfigurationName) {
         this.launchConfigurationName = launchConfigurationName;
     }
-    
+
     /**
-     * The name of the launch configuration. This name must be unique within
-     * the scope of your AWS account.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the launch configuration. This name must be unique within the
+     * scope of your AWS account.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param launchConfigurationName The name of the launch configuration. This name must be unique within
-     *         the scope of your AWS account.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param launchConfigurationName <p>
+     *            The name of the launch configuration. This name must be unique
+     *            within the scope of your AWS account.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public CreateLaunchConfigurationRequest withLaunchConfigurationName(String launchConfigurationName) {
+    public CreateLaunchConfigurationRequest withLaunchConfigurationName(
+            String launchConfigurationName) {
         this.launchConfigurationName = launchConfigurationName;
         return this;
     }
 
     /**
+     * <p>
      * The ID of the Amazon Machine Image (AMI) to use to launch your EC2
-     * instances. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html">Finding
-     * an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * instances. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     * >Finding an AMI</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The ID of the Amazon Machine Image (AMI) to use to launch your EC2
-     *         instances. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html">Finding
-     *         an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @return <p>
+     *         The ID of the Amazon Machine Image (AMI) to use to launch your
+     *         EC2 instances. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     *         >Finding an AMI</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
+     *         </p>
      */
     public String getImageId() {
         return imageId;
     }
-    
+
     /**
+     * <p>
      * The ID of the Amazon Machine Image (AMI) to use to launch your EC2
-     * instances. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html">Finding
-     * an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * instances. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     * >Finding an AMI</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param imageId The ID of the Amazon Machine Image (AMI) to use to launch your EC2
-     *         instances. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html">Finding
-     *         an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @param imageId <p>
+     *            The ID of the Amazon Machine Image (AMI) to use to launch your
+     *            EC2 instances. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     *            >Finding an AMI</a> in the <i>Amazon Elastic Compute Cloud
+     *            User Guide</i>.
+     *            </p>
      */
     public void setImageId(String imageId) {
         this.imageId = imageId;
     }
-    
+
     /**
-     * The ID of the Amazon Machine Image (AMI) to use to launch your EC2
-     * instances. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html">Finding
-     * an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID of the Amazon Machine Image (AMI) to use to launch your EC2
+     * instances. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     * >Finding an AMI</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param imageId The ID of the Amazon Machine Image (AMI) to use to launch your EC2
-     *         instances. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html">Finding
-     *         an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param imageId <p>
+     *            The ID of the Amazon Machine Image (AMI) to use to launch your
+     *            EC2 instances. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     *            >Finding an AMI</a> in the <i>Amazon Elastic Compute Cloud
+     *            User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withImageId(String imageId) {
         this.imageId = imageId;
@@ -389,62 +502,77 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * The name of the key pair. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
-     * EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
+     * <p>
+     * The name of the key pair. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     * >Amazon EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The name of the key pair. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
-     *         EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
+     * @return <p>
+     *         The name of the key pair. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     *         >Amazon EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud
+     *         User Guide</i>.
+     *         </p>
      */
     public String getKeyName() {
         return keyName;
     }
-    
+
     /**
-     * The name of the key pair. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
-     * EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
+     * <p>
+     * The name of the key pair. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     * >Amazon EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param keyName The name of the key pair. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
-     *         EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
+     * @param keyName <p>
+     *            The name of the key pair. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     *            >Amazon EC2 Key Pairs</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
      */
     public void setKeyName(String keyName) {
         this.keyName = keyName;
     }
-    
+
     /**
-     * The name of the key pair. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
-     * EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the key pair. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     * >Amazon EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param keyName The name of the key pair. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
-     *         EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param keyName <p>
+     *            The name of the key pair. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     *            >Amazon EC2 Key Pairs</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withKeyName(String keyName) {
         this.keyName = keyName;
@@ -452,216 +580,291 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
      * One or more security groups with which to associate the instances.
-     * <p>If your instances are launched in EC2-Classic, you can either
-     * specify security group names or the security group IDs. For more
-     * information about security groups for EC2-Classic, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-     * EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>If your instances are launched into a VPC, specify
-     * security group IDs. For more information, see <a
-     * href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-     * Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
-     * Guide</i>.
+     * </p>
+     * <p>
+     * If your instances are launched in EC2-Classic, you can either specify
+     * security group names or the security group IDs. For more information
+     * about security groups for EC2-Classic, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
+     * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * If your instances are launched into a VPC, specify security group IDs.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
+     * </p>
      *
-     * @return One or more security groups with which to associate the instances.
-     *         <p>If your instances are launched in EC2-Classic, you can either
+     * @return <p>
+     *         One or more security groups with which to associate the
+     *         instances.
+     *         </p>
+     *         <p>
+     *         If your instances are launched in EC2-Classic, you can either
      *         specify security group names or the security group IDs. For more
-     *         information about security groups for EC2-Classic, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-     *         EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>If your instances are launched into a VPC, specify
-     *         security group IDs. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-     *         Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
-     *         Guide</i>.
+     *         information about security groups for EC2-Classic, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
+     *         >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute
+     *         Cloud User Guide</i>.
+     *         </p>
+     *         <p>
+     *         If your instances are launched into a VPC, specify security group
+     *         IDs. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     *         >Security Groups for Your VPC</a> in the <i>Amazon Virtual
+     *         Private Cloud User Guide</i>.
+     *         </p>
      */
     public java.util.List<String> getSecurityGroups() {
-        if (securityGroups == null) {
-              securityGroups = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              securityGroups.setAutoConstruct(true);
-        }
         return securityGroups;
     }
-    
+
     /**
+     * <p>
      * One or more security groups with which to associate the instances.
-     * <p>If your instances are launched in EC2-Classic, you can either
-     * specify security group names or the security group IDs. For more
-     * information about security groups for EC2-Classic, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-     * EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>If your instances are launched into a VPC, specify
-     * security group IDs. For more information, see <a
-     * href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-     * Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
-     * Guide</i>.
+     * </p>
+     * <p>
+     * If your instances are launched in EC2-Classic, you can either specify
+     * security group names or the security group IDs. For more information
+     * about security groups for EC2-Classic, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
+     * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * If your instances are launched into a VPC, specify security group IDs.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
+     * </p>
      *
-     * @param securityGroups One or more security groups with which to associate the instances.
-     *         <p>If your instances are launched in EC2-Classic, you can either
-     *         specify security group names or the security group IDs. For more
-     *         information about security groups for EC2-Classic, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-     *         EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>If your instances are launched into a VPC, specify
-     *         security group IDs. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-     *         Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
-     *         Guide</i>.
+     * @param securityGroups <p>
+     *            One or more security groups with which to associate the
+     *            instances.
+     *            </p>
+     *            <p>
+     *            If your instances are launched in EC2-Classic, you can either
+     *            specify security group names or the security group IDs. For
+     *            more information about security groups for EC2-Classic, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
+     *            >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic
+     *            Compute Cloud User Guide</i>.
+     *            </p>
+     *            <p>
+     *            If your instances are launched into a VPC, specify security
+     *            group IDs. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     *            >Security Groups for Your VPC</a> in the <i>Amazon Virtual
+     *            Private Cloud User Guide</i>.
+     *            </p>
      */
     public void setSecurityGroups(java.util.Collection<String> securityGroups) {
         if (securityGroups == null) {
             this.securityGroups = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> securityGroupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(securityGroups.size());
-        securityGroupsCopy.addAll(securityGroups);
-        this.securityGroups = securityGroupsCopy;
+
+        this.securityGroups = new java.util.ArrayList<String>(securityGroups);
     }
-    
+
     /**
-     * One or more security groups with which to associate the instances.
-     * <p>If your instances are launched in EC2-Classic, you can either
-     * specify security group names or the security group IDs. For more
-     * information about security groups for EC2-Classic, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-     * EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>If your instances are launched into a VPC, specify
-     * security group IDs. For more information, see <a
-     * href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-     * Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
-     * Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * One or more security groups with which to associate the instances.
+     * </p>
+     * <p>
+     * If your instances are launched in EC2-Classic, you can either specify
+     * security group names or the security group IDs. For more information
+     * about security groups for EC2-Classic, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
+     * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * If your instances are launched into a VPC, specify security group IDs.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param securityGroups One or more security groups with which to associate the instances.
-     *         <p>If your instances are launched in EC2-Classic, you can either
-     *         specify security group names or the security group IDs. For more
-     *         information about security groups for EC2-Classic, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-     *         EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>If your instances are launched into a VPC, specify
-     *         security group IDs. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-     *         Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
-     *         Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param securityGroups <p>
+     *            One or more security groups with which to associate the
+     *            instances.
+     *            </p>
+     *            <p>
+     *            If your instances are launched in EC2-Classic, you can either
+     *            specify security group names or the security group IDs. For
+     *            more information about security groups for EC2-Classic, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
+     *            >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic
+     *            Compute Cloud User Guide</i>.
+     *            </p>
+     *            <p>
+     *            If your instances are launched into a VPC, specify security
+     *            group IDs. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     *            >Security Groups for Your VPC</a> in the <i>Amazon Virtual
+     *            Private Cloud User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withSecurityGroups(String... securityGroups) {
-        if (getSecurityGroups() == null) setSecurityGroups(new java.util.ArrayList<String>(securityGroups.length));
+        if (getSecurityGroups() == null) {
+            this.securityGroups = new java.util.ArrayList<String>(securityGroups.length);
+        }
         for (String value : securityGroups) {
-            getSecurityGroups().add(value);
+            this.securityGroups.add(value);
         }
         return this;
     }
-    
+
     /**
-     * One or more security groups with which to associate the instances.
-     * <p>If your instances are launched in EC2-Classic, you can either
-     * specify security group names or the security group IDs. For more
-     * information about security groups for EC2-Classic, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-     * EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>. <p>If your instances are launched into a VPC, specify
-     * security group IDs. For more information, see <a
-     * href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-     * Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
-     * Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * One or more security groups with which to associate the instances.
+     * </p>
+     * <p>
+     * If your instances are launched in EC2-Classic, you can either specify
+     * security group names or the security group IDs. For more information
+     * about security groups for EC2-Classic, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
+     * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * If your instances are launched into a VPC, specify security group IDs.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param securityGroups One or more security groups with which to associate the instances.
-     *         <p>If your instances are launched in EC2-Classic, you can either
-     *         specify security group names or the security group IDs. For more
-     *         information about security groups for EC2-Classic, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Amazon
-     *         EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>. <p>If your instances are launched into a VPC, specify
-     *         security group IDs. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security
-     *         Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
-     *         Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param securityGroups <p>
+     *            One or more security groups with which to associate the
+     *            instances.
+     *            </p>
+     *            <p>
+     *            If your instances are launched in EC2-Classic, you can either
+     *            specify security group names or the security group IDs. For
+     *            more information about security groups for EC2-Classic, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
+     *            >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic
+     *            Compute Cloud User Guide</i>.
+     *            </p>
+     *            <p>
+     *            If your instances are launched into a VPC, specify security
+     *            group IDs. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     *            >Security Groups for Your VPC</a> in the <i>Amazon Virtual
+     *            Private Cloud User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public CreateLaunchConfigurationRequest withSecurityGroups(java.util.Collection<String> securityGroups) {
-        if (securityGroups == null) {
-            this.securityGroups = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> securityGroupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(securityGroups.size());
-            securityGroupsCopy.addAll(securityGroups);
-            this.securityGroups = securityGroupsCopy;
-        }
-
+    public CreateLaunchConfigurationRequest withSecurityGroups(
+            java.util.Collection<String> securityGroups) {
+        setSecurityGroups(securityGroups);
         return this;
     }
 
     /**
+     * <p>
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
      * to. This parameter is supported only if you are launching EC2-Classic
-     * instances. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * instances. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
-     *         to. This parameter is supported only if you are launching EC2-Classic
-     *         instances. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @return <p>
+     *         The ID of a ClassicLink-enabled VPC to link your EC2-Classic
+     *         instances to. This parameter is supported only if you are
+     *         launching EC2-Classic instances. For more information, see <a
+     *         href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *         >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
+     *         </p>
      */
     public String getClassicLinkVPCId() {
         return classicLinkVPCId;
     }
-    
+
     /**
+     * <p>
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
      * to. This parameter is supported only if you are launching EC2-Classic
-     * instances. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * instances. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param classicLinkVPCId The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
-     *         to. This parameter is supported only if you are launching EC2-Classic
-     *         instances. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @param classicLinkVPCId <p>
+     *            The ID of a ClassicLink-enabled VPC to link your EC2-Classic
+     *            instances to. This parameter is supported only if you are
+     *            launching EC2-Classic instances. For more information, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
+     *            Guide</i>.
+     *            </p>
      */
     public void setClassicLinkVPCId(String classicLinkVPCId) {
         this.classicLinkVPCId = classicLinkVPCId;
     }
-    
+
     /**
+     * <p>
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
      * to. This parameter is supported only if you are launching EC2-Classic
-     * instances. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * instances. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param classicLinkVPCId The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
-     *         to. This parameter is supported only if you are launching EC2-Classic
-     *         instances. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param classicLinkVPCId <p>
+     *            The ID of a ClassicLink-enabled VPC to link your EC2-Classic
+     *            instances to. This parameter is supported only if you are
+     *            launching EC2-Classic instances. For more information, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
+     *            Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withClassicLinkVPCId(String classicLinkVPCId) {
         this.classicLinkVPCId = classicLinkVPCId;
@@ -669,176 +872,206 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
      * The IDs of one or more security groups for the specified
      * ClassicLink-enabled VPC. This parameter is required if you specify a
      * ClassicLink-enabled VPC, and is not supported otherwise. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
      *
-     * @return The IDs of one or more security groups for the specified
-     *         ClassicLink-enabled VPC. This parameter is required if you specify a
-     *         ClassicLink-enabled VPC, and is not supported otherwise. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @return <p>
+     *         The IDs of one or more security groups for the specified
+     *         ClassicLink-enabled VPC. This parameter is required if you
+     *         specify a ClassicLink-enabled VPC, and is not supported
+     *         otherwise. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *         >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
+     *         </p>
      */
     public java.util.List<String> getClassicLinkVPCSecurityGroups() {
-        if (classicLinkVPCSecurityGroups == null) {
-              classicLinkVPCSecurityGroups = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              classicLinkVPCSecurityGroups.setAutoConstruct(true);
-        }
         return classicLinkVPCSecurityGroups;
     }
-    
+
     /**
+     * <p>
      * The IDs of one or more security groups for the specified
      * ClassicLink-enabled VPC. This parameter is required if you specify a
      * ClassicLink-enabled VPC, and is not supported otherwise. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
      *
-     * @param classicLinkVPCSecurityGroups The IDs of one or more security groups for the specified
-     *         ClassicLink-enabled VPC. This parameter is required if you specify a
-     *         ClassicLink-enabled VPC, and is not supported otherwise. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @param classicLinkVPCSecurityGroups <p>
+     *            The IDs of one or more security groups for the specified
+     *            ClassicLink-enabled VPC. This parameter is required if you
+     *            specify a ClassicLink-enabled VPC, and is not supported
+     *            otherwise. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
+     *            Guide</i>.
+     *            </p>
      */
-    public void setClassicLinkVPCSecurityGroups(java.util.Collection<String> classicLinkVPCSecurityGroups) {
+    public void setClassicLinkVPCSecurityGroups(
+            java.util.Collection<String> classicLinkVPCSecurityGroups) {
         if (classicLinkVPCSecurityGroups == null) {
             this.classicLinkVPCSecurityGroups = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> classicLinkVPCSecurityGroupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(classicLinkVPCSecurityGroups.size());
-        classicLinkVPCSecurityGroupsCopy.addAll(classicLinkVPCSecurityGroups);
-        this.classicLinkVPCSecurityGroups = classicLinkVPCSecurityGroupsCopy;
+
+        this.classicLinkVPCSecurityGroups = new java.util.ArrayList<String>(
+                classicLinkVPCSecurityGroups);
     }
-    
+
     /**
+     * <p>
      * The IDs of one or more security groups for the specified
      * ClassicLink-enabled VPC. This parameter is required if you specify a
      * ClassicLink-enabled VPC, and is not supported otherwise. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param classicLinkVPCSecurityGroups The IDs of one or more security groups for the specified
-     *         ClassicLink-enabled VPC. This parameter is required if you specify a
-     *         ClassicLink-enabled VPC, and is not supported otherwise. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param classicLinkVPCSecurityGroups <p>
+     *            The IDs of one or more security groups for the specified
+     *            ClassicLink-enabled VPC. This parameter is required if you
+     *            specify a ClassicLink-enabled VPC, and is not supported
+     *            otherwise. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
+     *            Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public CreateLaunchConfigurationRequest withClassicLinkVPCSecurityGroups(String... classicLinkVPCSecurityGroups) {
-        if (getClassicLinkVPCSecurityGroups() == null) setClassicLinkVPCSecurityGroups(new java.util.ArrayList<String>(classicLinkVPCSecurityGroups.length));
+    public CreateLaunchConfigurationRequest withClassicLinkVPCSecurityGroups(
+            String... classicLinkVPCSecurityGroups) {
+        if (getClassicLinkVPCSecurityGroups() == null) {
+            this.classicLinkVPCSecurityGroups = new java.util.ArrayList<String>(
+                    classicLinkVPCSecurityGroups.length);
+        }
         for (String value : classicLinkVPCSecurityGroups) {
-            getClassicLinkVPCSecurityGroups().add(value);
+            this.classicLinkVPCSecurityGroups.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * The IDs of one or more security groups for the specified
      * ClassicLink-enabled VPC. This parameter is required if you specify a
      * ClassicLink-enabled VPC, and is not supported otherwise. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     * in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param classicLinkVPCSecurityGroups The IDs of one or more security groups for the specified
-     *         ClassicLink-enabled VPC. This parameter is required if you specify a
-     *         ClassicLink-enabled VPC, and is not supported otherwise. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
-     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param classicLinkVPCSecurityGroups <p>
+     *            The IDs of one or more security groups for the specified
+     *            ClassicLink-enabled VPC. This parameter is required if you
+     *            specify a ClassicLink-enabled VPC, and is not supported
+     *            otherwise. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
+     *            Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public CreateLaunchConfigurationRequest withClassicLinkVPCSecurityGroups(java.util.Collection<String> classicLinkVPCSecurityGroups) {
-        if (classicLinkVPCSecurityGroups == null) {
-            this.classicLinkVPCSecurityGroups = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> classicLinkVPCSecurityGroupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(classicLinkVPCSecurityGroups.size());
-            classicLinkVPCSecurityGroupsCopy.addAll(classicLinkVPCSecurityGroups);
-            this.classicLinkVPCSecurityGroups = classicLinkVPCSecurityGroupsCopy;
-        }
-
+    public CreateLaunchConfigurationRequest withClassicLinkVPCSecurityGroups(
+            java.util.Collection<String> classicLinkVPCSecurityGroups) {
+        setClassicLinkVPCSecurityGroups(classicLinkVPCSecurityGroups);
         return this;
     }
 
     /**
-     * The user data to make available to the launched EC2 instances. For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-     * Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>.
+     * <p>
+     * The user data to make available to the launched EC2 instances. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     * >Instance Metadata and User Data</a> in the <i>Amazon Elastic Compute
+     * Cloud User Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 21847<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Length: </b> - 21847<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The user data to make available to the launched EC2 instances. For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-     *         Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
+     * @return <p>
+     *         The user data to make available to the launched EC2 instances.
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     *         >Instance Metadata and User Data</a> in the <i>Amazon Elastic
+     *         Compute Cloud User Guide</i>.
+     *         </p>
      */
     public String getUserData() {
         return userData;
     }
-    
+
     /**
-     * The user data to make available to the launched EC2 instances. For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-     * Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>.
+     * <p>
+     * The user data to make available to the launched EC2 instances. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     * >Instance Metadata and User Data</a> in the <i>Amazon Elastic Compute
+     * Cloud User Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 21847<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Length: </b> - 21847<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param userData The user data to make available to the launched EC2 instances. For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-     *         Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
+     * @param userData <p>
+     *            The user data to make available to the launched EC2 instances.
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     *            >Instance Metadata and User Data</a> in the <i>Amazon Elastic
+     *            Compute Cloud User Guide</i>.
+     *            </p>
      */
     public void setUserData(String userData) {
         this.userData = userData;
     }
-    
+
     /**
-     * The user data to make available to the launched EC2 instances. For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-     * Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The user data to make available to the launched EC2 instances. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     * >Instance Metadata and User Data</a> in the <i>Amazon Elastic Compute
+     * Cloud User Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 21847<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Length: </b> - 21847<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param userData The user data to make available to the launched EC2 instances. For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-     *         Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param userData <p>
+     *            The user data to make available to the launched EC2 instances.
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     *            >Instance Metadata and User Data</a> in the <i>Amazon Elastic
+     *            Compute Cloud User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withUserData(String userData) {
         this.userData = userData;
@@ -846,92 +1079,148 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
      * The ID of the instance to use to create the launch configuration.
-     * <p>The new launch configuration derives attributes from the instance,
-     * with the exception of the block device mapping. <p>To create a launch
-     * configuration with a block device mapping or override any other
-     * instance attributes, specify them as part of the same request. <p>For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html">Create
-     * a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
+     * </p>
+     * <p>
+     * The new launch configuration derives attributes from the instance, with
+     * the exception of the block device mapping.
+     * </p>
+     * <p>
+     * To create a launch configuration with a block device mapping or override
+     * any other instance attributes, specify them as part of the same request.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html"
+     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
      * Scaling Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 19<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The ID of the instance to use to create the launch configuration.
-     *         <p>The new launch configuration derives attributes from the instance,
-     *         with the exception of the block device mapping. <p>To create a launch
-     *         configuration with a block device mapping or override any other
-     *         instance attributes, specify them as part of the same request. <p>For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html">Create
-     *         a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
-     *         Scaling Developer Guide</i>.
+     * @return <p>
+     *         The ID of the instance to use to create the launch configuration.
+     *         </p>
+     *         <p>
+     *         The new launch configuration derives attributes from the
+     *         instance, with the exception of the block device mapping.
+     *         </p>
+     *         <p>
+     *         To create a launch configuration with a block device mapping or
+     *         override any other instance attributes, specify them as part of
+     *         the same request.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html"
+     *         >Create a Launch Configuration Using an EC2 Instance</a> in the
+     *         <i>Auto Scaling Developer Guide</i>.
+     *         </p>
      */
     public String getInstanceId() {
         return instanceId;
     }
-    
+
     /**
+     * <p>
      * The ID of the instance to use to create the launch configuration.
-     * <p>The new launch configuration derives attributes from the instance,
-     * with the exception of the block device mapping. <p>To create a launch
-     * configuration with a block device mapping or override any other
-     * instance attributes, specify them as part of the same request. <p>For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html">Create
-     * a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
+     * </p>
+     * <p>
+     * The new launch configuration derives attributes from the instance, with
+     * the exception of the block device mapping.
+     * </p>
+     * <p>
+     * To create a launch configuration with a block device mapping or override
+     * any other instance attributes, specify them as part of the same request.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html"
+     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
      * Scaling Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 19<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param instanceId The ID of the instance to use to create the launch configuration.
-     *         <p>The new launch configuration derives attributes from the instance,
-     *         with the exception of the block device mapping. <p>To create a launch
-     *         configuration with a block device mapping or override any other
-     *         instance attributes, specify them as part of the same request. <p>For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html">Create
-     *         a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
-     *         Scaling Developer Guide</i>.
+     * @param instanceId <p>
+     *            The ID of the instance to use to create the launch
+     *            configuration.
+     *            </p>
+     *            <p>
+     *            The new launch configuration derives attributes from the
+     *            instance, with the exception of the block device mapping.
+     *            </p>
+     *            <p>
+     *            To create a launch configuration with a block device mapping
+     *            or override any other instance attributes, specify them as
+     *            part of the same request.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html"
+     *            >Create a Launch Configuration Using an EC2 Instance</a> in
+     *            the <i>Auto Scaling Developer Guide</i>.
+     *            </p>
      */
     public void setInstanceId(String instanceId) {
         this.instanceId = instanceId;
     }
-    
+
     /**
-     * The ID of the instance to use to create the launch configuration.
-     * <p>The new launch configuration derives attributes from the instance,
-     * with the exception of the block device mapping. <p>To create a launch
-     * configuration with a block device mapping or override any other
-     * instance attributes, specify them as part of the same request. <p>For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html">Create
-     * a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
-     * Scaling Developer Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID of the instance to use to create the launch configuration.
+     * </p>
+     * <p>
+     * The new launch configuration derives attributes from the instance, with
+     * the exception of the block device mapping.
+     * </p>
+     * <p>
+     * To create a launch configuration with a block device mapping or override
+     * any other instance attributes, specify them as part of the same request.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html"
+     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 19<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param instanceId The ID of the instance to use to create the launch configuration.
-     *         <p>The new launch configuration derives attributes from the instance,
-     *         with the exception of the block device mapping. <p>To create a launch
-     *         configuration with a block device mapping or override any other
-     *         instance attributes, specify them as part of the same request. <p>For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html">Create
-     *         a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
-     *         Scaling Developer Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param instanceId <p>
+     *            The ID of the instance to use to create the launch
+     *            configuration.
+     *            </p>
+     *            <p>
+     *            The new launch configuration derives attributes from the
+     *            instance, with the exception of the block device mapping.
+     *            </p>
+     *            <p>
+     *            To create a launch configuration with a block device mapping
+     *            or override any other instance attributes, specify them as
+     *            part of the same request.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html"
+     *            >Create a Launch Configuration Using an EC2 Instance</a> in
+     *            the <i>Auto Scaling Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
@@ -939,68 +1228,83 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
      * The instance type of the EC2 instance. For information about available
-     * instance types, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     * Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
+     * instance types, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * > Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide.</i>
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The instance type of the EC2 instance. For information about available
-     *         instance types, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     *         Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
-     *         User Guide.</i>
+     * @return <p>
+     *         The instance type of the EC2 instance. For information about
+     *         available instance types, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     *         > Available Instance Types</a> in the <i>Amazon Elastic Compute
+     *         Cloud User Guide.</i>
+     *         </p>
      */
     public String getInstanceType() {
         return instanceType;
     }
-    
+
     /**
+     * <p>
      * The instance type of the EC2 instance. For information about available
-     * instance types, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     * Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
+     * instance types, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * > Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide.</i>
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param instanceType The instance type of the EC2 instance. For information about available
-     *         instance types, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     *         Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
-     *         User Guide.</i>
+     * @param instanceType <p>
+     *            The instance type of the EC2 instance. For information about
+     *            available instance types, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     *            > Available Instance Types</a> in the <i>Amazon Elastic
+     *            Compute Cloud User Guide.</i>
+     *            </p>
      */
     public void setInstanceType(String instanceType) {
         this.instanceType = instanceType;
     }
-    
+
     /**
-     * The instance type of the EC2 instance. For information about available
-     * instance types, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     * Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
-     * User Guide.</i>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The instance type of the EC2 instance. For information about available
+     * instance types, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * > Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
+     * User Guide.</i>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param instanceType The instance type of the EC2 instance. For information about available
-     *         instance types, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">
-     *         Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud
-     *         User Guide.</i>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param instanceType <p>
+     *            The instance type of the EC2 instance. For information about
+     *            available instance types, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     *            > Available Instance Types</a> in the <i>Amazon Elastic
+     *            Compute Cloud User Guide.</i>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withInstanceType(String instanceType) {
         this.instanceType = instanceType;
@@ -1008,44 +1312,59 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
      * The ID of the kernel associated with the AMI.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The ID of the kernel associated with the AMI.
+     * @return <p>
+     *         The ID of the kernel associated with the AMI.
+     *         </p>
      */
     public String getKernelId() {
         return kernelId;
     }
-    
+
     /**
+     * <p>
      * The ID of the kernel associated with the AMI.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param kernelId The ID of the kernel associated with the AMI.
+     * @param kernelId <p>
+     *            The ID of the kernel associated with the AMI.
+     *            </p>
      */
     public void setKernelId(String kernelId) {
         this.kernelId = kernelId;
     }
-    
+
     /**
-     * The ID of the kernel associated with the AMI.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID of the kernel associated with the AMI.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param kernelId The ID of the kernel associated with the AMI.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param kernelId <p>
+     *            The ID of the kernel associated with the AMI.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withKernelId(String kernelId) {
         this.kernelId = kernelId;
@@ -1053,44 +1372,59 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
      * The ID of the RAM disk associated with the AMI.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The ID of the RAM disk associated with the AMI.
+     * @return <p>
+     *         The ID of the RAM disk associated with the AMI.
+     *         </p>
      */
     public String getRamdiskId() {
         return ramdiskId;
     }
-    
+
     /**
+     * <p>
      * The ID of the RAM disk associated with the AMI.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param ramdiskId The ID of the RAM disk associated with the AMI.
+     * @param ramdiskId <p>
+     *            The ID of the RAM disk associated with the AMI.
+     *            </p>
      */
     public void setRamdiskId(String ramdiskId) {
         this.ramdiskId = ramdiskId;
     }
-    
+
     /**
-     * The ID of the RAM disk associated with the AMI.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID of the RAM disk associated with the AMI.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param ramdiskId The ID of the RAM disk associated with the AMI.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param ramdiskId <p>
+     *            The ID of the RAM disk associated with the AMI.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withRamdiskId(String ramdiskId) {
         this.ramdiskId = ramdiskId;
@@ -1098,258 +1432,307 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
      * One or more mappings that specify how block devices are exposed to the
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-     * Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
+     * instance. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
+     * </p>
      *
-     * @return One or more mappings that specify how block devices are exposed to the
-     *         instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-     *         Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
+     * @return <p>
+     *         One or more mappings that specify how block devices are exposed
+     *         to the instance. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     *         >Block Device Mapping</a> in the <i>Amazon Elastic Compute Cloud
+     *         User Guide</i>.
+     *         </p>
      */
     public java.util.List<BlockDeviceMapping> getBlockDeviceMappings() {
-        if (blockDeviceMappings == null) {
-              blockDeviceMappings = new com.amazonaws.internal.ListWithAutoConstructFlag<BlockDeviceMapping>();
-              blockDeviceMappings.setAutoConstruct(true);
-        }
         return blockDeviceMappings;
     }
-    
+
     /**
+     * <p>
      * One or more mappings that specify how block devices are exposed to the
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-     * Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
+     * instance. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
+     * </p>
      *
-     * @param blockDeviceMappings One or more mappings that specify how block devices are exposed to the
-     *         instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-     *         Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
+     * @param blockDeviceMappings <p>
+     *            One or more mappings that specify how block devices are
+     *            exposed to the instance. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     *            >Block Device Mapping</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
      */
     public void setBlockDeviceMappings(java.util.Collection<BlockDeviceMapping> blockDeviceMappings) {
         if (blockDeviceMappings == null) {
             this.blockDeviceMappings = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<BlockDeviceMapping> blockDeviceMappingsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<BlockDeviceMapping>(blockDeviceMappings.size());
-        blockDeviceMappingsCopy.addAll(blockDeviceMappings);
-        this.blockDeviceMappings = blockDeviceMappingsCopy;
+
+        this.blockDeviceMappings = new java.util.ArrayList<BlockDeviceMapping>(blockDeviceMappings);
     }
-    
+
     /**
-     * One or more mappings that specify how block devices are exposed to the
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-     * Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * One or more mappings that specify how block devices are exposed to the
+     * instance. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param blockDeviceMappings One or more mappings that specify how block devices are exposed to the
-     *         instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-     *         Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param blockDeviceMappings <p>
+     *            One or more mappings that specify how block devices are
+     *            exposed to the instance. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     *            >Block Device Mapping</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public CreateLaunchConfigurationRequest withBlockDeviceMappings(BlockDeviceMapping... blockDeviceMappings) {
-        if (getBlockDeviceMappings() == null) setBlockDeviceMappings(new java.util.ArrayList<BlockDeviceMapping>(blockDeviceMappings.length));
+    public CreateLaunchConfigurationRequest withBlockDeviceMappings(
+            BlockDeviceMapping... blockDeviceMappings) {
+        if (getBlockDeviceMappings() == null) {
+            this.blockDeviceMappings = new java.util.ArrayList<BlockDeviceMapping>(
+                    blockDeviceMappings.length);
+        }
         for (BlockDeviceMapping value : blockDeviceMappings) {
-            getBlockDeviceMappings().add(value);
+            this.blockDeviceMappings.add(value);
         }
         return this;
     }
-    
+
     /**
-     * One or more mappings that specify how block devices are exposed to the
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-     * Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
-     * Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * One or more mappings that specify how block devices are exposed to the
+     * instance. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param blockDeviceMappings One or more mappings that specify how block devices are exposed to the
-     *         instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html">Block
-     *         Device Mapping</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param blockDeviceMappings <p>
+     *            One or more mappings that specify how block devices are
+     *            exposed to the instance. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     *            >Block Device Mapping</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public CreateLaunchConfigurationRequest withBlockDeviceMappings(java.util.Collection<BlockDeviceMapping> blockDeviceMappings) {
-        if (blockDeviceMappings == null) {
-            this.blockDeviceMappings = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<BlockDeviceMapping> blockDeviceMappingsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<BlockDeviceMapping>(blockDeviceMappings.size());
-            blockDeviceMappingsCopy.addAll(blockDeviceMappings);
-            this.blockDeviceMappings = blockDeviceMappingsCopy;
-        }
-
+    public CreateLaunchConfigurationRequest withBlockDeviceMappings(
+            java.util.Collection<BlockDeviceMapping> blockDeviceMappings) {
+        setBlockDeviceMappings(blockDeviceMappings);
         return this;
     }
 
     /**
+     * <p>
      * Enables detailed monitoring if it is disabled. Detailed monitoring is
-     * enabled by default. <p>When detailed monitoring is enabled, Amazon
-     * CloudWatch generates metrics every minute and your account is charged
-     * a fee. When you disable detailed monitoring, by specifying
-     * <code>False</code>, CloudWatch generates metrics every 5 minutes. For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html">Monitoring
-     * Your Auto Scaling Instances and Groups</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * enabled by default.
+     * </p>
+     * <p>
+     * When detailed monitoring is enabled, Amazon CloudWatch generates metrics
+     * every minute and your account is charged a fee. When you disable detailed
+     * monitoring, by specifying <code>False</code>, CloudWatch generates
+     * metrics every 5 minutes. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html"
+     * >Monitoring Your Auto Scaling Instances and Groups</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      *
-     * @return Enables detailed monitoring if it is disabled. Detailed monitoring is
-     *         enabled by default. <p>When detailed monitoring is enabled, Amazon
-     *         CloudWatch generates metrics every minute and your account is charged
-     *         a fee. When you disable detailed monitoring, by specifying
-     *         <code>False</code>, CloudWatch generates metrics every 5 minutes. For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html">Monitoring
-     *         Your Auto Scaling Instances and Groups</a> in the <i>Auto Scaling
-     *         Developer Guide</i>.
+     * @return <p>
+     *         Enables detailed monitoring if it is disabled. Detailed
+     *         monitoring is enabled by default.
+     *         </p>
+     *         <p>
+     *         When detailed monitoring is enabled, Amazon CloudWatch generates
+     *         metrics every minute and your account is charged a fee. When you
+     *         disable detailed monitoring, by specifying <code>False</code>,
+     *         CloudWatch generates metrics every 5 minutes. For more
+     *         information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html"
+     *         >Monitoring Your Auto Scaling Instances and Groups</a> in the
+     *         <i>Auto Scaling Developer Guide</i>.
+     *         </p>
      */
     public InstanceMonitoring getInstanceMonitoring() {
         return instanceMonitoring;
     }
-    
+
     /**
+     * <p>
      * Enables detailed monitoring if it is disabled. Detailed monitoring is
-     * enabled by default. <p>When detailed monitoring is enabled, Amazon
-     * CloudWatch generates metrics every minute and your account is charged
-     * a fee. When you disable detailed monitoring, by specifying
-     * <code>False</code>, CloudWatch generates metrics every 5 minutes. For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html">Monitoring
-     * Your Auto Scaling Instances and Groups</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * enabled by default.
+     * </p>
+     * <p>
+     * When detailed monitoring is enabled, Amazon CloudWatch generates metrics
+     * every minute and your account is charged a fee. When you disable detailed
+     * monitoring, by specifying <code>False</code>, CloudWatch generates
+     * metrics every 5 minutes. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html"
+     * >Monitoring Your Auto Scaling Instances and Groups</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      *
-     * @param instanceMonitoring Enables detailed monitoring if it is disabled. Detailed monitoring is
-     *         enabled by default. <p>When detailed monitoring is enabled, Amazon
-     *         CloudWatch generates metrics every minute and your account is charged
-     *         a fee. When you disable detailed monitoring, by specifying
-     *         <code>False</code>, CloudWatch generates metrics every 5 minutes. For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html">Monitoring
-     *         Your Auto Scaling Instances and Groups</a> in the <i>Auto Scaling
-     *         Developer Guide</i>.
+     * @param instanceMonitoring <p>
+     *            Enables detailed monitoring if it is disabled. Detailed
+     *            monitoring is enabled by default.
+     *            </p>
+     *            <p>
+     *            When detailed monitoring is enabled, Amazon CloudWatch
+     *            generates metrics every minute and your account is charged a
+     *            fee. When you disable detailed monitoring, by specifying
+     *            <code>False</code>, CloudWatch generates metrics every 5
+     *            minutes. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html"
+     *            >Monitoring Your Auto Scaling Instances and Groups</a> in the
+     *            <i>Auto Scaling Developer Guide</i>.
+     *            </p>
      */
     public void setInstanceMonitoring(InstanceMonitoring instanceMonitoring) {
         this.instanceMonitoring = instanceMonitoring;
     }
-    
+
     /**
-     * Enables detailed monitoring if it is disabled. Detailed monitoring is
-     * enabled by default. <p>When detailed monitoring is enabled, Amazon
-     * CloudWatch generates metrics every minute and your account is charged
-     * a fee. When you disable detailed monitoring, by specifying
-     * <code>False</code>, CloudWatch generates metrics every 5 minutes. For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html">Monitoring
-     * Your Auto Scaling Instances and Groups</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Enables detailed monitoring if it is disabled. Detailed monitoring is
+     * enabled by default.
+     * </p>
+     * <p>
+     * When detailed monitoring is enabled, Amazon CloudWatch generates metrics
+     * every minute and your account is charged a fee. When you disable detailed
+     * monitoring, by specifying <code>False</code>, CloudWatch generates
+     * metrics every 5 minutes. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html"
+     * >Monitoring Your Auto Scaling Instances and Groups</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param instanceMonitoring Enables detailed monitoring if it is disabled. Detailed monitoring is
-     *         enabled by default. <p>When detailed monitoring is enabled, Amazon
-     *         CloudWatch generates metrics every minute and your account is charged
-     *         a fee. When you disable detailed monitoring, by specifying
-     *         <code>False</code>, CloudWatch generates metrics every 5 minutes. For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html">Monitoring
-     *         Your Auto Scaling Instances and Groups</a> in the <i>Auto Scaling
-     *         Developer Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param instanceMonitoring <p>
+     *            Enables detailed monitoring if it is disabled. Detailed
+     *            monitoring is enabled by default.
+     *            </p>
+     *            <p>
+     *            When detailed monitoring is enabled, Amazon CloudWatch
+     *            generates metrics every minute and your account is charged a
+     *            fee. When you disable detailed monitoring, by specifying
+     *            <code>False</code>, CloudWatch generates metrics every 5
+     *            minutes. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-instance-monitoring.html"
+     *            >Monitoring Your Auto Scaling Instances and Groups</a> in the
+     *            <i>Auto Scaling Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public CreateLaunchConfigurationRequest withInstanceMonitoring(InstanceMonitoring instanceMonitoring) {
+    public CreateLaunchConfigurationRequest withInstanceMonitoring(
+            InstanceMonitoring instanceMonitoring) {
         this.instanceMonitoring = instanceMonitoring;
         return this;
     }
 
     /**
+     * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price. For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html">Launching
-     * Spot Instances in Your Auto Scaling Group</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * specify exceeds the current Spot market price. For more information, see
+     * <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @return The maximum hourly price to be paid for any Spot Instance launched to
-     *         fulfill the request. Spot Instances are launched when the price you
-     *         specify exceeds the current Spot market price. For more information,
-     *         see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html">Launching
-     *         Spot Instances in Your Auto Scaling Group</a> in the <i>Auto Scaling
-     *         Developer Guide</i>.
+     * @return <p>
+     *         The maximum hourly price to be paid for any Spot Instance
+     *         launched to fulfill the request. Spot Instances are launched when
+     *         the price you specify exceeds the current Spot market price. For
+     *         more information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html"
+     *         >Launching Spot Instances in Your Auto Scaling Group</a> in the
+     *         <i>Auto Scaling Developer Guide</i>.
+     *         </p>
      */
     public String getSpotPrice() {
         return spotPrice;
     }
-    
+
     /**
+     * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price. For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html">Launching
-     * Spot Instances in Your Auto Scaling Group</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * specify exceeds the current Spot market price. For more information, see
+     * <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param spotPrice The maximum hourly price to be paid for any Spot Instance launched to
-     *         fulfill the request. Spot Instances are launched when the price you
-     *         specify exceeds the current Spot market price. For more information,
-     *         see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html">Launching
-     *         Spot Instances in Your Auto Scaling Group</a> in the <i>Auto Scaling
-     *         Developer Guide</i>.
+     * @param spotPrice <p>
+     *            The maximum hourly price to be paid for any Spot Instance
+     *            launched to fulfill the request. Spot Instances are launched
+     *            when the price you specify exceeds the current Spot market
+     *            price. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html"
+     *            >Launching Spot Instances in Your Auto Scaling Group</a> in
+     *            the <i>Auto Scaling Developer Guide</i>.
+     *            </p>
      */
     public void setSpotPrice(String spotPrice) {
         this.spotPrice = spotPrice;
     }
-    
+
     /**
+     * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price. For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html">Launching
-     * Spot Instances in Your Auto Scaling Group</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * specify exceeds the current Spot market price. For more information, see
+     * <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
-     * @param spotPrice The maximum hourly price to be paid for any Spot Instance launched to
-     *         fulfill the request. Spot Instances are launched when the price you
-     *         specify exceeds the current Spot market price. For more information,
-     *         see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html">Launching
-     *         Spot Instances in Your Auto Scaling Group</a> in the <i>Auto Scaling
-     *         Developer Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param spotPrice <p>
+     *            The maximum hourly price to be paid for any Spot Instance
+     *            launched to fulfill the request. Spot Instances are launched
+     *            when the price you specify exceeds the current Spot market
+     *            price. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html"
+     *            >Launching Spot Instances in Your Auto Scaling Group</a> in
+     *            the <i>Auto Scaling Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withSpotPrice(String spotPrice) {
         this.spotPrice = spotPrice;
@@ -1357,92 +1740,122 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
      * The name or the Amazon Resource Name (ARN) of the instance profile
-     * associated with the IAM role for the instance. <p>EC2 instances
-     * launched with an IAM role will automatically have AWS security
-     * credentials available. You can use IAM roles with Auto Scaling to
-     * automatically enable applications running on your EC2 instances to
-     * securely access other AWS resources. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html">Launch
-     * Auto Scaling Instances with an IAM Role</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * associated with the IAM role for the instance.
+     * </p>
+     * <p>
+     * EC2 instances launched with an IAM role will automatically have AWS
+     * security credentials available. You can use IAM roles with Auto Scaling
+     * to automatically enable applications running on your EC2 instances to
+     * securely access other AWS resources. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html"
+     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The name or the Amazon Resource Name (ARN) of the instance profile
-     *         associated with the IAM role for the instance. <p>EC2 instances
-     *         launched with an IAM role will automatically have AWS security
-     *         credentials available. You can use IAM roles with Auto Scaling to
-     *         automatically enable applications running on your EC2 instances to
-     *         securely access other AWS resources. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html">Launch
-     *         Auto Scaling Instances with an IAM Role</a> in the <i>Auto Scaling
-     *         Developer Guide</i>.
+     * @return <p>
+     *         The name or the Amazon Resource Name (ARN) of the instance
+     *         profile associated with the IAM role for the instance.
+     *         </p>
+     *         <p>
+     *         EC2 instances launched with an IAM role will automatically have
+     *         AWS security credentials available. You can use IAM roles with
+     *         Auto Scaling to automatically enable applications running on your
+     *         EC2 instances to securely access other AWS resources. For more
+     *         information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html"
+     *         >Launch Auto Scaling Instances with an IAM Role</a> in the
+     *         <i>Auto Scaling Developer Guide</i>.
+     *         </p>
      */
     public String getIamInstanceProfile() {
         return iamInstanceProfile;
     }
-    
+
     /**
+     * <p>
      * The name or the Amazon Resource Name (ARN) of the instance profile
-     * associated with the IAM role for the instance. <p>EC2 instances
-     * launched with an IAM role will automatically have AWS security
-     * credentials available. You can use IAM roles with Auto Scaling to
-     * automatically enable applications running on your EC2 instances to
-     * securely access other AWS resources. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html">Launch
-     * Auto Scaling Instances with an IAM Role</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * associated with the IAM role for the instance.
+     * </p>
+     * <p>
+     * EC2 instances launched with an IAM role will automatically have AWS
+     * security credentials available. You can use IAM roles with Auto Scaling
+     * to automatically enable applications running on your EC2 instances to
+     * securely access other AWS resources. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html"
+     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param iamInstanceProfile The name or the Amazon Resource Name (ARN) of the instance profile
-     *         associated with the IAM role for the instance. <p>EC2 instances
-     *         launched with an IAM role will automatically have AWS security
-     *         credentials available. You can use IAM roles with Auto Scaling to
-     *         automatically enable applications running on your EC2 instances to
-     *         securely access other AWS resources. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html">Launch
-     *         Auto Scaling Instances with an IAM Role</a> in the <i>Auto Scaling
-     *         Developer Guide</i>.
+     * @param iamInstanceProfile <p>
+     *            The name or the Amazon Resource Name (ARN) of the instance
+     *            profile associated with the IAM role for the instance.
+     *            </p>
+     *            <p>
+     *            EC2 instances launched with an IAM role will automatically
+     *            have AWS security credentials available. You can use IAM roles
+     *            with Auto Scaling to automatically enable applications running
+     *            on your EC2 instances to securely access other AWS resources.
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html"
+     *            >Launch Auto Scaling Instances with an IAM Role</a> in the
+     *            <i>Auto Scaling Developer Guide</i>.
+     *            </p>
      */
     public void setIamInstanceProfile(String iamInstanceProfile) {
         this.iamInstanceProfile = iamInstanceProfile;
     }
-    
+
     /**
-     * The name or the Amazon Resource Name (ARN) of the instance profile
-     * associated with the IAM role for the instance. <p>EC2 instances
-     * launched with an IAM role will automatically have AWS security
-     * credentials available. You can use IAM roles with Auto Scaling to
-     * automatically enable applications running on your EC2 instances to
-     * securely access other AWS resources. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html">Launch
-     * Auto Scaling Instances with an IAM Role</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name or the Amazon Resource Name (ARN) of the instance profile
+     * associated with the IAM role for the instance.
+     * </p>
+     * <p>
+     * EC2 instances launched with an IAM role will automatically have AWS
+     * security credentials available. You can use IAM roles with Auto Scaling
+     * to automatically enable applications running on your EC2 instances to
+     * securely access other AWS resources. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html"
+     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Auto
+     * Scaling Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param iamInstanceProfile The name or the Amazon Resource Name (ARN) of the instance profile
-     *         associated with the IAM role for the instance. <p>EC2 instances
-     *         launched with an IAM role will automatically have AWS security
-     *         credentials available. You can use IAM roles with Auto Scaling to
-     *         automatically enable applications running on your EC2 instances to
-     *         securely access other AWS resources. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html">Launch
-     *         Auto Scaling Instances with an IAM Role</a> in the <i>Auto Scaling
-     *         Developer Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param iamInstanceProfile <p>
+     *            The name or the Amazon Resource Name (ARN) of the instance
+     *            profile associated with the IAM role for the instance.
+     *            </p>
+     *            <p>
+     *            EC2 instances launched with an IAM role will automatically
+     *            have AWS security credentials available. You can use IAM roles
+     *            with Auto Scaling to automatically enable applications running
+     *            on your EC2 instances to securely access other AWS resources.
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html"
+     *            >Launch Auto Scaling Instances with an IAM Role</a> in the
+     *            <i>Auto Scaling Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withIamInstanceProfile(String iamInstanceProfile) {
         this.iamInstanceProfile = iamInstanceProfile;
@@ -1450,80 +1863,125 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
      * Indicates whether the instance is optimized for Amazon EBS I/O. By
      * default, the instance is not optimized for EBS I/O. The optimization
      * provides dedicated throughput to Amazon EBS and an optimized
-     * configuration stack to provide optimal I/O performance. This
-     * optimization is not available with all instance types. Additional
-     * usage charges apply. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-     * EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute Cloud
-     * User Guide</i>.
+     * configuration stack to provide optimal I/O performance. This optimization
+     * is not available with all instance types. Additional usage charges apply.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute
+     * Cloud User Guide</i>.
+     * </p>
      *
-     * @return Indicates whether the instance is optimized for Amazon EBS I/O. By
-     *         default, the instance is not optimized for EBS I/O. The optimization
-     *         provides dedicated throughput to Amazon EBS and an optimized
-     *         configuration stack to provide optimal I/O performance. This
-     *         optimization is not available with all instance types. Additional
-     *         usage charges apply. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-     *         EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute Cloud
-     *         User Guide</i>.
+     * @return <p>
+     *         Indicates whether the instance is optimized for Amazon EBS I/O.
+     *         By default, the instance is not optimized for EBS I/O. The
+     *         optimization provides dedicated throughput to Amazon EBS and an
+     *         optimized configuration stack to provide optimal I/O performance.
+     *         This optimization is not available with all instance types.
+     *         Additional usage charges apply. For more information, see <a
+     *         href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     *         >Amazon EBS-Optimized Instances</a> in the <i>Amazon Elastic
+     *         Compute Cloud User Guide</i>.
+     *         </p>
      */
     public Boolean isEbsOptimized() {
         return ebsOptimized;
     }
-    
+
     /**
+     * <p>
      * Indicates whether the instance is optimized for Amazon EBS I/O. By
      * default, the instance is not optimized for EBS I/O. The optimization
      * provides dedicated throughput to Amazon EBS and an optimized
-     * configuration stack to provide optimal I/O performance. This
-     * optimization is not available with all instance types. Additional
-     * usage charges apply. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-     * EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute Cloud
-     * User Guide</i>.
+     * configuration stack to provide optimal I/O performance. This optimization
+     * is not available with all instance types. Additional usage charges apply.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute
+     * Cloud User Guide</i>.
+     * </p>
      *
-     * @param ebsOptimized Indicates whether the instance is optimized for Amazon EBS I/O. By
-     *         default, the instance is not optimized for EBS I/O. The optimization
-     *         provides dedicated throughput to Amazon EBS and an optimized
-     *         configuration stack to provide optimal I/O performance. This
-     *         optimization is not available with all instance types. Additional
-     *         usage charges apply. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-     *         EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute Cloud
-     *         User Guide</i>.
+     * @return <p>
+     *         Indicates whether the instance is optimized for Amazon EBS I/O.
+     *         By default, the instance is not optimized for EBS I/O. The
+     *         optimization provides dedicated throughput to Amazon EBS and an
+     *         optimized configuration stack to provide optimal I/O performance.
+     *         This optimization is not available with all instance types.
+     *         Additional usage charges apply. For more information, see <a
+     *         href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     *         >Amazon EBS-Optimized Instances</a> in the <i>Amazon Elastic
+     *         Compute Cloud User Guide</i>.
+     *         </p>
+     */
+    public Boolean getEbsOptimized() {
+        return ebsOptimized;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the instance is optimized for Amazon EBS I/O. By
+     * default, the instance is not optimized for EBS I/O. The optimization
+     * provides dedicated throughput to Amazon EBS and an optimized
+     * configuration stack to provide optimal I/O performance. This optimization
+     * is not available with all instance types. Additional usage charges apply.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute
+     * Cloud User Guide</i>.
+     * </p>
+     *
+     * @param ebsOptimized <p>
+     *            Indicates whether the instance is optimized for Amazon EBS
+     *            I/O. By default, the instance is not optimized for EBS I/O.
+     *            The optimization provides dedicated throughput to Amazon EBS
+     *            and an optimized configuration stack to provide optimal I/O
+     *            performance. This optimization is not available with all
+     *            instance types. Additional usage charges apply. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     *            >Amazon EBS-Optimized Instances</a> in the <i>Amazon Elastic
+     *            Compute Cloud User Guide</i>.
+     *            </p>
      */
     public void setEbsOptimized(Boolean ebsOptimized) {
         this.ebsOptimized = ebsOptimized;
     }
-    
+
     /**
+     * <p>
      * Indicates whether the instance is optimized for Amazon EBS I/O. By
      * default, the instance is not optimized for EBS I/O. The optimization
      * provides dedicated throughput to Amazon EBS and an optimized
-     * configuration stack to provide optimal I/O performance. This
-     * optimization is not available with all instance types. Additional
-     * usage charges apply. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-     * EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute Cloud
-     * User Guide</i>.
+     * configuration stack to provide optimal I/O performance. This optimization
+     * is not available with all instance types. Additional usage charges apply.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute
+     * Cloud User Guide</i>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param ebsOptimized Indicates whether the instance is optimized for Amazon EBS I/O. By
-     *         default, the instance is not optimized for EBS I/O. The optimization
-     *         provides dedicated throughput to Amazon EBS and an optimized
-     *         configuration stack to provide optimal I/O performance. This
-     *         optimization is not available with all instance types. Additional
-     *         usage charges apply. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-     *         EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute Cloud
-     *         User Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param ebsOptimized <p>
+     *            Indicates whether the instance is optimized for Amazon EBS
+     *            I/O. By default, the instance is not optimized for EBS I/O.
+     *            The optimization provides dedicated throughput to Amazon EBS
+     *            and an optimized configuration stack to provide optimal I/O
+     *            performance. This optimization is not available with all
+     *            instance types. Additional usage charges apply. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     *            >Amazon EBS-Optimized Instances</a> in the <i>Amazon Elastic
+     *            Compute Cloud User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withEbsOptimized(Boolean ebsOptimized) {
         this.ebsOptimized = ebsOptimized;
@@ -1531,273 +1989,385 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * Indicates whether the instance is optimized for Amazon EBS I/O. By
-     * default, the instance is not optimized for EBS I/O. The optimization
-     * provides dedicated throughput to Amazon EBS and an optimized
-     * configuration stack to provide optimal I/O performance. This
-     * optimization is not available with all instance types. Additional
-     * usage charges apply. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-     * EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute Cloud
-     * User Guide</i>.
+     * <p>
+     * Used for groups that launch instances into a virtual private cloud (VPC).
+     * Specifies whether to assign a public IP address to each instance. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * If you specify this parameter, be sure to specify at least one subnet
+     * when you create your group.
+     * </p>
+     * <p>
+     * Default: If the instance is launched into a default subnet, the default
+     * is <code>true</code>. If the instance is launched into a nondefault
+     * subnet, the default is <code>false</code>. For more information, see <a
+     * href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html"
+     * >Supported Platforms</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
      *
-     * @return Indicates whether the instance is optimized for Amazon EBS I/O. By
-     *         default, the instance is not optimized for EBS I/O. The optimization
-     *         provides dedicated throughput to Amazon EBS and an optimized
-     *         configuration stack to provide optimal I/O performance. This
-     *         optimization is not available with all instance types. Additional
-     *         usage charges apply. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon
-     *         EBS-Optimized Instances</a> in the <i>Amazon Elastic Compute Cloud
+     * @return <p>
+     *         Used for groups that launch instances into a virtual private
+     *         cloud (VPC). Specifies whether to assign a public IP address to
+     *         each instance. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *         Scaling Developer Guide</i>.
+     *         </p>
+     *         <p>
+     *         If you specify this parameter, be sure to specify at least one
+     *         subnet when you create your group.
+     *         </p>
+     *         <p>
+     *         Default: If the instance is launched into a default subnet, the
+     *         default is <code>true</code>. If the instance is launched into a
+     *         nondefault subnet, the default is <code>false</code>. For more
+     *         information, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html"
+     *         >Supported Platforms</a> in the <i>Amazon Elastic Compute Cloud
      *         User Guide</i>.
-     */
-    public Boolean getEbsOptimized() {
-        return ebsOptimized;
-    }
-
-    /**
-     * Used for groups that launch instances into a virtual private cloud
-     * (VPC). Specifies whether to assign a public IP address to each
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>. <p>If you specify this parameter, be sure to specify at
-     * least one subnet when you create your group. <p>Default: If the
-     * instance is launched into a default subnet, the default is
-     * <code>true</code>. If the instance is launched into a nondefault
-     * subnet, the default is <code>false</code>. For more information, see
-     * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
-     * Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return Used for groups that launch instances into a virtual private cloud
-     *         (VPC). Specifies whether to assign a public IP address to each
-     *         instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>. <p>If you specify this parameter, be sure to specify at
-     *         least one subnet when you create your group. <p>Default: If the
-     *         instance is launched into a default subnet, the default is
-     *         <code>true</code>. If the instance is launched into a nondefault
-     *         subnet, the default is <code>false</code>. For more information, see
-     *         <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
-     *         Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *         </p>
      */
     public Boolean isAssociatePublicIpAddress() {
         return associatePublicIpAddress;
     }
-    
-    /**
-     * Used for groups that launch instances into a virtual private cloud
-     * (VPC). Specifies whether to assign a public IP address to each
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>. <p>If you specify this parameter, be sure to specify at
-     * least one subnet when you create your group. <p>Default: If the
-     * instance is launched into a default subnet, the default is
-     * <code>true</code>. If the instance is launched into a nondefault
-     * subnet, the default is <code>false</code>. For more information, see
-     * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
-     * Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @param associatePublicIpAddress Used for groups that launch instances into a virtual private cloud
-     *         (VPC). Specifies whether to assign a public IP address to each
-     *         instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>. <p>If you specify this parameter, be sure to specify at
-     *         least one subnet when you create your group. <p>Default: If the
-     *         instance is launched into a default subnet, the default is
-     *         <code>true</code>. If the instance is launched into a nondefault
-     *         subnet, the default is <code>false</code>. For more information, see
-     *         <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
-     *         Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     */
-    public void setAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
-        this.associatePublicIpAddress = associatePublicIpAddress;
-    }
-    
-    /**
-     * Used for groups that launch instances into a virtual private cloud
-     * (VPC). Specifies whether to assign a public IP address to each
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>. <p>If you specify this parameter, be sure to specify at
-     * least one subnet when you create your group. <p>Default: If the
-     * instance is launched into a default subnet, the default is
-     * <code>true</code>. If the instance is launched into a nondefault
-     * subnet, the default is <code>false</code>. For more information, see
-     * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
-     * Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param associatePublicIpAddress Used for groups that launch instances into a virtual private cloud
-     *         (VPC). Specifies whether to assign a public IP address to each
-     *         instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>. <p>If you specify this parameter, be sure to specify at
-     *         least one subnet when you create your group. <p>Default: If the
-     *         instance is launched into a default subnet, the default is
-     *         <code>true</code>. If the instance is launched into a nondefault
-     *         subnet, the default is <code>false</code>. For more information, see
-     *         <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
-     *         Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public CreateLaunchConfigurationRequest withAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
-        this.associatePublicIpAddress = associatePublicIpAddress;
-        return this;
-    }
 
     /**
-     * Used for groups that launch instances into a virtual private cloud
-     * (VPC). Specifies whether to assign a public IP address to each
-     * instance. For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>. <p>If you specify this parameter, be sure to specify at
-     * least one subnet when you create your group. <p>Default: If the
-     * instance is launched into a default subnet, the default is
-     * <code>true</code>. If the instance is launched into a nondefault
-     * subnet, the default is <code>false</code>. For more information, see
-     * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
-     * Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * Used for groups that launch instances into a virtual private cloud (VPC).
+     * Specifies whether to assign a public IP address to each instance. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * If you specify this parameter, be sure to specify at least one subnet
+     * when you create your group.
+     * </p>
+     * <p>
+     * Default: If the instance is launched into a default subnet, the default
+     * is <code>true</code>. If the instance is launched into a nondefault
+     * subnet, the default is <code>false</code>. For more information, see <a
+     * href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html"
+     * >Supported Platforms</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
      *
-     * @return Used for groups that launch instances into a virtual private cloud
-     *         (VPC). Specifies whether to assign a public IP address to each
-     *         instance. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>. <p>If you specify this parameter, be sure to specify at
-     *         least one subnet when you create your group. <p>Default: If the
-     *         instance is launched into a default subnet, the default is
-     *         <code>true</code>. If the instance is launched into a nondefault
-     *         subnet, the default is <code>false</code>. For more information, see
-     *         <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html">Supported
-     *         Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @return <p>
+     *         Used for groups that launch instances into a virtual private
+     *         cloud (VPC). Specifies whether to assign a public IP address to
+     *         each instance. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *         Scaling Developer Guide</i>.
+     *         </p>
+     *         <p>
+     *         If you specify this parameter, be sure to specify at least one
+     *         subnet when you create your group.
+     *         </p>
+     *         <p>
+     *         Default: If the instance is launched into a default subnet, the
+     *         default is <code>true</code>. If the instance is launched into a
+     *         nondefault subnet, the default is <code>false</code>. For more
+     *         information, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html"
+     *         >Supported Platforms</a> in the <i>Amazon Elastic Compute Cloud
+     *         User Guide</i>.
+     *         </p>
      */
     public Boolean getAssociatePublicIpAddress() {
         return associatePublicIpAddress;
     }
 
     /**
+     * <p>
+     * Used for groups that launch instances into a virtual private cloud (VPC).
+     * Specifies whether to assign a public IP address to each instance. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * If you specify this parameter, be sure to specify at least one subnet
+     * when you create your group.
+     * </p>
+     * <p>
+     * Default: If the instance is launched into a default subnet, the default
+     * is <code>true</code>. If the instance is launched into a nondefault
+     * subnet, the default is <code>false</code>. For more information, see <a
+     * href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html"
+     * >Supported Platforms</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     *
+     * @param associatePublicIpAddress <p>
+     *            Used for groups that launch instances into a virtual private
+     *            cloud (VPC). Specifies whether to assign a public IP address
+     *            to each instance. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *            Scaling Developer Guide</i>.
+     *            </p>
+     *            <p>
+     *            If you specify this parameter, be sure to specify at least one
+     *            subnet when you create your group.
+     *            </p>
+     *            <p>
+     *            Default: If the instance is launched into a default subnet,
+     *            the default is <code>true</code>. If the instance is launched
+     *            into a nondefault subnet, the default is <code>false</code>.
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html"
+     *            >Supported Platforms</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
+     */
+    public void setAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
+        this.associatePublicIpAddress = associatePublicIpAddress;
+    }
+
+    /**
+     * <p>
+     * Used for groups that launch instances into a virtual private cloud (VPC).
+     * Specifies whether to assign a public IP address to each instance. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * If you specify this parameter, be sure to specify at least one subnet
+     * when you create your group.
+     * </p>
+     * <p>
+     * Default: If the instance is launched into a default subnet, the default
+     * is <code>true</code>. If the instance is launched into a nondefault
+     * subnet, the default is <code>false</code>. For more information, see <a
+     * href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html"
+     * >Supported Platforms</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param associatePublicIpAddress <p>
+     *            Used for groups that launch instances into a virtual private
+     *            cloud (VPC). Specifies whether to assign a public IP address
+     *            to each instance. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *            Scaling Developer Guide</i>.
+     *            </p>
+     *            <p>
+     *            If you specify this parameter, be sure to specify at least one
+     *            subnet when you create your group.
+     *            </p>
+     *            <p>
+     *            Default: If the instance is launched into a default subnet,
+     *            the default is <code>true</code>. If the instance is launched
+     *            into a nondefault subnet, the default is <code>false</code>.
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html"
+     *            >Supported Platforms</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateLaunchConfigurationRequest withAssociatePublicIpAddress(
+            Boolean associatePublicIpAddress) {
+        this.associatePublicIpAddress = associatePublicIpAddress;
+        return this;
+    }
+
+    /**
+     * <p>
      * The tenancy of the instance. An instance with a tenancy of
      * <code>dedicated</code> runs on single-tenant hardware and can only be
-     * launched into a VPC. <p>You must set the value of this parameter to
-     * <code>dedicated</code> if want to launch Dedicated Instances into a
-     * shared tenancy VPC (VPC with instance placement tenancy attribute set
-     * to <code>default</code>). <p>If you specify this parameter, be sure to
-     * specify at least one subnet when you create your group. <p>For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>. <p>Valid values: <code>default</code> |
-     * <code>dedicated</code>
+     * launched into a VPC.
+     * </p>
+     * <p>
+     * You must set the value of this parameter to <code>dedicated</code> if
+     * want to launch Dedicated Instances into a shared tenancy VPC (VPC with
+     * instance placement tenancy attribute set to <code>default</code>).
+     * </p>
+     * <p>
+     * If you specify this parameter, be sure to specify at least one subnet
+     * when you create your group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Valid values: <code>default</code> | <code>dedicated</code>
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The tenancy of the instance. An instance with a tenancy of
-     *         <code>dedicated</code> runs on single-tenant hardware and can only be
-     *         launched into a VPC. <p>You must set the value of this parameter to
-     *         <code>dedicated</code> if want to launch Dedicated Instances into a
-     *         shared tenancy VPC (VPC with instance placement tenancy attribute set
-     *         to <code>default</code>). <p>If you specify this parameter, be sure to
-     *         specify at least one subnet when you create your group. <p>For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>. <p>Valid values: <code>default</code> |
-     *         <code>dedicated</code>
+     * @return <p>
+     *         The tenancy of the instance. An instance with a tenancy of
+     *         <code>dedicated</code> runs on single-tenant hardware and can
+     *         only be launched into a VPC.
+     *         </p>
+     *         <p>
+     *         You must set the value of this parameter to
+     *         <code>dedicated</code> if want to launch Dedicated Instances into
+     *         a shared tenancy VPC (VPC with instance placement tenancy
+     *         attribute set to <code>default</code>).
+     *         </p>
+     *         <p>
+     *         If you specify this parameter, be sure to specify at least one
+     *         subnet when you create your group.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *         Scaling Developer Guide</i>.
+     *         </p>
+     *         <p>
+     *         Valid values: <code>default</code> | <code>dedicated</code>
+     *         </p>
      */
     public String getPlacementTenancy() {
         return placementTenancy;
     }
-    
+
     /**
+     * <p>
      * The tenancy of the instance. An instance with a tenancy of
      * <code>dedicated</code> runs on single-tenant hardware and can only be
-     * launched into a VPC. <p>You must set the value of this parameter to
-     * <code>dedicated</code> if want to launch Dedicated Instances into a
-     * shared tenancy VPC (VPC with instance placement tenancy attribute set
-     * to <code>default</code>). <p>If you specify this parameter, be sure to
-     * specify at least one subnet when you create your group. <p>For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>. <p>Valid values: <code>default</code> |
-     * <code>dedicated</code>
+     * launched into a VPC.
+     * </p>
+     * <p>
+     * You must set the value of this parameter to <code>dedicated</code> if
+     * want to launch Dedicated Instances into a shared tenancy VPC (VPC with
+     * instance placement tenancy attribute set to <code>default</code>).
+     * </p>
+     * <p>
+     * If you specify this parameter, be sure to specify at least one subnet
+     * when you create your group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Valid values: <code>default</code> | <code>dedicated</code>
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param placementTenancy The tenancy of the instance. An instance with a tenancy of
-     *         <code>dedicated</code> runs on single-tenant hardware and can only be
-     *         launched into a VPC. <p>You must set the value of this parameter to
-     *         <code>dedicated</code> if want to launch Dedicated Instances into a
-     *         shared tenancy VPC (VPC with instance placement tenancy attribute set
-     *         to <code>default</code>). <p>If you specify this parameter, be sure to
-     *         specify at least one subnet when you create your group. <p>For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>. <p>Valid values: <code>default</code> |
-     *         <code>dedicated</code>
+     * @param placementTenancy <p>
+     *            The tenancy of the instance. An instance with a tenancy of
+     *            <code>dedicated</code> runs on single-tenant hardware and can
+     *            only be launched into a VPC.
+     *            </p>
+     *            <p>
+     *            You must set the value of this parameter to
+     *            <code>dedicated</code> if want to launch Dedicated Instances
+     *            into a shared tenancy VPC (VPC with instance placement tenancy
+     *            attribute set to <code>default</code>).
+     *            </p>
+     *            <p>
+     *            If you specify this parameter, be sure to specify at least one
+     *            subnet when you create your group.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *            Scaling Developer Guide</i>.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>default</code> | <code>dedicated</code>
+     *            </p>
      */
     public void setPlacementTenancy(String placementTenancy) {
         this.placementTenancy = placementTenancy;
     }
-    
+
     /**
+     * <p>
      * The tenancy of the instance. An instance with a tenancy of
      * <code>dedicated</code> runs on single-tenant hardware and can only be
-     * launched into a VPC. <p>You must set the value of this parameter to
-     * <code>dedicated</code> if want to launch Dedicated Instances into a
-     * shared tenancy VPC (VPC with instance placement tenancy attribute set
-     * to <code>default</code>). <p>If you specify this parameter, be sure to
-     * specify at least one subnet when you create your group. <p>For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>. <p>Valid values: <code>default</code> |
-     * <code>dedicated</code>
+     * launched into a VPC.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * You must set the value of this parameter to <code>dedicated</code> if
+     * want to launch Dedicated Instances into a shared tenancy VPC (VPC with
+     * instance placement tenancy attribute set to <code>default</code>).
+     * </p>
+     * <p>
+     * If you specify this parameter, be sure to specify at least one subnet
+     * when you create your group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Valid values: <code>default</code> | <code>dedicated</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param placementTenancy The tenancy of the instance. An instance with a tenancy of
-     *         <code>dedicated</code> runs on single-tenant hardware and can only be
-     *         launched into a VPC. <p>You must set the value of this parameter to
-     *         <code>dedicated</code> if want to launch Dedicated Instances into a
-     *         shared tenancy VPC (VPC with instance placement tenancy attribute set
-     *         to <code>default</code>). <p>If you specify this parameter, be sure to
-     *         specify at least one subnet when you create your group. <p>For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>. <p>Valid values: <code>default</code> |
-     *         <code>dedicated</code>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param placementTenancy <p>
+     *            The tenancy of the instance. An instance with a tenancy of
+     *            <code>dedicated</code> runs on single-tenant hardware and can
+     *            only be launched into a VPC.
+     *            </p>
+     *            <p>
+     *            You must set the value of this parameter to
+     *            <code>dedicated</code> if want to launch Dedicated Instances
+     *            into a shared tenancy VPC (VPC with instance placement tenancy
+     *            attribute set to <code>default</code>).
+     *            </p>
+     *            <p>
+     *            If you specify this parameter, be sure to specify at least one
+     *            subnet when you create your group.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *            Scaling Developer Guide</i>.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>default</code> | <code>dedicated</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateLaunchConfigurationRequest withPlacementTenancy(String placementTenancy) {
         this.placementTenancy = placementTenancy;
@@ -1809,107 +2379,195 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getLaunchConfigurationName() != null) sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() + ",");
-        if (getImageId() != null) sb.append("ImageId: " + getImageId() + ",");
-        if (getKeyName() != null) sb.append("KeyName: " + getKeyName() + ",");
-        if (getSecurityGroups() != null) sb.append("SecurityGroups: " + getSecurityGroups() + ",");
-        if (getClassicLinkVPCId() != null) sb.append("ClassicLinkVPCId: " + getClassicLinkVPCId() + ",");
-        if (getClassicLinkVPCSecurityGroups() != null) sb.append("ClassicLinkVPCSecurityGroups: " + getClassicLinkVPCSecurityGroups() + ",");
-        if (getUserData() != null) sb.append("UserData: " + getUserData() + ",");
-        if (getInstanceId() != null) sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getInstanceType() != null) sb.append("InstanceType: " + getInstanceType() + ",");
-        if (getKernelId() != null) sb.append("KernelId: " + getKernelId() + ",");
-        if (getRamdiskId() != null) sb.append("RamdiskId: " + getRamdiskId() + ",");
-        if (getBlockDeviceMappings() != null) sb.append("BlockDeviceMappings: " + getBlockDeviceMappings() + ",");
-        if (getInstanceMonitoring() != null) sb.append("InstanceMonitoring: " + getInstanceMonitoring() + ",");
-        if (getSpotPrice() != null) sb.append("SpotPrice: " + getSpotPrice() + ",");
-        if (getIamInstanceProfile() != null) sb.append("IamInstanceProfile: " + getIamInstanceProfile() + ",");
-        if (isEbsOptimized() != null) sb.append("EbsOptimized: " + isEbsOptimized() + ",");
-        if (isAssociatePublicIpAddress() != null) sb.append("AssociatePublicIpAddress: " + isAssociatePublicIpAddress() + ",");
-        if (getPlacementTenancy() != null) sb.append("PlacementTenancy: " + getPlacementTenancy() );
+        if (getLaunchConfigurationName() != null)
+            sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() + ",");
+        if (getImageId() != null)
+            sb.append("ImageId: " + getImageId() + ",");
+        if (getKeyName() != null)
+            sb.append("KeyName: " + getKeyName() + ",");
+        if (getSecurityGroups() != null)
+            sb.append("SecurityGroups: " + getSecurityGroups() + ",");
+        if (getClassicLinkVPCId() != null)
+            sb.append("ClassicLinkVPCId: " + getClassicLinkVPCId() + ",");
+        if (getClassicLinkVPCSecurityGroups() != null)
+            sb.append("ClassicLinkVPCSecurityGroups: " + getClassicLinkVPCSecurityGroups() + ",");
+        if (getUserData() != null)
+            sb.append("UserData: " + getUserData() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
+        if (getInstanceType() != null)
+            sb.append("InstanceType: " + getInstanceType() + ",");
+        if (getKernelId() != null)
+            sb.append("KernelId: " + getKernelId() + ",");
+        if (getRamdiskId() != null)
+            sb.append("RamdiskId: " + getRamdiskId() + ",");
+        if (getBlockDeviceMappings() != null)
+            sb.append("BlockDeviceMappings: " + getBlockDeviceMappings() + ",");
+        if (getInstanceMonitoring() != null)
+            sb.append("InstanceMonitoring: " + getInstanceMonitoring() + ",");
+        if (getSpotPrice() != null)
+            sb.append("SpotPrice: " + getSpotPrice() + ",");
+        if (getIamInstanceProfile() != null)
+            sb.append("IamInstanceProfile: " + getIamInstanceProfile() + ",");
+        if (getEbsOptimized() != null)
+            sb.append("EbsOptimized: " + getEbsOptimized() + ",");
+        if (getAssociatePublicIpAddress() != null)
+            sb.append("AssociatePublicIpAddress: " + getAssociatePublicIpAddress() + ",");
+        if (getPlacementTenancy() != null)
+            sb.append("PlacementTenancy: " + getPlacementTenancy());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getLaunchConfigurationName() == null) ? 0 : getLaunchConfigurationName().hashCode()); 
-        hashCode = prime * hashCode + ((getImageId() == null) ? 0 : getImageId().hashCode()); 
-        hashCode = prime * hashCode + ((getKeyName() == null) ? 0 : getKeyName().hashCode()); 
-        hashCode = prime * hashCode + ((getSecurityGroups() == null) ? 0 : getSecurityGroups().hashCode()); 
-        hashCode = prime * hashCode + ((getClassicLinkVPCId() == null) ? 0 : getClassicLinkVPCId().hashCode()); 
-        hashCode = prime * hashCode + ((getClassicLinkVPCSecurityGroups() == null) ? 0 : getClassicLinkVPCSecurityGroups().hashCode()); 
-        hashCode = prime * hashCode + ((getUserData() == null) ? 0 : getUserData().hashCode()); 
-        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode()); 
-        hashCode = prime * hashCode + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode()); 
-        hashCode = prime * hashCode + ((getKernelId() == null) ? 0 : getKernelId().hashCode()); 
-        hashCode = prime * hashCode + ((getRamdiskId() == null) ? 0 : getRamdiskId().hashCode()); 
-        hashCode = prime * hashCode + ((getBlockDeviceMappings() == null) ? 0 : getBlockDeviceMappings().hashCode()); 
-        hashCode = prime * hashCode + ((getInstanceMonitoring() == null) ? 0 : getInstanceMonitoring().hashCode()); 
-        hashCode = prime * hashCode + ((getSpotPrice() == null) ? 0 : getSpotPrice().hashCode()); 
-        hashCode = prime * hashCode + ((getIamInstanceProfile() == null) ? 0 : getIamInstanceProfile().hashCode()); 
-        hashCode = prime * hashCode + ((isEbsOptimized() == null) ? 0 : isEbsOptimized().hashCode()); 
-        hashCode = prime * hashCode + ((isAssociatePublicIpAddress() == null) ? 0 : isAssociatePublicIpAddress().hashCode()); 
-        hashCode = prime * hashCode + ((getPlacementTenancy() == null) ? 0 : getPlacementTenancy().hashCode()); 
+
+        hashCode = prime
+                * hashCode
+                + ((getLaunchConfigurationName() == null) ? 0 : getLaunchConfigurationName()
+                        .hashCode());
+        hashCode = prime * hashCode + ((getImageId() == null) ? 0 : getImageId().hashCode());
+        hashCode = prime * hashCode + ((getKeyName() == null) ? 0 : getKeyName().hashCode());
+        hashCode = prime * hashCode
+                + ((getSecurityGroups() == null) ? 0 : getSecurityGroups().hashCode());
+        hashCode = prime * hashCode
+                + ((getClassicLinkVPCId() == null) ? 0 : getClassicLinkVPCId().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getClassicLinkVPCSecurityGroups() == null) ? 0
+                        : getClassicLinkVPCSecurityGroups().hashCode());
+        hashCode = prime * hashCode + ((getUserData() == null) ? 0 : getUserData().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
+        hashCode = prime * hashCode
+                + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode());
+        hashCode = prime * hashCode + ((getKernelId() == null) ? 0 : getKernelId().hashCode());
+        hashCode = prime * hashCode + ((getRamdiskId() == null) ? 0 : getRamdiskId().hashCode());
+        hashCode = prime * hashCode
+                + ((getBlockDeviceMappings() == null) ? 0 : getBlockDeviceMappings().hashCode());
+        hashCode = prime * hashCode
+                + ((getInstanceMonitoring() == null) ? 0 : getInstanceMonitoring().hashCode());
+        hashCode = prime * hashCode + ((getSpotPrice() == null) ? 0 : getSpotPrice().hashCode());
+        hashCode = prime * hashCode
+                + ((getIamInstanceProfile() == null) ? 0 : getIamInstanceProfile().hashCode());
+        hashCode = prime * hashCode
+                + ((getEbsOptimized() == null) ? 0 : getEbsOptimized().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAssociatePublicIpAddress() == null) ? 0 : getAssociatePublicIpAddress()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getPlacementTenancy() == null) ? 0 : getPlacementTenancy().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof CreateLaunchConfigurationRequest == false) return false;
-        CreateLaunchConfigurationRequest other = (CreateLaunchConfigurationRequest)obj;
-        
-        if (other.getLaunchConfigurationName() == null ^ this.getLaunchConfigurationName() == null) return false;
-        if (other.getLaunchConfigurationName() != null && other.getLaunchConfigurationName().equals(this.getLaunchConfigurationName()) == false) return false; 
-        if (other.getImageId() == null ^ this.getImageId() == null) return false;
-        if (other.getImageId() != null && other.getImageId().equals(this.getImageId()) == false) return false; 
-        if (other.getKeyName() == null ^ this.getKeyName() == null) return false;
-        if (other.getKeyName() != null && other.getKeyName().equals(this.getKeyName()) == false) return false; 
-        if (other.getSecurityGroups() == null ^ this.getSecurityGroups() == null) return false;
-        if (other.getSecurityGroups() != null && other.getSecurityGroups().equals(this.getSecurityGroups()) == false) return false; 
-        if (other.getClassicLinkVPCId() == null ^ this.getClassicLinkVPCId() == null) return false;
-        if (other.getClassicLinkVPCId() != null && other.getClassicLinkVPCId().equals(this.getClassicLinkVPCId()) == false) return false; 
-        if (other.getClassicLinkVPCSecurityGroups() == null ^ this.getClassicLinkVPCSecurityGroups() == null) return false;
-        if (other.getClassicLinkVPCSecurityGroups() != null && other.getClassicLinkVPCSecurityGroups().equals(this.getClassicLinkVPCSecurityGroups()) == false) return false; 
-        if (other.getUserData() == null ^ this.getUserData() == null) return false;
-        if (other.getUserData() != null && other.getUserData().equals(this.getUserData()) == false) return false; 
-        if (other.getInstanceId() == null ^ this.getInstanceId() == null) return false;
-        if (other.getInstanceId() != null && other.getInstanceId().equals(this.getInstanceId()) == false) return false; 
-        if (other.getInstanceType() == null ^ this.getInstanceType() == null) return false;
-        if (other.getInstanceType() != null && other.getInstanceType().equals(this.getInstanceType()) == false) return false; 
-        if (other.getKernelId() == null ^ this.getKernelId() == null) return false;
-        if (other.getKernelId() != null && other.getKernelId().equals(this.getKernelId()) == false) return false; 
-        if (other.getRamdiskId() == null ^ this.getRamdiskId() == null) return false;
-        if (other.getRamdiskId() != null && other.getRamdiskId().equals(this.getRamdiskId()) == false) return false; 
-        if (other.getBlockDeviceMappings() == null ^ this.getBlockDeviceMappings() == null) return false;
-        if (other.getBlockDeviceMappings() != null && other.getBlockDeviceMappings().equals(this.getBlockDeviceMappings()) == false) return false; 
-        if (other.getInstanceMonitoring() == null ^ this.getInstanceMonitoring() == null) return false;
-        if (other.getInstanceMonitoring() != null && other.getInstanceMonitoring().equals(this.getInstanceMonitoring()) == false) return false; 
-        if (other.getSpotPrice() == null ^ this.getSpotPrice() == null) return false;
-        if (other.getSpotPrice() != null && other.getSpotPrice().equals(this.getSpotPrice()) == false) return false; 
-        if (other.getIamInstanceProfile() == null ^ this.getIamInstanceProfile() == null) return false;
-        if (other.getIamInstanceProfile() != null && other.getIamInstanceProfile().equals(this.getIamInstanceProfile()) == false) return false; 
-        if (other.isEbsOptimized() == null ^ this.isEbsOptimized() == null) return false;
-        if (other.isEbsOptimized() != null && other.isEbsOptimized().equals(this.isEbsOptimized()) == false) return false; 
-        if (other.isAssociatePublicIpAddress() == null ^ this.isAssociatePublicIpAddress() == null) return false;
-        if (other.isAssociatePublicIpAddress() != null && other.isAssociatePublicIpAddress().equals(this.isAssociatePublicIpAddress()) == false) return false; 
-        if (other.getPlacementTenancy() == null ^ this.getPlacementTenancy() == null) return false;
-        if (other.getPlacementTenancy() != null && other.getPlacementTenancy().equals(this.getPlacementTenancy()) == false) return false; 
+        if (obj instanceof CreateLaunchConfigurationRequest == false)
+            return false;
+        CreateLaunchConfigurationRequest other = (CreateLaunchConfigurationRequest) obj;
+
+        if (other.getLaunchConfigurationName() == null ^ this.getLaunchConfigurationName() == null)
+            return false;
+        if (other.getLaunchConfigurationName() != null
+                && other.getLaunchConfigurationName().equals(this.getLaunchConfigurationName()) == false)
+            return false;
+        if (other.getImageId() == null ^ this.getImageId() == null)
+            return false;
+        if (other.getImageId() != null && other.getImageId().equals(this.getImageId()) == false)
+            return false;
+        if (other.getKeyName() == null ^ this.getKeyName() == null)
+            return false;
+        if (other.getKeyName() != null && other.getKeyName().equals(this.getKeyName()) == false)
+            return false;
+        if (other.getSecurityGroups() == null ^ this.getSecurityGroups() == null)
+            return false;
+        if (other.getSecurityGroups() != null
+                && other.getSecurityGroups().equals(this.getSecurityGroups()) == false)
+            return false;
+        if (other.getClassicLinkVPCId() == null ^ this.getClassicLinkVPCId() == null)
+            return false;
+        if (other.getClassicLinkVPCId() != null
+                && other.getClassicLinkVPCId().equals(this.getClassicLinkVPCId()) == false)
+            return false;
+        if (other.getClassicLinkVPCSecurityGroups() == null
+                ^ this.getClassicLinkVPCSecurityGroups() == null)
+            return false;
+        if (other.getClassicLinkVPCSecurityGroups() != null
+                && other.getClassicLinkVPCSecurityGroups().equals(
+                        this.getClassicLinkVPCSecurityGroups()) == false)
+            return false;
+        if (other.getUserData() == null ^ this.getUserData() == null)
+            return false;
+        if (other.getUserData() != null && other.getUserData().equals(this.getUserData()) == false)
+            return false;
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+            return false;
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
+            return false;
+        if (other.getInstanceType() == null ^ this.getInstanceType() == null)
+            return false;
+        if (other.getInstanceType() != null
+                && other.getInstanceType().equals(this.getInstanceType()) == false)
+            return false;
+        if (other.getKernelId() == null ^ this.getKernelId() == null)
+            return false;
+        if (other.getKernelId() != null && other.getKernelId().equals(this.getKernelId()) == false)
+            return false;
+        if (other.getRamdiskId() == null ^ this.getRamdiskId() == null)
+            return false;
+        if (other.getRamdiskId() != null
+                && other.getRamdiskId().equals(this.getRamdiskId()) == false)
+            return false;
+        if (other.getBlockDeviceMappings() == null ^ this.getBlockDeviceMappings() == null)
+            return false;
+        if (other.getBlockDeviceMappings() != null
+                && other.getBlockDeviceMappings().equals(this.getBlockDeviceMappings()) == false)
+            return false;
+        if (other.getInstanceMonitoring() == null ^ this.getInstanceMonitoring() == null)
+            return false;
+        if (other.getInstanceMonitoring() != null
+                && other.getInstanceMonitoring().equals(this.getInstanceMonitoring()) == false)
+            return false;
+        if (other.getSpotPrice() == null ^ this.getSpotPrice() == null)
+            return false;
+        if (other.getSpotPrice() != null
+                && other.getSpotPrice().equals(this.getSpotPrice()) == false)
+            return false;
+        if (other.getIamInstanceProfile() == null ^ this.getIamInstanceProfile() == null)
+            return false;
+        if (other.getIamInstanceProfile() != null
+                && other.getIamInstanceProfile().equals(this.getIamInstanceProfile()) == false)
+            return false;
+        if (other.getEbsOptimized() == null ^ this.getEbsOptimized() == null)
+            return false;
+        if (other.getEbsOptimized() != null
+                && other.getEbsOptimized().equals(this.getEbsOptimized()) == false)
+            return false;
+        if (other.getAssociatePublicIpAddress() == null
+                ^ this.getAssociatePublicIpAddress() == null)
+            return false;
+        if (other.getAssociatePublicIpAddress() != null
+                && other.getAssociatePublicIpAddress().equals(this.getAssociatePublicIpAddress()) == false)
+            return false;
+        if (other.getPlacementTenancy() == null ^ this.getPlacementTenancy() == null)
+            return false;
+        if (other.getPlacementTenancy() != null
+                && other.getPlacementTenancy().equals(this.getPlacementTenancy()) == false)
+            return false;
         return true;
     }
-    
 }
-    

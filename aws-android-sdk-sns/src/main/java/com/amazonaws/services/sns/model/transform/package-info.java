@@ -1,6 +1,6 @@
-
 /**
- * Marhsalling for the various types represented by AmazonSNS.
+ * Marhsalling for the various types represented byAmazonSNS
  */
- package com.amazonaws.services.sns.model.transform;
-        
+
+package com.amazonaws.services.sns.model.transform;
+

@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.auth.policy.actions;
 
 import com.amazonaws.auth.policy.Action;
@@ -29,11 +30,17 @@ public enum SQSActions implements Action {
     /** Action for the ChangeMessageVisibility operation. */
     ChangeMessageVisibility("sqs:ChangeMessageVisibility"),
 
+    /** Action for the ChangeMessageVisibilityBatch operation. */
+    ChangeMessageVisibilityBatch("sqs:ChangeMessageVisibilityBatch"),
+
     /** Action for the CreateQueue operation. */
     CreateQueue("sqs:CreateQueue"),
 
     /** Action for the DeleteMessage operation. */
     DeleteMessage("sqs:DeleteMessage"),
+
+    /** Action for the DeleteMessageBatch operation. */
+    DeleteMessageBatch("sqs:DeleteMessageBatch"),
 
     /** Action for the DeleteQueue operation. */
     DeleteQueue("sqs:DeleteQueue"),
@@ -44,8 +51,14 @@ public enum SQSActions implements Action {
     /** Action for the GetQueueUrl operation. */
     GetQueueUrl("sqs:GetQueueUrl"),
 
+    /** Action for the ListDeadLetterSourceQueues operation. */
+    ListDeadLetterSourceQueues("sqs:ListDeadLetterSourceQueues"),
+
     /** Action for the ListQueues operation. */
     ListQueues("sqs:ListQueues"),
+
+    /** Action for the PurgeQueue operation. */
+    PurgeQueue("sqs:PurgeQueue"),
 
     /** Action for the ReceiveMessage operation. */
     ReceiveMessage("sqs:ReceiveMessage"),
@@ -55,6 +68,9 @@ public enum SQSActions implements Action {
 
     /** Action for the SendMessage operation. */
     SendMessage("sqs:SendMessage"),
+
+    /** Action for the SendMessageBatch operation. */
+    SendMessageBatch("sqs:SendMessageBatch"),
 
     /** Action for the SetQueueAttributes operation. */
     SetQueueAttributes("sqs:SetQueueAttributes");

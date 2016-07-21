@@ -273,7 +273,6 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
         jsonErrorUnmarshallers.add(new InvalidRequestContentExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidSecurityGroupIDExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidSubnetIDExceptionUnmarshaller());
-        jsonErrorUnmarshallers.add(new InvalidZipFileExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new RequestTooLargeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceExceptionUnmarshaller());
@@ -308,9 +307,7 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * pointing to the function version using the <code>Qualifier</code>
      * parameter in the request. If you don't provide the <code>Qualifier</code>
      * parameter, the <code>$LATEST</code> version of the Lambda function is
-     * invoked. Invocations occur at least once in response to an event and
-     * functions must be idempotent to handle this. For information about the
-     * versioning feature, see <a href=
+     * invoked. For information about the versioning feature, see <a href=
      * "http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
      * Lambda Function Versioning and Aliases</a>.
      * </p>
@@ -319,7 +316,7 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * <code>lambda:InvokeFunction</code> action.
      * </p>
      * 
-     * @param invokeRequest <p/>
+     * @param invokeRequest
      * @return invokeResult The response from the Invoke service method, as
      *         returned by AWS Lambda.
      * @throws ServiceException
@@ -336,7 +333,6 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * @throws EC2AccessDeniedException
      * @throws InvalidSubnetIDException
      * @throws InvalidSecurityGroupIDException
-     * @throws InvalidZipFileException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

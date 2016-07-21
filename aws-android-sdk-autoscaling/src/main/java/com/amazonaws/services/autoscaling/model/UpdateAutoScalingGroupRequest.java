@@ -1,17 +1,18 @@
 /*
  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.autoscaling.model;
 
 import java.io.Serializable;
@@ -19,213 +20,262 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.autoscaling.AmazonAutoScaling#updateAutoScalingGroup(UpdateAutoScalingGroupRequest) UpdateAutoScalingGroup operation}.
  * <p>
  * Updates the configuration for the specified Auto Scaling group.
  * </p>
  * <p>
  * To update an Auto Scaling group with a launch configuration with
- * <code>InstanceMonitoring</code> set to <code>False</code> ,
- * you must first disable the collection of group metrics.
- * Otherwise, you will get an error. If you have previously enabled the
- * collection of group metrics, you can disable it using
- * DisableMetricsCollection.
+ * <code>InstanceMonitoring</code> set to <code>False</code>, you must first
+ * disable the collection of group metrics. Otherwise, you will get an error. If
+ * you have previously enabled the collection of group metrics, you can disable
+ * it using <a>DisableMetricsCollection</a>.
  * </p>
  * <p>
- * The new settings are registered upon the completion of this call. Any
- * launch configuration settings take effect on any triggers after this
- * call returns. Scaling activities that are currently in progress aren't
- * affected.
+ * The new settings are registered upon the completion of this call. Any launch
+ * configuration settings take effect on any triggers after this call returns.
+ * Scaling activities that are currently in progress aren't affected.
  * </p>
  * <p>
  * Note the following:
  * </p>
- * 
  * <ul>
- * <li> <p>
- * If you specify a new value for <code>MinSize</code> without specifying
- * a value for <code>DesiredCapacity</code> ,
- * and the new <code>MinSize</code> is larger than
- * the current size of the group, we implicitly call SetDesiredCapacity
- * to set the size of the group to the new value of <code>MinSize</code>
- * .
+ * <li>
+ * <p>
+ * If you specify a new value for <code>MinSize</code> without specifying a
+ * value for <code>DesiredCapacity</code>, and the new <code>MinSize</code> is
+ * larger than the current size of the group, we implicitly call
+ * <a>SetDesiredCapacity</a> to set the size of the group to the new value of
+ * <code>MinSize</code>.
  * </p>
  * </li>
- * <li> <p>
- * If you specify a new value for <code>MaxSize</code> without specifying
- * a value for <code>DesiredCapacity</code> ,
- * and the new <code>MaxSize</code> is smaller
- * than the current size of the group, we implicitly call
- * SetDesiredCapacity to set the size of the group to the new value of
- * <code>MaxSize</code> .
+ * <li>
+ * <p>
+ * If you specify a new value for <code>MaxSize</code> without specifying a
+ * value for <code>DesiredCapacity</code>, and the new <code>MaxSize</code> is
+ * smaller than the current size of the group, we implicitly call
+ * <a>SetDesiredCapacity</a> to set the size of the group to the new value of
+ * <code>MaxSize</code>.
  * </p>
  * </li>
- * <li> <p>
+ * <li>
+ * <p>
  * All other optional parameters are left unchanged if not specified.
  * </p>
  * </li>
- * 
  * </ul>
- *
- * @see com.amazonaws.services.autoscaling.AmazonAutoScaling#updateAutoScalingGroup(UpdateAutoScalingGroupRequest)
  */
 public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest implements Serializable {
-
     /**
+     * <p>
      * The name of the Auto Scaling group.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String autoScalingGroupName;
 
     /**
+     * <p>
      * The name of the launch configuration.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String launchConfigurationName;
 
     /**
+     * <p>
      * The minimum size of the Auto Scaling group.
+     * </p>
      */
     private Integer minSize;
 
     /**
+     * <p>
      * The maximum size of the Auto Scaling group.
+     * </p>
      */
     private Integer maxSize;
 
     /**
+     * <p>
      * The number of EC2 instances that should be running in the Auto Scaling
-     * group. This number must be greater than or equal to the minimum size
-     * of the group and less than or equal to the maximum size of the group.
+     * group. This number must be greater than or equal to the minimum size of
+     * the group and less than or equal to the maximum size of the group.
+     * </p>
      */
     private Integer desiredCapacity;
 
     /**
-     * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. The default is 300. <p>For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
-     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * <p>
+     * The amount of time, in seconds, after a scaling activity completes before
+     * another scaling activity can start. The default is 300.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
      */
     private Integer defaultCooldown;
 
     /**
-     * One or more Availability Zones for the group.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * One or more Availability Zones for the group.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> availabilityZones;
+    private java.util.List<String> availabilityZones = new java.util.ArrayList<String>();
 
     /**
+     * <p>
      * The service to use for the health checks. The valid values are
      * <code>EC2</code> and <code>ELB</code>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String healthCheckType;
 
     /**
-     * The amount of time, in seconds, that Auto Scaling waits before
-     * checking the health status of an EC2 instance that has come into
-     * service. The default is 300. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * <p>
+     * The amount of time, in seconds, that Auto Scaling waits before checking
+     * the health status of an EC2 instance that has come into service. The
+     * default is 300.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
+     * >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
      */
     private Integer healthCheckGracePeriod;
 
     /**
-     * The name of the placement group into which you'll launch your
-     * instances, if any. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * The name of the placement group into which you'll launch your instances,
+     * if any. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
+     * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String placementGroup;
 
     /**
+     * <p>
      * The ID of the subnet, if you are launching into a VPC. You can specify
-     * several subnets in a comma-separated list. <p>When you specify
-     * <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
-     * ensure that the subnets' Availability Zones match the values you
-     * specify for <code>AvailabilityZones</code>. <p>For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>.
+     * several subnets in a comma-separated list.
+     * </p>
+     * <p>
+     * When you specify <code>VPCZoneIdentifier</code> with
+     * <code>AvailabilityZones</code>, ensure that the subnets' Availability
+     * Zones match the values you specify for <code>AvailabilityZones</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2047<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      */
     private String vPCZoneIdentifier;
 
     /**
-     * A standalone termination policy or a list of termination policies used
-     * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html">Controlling
-     * Which Instances Auto Scaling Terminates During Scale In</a> in the
-     * <i>Auto Scaling Developer Guide</i>.
+     * <p>
+     * A standalone termination policy or a list of termination policies used to
+     * select the instance to terminate. The policies are executed in the order
+     * that they are listed.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
+     * in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> terminationPolicies;
+    private java.util.List<String> terminationPolicies = new java.util.ArrayList<String>();
 
     /**
-     * Indicates whether newly launched instances are protected from
-     * termination by Auto Scaling when scaling in.
+     * <p>
+     * Indicates whether newly launched instances are protected from termination
+     * by Auto Scaling when scaling in.
+     * </p>
      */
     private Boolean newInstancesProtectedFromScaleIn;
 
     /**
+     * <p>
      * The name of the Auto Scaling group.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The name of the Auto Scaling group.
+     * @return <p>
+     *         The name of the Auto Scaling group.
+     *         </p>
      */
     public String getAutoScalingGroupName() {
         return autoScalingGroupName;
     }
-    
+
     /**
+     * <p>
      * The name of the Auto Scaling group.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param autoScalingGroupName The name of the Auto Scaling group.
+     * @param autoScalingGroupName <p>
+     *            The name of the Auto Scaling group.
+     *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
         this.autoScalingGroupName = autoScalingGroupName;
     }
-    
+
     /**
-     * The name of the Auto Scaling group.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the Auto Scaling group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param autoScalingGroupName The name of the Auto Scaling group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param autoScalingGroupName <p>
+     *            The name of the Auto Scaling group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withAutoScalingGroupName(String autoScalingGroupName) {
         this.autoScalingGroupName = autoScalingGroupName;
@@ -233,44 +283,59 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
      * The name of the launch configuration.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The name of the launch configuration.
+     * @return <p>
+     *         The name of the launch configuration.
+     *         </p>
      */
     public String getLaunchConfigurationName() {
         return launchConfigurationName;
     }
-    
+
     /**
+     * <p>
      * The name of the launch configuration.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param launchConfigurationName The name of the launch configuration.
+     * @param launchConfigurationName <p>
+     *            The name of the launch configuration.
+     *            </p>
      */
     public void setLaunchConfigurationName(String launchConfigurationName) {
         this.launchConfigurationName = launchConfigurationName;
     }
-    
+
     /**
-     * The name of the launch configuration.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the launch configuration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param launchConfigurationName The name of the launch configuration.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param launchConfigurationName <p>
+     *            The name of the launch configuration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withLaunchConfigurationName(String launchConfigurationName) {
         this.launchConfigurationName = launchConfigurationName;
@@ -278,32 +343,44 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
      * The minimum size of the Auto Scaling group.
+     * </p>
      *
-     * @return The minimum size of the Auto Scaling group.
+     * @return <p>
+     *         The minimum size of the Auto Scaling group.
+     *         </p>
      */
     public Integer getMinSize() {
         return minSize;
     }
-    
+
     /**
+     * <p>
      * The minimum size of the Auto Scaling group.
+     * </p>
      *
-     * @param minSize The minimum size of the Auto Scaling group.
+     * @param minSize <p>
+     *            The minimum size of the Auto Scaling group.
+     *            </p>
      */
     public void setMinSize(Integer minSize) {
         this.minSize = minSize;
     }
-    
+
     /**
-     * The minimum size of the Auto Scaling group.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The minimum size of the Auto Scaling group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param minSize The minimum size of the Auto Scaling group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param minSize <p>
+     *            The minimum size of the Auto Scaling group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withMinSize(Integer minSize) {
         this.minSize = minSize;
@@ -311,32 +388,44 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
      * The maximum size of the Auto Scaling group.
+     * </p>
      *
-     * @return The maximum size of the Auto Scaling group.
+     * @return <p>
+     *         The maximum size of the Auto Scaling group.
+     *         </p>
      */
     public Integer getMaxSize() {
         return maxSize;
     }
-    
+
     /**
+     * <p>
      * The maximum size of the Auto Scaling group.
+     * </p>
      *
-     * @param maxSize The maximum size of the Auto Scaling group.
+     * @param maxSize <p>
+     *            The maximum size of the Auto Scaling group.
+     *            </p>
      */
     public void setMaxSize(Integer maxSize) {
         this.maxSize = maxSize;
     }
-    
+
     /**
-     * The maximum size of the Auto Scaling group.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The maximum size of the Auto Scaling group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param maxSize The maximum size of the Auto Scaling group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param maxSize <p>
+     *            The maximum size of the Auto Scaling group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withMaxSize(Integer maxSize) {
         this.maxSize = maxSize;
@@ -344,44 +433,59 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
      * The number of EC2 instances that should be running in the Auto Scaling
-     * group. This number must be greater than or equal to the minimum size
-     * of the group and less than or equal to the maximum size of the group.
+     * group. This number must be greater than or equal to the minimum size of
+     * the group and less than or equal to the maximum size of the group.
+     * </p>
      *
-     * @return The number of EC2 instances that should be running in the Auto Scaling
-     *         group. This number must be greater than or equal to the minimum size
-     *         of the group and less than or equal to the maximum size of the group.
+     * @return <p>
+     *         The number of EC2 instances that should be running in the Auto
+     *         Scaling group. This number must be greater than or equal to the
+     *         minimum size of the group and less than or equal to the maximum
+     *         size of the group.
+     *         </p>
      */
     public Integer getDesiredCapacity() {
         return desiredCapacity;
     }
-    
+
     /**
+     * <p>
      * The number of EC2 instances that should be running in the Auto Scaling
-     * group. This number must be greater than or equal to the minimum size
-     * of the group and less than or equal to the maximum size of the group.
+     * group. This number must be greater than or equal to the minimum size of
+     * the group and less than or equal to the maximum size of the group.
+     * </p>
      *
-     * @param desiredCapacity The number of EC2 instances that should be running in the Auto Scaling
-     *         group. This number must be greater than or equal to the minimum size
-     *         of the group and less than or equal to the maximum size of the group.
+     * @param desiredCapacity <p>
+     *            The number of EC2 instances that should be running in the Auto
+     *            Scaling group. This number must be greater than or equal to
+     *            the minimum size of the group and less than or equal to the
+     *            maximum size of the group.
+     *            </p>
      */
     public void setDesiredCapacity(Integer desiredCapacity) {
         this.desiredCapacity = desiredCapacity;
     }
-    
+
     /**
-     * The number of EC2 instances that should be running in the Auto Scaling
-     * group. This number must be greater than or equal to the minimum size
-     * of the group and less than or equal to the maximum size of the group.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The number of EC2 instances that should be running in the Auto Scaling
+     * group. This number must be greater than or equal to the minimum size of
+     * the group and less than or equal to the maximum size of the group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param desiredCapacity The number of EC2 instances that should be running in the Auto Scaling
-     *         group. This number must be greater than or equal to the minimum size
-     *         of the group and less than or equal to the maximum size of the group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param desiredCapacity <p>
+     *            The number of EC2 instances that should be running in the Auto
+     *            Scaling group. This number must be greater than or equal to
+     *            the minimum size of the group and less than or equal to the
+     *            maximum size of the group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withDesiredCapacity(Integer desiredCapacity) {
         this.desiredCapacity = desiredCapacity;
@@ -389,56 +493,86 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. The default is 300. <p>For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
-     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * <p>
+     * The amount of time, in seconds, after a scaling activity completes before
+     * another scaling activity can start. The default is 300.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
      *
-     * @return The amount of time, in seconds, after a scaling activity completes
-     *         before another scaling activity can start. The default is 300. <p>For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
-     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * @return <p>
+     *         The amount of time, in seconds, after a scaling activity
+     *         completes before another scaling activity can start. The default
+     *         is 300.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
+     *         >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer
+     *         Guide</i>.
+     *         </p>
      */
     public Integer getDefaultCooldown() {
         return defaultCooldown;
     }
-    
+
     /**
-     * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. The default is 300. <p>For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
-     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * <p>
+     * The amount of time, in seconds, after a scaling activity completes before
+     * another scaling activity can start. The default is 300.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
      *
-     * @param defaultCooldown The amount of time, in seconds, after a scaling activity completes
-     *         before another scaling activity can start. The default is 300. <p>For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
-     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * @param defaultCooldown <p>
+     *            The amount of time, in seconds, after a scaling activity
+     *            completes before another scaling activity can start. The
+     *            default is 300.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
+     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer
+     *            Guide</i>.
+     *            </p>
      */
     public void setDefaultCooldown(Integer defaultCooldown) {
         this.defaultCooldown = defaultCooldown;
     }
-    
+
     /**
-     * The amount of time, in seconds, after a scaling activity completes
-     * before another scaling activity can start. The default is 300. <p>For
-     * more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
-     * Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The amount of time, in seconds, after a scaling activity completes before
+     * another scaling activity can start. The default is 300.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param defaultCooldown The amount of time, in seconds, after a scaling activity completes
-     *         before another scaling activity can start. The default is 300. <p>For
-     *         more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html">Auto
-     *         Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param defaultCooldown <p>
+     *            The amount of time, in seconds, after a scaling activity
+     *            completes before another scaling activity can start. The
+     *            default is 300.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
+     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer
+     *            Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withDefaultCooldown(Integer defaultCooldown) {
         this.defaultCooldown = defaultCooldown;
@@ -446,130 +580,140 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * One or more Availability Zones for the group.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * One or more Availability Zones for the group.
+     * </p>
      *
-     * @return One or more Availability Zones for the group.
+     * @return <p>
+     *         One or more Availability Zones for the group.
+     *         </p>
      */
     public java.util.List<String> getAvailabilityZones() {
-        if (availabilityZones == null) {
-              availabilityZones = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              availabilityZones.setAutoConstruct(true);
-        }
         return availabilityZones;
     }
-    
+
     /**
-     * One or more Availability Zones for the group.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * One or more Availability Zones for the group.
+     * </p>
      *
-     * @param availabilityZones One or more Availability Zones for the group.
+     * @param availabilityZones <p>
+     *            One or more Availability Zones for the group.
+     *            </p>
      */
     public void setAvailabilityZones(java.util.Collection<String> availabilityZones) {
         if (availabilityZones == null) {
             this.availabilityZones = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> availabilityZonesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(availabilityZones.size());
-        availabilityZonesCopy.addAll(availabilityZones);
-        this.availabilityZones = availabilityZonesCopy;
+
+        this.availabilityZones = new java.util.ArrayList<String>(availabilityZones);
     }
-    
+
     /**
+     * <p>
      * One or more Availability Zones for the group.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param availabilityZones One or more Availability Zones for the group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param availabilityZones <p>
+     *            One or more Availability Zones for the group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withAvailabilityZones(String... availabilityZones) {
-        if (getAvailabilityZones() == null) setAvailabilityZones(new java.util.ArrayList<String>(availabilityZones.length));
+        if (getAvailabilityZones() == null) {
+            this.availabilityZones = new java.util.ArrayList<String>(availabilityZones.length);
+        }
         for (String value : availabilityZones) {
-            getAvailabilityZones().add(value);
+            this.availabilityZones.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * One or more Availability Zones for the group.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param availabilityZones One or more Availability Zones for the group.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param availabilityZones <p>
+     *            One or more Availability Zones for the group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public UpdateAutoScalingGroupRequest withAvailabilityZones(java.util.Collection<String> availabilityZones) {
-        if (availabilityZones == null) {
-            this.availabilityZones = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> availabilityZonesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(availabilityZones.size());
-            availabilityZonesCopy.addAll(availabilityZones);
-            this.availabilityZones = availabilityZonesCopy;
-        }
-
+    public UpdateAutoScalingGroupRequest withAvailabilityZones(
+            java.util.Collection<String> availabilityZones) {
+        setAvailabilityZones(availabilityZones);
         return this;
     }
 
     /**
+     * <p>
      * The service to use for the health checks. The valid values are
      * <code>EC2</code> and <code>ELB</code>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The service to use for the health checks. The valid values are
+     * @return <p>
+     *         The service to use for the health checks. The valid values are
      *         <code>EC2</code> and <code>ELB</code>.
+     *         </p>
      */
     public String getHealthCheckType() {
         return healthCheckType;
     }
-    
+
     /**
+     * <p>
      * The service to use for the health checks. The valid values are
      * <code>EC2</code> and <code>ELB</code>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param healthCheckType The service to use for the health checks. The valid values are
-     *         <code>EC2</code> and <code>ELB</code>.
+     * @param healthCheckType <p>
+     *            The service to use for the health checks. The valid values are
+     *            <code>EC2</code> and <code>ELB</code>.
+     *            </p>
      */
     public void setHealthCheckType(String healthCheckType) {
         this.healthCheckType = healthCheckType;
     }
-    
+
     /**
+     * <p>
      * The service to use for the health checks. The valid values are
      * <code>EC2</code> and <code>ELB</code>.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param healthCheckType The service to use for the health checks. The valid values are
-     *         <code>EC2</code> and <code>ELB</code>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param healthCheckType <p>
+     *            The service to use for the health checks. The valid values are
+     *            <code>EC2</code> and <code>ELB</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withHealthCheckType(String healthCheckType) {
         this.healthCheckType = healthCheckType;
@@ -577,56 +721,86 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The amount of time, in seconds, that Auto Scaling waits before
-     * checking the health status of an EC2 instance that has come into
-     * service. The default is 300. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * <p>
+     * The amount of time, in seconds, that Auto Scaling waits before checking
+     * the health status of an EC2 instance that has come into service. The
+     * default is 300.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
+     * >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
      *
-     * @return The amount of time, in seconds, that Auto Scaling waits before
+     * @return <p>
+     *         The amount of time, in seconds, that Auto Scaling waits before
      *         checking the health status of an EC2 instance that has come into
-     *         service. The default is 300. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     *         Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         service. The default is 300.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
+     *         >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         </p>
      */
     public Integer getHealthCheckGracePeriod() {
         return healthCheckGracePeriod;
     }
-    
+
     /**
-     * The amount of time, in seconds, that Auto Scaling waits before
-     * checking the health status of an EC2 instance that has come into
-     * service. The default is 300. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * <p>
+     * The amount of time, in seconds, that Auto Scaling waits before checking
+     * the health status of an EC2 instance that has come into service. The
+     * default is 300.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
+     * >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
      *
-     * @param healthCheckGracePeriod The amount of time, in seconds, that Auto Scaling waits before
-     *         checking the health status of an EC2 instance that has come into
-     *         service. The default is 300. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     *         Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * @param healthCheckGracePeriod <p>
+     *            The amount of time, in seconds, that Auto Scaling waits before
+     *            checking the health status of an EC2 instance that has come
+     *            into service. The default is 300.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
+     *            >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            </p>
      */
     public void setHealthCheckGracePeriod(Integer healthCheckGracePeriod) {
         this.healthCheckGracePeriod = healthCheckGracePeriod;
     }
-    
+
     /**
-     * The amount of time, in seconds, that Auto Scaling waits before
-     * checking the health status of an EC2 instance that has come into
-     * service. The default is 300. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     * Checks</a> in the <i>Auto Scaling Developer Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The amount of time, in seconds, that Auto Scaling waits before checking
+     * the health status of an EC2 instance that has come into service. The
+     * default is 300.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
+     * >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param healthCheckGracePeriod The amount of time, in seconds, that Auto Scaling waits before
-     *         checking the health status of an EC2 instance that has come into
-     *         service. The default is 300. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html">Health
-     *         Checks</a> in the <i>Auto Scaling Developer Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param healthCheckGracePeriod <p>
+     *            The amount of time, in seconds, that Auto Scaling waits before
+     *            checking the health status of an EC2 instance that has come
+     *            into service. The default is 300.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
+     *            >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withHealthCheckGracePeriod(Integer healthCheckGracePeriod) {
         this.healthCheckGracePeriod = healthCheckGracePeriod;
@@ -634,62 +808,83 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * The name of the placement group into which you'll launch your
-     * instances, if any. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * The name of the placement group into which you'll launch your instances,
+     * if any. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
+     * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The name of the placement group into which you'll launch your
-     *         instances, if any. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     *         Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @return <p>
+     *         The name of the placement group into which you'll launch your
+     *         instances, if any. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
+     *         >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
+     *         Guide</i>.
+     *         </p>
      */
     public String getPlacementGroup() {
         return placementGroup;
     }
-    
+
     /**
-     * The name of the placement group into which you'll launch your
-     * instances, if any. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <p>
+     * The name of the placement group into which you'll launch your instances,
+     * if any. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
+     * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param placementGroup The name of the placement group into which you'll launch your
-     *         instances, if any. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     *         Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * @param placementGroup <p>
+     *            The name of the placement group into which you'll launch your
+     *            instances, if any. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
+     *            >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud
+     *            User Guide</i>.
+     *            </p>
      */
     public void setPlacementGroup(String placementGroup) {
         this.placementGroup = placementGroup;
     }
-    
+
     /**
-     * The name of the placement group into which you'll launch your
-     * instances, if any. For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the placement group into which you'll launch your instances,
+     * if any. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
+     * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param placementGroup The name of the placement group into which you'll launch your
-     *         instances, if any. For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
-     *         Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param placementGroup <p>
+     *            The name of the placement group into which you'll launch your
+     *            instances, if any. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
+     *            >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud
+     *            User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withPlacementGroup(String placementGroup) {
         this.placementGroup = placementGroup;
@@ -697,92 +892,134 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
      * The ID of the subnet, if you are launching into a VPC. You can specify
-     * several subnets in a comma-separated list. <p>When you specify
-     * <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
-     * ensure that the subnets' Availability Zones match the values you
-     * specify for <code>AvailabilityZones</code>. <p>For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>.
+     * several subnets in a comma-separated list.
+     * </p>
+     * <p>
+     * When you specify <code>VPCZoneIdentifier</code> with
+     * <code>AvailabilityZones</code>, ensure that the subnets' Availability
+     * Zones match the values you specify for <code>AvailabilityZones</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2047<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @return The ID of the subnet, if you are launching into a VPC. You can specify
-     *         several subnets in a comma-separated list. <p>When you specify
-     *         <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
-     *         ensure that the subnets' Availability Zones match the values you
-     *         specify for <code>AvailabilityZones</code>. <p>For more information,
-     *         see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>.
+     * @return <p>
+     *         The ID of the subnet, if you are launching into a VPC. You can
+     *         specify several subnets in a comma-separated list.
+     *         </p>
+     *         <p>
+     *         When you specify <code>VPCZoneIdentifier</code> with
+     *         <code>AvailabilityZones</code>, ensure that the subnets'
+     *         Availability Zones match the values you specify for
+     *         <code>AvailabilityZones</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *         Scaling Developer Guide</i>.
+     *         </p>
      */
     public String getVPCZoneIdentifier() {
         return vPCZoneIdentifier;
     }
-    
+
     /**
+     * <p>
      * The ID of the subnet, if you are launching into a VPC. You can specify
-     * several subnets in a comma-separated list. <p>When you specify
-     * <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
-     * ensure that the subnets' Availability Zones match the values you
-     * specify for <code>AvailabilityZones</code>. <p>For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>.
+     * several subnets in a comma-separated list.
+     * </p>
+     * <p>
+     * When you specify <code>VPCZoneIdentifier</code> with
+     * <code>AvailabilityZones</code>, ensure that the subnets' Availability
+     * Zones match the values you specify for <code>AvailabilityZones</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2047<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param vPCZoneIdentifier The ID of the subnet, if you are launching into a VPC. You can specify
-     *         several subnets in a comma-separated list. <p>When you specify
-     *         <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
-     *         ensure that the subnets' Availability Zones match the values you
-     *         specify for <code>AvailabilityZones</code>. <p>For more information,
-     *         see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>.
+     * @param vPCZoneIdentifier <p>
+     *            The ID of the subnet, if you are launching into a VPC. You can
+     *            specify several subnets in a comma-separated list.
+     *            </p>
+     *            <p>
+     *            When you specify <code>VPCZoneIdentifier</code> with
+     *            <code>AvailabilityZones</code>, ensure that the subnets'
+     *            Availability Zones match the values you specify for
+     *            <code>AvailabilityZones</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *            Scaling Developer Guide</i>.
+     *            </p>
      */
     public void setVPCZoneIdentifier(String vPCZoneIdentifier) {
         this.vPCZoneIdentifier = vPCZoneIdentifier;
     }
-    
+
     /**
-     * The ID of the subnet, if you are launching into a VPC. You can specify
-     * several subnets in a comma-separated list. <p>When you specify
-     * <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
-     * ensure that the subnets' Availability Zones match the values you
-     * specify for <code>AvailabilityZones</code>. <p>For more information,
-     * see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     * Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID of the subnet, if you are launching into a VPC. You can specify
+     * several subnets in a comma-separated list.
+     * </p>
+     * <p>
+     * When you specify <code>VPCZoneIdentifier</code> with
+     * <code>AvailabilityZones</code>, ensure that the subnets' Availability
+     * Zones match the values you specify for <code>AvailabilityZones</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2047<br/>
-     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
      *
-     * @param vPCZoneIdentifier The ID of the subnet, if you are launching into a VPC. You can specify
-     *         several subnets in a comma-separated list. <p>When you specify
-     *         <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>,
-     *         ensure that the subnets' Availability Zones match the values you
-     *         specify for <code>AvailabilityZones</code>. <p>For more information,
-     *         see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html">Launching
-     *         Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling Developer
-     *         Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param vPCZoneIdentifier <p>
+     *            The ID of the subnet, if you are launching into a VPC. You can
+     *            specify several subnets in a comma-separated list.
+     *            </p>
+     *            <p>
+     *            When you specify <code>VPCZoneIdentifier</code> with
+     *            <code>AvailabilityZones</code>, ensure that the subnets'
+     *            Availability Zones match the values you specify for
+     *            <code>AvailabilityZones</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
+     *            Scaling Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withVPCZoneIdentifier(String vPCZoneIdentifier) {
         this.vPCZoneIdentifier = vPCZoneIdentifier;
@@ -790,161 +1027,209 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * A standalone termination policy or a list of termination policies used
-     * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html">Controlling
-     * Which Instances Auto Scaling Terminates During Scale In</a> in the
-     * <i>Auto Scaling Developer Guide</i>.
+     * <p>
+     * A standalone termination policy or a list of termination policies used to
+     * select the instance to terminate. The policies are executed in the order
+     * that they are listed.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
+     * in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
      *
-     * @return A standalone termination policy or a list of termination policies used
-     *         to select the instance to terminate. The policies are executed in the
-     *         order that they are listed. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html">Controlling
-     *         Which Instances Auto Scaling Terminates During Scale In</a> in the
-     *         <i>Auto Scaling Developer Guide</i>.
+     * @return <p>
+     *         A standalone termination policy or a list of termination policies
+     *         used to select the instance to terminate. The policies are
+     *         executed in the order that they are listed.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     *         >Controlling Which Instances Auto Scaling Terminates During Scale
+     *         In</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         </p>
      */
     public java.util.List<String> getTerminationPolicies() {
-        if (terminationPolicies == null) {
-              terminationPolicies = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              terminationPolicies.setAutoConstruct(true);
-        }
         return terminationPolicies;
     }
-    
+
     /**
-     * A standalone termination policy or a list of termination policies used
-     * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html">Controlling
-     * Which Instances Auto Scaling Terminates During Scale In</a> in the
-     * <i>Auto Scaling Developer Guide</i>.
+     * <p>
+     * A standalone termination policy or a list of termination policies used to
+     * select the instance to terminate. The policies are executed in the order
+     * that they are listed.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
+     * in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
      *
-     * @param terminationPolicies A standalone termination policy or a list of termination policies used
-     *         to select the instance to terminate. The policies are executed in the
-     *         order that they are listed. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html">Controlling
-     *         Which Instances Auto Scaling Terminates During Scale In</a> in the
-     *         <i>Auto Scaling Developer Guide</i>.
+     * @param terminationPolicies <p>
+     *            A standalone termination policy or a list of termination
+     *            policies used to select the instance to terminate. The
+     *            policies are executed in the order that they are listed.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     *            >Controlling Which Instances Auto Scaling Terminates During
+     *            Scale In</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            </p>
      */
     public void setTerminationPolicies(java.util.Collection<String> terminationPolicies) {
         if (terminationPolicies == null) {
             this.terminationPolicies = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> terminationPoliciesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(terminationPolicies.size());
-        terminationPoliciesCopy.addAll(terminationPolicies);
-        this.terminationPolicies = terminationPoliciesCopy;
+
+        this.terminationPolicies = new java.util.ArrayList<String>(terminationPolicies);
     }
-    
+
     /**
-     * A standalone termination policy or a list of termination policies used
-     * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html">Controlling
-     * Which Instances Auto Scaling Terminates During Scale In</a> in the
-     * <i>Auto Scaling Developer Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A standalone termination policy or a list of termination policies used to
+     * select the instance to terminate. The policies are executed in the order
+     * that they are listed.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
+     * in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param terminationPolicies A standalone termination policy or a list of termination policies used
-     *         to select the instance to terminate. The policies are executed in the
-     *         order that they are listed. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html">Controlling
-     *         Which Instances Auto Scaling Terminates During Scale In</a> in the
-     *         <i>Auto Scaling Developer Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param terminationPolicies <p>
+     *            A standalone termination policy or a list of termination
+     *            policies used to select the instance to terminate. The
+     *            policies are executed in the order that they are listed.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     *            >Controlling Which Instances Auto Scaling Terminates During
+     *            Scale In</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UpdateAutoScalingGroupRequest withTerminationPolicies(String... terminationPolicies) {
-        if (getTerminationPolicies() == null) setTerminationPolicies(new java.util.ArrayList<String>(terminationPolicies.length));
+        if (getTerminationPolicies() == null) {
+            this.terminationPolicies = new java.util.ArrayList<String>(terminationPolicies.length);
+        }
         for (String value : terminationPolicies) {
-            getTerminationPolicies().add(value);
+            this.terminationPolicies.add(value);
         }
         return this;
     }
-    
+
     /**
-     * A standalone termination policy or a list of termination policies used
-     * to select the instance to terminate. The policies are executed in the
-     * order that they are listed. <p>For more information, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html">Controlling
-     * Which Instances Auto Scaling Terminates During Scale In</a> in the
-     * <i>Auto Scaling Developer Guide</i>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * A standalone termination policy or a list of termination policies used to
+     * select the instance to terminate. The policies are executed in the order
+     * that they are listed.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
+     * in the <i>Auto Scaling Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param terminationPolicies A standalone termination policy or a list of termination policies used
-     *         to select the instance to terminate. The policies are executed in the
-     *         order that they are listed. <p>For more information, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html">Controlling
-     *         Which Instances Auto Scaling Terminates During Scale In</a> in the
-     *         <i>Auto Scaling Developer Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param terminationPolicies <p>
+     *            A standalone termination policy or a list of termination
+     *            policies used to select the instance to terminate. The
+     *            policies are executed in the order that they are listed.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     *            >Controlling Which Instances Auto Scaling Terminates During
+     *            Scale In</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public UpdateAutoScalingGroupRequest withTerminationPolicies(java.util.Collection<String> terminationPolicies) {
-        if (terminationPolicies == null) {
-            this.terminationPolicies = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> terminationPoliciesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(terminationPolicies.size());
-            terminationPoliciesCopy.addAll(terminationPolicies);
-            this.terminationPolicies = terminationPoliciesCopy;
-        }
-
+    public UpdateAutoScalingGroupRequest withTerminationPolicies(
+            java.util.Collection<String> terminationPolicies) {
+        setTerminationPolicies(terminationPolicies);
         return this;
     }
 
     /**
-     * Indicates whether newly launched instances are protected from
-     * termination by Auto Scaling when scaling in.
+     * <p>
+     * Indicates whether newly launched instances are protected from termination
+     * by Auto Scaling when scaling in.
+     * </p>
      *
-     * @return Indicates whether newly launched instances are protected from
+     * @return <p>
+     *         Indicates whether newly launched instances are protected from
      *         termination by Auto Scaling when scaling in.
+     *         </p>
      */
     public Boolean isNewInstancesProtectedFromScaleIn() {
         return newInstancesProtectedFromScaleIn;
     }
-    
+
     /**
-     * Indicates whether newly launched instances are protected from
-     * termination by Auto Scaling when scaling in.
+     * <p>
+     * Indicates whether newly launched instances are protected from termination
+     * by Auto Scaling when scaling in.
+     * </p>
      *
-     * @param newInstancesProtectedFromScaleIn Indicates whether newly launched instances are protected from
+     * @return <p>
+     *         Indicates whether newly launched instances are protected from
      *         termination by Auto Scaling when scaling in.
+     *         </p>
+     */
+    public Boolean getNewInstancesProtectedFromScaleIn() {
+        return newInstancesProtectedFromScaleIn;
+    }
+
+    /**
+     * <p>
+     * Indicates whether newly launched instances are protected from termination
+     * by Auto Scaling when scaling in.
+     * </p>
+     *
+     * @param newInstancesProtectedFromScaleIn <p>
+     *            Indicates whether newly launched instances are protected from
+     *            termination by Auto Scaling when scaling in.
+     *            </p>
      */
     public void setNewInstancesProtectedFromScaleIn(Boolean newInstancesProtectedFromScaleIn) {
         this.newInstancesProtectedFromScaleIn = newInstancesProtectedFromScaleIn;
     }
-    
-    /**
-     * Indicates whether newly launched instances are protected from
-     * termination by Auto Scaling when scaling in.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param newInstancesProtectedFromScaleIn Indicates whether newly launched instances are protected from
-     *         termination by Auto Scaling when scaling in.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public UpdateAutoScalingGroupRequest withNewInstancesProtectedFromScaleIn(Boolean newInstancesProtectedFromScaleIn) {
-        this.newInstancesProtectedFromScaleIn = newInstancesProtectedFromScaleIn;
-        return this;
-    }
 
     /**
-     * Indicates whether newly launched instances are protected from
-     * termination by Auto Scaling when scaling in.
+     * <p>
+     * Indicates whether newly launched instances are protected from termination
+     * by Auto Scaling when scaling in.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return Indicates whether newly launched instances are protected from
-     *         termination by Auto Scaling when scaling in.
+     * @param newInstancesProtectedFromScaleIn <p>
+     *            Indicates whether newly launched instances are protected from
+     *            termination by Auto Scaling when scaling in.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public Boolean getNewInstancesProtectedFromScaleIn() {
-        return newInstancesProtectedFromScaleIn;
+    public UpdateAutoScalingGroupRequest withNewInstancesProtectedFromScaleIn(
+            Boolean newInstancesProtectedFromScaleIn) {
+        this.newInstancesProtectedFromScaleIn = newInstancesProtectedFromScaleIn;
+        return this;
     }
 
     /**
@@ -952,87 +1237,156 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAutoScalingGroupName() != null) sb.append("AutoScalingGroupName: " + getAutoScalingGroupName() + ",");
-        if (getLaunchConfigurationName() != null) sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() + ",");
-        if (getMinSize() != null) sb.append("MinSize: " + getMinSize() + ",");
-        if (getMaxSize() != null) sb.append("MaxSize: " + getMaxSize() + ",");
-        if (getDesiredCapacity() != null) sb.append("DesiredCapacity: " + getDesiredCapacity() + ",");
-        if (getDefaultCooldown() != null) sb.append("DefaultCooldown: " + getDefaultCooldown() + ",");
-        if (getAvailabilityZones() != null) sb.append("AvailabilityZones: " + getAvailabilityZones() + ",");
-        if (getHealthCheckType() != null) sb.append("HealthCheckType: " + getHealthCheckType() + ",");
-        if (getHealthCheckGracePeriod() != null) sb.append("HealthCheckGracePeriod: " + getHealthCheckGracePeriod() + ",");
-        if (getPlacementGroup() != null) sb.append("PlacementGroup: " + getPlacementGroup() + ",");
-        if (getVPCZoneIdentifier() != null) sb.append("VPCZoneIdentifier: " + getVPCZoneIdentifier() + ",");
-        if (getTerminationPolicies() != null) sb.append("TerminationPolicies: " + getTerminationPolicies() + ",");
-        if (isNewInstancesProtectedFromScaleIn() != null) sb.append("NewInstancesProtectedFromScaleIn: " + isNewInstancesProtectedFromScaleIn() );
+        if (getAutoScalingGroupName() != null)
+            sb.append("AutoScalingGroupName: " + getAutoScalingGroupName() + ",");
+        if (getLaunchConfigurationName() != null)
+            sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() + ",");
+        if (getMinSize() != null)
+            sb.append("MinSize: " + getMinSize() + ",");
+        if (getMaxSize() != null)
+            sb.append("MaxSize: " + getMaxSize() + ",");
+        if (getDesiredCapacity() != null)
+            sb.append("DesiredCapacity: " + getDesiredCapacity() + ",");
+        if (getDefaultCooldown() != null)
+            sb.append("DefaultCooldown: " + getDefaultCooldown() + ",");
+        if (getAvailabilityZones() != null)
+            sb.append("AvailabilityZones: " + getAvailabilityZones() + ",");
+        if (getHealthCheckType() != null)
+            sb.append("HealthCheckType: " + getHealthCheckType() + ",");
+        if (getHealthCheckGracePeriod() != null)
+            sb.append("HealthCheckGracePeriod: " + getHealthCheckGracePeriod() + ",");
+        if (getPlacementGroup() != null)
+            sb.append("PlacementGroup: " + getPlacementGroup() + ",");
+        if (getVPCZoneIdentifier() != null)
+            sb.append("VPCZoneIdentifier: " + getVPCZoneIdentifier() + ",");
+        if (getTerminationPolicies() != null)
+            sb.append("TerminationPolicies: " + getTerminationPolicies() + ",");
+        if (getNewInstancesProtectedFromScaleIn() != null)
+            sb.append("NewInstancesProtectedFromScaleIn: " + getNewInstancesProtectedFromScaleIn());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getAutoScalingGroupName() == null) ? 0 : getAutoScalingGroupName().hashCode()); 
-        hashCode = prime * hashCode + ((getLaunchConfigurationName() == null) ? 0 : getLaunchConfigurationName().hashCode()); 
-        hashCode = prime * hashCode + ((getMinSize() == null) ? 0 : getMinSize().hashCode()); 
-        hashCode = prime * hashCode + ((getMaxSize() == null) ? 0 : getMaxSize().hashCode()); 
-        hashCode = prime * hashCode + ((getDesiredCapacity() == null) ? 0 : getDesiredCapacity().hashCode()); 
-        hashCode = prime * hashCode + ((getDefaultCooldown() == null) ? 0 : getDefaultCooldown().hashCode()); 
-        hashCode = prime * hashCode + ((getAvailabilityZones() == null) ? 0 : getAvailabilityZones().hashCode()); 
-        hashCode = prime * hashCode + ((getHealthCheckType() == null) ? 0 : getHealthCheckType().hashCode()); 
-        hashCode = prime * hashCode + ((getHealthCheckGracePeriod() == null) ? 0 : getHealthCheckGracePeriod().hashCode()); 
-        hashCode = prime * hashCode + ((getPlacementGroup() == null) ? 0 : getPlacementGroup().hashCode()); 
-        hashCode = prime * hashCode + ((getVPCZoneIdentifier() == null) ? 0 : getVPCZoneIdentifier().hashCode()); 
-        hashCode = prime * hashCode + ((getTerminationPolicies() == null) ? 0 : getTerminationPolicies().hashCode()); 
-        hashCode = prime * hashCode + ((isNewInstancesProtectedFromScaleIn() == null) ? 0 : isNewInstancesProtectedFromScaleIn().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getAutoScalingGroupName() == null) ? 0 : getAutoScalingGroupName().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getLaunchConfigurationName() == null) ? 0 : getLaunchConfigurationName()
+                        .hashCode());
+        hashCode = prime * hashCode + ((getMinSize() == null) ? 0 : getMinSize().hashCode());
+        hashCode = prime * hashCode + ((getMaxSize() == null) ? 0 : getMaxSize().hashCode());
+        hashCode = prime * hashCode
+                + ((getDesiredCapacity() == null) ? 0 : getDesiredCapacity().hashCode());
+        hashCode = prime * hashCode
+                + ((getDefaultCooldown() == null) ? 0 : getDefaultCooldown().hashCode());
+        hashCode = prime * hashCode
+                + ((getAvailabilityZones() == null) ? 0 : getAvailabilityZones().hashCode());
+        hashCode = prime * hashCode
+                + ((getHealthCheckType() == null) ? 0 : getHealthCheckType().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getHealthCheckGracePeriod() == null) ? 0 : getHealthCheckGracePeriod()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getPlacementGroup() == null) ? 0 : getPlacementGroup().hashCode());
+        hashCode = prime * hashCode
+                + ((getVPCZoneIdentifier() == null) ? 0 : getVPCZoneIdentifier().hashCode());
+        hashCode = prime * hashCode
+                + ((getTerminationPolicies() == null) ? 0 : getTerminationPolicies().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getNewInstancesProtectedFromScaleIn() == null) ? 0
+                        : getNewInstancesProtectedFromScaleIn().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof UpdateAutoScalingGroupRequest == false) return false;
-        UpdateAutoScalingGroupRequest other = (UpdateAutoScalingGroupRequest)obj;
-        
-        if (other.getAutoScalingGroupName() == null ^ this.getAutoScalingGroupName() == null) return false;
-        if (other.getAutoScalingGroupName() != null && other.getAutoScalingGroupName().equals(this.getAutoScalingGroupName()) == false) return false; 
-        if (other.getLaunchConfigurationName() == null ^ this.getLaunchConfigurationName() == null) return false;
-        if (other.getLaunchConfigurationName() != null && other.getLaunchConfigurationName().equals(this.getLaunchConfigurationName()) == false) return false; 
-        if (other.getMinSize() == null ^ this.getMinSize() == null) return false;
-        if (other.getMinSize() != null && other.getMinSize().equals(this.getMinSize()) == false) return false; 
-        if (other.getMaxSize() == null ^ this.getMaxSize() == null) return false;
-        if (other.getMaxSize() != null && other.getMaxSize().equals(this.getMaxSize()) == false) return false; 
-        if (other.getDesiredCapacity() == null ^ this.getDesiredCapacity() == null) return false;
-        if (other.getDesiredCapacity() != null && other.getDesiredCapacity().equals(this.getDesiredCapacity()) == false) return false; 
-        if (other.getDefaultCooldown() == null ^ this.getDefaultCooldown() == null) return false;
-        if (other.getDefaultCooldown() != null && other.getDefaultCooldown().equals(this.getDefaultCooldown()) == false) return false; 
-        if (other.getAvailabilityZones() == null ^ this.getAvailabilityZones() == null) return false;
-        if (other.getAvailabilityZones() != null && other.getAvailabilityZones().equals(this.getAvailabilityZones()) == false) return false; 
-        if (other.getHealthCheckType() == null ^ this.getHealthCheckType() == null) return false;
-        if (other.getHealthCheckType() != null && other.getHealthCheckType().equals(this.getHealthCheckType()) == false) return false; 
-        if (other.getHealthCheckGracePeriod() == null ^ this.getHealthCheckGracePeriod() == null) return false;
-        if (other.getHealthCheckGracePeriod() != null && other.getHealthCheckGracePeriod().equals(this.getHealthCheckGracePeriod()) == false) return false; 
-        if (other.getPlacementGroup() == null ^ this.getPlacementGroup() == null) return false;
-        if (other.getPlacementGroup() != null && other.getPlacementGroup().equals(this.getPlacementGroup()) == false) return false; 
-        if (other.getVPCZoneIdentifier() == null ^ this.getVPCZoneIdentifier() == null) return false;
-        if (other.getVPCZoneIdentifier() != null && other.getVPCZoneIdentifier().equals(this.getVPCZoneIdentifier()) == false) return false; 
-        if (other.getTerminationPolicies() == null ^ this.getTerminationPolicies() == null) return false;
-        if (other.getTerminationPolicies() != null && other.getTerminationPolicies().equals(this.getTerminationPolicies()) == false) return false; 
-        if (other.isNewInstancesProtectedFromScaleIn() == null ^ this.isNewInstancesProtectedFromScaleIn() == null) return false;
-        if (other.isNewInstancesProtectedFromScaleIn() != null && other.isNewInstancesProtectedFromScaleIn().equals(this.isNewInstancesProtectedFromScaleIn()) == false) return false; 
+        if (obj instanceof UpdateAutoScalingGroupRequest == false)
+            return false;
+        UpdateAutoScalingGroupRequest other = (UpdateAutoScalingGroupRequest) obj;
+
+        if (other.getAutoScalingGroupName() == null ^ this.getAutoScalingGroupName() == null)
+            return false;
+        if (other.getAutoScalingGroupName() != null
+                && other.getAutoScalingGroupName().equals(this.getAutoScalingGroupName()) == false)
+            return false;
+        if (other.getLaunchConfigurationName() == null ^ this.getLaunchConfigurationName() == null)
+            return false;
+        if (other.getLaunchConfigurationName() != null
+                && other.getLaunchConfigurationName().equals(this.getLaunchConfigurationName()) == false)
+            return false;
+        if (other.getMinSize() == null ^ this.getMinSize() == null)
+            return false;
+        if (other.getMinSize() != null && other.getMinSize().equals(this.getMinSize()) == false)
+            return false;
+        if (other.getMaxSize() == null ^ this.getMaxSize() == null)
+            return false;
+        if (other.getMaxSize() != null && other.getMaxSize().equals(this.getMaxSize()) == false)
+            return false;
+        if (other.getDesiredCapacity() == null ^ this.getDesiredCapacity() == null)
+            return false;
+        if (other.getDesiredCapacity() != null
+                && other.getDesiredCapacity().equals(this.getDesiredCapacity()) == false)
+            return false;
+        if (other.getDefaultCooldown() == null ^ this.getDefaultCooldown() == null)
+            return false;
+        if (other.getDefaultCooldown() != null
+                && other.getDefaultCooldown().equals(this.getDefaultCooldown()) == false)
+            return false;
+        if (other.getAvailabilityZones() == null ^ this.getAvailabilityZones() == null)
+            return false;
+        if (other.getAvailabilityZones() != null
+                && other.getAvailabilityZones().equals(this.getAvailabilityZones()) == false)
+            return false;
+        if (other.getHealthCheckType() == null ^ this.getHealthCheckType() == null)
+            return false;
+        if (other.getHealthCheckType() != null
+                && other.getHealthCheckType().equals(this.getHealthCheckType()) == false)
+            return false;
+        if (other.getHealthCheckGracePeriod() == null ^ this.getHealthCheckGracePeriod() == null)
+            return false;
+        if (other.getHealthCheckGracePeriod() != null
+                && other.getHealthCheckGracePeriod().equals(this.getHealthCheckGracePeriod()) == false)
+            return false;
+        if (other.getPlacementGroup() == null ^ this.getPlacementGroup() == null)
+            return false;
+        if (other.getPlacementGroup() != null
+                && other.getPlacementGroup().equals(this.getPlacementGroup()) == false)
+            return false;
+        if (other.getVPCZoneIdentifier() == null ^ this.getVPCZoneIdentifier() == null)
+            return false;
+        if (other.getVPCZoneIdentifier() != null
+                && other.getVPCZoneIdentifier().equals(this.getVPCZoneIdentifier()) == false)
+            return false;
+        if (other.getTerminationPolicies() == null ^ this.getTerminationPolicies() == null)
+            return false;
+        if (other.getTerminationPolicies() != null
+                && other.getTerminationPolicies().equals(this.getTerminationPolicies()) == false)
+            return false;
+        if (other.getNewInstancesProtectedFromScaleIn() == null
+                ^ this.getNewInstancesProtectedFromScaleIn() == null)
+            return false;
+        if (other.getNewInstancesProtectedFromScaleIn() != null
+                && other.getNewInstancesProtectedFromScaleIn().equals(
+                        this.getNewInstancesProtectedFromScaleIn()) == false)
+            return false;
         return true;
     }
-    
 }
-    

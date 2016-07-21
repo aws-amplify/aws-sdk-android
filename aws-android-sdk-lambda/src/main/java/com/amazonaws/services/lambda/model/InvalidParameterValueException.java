@@ -28,9 +28,6 @@ import com.amazonaws.AmazonServiceException;
 public class InvalidParameterValueException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * <p/>
-     */
     private String type;
 
     /**
@@ -44,18 +41,18 @@ public class InvalidParameterValueException extends AmazonServiceException {
     }
 
     /**
-     * <p/>
+     * Returns the value of the type property for this object.
      *
-     * @return <p/>
+     * @return The value of the type property for this object.
      */
     public String getType() {
         return type;
     }
 
     /**
-     * <p/>
+     * Sets the value of type
      *
-     * @param type <p/>
+     * @param type The new value for the type property for this object.
      */
     public void setType(String type) {
         this.type = type;
