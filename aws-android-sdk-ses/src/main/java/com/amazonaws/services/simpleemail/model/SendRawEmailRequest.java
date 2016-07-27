@@ -284,6 +284,60 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
     private String returnPathArn;
 
     /**
+     * Default constructor for SendRawEmailRequest object. Callers should use
+     * the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
+     */
+    public SendRawEmailRequest() {
+    }
+
+    /**
+     * Constructs a new SendRawEmailRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     * 
+     * @param rawMessage <p>
+     *            The raw text of the message. The client is responsible for
+     *            ensuring the following:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Message must contain a header and a body, separated by a blank
+     *            line.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            All required header fields must be present.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Each part of a multipart MIME message must be formatted
+     *            properly.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            MIME content types must be among those supported by Amazon
+     *            SES. For more information, go to the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Content must be base64-encoded, if MIME requires it.
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public SendRawEmailRequest(RawMessage rawMessage) {
+        setRawMessage(rawMessage);
+    }
+
+    /**
      * <p>
      * The identity's email address. If you do not provide a value for this
      * parameter, you must specify a "From" address in the raw text of the

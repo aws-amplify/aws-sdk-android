@@ -54,6 +54,52 @@ public class RawMessage implements Serializable {
     private java.nio.ByteBuffer data;
 
     /**
+     * Default constructor for RawMessage object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     */
+    public RawMessage() {
+    }
+
+    /**
+     * Constructs a new RawMessage object. Callers should use the setter or
+     * fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param data <p>
+     *            The raw data of the message. The client must ensure that the
+     *            message format complies with Internet email standards
+     *            regarding email header fields, MIME types, MIME encoding, and
+     *            base64 encoding (if necessary).
+     *            </p>
+     *            <p>
+     *            The To:, CC:, and BCC: headers in the raw message can contain
+     *            a group list.
+     *            </p>
+     *            <p>
+     *            If you are using <code>SendRawEmail</code> with sending
+     *            authorization, you can include X-headers in the raw message to
+     *            specify the "Source," "From," and "Return-Path" addresses. For
+     *            more information, see the documentation for
+     *            <code>SendRawEmail</code>.
+     *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include these X-headers in the DKIM signature, because
+     *            they are removed by Amazon SES before sending the email.
+     *            </p>
+     *            </important>
+     *            <p>
+     *            For more information, go to the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     */
+    public RawMessage(java.nio.ByteBuffer data) {
+        setData(data);
+    }
+
+    /**
      * <p>
      * The raw data of the message. The client must ensure that the message
      * format complies with Internet email standards regarding email header

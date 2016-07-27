@@ -180,6 +180,58 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
     private String returnPathArn;
 
     /**
+     * Default constructor for SendEmailRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     */
+    public SendEmailRequest() {
+    }
+
+    /**
+     * Constructs a new SendEmailRequest object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param source <p>
+     *            The email address that is sending the email. This email
+     *            address must be either individually verified with Amazon SES,
+     *            or from a domain that has been verified with Amazon SES. For
+     *            information about verifying identities, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     *            <p>
+     *            If you are sending on behalf of another user and have been
+     *            permitted to do so by a sending authorization policy, then you
+     *            must also specify the <code>SourceArn</code> parameter. For
+     *            more information about sending authorization, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     *            <p>
+     *            In all cases, the email address must be 7-bit ASCII. If the
+     *            text must contain any other characters, then you must use MIME
+     *            encoded-word syntax (RFC 2047) instead of a literal string.
+     *            MIME encoded-word syntax uses the following form:
+     *            <code>=?charset?encoding?encoded-text?=</code>. For more
+     *            information, see <a
+     *            href="http://tools.ietf.org/html/rfc2047">RFC 2047</a>.
+     *            </p>
+     * @param destination <p>
+     *            The destination for this email, composed of To:, CC:, and BCC:
+     *            fields.
+     *            </p>
+     * @param message <p>
+     *            The message to be sent.
+     *            </p>
+     */
+    public SendEmailRequest(String source, Destination destination, Message message) {
+        setSource(source);
+        setDestination(destination);
+        setMessage(message);
+    }
+
+    /**
      * <p>
      * The email address that is sending the email. This email address must be
      * either individually verified with Amazon SES, or from a domain that has

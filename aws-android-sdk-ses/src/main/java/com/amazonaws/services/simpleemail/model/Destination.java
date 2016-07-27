@@ -53,6 +53,27 @@ public class Destination implements Serializable {
     private java.util.List<String> bccAddresses = new java.util.ArrayList<String>();
 
     /**
+     * Default constructor for Destination object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     */
+    public Destination() {
+    }
+
+    /**
+     * Constructs a new Destination object. Callers should use the setter or
+     * fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param toAddresses <p>
+     *            The To: field(s) of the message.
+     *            </p>
+     */
+    public Destination(java.util.List<String> toAddresses) {
+        setToAddresses(toAddresses);
+    }
+
+    /**
      * <p>
      * The To: field(s) of the message.
      * </p>

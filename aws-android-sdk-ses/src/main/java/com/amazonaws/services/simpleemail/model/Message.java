@@ -39,6 +39,31 @@ public class Message implements Serializable {
     private Body body;
 
     /**
+     * Default constructor for Message object. Callers should use the setter or
+     * fluent setter (with...) methods to initialize any additional object
+     * members.
+     */
+    public Message() {
+    }
+
+    /**
+     * Constructs a new Message object. Callers should use the setter or fluent
+     * setter (with...) methods to initialize any additional object members.
+     * 
+     * @param subject <p>
+     *            The subject of the message: A short summary of the content,
+     *            which will appear in the recipient's inbox.
+     *            </p>
+     * @param body <p>
+     *            The message body.
+     *            </p>
+     */
+    public Message(Content subject, Body body) {
+        setSubject(subject);
+        setBody(body);
+    }
+
+    /**
      * <p>
      * The subject of the message: A short summary of the content, which will
      * appear in the recipient's inbox.

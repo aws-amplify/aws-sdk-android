@@ -43,6 +43,26 @@ public class Content implements Serializable {
     private String charset;
 
     /**
+     * Default constructor for Content object. Callers should use the setter or
+     * fluent setter (with...) methods to initialize any additional object
+     * members.
+     */
+    public Content() {
+    }
+
+    /**
+     * Constructs a new Content object. Callers should use the setter or fluent
+     * setter (with...) methods to initialize any additional object members.
+     * 
+     * @param data <p>
+     *            The textual data of the content.
+     *            </p>
+     */
+    public Content(String data) {
+        setData(data);
+    }
+
+    /**
      * <p>
      * The textual data of the content.
      * </p>

@@ -43,6 +43,28 @@ public class Body implements Serializable {
     private Content html;
 
     /**
+     * Default constructor for Body object. Callers should use the setter or
+     * fluent setter (with...) methods to initialize any additional object
+     * members.
+     */
+    public Body() {
+    }
+
+    /**
+     * Constructs a new Body object. Callers should use the setter or fluent
+     * setter (with...) methods to initialize any additional object members.
+     * 
+     * @param text <p>
+     *            The content of the message, in text format. Use this for
+     *            text-based email clients, or clients on high-latency networks
+     *            (such as mobile devices).
+     *            </p>
+     */
+    public Body(Content text) {
+        setText(text);
+    }
+
+    /**
      * <p>
      * The content of the message, in text format. Use this for text-based email
      * clients, or clients on high-latency networks (such as mobile devices).
