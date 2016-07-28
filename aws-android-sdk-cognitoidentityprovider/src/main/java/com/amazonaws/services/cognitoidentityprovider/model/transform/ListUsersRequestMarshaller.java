@@ -89,6 +89,11 @@ public class ListUsersRequestMarshaller implements
                 jsonWriter.name("UserStatus");
                 jsonWriter.value(userStatus);
             }
+            if (listUsersRequest.getFilter() != null) {
+                String filter = listUsersRequest.getFilter();
+                jsonWriter.name("Filter");
+                jsonWriter.value(filter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

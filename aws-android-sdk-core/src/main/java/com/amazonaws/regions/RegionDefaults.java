@@ -90,7 +90,11 @@ class RegionDefaults {
         updateRegion(region, "email", "email.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "kms", "kms.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "execute-api", "iot.us-west-2.amazonaws.com", false, true);
-
+        updateRegion(region, "cognito-sync", "cognito-sync.us-west-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.us-west-2.amazonaws.com", false,
+                true);
+        updateRegion(region, "cognito-idp", "cognito-idp.us-west-2.amazonaws.com", false, true);
+        
         region = new Region("ap-south-1", "");
         ret.add(region);
 
@@ -126,6 +130,7 @@ class RegionDefaults {
         updateRegion(region, "cognito-sync", "cognito-sync.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.ap-northeast-1.amazonaws.com", false,
                 true);
+        updateRegion(region, "cognito-idp", "cognito-idp.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "kms", "kms.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "execute-api", "iot.ap-northeast-1.amazonaws.com", false, true);
 
@@ -216,6 +221,7 @@ class RegionDefaults {
         updateRegion(region, "cognito-sync", "cognito-sync.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.eu-west-1.amazonaws.com", false,
                 true);
+        updateRegion(region, "cognito-idp", "cognito-idp.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "machinelearning", "machinelearning.eu-west-1.amazonaws.com", false,
                 true);
         updateRegion(region, "kms", "kms.eu-west-1.amazonaws.com", false, true);

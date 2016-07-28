@@ -49,7 +49,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 60<br/>
+     * <b>Range: </b>0 - 60<br/>
      */
     private Integer limit;
 
@@ -61,6 +61,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      */
     private String paginationToken;
 
@@ -78,9 +79,17 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      */
     private String userStatus;
+
+    /**
+     * The new value for the filter property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     */
+    private String filter;
 
     /**
      * <p>
@@ -219,7 +228,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 60<br/>
+     * <b>Range: </b>0 - 60<br/>
      *
      * @return <p>
      *         The limit of the request to list users.
@@ -235,7 +244,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 60<br/>
+     * <b>Range: </b>0 - 60<br/>
      *
      * @param limit <p>
      *            The limit of the request to list users.
@@ -254,7 +263,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 60<br/>
+     * <b>Range: </b>0 - 60<br/>
      *
      * @param limit <p>
      *            The limit of the request to list users.
@@ -275,6 +284,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
      *         An identifier that was returned from the previous call to this
@@ -294,6 +304,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
      *            An identifier that was returned from the previous call to this
@@ -316,6 +327,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
      *            An identifier that was returned from the previous call to this
@@ -344,7 +356,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @return <p>
      *         The user status. Can be one of the following:
@@ -377,7 +389,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
@@ -413,7 +425,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
@@ -449,7 +461,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
@@ -485,7 +497,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
@@ -504,6 +516,48 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      */
     public ListUsersRequest withUserStatus(UserStatusType userStatus) {
         this.userStatus = userStatus.toString();
+        return this;
+    }
+
+    /**
+     * Returns the value of the filter property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     *
+     * @return The value of the filter property for this object.
+     */
+    public String getFilter() {
+        return filter;
+    }
+
+    /**
+     * Sets the value of filter
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     *
+     * @param filter The new value for the filter property for this object.
+     */
+    public void setFilter(String filter) {
+        this.filter = filter;
+    }
+
+    /**
+     * Sets the value of the filter property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     *
+     * @param filter The new value for the filter property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListUsersRequest withFilter(String filter) {
+        this.filter = filter;
         return this;
     }
 
@@ -527,7 +581,9 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
         if (getPaginationToken() != null)
             sb.append("PaginationToken: " + getPaginationToken() + ",");
         if (getUserStatus() != null)
-            sb.append("UserStatus: " + getUserStatus());
+            sb.append("UserStatus: " + getUserStatus() + ",");
+        if (getFilter() != null)
+            sb.append("Filter: " + getFilter());
         sb.append("}");
         return sb.toString();
     }
@@ -544,6 +600,7 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
         hashCode = prime * hashCode
                 + ((getPaginationToken() == null) ? 0 : getPaginationToken().hashCode());
         hashCode = prime * hashCode + ((getUserStatus() == null) ? 0 : getUserStatus().hashCode());
+        hashCode = prime * hashCode + ((getFilter() == null) ? 0 : getFilter().hashCode());
         return hashCode;
     }
 
@@ -581,6 +638,10 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         if (other.getUserStatus() != null
                 && other.getUserStatus().equals(this.getUserStatus()) == false)
+            return false;
+        if (other.getFilter() == null ^ this.getFilter() == null)
+            return false;
+        if (other.getFilter() != null && other.getFilter().equals(this.getFilter()) == false)
             return false;
         return true;
     }

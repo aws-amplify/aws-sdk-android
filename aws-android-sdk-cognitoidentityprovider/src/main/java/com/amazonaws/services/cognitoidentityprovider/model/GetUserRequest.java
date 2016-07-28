@@ -30,6 +30,9 @@ public class GetUserRequest extends AmazonWebServiceRequest implements Serializa
      * The access token returned by the server response to get information about
      * the user.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      */
     private String accessToken;
 
@@ -38,6 +41,9 @@ public class GetUserRequest extends AmazonWebServiceRequest implements Serializa
      * The access token returned by the server response to get information about
      * the user.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
      *         The access token returned by the server response to get
@@ -53,6 +59,9 @@ public class GetUserRequest extends AmazonWebServiceRequest implements Serializa
      * The access token returned by the server response to get information about
      * the user.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token returned by the server response to get
@@ -71,6 +80,9 @@ public class GetUserRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token returned by the server response to get

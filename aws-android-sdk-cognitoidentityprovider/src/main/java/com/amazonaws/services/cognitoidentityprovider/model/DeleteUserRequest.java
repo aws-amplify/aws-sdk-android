@@ -29,6 +29,9 @@ public class DeleteUserRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * The access token from a request to delete a user.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      */
     private String accessToken;
 
@@ -36,6 +39,9 @@ public class DeleteUserRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * The access token from a request to delete a user.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
      *         The access token from a request to delete a user.
@@ -49,6 +55,9 @@ public class DeleteUserRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * The access token from a request to delete a user.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token from a request to delete a user.
@@ -65,6 +74,9 @@ public class DeleteUserRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token from a request to delete a user.

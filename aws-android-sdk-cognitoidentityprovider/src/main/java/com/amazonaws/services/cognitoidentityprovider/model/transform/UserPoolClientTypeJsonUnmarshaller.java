@@ -50,6 +50,24 @@ class UserPoolClientTypeJsonUnmarshaller implements
             } else if (name.equals("CreationDate")) {
                 userPoolClientType.setCreationDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("RefreshTokenValidity")) {
+                userPoolClientType.setRefreshTokenValidity(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("ReadAttributes")) {
+                userPoolClientType.setReadAttributes(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("WriteAttributes")) {
+                userPoolClientType.setWriteAttributes(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("ExplicitAuthFlows")) {
+                userPoolClientType.setExplicitAuthFlows(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

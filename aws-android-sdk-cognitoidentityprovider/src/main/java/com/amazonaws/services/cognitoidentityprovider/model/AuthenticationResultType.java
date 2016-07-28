@@ -27,6 +27,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * The access token of the authentication result.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      */
     private String accessToken;
 
@@ -48,6 +51,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * The refresh token of the authentication result.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      */
     private String refreshToken;
 
@@ -55,13 +61,24 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * The ID token of the authentication result.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      */
     private String idToken;
+
+    /**
+     * The new value for the newDeviceMetadata property for this object.
+     */
+    private NewDeviceMetadataType newDeviceMetadata;
 
     /**
      * <p>
      * The access token of the authentication result.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
      *         The access token of the authentication result.
@@ -75,6 +92,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * The access token of the authentication result.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token of the authentication result.
@@ -91,6 +111,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token of the authentication result.
@@ -197,6 +220,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * The refresh token of the authentication result.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
      *         The refresh token of the authentication result.
@@ -210,6 +236,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * The refresh token of the authentication result.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param refreshToken <p>
      *            The refresh token of the authentication result.
@@ -226,6 +255,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param refreshToken <p>
      *            The refresh token of the authentication result.
@@ -242,6 +274,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * The ID token of the authentication result.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
      *         The ID token of the authentication result.
@@ -255,6 +290,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * The ID token of the authentication result.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param idToken <p>
      *            The ID token of the authentication result.
@@ -271,6 +309,9 @@ public class AuthenticationResultType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param idToken <p>
      *            The ID token of the authentication result.
@@ -280,6 +321,41 @@ public class AuthenticationResultType implements Serializable {
      */
     public AuthenticationResultType withIdToken(String idToken) {
         this.idToken = idToken;
+        return this;
+    }
+
+    /**
+     * Returns the value of the newDeviceMetadata property for this object.
+     *
+     * @return The value of the newDeviceMetadata property for this object.
+     */
+    public NewDeviceMetadataType getNewDeviceMetadata() {
+        return newDeviceMetadata;
+    }
+
+    /**
+     * Sets the value of newDeviceMetadata
+     *
+     * @param newDeviceMetadata The new value for the newDeviceMetadata property
+     *            for this object.
+     */
+    public void setNewDeviceMetadata(NewDeviceMetadataType newDeviceMetadata) {
+        this.newDeviceMetadata = newDeviceMetadata;
+    }
+
+    /**
+     * Sets the value of the newDeviceMetadata property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param newDeviceMetadata The new value for the newDeviceMetadata property
+     *            for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AuthenticationResultType withNewDeviceMetadata(NewDeviceMetadataType newDeviceMetadata) {
+        this.newDeviceMetadata = newDeviceMetadata;
         return this;
     }
 
@@ -303,7 +379,9 @@ public class AuthenticationResultType implements Serializable {
         if (getRefreshToken() != null)
             sb.append("RefreshToken: " + getRefreshToken() + ",");
         if (getIdToken() != null)
-            sb.append("IdToken: " + getIdToken());
+            sb.append("IdToken: " + getIdToken() + ",");
+        if (getNewDeviceMetadata() != null)
+            sb.append("NewDeviceMetadata: " + getNewDeviceMetadata());
         sb.append("}");
         return sb.toString();
     }
@@ -320,6 +398,8 @@ public class AuthenticationResultType implements Serializable {
         hashCode = prime * hashCode
                 + ((getRefreshToken() == null) ? 0 : getRefreshToken().hashCode());
         hashCode = prime * hashCode + ((getIdToken() == null) ? 0 : getIdToken().hashCode());
+        hashCode = prime * hashCode
+                + ((getNewDeviceMetadata() == null) ? 0 : getNewDeviceMetadata().hashCode());
         return hashCode;
     }
 
@@ -357,6 +437,11 @@ public class AuthenticationResultType implements Serializable {
         if (other.getIdToken() == null ^ this.getIdToken() == null)
             return false;
         if (other.getIdToken() != null && other.getIdToken().equals(this.getIdToken()) == false)
+            return false;
+        if (other.getNewDeviceMetadata() == null ^ this.getNewDeviceMetadata() == null)
+            return false;
+        if (other.getNewDeviceMetadata() != null
+                && other.getNewDeviceMetadata().equals(this.getNewDeviceMetadata()) == false)
             return false;
         return true;
     }

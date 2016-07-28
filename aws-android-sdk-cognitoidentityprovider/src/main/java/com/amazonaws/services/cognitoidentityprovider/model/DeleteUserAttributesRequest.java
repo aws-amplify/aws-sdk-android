@@ -37,6 +37,9 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The access token used in the request to delete user attributes.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      */
     private String accessToken;
 
@@ -127,6 +130,9 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The access token used in the request to delete user attributes.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
      *         The access token used in the request to delete user attributes.
@@ -140,6 +146,9 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The access token used in the request to delete user attributes.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token used in the request to delete user
@@ -157,6 +166,9 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token used in the request to delete user

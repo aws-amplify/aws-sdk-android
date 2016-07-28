@@ -1,21 +1,25 @@
 /*
- * Copyright 2013-2016 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
+ *  Copyright 2013-2016 Amazon.com,
+ *  Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
+ *  Licensed under the Amazon Software License (the "License").
+ *  You may not use this file except in compliance with the
+ *  License. A copy of the License is located at
  *
- *     http://aws.amazon.com/asl/
+ *      http://aws.amazon.com/asl/
  *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ *  or in the "license" file accompanying this file. This file is
+ *  distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ *  CONDITIONS OF ANY KIND, express or implied. See the License
+ *  for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations;
+
+import android.content.Context;
+import android.os.Handler;
+import android.util.Log;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
@@ -26,47 +30,41 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.Authentic
  */
 public class AuthenticationContinuation implements CognitoIdentityProviderContinuation<String> {
 
-    /**
-     *  Boolean constant to indicate that the continuation will run in background.
-     */
+    // Boolean constants used to indicate where this continuation will run.
     final public static boolean RUN_IN_BACKGROUND = true;
-    
-    /**
-     * Boolean constants used to indicate that the continuation will run in current thread.
-     */
     final public static boolean RUN_IN_CURRENT = false;
 
-    /**
-     * An instance of {@link CognitoUser} referring to the user, for whom this continuation was created. 
-     */
+    // Data required to continue with the authentication process.
     final private CognitoUser user;
-    
-    /**
-     * Authentication callback handler.
-     */
+    final private Context context;
     final private AuthenticationHandler callback;
-    
-    /**
-     * Indicates if this continuation has to run in a background thread.
-     */
     final private boolean runInBackground;
 
-    /**
-     * Users authentication details details required. 
-     */
     private AuthenticationDetails authenticationDetails = null;
 
     /**
      * Constructs a new continuation in the authentication process.
      *
-     * @param user                  REQUIRED: Reference to the {@link CognitoUser} object.
-     * @param runInBackground       REQUIRED: Represents where this continuation has to run.
-     * @param callback              REQUIRED: Callback to interact with the app
+     * @param user
+     * @param runInBackground
+     * @param callback
      */
-    public AuthenticationContinuation(CognitoUser user, boolean runInBackground, AuthenticationHandler callback) {
+    /**
+     * Constructs a new continuation in the authentication process.
+     *
+     * @param user                  REQUIRED: Reference to the {@link CognitoUser} object.
+     * @param context               REQUIRED: Application context to manage threads.
+     * @param runInBackground       REQUIRED: Represents where this continuation has to run.
+     * @param callback              REQUIRED: Callback to interact with the app.
+     */
+    public AuthenticationContinuation(CognitoUser user,
+                                      Context context,
+                                      boolean runInBackground,
+                                      AuthenticationHandler callback) {
         this.user = user;
-        this.callback = callback;
+        this.context = context;
         this.runInBackground = runInBackground;
+        this.callback = callback;
     }
 
     /**
@@ -74,18 +72,49 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
      *
      * @return
      */
-    public String getParameters() {
+    public String getParameters(){
         return "AuthenticationDetails";
     }
 
     /**
-     * Call this to continue with the authentication process.
+     * Continues the authentications process by responding to the "PASSWORD_VERIFIER" challenge with
+     * username and password. Depending upon the initial call, the response call is name in the current
+     * or the background thread.
+     *
      */
     public void continueTask() {
         if (runInBackground) {
-            user.authenticateUserInBackground(authenticationDetails, callback);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Handler handler = new Handler(context.getMainLooper());
+                    Runnable nextStep;
+                    try {
+                        nextStep = user.initiateUserAuthentication(authenticationDetails, callback, RUN_IN_BACKGROUND);
+                    } catch (final Exception e) {
+                        nextStep = new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onFailure(e);
+                            }
+                        };
+                    }
+                    handler.post(nextStep);
+                }
+            }).start();
         } else {
-            user.authenticateUser(authenticationDetails, callback);
+            Runnable nextStep;
+            try {
+                nextStep = user.initiateUserAuthentication(authenticationDetails, callback, RUN_IN_CURRENT);
+            } catch (final Exception e) {
+                nextStep = new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onFailure(e);
+                    }
+                };
+            }
+            nextStep.run();
         }
     }
 

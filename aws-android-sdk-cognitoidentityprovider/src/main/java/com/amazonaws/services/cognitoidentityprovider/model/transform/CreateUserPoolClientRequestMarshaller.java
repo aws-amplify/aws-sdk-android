@@ -75,6 +75,48 @@ public class CreateUserPoolClientRequestMarshaller implements
                 jsonWriter.name("GenerateSecret");
                 jsonWriter.value(generateSecret);
             }
+            if (createUserPoolClientRequest.getRefreshTokenValidity() != null) {
+                Integer refreshTokenValidity = createUserPoolClientRequest
+                        .getRefreshTokenValidity();
+                jsonWriter.name("RefreshTokenValidity");
+                jsonWriter.value(refreshTokenValidity);
+            }
+            if (createUserPoolClientRequest.getReadAttributes() != null) {
+                java.util.List<String> readAttributes = createUserPoolClientRequest
+                        .getReadAttributes();
+                jsonWriter.name("ReadAttributes");
+                jsonWriter.beginArray();
+                for (String readAttributesItem : readAttributes) {
+                    if (readAttributesItem != null) {
+                        jsonWriter.value(readAttributesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (createUserPoolClientRequest.getWriteAttributes() != null) {
+                java.util.List<String> writeAttributes = createUserPoolClientRequest
+                        .getWriteAttributes();
+                jsonWriter.name("WriteAttributes");
+                jsonWriter.beginArray();
+                for (String writeAttributesItem : writeAttributes) {
+                    if (writeAttributesItem != null) {
+                        jsonWriter.value(writeAttributesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (createUserPoolClientRequest.getExplicitAuthFlows() != null) {
+                java.util.List<String> explicitAuthFlows = createUserPoolClientRequest
+                        .getExplicitAuthFlows();
+                jsonWriter.name("ExplicitAuthFlows");
+                jsonWriter.beginArray();
+                for (String explicitAuthFlowsItem : explicitAuthFlows) {
+                    if (explicitAuthFlowsItem != null) {
+                        jsonWriter.value(explicitAuthFlowsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

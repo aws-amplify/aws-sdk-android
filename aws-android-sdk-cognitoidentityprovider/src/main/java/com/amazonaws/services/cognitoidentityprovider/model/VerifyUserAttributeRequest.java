@@ -29,6 +29,9 @@ public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implemen
      * <p>
      * Represents the access token of the request to verify user attributes.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      */
     private String accessToken;
 
@@ -58,6 +61,9 @@ public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implemen
      * <p>
      * Represents the access token of the request to verify user attributes.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
      *         Represents the access token of the request to verify user
@@ -72,6 +78,9 @@ public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implemen
      * <p>
      * Represents the access token of the request to verify user attributes.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            Represents the access token of the request to verify user
@@ -89,6 +98,9 @@ public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implemen
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            Represents the access token of the request to verify user

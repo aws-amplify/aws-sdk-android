@@ -76,7 +76,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      */
     private String userStatus;
 
@@ -373,7 +373,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @return <p>
      *         The user status. Can be one of the following:
@@ -406,7 +406,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
@@ -442,7 +442,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
@@ -478,7 +478,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
@@ -514,7 +514,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN
+     * UNKNOWN, RESET_REQUIRED
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:

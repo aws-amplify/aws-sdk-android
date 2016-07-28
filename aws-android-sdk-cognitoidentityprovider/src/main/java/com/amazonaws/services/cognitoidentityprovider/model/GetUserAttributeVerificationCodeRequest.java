@@ -31,6 +31,9 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
      * The access token returned by the server response to get the user
      * attribute verification code.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      */
     private String accessToken;
 
@@ -51,6 +54,9 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
      * The access token returned by the server response to get the user
      * attribute verification code.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
      *         The access token returned by the server response to get the user
@@ -66,6 +72,9 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
      * The access token returned by the server response to get the user
      * attribute verification code.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token returned by the server response to get the
@@ -84,6 +93,9 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
      *            The access token returned by the server response to get the

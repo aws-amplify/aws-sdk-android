@@ -38,6 +38,7 @@ public class ListUsersResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      */
     private String paginationToken;
 
@@ -123,6 +124,7 @@ public class ListUsersResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
      *         An identifier that was returned from the previous call to this
@@ -142,6 +144,7 @@ public class ListUsersResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
      *            An identifier that was returned from the previous call to this
@@ -164,6 +167,7 @@ public class ListUsersResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
      *            An identifier that was returned from the previous call to this

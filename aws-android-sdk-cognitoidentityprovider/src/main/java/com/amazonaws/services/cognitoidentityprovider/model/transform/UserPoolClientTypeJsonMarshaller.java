@@ -56,6 +56,44 @@ class UserPoolClientTypeJsonMarshaller {
             jsonWriter.name("CreationDate");
             jsonWriter.value(creationDate);
         }
+        if (userPoolClientType.getRefreshTokenValidity() != null) {
+            Integer refreshTokenValidity = userPoolClientType.getRefreshTokenValidity();
+            jsonWriter.name("RefreshTokenValidity");
+            jsonWriter.value(refreshTokenValidity);
+        }
+        if (userPoolClientType.getReadAttributes() != null) {
+            java.util.List<String> readAttributes = userPoolClientType.getReadAttributes();
+            jsonWriter.name("ReadAttributes");
+            jsonWriter.beginArray();
+            for (String readAttributesItem : readAttributes) {
+                if (readAttributesItem != null) {
+                    jsonWriter.value(readAttributesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (userPoolClientType.getWriteAttributes() != null) {
+            java.util.List<String> writeAttributes = userPoolClientType.getWriteAttributes();
+            jsonWriter.name("WriteAttributes");
+            jsonWriter.beginArray();
+            for (String writeAttributesItem : writeAttributes) {
+                if (writeAttributesItem != null) {
+                    jsonWriter.value(writeAttributesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (userPoolClientType.getExplicitAuthFlows() != null) {
+            java.util.List<String> explicitAuthFlows = userPoolClientType.getExplicitAuthFlows();
+            jsonWriter.name("ExplicitAuthFlows");
+            jsonWriter.beginArray();
+            for (String explicitAuthFlowsItem : explicitAuthFlows) {
+                if (explicitAuthFlowsItem != null) {
+                    jsonWriter.value(explicitAuthFlowsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

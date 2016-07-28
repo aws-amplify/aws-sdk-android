@@ -65,6 +65,9 @@ public class EnhanceAuthRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The authentication state.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_+/=]+<br/>
      */
     private String authState;
 
@@ -265,6 +268,9 @@ public class EnhanceAuthRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The authentication state.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_+/=]+<br/>
      *
      * @return <p>
      *         The authentication state.
@@ -278,6 +284,9 @@ public class EnhanceAuthRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The authentication state.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_+/=]+<br/>
      *
      * @param authState <p>
      *            The authentication state.
@@ -294,6 +303,9 @@ public class EnhanceAuthRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_+/=]+<br/>
      *
      * @param authState <p>
      *            The authentication state.

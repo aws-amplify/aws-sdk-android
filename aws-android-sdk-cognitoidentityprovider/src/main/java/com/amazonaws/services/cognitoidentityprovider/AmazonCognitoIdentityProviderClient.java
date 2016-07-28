@@ -270,20 +270,30 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
         jsonErrorUnmarshallers.add(new AliasExistsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new CodeDeliveryFailureExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CodeMismatchExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ExpiredCodeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalErrorExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidEmailRoleAccessPolicyExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidLambdaResponseExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidPasswordExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidSmsRoleAccessPolicyExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidSmsRoleTrustRelationshipExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidUserPoolConfigurationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new MFAMethodNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new NotAuthorizedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new PasswordResetRequiredExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new PreconditionNotMetExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyFailedAttemptsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnexpectedLambdaExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UserImportInProgressExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserLambdaValidationExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UserNotConfirmedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UserNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UsernameExistsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
@@ -317,6 +327,8 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserImportInProgressException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -377,6 +389,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws PasswordResetRequiredException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -416,6 +429,250 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param adminForgetDeviceRequest
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void adminForgetDevice(AdminForgetDeviceRequest adminForgetDeviceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminForgetDeviceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminForgetDeviceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminForgetDeviceRequestMarshaller()
+                        .marshall(adminForgetDeviceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param adminGetDeviceRequest
+     * @return adminGetDeviceResult The response from the AdminGetDevice service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminGetDeviceResult adminGetDevice(AdminGetDeviceRequest adminGetDeviceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminGetDeviceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminGetDeviceRequest> request = null;
+        Response<AdminGetDeviceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminGetDeviceRequestMarshaller().marshall(adminGetDeviceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminGetDeviceResult, JsonUnmarshallerContext> unmarshaller = new AdminGetDeviceResultJsonUnmarshaller();
+            JsonResponseHandler<AdminGetDeviceResult> responseHandler = new JsonResponseHandler<AdminGetDeviceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param adminInitiateAuthRequest
+     * @return adminInitiateAuthResult The response from the AdminInitiateAuth
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws UnexpectedLambdaException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws MFAMethodNotFoundException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminInitiateAuthResult adminInitiateAuth(
+            AdminInitiateAuthRequest adminInitiateAuthRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminInitiateAuthRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminInitiateAuthRequest> request = null;
+        Response<AdminInitiateAuthResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminInitiateAuthRequestMarshaller()
+                        .marshall(adminInitiateAuthRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminInitiateAuthResult, JsonUnmarshallerContext> unmarshaller = new AdminInitiateAuthResultJsonUnmarshaller();
+            JsonResponseHandler<AdminInitiateAuthResult> responseHandler = new JsonResponseHandler<AdminInitiateAuthResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param adminListDevicesRequest
+     * @return adminListDevicesResult The response from the AdminListDevices
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminListDevicesResult adminListDevices(AdminListDevicesRequest adminListDevicesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminListDevicesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminListDevicesRequest> request = null;
+        Response<AdminListDevicesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminListDevicesRequestMarshaller().marshall(adminListDevicesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminListDevicesResult, JsonUnmarshallerContext> unmarshaller = new AdminListDevicesResultJsonUnmarshaller();
+            JsonResponseHandler<AdminListDevicesResult> responseHandler = new JsonResponseHandler<AdminListDevicesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param adminRespondToAuthChallengeRequest
+     * @return adminRespondToAuthChallengeResult The response from the
+     *         AdminRespondToAuthChallenge service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws CodeMismatchException
+     * @throws ExpiredCodeException
+     * @throws UnexpectedLambdaException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws TooManyRequestsException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws InternalErrorException
+     * @throws MFAMethodNotFoundException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws AliasExistsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminRespondToAuthChallengeResult adminRespondToAuthChallenge(
+            AdminRespondToAuthChallengeRequest adminRespondToAuthChallengeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminRespondToAuthChallengeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminRespondToAuthChallengeRequest> request = null;
+        Response<AdminRespondToAuthChallengeResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminRespondToAuthChallengeRequestMarshaller()
+                        .marshall(adminRespondToAuthChallengeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminRespondToAuthChallengeResult, JsonUnmarshallerContext> unmarshaller = new AdminRespondToAuthChallengeResultJsonUnmarshaller();
+            JsonResponseHandler<AdminRespondToAuthChallengeResult> responseHandler = new JsonResponseHandler<AdminRespondToAuthChallengeResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Sets all the user settings for a specified user name. Works on any user.
      * </p>
@@ -430,6 +687,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws NotAuthorizedException
+     * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -469,6 +727,103 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param adminUpdateDeviceStatusRequest
+     * @return adminUpdateDeviceStatusResult The response from the
+     *         AdminUpdateDeviceStatus service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminUpdateDeviceStatusResult adminUpdateDeviceStatus(
+            AdminUpdateDeviceStatusRequest adminUpdateDeviceStatusRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminUpdateDeviceStatusRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminUpdateDeviceStatusRequest> request = null;
+        Response<AdminUpdateDeviceStatusResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminUpdateDeviceStatusRequestMarshaller()
+                        .marshall(adminUpdateDeviceStatusRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminUpdateDeviceStatusResult, JsonUnmarshallerContext> unmarshaller = new AdminUpdateDeviceStatusResultJsonUnmarshaller();
+            JsonResponseHandler<AdminUpdateDeviceStatusResult> responseHandler = new JsonResponseHandler<AdminUpdateDeviceStatusResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param adminUserGlobalSignOutRequest
+     * @return adminUserGlobalSignOutResult The response from the
+     *         AdminUserGlobalSignOut service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminUserGlobalSignOutResult adminUserGlobalSignOut(
+            AdminUserGlobalSignOutRequest adminUserGlobalSignOutRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminUserGlobalSignOutRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminUserGlobalSignOutRequest> request = null;
+        Response<AdminUserGlobalSignOutResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminUserGlobalSignOutRequestMarshaller()
+                        .marshall(adminUserGlobalSignOutRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminUserGlobalSignOutResult, JsonUnmarshallerContext> unmarshaller = new AdminUserGlobalSignOutResultJsonUnmarshaller();
+            JsonResponseHandler<AdminUserGlobalSignOutResult> responseHandler = new JsonResponseHandler<AdminUserGlobalSignOutResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * The second step in the authentication flow of Secure Remote Password
      * protocol (SRP) for authenticating a user to get ID, access and refresh
@@ -490,6 +845,13 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws MFAMethodNotFoundException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws PasswordResetRequiredException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -579,6 +941,55 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param confirmDeviceRequest
+     * @return confirmDeviceResult The response from the ConfirmDevice service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws InvalidPasswordException
+     * @throws InvalidLambdaResponseException
+     * @throws UsernameExistsException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ConfirmDeviceResult confirmDevice(ConfirmDeviceRequest confirmDeviceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(confirmDeviceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ConfirmDeviceRequest> request = null;
+        Response<ConfirmDeviceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ConfirmDeviceRequestMarshaller().marshall(confirmDeviceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ConfirmDeviceResult, JsonUnmarshallerContext> unmarshaller = new ConfirmDeviceResultJsonUnmarshaller();
+            JsonResponseHandler<ConfirmDeviceResult> responseHandler = new JsonResponseHandler<ConfirmDeviceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Allows a user to enter a code provided when they reset their password to
      * update their password.
@@ -604,6 +1015,8 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -666,6 +1079,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws UserNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -703,6 +1117,55 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param createUserImportJobRequest
+     * @return createUserImportJobResult The response from the
+     *         CreateUserImportJob service method, as returned by Amazon Cognito
+     *         Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws PreconditionNotMetException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public CreateUserImportJobResult createUserImportJob(
+            CreateUserImportJobRequest createUserImportJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createUserImportJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateUserImportJobRequest> request = null;
+        Response<CreateUserImportJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateUserImportJobRequestMarshaller()
+                        .marshall(createUserImportJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateUserImportJobResult, JsonUnmarshallerContext> unmarshaller = new CreateUserImportJobResultJsonUnmarshaller();
+            JsonResponseHandler<CreateUserImportJobResult> responseHandler = new JsonResponseHandler<CreateUserImportJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Creates the user pool client.
      * </p>
@@ -717,6 +1180,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
      * @throws LimitExceededException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -865,6 +1329,8 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserImportInProgressException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -908,6 +1374,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -942,6 +1409,54 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param describeUserImportJobRequest
+     * @return describeUserImportJobResult The response from the
+     *         DescribeUserImportJob service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public DescribeUserImportJobResult describeUserImportJob(
+            DescribeUserImportJobRequest describeUserImportJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeUserImportJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeUserImportJobRequest> request = null;
+        Response<DescribeUserImportJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeUserImportJobRequestMarshaller()
+                        .marshall(describeUserImportJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeUserImportJobResult, JsonUnmarshallerContext> unmarshaller = new DescribeUserImportJobResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeUserImportJobResult> responseHandler = new JsonResponseHandler<DescribeUserImportJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Client method for returning the configuration information and metadata of
      * the specified user pool client.
@@ -956,6 +1471,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -1017,6 +1533,9 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws InvalidLambdaResponseException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws PasswordResetRequiredException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1054,6 +1573,45 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param forgetDeviceRequest
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void forgetDevice(ForgetDeviceRequest forgetDeviceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(forgetDeviceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ForgetDeviceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ForgetDeviceRequestMarshaller().marshall(forgetDeviceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Retrieves the password for the specified client ID or username.
      * </p>
@@ -1072,6 +1630,12 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1129,6 +1693,9 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws InvalidLambdaResponseException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1157,6 +1724,97 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<GetAuthenticationDetailsResult, JsonUnmarshallerContext> unmarshaller = new GetAuthenticationDetailsResultJsonUnmarshaller();
             JsonResponseHandler<GetAuthenticationDetailsResult> responseHandler = new JsonResponseHandler<GetAuthenticationDetailsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param getCSVHeaderRequest
+     * @return getCSVHeaderResult The response from the GetCSVHeader service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public GetCSVHeaderResult getCSVHeader(GetCSVHeaderRequest getCSVHeaderRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getCSVHeaderRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetCSVHeaderRequest> request = null;
+        Response<GetCSVHeaderResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetCSVHeaderRequestMarshaller().marshall(getCSVHeaderRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetCSVHeaderResult, JsonUnmarshallerContext> unmarshaller = new GetCSVHeaderResultJsonUnmarshaller();
+            JsonResponseHandler<GetCSVHeaderResult> responseHandler = new JsonResponseHandler<GetCSVHeaderResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param getDeviceRequest
+     * @return getDeviceResult The response from the GetDevice service method,
+     *         as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public GetDeviceResult getDevice(GetDeviceRequest getDeviceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getDeviceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetDeviceRequest> request = null;
+        Response<GetDeviceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetDeviceRequestMarshaller().marshall(getDeviceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetDeviceResult, JsonUnmarshallerContext> unmarshaller = new GetDeviceResultJsonUnmarshaller();
+            JsonResponseHandler<GetDeviceResult> responseHandler = new JsonResponseHandler<GetDeviceResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1339,6 +1997,10 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserLambdaValidationException
      * @throws InvalidLambdaResponseException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1378,6 +2040,196 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param globalSignOutRequest
+     * @return globalSignOutResult The response from the GlobalSignOut service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public GlobalSignOutResult globalSignOut(GlobalSignOutRequest globalSignOutRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(globalSignOutRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GlobalSignOutRequest> request = null;
+        Response<GlobalSignOutResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GlobalSignOutRequestMarshaller().marshall(globalSignOutRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GlobalSignOutResult, JsonUnmarshallerContext> unmarshaller = new GlobalSignOutResultJsonUnmarshaller();
+            JsonResponseHandler<GlobalSignOutResult> responseHandler = new JsonResponseHandler<GlobalSignOutResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param initiateAuthRequest
+     * @return initiateAuthResult The response from the InitiateAuth service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws UnexpectedLambdaException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public InitiateAuthResult initiateAuth(InitiateAuthRequest initiateAuthRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(initiateAuthRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<InitiateAuthRequest> request = null;
+        Response<InitiateAuthResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new InitiateAuthRequestMarshaller().marshall(initiateAuthRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<InitiateAuthResult, JsonUnmarshallerContext> unmarshaller = new InitiateAuthResultJsonUnmarshaller();
+            JsonResponseHandler<InitiateAuthResult> responseHandler = new JsonResponseHandler<InitiateAuthResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param listDevicesRequest
+     * @return listDevicesResult The response from the ListDevices service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListDevicesResult listDevices(ListDevicesRequest listDevicesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDevicesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDevicesRequest> request = null;
+        Response<ListDevicesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDevicesRequestMarshaller().marshall(listDevicesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDevicesResult, JsonUnmarshallerContext> unmarshaller = new ListDevicesResultJsonUnmarshaller();
+            JsonResponseHandler<ListDevicesResult> responseHandler = new JsonResponseHandler<ListDevicesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param listUserImportJobsRequest
+     * @return listUserImportJobsResult The response from the ListUserImportJobs
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListUserImportJobsResult listUserImportJobs(
+            ListUserImportJobsRequest listUserImportJobsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listUserImportJobsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListUserImportJobsRequest> request = null;
+        Response<ListUserImportJobsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListUserImportJobsRequestMarshaller()
+                        .marshall(listUserImportJobsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListUserImportJobsResult, JsonUnmarshallerContext> unmarshaller = new ListUserImportJobsResultJsonUnmarshaller();
+            JsonResponseHandler<ListUserImportJobsResult> responseHandler = new JsonResponseHandler<ListUserImportJobsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Lists the clients that have been created for the specified user pool.
      * </p>
@@ -1391,6 +2243,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -1443,6 +2296,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -1495,6 +2349,9 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws NotAuthorizedException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1552,6 +2409,11 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
+     * @throws UserNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1580,6 +2442,67 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<ResendConfirmationCodeResult, JsonUnmarshallerContext> unmarshaller = new ResendConfirmationCodeResultJsonUnmarshaller();
             JsonResponseHandler<ResendConfirmationCodeResult> responseHandler = new JsonResponseHandler<ResendConfirmationCodeResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param respondToAuthChallengeRequest
+     * @return respondToAuthChallengeResult The response from the
+     *         RespondToAuthChallenge service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws CodeMismatchException
+     * @throws ExpiredCodeException
+     * @throws UnexpectedLambdaException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws TooManyRequestsException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws InternalErrorException
+     * @throws MFAMethodNotFoundException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws AliasExistsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public RespondToAuthChallengeResult respondToAuthChallenge(
+            RespondToAuthChallengeRequest respondToAuthChallengeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(respondToAuthChallengeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RespondToAuthChallengeRequest> request = null;
+        Response<RespondToAuthChallengeResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RespondToAuthChallengeRequestMarshaller()
+                        .marshall(respondToAuthChallengeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<RespondToAuthChallengeResult, JsonUnmarshallerContext> unmarshaller = new RespondToAuthChallengeResultJsonUnmarshaller();
+            JsonResponseHandler<RespondToAuthChallengeResult> responseHandler = new JsonResponseHandler<RespondToAuthChallengeResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1662,6 +2585,10 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UsernameExistsException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1699,6 +2626,150 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param startUserImportJobRequest
+     * @return startUserImportJobResult The response from the StartUserImportJob
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws PreconditionNotMetException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public StartUserImportJobResult startUserImportJob(
+            StartUserImportJobRequest startUserImportJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startUserImportJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartUserImportJobRequest> request = null;
+        Response<StartUserImportJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartUserImportJobRequestMarshaller()
+                        .marshall(startUserImportJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartUserImportJobResult, JsonUnmarshallerContext> unmarshaller = new StartUserImportJobResultJsonUnmarshaller();
+            JsonResponseHandler<StartUserImportJobResult> responseHandler = new JsonResponseHandler<StartUserImportJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param stopUserImportJobRequest
+     * @return stopUserImportJobResult The response from the StopUserImportJob
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws PreconditionNotMetException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public StopUserImportJobResult stopUserImportJob(
+            StopUserImportJobRequest stopUserImportJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(stopUserImportJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StopUserImportJobRequest> request = null;
+        Response<StopUserImportJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StopUserImportJobRequestMarshaller()
+                        .marshall(stopUserImportJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StopUserImportJobResult, JsonUnmarshallerContext> unmarshaller = new StopUserImportJobResultJsonUnmarshaller();
+            JsonResponseHandler<StopUserImportJobResult> responseHandler = new JsonResponseHandler<StopUserImportJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param updateDeviceStatusRequest
+     * @return updateDeviceStatusResult The response from the UpdateDeviceStatus
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public UpdateDeviceStatusResult updateDeviceStatus(
+            UpdateDeviceStatusRequest updateDeviceStatusRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateDeviceStatusRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateDeviceStatusRequest> request = null;
+        Response<UpdateDeviceStatusResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateDeviceStatusRequestMarshaller()
+                        .marshall(updateDeviceStatusRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateDeviceStatusResult, JsonUnmarshallerContext> unmarshaller = new UpdateDeviceStatusResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateDeviceStatusResult> responseHandler = new JsonResponseHandler<UpdateDeviceStatusResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Allows a user to update a specific attribute (one at a time).
      * </p>
@@ -1720,6 +2791,10 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws TooManyRequestsException
      * @throws AliasExistsException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1773,6 +2848,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

@@ -51,6 +51,9 @@ public class RefreshTokensRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * The refresh token for a user's request to refresh tokens.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      */
     private String refreshToken;
 
@@ -172,6 +175,9 @@ public class RefreshTokensRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * The refresh token for a user's request to refresh tokens.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
      *         The refresh token for a user's request to refresh tokens.
@@ -185,6 +191,9 @@ public class RefreshTokensRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * The refresh token for a user's request to refresh tokens.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param refreshToken <p>
      *            The refresh token for a user's request to refresh tokens.
@@ -201,6 +210,9 @@ public class RefreshTokensRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param refreshToken <p>
      *            The refresh token for a user's request to refresh tokens.

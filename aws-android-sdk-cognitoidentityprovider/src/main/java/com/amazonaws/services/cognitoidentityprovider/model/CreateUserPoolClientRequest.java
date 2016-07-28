@@ -57,6 +57,29 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     private Boolean generateSecret;
 
     /**
+     * The new value for the refreshTokenValidity property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 3650<br/>
+     */
+    private Integer refreshTokenValidity;
+
+    /**
+     * The new value for the readAttributes property for this object.
+     */
+    private java.util.List<String> readAttributes;
+
+    /**
+     * The new value for the writeAttributes property for this object.
+     */
+    private java.util.List<String> writeAttributes;
+
+    /**
+     * The new value for the explicitAuthFlows property for this object.
+     */
+    private java.util.List<String> explicitAuthFlows;
+
+    /**
      * <p>
      * The user pool ID for the user pool where you want to create a user pool
      * client.
@@ -246,6 +269,236 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * Returns the value of the refreshTokenValidity property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 3650<br/>
+     *
+     * @return The value of the refreshTokenValidity property for this object.
+     */
+    public Integer getRefreshTokenValidity() {
+        return refreshTokenValidity;
+    }
+
+    /**
+     * Sets the value of refreshTokenValidity
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 3650<br/>
+     *
+     * @param refreshTokenValidity The new value for the refreshTokenValidity
+     *            property for this object.
+     */
+    public void setRefreshTokenValidity(Integer refreshTokenValidity) {
+        this.refreshTokenValidity = refreshTokenValidity;
+    }
+
+    /**
+     * Sets the value of the refreshTokenValidity property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 3650<br/>
+     *
+     * @param refreshTokenValidity The new value for the refreshTokenValidity
+     *            property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolClientRequest withRefreshTokenValidity(Integer refreshTokenValidity) {
+        this.refreshTokenValidity = refreshTokenValidity;
+        return this;
+    }
+
+    /**
+     * Returns the value of the readAttributes property for this object.
+     *
+     * @return The value of the readAttributes property for this object.
+     */
+    public java.util.List<String> getReadAttributes() {
+        return readAttributes;
+    }
+
+    /**
+     * Sets the value of readAttributes
+     *
+     * @param readAttributes The new value for the readAttributes property for
+     *            this object.
+     */
+    public void setReadAttributes(java.util.Collection<String> readAttributes) {
+        if (readAttributes == null) {
+            this.readAttributes = null;
+            return;
+        }
+
+        this.readAttributes = new java.util.ArrayList<String>(readAttributes);
+    }
+
+    /**
+     * Sets the value of the readAttributes property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param readAttributes The new value for the readAttributes property for
+     *            this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolClientRequest withReadAttributes(String... readAttributes) {
+        if (getReadAttributes() == null) {
+            this.readAttributes = new java.util.ArrayList<String>(readAttributes.length);
+        }
+        for (String value : readAttributes) {
+            this.readAttributes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the value of the readAttributes property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param readAttributes The new value for the readAttributes property for
+     *            this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolClientRequest withReadAttributes(
+            java.util.Collection<String> readAttributes) {
+        setReadAttributes(readAttributes);
+        return this;
+    }
+
+    /**
+     * Returns the value of the writeAttributes property for this object.
+     *
+     * @return The value of the writeAttributes property for this object.
+     */
+    public java.util.List<String> getWriteAttributes() {
+        return writeAttributes;
+    }
+
+    /**
+     * Sets the value of writeAttributes
+     *
+     * @param writeAttributes The new value for the writeAttributes property for
+     *            this object.
+     */
+    public void setWriteAttributes(java.util.Collection<String> writeAttributes) {
+        if (writeAttributes == null) {
+            this.writeAttributes = null;
+            return;
+        }
+
+        this.writeAttributes = new java.util.ArrayList<String>(writeAttributes);
+    }
+
+    /**
+     * Sets the value of the writeAttributes property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param writeAttributes The new value for the writeAttributes property for
+     *            this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolClientRequest withWriteAttributes(String... writeAttributes) {
+        if (getWriteAttributes() == null) {
+            this.writeAttributes = new java.util.ArrayList<String>(writeAttributes.length);
+        }
+        for (String value : writeAttributes) {
+            this.writeAttributes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the value of the writeAttributes property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param writeAttributes The new value for the writeAttributes property for
+     *            this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolClientRequest withWriteAttributes(
+            java.util.Collection<String> writeAttributes) {
+        setWriteAttributes(writeAttributes);
+        return this;
+    }
+
+    /**
+     * Returns the value of the explicitAuthFlows property for this object.
+     *
+     * @return The value of the explicitAuthFlows property for this object.
+     */
+    public java.util.List<String> getExplicitAuthFlows() {
+        return explicitAuthFlows;
+    }
+
+    /**
+     * Sets the value of explicitAuthFlows
+     *
+     * @param explicitAuthFlows The new value for the explicitAuthFlows property
+     *            for this object.
+     */
+    public void setExplicitAuthFlows(java.util.Collection<String> explicitAuthFlows) {
+        if (explicitAuthFlows == null) {
+            this.explicitAuthFlows = null;
+            return;
+        }
+
+        this.explicitAuthFlows = new java.util.ArrayList<String>(explicitAuthFlows);
+    }
+
+    /**
+     * Sets the value of the explicitAuthFlows property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param explicitAuthFlows The new value for the explicitAuthFlows property
+     *            for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolClientRequest withExplicitAuthFlows(String... explicitAuthFlows) {
+        if (getExplicitAuthFlows() == null) {
+            this.explicitAuthFlows = new java.util.ArrayList<String>(explicitAuthFlows.length);
+        }
+        for (String value : explicitAuthFlows) {
+            this.explicitAuthFlows.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the value of the explicitAuthFlows property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param explicitAuthFlows The new value for the explicitAuthFlows property
+     *            for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolClientRequest withExplicitAuthFlows(
+            java.util.Collection<String> explicitAuthFlows) {
+        setExplicitAuthFlows(explicitAuthFlows);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -261,7 +514,15 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
         if (getClientName() != null)
             sb.append("ClientName: " + getClientName() + ",");
         if (getGenerateSecret() != null)
-            sb.append("GenerateSecret: " + getGenerateSecret());
+            sb.append("GenerateSecret: " + getGenerateSecret() + ",");
+        if (getRefreshTokenValidity() != null)
+            sb.append("RefreshTokenValidity: " + getRefreshTokenValidity() + ",");
+        if (getReadAttributes() != null)
+            sb.append("ReadAttributes: " + getReadAttributes() + ",");
+        if (getWriteAttributes() != null)
+            sb.append("WriteAttributes: " + getWriteAttributes() + ",");
+        if (getExplicitAuthFlows() != null)
+            sb.append("ExplicitAuthFlows: " + getExplicitAuthFlows());
         sb.append("}");
         return sb.toString();
     }
@@ -275,6 +536,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
         hashCode = prime * hashCode + ((getClientName() == null) ? 0 : getClientName().hashCode());
         hashCode = prime * hashCode
                 + ((getGenerateSecret() == null) ? 0 : getGenerateSecret().hashCode());
+        hashCode = prime * hashCode
+                + ((getRefreshTokenValidity() == null) ? 0 : getRefreshTokenValidity().hashCode());
+        hashCode = prime * hashCode
+                + ((getReadAttributes() == null) ? 0 : getReadAttributes().hashCode());
+        hashCode = prime * hashCode
+                + ((getWriteAttributes() == null) ? 0 : getWriteAttributes().hashCode());
+        hashCode = prime * hashCode
+                + ((getExplicitAuthFlows() == null) ? 0 : getExplicitAuthFlows().hashCode());
         return hashCode;
     }
 
@@ -303,6 +572,26 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
             return false;
         if (other.getGenerateSecret() != null
                 && other.getGenerateSecret().equals(this.getGenerateSecret()) == false)
+            return false;
+        if (other.getRefreshTokenValidity() == null ^ this.getRefreshTokenValidity() == null)
+            return false;
+        if (other.getRefreshTokenValidity() != null
+                && other.getRefreshTokenValidity().equals(this.getRefreshTokenValidity()) == false)
+            return false;
+        if (other.getReadAttributes() == null ^ this.getReadAttributes() == null)
+            return false;
+        if (other.getReadAttributes() != null
+                && other.getReadAttributes().equals(this.getReadAttributes()) == false)
+            return false;
+        if (other.getWriteAttributes() == null ^ this.getWriteAttributes() == null)
+            return false;
+        if (other.getWriteAttributes() != null
+                && other.getWriteAttributes().equals(this.getWriteAttributes()) == false)
+            return false;
+        if (other.getExplicitAuthFlows() == null ^ this.getExplicitAuthFlows() == null)
+            return false;
+        if (other.getExplicitAuthFlows() != null
+                && other.getExplicitAuthFlows().equals(this.getExplicitAuthFlows()) == false)
             return false;
         return true;
     }

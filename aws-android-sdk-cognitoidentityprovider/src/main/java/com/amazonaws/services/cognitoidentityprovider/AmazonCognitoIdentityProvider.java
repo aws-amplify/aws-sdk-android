@@ -106,6 +106,8 @@ public interface AmazonCognitoIdentityProvider {
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserImportInProgressException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -140,6 +142,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws PasswordResetRequiredException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -149,6 +152,126 @@ public interface AmazonCognitoIdentityProvider {
      *             data in the request, or a server side issue.
      */
     AdminConfirmSignUpResult adminConfirmSignUp(AdminConfirmSignUpRequest adminConfirmSignUpRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param adminForgetDeviceRequest
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    void adminForgetDevice(AdminForgetDeviceRequest adminForgetDeviceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param adminGetDeviceRequest
+     * @return adminGetDeviceResult The response from the AdminGetDevice service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminGetDeviceResult adminGetDevice(AdminGetDeviceRequest adminGetDeviceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param adminInitiateAuthRequest
+     * @return adminInitiateAuthResult The response from the AdminInitiateAuth
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws UnexpectedLambdaException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws MFAMethodNotFoundException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminInitiateAuthResult adminInitiateAuth(AdminInitiateAuthRequest adminInitiateAuthRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param adminListDevicesRequest
+     * @return adminListDevicesResult The response from the AdminListDevices
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminListDevicesResult adminListDevices(AdminListDevicesRequest adminListDevicesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param adminRespondToAuthChallengeRequest
+     * @return adminRespondToAuthChallengeResult The response from the
+     *         AdminRespondToAuthChallenge service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws CodeMismatchException
+     * @throws ExpiredCodeException
+     * @throws UnexpectedLambdaException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws TooManyRequestsException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws InternalErrorException
+     * @throws MFAMethodNotFoundException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws AliasExistsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminRespondToAuthChallengeResult adminRespondToAuthChallenge(
+            AdminRespondToAuthChallengeRequest adminRespondToAuthChallengeRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -166,6 +289,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws NotAuthorizedException
+     * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -177,6 +301,51 @@ public interface AmazonCognitoIdentityProvider {
     AdminSetUserSettingsResult adminSetUserSettings(
             AdminSetUserSettingsRequest adminSetUserSettingsRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * @param adminUpdateDeviceStatusRequest
+     * @return adminUpdateDeviceStatusResult The response from the
+     *         AdminUpdateDeviceStatus service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminUpdateDeviceStatusResult adminUpdateDeviceStatus(
+            AdminUpdateDeviceStatusRequest adminUpdateDeviceStatusRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param adminUserGlobalSignOutRequest
+     * @return adminUserGlobalSignOutResult The response from the
+     *         AdminUserGlobalSignOut service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminUserGlobalSignOutResult adminUserGlobalSignOut(
+            AdminUserGlobalSignOutRequest adminUserGlobalSignOutRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -200,6 +369,13 @@ public interface AmazonCognitoIdentityProvider {
      * @throws MFAMethodNotFoundException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws PasswordResetRequiredException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -239,6 +415,30 @@ public interface AmazonCognitoIdentityProvider {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * @param confirmDeviceRequest
+     * @return confirmDeviceResult The response from the ConfirmDevice service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws InvalidPasswordException
+     * @throws InvalidLambdaResponseException
+     * @throws UsernameExistsException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    ConfirmDeviceResult confirmDevice(ConfirmDeviceRequest confirmDeviceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
      * <p>
      * Allows a user to enter a code provided when they reset their password to
      * update their password.
@@ -264,6 +464,8 @@ public interface AmazonCognitoIdentityProvider {
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -300,6 +502,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws UserNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -310,6 +513,29 @@ public interface AmazonCognitoIdentityProvider {
      */
     ConfirmSignUpResult confirmSignUp(ConfirmSignUpRequest confirmSignUpRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param createUserImportJobRequest
+     * @return createUserImportJobResult The response from the
+     *         CreateUserImportJob service method, as returned by Amazon Cognito
+     *         Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws PreconditionNotMetException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    CreateUserImportJobResult createUserImportJob(
+            CreateUserImportJobRequest createUserImportJobRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -326,6 +552,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
      * @throws LimitExceededException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -402,6 +629,8 @@ public interface AmazonCognitoIdentityProvider {
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserImportInProgressException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -425,6 +654,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -435,6 +665,28 @@ public interface AmazonCognitoIdentityProvider {
      *             data in the request, or a server side issue.
      */
     void deleteUserPoolClient(DeleteUserPoolClientRequest deleteUserPoolClientRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param describeUserImportJobRequest
+     * @return describeUserImportJobResult The response from the
+     *         DescribeUserImportJob service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    DescribeUserImportJobResult describeUserImportJob(
+            DescribeUserImportJobRequest describeUserImportJobRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -452,6 +704,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -487,6 +740,9 @@ public interface AmazonCognitoIdentityProvider {
      * @throws InvalidLambdaResponseException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws PasswordResetRequiredException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -497,6 +753,25 @@ public interface AmazonCognitoIdentityProvider {
      */
     EnhanceAuthResult enhanceAuth(EnhanceAuthRequest enhanceAuthRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param forgetDeviceRequest
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    void forgetDevice(ForgetDeviceRequest forgetDeviceRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -517,6 +792,12 @@ public interface AmazonCognitoIdentityProvider {
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -549,6 +830,9 @@ public interface AmazonCognitoIdentityProvider {
      * @throws InvalidLambdaResponseException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -560,6 +844,47 @@ public interface AmazonCognitoIdentityProvider {
     GetAuthenticationDetailsResult getAuthenticationDetails(
             GetAuthenticationDetailsRequest getAuthenticationDetailsRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param getCSVHeaderRequest
+     * @return getCSVHeaderResult The response from the GetCSVHeader service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    GetCSVHeaderResult getCSVHeader(GetCSVHeaderRequest getCSVHeaderRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param getDeviceRequest
+     * @return getDeviceResult The response from the GetDevice service method,
+     *         as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    GetDeviceResult getDevice(GetDeviceRequest getDeviceRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -657,6 +982,10 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserLambdaValidationException
      * @throws InvalidLambdaResponseException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -667,6 +996,94 @@ public interface AmazonCognitoIdentityProvider {
      */
     GetUserAttributeVerificationCodeResult getUserAttributeVerificationCode(
             GetUserAttributeVerificationCodeRequest getUserAttributeVerificationCodeRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param globalSignOutRequest
+     * @return globalSignOutResult The response from the GlobalSignOut service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    GlobalSignOutResult globalSignOut(GlobalSignOutRequest globalSignOutRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param initiateAuthRequest
+     * @return initiateAuthResult The response from the InitiateAuth service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws UnexpectedLambdaException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    InitiateAuthResult initiateAuth(InitiateAuthRequest initiateAuthRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param listDevicesRequest
+     * @return listDevicesResult The response from the ListDevices service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    ListDevicesResult listDevices(ListDevicesRequest listDevicesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param listUserImportJobsRequest
+     * @return listUserImportJobsResult The response from the ListUserImportJobs
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    ListUserImportJobsResult listUserImportJobs(ListUserImportJobsRequest listUserImportJobsRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -683,6 +1100,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -709,6 +1127,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -736,6 +1155,9 @@ public interface AmazonCognitoIdentityProvider {
      * @throws NotAuthorizedException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -768,6 +1190,11 @@ public interface AmazonCognitoIdentityProvider {
      * @throws TooManyRequestsException
      * @throws LimitExceededException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
+     * @throws UserNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -778,6 +1205,41 @@ public interface AmazonCognitoIdentityProvider {
      */
     ResendConfirmationCodeResult resendConfirmationCode(
             ResendConfirmationCodeRequest resendConfirmationCodeRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param respondToAuthChallengeRequest
+     * @return respondToAuthChallengeResult The response from the
+     *         RespondToAuthChallenge service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws CodeMismatchException
+     * @throws ExpiredCodeException
+     * @throws UnexpectedLambdaException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws TooManyRequestsException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws InternalErrorException
+     * @throws MFAMethodNotFoundException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws AliasExistsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    RespondToAuthChallengeResult respondToAuthChallenge(
+            RespondToAuthChallengeRequest respondToAuthChallengeRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -827,6 +1289,10 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UsernameExistsException
      * @throws TooManyRequestsException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -837,6 +1303,69 @@ public interface AmazonCognitoIdentityProvider {
      */
     SignUpResult signUp(SignUpRequest signUpRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * @param startUserImportJobRequest
+     * @return startUserImportJobResult The response from the StartUserImportJob
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws PreconditionNotMetException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    StartUserImportJobResult startUserImportJob(StartUserImportJobRequest startUserImportJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param stopUserImportJobRequest
+     * @return stopUserImportJobResult The response from the StopUserImportJob
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws PreconditionNotMetException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    StopUserImportJobResult stopUserImportJob(StopUserImportJobRequest stopUserImportJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param updateDeviceStatusRequest
+     * @return updateDeviceStatusResult The response from the UpdateDeviceStatus
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    UpdateDeviceStatusResult updateDeviceStatus(UpdateDeviceStatusRequest updateDeviceStatusRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -860,6 +1389,10 @@ public interface AmazonCognitoIdentityProvider {
      * @throws TooManyRequestsException
      * @throws AliasExistsException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws CodeDeliveryFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -887,6 +1420,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws ResourceNotFoundException
      * @throws InvalidParameterException
      * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

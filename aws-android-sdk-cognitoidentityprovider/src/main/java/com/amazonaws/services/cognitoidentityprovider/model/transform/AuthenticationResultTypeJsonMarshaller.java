@@ -51,6 +51,13 @@ class AuthenticationResultTypeJsonMarshaller {
             jsonWriter.name("IdToken");
             jsonWriter.value(idToken);
         }
+        if (authenticationResultType.getNewDeviceMetadata() != null) {
+            NewDeviceMetadataType newDeviceMetadata = authenticationResultType
+                    .getNewDeviceMetadata();
+            jsonWriter.name("NewDeviceMetadata");
+            NewDeviceMetadataTypeJsonMarshaller.getInstance().marshall(newDeviceMetadata,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

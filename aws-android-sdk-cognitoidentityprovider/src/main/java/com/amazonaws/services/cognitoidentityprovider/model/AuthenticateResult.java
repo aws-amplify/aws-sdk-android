@@ -34,6 +34,9 @@ public class AuthenticateResult implements Serializable {
      * <p>
      * The authorization state of the authentication response.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_+/=]+<br/>
      */
     private String authState;
 
@@ -93,6 +96,9 @@ public class AuthenticateResult implements Serializable {
      * <p>
      * The authorization state of the authentication response.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_+/=]+<br/>
      *
      * @return <p>
      *         The authorization state of the authentication response.
@@ -106,6 +112,9 @@ public class AuthenticateResult implements Serializable {
      * <p>
      * The authorization state of the authentication response.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_+/=]+<br/>
      *
      * @param authState <p>
      *            The authorization state of the authentication response.
@@ -122,6 +131,9 @@ public class AuthenticateResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9-_+/=]+<br/>
      *
      * @param authState <p>
      *            The authorization state of the authentication response.

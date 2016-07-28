@@ -47,6 +47,10 @@ class AuthenticationResultTypeJsonUnmarshaller implements
             } else if (name.equals("IdToken")) {
                 authenticationResultType.setIdToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("NewDeviceMetadata")) {
+                authenticationResultType.setNewDeviceMetadata(NewDeviceMetadataTypeJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

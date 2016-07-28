@@ -38,6 +38,7 @@ public class ListUserPoolClientsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      */
     private String nextToken;
 
@@ -130,6 +131,7 @@ public class ListUserPoolClientsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
      *         An identifier that was returned from the previous call to this
@@ -149,6 +151,7 @@ public class ListUserPoolClientsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
      *            An identifier that was returned from the previous call to this
@@ -171,6 +174,7 @@ public class ListUserPoolClientsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
      *            An identifier that was returned from the previous call to this

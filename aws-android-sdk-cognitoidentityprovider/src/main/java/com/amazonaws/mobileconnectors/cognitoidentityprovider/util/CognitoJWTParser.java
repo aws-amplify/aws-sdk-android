@@ -1,18 +1,18 @@
 /*
- * Copyright 2013-2016 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
+ *  Copyright 2013-2016 Amazon.com,
+ *  Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
+ *  Licensed under the Amazon Software License (the "License").
+ *  You may not use this file except in compliance with the
+ *  License. A copy of the License is located at
  *
- *     http://aws.amazon.com/asl/
+ *      http://aws.amazon.com/asl/
  *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ *  or in the "license" file accompanying this file. This file is
+ *  distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ *  CONDITIONS OF ANY KIND, express or implied. See the License
+ *  for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.util;
@@ -44,10 +44,11 @@ public class CognitoJWTParser {
         try {
             validateJWT(JWT);
             byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[HEADER], Base64.URL_SAFE);
-            return new JSONObject(new String(sectionDecoded, "UTF-8"));
+            String jwtSection = new String(sectionDecoded, "UTF-8");
+            return new JSONObject(jwtSection);
         } catch (UnsupportedEncodingException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
-        } catch (JSONException e){
+        } catch (JSONException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
         } catch (Exception e) {
             throw new CognitoParameterInvalidException("error in parsing JSON");
@@ -63,11 +64,13 @@ public class CognitoJWTParser {
     public static JSONObject getPayload(String JWT) {
         try {
             validateJWT(JWT);
-            byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[PAYLOAD], Base64.URL_SAFE);
-            return new JSONObject(new String(sectionDecoded, "UTF-8"));
+            String payload = JWT.split("\\.")[PAYLOAD];
+            byte[] sectionDecoded = Base64.decode(payload, Base64.URL_SAFE);
+            String jwtSection = new String(sectionDecoded, "UTF-8");
+            return new JSONObject(jwtSection);
         } catch (UnsupportedEncodingException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
-        } catch (JSONException e){
+        } catch (JSONException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
         } catch (Exception e) {
             throw new CognitoParameterInvalidException("error in parsing JSON");
@@ -121,7 +124,7 @@ public class CognitoJWTParser {
     public static void validateJWT(String JWT) {
         // Check if the the JWT has the three parts
         String[] jwtParts = JWT.split("\\.");
-        if(jwtParts.length != 3){
+        if(jwtParts.length != 3) {
             throw new CognitoParameterInvalidException("not a JSON Web Token");
         }
     }
