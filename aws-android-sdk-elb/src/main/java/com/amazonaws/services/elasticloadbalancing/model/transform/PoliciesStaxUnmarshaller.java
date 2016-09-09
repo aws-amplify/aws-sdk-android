@@ -47,20 +47,18 @@ class PoliciesStaxUnmarshaller implements Unmarshaller<Policies, StaxUnmarshalle
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("AppCookieStickinessPolicies/member", targetDepth)) {
-                    policies.getAppCookieStickinessPolicies().add(
-                            AppCookieStickinessPolicyStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    policies.withAppCookieStickinessPolicies(AppCookieStickinessPolicyStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("LBCookieStickinessPolicies/member", targetDepth)) {
-                    policies.getLBCookieStickinessPolicies().add(
-                            LBCookieStickinessPolicyStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    policies.withLBCookieStickinessPolicies(LBCookieStickinessPolicyStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("OtherPolicies/member", targetDepth)) {
-                    policies.getOtherPolicies().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    policies.withOtherPolicies(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

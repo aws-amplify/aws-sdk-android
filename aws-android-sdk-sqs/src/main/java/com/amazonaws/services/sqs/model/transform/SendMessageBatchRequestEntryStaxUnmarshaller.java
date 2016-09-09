@@ -108,7 +108,7 @@ class SendMessageBatchRequestEntryStaxUnmarshaller implements
                 if (context.testExpression("MessageAttribute", targetDepth)) {
                     Entry<String, MessageAttributeValue> entry = MessageAttributesMapEntryUnmarshaller
                             .getInstance().unmarshall(context);
-                    sendMessageBatchRequestEntry.getMessageAttributes().put(entry.getKey(),
+                    sendMessageBatchRequestEntry.addMessageAttributesEntry(entry.getKey(),
                             entry.getValue());
                     continue;
                 }

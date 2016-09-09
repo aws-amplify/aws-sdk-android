@@ -90,8 +90,8 @@ public class GetEndpointAttributesResultStaxUnmarshaller implements
                 if (context.testExpression("Attributes/entry", targetDepth)) {
                     Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    getEndpointAttributesResult.getAttributes().put(entry.getKey(),
-                            entry.getValue());
+                    getEndpointAttributesResult
+                            .addAttributesEntry(entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

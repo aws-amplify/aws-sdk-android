@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class PredictionJsonUnmarshaller implements Unmarshaller<Prediction, JsonUnmarshallerContext> {
 
     public Prediction unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Prediction prediction = new Prediction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Prediction prediction = new Prediction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

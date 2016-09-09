@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class UserTypeJsonUnmarshaller implements Unmarshaller<UserType, JsonUnmarshallerContext> {
 
     public UserType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        UserType userType = new UserType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        UserType userType = new UserType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

@@ -48,8 +48,8 @@ public class DescribeLoadBalancersResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("LoadBalancers/member", targetDepth)) {
-                    describeLoadBalancersResult.getLoadBalancers().add(
-                            LoadBalancerStateStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeLoadBalancersResult.withLoadBalancers(LoadBalancerStateStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

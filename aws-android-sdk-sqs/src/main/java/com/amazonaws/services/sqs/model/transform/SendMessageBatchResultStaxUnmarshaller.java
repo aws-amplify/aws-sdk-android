@@ -48,15 +48,14 @@ public class SendMessageBatchResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("SendMessageBatchResultEntry", targetDepth)) {
-                    sendMessageBatchResult.getSuccessful().add(
-                            SendMessageBatchResultEntryStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    sendMessageBatchResult
+                            .withSuccessful(SendMessageBatchResultEntryStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("BatchResultErrorEntry", targetDepth)) {
-                    sendMessageBatchResult.getFailed()
-                            .add(BatchResultErrorEntryStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    sendMessageBatchResult.withFailed(BatchResultErrorEntryStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

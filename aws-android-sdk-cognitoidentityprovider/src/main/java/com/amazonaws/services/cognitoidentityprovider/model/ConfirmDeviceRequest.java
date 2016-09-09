@@ -19,9 +19,17 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Confirms tracking of the device. This API call is the call that beings device
+ * tracking.
+ * </p>
+ */
 public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
@@ -29,55 +37,69 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
     private String accessToken;
 
     /**
-     * The new value for the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      */
     private String deviceKey;
 
     /**
-     * The new value for the deviceSecretVerifierConfig property for this
-     * object.
+     * <p>
+     * The configuration of the device secret verifier.
+     * </p>
      */
     private DeviceSecretVerifierConfigType deviceSecretVerifierConfig;
 
     /**
-     * The new value for the deviceName property for this object.
+     * <p>
+     * The device name.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 150<br/>
+     * <b>Length: </b>1 - 1024<br/>
      */
     private String deviceName;
 
     /**
-     * Returns the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @return The value of the accessToken property for this object.
+     * @return <p>
+     *         The access token.
+     *         </p>
      */
     public String getAccessToken() {
         return accessToken;
     }
 
     /**
-     * Sets the value of accessToken
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
     /**
-     * Sets the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -85,8 +107,9 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -96,44 +119,54 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
-     * Returns the value of the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @return The value of the deviceKey property for this object.
+     * @return <p>
+     *         The device key.
+     *         </p>
      */
     public String getDeviceKey() {
         return deviceKey;
     }
 
     /**
-     * Sets the value of deviceKey
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @param deviceKey The new value for the deviceKey property for this
-     *            object.
+     * @param deviceKey <p>
+     *            The device key.
+     *            </p>
      */
     public void setDeviceKey(String deviceKey) {
         this.deviceKey = deviceKey;
     }
 
     /**
-     * Sets the value of the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @param deviceKey The new value for the deviceKey property for this
-     *            object.
+     * @param deviceKey <p>
+     *            The device key.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -143,21 +176,26 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
-     * Returns the value of the deviceSecretVerifierConfig property for this
-     * object.
+     * <p>
+     * The configuration of the device secret verifier.
+     * </p>
      *
-     * @return The value of the deviceSecretVerifierConfig property for this
-     *         object.
+     * @return <p>
+     *         The configuration of the device secret verifier.
+     *         </p>
      */
     public DeviceSecretVerifierConfigType getDeviceSecretVerifierConfig() {
         return deviceSecretVerifierConfig;
     }
 
     /**
-     * Sets the value of deviceSecretVerifierConfig
+     * <p>
+     * The configuration of the device secret verifier.
+     * </p>
      *
-     * @param deviceSecretVerifierConfig The new value for the
-     *            deviceSecretVerifierConfig property for this object.
+     * @param deviceSecretVerifierConfig <p>
+     *            The configuration of the device secret verifier.
+     *            </p>
      */
     public void setDeviceSecretVerifierConfig(
             DeviceSecretVerifierConfigType deviceSecretVerifierConfig) {
@@ -165,14 +203,16 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
-     * Sets the value of the deviceSecretVerifierConfig property for this
-     * object.
+     * <p>
+     * The configuration of the device secret verifier.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param deviceSecretVerifierConfig The new value for the
-     *            deviceSecretVerifierConfig property for this object.
+     * @param deviceSecretVerifierConfig <p>
+     *            The configuration of the device secret verifier.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -183,41 +223,51 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
-     * Returns the value of the deviceName property for this object.
+     * <p>
+     * The device name.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 150<br/>
+     * <b>Length: </b>1 - 1024<br/>
      *
-     * @return The value of the deviceName property for this object.
+     * @return <p>
+     *         The device name.
+     *         </p>
      */
     public String getDeviceName() {
         return deviceName;
     }
 
     /**
-     * Sets the value of deviceName
+     * <p>
+     * The device name.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 150<br/>
+     * <b>Length: </b>1 - 1024<br/>
      *
-     * @param deviceName The new value for the deviceName property for this
-     *            object.
+     * @param deviceName <p>
+     *            The device name.
+     *            </p>
      */
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
     }
 
     /**
-     * Sets the value of the deviceName property for this object.
+     * <p>
+     * The device name.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 150<br/>
+     * <b>Length: </b>1 - 1024<br/>
      *
-     * @param deviceName The new value for the deviceName property for this
-     *            object.
+     * @param deviceName <p>
+     *            The device name.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

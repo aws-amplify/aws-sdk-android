@@ -30,7 +30,7 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
@@ -82,7 +82,9 @@ public class UserPoolClientType implements Serializable {
     private java.util.Date creationDate;
 
     /**
-     * The new value for the refreshTokenValidity property for this object.
+     * <p>
+     * The validity of the refresh token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 3650<br/>
@@ -90,17 +92,23 @@ public class UserPoolClientType implements Serializable {
     private Integer refreshTokenValidity;
 
     /**
-     * The new value for the readAttributes property for this object.
+     * <p>
+     * The Read-only attributes.
+     * </p>
      */
     private java.util.List<String> readAttributes;
 
     /**
-     * The new value for the writeAttributes property for this object.
+     * <p>
+     * The writeable attributes.
+     * </p>
      */
     private java.util.List<String> writeAttributes;
 
     /**
-     * The new value for the explicitAuthFlows property for this object.
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      */
     private java.util.List<String> explicitAuthFlows;
 
@@ -111,7 +119,7 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @return <p>
      *         The user pool ID for the user pool client.
@@ -128,7 +136,7 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
      *            The user pool ID for the user pool client.
@@ -148,7 +156,7 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
      *            The user pool ID for the user pool client.
@@ -430,32 +438,41 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Returns the value of the refreshTokenValidity property for this object.
+     * <p>
+     * The validity of the refresh token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 3650<br/>
      *
-     * @return The value of the refreshTokenValidity property for this object.
+     * @return <p>
+     *         The validity of the refresh token.
+     *         </p>
      */
     public Integer getRefreshTokenValidity() {
         return refreshTokenValidity;
     }
 
     /**
-     * Sets the value of refreshTokenValidity
+     * <p>
+     * The validity of the refresh token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 3650<br/>
      *
-     * @param refreshTokenValidity The new value for the refreshTokenValidity
-     *            property for this object.
+     * @param refreshTokenValidity <p>
+     *            The validity of the refresh token.
+     *            </p>
      */
     public void setRefreshTokenValidity(Integer refreshTokenValidity) {
         this.refreshTokenValidity = refreshTokenValidity;
     }
 
     /**
-     * Sets the value of the refreshTokenValidity property for this object.
+     * <p>
+     * The validity of the refresh token.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -463,8 +480,9 @@ public class UserPoolClientType implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 3650<br/>
      *
-     * @param refreshTokenValidity The new value for the refreshTokenValidity
-     *            property for this object.
+     * @param refreshTokenValidity <p>
+     *            The validity of the refresh token.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -474,19 +492,26 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Returns the value of the readAttributes property for this object.
+     * <p>
+     * The Read-only attributes.
+     * </p>
      *
-     * @return The value of the readAttributes property for this object.
+     * @return <p>
+     *         The Read-only attributes.
+     *         </p>
      */
     public java.util.List<String> getReadAttributes() {
         return readAttributes;
     }
 
     /**
-     * Sets the value of readAttributes
+     * <p>
+     * The Read-only attributes.
+     * </p>
      *
-     * @param readAttributes The new value for the readAttributes property for
-     *            this object.
+     * @param readAttributes <p>
+     *            The Read-only attributes.
+     *            </p>
      */
     public void setReadAttributes(java.util.Collection<String> readAttributes) {
         if (readAttributes == null) {
@@ -498,13 +523,16 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Sets the value of the readAttributes property for this object.
+     * <p>
+     * The Read-only attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param readAttributes The new value for the readAttributes property for
-     *            this object.
+     * @param readAttributes <p>
+     *            The Read-only attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -519,13 +547,16 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Sets the value of the readAttributes property for this object.
+     * <p>
+     * The Read-only attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param readAttributes The new value for the readAttributes property for
-     *            this object.
+     * @param readAttributes <p>
+     *            The Read-only attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -535,19 +566,26 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Returns the value of the writeAttributes property for this object.
+     * <p>
+     * The writeable attributes.
+     * </p>
      *
-     * @return The value of the writeAttributes property for this object.
+     * @return <p>
+     *         The writeable attributes.
+     *         </p>
      */
     public java.util.List<String> getWriteAttributes() {
         return writeAttributes;
     }
 
     /**
-     * Sets the value of writeAttributes
+     * <p>
+     * The writeable attributes.
+     * </p>
      *
-     * @param writeAttributes The new value for the writeAttributes property for
-     *            this object.
+     * @param writeAttributes <p>
+     *            The writeable attributes.
+     *            </p>
      */
     public void setWriteAttributes(java.util.Collection<String> writeAttributes) {
         if (writeAttributes == null) {
@@ -559,13 +597,16 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Sets the value of the writeAttributes property for this object.
+     * <p>
+     * The writeable attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param writeAttributes The new value for the writeAttributes property for
-     *            this object.
+     * @param writeAttributes <p>
+     *            The writeable attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -580,13 +621,16 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Sets the value of the writeAttributes property for this object.
+     * <p>
+     * The writeable attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param writeAttributes The new value for the writeAttributes property for
-     *            this object.
+     * @param writeAttributes <p>
+     *            The writeable attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -596,19 +640,26 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Returns the value of the explicitAuthFlows property for this object.
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      *
-     * @return The value of the explicitAuthFlows property for this object.
+     * @return <p>
+     *         The explicit authentication flows.
+     *         </p>
      */
     public java.util.List<String> getExplicitAuthFlows() {
         return explicitAuthFlows;
     }
 
     /**
-     * Sets the value of explicitAuthFlows
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      *
-     * @param explicitAuthFlows The new value for the explicitAuthFlows property
-     *            for this object.
+     * @param explicitAuthFlows <p>
+     *            The explicit authentication flows.
+     *            </p>
      */
     public void setExplicitAuthFlows(java.util.Collection<String> explicitAuthFlows) {
         if (explicitAuthFlows == null) {
@@ -620,13 +671,16 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Sets the value of the explicitAuthFlows property for this object.
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param explicitAuthFlows The new value for the explicitAuthFlows property
-     *            for this object.
+     * @param explicitAuthFlows <p>
+     *            The explicit authentication flows.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -641,13 +695,16 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Sets the value of the explicitAuthFlows property for this object.
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param explicitAuthFlows The new value for the explicitAuthFlows property
-     *            for this object.
+     * @param explicitAuthFlows <p>
+     *            The explicit authentication flows.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

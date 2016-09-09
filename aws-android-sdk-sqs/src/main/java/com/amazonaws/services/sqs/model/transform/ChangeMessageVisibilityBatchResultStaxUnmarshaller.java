@@ -49,15 +49,15 @@ public class ChangeMessageVisibilityBatchResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("ChangeMessageVisibilityBatchResultEntry", targetDepth)) {
-                    changeMessageVisibilityBatchResult.getSuccessful().add(
-                            ChangeMessageVisibilityBatchResultEntryStaxUnmarshaller.getInstance()
-                                    .unmarshall(context));
+                    changeMessageVisibilityBatchResult
+                            .withSuccessful(ChangeMessageVisibilityBatchResultEntryStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("BatchResultErrorEntry", targetDepth)) {
-                    changeMessageVisibilityBatchResult.getFailed()
-                            .add(BatchResultErrorEntryStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    changeMessageVisibilityBatchResult
+                            .withFailed(BatchResultErrorEntryStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

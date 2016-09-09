@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class DeleteRequestJsonUnmarshaller implements Unmarshaller<DeleteRequest, JsonUnmarshallerContext> {
 
     public DeleteRequest unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DeleteRequest deleteRequest = new DeleteRequest();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        DeleteRequest deleteRequest = new DeleteRequest();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

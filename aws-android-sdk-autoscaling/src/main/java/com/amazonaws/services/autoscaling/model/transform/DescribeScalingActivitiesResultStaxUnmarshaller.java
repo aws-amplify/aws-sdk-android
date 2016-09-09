@@ -49,8 +49,8 @@ public class DescribeScalingActivitiesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Activities/member", targetDepth)) {
-                    describeScalingActivitiesResult.getActivities().add(
-                            ActivityStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeScalingActivitiesResult.withActivities(ActivityStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

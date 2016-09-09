@@ -48,8 +48,8 @@ public class DescribeTagsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("TagDescriptions/member", targetDepth)) {
-                    describeTagsResult.getTagDescriptions().add(
-                            TagDescriptionStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeTagsResult.withTagDescriptions(TagDescriptionStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

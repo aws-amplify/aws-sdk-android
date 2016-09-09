@@ -49,14 +49,15 @@ public class DescribeMetricCollectionTypesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Metrics/member", targetDepth)) {
-                    describeMetricCollectionTypesResult.getMetrics().add(
-                            MetricCollectionTypeStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeMetricCollectionTypesResult
+                            .withMetrics(MetricCollectionTypeStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("Granularities/member", targetDepth)) {
-                    describeMetricCollectionTypesResult.getGranularities()
-                            .add(MetricGranularityTypeStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    describeMetricCollectionTypesResult
+                            .withGranularities(MetricGranularityTypeStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

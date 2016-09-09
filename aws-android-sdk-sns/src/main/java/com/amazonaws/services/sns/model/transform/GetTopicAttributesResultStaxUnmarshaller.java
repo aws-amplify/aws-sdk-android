@@ -90,7 +90,7 @@ public class GetTopicAttributesResultStaxUnmarshaller implements
                 if (context.testExpression("Attributes/entry", targetDepth)) {
                     Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    getTopicAttributesResult.getAttributes().put(entry.getKey(), entry.getValue());
+                    getTopicAttributesResult.addAttributesEntry(entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

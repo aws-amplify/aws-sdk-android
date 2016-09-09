@@ -55,8 +55,8 @@ public class DescribeActiveReceiptRuleSetResultStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("Rules/member", targetDepth)) {
-                    describeActiveReceiptRuleSetResult.getRules().add(
-                            ReceiptRuleStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeActiveReceiptRuleSetResult.withRules(ReceiptRuleStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

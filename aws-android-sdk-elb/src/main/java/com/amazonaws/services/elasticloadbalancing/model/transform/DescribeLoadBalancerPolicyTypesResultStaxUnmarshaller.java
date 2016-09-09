@@ -49,9 +49,9 @@ public class DescribeLoadBalancerPolicyTypesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("PolicyTypeDescriptions/member", targetDepth)) {
-                    describeLoadBalancerPolicyTypesResult.getPolicyTypeDescriptions()
-                            .add(PolicyTypeDescriptionStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    describeLoadBalancerPolicyTypesResult
+                            .withPolicyTypeDescriptions(PolicyTypeDescriptionStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

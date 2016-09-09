@@ -18,7 +18,10 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is returned when the role provided for SMS configuration does
+ * not have permission to publish using Amazon SNS.
+ * </p>
  */
 public class InvalidSmsRoleAccessPolicyException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -18,6 +18,7 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants;
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
 
 import java.util.ArrayList;
@@ -31,8 +32,6 @@ import java.util.Map;
  * This contents of this object are set when it is constructed and are immutable afterwards.
  */
 public class AuthenticationDetails {
-    public final static String PASSWORD_AUTHENTICATION = "PASSWORD_VERIFIER";
-    public final static String CUSTOM_AUTHENTICATION = "CUSTOM_CHALLENGE";
     private String authenticationType;
     private String userId;
     private String password;
@@ -47,7 +46,7 @@ public class AuthenticationDetails {
      * @param validationData    REQUIRED: Validation data parameters for the pre-auth lambda.
      */
     public AuthenticationDetails(String  userId, String password, Map<String, String> validationData){
-        this.authenticationType = PASSWORD_AUTHENTICATION;
+        this.authenticationType = CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER;
         this.userId = userId;
         this.password = password;
         setValidationData(validationData);
@@ -62,7 +61,7 @@ public class AuthenticationDetails {
     public AuthenticationDetails(String  userId, Map<String, String> authenticationParameters, Map<String, String> validationData) {
         this.userId = userId;
         if (authenticationParameters != null) {
-            this.authenticationType = CUSTOM_AUTHENTICATION;
+            this.authenticationType = CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE;
             this.authenticationParameters = authenticationParameters;
             setValidationData(validationData);
         } else {
@@ -72,9 +71,9 @@ public class AuthenticationDetails {
 
     public void setAuthenticationType(String authenticationType) {
         this.authenticationType = authenticationType;
-        if (this.authenticationType.equals(PASSWORD_AUTHENTICATION)) {
+        if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER.equals(this.authenticationType)) {
             this.authenticationParameters = null;
-        } else if (this.authenticationType.equals(CUSTOM_AUTHENTICATION)) {
+        } else if (CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE.equals(this.authenticationType)) {
             this.password = null;
         }
     }
@@ -131,11 +130,11 @@ public class AuthenticationDetails {
      * @param customChallenge           REQUIRED: Custom challenge name.
      */
     public void setCustomChallenge(String customChallenge) {
-        if (this.authenticationType.equals(PASSWORD_AUTHENTICATION)) {
-            throw new CognitoParameterInvalidException(String.format("Cannot set custom challenge when the authentication type is %s.", PASSWORD_AUTHENTICATION));
+        if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER.equals(this.authenticationType)) {
+            throw new CognitoParameterInvalidException(String.format("Cannot set custom challenge when the authentication type is %s.", CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER));
         }
-        this.authenticationType = CUSTOM_AUTHENTICATION;
-        setAuthenticationParameter("CHALLENGE_NAME", customChallenge);
+        this.authenticationType = CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE;
+        setAuthenticationParameter(CognitoServiceConstants.AUTH_PARAM_CHALLENGE_NAME, customChallenge);
     }
 
     /**

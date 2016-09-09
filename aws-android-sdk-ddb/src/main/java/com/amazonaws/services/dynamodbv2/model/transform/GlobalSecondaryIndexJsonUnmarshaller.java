@@ -27,8 +27,12 @@ class GlobalSecondaryIndexJsonUnmarshaller implements
         Unmarshaller<GlobalSecondaryIndex, JsonUnmarshallerContext> {
 
     public GlobalSecondaryIndex unmarshall(JsonUnmarshallerContext context) throws Exception {
-        GlobalSecondaryIndex globalSecondaryIndex = new GlobalSecondaryIndex();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        GlobalSecondaryIndex globalSecondaryIndex = new GlobalSecondaryIndex();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

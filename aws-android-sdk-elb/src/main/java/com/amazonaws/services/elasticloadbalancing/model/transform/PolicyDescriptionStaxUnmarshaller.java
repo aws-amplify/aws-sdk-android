@@ -58,9 +58,9 @@ class PolicyDescriptionStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("PolicyAttributeDescriptions/member", targetDepth)) {
-                    policyDescription.getPolicyAttributeDescriptions().add(
-                            PolicyAttributeDescriptionStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    policyDescription
+                            .withPolicyAttributeDescriptions(PolicyAttributeDescriptionStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

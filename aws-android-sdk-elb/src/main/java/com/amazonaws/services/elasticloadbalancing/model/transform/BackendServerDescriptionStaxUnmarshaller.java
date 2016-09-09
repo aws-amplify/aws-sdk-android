@@ -53,8 +53,8 @@ class BackendServerDescriptionStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("PolicyNames/member", targetDepth)) {
-                    backendServerDescription.getPolicyNames().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    backendServerDescription.withPolicyNames(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

@@ -40,7 +40,7 @@ public class AttributeType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
+     * <b>Length: </b> - 2048<br/>
      */
     private String value;
 
@@ -107,7 +107,7 @@ public class AttributeType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @return <p>
      *         The value of the attribute.
@@ -123,7 +123,7 @@ public class AttributeType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param value <p>
      *            The value of the attribute.
@@ -142,7 +142,7 @@ public class AttributeType implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param value <p>
      *            The value of the attribute.

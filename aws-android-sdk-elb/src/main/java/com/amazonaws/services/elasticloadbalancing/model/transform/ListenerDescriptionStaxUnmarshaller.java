@@ -53,8 +53,8 @@ class ListenerDescriptionStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("PolicyNames/member", targetDepth)) {
-                    listenerDescription.getPolicyNames().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    listenerDescription.withPolicyNames(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

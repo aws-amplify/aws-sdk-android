@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class HashKeyRangeJsonUnmarshaller implements Unmarshaller<HashKeyRange, JsonUnmarshallerContext> {
 
     public HashKeyRange unmarshall(JsonUnmarshallerContext context) throws Exception {
-        HashKeyRange hashKeyRange = new HashKeyRange();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        HashKeyRange hashKeyRange = new HashKeyRange();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

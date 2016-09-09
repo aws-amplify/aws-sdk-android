@@ -28,7 +28,7 @@ public @interface Parameter {
      *
      * @return name of the parameter
      */
-    String name();
+    String name() default "";
 
     /**
      * Location of this parameter. Possible values are <tt>header</tt>,

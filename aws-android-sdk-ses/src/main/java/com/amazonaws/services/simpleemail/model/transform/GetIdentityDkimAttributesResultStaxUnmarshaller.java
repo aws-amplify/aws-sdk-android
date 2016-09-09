@@ -93,7 +93,7 @@ public class GetIdentityDkimAttributesResultStaxUnmarshaller implements
                 if (context.testExpression("DkimAttributes/entry", targetDepth)) {
                     Entry<String, IdentityDkimAttributes> entry = DkimAttributesMapEntryUnmarshaller
                             .getInstance().unmarshall(context);
-                    getIdentityDkimAttributesResult.getDkimAttributes().put(entry.getKey(),
+                    getIdentityDkimAttributesResult.addDkimAttributesEntry(entry.getKey(),
                             entry.getValue());
                     continue;
                 }

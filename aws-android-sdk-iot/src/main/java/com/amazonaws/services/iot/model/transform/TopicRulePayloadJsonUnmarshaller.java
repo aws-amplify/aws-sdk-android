@@ -27,8 +27,12 @@ class TopicRulePayloadJsonUnmarshaller implements
         Unmarshaller<TopicRulePayload, JsonUnmarshallerContext> {
 
     public TopicRulePayload unmarshall(JsonUnmarshallerContext context) throws Exception {
-        TopicRulePayload topicRulePayload = new TopicRulePayload();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        TopicRulePayload topicRulePayload = new TopicRulePayload();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

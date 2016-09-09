@@ -27,8 +27,12 @@ class ExpectedAttributeValueJsonUnmarshaller implements
         Unmarshaller<ExpectedAttributeValue, JsonUnmarshallerContext> {
 
     public ExpectedAttributeValue unmarshall(JsonUnmarshallerContext context) throws Exception {
-        ExpectedAttributeValue expectedAttributeValue = new ExpectedAttributeValue();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        ExpectedAttributeValue expectedAttributeValue = new ExpectedAttributeValue();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

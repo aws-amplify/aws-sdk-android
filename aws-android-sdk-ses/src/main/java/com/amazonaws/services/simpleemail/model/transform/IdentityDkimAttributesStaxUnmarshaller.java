@@ -58,8 +58,8 @@ class IdentityDkimAttributesStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("DkimTokens/member", targetDepth)) {
-                    identityDkimAttributes.getDkimTokens().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    identityDkimAttributes.withDkimTokens(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

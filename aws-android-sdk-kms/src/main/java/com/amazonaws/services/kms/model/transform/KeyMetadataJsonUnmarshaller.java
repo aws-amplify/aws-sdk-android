@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class KeyMetadataJsonUnmarshaller implements Unmarshaller<KeyMetadata, JsonUnmarshallerContext> {
 
     public KeyMetadata unmarshall(JsonUnmarshallerContext context) throws Exception {
-        KeyMetadata keyMetadata = new KeyMetadata();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        KeyMetadata keyMetadata = new KeyMetadata();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

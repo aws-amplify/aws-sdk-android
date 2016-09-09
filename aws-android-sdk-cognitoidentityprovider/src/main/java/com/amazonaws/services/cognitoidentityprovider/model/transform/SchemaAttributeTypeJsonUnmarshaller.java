@@ -27,8 +27,12 @@ class SchemaAttributeTypeJsonUnmarshaller implements
         Unmarshaller<SchemaAttributeType, JsonUnmarshallerContext> {
 
     public SchemaAttributeType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        SchemaAttributeType schemaAttributeType = new SchemaAttributeType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        SchemaAttributeType schemaAttributeType = new SchemaAttributeType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

@@ -27,8 +27,12 @@ class PutRecordsRequestEntryJsonUnmarshaller implements
         Unmarshaller<PutRecordsRequestEntry, JsonUnmarshallerContext> {
 
     public PutRecordsRequestEntry unmarshall(JsonUnmarshallerContext context) throws Exception {
-        PutRecordsRequestEntry putRecordsRequestEntry = new PutRecordsRequestEntry();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        PutRecordsRequestEntry putRecordsRequestEntry = new PutRecordsRequestEntry();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

@@ -49,8 +49,9 @@ public class DeregisterInstancesFromLoadBalancerResultStaxUnmarshaller implement
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Instances/member", targetDepth)) {
-                    deregisterInstancesFromLoadBalancerResult.getInstances().add(
-                            InstanceStaxUnmarshaller.getInstance().unmarshall(context));
+                    deregisterInstancesFromLoadBalancerResult
+                            .withInstances(InstanceStaxUnmarshaller.getInstance().unmarshall(
+                                    context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

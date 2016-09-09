@@ -19,18 +19,28 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Stops the user import job.
+ * </p>
+ */
 public class StopUserImportJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * The new value for the jobId property for this object.
+     * <p>
+     * The job ID for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
@@ -39,44 +49,60 @@ public class StopUserImportJobRequest extends AmazonWebServiceRequest implements
     private String jobId;
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The user pool ID for the user pool that the users are being
+     *         imported into.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are being
+     *            imported into.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are being
+     *            imported into.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -86,33 +112,43 @@ public class StopUserImportJobRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Returns the value of the jobId property for this object.
+     * <p>
+     * The job ID for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>import-[0-9a-zA-Z-]+<br/>
      *
-     * @return The value of the jobId property for this object.
+     * @return <p>
+     *         The job ID for the user import job.
+     *         </p>
      */
     public String getJobId() {
         return jobId;
     }
 
     /**
-     * Sets the value of jobId
+     * <p>
+     * The job ID for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>import-[0-9a-zA-Z-]+<br/>
      *
-     * @param jobId The new value for the jobId property for this object.
+     * @param jobId <p>
+     *            The job ID for the user import job.
+     *            </p>
      */
     public void setJobId(String jobId) {
         this.jobId = jobId;
     }
 
     /**
-     * Sets the value of the jobId property for this object.
+     * <p>
+     * The job ID for the user import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -121,7 +157,9 @@ public class StopUserImportJobRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>import-[0-9a-zA-Z-]+<br/>
      *
-     * @param jobId The new value for the jobId property for this object.
+     * @param jobId <p>
+     *            The job ID for the user import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

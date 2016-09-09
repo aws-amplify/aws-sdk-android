@@ -27,8 +27,12 @@ class CACertificateDescriptionJsonUnmarshaller implements
         Unmarshaller<CACertificateDescription, JsonUnmarshallerContext> {
 
     public CACertificateDescription unmarshall(JsonUnmarshallerContext context) throws Exception {
-        CACertificateDescription cACertificateDescription = new CACertificateDescription();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        CACertificateDescription cACertificateDescription = new CACertificateDescription();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

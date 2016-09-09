@@ -27,8 +27,12 @@ class CloudwatchMetricActionJsonUnmarshaller implements
         Unmarshaller<CloudwatchMetricAction, JsonUnmarshallerContext> {
 
     public CloudwatchMetricAction unmarshall(JsonUnmarshallerContext context) throws Exception {
-        CloudwatchMetricAction cloudwatchMetricAction = new CloudwatchMetricAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        CloudwatchMetricAction cloudwatchMetricAction = new CloudwatchMetricAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

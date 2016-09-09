@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class LambdaActionJsonUnmarshaller implements Unmarshaller<LambdaAction, JsonUnmarshallerContext> {
 
     public LambdaAction unmarshall(JsonUnmarshallerContext context) throws Exception {
-        LambdaAction lambdaAction = new LambdaAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        LambdaAction lambdaAction = new LambdaAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

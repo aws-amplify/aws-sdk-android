@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class RecordJsonUnmarshaller implements Unmarshaller<Record, JsonUnmarshallerContext> {
 
     public Record unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Record record = new Record();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Record record = new Record();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

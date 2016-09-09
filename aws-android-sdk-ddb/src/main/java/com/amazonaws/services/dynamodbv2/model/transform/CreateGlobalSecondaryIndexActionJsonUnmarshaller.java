@@ -28,8 +28,12 @@ class CreateGlobalSecondaryIndexActionJsonUnmarshaller implements
 
     public CreateGlobalSecondaryIndexAction unmarshall(JsonUnmarshallerContext context)
             throws Exception {
-        CreateGlobalSecondaryIndexAction createGlobalSecondaryIndexAction = new CreateGlobalSecondaryIndexAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        CreateGlobalSecondaryIndexAction createGlobalSecondaryIndexAction = new CreateGlobalSecondaryIndexAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

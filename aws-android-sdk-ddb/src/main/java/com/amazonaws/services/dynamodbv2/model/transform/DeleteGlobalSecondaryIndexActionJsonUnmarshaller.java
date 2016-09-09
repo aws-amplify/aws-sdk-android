@@ -28,8 +28,12 @@ class DeleteGlobalSecondaryIndexActionJsonUnmarshaller implements
 
     public DeleteGlobalSecondaryIndexAction unmarshall(JsonUnmarshallerContext context)
             throws Exception {
-        DeleteGlobalSecondaryIndexAction deleteGlobalSecondaryIndexAction = new DeleteGlobalSecondaryIndexAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        DeleteGlobalSecondaryIndexAction deleteGlobalSecondaryIndexAction = new DeleteGlobalSecondaryIndexAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

@@ -19,9 +19,16 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Lists the devices.
+ * </p>
+ */
 public class ListDevicesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the accessToken property for this object.
+     * <p>
+     * The access tokens for the request to list devices.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
@@ -29,7 +36,9 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
     private String accessToken;
 
     /**
-     * The new value for the limit property for this object.
+     * <p>
+     * The limit of the device request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
@@ -37,7 +46,9 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
     private Integer limit;
 
     /**
-     * The new value for the paginationToken property for this object.
+     * <p>
+     * The pagination token for the list request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -46,32 +57,41 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
     private String paginationToken;
 
     /**
-     * Returns the value of the accessToken property for this object.
+     * <p>
+     * The access tokens for the request to list devices.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @return The value of the accessToken property for this object.
+     * @return <p>
+     *         The access tokens for the request to list devices.
+     *         </p>
      */
     public String getAccessToken() {
         return accessToken;
     }
 
     /**
-     * Sets the value of accessToken
+     * <p>
+     * The access tokens for the request to list devices.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access tokens for the request to list devices.
+     *            </p>
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
     /**
-     * Sets the value of the accessToken property for this object.
+     * <p>
+     * The access tokens for the request to list devices.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -79,8 +99,9 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access tokens for the request to list devices.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -90,31 +111,41 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * Returns the value of the limit property for this object.
+     * <p>
+     * The limit of the device request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
-     * @return The value of the limit property for this object.
+     * @return <p>
+     *         The limit of the device request.
+     *         </p>
      */
     public Integer getLimit() {
         return limit;
     }
 
     /**
-     * Sets the value of limit
+     * <p>
+     * The limit of the device request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
-     * @param limit The new value for the limit property for this object.
+     * @param limit <p>
+     *            The limit of the device request.
+     *            </p>
      */
     public void setLimit(Integer limit) {
         this.limit = limit;
     }
 
     /**
-     * Sets the value of the limit property for this object.
+     * <p>
+     * The limit of the device request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -122,7 +153,9 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
-     * @param limit The new value for the limit property for this object.
+     * @param limit <p>
+     *            The limit of the device request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -132,34 +165,43 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * Returns the value of the paginationToken property for this object.
+     * <p>
+     * The pagination token for the list request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @return The value of the paginationToken property for this object.
+     * @return <p>
+     *         The pagination token for the list request.
+     *         </p>
      */
     public String getPaginationToken() {
         return paginationToken;
     }
 
     /**
-     * Sets the value of paginationToken
+     * <p>
+     * The pagination token for the list request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            The pagination token for the list request.
+     *            </p>
      */
     public void setPaginationToken(String paginationToken) {
         this.paginationToken = paginationToken;
     }
 
     /**
-     * Sets the value of the paginationToken property for this object.
+     * <p>
+     * The pagination token for the list request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -168,8 +210,9 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            The pagination token for the list request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -53,8 +53,7 @@ class TagDescriptionStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("Tags/member", targetDepth)) {
-                    tagDescription.getTags().add(
-                            TagStaxUnmarshaller.getInstance().unmarshall(context));
+                    tagDescription.withTags(TagStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

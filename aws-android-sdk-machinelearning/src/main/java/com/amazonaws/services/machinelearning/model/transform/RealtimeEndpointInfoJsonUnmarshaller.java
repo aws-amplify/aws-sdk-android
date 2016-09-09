@@ -27,8 +27,12 @@ class RealtimeEndpointInfoJsonUnmarshaller implements
         Unmarshaller<RealtimeEndpointInfo, JsonUnmarshallerContext> {
 
     public RealtimeEndpointInfo unmarshall(JsonUnmarshallerContext context) throws Exception {
-        RealtimeEndpointInfo realtimeEndpointInfo = new RealtimeEndpointInfo();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        RealtimeEndpointInfo realtimeEndpointInfo = new RealtimeEndpointInfo();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

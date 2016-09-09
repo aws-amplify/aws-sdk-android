@@ -18,7 +18,10 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when Amazon Cognito is not allowed to use your email
+ * identity. HTTP status code: 400.
+ * </p>
  */
 public class InvalidEmailRoleAccessPolicyException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -58,13 +58,13 @@ class MessageAttributeValueStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("StringListValue", targetDepth)) {
-                    messageAttributeValue.getStringListValues().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    messageAttributeValue.withStringListValues(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("BinaryListValue", targetDepth)) {
-                    messageAttributeValue.getBinaryListValues().add(
-                            ByteBufferStaxUnmarshaller.getInstance().unmarshall(context));
+                    messageAttributeValue.withBinaryListValues(ByteBufferStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("DataType", targetDepth)) {

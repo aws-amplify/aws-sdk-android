@@ -19,18 +19,27 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Lists devices, as an administrator.
+ * </p>
+ */
 public class AdminListDevicesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The user pool ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * The new value for the username property for this object.
+     * <p>
+     * The user name.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -39,7 +48,9 @@ public class AdminListDevicesRequest extends AmazonWebServiceRequest implements 
     private String username;
 
     /**
-     * The new value for the limit property for this object.
+     * <p>
+     * The limit of the devices request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
@@ -47,7 +58,9 @@ public class AdminListDevicesRequest extends AmazonWebServiceRequest implements 
     private Integer limit;
 
     /**
-     * The new value for the paginationToken property for this object.
+     * <p>
+     * The pagination token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -56,44 +69,54 @@ public class AdminListDevicesRequest extends AmazonWebServiceRequest implements 
     private String paginationToken;
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The user pool ID.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The user pool ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -103,33 +126,43 @@ public class AdminListDevicesRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * Returns the value of the username property for this object.
+     * <p>
+     * The user name.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @return The value of the username property for this object.
+     * @return <p>
+     *         The user name.
+     *         </p>
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * Sets the value of username
+     * <p>
+     * The user name.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The new value for the username property for this object.
+     * @param username <p>
+     *            The user name.
+     *            </p>
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * Sets the value of the username property for this object.
+     * <p>
+     * The user name.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -138,7 +171,9 @@ public class AdminListDevicesRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The new value for the username property for this object.
+     * @param username <p>
+     *            The user name.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -148,31 +183,41 @@ public class AdminListDevicesRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * Returns the value of the limit property for this object.
+     * <p>
+     * The limit of the devices request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
-     * @return The value of the limit property for this object.
+     * @return <p>
+     *         The limit of the devices request.
+     *         </p>
      */
     public Integer getLimit() {
         return limit;
     }
 
     /**
-     * Sets the value of limit
+     * <p>
+     * The limit of the devices request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
-     * @param limit The new value for the limit property for this object.
+     * @param limit <p>
+     *            The limit of the devices request.
+     *            </p>
      */
     public void setLimit(Integer limit) {
         this.limit = limit;
     }
 
     /**
-     * Sets the value of the limit property for this object.
+     * <p>
+     * The limit of the devices request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -180,7 +225,9 @@ public class AdminListDevicesRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
-     * @param limit The new value for the limit property for this object.
+     * @param limit <p>
+     *            The limit of the devices request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -190,34 +237,43 @@ public class AdminListDevicesRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * Returns the value of the paginationToken property for this object.
+     * <p>
+     * The pagination token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @return The value of the paginationToken property for this object.
+     * @return <p>
+     *         The pagination token.
+     *         </p>
      */
     public String getPaginationToken() {
         return paginationToken;
     }
 
     /**
-     * Sets the value of paginationToken
+     * <p>
+     * The pagination token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            The pagination token.
+     *            </p>
      */
     public void setPaginationToken(String paginationToken) {
         this.paginationToken = paginationToken;
     }
 
     /**
-     * Sets the value of the paginationToken property for this object.
+     * <p>
+     * The pagination token.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -226,8 +282,9 @@ public class AdminListDevicesRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            The pagination token.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

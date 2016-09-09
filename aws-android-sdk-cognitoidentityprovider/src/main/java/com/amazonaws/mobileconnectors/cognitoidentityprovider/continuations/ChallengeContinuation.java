@@ -96,7 +96,6 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
      * thread is implemented in this method.
      */
     public void continueTask() {
-        // TODO Validations ??
         final RespondToAuthChallengeRequest respondToAuthChallengeRequest = new RespondToAuthChallengeRequest();
         respondToAuthChallengeRequest.setChallengeName(challengeResult.getChallengeName());
         respondToAuthChallengeRequest.setSession(challengeResult.getSession());

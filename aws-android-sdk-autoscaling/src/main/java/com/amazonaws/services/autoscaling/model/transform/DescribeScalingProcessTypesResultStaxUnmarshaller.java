@@ -49,8 +49,8 @@ public class DescribeScalingProcessTypesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Processes/member", targetDepth)) {
-                    describeScalingProcessTypesResult.getProcesses().add(
-                            ProcessTypeStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeScalingProcessTypesResult.withProcesses(ProcessTypeStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

@@ -56,17 +56,12 @@ public class SetLoggingOptionsRequestMarshaller implements
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
-            jsonWriter.beginObject();
-
             if (setLoggingOptionsRequest.getLoggingOptionsPayload() != null) {
                 LoggingOptionsPayload loggingOptionsPayload = setLoggingOptionsRequest
                         .getLoggingOptionsPayload();
-                jsonWriter.name("loggingOptionsPayload");
                 LoggingOptionsPayloadJsonMarshaller.getInstance().marshall(loggingOptionsPayload,
                         jsonWriter);
             }
-
-            jsonWriter.endObject();
             jsonWriter.close();
             String snippet = stringWriter.toString();
             byte[] content = snippet.getBytes(UTF8);

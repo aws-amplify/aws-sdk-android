@@ -27,8 +27,12 @@ class AliasListEntryJsonUnmarshaller implements
         Unmarshaller<AliasListEntry, JsonUnmarshallerContext> {
 
     public AliasListEntry unmarshall(JsonUnmarshallerContext context) throws Exception {
-        AliasListEntry aliasListEntry = new AliasListEntry();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        AliasListEntry aliasListEntry = new AliasListEntry();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

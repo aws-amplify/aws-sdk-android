@@ -17,37 +17,56 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Gets the device response.
+ * </p>
+ */
 public class GetDeviceResult implements Serializable {
     /**
-     * The new value for the device property for this object.
+     * <p>
+     * The device.
+     * </p>
      */
     private DeviceType device;
 
     /**
-     * Returns the value of the device property for this object.
+     * <p>
+     * The device.
+     * </p>
      *
-     * @return The value of the device property for this object.
+     * @return <p>
+     *         The device.
+     *         </p>
      */
     public DeviceType getDevice() {
         return device;
     }
 
     /**
-     * Sets the value of device
+     * <p>
+     * The device.
+     * </p>
      *
-     * @param device The new value for the device property for this object.
+     * @param device <p>
+     *            The device.
+     *            </p>
      */
     public void setDevice(DeviceType device) {
         this.device = device;
     }
 
     /**
-     * Sets the value of the device property for this object.
+     * <p>
+     * The device.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param device The new value for the device property for this object.
+     * @param device <p>
+     *            The device.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

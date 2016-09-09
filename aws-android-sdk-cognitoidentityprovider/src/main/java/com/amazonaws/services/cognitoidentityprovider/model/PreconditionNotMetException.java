@@ -18,7 +18,9 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when a precondition is not met.
+ * </p>
  */
 public class PreconditionNotMetException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

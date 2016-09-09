@@ -48,8 +48,8 @@ public class ListTopicsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Topics/member", targetDepth)) {
-                    listTopicsResult.getTopics().add(
-                            TopicStaxUnmarshaller.getInstance().unmarshall(context));
+                    listTopicsResult.withTopics(TopicStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

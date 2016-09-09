@@ -68,7 +68,9 @@ public class AuthenticationResultType implements Serializable {
     private String idToken;
 
     /**
-     * The new value for the newDeviceMetadata property for this object.
+     * <p>
+     * The new device metadata from an authentication result.
+     * </p>
      */
     private NewDeviceMetadataType newDeviceMetadata;
 
@@ -325,32 +327,42 @@ public class AuthenticationResultType implements Serializable {
     }
 
     /**
-     * Returns the value of the newDeviceMetadata property for this object.
+     * <p>
+     * The new device metadata from an authentication result.
+     * </p>
      *
-     * @return The value of the newDeviceMetadata property for this object.
+     * @return <p>
+     *         The new device metadata from an authentication result.
+     *         </p>
      */
     public NewDeviceMetadataType getNewDeviceMetadata() {
         return newDeviceMetadata;
     }
 
     /**
-     * Sets the value of newDeviceMetadata
+     * <p>
+     * The new device metadata from an authentication result.
+     * </p>
      *
-     * @param newDeviceMetadata The new value for the newDeviceMetadata property
-     *            for this object.
+     * @param newDeviceMetadata <p>
+     *            The new device metadata from an authentication result.
+     *            </p>
      */
     public void setNewDeviceMetadata(NewDeviceMetadataType newDeviceMetadata) {
         this.newDeviceMetadata = newDeviceMetadata;
     }
 
     /**
-     * Sets the value of the newDeviceMetadata property for this object.
+     * <p>
+     * The new device metadata from an authentication result.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param newDeviceMetadata The new value for the newDeviceMetadata property
-     *            for this object.
+     * @param newDeviceMetadata <p>
+     *            The new device metadata from an authentication result.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

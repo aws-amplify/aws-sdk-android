@@ -72,18 +72,18 @@ class MetricAlarmStaxUnmarshaller implements Unmarshaller<MetricAlarm, StaxUnmar
                     continue;
                 }
                 if (context.testExpression("OKActions/member", targetDepth)) {
-                    metricAlarm.getOKActions().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    metricAlarm.withOKActions(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("AlarmActions/member", targetDepth)) {
-                    metricAlarm.getAlarmActions().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    metricAlarm.withAlarmActions(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("InsufficientDataActions/member", targetDepth)) {
-                    metricAlarm.getInsufficientDataActions().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    metricAlarm.withInsufficientDataActions(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("StateValue", targetDepth)) {
@@ -122,8 +122,8 @@ class MetricAlarmStaxUnmarshaller implements Unmarshaller<MetricAlarm, StaxUnmar
                     continue;
                 }
                 if (context.testExpression("Dimensions/member", targetDepth)) {
-                    metricAlarm.getDimensions().add(
-                            DimensionStaxUnmarshaller.getInstance().unmarshall(context));
+                    metricAlarm.withDimensions(DimensionStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("Period", targetDepth)) {

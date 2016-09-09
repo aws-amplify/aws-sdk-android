@@ -17,60 +17,79 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * The new device metadata type.
+ * </p>
+ */
 public class NewDeviceMetadataType implements Serializable {
     /**
-     * The new value for the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      */
     private String deviceKey;
 
     /**
-     * The new value for the deviceGroupKey property for this object.
+     * <p>
+     * The device group key.
+     * </p>
      */
     private String deviceGroupKey;
 
     /**
-     * Returns the value of the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @return The value of the deviceKey property for this object.
+     * @return <p>
+     *         The device key.
+     *         </p>
      */
     public String getDeviceKey() {
         return deviceKey;
     }
 
     /**
-     * Sets the value of deviceKey
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @param deviceKey The new value for the deviceKey property for this
-     *            object.
+     * @param deviceKey <p>
+     *            The device key.
+     *            </p>
      */
     public void setDeviceKey(String deviceKey) {
         this.deviceKey = deviceKey;
     }
 
     /**
-     * Sets the value of the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @param deviceKey The new value for the deviceKey property for this
-     *            object.
+     * @param deviceKey <p>
+     *            The device key.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -80,32 +99,42 @@ public class NewDeviceMetadataType implements Serializable {
     }
 
     /**
-     * Returns the value of the deviceGroupKey property for this object.
+     * <p>
+     * The device group key.
+     * </p>
      *
-     * @return The value of the deviceGroupKey property for this object.
+     * @return <p>
+     *         The device group key.
+     *         </p>
      */
     public String getDeviceGroupKey() {
         return deviceGroupKey;
     }
 
     /**
-     * Sets the value of deviceGroupKey
+     * <p>
+     * The device group key.
+     * </p>
      *
-     * @param deviceGroupKey The new value for the deviceGroupKey property for
-     *            this object.
+     * @param deviceGroupKey <p>
+     *            The device group key.
+     *            </p>
      */
     public void setDeviceGroupKey(String deviceGroupKey) {
         this.deviceGroupKey = deviceGroupKey;
     }
 
     /**
-     * Sets the value of the deviceGroupKey property for this object.
+     * <p>
+     * The device group key.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param deviceGroupKey The new value for the deviceGroupKey property for
-     *            this object.
+     * @param deviceGroupKey <p>
+     *            The device group key.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

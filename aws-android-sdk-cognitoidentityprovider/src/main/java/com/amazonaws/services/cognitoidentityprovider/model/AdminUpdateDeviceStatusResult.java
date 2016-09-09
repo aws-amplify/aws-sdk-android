@@ -17,6 +17,12 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * The status response from the request to update the device, as an
+ * administrator.
+ * </p>
+ */
 public class AdminUpdateDeviceStatusResult implements Serializable {
     /**
      * Returns a string representation of this object; useful for testing and

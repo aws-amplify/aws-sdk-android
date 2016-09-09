@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class DatasetJsonUnmarshaller implements Unmarshaller<Dataset, JsonUnmarshallerContext> {
 
     public Dataset unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Dataset dataset = new Dataset();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Dataset dataset = new Dataset();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

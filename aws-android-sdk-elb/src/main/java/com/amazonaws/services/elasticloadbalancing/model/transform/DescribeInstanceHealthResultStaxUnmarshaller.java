@@ -49,8 +49,8 @@ public class DescribeInstanceHealthResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("InstanceStates/member", targetDepth)) {
-                    describeInstanceHealthResult.getInstanceStates().add(
-                            InstanceStateStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeInstanceHealthResult.withInstanceStates(InstanceStateStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

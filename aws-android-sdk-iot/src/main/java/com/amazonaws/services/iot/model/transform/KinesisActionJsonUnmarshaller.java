@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class KinesisActionJsonUnmarshaller implements Unmarshaller<KinesisAction, JsonUnmarshallerContext> {
 
     public KinesisAction unmarshall(JsonUnmarshallerContext context) throws Exception {
-        KinesisAction kinesisAction = new KinesisAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        KinesisAction kinesisAction = new KinesisAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

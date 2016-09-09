@@ -94,7 +94,7 @@ public class GetIdentityVerificationAttributesResultStaxUnmarshaller implements
                 if (context.testExpression("VerificationAttributes/entry", targetDepth)) {
                     Entry<String, IdentityVerificationAttributes> entry = VerificationAttributesMapEntryUnmarshaller
                             .getInstance().unmarshall(context);
-                    getIdentityVerificationAttributesResult.getVerificationAttributes().put(
+                    getIdentityVerificationAttributesResult.addVerificationAttributesEntry(
                             entry.getKey(), entry.getValue());
                     continue;
                 }

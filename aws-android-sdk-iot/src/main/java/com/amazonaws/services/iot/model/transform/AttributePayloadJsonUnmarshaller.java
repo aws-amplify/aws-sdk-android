@@ -27,8 +27,12 @@ class AttributePayloadJsonUnmarshaller implements
         Unmarshaller<AttributePayload, JsonUnmarshallerContext> {
 
     public AttributePayload unmarshall(JsonUnmarshallerContext context) throws Exception {
-        AttributePayload attributePayload = new AttributePayload();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        AttributePayload attributePayload = new AttributePayload();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

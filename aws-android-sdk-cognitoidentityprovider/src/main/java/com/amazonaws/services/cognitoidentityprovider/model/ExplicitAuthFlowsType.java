@@ -23,7 +23,8 @@ import java.util.Map;
  */
 public enum ExplicitAuthFlowsType {
 
-    ADMIN_NO_SRP_AUTH("ADMIN_NO_SRP_AUTH");
+    ADMIN_NO_SRP_AUTH("ADMIN_NO_SRP_AUTH"),
+    CUSTOM_AUTH_FLOW_ONLY("CUSTOM_AUTH_FLOW_ONLY");
 
     private String value;
 
@@ -40,6 +41,7 @@ public enum ExplicitAuthFlowsType {
     static {
         enumMap = new HashMap<String, ExplicitAuthFlowsType>();
         enumMap.put("ADMIN_NO_SRP_AUTH", ADMIN_NO_SRP_AUTH);
+        enumMap.put("CUSTOM_AUTH_FLOW_ONLY", CUSTOM_AUTH_FLOW_ONLY);
     }
 
     /**

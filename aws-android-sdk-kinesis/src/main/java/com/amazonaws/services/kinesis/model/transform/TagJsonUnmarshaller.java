@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class TagJsonUnmarshaller implements Unmarshaller<Tag, JsonUnmarshallerContext> {
 
     public Tag unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Tag tag = new Tag();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Tag tag = new Tag();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

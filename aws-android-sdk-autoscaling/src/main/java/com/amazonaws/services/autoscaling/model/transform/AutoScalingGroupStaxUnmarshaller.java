@@ -83,13 +83,13 @@ class AutoScalingGroupStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("AvailabilityZones/member", targetDepth)) {
-                    autoScalingGroup.getAvailabilityZones().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    autoScalingGroup.withAvailabilityZones(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("LoadBalancerNames/member", targetDepth)) {
-                    autoScalingGroup.getLoadBalancerNames().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    autoScalingGroup.withLoadBalancerNames(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("HealthCheckType", targetDepth)) {
@@ -103,8 +103,8 @@ class AutoScalingGroupStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("Instances/member", targetDepth)) {
-                    autoScalingGroup.getInstances().add(
-                            InstanceStaxUnmarshaller.getInstance().unmarshall(context));
+                    autoScalingGroup.withInstances(InstanceStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("CreatedTime", targetDepth)) {
@@ -113,8 +113,8 @@ class AutoScalingGroupStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("SuspendedProcesses/member", targetDepth)) {
-                    autoScalingGroup.getSuspendedProcesses().add(
-                            SuspendedProcessStaxUnmarshaller.getInstance().unmarshall(context));
+                    autoScalingGroup.withSuspendedProcesses(SuspendedProcessStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("PlacementGroup", targetDepth)) {
@@ -128,8 +128,8 @@ class AutoScalingGroupStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("EnabledMetrics/member", targetDepth)) {
-                    autoScalingGroup.getEnabledMetrics().add(
-                            EnabledMetricStaxUnmarshaller.getInstance().unmarshall(context));
+                    autoScalingGroup.withEnabledMetrics(EnabledMetricStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("Status", targetDepth)) {
@@ -138,13 +138,13 @@ class AutoScalingGroupStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("Tags/member", targetDepth)) {
-                    autoScalingGroup.getTags().add(
-                            TagDescriptionStaxUnmarshaller.getInstance().unmarshall(context));
+                    autoScalingGroup.withTags(TagDescriptionStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("TerminationPolicies/member", targetDepth)) {
-                    autoScalingGroup.getTerminationPolicies().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    autoScalingGroup.withTerminationPolicies(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NewInstancesProtectedFromScaleIn", targetDepth)) {

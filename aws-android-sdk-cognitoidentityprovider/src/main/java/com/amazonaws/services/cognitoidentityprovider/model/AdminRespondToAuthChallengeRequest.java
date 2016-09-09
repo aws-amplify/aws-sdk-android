@@ -19,19 +19,28 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Responds to an authentication challenge, as an administrator.
+ * </p>
+ */
 public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The ID of the Amazon Cognito user pool.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * The new value for the clientId property for this object.
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -40,7 +49,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     private String clientId;
 
     /**
-     * The new value for the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
@@ -49,12 +60,16 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     private String challengeName;
 
     /**
-     * The new value for the challengeResponses property for this object.
+     * <p>
+     * The challenge response.
+     * </p>
      */
     private java.util.Map<String, String> challengeResponses;
 
     /**
-     * The new value for the session property for this object.
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -62,44 +77,54 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     private String session;
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The ID of the Amazon Cognito user pool.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The ID of the Amazon Cognito user pool.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The ID of the Amazon Cognito user pool.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The ID of the Amazon Cognito user pool.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The ID of the Amazon Cognito user pool.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The ID of the Amazon Cognito user pool.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -109,33 +134,43 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * Returns the value of the clientId property for this object.
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @return The value of the clientId property for this object.
+     * @return <p>
+     *         The client ID.
+     *         </p>
      */
     public String getClientId() {
         return clientId;
     }
 
     /**
-     * Sets the value of clientId
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The new value for the clientId property for this object.
+     * @param clientId <p>
+     *            The client ID.
+     *            </p>
      */
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
     /**
-     * Sets the value of the clientId property for this object.
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -144,7 +179,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The new value for the clientId property for this object.
+     * @param clientId <p>
+     *            The client ID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -154,13 +191,17 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * Returns the value of the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @return The value of the challengeName property for this object.
+     * @return <p>
+     *         The name of the challenge.
+     *         </p>
      * @see ChallengeNameType
      */
     public String getChallengeName() {
@@ -168,14 +209,17 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * Sets the value of challengeName
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @see ChallengeNameType
      */
     public void setChallengeName(String challengeName) {
@@ -183,7 +227,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * Sets the value of the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -192,8 +238,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChallengeNameType
@@ -204,14 +251,17 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * Sets the value of challengeName
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @see ChallengeNameType
      */
     public void setChallengeName(ChallengeNameType challengeName) {
@@ -219,7 +269,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * Sets the value of the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -228,8 +280,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChallengeNameType
@@ -240,32 +293,42 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * Returns the value of the challengeResponses property for this object.
+     * <p>
+     * The challenge response.
+     * </p>
      *
-     * @return The value of the challengeResponses property for this object.
+     * @return <p>
+     *         The challenge response.
+     *         </p>
      */
     public java.util.Map<String, String> getChallengeResponses() {
         return challengeResponses;
     }
 
     /**
-     * Sets the value of challengeResponses
+     * <p>
+     * The challenge response.
+     * </p>
      *
-     * @param challengeResponses The new value for the challengeResponses
-     *            property for this object.
+     * @param challengeResponses <p>
+     *            The challenge response.
+     *            </p>
      */
     public void setChallengeResponses(java.util.Map<String, String> challengeResponses) {
         this.challengeResponses = challengeResponses;
     }
 
     /**
-     * Sets the value of the challengeResponses property for this object.
+     * <p>
+     * The challenge response.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param challengeResponses The new value for the challengeResponses
-     *            property for this object.
+     * @param challengeResponses <p>
+     *            The challenge response.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -276,7 +339,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * Sets the value of the challengeResponses property for this object.
+     * <p>
+     * The challenge response.
+     * </p>
      * <p>
      * The method adds a new key-value pair into ChallengeResponses parameter,
      * and returns a reference to this object so that method calls can be
@@ -311,31 +376,41 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * Returns the value of the session property for this object.
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @return The value of the session property for this object.
+     * @return <p>
+     *         The session.
+     *         </p>
      */
     public String getSession() {
         return session;
     }
 
     /**
-     * Sets the value of session
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session.
+     *            </p>
      */
     public void setSession(String session) {
         this.session = session;
     }
 
     /**
-     * Sets the value of the session property for this object.
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -343,7 +418,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

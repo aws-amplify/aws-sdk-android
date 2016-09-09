@@ -17,75 +17,100 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * The device type.
+ * </p>
+ */
 public class DeviceType implements Serializable {
     /**
-     * The new value for the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      */
     private String deviceKey;
 
     /**
-     * The new value for the deviceAttributes property for this object.
+     * <p>
+     * The device attributes.
+     * </p>
      */
     private java.util.List<AttributeType> deviceAttributes;
 
     /**
-     * The new value for the deviceCreateDate property for this object.
+     * <p>
+     * The creation date of the device.
+     * </p>
      */
     private java.util.Date deviceCreateDate;
 
     /**
-     * The new value for the deviceLastModifiedDate property for this object.
+     * <p>
+     * The last modified date of the device.
+     * </p>
      */
     private java.util.Date deviceLastModifiedDate;
 
     /**
-     * The new value for the deviceLastAccessedDate property for this object.
+     * <p>
+     * The date in which the device was last authenticated.
+     * </p>
      */
-    private java.util.Date deviceLastAccessedDate;
+    private java.util.Date deviceLastAuthenticatedDate;
 
     /**
-     * Returns the value of the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @return The value of the deviceKey property for this object.
+     * @return <p>
+     *         The device key.
+     *         </p>
      */
     public String getDeviceKey() {
         return deviceKey;
     }
 
     /**
-     * Sets the value of deviceKey
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @param deviceKey The new value for the deviceKey property for this
-     *            object.
+     * @param deviceKey <p>
+     *            The device key.
+     *            </p>
      */
     public void setDeviceKey(String deviceKey) {
         this.deviceKey = deviceKey;
     }
 
     /**
-     * Sets the value of the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @param deviceKey The new value for the deviceKey property for this
-     *            object.
+     * @param deviceKey <p>
+     *            The device key.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -95,19 +120,26 @@ public class DeviceType implements Serializable {
     }
 
     /**
-     * Returns the value of the deviceAttributes property for this object.
+     * <p>
+     * The device attributes.
+     * </p>
      *
-     * @return The value of the deviceAttributes property for this object.
+     * @return <p>
+     *         The device attributes.
+     *         </p>
      */
     public java.util.List<AttributeType> getDeviceAttributes() {
         return deviceAttributes;
     }
 
     /**
-     * Sets the value of deviceAttributes
+     * <p>
+     * The device attributes.
+     * </p>
      *
-     * @param deviceAttributes The new value for the deviceAttributes property
-     *            for this object.
+     * @param deviceAttributes <p>
+     *            The device attributes.
+     *            </p>
      */
     public void setDeviceAttributes(java.util.Collection<AttributeType> deviceAttributes) {
         if (deviceAttributes == null) {
@@ -119,13 +151,16 @@ public class DeviceType implements Serializable {
     }
 
     /**
-     * Sets the value of the deviceAttributes property for this object.
+     * <p>
+     * The device attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param deviceAttributes The new value for the deviceAttributes property
-     *            for this object.
+     * @param deviceAttributes <p>
+     *            The device attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -140,13 +175,16 @@ public class DeviceType implements Serializable {
     }
 
     /**
-     * Sets the value of the deviceAttributes property for this object.
+     * <p>
+     * The device attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param deviceAttributes The new value for the deviceAttributes property
-     *            for this object.
+     * @param deviceAttributes <p>
+     *            The device attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -156,32 +194,42 @@ public class DeviceType implements Serializable {
     }
 
     /**
-     * Returns the value of the deviceCreateDate property for this object.
+     * <p>
+     * The creation date of the device.
+     * </p>
      *
-     * @return The value of the deviceCreateDate property for this object.
+     * @return <p>
+     *         The creation date of the device.
+     *         </p>
      */
     public java.util.Date getDeviceCreateDate() {
         return deviceCreateDate;
     }
 
     /**
-     * Sets the value of deviceCreateDate
+     * <p>
+     * The creation date of the device.
+     * </p>
      *
-     * @param deviceCreateDate The new value for the deviceCreateDate property
-     *            for this object.
+     * @param deviceCreateDate <p>
+     *            The creation date of the device.
+     *            </p>
      */
     public void setDeviceCreateDate(java.util.Date deviceCreateDate) {
         this.deviceCreateDate = deviceCreateDate;
     }
 
     /**
-     * Sets the value of the deviceCreateDate property for this object.
+     * <p>
+     * The creation date of the device.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param deviceCreateDate The new value for the deviceCreateDate property
-     *            for this object.
+     * @param deviceCreateDate <p>
+     *            The creation date of the device.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -191,32 +239,42 @@ public class DeviceType implements Serializable {
     }
 
     /**
-     * Returns the value of the deviceLastModifiedDate property for this object.
+     * <p>
+     * The last modified date of the device.
+     * </p>
      *
-     * @return The value of the deviceLastModifiedDate property for this object.
+     * @return <p>
+     *         The last modified date of the device.
+     *         </p>
      */
     public java.util.Date getDeviceLastModifiedDate() {
         return deviceLastModifiedDate;
     }
 
     /**
-     * Sets the value of deviceLastModifiedDate
+     * <p>
+     * The last modified date of the device.
+     * </p>
      *
-     * @param deviceLastModifiedDate The new value for the
-     *            deviceLastModifiedDate property for this object.
+     * @param deviceLastModifiedDate <p>
+     *            The last modified date of the device.
+     *            </p>
      */
     public void setDeviceLastModifiedDate(java.util.Date deviceLastModifiedDate) {
         this.deviceLastModifiedDate = deviceLastModifiedDate;
     }
 
     /**
-     * Sets the value of the deviceLastModifiedDate property for this object.
+     * <p>
+     * The last modified date of the device.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param deviceLastModifiedDate The new value for the
-     *            deviceLastModifiedDate property for this object.
+     * @param deviceLastModifiedDate <p>
+     *            The last modified date of the device.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -226,37 +284,47 @@ public class DeviceType implements Serializable {
     }
 
     /**
-     * Returns the value of the deviceLastAccessedDate property for this object.
+     * <p>
+     * The date in which the device was last authenticated.
+     * </p>
      *
-     * @return The value of the deviceLastAccessedDate property for this object.
+     * @return <p>
+     *         The date in which the device was last authenticated.
+     *         </p>
      */
-    public java.util.Date getDeviceLastAccessedDate() {
-        return deviceLastAccessedDate;
+    public java.util.Date getDeviceLastAuthenticatedDate() {
+        return deviceLastAuthenticatedDate;
     }
 
     /**
-     * Sets the value of deviceLastAccessedDate
+     * <p>
+     * The date in which the device was last authenticated.
+     * </p>
      *
-     * @param deviceLastAccessedDate The new value for the
-     *            deviceLastAccessedDate property for this object.
+     * @param deviceLastAuthenticatedDate <p>
+     *            The date in which the device was last authenticated.
+     *            </p>
      */
-    public void setDeviceLastAccessedDate(java.util.Date deviceLastAccessedDate) {
-        this.deviceLastAccessedDate = deviceLastAccessedDate;
+    public void setDeviceLastAuthenticatedDate(java.util.Date deviceLastAuthenticatedDate) {
+        this.deviceLastAuthenticatedDate = deviceLastAuthenticatedDate;
     }
 
     /**
-     * Sets the value of the deviceLastAccessedDate property for this object.
+     * <p>
+     * The date in which the device was last authenticated.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param deviceLastAccessedDate The new value for the
-     *            deviceLastAccessedDate property for this object.
+     * @param deviceLastAuthenticatedDate <p>
+     *            The date in which the device was last authenticated.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeviceType withDeviceLastAccessedDate(java.util.Date deviceLastAccessedDate) {
-        this.deviceLastAccessedDate = deviceLastAccessedDate;
+    public DeviceType withDeviceLastAuthenticatedDate(java.util.Date deviceLastAuthenticatedDate) {
+        this.deviceLastAuthenticatedDate = deviceLastAuthenticatedDate;
         return this;
     }
 
@@ -279,8 +347,8 @@ public class DeviceType implements Serializable {
             sb.append("DeviceCreateDate: " + getDeviceCreateDate() + ",");
         if (getDeviceLastModifiedDate() != null)
             sb.append("DeviceLastModifiedDate: " + getDeviceLastModifiedDate() + ",");
-        if (getDeviceLastAccessedDate() != null)
-            sb.append("DeviceLastAccessedDate: " + getDeviceLastAccessedDate());
+        if (getDeviceLastAuthenticatedDate() != null)
+            sb.append("DeviceLastAuthenticatedDate: " + getDeviceLastAuthenticatedDate());
         sb.append("}");
         return sb.toString();
     }
@@ -301,8 +369,8 @@ public class DeviceType implements Serializable {
                         .hashCode());
         hashCode = prime
                 * hashCode
-                + ((getDeviceLastAccessedDate() == null) ? 0 : getDeviceLastAccessedDate()
-                        .hashCode());
+                + ((getDeviceLastAuthenticatedDate() == null) ? 0
+                        : getDeviceLastAuthenticatedDate().hashCode());
         return hashCode;
     }
 
@@ -337,10 +405,12 @@ public class DeviceType implements Serializable {
         if (other.getDeviceLastModifiedDate() != null
                 && other.getDeviceLastModifiedDate().equals(this.getDeviceLastModifiedDate()) == false)
             return false;
-        if (other.getDeviceLastAccessedDate() == null ^ this.getDeviceLastAccessedDate() == null)
+        if (other.getDeviceLastAuthenticatedDate() == null
+                ^ this.getDeviceLastAuthenticatedDate() == null)
             return false;
-        if (other.getDeviceLastAccessedDate() != null
-                && other.getDeviceLastAccessedDate().equals(this.getDeviceLastAccessedDate()) == false)
+        if (other.getDeviceLastAuthenticatedDate() != null
+                && other.getDeviceLastAuthenticatedDate().equals(
+                        this.getDeviceLastAuthenticatedDate()) == false)
             return false;
         return true;
     }

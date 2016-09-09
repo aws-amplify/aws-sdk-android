@@ -28,8 +28,12 @@ class ProvisionedThroughputDescriptionJsonUnmarshaller implements
 
     public ProvisionedThroughputDescription unmarshall(JsonUnmarshallerContext context)
             throws Exception {
-        ProvisionedThroughputDescription provisionedThroughputDescription = new ProvisionedThroughputDescription();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        ProvisionedThroughputDescription provisionedThroughputDescription = new ProvisionedThroughputDescription();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

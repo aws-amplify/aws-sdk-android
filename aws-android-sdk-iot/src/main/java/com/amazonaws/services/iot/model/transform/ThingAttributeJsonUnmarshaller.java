@@ -27,8 +27,12 @@ class ThingAttributeJsonUnmarshaller implements
         Unmarshaller<ThingAttribute, JsonUnmarshallerContext> {
 
     public ThingAttribute unmarshall(JsonUnmarshallerContext context) throws Exception {
-        ThingAttribute thingAttribute = new ThingAttribute();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        ThingAttribute thingAttribute = new ThingAttribute();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

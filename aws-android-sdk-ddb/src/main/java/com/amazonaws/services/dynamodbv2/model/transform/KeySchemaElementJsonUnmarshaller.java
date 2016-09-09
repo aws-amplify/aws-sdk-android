@@ -27,8 +27,12 @@ class KeySchemaElementJsonUnmarshaller implements
         Unmarshaller<KeySchemaElement, JsonUnmarshallerContext> {
 
     public KeySchemaElement unmarshall(JsonUnmarshallerContext context) throws Exception {
-        KeySchemaElement keySchemaElement = new KeySchemaElement();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        KeySchemaElement keySchemaElement = new KeySchemaElement();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

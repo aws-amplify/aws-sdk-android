@@ -49,8 +49,8 @@ public class ListPhoneNumbersOptedOutResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("phoneNumbers/member", targetDepth)) {
-                    listPhoneNumbersOptedOutResult.getPhoneNumbers().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    listPhoneNumbersOptedOutResult.withPhoneNumbers(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("nextToken", targetDepth)) {

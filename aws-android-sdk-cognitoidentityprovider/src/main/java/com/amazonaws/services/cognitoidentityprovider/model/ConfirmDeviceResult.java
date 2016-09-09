@@ -17,52 +17,78 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Confirms the device response.
+ * </p>
+ */
 public class ConfirmDeviceResult implements Serializable {
     /**
-     * The new value for the userConfirmationNecessary property for this object.
+     * <p>
+     * Indicates whether the user confirmation is necessary to confirm the
+     * device response.
+     * </p>
      */
     private Boolean userConfirmationNecessary;
 
     /**
-     * Returns the value of the userConfirmationNecessary property for this
-     * object.
+     * <p>
+     * Indicates whether the user confirmation is necessary to confirm the
+     * device response.
+     * </p>
      *
-     * @return The value of the userConfirmationNecessary property for this
-     *         object.
+     * @return <p>
+     *         Indicates whether the user confirmation is necessary to confirm
+     *         the device response.
+     *         </p>
      */
     public Boolean isUserConfirmationNecessary() {
         return userConfirmationNecessary;
     }
 
     /**
-     * Returns the value of the userConfirmationNecessary property for this
-     * object.
+     * <p>
+     * Indicates whether the user confirmation is necessary to confirm the
+     * device response.
+     * </p>
      *
-     * @return The value of the userConfirmationNecessary property for this
-     *         object.
+     * @return <p>
+     *         Indicates whether the user confirmation is necessary to confirm
+     *         the device response.
+     *         </p>
      */
     public Boolean getUserConfirmationNecessary() {
         return userConfirmationNecessary;
     }
 
     /**
-     * Sets the value of userConfirmationNecessary
+     * <p>
+     * Indicates whether the user confirmation is necessary to confirm the
+     * device response.
+     * </p>
      *
-     * @param userConfirmationNecessary The new value for the
-     *            userConfirmationNecessary property for this object.
+     * @param userConfirmationNecessary <p>
+     *            Indicates whether the user confirmation is necessary to
+     *            confirm the device response.
+     *            </p>
      */
     public void setUserConfirmationNecessary(Boolean userConfirmationNecessary) {
         this.userConfirmationNecessary = userConfirmationNecessary;
     }
 
     /**
-     * Sets the value of the userConfirmationNecessary property for this object.
+     * <p>
+     * Indicates whether the user confirmation is necessary to confirm the
+     * device response.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param userConfirmationNecessary The new value for the
-     *            userConfirmationNecessary property for this object.
+     * @param userConfirmationNecessary <p>
+     *            Indicates whether the user confirmation is necessary to
+     *            confirm the device response.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

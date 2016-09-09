@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class ProjectionJsonUnmarshaller implements Unmarshaller<Projection, JsonUnmarshallerContext> {
 
     public Projection unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Projection projection = new Projection();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Projection projection = new Projection();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

@@ -19,55 +19,80 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Gets the header information for the .csv file to be used as input for the
+ * user import job.
+ * </p>
+ */
 public class GetCSVHeaderRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are to be imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are to be imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The user pool ID for the user pool that the users are to be
+     *         imported into.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The user pool ID for the user pool that the users are to be imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are to be
+     *            imported into.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are to be imported
+     * into.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are to be
+     *            imported into.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

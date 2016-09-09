@@ -19,28 +19,41 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Initiates the authentication flow.
+ * </p>
+ */
 public class InitiateAuthRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the authFlow property for this object.
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      */
     private String authFlow;
 
     /**
-     * The new value for the authParameters property for this object.
+     * <p>
+     * The authentication parameters.
+     * </p>
      */
     private java.util.Map<String, String> authParameters;
 
     /**
-     * The new value for the clientMetadata property for this object.
+     * <p>
+     * The client app's metadata.
+     * </p>
      */
     private java.util.Map<String, String> clientMetadata;
 
     /**
-     * The new value for the clientId property for this object.
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -49,13 +62,17 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     private String clientId;
 
     /**
-     * Returns the value of the authFlow property for this object.
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @return The value of the authFlow property for this object.
+     * @return <p>
+     *         The authentication flow.
+     *         </p>
      * @see AuthFlowType
      */
     public String getAuthFlow() {
@@ -63,13 +80,17 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Sets the value of authFlow
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @param authFlow The new value for the authFlow property for this object.
+     * @param authFlow <p>
+     *            The authentication flow.
+     *            </p>
      * @see AuthFlowType
      */
     public void setAuthFlow(String authFlow) {
@@ -77,16 +98,20 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Sets the value of the authFlow property for this object.
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @param authFlow The new value for the authFlow property for this object.
+     * @param authFlow <p>
+     *            The authentication flow.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see AuthFlowType
@@ -97,13 +122,17 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Sets the value of authFlow
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @param authFlow The new value for the authFlow property for this object.
+     * @param authFlow <p>
+     *            The authentication flow.
+     *            </p>
      * @see AuthFlowType
      */
     public void setAuthFlow(AuthFlowType authFlow) {
@@ -111,16 +140,20 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Sets the value of the authFlow property for this object.
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @param authFlow The new value for the authFlow property for this object.
+     * @param authFlow <p>
+     *            The authentication flow.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see AuthFlowType
@@ -131,32 +164,42 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the authParameters property for this object.
+     * <p>
+     * The authentication parameters.
+     * </p>
      *
-     * @return The value of the authParameters property for this object.
+     * @return <p>
+     *         The authentication parameters.
+     *         </p>
      */
     public java.util.Map<String, String> getAuthParameters() {
         return authParameters;
     }
 
     /**
-     * Sets the value of authParameters
+     * <p>
+     * The authentication parameters.
+     * </p>
      *
-     * @param authParameters The new value for the authParameters property for
-     *            this object.
+     * @param authParameters <p>
+     *            The authentication parameters.
+     *            </p>
      */
     public void setAuthParameters(java.util.Map<String, String> authParameters) {
         this.authParameters = authParameters;
     }
 
     /**
-     * Sets the value of the authParameters property for this object.
+     * <p>
+     * The authentication parameters.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param authParameters The new value for the authParameters property for
-     *            this object.
+     * @param authParameters <p>
+     *            The authentication parameters.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -166,7 +209,9 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Sets the value of the authParameters property for this object.
+     * <p>
+     * The authentication parameters.
+     * </p>
      * <p>
      * The method adds a new key-value pair into AuthParameters parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -201,32 +246,42 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the clientMetadata property for this object.
+     * <p>
+     * The client app's metadata.
+     * </p>
      *
-     * @return The value of the clientMetadata property for this object.
+     * @return <p>
+     *         The client app's metadata.
+     *         </p>
      */
     public java.util.Map<String, String> getClientMetadata() {
         return clientMetadata;
     }
 
     /**
-     * Sets the value of clientMetadata
+     * <p>
+     * The client app's metadata.
+     * </p>
      *
-     * @param clientMetadata The new value for the clientMetadata property for
-     *            this object.
+     * @param clientMetadata <p>
+     *            The client app's metadata.
+     *            </p>
      */
     public void setClientMetadata(java.util.Map<String, String> clientMetadata) {
         this.clientMetadata = clientMetadata;
     }
 
     /**
-     * Sets the value of the clientMetadata property for this object.
+     * <p>
+     * The client app's metadata.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param clientMetadata The new value for the clientMetadata property for
-     *            this object.
+     * @param clientMetadata <p>
+     *            The client app's metadata.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -236,7 +291,9 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Sets the value of the clientMetadata property for this object.
+     * <p>
+     * The client app's metadata.
+     * </p>
      * <p>
      * The method adds a new key-value pair into ClientMetadata parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -271,33 +328,43 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the clientId property for this object.
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @return The value of the clientId property for this object.
+     * @return <p>
+     *         The client ID.
+     *         </p>
      */
     public String getClientId() {
         return clientId;
     }
 
     /**
-     * Sets the value of clientId
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The new value for the clientId property for this object.
+     * @param clientId <p>
+     *            The client ID.
+     *            </p>
      */
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
     /**
-     * Sets the value of the clientId property for this object.
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -306,7 +373,9 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The new value for the clientId property for this object.
+     * @param clientId <p>
+     *            The client ID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

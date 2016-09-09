@@ -48,8 +48,8 @@ public class ListIdentitiesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Identities/member", targetDepth)) {
-                    listIdentitiesResult.getIdentities().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    listIdentitiesResult.withIdentities(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

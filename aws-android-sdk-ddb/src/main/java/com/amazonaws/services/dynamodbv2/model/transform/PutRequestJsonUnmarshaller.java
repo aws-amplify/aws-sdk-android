@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class PutRequestJsonUnmarshaller implements Unmarshaller<PutRequest, JsonUnmarshallerContext> {
 
     public PutRequest unmarshall(JsonUnmarshallerContext context) throws Exception {
-        PutRequest putRequest = new PutRequest();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        PutRequest putRequest = new PutRequest();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

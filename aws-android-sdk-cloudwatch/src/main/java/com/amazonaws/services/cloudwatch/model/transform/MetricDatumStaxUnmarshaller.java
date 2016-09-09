@@ -52,8 +52,8 @@ class MetricDatumStaxUnmarshaller implements Unmarshaller<MetricDatum, StaxUnmar
                     continue;
                 }
                 if (context.testExpression("Dimensions/member", targetDepth)) {
-                    metricDatum.getDimensions().add(
-                            DimensionStaxUnmarshaller.getInstance().unmarshall(context));
+                    metricDatum.withDimensions(DimensionStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("Timestamp", targetDepth)) {

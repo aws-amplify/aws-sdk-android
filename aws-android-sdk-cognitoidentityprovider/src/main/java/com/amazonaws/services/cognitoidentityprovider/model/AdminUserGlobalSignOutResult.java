@@ -17,6 +17,11 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * The global sign-out response, as an administrator.
+ * </p>
+ */
 public class AdminUserGlobalSignOutResult implements Serializable {
     /**
      * Returns a string representation of this object; useful for testing and

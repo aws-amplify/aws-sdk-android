@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class PolicyVersionJsonUnmarshaller implements Unmarshaller<PolicyVersion, JsonUnmarshallerContext> {
 
     public PolicyVersion unmarshall(JsonUnmarshallerContext context) throws Exception {
-        PolicyVersion policyVersion = new PolicyVersion();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        PolicyVersion policyVersion = new PolicyVersion();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

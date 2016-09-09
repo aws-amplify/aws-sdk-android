@@ -49,9 +49,9 @@ public class DescribeScheduledActionsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("ScheduledUpdateGroupActions/member", targetDepth)) {
-                    describeScheduledActionsResult.getScheduledUpdateGroupActions().add(
-                            ScheduledUpdateGroupActionStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    describeScheduledActionsResult
+                            .withScheduledUpdateGroupActions(ScheduledUpdateGroupActionStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

@@ -91,7 +91,7 @@ public class GetPlatformApplicationAttributesResultStaxUnmarshaller implements
                 if (context.testExpression("Attributes/entry", targetDepth)) {
                     Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    getPlatformApplicationAttributesResult.getAttributes().put(entry.getKey(),
+                    getPlatformApplicationAttributesResult.addAttributesEntry(entry.getKey(),
                             entry.getValue());
                     continue;
                 }

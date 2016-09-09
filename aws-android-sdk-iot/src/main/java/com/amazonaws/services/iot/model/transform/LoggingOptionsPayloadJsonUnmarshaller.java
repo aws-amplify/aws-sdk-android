@@ -27,8 +27,12 @@ class LoggingOptionsPayloadJsonUnmarshaller implements
         Unmarshaller<LoggingOptionsPayload, JsonUnmarshallerContext> {
 
     public LoggingOptionsPayload unmarshall(JsonUnmarshallerContext context) throws Exception {
-        LoggingOptionsPayload loggingOptionsPayload = new LoggingOptionsPayload();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        LoggingOptionsPayload loggingOptionsPayload = new LoggingOptionsPayload();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

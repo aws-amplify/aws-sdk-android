@@ -48,8 +48,8 @@ public class VerifyDomainDkimResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("DkimTokens/member", targetDepth)) {
-                    verifyDomainDkimResult.getDkimTokens().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    verifyDomainDkimResult.withDkimTokens(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

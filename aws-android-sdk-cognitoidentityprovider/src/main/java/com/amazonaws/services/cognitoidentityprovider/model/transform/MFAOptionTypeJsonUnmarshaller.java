@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class MFAOptionTypeJsonUnmarshaller implements Unmarshaller<MFAOptionType, JsonUnmarshallerContext> {
 
     public MFAOptionType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        MFAOptionType mFAOptionType = new MFAOptionType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        MFAOptionType mFAOptionType = new MFAOptionType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

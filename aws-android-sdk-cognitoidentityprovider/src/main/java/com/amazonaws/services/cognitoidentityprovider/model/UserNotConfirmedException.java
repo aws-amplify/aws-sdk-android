@@ -18,7 +18,9 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when a user is not confirmed successfully.
+ * </p>
  */
 public class UserNotConfirmedException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

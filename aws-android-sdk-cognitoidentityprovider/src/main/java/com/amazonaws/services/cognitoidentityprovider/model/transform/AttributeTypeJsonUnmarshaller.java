@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class AttributeTypeJsonUnmarshaller implements Unmarshaller<AttributeType, JsonUnmarshallerContext> {
 
     public AttributeType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        AttributeType attributeType = new AttributeType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        AttributeType attributeType = new AttributeType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

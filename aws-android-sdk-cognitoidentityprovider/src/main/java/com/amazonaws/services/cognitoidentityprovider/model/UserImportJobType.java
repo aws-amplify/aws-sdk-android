@@ -17,9 +17,16 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * The user import job type.
+ * </p>
+ */
 public class UserImportJobType implements Serializable {
     /**
-     * The new value for the jobName property for this object.
+     * <p>
+     * The job name for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -28,7 +35,9 @@ public class UserImportJobType implements Serializable {
     private String jobName;
 
     /**
-     * The new value for the jobId property for this object.
+     * <p>
+     * The job ID for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
@@ -37,16 +46,21 @@ public class UserImportJobType implements Serializable {
     private String jobId;
 
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * The new value for the preSignedUrl property for this object.
+     * <p>
+     * The pre-signed URL to be used to upload the .csv file.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
@@ -54,22 +68,45 @@ public class UserImportJobType implements Serializable {
     private String preSignedUrl;
 
     /**
-     * The new value for the creationDate property for this object.
+     * <p>
+     * The date when the user import job was created.
+     * </p>
      */
     private java.util.Date creationDate;
 
     /**
-     * The new value for the startDate property for this object.
+     * <p>
+     * The date when the user import job was started.
+     * </p>
      */
     private java.util.Date startDate;
 
     /**
-     * The new value for the completionDate property for this object.
+     * <p>
+     * The date when the user imoprt job was completed.
+     * </p>
      */
     private java.util.Date completionDate;
 
     /**
-     * The new value for the status property for this object.
+     * <p>
+     * The status of the user import job. One of the following:
+     * </p>
+     * <ul>
+     * <li>Created - The job was created but not started.</li>
+     * <li>Pending - A transition state. You have started the job, but it has
+     * not begun importing users yet.</li>
+     * <li>InProgress - The job has started, and users are being imported.</li>
+     * <li>Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.</li>
+     * <li>Stopped - You have stopped the job, and the job has stopped importing
+     * users.</li>
+     * <li>Succeeded - The job has completed successfully.</li>
+     * <li>Failed - The job has stopped due to an error.</li>
+     * <li>Expired - You created a job, but did not start the job within 24-48
+     * hours. All data associated with the job was deleted, and the job cannot
+     * be started.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Created, Pending, InProgress, Stopping, Expired,
@@ -78,7 +115,11 @@ public class UserImportJobType implements Serializable {
     private String status;
 
     /**
-     * The new value for the cloudWatchLogsRoleArn property for this object.
+     * <p>
+     * The role ARN for the Amazon CloudWatch Logging role for the user import
+     * job. For more information, see "Creating the CloudWatch Logs IAM Role" in
+     * the Amazon Cognito Developer Guide.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -89,22 +130,30 @@ public class UserImportJobType implements Serializable {
     private String cloudWatchLogsRoleArn;
 
     /**
-     * The new value for the importedUsers property for this object.
+     * <p>
+     * The number of users that were successfully imported.
+     * </p>
      */
     private Long importedUsers;
 
     /**
-     * The new value for the skippedUsers property for this object.
+     * <p>
+     * The number of users that were skipped.
+     * </p>
      */
     private Long skippedUsers;
 
     /**
-     * The new value for the failedUsers property for this object.
+     * <p>
+     * The number of users that could not be imported.
+     * </p>
      */
     private Long failedUsers;
 
     /**
-     * The new value for the completionMessage property for this object.
+     * <p>
+     * The message returned when the user import job is completed.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -113,33 +162,43 @@ public class UserImportJobType implements Serializable {
     private String completionMessage;
 
     /**
-     * Returns the value of the jobName property for this object.
+     * <p>
+     * The job name for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
-     * @return The value of the jobName property for this object.
+     * @return <p>
+     *         The job name for the user import job.
+     *         </p>
      */
     public String getJobName() {
         return jobName;
     }
 
     /**
-     * Sets the value of jobName
+     * <p>
+     * The job name for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
-     * @param jobName The new value for the jobName property for this object.
+     * @param jobName <p>
+     *            The job name for the user import job.
+     *            </p>
      */
     public void setJobName(String jobName) {
         this.jobName = jobName;
     }
 
     /**
-     * Sets the value of the jobName property for this object.
+     * <p>
+     * The job name for the user import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -148,7 +207,9 @@ public class UserImportJobType implements Serializable {
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
-     * @param jobName The new value for the jobName property for this object.
+     * @param jobName <p>
+     *            The job name for the user import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -158,33 +219,43 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the jobId property for this object.
+     * <p>
+     * The job ID for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>import-[0-9a-zA-Z-]+<br/>
      *
-     * @return The value of the jobId property for this object.
+     * @return <p>
+     *         The job ID for the user import job.
+     *         </p>
      */
     public String getJobId() {
         return jobId;
     }
 
     /**
-     * Sets the value of jobId
+     * <p>
+     * The job ID for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>import-[0-9a-zA-Z-]+<br/>
      *
-     * @param jobId The new value for the jobId property for this object.
+     * @param jobId <p>
+     *            The job ID for the user import job.
+     *            </p>
      */
     public void setJobId(String jobId) {
         this.jobId = jobId;
     }
 
     /**
-     * Sets the value of the jobId property for this object.
+     * <p>
+     * The job ID for the user import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -193,7 +264,9 @@ public class UserImportJobType implements Serializable {
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>import-[0-9a-zA-Z-]+<br/>
      *
-     * @param jobId The new value for the jobId property for this object.
+     * @param jobId <p>
+     *            The job ID for the user import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -203,44 +276,60 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The user pool ID for the user pool that the users are being
+     *         imported into.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are being
+     *            imported into.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are being
+     *            imported into.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -250,32 +339,41 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the preSignedUrl property for this object.
+     * <p>
+     * The pre-signed URL to be used to upload the .csv file.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
      *
-     * @return The value of the preSignedUrl property for this object.
+     * @return <p>
+     *         The pre-signed URL to be used to upload the .csv file.
+     *         </p>
      */
     public String getPreSignedUrl() {
         return preSignedUrl;
     }
 
     /**
-     * Sets the value of preSignedUrl
+     * <p>
+     * The pre-signed URL to be used to upload the .csv file.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
      *
-     * @param preSignedUrl The new value for the preSignedUrl property for this
-     *            object.
+     * @param preSignedUrl <p>
+     *            The pre-signed URL to be used to upload the .csv file.
+     *            </p>
      */
     public void setPreSignedUrl(String preSignedUrl) {
         this.preSignedUrl = preSignedUrl;
     }
 
     /**
-     * Sets the value of the preSignedUrl property for this object.
+     * <p>
+     * The pre-signed URL to be used to upload the .csv file.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -283,8 +381,9 @@ public class UserImportJobType implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
      *
-     * @param preSignedUrl The new value for the preSignedUrl property for this
-     *            object.
+     * @param preSignedUrl <p>
+     *            The pre-signed URL to be used to upload the .csv file.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -294,32 +393,42 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the creationDate property for this object.
+     * <p>
+     * The date when the user import job was created.
+     * </p>
      *
-     * @return The value of the creationDate property for this object.
+     * @return <p>
+     *         The date when the user import job was created.
+     *         </p>
      */
     public java.util.Date getCreationDate() {
         return creationDate;
     }
 
     /**
-     * Sets the value of creationDate
+     * <p>
+     * The date when the user import job was created.
+     * </p>
      *
-     * @param creationDate The new value for the creationDate property for this
-     *            object.
+     * @param creationDate <p>
+     *            The date when the user import job was created.
+     *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * Sets the value of the creationDate property for this object.
+     * <p>
+     * The date when the user import job was created.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate The new value for the creationDate property for this
-     *            object.
+     * @param creationDate <p>
+     *            The date when the user import job was created.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -329,32 +438,42 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the startDate property for this object.
+     * <p>
+     * The date when the user import job was started.
+     * </p>
      *
-     * @return The value of the startDate property for this object.
+     * @return <p>
+     *         The date when the user import job was started.
+     *         </p>
      */
     public java.util.Date getStartDate() {
         return startDate;
     }
 
     /**
-     * Sets the value of startDate
+     * <p>
+     * The date when the user import job was started.
+     * </p>
      *
-     * @param startDate The new value for the startDate property for this
-     *            object.
+     * @param startDate <p>
+     *            The date when the user import job was started.
+     *            </p>
      */
     public void setStartDate(java.util.Date startDate) {
         this.startDate = startDate;
     }
 
     /**
-     * Sets the value of the startDate property for this object.
+     * <p>
+     * The date when the user import job was started.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param startDate The new value for the startDate property for this
-     *            object.
+     * @param startDate <p>
+     *            The date when the user import job was started.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -364,32 +483,42 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the completionDate property for this object.
+     * <p>
+     * The date when the user imoprt job was completed.
+     * </p>
      *
-     * @return The value of the completionDate property for this object.
+     * @return <p>
+     *         The date when the user imoprt job was completed.
+     *         </p>
      */
     public java.util.Date getCompletionDate() {
         return completionDate;
     }
 
     /**
-     * Sets the value of completionDate
+     * <p>
+     * The date when the user imoprt job was completed.
+     * </p>
      *
-     * @param completionDate The new value for the completionDate property for
-     *            this object.
+     * @param completionDate <p>
+     *            The date when the user imoprt job was completed.
+     *            </p>
      */
     public void setCompletionDate(java.util.Date completionDate) {
         this.completionDate = completionDate;
     }
 
     /**
-     * Sets the value of the completionDate property for this object.
+     * <p>
+     * The date when the user imoprt job was completed.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param completionDate The new value for the completionDate property for
-     *            this object.
+     * @param completionDate <p>
+     *            The date when the user imoprt job was completed.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -399,13 +528,48 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the status property for this object.
+     * <p>
+     * The status of the user import job. One of the following:
+     * </p>
+     * <ul>
+     * <li>Created - The job was created but not started.</li>
+     * <li>Pending - A transition state. You have started the job, but it has
+     * not begun importing users yet.</li>
+     * <li>InProgress - The job has started, and users are being imported.</li>
+     * <li>Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.</li>
+     * <li>Stopped - You have stopped the job, and the job has stopped importing
+     * users.</li>
+     * <li>Succeeded - The job has completed successfully.</li>
+     * <li>Failed - The job has stopped due to an error.</li>
+     * <li>Expired - You created a job, but did not start the job within 24-48
+     * hours. All data associated with the job was deleted, and the job cannot
+     * be started.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Created, Pending, InProgress, Stopping, Expired,
      * Stopped, Failed, Succeeded
      *
-     * @return The value of the status property for this object.
+     * @return <p>
+     *         The status of the user import job. One of the following:
+     *         </p>
+     *         <ul>
+     *         <li>Created - The job was created but not started.</li>
+     *         <li>Pending - A transition state. You have started the job, but
+     *         it has not begun importing users yet.</li>
+     *         <li>InProgress - The job has started, and users are being
+     *         imported.</li>
+     *         <li>Stopping - You have stopped the job, but the job has not
+     *         stopped importing users yet.</li>
+     *         <li>Stopped - You have stopped the job, and the job has stopped
+     *         importing users.</li>
+     *         <li>Succeeded - The job has completed successfully.</li>
+     *         <li>Failed - The job has stopped due to an error.</li>
+     *         <li>Expired - You created a job, but did not start the job within
+     *         24-48 hours. All data associated with the job was deleted, and
+     *         the job cannot be started.</li>
+     *         </ul>
      * @see UserImportJobStatusType
      */
     public String getStatus() {
@@ -413,13 +577,48 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Sets the value of status
+     * <p>
+     * The status of the user import job. One of the following:
+     * </p>
+     * <ul>
+     * <li>Created - The job was created but not started.</li>
+     * <li>Pending - A transition state. You have started the job, but it has
+     * not begun importing users yet.</li>
+     * <li>InProgress - The job has started, and users are being imported.</li>
+     * <li>Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.</li>
+     * <li>Stopped - You have stopped the job, and the job has stopped importing
+     * users.</li>
+     * <li>Succeeded - The job has completed successfully.</li>
+     * <li>Failed - The job has stopped due to an error.</li>
+     * <li>Expired - You created a job, but did not start the job within 24-48
+     * hours. All data associated with the job was deleted, and the job cannot
+     * be started.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Created, Pending, InProgress, Stopping, Expired,
      * Stopped, Failed, Succeeded
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the user import job. One of the following:
+     *            </p>
+     *            <ul>
+     *            <li>Created - The job was created but not started.</li>
+     *            <li>Pending - A transition state. You have started the job,
+     *            but it has not begun importing users yet.</li>
+     *            <li>InProgress - The job has started, and users are being
+     *            imported.</li>
+     *            <li>Stopping - You have stopped the job, but the job has not
+     *            stopped importing users yet.</li>
+     *            <li>Stopped - You have stopped the job, and the job has
+     *            stopped importing users.</li>
+     *            <li>Succeeded - The job has completed successfully.</li>
+     *            <li>Failed - The job has stopped due to an error.</li>
+     *            <li>Expired - You created a job, but did not start the job
+     *            within 24-48 hours. All data associated with the job was
+     *            deleted, and the job cannot be started.</li>
+     *            </ul>
      * @see UserImportJobStatusType
      */
     public void setStatus(String status) {
@@ -427,7 +626,24 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Sets the value of the status property for this object.
+     * <p>
+     * The status of the user import job. One of the following:
+     * </p>
+     * <ul>
+     * <li>Created - The job was created but not started.</li>
+     * <li>Pending - A transition state. You have started the job, but it has
+     * not begun importing users yet.</li>
+     * <li>InProgress - The job has started, and users are being imported.</li>
+     * <li>Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.</li>
+     * <li>Stopped - You have stopped the job, and the job has stopped importing
+     * users.</li>
+     * <li>Succeeded - The job has completed successfully.</li>
+     * <li>Failed - The job has stopped due to an error.</li>
+     * <li>Expired - You created a job, but did not start the job within 24-48
+     * hours. All data associated with the job was deleted, and the job cannot
+     * be started.</li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -436,7 +652,25 @@ public class UserImportJobType implements Serializable {
      * <b>Allowed Values: </b>Created, Pending, InProgress, Stopping, Expired,
      * Stopped, Failed, Succeeded
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the user import job. One of the following:
+     *            </p>
+     *            <ul>
+     *            <li>Created - The job was created but not started.</li>
+     *            <li>Pending - A transition state. You have started the job,
+     *            but it has not begun importing users yet.</li>
+     *            <li>InProgress - The job has started, and users are being
+     *            imported.</li>
+     *            <li>Stopping - You have stopped the job, but the job has not
+     *            stopped importing users yet.</li>
+     *            <li>Stopped - You have stopped the job, and the job has
+     *            stopped importing users.</li>
+     *            <li>Succeeded - The job has completed successfully.</li>
+     *            <li>Failed - The job has stopped due to an error.</li>
+     *            <li>Expired - You created a job, but did not start the job
+     *            within 24-48 hours. All data associated with the job was
+     *            deleted, and the job cannot be started.</li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see UserImportJobStatusType
@@ -447,13 +681,48 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Sets the value of status
+     * <p>
+     * The status of the user import job. One of the following:
+     * </p>
+     * <ul>
+     * <li>Created - The job was created but not started.</li>
+     * <li>Pending - A transition state. You have started the job, but it has
+     * not begun importing users yet.</li>
+     * <li>InProgress - The job has started, and users are being imported.</li>
+     * <li>Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.</li>
+     * <li>Stopped - You have stopped the job, and the job has stopped importing
+     * users.</li>
+     * <li>Succeeded - The job has completed successfully.</li>
+     * <li>Failed - The job has stopped due to an error.</li>
+     * <li>Expired - You created a job, but did not start the job within 24-48
+     * hours. All data associated with the job was deleted, and the job cannot
+     * be started.</li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Created, Pending, InProgress, Stopping, Expired,
      * Stopped, Failed, Succeeded
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the user import job. One of the following:
+     *            </p>
+     *            <ul>
+     *            <li>Created - The job was created but not started.</li>
+     *            <li>Pending - A transition state. You have started the job,
+     *            but it has not begun importing users yet.</li>
+     *            <li>InProgress - The job has started, and users are being
+     *            imported.</li>
+     *            <li>Stopping - You have stopped the job, but the job has not
+     *            stopped importing users yet.</li>
+     *            <li>Stopped - You have stopped the job, and the job has
+     *            stopped importing users.</li>
+     *            <li>Succeeded - The job has completed successfully.</li>
+     *            <li>Failed - The job has stopped due to an error.</li>
+     *            <li>Expired - You created a job, but did not start the job
+     *            within 24-48 hours. All data associated with the job was
+     *            deleted, and the job cannot be started.</li>
+     *            </ul>
      * @see UserImportJobStatusType
      */
     public void setStatus(UserImportJobStatusType status) {
@@ -461,7 +730,24 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Sets the value of the status property for this object.
+     * <p>
+     * The status of the user import job. One of the following:
+     * </p>
+     * <ul>
+     * <li>Created - The job was created but not started.</li>
+     * <li>Pending - A transition state. You have started the job, but it has
+     * not begun importing users yet.</li>
+     * <li>InProgress - The job has started, and users are being imported.</li>
+     * <li>Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.</li>
+     * <li>Stopped - You have stopped the job, and the job has stopped importing
+     * users.</li>
+     * <li>Succeeded - The job has completed successfully.</li>
+     * <li>Failed - The job has stopped due to an error.</li>
+     * <li>Expired - You created a job, but did not start the job within 24-48
+     * hours. All data associated with the job was deleted, and the job cannot
+     * be started.</li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -470,7 +756,25 @@ public class UserImportJobType implements Serializable {
      * <b>Allowed Values: </b>Created, Pending, InProgress, Stopping, Expired,
      * Stopped, Failed, Succeeded
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the user import job. One of the following:
+     *            </p>
+     *            <ul>
+     *            <li>Created - The job was created but not started.</li>
+     *            <li>Pending - A transition state. You have started the job,
+     *            but it has not begun importing users yet.</li>
+     *            <li>InProgress - The job has started, and users are being
+     *            imported.</li>
+     *            <li>Stopping - You have stopped the job, but the job has not
+     *            stopped importing users yet.</li>
+     *            <li>Stopped - You have stopped the job, and the job has
+     *            stopped importing users.</li>
+     *            <li>Succeeded - The job has completed successfully.</li>
+     *            <li>Failed - The job has stopped due to an error.</li>
+     *            <li>Expired - You created a job, but did not start the job
+     *            within 24-48 hours. All data associated with the job was
+     *            deleted, and the job cannot be started.</li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see UserImportJobStatusType
@@ -481,7 +785,11 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the cloudWatchLogsRoleArn property for this object.
+     * <p>
+     * The role ARN for the Amazon CloudWatch Logging role for the user import
+     * job. For more information, see "Creating the CloudWatch Logs IAM Role" in
+     * the Amazon Cognito Developer Guide.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -489,14 +797,23 @@ public class UserImportJobType implements Serializable {
      * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
-     * @return The value of the cloudWatchLogsRoleArn property for this object.
+     * @return <p>
+     *         The role ARN for the Amazon CloudWatch Logging role for the user
+     *         import job. For more information, see
+     *         "Creating the CloudWatch Logs IAM Role" in the Amazon Cognito
+     *         Developer Guide.
+     *         </p>
      */
     public String getCloudWatchLogsRoleArn() {
         return cloudWatchLogsRoleArn;
     }
 
     /**
-     * Sets the value of cloudWatchLogsRoleArn
+     * <p>
+     * The role ARN for the Amazon CloudWatch Logging role for the user import
+     * job. For more information, see "Creating the CloudWatch Logs IAM Role" in
+     * the Amazon Cognito Developer Guide.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -504,15 +821,23 @@ public class UserImportJobType implements Serializable {
      * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
-     * @param cloudWatchLogsRoleArn The new value for the cloudWatchLogsRoleArn
-     *            property for this object.
+     * @param cloudWatchLogsRoleArn <p>
+     *            The role ARN for the Amazon CloudWatch Logging role for the
+     *            user import job. For more information, see
+     *            "Creating the CloudWatch Logs IAM Role" in the Amazon Cognito
+     *            Developer Guide.
+     *            </p>
      */
     public void setCloudWatchLogsRoleArn(String cloudWatchLogsRoleArn) {
         this.cloudWatchLogsRoleArn = cloudWatchLogsRoleArn;
     }
 
     /**
-     * Sets the value of the cloudWatchLogsRoleArn property for this object.
+     * <p>
+     * The role ARN for the Amazon CloudWatch Logging role for the user import
+     * job. For more information, see "Creating the CloudWatch Logs IAM Role" in
+     * the Amazon Cognito Developer Guide.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -523,8 +848,12 @@ public class UserImportJobType implements Serializable {
      * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
-     * @param cloudWatchLogsRoleArn The new value for the cloudWatchLogsRoleArn
-     *            property for this object.
+     * @param cloudWatchLogsRoleArn <p>
+     *            The role ARN for the Amazon CloudWatch Logging role for the
+     *            user import job. For more information, see
+     *            "Creating the CloudWatch Logs IAM Role" in the Amazon Cognito
+     *            Developer Guide.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -534,32 +863,42 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the importedUsers property for this object.
+     * <p>
+     * The number of users that were successfully imported.
+     * </p>
      *
-     * @return The value of the importedUsers property for this object.
+     * @return <p>
+     *         The number of users that were successfully imported.
+     *         </p>
      */
     public Long getImportedUsers() {
         return importedUsers;
     }
 
     /**
-     * Sets the value of importedUsers
+     * <p>
+     * The number of users that were successfully imported.
+     * </p>
      *
-     * @param importedUsers The new value for the importedUsers property for
-     *            this object.
+     * @param importedUsers <p>
+     *            The number of users that were successfully imported.
+     *            </p>
      */
     public void setImportedUsers(Long importedUsers) {
         this.importedUsers = importedUsers;
     }
 
     /**
-     * Sets the value of the importedUsers property for this object.
+     * <p>
+     * The number of users that were successfully imported.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param importedUsers The new value for the importedUsers property for
-     *            this object.
+     * @param importedUsers <p>
+     *            The number of users that were successfully imported.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -569,32 +908,42 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the skippedUsers property for this object.
+     * <p>
+     * The number of users that were skipped.
+     * </p>
      *
-     * @return The value of the skippedUsers property for this object.
+     * @return <p>
+     *         The number of users that were skipped.
+     *         </p>
      */
     public Long getSkippedUsers() {
         return skippedUsers;
     }
 
     /**
-     * Sets the value of skippedUsers
+     * <p>
+     * The number of users that were skipped.
+     * </p>
      *
-     * @param skippedUsers The new value for the skippedUsers property for this
-     *            object.
+     * @param skippedUsers <p>
+     *            The number of users that were skipped.
+     *            </p>
      */
     public void setSkippedUsers(Long skippedUsers) {
         this.skippedUsers = skippedUsers;
     }
 
     /**
-     * Sets the value of the skippedUsers property for this object.
+     * <p>
+     * The number of users that were skipped.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param skippedUsers The new value for the skippedUsers property for this
-     *            object.
+     * @param skippedUsers <p>
+     *            The number of users that were skipped.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -604,32 +953,42 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the failedUsers property for this object.
+     * <p>
+     * The number of users that could not be imported.
+     * </p>
      *
-     * @return The value of the failedUsers property for this object.
+     * @return <p>
+     *         The number of users that could not be imported.
+     *         </p>
      */
     public Long getFailedUsers() {
         return failedUsers;
     }
 
     /**
-     * Sets the value of failedUsers
+     * <p>
+     * The number of users that could not be imported.
+     * </p>
      *
-     * @param failedUsers The new value for the failedUsers property for this
-     *            object.
+     * @param failedUsers <p>
+     *            The number of users that could not be imported.
+     *            </p>
      */
     public void setFailedUsers(Long failedUsers) {
         this.failedUsers = failedUsers;
     }
 
     /**
-     * Sets the value of the failedUsers property for this object.
+     * <p>
+     * The number of users that could not be imported.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param failedUsers The new value for the failedUsers property for this
-     *            object.
+     * @param failedUsers <p>
+     *            The number of users that could not be imported.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -639,34 +998,43 @@ public class UserImportJobType implements Serializable {
     }
 
     /**
-     * Returns the value of the completionMessage property for this object.
+     * <p>
+     * The message returned when the user import job is completed.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w]+<br/>
      *
-     * @return The value of the completionMessage property for this object.
+     * @return <p>
+     *         The message returned when the user import job is completed.
+     *         </p>
      */
     public String getCompletionMessage() {
         return completionMessage;
     }
 
     /**
-     * Sets the value of completionMessage
+     * <p>
+     * The message returned when the user import job is completed.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w]+<br/>
      *
-     * @param completionMessage The new value for the completionMessage property
-     *            for this object.
+     * @param completionMessage <p>
+     *            The message returned when the user import job is completed.
+     *            </p>
      */
     public void setCompletionMessage(String completionMessage) {
         this.completionMessage = completionMessage;
     }
 
     /**
-     * Sets the value of the completionMessage property for this object.
+     * <p>
+     * The message returned when the user import job is completed.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -675,8 +1043,9 @@ public class UserImportJobType implements Serializable {
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w]+<br/>
      *
-     * @param completionMessage The new value for the completionMessage property
-     *            for this object.
+     * @param completionMessage <p>
+     *            The message returned when the user import job is completed.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -23,10 +23,10 @@ import android.os.Build;
 import android.util.Log;
 
 import com.amazonaws.util.Base64;
+import com.amazonaws.util.StringUtils;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -192,7 +192,7 @@ public final class CognitoDeviceHelper {
      * Generates SRP verification parameters for device verification.
      *
      * @param deviceKey          REQUIRED: Username this device belongs to.
-     * @param deviceGroup       REQUIRED: This is the device group id returned by the service.
+     * @param deviceGroup        REQUIRED: This is the device group id returned by the service.
      * @return srp verification details for this device, as a {@link Map}.
      */
     public static Map<String, String> generateVerificationParameters(String deviceKey, String deviceGroup) {
@@ -315,7 +315,7 @@ public final class CognitoDeviceHelper {
             MessageDigest md = THREAD_MESSAGE_DIGEST.get();
             for (String s : strings) {
                 if (s != null) {
-                    md.update(s.getBytes(StandardCharsets.UTF_8));
+                    md.update(s.getBytes(StringUtils.UTF8));
                 }
             }
         }
@@ -323,7 +323,7 @@ public final class CognitoDeviceHelper {
         public static void update(String s) {
             MessageDigest md = THREAD_MESSAGE_DIGEST.get();
             if (s != null) {
-                md.update(s.getBytes(StandardCharsets.UTF_8));
+                md.update(s.getBytes(StringUtils.UTF8));
             }
         }
 

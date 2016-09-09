@@ -18,7 +18,9 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when the user pool configuration is invalid.
+ * </p>
  */
 public class InvalidUserPoolConfigurationException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -94,7 +94,7 @@ public class GetIdentityNotificationAttributesResultStaxUnmarshaller implements
                 if (context.testExpression("NotificationAttributes/entry", targetDepth)) {
                     Entry<String, IdentityNotificationAttributes> entry = NotificationAttributesMapEntryUnmarshaller
                             .getInstance().unmarshall(context);
-                    getIdentityNotificationAttributesResult.getNotificationAttributes().put(
+                    getIdentityNotificationAttributesResult.addNotificationAttributesEntry(
                             entry.getKey(), entry.getValue());
                     continue;
                 }

@@ -52,10 +52,11 @@ class DeviceTypeJsonMarshaller {
             jsonWriter.name("DeviceLastModifiedDate");
             jsonWriter.value(deviceLastModifiedDate);
         }
-        if (deviceType.getDeviceLastAccessedDate() != null) {
-            java.util.Date deviceLastAccessedDate = deviceType.getDeviceLastAccessedDate();
-            jsonWriter.name("DeviceLastAccessedDate");
-            jsonWriter.value(deviceLastAccessedDate);
+        if (deviceType.getDeviceLastAuthenticatedDate() != null) {
+            java.util.Date deviceLastAuthenticatedDate = deviceType
+                    .getDeviceLastAuthenticatedDate();
+            jsonWriter.name("DeviceLastAuthenticatedDate");
+            jsonWriter.value(deviceLastAuthenticatedDate);
         }
         jsonWriter.endObject();
     }

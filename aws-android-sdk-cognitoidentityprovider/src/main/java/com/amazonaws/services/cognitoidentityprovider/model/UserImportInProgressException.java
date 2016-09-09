@@ -18,7 +18,10 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when you are trying to modify a user pool while a
+ * user import job is in progress for that pool.
+ * </p>
  */
 public class UserImportInProgressException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

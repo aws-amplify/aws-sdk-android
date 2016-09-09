@@ -1,5 +1,36 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.3.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.1) (09/08/2016)
+
+### Improvements
+- **API Gateway**: Added a generic invoker to execute requests for any path.
+
+### Bug Fixes
+- **Amazon Cognito Identity Provider**: 
+- Fixed a bug introduced by StandardCharsets that caused the Android SDK to be unavailable for API 18 and below.
+
+## [Release 2.3.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.0) (07/28/2016)
+
+### Improvements
+- **AWS Core Runtime Library**: Added support for `us-west-2/PDX` region for cognito identity.
+- **Amazon Cognito Identity Provider**: 
+- Support for Custom authentication flows. Developers can implement custom authentication flows around Cognito Your User Pools.
+- Support for devices.
+- Global sign-out users, to sign-out from all devices.
+- **Amazon Cognito Sync**: Added support for `us-west-2/PDX` region.
+
+### Bug Fixes
+- **Amazon Cognito Identity Provider**: 
+- Authentication flow in Android SDK now uses Custom Authentication API.
+Two new exceptions added for getSession API. These exceptions have been added to accurately represent the user state when the username is invalid and when the user is not confirmed. You will have to update your application to handle these exceptions.
+- UserNotFoundException: Returned when the username user does not exist.
+- UserNotConfirmedException: Returned when the user has not been confirmed.
+
+## [Release 2.2.22](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.22) (07/27/2016)
+
+### Bug Fixes
+- **Amazon Simple Email Service**: Resolved an issue where some SES APIs were missing from the 2.2.21. [#179](https://github.com/aws/aws-sdk-android/issues/179)
+
 ## [Release 2.2.21](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.21) (07/21/2016)
 
 ### Improvements
@@ -21,9 +52,9 @@
 - **Amazon Web Services**: General service updates and documentation improvements.
 - **API Gateway**: Expose client configuration through ApiFactory. [#158](https://github.com/aws/aws-sdk-android/issues/158)
 - **Amazon Web Services**: Service clients are now generated with a new code gen system. Some trivial changes are listed below
- - List members in POJO are defaulted to null instead of an empty list to align with map members. Please perform null check to avoid NPE. When marshalling a list member, a null list will be omitted and an empty list will result in an empty array.
- - In `ListRecordsRequest` of Cognito Sync, the data type of `lastSyncCount` is changed from String to Long and that of `maxResult` from String to Integer.
- - In DynamoDB, the method `setKey(java.util.Map.Entry<String, AttributeValue> hashKey, java.util.Map.Entry<String, AttributeValue> rangeKey)` is removed from `GetItemRequest`, `UpdateItemRequest`, `DeleteItemRequest`, and `DeleteRequest`. Use `addKeyEntry(String key, AttributeValue value)` instead. `setExclusiveStartKey(java.util.Map.Entry<String, AttributeValue> hashKey, java.util.Map.Entry<String, AttributeValue> rangeKey)` is also removed from `QueryRequest` and `ScanRequest`. The alternative is `addExclusiveStartKeyEntry(String key, AttributeValue value)`.
+- List members in POJO are defaulted to null instead of an empty list to align with map members. Please perform null check to avoid NPE. When marshalling a list member, a null list will be omitted and an empty list will result in an empty array.
+- In `ListRecordsRequest` of Cognito Sync, the data type of `lastSyncCount` is changed from String to Long and that of `maxResult` from String to Integer.
+- In DynamoDB, the method `setKey(java.util.Map.Entry<String, AttributeValue> hashKey, java.util.Map.Entry<String, AttributeValue> rangeKey)` is removed from `GetItemRequest`, `UpdateItemRequest`, `DeleteItemRequest`, and `DeleteRequest`. Use `addKeyEntry(String key, AttributeValue value)` instead. `setExclusiveStartKey(java.util.Map.Entry<String, AttributeValue> hashKey, java.util.Map.Entry<String, AttributeValue> rangeKey)` is also removed from `QueryRequest` and `ScanRequest`. The alternative is `addExclusiveStartKeyEntry(String key, AttributeValue value)`.
 
 ### Bug Fixes
 - **API Gateway**: Fixed a bug where user agent is overwritten by `ApiHandler`. [#159](https://github.com/aws/aws-sdk-android/issues/159) 
@@ -45,9 +76,9 @@
 
 ### New Features
 - **Amazon S3**:
- - Introducing a new version of the ListObjects (ListObjectsV2) API that allows listing objects with a large number of delete markers. See [GET Bucket (List Objects) Version 2](http://docs.aws.amazon.com/AmazonS3/latest/API/v2-RESTBucketGET.html) for more details.
- - Added support for a new configuration named BucketAccelerateConfiguration which supports faster uploads/downloads to S3 buckets. See [Amazon S3 Transfer Acceleration](http://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html).
- - Amazon S3 now supports cross-region replication, which provides automatic, asynchronous copying of objects across buckets in different AWS regions. For more information, see [Cross-Region Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) in the Amazon S3 Developer Guide.
+- Introducing a new version of the ListObjects (ListObjectsV2) API that allows listing objects with a large number of delete markers. See [GET Bucket (List Objects) Version 2](http://docs.aws.amazon.com/AmazonS3/latest/API/v2-RESTBucketGET.html) for more details.
+- Added support for a new configuration named BucketAccelerateConfiguration which supports faster uploads/downloads to S3 buckets. See [Amazon S3 Transfer Acceleration](http://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html).
+- Amazon S3 now supports cross-region replication, which provides automatic, asynchronous copying of objects across buckets in different AWS regions. For more information, see [Cross-Region Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) in the Amazon S3 Developer Guide.
 
 ### Bug Fixes
 - **AWS Core Runtime Library**: Fixed a potential bug during retry where content input stream is not reset correctly.
@@ -87,8 +118,8 @@
 
 ### Improvements
 - **Amazon S3**: Improved performance of S3 TransferUtility.
- - Now the number of parallel transfers is set to the number of processors (cores) + 1. [#111](https://github.com/aws/aws-sdk-android/issues/111)
- - Removed unnecessary network requests in download task.
+- Now the number of parallel transfers is set to the number of processors (cores) + 1. [#111](https://github.com/aws/aws-sdk-android/issues/111)
+- Removed unnecessary network requests in download task.
 
 ### Bug Fixes
 - **AWS Core Runtime Library**: Addressed a potential bug in Cognito credentials provider.
@@ -99,9 +130,9 @@
 
 ### Improvements
 - **Amazon S3**: Tweaked the usage of TransferListener in S3 TransferUtility.
- - Now listeners are kept as strong references. They will be removed when transfers are completed. However user are still encouraged to clean up listeners themselves to prevent memory leak. [#93](https://github.com/aws/aws-sdk-android/issues/93) and [#101](https://github.com/aws/aws-sdk-android/issues/101)
- - Transfers in WAITING_FOR_NETWORK state can now be paused or canceled. [#102](https://github.com/aws/aws-sdk-android/issues/102)
- - Improved the experience to delete a transfer. [#104](https://github.com/aws/aws-sdk-android/issues/104)
+- Now listeners are kept as strong references. They will be removed when transfers are completed. However user are still encouraged to clean up listeners themselves to prevent memory leak. [#93](https://github.com/aws/aws-sdk-android/issues/93) and [#101](https://github.com/aws/aws-sdk-android/issues/101)
+- Transfers in WAITING_FOR_NETWORK state can now be paused or canceled. [#102](https://github.com/aws/aws-sdk-android/issues/102)
+- Improved the experience to delete a transfer. [#104](https://github.com/aws/aws-sdk-android/issues/104)
 
 ### Bug Fixes
 - **AWS Core Runtime Library**: Addressed potential internalization bugs. [#96](https://github.com/aws/aws-sdk-android/issues/96)
@@ -124,14 +155,14 @@
 
 ### Improvements
 - **Amazon S3**: Revamped S3 TransferUtility. Huge performance boost and lots of enhancements.
- - Offload most database operations to background thread.
- - Re-architected transfer listeners. Moved away from ContentObserver.
- - Reduced the frequency of writing transfer states to database.
- - Better error reporting. Now the original exception is passed to [TransferListener.onError(int, Exception)](http://docs.aws.amazon.com/AWSAndroidSDK/latest/javadoc/com/amazonaws/mobileconnectors/s3/transferutility/TransferListener.html#onError(int,%20java.lang.Exception)). [#61](https://github.com/aws/aws-sdk-android/issues/61)
- - Allow user to resume a transfer in any state other than `TransferState.COMPLETED`. [#81](https://github.com/aws/aws-sdk-android/issues/81) and [#87](https://github.com/aws/aws-sdk-android/issues/87)
- - Better diagnostics of TransferService. You can dump its status with `adb shell dumpsys activity service com.amazonaws.mobileconnectors.s3.transferutility.TransferService`. It works only if the app is debuggable.
- - Better handling of network connectivity changes.
- - Other cleanups, bug fixes and improvements.
+- Offload most database operations to background thread.
+- Re-architected transfer listeners. Moved away from ContentObserver.
+- Reduced the frequency of writing transfer states to database.
+- Better error reporting. Now the original exception is passed to [TransferListener.onError(int, Exception)](http://docs.aws.amazon.com/AWSAndroidSDK/latest/javadoc/com/amazonaws/mobileconnectors/s3/transferutility/TransferListener.html#onError(int,%20java.lang.Exception)). [#61](https://github.com/aws/aws-sdk-android/issues/61)
+- Allow user to resume a transfer in any state other than `TransferState.COMPLETED`. [#81](https://github.com/aws/aws-sdk-android/issues/81) and [#87](https://github.com/aws/aws-sdk-android/issues/87)
+- Better diagnostics of TransferService. You can dump its status with `adb shell dumpsys activity service com.amazonaws.mobileconnectors.s3.transferutility.TransferService`. It works only if the app is debuggable.
+- Better handling of network connectivity changes.
+- Other cleanups, bug fixes and improvements.
 - **Amazon S3**: Adds support of server-side encryption with AWS Key Management Service. See [Amazon S3 developer guide](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) for more information.
 - **Amazon S3**: Signature Version 4 is now the default signing methods for all S3 requests as long as a region is specified or can be easily determined from the given endpoint.
 

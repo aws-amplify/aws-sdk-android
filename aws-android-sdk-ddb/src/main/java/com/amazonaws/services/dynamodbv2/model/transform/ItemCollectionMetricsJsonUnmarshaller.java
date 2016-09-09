@@ -27,8 +27,12 @@ class ItemCollectionMetricsJsonUnmarshaller implements
         Unmarshaller<ItemCollectionMetrics, JsonUnmarshallerContext> {
 
     public ItemCollectionMetrics unmarshall(JsonUnmarshallerContext context) throws Exception {
-        ItemCollectionMetrics itemCollectionMetrics = new ItemCollectionMetrics();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        ItemCollectionMetrics itemCollectionMetrics = new ItemCollectionMetrics();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

@@ -49,8 +49,9 @@ public class DescribeAutoScalingNotificationTypesResultStaxUnmarshaller implemen
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("AutoScalingNotificationTypes/member", targetDepth)) {
-                    describeAutoScalingNotificationTypesResult.getAutoScalingNotificationTypes()
-                            .add(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeAutoScalingNotificationTypesResult
+                            .withAutoScalingNotificationTypes(StringStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

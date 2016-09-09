@@ -48,8 +48,8 @@ public class ListIdentityPoliciesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("PolicyNames/member", targetDepth)) {
-                    listIdentityPoliciesResult.getPolicyNames().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    listIdentityPoliciesResult.withPolicyNames(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

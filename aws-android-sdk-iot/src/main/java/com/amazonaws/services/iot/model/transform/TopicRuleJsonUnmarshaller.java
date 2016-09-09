@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class TopicRuleJsonUnmarshaller implements Unmarshaller<TopicRule, JsonUnmarshallerContext> {
 
     public TopicRule unmarshall(JsonUnmarshallerContext context) throws Exception {
-        TopicRule topicRule = new TopicRule();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        TopicRule topicRule = new TopicRule();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

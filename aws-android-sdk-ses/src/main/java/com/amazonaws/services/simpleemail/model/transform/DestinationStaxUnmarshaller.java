@@ -47,18 +47,18 @@ class DestinationStaxUnmarshaller implements Unmarshaller<Destination, StaxUnmar
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("ToAddresses/member", targetDepth)) {
-                    destination.getToAddresses().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    destination.withToAddresses(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("CcAddresses/member", targetDepth)) {
-                    destination.getCcAddresses().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    destination.withCcAddresses(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("BccAddresses/member", targetDepth)) {
-                    destination.getBccAddresses().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    destination.withBccAddresses(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

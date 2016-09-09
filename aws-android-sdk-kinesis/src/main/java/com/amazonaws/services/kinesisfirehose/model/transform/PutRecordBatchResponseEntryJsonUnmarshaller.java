@@ -27,8 +27,12 @@ class PutRecordBatchResponseEntryJsonUnmarshaller implements
         Unmarshaller<PutRecordBatchResponseEntry, JsonUnmarshallerContext> {
 
     public PutRecordBatchResponseEntry unmarshall(JsonUnmarshallerContext context) throws Exception {
-        PutRecordBatchResponseEntry putRecordBatchResponseEntry = new PutRecordBatchResponseEntry();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        PutRecordBatchResponseEntry putRecordBatchResponseEntry = new PutRecordBatchResponseEntry();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

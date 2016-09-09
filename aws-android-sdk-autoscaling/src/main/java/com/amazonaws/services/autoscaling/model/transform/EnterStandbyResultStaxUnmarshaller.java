@@ -48,8 +48,8 @@ public class EnterStandbyResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Activities/member", targetDepth)) {
-                    enterStandbyResult.getActivities().add(
-                            ActivityStaxUnmarshaller.getInstance().unmarshall(context));
+                    enterStandbyResult.withActivities(ActivityStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

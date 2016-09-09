@@ -19,9 +19,16 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Signs out users from all devices.
+ * </p>
+ */
 public class GlobalSignOutRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
@@ -29,32 +36,41 @@ public class GlobalSignOutRequest extends AmazonWebServiceRequest implements Ser
     private String accessToken;
 
     /**
-     * Returns the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @return The value of the accessToken property for this object.
+     * @return <p>
+     *         The access token.
+     *         </p>
      */
     public String getAccessToken() {
         return accessToken;
     }
 
     /**
-     * Sets the value of accessToken
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
     /**
-     * Sets the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -62,8 +78,9 @@ public class GlobalSignOutRequest extends AmazonWebServiceRequest implements Ser
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

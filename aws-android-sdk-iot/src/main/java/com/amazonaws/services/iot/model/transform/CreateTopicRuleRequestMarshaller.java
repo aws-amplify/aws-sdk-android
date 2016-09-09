@@ -59,15 +59,10 @@ public class CreateTopicRuleRequestMarshaller implements
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
-            jsonWriter.beginObject();
-
             if (createTopicRuleRequest.getTopicRulePayload() != null) {
                 TopicRulePayload topicRulePayload = createTopicRuleRequest.getTopicRulePayload();
-                jsonWriter.name("topicRulePayload");
                 TopicRulePayloadJsonMarshaller.getInstance().marshall(topicRulePayload, jsonWriter);
             }
-
-            jsonWriter.endObject();
             jsonWriter.close();
             String snippet = stringWriter.toString();
             byte[] content = snippet.getBytes(UTF8);

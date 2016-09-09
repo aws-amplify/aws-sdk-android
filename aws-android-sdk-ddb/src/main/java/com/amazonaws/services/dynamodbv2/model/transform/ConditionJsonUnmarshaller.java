@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class ConditionJsonUnmarshaller implements Unmarshaller<Condition, JsonUnmarshallerContext> {
 
     public Condition unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Condition condition = new Condition();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Condition condition = new Condition();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

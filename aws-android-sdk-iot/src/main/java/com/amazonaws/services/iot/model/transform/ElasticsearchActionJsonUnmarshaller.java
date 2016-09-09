@@ -27,8 +27,12 @@ class ElasticsearchActionJsonUnmarshaller implements
         Unmarshaller<ElasticsearchAction, JsonUnmarshallerContext> {
 
     public ElasticsearchAction unmarshall(JsonUnmarshallerContext context) throws Exception {
-        ElasticsearchAction elasticsearchAction = new ElasticsearchAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        ElasticsearchAction elasticsearchAction = new ElasticsearchAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

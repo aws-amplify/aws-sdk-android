@@ -27,8 +27,12 @@ class ConsumedCapacityJsonUnmarshaller implements
         Unmarshaller<ConsumedCapacity, JsonUnmarshallerContext> {
 
     public ConsumedCapacity unmarshall(JsonUnmarshallerContext context) throws Exception {
-        ConsumedCapacity consumedCapacity = new ConsumedCapacity();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        ConsumedCapacity consumedCapacity = new ConsumedCapacity();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

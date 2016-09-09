@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class CredentialsJsonUnmarshaller implements Unmarshaller<Credentials, JsonUnmarshallerContext> {
 
     public Credentials unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Credentials credentials = new Credentials();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Credentials credentials = new Credentials();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

@@ -148,7 +148,7 @@ class MessageStaxUnmarshaller implements Unmarshaller<Message, StaxUnmarshallerC
                 if (context.testExpression("Attribute", targetDepth)) {
                     Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    message.getAttributes().put(entry.getKey(), entry.getValue());
+                    message.addAttributesEntry(entry.getKey(), entry.getValue());
                     continue;
                 }
                 if (context.testExpression("MD5OfMessageAttributes", targetDepth)) {
@@ -159,7 +159,7 @@ class MessageStaxUnmarshaller implements Unmarshaller<Message, StaxUnmarshallerC
                 if (context.testExpression("MessageAttribute", targetDepth)) {
                     Entry<String, MessageAttributeValue> entry = MessageAttributesMapEntryUnmarshaller
                             .getInstance().unmarshall(context);
-                    message.getMessageAttributes().put(entry.getKey(), entry.getValue());
+                    message.addMessageAttributesEntry(entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

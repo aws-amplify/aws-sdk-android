@@ -28,8 +28,12 @@ class DeviceSecretVerifierConfigTypeJsonUnmarshaller implements
 
     public DeviceSecretVerifierConfigType unmarshall(JsonUnmarshallerContext context)
             throws Exception {
-        DeviceSecretVerifierConfigType deviceSecretVerifierConfigType = new DeviceSecretVerifierConfigType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        DeviceSecretVerifierConfigType deviceSecretVerifierConfigType = new DeviceSecretVerifierConfigType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

@@ -90,7 +90,7 @@ public class GetQueueAttributesResultStaxUnmarshaller implements
                 if (context.testExpression("Attribute", targetDepth)) {
                     Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    getQueueAttributesResult.getAttributes().put(entry.getKey(), entry.getValue());
+                    getQueueAttributesResult.addAttributesEntry(entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

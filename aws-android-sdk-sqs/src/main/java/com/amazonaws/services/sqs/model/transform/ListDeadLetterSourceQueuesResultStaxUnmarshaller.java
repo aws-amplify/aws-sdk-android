@@ -49,8 +49,8 @@ public class ListDeadLetterSourceQueuesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("QueueUrl", targetDepth)) {
-                    listDeadLetterSourceQueuesResult.getQueueUrls().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    listDeadLetterSourceQueuesResult.withQueueUrls(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

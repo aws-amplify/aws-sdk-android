@@ -17,9 +17,16 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Responds to the authentication challenge, as an administrator.
+ * </p>
+ */
 public class AdminRespondToAuthChallengeResult implements Serializable {
     /**
-     * The new value for the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
@@ -28,7 +35,9 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     private String challengeName;
 
     /**
-     * The new value for the session property for this object.
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -36,7 +45,9 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     private String session;
 
     /**
-     * The new value for the challengeParameters property for this object.
+     * <p>
+     * The challenge parameters.
+     * </p>
      */
     private java.util.Map<String, String> challengeParameters;
 
@@ -48,13 +59,17 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     private AuthenticationResultType authenticationResult;
 
     /**
-     * Returns the value of the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @return The value of the challengeName property for this object.
+     * @return <p>
+     *         The name of the challenge.
+     *         </p>
      * @see ChallengeNameType
      */
     public String getChallengeName() {
@@ -62,14 +77,17 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     }
 
     /**
-     * Sets the value of challengeName
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @see ChallengeNameType
      */
     public void setChallengeName(String challengeName) {
@@ -77,7 +95,9 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     }
 
     /**
-     * Sets the value of the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -86,8 +106,9 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChallengeNameType
@@ -98,14 +119,17 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     }
 
     /**
-     * Sets the value of challengeName
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @see ChallengeNameType
      */
     public void setChallengeName(ChallengeNameType challengeName) {
@@ -113,7 +137,9 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     }
 
     /**
-     * Sets the value of the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -122,8 +148,9 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChallengeNameType
@@ -134,31 +161,41 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     }
 
     /**
-     * Returns the value of the session property for this object.
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @return The value of the session property for this object.
+     * @return <p>
+     *         The session.
+     *         </p>
      */
     public String getSession() {
         return session;
     }
 
     /**
-     * Sets the value of session
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session.
+     *            </p>
      */
     public void setSession(String session) {
         this.session = session;
     }
 
     /**
-     * Sets the value of the session property for this object.
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -166,7 +203,9 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -176,32 +215,42 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     }
 
     /**
-     * Returns the value of the challengeParameters property for this object.
+     * <p>
+     * The challenge parameters.
+     * </p>
      *
-     * @return The value of the challengeParameters property for this object.
+     * @return <p>
+     *         The challenge parameters.
+     *         </p>
      */
     public java.util.Map<String, String> getChallengeParameters() {
         return challengeParameters;
     }
 
     /**
-     * Sets the value of challengeParameters
+     * <p>
+     * The challenge parameters.
+     * </p>
      *
-     * @param challengeParameters The new value for the challengeParameters
-     *            property for this object.
+     * @param challengeParameters <p>
+     *            The challenge parameters.
+     *            </p>
      */
     public void setChallengeParameters(java.util.Map<String, String> challengeParameters) {
         this.challengeParameters = challengeParameters;
     }
 
     /**
-     * Sets the value of the challengeParameters property for this object.
+     * <p>
+     * The challenge parameters.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param challengeParameters The new value for the challengeParameters
-     *            property for this object.
+     * @param challengeParameters <p>
+     *            The challenge parameters.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -212,7 +261,9 @@ public class AdminRespondToAuthChallengeResult implements Serializable {
     }
 
     /**
-     * Sets the value of the challengeParameters property for this object.
+     * <p>
+     * The challenge parameters.
+     * </p>
      * <p>
      * The method adds a new key-value pair into ChallengeParameters parameter,
      * and returns a reference to this object so that method calls can be

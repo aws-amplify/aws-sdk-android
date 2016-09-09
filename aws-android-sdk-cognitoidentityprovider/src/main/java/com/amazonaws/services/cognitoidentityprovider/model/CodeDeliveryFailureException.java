@@ -18,7 +18,10 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when a verification code fails to deliver
+ * successfully.
+ * </p>
  */
 public class CodeDeliveryFailureException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

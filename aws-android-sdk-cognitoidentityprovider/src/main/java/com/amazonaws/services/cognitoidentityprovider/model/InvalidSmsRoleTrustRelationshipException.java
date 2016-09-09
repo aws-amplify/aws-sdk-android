@@ -18,7 +18,12 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when the trust relationship is invalid for the role
+ * provided for SMS configuration. This can happen if you do not trust
+ * <b>cognito-idp.amazonaws.com</b> or the external ID provided in the role does
+ * not match what is provided in the SMS configuration for the user pool.
+ * </p>
  */
 public class InvalidSmsRoleTrustRelationshipException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -49,8 +49,8 @@ public class ListSubscriptionsByTopicResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Subscriptions/member", targetDepth)) {
-                    listSubscriptionsByTopicResult.getSubscriptions().add(
-                            SubscriptionStaxUnmarshaller.getInstance().unmarshall(context));
+                    listSubscriptionsByTopicResult.withSubscriptions(SubscriptionStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

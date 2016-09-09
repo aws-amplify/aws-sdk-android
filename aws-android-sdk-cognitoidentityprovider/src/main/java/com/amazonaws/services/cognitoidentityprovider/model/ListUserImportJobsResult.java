@@ -17,14 +17,25 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Represents the response from the server to the request to list the user
+ * import jobs.
+ * </p>
+ */
 public class ListUserImportJobsResult implements Serializable {
     /**
-     * The new value for the userImportJobs property for this object.
+     * <p>
+     * The user import jobs.
+     * </p>
      */
     private java.util.List<UserImportJobType> userImportJobs;
 
     /**
-     * The new value for the paginationToken property for this object.
+     * <p>
+     * An identifier that can be used to return the next set of user import jobs
+     * in the list.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -33,19 +44,26 @@ public class ListUserImportJobsResult implements Serializable {
     private String paginationToken;
 
     /**
-     * Returns the value of the userImportJobs property for this object.
+     * <p>
+     * The user import jobs.
+     * </p>
      *
-     * @return The value of the userImportJobs property for this object.
+     * @return <p>
+     *         The user import jobs.
+     *         </p>
      */
     public java.util.List<UserImportJobType> getUserImportJobs() {
         return userImportJobs;
     }
 
     /**
-     * Sets the value of userImportJobs
+     * <p>
+     * The user import jobs.
+     * </p>
      *
-     * @param userImportJobs The new value for the userImportJobs property for
-     *            this object.
+     * @param userImportJobs <p>
+     *            The user import jobs.
+     *            </p>
      */
     public void setUserImportJobs(java.util.Collection<UserImportJobType> userImportJobs) {
         if (userImportJobs == null) {
@@ -57,13 +75,16 @@ public class ListUserImportJobsResult implements Serializable {
     }
 
     /**
-     * Sets the value of the userImportJobs property for this object.
+     * <p>
+     * The user import jobs.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param userImportJobs The new value for the userImportJobs property for
-     *            this object.
+     * @param userImportJobs <p>
+     *            The user import jobs.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -78,13 +99,16 @@ public class ListUserImportJobsResult implements Serializable {
     }
 
     /**
-     * Sets the value of the userImportJobs property for this object.
+     * <p>
+     * The user import jobs.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param userImportJobs The new value for the userImportJobs property for
-     *            this object.
+     * @param userImportJobs <p>
+     *            The user import jobs.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -95,34 +119,48 @@ public class ListUserImportJobsResult implements Serializable {
     }
 
     /**
-     * Returns the value of the paginationToken property for this object.
+     * <p>
+     * An identifier that can be used to return the next set of user import jobs
+     * in the list.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @return The value of the paginationToken property for this object.
+     * @return <p>
+     *         An identifier that can be used to return the next set of user
+     *         import jobs in the list.
+     *         </p>
      */
     public String getPaginationToken() {
         return paginationToken;
     }
 
     /**
-     * Sets the value of paginationToken
+     * <p>
+     * An identifier that can be used to return the next set of user import jobs
+     * in the list.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            An identifier that can be used to return the next set of user
+     *            import jobs in the list.
+     *            </p>
      */
     public void setPaginationToken(String paginationToken) {
         this.paginationToken = paginationToken;
     }
 
     /**
-     * Sets the value of the paginationToken property for this object.
+     * <p>
+     * An identifier that can be used to return the next set of user import jobs
+     * in the list.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -131,8 +169,10 @@ public class ListUserImportJobsResult implements Serializable {
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            An identifier that can be used to return the next set of user
+     *            import jobs in the list.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

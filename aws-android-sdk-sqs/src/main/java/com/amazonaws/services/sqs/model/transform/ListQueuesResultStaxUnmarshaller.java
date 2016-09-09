@@ -48,8 +48,8 @@ public class ListQueuesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("QueueUrl", targetDepth)) {
-                    listQueuesResult.getQueueUrls().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    listQueuesResult.withQueueUrls(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

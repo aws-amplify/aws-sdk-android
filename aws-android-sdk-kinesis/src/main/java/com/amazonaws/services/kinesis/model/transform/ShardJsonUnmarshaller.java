@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class ShardJsonUnmarshaller implements Unmarshaller<Shard, JsonUnmarshallerContext> {
 
     public Shard unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Shard shard = new Shard();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Shard shard = new Shard();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

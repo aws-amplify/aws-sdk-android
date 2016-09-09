@@ -91,7 +91,7 @@ public class GetSubscriptionAttributesResultStaxUnmarshaller implements
                 if (context.testExpression("Attributes/entry", targetDepth)) {
                     Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    getSubscriptionAttributesResult.getAttributes().put(entry.getKey(),
+                    getSubscriptionAttributesResult.addAttributesEntry(entry.getKey(),
                             entry.getValue());
                     continue;
                 }

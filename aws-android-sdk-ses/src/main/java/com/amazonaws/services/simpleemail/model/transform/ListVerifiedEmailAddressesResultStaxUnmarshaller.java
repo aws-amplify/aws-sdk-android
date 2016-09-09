@@ -49,8 +49,9 @@ public class ListVerifiedEmailAddressesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("VerifiedEmailAddresses/member", targetDepth)) {
-                    listVerifiedEmailAddressesResult.getVerifiedEmailAddresses().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    listVerifiedEmailAddressesResult
+                            .withVerifiedEmailAddresses(StringStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

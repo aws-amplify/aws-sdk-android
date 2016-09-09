@@ -49,8 +49,9 @@ public class DescribeLaunchConfigurationsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("LaunchConfigurations/member", targetDepth)) {
-                    describeLaunchConfigurationsResult.getLaunchConfigurations().add(
-                            LaunchConfigurationStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeLaunchConfigurationsResult
+                            .withLaunchConfigurations(LaunchConfigurationStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

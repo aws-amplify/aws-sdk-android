@@ -27,8 +27,12 @@ class GrantConstraintsJsonUnmarshaller implements
         Unmarshaller<GrantConstraints, JsonUnmarshallerContext> {
 
     public GrantConstraints unmarshall(JsonUnmarshallerContext context) throws Exception {
-        GrantConstraints grantConstraints = new GrantConstraints();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        GrantConstraints grantConstraints = new GrantConstraints();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

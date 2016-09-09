@@ -49,8 +49,9 @@ public class EnableAvailabilityZonesForLoadBalancerResultStaxUnmarshaller implem
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("AvailabilityZones/member", targetDepth)) {
-                    enableAvailabilityZonesForLoadBalancerResult.getAvailabilityZones().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    enableAvailabilityZonesForLoadBalancerResult
+                            .withAvailabilityZones(StringStaxUnmarshaller.getInstance().unmarshall(
+                                    context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

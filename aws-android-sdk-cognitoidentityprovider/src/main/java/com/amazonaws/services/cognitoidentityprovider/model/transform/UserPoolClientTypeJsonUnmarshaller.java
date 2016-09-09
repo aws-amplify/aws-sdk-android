@@ -27,8 +27,12 @@ class UserPoolClientTypeJsonUnmarshaller implements
         Unmarshaller<UserPoolClientType, JsonUnmarshallerContext> {
 
     public UserPoolClientType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        UserPoolClientType userPoolClientType = new UserPoolClientType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        UserPoolClientType userPoolClientType = new UserPoolClientType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

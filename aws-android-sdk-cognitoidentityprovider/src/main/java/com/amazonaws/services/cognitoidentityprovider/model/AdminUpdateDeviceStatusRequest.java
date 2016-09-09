@@ -19,18 +19,27 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Updates the device status as an administrator.
+ * </p>
+ */
 public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The user pool ID>
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * The new value for the username property for this object.
+     * <p>
+     * The user name.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -39,16 +48,20 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
     private String username;
 
     /**
-     * The new value for the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      */
     private String deviceKey;
 
     /**
-     * The new value for the deviceRememberedStatus property for this object.
+     * <p>
+     * The status indicating whether a device has been remembered or not.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>remembered, not_remembered
@@ -56,44 +69,54 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
     private String deviceRememberedStatus;
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID>
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The user pool ID>
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The user pool ID>
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID>
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID>
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID>
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -103,33 +126,43 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Returns the value of the username property for this object.
+     * <p>
+     * The user name.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @return The value of the username property for this object.
+     * @return <p>
+     *         The user name.
+     *         </p>
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * Sets the value of username
+     * <p>
+     * The user name.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The new value for the username property for this object.
+     * @param username <p>
+     *            The user name.
+     *            </p>
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * Sets the value of the username property for this object.
+     * <p>
+     * The user name.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -138,7 +171,9 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The new value for the username property for this object.
+     * @param username <p>
+     *            The user name.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -148,44 +183,54 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Returns the value of the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @return The value of the deviceKey property for this object.
+     * @return <p>
+     *         The device key.
+     *         </p>
      */
     public String getDeviceKey() {
         return deviceKey;
     }
 
     /**
-     * Sets the value of deviceKey
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @param deviceKey The new value for the deviceKey property for this
-     *            object.
+     * @param deviceKey <p>
+     *            The device key.
+     *            </p>
      */
     public void setDeviceKey(String deviceKey) {
         this.deviceKey = deviceKey;
     }
 
     /**
-     * Sets the value of the deviceKey property for this object.
+     * <p>
+     * The device key.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-f-]+<br/>
      *
-     * @param deviceKey The new value for the deviceKey property for this
-     *            object.
+     * @param deviceKey <p>
+     *            The device key.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -195,12 +240,17 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Returns the value of the deviceRememberedStatus property for this object.
+     * <p>
+     * The status indicating whether a device has been remembered or not.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>remembered, not_remembered
      *
-     * @return The value of the deviceRememberedStatus property for this object.
+     * @return <p>
+     *         The status indicating whether a device has been remembered or
+     *         not.
+     *         </p>
      * @see DeviceRememberedStatusType
      */
     public String getDeviceRememberedStatus() {
@@ -208,13 +258,17 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Sets the value of deviceRememberedStatus
+     * <p>
+     * The status indicating whether a device has been remembered or not.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>remembered, not_remembered
      *
-     * @param deviceRememberedStatus The new value for the
-     *            deviceRememberedStatus property for this object.
+     * @param deviceRememberedStatus <p>
+     *            The status indicating whether a device has been remembered or
+     *            not.
+     *            </p>
      * @see DeviceRememberedStatusType
      */
     public void setDeviceRememberedStatus(String deviceRememberedStatus) {
@@ -222,7 +276,9 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Sets the value of the deviceRememberedStatus property for this object.
+     * <p>
+     * The status indicating whether a device has been remembered or not.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -230,8 +286,10 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>remembered, not_remembered
      *
-     * @param deviceRememberedStatus The new value for the
-     *            deviceRememberedStatus property for this object.
+     * @param deviceRememberedStatus <p>
+     *            The status indicating whether a device has been remembered or
+     *            not.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see DeviceRememberedStatusType
@@ -242,13 +300,17 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Sets the value of deviceRememberedStatus
+     * <p>
+     * The status indicating whether a device has been remembered or not.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>remembered, not_remembered
      *
-     * @param deviceRememberedStatus The new value for the
-     *            deviceRememberedStatus property for this object.
+     * @param deviceRememberedStatus <p>
+     *            The status indicating whether a device has been remembered or
+     *            not.
+     *            </p>
      * @see DeviceRememberedStatusType
      */
     public void setDeviceRememberedStatus(DeviceRememberedStatusType deviceRememberedStatus) {
@@ -256,7 +318,9 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Sets the value of the deviceRememberedStatus property for this object.
+     * <p>
+     * The status indicating whether a device has been remembered or not.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -264,8 +328,10 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>remembered, not_remembered
      *
-     * @param deviceRememberedStatus The new value for the
-     *            deviceRememberedStatus property for this object.
+     * @param deviceRememberedStatus <p>
+     *            The status indicating whether a device has been remembered or
+     *            not.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see DeviceRememberedStatusType

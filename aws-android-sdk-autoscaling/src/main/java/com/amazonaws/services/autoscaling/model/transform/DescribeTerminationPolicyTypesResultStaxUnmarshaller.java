@@ -49,8 +49,9 @@ public class DescribeTerminationPolicyTypesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("TerminationPolicyTypes/member", targetDepth)) {
-                    describeTerminationPolicyTypesResult.getTerminationPolicyTypes().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeTerminationPolicyTypesResult
+                            .withTerminationPolicyTypes(StringStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

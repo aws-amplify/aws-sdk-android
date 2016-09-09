@@ -27,8 +27,12 @@ class NewDeviceMetadataTypeJsonUnmarshaller implements
         Unmarshaller<NewDeviceMetadataType, JsonUnmarshallerContext> {
 
     public NewDeviceMetadataType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        NewDeviceMetadataType newDeviceMetadataType = new NewDeviceMetadataType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        NewDeviceMetadataType newDeviceMetadataType = new NewDeviceMetadataType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

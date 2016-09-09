@@ -27,8 +27,12 @@ class CloudwatchAlarmActionJsonUnmarshaller implements
         Unmarshaller<CloudwatchAlarmAction, JsonUnmarshallerContext> {
 
     public CloudwatchAlarmAction unmarshall(JsonUnmarshallerContext context) throws Exception {
-        CloudwatchAlarmAction cloudwatchAlarmAction = new CloudwatchAlarmAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        CloudwatchAlarmAction cloudwatchAlarmAction = new CloudwatchAlarmAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

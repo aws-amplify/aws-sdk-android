@@ -49,8 +49,9 @@ public class DescribeAdjustmentTypesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("AdjustmentTypes/member", targetDepth)) {
-                    describeAdjustmentTypesResult.getAdjustmentTypes().add(
-                            AdjustmentTypeStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeAdjustmentTypesResult
+                            .withAdjustmentTypes(AdjustmentTypeStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

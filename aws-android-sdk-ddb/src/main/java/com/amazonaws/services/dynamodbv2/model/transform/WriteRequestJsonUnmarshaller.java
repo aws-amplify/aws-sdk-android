@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class WriteRequestJsonUnmarshaller implements Unmarshaller<WriteRequest, JsonUnmarshallerContext> {
 
     public WriteRequest unmarshall(JsonUnmarshallerContext context) throws Exception {
-        WriteRequest writeRequest = new WriteRequest();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        WriteRequest writeRequest = new WriteRequest();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

@@ -48,8 +48,8 @@ public class GetSendStatisticsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("SendDataPoints/member", targetDepth)) {
-                    getSendStatisticsResult.getSendDataPoints().add(
-                            SendDataPointStaxUnmarshaller.getInstance().unmarshall(context));
+                    getSendStatisticsResult.withSendDataPoints(SendDataPointStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

@@ -49,8 +49,8 @@ public class DescribeAlarmsForMetricResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("MetricAlarms/member", targetDepth)) {
-                    describeAlarmsForMetricResult.getMetricAlarms().add(
-                            MetricAlarmStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeAlarmsForMetricResult.withMetricAlarms(MetricAlarmStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

@@ -94,7 +94,7 @@ class EndpointStaxUnmarshaller implements Unmarshaller<Endpoint, StaxUnmarshalle
                 if (context.testExpression("Attributes/entry", targetDepth)) {
                     Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    endpoint.getAttributes().put(entry.getKey(), entry.getValue());
+                    endpoint.addAttributesEntry(entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

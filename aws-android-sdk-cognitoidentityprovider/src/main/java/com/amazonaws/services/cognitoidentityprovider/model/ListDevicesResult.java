@@ -17,14 +17,23 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Represents the response to list devices.
+ * </p>
+ */
 public class ListDevicesResult implements Serializable {
     /**
-     * The new value for the devices property for this object.
+     * <p>
+     * The devices returned in the list devices response.
+     * </p>
      */
     private java.util.List<DeviceType> devices;
 
     /**
-     * The new value for the paginationToken property for this object.
+     * <p>
+     * The pagination token for the list device response.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -33,18 +42,26 @@ public class ListDevicesResult implements Serializable {
     private String paginationToken;
 
     /**
-     * Returns the value of the devices property for this object.
+     * <p>
+     * The devices returned in the list devices response.
+     * </p>
      *
-     * @return The value of the devices property for this object.
+     * @return <p>
+     *         The devices returned in the list devices response.
+     *         </p>
      */
     public java.util.List<DeviceType> getDevices() {
         return devices;
     }
 
     /**
-     * Sets the value of devices
+     * <p>
+     * The devices returned in the list devices response.
+     * </p>
      *
-     * @param devices The new value for the devices property for this object.
+     * @param devices <p>
+     *            The devices returned in the list devices response.
+     *            </p>
      */
     public void setDevices(java.util.Collection<DeviceType> devices) {
         if (devices == null) {
@@ -56,12 +73,16 @@ public class ListDevicesResult implements Serializable {
     }
 
     /**
-     * Sets the value of the devices property for this object.
+     * <p>
+     * The devices returned in the list devices response.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param devices The new value for the devices property for this object.
+     * @param devices <p>
+     *            The devices returned in the list devices response.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -76,12 +97,16 @@ public class ListDevicesResult implements Serializable {
     }
 
     /**
-     * Sets the value of the devices property for this object.
+     * <p>
+     * The devices returned in the list devices response.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param devices The new value for the devices property for this object.
+     * @param devices <p>
+     *            The devices returned in the list devices response.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -91,34 +116,43 @@ public class ListDevicesResult implements Serializable {
     }
 
     /**
-     * Returns the value of the paginationToken property for this object.
+     * <p>
+     * The pagination token for the list device response.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @return The value of the paginationToken property for this object.
+     * @return <p>
+     *         The pagination token for the list device response.
+     *         </p>
      */
     public String getPaginationToken() {
         return paginationToken;
     }
 
     /**
-     * Sets the value of paginationToken
+     * <p>
+     * The pagination token for the list device response.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            The pagination token for the list device response.
+     *            </p>
      */
     public void setPaginationToken(String paginationToken) {
         this.paginationToken = paginationToken;
     }
 
     /**
-     * Sets the value of the paginationToken property for this object.
+     * <p>
+     * The pagination token for the list device response.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -127,8 +161,9 @@ public class ListDevicesResult implements Serializable {
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            The pagination token for the list device response.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

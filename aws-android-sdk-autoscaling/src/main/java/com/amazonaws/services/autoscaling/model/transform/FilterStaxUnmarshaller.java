@@ -51,8 +51,7 @@ class FilterStaxUnmarshaller implements Unmarshaller<Filter, StaxUnmarshallerCon
                     continue;
                 }
                 if (context.testExpression("Values/member", targetDepth)) {
-                    filter.getValues()
-                            .add(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    filter.withValues(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

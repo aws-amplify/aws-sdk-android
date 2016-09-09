@@ -17,60 +17,87 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Represents the response from the server to the request to get the header
+ * information for the .csv file for the user import job.
+ * </p>
+ */
 public class GetCSVHeaderResult implements Serializable {
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are to be imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * The new value for the cSVHeader property for this object.
+     * <p>
+     * The header information for the .csv file for the user import job.
+     * </p>
      */
     private java.util.List<String> cSVHeader;
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are to be imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The user pool ID for the user pool that the users are to be
+     *         imported into.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The user pool ID for the user pool that the users are to be imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are to be
+     *            imported into.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are to be imported
+     * into.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are to be
+     *            imported into.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -80,19 +107,27 @@ public class GetCSVHeaderResult implements Serializable {
     }
 
     /**
-     * Returns the value of the cSVHeader property for this object.
+     * <p>
+     * The header information for the .csv file for the user import job.
+     * </p>
      *
-     * @return The value of the cSVHeader property for this object.
+     * @return <p>
+     *         The header information for the .csv file for the user import job.
+     *         </p>
      */
     public java.util.List<String> getCSVHeader() {
         return cSVHeader;
     }
 
     /**
-     * Sets the value of cSVHeader
+     * <p>
+     * The header information for the .csv file for the user import job.
+     * </p>
      *
-     * @param cSVHeader The new value for the cSVHeader property for this
-     *            object.
+     * @param cSVHeader <p>
+     *            The header information for the .csv file for the user import
+     *            job.
+     *            </p>
      */
     public void setCSVHeader(java.util.Collection<String> cSVHeader) {
         if (cSVHeader == null) {
@@ -104,13 +139,17 @@ public class GetCSVHeaderResult implements Serializable {
     }
 
     /**
-     * Sets the value of the cSVHeader property for this object.
+     * <p>
+     * The header information for the .csv file for the user import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param cSVHeader The new value for the cSVHeader property for this
-     *            object.
+     * @param cSVHeader <p>
+     *            The header information for the .csv file for the user import
+     *            job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -125,13 +164,17 @@ public class GetCSVHeaderResult implements Serializable {
     }
 
     /**
-     * Sets the value of the cSVHeader property for this object.
+     * <p>
+     * The header information for the .csv file for the user import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param cSVHeader The new value for the cSVHeader property for this
-     *            object.
+     * @param cSVHeader <p>
+     *            The header information for the .csv file for the user import
+     *            job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

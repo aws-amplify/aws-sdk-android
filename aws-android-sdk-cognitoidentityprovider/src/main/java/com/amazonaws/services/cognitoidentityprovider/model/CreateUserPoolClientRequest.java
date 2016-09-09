@@ -33,7 +33,7 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
@@ -57,7 +57,9 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     private Boolean generateSecret;
 
     /**
-     * The new value for the refreshTokenValidity property for this object.
+     * <p>
+     * Refreshes the token validity.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 3650<br/>
@@ -65,17 +67,23 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     private Integer refreshTokenValidity;
 
     /**
-     * The new value for the readAttributes property for this object.
+     * <p>
+     * The read attributes.
+     * </p>
      */
     private java.util.List<String> readAttributes;
 
     /**
-     * The new value for the writeAttributes property for this object.
+     * <p>
+     * The write attributes.
+     * </p>
      */
     private java.util.List<String> writeAttributes;
 
     /**
-     * The new value for the explicitAuthFlows property for this object.
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      */
     private java.util.List<String> explicitAuthFlows;
 
@@ -87,7 +95,7 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @return <p>
      *         The user pool ID for the user pool where you want to create a
@@ -106,7 +114,7 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
      *            The user pool ID for the user pool where you want to create a
@@ -128,7 +136,7 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
      *            The user pool ID for the user pool where you want to create a
@@ -269,32 +277,41 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Returns the value of the refreshTokenValidity property for this object.
+     * <p>
+     * Refreshes the token validity.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 3650<br/>
      *
-     * @return The value of the refreshTokenValidity property for this object.
+     * @return <p>
+     *         Refreshes the token validity.
+     *         </p>
      */
     public Integer getRefreshTokenValidity() {
         return refreshTokenValidity;
     }
 
     /**
-     * Sets the value of refreshTokenValidity
+     * <p>
+     * Refreshes the token validity.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 3650<br/>
      *
-     * @param refreshTokenValidity The new value for the refreshTokenValidity
-     *            property for this object.
+     * @param refreshTokenValidity <p>
+     *            Refreshes the token validity.
+     *            </p>
      */
     public void setRefreshTokenValidity(Integer refreshTokenValidity) {
         this.refreshTokenValidity = refreshTokenValidity;
     }
 
     /**
-     * Sets the value of the refreshTokenValidity property for this object.
+     * <p>
+     * Refreshes the token validity.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -302,8 +319,9 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 3650<br/>
      *
-     * @param refreshTokenValidity The new value for the refreshTokenValidity
-     *            property for this object.
+     * @param refreshTokenValidity <p>
+     *            Refreshes the token validity.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -313,19 +331,26 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Returns the value of the readAttributes property for this object.
+     * <p>
+     * The read attributes.
+     * </p>
      *
-     * @return The value of the readAttributes property for this object.
+     * @return <p>
+     *         The read attributes.
+     *         </p>
      */
     public java.util.List<String> getReadAttributes() {
         return readAttributes;
     }
 
     /**
-     * Sets the value of readAttributes
+     * <p>
+     * The read attributes.
+     * </p>
      *
-     * @param readAttributes The new value for the readAttributes property for
-     *            this object.
+     * @param readAttributes <p>
+     *            The read attributes.
+     *            </p>
      */
     public void setReadAttributes(java.util.Collection<String> readAttributes) {
         if (readAttributes == null) {
@@ -337,13 +362,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Sets the value of the readAttributes property for this object.
+     * <p>
+     * The read attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param readAttributes The new value for the readAttributes property for
-     *            this object.
+     * @param readAttributes <p>
+     *            The read attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -358,13 +386,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Sets the value of the readAttributes property for this object.
+     * <p>
+     * The read attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param readAttributes The new value for the readAttributes property for
-     *            this object.
+     * @param readAttributes <p>
+     *            The read attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -375,19 +406,26 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Returns the value of the writeAttributes property for this object.
+     * <p>
+     * The write attributes.
+     * </p>
      *
-     * @return The value of the writeAttributes property for this object.
+     * @return <p>
+     *         The write attributes.
+     *         </p>
      */
     public java.util.List<String> getWriteAttributes() {
         return writeAttributes;
     }
 
     /**
-     * Sets the value of writeAttributes
+     * <p>
+     * The write attributes.
+     * </p>
      *
-     * @param writeAttributes The new value for the writeAttributes property for
-     *            this object.
+     * @param writeAttributes <p>
+     *            The write attributes.
+     *            </p>
      */
     public void setWriteAttributes(java.util.Collection<String> writeAttributes) {
         if (writeAttributes == null) {
@@ -399,13 +437,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Sets the value of the writeAttributes property for this object.
+     * <p>
+     * The write attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param writeAttributes The new value for the writeAttributes property for
-     *            this object.
+     * @param writeAttributes <p>
+     *            The write attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -420,13 +461,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Sets the value of the writeAttributes property for this object.
+     * <p>
+     * The write attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param writeAttributes The new value for the writeAttributes property for
-     *            this object.
+     * @param writeAttributes <p>
+     *            The write attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -437,19 +481,26 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Returns the value of the explicitAuthFlows property for this object.
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      *
-     * @return The value of the explicitAuthFlows property for this object.
+     * @return <p>
+     *         The explicit authentication flows.
+     *         </p>
      */
     public java.util.List<String> getExplicitAuthFlows() {
         return explicitAuthFlows;
     }
 
     /**
-     * Sets the value of explicitAuthFlows
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      *
-     * @param explicitAuthFlows The new value for the explicitAuthFlows property
-     *            for this object.
+     * @param explicitAuthFlows <p>
+     *            The explicit authentication flows.
+     *            </p>
      */
     public void setExplicitAuthFlows(java.util.Collection<String> explicitAuthFlows) {
         if (explicitAuthFlows == null) {
@@ -461,13 +512,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Sets the value of the explicitAuthFlows property for this object.
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param explicitAuthFlows The new value for the explicitAuthFlows property
-     *            for this object.
+     * @param explicitAuthFlows <p>
+     *            The explicit authentication flows.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -482,13 +536,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Sets the value of the explicitAuthFlows property for this object.
+     * <p>
+     * The explicit authentication flows.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param explicitAuthFlows The new value for the explicitAuthFlows property
-     *            for this object.
+     * @param explicitAuthFlows <p>
+     *            The explicit authentication flows.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

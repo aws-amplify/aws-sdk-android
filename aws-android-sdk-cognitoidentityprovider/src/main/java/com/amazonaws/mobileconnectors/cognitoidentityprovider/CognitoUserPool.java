@@ -20,13 +20,13 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.util.Log;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoSecretHash;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
@@ -92,7 +92,8 @@ public class CognitoUserPool {
     private String secretHash;
 
     /**
-     * Constructs a user-pool with a developer specified {@link ClientConfiguration}.
+     * Constructs a user-pool with a developer specified {@link ClientConfiguration} and default AWS region {@link Regions}.
+     * Region defaults to US-EAST-1.
      *
      * @param context               REQUIRED: Android application context
      * @param userPoolId            REQUIRED: User-pool-Id of the user-pool
@@ -106,11 +107,22 @@ public class CognitoUserPool {
      */
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret,
                            ClientConfiguration clientConfiguration) {
-        this.context = context;
-        this.userPoolId = userPoolId;
-        this.clientId = clientId;
-        this.clientSecret = clientSecret;
-        this.client = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfiguration);
+        this(context, userPoolId, clientId, clientSecret, clientConfiguration, Regions.US_EAST_1);
+    }
+
+    /**
+     * Constructs a user-pool with default {@link ClientConfiguration} and default AWS region {@link Regions}.
+     * Region defaults to US-EAST-1.
+     *
+     * @param context               REQUIRED: Android application context.
+     * @param userPoolId            REQUIRED: User-pool-Id of the user-pool.
+     * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
+     *                              Cognito Identity Provider developer console.
+     * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
+     *                              the Cognito Identity Provider developer console.
+     */
+    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret) {
+        this(context, userPoolId, clientId, clientSecret, new ClientConfiguration(), Regions.US_EAST_1);
     }
 
     /**
@@ -122,13 +134,33 @@ public class CognitoUserPool {
      *                              Cognito Identity Provider developer console.
      * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
      *                              the Cognito Identity Provider developer console.
+     * @param region                REQUIRED: AWS region {@link Regions}.
      */
-    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret) {
+    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, Regions region) {
+        this(context, userPoolId, clientId, clientSecret, new ClientConfiguration(), region);
+    }
+
+    /**
+     * Constructs a user-pool.
+     *
+     * @param context               REQUIRED: Android application context.
+     * @param userPoolId            REQUIRED: User-pool-Id of the user-pool.
+     * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
+     *                              Cognito Identity Provider developer console.
+     * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
+     *                              the Cognito Identity Provider developer console.
+     * @param clientConfiguration   REQUIRED: The client configuration options controlling how this
+     *                              client connects to Cognito Identity Provider Service (e.g. proxy settings,
+     *                              retry counts, etc.).
+     * @param region                REQUIRED: AWS region {@link Regions}.
+     */
+    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, ClientConfiguration clientConfiguration, Regions region) {
         this.context = context;
         this.userPoolId = userPoolId;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
-        this.client = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), new ClientConfiguration());
+        this.client = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfiguration);
+        this.client.setRegion(com.amazonaws.regions.Region.getRegion(region));
     }
 
     /**
@@ -142,8 +174,7 @@ public class CognitoUserPool {
      *                              the Cognito Identity Provider developer console.
      * @param client                REQUIRED: AWS low-level Cognito Identity Provider Client.
      */
-    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret,
-                           AmazonCognitoIdentityProvider client) {
+    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, AmazonCognitoIdentityProvider client) {
         this.context = context;
         this.userPoolId = userPoolId;
         this.clientId = clientId;

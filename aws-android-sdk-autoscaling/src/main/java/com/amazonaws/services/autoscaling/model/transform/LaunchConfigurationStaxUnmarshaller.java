@@ -68,8 +68,8 @@ class LaunchConfigurationStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("SecurityGroups/member", targetDepth)) {
-                    launchConfiguration.getSecurityGroups().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    launchConfiguration.withSecurityGroups(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("ClassicLinkVPCId", targetDepth)) {
@@ -78,8 +78,8 @@ class LaunchConfigurationStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("ClassicLinkVPCSecurityGroups/member", targetDepth)) {
-                    launchConfiguration.getClassicLinkVPCSecurityGroups().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    launchConfiguration.withClassicLinkVPCSecurityGroups(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("UserData", targetDepth)) {
@@ -103,8 +103,8 @@ class LaunchConfigurationStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("BlockDeviceMappings/member", targetDepth)) {
-                    launchConfiguration.getBlockDeviceMappings().add(
-                            BlockDeviceMappingStaxUnmarshaller.getInstance().unmarshall(context));
+                    launchConfiguration.withBlockDeviceMappings(BlockDeviceMappingStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("InstanceMonitoring", targetDepth)) {

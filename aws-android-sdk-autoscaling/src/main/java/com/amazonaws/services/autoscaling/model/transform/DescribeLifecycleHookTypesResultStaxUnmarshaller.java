@@ -49,8 +49,8 @@ public class DescribeLifecycleHookTypesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("LifecycleHookTypes/member", targetDepth)) {
-                    describeLifecycleHookTypesResult.getLifecycleHookTypes().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeLifecycleHookTypesResult.withLifecycleHookTypes(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

@@ -19,18 +19,27 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Initiates the authentication flow, as an administrator.
+ * </p>
+ */
 public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The ID of the Amazon Cognito user pool.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * The new value for the clientId property for this object.
+     * <p>
+     * The client app ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -39,63 +48,79 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     private String clientId;
 
     /**
-     * The new value for the authFlow property for this object.
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      */
     private String authFlow;
 
     /**
-     * The new value for the authParameters property for this object.
+     * <p>
+     * The authentication parameters.
+     * </p>
      */
     private java.util.Map<String, String> authParameters;
 
     /**
-     * The new value for the clientMetadata property for this object.
+     * <p>
+     * The client app metadata.
+     * </p>
      */
     private java.util.Map<String, String> clientMetadata;
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The ID of the Amazon Cognito user pool.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The ID of the Amazon Cognito user pool.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The ID of the Amazon Cognito user pool.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The ID of the Amazon Cognito user pool.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The ID of the Amazon Cognito user pool.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The ID of the Amazon Cognito user pool.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -105,33 +130,43 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Returns the value of the clientId property for this object.
+     * <p>
+     * The client app ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @return The value of the clientId property for this object.
+     * @return <p>
+     *         The client app ID.
+     *         </p>
      */
     public String getClientId() {
         return clientId;
     }
 
     /**
-     * Sets the value of clientId
+     * <p>
+     * The client app ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The new value for the clientId property for this object.
+     * @param clientId <p>
+     *            The client app ID.
+     *            </p>
      */
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
     /**
-     * Sets the value of the clientId property for this object.
+     * <p>
+     * The client app ID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -140,7 +175,9 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The new value for the clientId property for this object.
+     * @param clientId <p>
+     *            The client app ID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -150,13 +187,17 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Returns the value of the authFlow property for this object.
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @return The value of the authFlow property for this object.
+     * @return <p>
+     *         The authentication flow.
+     *         </p>
      * @see AuthFlowType
      */
     public String getAuthFlow() {
@@ -164,13 +205,17 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Sets the value of authFlow
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @param authFlow The new value for the authFlow property for this object.
+     * @param authFlow <p>
+     *            The authentication flow.
+     *            </p>
      * @see AuthFlowType
      */
     public void setAuthFlow(String authFlow) {
@@ -178,16 +223,20 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Sets the value of the authFlow property for this object.
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @param authFlow The new value for the authFlow property for this object.
+     * @param authFlow <p>
+     *            The authentication flow.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see AuthFlowType
@@ -198,13 +247,17 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Sets the value of authFlow
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @param authFlow The new value for the authFlow property for this object.
+     * @param authFlow <p>
+     *            The authentication flow.
+     *            </p>
      * @see AuthFlowType
      */
     public void setAuthFlow(AuthFlowType authFlow) {
@@ -212,16 +265,20 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Sets the value of the authFlow property for this object.
+     * <p>
+     * The authentication flow.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, CUSTOM_AUTH,
-     * ADMIN_NO_SRP_AUTH
+     * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH
      *
-     * @param authFlow The new value for the authFlow property for this object.
+     * @param authFlow <p>
+     *            The authentication flow.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see AuthFlowType
@@ -232,32 +289,42 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Returns the value of the authParameters property for this object.
+     * <p>
+     * The authentication parameters.
+     * </p>
      *
-     * @return The value of the authParameters property for this object.
+     * @return <p>
+     *         The authentication parameters.
+     *         </p>
      */
     public java.util.Map<String, String> getAuthParameters() {
         return authParameters;
     }
 
     /**
-     * Sets the value of authParameters
+     * <p>
+     * The authentication parameters.
+     * </p>
      *
-     * @param authParameters The new value for the authParameters property for
-     *            this object.
+     * @param authParameters <p>
+     *            The authentication parameters.
+     *            </p>
      */
     public void setAuthParameters(java.util.Map<String, String> authParameters) {
         this.authParameters = authParameters;
     }
 
     /**
-     * Sets the value of the authParameters property for this object.
+     * <p>
+     * The authentication parameters.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param authParameters The new value for the authParameters property for
-     *            this object.
+     * @param authParameters <p>
+     *            The authentication parameters.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -267,7 +334,9 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Sets the value of the authParameters property for this object.
+     * <p>
+     * The authentication parameters.
+     * </p>
      * <p>
      * The method adds a new key-value pair into AuthParameters parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -302,32 +371,42 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Returns the value of the clientMetadata property for this object.
+     * <p>
+     * The client app metadata.
+     * </p>
      *
-     * @return The value of the clientMetadata property for this object.
+     * @return <p>
+     *         The client app metadata.
+     *         </p>
      */
     public java.util.Map<String, String> getClientMetadata() {
         return clientMetadata;
     }
 
     /**
-     * Sets the value of clientMetadata
+     * <p>
+     * The client app metadata.
+     * </p>
      *
-     * @param clientMetadata The new value for the clientMetadata property for
-     *            this object.
+     * @param clientMetadata <p>
+     *            The client app metadata.
+     *            </p>
      */
     public void setClientMetadata(java.util.Map<String, String> clientMetadata) {
         this.clientMetadata = clientMetadata;
     }
 
     /**
-     * Sets the value of the clientMetadata property for this object.
+     * <p>
+     * The client app metadata.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param clientMetadata The new value for the clientMetadata property for
-     *            this object.
+     * @param clientMetadata <p>
+     *            The client app metadata.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -337,7 +416,9 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Sets the value of the clientMetadata property for this object.
+     * <p>
+     * The client app metadata.
+     * </p>
      * <p>
      * The method adds a new key-value pair into ClientMetadata parameter, and
      * returns a reference to this object so that method calls can be chained

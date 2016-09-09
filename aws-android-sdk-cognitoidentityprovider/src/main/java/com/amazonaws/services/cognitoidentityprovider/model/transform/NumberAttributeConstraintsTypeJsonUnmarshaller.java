@@ -28,8 +28,12 @@ class NumberAttributeConstraintsTypeJsonUnmarshaller implements
 
     public NumberAttributeConstraintsType unmarshall(JsonUnmarshallerContext context)
             throws Exception {
-        NumberAttributeConstraintsType numberAttributeConstraintsType = new NumberAttributeConstraintsType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        NumberAttributeConstraintsType numberAttributeConstraintsType = new NumberAttributeConstraintsType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

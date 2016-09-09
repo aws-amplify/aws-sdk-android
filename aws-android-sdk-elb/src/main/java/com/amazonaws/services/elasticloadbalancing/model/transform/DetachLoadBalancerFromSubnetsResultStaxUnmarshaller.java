@@ -49,8 +49,8 @@ public class DetachLoadBalancerFromSubnetsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Subnets/member", targetDepth)) {
-                    detachLoadBalancerFromSubnetsResult.getSubnets().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    detachLoadBalancerFromSubnetsResult.withSubnets(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

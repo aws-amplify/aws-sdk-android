@@ -68,8 +68,9 @@ class LoadBalancerDescriptionStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("ListenerDescriptions/member", targetDepth)) {
-                    loadBalancerDescription.getListenerDescriptions().add(
-                            ListenerDescriptionStaxUnmarshaller.getInstance().unmarshall(context));
+                    loadBalancerDescription
+                            .withListenerDescriptions(ListenerDescriptionStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("Policies", targetDepth)) {
@@ -78,19 +79,19 @@ class LoadBalancerDescriptionStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("BackendServerDescriptions/member", targetDepth)) {
-                    loadBalancerDescription.getBackendServerDescriptions().add(
-                            BackendServerDescriptionStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    loadBalancerDescription
+                            .withBackendServerDescriptions(BackendServerDescriptionStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("AvailabilityZones/member", targetDepth)) {
-                    loadBalancerDescription.getAvailabilityZones().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    loadBalancerDescription.withAvailabilityZones(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("Subnets/member", targetDepth)) {
-                    loadBalancerDescription.getSubnets().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    loadBalancerDescription.withSubnets(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("VPCId", targetDepth)) {
@@ -99,8 +100,8 @@ class LoadBalancerDescriptionStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("Instances/member", targetDepth)) {
-                    loadBalancerDescription.getInstances().add(
-                            InstanceStaxUnmarshaller.getInstance().unmarshall(context));
+                    loadBalancerDescription.withInstances(InstanceStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("HealthCheck", targetDepth)) {
@@ -115,8 +116,8 @@ class LoadBalancerDescriptionStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("SecurityGroups/member", targetDepth)) {
-                    loadBalancerDescription.getSecurityGroups().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    loadBalancerDescription.withSecurityGroups(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("CreatedTime", targetDepth)) {

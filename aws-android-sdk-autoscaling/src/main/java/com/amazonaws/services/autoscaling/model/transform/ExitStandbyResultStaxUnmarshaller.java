@@ -48,8 +48,8 @@ public class ExitStandbyResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Activities/member", targetDepth)) {
-                    exitStandbyResult.getActivities().add(
-                            ActivityStaxUnmarshaller.getInstance().unmarshall(context));
+                    exitStandbyResult.withActivities(ActivityStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

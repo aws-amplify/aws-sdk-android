@@ -27,8 +27,12 @@ class TableDescriptionJsonUnmarshaller implements
         Unmarshaller<TableDescription, JsonUnmarshallerContext> {
 
     public TableDescription unmarshall(JsonUnmarshallerContext context) throws Exception {
-        TableDescription tableDescription = new TableDescription();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        TableDescription tableDescription = new TableDescription();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

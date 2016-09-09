@@ -19,9 +19,16 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Creates the user import job.
+ * </p>
+ */
 public class CreateUserImportJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the jobName property for this object.
+     * <p>
+     * The job name for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -30,16 +37,22 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
     private String jobName;
 
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * The new value for the cloudWatchLogsRoleArn property for this object.
+     * <p>
+     * The role ARN for the Amazon CloudWatch Logging role for the user import
+     * job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -50,33 +63,43 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
     private String cloudWatchLogsRoleArn;
 
     /**
-     * Returns the value of the jobName property for this object.
+     * <p>
+     * The job name for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
-     * @return The value of the jobName property for this object.
+     * @return <p>
+     *         The job name for the user import job.
+     *         </p>
      */
     public String getJobName() {
         return jobName;
     }
 
     /**
-     * Sets the value of jobName
+     * <p>
+     * The job name for the user import job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
-     * @param jobName The new value for the jobName property for this object.
+     * @param jobName <p>
+     *            The job name for the user import job.
+     *            </p>
      */
     public void setJobName(String jobName) {
         this.jobName = jobName;
     }
 
     /**
-     * Sets the value of the jobName property for this object.
+     * <p>
+     * The job name for the user import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -85,7 +108,9 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
-     * @param jobName The new value for the jobName property for this object.
+     * @param jobName <p>
+     *            The job name for the user import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -95,44 +120,60 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The user pool ID for the user pool that the users are being
+     *         imported into.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are being
+     *            imported into.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are being
+     *            imported into.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -142,7 +183,10 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the cloudWatchLogsRoleArn property for this object.
+     * <p>
+     * The role ARN for the Amazon CloudWatch Logging role for the user import
+     * job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -150,14 +194,20 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
      * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
-     * @return The value of the cloudWatchLogsRoleArn property for this object.
+     * @return <p>
+     *         The role ARN for the Amazon CloudWatch Logging role for the user
+     *         import job.
+     *         </p>
      */
     public String getCloudWatchLogsRoleArn() {
         return cloudWatchLogsRoleArn;
     }
 
     /**
-     * Sets the value of cloudWatchLogsRoleArn
+     * <p>
+     * The role ARN for the Amazon CloudWatch Logging role for the user import
+     * job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -165,15 +215,20 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
      * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
-     * @param cloudWatchLogsRoleArn The new value for the cloudWatchLogsRoleArn
-     *            property for this object.
+     * @param cloudWatchLogsRoleArn <p>
+     *            The role ARN for the Amazon CloudWatch Logging role for the
+     *            user import job.
+     *            </p>
      */
     public void setCloudWatchLogsRoleArn(String cloudWatchLogsRoleArn) {
         this.cloudWatchLogsRoleArn = cloudWatchLogsRoleArn;
     }
 
     /**
-     * Sets the value of the cloudWatchLogsRoleArn property for this object.
+     * <p>
+     * The role ARN for the Amazon CloudWatch Logging role for the user import
+     * job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -184,8 +239,10 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
      * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
-     * @param cloudWatchLogsRoleArn The new value for the cloudWatchLogsRoleArn
-     *            property for this object.
+     * @param cloudWatchLogsRoleArn <p>
+     *            The role ARN for the Amazon CloudWatch Logging role for the
+     *            user import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

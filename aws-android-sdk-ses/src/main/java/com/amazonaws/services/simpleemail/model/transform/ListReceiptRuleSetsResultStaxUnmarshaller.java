@@ -48,9 +48,8 @@ public class ListReceiptRuleSetsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("RuleSets/member", targetDepth)) {
-                    listReceiptRuleSetsResult.getRuleSets().add(
-                            ReceiptRuleSetMetadataStaxUnmarshaller.getInstance()
-                                    .unmarshall(context));
+                    listReceiptRuleSetsResult.withRuleSets(ReceiptRuleSetMetadataStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

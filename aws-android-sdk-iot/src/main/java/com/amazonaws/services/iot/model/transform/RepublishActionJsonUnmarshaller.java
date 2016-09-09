@@ -27,8 +27,12 @@ class RepublishActionJsonUnmarshaller implements
         Unmarshaller<RepublishAction, JsonUnmarshallerContext> {
 
     public RepublishAction unmarshall(JsonUnmarshallerContext context) throws Exception {
-        RepublishAction republishAction = new RepublishAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        RepublishAction republishAction = new RepublishAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

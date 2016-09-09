@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class CertificateJsonUnmarshaller implements Unmarshaller<Certificate, JsonUnmarshallerContext> {
 
     public Certificate unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Certificate certificate = new Certificate();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Certificate certificate = new Certificate();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

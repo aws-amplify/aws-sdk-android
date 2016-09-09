@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class CapacityJsonUnmarshaller implements Unmarshaller<Capacity, JsonUnmarshallerContext> {
 
     public Capacity unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Capacity capacity = new Capacity();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Capacity capacity = new Capacity();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

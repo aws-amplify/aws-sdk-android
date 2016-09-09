@@ -19,18 +19,28 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Lists the user import jobs.
+ * </p>
+ */
 public class ListUserImportJobsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      */
     private String userPoolId;
 
     /**
-     * The new value for the maxResults property for this object.
+     * <p>
+     * The maximum number of import jobs you want the request to return.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 60<br/>
@@ -38,7 +48,10 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
     private Integer maxResults;
 
     /**
-     * The new value for the paginationToken property for this object.
+     * <p>
+     * An identifier that was returned from the previous call to this operation,
+     * which can be used to return the next set of import jobs in the list.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -47,44 +60,60 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
     private String paginationToken;
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The user pool ID for the user pool that the users are being
+     *         imported into.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are being
+     *            imported into.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool that the users are being imported
+     * into.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+.[0-9a-zA-Z-]+<br/>
+     * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool that the users are being
+     *            imported into.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -94,32 +123,42 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
     }
 
     /**
-     * Returns the value of the maxResults property for this object.
+     * <p>
+     * The maximum number of import jobs you want the request to return.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 60<br/>
      *
-     * @return The value of the maxResults property for this object.
+     * @return <p>
+     *         The maximum number of import jobs you want the request to return.
+     *         </p>
      */
     public Integer getMaxResults() {
         return maxResults;
     }
 
     /**
-     * Sets the value of maxResults
+     * <p>
+     * The maximum number of import jobs you want the request to return.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 60<br/>
      *
-     * @param maxResults The new value for the maxResults property for this
-     *            object.
+     * @param maxResults <p>
+     *            The maximum number of import jobs you want the request to
+     *            return.
+     *            </p>
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
 
     /**
-     * Sets the value of the maxResults property for this object.
+     * <p>
+     * The maximum number of import jobs you want the request to return.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -127,8 +166,10 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 60<br/>
      *
-     * @param maxResults The new value for the maxResults property for this
-     *            object.
+     * @param maxResults <p>
+     *            The maximum number of import jobs you want the request to
+     *            return.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -138,34 +179,50 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
     }
 
     /**
-     * Returns the value of the paginationToken property for this object.
+     * <p>
+     * An identifier that was returned from the previous call to this operation,
+     * which can be used to return the next set of import jobs in the list.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @return The value of the paginationToken property for this object.
+     * @return <p>
+     *         An identifier that was returned from the previous call to this
+     *         operation, which can be used to return the next set of import
+     *         jobs in the list.
+     *         </p>
      */
     public String getPaginationToken() {
         return paginationToken;
     }
 
     /**
-     * Sets the value of paginationToken
+     * <p>
+     * An identifier that was returned from the previous call to this operation,
+     * which can be used to return the next set of import jobs in the list.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            An identifier that was returned from the previous call to this
+     *            operation, which can be used to return the next set of import
+     *            jobs in the list.
+     *            </p>
      */
     public void setPaginationToken(String paginationToken) {
         this.paginationToken = paginationToken;
     }
 
     /**
-     * Sets the value of the paginationToken property for this object.
+     * <p>
+     * An identifier that was returned from the previous call to this operation,
+     * which can be used to return the next set of import jobs in the list.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -174,8 +231,11 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
      * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param paginationToken The new value for the paginationToken property for
-     *            this object.
+     * @param paginationToken <p>
+     *            An identifier that was returned from the previous call to this
+     *            operation, which can be used to return the next set of import
+     *            jobs in the list.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

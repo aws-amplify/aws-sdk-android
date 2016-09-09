@@ -84,11 +84,6 @@ public class ListUsersRequestMarshaller implements
                 jsonWriter.name("PaginationToken");
                 jsonWriter.value(paginationToken);
             }
-            if (listUsersRequest.getUserStatus() != null) {
-                String userStatus = listUsersRequest.getUserStatus();
-                jsonWriter.name("UserStatus");
-                jsonWriter.value(userStatus);
-            }
             if (listUsersRequest.getFilter() != null) {
                 String filter = listUsersRequest.getFilter();
                 jsonWriter.name("Filter");

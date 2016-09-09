@@ -49,9 +49,9 @@ public class DescribeNotificationConfigurationsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("NotificationConfigurations/member", targetDepth)) {
-                    describeNotificationConfigurationsResult.getNotificationConfigurations().add(
-                            NotificationConfigurationStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    describeNotificationConfigurationsResult
+                            .withNotificationConfigurations(NotificationConfigurationStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

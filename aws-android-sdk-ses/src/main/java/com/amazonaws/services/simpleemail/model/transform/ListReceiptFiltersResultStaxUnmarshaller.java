@@ -48,8 +48,8 @@ public class ListReceiptFiltersResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Filters/member", targetDepth)) {
-                    listReceiptFiltersResult.getFilters().add(
-                            ReceiptFilterStaxUnmarshaller.getInstance().unmarshall(context));
+                    listReceiptFiltersResult.withFilters(ReceiptFilterStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

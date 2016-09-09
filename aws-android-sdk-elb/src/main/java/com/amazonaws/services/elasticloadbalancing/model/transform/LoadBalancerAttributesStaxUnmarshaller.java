@@ -69,8 +69,9 @@ class LoadBalancerAttributesStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("AdditionalAttributes/member", targetDepth)) {
-                    loadBalancerAttributes.getAdditionalAttributes().add(
-                            AdditionalAttributeStaxUnmarshaller.getInstance().unmarshall(context));
+                    loadBalancerAttributes
+                            .withAdditionalAttributes(AdditionalAttributeStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

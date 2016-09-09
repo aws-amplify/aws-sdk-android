@@ -27,8 +27,12 @@ class DynamoDBActionJsonUnmarshaller implements
         Unmarshaller<DynamoDBAction, JsonUnmarshallerContext> {
 
     public DynamoDBAction unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DynamoDBAction dynamoDBAction = new DynamoDBAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        DynamoDBAction dynamoDBAction = new DynamoDBAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

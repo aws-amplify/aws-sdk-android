@@ -27,8 +27,12 @@ class EnhancedMetricsJsonUnmarshaller implements
         Unmarshaller<EnhancedMetrics, JsonUnmarshallerContext> {
 
     public EnhancedMetrics unmarshall(JsonUnmarshallerContext context) throws Exception {
-        EnhancedMetrics enhancedMetrics = new EnhancedMetrics();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        EnhancedMetrics enhancedMetrics = new EnhancedMetrics();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

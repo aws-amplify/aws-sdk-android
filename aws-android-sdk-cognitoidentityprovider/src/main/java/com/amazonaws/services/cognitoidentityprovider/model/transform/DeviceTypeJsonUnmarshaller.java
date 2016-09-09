@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class DeviceTypeJsonUnmarshaller implements Unmarshaller<DeviceType, JsonUnmarshallerContext> {
 
     public DeviceType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DeviceType deviceType = new DeviceType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        DeviceType deviceType = new DeviceType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
@@ -45,8 +49,8 @@ class DeviceTypeJsonUnmarshaller implements Unmarshaller<DeviceType, JsonUnmarsh
             } else if (name.equals("DeviceLastModifiedDate")) {
                 deviceType.setDeviceLastModifiedDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("DeviceLastAccessedDate")) {
-                deviceType.setDeviceLastAccessedDate(DateJsonUnmarshaller.getInstance()
+            } else if (name.equals("DeviceLastAuthenticatedDate")) {
+                deviceType.setDeviceLastAuthenticatedDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

@@ -49,9 +49,9 @@ public class DescribeAutoScalingInstancesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("AutoScalingInstances/member", targetDepth)) {
-                    describeAutoScalingInstancesResult.getAutoScalingInstances().add(
-                            AutoScalingInstanceDetailsStaxUnmarshaller.getInstance().unmarshall(
-                                    context));
+                    describeAutoScalingInstancesResult
+                            .withAutoScalingInstances(AutoScalingInstanceDetailsStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

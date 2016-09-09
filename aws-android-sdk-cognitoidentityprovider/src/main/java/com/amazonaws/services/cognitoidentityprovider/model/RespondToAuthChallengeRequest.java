@@ -19,9 +19,16 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Responds to the authentication challenge.
+ * </p>
+ */
 public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the clientId property for this object.
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -30,7 +37,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     private String clientId;
 
     /**
-     * The new value for the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
@@ -39,7 +48,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     private String challengeName;
 
     /**
-     * The new value for the session property for this object.
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -47,38 +58,50 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     private String session;
 
     /**
-     * The new value for the challengeResponses property for this object.
+     * <p>
+     * The responses to the authentication challenge.
+     * </p>
      */
     private java.util.Map<String, String> challengeResponses;
 
     /**
-     * Returns the value of the clientId property for this object.
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @return The value of the clientId property for this object.
+     * @return <p>
+     *         The client ID.
+     *         </p>
      */
     public String getClientId() {
         return clientId;
     }
 
     /**
-     * Sets the value of clientId
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The new value for the clientId property for this object.
+     * @param clientId <p>
+     *            The client ID.
+     *            </p>
      */
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
     /**
-     * Sets the value of the clientId property for this object.
+     * <p>
+     * The client ID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -87,7 +110,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w+]+<br/>
      *
-     * @param clientId The new value for the clientId property for this object.
+     * @param clientId <p>
+     *            The client ID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -97,13 +122,17 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Returns the value of the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @return The value of the challengeName property for this object.
+     * @return <p>
+     *         The name of the challenge.
+     *         </p>
      * @see ChallengeNameType
      */
     public String getChallengeName() {
@@ -111,14 +140,17 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Sets the value of challengeName
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @see ChallengeNameType
      */
     public void setChallengeName(String challengeName) {
@@ -126,7 +158,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Sets the value of the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -135,8 +169,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChallengeNameType
@@ -147,14 +182,17 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Sets the value of challengeName
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @see ChallengeNameType
      */
     public void setChallengeName(ChallengeNameType challengeName) {
@@ -162,7 +200,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Sets the value of the challengeName property for this object.
+     * <p>
+     * The name of the challenge.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -171,8 +211,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
      * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
      *
-     * @param challengeName The new value for the challengeName property for
-     *            this object.
+     * @param challengeName <p>
+     *            The name of the challenge.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChallengeNameType
@@ -183,31 +224,41 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Returns the value of the session property for this object.
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @return The value of the session property for this object.
+     * @return <p>
+     *         The session.
+     *         </p>
      */
     public String getSession() {
         return session;
     }
 
     /**
-     * Sets the value of session
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session.
+     *            </p>
      */
     public void setSession(String session) {
         this.session = session;
     }
 
     /**
-     * Sets the value of the session property for this object.
+     * <p>
+     * The session.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -215,7 +266,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -225,32 +278,42 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Returns the value of the challengeResponses property for this object.
+     * <p>
+     * The responses to the authentication challenge.
+     * </p>
      *
-     * @return The value of the challengeResponses property for this object.
+     * @return <p>
+     *         The responses to the authentication challenge.
+     *         </p>
      */
     public java.util.Map<String, String> getChallengeResponses() {
         return challengeResponses;
     }
 
     /**
-     * Sets the value of challengeResponses
+     * <p>
+     * The responses to the authentication challenge.
+     * </p>
      *
-     * @param challengeResponses The new value for the challengeResponses
-     *            property for this object.
+     * @param challengeResponses <p>
+     *            The responses to the authentication challenge.
+     *            </p>
      */
     public void setChallengeResponses(java.util.Map<String, String> challengeResponses) {
         this.challengeResponses = challengeResponses;
     }
 
     /**
-     * Sets the value of the challengeResponses property for this object.
+     * <p>
+     * The responses to the authentication challenge.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param challengeResponses The new value for the challengeResponses
-     *            property for this object.
+     * @param challengeResponses <p>
+     *            The responses to the authentication challenge.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -261,7 +324,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Sets the value of the challengeResponses property for this object.
+     * <p>
+     * The responses to the authentication challenge.
+     * </p>
      * <p>
      * The method adds a new key-value pair into ChallengeResponses parameter,
      * and returns a reference to this object so that method calls can be

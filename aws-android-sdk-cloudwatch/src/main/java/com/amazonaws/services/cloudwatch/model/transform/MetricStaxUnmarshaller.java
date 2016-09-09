@@ -55,8 +55,8 @@ class MetricStaxUnmarshaller implements Unmarshaller<Metric, StaxUnmarshallerCon
                     continue;
                 }
                 if (context.testExpression("Dimensions/member", targetDepth)) {
-                    metric.getDimensions().add(
-                            DimensionStaxUnmarshaller.getInstance().unmarshall(context));
+                    metric.withDimensions(DimensionStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

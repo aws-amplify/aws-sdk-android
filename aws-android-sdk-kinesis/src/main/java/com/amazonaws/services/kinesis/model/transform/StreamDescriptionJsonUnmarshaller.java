@@ -27,8 +27,12 @@ class StreamDescriptionJsonUnmarshaller implements
         Unmarshaller<StreamDescription, JsonUnmarshallerContext> {
 
     public StreamDescription unmarshall(JsonUnmarshallerContext context) throws Exception {
-        StreamDescription streamDescription = new StreamDescription();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        StreamDescription streamDescription = new StreamDescription();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

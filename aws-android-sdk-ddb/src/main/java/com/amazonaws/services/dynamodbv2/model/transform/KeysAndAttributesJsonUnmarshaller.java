@@ -27,8 +27,12 @@ class KeysAndAttributesJsonUnmarshaller implements
         Unmarshaller<KeysAndAttributes, JsonUnmarshallerContext> {
 
     public KeysAndAttributes unmarshall(JsonUnmarshallerContext context) throws Exception {
-        KeysAndAttributes keysAndAttributes = new KeysAndAttributes();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        KeysAndAttributes keysAndAttributes = new KeysAndAttributes();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

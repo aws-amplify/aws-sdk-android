@@ -48,8 +48,8 @@ public class ReceiveMessageResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Message", targetDepth)) {
-                    receiveMessageResult.getMessages().add(
-                            MessageStaxUnmarshaller.getInstance().unmarshall(context));
+                    receiveMessageResult.withMessages(MessageStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

@@ -27,7 +27,6 @@ public enum UserStatusType {
     CONFIRMED("CONFIRMED"),
     ARCHIVED("ARCHIVED"),
     COMPROMISED("COMPROMISED"),
-    UNKNOWN("UNKNOWN"),
     RESET_REQUIRED("RESET_REQUIRED");
 
     private String value;
@@ -48,7 +47,6 @@ public enum UserStatusType {
         enumMap.put("CONFIRMED", CONFIRMED);
         enumMap.put("ARCHIVED", ARCHIVED);
         enumMap.put("COMPROMISED", COMPROMISED);
-        enumMap.put("UNKNOWN", UNKNOWN);
         enumMap.put("RESET_REQUIRED", RESET_REQUIRED);
     }
 

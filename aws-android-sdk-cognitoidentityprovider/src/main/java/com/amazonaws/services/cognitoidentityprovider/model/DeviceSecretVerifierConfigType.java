@@ -17,44 +17,63 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * The device verifier against which it will be authenticated.
+ * </p>
+ */
 public class DeviceSecretVerifierConfigType implements Serializable {
     /**
-     * The new value for the passwordVerifier property for this object.
+     * <p>
+     * The password verifier.
+     * </p>
      */
     private String passwordVerifier;
 
     /**
-     * The new value for the salt property for this object.
+     * <p>
+     * The salt.
+     * </p>
      */
     private String salt;
 
     /**
-     * Returns the value of the passwordVerifier property for this object.
+     * <p>
+     * The password verifier.
+     * </p>
      *
-     * @return The value of the passwordVerifier property for this object.
+     * @return <p>
+     *         The password verifier.
+     *         </p>
      */
     public String getPasswordVerifier() {
         return passwordVerifier;
     }
 
     /**
-     * Sets the value of passwordVerifier
+     * <p>
+     * The password verifier.
+     * </p>
      *
-     * @param passwordVerifier The new value for the passwordVerifier property
-     *            for this object.
+     * @param passwordVerifier <p>
+     *            The password verifier.
+     *            </p>
      */
     public void setPasswordVerifier(String passwordVerifier) {
         this.passwordVerifier = passwordVerifier;
     }
 
     /**
-     * Sets the value of the passwordVerifier property for this object.
+     * <p>
+     * The password verifier.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param passwordVerifier The new value for the passwordVerifier property
-     *            for this object.
+     * @param passwordVerifier <p>
+     *            The password verifier.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -64,30 +83,42 @@ public class DeviceSecretVerifierConfigType implements Serializable {
     }
 
     /**
-     * Returns the value of the salt property for this object.
+     * <p>
+     * The salt.
+     * </p>
      *
-     * @return The value of the salt property for this object.
+     * @return <p>
+     *         The salt.
+     *         </p>
      */
     public String getSalt() {
         return salt;
     }
 
     /**
-     * Sets the value of salt
+     * <p>
+     * The salt.
+     * </p>
      *
-     * @param salt The new value for the salt property for this object.
+     * @param salt <p>
+     *            The salt.
+     *            </p>
      */
     public void setSalt(String salt) {
         this.salt = salt;
     }
 
     /**
-     * Sets the value of the salt property for this object.
+     * <p>
+     * The salt.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param salt The new value for the salt property for this object.
+     * @param salt <p>
+     *            The salt.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

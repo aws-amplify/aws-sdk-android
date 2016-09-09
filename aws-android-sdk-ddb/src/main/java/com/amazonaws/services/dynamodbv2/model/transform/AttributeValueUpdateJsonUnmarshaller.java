@@ -27,8 +27,12 @@ class AttributeValueUpdateJsonUnmarshaller implements
         Unmarshaller<AttributeValueUpdate, JsonUnmarshallerContext> {
 
     public AttributeValueUpdate unmarshall(JsonUnmarshallerContext context) throws Exception {
-        AttributeValueUpdate attributeValueUpdate = new AttributeValueUpdate();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        AttributeValueUpdate attributeValueUpdate = new AttributeValueUpdate();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

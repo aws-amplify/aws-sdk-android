@@ -49,8 +49,9 @@ public class ListPlatformApplicationsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("PlatformApplications/member", targetDepth)) {
-                    listPlatformApplicationsResult.getPlatformApplications().add(
-                            PlatformApplicationStaxUnmarshaller.getInstance().unmarshall(context));
+                    listPlatformApplicationsResult
+                            .withPlatformApplications(PlatformApplicationStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

@@ -48,8 +48,9 @@ public class DescribeAlarmHistoryResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("AlarmHistoryItems/member", targetDepth)) {
-                    describeAlarmHistoryResult.getAlarmHistoryItems().add(
-                            AlarmHistoryItemStaxUnmarshaller.getInstance().unmarshall(context));
+                    describeAlarmHistoryResult
+                            .withAlarmHistoryItems(AlarmHistoryItemStaxUnmarshaller.getInstance()
+                                    .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

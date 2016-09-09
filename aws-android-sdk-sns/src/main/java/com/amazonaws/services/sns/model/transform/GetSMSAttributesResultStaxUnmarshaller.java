@@ -90,7 +90,7 @@ public class GetSMSAttributesResultStaxUnmarshaller implements
                 if (context.testExpression("attributes/entry", targetDepth)) {
                     Entry<String, String> entry = attributesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    getSMSAttributesResult.getAttributes().put(entry.getKey(), entry.getValue());
+                    getSMSAttributesResult.addattributesEntry(entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

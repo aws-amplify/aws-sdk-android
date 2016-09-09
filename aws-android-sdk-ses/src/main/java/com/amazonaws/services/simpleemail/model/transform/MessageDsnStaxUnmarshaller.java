@@ -57,8 +57,8 @@ class MessageDsnStaxUnmarshaller implements Unmarshaller<MessageDsn, StaxUnmarsh
                     continue;
                 }
                 if (context.testExpression("ExtensionFields/member", targetDepth)) {
-                    messageDsn.getExtensionFields().add(
-                            ExtensionFieldStaxUnmarshaller.getInstance().unmarshall(context));
+                    messageDsn.withExtensionFields(ExtensionFieldStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

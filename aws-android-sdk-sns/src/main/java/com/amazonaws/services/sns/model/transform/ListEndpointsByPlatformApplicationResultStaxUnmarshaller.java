@@ -49,8 +49,8 @@ public class ListEndpointsByPlatformApplicationResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Endpoints/member", targetDepth)) {
-                    listEndpointsByPlatformApplicationResult.getEndpoints().add(
-                            EndpointStaxUnmarshaller.getInstance().unmarshall(context));
+                    listEndpointsByPlatformApplicationResult.withEndpoints(EndpointStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

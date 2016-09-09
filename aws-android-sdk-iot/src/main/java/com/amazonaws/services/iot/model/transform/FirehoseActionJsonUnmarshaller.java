@@ -27,8 +27,12 @@ class FirehoseActionJsonUnmarshaller implements
         Unmarshaller<FirehoseAction, JsonUnmarshallerContext> {
 
     public FirehoseAction unmarshall(JsonUnmarshallerContext context) throws Exception {
-        FirehoseAction firehoseAction = new FirehoseAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        FirehoseAction firehoseAction = new FirehoseAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

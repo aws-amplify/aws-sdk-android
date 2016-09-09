@@ -94,7 +94,7 @@ public class GetIdentityMailFromDomainAttributesResultStaxUnmarshaller implement
                 if (context.testExpression("MailFromDomainAttributes/entry", targetDepth)) {
                     Entry<String, IdentityMailFromDomainAttributes> entry = MailFromDomainAttributesMapEntryUnmarshaller
                             .getInstance().unmarshall(context);
-                    getIdentityMailFromDomainAttributesResult.getMailFromDomainAttributes().put(
+                    getIdentityMailFromDomainAttributesResult.addMailFromDomainAttributesEntry(
                             entry.getKey(), entry.getValue());
                     continue;
                 }

@@ -92,8 +92,8 @@ class ScalingPolicyStaxUnmarshaller implements Unmarshaller<ScalingPolicy, StaxU
                     continue;
                 }
                 if (context.testExpression("StepAdjustments/member", targetDepth)) {
-                    scalingPolicy.getStepAdjustments().add(
-                            StepAdjustmentStaxUnmarshaller.getInstance().unmarshall(context));
+                    scalingPolicy.withStepAdjustments(StepAdjustmentStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("MetricAggregationType", targetDepth)) {
@@ -107,8 +107,8 @@ class ScalingPolicyStaxUnmarshaller implements Unmarshaller<ScalingPolicy, StaxU
                     continue;
                 }
                 if (context.testExpression("Alarms/member", targetDepth)) {
-                    scalingPolicy.getAlarms().add(
-                            AlarmStaxUnmarshaller.getInstance().unmarshall(context));
+                    scalingPolicy.withAlarms(AlarmStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

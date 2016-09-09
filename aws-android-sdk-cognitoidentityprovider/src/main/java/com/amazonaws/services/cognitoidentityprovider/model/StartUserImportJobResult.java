@@ -17,39 +17,57 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Represents the response from the server to the request to start the user
+ * import job.
+ * </p>
+ */
 public class StartUserImportJobResult implements Serializable {
     /**
-     * The new value for the userImportJob property for this object.
+     * <p>
+     * The job object that represents the user import job.
+     * </p>
      */
     private UserImportJobType userImportJob;
 
     /**
-     * Returns the value of the userImportJob property for this object.
+     * <p>
+     * The job object that represents the user import job.
+     * </p>
      *
-     * @return The value of the userImportJob property for this object.
+     * @return <p>
+     *         The job object that represents the user import job.
+     *         </p>
      */
     public UserImportJobType getUserImportJob() {
         return userImportJob;
     }
 
     /**
-     * Sets the value of userImportJob
+     * <p>
+     * The job object that represents the user import job.
+     * </p>
      *
-     * @param userImportJob The new value for the userImportJob property for
-     *            this object.
+     * @param userImportJob <p>
+     *            The job object that represents the user import job.
+     *            </p>
      */
     public void setUserImportJob(UserImportJobType userImportJob) {
         this.userImportJob = userImportJob;
     }
 
     /**
-     * Sets the value of the userImportJob property for this object.
+     * <p>
+     * The job object that represents the user import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param userImportJob The new value for the userImportJob property for
-     *            this object.
+     * @param userImportJob <p>
+     *            The job object that represents the user import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

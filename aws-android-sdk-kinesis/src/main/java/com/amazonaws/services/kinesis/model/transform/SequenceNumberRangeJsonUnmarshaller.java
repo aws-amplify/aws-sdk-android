@@ -27,8 +27,12 @@ class SequenceNumberRangeJsonUnmarshaller implements
         Unmarshaller<SequenceNumberRange, JsonUnmarshallerContext> {
 
     public SequenceNumberRange unmarshall(JsonUnmarshallerContext context) throws Exception {
-        SequenceNumberRange sequenceNumberRange = new SequenceNumberRange();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        SequenceNumberRange sequenceNumberRange = new SequenceNumberRange();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

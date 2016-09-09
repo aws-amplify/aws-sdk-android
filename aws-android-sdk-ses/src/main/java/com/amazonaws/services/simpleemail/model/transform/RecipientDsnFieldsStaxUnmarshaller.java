@@ -78,8 +78,8 @@ class RecipientDsnFieldsStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("ExtensionFields/member", targetDepth)) {
-                    recipientDsnFields.getExtensionFields().add(
-                            ExtensionFieldStaxUnmarshaller.getInstance().unmarshall(context));
+                    recipientDsnFields.withExtensionFields(ExtensionFieldStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

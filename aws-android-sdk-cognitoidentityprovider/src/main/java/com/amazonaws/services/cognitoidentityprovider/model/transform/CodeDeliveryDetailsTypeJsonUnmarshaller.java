@@ -27,8 +27,12 @@ class CodeDeliveryDetailsTypeJsonUnmarshaller implements
         Unmarshaller<CodeDeliveryDetailsType, JsonUnmarshallerContext> {
 
     public CodeDeliveryDetailsType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        CodeDeliveryDetailsType codeDeliveryDetailsType = new CodeDeliveryDetailsType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        CodeDeliveryDetailsType codeDeliveryDetailsType = new CodeDeliveryDetailsType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

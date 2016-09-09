@@ -27,8 +27,12 @@ class GrantListEntryJsonUnmarshaller implements
         Unmarshaller<GrantListEntry, JsonUnmarshallerContext> {
 
     public GrantListEntry unmarshall(JsonUnmarshallerContext context) throws Exception {
-        GrantListEntry grantListEntry = new GrantListEntry();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        GrantListEntry grantListEntry = new GrantListEntry();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

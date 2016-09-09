@@ -48,8 +48,8 @@ public class DescribePoliciesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("ScalingPolicies/member", targetDepth)) {
-                    describePoliciesResult.getScalingPolicies().add(
-                            ScalingPolicyStaxUnmarshaller.getInstance().unmarshall(context));
+                    describePoliciesResult.withScalingPolicies(ScalingPolicyStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

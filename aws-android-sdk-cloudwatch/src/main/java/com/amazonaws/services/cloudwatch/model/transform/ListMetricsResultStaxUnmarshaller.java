@@ -48,8 +48,8 @@ public class ListMetricsResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Metrics/member", targetDepth)) {
-                    listMetricsResult.getMetrics().add(
-                            MetricStaxUnmarshaller.getInstance().unmarshall(context));
+                    listMetricsResult.withMetrics(MetricStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("NextToken", targetDepth)) {

@@ -53,8 +53,8 @@ public class GetMetricStatisticsResultStaxUnmarshaller implements
                     continue;
                 }
                 if (context.testExpression("Datapoints/member", targetDepth)) {
-                    getMetricStatisticsResult.getDatapoints().add(
-                            DatapointStaxUnmarshaller.getInstance().unmarshall(context));
+                    getMetricStatisticsResult.withDatapoints(DatapointStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

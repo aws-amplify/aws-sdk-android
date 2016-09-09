@@ -27,8 +27,12 @@ class AuthenticationResultTypeJsonUnmarshaller implements
         Unmarshaller<AuthenticationResultType, JsonUnmarshallerContext> {
 
     public AuthenticationResultType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        AuthenticationResultType authenticationResultType = new AuthenticationResultType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        AuthenticationResultType authenticationResultType = new AuthenticationResultType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

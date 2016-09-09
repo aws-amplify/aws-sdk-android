@@ -27,8 +27,12 @@ class LocalSecondaryIndexJsonUnmarshaller implements
         Unmarshaller<LocalSecondaryIndex, JsonUnmarshallerContext> {
 
     public LocalSecondaryIndex unmarshall(JsonUnmarshallerContext context) throws Exception {
-        LocalSecondaryIndex localSecondaryIndex = new LocalSecondaryIndex();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        LocalSecondaryIndex localSecondaryIndex = new LocalSecondaryIndex();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

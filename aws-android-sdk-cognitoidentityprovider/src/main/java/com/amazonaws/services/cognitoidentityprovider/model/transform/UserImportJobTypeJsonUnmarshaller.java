@@ -27,8 +27,12 @@ class UserImportJobTypeJsonUnmarshaller implements
         Unmarshaller<UserImportJobType, JsonUnmarshallerContext> {
 
     public UserImportJobType unmarshall(JsonUnmarshallerContext context) throws Exception {
-        UserImportJobType userImportJobType = new UserImportJobType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        UserImportJobType userImportJobType = new UserImportJobType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

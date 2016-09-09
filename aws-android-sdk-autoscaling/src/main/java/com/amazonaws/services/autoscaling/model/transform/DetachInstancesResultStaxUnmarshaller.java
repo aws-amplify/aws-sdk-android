@@ -48,8 +48,8 @@ public class DetachInstancesResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("Activities/member", targetDepth)) {
-                    detachInstancesResult.getActivities().add(
-                            ActivityStaxUnmarshaller.getInstance().unmarshall(context));
+                    detachInstancesResult.withActivities(ActivityStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

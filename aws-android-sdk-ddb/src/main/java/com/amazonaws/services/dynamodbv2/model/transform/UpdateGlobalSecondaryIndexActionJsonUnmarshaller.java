@@ -28,8 +28,12 @@ class UpdateGlobalSecondaryIndexActionJsonUnmarshaller implements
 
     public UpdateGlobalSecondaryIndexAction unmarshall(JsonUnmarshallerContext context)
             throws Exception {
-        UpdateGlobalSecondaryIndexAction updateGlobalSecondaryIndexAction = new UpdateGlobalSecondaryIndexAction();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        UpdateGlobalSecondaryIndexAction updateGlobalSecondaryIndexAction = new UpdateGlobalSecondaryIndexAction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

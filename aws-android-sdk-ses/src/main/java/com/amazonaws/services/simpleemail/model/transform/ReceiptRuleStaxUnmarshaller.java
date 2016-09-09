@@ -61,13 +61,13 @@ class ReceiptRuleStaxUnmarshaller implements Unmarshaller<ReceiptRule, StaxUnmar
                     continue;
                 }
                 if (context.testExpression("Recipients/member", targetDepth)) {
-                    receiptRule.getRecipients().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    receiptRule.withRecipients(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("Actions/member", targetDepth)) {
-                    receiptRule.getActions().add(
-                            ReceiptActionStaxUnmarshaller.getInstance().unmarshall(context));
+                    receiptRule.withActions(ReceiptActionStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
                 if (context.testExpression("ScanEnabled", targetDepth)) {

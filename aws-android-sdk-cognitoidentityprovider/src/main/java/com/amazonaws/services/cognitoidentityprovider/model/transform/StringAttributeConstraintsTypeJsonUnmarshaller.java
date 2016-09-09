@@ -28,8 +28,12 @@ class StringAttributeConstraintsTypeJsonUnmarshaller implements
 
     public StringAttributeConstraintsType unmarshall(JsonUnmarshallerContext context)
             throws Exception {
-        StringAttributeConstraintsType stringAttributeConstraintsType = new StringAttributeConstraintsType();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        StringAttributeConstraintsType stringAttributeConstraintsType = new StringAttributeConstraintsType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

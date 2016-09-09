@@ -90,7 +90,7 @@ public class GetIdentityPoliciesResultStaxUnmarshaller implements
                 if (context.testExpression("Policies/entry", targetDepth)) {
                     Entry<String, String> entry = PoliciesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    getIdentityPoliciesResult.getPolicies().put(entry.getKey(), entry.getValue());
+                    getIdentityPoliciesResult.addPoliciesEntry(entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

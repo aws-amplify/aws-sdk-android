@@ -95,7 +95,7 @@ class PlatformApplicationStaxUnmarshaller implements
                 if (context.testExpression("Attributes/entry", targetDepth)) {
                     Entry<String, String> entry = AttributesMapEntryUnmarshaller.getInstance()
                             .unmarshall(context);
-                    platformApplication.getAttributes().put(entry.getKey(), entry.getValue());
+                    platformApplication.addAttributesEntry(entry.getKey(), entry.getValue());
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

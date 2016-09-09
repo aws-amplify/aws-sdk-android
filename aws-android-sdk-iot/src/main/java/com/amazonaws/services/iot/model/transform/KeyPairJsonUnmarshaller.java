@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class KeyPairJsonUnmarshaller implements Unmarshaller<KeyPair, JsonUnmarshallerContext> {
 
     public KeyPair unmarshall(JsonUnmarshallerContext context) throws Exception {
-        KeyPair keyPair = new KeyPair();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        KeyPair keyPair = new KeyPair();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

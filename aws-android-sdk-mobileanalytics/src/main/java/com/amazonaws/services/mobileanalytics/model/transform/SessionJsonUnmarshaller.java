@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class SessionJsonUnmarshaller implements Unmarshaller<Session, JsonUnmarshallerContext> {
 
     public Session unmarshall(JsonUnmarshallerContext context) throws Exception {
-        Session session = new Session();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        Session session = new Session();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

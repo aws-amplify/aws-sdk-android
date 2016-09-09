@@ -239,7 +239,7 @@ public class CognitoDevice {
      *
      * @param callback              REQUIRED: {@link GenericHandler} callback.
      */
-    public void getDevice(DevicesHandler callback) {
+    public void getDevice(GenericHandler callback) {
         if (callback == null) {
             throw new CognitoParameterInvalidException("callback is null");
         }
@@ -247,6 +247,7 @@ public class CognitoDevice {
         try {
             GetDeviceResult getDeviceResult = getDeviceInternal(user.getCachedSession());
             updateThis(getDeviceResult.getDevice());
+            callback.onSuccess();
         } catch (Exception e) {
             callback.onFailure(e);
         }

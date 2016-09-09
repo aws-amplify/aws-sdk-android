@@ -26,8 +26,12 @@ import com.amazonaws.util.json.AwsJsonReader;
 class TransferDataJsonUnmarshaller implements Unmarshaller<TransferData, JsonUnmarshallerContext> {
 
     public TransferData unmarshall(JsonUnmarshallerContext context) throws Exception {
-        TransferData transferData = new TransferData();
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        TransferData transferData = new TransferData();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

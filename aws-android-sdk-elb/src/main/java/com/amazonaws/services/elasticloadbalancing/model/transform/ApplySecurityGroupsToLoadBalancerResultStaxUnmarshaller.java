@@ -49,8 +49,9 @@ public class ApplySecurityGroupsToLoadBalancerResultStaxUnmarshaller implements
 
             if (xmlEvent == XmlPullParser.START_TAG) {
                 if (context.testExpression("SecurityGroups/member", targetDepth)) {
-                    applySecurityGroupsToLoadBalancerResult.getSecurityGroups().add(
-                            StringStaxUnmarshaller.getInstance().unmarshall(context));
+                    applySecurityGroupsToLoadBalancerResult
+                            .withSecurityGroups(StringStaxUnmarshaller.getInstance().unmarshall(
+                                    context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
