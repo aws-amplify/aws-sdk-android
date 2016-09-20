@@ -180,6 +180,21 @@ public class TransferUtility {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file) {
+
+        return upload(bucket, key, file, new ObjectMetadata(), null);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
      * @param cannedAcl The canned ACL to associate with this object
      * @param connectionCheckType Type of connection check
      * @return A TransferObserver used to track upload progress and state
@@ -198,6 +213,23 @@ public class TransferUtility {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
+     * @param cannedAcl The canned ACL to associate with this object
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file,
+                                   CannedAccessControlList cannedAcl) {
+
+        return upload(bucket, key, file, new ObjectMetadata(), cannedAcl, null);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
      * @param metadata The S3 metadata to associate with this object
      * @param connectionCheckType Type of connection check
      * @return A TransferObserver used to track upload progress and state
@@ -205,6 +237,21 @@ public class TransferUtility {
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
                                    NetworkInfoReceiver.Type connectionCheckType) {
         return upload(bucket, key, file, metadata, null, connectionCheckType);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param metadata The S3 metadata to associate with this object
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata) {
+        return upload(bucket, key, file, metadata, null, null);
     }
 
     /**
