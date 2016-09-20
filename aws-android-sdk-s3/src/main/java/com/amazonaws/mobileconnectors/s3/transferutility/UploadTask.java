@@ -16,27 +16,16 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.util.Log;
-
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
+import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
-import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PartETag;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.UploadPartRequest;
+import com.amazonaws.services.s3.model.*;
 import com.amazonaws.services.s3.util.Mimetypes;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -256,7 +245,6 @@ class UploadTask implements Callable<Boolean> {
     /**
      * Creates a PutObjectRequest from the data in the TransferRecord
      *
-     * @param por The request to fill
      * @param upload The data for the Object Metadata
      * @return Returns a PutObjectRequest with filled in metadata and parameters
      */

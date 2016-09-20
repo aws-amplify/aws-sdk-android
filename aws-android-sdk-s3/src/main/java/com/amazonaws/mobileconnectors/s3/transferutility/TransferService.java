@@ -16,21 +16,14 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
+import android.os.*;
 import android.util.Log;
-
+import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.services.s3.AmazonS3;
 
 import java.io.FileDescriptor;
@@ -66,6 +59,7 @@ public class TransferService extends Service {
     static final String INTENT_ACTION_TRANSFER_CANCEL = "cancel_transfer";
     static final String INTENT_BUNDLE_TRANSFER_ID = "id";
     static final String INTENT_BUNDLE_S3_REFERENCE_KEY = "s3_reference_key";
+    static final String INTENT_BUNDLE_CONNECTION_CHECK_TYPE = "connection_check_type";
 
     private AmazonS3 s3;
 
@@ -127,44 +121,6 @@ public class TransferService extends Service {
         setHandlerLooper(handlerThread.getLooper());
     }
 
-    /**
-     * A Broadcast receiver to receive network connection change events.
-     */
-    static class NetworkInfoReceiver extends BroadcastReceiver {
-        private final Handler handler;
-        private final ConnectivityManager connManager;
-
-        /**
-         * Constructs a NetworkInfoReceiver.
-         *
-         * @param handler a handle to send message to
-         */
-        public NetworkInfoReceiver(Context context, Handler handler) {
-            this.handler = handler;
-            connManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-        }
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
-                boolean networkConnected = isNetworkConnected();
-                Log.d(TAG, "Network connected: " + networkConnected);
-                handler.sendEmptyMessage(networkConnected ? MSG_CHECK : MSG_DISCONNECT);
-            }
-        }
-
-        /**
-         * Gets the status of network connectivity.
-         *
-         * @return true if network is connected, false otherwise.
-         */
-        boolean isNetworkConnected() {
-            NetworkInfo info = connManager.getActiveNetworkInfo();
-            return info != null && info.isConnected();
-        }
-    }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         this.startId = startId;
@@ -176,7 +132,12 @@ public class TransferService extends Service {
             stopSelf(startId);
             return START_NOT_STICKY;
         }
-
+        String networkCheckType = intent.getStringExtra(INTENT_BUNDLE_CONNECTION_CHECK_TYPE);
+        if (networkCheckType != null) {
+            networkInfoReceiver.setConnectionCheckType(
+                    NetworkInfoReceiver.Type.from(networkCheckType,
+                            NetworkInfoReceiver.DEFAULT_CONNECTION_CHECK_TYPE));
+        }
         updateHandler.sendMessage(updateHandler.obtainMessage(MSG_EXEC, intent));
         if (isFirst) {
             registerReceiver(networkInfoReceiver, new IntentFilter(
@@ -303,7 +264,9 @@ public class TransferService extends Service {
                     Log.e(TAG, "Can't find transfer: " + id);
                 }
             }
-            transfer.start(s3, dbUtil, updater, networkInfoReceiver);
+            if (transfer != null) {
+                transfer.start(s3, dbUtil, updater, networkInfoReceiver);
+            }
         } else if (INTENT_ACTION_TRANSFER_CANCEL.equals(action)) {
             TransferRecord transfer = updater.getTransfer(id);
             if (transfer == null) {
@@ -415,9 +378,10 @@ public class TransferService extends Service {
      *
      * @param looper new looper
      */
-    void setHandlerLooper(Looper looper) {
+    void setHandlerLooper(final Looper looper) {
         updateHandler = new UpdateHandler(looper);
-        networkInfoReceiver = new NetworkInfoReceiver(getApplicationContext(), updateHandler);
+        networkInfoReceiver = new NetworkInfoReceiver(getApplicationContext(), updateHandler,
+                MSG_CHECK, MSG_DISCONNECT);
     }
 
     @Override
