@@ -501,7 +501,8 @@ public class TransferUtility {
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
         intent.putExtra(TransferService.INTENT_BUNDLE_S3_REFERENCE_KEY, s3Key);
-        intent.putExtra(TransferService.INTENT_BUNDLE_CONNECTION_CHECK_TYPE, networkCheckType);
+        intent.putExtra(TransferService.INTENT_BUNDLE_CONNECTION_CHECK_TYPE,
+                networkCheckType.name());
         appContext.startService(intent);
     }
 
