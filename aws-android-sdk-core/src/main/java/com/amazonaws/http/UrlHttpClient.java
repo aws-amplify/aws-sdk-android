@@ -68,9 +68,9 @@ public class UrlHttpClient implements HttpClient {
 
         if (curlBuilder != null) {
             if (curlBuilder.isValid()) {
-                Log.v(TAG, curlBuilder.build());
+                printToLog(Log.VERBOSE, curlBuilder.build());
             } else {
-                Log.v(TAG, "Failed to create curl, content too long");
+                printToLog(Log.VERBOSE, "Failed to create curl, content too long");
             }
         }
 
@@ -214,6 +214,14 @@ public class UrlHttpClient implements HttpClient {
             curlBuilder.setMethod(method);
         }
         return connection;
+    }
+
+    protected void printToLog(int priority, String message) {
+        Log.println(priority, TAG, message);
+    }
+
+    protected HttpURLConnection getUrlConnection(URL url) throws IOException {
+        return (HttpURLConnection) url.openConnection();
     }
 
     private void write(InputStream is, OutputStream os, ByteBuffer curlBuffer) throws IOException {
