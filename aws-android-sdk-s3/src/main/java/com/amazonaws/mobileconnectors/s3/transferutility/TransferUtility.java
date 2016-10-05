@@ -491,7 +491,7 @@ public class TransferUtility {
      * @param id id of the transfer
      */
     private void sendIntent(String action, int id) {
-        sendIntent(action, id, null);
+        sendIntent(action, id, NetworkInfoReceiver.DEFAULT_CONNECTION_CHECK_TYPE);
     }
 
     private void sendIntent(String action, int id, NetworkInfoReceiver.Type networkCheckType) {
