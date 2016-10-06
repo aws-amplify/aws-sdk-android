@@ -1,4 +1,10 @@
 # Change Log - AWS SDK for Android
+## [Release 2.3.2] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.2) (10/06/2016)
+
+### Improvements
+- **Amazon Cognito Identity Provider**: 
+- Support for Admin Create User feature.
+- Allow SDK to refresh tokens which are about to expire within a pre-set threshold.
 
 ## [Release 2.3.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.1) (09/08/2016)
 

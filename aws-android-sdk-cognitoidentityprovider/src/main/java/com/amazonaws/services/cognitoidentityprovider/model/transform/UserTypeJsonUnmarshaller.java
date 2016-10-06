@@ -55,6 +55,11 @@ class UserTypeJsonUnmarshaller implements Unmarshaller<UserType, JsonUnmarshalle
             } else if (name.equals("UserStatus")) {
                 userType.setUserStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("MFAOptions")) {
+                userType.setMFAOptions(new ListUnmarshaller<MFAOptionType>(
+                        MFAOptionTypeJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

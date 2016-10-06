@@ -149,6 +149,9 @@ class RegionDefaults {
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.ap-northeast-2.amazonaws.com", true, true);
         updateRegion(region, "kms", "kms.ap-northeast-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.ap-northeast-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.ap-northeast-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.ap-northeast-2.amazonaws.com", false, true);
 
         region = new Region("ap-southeast-1", "");
         ret.add(region);
@@ -242,6 +245,9 @@ class RegionDefaults {
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.eu-central-1.amazonaws.com", true, true);
         updateRegion(region, "kms", "kms.eu-central-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.eu-central-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.eu-central-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.eu-central-1.amazonaws.com", false, true);
 
         region = new Region("cn-north-1", "amazonaws.com.cn");
         ret.add(region);

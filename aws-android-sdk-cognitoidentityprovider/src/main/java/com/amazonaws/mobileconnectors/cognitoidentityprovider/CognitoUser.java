@@ -28,6 +28,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Auth
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.NewPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoInternalErrorException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
@@ -83,10 +84,10 @@ import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributes
 import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesResult;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifyUserAttributeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifyUserAttributeResult;
-
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.StringUtils;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -707,14 +708,14 @@ public class CognitoUser {
         }
 
         if (cipSession != null) {
-            if (cipSession.isValid()) {
+            if (cipSession.isValidForThreshold()) {
                 return cipSession;
             }
         }
 
         CognitoUserSession cachedTokens = readCachedTokens();
 
-        if (cachedTokens.isValid()) {
+        if (cachedTokens.isValidForThreshold()) {
             cipSession = cachedTokens;
             return  cipSession;
         }
@@ -724,12 +725,14 @@ public class CognitoUser {
                 cipSession = refreshSession(cachedTokens);
                 cacheTokens(cipSession);
                 return cipSession;
-            } catch (Exception e) {
+            } catch (NotAuthorizedException nae) {
                 clearCachedTokens();
-                throw new CognitoNotAuthorizedException("user is not authenticated");
+                throw new CognitoNotAuthorizedException("User is not authenticated", nae);
+            } catch (Exception e) {
+                throw new CognitoInternalErrorException("Failed to authenticate user", e);
             }
         }
-        throw new CognitoNotAuthorizedException("user is not authenticated");
+        throw new CognitoNotAuthorizedException("User is not authenticated");
     }
 
     /**
@@ -1583,9 +1586,18 @@ public class CognitoUser {
      */
     private void clearCachedTokens() {
         try {
-            // Clear all cached tokens and last logged in user.
+            // Clear all cached tokens.
             SharedPreferences csiCachedTokens =  context.getSharedPreferences("CognitoIdentityProviderCache", 0);
-            csiCachedTokens.edit().clear().apply();
+        
+            // Format "key" strings
+            String csiIdTokenKey      =  String.format("CognitoIdentityProvider.%s.%s.idToken", clientId, userId);
+            String csiAccessTokenKey  =  String.format("CognitoIdentityProvider.%s.%s.accessToken", clientId, userId);
+            String csiRefreshTokenKey =  String.format("CognitoIdentityProvider.%s.%s.refreshToken", clientId, userId);
+
+            SharedPreferences.Editor cacheEdit = csiCachedTokens.edit();
+            cacheEdit.remove(csiIdTokenKey);
+            cacheEdit.remove(csiAccessTokenKey);
+            cacheEdit.remove(csiRefreshTokenKey).apply();
         } catch (Exception e) {
             // Logging exception, this is not a fatal error
             Log.e(TAG, "Error while deleting from SharedPreferences");
@@ -1599,7 +1611,7 @@ public class CognitoUser {
      */
     private CognitoUserSession readCachedTokens() {
         CognitoUserSession userSession = new CognitoUserSession(null, null, null);
-        
+
         try {
             SharedPreferences csiCachedTokens = context.getSharedPreferences("CognitoIdentityProviderCache", 0);
 
@@ -1607,7 +1619,7 @@ public class CognitoUser {
             String csiIdTokenKey        = "CognitoIdentityProvider." + clientId + "." + userId + ".idToken";
             String csiAccessTokenKey    = "CognitoIdentityProvider." + clientId + "." + userId + ".accessToken";
             String csiRefreshTokenKey   = "CognitoIdentityProvider." + clientId + "." + userId + ".refreshToken";
-            
+
             if (csiCachedTokens.contains(csiIdTokenKey)) {
                 CognitoIdToken csiCachedIdToken = new CognitoIdToken(csiCachedTokens.getString(csiIdTokenKey, null));
                 CognitoAccessToken csiCachedAccessToken = new CognitoAccessToken(csiCachedTokens.getString(csiAccessTokenKey, null));
@@ -1911,9 +1923,18 @@ public class CognitoUser {
             };
         } else if (CognitoServiceConstants.CHLG_TYPE_DEVICE_SRP_AUTH.equals(challengeName)) {
             nextTask = deviceSrpAuthentication(challenge, callback, runInBackground);
+        } else if (CognitoServiceConstants.CHLG_TYPE_NEW_PASSWORD_REQUIRED.equals(challengeName)) {
+            final NewPasswordContinuation newPasswordContinuation =
+                    new NewPasswordContinuation(cognitoUser, context, usernameInternal, clientId, secretHash, challenge, runInBackground, callback);
+            nextTask = new Runnable() {
+                @Override
+                public void run() {
+                    callback.authenticationChallenge(newPasswordContinuation);
+                }
+            };
         } else {
             final ChallengeContinuation challengeContinuation =
-                    new ChallengeContinuation(cognitoUser, context, clientId, challenge, runInBackground, callback);
+                    new ChallengeContinuation(cognitoUser, context, usernameInternal, clientId, secretHash, challenge, runInBackground, callback);
             nextTask = new Runnable() {
                 @Override
                 public void run() {

@@ -35,9 +35,19 @@ public class ApiRequest {
 
     /**
      * Constructor.
+     *
+     * @param serviceName The name of the service to which this request is being
+     *            sent.
      */
     public ApiRequest(String serviceName) {
         request = new DefaultRequest<ApiResponse>(serviceName);
+    }
+
+    /**
+     * Constructor.
+     */
+    public ApiRequest() {
+        request = new DefaultRequest<ApiResponse>("");
     }
 
     /**

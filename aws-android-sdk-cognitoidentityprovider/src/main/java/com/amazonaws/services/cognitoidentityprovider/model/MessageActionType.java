@@ -19,20 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * User Status Type
+ * Message Action Type
  */
-public enum UserStatusType {
+public enum MessageActionType {
 
-    UNCONFIRMED("UNCONFIRMED"),
-    CONFIRMED("CONFIRMED"),
-    ARCHIVED("ARCHIVED"),
-    COMPROMISED("COMPROMISED"),
-    RESET_REQUIRED("RESET_REQUIRED"),
-    FORCE_CHANGE_PASSWORD("FORCE_CHANGE_PASSWORD");
+    RESEND("RESEND"),
+    SUPPRESS("SUPPRESS");
 
     private String value;
 
-    private UserStatusType(String value) {
+    private MessageActionType(String value) {
         this.value = value;
     }
 
@@ -41,24 +37,20 @@ public enum UserStatusType {
         return value;
     }
 
-    private static final Map<String, UserStatusType> enumMap;
+    private static final Map<String, MessageActionType> enumMap;
     static {
-        enumMap = new HashMap<String, UserStatusType>();
-        enumMap.put("UNCONFIRMED", UNCONFIRMED);
-        enumMap.put("CONFIRMED", CONFIRMED);
-        enumMap.put("ARCHIVED", ARCHIVED);
-        enumMap.put("COMPROMISED", COMPROMISED);
-        enumMap.put("RESET_REQUIRED", RESET_REQUIRED);
-        enumMap.put("FORCE_CHANGE_PASSWORD", FORCE_CHANGE_PASSWORD);
+        enumMap = new HashMap<String, MessageActionType>();
+        enumMap.put("RESEND", RESEND);
+        enumMap.put("SUPPRESS", SUPPRESS);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return UserStatusType corresponding to the value
+     * @return MessageActionType corresponding to the value
      */
-    public static UserStatusType fromValue(String value) {
+    public static MessageActionType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

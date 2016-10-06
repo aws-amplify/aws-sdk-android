@@ -61,6 +61,17 @@ class UserTypeJsonMarshaller {
             jsonWriter.name("UserStatus");
             jsonWriter.value(userStatus);
         }
+        if (userType.getMFAOptions() != null) {
+            java.util.List<MFAOptionType> mFAOptions = userType.getMFAOptions();
+            jsonWriter.name("MFAOptions");
+            jsonWriter.beginArray();
+            for (MFAOptionType mFAOptionsItem : mFAOptions) {
+                if (mFAOptionsItem != null) {
+                    MFAOptionTypeJsonMarshaller.getInstance().marshall(mFAOptionsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 
