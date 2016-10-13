@@ -106,10 +106,11 @@ class ApiClientHandler implements InvocationHandler {
         final Request<?> request = buildRequest(method, args);
 
         final ExecutionContext context = new ExecutionContext();
-        String userAgent = apiName;
+        String userAgent;
         if (request.getHeaders().containsKey("User-Agent")) {
-            // append it to execution context
-            userAgent += " " + request.getHeaders().get("User-Agent");
+            userAgent = request.getHeaders().get("User-Agent");
+        } else {
+        	userAgent = clientConfiguration.getUserAgent();
         }
         context.setContextUserAgent(userAgent);
         return requestFactory.createHttpRequest(request, clientConfiguration, context);
@@ -291,10 +292,11 @@ class ApiClientHandler implements InvocationHandler {
             request.setEndpoint(URI.create(endpoint));
         }
 
-        String userAgent = apiName;
+        String userAgent;
         if (request.getHeaders().containsKey("User-Agent")) {
-            // append it to execution context
-            userAgent += " " + request.getHeaders().get("User-Agent");
+            userAgent = request.getHeaders().get("User-Agent");
+        } else {
+        	userAgent = clientConfiguration.getUserAgent();
         }
         context.setContextUserAgent(userAgent);
 
