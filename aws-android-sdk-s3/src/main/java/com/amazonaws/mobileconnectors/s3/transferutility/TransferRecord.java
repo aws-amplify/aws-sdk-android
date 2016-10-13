@@ -35,7 +35,7 @@ import java.util.concurrent.TimeoutException;
  * TransferRecord is used to store all the information of a transfer and
  * start/stop the a thread for the transfer task.
  */
-class TransferRecord {
+public class TransferRecord {
     private static final String TAG = "TransferRecord";
 
     public int id;

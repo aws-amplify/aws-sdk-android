@@ -65,7 +65,7 @@ class UploadTask implements Callable<Boolean> {
      */
     @Override
     public Boolean call() throws Exception {
-        if (!networkInfo.isNetworkConnected()) {
+        if (!networkInfo.isNetworkAvailableForTransfer(upload)) {
             updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
             return false;
         }
@@ -166,7 +166,7 @@ class UploadTask implements Callable<Boolean> {
                     Log.d(TAG, "Transfer " + upload.id + " is interrupted by user");
                     return false;
                 } else if (e.getCause() != null && e.getCause() instanceof IOException
-                        && !networkInfo.isNetworkConnected()) {
+                        && !networkInfo.isNetworkAvailableForTransfer(upload)) {
                     Log.d(TAG, "Transfer " + upload.id + " waits for network");
                     updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                 }
@@ -213,7 +213,7 @@ class UploadTask implements Callable<Boolean> {
                 Log.d(TAG, "Transfer " + upload.id + " is interrupted by user");
                 return false;
             } else if (e.getCause() != null && e.getCause() instanceof IOException
-                    && !networkInfo.isNetworkConnected()) {
+                    && !networkInfo.isNetworkAvailableForTransfer(upload)) {
                 Log.d(TAG, "Transfer " + upload.id + " waits for network");
                 updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
             }

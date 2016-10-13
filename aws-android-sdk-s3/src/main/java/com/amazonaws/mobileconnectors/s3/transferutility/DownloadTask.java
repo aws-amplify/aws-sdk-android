@@ -67,7 +67,7 @@ class DownloadTask implements Callable<Boolean> {
      */
     @Override
     public Boolean call() throws Exception {
-        if (!networkInfo.isNetworkConnected()) {
+        if (!networkInfo.isNetworkAvailableForTransfer(download)) {
             updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
             return false;
         }
