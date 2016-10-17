@@ -1,4 +1,9 @@
 # Change Log - AWS SDK for Android
+## [Release 2.3.3] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.3) (10/11/2016)
+
+### Improvements
+- **AWS Core Runtime Library**: Support for `us-east-2/CMH` region in SDK.
+
 ## [Release 2.3.2] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.2) (10/06/2016)
 
 ### Improvements

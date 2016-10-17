@@ -22,6 +22,7 @@ public enum Regions {
 
     GovCloud("us-gov-west-1"),
     US_EAST_1("us-east-1"),
+    US_EAST_2("us-east-2"),
     US_WEST_1("us-west-1"),
     US_WEST_2("us-west-2"),
     EU_WEST_1("eu-west-1"),
@@ -60,7 +61,7 @@ public enum Regions {
      * @return Region enum representing the given region name.
      */
     public static Regions fromName(String regionName) {
-        for (Regions region : Regions.values()) {
+        for (final Regions region : Regions.values()) {
             if (regionName.equals(region.getName())) {
                 return region;
             }

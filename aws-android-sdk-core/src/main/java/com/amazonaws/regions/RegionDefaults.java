@@ -22,7 +22,7 @@ import java.util.Map;
 class RegionDefaults {
     public static List<Region> getRegions() {
 
-        List<Region> ret = new ArrayList<Region>();
+        final List<Region> ret = new ArrayList<Region>();
         Region region;
 
         region = new Region("us-east-1", "");
@@ -52,6 +52,22 @@ class RegionDefaults {
                 true);
         updateRegion(region, "kms", "kms.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "execute-api", "iot.us-east-1.amazonaws.com", false, true);
+
+        region = new Region("us-east-2", "");
+        ret.add(region);
+
+        updateRegion(region, "s3", "s3-us-east-2.amazonaws.com", true, true);
+        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "monitoring", "monitoring.us-east-2.amazonaws.com", true, true);
+        updateRegion(region, "sns", "sns.us-east-2.amazonaws.com", true, true);
+        updateRegion(region, "autoscaling", "autoscaling.us-east-2.amazonaws.com", true, true);
+        updateRegion(region, "dynamodb", "dynamodb.us-east-2.amazonaws.com", true, true);
+        updateRegion(region, "ec2", "ec2.us-east-2.amazonaws.com", true, true);
+        updateRegion(region, "kinesis", "kinesis.us-east-2.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.us-east-2.amazonaws.com", true, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.us-east-2.amazonaws.com", true, true);
+        updateRegion(region, "kms", "kms.us-east-2.amazonaws.com", false, true);
 
         region = new Region("us-west-1", "");
         ret.add(region);
@@ -94,7 +110,7 @@ class RegionDefaults {
         updateRegion(region, "cognito-identity", "cognito-identity.us-west-2.amazonaws.com", false,
                 true);
         updateRegion(region, "cognito-idp", "cognito-idp.us-west-2.amazonaws.com", false, true);
-        
+
         region = new Region("ap-south-1", "");
         ret.add(region);
 
@@ -283,9 +299,9 @@ class RegionDefaults {
     private static void updateRegion(Region region, String service, String host,
             boolean http, boolean https) {
 
-        Map<String, String> serviceEndpoints = region.getServiceEndpoints();
-        Map<String, Boolean> httpSupport = region.getHttpSupport();
-        Map<String, Boolean> httpsSupport = region.getHttpsSupport();
+        final Map<String, String> serviceEndpoints = region.getServiceEndpoints();
+        final Map<String, Boolean> httpSupport = region.getHttpSupport();
+        final Map<String, Boolean> httpsSupport = region.getHttpsSupport();
 
         serviceEndpoints.put(service, host);
         httpSupport.put(service, http);
