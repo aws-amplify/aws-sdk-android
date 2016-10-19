@@ -2,18 +2,20 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.amazonaws</groupId>
+    <groupId>io.ebuilder.aws</groupId>
   <artifactId>aws-android-sdk-s3</artifactId>
   <packaging>jar</packaging>
   <name>AWS SDK for Android - Amazon S3</name>
   <description>The AWS Android SDK for Amazon S3 module holds the client classes that are used for communicating with Amazon Simple Storage Service</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
 
-  <parent>
+    <parent>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-android-sdk-pom</artifactId>
     <version>2.3.1</version>
   </parent>
+
+    <version>2.3.3</version>
 
   <dependencies>
     <dependency>
@@ -65,5 +67,30 @@
         <artifactId>maven-javadoc-plugin</artifactId>
       </plugin>
     </plugins>
+      <extensions>
+          <extension>
+              <groupId>org.springframework.build</groupId>
+              <artifactId>aws-maven</artifactId>
+              <version>5.0.0.RELEASE</version>
+          </extension>
+      </extensions>
   </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshot.repo.ebuilder.io</id>
+            <name>ebuilder-snapshot</name>
+            <url>s3://repo.ebuilder.io/snapshot</url>
+            <uniqueVersion>true</uniqueVersion>
+            <layout>default</layout>
+        </snapshotRepository>
+        <repository>
+            <id>repo.ebuilder.io</id>
+            <name>ebuilder-release</name>
+            <url>s3://repo.ebuilder.io/release</url>
+            <uniqueVersion>false</uniqueVersion>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
+
 </project>
