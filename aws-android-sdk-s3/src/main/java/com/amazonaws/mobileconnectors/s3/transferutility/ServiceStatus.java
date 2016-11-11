@@ -17,4 +17,15 @@ public enum ServiceStatus {
     public String getName() {
         return name;
     }
+
+    public static ServiceStatus from(final String value) {
+        if (value != null) {
+            for (final ServiceStatus serviceStatus : values()) {
+                if (serviceStatus.getName().equalsIgnoreCase(value)) {
+                    return serviceStatus;
+                }
+            }
+        }
+        return null;
+    }
 }
