@@ -196,6 +196,7 @@ public class TransferService extends Service {
         if (shouldScan && networkInfoReceiver.isNetworkConnected() && s3 != null) {
             loadTransfersFromDB();
             shouldScan = false;
+            broadcastServiceStatus(ServiceStatus.RESUMED);
         }
         removeCompletedTransfers();
 
@@ -209,6 +210,7 @@ public class TransferService extends Service {
              * Stop the service when it's been idled for more than a minute.
              */
             Log.d(TAG, "Stop self");
+            broadcastServiceStatus(ServiceStatus.DESTROYED);
             stopSelf(startId);
         }
     }
@@ -371,6 +373,7 @@ public class TransferService extends Service {
             }
         }
         shouldScan = true;
+        broadcastServiceStatus(ServiceStatus.PAUSED);
     }
 
     /**
@@ -402,5 +405,16 @@ public class TransferService extends Service {
                     transfer.bytesCurrent);
         }
         writer.flush();
+    }
+
+    public static final String TRANSFER_SERVICE_STATUS_ACTION = "transfer-service-action";
+
+    public static final String BUNDLE_TRANSFER_SERVICE_STATUS = "status";
+
+    private void broadcastServiceStatus(final ServiceStatus status) {
+        final Intent intent = new Intent();
+        intent.setAction(TRANSFER_SERVICE_STATUS_ACTION);
+        intent.putExtra(BUNDLE_TRANSFER_SERVICE_STATUS, status.getName());
+        sendBroadcast(intent);
     }
 }
