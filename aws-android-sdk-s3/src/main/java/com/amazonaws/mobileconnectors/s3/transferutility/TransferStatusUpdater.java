@@ -70,14 +70,24 @@ class TransferStatusUpdater {
     /**
      * The handler of main thread that runs callbacks.
      */
-    private final Handler mainHandler;
+    private final Handler eventHandler;
 
     /**
      * This class is instantiated by TransferService.
      */
     TransferStatusUpdater(TransferDBUtil dbUtil) {
         this.dbUtil = dbUtil;
-        mainHandler = new Handler(Looper.getMainLooper());
+        eventHandler = new Handler(Looper.getMainLooper());
+        transfers = new HashMap<Integer, TransferRecord>();
+        lastUpdateTime = new HashMap<Integer, Long>();
+    }
+
+    /**
+     * This class is instantiated by TransferService.
+     */
+    TransferStatusUpdater(TransferDBUtil dbUtil, Handler eventHandler) {
+        this.dbUtil = dbUtil;
+        this.eventHandler = eventHandler;
         transfers = new HashMap<Integer, TransferRecord>();
         lastUpdateTime = new HashMap<Integer, Long>();
     }
@@ -165,7 +175,7 @@ class TransferStatusUpdater {
         }
 
         // invoke on main thread
-        mainHandler.post(new Runnable() {
+        eventHandler.post(new Runnable() {
             @Override
             public void run() {
                 for (TransferListener l : list) {
@@ -213,7 +223,7 @@ class TransferStatusUpdater {
             lastUpdateTime.put(id, timeInMillis);
 
             // invoke on main thread
-            mainHandler.post(new Runnable() {
+            eventHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     for (TransferListener l : list) {
@@ -238,7 +248,7 @@ class TransferStatusUpdater {
             return;
         }
         // invoke on main thread
-        mainHandler.post(new Runnable() {
+        eventHandler.post(new Runnable() {
             @Override
             public void run() {
                 for (TransferListener l : list) {

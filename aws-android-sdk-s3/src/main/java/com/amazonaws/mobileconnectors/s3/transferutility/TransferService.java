@@ -110,15 +110,12 @@ public class TransferService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
         Log.d(TAG, "Starting Transfer Service");
-
         dbUtil = new TransferDBUtil(getApplicationContext());
-        updater = new TransferStatusUpdater(dbUtil);
-
         handlerThread = new HandlerThread(TAG + "-AWSTransferUpdateHandlerThread");
         handlerThread.start();
         setHandlerLooper(handlerThread.getLooper());
+        updater = new TransferStatusUpdater(dbUtil, updateHandler);
     }
 
     @Override
