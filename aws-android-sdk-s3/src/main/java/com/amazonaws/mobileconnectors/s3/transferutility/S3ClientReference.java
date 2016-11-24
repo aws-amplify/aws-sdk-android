@@ -15,10 +15,10 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
+import android.util.Log;
 import com.amazonaws.services.s3.AmazonS3;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.Callable;
 
 /**
  * A holder of S3 clients for {@link TransferUtility} to pass a reference of
@@ -28,26 +28,42 @@ import java.util.Map;
  */
 class S3ClientReference {
 
-    private static Map<String, AmazonS3> map = new HashMap<String, AmazonS3>();
+    private static final String TAG = S3ClientReference.class.getSimpleName();
 
-    public static void put(String key, AmazonS3 s3) {
-        map.put(key, s3);
-    }
+    private static Callable<AmazonS3> retrieveAmazonS3Client = null;
+
+    private static AmazonS3 amazonS3 = null;
+
+    private static final Object lock = new Object();
 
     /**
-     * Retrieves the AmazonS3 client on the given key.
+     * Retrieves the AmazonS3 client
      *
-     * @param key key of the client
-     * @return an AmazonS3 instance, or null if the key doesn't exist
+     * @return an AmazonS3 instance, or null
      */
-    public static AmazonS3 get(String key) {
-        return map.remove(key);
+    public static AmazonS3 get() {
+        if (amazonS3 == null && retrieveAmazonS3Client != null) {
+            synchronized (lock) {
+                try {
+                    Log.w(TAG, "S3 client's retrieval attempt");
+                    amazonS3 = retrieveAmazonS3Client.call();
+                } catch (final Exception ex) {
+                    Log.e(TAG, "Failed to retrieve s3 client", ex);
+                }
+            }
+        }
+        return amazonS3;
+    }
+
+    public static void retrieveClientOn(final Callable<AmazonS3> callable) {
+        retrieveAmazonS3Client = callable;
     }
 
     /**
      * Clears all references.
      */
     public static void clear() {
-        map.clear();
+        retrieveAmazonS3Client = null;
+        amazonS3 = null;
     }
 }

@@ -31,7 +31,7 @@ import com.amazonaws.util.VersionInfoUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+import java.util.concurrent.Callable;
 
 import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
 import static com.amazonaws.services.s3.internal.Constants.MB;
@@ -94,7 +94,6 @@ public class TransferUtility {
      */
     static final int MINIMUM_UPLOAD_PART_SIZE = 5 * MB;
 
-    private final AmazonS3 s3;
     private final Context appContext;
     private final TransferDBUtil dbUtil;
 
@@ -103,13 +102,13 @@ public class TransferUtility {
      * initializes configuration of TransferUtility and a key for S3 client weak
      * reference.
      *
-     * @param s3 The client to use when making requests to Amazon S3
+     * @param clientRetrieve The client callback to retrieve instance
      * @param context The current context
      */
-    public TransferUtility(AmazonS3 s3, Context context) {
-        this.s3 = s3;
+    public TransferUtility(Callable<AmazonS3> clientRetrieve, Context context) {
         this.appContext = context.getApplicationContext();
         this.dbUtil = new TransferDBUtil(appContext);
+        S3ClientReference.retrieveClientOn(clientRetrieve);
     }
 
     /**
@@ -495,12 +494,9 @@ public class TransferUtility {
     }
 
     private void sendIntent(String action, int id, NetworkInfoReceiver.Type networkCheckType) {
-        String s3Key = UUID.randomUUID().toString();
-        S3ClientReference.put(s3Key, s3);
-        Intent intent = new Intent(appContext, TransferService.class);
+        final Intent intent = new Intent(appContext, TransferService.class);
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
-        intent.putExtra(TransferService.INTENT_BUNDLE_S3_REFERENCE_KEY, s3Key);
         intent.putExtra(TransferService.INTENT_BUNDLE_CONNECTION_CHECK_TYPE,
                 networkCheckType.name());
         appContext.startService(intent);

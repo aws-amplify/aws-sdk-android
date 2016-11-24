@@ -58,7 +58,6 @@ public class TransferService extends Service {
     static final String INTENT_ACTION_TRANSFER_RESUME = "resume_transfer";
     static final String INTENT_ACTION_TRANSFER_CANCEL = "cancel_transfer";
     static final String INTENT_BUNDLE_TRANSFER_ID = "id";
-    static final String INTENT_BUNDLE_S3_REFERENCE_KEY = "s3_reference_key";
     static final String INTENT_BUNDLE_CONNECTION_CHECK_TYPE = "connection_check_type";
 
     private AmazonS3 s3;
@@ -121,9 +120,7 @@ public class TransferService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         this.startId = startId;
-
-        String keyForS3Client = intent.getStringExtra(INTENT_BUNDLE_S3_REFERENCE_KEY);
-        s3 = S3ClientReference.get(keyForS3Client);
+        s3 = S3ClientReference.get();
         if (s3 == null) {
             Log.w(TAG, "TransferService can't get s3 client, and it will stop.");
             stopSelf(startId);
