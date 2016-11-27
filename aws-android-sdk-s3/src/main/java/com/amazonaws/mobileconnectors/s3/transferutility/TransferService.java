@@ -120,7 +120,7 @@ public class TransferService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         this.startId = startId;
-        s3 = S3ClientReference.get();
+        s3 = S3ClientReference.get(getApplicationContext());
         if (s3 == null) {
             Log.w(TAG, "TransferService can't get s3 client, and it will stop.");
             stopSelf(startId);

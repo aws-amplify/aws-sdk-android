@@ -31,7 +31,6 @@ import com.amazonaws.util.VersionInfoUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
 import static com.amazonaws.services.s3.internal.Constants.MB;
@@ -96,6 +95,7 @@ public class TransferUtility {
 
     private final Context appContext;
     private final TransferDBUtil dbUtil;
+    public static Function<Context, AmazonS3> clientRetrieve;
 
     /**
      * Constructs a new TransferUtility specifying the client to use and
@@ -105,10 +105,10 @@ public class TransferUtility {
      * @param clientRetrieve The client callback to retrieve instance
      * @param context The current context
      */
-    public TransferUtility(Callable<AmazonS3> clientRetrieve, Context context) {
+    public TransferUtility(Function<Context, AmazonS3> clientRetrieve, Context context) {
         this.appContext = context.getApplicationContext();
         this.dbUtil = new TransferDBUtil(appContext);
-        S3ClientReference.retrieveClientOn(clientRetrieve);
+        TransferUtility.clientRetrieve = clientRetrieve;
     }
 
     /**
