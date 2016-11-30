@@ -18,7 +18,6 @@ package com.amazonaws.services.kms.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.kms.model.KMSInvalidStateException;
 
 public class KMSInvalidStateExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class KMSInvalidStateExceptionUnmarshaller extends JsonErrorUnmarshaller 
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         KMSInvalidStateException e = (KMSInvalidStateException) super.unmarshall(error);
         e.setErrorCode("KMSInvalidStateException");
 

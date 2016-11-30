@@ -52,6 +52,8 @@ class RegionDefaults {
                 true);
         updateRegion(region, "kms", "kms.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "execute-api", "iot.us-east-1.amazonaws.com", false, true);
+        updateRegion(region, "runtime.lex", "runtime.lex.us-east-1.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.us-east-1.amazonaws.com", false, true);
 
         region = new Region("us-east-2", "");
         ret.add(region);
@@ -68,6 +70,7 @@ class RegionDefaults {
         updateRegion(region, "elasticloadbalancing",
                 "elasticloadbalancing.us-east-2.amazonaws.com", true, true);
         updateRegion(region, "kms", "kms.us-east-2.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.us-east-2.amazonaws.com", false, true);
 
         region = new Region("us-west-1", "");
         ret.add(region);
@@ -110,6 +113,7 @@ class RegionDefaults {
         updateRegion(region, "cognito-identity", "cognito-identity.us-west-2.amazonaws.com", false,
                 true);
         updateRegion(region, "cognito-idp", "cognito-idp.us-west-2.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.us-west-2.amazonaws.com", false, true);
 
         region = new Region("ap-south-1", "");
         ret.add(region);
@@ -245,6 +249,7 @@ class RegionDefaults {
                 true);
         updateRegion(region, "kms", "kms.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "execute-api", "iot.eu-west-1.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.eu-west-1.amazonaws.com", false, true);
 
         region = new Region("eu-central-1", "");
         ret.add(region);

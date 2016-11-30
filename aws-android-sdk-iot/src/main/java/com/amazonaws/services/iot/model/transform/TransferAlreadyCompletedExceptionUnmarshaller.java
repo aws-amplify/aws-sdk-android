@@ -18,7 +18,6 @@ package com.amazonaws.services.iot.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iot.model.TransferAlreadyCompletedException;
 
 public class TransferAlreadyCompletedExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class TransferAlreadyCompletedExceptionUnmarshaller extends JsonErrorUnma
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         TransferAlreadyCompletedException e = (TransferAlreadyCompletedException) super
                 .unmarshall(error);
         e.setErrorCode("TransferAlreadyCompletedException");

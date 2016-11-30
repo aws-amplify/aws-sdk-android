@@ -18,7 +18,6 @@ package com.amazonaws.services.machinelearning.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.machinelearning.model.InvalidInputException;
 
 public class InvalidInputExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidInputExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidInputException e = (InvalidInputException) super.unmarshall(error);
         e.setErrorCode("InvalidInputException");
         e.setCode(Integer.valueOf(error.get("code")));

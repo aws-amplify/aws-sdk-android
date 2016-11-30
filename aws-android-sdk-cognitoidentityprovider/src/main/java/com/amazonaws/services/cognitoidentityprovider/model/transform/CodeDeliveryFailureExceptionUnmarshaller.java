@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentityprovider.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentityprovider.model.CodeDeliveryFailureException;
 
 public class CodeDeliveryFailureExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class CodeDeliveryFailureExceptionUnmarshaller extends JsonErrorUnmarshal
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         CodeDeliveryFailureException e = (CodeDeliveryFailureException) super.unmarshall(error);
         e.setErrorCode("CodeDeliveryFailureException");
 

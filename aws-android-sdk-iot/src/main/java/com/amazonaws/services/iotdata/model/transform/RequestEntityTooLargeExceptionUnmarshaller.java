@@ -18,7 +18,6 @@ package com.amazonaws.services.iotdata.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iotdata.model.RequestEntityTooLargeException;
 
 public class RequestEntityTooLargeExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class RequestEntityTooLargeExceptionUnmarshaller extends JsonErrorUnmarsh
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         RequestEntityTooLargeException e = (RequestEntityTooLargeException) super.unmarshall(error);
         e.setErrorCode("RequestEntityTooLargeException");
 

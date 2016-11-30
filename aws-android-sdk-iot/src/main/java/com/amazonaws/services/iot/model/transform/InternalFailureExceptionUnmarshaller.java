@@ -18,7 +18,6 @@ package com.amazonaws.services.iot.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iot.model.InternalFailureException;
 
 public class InternalFailureExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InternalFailureExceptionUnmarshaller extends JsonErrorUnmarshaller 
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InternalFailureException e = (InternalFailureException) super.unmarshall(error);
         e.setErrorCode("InternalFailureException");
 

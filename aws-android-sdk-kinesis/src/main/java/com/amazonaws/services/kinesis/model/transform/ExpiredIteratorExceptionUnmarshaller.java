@@ -18,7 +18,6 @@ package com.amazonaws.services.kinesis.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.kinesis.model.ExpiredIteratorException;
 
 public class ExpiredIteratorExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class ExpiredIteratorExceptionUnmarshaller extends JsonErrorUnmarshaller 
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         ExpiredIteratorException e = (ExpiredIteratorException) super.unmarshall(error);
         e.setErrorCode("ExpiredIteratorException");
 

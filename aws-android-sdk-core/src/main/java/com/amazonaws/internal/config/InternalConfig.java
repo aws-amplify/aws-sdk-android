@@ -74,12 +74,13 @@ public class InternalConfig {
      * @return the signer
      */
     public SignerConfig getSignerConfig(String serviceName, String regionName) {
-        if (serviceName == null)
+        if (serviceName == null) {
             throw new IllegalArgumentException();
+        }
         SignerConfig signerConfig = null;
         if (regionName != null) {
             // Service+Region signer config has the highest precedence
-            String key = serviceName + SERVICE_REGION_DELIMITOR + regionName;
+            final String key = serviceName + SERVICE_REGION_DELIMITOR + regionName;
             signerConfig = serviceRegionSigners.get(key);
             if (signerConfig != null) {
                 return signerConfig;
@@ -105,7 +106,7 @@ public class InternalConfig {
 
     private static Map<String, HttpClientConfig> getDefaultHttpClients() {
         // map from service client name to sigv4 service name
-        Map<String, HttpClientConfig> ret = new HashMap<String, HttpClientConfig>();
+        final Map<String, HttpClientConfig> ret = new HashMap<String, HttpClientConfig>();
         ret.put("AmazonCloudWatchClient", new HttpClientConfig("monitoring"));
         ret.put("AmazonSimpleDBClient", new HttpClientConfig("sdb"));
         ret.put("AmazonSimpleEmailServiceClient", new HttpClientConfig("email"));
@@ -115,12 +116,13 @@ public class InternalConfig {
         ret.put("AmazonCognitoSyncClient", new HttpClientConfig("cognito-sync"));
         ret.put("AmazonKinesisFirehoseClient", new HttpClientConfig("firehose"));
         ret.put("AWSIotClient", new HttpClientConfig("execute-api"));
+        ret.put("AmazonLexRuntimeClient", new HttpClientConfig("runtime.lex"));
         return ret;
     }
 
     private static Map<String, SignerConfig> getDefaultRegionSigners() {
         // map from region name to signer type
-        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+        final Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         ret.put("eu-central-1", new SignerConfig("AWS4SignerType"));
         ret.put("cn-north-1", new SignerConfig("AWS4SignerType"));
         return ret;
@@ -128,7 +130,7 @@ public class InternalConfig {
 
     private static Map<String, SignerConfig> getDefaultServiceRegionSigners() {
         // map from "<service>/<region>" to signer type
-        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+        final Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         ret.put("s3/eu-central-1", new SignerConfig("AWSS3V4SignerType"));
         ret.put("s3/cn-north-1", new SignerConfig("AWSS3V4SignerType"));
         return ret;
@@ -136,11 +138,12 @@ public class InternalConfig {
 
     private static Map<String, SignerConfig> getDefaultServiceSigners() {
         // map from abbreviated service name to signer type
-        Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
+        final Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         ret.put("ec2", new SignerConfig("QueryStringSignerType"));
         ret.put("email", new SignerConfig("AWS3SignerType"));
         ret.put("s3", new SignerConfig("S3SignerType"));
         ret.put("sdb", new SignerConfig("QueryStringSignerType"));
+        ret.put("runtime.lex", new SignerConfig("AmazonLexV4Signer"));
         return ret;
     }
 
@@ -149,7 +152,7 @@ public class InternalConfig {
     }
 
     private static List<HostRegexToRegionMapping> getDefaultHostRegexToRegionMappings() {
-        List<HostRegexToRegionMapping> ret = new ArrayList<HostRegexToRegionMapping>();
+        final List<HostRegexToRegionMapping> ret = new ArrayList<HostRegexToRegionMapping>();
         ret.add(new HostRegexToRegionMapping("(.+\\.)?s3\\.amazonaws\\.com", "us-east-1"));
         ret.add(new HostRegexToRegionMapping("(.+\\.)?s3-external-1\\.amazonaws\\.com", "us-east-1"));
         ret.add(new HostRegexToRegionMapping("(.+\\.)?s3-fips-us-gov-west-1\\.amazonaws\\.com",
@@ -159,7 +162,7 @@ public class InternalConfig {
 
     // For debugging purposes
     void dump() {
-        StringBuilder sb = new StringBuilder().append("defaultSignerConfig: ")
+        final StringBuilder sb = new StringBuilder().append("defaultSignerConfig: ")
                 .append(defaultSignerConfig).append("\n")
                 .append("serviceRegionSigners: ").append(serviceRegionSigners)
                 .append("\n").append("regionSigners: ").append(regionSigners)
@@ -175,9 +178,9 @@ public class InternalConfig {
             InternalConfig config = null;
             try {
                 config = new InternalConfig();
-            } catch (RuntimeException ex) {
+            } catch (final RuntimeException ex) {
                 throw ex;
-            } catch (Exception ex) {
+            } catch (final Exception ex) {
                 throw new IllegalStateException(
                         "Fatal: Failed to load the internal config for AWS Android SDK",
                         ex);

@@ -15,8 +15,6 @@
 
 package com.amazonaws.http;
 
-import static com.amazonaws.SDKGlobalConfiguration.DISABLE_CERT_CHECKING_SYSTEM_PROPERTY;
-
 import com.amazonaws.ClientConfiguration;
 
 import java.io.IOException;
@@ -26,16 +24,12 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
-import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 /**
  * An implementation of {@link HttpClient} by {@link HttpURLConnection}. This is
@@ -56,39 +50,39 @@ public class UrlHttpClient implements HttpClient {
     }
 
     @Override
-    public HttpResponse execute(HttpRequest request) throws IOException {
-        URL url = request.getUri().toURL();
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    public HttpResponse execute(final HttpRequest request) throws IOException {
+        final URL url = request.getUri().toURL();
+        final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        configureConnection(connection);
+        configureConnection(request, connection);
         applyHeadersAndMethod(request, connection);
         writeContentToConnection(request, connection);
         return createHttpResponse(request, connection);
     }
 
-    HttpResponse createHttpResponse(HttpRequest request, HttpURLConnection connection)
+    HttpResponse createHttpResponse(final HttpRequest request, final HttpURLConnection connection)
             throws IOException {
-
-        String statusText = connection.getResponseMessage();
-        int statusCode = connection.getResponseCode();
+        // connection.setDoOutput(true);
+        final String statusText = connection.getResponseMessage();
+        final int statusCode = connection.getResponseCode();
         InputStream content = connection.getErrorStream();
         if (content == null) {
             // HEAD method doesn't have a body
             if (!request.getMethod().equals("HEAD")) {
                 try {
                     content = connection.getInputStream();
-                } catch (IOException ioe) {
+                } catch (final IOException ioe) {
                     // getInputStream() can throw an exception when there is no
                     // input stream.
                 }
             }
         }
 
-        HttpResponse.Builder builder = HttpResponse.builder()
+        final HttpResponse.Builder builder = HttpResponse.builder()
                 .statusCode(statusCode)
                 .statusText(statusText)
                 .content(content);
-        for (Map.Entry<String, List<String>> header : connection.getHeaderFields().entrySet()) {
+        for (final Map.Entry<String, List<String>> header : connection.getHeaderFields().entrySet()) {
             // skip null field that stores connection status
             if (header.getKey() == null) {
                 continue;
@@ -116,7 +110,7 @@ public class UrlHttpClient implements HttpClient {
      * @param connection
      * @throws IOException
      */
-    void writeContentToConnection(HttpRequest request, HttpURLConnection connection)
+    void writeContentToConnection(final HttpRequest request, final HttpURLConnection connection)
             throws IOException {
         // Note: if DoOutput is set to true and method is GET, HttpUrlConnection
         // will silently change the method to POST.
@@ -124,20 +118,23 @@ public class UrlHttpClient implements HttpClient {
             connection.setDoOutput(true);
             // This is for backward compatibility, because
             // setFixedLengthStreamingMode(long) is available in API level 19.
-            connection.setFixedLengthStreamingMode((int) request.getContentLength());
-            OutputStream os = connection.getOutputStream();
+            if (!request.isStreaming()) {
+                connection.setFixedLengthStreamingMode((int) request.getContentLength());
+            }
+            final OutputStream os = connection.getOutputStream();
             write(request.getContent(), os);
             os.flush();
             os.close();
         }
     }
 
-    HttpURLConnection applyHeadersAndMethod(HttpRequest request, HttpURLConnection connection)
+    HttpURLConnection applyHeadersAndMethod(final HttpRequest request,
+            final HttpURLConnection connection)
             throws ProtocolException {
         // add headers
         if (request.getHeaders() != null && !request.getHeaders().isEmpty()) {
-            for (Map.Entry<String, String> header : request.getHeaders().entrySet()) {
-                String key = header.getKey();
+            for (final Map.Entry<String, String> header : request.getHeaders().entrySet()) {
+                final String key = header.getKey();
                 // Skip reserved headers for HttpURLConnection
                 if (key.equals(HttpHeader.CONTENT_LENGTH) || key.equals(HttpHeader.HOST)) {
                     continue;
@@ -160,29 +157,34 @@ public class UrlHttpClient implements HttpClient {
             }
         }
 
-        String method = request.getMethod();
+        final String method = request.getMethod();
         connection.setRequestMethod(method);
         return connection;
     }
 
     private void write(InputStream is, OutputStream os) throws IOException {
-        byte[] buf = new byte[1024 * 8];
+        final byte[] buf = new byte[1024 * 8];
         int len;
         while ((len = is.read(buf)) != -1) {
             os.write(buf, 0, len);
         }
     }
 
-    void configureConnection(HttpURLConnection connection) {
+    void configureConnection(HttpRequest request, HttpURLConnection connection) {
         // configure the connection
         connection.setConnectTimeout(config.getConnectionTimeout());
         connection.setReadTimeout(config.getSocketTimeout());
         // disable redirect and cache
         connection.setInstanceFollowRedirects(false);
         connection.setUseCaches(false);
+        // is streaming
+        if (request.isStreaming()) {
+            connection.setChunkedStreamingMode(0);
+        }
+
         // configure https connection
         if (connection instanceof HttpsURLConnection) {
-            HttpsURLConnection https = (HttpsURLConnection) connection;
+            final HttpsURLConnection https = (HttpsURLConnection) connection;
 
             // disable cert check
             /*
@@ -202,13 +204,13 @@ public class UrlHttpClient implements HttpClient {
 
     private void enableCustomTrustManager(HttpsURLConnection connection) {
         if (sc == null) {
-            TrustManager[] customTrustManagers = new TrustManager[] {
+            final TrustManager[] customTrustManagers = new TrustManager[] {
                     config.getTrustManager()
             };
             try {
                 sc = SSLContext.getInstance("TLS");
                 sc.init(null, customTrustManagers, null);
-            } catch (GeneralSecurityException e) {
+            } catch (final GeneralSecurityException e) {
                 throw new RuntimeException(e);
             }
         }

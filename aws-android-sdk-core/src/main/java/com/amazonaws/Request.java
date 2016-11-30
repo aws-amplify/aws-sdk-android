@@ -208,4 +208,18 @@ public interface Request<T> {
      * @throws IllegalStateException if the binding has already occurred
      */
     public void setAWSRequestMetrics(AWSRequestMetrics metrics);
+
+    /**
+     * Flag that indicates that request is streaming request
+     *
+     * @return
+     */
+    public boolean isStreaming();
+
+    /**
+     * Set streaming flag
+     * 
+     * @param streaming
+     */
+    public void setStreaming(boolean streaming);
 }

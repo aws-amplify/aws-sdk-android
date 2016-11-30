@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentity.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentity.model.InvalidIdentityPoolConfigurationException;
 
 public class InvalidIdentityPoolConfigurationExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidIdentityPoolConfigurationExceptionUnmarshaller extends JsonE
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidIdentityPoolConfigurationException e = (InvalidIdentityPoolConfigurationException) super
                 .unmarshall(error);
         e.setErrorCode("InvalidIdentityPoolConfigurationException");

@@ -18,7 +18,6 @@ package com.amazonaws.services.lambda.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.lambda.model.EC2AccessDeniedException;
 
 public class EC2AccessDeniedExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class EC2AccessDeniedExceptionUnmarshaller extends JsonErrorUnmarshaller 
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         EC2AccessDeniedException e = (EC2AccessDeniedException) super.unmarshall(error);
         e.setErrorCode("EC2AccessDeniedException");
         e.setType(String.valueOf(error.get("Type")));

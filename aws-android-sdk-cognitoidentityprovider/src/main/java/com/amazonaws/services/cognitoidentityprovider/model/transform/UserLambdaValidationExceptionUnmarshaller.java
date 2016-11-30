@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentityprovider.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentityprovider.model.UserLambdaValidationException;
 
 public class UserLambdaValidationExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class UserLambdaValidationExceptionUnmarshaller extends JsonErrorUnmarsha
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         UserLambdaValidationException e = (UserLambdaValidationException) super.unmarshall(error);
         e.setErrorCode("UserLambdaValidationException");
 

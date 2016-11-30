@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentityprovider.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentityprovider.model.UnexpectedLambdaException;
 
 public class UnexpectedLambdaExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class UnexpectedLambdaExceptionUnmarshaller extends JsonErrorUnmarshaller
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         UnexpectedLambdaException e = (UnexpectedLambdaException) super.unmarshall(error);
         e.setErrorCode("UnexpectedLambdaException");
 

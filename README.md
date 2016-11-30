@@ -32,6 +32,7 @@ The AWS SDK for Android supports the following AWS services:
 * [Amazon Kinesis Streams](http://aws.amazon.com/kinesis/streams/)
 * [Amazon Machine Learning](http://aws.amazon.com/machine-learning/)
 * [Amazon Mobile Analytics](http://aws.amazon.com/mobileanalytics/)
+* [Amazon Polly](http://aws.amazon.com/polly/)
 * [Amazon S3](http://aws.amazon.com/s3/)
 * [Amazon Security Token Service (STS)](http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html)
 * [Amazon Simple Email Service (SES)](http://aws.amazon.com/ses/)
@@ -199,7 +200,8 @@ Note: Cognito Identity authentication abilities are included in the aws-android-
 * cloudwatch (Amazon CloudWatch),
 * autoscaling (Auto Scaling),
 * ec2 (Amazon EC2),
-* sdb (Amazon Simple DB)
+* sdb (Amazon Simple DB),
+* polly (Amazon Polly)
 
 #### Using Maven 
 

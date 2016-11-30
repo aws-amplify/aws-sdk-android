@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentityprovider.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentityprovider.model.UnsupportedUserStateException;
 
 public class UnsupportedUserStateExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class UnsupportedUserStateExceptionUnmarshaller extends JsonErrorUnmarsha
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         UnsupportedUserStateException e = (UnsupportedUserStateException) super.unmarshall(error);
         e.setErrorCode("UnsupportedUserStateException");
 

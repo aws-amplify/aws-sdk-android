@@ -18,7 +18,6 @@ package com.amazonaws.services.iotdata.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iotdata.model.MethodNotAllowedException;
 
 public class MethodNotAllowedExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class MethodNotAllowedExceptionUnmarshaller extends JsonErrorUnmarshaller
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         MethodNotAllowedException e = (MethodNotAllowedException) super.unmarshall(error);
         e.setErrorCode("MethodNotAllowedException");
 

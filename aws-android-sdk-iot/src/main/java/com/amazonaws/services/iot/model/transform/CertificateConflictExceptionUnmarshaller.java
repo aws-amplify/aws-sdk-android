@@ -18,7 +18,6 @@ package com.amazonaws.services.iot.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iot.model.CertificateConflictException;
 
 public class CertificateConflictExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class CertificateConflictExceptionUnmarshaller extends JsonErrorUnmarshal
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         CertificateConflictException e = (CertificateConflictException) super.unmarshall(error);
         e.setErrorCode("CertificateConflictException");
 

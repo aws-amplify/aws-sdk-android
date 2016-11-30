@@ -18,7 +18,6 @@ package com.amazonaws.services.kinesisfirehose.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.kinesisfirehose.model.InvalidArgumentException;
 
 public class InvalidArgumentExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidArgumentExceptionUnmarshaller extends JsonErrorUnmarshaller 
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidArgumentException e = (InvalidArgumentException) super.unmarshall(error);
         e.setErrorCode("InvalidArgumentException");
 

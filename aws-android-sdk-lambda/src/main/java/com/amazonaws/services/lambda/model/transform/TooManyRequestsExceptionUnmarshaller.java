@@ -18,7 +18,6 @@ package com.amazonaws.services.lambda.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.lambda.model.TooManyRequestsException;
 
 public class TooManyRequestsExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,9 +33,11 @@ public class TooManyRequestsExceptionUnmarshaller extends JsonErrorUnmarshaller 
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         TooManyRequestsException e = (TooManyRequestsException) super.unmarshall(error);
         e.setErrorCode("TooManyRequestsException");
         e.setRetryAfterSeconds(String.valueOf(error.get("retryAfterSeconds")));
+
         e.setType(String.valueOf(error.get("Type")));
 
         return e;

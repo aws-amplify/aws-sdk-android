@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentityprovider.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentityprovider.model.TooManyFailedAttemptsException;
 
 public class TooManyFailedAttemptsExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class TooManyFailedAttemptsExceptionUnmarshaller extends JsonErrorUnmarsh
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         TooManyFailedAttemptsException e = (TooManyFailedAttemptsException) super.unmarshall(error);
         e.setErrorCode("TooManyFailedAttemptsException");
 

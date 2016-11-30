@@ -18,7 +18,6 @@ package com.amazonaws.services.kms.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.kms.model.InvalidGrantIdException;
 
 public class InvalidGrantIdExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidGrantIdExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidGrantIdException e = (InvalidGrantIdException) super.unmarshall(error);
         e.setErrorCode("InvalidGrantIdException");
 

@@ -18,7 +18,6 @@ package com.amazonaws.services.iotdata.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iotdata.model.InvalidRequestException;
 
 public class InvalidRequestExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidRequestExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidRequestException e = (InvalidRequestException) super.unmarshall(error);
         e.setErrorCode("InvalidRequestException");
 

@@ -18,7 +18,6 @@ package com.amazonaws.services.lambda.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.lambda.model.InvalidParameterValueException;
 
 public class InvalidParameterValueExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidParameterValueExceptionUnmarshaller extends JsonErrorUnmarsh
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidParameterValueException e = (InvalidParameterValueException) super.unmarshall(error);
         e.setErrorCode("InvalidParameterValueException");
         e.setType(String.valueOf(error.get("Type")));

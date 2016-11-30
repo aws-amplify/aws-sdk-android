@@ -18,7 +18,6 @@ package com.amazonaws.services.kms.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.kms.model.InvalidArnException;
 
 public class InvalidArnExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidArnExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidArnException e = (InvalidArnException) super.unmarshall(error);
         e.setErrorCode("InvalidArnException");
 

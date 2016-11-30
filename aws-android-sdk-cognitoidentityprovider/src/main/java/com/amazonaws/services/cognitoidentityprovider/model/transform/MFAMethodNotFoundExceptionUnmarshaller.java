@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentityprovider.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentityprovider.model.MFAMethodNotFoundException;
 
 public class MFAMethodNotFoundExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class MFAMethodNotFoundExceptionUnmarshaller extends JsonErrorUnmarshalle
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         MFAMethodNotFoundException e = (MFAMethodNotFoundException) super.unmarshall(error);
         e.setErrorCode("MFAMethodNotFoundException");
 

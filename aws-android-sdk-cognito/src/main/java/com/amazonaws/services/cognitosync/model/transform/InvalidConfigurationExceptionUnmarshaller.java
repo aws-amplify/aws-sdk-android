@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitosync.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitosync.model.InvalidConfigurationException;
 
 public class InvalidConfigurationExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidConfigurationExceptionUnmarshaller extends JsonErrorUnmarsha
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidConfigurationException e = (InvalidConfigurationException) super.unmarshall(error);
         e.setErrorCode("InvalidConfigurationException");
 

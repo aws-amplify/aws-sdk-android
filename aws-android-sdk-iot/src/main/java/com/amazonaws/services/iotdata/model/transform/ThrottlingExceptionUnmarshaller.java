@@ -18,7 +18,6 @@ package com.amazonaws.services.iotdata.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iotdata.model.ThrottlingException;
 
 public class ThrottlingExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class ThrottlingExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         ThrottlingException e = (ThrottlingException) super.unmarshall(error);
         e.setErrorCode("ThrottlingException");
 

@@ -18,7 +18,6 @@ package com.amazonaws.services.kms.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.kms.model.MalformedPolicyDocumentException;
 
 public class MalformedPolicyDocumentExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class MalformedPolicyDocumentExceptionUnmarshaller extends JsonErrorUnmar
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         MalformedPolicyDocumentException e = (MalformedPolicyDocumentException) super
                 .unmarshall(error);
         e.setErrorCode("MalformedPolicyDocumentException");

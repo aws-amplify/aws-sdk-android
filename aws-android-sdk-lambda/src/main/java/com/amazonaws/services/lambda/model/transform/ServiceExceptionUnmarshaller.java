@@ -18,7 +18,6 @@ package com.amazonaws.services.lambda.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.lambda.model.ServiceException;
 
 public class ServiceExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class ServiceExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         ServiceException e = (ServiceException) super.unmarshall(error);
         e.setErrorCode("ServiceException");
         e.setType(String.valueOf(error.get("Type")));

@@ -18,7 +18,6 @@ package com.amazonaws.services.lambda.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.lambda.model.InvalidSecurityGroupIDException;
 
 public class InvalidSecurityGroupIDExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidSecurityGroupIDExceptionUnmarshaller extends JsonErrorUnmars
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidSecurityGroupIDException e = (InvalidSecurityGroupIDException) super
                 .unmarshall(error);
         e.setErrorCode("InvalidSecurityGroupIDException");

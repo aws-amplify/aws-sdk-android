@@ -82,16 +82,26 @@ class ApiClientHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable {
-        // the execute method call flow
-        if (isExecuteMethod(method)) {
-            final HttpRequest httpRequest = invokeExecuteMethod(args);
-            final HttpResponse response = client.execute(httpRequest);
-            return new ApiResponse(response);
-        } else {
-            final HttpRequest httpRequest = createHttpRequest(method, args);
-            final HttpResponse response = client.execute(httpRequest);
 
-            return handleResponse(response, method);
+        try {
+            // the execute method call flow
+            if (isExecuteMethod(method)) {
+                final HttpRequest httpRequest = invokeExecuteMethod(args);
+                final HttpResponse response = client.execute(httpRequest);
+
+                return new ApiResponse(response);
+            } else {
+                final HttpRequest httpRequest = createHttpRequest(method, args);
+                final HttpResponse response = client.execute(httpRequest);
+
+                return handleResponse(response, method);
+            }
+
+        } catch (final ApiClientException ace) {
+            throw ace;
+        } catch (final Exception e) {
+            final String msg = e.getMessage() == null ? "" : e.getMessage();
+            throw new ApiClientException(msg, e);
         }
     }
 

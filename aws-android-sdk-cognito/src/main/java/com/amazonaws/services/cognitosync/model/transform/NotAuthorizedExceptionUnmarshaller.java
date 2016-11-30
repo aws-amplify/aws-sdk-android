@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitosync.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitosync.model.NotAuthorizedException;
 
 public class NotAuthorizedExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class NotAuthorizedExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         NotAuthorizedException e = (NotAuthorizedException) super.unmarshall(error);
         e.setErrorCode("NotAuthorizedException");
 

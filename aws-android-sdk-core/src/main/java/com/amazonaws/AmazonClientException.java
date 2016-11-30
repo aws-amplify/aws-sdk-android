@@ -58,6 +58,15 @@ public class AmazonClientException extends RuntimeException {
     }
 
     /**
+     * Create an AmazonClientException with an exception cause.
+     *
+     * @param throwable the cause of the exception.
+     */
+    public AmazonClientException(final Throwable throwable) {
+        super(throwable);
+    }
+
+    /**
      * Returns a hint as to whether it makes sense to retry upon this exception.
      * Default is true, but subclass may override.
      */

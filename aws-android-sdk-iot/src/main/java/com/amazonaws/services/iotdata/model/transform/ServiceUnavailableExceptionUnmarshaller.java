@@ -18,7 +18,6 @@ package com.amazonaws.services.iotdata.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iotdata.model.ServiceUnavailableException;
 
 public class ServiceUnavailableExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class ServiceUnavailableExceptionUnmarshaller extends JsonErrorUnmarshall
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         ServiceUnavailableException e = (ServiceUnavailableException) super.unmarshall(error);
         e.setErrorCode("ServiceUnavailableException");
 

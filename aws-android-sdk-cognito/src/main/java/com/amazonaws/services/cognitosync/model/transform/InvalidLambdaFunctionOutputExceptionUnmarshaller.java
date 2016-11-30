@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitosync.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitosync.model.InvalidLambdaFunctionOutputException;
 
 public class InvalidLambdaFunctionOutputExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidLambdaFunctionOutputExceptionUnmarshaller extends JsonErrorU
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidLambdaFunctionOutputException e = (InvalidLambdaFunctionOutputException) super
                 .unmarshall(error);
         e.setErrorCode("InvalidLambdaFunctionOutputException");

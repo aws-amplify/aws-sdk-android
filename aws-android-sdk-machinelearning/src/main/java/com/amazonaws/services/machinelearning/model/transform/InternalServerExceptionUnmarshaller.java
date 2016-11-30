@@ -18,7 +18,6 @@ package com.amazonaws.services.machinelearning.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.machinelearning.model.InternalServerException;
 
 public class InternalServerExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InternalServerExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InternalServerException e = (InternalServerException) super.unmarshall(error);
         e.setErrorCode("InternalServerException");
         e.setCode(Integer.valueOf(error.get("code")));

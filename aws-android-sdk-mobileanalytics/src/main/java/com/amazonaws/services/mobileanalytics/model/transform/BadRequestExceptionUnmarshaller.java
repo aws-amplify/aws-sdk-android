@@ -18,7 +18,6 @@ package com.amazonaws.services.mobileanalytics.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.mobileanalytics.model.BadRequestException;
 
 public class BadRequestExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class BadRequestExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         BadRequestException e = (BadRequestException) super.unmarshall(error);
         e.setErrorCode("BadRequestException");
 

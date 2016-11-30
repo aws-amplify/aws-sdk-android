@@ -18,7 +18,6 @@ package com.amazonaws.services.kms.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.kms.model.InvalidCiphertextException;
 
 public class InvalidCiphertextExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidCiphertextExceptionUnmarshaller extends JsonErrorUnmarshalle
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidCiphertextException e = (InvalidCiphertextException) super.unmarshall(error);
         e.setErrorCode("InvalidCiphertextException");
 

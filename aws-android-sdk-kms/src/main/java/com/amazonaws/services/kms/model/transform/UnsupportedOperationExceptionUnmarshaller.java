@@ -18,7 +18,6 @@ package com.amazonaws.services.kms.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.kms.model.UnsupportedOperationException;
 
 public class UnsupportedOperationExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class UnsupportedOperationExceptionUnmarshaller extends JsonErrorUnmarsha
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         UnsupportedOperationException e = (UnsupportedOperationException) super.unmarshall(error);
         e.setErrorCode("UnsupportedOperationException");
 

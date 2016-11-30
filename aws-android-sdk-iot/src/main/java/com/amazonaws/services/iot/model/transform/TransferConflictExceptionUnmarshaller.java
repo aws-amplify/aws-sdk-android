@@ -18,7 +18,6 @@ package com.amazonaws.services.iot.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iot.model.TransferConflictException;
 
 public class TransferConflictExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class TransferConflictExceptionUnmarshaller extends JsonErrorUnmarshaller
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         TransferConflictException e = (TransferConflictException) super.unmarshall(error);
         e.setErrorCode("TransferConflictException");
 

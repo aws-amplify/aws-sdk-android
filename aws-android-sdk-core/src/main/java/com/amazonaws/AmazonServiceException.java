@@ -83,7 +83,7 @@ public class AmazonServiceException extends AmazonClientException {
     /**
      * The error message as returned by the service.
      */
-    private String errorMessage;
+    private final String errorMessage;
 
     /** The HTTP status code that was returned with this error */
     private int statusCode;
@@ -99,7 +99,7 @@ public class AmazonServiceException extends AmazonClientException {
      * @param errorMessage An error message describing what went wrong.
      */
     public AmazonServiceException(String errorMessage) {
-        super(null);
+        super(errorMessage);
         this.errorMessage = errorMessage;
     }
 

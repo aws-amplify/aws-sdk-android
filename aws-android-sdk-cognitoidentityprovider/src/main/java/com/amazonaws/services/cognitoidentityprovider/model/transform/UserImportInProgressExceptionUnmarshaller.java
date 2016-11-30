@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentityprovider.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentityprovider.model.UserImportInProgressException;
 
 public class UserImportInProgressExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class UserImportInProgressExceptionUnmarshaller extends JsonErrorUnmarsha
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         UserImportInProgressException e = (UserImportInProgressException) super.unmarshall(error);
         e.setErrorCode("UserImportInProgressException");
 

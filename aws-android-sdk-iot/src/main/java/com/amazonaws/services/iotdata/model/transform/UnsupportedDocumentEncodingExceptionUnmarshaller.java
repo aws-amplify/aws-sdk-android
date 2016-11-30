@@ -18,7 +18,6 @@ package com.amazonaws.services.iotdata.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iotdata.model.UnsupportedDocumentEncodingException;
 
 public class UnsupportedDocumentEncodingExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class UnsupportedDocumentEncodingExceptionUnmarshaller extends JsonErrorU
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         UnsupportedDocumentEncodingException e = (UnsupportedDocumentEncodingException) super
                 .unmarshall(error);
         e.setErrorCode("UnsupportedDocumentEncodingException");

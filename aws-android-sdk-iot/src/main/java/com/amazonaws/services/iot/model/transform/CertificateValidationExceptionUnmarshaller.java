@@ -18,7 +18,6 @@ package com.amazonaws.services.iot.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iot.model.CertificateValidationException;
 
 public class CertificateValidationExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class CertificateValidationExceptionUnmarshaller extends JsonErrorUnmarsh
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         CertificateValidationException e = (CertificateValidationException) super.unmarshall(error);
         e.setErrorCode("CertificateValidationException");
 

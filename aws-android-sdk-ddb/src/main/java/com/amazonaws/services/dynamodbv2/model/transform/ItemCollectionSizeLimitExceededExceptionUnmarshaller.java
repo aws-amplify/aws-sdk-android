@@ -18,7 +18,6 @@ package com.amazonaws.services.dynamodbv2.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.dynamodbv2.model.ItemCollectionSizeLimitExceededException;
 
 public class ItemCollectionSizeLimitExceededExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class ItemCollectionSizeLimitExceededExceptionUnmarshaller extends JsonEr
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         ItemCollectionSizeLimitExceededException e = (ItemCollectionSizeLimitExceededException) super
                 .unmarshall(error);
         e.setErrorCode("ItemCollectionSizeLimitExceededException");

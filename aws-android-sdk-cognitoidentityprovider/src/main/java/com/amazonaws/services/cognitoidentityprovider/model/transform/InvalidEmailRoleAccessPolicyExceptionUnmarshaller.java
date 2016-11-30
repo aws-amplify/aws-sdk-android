@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentityprovider.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentityprovider.model.InvalidEmailRoleAccessPolicyException;
 
 public class InvalidEmailRoleAccessPolicyExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class InvalidEmailRoleAccessPolicyExceptionUnmarshaller extends JsonError
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         InvalidEmailRoleAccessPolicyException e = (InvalidEmailRoleAccessPolicyException) super
                 .unmarshall(error);
         e.setErrorCode("InvalidEmailRoleAccessPolicyException");

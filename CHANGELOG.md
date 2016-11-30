@@ -1,4 +1,11 @@
 # Change Log - AWS SDK for Android
+## [Release 2.3.4] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.4) (11/30/2016)
+
+### New Features
+- **Support for Amazon Lex - Beta**: Amazon Lex is a service for building conversational interactions into any application using voice and text. With Lex, the same conversational engine that powers Amazon Alexa is now available to any developer, enabling you to build sophisticated, natural language, conversational bots (chatbots) into your new and existing applications. Amazon Lex provides the deep functionality and flexibility of automatic speech recognition (ASR) for converting speech to text and natural language understanding (NLU) to understand the intent of the text. This allows you to build highly engaging user experiences with lifelike, conversational interactions.
+
+- **Support for Amazon Polly**: Amazon Polly is a service that turns text into lifelike speech, making it easy to develop applications that use high-quality speech to increase engagement and accessibility. With Amazon Polly the developers can build speech-enabled apps that work in multiple geographies.
+
 ## [Release 2.3.3] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.3) (10/11/2016)
 
 ### Improvements

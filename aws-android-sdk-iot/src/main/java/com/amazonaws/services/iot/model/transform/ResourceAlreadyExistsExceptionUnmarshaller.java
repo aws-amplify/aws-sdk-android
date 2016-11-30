@@ -18,7 +18,6 @@ package com.amazonaws.services.iot.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.iot.model.ResourceAlreadyExistsException;
 
 public class ResourceAlreadyExistsExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class ResourceAlreadyExistsExceptionUnmarshaller extends JsonErrorUnmarsh
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         ResourceAlreadyExistsException e = (ResourceAlreadyExistsException) super.unmarshall(error);
         e.setErrorCode("ResourceAlreadyExistsException");
 

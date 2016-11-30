@@ -18,7 +18,6 @@ package com.amazonaws.services.dynamodbv2.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException;
 
 public class ConditionalCheckFailedExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class ConditionalCheckFailedExceptionUnmarshaller extends JsonErrorUnmars
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         ConditionalCheckFailedException e = (ConditionalCheckFailedException) super
                 .unmarshall(error);
         e.setErrorCode("ConditionalCheckFailedException");
