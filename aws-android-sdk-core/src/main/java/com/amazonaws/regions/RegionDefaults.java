@@ -48,6 +48,7 @@ class RegionDefaults {
                 true);
         updateRegion(region, "cognito-idp", "cognito-idp.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "mobileanalytics", "mobileanalytics.us-east-1.amazonaws.com", false, true);
+        updateRegion(region, "mobiletargeting", "pinpoint.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "machinelearning", "machinelearning.us-east-1.amazonaws.com", false,
                 true);
         updateRegion(region, "kms", "kms.us-east-1.amazonaws.com", false, true);

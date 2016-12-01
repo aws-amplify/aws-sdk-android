@@ -117,6 +117,7 @@ public class InternalConfig {
         ret.put("AmazonKinesisFirehoseClient", new HttpClientConfig("firehose"));
         ret.put("AWSIotClient", new HttpClientConfig("execute-api"));
         ret.put("AmazonLexRuntimeClient", new HttpClientConfig("runtime.lex"));
+        ret.put("AmazonPinpointClient", new HttpClientConfig("mobiletargeting"));
         return ret;
     }
 

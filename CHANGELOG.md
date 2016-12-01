@@ -1,4 +1,10 @@
 # Change Log - AWS SDK for Android
+## [Release 2.3.5] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.5) (12/01/2016)
+
+### New Features
+- **Support for Amazon Pinpoint**: Amazon Pinpoint makes it easy to run targeted campaigns to improve user engagement. Pinpoint helps you understand your users behavior, define who to target, what messages to send, when to deliver them, and tracks the results of the campaigns.
+
+
 ## [Release 2.3.4] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.4) (11/30/2016)
 
 ### New Features
