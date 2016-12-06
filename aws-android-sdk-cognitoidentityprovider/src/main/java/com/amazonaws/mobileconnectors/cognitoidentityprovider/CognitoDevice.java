@@ -24,7 +24,6 @@ import android.util.Log;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoInternalErrorException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoPasswordInvalidException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.DevicesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoDeviceHelper;
@@ -299,7 +298,7 @@ public class CognitoDevice {
      */
     public void forgetDevice(GenericHandler callback) {
         if (callback == null) {
-            throw new CognitoPasswordInvalidException("callback is null");
+            throw new CognitoParameterInvalidException("callback is null");
         }
         try {
             forgetDeviceInternal(user.getCachedSession());
