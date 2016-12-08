@@ -124,8 +124,9 @@ public class NewPasswordContinuation extends ChallengeContinuation {
     public void continueTask() {
         if (requiredAttributes != null && requiredAttributes.size() > 1) {
             for (String requiredAttribute: requiredAttributes) {
-                if (!challengeResponses.containsKey(requiredAttribute)) {
-                    throw new CognitoParameterInvalidException(String.format("Missing required attribute: ", requiredAttribute));
+				String requiredAttrKey = CognitoServiceConstants.CHLG_PARAM_USER_ATTRIBUTE_PREFIX + requiredAttribute;
+                if (!challengeResponses.containsKey(requiredAttrKey)) {
+                    throw new CognitoParameterInvalidException(String.format("Missing required attribute: %s", requiredAttribute));
                 }
             }
         }
