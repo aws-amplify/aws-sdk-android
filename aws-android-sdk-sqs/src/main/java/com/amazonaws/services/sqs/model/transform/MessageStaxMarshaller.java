@@ -50,9 +50,9 @@ class MessageStaxMarshaller {
             prefix = _prefix + "Attribute";
             java.util.Map<String, String> attributes = _message.getAttributes();
             int attributesIndex = 1;
-            String attributesPrefix = prefix;
+            String attributesPrefix = prefix + ".";
             for (java.util.Map.Entry<String, String> attributesEntry : attributes.entrySet()) {
-                prefix = attributesPrefix + ".entry." + attributesIndex;
+                prefix = attributesPrefix + attributesIndex;
                 if (attributesEntry.getKey() != null) {
                     request.addParameter(prefix + ".Name",
                             StringUtils.fromString(attributesEntry.getKey()));
@@ -76,10 +76,10 @@ class MessageStaxMarshaller {
             java.util.Map<String, MessageAttributeValue> messageAttributes = _message
                     .getMessageAttributes();
             int messageAttributesIndex = 1;
-            String messageAttributesPrefix = prefix;
+            String messageAttributesPrefix = prefix + ".";
             for (java.util.Map.Entry<String, MessageAttributeValue> messageAttributesEntry : messageAttributes
                     .entrySet()) {
-                prefix = messageAttributesPrefix + ".entry." + messageAttributesIndex;
+                prefix = messageAttributesPrefix + messageAttributesIndex;
                 if (messageAttributesEntry.getKey() != null) {
                     request.addParameter(prefix + ".Name",
                             StringUtils.fromString(messageAttributesEntry.getKey()));

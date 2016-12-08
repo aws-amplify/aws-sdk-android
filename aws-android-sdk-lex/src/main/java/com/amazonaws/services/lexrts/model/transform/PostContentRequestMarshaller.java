@@ -70,6 +70,7 @@ public class PostContentRequestMarshaller implements
                         .fromString(postContentRequest.getUserId()));
         request.setResourcePath(uriResourcePath);
         request.setContent(postContentRequest.getInputStream());
+        request.setStreaming(true);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
         }

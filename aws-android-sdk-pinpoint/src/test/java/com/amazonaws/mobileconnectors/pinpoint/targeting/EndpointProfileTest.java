@@ -27,10 +27,14 @@ import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockDeviceDetails;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.DateUtil;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileDemographic;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileLocation;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +44,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -158,6 +163,46 @@ public class EndpointProfileTest extends MobileAnalyticsTestBase {
         assertTrue(target.getAllMetrics().isEmpty());
         target.withMetric("key2", 0.0);
         assertTrue(target.hasMetric("key2"));
+    }
 
+    @Test
+    public void testEndpointSerialization() throws JSONException {
+        target = new EndpointProfile(mockContext);
+        long date = DateUtil.getCorrectedDate().getTime();
+        target.setEffectiveDate(date);
+        target.addMetric("key1", 0.0);
+        target.addAttribute("key1", Arrays.asList(new String[]{"attr1", "attr2"}));
+        assertFalse(target.getAllMetrics().isEmpty());
+        assertFalse(target.getAllAttributes().isEmpty());
+        assertNotNull(target.getEffectiveDate());
+        JSONObject jsonEndpoint = target.toJSONObject();
+        assertTrue(jsonEndpoint.getString("ApplicationId").equalsIgnoreCase(target.getApplicationId()));
+        assertTrue(jsonEndpoint.getString("EndpointId").equalsIgnoreCase(target.getEndpointId()));
+        assertTrue(jsonEndpoint.getString("ChannelType").equalsIgnoreCase(target.getChannelType()));
+        assertTrue(jsonEndpoint.getString("EffectiveDate").equalsIgnoreCase(DateUtil.isoDateFromMillis(date)));
+        assertTrue(jsonEndpoint.getString("OptOut").equalsIgnoreCase(target.getOptOut()));
+
+        JSONObject metrics = jsonEndpoint.getJSONObject("Metrics");
+        assertEquals(metrics.getDouble("key1"), 0.0, 0.0);
+
+        JSONObject attributes = jsonEndpoint.getJSONObject("Attributes");
+        JSONArray attrValues = attributes.getJSONArray("key1");
+        assertTrue(attrValues.getString(0).equalsIgnoreCase("attr1"));
+        assertTrue(attrValues.getString(1).equalsIgnoreCase("attr2"));
+
+        JSONObject location = jsonEndpoint.getJSONObject("Location");
+        assertTrue(location.getString("PostalCode").equalsIgnoreCase(target.getLocation().getPostalCode()));
+        assertTrue(location.getString("Region").equalsIgnoreCase(target.getLocation().getRegion()));
+        assertTrue(location.getString("Country").equalsIgnoreCase(target.getLocation().getCountry()));
+        assertTrue(location.getString("City").equalsIgnoreCase(target.getLocation().getCity()));
+
+        JSONObject demographic = jsonEndpoint.getJSONObject("Demographic");
+        assertTrue(demographic.getString("Timezone").equalsIgnoreCase(target.getDemographic().getTimezone()));
+        assertTrue(demographic.getString("Locale").equalsIgnoreCase(target.getDemographic().getLocale().toString()));
+        assertTrue(demographic.getString("AppVersion").equalsIgnoreCase(target.getDemographic().getAppVersion()));
+        assertTrue(demographic.getString("PlatformVersion").equalsIgnoreCase(target.getDemographic().getPlatformVersion()));
+        assertTrue(demographic.getString("Platform").equalsIgnoreCase(target.getDemographic().getPlatform()));
+        assertTrue(demographic.getString("Model").equalsIgnoreCase(target.getDemographic().getModel()));
+        assertTrue(demographic.getString("Make").equalsIgnoreCase(target.getDemographic().getMake()));
     }
 }

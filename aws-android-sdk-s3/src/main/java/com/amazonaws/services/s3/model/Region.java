@@ -194,6 +194,18 @@ public enum Region {
     SA_SaoPaulo("sa-east-1"),
 
     /**
+     * The Canada Central (Montreal) Region. This region uses Amazon S3 servers
+     * located in Montreal.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3.ca-central-1.amazonaws.com</code> on all requests to these
+     * buckets to reduce any latency experienced after the first hour of
+     * creating a bucket in this region.
+     * </p>
+     */
+    CA_Montreal("ca-central-1"),
+
+    /**
      * The China (Beijing) Region. This region uses Amazon S3 servers located in
      * Beijing.
      * <p>

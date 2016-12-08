@@ -23,6 +23,7 @@ import java.util.Map;
  */
 public enum QueueAttributeName {
 
+    All("All"),
     Policy("Policy"),
     VisibilityTimeout("VisibilityTimeout"),
     MaximumMessageSize("MaximumMessageSize"),
@@ -35,7 +36,9 @@ public enum QueueAttributeName {
     ApproximateNumberOfMessagesDelayed("ApproximateNumberOfMessagesDelayed"),
     DelaySeconds("DelaySeconds"),
     ReceiveMessageWaitTimeSeconds("ReceiveMessageWaitTimeSeconds"),
-    RedrivePolicy("RedrivePolicy");
+    RedrivePolicy("RedrivePolicy"),
+    FifoQueue("FifoQueue"),
+    ContentBasedDeduplication("ContentBasedDeduplication");
 
     private String value;
 
@@ -51,6 +54,7 @@ public enum QueueAttributeName {
     private static final Map<String, QueueAttributeName> enumMap;
     static {
         enumMap = new HashMap<String, QueueAttributeName>();
+        enumMap.put("All", All);
         enumMap.put("Policy", Policy);
         enumMap.put("VisibilityTimeout", VisibilityTimeout);
         enumMap.put("MaximumMessageSize", MaximumMessageSize);
@@ -64,6 +68,8 @@ public enum QueueAttributeName {
         enumMap.put("DelaySeconds", DelaySeconds);
         enumMap.put("ReceiveMessageWaitTimeSeconds", ReceiveMessageWaitTimeSeconds);
         enumMap.put("RedrivePolicy", RedrivePolicy);
+        enumMap.put("FifoQueue", FifoQueue);
+        enumMap.put("ContentBasedDeduplication", ContentBasedDeduplication);
     }
 
     /**

@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Deletes the queue specified by the <b>queue URL</b>, regardless of whether
- * the queue is empty. If the specified queue does not exist, Amazon SQS returns
+ * the queue is empty. If the specified queue doesn't exist, Amazon SQS returns
  * a successful response.
  * </p>
  * <important>

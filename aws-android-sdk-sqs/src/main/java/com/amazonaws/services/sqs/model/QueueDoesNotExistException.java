@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The queue referred to does not exist.
+ * The queue referred to doesn't exist.
  * </p>
  */
 public class QueueDoesNotExistException extends AmazonServiceException {

@@ -424,7 +424,7 @@ public class EndpointProfile implements JSONSerializable {
         builder.withAttribute("Address", getAddress());
         builder.withAttribute("Location", getLocation().toJSONObject());
         builder.withAttribute("Demographic", getDemographic().toJSONObject());
-        builder.withAttribute("EffectiveDate", getEndpointId());
+        builder.withAttribute("EffectiveDate", DateUtil.isoDateFromMillis(getEffectiveDate()));
         builder.withAttribute("OptOut", getOptOut());
 
         JSONObject attributesJson = new JSONObject();

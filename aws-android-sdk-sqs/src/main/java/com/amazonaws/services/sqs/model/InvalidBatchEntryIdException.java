@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The <code>Id</code> of a batch entry in a batch request does not abide by the
+ * The <code>Id</code> of a batch entry in a batch request doesn't abide by the
  * specification.
  * </p>
  */

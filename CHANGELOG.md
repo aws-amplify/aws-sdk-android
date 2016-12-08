@@ -1,4 +1,16 @@
 # Change Log - AWS SDK for Android
+## [Release 2.3.6] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.6) (12/07/2016)
+
+### Improvements
+- **AWS Core Runtime**: Added Support for `ca-central-1`/YUL region in the SDK.
+
+### Bug Fixes
+- **Amazon SQS**: Fixed a bug that caused SQS send message to fail. See [issue](https://github.com/aws/aws-sdk-android/issues/218).
+- **Amazon Lex Runtime**: Fixed a bug where requests were not getting signed correctly.
+- **Amazon Pinpoint**: Fix serialization of endpoint profile bug.
+- **Amazon Mobile Analytics**: Ensure session file directories exist before saving
+
+
 ## [Release 2.3.5] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.5) (12/01/2016)
 
 ### New Features

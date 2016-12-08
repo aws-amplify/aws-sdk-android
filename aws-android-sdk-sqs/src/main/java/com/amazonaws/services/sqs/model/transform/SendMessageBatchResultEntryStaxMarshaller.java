@@ -48,6 +48,11 @@ class SendMessageBatchResultEntryStaxMarshaller {
                     .getMD5OfMessageAttributes();
             request.addParameter(prefix, StringUtils.fromString(mD5OfMessageAttributes));
         }
+        if (_sendMessageBatchResultEntry.getSequenceNumber() != null) {
+            prefix = _prefix + "SequenceNumber";
+            String sequenceNumber = _sendMessageBatchResultEntry.getSequenceNumber();
+            request.addParameter(prefix, StringUtils.fromString(sequenceNumber));
+        }
     }
 
     private static SendMessageBatchResultEntryStaxMarshaller instance;

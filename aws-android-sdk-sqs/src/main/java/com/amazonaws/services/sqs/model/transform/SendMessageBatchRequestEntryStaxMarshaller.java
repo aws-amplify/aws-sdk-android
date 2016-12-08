@@ -47,10 +47,10 @@ class SendMessageBatchRequestEntryStaxMarshaller {
             java.util.Map<String, MessageAttributeValue> messageAttributes = _sendMessageBatchRequestEntry
                     .getMessageAttributes();
             int messageAttributesIndex = 1;
-            String messageAttributesPrefix = prefix;
+            String messageAttributesPrefix = prefix + ".";
             for (java.util.Map.Entry<String, MessageAttributeValue> messageAttributesEntry : messageAttributes
                     .entrySet()) {
-                prefix = messageAttributesPrefix + ".entry." + messageAttributesIndex;
+                prefix = messageAttributesPrefix + messageAttributesIndex;
                 if (messageAttributesEntry.getKey() != null) {
                     request.addParameter(prefix + ".Name",
                             StringUtils.fromString(messageAttributesEntry.getKey()));
@@ -65,6 +65,17 @@ class SendMessageBatchRequestEntryStaxMarshaller {
                 messageAttributesIndex++;
             }
             prefix = messageAttributesPrefix;
+        }
+        if (_sendMessageBatchRequestEntry.getMessageDeduplicationId() != null) {
+            prefix = _prefix + "MessageDeduplicationId";
+            String messageDeduplicationId = _sendMessageBatchRequestEntry
+                    .getMessageDeduplicationId();
+            request.addParameter(prefix, StringUtils.fromString(messageDeduplicationId));
+        }
+        if (_sendMessageBatchRequestEntry.getMessageGroupId() != null) {
+            prefix = _prefix + "MessageGroupId";
+            String messageGroupId = _sendMessageBatchRequestEntry.getMessageGroupId();
+            request.addParameter(prefix, StringUtils.fromString(messageGroupId));
         }
     }
 

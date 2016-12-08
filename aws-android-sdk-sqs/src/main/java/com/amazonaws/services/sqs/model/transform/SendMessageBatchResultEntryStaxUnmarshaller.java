@@ -67,6 +67,11 @@ class SendMessageBatchResultEntryStaxUnmarshaller implements
                             .getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("SequenceNumber", targetDepth)) {
+                    sendMessageBatchResultEntry.setSequenceNumber(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     break;

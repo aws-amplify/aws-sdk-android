@@ -33,6 +33,7 @@ public enum Regions {
     AP_NORTHEAST_1("ap-northeast-1"),
     AP_NORTHEAST_2("ap-northeast-2"),
     SA_EAST_1("sa-east-1"),
+    CA_CENTRAL_1("ca-central-1"),
     CN_NORTH_1("cn-north-1");
 
     /**

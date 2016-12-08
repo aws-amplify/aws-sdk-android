@@ -89,6 +89,11 @@ public class ReceiveMessageRequestMarshaller implements
             Integer waitTimeSeconds = receiveMessageRequest.getWaitTimeSeconds();
             request.addParameter(prefix, StringUtils.fromInteger(waitTimeSeconds));
         }
+        if (receiveMessageRequest.getReceiveRequestAttemptId() != null) {
+            prefix = "ReceiveRequestAttemptId";
+            String receiveRequestAttemptId = receiveMessageRequest.getReceiveRequestAttemptId();
+            request.addParameter(prefix, StringUtils.fromString(receiveRequestAttemptId));
+        }
 
         return request;
     }

@@ -15,20 +15,68 @@
 
 package com.amazonaws.services.lexrts;
 
-import java.util.*;
-
-import com.amazonaws.*;
-import com.amazonaws.auth.*;
-import com.amazonaws.handlers.*;
-import com.amazonaws.http.*;
-import com.amazonaws.internal.*;
-import com.amazonaws.metrics.*;
-import com.amazonaws.transform.*;
-import com.amazonaws.util.*;
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.AmazonWebServiceClient;
+import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.AmazonWebServiceResponse;
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.Request;
+import com.amazonaws.Response;
+import com.amazonaws.ResponseMetadata;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AWSSessionCredentials;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+import com.amazonaws.auth.SignerFactory;
+import com.amazonaws.handlers.HandlerChainFactory;
+import com.amazonaws.http.ExecutionContext;
+import com.amazonaws.http.HttpClient;
+import com.amazonaws.http.HttpResponseHandler;
+import com.amazonaws.http.JsonErrorResponseHandler;
+import com.amazonaws.http.JsonResponseHandler;
+import com.amazonaws.http.UrlHttpClient;
+import com.amazonaws.internal.StaticCredentialsProvider;
+import com.amazonaws.metrics.RequestMetricCollector;
+import com.amazonaws.services.lexrts.internal.AmazonLexV4Signer;
+import com.amazonaws.services.lexrts.model.BadGatewayException;
+import com.amazonaws.services.lexrts.model.BadRequestException;
+import com.amazonaws.services.lexrts.model.ConflictException;
+import com.amazonaws.services.lexrts.model.DependencyFailedException;
+import com.amazonaws.services.lexrts.model.InternalFailureException;
+import com.amazonaws.services.lexrts.model.LimitExceededException;
+import com.amazonaws.services.lexrts.model.LoopDetectedException;
+import com.amazonaws.services.lexrts.model.NotAcceptableException;
+import com.amazonaws.services.lexrts.model.NotFoundException;
+import com.amazonaws.services.lexrts.model.PostContentRequest;
+import com.amazonaws.services.lexrts.model.PostContentResult;
+import com.amazonaws.services.lexrts.model.PostTextRequest;
+import com.amazonaws.services.lexrts.model.PostTextResult;
+import com.amazonaws.services.lexrts.model.RequestTimeoutException;
+import com.amazonaws.services.lexrts.model.UnsupportedMediaTypeException;
+import com.amazonaws.services.lexrts.model.transform.BadGatewayExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.BadRequestExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.ConflictExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.DependencyFailedExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.InternalFailureExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.LimitExceededExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.LoopDetectedExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.NotAcceptableExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.NotFoundExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.PostContentRequestMarshaller;
+import com.amazonaws.services.lexrts.model.transform.PostContentResultJsonUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.PostTextRequestMarshaller;
+import com.amazonaws.services.lexrts.model.transform.PostTextResultJsonUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.RequestTimeoutExceptionUnmarshaller;
+import com.amazonaws.services.lexrts.model.transform.UnsupportedMediaTypeExceptionUnmarshaller;
+import com.amazonaws.transform.JsonErrorUnmarshaller;
+import com.amazonaws.transform.JsonUnmarshallerContext;
+import com.amazonaws.transform.Unmarshaller;
+import com.amazonaws.util.AWSRequestMetrics;
 import com.amazonaws.util.AWSRequestMetrics.Field;
 
-import com.amazonaws.services.lexrts.model.*;
-import com.amazonaws.services.lexrts.model.transform.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Client for accessing Amazon Lex Runtime Service. All service calls made using
@@ -51,8 +99,14 @@ import com.amazonaws.services.lexrts.model.transform.*;
  * </p>
  */
 public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements AmazonLexRuntime {
+    /** Custom Signer */
+    private static final String CUSTOM_SIGNER = "AmazonLexV4Signer";
+
+    static {
+        SignerFactory.registerSigner(CUSTOM_SIGNER, AmazonLexV4Signer.class);
+    }
     /** Provider for AWS credentials. */
-    private AWSCredentialsProvider awsCredentialsProvider;
+    private final AWSCredentialsProvider awsCredentialsProvider;
 
     /**
      * List of exception unmarshallers for all Amazon Lex Runtime Service
@@ -287,7 +341,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("runtime.lex.us-east-1.amazonaws.com");
 
-        HandlerChainFactory chainFactory = new HandlerChainFactory();
+        final HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
                 "/com/amazonaws/services/lexrts/request.handlers"));
         requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
@@ -295,7 +349,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
     }
 
     private static ClientConfiguration adjustClientConfiguration(ClientConfiguration orig) {
-        ClientConfiguration config = orig;
+        final ClientConfiguration config = orig;
 
         return config;
     }
@@ -353,7 +407,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      * </ul>
      * </li>
      * </ul>
-     * 
+     *
      * @param postContentRequest
      * @return postContentResult The response from the PostContent service
      *         method, as returned by Amazon Lex Runtime Service.
@@ -376,10 +430,11 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      *             Lex Runtime Service indicating either a problem with the data
      *             in the request, or a server side issue.
      */
+    @Override
     public PostContentResult postContent(PostContentRequest postContentRequest)
             throws AmazonServiceException, AmazonClientException {
-        ExecutionContext executionContext = createExecutionContext(postContentRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        final ExecutionContext executionContext = createExecutionContext(postContentRequest);
+        final AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
         Request<PostContentRequest> request = null;
         Response<PostContentResult> response = null;
@@ -392,8 +447,8 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            Unmarshaller<PostContentResult, JsonUnmarshallerContext> unmarshaller = new PostContentResultJsonUnmarshaller();
-            JsonResponseHandler<PostContentResult> responseHandler = new JsonResponseHandler<PostContentResult>(
+            final Unmarshaller<PostContentResult, JsonUnmarshallerContext> unmarshaller = new PostContentResultJsonUnmarshaller();
+            final JsonResponseHandler<PostContentResult> responseHandler = new JsonResponseHandler<PostContentResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -448,7 +503,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      * </ul>
      * </li>
      * </ul>
-     * 
+     *
      * @param postTextRequest
      * @return postTextResult The response from the PostText service method, as
      *         returned by Amazon Lex Runtime Service.
@@ -468,10 +523,11 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      *             Lex Runtime Service indicating either a problem with the data
      *             in the request, or a server side issue.
      */
+    @Override
     public PostTextResult postText(PostTextRequest postTextRequest)
             throws AmazonServiceException, AmazonClientException {
-        ExecutionContext executionContext = createExecutionContext(postTextRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        final ExecutionContext executionContext = createExecutionContext(postTextRequest);
+        final AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
         Request<PostTextRequest> request = null;
         Response<PostTextResult> response = null;
@@ -484,8 +540,8 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            Unmarshaller<PostTextResult, JsonUnmarshallerContext> unmarshaller = new PostTextResultJsonUnmarshaller();
-            JsonResponseHandler<PostTextResult> responseHandler = new JsonResponseHandler<PostTextResult>(
+            final Unmarshaller<PostTextResult, JsonUnmarshallerContext> unmarshaller = new PostTextResultJsonUnmarshaller();
+            final JsonResponseHandler<PostTextResult> responseHandler = new JsonResponseHandler<PostTextResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -515,6 +571,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      *             responses in memory and will cause memory issue. This method
      *             now always returns null.
      */
+    @Override
     @Deprecated
     public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
         return client.getResponseMetadataForRequest(request);
@@ -526,7 +583,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
         request.setEndpoint(endpoint);
         request.setTimeOffset(timeOffset);
 
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        final AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         AWSCredentials credentials;
         awsRequestMetrics.startEvent(Field.CredentialsRequestTime);
         try {
@@ -535,15 +592,15 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
             awsRequestMetrics.endEvent(Field.CredentialsRequestTime);
         }
 
-        AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
+        final AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
         if (originalRequest != null && originalRequest.getRequestCredentials() != null) {
             credentials = originalRequest.getRequestCredentials();
         }
 
         executionContext.setCredentials(credentials);
-        JsonErrorResponseHandler errorResponseHandler = new JsonErrorResponseHandler(
+        final JsonErrorResponseHandler errorResponseHandler = new JsonErrorResponseHandler(
                 jsonErrorUnmarshallers);
-        Response<X> result = client.execute(request, responseHandler,
+        final Response<X> result = client.execute(request, responseHandler,
                 errorResponseHandler, executionContext);
         return result;
     }

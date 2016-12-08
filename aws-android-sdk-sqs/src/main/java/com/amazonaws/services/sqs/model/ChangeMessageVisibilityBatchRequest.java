@@ -42,10 +42,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </note>
  * <p>
- * <code><![CDATA[&amp;Attribute.1=this]]></code>
+ * <code>&amp;amp;Attribute.1=this</code>
  * </p>
  * <p>
- * <code><![CDATA[&amp;Attribute.2=that]]></code>
+ * <code>&amp;amp;Attribute.2=that</code>
  * </p>
  */
 public class ChangeMessageVisibilityBatchRequest extends AmazonWebServiceRequest implements

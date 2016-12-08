@@ -451,7 +451,8 @@ public class InteractionClient {
             this.lMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             try {
                 setAudioPlaybackState(BUSY);
-                File tempAudioFile = File.createTempFile("lex_temp_response", "mp3");
+                File tempAudioFile = File.createTempFile("lex_temp_response", "mp3",
+                        context.getFilesDir());
                 tempAudioFile.deleteOnExit();
                 // Media player listeners.
                 lMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
@@ -518,7 +519,8 @@ public class InteractionClient {
                 });
 
                 final InputStream audioStream = result.getAudioStream();
-                tempAudioFile = File.createTempFile("lex_temp_response", "dat");
+                tempAudioFile = File.createTempFile("lex_temp_response", "dat",
+                        context.getFilesDir());
                 tempAudioFile.deleteOnExit();
                 final FileOutputStream audioOut = new FileOutputStream(tempAudioFile);
                 final byte buffer[] = new byte[16384];

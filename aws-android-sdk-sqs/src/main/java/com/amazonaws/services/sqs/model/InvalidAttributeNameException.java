@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The attribute referred to does not exist.
+ * The attribute referred to doesn't exist.
  * </p>
  */
 public class InvalidAttributeNameException extends AmazonServiceException {
