@@ -174,6 +174,11 @@ public class ClientConfiguration {
      */
     private TrustManager trustManager = null;
 
+    /**
+     * Enable/disable logging.
+     */
+    private boolean logging = false;
+
     public ClientConfiguration() {
     }
 
@@ -198,6 +203,7 @@ public class ClientConfiguration {
         this.socketSendBufferSizeHint = other.socketSendBufferSizeHint;
         this.signerOverride = other.signerOverride;
         this.trustManager = other.trustManager;
+        this.logging = other.logging;
     }
 
     /**
@@ -1026,6 +1032,39 @@ public class ClientConfiguration {
      */
     public ClientConfiguration withTrustManager(TrustManager trustManager) {
         setTrustManager(trustManager);
+        return this;
+    }
+
+    /**
+     * Tells whether or not the client should be logging anything. Currently, logging will print
+     * curl commands to replay http requests.
+     *
+     * @return Whether or not the client will be logging.
+     */
+    public boolean isLogging() {
+        return logging;
+    }
+
+    /**
+     * Sets whether or not the client should be logging any information. This should be used for
+     * debug builds only. Defaults to false.
+     *
+     * @param logging Whether or not the client should be logging operations.
+     */
+    public void setLogging(boolean logging) {
+        this.logging = logging;
+    }
+
+    /**
+     * Sets whether or not the client should be logging any information. This should be used for
+     * debug builds only, and returns the updated ClientConfiguration object so that additional
+     * calls may be chained together. Defaults to false.
+     *
+     * @param logging Whether or not the client should be logging operations.
+     * @return The updated ClientConfiguration object.
+     */
+    public ClientConfiguration withLogging(boolean logging) {
+        this.logging = logging;
         return this;
     }
 

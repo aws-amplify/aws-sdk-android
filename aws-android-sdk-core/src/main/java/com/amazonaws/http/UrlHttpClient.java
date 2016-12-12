@@ -15,6 +15,8 @@
 
 package com.amazonaws.http;
 
+import android.util.Log;
+
 import com.amazonaws.ClientConfiguration;
 
 import java.io.IOException;
@@ -23,7 +25,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.ByteBuffer;
 import java.security.GeneralSecurityException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +47,8 @@ import javax.net.ssl.TrustManager;
  */
 public class UrlHttpClient implements HttpClient {
 
+    private static final String TAG = "amazonaws";
+
     private final ClientConfiguration config;
 
     public UrlHttpClient(ClientConfiguration config) {
@@ -53,10 +59,21 @@ public class UrlHttpClient implements HttpClient {
     public HttpResponse execute(final HttpRequest request) throws IOException {
         final URL url = request.getUri().toURL();
         final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        final CurlBuilder curlBuilder = config.isLogging()
+                ? null : new CurlBuilder(request.getUri().toURL());
 
         configureConnection(request, connection);
-        applyHeadersAndMethod(request, connection);
-        writeContentToConnection(request, connection);
+        applyHeadersAndMethod(request, connection, curlBuilder);
+        writeContentToConnection(request, connection, curlBuilder);
+
+        if (curlBuilder != null) {
+            if (curlBuilder.isValid()) {
+                printToLog(Log.VERBOSE, curlBuilder.build());
+            } else {
+                printToLog(Log.VERBOSE, "Failed to create curl, content too long");
+            }
+        }
+
         return createHttpResponse(request, connection);
     }
 
@@ -104,14 +121,24 @@ public class UrlHttpClient implements HttpClient {
     }
 
     /**
+     * Needed to pass UrlHttpClientTest.
+     * @see #writeContentToConnection(HttpRequest, HttpURLConnection, CurlBuilder)
+     */
+    void writeContentToConnection(HttpRequest request, HttpURLConnection connection)
+            throws IOException {
+        writeContentToConnection(request, connection, null /* curlBuilder */);
+    }
+
+    /**
      * Writes the content (if any) of the request to the passed connection
      *
      * @param request
      * @param connection
+     * @param curlBuilder
      * @throws IOException
      */
-    void writeContentToConnection(final HttpRequest request, final HttpURLConnection connection)
-            throws IOException {
+    void writeContentToConnection(final HttpRequest request, final HttpURLConnection connection,
+            final CurlBuilder curlBuilder) throws IOException {
         // Note: if DoOutput is set to true and method is GET, HttpUrlConnection
         // will silently change the method to POST.
         if (request.getContent() != null && request.getContentLength() >= 0) {
@@ -122,17 +149,41 @@ public class UrlHttpClient implements HttpClient {
                 connection.setFixedLengthStreamingMode((int) request.getContentLength());
             }
             final OutputStream os = connection.getOutputStream();
-            write(request.getContent(), os);
+            ByteBuffer curlBuffer = null;
+            if (curlBuilder != null) {
+                if (request.getContentLength() < Integer.MAX_VALUE) {
+                    curlBuffer = ByteBuffer.allocate((int) request.getContentLength());
+                } else {
+                    curlBuilder.setContentOverflow(true);
+                }
+            }
+            write(request.getContent(), os, curlBuffer);
+            if (curlBuilder != null && curlBuffer != null && curlBuffer.position() != 0) {
+                // has content
+                curlBuilder.setContent(new String(curlBuffer.array(), "UTF-8"));
+            }
             os.flush();
             os.close();
         }
     }
 
+    /**
+     * Needed to pass UrlHttpClientTest.
+     * @see #applyHeadersAndMethod(HttpRequest, HttpURLConnection, CurlBuilder)
+     */
     HttpURLConnection applyHeadersAndMethod(final HttpRequest request,
-            final HttpURLConnection connection)
+            final HttpURLConnection connection) throws ProtocolException {
+        return applyHeadersAndMethod(request, connection, null /* curlBuilder */);
+    }
+
+    HttpURLConnection applyHeadersAndMethod(final HttpRequest request,
+            final HttpURLConnection connection, final CurlBuilder curlBuilder)
             throws ProtocolException {
         // add headers
         if (request.getHeaders() != null && !request.getHeaders().isEmpty()) {
+            if (curlBuilder != null) {
+                curlBuilder.setHeaders(request.getHeaders());
+            }
             for (final Map.Entry<String, String> header : request.getHeaders().entrySet()) {
                 final String key = header.getKey();
                 // Skip reserved headers for HttpURLConnection
@@ -159,13 +210,27 @@ public class UrlHttpClient implements HttpClient {
 
         final String method = request.getMethod();
         connection.setRequestMethod(method);
+        if (curlBuilder != null) {
+            curlBuilder.setMethod(method);
+        }
         return connection;
     }
 
-    private void write(InputStream is, OutputStream os) throws IOException {
+    protected void printToLog(int priority, String message) {
+        Log.println(priority, TAG, message);
+    }
+
+    protected HttpURLConnection getUrlConnection(URL url) throws IOException {
+        return (HttpURLConnection) url.openConnection();
+    }
+
+    private void write(InputStream is, OutputStream os, ByteBuffer curlBuffer) throws IOException {
         final byte[] buf = new byte[1024 * 8];
         int len;
         while ((len = is.read(buf)) != -1) {
+            if (curlBuffer != null) {
+                curlBuffer.put(buf, 0 /* offset */, len);
+            }
             os.write(buf, 0, len);
         }
     }
@@ -270,4 +335,121 @@ public class UrlHttpClient implements HttpClient {
         }
     }
     */
+
+    /**
+     * Helper class to build a curl message.
+     */
+    private final class CurlBuilder {
+
+        /** The {@link URL} of the operation. */
+        private final URL url;
+        /** The method to execute on the given url. */
+        private String method = null;
+        /** A map of headers and their values to be sent with the curl request. */
+        private HashMap<String,String> headers = new HashMap<String,String>();
+        /** The content to send with the curl request. */
+        private String content = null;
+        /** Whether or not the content cannot be written to the curl command. */
+        private boolean contentOverflow = false;
+
+        /**
+         * Builds a new curl command for the given {@link URL}.
+         * @param url The {@link URL} for the operation, must not be {@code null}.
+         */
+        public CurlBuilder(URL url) {
+            if (url == null) {
+                throw new IllegalArgumentException("Must have a valid url");
+            }
+            this.url = url;
+        }
+
+        /**
+         * Set the method to call for the given curl command. This method will override the previous
+         * value.
+         *
+         * @param method The method to use for the request.
+         * @return This object for chaining.
+         */
+        public CurlBuilder setMethod(String method) {
+            this.method = method;
+            return this;
+        }
+
+        /**
+         * Set the headers used for the given curl command. This method will override the previous
+         * values.
+         *
+         * @param headers The headers to use for the request.
+         * @return This object for chaining.
+         */
+        public CurlBuilder setHeaders(Map<String,String> headers) {
+            this.headers.clear();
+            this.headers.putAll(headers);
+            return this;
+        }
+
+        /**
+         * Set the content used for the given curl command. This method will override the previous
+         * value.
+         *
+         * @param content The content to use for the request.
+         * @return This object for chaining.
+         */
+        public CurlBuilder setContent(String content) {
+            this.content = content;
+            return this;
+        }
+
+        /**
+         * Sets whether or not the content is too large for the curl command. Content of length
+         * greater than {@link Integer#MAX_VALUE} are considered too long. If set, the curl should
+         * not be logged as it will be invalid.
+         *
+         * @param contentOverflow Whether or not the content is too long to print.
+         * @return This object for chaining.
+         */
+        public CurlBuilder setContentOverflow(boolean contentOverflow) {
+            this.contentOverflow = contentOverflow;
+            return this;
+        }
+
+        /**
+         * @return Whether or not this object is valid for printing.
+         */
+        public boolean isValid() {
+            return !contentOverflow;
+        }
+
+        /**
+         * Creates a curl command that can be replayed from command line.
+         *
+         * @return The curl command.
+         * @throws IllegalStateException If {@link #isValid()} returns false.
+         */
+        public String build() {
+            if (!isValid()) {
+                throw new IllegalStateException("Invalid state, cannot create curl command");
+            }
+            StringBuilder stringBuilder = new StringBuilder("curl");
+            if (method != null) {
+                stringBuilder.append(" -X ")
+                        .append(method);
+            }
+            for (Map.Entry<String,String> entry : headers.entrySet()) {
+                stringBuilder.append(" -H \"")
+                        .append(entry.getKey())
+                        .append(":")
+                        .append(entry.getValue())
+                        .append("\"");
+            }
+            if (content != null) {
+                stringBuilder.append(" -d '")
+                        .append(content)
+                        .append("'");
+            }
+            return stringBuilder.append(" ")
+                    .append(url.toString())
+                    .toString();
+        }
+    }
 }

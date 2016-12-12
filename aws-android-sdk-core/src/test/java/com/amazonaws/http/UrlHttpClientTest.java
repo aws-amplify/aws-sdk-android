@@ -15,11 +15,8 @@
 
 package com.amazonaws.http;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import android.util.Log;
+import android.util.Pair;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.SDKGlobalConfiguration;
@@ -33,6 +30,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URI;
@@ -41,22 +39,110 @@ import java.net.URL;
 import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLPeerUnverifiedException;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
 public class UrlHttpClientTest {
 
     private ClientConfiguration conf;
-    private UrlHttpClient client;
+    private MockUrlHttpClient client;
 
     @Before
     public void setup() {
         conf = new ClientConfiguration();
-        client = new UrlHttpClient(conf);
+        client = new MockUrlHttpClient(conf);
+    }
 
+    @Test
+    public void testBasicCurlBuilder() throws URISyntaxException, IOException {
+        conf.setLogging(true);
+        HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"));
+        client.execute(request);
+
+        assertEquals(client.getLogList().size(), 1);
+        assertEquals(client.getLogList().get(0).first.intValue(), Log.VERBOSE);
+        assertEquals(client.getLogList().get(0).second, "curl -X POST https://www.test.com");
+    }
+
+    @Test
+    public void testCurlBuilderWithHeaders() throws URISyntaxException, IOException {
+        conf.setLogging(true);
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put("key1", "value1");
+        headers.put("key2", "value2");
+
+        HashSet<String> expectedCurlHeaders = new HashSet<String>();
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            expectedCurlHeaders.add("\"" + entry.getKey() + ":" + entry.getValue() + "\"");
+        }
+
+        HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"), headers,
+                null /* stream */);
+        client.execute(request);
+
+        assertEquals(client.getLogList().size(), 1);
+        assertEquals(client.getLogList().get(0).first.intValue(), Log.VERBOSE);
+
+        String[] parts = client.getLogList().get(0).second.split(" ");
+        assertEquals(parts.length, 8);
+        assertEquals(parts[0], "curl");
+        assertEquals(parts[1], "-X");
+        assertEquals(parts[2], "POST");
+        assertEquals(parts[3], "-H");
+        assertTrue(expectedCurlHeaders.contains(parts[4]));
+        expectedCurlHeaders.remove(parts[4]);
+        assertEquals(parts[5], "-H");
+        assertTrue(expectedCurlHeaders.contains(parts[6]));
+        expectedCurlHeaders.remove(parts[6]);
+        assertTrue(expectedCurlHeaders.isEmpty());
+        assertEquals(parts[7], "https://www.test.com");
+    }
+
+    @Test
+    public void testCurlBuilderWithData() throws URISyntaxException, IOException {
+        conf.setLogging(true);
+        String dataString = "content";
+        byte[] data = dataString.getBytes("UTF-8");
+
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put(HttpHeader.CONTENT_LENGTH, String.valueOf(data.length));
+
+        InputStream stream = new ByteArrayInputStream(data);
+        HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+                headers, stream);
+        client.execute(request);
+
+        assertEquals(client.getLogList().size(), 1);
+        assertEquals(client.getLogList().get(0).first.intValue(), Log.VERBOSE);
+        assertEquals(client.getLogList().get(0).second,
+                "curl -X POST -d '" + dataString + "' https://www.test.com");
+    }
+
+    @Test
+    public void testOverflowInCurl() throws URISyntaxException, IOException {
+        conf.setLogging(true);
+        final long tooManyBytes = Integer.MAX_VALUE + 1L;
+        InputStream stream = new ByteArrayInputStream("content".getBytes("UTF-8"));
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put(HttpHeader.CONTENT_LENGTH, String.valueOf(tooManyBytes));
+        HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+                null /* headers */, stream);
+        client.execute(request);
+
+        assertEquals(client.getLogList().size(), 1);
+        assertEquals(client.getLogList().get(0).first.intValue(), Log.VERBOSE);
+        assertEquals(client.getLogList().get(0).second,
+                "Failed to create curl, content too long");
     }
 
     @Test
@@ -268,4 +354,29 @@ class MockHttpURLConnection extends HttpsURLConnection {
         return null;
     }
 
+}
+
+class MockUrlHttpClient extends UrlHttpClient {
+
+    private ArrayList<Pair<Integer, String>> mLogList = new ArrayList<Pair<Integer, String>>();
+
+    public MockUrlHttpClient(ClientConfiguration config) {
+        super(config);
+    }
+
+    public ArrayList<Pair<Integer, String>> getLogList() {
+        return mLogList;
+    }
+
+    @Override
+    protected void printToLog(int priority, String message) {
+        mLogList.add(new Pair<Integer, String>(priority, message));
+    }
+
+    @Override
+    protected HttpURLConnection getUrlConnection(URL url) throws IOException {
+        MockHttpURLConnection connection = new MockHttpURLConnection(url);
+        connection.setOutputStream(new ByteArrayOutputStream());
+        return connection;
+    }
 }
