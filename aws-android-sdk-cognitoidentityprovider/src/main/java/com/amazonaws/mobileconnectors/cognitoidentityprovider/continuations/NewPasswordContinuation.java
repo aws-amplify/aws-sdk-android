@@ -18,7 +18,6 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
@@ -121,12 +120,14 @@ public class NewPasswordContinuation extends ChallengeContinuation {
     /**
      * Calls {@Code continueTask()} of the parent after checking if all the required attributes have been set.
      */
+    @Override
     public void continueTask() {
         if (requiredAttributes != null && requiredAttributes.size() > 1) {
-            for (String requiredAttribute: requiredAttributes) {
-				String requiredAttrKey = CognitoServiceConstants.CHLG_PARAM_USER_ATTRIBUTE_PREFIX + requiredAttribute;
+            for (final String requiredAttribute: requiredAttributes) {
+                final String requiredAttrKey = CognitoServiceConstants.CHLG_PARAM_USER_ATTRIBUTE_PREFIX + requiredAttribute;
                 if (!challengeResponses.containsKey(requiredAttrKey)) {
-                    throw new CognitoParameterInvalidException(String.format("Missing required attribute: %s", requiredAttribute));
+                    throw new CognitoParameterInvalidException(
+                            String.format("Missing required attribute: %s", requiredAttribute));
                 }
             }
         }
@@ -148,14 +149,14 @@ public class NewPasswordContinuation extends ChallengeContinuation {
         currentUserAttributes = new HashMap<String, String>();
         if (userAttributesJsonString != null) {
             try {
-                JSONObject userAttributesJson = new JSONObject(userAttributesJsonString);
-                Iterator<?> userAttribute = userAttributesJson.keys();
+                final JSONObject userAttributesJson = new JSONObject(userAttributesJsonString);
+                final Iterator<?> userAttribute = userAttributesJson.keys();
                 while (userAttribute.hasNext()) {
-                    String attributeName = (String) userAttribute.next();
-                    String attributeValue = userAttributesJson.getString(attributeName);
+                    final String attributeName = (String) userAttribute.next();
+                    final String attributeValue = userAttributesJson.getString(attributeName);
                     currentUserAttributes.put(attributeName, attributeValue);
                 }
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 callback.onFailure(e);
             }
         }
@@ -170,11 +171,11 @@ public class NewPasswordContinuation extends ChallengeContinuation {
         requiredAttributes = new ArrayList<String>();
         if (requiredAttributesJsonString != null) {
             try {
-                JSONArray requiredAttributesJson = new JSONArray(requiredAttributesJsonString);
+                final JSONArray requiredAttributesJson = new JSONArray(requiredAttributesJsonString);
                 for (int i = 0; i < requiredAttributesJson.length(); i++) {
                     requiredAttributes.add(requiredAttributesJson.getString(i).split(CognitoServiceConstants.CHLG_PARAM_USER_ATTRIBUTE_PREFIX, 2)[1]);
                 }
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 callback.onFailure(e);
             }
         }

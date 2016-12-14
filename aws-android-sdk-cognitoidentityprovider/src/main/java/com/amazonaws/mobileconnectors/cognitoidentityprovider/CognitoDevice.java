@@ -19,14 +19,11 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoInternalErrorException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.DevicesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoDeviceHelper;
 import com.amazonaws.services.cognitoidentityprovider.model.DeviceType;
 import com.amazonaws.services.cognitoidentityprovider.model.ForgetDeviceRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.GetDeviceRequest;
@@ -60,7 +57,7 @@ public class CognitoDevice {
     /**
      * The date on which the user first authenticated on this device.
      */
-    private Date createDate;
+    private final Date createDate;
 
     /**
      * The date on which device attribute/s last modified.
@@ -148,7 +145,7 @@ public class CognitoDevice {
     public String getDeviceAttribute(String attributeName) {
         try {
             return deviceAttributes.getAttributes().get(attributeName);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return null;
         }
     }
@@ -203,10 +200,10 @@ public class CognitoDevice {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Handler handler = new Handler(context.getMainLooper());
+                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
-                    GetDeviceResult getDeviceResult = getDeviceInternal(user.getCachedSession());
+                    final GetDeviceResult getDeviceResult = getDeviceInternal(user.getCachedSession());
                     updateThis(getDeviceResult.getDevice());
                     returnCallback = new Runnable() {
                         @Override
@@ -244,10 +241,10 @@ public class CognitoDevice {
         }
 
         try {
-            GetDeviceResult getDeviceResult = getDeviceInternal(user.getCachedSession());
+            final GetDeviceResult getDeviceResult = getDeviceInternal(user.getCachedSession());
             updateThis(getDeviceResult.getDevice());
             callback.onSuccess();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             callback.onFailure(e);
         }
     }
@@ -264,7 +261,7 @@ public class CognitoDevice {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Handler handler = new Handler(context.getMainLooper());
+                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     forgetDeviceInternal(user.getCachedSession());
@@ -303,7 +300,7 @@ public class CognitoDevice {
         try {
             forgetDeviceInternal(user.getCachedSession());
             callback.onSuccess();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             callback.onFailure(e);
         }
     }
@@ -320,7 +317,7 @@ public class CognitoDevice {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Handler handler = new Handler(context.getMainLooper());
+                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     updateDeviceStatusInternal(user.getCachedSession(), DEVICE_TYPE_REMEMBERED);
@@ -359,7 +356,7 @@ public class CognitoDevice {
 
         try {
             updateDeviceStatusInternal(user.getCachedSession(), DEVICE_TYPE_REMEMBERED);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             callback.onFailure(e);
         }
     }
@@ -377,7 +374,7 @@ public class CognitoDevice {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Handler handler = new Handler(context.getMainLooper());
+                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     updateDeviceStatusInternal(user.getCachedSession(), DEVICE_TYPE_NOT_REMEMBERED);
@@ -415,7 +412,7 @@ public class CognitoDevice {
         }
         try {
             updateDeviceStatusInternal(user.getCachedSession(), DEVICE_TYPE_NOT_REMEMBERED);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             callback.onFailure(e);
         }
     }
@@ -428,11 +425,11 @@ public class CognitoDevice {
     private void forgetDeviceInternal(CognitoUserSession session) {
         if (session != null && session.isValid()) {
             if (this.deviceKey != null) {
-                CognitoDevice currentDeviceKey = user.thisDevice();
+                final CognitoDevice currentDeviceKey = user.thisDevice();
                 if (this.deviceKey.equals(currentDeviceKey.getDeviceKey())) {
                     // CognitoDeviceHelper.clearCachedDevice(user.context);
                 }
-                ForgetDeviceRequest forgetDeviceRequest = new ForgetDeviceRequest();
+                final ForgetDeviceRequest forgetDeviceRequest = new ForgetDeviceRequest();
                 forgetDeviceRequest.setAccessToken(session.getAccessToken().getJWTToken());
                 forgetDeviceRequest.setDeviceKey(this.deviceKey);
                 user.getCognitoIdentityProviderClient().forgetDevice(forgetDeviceRequest);
@@ -453,7 +450,7 @@ public class CognitoDevice {
     private GetDeviceResult getDeviceInternal(CognitoUserSession session) {
         if (session != null && session.isValid()) {
             if (this.deviceKey != null) {
-                GetDeviceRequest getDeviceRequest = new GetDeviceRequest();
+                final GetDeviceRequest getDeviceRequest = new GetDeviceRequest();
                 getDeviceRequest.setAccessToken(session.getAccessToken().getJWTToken());
                 getDeviceRequest.setDeviceKey(this.deviceKey);
                 return user.getCognitoIdentityProviderClient().getDevice(getDeviceRequest);
@@ -475,7 +472,7 @@ public class CognitoDevice {
     private UpdateDeviceStatusResult updateDeviceStatusInternal(CognitoUserSession session, String deviceTrustState) {
         if (session != null && session.isValid()) {
             if (this.deviceKey != null) {
-                UpdateDeviceStatusRequest updateDeviceStatusRequest = new UpdateDeviceStatusRequest();
+                final UpdateDeviceStatusRequest updateDeviceStatusRequest = new UpdateDeviceStatusRequest();
                 updateDeviceStatusRequest.setAccessToken(session.getAccessToken().getJWTToken());
                 updateDeviceStatusRequest.setDeviceKey(this.deviceKey);
                 updateDeviceStatusRequest.setDeviceRememberedStatus(deviceTrustState);

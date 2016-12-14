@@ -1,4 +1,21 @@
 # Change Log - AWS SDK for Android
+## [Release 2.3.7] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.7) (12/13/2016)
+
+### New Features
+- **Support for Amazon Rekognition**: Rekognition is a deep-learning based service to search, verify and organize images. With Rekognition, you can detect objects, scenes, and faces in images. You can also search and compare faces.
+- **AWS Core Runtime**: Added Support for `eu-west-2`/LHR region in the SDK.
+
+### Improvements
+- **AWS Core Runtime**: Added support for enabling curl logging in the SDK. See [issue](https://github.com/aws/aws-sdk-android/pull/200)
+- **AWS Lambda**: Update to Latest Models.
+
+### Bug Fixes:
+- **Amazon Pinpoint**: Fixed a bug that caused setting wrong endpoint for pinpoint client.
+- **Amazon S3**: Fixed a bug that could cause NPE in Transfer Service. See [issue](https://github.com/aws/aws-sdk-android/issues/223).
+- **Amazon Cognito Identity Provider**: Fix incorrect exception being thrown in `CognitoDevice`. See [issue](https://github.com/aws/aws-sdk-android/pull/224).
+- **Amazon Cognito Identity Provider**: Fix a bug where `NewPasswordContinuation` throws `CognitoParameterInvalidException: Missing required attribute` even when the required user attributes have been set. See [issue](https://github.com/aws/aws-sdk-android/pull/216).
+
+
 ## [Release 2.3.6] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.6) (12/07/2016)
 
 ### Improvements

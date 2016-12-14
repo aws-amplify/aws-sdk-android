@@ -177,7 +177,7 @@ public class ClientConfiguration {
     /**
      * Enable/disable logging.
      */
-    private boolean logging = false;
+    private boolean curlLogging = false;
 
     public ClientConfiguration() {
     }
@@ -203,7 +203,7 @@ public class ClientConfiguration {
         this.socketSendBufferSizeHint = other.socketSendBufferSizeHint;
         this.signerOverride = other.signerOverride;
         this.trustManager = other.trustManager;
-        this.logging = other.logging;
+        this.curlLogging = other.curlLogging;
     }
 
     /**
@@ -1036,35 +1036,36 @@ public class ClientConfiguration {
     }
 
     /**
-     * Tells whether or not the client should be logging anything. Currently, logging will print
-     * curl commands to replay http requests.
+     * Tells whether or not the client should be logging anything. Currently,
+     * logging will print curl commands to replay http requests.
      *
      * @return Whether or not the client will be logging.
      */
-    public boolean isLogging() {
-        return logging;
+    public boolean isCurlLogging() {
+        return curlLogging;
     }
 
     /**
-     * Sets whether or not the client should be logging any information. This should be used for
-     * debug builds only. Defaults to false.
+     * Sets whether or not the client should be logging any information. This
+     * should be used for debug builds only. Defaults to false.
      *
      * @param logging Whether or not the client should be logging operations.
      */
-    public void setLogging(boolean logging) {
-        this.logging = logging;
+    public void setCurlLogging(boolean curlLogging) {
+        this.curlLogging = curlLogging;
     }
 
     /**
-     * Sets whether or not the client should be logging any information. This should be used for
-     * debug builds only, and returns the updated ClientConfiguration object so that additional
-     * calls may be chained together. Defaults to false.
+     * Sets whether or not the client should be logging any information. This
+     * should be used for debug builds only, and returns the updated
+     * ClientConfiguration object so that additional calls may be chained
+     * together. Defaults to false.
      *
      * @param logging Whether or not the client should be logging operations.
      * @return The updated ClientConfiguration object.
      */
-    public ClientConfiguration withLogging(boolean logging) {
-        this.logging = logging;
+    public ClientConfiguration withCurlLogging(boolean curlLogging) {
+        this.curlLogging = curlLogging;
         return this;
     }
 

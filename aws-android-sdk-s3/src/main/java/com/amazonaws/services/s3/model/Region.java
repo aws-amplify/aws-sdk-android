@@ -109,6 +109,18 @@ public enum Region {
     EU_Ireland("eu-west-1", "EU"),
 
     /**
+     * The EU (London) Amazon S3 Region. This region uses Amazon S3 servers
+     * located in London.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3.eu-west-2.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    EU_London("eu-west-2"),
+
+    /**
      * The EU (Frankfurt) Amazon S3 Region. This region uses Amazon S3 servers
      * located in Frankfurt.
      * <p>

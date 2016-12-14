@@ -18,7 +18,7 @@ package com.amazonaws.services.lambda.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p/>
  */
 public class TooManyRequestsException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
@@ -31,6 +31,8 @@ public class TooManyRequestsException extends AmazonServiceException {
     private String retryAfterSeconds;
 
     private String type;
+
+    private String reason;
 
     /**
      * Constructs a new TooManyRequestsException with the specified error
@@ -84,5 +86,33 @@ public class TooManyRequestsException extends AmazonServiceException {
      */
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * Returns the value of the reason property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ConcurrentInvocationLimitExceeded,
+     * FunctionInvocationRateLimitExceeded, CallerRateLimitExceeded
+     *
+     * @return The value of the reason property for this object.
+     * @see ThrottleReason
+     */
+    public String getReason() {
+        return reason;
+    }
+
+    /**
+     * Sets the value of reason
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ConcurrentInvocationLimitExceeded,
+     * FunctionInvocationRateLimitExceeded, CallerRateLimitExceeded
+     *
+     * @param reason The new value for the reason property for this object.
+     * @see ThrottleReason
+     */
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

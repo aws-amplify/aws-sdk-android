@@ -93,7 +93,7 @@ public class PinpointManager {
             accessNetworkStatePermissionValidator.validate(appContext);
             encodingValidator.validate();
 
-            this.pinpointContext = new PinpointContext(analyticsServiceClient, targetingServiceClient, appContext, region, appId,
+            this.pinpointContext = new PinpointContext(analyticsServiceClient, targetingServiceClient, appContext, appId,
                     sdkInfo, config);
             this.notificationClient = new NotificationClient(this.pinpointContext);
             this.pinpointContext.setNotificationClient(this.notificationClient);

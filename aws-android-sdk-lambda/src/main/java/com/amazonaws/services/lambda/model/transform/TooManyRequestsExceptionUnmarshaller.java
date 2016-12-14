@@ -40,6 +40,8 @@ public class TooManyRequestsExceptionUnmarshaller extends JsonErrorUnmarshaller 
 
         e.setType(String.valueOf(error.get("Type")));
 
+        e.setReason(String.valueOf(error.get("Reason")));
+
         return e;
     }
 }

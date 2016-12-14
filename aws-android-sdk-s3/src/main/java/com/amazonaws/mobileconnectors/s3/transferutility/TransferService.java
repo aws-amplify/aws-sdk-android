@@ -148,7 +148,7 @@ public class TransferService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
-                boolean networkConnected = isNetworkConnected();
+                final boolean networkConnected = isNetworkConnected();
                 Log.d(TAG, "Network connected: " + networkConnected);
                 handler.sendEmptyMessage(networkConnected ? MSG_CHECK : MSG_DISCONNECT);
             }
@@ -160,7 +160,7 @@ public class TransferService extends Service {
          * @return true if network is connected, false otherwise.
          */
         boolean isNetworkConnected() {
-            NetworkInfo info = connManager.getActiveNetworkInfo();
+            final NetworkInfo info = connManager.getActiveNetworkInfo();
             return info != null && info.isConnected();
         }
     }
@@ -169,7 +169,11 @@ public class TransferService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         this.startId = startId;
 
-        String keyForS3Client = intent.getStringExtra(INTENT_BUNDLE_S3_REFERENCE_KEY);
+        if (intent == null) {
+            return START_REDELIVER_INTENT;
+        }
+
+        final String keyForS3Client = intent.getStringExtra(INTENT_BUNDLE_S3_REFERENCE_KEY);
         s3 = S3ClientReference.get(keyForS3Client);
         if (s3 == null) {
             Log.w(TAG, "TransferService can't get s3 client, and it will stop.");
@@ -193,7 +197,7 @@ public class TransferService extends Service {
     public void onDestroy() {
         try {
             unregisterReceiver(networkInfoReceiver);
-        } catch (IllegalArgumentException iae) {
+        } catch (final IllegalArgumentException iae) {
             /*
              * Ignore on purpose, just in case the service stops before
              * onStartCommand where the receiver is registered.
@@ -261,8 +265,8 @@ public class TransferService extends Service {
         // update last active time
         lastActiveTime = System.currentTimeMillis();
 
-        String action = intent.getAction();
-        int id = intent.getIntExtra(INTENT_BUNDLE_TRANSFER_ID, 0);
+        final String action = intent.getAction();
+        final int id = intent.getIntExtra(INTENT_BUNDLE_TRANSFER_ID, 0);
 
         if (id == 0) {
             Log.e(TAG, "Invalid id: " + id);
@@ -277,7 +281,7 @@ public class TransferService extends Service {
                  * only add transfer when network is available or else relies on
                  * the network change listener to scan the database
                  */
-                TransferRecord transfer = dbUtil.getTransferById(id);
+                final TransferRecord transfer = dbUtil.getTransferById(id);
                 if (transfer != null) {
                     updater.addTransfer(transfer);
                     transfer.start(s3, dbUtil, updater, networkInfoReceiver);
@@ -327,7 +331,7 @@ public class TransferService extends Service {
         if (shouldScan) {
             return true;
         }
-        for (TransferRecord transfer : updater.getTransfers().values()) {
+        for (final TransferRecord transfer : updater.getTransfers().values()) {
             if (transfer.isRunning()) {
                 return true;
             }
@@ -339,8 +343,8 @@ public class TransferService extends Service {
      * Remove completed transfers from status updater.
      */
     private void removeCompletedTransfers() {
-        List<Integer> ids = new ArrayList<Integer>();
-        for (TransferRecord transfer : updater.getTransfers().values()) {
+        final List<Integer> ids = new ArrayList<Integer>();
+        for (final TransferRecord transfer : updater.getTransfers().values()) {
             if (TransferState.COMPLETED.equals(transfer.state)) {
                 /*
                  * Add completed transfers to remove. Removing transfers with
@@ -350,7 +354,7 @@ public class TransferService extends Service {
                 ids.add(transfer.id);
             }
         }
-        for (Integer id : ids) {
+        for (final Integer id : ids) {
             updater.removeTransfer(id);
         }
     }
@@ -363,28 +367,28 @@ public class TransferService extends Service {
      */
     void loadTransfersFromDB() {
         Log.d(TAG, "Loading transfers from database");
-        Cursor c = dbUtil.queryAllTransfersWithType(TransferType.ANY);
+        final Cursor c = dbUtil.queryAllTransfersWithType(TransferType.ANY);
         int count = 0;
         try {
             while (c.moveToNext()) {
-                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
-                TransferState state = TransferState.getState(c.getString(c
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                final TransferState state = TransferState.getState(c.getString(c
                         .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
-                int partNumber = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
+                final int partNumber = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
                 // add unfinished transfers
                 if (partNumber == 0 && (TransferState.WAITING.equals(state)
                         || TransferState.WAITING_FOR_NETWORK.equals(state)
                         || TransferState.RESUMED_WAITING.equals(state))
                         || TransferState.IN_PROGRESS.equals(state)) {
                     if (updater.getTransfer(id) == null) {
-                        TransferRecord transfer = new TransferRecord(id);
+                        final TransferRecord transfer = new TransferRecord(id);
                         transfer.updateFromDB(c);
                         if (transfer.start(s3, dbUtil, updater, networkInfoReceiver)) {
                             updater.addTransfer(transfer);
                             count++;
                         }
                     } else {
-                        TransferRecord transfer = updater.getTransfer(id);
+                        final TransferRecord transfer = updater.getTransfer(id);
                         if (!transfer.isRunning()) {
                             transfer.start(s3, dbUtil, updater, networkInfoReceiver);
                         }
@@ -401,7 +405,7 @@ public class TransferService extends Service {
      * Pause all running transfers and set state to WAITING_FOR_NETWORK.
      */
     void pauseAllForNetwork() {
-        for (TransferRecord transfer : updater.getTransfers().values()) {
+        for (final TransferRecord transfer : updater.getTransfers().values()) {
             if (s3 != null && transfer != null && transfer.pause(s3, updater)) {
                 // change status to waiting
                 updater.updateState(transfer.id, TransferState.WAITING_FOR_NETWORK);
@@ -430,9 +434,9 @@ public class TransferService extends Service {
         writer.printf("start id: %d\n", startId);
         writer.printf("network status: %s\n", networkInfoReceiver.isNetworkConnected());
         writer.printf("lastActiveTime: %s, shouldScan: %s\n", new Date(lastActiveTime), shouldScan);
-        Map<Integer, TransferRecord> transfers = updater.getTransfers();
+        final Map<Integer, TransferRecord> transfers = updater.getTransfers();
         writer.printf("# of active transfers: %d\n", transfers.size());
-        for (TransferRecord transfer : transfers.values()) {
+        for (final TransferRecord transfer : transfers.values()) {
             writer.printf("bucket: %s, key: %s, status: %s, total size: %d, current: %d\n",
                     transfer.bucketName, transfer.key, transfer.state, transfer.bytesTotal,
                     transfer.bytesCurrent);

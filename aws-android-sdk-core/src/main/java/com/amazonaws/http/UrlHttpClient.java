@@ -15,9 +15,10 @@
 
 package com.amazonaws.http;
 
-import android.util.Log;
-
 import com.amazonaws.ClientConfiguration;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +26,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
 import java.security.GeneralSecurityException;
 import java.util.HashMap;
@@ -48,6 +50,7 @@ import javax.net.ssl.TrustManager;
 public class UrlHttpClient implements HttpClient {
 
     private static final String TAG = "amazonaws";
+    private static final Log log = LogFactory.getLog(UrlHttpClient.class);
 
     private final ClientConfiguration config;
 
@@ -59,8 +62,8 @@ public class UrlHttpClient implements HttpClient {
     public HttpResponse execute(final HttpRequest request) throws IOException {
         final URL url = request.getUri().toURL();
         final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        final CurlBuilder curlBuilder = config.isLogging()
-                ? null : new CurlBuilder(request.getUri().toURL());
+        final CurlBuilder curlBuilder = config.isCurlLogging()
+                ? new CurlBuilder(request.getUri().toURL()) : null;
 
         configureConnection(request, connection);
         applyHeadersAndMethod(request, connection, curlBuilder);
@@ -68,9 +71,9 @@ public class UrlHttpClient implements HttpClient {
 
         if (curlBuilder != null) {
             if (curlBuilder.isValid()) {
-                printToLog(Log.VERBOSE, curlBuilder.build());
+                printToLog(curlBuilder.build());
             } else {
-                printToLog(Log.VERBOSE, "Failed to create curl, content too long");
+                printToLog("Failed to create curl, content too long");
             }
         }
 
@@ -122,7 +125,9 @@ public class UrlHttpClient implements HttpClient {
 
     /**
      * Needed to pass UrlHttpClientTest.
-     * @see #writeContentToConnection(HttpRequest, HttpURLConnection, CurlBuilder)
+     *
+     * @see #writeContentToConnection(HttpRequest, HttpURLConnection,
+     *      CurlBuilder)
      */
     void writeContentToConnection(HttpRequest request, HttpURLConnection connection)
             throws IOException {
@@ -157,7 +162,7 @@ public class UrlHttpClient implements HttpClient {
                     curlBuilder.setContentOverflow(true);
                 }
             }
-            write(request.getContent(), os, curlBuffer);
+            write(request.getContent(), os, curlBuilder, curlBuffer);
             if (curlBuilder != null && curlBuffer != null && curlBuffer.position() != 0) {
                 // has content
                 curlBuilder.setContent(new String(curlBuffer.array(), "UTF-8"));
@@ -169,6 +174,7 @@ public class UrlHttpClient implements HttpClient {
 
     /**
      * Needed to pass UrlHttpClientTest.
+     *
      * @see #applyHeadersAndMethod(HttpRequest, HttpURLConnection, CurlBuilder)
      */
     HttpURLConnection applyHeadersAndMethod(final HttpRequest request,
@@ -216,20 +222,25 @@ public class UrlHttpClient implements HttpClient {
         return connection;
     }
 
-    protected void printToLog(int priority, String message) {
-        Log.println(priority, TAG, message);
+    protected void printToLog(String message) {
+        log.debug(message);
     }
 
     protected HttpURLConnection getUrlConnection(URL url) throws IOException {
         return (HttpURLConnection) url.openConnection();
     }
 
-    private void write(InputStream is, OutputStream os, ByteBuffer curlBuffer) throws IOException {
+    private void write(InputStream is, OutputStream os, CurlBuilder curlBuilder,
+            ByteBuffer curlBuffer) throws IOException {
         final byte[] buf = new byte[1024 * 8];
         int len;
         while ((len = is.read(buf)) != -1) {
-            if (curlBuffer != null) {
-                curlBuffer.put(buf, 0 /* offset */, len);
+            try {
+                if (curlBuffer != null) {
+                    curlBuffer.put(buf, 0 /* offset */, len);
+                }
+            } catch (final BufferOverflowException e) {
+                curlBuilder.setContentOverflow(true);
             }
             os.write(buf, 0, len);
         }
@@ -345,8 +356,10 @@ public class UrlHttpClient implements HttpClient {
         private final URL url;
         /** The method to execute on the given url. */
         private String method = null;
-        /** A map of headers and their values to be sent with the curl request. */
-        private HashMap<String,String> headers = new HashMap<String,String>();
+        /**
+         * A map of headers and their values to be sent with the curl request.
+         */
+        private final HashMap<String, String> headers = new HashMap<String, String>();
         /** The content to send with the curl request. */
         private String content = null;
         /** Whether or not the content cannot be written to the curl command. */
@@ -354,7 +367,9 @@ public class UrlHttpClient implements HttpClient {
 
         /**
          * Builds a new curl command for the given {@link URL}.
-         * @param url The {@link URL} for the operation, must not be {@code null}.
+         *
+         * @param url The {@link URL} for the operation, must not be
+         *            {@code null}.
          */
         public CurlBuilder(URL url) {
             if (url == null) {
@@ -364,8 +379,8 @@ public class UrlHttpClient implements HttpClient {
         }
 
         /**
-         * Set the method to call for the given curl command. This method will override the previous
-         * value.
+         * Set the method to call for the given curl command. This method will
+         * override the previous value.
          *
          * @param method The method to use for the request.
          * @return This object for chaining.
@@ -376,21 +391,21 @@ public class UrlHttpClient implements HttpClient {
         }
 
         /**
-         * Set the headers used for the given curl command. This method will override the previous
-         * values.
+         * Set the headers used for the given curl command. This method will
+         * override the previous values.
          *
          * @param headers The headers to use for the request.
          * @return This object for chaining.
          */
-        public CurlBuilder setHeaders(Map<String,String> headers) {
+        public CurlBuilder setHeaders(Map<String, String> headers) {
             this.headers.clear();
             this.headers.putAll(headers);
             return this;
         }
 
         /**
-         * Set the content used for the given curl command. This method will override the previous
-         * value.
+         * Set the content used for the given curl command. This method will
+         * override the previous value.
          *
          * @param content The content to use for the request.
          * @return This object for chaining.
@@ -401,11 +416,13 @@ public class UrlHttpClient implements HttpClient {
         }
 
         /**
-         * Sets whether or not the content is too large for the curl command. Content of length
-         * greater than {@link Integer#MAX_VALUE} are considered too long. If set, the curl should
-         * not be logged as it will be invalid.
+         * Sets whether or not the content is too large for the curl command.
+         * Content of length greater than {@link Integer#MAX_VALUE} are
+         * considered too long. If set, the curl should not be logged as it will
+         * be invalid.
          *
-         * @param contentOverflow Whether or not the content is too long to print.
+         * @param contentOverflow Whether or not the content is too long to
+         *            print.
          * @return This object for chaining.
          */
         public CurlBuilder setContentOverflow(boolean contentOverflow) {
@@ -430,12 +447,12 @@ public class UrlHttpClient implements HttpClient {
             if (!isValid()) {
                 throw new IllegalStateException("Invalid state, cannot create curl command");
             }
-            StringBuilder stringBuilder = new StringBuilder("curl");
+            final StringBuilder stringBuilder = new StringBuilder("curl");
             if (method != null) {
                 stringBuilder.append(" -X ")
                         .append(method);
             }
-            for (Map.Entry<String,String> entry : headers.entrySet()) {
+            for (final Map.Entry<String, String> entry : headers.entrySet()) {
                 stringBuilder.append(" -H \"")
                         .append(entry.getKey())
                         .append(":")
