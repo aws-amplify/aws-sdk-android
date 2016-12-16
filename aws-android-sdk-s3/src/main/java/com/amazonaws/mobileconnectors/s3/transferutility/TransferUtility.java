@@ -15,17 +15,14 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
-import static com.amazonaws.services.s3.internal.Constants.MB;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
-
 import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -35,6 +32,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
+import static com.amazonaws.services.s3.internal.Constants.MB;
 
 /**
  * The transfer utility is a high-level class for applications to upload and
@@ -105,7 +105,6 @@ public class TransferUtility {
      *
      * @param s3 The client to use when making requests to Amazon S3
      * @param context The current context
-     * @param configuration Configuration parameters for this TransferUtility
      */
     public TransferUtility(AmazonS3 s3, Context context) {
         this.s3 = s3;
@@ -124,6 +123,23 @@ public class TransferUtility {
      * @return A TransferObserver used to track download progress and state
      */
     public TransferObserver download(String bucket, String key, File file) {
+        return download(bucket, key, file, null);
+    }
+
+
+    /**
+     * Starts downloading the S3 object specified by the bucket and the key to
+     * the given file. The file must be a valid file. Directory isn't supported.
+     * Note that if the given file exists, it'll be overwritten.
+     *
+     * @param bucket The name of the bucket containing the object to download.
+     * @param key The key under which the object to download is stored.
+     * @param file The file to download the object's data to.
+     * @param connectionCheckType Type of connection check. Default is {@link NetworkInfoReceiver.Type#WIFI_ONLY}
+     * @return A TransferObserver used to track download progress and state
+     */
+    public TransferObserver download(String bucket, String key, File file,
+                                     NetworkInfoReceiver.Type connectionCheckType) {
         if (file == null || file.isDirectory()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
@@ -135,8 +151,25 @@ public class TransferUtility {
             file.delete();
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId, connectionCheckType);
         return new TransferObserver(recordId, dbUtil, bucket, key, file);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param connectionCheckType Type of connection check
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file,
+                                   NetworkInfoReceiver.Type connectionCheckType) {
+
+        return upload(bucket, key, file, new ObjectMetadata(), connectionCheckType);
     }
 
     /**
@@ -151,7 +184,25 @@ public class TransferUtility {
      */
     public TransferObserver upload(String bucket, String key, File file) {
 
-        return upload(bucket, key, file, new ObjectMetadata());
+        return upload(bucket, key, file, new ObjectMetadata(), null);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param cannedAcl The canned ACL to associate with this object
+     * @param connectionCheckType Type of connection check
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file,
+                                   CannedAccessControlList cannedAcl, NetworkInfoReceiver.Type connectionCheckType) {
+
+        return upload(bucket, key, file, new ObjectMetadata(), cannedAcl, connectionCheckType);
     }
 
     /**
@@ -166,9 +217,26 @@ public class TransferUtility {
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file,
-            CannedAccessControlList cannedAcl) {
+                                   CannedAccessControlList cannedAcl) {
 
-        return upload(bucket, key, file, new ObjectMetadata(), cannedAcl);
+        return upload(bucket, key, file, new ObjectMetadata(), cannedAcl, null);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param metadata The S3 metadata to associate with this object
+     * @param connectionCheckType Type of connection check
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
+                                   NetworkInfoReceiver.Type connectionCheckType) {
+        return upload(bucket, key, file, metadata, null, connectionCheckType);
     }
 
     /**
@@ -183,7 +251,7 @@ public class TransferUtility {
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata) {
-        return upload(bucket, key, file, metadata, null);
+        return upload(bucket, key, file, metadata, null, null);
     }
 
     /**
@@ -196,10 +264,11 @@ public class TransferUtility {
      * @param file The file to upload.
      * @param metadata The S3 metadata to associate with this object
      * @param cannedAcl The canned ACL to associate with this object
+     * @param connectionCheckType Type of connection check. Default is {@link NetworkInfoReceiver.Type#WIFI_ONLY}
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
-            CannedAccessControlList cannedAcl) {
+                                   CannedAccessControlList cannedAcl, NetworkInfoReceiver.Type connectionCheckType) {
         if (file == null || file.isDirectory()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
@@ -213,7 +282,7 @@ public class TransferUtility {
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId, connectionCheckType);
         return new TransferObserver(recordId, dbUtil, bucket, key, file);
     }
 
@@ -293,7 +362,6 @@ public class TransferUtility {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
-     * @param isUsingEncryption Whether the upload is encrypted.
      * @return Number of records created in database
      */
     private int createMultipartUploadRecords(String bucket, String key, File file,
@@ -423,12 +491,18 @@ public class TransferUtility {
      * @param id id of the transfer
      */
     private void sendIntent(String action, int id) {
+        sendIntent(action, id, NetworkInfoReceiver.DEFAULT_CONNECTION_CHECK_TYPE);
+    }
+
+    private void sendIntent(String action, int id, NetworkInfoReceiver.Type networkCheckType) {
         String s3Key = UUID.randomUUID().toString();
         S3ClientReference.put(s3Key, s3);
         Intent intent = new Intent(appContext, TransferService.class);
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
         intent.putExtra(TransferService.INTENT_BUNDLE_S3_REFERENCE_KEY, s3Key);
+        intent.putExtra(TransferService.INTENT_BUNDLE_CONNECTION_CHECK_TYPE,
+                networkCheckType.name());
         appContext.startService(intent);
     }
 
