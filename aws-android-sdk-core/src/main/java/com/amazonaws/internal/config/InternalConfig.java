@@ -118,6 +118,7 @@ public class InternalConfig {
         ret.put("AWSIotClient", new HttpClientConfig("execute-api"));
         ret.put("AmazonLexRuntimeClient", new HttpClientConfig("runtime.lex"));
         ret.put("AmazonPinpointClient", new HttpClientConfig("mobiletargeting"));
+        ret.put("AmazonPinpointAnalyticsClient", new HttpClientConfig("mobileanalytics"));
         return ret;
     }
 

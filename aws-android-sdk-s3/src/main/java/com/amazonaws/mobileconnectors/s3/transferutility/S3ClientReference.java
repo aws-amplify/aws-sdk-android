@@ -17,8 +17,8 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import com.amazonaws.services.s3.AmazonS3;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A holder of S3 clients for {@link TransferUtility} to pass a reference of
@@ -28,7 +28,7 @@ import java.util.Map;
  */
 class S3ClientReference {
 
-    private static Map<String, AmazonS3> map = new HashMap<String, AmazonS3>();
+    private static Map<String, AmazonS3> map = new ConcurrentHashMap<String, AmazonS3>();
 
     public static void put(String key, AmazonS3 s3) {
         map.put(key, s3);

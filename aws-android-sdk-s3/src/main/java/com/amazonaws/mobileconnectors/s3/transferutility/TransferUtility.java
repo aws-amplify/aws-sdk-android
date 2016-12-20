@@ -127,9 +127,9 @@ public class TransferUtility {
         if (file == null || file.isDirectory()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
-        Uri uri = dbUtil.insertSingleTransferRecord(TransferType.DOWNLOAD,
+        final Uri uri = dbUtil.insertSingleTransferRecord(TransferType.DOWNLOAD,
                 bucket, key, file);
-        int recordId = Integer.parseInt(uri.getLastPathSegment());
+        final int recordId = Integer.parseInt(uri.getLastPathSegment());
         if (file.isFile()) {
             Log.w(TAG, "Overwrite existing file: " + file);
             file.delete();
@@ -200,7 +200,7 @@ public class TransferUtility {
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl) {
-        if (file == null || file.isDirectory()) {
+        if (file == null || file.isDirectory() || !file.exists()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
         int recordId = 0;
@@ -208,7 +208,7 @@ public class TransferUtility {
             recordId = createMultipartUploadRecords(bucket, key, file, metadata, cannedAcl);
         } else {
 
-            Uri uri = dbUtil.insertSingleTransferRecord(TransferType.UPLOAD,
+            final Uri uri = dbUtil.insertSingleTransferRecord(TransferType.UPLOAD,
                     bucket, key, file, metadata, cannedAcl);
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
@@ -224,7 +224,7 @@ public class TransferUtility {
      * @return The TransferObserver instance which is observing the record.
      */
     public TransferObserver getTransferById(int id) {
-        Cursor c = dbUtil.queryTransferById(id);
+        final Cursor c = dbUtil.queryTransferById(id);
         try {
             if (c.moveToFirst()) {
                 return new TransferObserver(id, dbUtil, c);
@@ -244,11 +244,11 @@ public class TransferUtility {
      * @return A list of TransferObserver instances.
      */
     public List<TransferObserver> getTransfersWithType(TransferType type) {
-        List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
-        Cursor c = dbUtil.queryAllTransfersWithType(type);
+        final List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
+        final Cursor c = dbUtil.queryAllTransfersWithType(type);
         try {
             while (c.moveToNext()) {
-                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 transferObservers.add(new TransferObserver(id, dbUtil, c));
             }
         } finally {
@@ -268,16 +268,16 @@ public class TransferUtility {
      */
     public List<TransferObserver> getTransfersWithTypeAndState(TransferType type,
             TransferState state) {
-        List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
-        Cursor c = dbUtil.queryTransfersWithTypeAndState(type, state);
+        final List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
+        final Cursor c = dbUtil.queryTransfersWithTypeAndState(type, state);
         try {
             while (c.moveToNext()) {
-                int partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
+                final int partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
                 if (partNum != 0) {
                     // skip parts of a multipart upload
                     continue;
                 }
-                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 transferObservers.add(new TransferObserver(id, dbUtil, c));
             }
         } finally {
@@ -301,22 +301,22 @@ public class TransferUtility {
         long remainingLenth = file.length();
         double partSize = (double) remainingLenth / (double) MAXIMUM_UPLOAD_PARTS;
         partSize = Math.ceil(partSize);
-        long optimalPartSize = (long) Math.max(partSize, MINIMUM_UPLOAD_PART_SIZE);
+        final long optimalPartSize = (long) Math.max(partSize, MINIMUM_UPLOAD_PART_SIZE);
         long fileOffset = 0;
         int partNumber = 1;
 
         // the number of parts
-        int partCount = (int) Math.ceil((double) remainingLenth / (double) optimalPartSize);
+        final int partCount = (int) Math.ceil((double) remainingLenth / (double) optimalPartSize);
 
         /*
          * the size of valuesArray is partCount + 1, one for a multipart upload
          * summary, others are actual parts to be uploaded
          */
-        ContentValues[] valuesArray = new ContentValues[partCount + 1];
+        final ContentValues[] valuesArray = new ContentValues[partCount + 1];
         valuesArray[0] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
                 file, fileOffset, 0, "", file.length(), 0, metadata, cannedAcl);
         for (int i = 1; i < partCount + 1; i++) {
-            long bytesForPart = Math.min(optimalPartSize, remainingLenth);
+            final long bytesForPart = Math.min(optimalPartSize, remainingLenth);
             valuesArray[i] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
                     file, fileOffset, partNumber, "", bytesForPart, remainingLenth
                             - optimalPartSize <= 0 ? 1 : 0,
@@ -345,10 +345,10 @@ public class TransferUtility {
      * @param type The type of transfers
      */
     public void pauseAllWithType(TransferType type) {
-        Cursor c = dbUtil.queryAllTransfersWithType(type);
+        final Cursor c = dbUtil.queryAllTransfersWithType(type);
         try {
             while (c.moveToNext()) {
-                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 pause(id);
             }
         } finally {
@@ -392,10 +392,10 @@ public class TransferUtility {
      * @param type The type of transfers
      */
     public void cancelAllWithType(TransferType type) {
-        Cursor c = dbUtil.queryAllTransfersWithType(type);
+        final Cursor c = dbUtil.queryAllTransfersWithType(type);
         try {
             while (c.moveToNext()) {
-                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 cancel(id);
             }
         } finally {
@@ -422,10 +422,10 @@ public class TransferUtility {
      * @param action action to perform
      * @param id id of the transfer
      */
-    private void sendIntent(String action, int id) {
-        String s3Key = UUID.randomUUID().toString();
+    private synchronized void sendIntent(String action, int id) {
+        final String s3Key = UUID.randomUUID().toString();
         S3ClientReference.put(s3Key, s3);
-        Intent intent = new Intent(appContext, TransferService.class);
+        final Intent intent = new Intent(appContext, TransferService.class);
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
         intent.putExtra(TransferService.INTENT_BUNDLE_S3_REFERENCE_KEY, s3Key);
@@ -441,14 +441,15 @@ public class TransferUtility {
         }
     }
 
-    static <X extends AmazonWebServiceRequest> X appendTransferServiceUserAgentString(X request) {
+    static <X extends AmazonWebServiceRequest> X appendTransferServiceUserAgentString(
+            final X request) {
         request.getRequestClientOptions().appendUserAgent("TransferService/"
                 + VersionInfoUtils.getVersion());
         return request;
     }
 
     static <X extends AmazonWebServiceRequest> X appendMultipartTransferServiceUserAgentString(
-            X request) {
+            final X request) {
         request.getRequestClientOptions().appendUserAgent("TransferService_multipart/"
                 + VersionInfoUtils.getVersion());
         return request;

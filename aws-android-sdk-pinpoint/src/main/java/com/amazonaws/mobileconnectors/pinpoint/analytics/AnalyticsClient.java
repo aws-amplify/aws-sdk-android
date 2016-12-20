@@ -28,6 +28,8 @@ import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -216,7 +218,7 @@ public class AnalyticsClient implements JSONSerializable {
 
         if (attributeValue == null) {
             log.warn("Null value provided to addGlobalAttribute. eventType:" + eventType
-                    + ", attributeName:" + attributeName);
+                     + ", attributeName:" + attributeName);
             return;
         }
 
@@ -477,6 +479,10 @@ public class AnalyticsClient implements JSONSerializable {
 
     public void closeDB() {
         eventRecorder.closeDB();
+    }
+
+    public List<JSONObject> getAllEvents() {
+        return eventRecorder.getAllEvents();
     }
 
     public void setSessionId(String sessionId) {
