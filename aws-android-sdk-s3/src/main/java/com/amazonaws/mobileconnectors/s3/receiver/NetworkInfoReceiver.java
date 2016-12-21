@@ -53,7 +53,7 @@ public class NetworkInfoReceiver extends BroadcastReceiver {
         }
     }
 
-    public static final Type DEFAULT_CONNECTION_CHECK_TYPE = Type.WIFI_ONLY;
+    public static final Type DEFAULT_CONNECTION_CHECK_TYPE = Type.ANY;
 
     Type connectionCheckType = DEFAULT_CONNECTION_CHECK_TYPE;
 
