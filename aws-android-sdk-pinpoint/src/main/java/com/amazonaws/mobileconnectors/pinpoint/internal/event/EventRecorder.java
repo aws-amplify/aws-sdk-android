@@ -182,6 +182,16 @@ public class EventRecorder {
         return eventArray;
     }
 
+    public List<JSONObject> getAllEvents() {
+        final List<JSONObject> events = new ArrayList<JSONObject>();
+        final Cursor cursor = dbUtil.queryAllEvents();
+        while (cursor.moveToNext()) {
+            events.add(translateFromCursor(cursor));
+        }
+        cursor.close();
+        return events;
+    }
+
     void processEvents() {
         final long start = System.currentTimeMillis();
 

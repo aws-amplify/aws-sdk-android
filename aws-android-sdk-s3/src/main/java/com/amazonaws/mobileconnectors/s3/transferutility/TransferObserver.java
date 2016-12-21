@@ -100,7 +100,7 @@ public class TransferObserver {
      * TransferListener is set, then there's no need to call this method.
      */
     public void refresh() {
-        Cursor c = dbUtil.queryTransferById(id);
+        final Cursor c = dbUtil.queryTransferById(id);
         try {
             if (c.moveToFirst()) {
                 updateFromDB(c);
@@ -239,7 +239,7 @@ public class TransferObserver {
 
         @Override
         public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
-            bytesTransferred = bytesCurrent;
+            TransferObserver.this.bytesTransferred = bytesCurrent;
             TransferObserver.this.bytesTotal = bytesTotal;
         }
 
