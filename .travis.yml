@@ -6,9 +6,6 @@ android:
     - platform-tools
     - build-tools-24.0.2
     - android-11
-env:
-  global:
-    - MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
 sudo: true
 script:
     - sudo rm /etc/mavenrc
