@@ -8,7 +8,7 @@ android:
     - android-11
 env:
   global:
-    - MAVEN_OPTS=-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m
+    - MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
 #travis ci terminates unexpectedly, when running some tests, we will skip those for now 
 ## TODO: refactor specific tests which are excluded into its own file.
 script: mvn clean install -Dmaven.javadoc.skip=true
