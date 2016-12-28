@@ -5,6 +5,6 @@ android:
     - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
     - platform-tools
     - build-tools-24.0.2
-    - android-24
+    - android-11
 
 script: mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true
