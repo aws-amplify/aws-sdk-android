@@ -6,6 +6,8 @@ android:
     - platform-tools
     - build-tools-24.0.2
     - android-11
+jdk:
+    - openjdk6
 env:
   global:
     - MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
