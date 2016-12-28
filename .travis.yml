@@ -1,7 +1,5 @@
 language: java
 jdk: oraclejdk7
-env:
-    - ANDROID_SDKS=android-10           ANDROID_TARGET=android-10  ANDROID_ABI=armeabi
 before_install:
     # Install base Android SDK
     - sudo apt-get update -qq
