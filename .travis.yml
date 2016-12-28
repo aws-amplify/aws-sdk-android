@@ -9,7 +9,7 @@ android:
 env:
   global:
     - MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
-before_script:
+before_install:
     - echo "MAVEN_OPTS='-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m'" > ~/.mavenrc
     - echo "printing maven options"
     - cat ~/.mavenrc
