@@ -9,8 +9,8 @@ android:
 env:
   global:
     - MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
-before_install:
-    - echo "MAVEN_OPTS='-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m'" > ~/.mavenrc
-    - echo "printing maven options"
-    - cat ~/.mavenrc
-script: mvn clean install -Dmaven.javadoc.skip=true
+sudo: true
+script:
+    - sudo rm /etc/mavenrc
+    - export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
+    - mvn clean install -Dmaven.javadoc.skip=true
