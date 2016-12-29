@@ -46,17 +46,17 @@
     <module>aws-android-sdk-kinesis</module>
     <module>aws-android-sdk-kms</module>
     <module>aws-android-sdk-lambda</module>
+    <module>aws-android-sdk-lex</module>
     <module>aws-android-sdk-machinelearning</module>
     <module>aws-android-sdk-mobileanalytics</module>
     <module>aws-android-sdk-polly</module>
     <module>aws-android-sdk-pinpoint</module>
+    <module>aws-android-sdk-rekognition</module>
     <module>aws-android-sdk-s3</module>
     <module>aws-android-sdk-sdb</module>
     <module>aws-android-sdk-ses</module>
     <module>aws-android-sdk-sns</module>
     <module>aws-android-sdk-sqs</module>
-    <module>aws-android-sdk-lex</module>
-    <module>aws-android-sdk-rekognition</module>
   </modules>
 
   <developers>
@@ -104,6 +104,18 @@
             <additionalparam>-Xdoclint:none</additionalparam>
           </configuration>
         </plugin>
+        <plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>cobertura-maven-plugin</artifactId>
+		<version>2.7</version>
+		<configuration>
+			<formats>
+				<format>html</format>
+				<format>xml</format>
+			</formats>
+			<check />
+		</configuration>
+         </plugin>
       </plugins>
     </pluginManagement>
   </build>
