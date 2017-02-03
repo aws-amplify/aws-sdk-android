@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -21,7 +21,7 @@ package com.amazonaws.util;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.Locale;
+import java.util.Arrays;
 
 /**
  * Utilities for encoding and decoding binary data to and from different forms.
@@ -34,7 +34,7 @@ public class BinaryUtils {
      * @return hex-encoded string.
      */
     public static String toHex(byte[] data) {
-        StringBuilder sb = new StringBuilder(data.length * 2);
+        final StringBuilder sb = new StringBuilder(data.length * 2);
         for (int i = 0; i < data.length; i++) {
             String hex = Integer.toHexString(data[i]);
             if (hex.length() == 1) {
@@ -56,7 +56,7 @@ public class BinaryUtils {
      * @return decoded data from the hex string.
      */
     public static byte[] fromHex(String hexData) {
-        byte[] result = new byte[(hexData.length() + 1) / 2];
+        final byte[] result = new byte[(hexData.length() + 1) / 2];
         String hexNumber = null;
         int stringOffset = 0;
         int byteOffset = 0;
@@ -95,9 +95,43 @@ public class BinaryUtils {
      * @return An InputStream wrapping the ByteBuffer content.
      */
     public static InputStream toStream(ByteBuffer byteBuffer) {
-        byte[] bytes = new byte[byteBuffer.remaining()];
+        final byte[] bytes = new byte[byteBuffer.remaining()];
         byteBuffer.get(bytes);
         return new ByteArrayInputStream(bytes);
+    }
+
+    /**
+     * Returns a copy of all the bytes from the given <code>ByteBuffer</code>,
+     * from the beginning to the buffer's limit; or null if the input is null.
+     * <p>
+     * The internal states of the given byte buffer will be restored when this
+     * method completes execution.
+     * <p>
+     * When handling <code>ByteBuffer</code> from user's input, it's typical to
+     * call the {@link #copyBytesFrom(ByteBuffer)} instead of
+     * {@link #copyAllBytesFrom(ByteBuffer)} so as to account for the position
+     * of the input <code>ByteBuffer</code>. The opposite is typically true,
+     * however, when handling <code>ByteBuffer</code> from within the
+     * unmarshallers of the low-level clients.
+     */
+    public static byte[] copyAllBytesFrom(ByteBuffer bb) {
+        if (bb == null) {
+            return null;
+        }
+
+        if (bb.hasArray()) {
+            return Arrays.copyOfRange(
+                    bb.array(),
+                    bb.arrayOffset(),
+                    bb.arrayOffset() + bb.limit());
+        }
+
+        final ByteBuffer copy = bb.asReadOnlyBuffer();
+        copy.rewind();
+
+        final byte[] dst = new byte[copy.remaining()];
+        copy.get(dst);
+        return dst;
     }
 
 }

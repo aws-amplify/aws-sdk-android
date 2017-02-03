@@ -21,8 +21,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
-
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
@@ -53,12 +51,13 @@ import com.amazonaws.services.cognitoidentityprovider.model.ChangePasswordReques
 import com.amazonaws.services.cognitoidentityprovider.model.CodeDeliveryDetailsType;
 import com.amazonaws.services.cognitoidentityprovider.model.ConfirmDeviceRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ConfirmDeviceResult;
-import com.amazonaws.services.cognitoidentityprovider.model.ConfirmSignUpRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ConfirmForgotPasswordRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.ConfirmSignUpRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserAttributesRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.DeviceSecretVerifierConfigType;
 import com.amazonaws.services.cognitoidentityprovider.model.DeviceType;
+import com.amazonaws.services.cognitoidentityprovider.model.ForgotPasswordRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ForgotPasswordResult;
 import com.amazonaws.services.cognitoidentityprovider.model.GetUserAttributeVerificationCodeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.GetUserAttributeVerificationCodeResult;
@@ -73,7 +72,6 @@ import com.amazonaws.services.cognitoidentityprovider.model.ListDevicesResult;
 import com.amazonaws.services.cognitoidentityprovider.model.NewDeviceMetadataType;
 import com.amazonaws.services.cognitoidentityprovider.model.NotAuthorizedException;
 import com.amazonaws.services.cognitoidentityprovider.model.ResendConfirmationCodeRequest;
-import com.amazonaws.services.cognitoidentityprovider.model.ForgotPasswordRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ResendConfirmationCodeResult;
 import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeRequest;
@@ -87,7 +85,8 @@ import com.amazonaws.services.cognitoidentityprovider.model.VerifyUserAttributeR
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.StringUtils;
 
-import java.io.IOException;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -99,10 +98,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.SimpleTimeZone;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
+import java.util.TimeZone;
 
 /**
  * Represents a single Cognito User.
@@ -286,7 +282,7 @@ public class CognitoUser {
         try {
             confirmSignUpInternal(confirmationCode, forcedAliasCreation);
             callback.onSuccess();
-        } catch (AmazonServiceException e) {
+        } catch (Exception e) {
             callback.onFailure(e);
         }
     }
@@ -455,7 +451,7 @@ public class CognitoUser {
                     new CognitoUserCodeDeliveryDetails(forgotPasswordResult.getCodeDeliveryDetails()),
                     ForgotPasswordContinuation.RUN_IN_CURRENT, callback);
             callback.getResetCode(continuation);
-        } catch (AmazonServiceException e) {
+        } catch (Exception e) {
             callback.onFailure(e);
         }
     }
@@ -501,7 +497,7 @@ public class CognitoUser {
                             callback.onSuccess();
                         }
                     };
-                } catch (final AmazonServiceException e) {
+                } catch (final Exception e) {
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
@@ -535,7 +531,7 @@ public class CognitoUser {
         try {
             confirmPasswordInternal(verificationCode, newPassword);
             callback.onSuccess();
-        } catch (AmazonServiceException e) {
+        } catch (Exception e) {
             callback.onFailure(e);
         }
     }
@@ -2138,6 +2134,7 @@ public class CognitoUser {
 
         Date timestamp = new Date();
         byte[] hmac;
+        String dateString;
         try {
             Mac mac = Mac.getInstance("HmacSHA256");
             SecretKeySpec keySpec = new SecretKeySpec(key, "HmacSHA256");
@@ -2146,22 +2143,21 @@ public class CognitoUser {
             mac.update(userIdForSRP.getBytes(StringUtils.UTF8));
             byte[] secretBlock = Base64.decode(challenge.getChallengeParameters().get("SECRET_BLOCK"));
             mac.update(secretBlock);
+
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US);
-            simpleDateFormat.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
-            String dateString = simpleDateFormat.format(timestamp);
+            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+            dateString = simpleDateFormat.format(timestamp);
             byte[] dateBytes = dateString.getBytes(StringUtils.UTF8);
+
             hmac = mac.doFinal(dateBytes);
         } catch (Exception e) {
             throw new CognitoInternalErrorException("SRP error", e);
         }
 
-        SimpleDateFormat formatTimestamp = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US);
-        formatTimestamp.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
-
         Map<String, String> srpAuthResponses = new HashMap<String, String>();
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_PASSWORD_CLAIM_SECRET_BLOCK, challenge.getChallengeParameters().get(CognitoServiceConstants.CHLG_PARAM_SECRET_BLOCK));
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_PASSWORD_CLAIM_SIGNATURE, new String(Base64.encode(hmac), StringUtils.UTF8));
-        srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_TIMESTAMP, formatTimestamp.format(timestamp));
+        srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_TIMESTAMP, dateString);
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_USERNAME, usernameInternal);
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_DEVICE_KEY, deviceKey);
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_SECRET_HASH, secretHash);
@@ -2199,6 +2195,7 @@ public class CognitoUser {
 
         Date timestamp = new Date();
         byte[] hmac;
+        String dateString;
         try {
             Mac mac = Mac.getInstance("HmacSHA256");
             SecretKeySpec keySpec = new SecretKeySpec(key, "HmacSHA256");
@@ -2207,24 +2204,23 @@ public class CognitoUser {
             mac.update(deviceKey.getBytes(StringUtils.UTF8));
             byte[] secretBlock = Base64.decode(challenge.getChallengeParameters().get(CognitoServiceConstants.CHLG_PARAM_SECRET_BLOCK));
             mac.update(secretBlock);
+
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US);
-            simpleDateFormat.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
-            String dateString = simpleDateFormat.format(timestamp);
+            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+            dateString = simpleDateFormat.format(timestamp);
             byte[] dateBytes = dateString.getBytes(StringUtils.UTF8);
+
             hmac = mac.doFinal(dateBytes);
         } catch (Exception e) {
             throw new CognitoInternalErrorException("SRP error", e);
         }
-
-        SimpleDateFormat formatTimestamp = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US);
-        formatTimestamp.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
 
         secretHash = CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret);
 
         Map<String, String> srpAuthResponses = new HashMap<String, String>();
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_PASSWORD_CLAIM_SECRET_BLOCK, challenge.getChallengeParameters().get(CognitoServiceConstants.CHLG_PARAM_SECRET_BLOCK));
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_PASSWORD_CLAIM_SIGNATURE, new String(Base64.encode(hmac), StringUtils.UTF8));
-        srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_TIMESTAMP, formatTimestamp.format(timestamp));
+        srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_TIMESTAMP, dateString);
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_USERNAME, usernameInternal);
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_DEVICE_KEY, deviceKey);
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_SECRET_HASH, secretHash);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ import java.util.regex.Pattern;
  * <p/>
  * KinesisRecorder requires an IAM policy that allows PutRecords action on the
  * target stream. Here is an example:
- * 
+ *
  * <pre>
  * {
  *   "Version": "2012-10-17",
@@ -94,7 +94,7 @@ public class KinesisRecorder extends AbstractKinesisRecorder {
      */
     private static final Pattern STREAM_NAME_PATTERN = Pattern.compile("[a-zA-Z0-9_.-]{1,128}");
 
-    private KinesisStreamRecordSender sender;
+    private final KinesisStreamRecordSender sender;
 
     /**
      * Constructs a new Kinesis Recorder specifying a directory that Kinesis
@@ -147,10 +147,10 @@ public class KinesisRecorder extends AbstractKinesisRecorder {
                     "You must pass a non-null credentialsProvider, region, directory, and config to KinesisRecordStore");
         }
 
-        AmazonKinesis client = new AmazonKinesisClient(credentialsProvider,
+        final AmazonKinesis client = new AmazonKinesisClient(credentialsProvider,
                 config.getClientConfiguration());
         client.setRegion(Region.getRegion(region));
-        sender = new KinesisStreamRecordSender(client, USER_AGENT);
+        sender = new KinesisStreamRecordSender(client, USER_AGENT, config.getPartitionKey());
 
         checkUpgrade(directory);
     }
@@ -158,7 +158,7 @@ public class KinesisRecorder extends AbstractKinesisRecorder {
     /**
      * Constructs a {@link KinesisRecorder}. It allows you to inject
      * dependencies.
-     * 
+     *
      * @param sender a {@link KinesisStreamRecordSender}
      * @param recordStore record store
      * @param config configuration
@@ -170,8 +170,8 @@ public class KinesisRecorder extends AbstractKinesisRecorder {
     }
 
     private void checkUpgrade(final File directory) {
-        File recordsDir = new File(directory, Constants.RECORDS_DIRECTORY);
-        File oldRecordsFile = new File(recordsDir, Constants.RECORDS_FILE_NAME);
+        final File recordsDir = new File(directory, Constants.RECORDS_DIRECTORY);
+        final File oldRecordsFile = new File(recordsDir, Constants.RECORDS_FILE_NAME);
         // if the records file exists, run upgrade in a background thread
         if (oldRecordsFile.isFile()) {
             new Thread(new Runnable() {
@@ -186,34 +186,34 @@ public class KinesisRecorder extends AbstractKinesisRecorder {
     /**
      * Ports Kinesis records in old records file into the new place and in new
      * format.
-     * 
+     *
      * @param directory working directory
      */
     void upgrade(File directory) {
         synchronized (KinesisRecorder.this) {
-            File recordsDir = new File(directory, Constants.RECORDS_DIRECTORY);
-            File oldRecordsFile = new File(recordsDir, Constants.RECORDS_FILE_NAME);
+            final File recordsDir = new File(directory, Constants.RECORDS_DIRECTORY);
+            final File oldRecordsFile = new File(recordsDir, Constants.RECORDS_FILE_NAME);
             if (!oldRecordsFile.isFile()) {
                 return;
             }
 
             // iterate through all records in the old records file
-            FileRecordStore frs = new FileRecordStore(directory, Constants.RECORDS_FILE_NAME,
+            final FileRecordStore frs = new FileRecordStore(directory, Constants.RECORDS_FILE_NAME,
                     Long.MAX_VALUE);
-            RecordIterator iterator = frs.iterator();
+            final RecordIterator iterator = frs.iterator();
             while (iterator.hasNext()) {
                 try {
-                    JSONObject json = new JSONObject(iterator.next());
+                    final JSONObject json = new JSONObject(iterator.next());
                     saveRecord(JSONRecordAdapter.getData(json).array(),
                             JSONRecordAdapter.getStreamName(json));
-                } catch (JSONException e) {
+                } catch (final JSONException e) {
                     // skip invalid json
                     continue;
                 }
             }
             try {
                 iterator.close();
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 // ignore
             }
             oldRecordsFile.delete();

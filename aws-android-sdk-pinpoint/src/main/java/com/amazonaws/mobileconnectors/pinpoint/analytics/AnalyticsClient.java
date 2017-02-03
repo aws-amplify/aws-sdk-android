@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -164,8 +164,8 @@ public class AnalyticsClient implements JSONSerializable {
     }
 
     /**
-     * Submit all recorded events. If a submission occurred in the last minute,
-     * this request is ignored. If the device is off line, this is a no-op. See
+     * Submit all recorded events.
+     * If the device is off line, this is a no-op. See
      * {@link PinpointConfiguration}
      * for customizing which Internet connection the SDK can submit on.
      */

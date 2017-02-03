@@ -1,4 +1,27 @@
 # Change Log - AWS SDK for Android
+## [Release 2.3.9] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.9) (02/02/2017)
+
+### Improvements:
+
+- **Amazon Kinesis Firehose & Amazon Kinesis Streams**: Allow setting a static partition key in the KenesisRecorderConfig. See [issue #228](https://github.com/aws/aws-sdk-android/pull/228).
+- **AWS KMS**: Updated service to latest spec.
+
+### Bug Fixes:
+
+- **Amazon Cognito Identity**: Fixed a bug that could cause a NullPointerException if credential refresh occured while another thread signed in with a provider. See [issue #247](https://github.com/aws/aws-sdk-android/pull/247).
+- **Amazon Cognito Identity Provider**: Fixed bugs in SRP and exception handling.
+- **Amazon Kinesis Firehose & Amazon Kinesis Streams**: Prevent KinesisRecorder.submitAllRecords() from potentially losing data if the service is killed by waiting until the data is transferred before removing it from the cache. See [issue #225](https://github.com/aws/aws-sdk-android/pull/225).
+- **Amazon Pinpoint**: Fixed a bug that caused a crash when opening a deep link. See [issue #246](https://github.com/aws/aws-sdk-android/pull/246).
+- **Amazon Lex**: Fix incorrect comparison for dialog states. See [issue #245](https://github.com/aws/aws-sdk-android/pull/245).
+
+## [Release 2.3.8] (https://github.com/aws/aws-sdk-android/release/tag/release_v2.3.8) (12/20/2016)
+
+### Bug Fixes:
+
+- **Amazon Pinpoint**: Fixed incorrect signer config in Pinpoint Analytics.
+- **Amazon S3**: Fixed a bug that caused TransferObserver.getBytesTransferred() to always return 0. See [issue #217](https://github.com/aws/aws-sdk-android/pull/217).
+- **Amazon S3**: Fixed a race condition in TransferService. See [issue #197](https://github.com/aws/aws-sdk-android/pull/197).
+
 ## [Release 2.3.7] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.7) (12/13/2016)
 
 ### New Features

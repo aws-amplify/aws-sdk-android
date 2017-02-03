@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -473,7 +473,7 @@ public class NotificationClient {
                 message,
                 imageUrl,
                 iconImageUrl,
-                this.createOpenAppPendingIntent(pushBundle,targetClass,campaignId,requestID,intentAction));
+                this.createOpenAppPendingIntent(pushBundle, targetClass, campaignId, requestID, intentAction));
 
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
         notification.defaults |= Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE;
@@ -534,10 +534,13 @@ public class NotificationClient {
         } else {
             validatedUrl = "http://" + url;
         }
+
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(validatedUrl));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        pinpointContext.getApplicationContext().startActivity(intent);
+        if (intent.resolveActivity(pinpointContext.getApplicationContext().getPackageManager()) != null) {
+            pinpointContext.getApplicationContext().startActivity(intent);
+        }
     }
 
     /**

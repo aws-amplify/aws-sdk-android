@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,8 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GenerateRandomRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Integer that contains the number of bytes to generate. Common values are
-     * 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
+     * The length of the byte string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,17 +37,14 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Integer that contains the number of bytes to generate. Common values are
-     * 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
+     * The length of the byte string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1024<br/>
      *
      * @return <p>
-     *         Integer that contains the number of bytes to generate. Common
-     *         values are 128, 256, 512, 1024 and so on. The current limit is
-     *         1024 bytes.
+     *         The length of the byte string.
      *         </p>
      */
     public Integer getNumberOfBytes() {
@@ -57,17 +53,14 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Integer that contains the number of bytes to generate. Common values are
-     * 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
+     * The length of the byte string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1024<br/>
      *
      * @param numberOfBytes <p>
-     *            Integer that contains the number of bytes to generate. Common
-     *            values are 128, 256, 512, 1024 and so on. The current limit is
-     *            1024 bytes.
+     *            The length of the byte string.
      *            </p>
      */
     public void setNumberOfBytes(Integer numberOfBytes) {
@@ -76,8 +69,7 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Integer that contains the number of bytes to generate. Common values are
-     * 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
+     * The length of the byte string.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -87,9 +79,7 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
      * <b>Range: </b>1 - 1024<br/>
      *
      * @param numberOfBytes <p>
-     *            Integer that contains the number of bytes to generate. Common
-     *            values are 128, 256, 512, 1024 and so on. The current limit is
-     *            1024 bytes.
+     *            The length of the byte string.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

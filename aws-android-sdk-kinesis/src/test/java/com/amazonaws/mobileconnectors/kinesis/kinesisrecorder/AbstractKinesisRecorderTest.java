@@ -273,7 +273,7 @@ public class AbstractKinesisRecorderTest {
                 // one of the records always failes
                 .thenReturn(Arrays.asList(randomBytes(1024)));
         recorder.submitAllRecords();
-        assertTrue("records removed", recorder.getDiskBytesUsed() > 0);
+        assertTrue("records not removed", recorder.getDiskBytesUsed() > 0);
     }
 
     private byte[] randomBytes(int length) {

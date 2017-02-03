@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -72,6 +72,11 @@ public class CreateKeyRequestMarshaller implements
                 String keyUsage = createKeyRequest.getKeyUsage();
                 jsonWriter.name("KeyUsage");
                 jsonWriter.value(keyUsage);
+            }
+            if (createKeyRequest.getOrigin() != null) {
+                String origin = createKeyRequest.getOrigin();
+                jsonWriter.name("Origin");
+                jsonWriter.value(origin);
             }
             if (createKeyRequest.getBypassPolicyLockoutSafetyCheck() != null) {
                 Boolean bypassPolicyLockoutSafetyCheck = createKeyRequest

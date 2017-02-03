@@ -595,7 +595,7 @@ public class InteractionClient {
                                         "Failed to fulfill current request."));
                     }
                 };
-            } else if (DialogState.ReadyForFulfillment.equals(result.getDialogState())) {
+            } else if (DialogState.ReadyForFulfillment.toString().equals(result.getDialogState())) {
                 // The current dlalog is ready for fulfilled by the client.
                 response = new Runnable() {
                     @Override

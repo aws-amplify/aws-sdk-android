@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,13 +20,7 @@ import java.io.Serializable;
 public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
     /**
      * <p>
-     * Ciphertext that contains the wrapped data key. You must store the blob
-     * and encryption context so that the key can be used in a future decrypt
-     * operation.
-     * </p>
-     * <p>
-     * If you are using the CLI, the value is Base64 encoded. Otherwise, it is
-     * not encoded.
+     * The encrypted data encryption key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,8 +30,8 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * System generated unique identifier of the key to be used to decrypt the
-     * encrypted copy of the data key.
+     * The identifier of the CMK under which the data encryption key was
+     * generated and encrypted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,26 +41,14 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * Ciphertext that contains the wrapped data key. You must store the blob
-     * and encryption context so that the key can be used in a future decrypt
-     * operation.
-     * </p>
-     * <p>
-     * If you are using the CLI, the value is Base64 encoded. Otherwise, it is
-     * not encoded.
+     * The encrypted data encryption key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
-     *         Ciphertext that contains the wrapped data key. You must store the
-     *         blob and encryption context so that the key can be used in a
-     *         future decrypt operation.
-     *         </p>
-     *         <p>
-     *         If you are using the CLI, the value is Base64 encoded. Otherwise,
-     *         it is not encoded.
+     *         The encrypted data encryption key.
      *         </p>
      */
     public java.nio.ByteBuffer getCiphertextBlob() {
@@ -75,26 +57,14 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * Ciphertext that contains the wrapped data key. You must store the blob
-     * and encryption context so that the key can be used in a future decrypt
-     * operation.
-     * </p>
-     * <p>
-     * If you are using the CLI, the value is Base64 encoded. Otherwise, it is
-     * not encoded.
+     * The encrypted data encryption key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            Ciphertext that contains the wrapped data key. You must store
-     *            the blob and encryption context so that the key can be used in
-     *            a future decrypt operation.
-     *            </p>
-     *            <p>
-     *            If you are using the CLI, the value is Base64 encoded.
-     *            Otherwise, it is not encoded.
+     *            The encrypted data encryption key.
      *            </p>
      */
     public void setCiphertextBlob(java.nio.ByteBuffer ciphertextBlob) {
@@ -103,13 +73,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * Ciphertext that contains the wrapped data key. You must store the blob
-     * and encryption context so that the key can be used in a future decrypt
-     * operation.
-     * </p>
-     * <p>
-     * If you are using the CLI, the value is Base64 encoded. Otherwise, it is
-     * not encoded.
+     * The encrypted data encryption key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -119,13 +83,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            Ciphertext that contains the wrapped data key. You must store
-     *            the blob and encryption context so that the key can be used in
-     *            a future decrypt operation.
-     *            </p>
-     *            <p>
-     *            If you are using the CLI, the value is Base64 encoded.
-     *            Otherwise, it is not encoded.
+     *            The encrypted data encryption key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -138,16 +96,16 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * System generated unique identifier of the key to be used to decrypt the
-     * encrypted copy of the data key.
+     * The identifier of the CMK under which the data encryption key was
+     * generated and encrypted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         System generated unique identifier of the key to be used to
-     *         decrypt the encrypted copy of the data key.
+     *         The identifier of the CMK under which the data encryption key was
+     *         generated and encrypted.
      *         </p>
      */
     public String getKeyId() {
@@ -156,16 +114,16 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * System generated unique identifier of the key to be used to decrypt the
-     * encrypted copy of the data key.
+     * The identifier of the CMK under which the data encryption key was
+     * generated and encrypted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param keyId <p>
-     *            System generated unique identifier of the key to be used to
-     *            decrypt the encrypted copy of the data key.
+     *            The identifier of the CMK under which the data encryption key
+     *            was generated and encrypted.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -174,8 +132,8 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * System generated unique identifier of the key to be used to decrypt the
-     * encrypted copy of the data key.
+     * The identifier of the CMK under which the data encryption key was
+     * generated and encrypted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -185,8 +143,8 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      * <b>Length: </b>1 - 256<br/>
      *
      * @param keyId <p>
-     *            System generated unique identifier of the key to be used to
-     *            decrypt the encrypted copy of the data key.
+     *            The identifier of the CMK under which the data encryption key
+     *            was generated and encrypted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,26 +21,28 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Encrypts data on the server side with a new customer master key without
+ * Encrypts data on the server side with a new customer master key (CMK) without
  * exposing the plaintext of the data on the client side. The data is first
- * decrypted and then encrypted. This operation can also be used to change the
+ * decrypted and then reencrypted. You can also use this operation to change the
  * encryption context of a ciphertext.
  * </p>
  * <p>
- * Unlike other actions, <code>ReEncrypt</code> is authorized twice - once as
- * <code>ReEncryptFrom</code> on the source key and once as
- * <code>ReEncryptTo</code> on the destination key. We therefore recommend that
- * you include the <code>"action":"kms:ReEncrypt*"</code> statement in your key
- * policies to permit re-encryption from or to the key. The statement is
- * included automatically when you authorize use of the key through the console
- * but must be included manually when you set a policy by using the
- * <a>PutKeyPolicy</a> function.
+ * Unlike other operations, <code>ReEncrypt</code> is authorized twice, once as
+ * <code>ReEncryptFrom</code> on the source CMK and once as
+ * <code>ReEncryptTo</code> on the destination CMK. We recommend that you
+ * include the <code>"kms:ReEncrypt*"</code> permission in your <a href=
+ * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">key
+ * policies</a> to permit reencryption from or to the CMK. This permission is
+ * automatically included in the key policy when you create a CMK through the
+ * console, but you must include it manually when you create a CMK
+ * programmatically or when you set a key policy with the <a>PutKeyPolicy</a>
+ * operation.
  * </p>
  */
 public class ReEncryptRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Ciphertext of the data to re-encrypt.
+     * Ciphertext of the data to reencrypt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,9 +60,9 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A unique identifier for the customer master key used to re-encrypt the
-     * data. This value can be a globally unique identifier, a fully specified
-     * ARN to either an alias or a key, or an alias name prefixed by "alias/".
+     * A unique identifier for the CMK to use to reencrypt the data. This value
+     * can be a globally unique identifier, a fully specified ARN to either an
+     * alias or a key, or an alias name prefixed by "alias/".
      * </p>
      * <ul>
      * <li>
@@ -94,7 +96,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Encryption context to be used when the data is re-encrypted.
+     * Encryption context to use when the data is reencrypted.
      * </p>
      */
     private java.util.Map<String, String> destinationEncryptionContext = new java.util.HashMap<String, String>();
@@ -114,14 +116,14 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Ciphertext of the data to re-encrypt.
+     * Ciphertext of the data to reencrypt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
-     *         Ciphertext of the data to re-encrypt.
+     *         Ciphertext of the data to reencrypt.
      *         </p>
      */
     public java.nio.ByteBuffer getCiphertextBlob() {
@@ -130,14 +132,14 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Ciphertext of the data to re-encrypt.
+     * Ciphertext of the data to reencrypt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            Ciphertext of the data to re-encrypt.
+     *            Ciphertext of the data to reencrypt.
      *            </p>
      */
     public void setCiphertextBlob(java.nio.ByteBuffer ciphertextBlob) {
@@ -146,7 +148,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Ciphertext of the data to re-encrypt.
+     * Ciphertext of the data to reencrypt.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -156,7 +158,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            Ciphertext of the data to re-encrypt.
+     *            Ciphertext of the data to reencrypt.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -258,9 +260,9 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A unique identifier for the customer master key used to re-encrypt the
-     * data. This value can be a globally unique identifier, a fully specified
-     * ARN to either an alias or a key, or an alias name prefixed by "alias/".
+     * A unique identifier for the CMK to use to reencrypt the data. This value
+     * can be a globally unique identifier, a fully specified ARN to either an
+     * alias or a key, or an alias name prefixed by "alias/".
      * </p>
      * <ul>
      * <li>
@@ -291,10 +293,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         A unique identifier for the customer master key used to
-     *         re-encrypt the data. This value can be a globally unique
-     *         identifier, a fully specified ARN to either an alias or a key, or
-     *         an alias name prefixed by "alias/".
+     *         A unique identifier for the CMK to use to reencrypt the data.
+     *         This value can be a globally unique identifier, a fully specified
+     *         ARN to either an alias or a key, or an alias name prefixed by
+     *         "alias/".
      *         </p>
      *         <ul>
      *         <li>
@@ -329,9 +331,9 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A unique identifier for the customer master key used to re-encrypt the
-     * data. This value can be a globally unique identifier, a fully specified
-     * ARN to either an alias or a key, or an alias name prefixed by "alias/".
+     * A unique identifier for the CMK to use to reencrypt the data. This value
+     * can be a globally unique identifier, a fully specified ARN to either an
+     * alias or a key, or an alias name prefixed by "alias/".
      * </p>
      * <ul>
      * <li>
@@ -362,10 +364,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Length: </b>1 - 256<br/>
      *
      * @param destinationKeyId <p>
-     *            A unique identifier for the customer master key used to
-     *            re-encrypt the data. This value can be a globally unique
-     *            identifier, a fully specified ARN to either an alias or a key,
-     *            or an alias name prefixed by "alias/".
+     *            A unique identifier for the CMK to use to reencrypt the data.
+     *            This value can be a globally unique identifier, a fully
+     *            specified ARN to either an alias or a key, or an alias name
+     *            prefixed by "alias/".
      *            </p>
      *            <ul>
      *            <li>
@@ -400,9 +402,9 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A unique identifier for the customer master key used to re-encrypt the
-     * data. This value can be a globally unique identifier, a fully specified
-     * ARN to either an alias or a key, or an alias name prefixed by "alias/".
+     * A unique identifier for the CMK to use to reencrypt the data. This value
+     * can be a globally unique identifier, a fully specified ARN to either an
+     * alias or a key, or an alias name prefixed by "alias/".
      * </p>
      * <ul>
      * <li>
@@ -436,10 +438,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Length: </b>1 - 256<br/>
      *
      * @param destinationKeyId <p>
-     *            A unique identifier for the customer master key used to
-     *            re-encrypt the data. This value can be a globally unique
-     *            identifier, a fully specified ARN to either an alias or a key,
-     *            or an alias name prefixed by "alias/".
+     *            A unique identifier for the CMK to use to reencrypt the data.
+     *            This value can be a globally unique identifier, a fully
+     *            specified ARN to either an alias or a key, or an alias name
+     *            prefixed by "alias/".
      *            </p>
      *            <ul>
      *            <li>
@@ -477,11 +479,11 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Encryption context to be used when the data is re-encrypted.
+     * Encryption context to use when the data is reencrypted.
      * </p>
      *
      * @return <p>
-     *         Encryption context to be used when the data is re-encrypted.
+     *         Encryption context to use when the data is reencrypted.
      *         </p>
      */
     public java.util.Map<String, String> getDestinationEncryptionContext() {
@@ -490,11 +492,11 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Encryption context to be used when the data is re-encrypted.
+     * Encryption context to use when the data is reencrypted.
      * </p>
      *
      * @param destinationEncryptionContext <p>
-     *            Encryption context to be used when the data is re-encrypted.
+     *            Encryption context to use when the data is reencrypted.
      *            </p>
      */
     public void setDestinationEncryptionContext(
@@ -504,14 +506,14 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Encryption context to be used when the data is re-encrypted.
+     * Encryption context to use when the data is reencrypted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param destinationEncryptionContext <p>
-     *            Encryption context to be used when the data is re-encrypted.
+     *            Encryption context to use when the data is reencrypted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -524,7 +526,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Encryption context to be used when the data is re-encrypted.
+     * Encryption context to use when the data is reencrypted.
      * </p>
      * <p>
      * The method adds a new key-value pair into DestinationEncryptionContext

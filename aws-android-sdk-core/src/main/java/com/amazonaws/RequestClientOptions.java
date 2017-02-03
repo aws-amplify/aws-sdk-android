@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon Technologies, Inc.
+ * Copyright 2011-2017 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,14 @@ import java.util.Map;
  * Client markers for individual {@link AmazonWebServiceRequest}s.
  */
 public final class RequestClientOptions {
+    /**
+     * Used to enable mark-and-reset for non-mark-and-resettable non-file input
+     * stream for up to 128K memory buffering by default. Add 1 to get around an
+     * implementation quirk of BufferedInputStream. Retries after reading
+     * {@link #DEFAULT_STREAM_BUFFER_SIZE} bytes would fail to reset the
+     * underlying input stream as the mark position would have been invalidated.
+     */
+    public static final int DEFAULT_STREAM_BUFFER_SIZE = (1 << 17) + 1;
     public static enum Marker {
         /**
          * Used to specify the http user_agent value. This marker is intended
@@ -75,8 +83,9 @@ public final class RequestClientOptions {
      */
     public void appendUserAgent(String userAgent) {
         String marker = markers.get(Marker.USER_AGENT);
-        if (marker == null)
+        if (marker == null) {
             marker = "";
+        }
         marker = createUserAgentMarkerString(marker, userAgent);
         putClientMarker(Marker.USER_AGENT, marker);
     }
