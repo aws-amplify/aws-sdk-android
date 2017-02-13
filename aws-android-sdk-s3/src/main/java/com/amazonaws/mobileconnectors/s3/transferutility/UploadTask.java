@@ -291,9 +291,6 @@ class UploadTask implements Callable<Boolean> {
         if (upload.sseAlgorithm != null) {
             om.setSSEAlgorithm(upload.sseAlgorithm);
         }
-        if (upload.sseAlgorithm != null) {
-            om.setSSEAlgorithm(upload.sseAlgorithm);
-        }
         if (upload.sseKMSKey != null) {
           om.setSSEKMSKeyId(upload.sseKMSKey);
         }
