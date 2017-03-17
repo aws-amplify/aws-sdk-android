@@ -142,7 +142,7 @@ public class AWSIotMqttManager {
      */
     private int currentReconnectRetryTime;
     /** Maximum number of automatic reconnect attempts done before giving up. */
-    private int maxAutoReconnectAttepts;
+    private int maxAutoReconnectAttempts;
     /** Reconnects attempted so far. */
     private int autoReconnectsAttempted;
     /** Is offline publish queueing enabled? */
@@ -268,7 +268,7 @@ public class AWSIotMqttManager {
      * @return number of reconnects to automatically attempt.  Retry forever = -1.
      */
     public int getMaxAutoReconnectAttempts() {
-        return maxAutoReconnectAttepts;
+        return maxAutoReconnectAttempts;
     }
 
     /**
@@ -277,11 +277,11 @@ public class AWSIotMqttManager {
      * @param attempts number of reconnects attempted automatically. Retry
      *            forever = -1.
      */
-    public void setMaxAutoReconnectAttepts(int attempts) {
+    public void setMaxAutoReconnectAttempts(int attempts) {
         if (attempts <= 0 && attempts != -1) {
             throw new IllegalArgumentException("Max reconnection attempts must be postive or -1");
         }
-        maxAutoReconnectAttepts = attempts;
+        maxAutoReconnectAttempts = attempts;
     }
 
     /**
@@ -552,7 +552,7 @@ public class AWSIotMqttManager {
         autoReconnect = DEFAULT_AUTO_RECONNECT_ENABLED;
         minReconnectRetryTime = DEFAULT_MIN_RECONNECT_RETRY_TIME_SECONDS;
         maxReconnectRetryTime = DEFAULT_MAX_RECONNECT_RETRY_TIME_SECONDS;
-        maxAutoReconnectAttepts = DEFAULT_AUTO_RECONNECT_ATTEMPTS;
+        maxAutoReconnectAttempts = DEFAULT_AUTO_RECONNECT_ATTEMPTS;
         userKeepAlive = DEFAULT_KEEP_ALIVE_SECONDS;
         mqttLWT = null;
         offlinePublishQueueEnabled = DEFAULT_OFFLINE_PUBLISH_QUEUE_ENABLED;
@@ -895,7 +895,7 @@ public class AWSIotMqttManager {
      */
     boolean scheduleReconnect() {
         // schedule a reconnect if unlimited or if we haven't yet hit the limit
-        if (maxAutoReconnectAttepts == -1 || autoReconnectsAttempted < maxAutoReconnectAttepts) {
+        if (maxAutoReconnectAttempts == -1 || autoReconnectsAttempted < maxAutoReconnectAttempts) {
 
             (new Handler(Looper.getMainLooper())).postDelayed(new Runnable() {
                 @Override
