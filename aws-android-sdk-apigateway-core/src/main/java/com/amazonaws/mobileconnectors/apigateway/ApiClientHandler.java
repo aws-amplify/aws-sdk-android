@@ -197,6 +197,10 @@ class ApiClientHandler implements InvocationHandler {
     void processParameter(Request<?> request, Parameter p, Object arg) {
         final String name = p.name();
         final String location = p.location();
+        
+        if (arg == null) {
+        	return;
+        }
 
         if ("header".equals(location)) {
             request.addHeader(name, String.valueOf(arg));
