@@ -18,6 +18,8 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.io.Serializable;
+
 /**
  * Represents a grantee identified by their canonical Amazon ID. The canonical
  * Amazon ID can be thought of as an Amazon-internal ID specific to a user. For
@@ -31,7 +33,7 @@ package com.amazonaws.services.s3.model;
  *
  * @see CanonicalGrantee#CanonicalGrantee(String)
  */
-public class CanonicalGrantee implements Grantee {
+public class CanonicalGrantee implements Grantee,Serializable {
     private String id = null;
     private String displayName = null;
 
@@ -105,7 +107,7 @@ public class CanonicalGrantee implements Grantee {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof CanonicalGrantee) {
-            CanonicalGrantee canonicalGrantee = (CanonicalGrantee) obj;
+            final CanonicalGrantee canonicalGrantee = (CanonicalGrantee) obj;
             return id.equals(canonicalGrantee.id);
         }
         return false;

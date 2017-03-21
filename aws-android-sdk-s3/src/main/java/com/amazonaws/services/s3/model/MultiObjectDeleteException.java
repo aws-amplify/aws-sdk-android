@@ -41,6 +41,17 @@ public class MultiObjectDeleteException extends AmazonS3Exception {
     }
 
     /**
+     * Always returns {@code null} since this exception represents a
+     * "successful" response from the service with no top-level error code. Use
+     * {@link #getErrors()} to retrieve a list of objects whose deletion failed,
+     * along with the error code and message for each individual failure.
+     */
+    @Override
+    public String getErrorCode() {
+        return super.getErrorCode();
+    }
+
+    /**
      * Returns the list of successfully deleted objects from this request. If
      * {@link DeleteObjectsRequest#getQuiet()} is true, only error responses
      * will be returned from s3.

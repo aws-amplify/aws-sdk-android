@@ -596,11 +596,14 @@ public class InteractionClient {
                     }
                 };
             } else if (DialogState.ReadyForFulfillment.toString().equals(result.getDialogState())) {
-                // The current dlalog is ready for fulfilled by the client.
+                // The current dialog is ready for fulfillment by the client, no
+                // further action is required.
                 response = new Runnable() {
                     @Override
                     public void run() {
                         interactionListener.onReadyForFulfillment(new Response(result));
+
+                        interactionListener.promptUserToRespond(serviceResponse, null);
                     }
                 };
             } else if (DialogState.Fulfilled.toString().equals(result.getDialogState())) {

@@ -18,6 +18,8 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
+
 /**
  * Deletes the policy associated with the specified bucket. Only the owner of
  * the bucket can delete the bucket policy. </p>
@@ -33,7 +35,7 @@ import com.amazonaws.services.s3.AmazonS3;
  *
  * @see AmazonS3#deleteBucketPolicy(DeleteBucketPolicyRequest)
  */
-public class DeleteBucketPolicyRequest extends AmazonWebServiceRequest {
+public class DeleteBucketPolicyRequest extends AmazonWebServiceRequest implements Serializable {
 
     /** The name of the Amazon S3 bucket whose policy is being deleted. */
     private String bucketName;

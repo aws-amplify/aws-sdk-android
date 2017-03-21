@@ -100,7 +100,7 @@ public class NotificationClient {
     private static final String GCM_TOKEN_PREF_KEY = "AWSPINPOINT.GCMTOKEN";
 
     //Pinpoint
-    private static final String PINPOINT_PUSH_KEY_PREFIX = "pinpoint.";
+    protected static final String PINPOINT_PUSH_KEY_PREFIX = "pinpoint.";
 
     //Notification
     private static final String GCM_NOTIFICATION_PUSH_KEY_PREFIX = PINPOINT_PUSH_KEY_PREFIX + "notification.";

@@ -21,11 +21,12 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.BucketNotificationConfiguration.TopicConfiguration;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class BucketTaggingConfiguration {
+public class BucketTaggingConfiguration implements Serializable {
 
     private List<TagSet> tagSets = null;
 
@@ -149,7 +150,7 @@ public class BucketTaggingConfiguration {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        final StringBuffer sb = new StringBuffer();
         sb.append("{");
         sb.append("TagSets: " + this.getAllTagSets());
         sb.append("}");

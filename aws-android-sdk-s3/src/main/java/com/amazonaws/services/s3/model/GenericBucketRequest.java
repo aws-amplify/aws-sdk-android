@@ -17,10 +17,12 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+import java.io.Serializable;
+
 /**
  * Generic request container for web service requests on buckets.
  */
-public class GenericBucketRequest extends AmazonWebServiceRequest {
+public class GenericBucketRequest extends AmazonWebServiceRequest implements Serializable {
 
     private String bucketName;
 

@@ -55,7 +55,14 @@ public enum StorageClass {
      * data is stored in Amazon Glacier, and Amazon S3 stores a reference to the
      * data in the Amazon S3 bucket.
      */
-    Glacier("GLACIER");
+    Glacier("GLACIER"),
+
+    /**
+     * Standard Infrequent Access storage class
+     */
+    StandardInfrequentAccess("STANDARD_IA"),
+
+    ;
 
     /**
      * Returns the Amazon S3 {@link StorageClass} enumeration value representing
@@ -71,9 +78,10 @@ public enum StorageClass {
      */
     public static StorageClass fromValue(String s3StorageClassString)
             throws IllegalArgumentException {
-        for (StorageClass storageClass : StorageClass.values()) {
-            if (storageClass.toString().equals(s3StorageClassString))
+        for (final StorageClass storageClass : StorageClass.values()) {
+            if (storageClass.toString().equals(s3StorageClassString)) {
                 return storageClass;
+            }
         }
 
         throw new IllegalArgumentException(

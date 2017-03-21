@@ -149,30 +149,30 @@ public class CustomMonetizationEventBuilderTest extends MobileAnalyticsTestBase 
     }
 
     @Test
-    public void build_formattedPriceSet_itemPriceNotSet_currencyNotSet_returnsEvent() {
+    public void build_formattedPriceSet_itemPriceNotSet_currencyNotSet_returnsNull() {
         CustomMonetizationEventBuilder builder = new CustomMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, true, "Custom Store", "com.amazon.item", 1.0, "$1.99",
+        verifyMonetizationEvent(builder, false, "Custom Store", "com.amazon.item", 1.0, "$1.99",
                 null, null, "123456ABCDEFG");
     }
 
     @Test
-    public void build_formattedPriceSet_itemPriceNotSet_currencySet_returnsEvent() {
+    public void build_formattedPriceSet_itemPriceNotSet_currencySet_returnsNull() {
         CustomMonetizationEventBuilder builder = new CustomMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, true, "Custom Store", "com.amazon.item", 1.0, "$1.99",
+        verifyMonetizationEvent(builder, false, "Custom Store", "com.amazon.item", 1.0, "$1.99",
                 null, "USD", "123456ABCDEFG");
     }
 
     @Test
-    public void build_formattedPriceSet_itemPriceNotSet_currencyEmpty_returnsEvent() {
+    public void build_formattedPriceSet_itemPriceNotSet_currencyEmpty_returnsNull() {
         CustomMonetizationEventBuilder builder = new CustomMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, true, "Custom Store", "com.amazon.item", 1.0, "$1.99",
+        verifyMonetizationEvent(builder, false, "Custom Store", "com.amazon.item", 1.0, "$1.99",
                 null, "", "123456ABCDEFG");
     }
 
     @Test
-    public void build_formattedPriceSet_itemPriceSet_currencyNotSet_returnsEvent() {
+    public void build_formattedPriceSet_itemPriceSet_currencyNotSet_returnsNull() {
         CustomMonetizationEventBuilder builder = new CustomMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, true, "Custom Store", "com.amazon.item", 1.0, "$1.99",
+        verifyMonetizationEvent(builder, false, "Custom Store", "com.amazon.item", 1.0, "$1.99",
                 1.99, null, "123456ABCDEFG");
     }
 

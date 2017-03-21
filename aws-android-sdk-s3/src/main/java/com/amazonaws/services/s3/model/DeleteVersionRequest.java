@@ -18,6 +18,8 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Provides options for deleting a specific version of an object in the
@@ -42,7 +44,7 @@ import com.amazonaws.services.s3.AmazonS3;
  * returns a success message, not an error message.
  * </p>
  */
-public class DeleteVersionRequest extends AmazonWebServiceRequest {
+public class DeleteVersionRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
      * The name of the Amazon S3 bucket containing the version to delete.

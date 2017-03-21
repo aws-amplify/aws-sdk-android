@@ -51,7 +51,7 @@ public class Amazons3ClientTest {
 
     @Test
     public void testSetEndpoint() {
-        String region = "us-west-2";
+        final String region = "us-west-2";
         s3.setEndpoint(String.format("s3-%s.amazonaws.com", region));
         assertEquals(region, s3.clientRegion);
         s3.setEndpoint(String.format("s3.%s.amazonaws.com", region));
@@ -65,19 +65,19 @@ public class Amazons3ClientTest {
 
     @Test
     public void testSetRegion() {
-        Regions region = Regions.US_WEST_2;
+        final Regions region = Regions.US_WEST_2;
         s3.setRegion(Region.getRegion(region));
         assertEquals(region.getName(), s3.clientRegion);
     }
 
     @Test
     public void testCreateRequest() {
-        String bucketName = "bucket";
-        String key = "key";
-        File file = new File(key);
-        HttpMethodName method = HttpMethodName.PUT;
-        PutObjectRequest originalRequest = new PutObjectRequest(bucketName, key, file);
-        Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
+        final String bucketName = "bucket";
+        final String key = "key";
+        final File file = new File(key);
+        final HttpMethodName method = HttpMethodName.PUT;
+        final PutObjectRequest originalRequest = new PutObjectRequest(bucketName, key, file);
+        final Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
         assertEquals(String.format("%s.s3.amazonaws.com", bucketName),
                 request.getEndpoint().getHost());
         assertEquals(method, request.getHttpMethod());
@@ -85,12 +85,12 @@ public class Amazons3ClientTest {
 
     @Test
     public void testCreateRequestNonDNS() {
-        String bucketName = "bucket.with.dot";
-        String key = "key";
-        File file = new File(key);
-        HttpMethodName method = HttpMethodName.PUT;
-        PutObjectRequest originalRequest = new PutObjectRequest(bucketName, key, file);
-        Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
+        final String bucketName = "bucket.with.dot";
+        final String key = "key";
+        final File file = new File(key);
+        final HttpMethodName method = HttpMethodName.PUT;
+        final PutObjectRequest originalRequest = new PutObjectRequest(bucketName, key, file);
+        final Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
         assertEquals("s3.amazonaws.com", request.getEndpoint().getHost());
         assertEquals(String.format("%s/%s", bucketName, key), request.getResourcePath());
         assertEquals(method, request.getHttpMethod());
@@ -99,38 +99,24 @@ public class Amazons3ClientTest {
     @Test
     public void testCreateRequestAccelerate() {
         s3.setS3ClientOptions(accelerateOption);
-        String bucketName = "bucket";
-        String key = "key";
-        File file = new File(key);
-        HttpMethodName method = HttpMethodName.PUT;
-        PutObjectRequest originalRequest = new PutObjectRequest(bucketName, key, file);
-        Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
+        final String bucketName = "bucket";
+        final String key = "key";
+        final File file = new File(key);
+        final HttpMethodName method = HttpMethodName.PUT;
+        final PutObjectRequest originalRequest = new PutObjectRequest(bucketName, key, file);
+        final Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
         assertEquals(String.format("%s.s3-accelerate.amazonaws.com", bucketName),
                 request.getEndpoint().getHost());
         assertEquals(method, request.getHttpMethod());
     }
 
     @Test
-    public void testCreateRequestAccelerateNonDNS() {
-        s3.setS3ClientOptions(accelerateOption);
-        String bucketName = "bucket.with.dot";
-        String key = "key";
-        File file = new File(key);
-        HttpMethodName method = HttpMethodName.PUT;
-        PutObjectRequest originalRequest = new PutObjectRequest(bucketName, key, file);
-        Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
-        // Fall back to standard non accelerate endpoint
-        assertEquals("s3.amazonaws.com", request.getEndpoint().getHost());
-        assertEquals(method, request.getHttpMethod());
-    }
-
-    @Test
     public void testCreateRequestAccelerateUnsupportedMethod() {
         s3.setS3ClientOptions(accelerateOption);
-        String bucketName = "bucket";
-        HttpMethodName method = HttpMethodName.DELETE;
-        DeleteBucketRequest originalRequest = new DeleteBucketRequest(bucketName);
-        Request<?> request = s3.createRequest(bucketName, null, originalRequest, method);
+        final String bucketName = "bucket";
+        final HttpMethodName method = HttpMethodName.DELETE;
+        final DeleteBucketRequest originalRequest = new DeleteBucketRequest(bucketName);
+        final Request<?> request = s3.createRequest(bucketName, null, originalRequest, method);
         assertEquals(String.format("%s.s3.amazonaws.com", bucketName),
                 request.getEndpoint().getHost());
         assertEquals(method, request.getHttpMethod());
@@ -139,19 +125,19 @@ public class Amazons3ClientTest {
     @Test
     public void testCreateSigner() {
         s3.setS3ClientOptions(accelerateOption);
-        Regions region = Regions.US_WEST_2;
+        final Regions region = Regions.US_WEST_2;
         s3.setRegion(Region.getRegion(region));
-        String bucketName = "bucket";
-        String key = "key";
-        HttpMethodName method = HttpMethodName.GET;
-        GetObjectRequest originalRequest = new GetObjectRequest(bucketName, key);
-        Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
-        Signer signer = s3.createSigner(request, bucketName, key);
+        final String bucketName = "bucket";
+        final String key = "key";
+        final HttpMethodName method = HttpMethodName.GET;
+        final GetObjectRequest originalRequest = new GetObjectRequest(bucketName, key);
+        final Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
+        final Signer signer = s3.createSigner(request, bucketName, key);
         assertTrue(signer instanceof AWSS3V4Signer);
         signer.sign(request, creds);
-        String authorization = request.getHeaders().get("Authorization");
+        final String authorization = request.getHeaders().get("Authorization");
         assertNotNull(authorization);
-        String regionName = authorization.split("/")[2];
+        final String regionName = authorization.split("/")[2];
         assertEquals(region.getName(), regionName);
     }
 }

@@ -72,48 +72,54 @@ public class AmazonMonetizationEventBuilderTest extends MobileAnalyticsTestBase 
     @Test
     public void build_productIdNotSet_returnsNull() {
         AmazonMonetizationEventBuilder builder = new AmazonMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, false, null, "$.99", 1.0);
+        verifyMonetizationEvent(builder, false, null, "$.99", 1.0, "USD", .99);
     }
 
     @Test
     public void build_productIdEmpty_returnsNull() {
         AmazonMonetizationEventBuilder builder = new AmazonMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, false, "", "$.99", 1.0);
+        verifyMonetizationEvent(builder, false, "", "$.99", 1.0, "USD", .99);
     }
 
     @Test
     public void build_quantityNotSet_returnsNull() {
         AmazonMonetizationEventBuilder builder = new AmazonMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, false, "com.amazon.item", "$.99", null);
+        verifyMonetizationEvent(builder, false, "com.amazon.item", "$.99", null, "USD", .99);
     }
 
     @Test
     public void build_eventClientNotSet_returnsNull() {
         AmazonMonetizationEventBuilder builder = new AmazonMonetizationEventBuilder(null);
-        verifyMonetizationEvent(builder, false, "com.amazon.item", "$.99", 1.0);
+        verifyMonetizationEvent(builder, false, "com.amazon.item", "$.99", 1.0, "USD", .99);
     }
 
     @Test
-    public void build_noFormattedPriceSet_returnsNull() {
+    public void build_NullCurrency_returnsEvent() {
         AmazonMonetizationEventBuilder builder = new AmazonMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, false, "com.amazon.item", null, 1.0);
+        verifyMonetizationEvent(builder, true, "com.amazon.item", "$.99", 1.0, null, .99);
     }
 
     @Test
-    public void build_emptyFormattedPriceSet_returnsNull() {
+    public void build_emptyCurrency_returnsEvent() {
         AmazonMonetizationEventBuilder builder = new AmazonMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, false, "com.amazon.item", "", 1.0);
+        verifyMonetizationEvent(builder, true, "com.amazon.item", "$.99", 1.0, "", .99);
+    }
+
+    @Test
+    public void build_NullItemPrice_returnsEvent() {
+        AmazonMonetizationEventBuilder builder = new AmazonMonetizationEventBuilder(mockEventClient);
+        verifyMonetizationEvent(builder, true, "com.amazon.item", "$.99", 1.0, "USD", null);
     }
 
     @Test
     public void build_allValuesSet_returnsEvent() {
         AmazonMonetizationEventBuilder builder = new AmazonMonetizationEventBuilder(mockEventClient);
-        verifyMonetizationEvent(builder, true, "com.amazon.item", "$.99", 1.0);
+        verifyMonetizationEvent(builder, true, "com.amazon.item", "$.99", 1.0, "USD", .99);
     }
 
     private static void verifyMonetizationEvent(AmazonMonetizationEventBuilder builder,
             boolean successfulBuild, String productId, String formattedPrice,
-            Double quantity) {
+            Double quantity, String currency, Double itemPrice) {
 
         if (productId != null) {
             builder.setProductId(productId);
@@ -123,6 +129,12 @@ public class AmazonMonetizationEventBuilderTest extends MobileAnalyticsTestBase 
         }
         if (quantity != null) {
             builder.setQuantity(quantity);
+        }
+        if (currency != null) {
+            builder.setCurrency(currency);
+        }
+        if (itemPrice != null) {
+            builder.setItemPrice(itemPrice);
         }
 
         AnalyticsEvent purchaseEvent = builder.build();
@@ -135,21 +147,20 @@ public class AmazonMonetizationEventBuilderTest extends MobileAnalyticsTestBase 
             Map<String, String> attributes = purchaseEvent.getAllAttributes();
             assertThat(attributes.get(MonetizationEventBuilder.PURCHASE_EVENT_PRODUCT_ID_ATTR),
                     is(productId));
-            assertThat(
-                    attributes.get(MonetizationEventBuilder.PURCHASE_EVENT_PRICE_FORMATTED_ATTR),
-                    is(formattedPrice));
             assertThat(attributes.get(MonetizationEventBuilder.PURCHASE_EVENT_TRANSACTION_ID_ATTR),
                     is(nullValue()));
             assertThat(attributes.get(MonetizationEventBuilder.PURCHASE_EVENT_STORE_ATTR),
                     is(MonetizationEventBuilder.AMAZON_STORE));
-            assertThat(attributes.get(MonetizationEventBuilder.PURCHASE_EVENT_CURRENCY_ATTR),
-                    is(nullValue()));
 
             Map<String, Double> metrics = purchaseEvent.getAllMetrics();
             assertThat(metrics.get(MonetizationEventBuilder.PURCHASE_EVENT_QUANTITY_METRIC)
                     .doubleValue(), is(quantity));
-            assertThat(metrics.get(MonetizationEventBuilder.PURCHASE_EVENT_ITEM_PRICE_METRIC),
-                    is(nullValue()));
+
+            if (currency == null || itemPrice == null){
+                assertThat(
+                        attributes.get(MonetizationEventBuilder.PURCHASE_EVENT_PRICE_FORMATTED_ATTR),
+                        is(formattedPrice));
+            }
 
         } else {
             assertThat(purchaseEvent, is(nullValue()));

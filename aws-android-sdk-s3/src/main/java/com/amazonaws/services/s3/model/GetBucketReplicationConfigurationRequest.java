@@ -17,13 +17,16 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
+
 /**
  * Request object for the parameters to get a bucket's replication
  * configuration.
  *
  * @see AmazonS3#getBucketReplicationConfiguration(GetBucketReplicationConfiguration)
  */
-public class GetBucketReplicationConfigurationRequest extends GenericBucketRequest {
+public class GetBucketReplicationConfigurationRequest extends
+        GenericBucketRequest implements Serializable {
 
     /**
      * Creates a new request object, ready to be executed to fetch the

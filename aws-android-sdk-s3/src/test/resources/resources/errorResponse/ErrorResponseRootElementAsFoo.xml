@@ -1,0 +1,8 @@
+<Foo>
+  <Error>
+    <Code>TestCode</Code>
+    <Message>TestMessage</Message>
+    <RequestId>TestRequestId</RequestId>
+    <HostId>TestExtendedRequestId</HostId>
+  </Error>
+</Foo>

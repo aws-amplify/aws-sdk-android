@@ -249,4 +249,11 @@ abstract class ContentCryptoScheme {
      * limit.
      */
     abstract long getMaxPlaintextSize();
+
+    /**
+     * A convenient method motivated by KMS.
+     */
+    final String getKeySpec() {
+        return getKeyGeneratorAlgorithm() + "_" + getKeyLengthInBits();
+    }
 }

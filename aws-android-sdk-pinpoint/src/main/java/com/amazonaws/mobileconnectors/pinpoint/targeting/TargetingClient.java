@@ -61,12 +61,14 @@ public class TargetingClient {
     private final Map<String, java.util.List<String>> globalAttributes;
     private final Map<String, Double> globalMetrics;
     private final ExecutorService endpointRunnableQueue;
+    private final EndpointProfile endpointProfile;
 
     //For testing
     public TargetingClient(final PinpointContext context, ThreadPoolExecutor executor) {
         checkNotNull(context, "A valid pinpointContext must be provided");
         this.endpointRunnableQueue = executor;
         this.context = context;
+        this.endpointProfile = new EndpointProfile(this.context);
         globalAttributes = loadAttributes();
         globalMetrics = loadMetrics();
     }
@@ -83,20 +85,19 @@ public class TargetingClient {
      * @returns the current device endpoint profile
      */
     public EndpointProfile currentEndpoint() {
-        EndpointProfile endpointProfile = new EndpointProfile(this.context);
         // Add global  attributes.
         if (!this.globalAttributes.isEmpty()) {
             for (Map.Entry<String, java.util.List<String>> pair : globalAttributes.entrySet()) {
-                endpointProfile.addAttribute(pair.getKey(), pair.getValue());
+                this.endpointProfile.addAttribute(pair.getKey(), pair.getValue());
             }
         }
 
         if (!this.globalMetrics.isEmpty()) {
             for (Map.Entry<String, Double> pair : globalMetrics.entrySet()) {
-                endpointProfile.addMetric(pair.getKey(), pair.getValue());
+                this.endpointProfile.addMetric(pair.getKey(), pair.getValue());
             }
         }
-        return endpointProfile;
+        return this.endpointProfile;
     }
 
     /**
@@ -270,7 +271,7 @@ public class TargetingClient {
             log.warn("Null attribute name provided to removeGlobalAttribute");
             return;
         }
-
+        this.endpointProfile.addAttribute(attributeName, null);
         globalAttributes.remove(attributeName);
         saveAttributes();
     }
@@ -308,7 +309,7 @@ public class TargetingClient {
             log.warn("Null metric name provided to removeGlobalMetric");
             return;
         }
-
+        this.endpointProfile.addMetric(metricName, null);
         globalMetrics.remove(metricName);
         saveMetrics();
     }

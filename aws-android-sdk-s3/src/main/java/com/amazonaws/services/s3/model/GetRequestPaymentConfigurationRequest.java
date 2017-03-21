@@ -17,12 +17,14 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+import java.io.Serializable;
+
 /**
  * Request object for fetching the request payment configuration associated with
  * an Amazon S3 bucket.
  */
 public class GetRequestPaymentConfigurationRequest extends
-        AmazonWebServiceRequest {
+        AmazonWebServiceRequest implements Serializable {
 
     /** The name of the Amazon S3 bucket. */
     private String bucketName;

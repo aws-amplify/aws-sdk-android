@@ -23,6 +23,8 @@ import com.amazonaws.services.s3.internal.RestUtils;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 public class RestUtilsTest {
 
     /**
@@ -31,11 +33,39 @@ public class RestUtilsTest {
      */
     @Test
     public void testCanonicalStringToSignParameters() throws Exception {
-        DefaultRequest<Void> request = new DefaultRequest<Void>("service");
+        final DefaultRequest<Void> request = new DefaultRequest<Void>("service");
         request.addParameter("x-amz-foo", "bar");
         request.addParameter("logging", "true");
         request.addParameter("fake", "fake");
-        String canonicalString = RestUtils.makeS3CanonicalString("GET", "resource", request, null);
+        final String canonicalString = RestUtils.makeS3CanonicalString("GET", "resource", request, null);
+        assertTrue(canonicalString.contains("x-amz-foo:bar"));
+        assertTrue(canonicalString.contains("logging=true"));
+        assertFalse(canonicalString.contains("fake="));
+    }
+
+    /**
+     * Tests that the canonicalized request includes all the query parameters
+     * when signAllQueryParams is set to true.
+     */
+    @Test
+    public void testCanonicalStringIncludingAllParameters() throws Exception {
+        final DefaultRequest<Void> request = new DefaultRequest<Void>("service");
+        request.addParameter("x-amz-foo", "bar");
+        request.addParameter("logging", "true");
+        request.addParameter("fake", "fake");
+
+        // additionalQueryParamsToSign = ["fake"]
+        String canonicalString = RestUtils.makeS3CanonicalString("GET",
+                "resource", request, null, Arrays.asList("fake"));
+
+        assertTrue(canonicalString.contains("x-amz-foo:bar"));
+        assertTrue(canonicalString.contains("logging=true"));
+        assertTrue(canonicalString.contains("fake="));
+
+        // additionalQueryParamsToSign = ["non-existent-param"]
+        canonicalString = RestUtils.makeS3CanonicalString("GET",
+                "resource", request, null, Arrays.asList("non-existent-param"));
+
         assertTrue(canonicalString.contains("x-amz-foo:bar"));
         assertTrue(canonicalString.contains("logging=true"));
         assertFalse(canonicalString.contains("fake="));

@@ -29,7 +29,10 @@ public class ConstantsTest {
         System.setProperty(SDKGlobalConfiguration
                 .DEFAULT_S3_STREAM_BUFFER_SIZE, "1");
         assertEquals(Constants.getStreamBufferSize(), 1);
+        assertEquals(Constants.getS3StreamBufferSize(), new Integer(1));
         System.clearProperty(SDKGlobalConfiguration
                 .DEFAULT_S3_STREAM_BUFFER_SIZE);
+
+        assertEquals(Constants.getS3StreamBufferSize(), null);
     }
 }

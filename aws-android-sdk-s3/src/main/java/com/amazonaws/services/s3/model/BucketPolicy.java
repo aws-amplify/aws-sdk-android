@@ -18,6 +18,8 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Represents a Amazon S3 bucket policy. Bucket policies provide access control
@@ -34,7 +36,7 @@ package com.amazonaws.services.s3.model;
  * Amazon S3 developer guide</a> for more information on forming bucket polices.
  * </p>
  */
-public class BucketPolicy {
+public class BucketPolicy implements Serializable {
 
     /** The raw, policy JSON text, as returned by Amazon S3 */
     private String policyText;

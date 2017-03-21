@@ -21,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Builds monetization events representing an Amazon purchase. This Builder
  * automatically sets the store attribute to "Amazon". This Builder will return
- * null if the ProductId, Formatted Localized Price, or Quantity are not set.
+ * null if the ProductId, Currency, Item Price, or Quantity are not set.
  * </p> Example:
  *
  * <pre class="prettyprint">
@@ -29,9 +29,9 @@ import org.apache.commons.logging.LogFactory;
  * // create a builder that can record purchase events for Amazon IAP
  * AmazonMonetizationEventBuilder builder = AmazonMonetizationEventBuilder.create(pinpointManager.getAnalyticsClient());
  *
- * // build the monetization event with the product id, formatted item price, and
+ * // build the monetization event with the product id, currency, item price, and
  * // quantity
- * // product id and formatted item price are obtained from the Item object
+ * // product id and item price are obtained from the Item object
  * // Amazon IAP currently only supports a quantity of 1
  * Event purchaseEvent = builder.withProductId(purchasedItem.getSku())
  *         .withFormattedItemPrice(purchasedItem.getPrice()).withQuantity(1).build();
@@ -73,7 +73,11 @@ public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
      *
      * @param formattedItemPrice The localized formatted price of the item
      * @return this for chaining
+     *
+     * @deprecated  Will be removed. Please set Currency and Item Price. Replaced by
+     *    {@link #withCurrency(String)} and {@link #withItemPrice(Double)}
      */
+    @Deprecated
     public AmazonMonetizationEventBuilder withFormattedItemPrice(String formattedItemPrice) {
         setFormattedItemPrice(formattedItemPrice);
         return this;
@@ -88,6 +92,29 @@ public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
      */
     public AmazonMonetizationEventBuilder withQuantity(Double quantity) {
         setQuantity(quantity);
+        return this;
+    }
+
+    /**
+     * Sets the item price of the item purchased.
+     *
+     * @param itemPrice The numerical price of the item
+     * @return this for chaining
+     */
+    public AmazonMonetizationEventBuilder withItemPrice(Double itemPrice) {
+        setItemPrice(itemPrice);
+        return this;
+    }
+
+    /**
+     * Sets the currency of the item purchased.
+     *
+     * @param currency The currency code of the currency used to purchase this
+     *            item (i.e. "USD" or "$")
+     * @return this for chaining
+     */
+    public AmazonMonetizationEventBuilder withCurrency(String currency) {
+        setCurrency(currency);
         return this;
     }
 
@@ -114,9 +141,14 @@ public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
             return false;
         }
 
-        if (getFormattedItemPrice() == null) {
-            log.warn("Amazon Monetization event is not valid: it is missing the formatted localized price");
-            return false;
+        if (getFormattedItemPrice() == null){
+            if (getCurrency() == null) {
+                log.warn("Amazon Monetization event is not valid: it is missing the localized currency");
+                return false;
+            } else if (getItemPrice() == null) {
+                log.warn("Amazon Monetization event is not valid: it is missing the localized item price");
+                return false;
+            }
         }
 
         return true;

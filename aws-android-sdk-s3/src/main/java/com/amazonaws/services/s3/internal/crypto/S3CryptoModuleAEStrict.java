@@ -15,8 +15,10 @@
 
 package com.amazonaws.services.s3.internal.crypto;
 
-import com.amazonaws.ClientConfiguration;
+import static com.amazonaws.services.s3.model.CryptoMode.StrictAuthenticatedEncryption;
+
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.services.kms.AWSKMSClient;
 import com.amazonaws.services.s3.internal.S3Direct;
 import com.amazonaws.services.s3.model.CryptoConfiguration;
 import com.amazonaws.services.s3.model.EncryptionMaterialsProvider;
@@ -26,29 +28,23 @@ import com.amazonaws.services.s3.model.EncryptionMaterialsProvider;
  * encryption client.
  */
 class S3CryptoModuleAEStrict extends S3CryptoModuleAE {
-    S3CryptoModuleAEStrict(S3Direct s3,
+    /**
+     * @param cryptoConfig a read-only copy of the crypto configuration.
+     */
+    S3CryptoModuleAEStrict(AWSKMSClient kms, S3Direct s3,
             AWSCredentialsProvider credentialsProvider,
             EncryptionMaterialsProvider encryptionMaterialsProvider,
-            ClientConfiguration clientConfig, CryptoConfiguration cryptoConfig) {
-        super(s3, credentialsProvider, encryptionMaterialsProvider,
-                clientConfig, cryptoConfig);
-    }
-
-    /**
-     * Used for testing purposes only.
-     */
-    S3CryptoModuleAEStrict(S3Direct s3,
-            EncryptionMaterialsProvider encryptionMaterialsProvider,
             CryptoConfiguration cryptoConfig) {
-        super(s3, encryptionMaterialsProvider, cryptoConfig);
+        super(kms, s3, credentialsProvider, encryptionMaterialsProvider,
+                cryptoConfig);
+        if (cryptoConfig.getCryptoMode() != StrictAuthenticatedEncryption)
+            throw new IllegalArgumentException();
     }
 
-    @Override
     protected final boolean isStrict() {
         return true;
     }
 
-    @Override
     protected void securityCheck(ContentCryptoMaterial cekMaterial,
             S3ObjectWrapper retrieved) {
         if (!ContentCryptoScheme.AES_GCM.equals(cekMaterial.getContentCryptoScheme())) {

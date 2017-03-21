@@ -21,6 +21,8 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Represents bucket logging configuration used to control bucket-based server
@@ -45,7 +47,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
  * @see AmazonS3#getBucketLoggingConfiguration(String)
  * @see AmazonS3#setBucketLoggingConfiguration(SetBucketLoggingConfigurationRequest)
  */
-public class BucketLoggingConfiguration {
+public class BucketLoggingConfiguration implements Serializable {
     private String destinationBucketName = null;
     private String logFilePrefix = null;
 
@@ -103,8 +105,9 @@ public class BucketLoggingConfiguration {
      */
     public void setLogFilePrefix(String logFilePrefix) {
         // Default log file prefix to the empty string if none is specified
-        if (logFilePrefix == null)
+        if (logFilePrefix == null) {
             logFilePrefix = "";
+        }
 
         this.logFilePrefix = logFilePrefix;
     }

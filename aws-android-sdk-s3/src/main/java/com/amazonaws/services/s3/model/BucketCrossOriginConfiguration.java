@@ -15,6 +15,8 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.io.Serializable;
+
 /**
  * Container for bucket cross origin configuration operations.
  */
@@ -22,7 +24,8 @@ package com.amazonaws.services.s3.model;
 import java.util.Arrays;
 import java.util.List;
 
-public class BucketCrossOriginConfiguration {
+public class BucketCrossOriginConfiguration implements Serializable {
+
 
     private List<CORSRule> rules;
 

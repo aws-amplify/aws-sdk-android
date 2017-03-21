@@ -98,7 +98,14 @@ public enum CannedAccessControlList {
      * not give full access to all users.
      * </p>
      */
-    BucketOwnerFullControl("bucket-owner-full-control");
+    BucketOwnerFullControl("bucket-owner-full-control"),
+
+    /**
+     * Specifies the owner is granted {@link Permission#FullControl}. Amazon EC2
+     * is granted {@link Permission#Read} access to GET an Amazon Machine Image
+     * (AMI) bundle from Amazon S3.
+     */
+    AwsExecRead("aws-exec-read");
 
     /** The Amazon S3 x-amz-acl header value representing the canned acl */
     private final String cannedAclHeader;

@@ -64,18 +64,18 @@ public class AWSS3V4SignerTest {
 
     @Test
     public void testSignPutObject() throws URISyntaxException {
-        AWSS3V4Signer signer = new S3SignerWithDateOverride(new Date(1431115356859L));
+        final AWSS3V4Signer signer = new S3SignerWithDateOverride(new Date(1431115356859L));
         // THESE ARE BOGUS CREDENTIALS
-        AWSCredentials credentials = new BasicAWSCredentials(
+        final AWSCredentials credentials = new BasicAWSCredentials(
                 "AKIAJd4scjDDmxXZTESTGOZQ", "LYd/ad4scjDDmxXZTESTtRz7xdOM1SiD6");
 
-        ByteArrayInputStream bais = new
+        final ByteArrayInputStream bais = new
                 ByteArrayInputStream("content".getBytes(StringUtils.UTF8));
-        ObjectMetadata om = new ObjectMetadata();
+        final ObjectMetadata om = new ObjectMetadata();
         om.setContentLength("content".getBytes(StringUtils.UTF8).length);
-        PutObjectRequest por = new PutObjectRequest("test-bucket123456",
+        final PutObjectRequest por = new PutObjectRequest("test-bucket123456",
                 "key", bais, om);
-        Request<?> pr = new DefaultRequest(por, Constants.S3_SERVICE_NAME);
+        final Request<?> pr = new DefaultRequest(por, Constants.S3_SERVICE_DISPLAY_NAME);
         pr.setContent(bais);
         pr.setResourcePath("key");
         pr.setHttpMethod(HttpMethodName.PUT);
@@ -90,14 +90,14 @@ public class AWSS3V4SignerTest {
 
     @Test
     public void testSignGetObject() throws URISyntaxException {
-        AWSS3V4Signer signer = new S3SignerWithDateOverride(new Date(1431114076667L));
+        final AWSS3V4Signer signer = new S3SignerWithDateOverride(new Date(1431114076667L));
         // THESE ARE BOGUS CREDENTIALS
-        AWSCredentials credentials = new BasicAWSCredentials(
+        final AWSCredentials credentials = new BasicAWSCredentials(
                 "AKIAJd4scjDDmxXZTESTGOZQ", "LYd/ad4scjDDmxXZTESTtRz7xdOM1SiD6");
 
         // Simulates getObject
-        GetObjectRequest getRequest = new GetObjectRequest("test-bucket123456", "key");
-        Request<?> gr = new DefaultRequest(getRequest, Constants.S3_SERVICE_NAME);
+        final GetObjectRequest getRequest = new GetObjectRequest("test-bucket123456", "key");
+        final Request<?> gr = new DefaultRequest(getRequest, Constants.S3_SERVICE_DISPLAY_NAME);
         gr.setEndpoint(new URI("https://test-bucket123456.s3-us-west-2.amazonaws.com"));
         gr.setHttpMethod(HttpMethodName.GET);
         gr.setResourcePath("key");
@@ -110,15 +110,15 @@ public class AWSS3V4SignerTest {
 
     @Test
     public void testSignMultipartUploads() throws URISyntaxException {
-        AWSS3V4Signer signer = new S3SignerWithDateOverride(new Date(1431114076800L));
+        final AWSS3V4Signer signer = new S3SignerWithDateOverride(new Date(1431114076800L));
         // THESE ARE BOGUS CREDENTIALS
-        AWSCredentials credentials = new BasicAWSCredentials(
+        final AWSCredentials credentials = new BasicAWSCredentials(
                 "AKIAJd4scjDDmxXZTESTGOZQ", "LYd/ad4scjDDmxXZTESTtRz7xdOM1SiD6");
 
         // Simulates initiateMultipartUpload
-        InitiateMultipartUploadRequest imur = new InitiateMultipartUploadRequest(
+        final InitiateMultipartUploadRequest imur = new InitiateMultipartUploadRequest(
                 "test-bucket123456", "multi-key");
-        Request<?> ir = new DefaultRequest(imur, Constants.S3_SERVICE_NAME);
+        final Request<?> ir = new DefaultRequest(imur, Constants.S3_SERVICE_DISPLAY_NAME);
         ir.setEndpoint(new URI("https://test-bucket123456.s3-us-west-2.amazonaws.com"));
         ir.addHeader("Host", "test-bucket123456.s3-us-west-2.amazonaws.com");
         ir.addHeader(Headers.CONTENT_LENGTH, String.valueOf(0));
@@ -131,16 +131,16 @@ public class AWSS3V4SignerTest {
                 "53ed8e3d923f55ae6f46974083fc6a452467ca3aac755d67a8444866aa0ecfa7");
 
         // Simulates uploadPart
-        ByteArrayInputStream multipartContent = new ByteArrayInputStream(
+        final ByteArrayInputStream multipartContent = new ByteArrayInputStream(
                 "multipartContent".getBytes(StringUtils.UTF8));
-        UploadPartRequest upr = new UploadPartRequest();
-        String uploadId = "6E1pXqay7WGHDsWKZ2vuGlba548bNcLNnwTyTnoxiOFQ6S9hejT_dhBpvA0jLAD04oSLOy6R7hrsFFy00O15MoLYD0heUeOn6SglTE6SKWA-";
+        final UploadPartRequest upr = new UploadPartRequest();
+        final String uploadId = "6E1pXqay7WGHDsWKZ2vuGlba548bNcLNnwTyTnoxiOFQ6S9hejT_dhBpvA0jLAD04oSLOy6R7hrsFFy00O15MoLYD0heUeOn6SglTE6SKWA-";
         upr.withUploadId(uploadId).withPartNumber(1)
                 .withPartSize("multipartContent".getBytes(StringUtils.UTF8).length)
                 .withBucketName("test-bucket123456")
                 .withKey("multi-key")
                 .withInputStream(multipartContent);
-        Request<?> ur = new DefaultRequest(upr, Constants.S3_SERVICE_NAME);
+        final Request<?> ur = new DefaultRequest(upr, Constants.S3_SERVICE_DISPLAY_NAME);
         ur.addHeader(Headers.CONTENT_LENGTH,
                 String.valueOf("multipartContent".getBytes(StringUtils.UTF8).length));
         ur.setEndpoint(new URI("https://test-bucket123456.s3-us-west-2.amazonaws.com"));
@@ -155,14 +155,14 @@ public class AWSS3V4SignerTest {
         assertEquals(getSignature(ur),
                 "e7c969db60efd061381cea3c16f9906ffa521967fa45a62104b535c89928f68c");
         // Simulates completemultipartupload
-        List<PartETag> partETags = new ArrayList<PartETag>();
+        final List<PartETag> partETags = new ArrayList<PartETag>();
         partETags.add(new PartETag(1, "e6f34498060d371c4f39da1eaadceacb"));
-        CompleteMultipartUploadRequest cmur = new CompleteMultipartUploadRequest(
+        final CompleteMultipartUploadRequest cmur = new CompleteMultipartUploadRequest(
                 "test-bucket123456", "multi-key", uploadId, partETags);
-        Request<?> cr = new DefaultRequest(cmur, Constants.S3_SERVICE_NAME);
+        final Request<?> cr = new DefaultRequest(cmur, Constants.S3_SERVICE_DISPLAY_NAME);
         cr.setEndpoint(new URI("https://test-bucket123456.s3-us-west-2.amazonaws.com"));
         cr.addHeader("Host", "test-bucket123456.s3-us-west-2.amazonaws.com");
-        byte[] xml = RequestXmlFactory.convertToXmlByteArray(partETags);
+        final byte[] xml = RequestXmlFactory.convertToXmlByteArray(partETags);
         cr.setContent(new ByteArrayInputStream(xml));
         cr.addHeader("Content-Length", String.valueOf(xml.length));
         cr.addParameter(
@@ -178,14 +178,14 @@ public class AWSS3V4SignerTest {
 
     @Test
     public void testHeadBucket() throws URISyntaxException {
-        AWSS3V4Signer signer = new S3SignerWithDateOverride(new Date(1431114075631L));
+        final AWSS3V4Signer signer = new S3SignerWithDateOverride(new Date(1431114075631L));
         // THESE ARE BOGUS CREDENTIALS
-        AWSCredentials credentials = new BasicAWSCredentials(
+        final AWSCredentials credentials = new BasicAWSCredentials(
                 "AKIAJd4scjDDmxXZTESTGOZQ", "LYd/ad4scjDDmxXZTESTtRz7xdOM1SiD6");
 
         // Simulates s3.doesBucketExist
-        Request<?> hr = new DefaultRequest(new HeadBucketRequest("test-bucket123456"),
-                Constants.S3_SERVICE_NAME);
+        final Request<?> hr = new DefaultRequest(new HeadBucketRequest("test-bucket123456"),
+                Constants.S3_SERVICE_DISPLAY_NAME);
         hr.setHttpMethod(HttpMethodName.HEAD);
         hr.setEndpoint(new URI("https://test-bucket123456.s3-us-west-2.amazonaws.com"));
         hr.addHeader("Host", "test-bucket123456.s3-us-west-2.amazonaws.com");
@@ -197,9 +197,9 @@ public class AWSS3V4SignerTest {
 
     // Gets the Signature from the authorizaiton header
     private String getSignature(Request<?> request) {
-        String auth = request.getHeaders().get("Authorization");
-        int index = auth.indexOf("Signature=") + 10;
-        int endIndex = auth.indexOf(" ", index);
+        final String auth = request.getHeaders().get("Authorization");
+        final int index = auth.indexOf("Signature=") + 10;
+        final int endIndex = auth.indexOf(" ", index);
         if (endIndex != -1) {
             return auth.substring(index, endIndex);
         } else {
@@ -208,7 +208,7 @@ public class AWSS3V4SignerTest {
     }
 
     public void testGetContentLengthMarkNotSupported() throws IOException {
-        Request<?> request = new DefaultRequest<Void>("service");
+        final Request<?> request = new DefaultRequest<Void>("service");
         // Content doesn't support mark
         request.setContent(new MockInputStream(16, false));
         // Should throw exception as mark not supported
@@ -217,9 +217,9 @@ public class AWSS3V4SignerTest {
 
     @Test
     public void testGetContentLength() throws IOException {
-        long len = 5 * Constants.MB;
-        Request<?> request = new DefaultRequest<Void>("service");
-        InputStream is = new MockInputStream(len, true);
+        final long len = 5 * Constants.MB;
+        final Request<?> request = new DefaultRequest<Void>("service");
+        final InputStream is = new MockInputStream(len, true);
         request.setContent(is);
         assertTrue("same length", len == AWSS3V4Signer.getContentLength(request));
         assertTrue("works fine after reset", len == AWSS3V4Signer.getContentLength(request));

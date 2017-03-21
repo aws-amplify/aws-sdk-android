@@ -34,13 +34,13 @@ public class S3SignerTest {
 
     @Test
     public void testSign() throws URISyntaxException {
-        GetObjectRequest gr = new GetObjectRequest("test-bucket123456", "TestFile.txt");
-        Request<?> req = new DefaultRequest(gr, Constants.S3_SERVICE_NAME);
+        final GetObjectRequest gr = new GetObjectRequest("test-bucket123456", "TestFile.txt");
+        final Request<?> req = new DefaultRequest(gr, Constants.S3_SERVICE_DISPLAY_NAME);
         req.setHttpMethod(HttpMethodName.GET);
         req.setResourcePath("/test-bucket123456/TestFile.txt");
         req.setEndpoint(new URI("https://test-bucket123456.s3-us-west-2.amazonaws.com"));
         req.addHeader(Headers.CONTENT_TYPE, "application/x-www-form-urlencoded; charset=utf-8");
-        S3Signer signer = new S3Signer("GET", "/test-bucket123456/TestFile.txt");
+        final S3Signer signer = new S3Signer("GET", "/test-bucket123456/TestFile.txt");
         // These are fake bogus credentials just for tesitng
         signer.sign(req, new BasicAWSCredentials(
                 "AKI11BOGUS11ACCESS11KEYOZQ", "LYd/ZD611BOGUS11SECRET11KEYSiD6"), new Date(
@@ -49,8 +49,8 @@ public class S3SignerTest {
     }
 
     private String getSignature(Request<?> req) {
-        String header = req.getHeaders().get("Authorization");
-        int colonIndex = header.indexOf(':') + 1;
+        final String header = req.getHeaders().get("Authorization");
+        final int colonIndex = header.indexOf(':') + 1;
         return header.substring(colonIndex);
     }
 }

@@ -112,12 +112,19 @@ public class EventRecorder {
 
         final Uri uri = this.dbUtil.saveEvent(event);
         if (uri != null) {
-
             while(this.dbUtil.getTotalSize() > maxPendingSize) {
-                final Cursor cursor = this.dbUtil.queryOldestEvents(5);
-                while(this.dbUtil.getTotalSize() > maxPendingSize && cursor.moveToNext()) {
-                    this.dbUtil.deleteEvent(cursor.getInt(EventTable.COLUMN_INDEX.ID.getValue()),
-                            cursor.getInt(EventTable.COLUMN_INDEX.SIZE.getValue()));
+                Cursor cursor = null;
+                try {
+                    cursor = this.dbUtil.queryOldestEvents(5);
+                    while (this.dbUtil.getTotalSize() > maxPendingSize && cursor.moveToNext()) {
+                        this.dbUtil.deleteEvent(
+                                cursor.getInt(EventTable.COLUMN_INDEX.ID.getValue()),
+                                cursor.getInt(EventTable.COLUMN_INDEX.SIZE.getValue()));
+                    }
+                } finally {
+                    if (cursor != null) {
+                        cursor.close();
+                    }
                 }
             }
 
@@ -184,53 +191,67 @@ public class EventRecorder {
 
     public List<JSONObject> getAllEvents() {
         final List<JSONObject> events = new ArrayList<JSONObject>();
-        final Cursor cursor = dbUtil.queryAllEvents();
-        while (cursor.moveToNext()) {
-            events.add(translateFromCursor(cursor));
+        Cursor cursor = null;
+        try {
+            cursor = dbUtil.queryAllEvents();
+            while (cursor.moveToNext()) {
+                events.add(translateFromCursor(cursor));
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-        cursor.close();
         return events;
     }
 
     void processEvents() {
         final long start = System.currentTimeMillis();
 
-        final Cursor cursor = dbUtil.queryAllEvents();
+        Cursor cursor = null;
 
-        final List<Integer> idsToDeletes = new ArrayList<Integer>();
-        final List<Integer> sizeToDeletes = new ArrayList<Integer>();
-        boolean successful;
-        int submissions = 0;
-        final long maxSubmissionsAllowed = pinpointContext.getConfiguration().optInt(
-                KEY_MAX_SUBMISSIONS_ALLOWED, DEFAULT_MAX_SUBMISSIONS_ALLOWED);
+        try {
+            cursor = dbUtil.queryAllEvents();
 
-        while (cursor.moveToNext()) {
-            final List<Integer> batchIdsToDeletes = new ArrayList<Integer>();
-            final List<Integer> batchSizeToDeletes = new ArrayList<Integer>();
-            successful = submitEvents(this.getBatchOfEvents(cursor, batchIdsToDeletes, batchSizeToDeletes));
-            if (successful) {
-                idsToDeletes.addAll(batchIdsToDeletes);
-                sizeToDeletes.addAll(batchSizeToDeletes);
-                submissions++;
-            }
-            if (submissions >= maxSubmissionsAllowed) {
-                break;
-            }
-        }
-        cursor.close();
+            final List<Integer> idsToDeletes = new ArrayList<Integer>();
+            final List<Integer> sizeToDeletes = new ArrayList<Integer>();
+            boolean successful;
+            int submissions = 0;
+            final long maxSubmissionsAllowed = pinpointContext.getConfiguration().optInt(
+                    KEY_MAX_SUBMISSIONS_ALLOWED, DEFAULT_MAX_SUBMISSIONS_ALLOWED);
 
-        if (sizeToDeletes.size() > 0) {
-            for(int i = 0; i < sizeToDeletes.size(); i++) {
-                try {
-                    dbUtil.deleteEvent(idsToDeletes.get(i), sizeToDeletes.get(i));
-                } catch (final Exception exc) {
-                    log.error("Failed to delete event: " + idsToDeletes.get(i), exc);
+            while (cursor.moveToNext()) {
+                final List<Integer> batchIdsToDeletes = new ArrayList<Integer>();
+                final List<Integer> batchSizeToDeletes = new ArrayList<Integer>();
+                successful = submitEvents(
+                        this.getBatchOfEvents(cursor, batchIdsToDeletes, batchSizeToDeletes));
+                if (successful) {
+                    idsToDeletes.addAll(batchIdsToDeletes);
+                    sizeToDeletes.addAll(batchSizeToDeletes);
+                    submissions++;
+                }
+                if (submissions >= maxSubmissionsAllowed) {
+                    break;
                 }
             }
-        }
 
-        log.info(String.format("Time of attemptDelivery: %d",
-                System.currentTimeMillis() - start));
+            if (sizeToDeletes.size() > 0) {
+                for (int i = 0; i < sizeToDeletes.size(); i++) {
+                    try {
+                        dbUtil.deleteEvent(idsToDeletes.get(i), sizeToDeletes.get(i));
+                    } catch (final Exception exc) {
+                        log.error("Failed to delete event: " + idsToDeletes.get(i), exc);
+                    }
+                }
+            }
+
+            log.info(String.format("Time of attemptDelivery: %d",
+                    System.currentTimeMillis() - start));
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 
     boolean submitEvents(final JSONArray eventArray) {

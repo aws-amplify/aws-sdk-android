@@ -55,8 +55,9 @@ public class S3BucketResource extends Resource {
      * Constructs a new bucket resource that represents the the specified bucket
      * but <b>not any of the contained objects</b>.
      *
-     * @param bucketName The name of the bucket represented by this AWS access
-     *            control policy resource.
+     * @param bucketName
+     *            The name of the bucket represented by this AWS access control
+     *            policy resource.
      */
     public S3BucketResource(String bucketName) {
         super("arn:aws:s3:::" + bucketName);

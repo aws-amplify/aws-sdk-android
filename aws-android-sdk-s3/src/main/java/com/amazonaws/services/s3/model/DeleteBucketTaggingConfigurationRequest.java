@@ -17,12 +17,14 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
+
 /**
  * Request object for the parameters to delete a bucket's tagging configuration.
  *
  * @see AmazonS3#deleteBucketTaggingConfiguration(DeleteBucketTaggingConfigurationRequest)
  */
-public class DeleteBucketTaggingConfigurationRequest extends GenericBucketRequest {
+public class DeleteBucketTaggingConfigurationRequest extends GenericBucketRequest implements Serializable {
 
     /**
      * Creates a new request object, ready to be executed to delete the tagging

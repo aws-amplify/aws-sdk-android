@@ -18,6 +18,8 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Gets the policy for the specified bucket. Only the owner of the bucket can
@@ -36,7 +38,7 @@ import com.amazonaws.services.s3.AmazonS3;
  *
  * @see AmazonS3#getBucketPolicy(GetBucketPolicyRequest)
  */
-public class GetBucketPolicyRequest extends AmazonWebServiceRequest {
+public class GetBucketPolicyRequest extends AmazonWebServiceRequest implements Serializable {
 
     /** The name of the Amazon S3 bucket whose policy is being retrieved. */
     private String bucketName;

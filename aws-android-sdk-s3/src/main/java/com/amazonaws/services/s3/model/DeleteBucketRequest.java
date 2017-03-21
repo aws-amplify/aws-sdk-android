@@ -17,6 +17,8 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Provides options for deleting a specified bucket. Amazon S3 buckets can only
@@ -27,8 +29,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * returns a success message, not an error message.
  * </p>
  */
-public class DeleteBucketRequest extends AmazonWebServiceRequest
-        implements S3AccelerateUnsupported {
+public class DeleteBucketRequest extends AmazonWebServiceRequest implements
+        Serializable, S3AccelerateUnsupported {
 
     /**
      * The name of the Amazon S3 bucket to delete.

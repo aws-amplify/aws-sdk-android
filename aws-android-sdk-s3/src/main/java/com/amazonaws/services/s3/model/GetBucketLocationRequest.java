@@ -17,6 +17,8 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+import java.io.Serializable;
+
 /**
  * Provides options for requesting an Amazon S3 bucket's location. You can
  * choose a bucket's location when creating it to ensure that the data stored in
@@ -25,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  *
  * @see CreateBucketRequest
  */
-public class GetBucketLocationRequest extends AmazonWebServiceRequest {
+public class GetBucketLocationRequest extends AmazonWebServiceRequest implements Serializable {
 
     /** The name of the bucket whose location is being requested. */
     private String bucketName;

@@ -27,8 +27,10 @@ import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.SSEAwsKeyManagementParams;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.util.Mimetypes;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,11 +96,11 @@ class UploadTask implements Callable<Boolean> {
          */
         long bytesAlreadyTransferrd = 0;
         if (upload.multipartId == null || upload.multipartId.isEmpty()) {
-            PutObjectRequest putObjectRequest = createPutObjectRequest(upload);
+            final PutObjectRequest putObjectRequest = createPutObjectRequest(upload);
             TransferUtility.appendMultipartTransferServiceUserAgentString(putObjectRequest);
             try {
                 upload.multipartId = initiateMultipartUpload(putObjectRequest);
-            } catch (AmazonClientException ace) {
+            } catch (final AmazonClientException ace) {
                 Log.e(TAG, "Error initiating multipart upload: " + upload.id
                         + " due to " + ace.getMessage());
                 updater.throwError(upload.id, ace);
@@ -119,11 +121,11 @@ class UploadTask implements Callable<Boolean> {
         }
         updater.updateProgress(upload.id, bytesAlreadyTransferrd, upload.bytesTotal);
 
-        List<UploadPartRequest> requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
+        final List<UploadPartRequest> requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
                 upload.multipartId);
         Log.d(TAG, "multipart upload " + upload.id + " in " + requestList.size() + " parts.");
-        ArrayList<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
-        for (UploadPartRequest request : requestList) {
+        final ArrayList<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
+        for (final UploadPartRequest request : requestList) {
             TransferUtility.appendMultipartTransferServiceUserAgentString(request);
             request.setGeneralProgressListener(updater.newProgressListener(upload.id));
             futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil)));
@@ -134,30 +136,30 @@ class UploadTask implements Callable<Boolean> {
              * Future.get() will block the current thread until the method
              * returns.
              */
-            for (Future<Boolean> f : futures) {
+            for (final Future<Boolean> f : futures) {
                 // UploadPartTask returns false when it's interrupted by user
                 // and the state is set by caller
-                boolean b = f.get();
+                final boolean b = f.get();
                 isSuccess &= b;
             }
             if (!isSuccess) {
                 return false;
             }
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             /*
              * Future.get() will catch InterruptedException, but it's not a
              * failure, it may be caused by a pause operation from applications.
              */
-            for (Future<?> f : futures) {
+            for (final Future<?> f : futures) {
                 f.cancel(true);
             }
             // abort by user
             Log.d(TAG, "Transfer " + upload.id + " is interrupted by user");
             return false;
-        } catch (ExecutionException ee) {
+        } catch (final ExecutionException ee) {
             // handle pause, cancel, etc
             if (ee.getCause() != null && ee.getCause() instanceof Exception) {
-                Exception e = (Exception) ee.getCause();
+                final Exception e = (Exception) ee.getCause();
                 if (RetryUtils.isInterrupted(e)) {
                     /*
                      * thread is interrupted by user. don't update the state as
@@ -182,7 +184,7 @@ class UploadTask implements Callable<Boolean> {
             updater.updateProgress(upload.id, upload.bytesTotal, upload.bytesTotal);
             updater.updateState(upload.id, TransferState.COMPLETED);
             return true;
-        } catch (AmazonClientException ace) {
+        } catch (final AmazonClientException ace) {
             Log.e(TAG, "Failed to complete multipart: " + upload.id
                     + " due to " + ace.getMessage());
             updater.throwError(upload.id, ace);
@@ -192,9 +194,9 @@ class UploadTask implements Callable<Boolean> {
     }
 
     private Boolean uploadSinglePartAndWaitForCompletion() {
-        PutObjectRequest putObjectRequest = createPutObjectRequest(upload);
+        final PutObjectRequest putObjectRequest = createPutObjectRequest(upload);
 
-        long length = putObjectRequest.getFile().length();
+        final long length = putObjectRequest.getFile().length();
         TransferUtility.appendTransferServiceUserAgentString(putObjectRequest);
         updater.updateProgress(upload.id, 0, length);
         putObjectRequest.setGeneralProgressListener(updater.newProgressListener(upload.id));
@@ -204,7 +206,7 @@ class UploadTask implements Callable<Boolean> {
             updater.updateProgress(upload.id, length, length);
             updater.updateState(upload.id, TransferState.COMPLETED);
             return true;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             if (RetryUtils.isInterrupted(e)) {
                 /*
                  * thread is interrupted by user. don't update the state as it's
@@ -227,8 +229,8 @@ class UploadTask implements Callable<Boolean> {
 
     private void completeMultiPartUpload(int mainUploadId, String bucket,
             String key, String multipartId) throws AmazonClientException {
-        List<PartETag> partETags = dbUtil.queryPartETagsOfUpload(mainUploadId);
-        CompleteMultipartUploadRequest completeRequest = new CompleteMultipartUploadRequest(bucket,
+        final List<PartETag> partETags = dbUtil.queryPartETagsOfUpload(mainUploadId);
+        final CompleteMultipartUploadRequest completeRequest = new CompleteMultipartUploadRequest(bucket,
                 key, multipartId, partETags);
         TransferUtility.appendMultipartTransferServiceUserAgentString(completeRequest);
         s3.completeMultipartUpload(completeRequest);
@@ -246,10 +248,12 @@ class UploadTask implements Callable<Boolean> {
         initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(
                 putObjectRequest.getBucketName(), putObjectRequest.getKey())
                 .withCannedACL(putObjectRequest.getCannedAcl())
-                .withObjectMetadata(putObjectRequest.getMetadata());
+                .withObjectMetadata(putObjectRequest.getMetadata())
+                .withSSEAwsKeyManagementParams(
+                                putObjectRequest.getSSEAwsKeyManagementParams());
         TransferUtility
                 .appendMultipartTransferServiceUserAgentString(initiateMultipartUploadRequest);
-        String uploadId = s3.initiateMultipartUpload(initiateMultipartUploadRequest).getUploadId();
+        final String uploadId = s3.initiateMultipartUpload(initiateMultipartUploadRequest).getUploadId();
         return uploadId;
     }
 
@@ -261,11 +265,11 @@ class UploadTask implements Callable<Boolean> {
      * @return Returns a PutObjectRequest with filled in metadata and parameters
      */
     private PutObjectRequest createPutObjectRequest(TransferRecord upload) {
-        File file = new File(upload.file);
-        PutObjectRequest putObjectRequest = new PutObjectRequest(upload.bucketName,
+        final File file = new File(upload.file);
+        final PutObjectRequest putObjectRequest = new PutObjectRequest(upload.bucketName,
                 upload.key, file);
 
-        ObjectMetadata om = new ObjectMetadata();
+        final ObjectMetadata om = new ObjectMetadata();
         om.setContentLength(file.length());
 
         if (upload.headerCacheControl != null) {
@@ -297,6 +301,10 @@ class UploadTask implements Callable<Boolean> {
         if (upload.md5 != null) {
             om.setContentMD5(upload.md5);
         }
+        if (upload.sseKMSKey != null) {
+            putObjectRequest
+                    .setSSEAwsKeyManagementParams(new SSEAwsKeyManagementParams(upload.sseKMSKey));
+        }
 
         putObjectRequest.setMetadata(om);
         putObjectRequest.setCannedAcl(getCannedAclFromString(upload.cannedAcl));
@@ -307,7 +315,7 @@ class UploadTask implements Callable<Boolean> {
     private static final Map<String, CannedAccessControlList> cannedAclMap;
     static {
         cannedAclMap = new HashMap<String, CannedAccessControlList>();
-        for (CannedAccessControlList cannedAcl : CannedAccessControlList.values()) {
+        for (final CannedAccessControlList cannedAcl : CannedAccessControlList.values()) {
             cannedAclMap.put(cannedAcl.toString(), cannedAcl);
         }
     }

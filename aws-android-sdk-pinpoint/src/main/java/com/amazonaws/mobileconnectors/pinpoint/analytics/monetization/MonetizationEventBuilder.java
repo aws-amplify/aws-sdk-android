@@ -184,7 +184,10 @@ public abstract class MonetizationEventBuilder {
      * @return The formatted item price that will be used to build the
      *         monetization event. Price should be formatted for the locale and
      *         currency representing the transaction.
+     *
+     * @deprecated  Will be removed. Please set Currency and Item Price
      */
+    @Deprecated
     protected String getFormattedItemPrice() {
         return formattedItemPrice;
     }
@@ -194,7 +197,10 @@ public abstract class MonetizationEventBuilder {
      * building the monetization event
      *
      * @param formattedItemPrice the formatted item price in its local currency
+     *
+     * @deprecated  Will be removed. Please set Currency and Item Price
      */
+    @Deprecated
     protected void setFormattedItemPrice(String formattedItemPrice) {
         this.formattedItemPrice = formattedItemPrice;
     }
@@ -284,7 +290,7 @@ public abstract class MonetizationEventBuilder {
         // we must always have the (currency and price) or formatted price
         if (StringUtil.isNullOrEmpty(currency) || itemPrice == null) {
             if (StringUtil.isNullOrEmpty(formattedItemPrice)) {
-                log.warn("Base Monetization event is not valid: it requires the formatted price or the currency and price");
+                log.warn("Base Monetization event is not valid: it requires the currency and price");
                 return false;
             }
         }

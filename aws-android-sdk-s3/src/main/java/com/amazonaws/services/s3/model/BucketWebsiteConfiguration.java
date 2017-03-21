@@ -17,6 +17,7 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -63,7 +64,7 @@ import java.util.List;
  * @see AmazonS3#getBucketWebsiteConfiguration(String)
  * @see AmazonS3#deleteBucketWebsiteConfiguration(String)
  */
-public class BucketWebsiteConfiguration {
+public class BucketWebsiteConfiguration implements Serializable {
 
     /**
      * The document to serve when a directory is specified (ex: index.html).

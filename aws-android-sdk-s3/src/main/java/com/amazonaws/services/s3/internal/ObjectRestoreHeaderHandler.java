@@ -54,7 +54,10 @@ public class ObjectRestoreHeaderHandler<T extends ObjectRestoreResult>
         String restoreHeader = response.getHeaders().get(Headers.RESTORE);
         if (restoreHeader != null) {
             result.setRestoreExpirationTime(parseDate(restoreHeader));
-            result.setOngoingRestore(parseBoolean(restoreHeader));
+            Boolean onGoingRestore = parseBoolean(restoreHeader);
+            if (onGoingRestore != null) {
+                result.setOngoingRestore(onGoingRestore);
+            }
         }
     }
 

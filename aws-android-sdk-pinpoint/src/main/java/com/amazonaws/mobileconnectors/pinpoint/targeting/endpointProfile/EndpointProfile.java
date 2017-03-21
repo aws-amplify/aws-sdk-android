@@ -73,7 +73,6 @@ public class EndpointProfile implements JSONSerializable {
 
         this.pinpointContext = pinpointContext;
         this.effectiveDate = DateUtil.getCorrectedDate().getTime();
-        this.optOut = (this.pinpointContext.getNotificationClient().areAppNotificationsEnabled())?"NONE":"ALL";
         this.demographic = new EndpointProfileDemographic(this.pinpointContext);
         this.location = new EndpointProfileLocation();
         this.user = new EndpointProfileUser();
@@ -175,16 +174,8 @@ public class EndpointProfile implements JSONSerializable {
      * @return String (ALL | NONE)
      */
     public String getOptOut() {
-        return this.optOut;
-    }
-
-    /**
-     * Set weather the endpoint is opted out of notification.
-     *
-     * @param optOut The optOut option. (ALL | NONE)
-     */
-    public void setOptOut(String optOut) {
-        this.optOut = optOut;
+        return (this.pinpointContext.getNotificationClient().areAppNotificationsEnabled() &&
+                               !StringUtil.isBlank(this.pinpointContext.getNotificationClient().getGCMDeviceToken())) ? "NONE" : "ALL";
     }
 
     private static String processAttributeMetricKey(String key) {

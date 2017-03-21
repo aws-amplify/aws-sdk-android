@@ -1,9 +1,31 @@
 # Change Log - AWS SDK for Android
+## [Release 2.4.0] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.0) (03/21/2017)
+
+### Improvements:
+- **Amazon Lex**:`LexVoiceButton` will now show an image of a bot when audio response from lex is being played.
+
+### Bug Fixes:
+
+- **Amazon API Gateway**: Allow marshalling alternative date formats in API Gateway.
+- **Amazon Cognito Identity Provider**: Bug fix for missing required attribute Exception
+- **Amazon IoT**: fix typo's with variable names in `AWSIoTMQTTManager`. See [issue #220](https://github.com/aws/aws-sdk-android/pull/220).
+- **Amazon Lex**: Fix a bug which caused `readyToFulfill` to not file in `InteractionListener`.
+- **Amazon Pinpoint**:Fix cursor leakage in Pinpoint.
+- **Amazon Pinpoint**:Bug fixes for campaign open rate.
+- **Amazon Pinpoint**:`PinpointEndpointClient` to retain instance of endpoint.
+- **Amazon Pinpoint**:corrected the implemented for `optout` for profile.
+- **Amazon Pinpoint**:Deprecated formatted price in `MonetizationEventBuilder`.
+- **Amazon S3**: Bug Fixes with encryption client.
+- **Amazon S3**: SigV4 signing is now default for S3. See [issue 234](https://github.com/aws/aws-sdk-android/issues/234) & [issue #108](https://github.com/awslabs/aws-sdk-android-samples/issues/108).
+- **Amazon S3**: Added feature to specify listener in `TransferUtility.upload()`. See [issue #210](https://github.com/aws/aws-sdk-android/issues/210).
+- **Amazon S3**: Fixed a bug where when using `setAccelerateModeEnabled` caused uploads to fail. See [issue #264](https://github.com/aws/aws-sdk-android/issues/264).
+- **General** : Fixed a bug which caused incompatibility between maven releases and releases on [marketing page](https://aws.amazon.com/mobile/sdk).
+
 ## [Release 2.3.9] (https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.9) (02/02/2017)
 
 ### Improvements:
 
-- **Amazon Kinesis Firehose & Amazon Kinesis Streams**: Allow setting a static partition key in the KenesisRecorderConfig. See [issue #228](https://github.com/aws/aws-sdk-android/pull/228).
+- **Amazon Kinesis Firehose & Amazon Kinesis Streams**: Allow setting a static partition key in the KinesisRecorderConfig. See [issue #228](https://github.com/aws/aws-sdk-android/pull/228).
 - **AWS KMS**: Updated service to latest spec.
 
 ### Bug Fixes:
