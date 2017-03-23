@@ -479,7 +479,7 @@ public class NotificationClient {
         notification.defaults |= Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE;
 
         if (android.os.Build.VERSION.SDK_INT >= 21) {
-            log.info("SDK grater than 21 detected: " + android.os.Build.VERSION.SDK_INT);
+            log.info("SDK greater than 21 detected: " + android.os.Build.VERSION.SDK_INT);
 
             final String colorString = pushBundle.getString(NOTIFICATION_COLOR_PUSH_KEY);
             if (colorString != null) {
