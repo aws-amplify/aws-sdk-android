@@ -36,7 +36,7 @@
 - **Amazon Pinpoint**: Fixed a bug that caused a crash when opening a deep link. See [issue #246](https://github.com/aws/aws-sdk-android/pull/246).
 - **Amazon Lex**: Fix incorrect comparison for dialog states. See [issue #245](https://github.com/aws/aws-sdk-android/pull/245).
 
-## [Release 2.3.8] (https://github.com/aws/aws-sdk-android/release/tag/release_v2.3.8) (12/20/2016)
+## [Release 2.3.8](https://github.com/aws/aws-sdk-android/release/tag/release_v2.3.8) (12/20/2016)
 
 ### Bug Fixes:
 
