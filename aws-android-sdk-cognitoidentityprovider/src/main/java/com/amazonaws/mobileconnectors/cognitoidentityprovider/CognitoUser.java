@@ -713,7 +713,12 @@ public class CognitoUser {
                 return cipSession;
             }
         }
-        CognitoUser.semaphore.acquire();
+        try {
+            CognitoUser.semaphore.acquire();
+        } catch (InterruptedException e) {
+                    e.printStackTrace();
+        }
+        
         CognitoUserSession cachedTokens = readCachedTokens();
 
         if (cachedTokens.isValidForThreshold()) {
