@@ -713,7 +713,7 @@ public class CognitoUser {
                 return cipSession;
             }
         }
-        semaphore.aquire();
+        CognitoUser.semaphore.acquire();
         CognitoUserSession cachedTokens = readCachedTokens();
 
         if (cachedTokens.isValidForThreshold()) {
@@ -725,14 +725,14 @@ public class CognitoUser {
             try {
                 cipSession = refreshSession(cachedTokens);
                 cacheTokens(cipSession);
-                semaphore.release();
+                CognitoUser.semaphore.release();
                 return cipSession;
             } catch (NotAuthorizedException nae) {
                 clearCachedTokens();
-                semaphore.release();
+                CognitoUser.semaphore.release();
                 throw new CognitoNotAuthorizedException("User is not authenticated", nae);
             } catch (Exception e) {
-                semaphore.release();
+                CognitoUser.semaphore.release();
                 throw new CognitoInternalErrorException("Failed to authenticate user", e);
             }
         }
