@@ -99,7 +99,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
-
+import java.util.concurrent.Semaphore;
 /**
  * Represents a single Cognito User.
  * <p>
@@ -162,6 +162,11 @@ public class CognitoUser {
      * The current session.
      */
     private CognitoUserSession cipSession;
+
+    /**
+     * The semaphore to provide mutex for the getSession call if called on multiple threads, this would avoid multiple threads going over the network and refreshing the tokens
+     */
+     public static Semaphore semaphore = new Semaphore(1, true);
 
     /**
      * Constructs a new Cognito User from a Cognito user identity pool {@link CognitoUserPool} and userId.
@@ -708,7 +713,12 @@ public class CognitoUser {
                 return cipSession;
             }
         }
-
+        try {
+            CognitoUser.semaphore.acquire();
+        } catch (InterruptedException e) {
+                    e.printStackTrace();
+        }
+        
         CognitoUserSession cachedTokens = readCachedTokens();
 
         if (cachedTokens.isValidForThreshold()) {
@@ -720,11 +730,14 @@ public class CognitoUser {
             try {
                 cipSession = refreshSession(cachedTokens);
                 cacheTokens(cipSession);
+                CognitoUser.semaphore.release();
                 return cipSession;
             } catch (NotAuthorizedException nae) {
                 clearCachedTokens();
+                CognitoUser.semaphore.release();
                 throw new CognitoNotAuthorizedException("User is not authenticated", nae);
             } catch (Exception e) {
+                CognitoUser.semaphore.release();
                 throw new CognitoInternalErrorException("Failed to authenticate user", e);
             }
         }
