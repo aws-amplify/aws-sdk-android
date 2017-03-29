@@ -164,6 +164,11 @@ public class CognitoUser {
     private CognitoUserSession cipSession;
 
     /**
+     * The semaphore to provide mutex for the getSession call if called on multiple threads, this would avoid multiple threads going over the network and refreshing the tokens
+     */
+     public static Semaphore semaphore = new Semaphore(1, true);
+
+    /**
      * Constructs a new Cognito User from a Cognito user identity pool {@link CognitoUserPool} and userId.
      *
      * @param pool              REQUIRED: Reference to {@link CognitoUserPool}, to which this user belongs.
@@ -708,7 +713,7 @@ public class CognitoUser {
                 return cipSession;
             }
         }
-
+        semaphore.aquire();
         CognitoUserSession cachedTokens = readCachedTokens();
 
         if (cachedTokens.isValidForThreshold()) {
@@ -720,11 +725,14 @@ public class CognitoUser {
             try {
                 cipSession = refreshSession(cachedTokens);
                 cacheTokens(cipSession);
+                semaphore.release();
                 return cipSession;
             } catch (NotAuthorizedException nae) {
                 clearCachedTokens();
+                semaphore.release();
                 throw new CognitoNotAuthorizedException("User is not authenticated", nae);
             } catch (Exception e) {
+                semaphore.release();
                 throw new CognitoInternalErrorException("Failed to authenticate user", e);
             }
         }
