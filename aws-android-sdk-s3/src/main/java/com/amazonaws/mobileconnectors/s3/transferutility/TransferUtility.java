@@ -15,17 +15,14 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
-import static com.amazonaws.services.s3.internal.Constants.MB;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
-
 import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -34,7 +31,9 @@ import com.amazonaws.util.VersionInfoUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
+import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
+import static com.amazonaws.services.s3.internal.Constants.MB;
 
 /**
  * The transfer utility is a high-level class for applications to upload and
@@ -94,23 +93,24 @@ public class TransferUtility {
      */
     static final int MINIMUM_UPLOAD_PART_SIZE = 5 * MB;
 
-    private final AmazonS3 s3;
     private final Context appContext;
     private final TransferDBUtil dbUtil;
+    public static Function<Context, AmazonS3> clientRetrieve;
+    private final TransferConfiguration transferConfiguration;
 
     /**
      * Constructs a new TransferUtility specifying the client to use and
      * initializes configuration of TransferUtility and a key for S3 client weak
      * reference.
      *
-     * @param s3 The client to use when making requests to Amazon S3
+     * @param clientRetrieve The client callback to retrieve instance
      * @param context The current context
-     * @param configuration Configuration parameters for this TransferUtility
      */
-    public TransferUtility(AmazonS3 s3, Context context) {
-        this.s3 = s3;
+    public TransferUtility(final Function<Context, AmazonS3> clientRetrieve, final Context context, final TransferConfiguration transferConfiguration) {
         this.appContext = context.getApplicationContext();
         this.dbUtil = new TransferDBUtil(appContext);
+        this.transferConfiguration = transferConfiguration;
+        TransferUtility.clientRetrieve = clientRetrieve;
     }
     /**
      * Starts downloading the S3 object specified by the bucket and the key to
@@ -150,8 +150,9 @@ public class TransferUtility {
             file.delete();
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
-        return new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId,
+                transferConfiguration.getConnectionCheckType());
+        return new TransferObserver(recordId, dbUtil, bucket, key, file);
     }
 
     /**
@@ -181,7 +182,7 @@ public class TransferUtility {
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file,
-            CannedAccessControlList cannedAcl) {
+                                   CannedAccessControlList cannedAcl) {
 
         return upload(bucket, key, file, new ObjectMetadata(), cannedAcl);
     }
@@ -246,8 +247,8 @@ public class TransferUtility {
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
-        return new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId, transferConfiguration.getConnectionCheckType());
+        return new TransferObserver(recordId, dbUtil, bucket, key, file);
     }
 
 
@@ -342,7 +343,6 @@ public class TransferUtility {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
-     * @param isUsingEncryption Whether the upload is encrypted.
      * @return Number of records created in database
      */
     private int createMultipartUploadRecords(String bucket, String key, File file,
@@ -477,13 +477,16 @@ public class TransferUtility {
      * @param action action to perform
      * @param id id of the transfer
      */
-    private synchronized void sendIntent(String action, int id) {
-        final String s3Key = UUID.randomUUID().toString();
-        S3ClientReference.put(s3Key, s3);
+    private void sendIntent(String action, int id) {
+        sendIntent(action, id, transferConfiguration.getConnectionCheckType());
+    }
+
+    private void sendIntent(final String action, final int id, final NetworkInfoReceiver.Type networkCheckType) {
         final Intent intent = new Intent(appContext, TransferService.class);
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
-        intent.putExtra(TransferService.INTENT_BUNDLE_S3_REFERENCE_KEY, s3Key);
+        intent.putExtra(TransferService.INTENT_BUNDLE_CONNECTION_CHECK_TYPE,
+                networkCheckType.name());
         appContext.startService(intent);
     }
 
@@ -509,11 +512,5 @@ public class TransferUtility {
                 + VersionInfoUtils.getVersion());
         return request;
     }
-
-    TransferDBUtil getDbUtil() {
-        return dbUtil;
-    }
-
 }
-
 

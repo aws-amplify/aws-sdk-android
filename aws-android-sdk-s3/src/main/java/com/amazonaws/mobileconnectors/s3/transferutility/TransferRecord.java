@@ -17,9 +17,8 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.database.Cursor;
 import android.util.Log;
-
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
+import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.util.json.JsonUtils;

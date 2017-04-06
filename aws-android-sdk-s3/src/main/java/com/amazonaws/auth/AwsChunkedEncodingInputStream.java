@@ -15,17 +15,16 @@
 
 package com.amazonaws.auth;
 
-import static com.amazonaws.util.StringUtils.UTF8;
-
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.internal.SdkInputStream;
 import com.amazonaws.util.BinaryUtils;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import static com.amazonaws.util.StringUtils.UTF8;
 
 /**
  * A wrapper class of InputStream that implements chunked-encoding.

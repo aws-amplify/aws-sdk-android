@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- *
- *  http://aws.amazon.com/apache2.0
- *
+ * <p>
+ * http://aws.amazon.com/apache2.0
+ * <p>
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -15,10 +15,9 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
+import android.content.Context;
+import android.util.Log;
 import com.amazonaws.services.s3.AmazonS3;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A holder of S3 clients for {@link TransferUtility} to pass a reference of
@@ -28,26 +27,38 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 class S3ClientReference {
 
-    private static Map<String, AmazonS3> map = new ConcurrentHashMap<String, AmazonS3>();
+    private static final String TAG = S3ClientReference.class.getSimpleName();
 
-    public static void put(String key, AmazonS3 s3) {
-        map.put(key, s3);
-    }
+    private static AmazonS3 amazonS3 = null;
+
+    private static final Object lock = new Object();
 
     /**
-     * Retrieves the AmazonS3 client on the given key.
+     * Retrieves the AmazonS3 client
      *
-     * @param key key of the client
-     * @return an AmazonS3 instance, or null if the key doesn't exist
+     * @return an AmazonS3 instance, or null
      */
-    public static AmazonS3 get(String key) {
-        return map.remove(key);
+    public static AmazonS3 get(Context ctx) {
+        if (amazonS3 == null && TransferUtility.clientRetrieve != null) {
+            synchronized (lock) {
+                try {
+                    Log.w(TAG, "S3 client's retrieval attempt");
+                    amazonS3 = TransferUtility.clientRetrieve.call(ctx);
+                } catch (final Exception ex) {
+                    Log.e(TAG, "Failed to retrieve s3 client", ex);
+                }
+            }
+        }
+        if (TransferUtility.clientRetrieve == null) {
+            Log.e(TAG," TransferUtility.clientRetrieve is NULL");
+        }
+        return amazonS3;
     }
 
     /**
      * Clears all references.
      */
     public static void clear() {
-        map.clear();
+        amazonS3 = null;
     }
 }
